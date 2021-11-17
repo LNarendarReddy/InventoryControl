@@ -16,9 +16,10 @@ namespace NSRetail
         [STAThread]
         static void Main()
         {
+            UserLookAndFeel.Default.SetSkinStyle("Office 2019 Colorful");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new frmMain());
         }
     }
 }
