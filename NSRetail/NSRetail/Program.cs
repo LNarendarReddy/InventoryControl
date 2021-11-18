@@ -19,7 +19,7 @@ namespace NSRetail
             UserLookAndFeel.Default.SetSkinStyle("Office 2019 Colorful");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            Application.Run(new frmLogin());
         }
     }
 }

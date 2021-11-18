@@ -56,6 +56,7 @@ namespace NSRetail
                 ObjBranch.ADDRESS = txtAddress.EditValue;
                 ObjBranch.PHONENO = txtPhoneNo.EditValue;
                 ObjBranch.EMAILID = txtEmailID.EditValue;
+                ObjBranch.UserID = Utility.UserID;
                 objMasterRep.SaveBranch(ObjBranch);
                 ObjBranch.IsSave = true;
                 this.Close();

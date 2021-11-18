@@ -17,7 +17,7 @@ namespace NSRetail
     public partial class frmBranch : DevExpress.XtraEditors.XtraForm
     {
         MasterRepository objMasterRep = new MasterRepository();
-        Branch ObjBranch = new Branch();
+        Branch ObjBranch = null;
         public frmBranch()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace NSRetail
 
         private void btnNew_Click(object sender, EventArgs e)
         {
+            ObjBranch = new Branch();
             frmAddBranch obj = new frmAddBranch(ObjBranch);
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
@@ -60,6 +61,7 @@ namespace NSRetail
             {
                 if (gvBranch.FocusedRowHandle >= 0)
                 {
+                    ObjBranch = new Branch();
                     ObjBranch.BRANCHID = gvBranch.GetFocusedRowCellValue("BRANCHID");
                     ObjBranch.BRANCHNAME = gvBranch.GetFocusedRowCellValue("BRANCHNAME");
                     ObjBranch.BRANCHCODE = gvBranch.GetFocusedRowCellValue("BRANCHCODE");
@@ -81,6 +83,27 @@ namespace NSRetail
                 }
             }
             catch (Exception ex){
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+
+        private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+                var dlgResult = XtraMessageBox.Show("Are you sure want to delete?", "Confirmation!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (Convert.ToString(dlgResult) == "OK" && gvBranch.FocusedRowHandle >= 0)
+                {
+                    ObjBranch = new Branch();
+                    ObjBranch.BRANCHID = gvBranch.GetFocusedRowCellValue("BRANCHID");
+                    ObjBranch.UserID = Utility.UserID;
+                    objMasterRep.DeleteBranch(ObjBranch);
+                    gvBranch.DeleteRow(gvBranch.FocusedRowHandle);
+                }
+            }
+            catch (Exception ex)
+            {
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
             }

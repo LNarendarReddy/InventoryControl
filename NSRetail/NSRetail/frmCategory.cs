@@ -70,5 +70,26 @@ namespace NSRetail
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
+
+        private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+                var dlgResult = XtraMessageBox.Show("Are you sure want to delete?", "Confirmation!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (Convert.ToString(dlgResult) == "OK" && gvCategory.FocusedRowHandle >= 0)
+                {
+                    ObjCategory = new Category();
+                    ObjCategory.CATEGORYID = gvCategory.GetFocusedRowCellValue("CATEGORYID");
+                    ObjCategory.UserID = Utility.UserID;
+                    ObjMasterRep.DeleteCategory(ObjCategory);
+                    gvCategory.DeleteRow(gvCategory.FocusedRowHandle);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
     }
 }
