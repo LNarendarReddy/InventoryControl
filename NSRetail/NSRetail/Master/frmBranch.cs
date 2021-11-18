@@ -14,11 +14,11 @@ using ErrorManagement;
 
 namespace NSRetail
 {
-    public partial class frmAddBranch : DevExpress.XtraEditors.XtraForm
+    public partial class frmBranch : DevExpress.XtraEditors.XtraForm
     {
         Branch ObjBranch = null;
         MasterRepository objMasterRep = new MasterRepository();
-        public frmAddBranch(Branch _ObjBranch)
+        public frmBranch(Branch _ObjBranch)
         {
             InitializeComponent();
             ObjBranch = _ObjBranch;
@@ -56,6 +56,7 @@ namespace NSRetail
                 ObjBranch.ADDRESS = txtAddress.EditValue;
                 ObjBranch.PHONENO = txtPhoneNo.EditValue;
                 ObjBranch.EMAILID = txtEmailID.EditValue;
+                ObjBranch.UserID = Utility.UserID;
                 objMasterRep.SaveBranch(ObjBranch);
                 ObjBranch.IsSave = true;
                 this.Close();

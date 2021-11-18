@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using NSRetail.Master;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,7 +20,7 @@ namespace NSRetail
 
         private void btnBranch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmBranch obj = new frmBranch();
+            frmBranchList obj = new frmBranchList();
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;
             obj.IconOptions.ShowIcon = false;
@@ -28,16 +30,64 @@ namespace NSRetail
 
         private void btnCategory_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmCategory obj = new frmCategory();
+            frmCategoryList obj = new frmCategoryList();
             obj.ShowInTaskbar = false;
             obj.IconOptions.ShowIcon = false;
             obj.MdiParent = this;
             obj.Show();
         }
 
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             new frmItemList() { MdiParent = this }.Show();
+        }
+
+        private void btnUser_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmUserList obj = new frmUserList();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void btnChangePassword_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmChangePassword obj = new frmChangePassword();
+            obj.ShowInTaskbar = false;
+            obj.StartPosition = FormStartPosition.CenterParent;
+            obj.IconOptions.ShowIcon = false;
+            obj.ShowDialog();
+        }
+
+        private void btnLogout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                RegistryKey RGkey = Registry.CurrentUser.OpenSubKey(@"Software\NSRetail", true);
+                if (RGkey == null)
+                    RGkey = Registry.CurrentUser.CreateSubKey(@"Software\NSRetail");
+                RGkey.SetValue("PasswordString", string.Empty);
+                RGkey.Close();
+                Application.Exit();
+            }
+            catch (Exception ex) { }
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnDealer_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmDealerList obj = new frmDealerList();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
         }
     }
 }
