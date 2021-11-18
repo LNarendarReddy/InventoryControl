@@ -17,9 +17,13 @@ namespace NSRetail
 
         private void frmItem_Load(object sender, EventArgs e)
         {
-            if(itemObj.ItemID != null && (int)itemObj.ItemID > 0)
+            if(Convert.ToInt32(itemObj.ItemID) > 0)
             {
-                Text = "Item - " + itemObj.ItemName;
+                Text = "Edit Item - " + itemObj.ItemName;
+                txtItemCode.EditValue = itemObj.ItemCode;
+                txtItemName.EditValue = itemObj.ItemName;
+                txtDescription.EditValue = itemObj.Description;
+                txtHSCNo.EditValue = itemObj.HSCNO;
             }
         }
 

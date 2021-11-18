@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataAccess;
+using DevExpress.XtraEditors;
 using Entity;
 using ErrorManagement;
 
@@ -80,15 +81,40 @@ namespace NSRetail
 
         private void UpdateDataTable(Item itemObj, bool isNew = false)
         {
-            if (itemObj.IsSave)
+            if (!itemObj.IsSave)
             {
-                DataRow addedItemRow = dtItems.NewRow();
-                addedItemRow["ITEMID"] = itemObj.ItemID;
-                addedItemRow["ITEMNAME"] = itemObj.ItemName;
-                addedItemRow["ITEMCODE"] = itemObj.ItemCode;
-                addedItemRow["DESCRIPTION"] = itemObj.Description;
-                addedItemRow["HSCNO"] = itemObj.HSCNO;
-                dtItems.Rows.Add(addedItemRow);
+                return;
+            }
+
+            DataRow updateRow;
+            if (isNew)
+            {
+                updateRow = dtItems.NewRow();
+            }
+            else
+            {
+                int rowHandle = gvItemList.LocateByValue("ITEMID", itemObj.ItemID);
+                if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+                {
+                    updateRow = dtItems.Rows[rowHandle];
+                }
+                else
+                {
+                    XtraMessageBox.Show("Refresh of grid failed");
+                    return;
+                }
+            }
+
+            updateRow["ITEMID"] = itemObj.ItemID;
+            updateRow["ITEMNAME"] = itemObj.ItemName;
+            updateRow["ITEMCODE"] = itemObj.ItemCode;
+            updateRow["DESCRIPTION"] = itemObj.Description;
+            updateRow["HSCNO"] = itemObj.HSCNO;
+
+            if (isNew)
+            {
+                dtItems.Rows.Add(updateRow);
+                Utility.Setfocus(gvItemList, "ITEMID", itemObj.ItemID);
             }
         }
     }

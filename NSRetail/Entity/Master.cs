@@ -46,12 +46,4 @@ namespace Entity
         public object EMAILID { get; set; }
         public DataTable dtBranch { get; set; }
     }
-
-    public class Item : Master
-    {
-        public object ItemID { get; set; }
-        public object ItemName { get; set; }
-        public object ItemCode { get; set; }
-        public object HSCNO { get; set; }
-    }
 }
