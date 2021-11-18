@@ -15,6 +15,9 @@ namespace Entity
         public object UpdatedBy { get; set; }
 
         public object UpdatedDate { get; set; }
+
+        public object UserID { get; set; }
+
     }
 
     public class Branch : Master
@@ -25,14 +28,12 @@ namespace Entity
         public object ADDRESS { get; set; }
         public object PHONENO { get; set; }
         public object EMAILID { get; set; }
-        public object USERID { get; set; }
     }
 
     public class Category : Master
     {
         public object CATEGORYID { get; set; }
         public object CATEGORYNAME { get; set; }
-        public object USERID { get; set; }
     }
 
     public class User : Master
@@ -43,7 +44,6 @@ namespace Entity
         public object ADDRESS { get; set; }
         public object PHONENO { get; set; }
         public object EMAILID { get; set; }
-        public object USERID { get; set; }
         public DataTable dtBranch { get; set; }
     }
 

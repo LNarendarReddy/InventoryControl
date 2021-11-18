@@ -28,7 +28,7 @@ namespace DataAccess
                     cmd.Parameters.Add("@ADDRESS", ObjBranch.ADDRESS);
                     cmd.Parameters.Add("@PHONENO", ObjBranch.PHONENO);
                     cmd.Parameters.Add("@EMAILID", ObjBranch.EMAILID);
-                    cmd.Parameters.Add("@USERID", ObjBranch.USERID);
+                    cmd.Parameters.Add("@USERID", ObjBranch.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out BRanchID))
@@ -89,7 +89,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_CU_CATEGORY]";
                     cmd.Parameters.Add("@CATEGORYID", ObjCategory.CATEGORYID);
                     cmd.Parameters.Add("@CATEGORYNAME", ObjCategory.CATEGORYNAME);
-                    cmd.Parameters.Add("@USERID", ObjCategory.USERID);
+                    cmd.Parameters.Add("@USERID", ObjCategory.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out CategoryID))
