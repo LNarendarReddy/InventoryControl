@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using NSRetail.Item;
 
 namespace NSRetail
 {
@@ -33,6 +34,11 @@ namespace NSRetail
             obj.IconOptions.ShowIcon = false;
             obj.MdiParent = this;
             obj.Show();
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            new frmItemList() { MdiParent = this, ShowIcon = false }.Show();
         }
     }
 }

@@ -3,3 +3,8 @@ Entity/obj/
 ErrorManagement/obj/
 NSRetail/obj/
 .vs
+DataAccess/bin
+Entity/bin
+ErrorManagement/bin
+NSRetail/Item
+NSRetail/bin

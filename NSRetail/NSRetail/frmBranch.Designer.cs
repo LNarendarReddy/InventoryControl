@@ -71,17 +71,17 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.Control.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlDropDown.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlDropDownHeader.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.btnNew);
@@ -103,7 +103,6 @@
             this.btnCancel.Location = new System.Drawing.Point(787, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(141, 36);
-            this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -115,7 +114,6 @@
             this.btnNew.Location = new System.Drawing.Point(644, 4);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(139, 36);
-            this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 5;
             this.btnNew.Text = "New";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
@@ -134,9 +132,9 @@
             // 
             // gvBranch
             // 
-            this.gvBranch.Appearance.HeaderPanel.Font = new System.Drawing.Font("Helvetica", 10F, System.Drawing.FontStyle.Bold);
+            this.gvBranch.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.gvBranch.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvBranch.Appearance.Row.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.gvBranch.Appearance.Row.Font = new System.Drawing.Font("Arial", 10F);
             this.gvBranch.Appearance.Row.Options.UseFont = true;
             this.gvBranch.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
@@ -278,7 +276,7 @@
             // 
             // Root
             // 
-            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 10F);
             this.Root.AppearanceItemCaption.Options.UseFont = true;
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
