@@ -32,7 +32,7 @@ namespace NSRetail
                 txtBranchCode.EditValue = ObjBranch.BRANCHCODE;
                 txtBranchName.EditValue = ObjBranch.BRANCHNAME;
                 txtAddress.EditValue = ObjBranch.ADDRESS;
-                txtDescription.EditValue = ObjBranch.DESCRIPTION;
+                txtDescription.EditValue = ObjBranch.Description;
                 txtPhoneNo.EditValue = ObjBranch.PHONENO;
                 txtEmailID.EditValue = ObjBranch.EMAILID;
             }
@@ -52,7 +52,7 @@ namespace NSRetail
                     return;
                 ObjBranch.BRANCHCODE = txtBranchCode.EditValue;
                 ObjBranch.BRANCHNAME = txtBranchName.EditValue;
-                ObjBranch.DESCRIPTION = txtDescription.EditValue;
+                ObjBranch.Description = txtDescription.EditValue;
                 ObjBranch.ADDRESS = txtAddress.EditValue;
                 ObjBranch.PHONENO = txtPhoneNo.EditValue;
                 ObjBranch.EMAILID = txtEmailID.EditValue;

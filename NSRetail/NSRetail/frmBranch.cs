@@ -64,7 +64,7 @@ namespace NSRetail
                     ObjBranch.BRANCHNAME = gvBranch.GetFocusedRowCellValue("BRANCHNAME");
                     ObjBranch.BRANCHCODE = gvBranch.GetFocusedRowCellValue("BRANCHCODE");
                     ObjBranch.ADDRESS = gvBranch.GetFocusedRowCellValue("ADDRESS");
-                    ObjBranch.DESCRIPTION = gvBranch.GetFocusedRowCellValue("DESCRIPTION");
+                    ObjBranch.Description = gvBranch.GetFocusedRowCellValue("DESCRIPTION");
                     ObjBranch.PHONENO = gvBranch.GetFocusedRowCellValue("PHONENO");
                     ObjBranch.EMAILID = gvBranch.GetFocusedRowCellValue("EMAILID");
                     frmAddBranch obj = new frmAddBranch(ObjBranch);

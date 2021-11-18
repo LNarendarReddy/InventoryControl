@@ -24,7 +24,7 @@ namespace DataAccess
                     cmd.Parameters.Add("@BRANCHID", ObjBranch.BRANCHID);
                     cmd.Parameters.Add("@BRANCHNAME", ObjBranch.BRANCHNAME);
                     cmd.Parameters.Add("@BRANCHCODE", ObjBranch.BRANCHCODE);
-                    cmd.Parameters.Add("@DESCRIPTION", ObjBranch.DESCRIPTION);
+                    cmd.Parameters.Add("@DESCRIPTION", ObjBranch.Description);
                     cmd.Parameters.Add("@ADDRESS", ObjBranch.ADDRESS);
                     cmd.Parameters.Add("@PHONENO", ObjBranch.PHONENO);
                     cmd.Parameters.Add("@EMAILID", ObjBranch.EMAILID);
