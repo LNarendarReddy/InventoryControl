@@ -38,7 +38,7 @@ namespace NSRetail
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            new frmItemList() { MdiParent = this, ShowIcon = false }.Show();
+            new frmItemList() { MdiParent = this }.Show();
         }
     }
 }
