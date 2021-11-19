@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using NSRetail.Master;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +37,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             new frmItemList() { MdiParent = this }.Show();
         }
@@ -77,6 +78,16 @@ namespace NSRetail
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnDealer_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmDealerList obj = new frmDealerList();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
         }
     }
 }

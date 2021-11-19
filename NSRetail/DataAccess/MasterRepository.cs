@@ -391,5 +391,101 @@ namespace DataAccess
             finally { SQLCon.Sqlconn().Close(); }
             return dtUser;
         }
+        public Dealer SaveDealer(Dealer ObjDealer)
+        {
+            int DealerID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_DEALER]";
+                    cmd.Parameters.Add("@DEALERID", ObjDealer.DEALERID);
+                    cmd.Parameters.Add("@DEALERNAME", ObjDealer.DEALERNAME);
+                    cmd.Parameters.Add("@ADDRESS", ObjDealer.ADDRESS);
+                    cmd.Parameters.Add("@PHONENO", ObjDealer.PHONENO);
+                    cmd.Parameters.Add("@GSTIN", ObjDealer.GSTIN);
+                    cmd.Parameters.Add("@EMAILID", ObjDealer.EMAILID);
+                    cmd.Parameters.Add("@USERID", ObjDealer.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out DealerID))
+                        throw new Exception(str);
+                    else
+                        ObjDealer.DEALERID = objReturn;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("UC_DEALERNAME"))
+                    throw new Exception("Dealer Already Exists!!");
+                else
+                    throw new Exception("Error While Saving Dealer");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjDealer;
+        }
+        public DataTable GetDealer()
+        {
+            DataTable dtDealer = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_DEALER]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtDealer);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Dealer List");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtDealer;
+        }
+        public Dealer DeleteDealer (Dealer ObjDealer)
+        {
+            int DealerID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_DEALER]";
+                    cmd.Parameters.Add("@DEALERID", ObjDealer.DEALERID);
+                    cmd.Parameters.Add("@USERID", ObjDealer.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out DealerID))
+                        throw new Exception(str);
+                    else
+                        ObjDealer.DEALERID = objReturn;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Deleteing Dealer");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjDealer;
+        }
     }
 }

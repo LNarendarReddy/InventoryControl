@@ -48,6 +48,16 @@ namespace Entity
         public object CUSERID { get; set; }
     }
 
+   public class Dealer:Master
+    {
+        public object DEALERID { get; set; }
+        public object DEALERNAME { get; set; }
+        public object ADDRESS { get; set; }
+        public object PHONENO { get; set; }
+        public object GSTIN { get; set; }
+        public object EMAILID { get; set; }
+    }
+
     public class Item : Master
     {
         public object ItemID { get; set; }

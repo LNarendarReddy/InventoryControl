@@ -39,7 +39,7 @@
             this.btnBranchCouter = new DevExpress.XtraBars.BarButtonItem();
             this.btnUser = new DevExpress.XtraBars.BarButtonItem();
             this.btnCategory = new DevExpress.XtraBars.BarButtonItem();
-            this.btnSupplier = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDealer = new DevExpress.XtraBars.BarButtonItem();
             this.btnTaxMaster = new DevExpress.XtraBars.BarButtonItem();
             this.btnModeOfPayment = new DevExpress.XtraBars.BarButtonItem();
             this.btnUnitsofMeasure = new DevExpress.XtraBars.BarButtonItem();
@@ -69,7 +69,7 @@
             this.btnBranchCouter,
             this.btnUser,
             this.btnCategory,
-            this.btnSupplier,
+            this.btnDealer,
             this.btnTaxMaster,
             this.btnModeOfPayment,
             this.btnUnitsofMeasure,
@@ -142,18 +142,19 @@
             this.btnCategory.Name = "btnCategory";
             this.btnCategory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCategory_ItemClick);
             // 
-            // btnSupplier
+            // btnDealer
             // 
-            this.btnSupplier.Caption = "Supplier";
-            this.btnSupplier.Id = 5;
-            this.btnSupplier.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSupplier.ImageOptions.SvgImage")));
-            this.btnSupplier.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnSupplier.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnSupplier.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnSupplier.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnSupplier.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnSupplier.ItemAppearance.Pressed.Options.UseFont = true;
-            this.btnSupplier.Name = "btnSupplier";
+            this.btnDealer.Caption = "Dealer";
+            this.btnDealer.Id = 5;
+            this.btnDealer.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDealer.ImageOptions.SvgImage")));
+            this.btnDealer.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnDealer.ItemAppearance.Hovered.Options.UseFont = true;
+            this.btnDealer.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnDealer.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnDealer.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnDealer.ItemAppearance.Pressed.Options.UseFont = true;
+            this.btnDealer.Name = "btnDealer";
+            this.btnDealer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDealer_ItemClick);
             // 
             // btnTaxMaster
             // 
@@ -206,7 +207,7 @@
             this.btnItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
             this.btnItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnItem.Name = "btnItem";
-            this.btnItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            this.btnItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItem_ItemClick);
             // 
             // btnLogout
             // 
@@ -252,7 +253,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnBranchCouter);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnUser);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCategory);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnSupplier);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnDealer);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnTaxMaster);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnModeOfPayment);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnUnitsofMeasure);
@@ -262,8 +263,8 @@
             // ribbonPageGroup4
             // 
             this.ribbonPageGroup4.Alignment = DevExpress.XtraBars.Ribbon.RibbonPageGroupAlignment.Far;
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnLogout);
             this.ribbonPageGroup4.ItemLinks.Add(this.btnChangePassword);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnLogout);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "Profile";
             // 
@@ -341,7 +342,7 @@
         private DevExpress.XtraBars.BarButtonItem btnBranchCouter;
         private DevExpress.XtraBars.BarButtonItem btnUser;
         private DevExpress.XtraBars.BarButtonItem btnCategory;
-        private DevExpress.XtraBars.BarButtonItem btnSupplier;
+        private DevExpress.XtraBars.BarButtonItem btnDealer;
         private DevExpress.XtraBars.BarButtonItem btnTaxMaster;
         private DevExpress.XtraBars.BarButtonItem btnModeOfPayment;
         private DevExpress.XtraBars.BarButtonItem btnUnitsofMeasure;
