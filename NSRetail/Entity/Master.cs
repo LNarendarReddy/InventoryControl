@@ -57,6 +57,12 @@ namespace Entity
         public object GSTIN { get; set; }
         public object EMAILID { get; set; }
     }
+    public class Counter:Master
+    {
+        public object COUNTERID { get; set; }
+        public object COUNTERNAME { get; set; }
+        public object BRANCHID { get; set; }
+    }
 
     public class Item : Master
     {

@@ -89,5 +89,15 @@ namespace NSRetail
             obj.MdiParent = this;
             obj.Show();
         }
+
+        private void btnBranchCouter_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmCounterList obj = new frmCounterList();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
     }
 }

@@ -487,5 +487,98 @@ namespace DataAccess
             }
             return ObjDealer;
         }
+        public Counter SaveCounter(Counter ObjCounter)
+        {
+            int CounterID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_COUNTER]";
+                    cmd.Parameters.Add("@COUNTERID", ObjCounter.COUNTERID);
+                    cmd.Parameters.Add("@COUNTERNAME", ObjCounter.COUNTERNAME);
+                    cmd.Parameters.Add("@BRANCHID", ObjCounter.BRANCHID);
+                    cmd.Parameters.Add("@USERID", ObjCounter.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out CounterID))
+                        throw new Exception(str);
+                    else
+                        ObjCounter.COUNTERID = objReturn;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("UC_COUNTERNAME"))
+                    throw new Exception("Counter Already Exists!!");
+                else
+                    throw new Exception("Error While Saving Counter");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjCounter;
+        }
+        public DataTable GetCounter()
+        {
+            DataTable dtCounter = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_COUNTER]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtCounter);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Counter List");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtCounter;
+        }
+        public Counter DeleteCounter(Counter ObjCounter)
+        {
+            int CounterID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_COUNTER]";
+                    cmd.Parameters.Add("@COUNTERID", ObjCounter.COUNTERID);
+                    cmd.Parameters.Add("@USERID", ObjCounter.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out CounterID))
+                        throw new Exception(str);
+                    else
+                        ObjCounter.COUNTERID = objReturn;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Deleteing Counter");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjCounter;
+        }
     }
 }
