@@ -1,32 +1,62 @@
-﻿using System;
+﻿using DataAccess;
+using DevExpress.XtraEditors;
+using Entity;
+using ErrorManagement;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using DataAccess;
-using Entity;
-using ErrorManagement;
 
 namespace NSRetail
 {
     public partial class frmUser : DevExpress.XtraEditors.XtraForm
     {
-        MasterRepository objMasterRep = new MasterRepository();
         User ObjUser = null;
-        public frmUser()
+        MasterRepository objMasterRep = new MasterRepository();
+        public frmUser(User _ObjUser)
         {
             InitializeComponent();
+            ObjUser = _ObjUser;
         }
-        private void frmUser_Load(object sender, EventArgs e)
+
+        private void frmAddUser_Load(object sender, EventArgs e)
         {
             try
             {
-                gcUser.DataSource = objMasterRep. GetUser();
+                cmbRole.Properties.DataSource = objMasterRep.GetRole();
+                cmbRole.Properties.DisplayMember = "ROLENAME";
+                cmbRole.Properties.ValueMember = "ROLEID";
+
+                cmbBranch.Properties.DataSource = objMasterRep.GetBranch();
+                cmbBranch.Properties.DisplayMember = "BRANCHNAME";
+                cmbBranch.Properties.ValueMember = "BRANCHID";
+
+                cmbCategory.Properties.DataSource = objMasterRep.GetCategory();
+                cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+                cmbCategory.Properties.ValueMember = "CATEGORYID";
+
+                cmbReportingLead.Properties.DataSource = objMasterRep.GetUser();
+                cmbReportingLead.Properties.DisplayMember = "USERNAME";
+                cmbReportingLead.Properties.ValueMember = "USERID";
+
+                if (Convert.ToInt32(ObjUser.USERID) > 0)
+                {
+                    this.Text = "Edit User";
+                    txtUserName.EditValue = ObjUser.USERNAME;
+                    txtFullName.EditValue = ObjUser.FULLNAME;
+                    txtPhoneNumber.EditValue = ObjUser.CNUMBER;
+                    txtEmail.EditValue = ObjUser.EMAIL;
+                    cmbRole.EditValue = ObjUser.ROLEID;
+                    cmbReportingLead.EditValue = ObjUser.REPORTINGLEADID;
+                    cmbBranch.EditValue = ObjUser.BRANCHID;
+                    cmbCategory.EditValue = ObjUser.CATEGORYID;
+                    rgGenderr.SelectedIndex = Convert.ToInt32(ObjUser.GENDER);
+                }
             }
             catch (Exception ex)
             {
@@ -34,79 +64,40 @@ namespace NSRetail
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
-        private void btnNew_Click(object sender, EventArgs e)
+
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            ObjUser = new User();
-            frmAddUser obj = new frmAddUser(ObjUser);
-            obj.ShowInTaskbar = false;
-            obj.StartPosition = FormStartPosition.CenterScreen;
-            obj.IconOptions.ShowIcon = false;
-            obj.ShowDialog();
-            if (ObjUser.IsSave)
+            try
             {
-                gcUser.DataSource = objMasterRep.GetUser();
-                Utility.Setfocus(gvUser, "USERID", ObjUser.USERID);
+                if (!dxValidationProvider1.Validate())
+                    return;
+                ObjUser.USERNAME = txtUserName.EditValue;
+                ObjUser.FULLNAME =  txtFullName.EditValue;
+                ObjUser.CNUMBER = txtPhoneNumber.EditValue;
+                ObjUser.EMAIL = txtEmail.EditValue;
+                ObjUser.GENDER = rgGenderr.EditValue;
+                ObjUser.PASSWORDSTRING = Utility.Encrypt("Password@1234");
+                ObjUser.BRANCHID = cmbBranch.EditValue;
+                ObjUser.ROLEID = cmbRole.EditValue;
+                ObjUser.CATEGORYID = cmbCategory.EditValue;
+                ObjUser.REPORTINGLEADID = cmbReportingLead.EditValue;
+                ObjUser.CUSERID = Utility.UserID;
+                objMasterRep.SaveUser(ObjUser);
+                ObjUser.IsSave = true;
+                this.Close();
+
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
             }
         }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            ObjUser.IsSave = false;
             this.Close();
-        }
-        private void btnEdit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            try
-            {
-                if (gvUser.FocusedRowHandle >= 0)
-                {
-                    ObjUser = new User();
-                    ObjUser.USERID = gvUser.GetFocusedRowCellValue("USERID");
-                    ObjUser.ROLEID = gvUser.GetFocusedRowCellValue("ROLEID");
-                    ObjUser.REPORTINGLEADID = gvUser.GetFocusedRowCellValue("REPORTINGLEADID");
-                    ObjUser.CATEGORYID = gvUser.GetFocusedRowCellValue("CATEGORYID");
-                    ObjUser.BRANCHID = gvUser.GetFocusedRowCellValue("BRANCHID");
-                    ObjUser.USERNAME = gvUser.GetFocusedRowCellValue("USERNAME");
-                    ObjUser.FULLNAME = gvUser.GetFocusedRowCellValue("FULLNAME");
-                    ObjUser.CNUMBER = gvUser.GetFocusedRowCellValue("CNUMBER");
-                    ObjUser.EMAIL = gvUser.GetFocusedRowCellValue("EMAIL");
-                    ObjUser.GENDER = gvUser.GetFocusedRowCellValue("GENDER");
-                    frmAddUser obj = new frmAddUser(ObjUser);
-                    obj.ShowInTaskbar = false;
-                    obj.StartPosition = FormStartPosition.CenterScreen;
-                    obj.IconOptions.ShowIcon = false;
-                    obj.ShowDialog();
-                    if (ObjUser.IsSave)
-                    {
-                        gcUser.DataSource = objMasterRep. GetUser();
-                        Utility.Setfocus(gvUser, "USERID", ObjUser.USERID);
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
-            }
-        }
-        private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            try
-            {
-                var dlgResult = XtraMessageBox.Show("Are you sure want to delete?", "Confirmation!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                if (Convert.ToString(dlgResult) == "OK" && gvUser.FocusedRowHandle >= 0)
-                {
-                    ObjUser = new  User();
-                    ObjUser.BRANCHID = gvUser.GetFocusedRowCellValue("USERID");
-                    ObjUser.USERID = Utility.UserID;
-                    objMasterRep.DeleteUser(ObjUser);
-                    gvUser.DeleteRow(gvUser.FocusedRowHandle);
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
-            }
         }
     }
 }

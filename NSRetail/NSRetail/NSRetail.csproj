@@ -62,29 +62,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Master\frmAddBranch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmAddBranch.Designer.cs">
-      <DependentUpon>frmAddBranch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmAddUser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmAddUser.Designer.cs">
-      <DependentUpon>frmAddUser.cs</DependentUpon>
-    </Compile>
     <Compile Include="Master\frmBranch.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Master\frmBranch.Designer.cs">
       <DependentUpon>frmBranch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Master\frmCategory.cs">
+    <Compile Include="Master\frmUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Master\frmCategory.Designer.cs">
-      <DependentUpon>frmCategory.cs</DependentUpon>
+    <Compile Include="Master\frmUser.Designer.cs">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmBranchList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmBranchList.Designer.cs">
+      <DependentUpon>frmBranchList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmCategoryList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmCategoryList.Designer.cs">
+      <DependentUpon>frmCategoryList.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\frmChangePassword.cs">
       <SubType>Form</SubType>
@@ -104,17 +104,23 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\frmSplashScreenNew.cs">
+    <Compile Include="Login\frmSplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\frmSplashScreenNew.designer.cs">
-      <DependentUpon>frmSplashScreenNew.cs</DependentUpon>
+    <Compile Include="Login\frmSplashScreen.designer.cs">
+      <DependentUpon>frmSplashScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Master\frmUser.cs">
+    <Compile Include="Master\frmDealerList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Master\frmUser.Designer.cs">
-      <DependentUpon>frmUser.cs</DependentUpon>
+    <Compile Include="Master\frmDealerList.Designer.cs">
+      <DependentUpon>frmDealerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmUserList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmUserList.Designer.cs">
+      <DependentUpon>frmUserList.cs</DependentUpon>
     </Compile>
     <Compile Include="Item\frmItem.cs">
       <SubType>Form</SubType>
@@ -131,17 +137,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility.cs" />
-    <EmbeddedResource Include="Master\frmAddBranch.resx">
-      <DependentUpon>frmAddBranch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmAddUser.resx">
-      <DependentUpon>frmAddUser.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Master\frmBranch.resx">
       <DependentUpon>frmBranch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmCategory.resx">
-      <DependentUpon>frmCategory.cs</DependentUpon>
+    <EmbeddedResource Include="Master\frmUser.resx">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmBranchList.resx">
+      <DependentUpon>frmBranchList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmCategoryList.resx">
+      <DependentUpon>frmCategoryList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
@@ -152,11 +158,14 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\frmSplashScreenNew.resx">
-      <DependentUpon>frmSplashScreenNew.cs</DependentUpon>
+    <EmbeddedResource Include="Login\frmSplashScreen.resx">
+      <DependentUpon>frmSplashScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmUser.resx">
-      <DependentUpon>frmUser.cs</DependentUpon>
+    <EmbeddedResource Include="Master\frmDealerList.resx">
+      <DependentUpon>frmDealerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmUserList.resx">
+      <DependentUpon>frmUserList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Item\frmItem.resx">
       <DependentUpon>frmItem.cs</DependentUpon>

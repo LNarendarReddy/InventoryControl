@@ -15,11 +15,11 @@ using DevExpress.XtraGrid.Views.Grid;
 
 namespace NSRetail
 {
-    public partial class frmCategory : DevExpress.XtraEditors.XtraForm
+    public partial class frmCategoryList : DevExpress.XtraEditors.XtraForm
     {
         Category ObjCategory = new Category();
         MasterRepository ObjMasterRep = new MasterRepository();
-        public frmCategory()
+        public frmCategoryList()
         {
             InitializeComponent();
         }

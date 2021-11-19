@@ -8,99 +8,59 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using DataAccess;
 using Entity;
+using DataAccess;
 using ErrorManagement;
 
 namespace NSRetail
 {
     public partial class frmBranch : DevExpress.XtraEditors.XtraForm
     {
-        MasterRepository objMasterRep = new MasterRepository();
         Branch ObjBranch = null;
-        public frmBranch()
+        MasterRepository objMasterRep = new MasterRepository();
+        public frmBranch(Branch _ObjBranch)
         {
             InitializeComponent();
+            ObjBranch = _ObjBranch;
+        }
+
+        private void frmAddBranch_Load(object sender, EventArgs e)
+        {
+            if(Convert.ToInt32(ObjBranch.BRANCHID) > 0)
+            {
+                this.Text = "Edit Branch";
+                txtBranchCode.EditValue = ObjBranch.BRANCHCODE;
+                txtBranchName.EditValue = ObjBranch.BRANCHNAME;
+                txtAddress.EditValue = ObjBranch.ADDRESS;
+                txtDescription.EditValue = ObjBranch.Description;
+                txtPhoneNo.EditValue = ObjBranch.PHONENO;
+                txtEmailID.EditValue = ObjBranch.EMAILID;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            ObjBranch.IsSave = false;
             this.Close();
         }
 
-        private void btnNew_Click(object sender, EventArgs e)
-        {
-            ObjBranch = new Branch();
-            frmAddBranch obj = new frmAddBranch(ObjBranch);
-            obj.ShowInTaskbar = false;
-            obj.StartPosition = FormStartPosition.CenterScreen;
-            obj.IconOptions.ShowIcon = false;
-            obj.ShowDialog();
-            if (ObjBranch.IsSave)
-            {
-                gcBranch.DataSource = objMasterRep.GetBranch();
-                Utility.Setfocus(gvBranch, "BRANCHID", ObjBranch.BRANCHID);
-            }
-        }
-
-        private void frmBranch_Load(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                gcBranch.DataSource = objMasterRep.GetBranch();
-            }
-            catch (Exception ex){
-                ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
-            }
-        }
-
-        private void btnEdit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            try
-            {
-                if (gvBranch.FocusedRowHandle >= 0)
-                {
-                    ObjBranch = new Branch();
-                    ObjBranch.BRANCHID = gvBranch.GetFocusedRowCellValue("BRANCHID");
-                    ObjBranch.BRANCHNAME = gvBranch.GetFocusedRowCellValue("BRANCHNAME");
-                    ObjBranch.BRANCHCODE = gvBranch.GetFocusedRowCellValue("BRANCHCODE");
-                    ObjBranch.ADDRESS = gvBranch.GetFocusedRowCellValue("ADDRESS");
-                    ObjBranch.Description = gvBranch.GetFocusedRowCellValue("DESCRIPTION");
-                    ObjBranch.PHONENO = gvBranch.GetFocusedRowCellValue("PHONENO");
-                    ObjBranch.EMAILID = gvBranch.GetFocusedRowCellValue("EMAILID");
-                    frmAddBranch obj = new frmAddBranch(ObjBranch);
-                    obj.ShowInTaskbar = false;
-                    obj.StartPosition = FormStartPosition.CenterScreen;
-                    obj.IconOptions.ShowIcon = false;
-                    obj.ShowDialog();
-                    if (ObjBranch.IsSave)
-                    {
-                        gcBranch.DataSource = objMasterRep.GetBranch();
-                        Utility.Setfocus(gvBranch, "BRANCHID", ObjBranch.BRANCHID);
-                    }
-
-                }
-            }
-            catch (Exception ex){
-                ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
-            }
-        }
-
-        private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            try
-            {
-                var dlgResult = XtraMessageBox.Show("Are you sure want to delete?", "Confirmation!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                if (Convert.ToString(dlgResult) == "OK" && gvBranch.FocusedRowHandle >= 0)
-                {
-                    ObjBranch = new Branch();
-                    ObjBranch.BRANCHID = gvBranch.GetFocusedRowCellValue("BRANCHID");
-                    ObjBranch.UserID = Utility.UserID;
-                    objMasterRep.DeleteBranch(ObjBranch);
-                    gvBranch.DeleteRow(gvBranch.FocusedRowHandle);
-                }
+                if (!dxValidationProvider1.Validate())
+                    return;
+                ObjBranch.BRANCHCODE = txtBranchCode.EditValue;
+                ObjBranch.BRANCHNAME = txtBranchName.EditValue;
+                ObjBranch.Description = txtDescription.EditValue;
+                ObjBranch.ADDRESS = txtAddress.EditValue;
+                ObjBranch.PHONENO = txtPhoneNo.EditValue;
+                ObjBranch.EMAILID = txtEmailID.EditValue;
+                ObjBranch.UserID = Utility.UserID;
+                objMasterRep.SaveBranch(ObjBranch);
+                ObjBranch.IsSave = true;
+                this.Close();
+                
             }
             catch (Exception ex)
             {

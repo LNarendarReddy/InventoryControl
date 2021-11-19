@@ -19,7 +19,7 @@ namespace NSRetail
 
         private void btnBranch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmBranch obj = new frmBranch();
+            frmBranchList obj = new frmBranchList();
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;
             obj.IconOptions.ShowIcon = false;
@@ -29,7 +29,7 @@ namespace NSRetail
 
         private void btnCategory_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmCategory obj = new frmCategory();
+            frmCategoryList obj = new frmCategoryList();
             obj.ShowInTaskbar = false;
             obj.IconOptions.ShowIcon = false;
             obj.MdiParent = this;
@@ -43,7 +43,7 @@ namespace NSRetail
 
         private void btnUser_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmUser obj = new frmUser();
+            frmUserList obj = new frmUserList();
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;
             obj.IconOptions.ShowIcon = false;

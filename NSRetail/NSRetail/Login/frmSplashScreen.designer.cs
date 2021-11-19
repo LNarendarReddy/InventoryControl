@@ -1,6 +1,6 @@
 ﻿namespace NSRetail
 {
-    partial class frmSplashScreenNew
+    partial class frmSplashScreen
     {
         /// <summary>
         /// Required designer variable.

@@ -10,9 +10,9 @@ using System.Reflection;
 
 namespace NSRetail
 {
-    public partial class frmSplashScreenNew : SplashScreen
+    public partial class frmSplashScreen : SplashScreen
     {
-        public frmSplashScreenNew()
+        public frmSplashScreen()
         {
             InitializeComponent();
 
