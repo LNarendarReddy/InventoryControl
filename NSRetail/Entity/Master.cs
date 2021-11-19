@@ -2,7 +2,7 @@
 
 namespace Entity
 {
-    public abstract class Master 
+    public abstract class EntityBase 
     {
         public bool IsSave { get; set; }
         public object Description { get; set; }
@@ -14,7 +14,7 @@ namespace Entity
 
     }
 
-    public class Branch : Master
+    public class Branch : EntityBase
     {
         public object BRANCHID { get; set; }
         public object BRANCHNAME { get; set; }
@@ -24,13 +24,13 @@ namespace Entity
         public object EMAILID { get; set; }
     }
 
-    public class Category : Master
+    public class Category : EntityBase
     {
         public object CATEGORYID { get; set; }
         public object CATEGORYNAME { get; set; }
     }
 
-    public class User:Master
+    public class User:EntityBase
     {
         public object USERID { get; set; }
         public object ROLEID { get; set; }
@@ -48,7 +48,7 @@ namespace Entity
         public object CUSERID { get; set; }
     }
 
-   public class Dealer:Master
+   public class Dealer:EntityBase
     {
         public object DEALERID { get; set; }
         public object DEALERNAME { get; set; }
@@ -58,26 +58,26 @@ namespace Entity
         public object EMAILID { get; set; }
     }
 
-    public class Counter:Master
+    public class Counter:EntityBase
     {
         public object COUNTERID { get; set; }
         public object COUNTERNAME { get; set; }
         public object BRANCHID { get; set; }
     }
-    public class MOP : Master
+    public class MOP : EntityBase
     {
         public object MOPID { get; set; }
         public object MOPNAME { get; set; }
     }
 
-    public class UOM : Master
+    public class UOM : EntityBase
     {
         public object UOMID { get; set; }
         public object DISPLAYVALUE { get; set; }
         public object BASEUOMID { get; set; }
         public object MULTIPLIER { get; set; }
     }
-    public class GST : Master
+    public class GST : EntityBase
     {
         public object GSTID { get; set; }
         public object GSTCODE { get; set; }

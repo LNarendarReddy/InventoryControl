@@ -24,7 +24,13 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ItemName", itemObj.ItemName);
                     cmd.Parameters.AddWithValue("@ItemCode", itemObj.ItemCode);
                     cmd.Parameters.AddWithValue("@Description", itemObj.Description);
-                    cmd.Parameters.AddWithValue("@HSCNO", itemObj.HSCNO);
+                    cmd.Parameters.AddWithValue("@HSNCode", itemObj.HSNCode);
+                    cmd.Parameters.AddWithValue("@IsEANCode", itemObj.IsEANCode);
+                    cmd.Parameters.AddWithValue("@EANCode", itemObj.EANCode);
+                    cmd.Parameters.AddWithValue("@CostPrice", itemObj.CostPrice);
+                    cmd.Parameters.AddWithValue("@SalePrice", itemObj.SalePrice);
+                    cmd.Parameters.AddWithValue("@MRP", itemObj.MRP);
+                    cmd.Parameters.AddWithValue("@GSTID", 4);//itemObj.GSTID);
                     cmd.Parameters.AddWithValue("@UserID", itemObj.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
@@ -37,10 +43,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("UC_BName"))
-                    throw new Exception("Branch Already Exists!!");
-                else
-                    throw new Exception("Error While Saving Branch");
+                throw ex;
             }
             finally
             {
@@ -58,7 +61,7 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_ITEM]";
+                    cmd.CommandText = "[USP_R_ITEMS]";
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtItems);
@@ -67,13 +70,45 @@ namespace DataAccess
             }
             catch (Exception ex)
             {                
-                throw new Exception("Error While Retrieving Branch List");
+                throw new Exception("Error While Retrieving Item List", ex);
             }
             finally
             {
                 SQLCon.Sqlconn().Close();
             }
             return dtItems;
+        }
+
+        public DataSet GetItem(object itemID)
+        {
+            DataSet dsItems = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_ITEM]";
+                    cmd.Parameters.AddWithValue("@ItemID", itemID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsItems);
+                    }
+
+                    dsItems.Tables[0].TableName = "ITEM";
+                    dsItems.Tables[1].TableName = "ITEMBARCODE";
+                    dsItems.Tables[2].TableName = "ITEMBARCODEPRICE";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Item details", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dsItems;
         }
     }
 }
