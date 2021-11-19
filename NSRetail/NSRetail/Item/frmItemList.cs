@@ -36,6 +36,7 @@ namespace NSRetail
             {
                 dtItems = new ItemRepository().GetItems();
                 gcItemList.DataSource = dtItems;
+                btnEdit.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -57,19 +58,8 @@ namespace NSRetail
                 {
                     Item itemObj = new Item();
                     itemObj.ItemID = gvItemList.GetFocusedRowCellValue("ITEMID");
-                    itemObj.ItemName = gvItemList.GetFocusedRowCellValue("ITEMNAME");
-                    itemObj.ItemCode = gvItemList.GetFocusedRowCellValue("ITEMCODE");
-                    itemObj.Description = gvItemList.GetFocusedRowCellValue("DESCRIPTION");
-                    itemObj.HSCNO = gvItemList.GetFocusedRowCellValue("HSCNO");
                     new frmItem(itemObj).ShowDialog();
                     UpdateDataTable(itemObj);
-
-                    if (itemObj.IsSave)
-                    {
-                        //gcBranch.DataSource = objMasterRep.GetBranch();
-                        //Utility.Setfocus(gvItemList, "BRANCHID", ObjBranch.BRANCHID);
-                    }
-
                 }
             }
             catch (Exception ex)
@@ -109,13 +99,23 @@ namespace NSRetail
             updateRow["ITEMNAME"] = itemObj.ItemName;
             updateRow["ITEMCODE"] = itemObj.ItemCode;
             updateRow["DESCRIPTION"] = itemObj.Description;
-            updateRow["HSCNO"] = itemObj.HSCNO;
+            updateRow["HSNCODE"] = itemObj.HSNCode;
 
             if (isNew)
             {
                 dtItems.Rows.Add(updateRow);
                 Utility.Setfocus(gvItemList, "ITEMID", itemObj.ItemID);
             }
+        }
+
+        private void gcItemList_DoubleClick(object sender, EventArgs e)
+        {
+            btnEdit_Click(null, null);
+        }
+
+        private void gvItemList_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            btnEdit.Enabled = gvItemList.FocusedRowHandle >= 0;
         }
     }
 }
