@@ -113,6 +113,7 @@
             this.btnBranchCouter.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
             this.btnBranchCouter.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnBranchCouter.Name = "btnBranchCouter";
+            this.btnBranchCouter.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBranchCouter_ItemClick);
             // 
             // btnUser
             // 

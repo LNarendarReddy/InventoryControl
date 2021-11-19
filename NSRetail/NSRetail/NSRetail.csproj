@@ -68,6 +68,18 @@
     <Compile Include="Master\frmBranch.Designer.cs">
       <DependentUpon>frmBranch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\frmCounter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmCounter.Designer.cs">
+      <DependentUpon>frmCounter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmCounterList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmCounterList.Designer.cs">
+      <DependentUpon>frmCounterList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\frmDealer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +157,12 @@
     <Compile Include="Utility.cs" />
     <EmbeddedResource Include="Master\frmBranch.resx">
       <DependentUpon>frmBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmCounter.resx">
+      <DependentUpon>frmCounter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmCounterList.resx">
+      <DependentUpon>frmCounterList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmDealer.resx">
       <DependentUpon>frmDealer.cs</DependentUpon>
