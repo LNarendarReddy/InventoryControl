@@ -95,7 +95,7 @@ namespace NSRetail.Master
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(115, 36);
             this.btnCancel.StyleController = this.layoutControl1;
-            this.btnCancel.TabIndex = 8;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -107,7 +107,7 @@ namespace NSRetail.Master
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(123, 36);
             this.btnSave.StyleController = this.layoutControl1;
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -210,6 +210,7 @@ namespace NSRetail.Master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(431, 131);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmCounter";

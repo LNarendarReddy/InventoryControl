@@ -33,8 +33,8 @@ namespace NSRetail
             frmCategoryList obj = new frmCategoryList();
             obj.ShowInTaskbar = false;
             obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
         }
 
         private void btnItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -93,6 +93,25 @@ namespace NSRetail
         private void btnBranchCouter_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             frmCounterList obj = new frmCounterList();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void btnModeOfPayment_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmModeofPayment obj = new frmModeofPayment();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
+        }
+
+        private void btnUnitsofMeasure_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmUOMList obj = new frmUOMList();
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;
             obj.IconOptions.ShowIcon = false;

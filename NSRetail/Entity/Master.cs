@@ -64,4 +64,17 @@ namespace Entity
         public object COUNTERNAME { get; set; }
         public object BRANCHID { get; set; }
     }
+    public class MOP : Master
+    {
+        public object MOPID { get; set; }
+        public object MOPNAME { get; set; }
+    }
+
+    public class UOM : Master
+    {
+        public object UOMID { get; set; }
+        public object DISPLAYVALUE { get; set; }
+        public object BASEUOMID { get; set; }
+        public object MULTIPLIER { get; set; }
+    }
 }

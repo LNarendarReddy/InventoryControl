@@ -86,6 +86,24 @@
     <Compile Include="Master\frmDealer.Designer.cs">
       <DependentUpon>frmDealer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\frmModeofPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmModeofPayment.Designer.cs">
+      <DependentUpon>frmModeofPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmUOM List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmUOM List.Designer.cs">
+      <DependentUpon>frmUOM List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmUOM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmUOM.Designer.cs">
+      <DependentUpon>frmUOM.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\frmUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +184,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmDealer.resx">
       <DependentUpon>frmDealer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmModeofPayment.resx">
+      <DependentUpon>frmModeofPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmUOM List.resx">
+      <DependentUpon>frmUOM List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmUOM.resx">
+      <DependentUpon>frmUOM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>

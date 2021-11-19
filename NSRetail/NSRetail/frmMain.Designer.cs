@@ -182,6 +182,7 @@
             this.btnModeOfPayment.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
             this.btnModeOfPayment.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnModeOfPayment.Name = "btnModeOfPayment";
+            this.btnModeOfPayment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnModeOfPayment_ItemClick);
             // 
             // btnUnitsofMeasure
             // 
@@ -195,6 +196,7 @@
             this.btnUnitsofMeasure.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
             this.btnUnitsofMeasure.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnUnitsofMeasure.Name = "btnUnitsofMeasure";
+            this.btnUnitsofMeasure.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUnitsofMeasure_ItemClick);
             // 
             // btnItem
             // 
@@ -255,9 +257,9 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnUser);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCategory);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnDealer);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnTaxMaster);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnModeOfPayment);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnUnitsofMeasure);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnTaxMaster);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Masters";
             // 

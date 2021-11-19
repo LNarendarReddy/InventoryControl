@@ -1,6 +1,7 @@
-﻿namespace NSRetail
+﻿
+namespace NSRetail.Master
 {
-    partial class frmCategoryList
+    partial class frmModeofPayment
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +30,7 @@
         private void InitializeComponent()
         {
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCategoryList));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModeofPayment));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -40,8 +41,8 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.gcCategory = new DevExpress.XtraGrid.GridControl();
-            this.gvCategory = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcMOP = new DevExpress.XtraGrid.GridControl();
+            this.gvMOP = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -55,8 +56,8 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcMOP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvMOP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
@@ -77,36 +78,36 @@
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
             this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Helvetica", 10F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
-            this.layoutControl1.Controls.Add(this.gcCategory);
+            this.layoutControl1.Controls.Add(this.gcMOP);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1160, 330, 650, 400);
             this.layoutControl1.Root = this.Root;
             this.layoutControl1.Size = new System.Drawing.Size(492, 509);
-            this.layoutControl1.TabIndex = 1;
+            this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // gcCategory
+            // gcMOP
             // 
-            this.gcCategory.Location = new System.Drawing.Point(4, 4);
-            this.gcCategory.MainView = this.gvCategory;
-            this.gcCategory.Name = "gcCategory";
-            this.gcCategory.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.gcMOP.Location = new System.Drawing.Point(4, 4);
+            this.gcMOP.MainView = this.gvMOP;
+            this.gcMOP.Name = "gcMOP";
+            this.gcMOP.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEdit,
             this.btnDelete});
-            this.gcCategory.Size = new System.Drawing.Size(484, 501);
-            this.gcCategory.TabIndex = 4;
-            this.gcCategory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvCategory});
+            this.gcMOP.Size = new System.Drawing.Size(484, 501);
+            this.gcMOP.TabIndex = 4;
+            this.gcMOP.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvMOP});
             // 
-            // gvCategory
+            // gvMOP
             // 
-            this.gvCategory.Appearance.HeaderPanel.Font = new System.Drawing.Font("Helvetica", 10F, System.Drawing.FontStyle.Bold);
-            this.gvCategory.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvCategory.Appearance.Row.Font = new System.Drawing.Font("Helvetica", 10F);
-            this.gvCategory.Appearance.Row.Options.UseFont = true;
-            this.gvCategory.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvMOP.Appearance.HeaderPanel.Font = new System.Drawing.Font("Helvetica", 10F, System.Drawing.FontStyle.Bold);
+            this.gvMOP.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvMOP.Appearance.Row.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.gvMOP.Appearance.Row.Options.UseFont = true;
+            this.gvMOP.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn8,
@@ -114,25 +115,25 @@
             this.gridColumn10,
             this.gridColumn11,
             this.gridColumn5});
-            this.gvCategory.GridControl = this.gcCategory;
-            this.gvCategory.Name = "gvCategory";
-            this.gvCategory.OptionsNavigation.AutoFocusNewRow = true;
-            this.gvCategory.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
-            this.gvCategory.OptionsView.ShowGroupPanel = false;
-            this.gvCategory.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvCategory_InitNewRow);
-            this.gvCategory.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gvCategory_RowUpdated);
+            this.gvMOP.GridControl = this.gcMOP;
+            this.gvMOP.Name = "gvMOP";
+            this.gvMOP.OptionsNavigation.AutoFocusNewRow = true;
+            this.gvMOP.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+            this.gvMOP.OptionsView.ShowGroupPanel = false;
+            this.gvMOP.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvCategory_InitNewRow);
+            this.gvMOP.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gvCategory_RowUpdated);
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "CATEGORYID";
-            this.gridColumn1.FieldName = "CATEGORYID";
+            this.gridColumn1.Caption = "MOPID";
+            this.gridColumn1.FieldName = "MOPID";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "CATEGORYNAME";
-            this.gridColumn2.FieldName = "CATEGORYNAME";
+            this.gridColumn2.Caption = "MOPNAME";
+            this.gridColumn2.FieldName = "MOPNAME";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
@@ -163,8 +164,8 @@
             // 
             // gridColumn11
             // 
-            this.gridColumn11.Caption = "UPDATEDATE";
-            this.gridColumn11.FieldName = "UPDATEDATE";
+            this.gridColumn11.Caption = "UPDATEDDATE";
+            this.gridColumn11.FieldName = "UPDATEDDATE";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             // 
@@ -213,26 +214,26 @@
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.gcCategory;
+            this.layoutControlItem1.Control = this.gcMOP;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(488, 505);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // frmCategoryList
+            // frmModeofPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 509);
             this.Controls.Add(this.layoutControl1);
-            this.Name = "frmCategoryList";
-            this.Text = "Category";
-            this.Load += new System.EventHandler(this.frmCategory_Load);
+            this.Name = "frmModeofPayment";
+            this.Text = "Mode of Payment";
+            this.Load += new System.EventHandler(this.frmModeofPayment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcMOP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvMOP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
@@ -244,18 +245,18 @@
         #endregion
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
-        private DevExpress.XtraGrid.GridControl gcCategory;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvCategory;
+        private DevExpress.XtraGrid.GridControl gcMOP;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvMOP;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEdit;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
     }
 }

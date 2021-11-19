@@ -580,5 +580,188 @@ namespace DataAccess
             }
             return ObjCounter;
         }
+        public MOP SaveMOP(MOP ObjMOP)
+        {
+            int MOPID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_MOP]";
+                    cmd.Parameters.Add("@MOPID", ObjMOP.MOPID);
+                    cmd.Parameters.Add("@MOPNAME", ObjMOP.MOPNAME);
+                    cmd.Parameters.Add("@USERID", ObjMOP.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out MOPID))
+                        throw new Exception(str);
+                    else
+                        ObjMOP.MOPID = objReturn;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("UC_MOPNAME"))
+                    throw new Exception("MOP Already Exists!!");
+                else
+                    throw new Exception("Error While Saving MOP");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjMOP;
+        }
+        public DataTable GetMOP()
+        {
+            DataTable dtMOP = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_MOP]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtMOP);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving MOP List");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtMOP;
+        }
+        public MOP DeleteMOP(MOP ObjMOP)
+        {
+            int MOPID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_MOP]";
+                    cmd.Parameters.Add("@CATEGORYID", ObjMOP.MOPID);
+                    cmd.Parameters.Add("@USERID", ObjMOP.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out MOPID))
+                        throw new Exception(str);
+                    else
+                        ObjMOP.MOPID = objReturn;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Deleteing MOP");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjMOP;
+        }
+        public UOM SaveUOM(UOM ObjUOM)
+        {
+            int UOMID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_UOM]";
+                    cmd.Parameters.Add("@UOMID", ObjUOM.UOMID);
+                    cmd.Parameters.Add("@DISPLAYVALUE", ObjUOM.DISPLAYVALUE);
+                    cmd.Parameters.Add("@BASEUOMID", ObjUOM.BASEUOMID);
+                    cmd.Parameters.Add("@MULTIPLIER", ObjUOM.MULTIPLIER);
+                    cmd.Parameters.Add("@USERID", ObjUOM.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out UOMID))
+                        throw new Exception(str);
+                    else
+                        ObjUOM.UOMID = objReturn;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("UC_UOMNAME"))
+                    throw new Exception("UOM Already Exists!!");
+                else
+                    throw new Exception("Error While Saving UOM");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjUOM;
+        }
+        public DataTable GetUOM()
+        {
+            DataTable dtUOM = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_UOM]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtUOM);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving UOM List");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtUOM;
+        }
+        public UOM DeleteUOM(UOM ObjUOM)
+        {
+            int UOMID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_UOM]";
+                    cmd.Parameters.Add("@UOMID", ObjUOM.UOMID);
+                    cmd.Parameters.Add("@USERID", ObjUOM.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out UOMID))
+                        throw new Exception(str);
+                    else
+                        ObjUOM.UOMID = objReturn;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Deleteing UOM");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjUOM;
+        }
     }
 }

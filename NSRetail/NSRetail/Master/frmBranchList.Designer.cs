@@ -50,6 +50,7 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -63,7 +64,6 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcBranch)).BeginInit();
@@ -216,9 +216,19 @@
             this.gridColumn3.Caption = "PHONENO";
             this.gridColumn3.FieldName = "PHONENO";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 5;
             this.gridColumn3.Width = 110;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "EMAILID";
+            this.gridColumn14.FieldName = "EMAILID";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.OptionsColumn.AllowEdit = false;
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 6;
             // 
             // gridColumn8
             // 
@@ -352,14 +362,6 @@
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(640, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // gridColumn14
-            // 
-            this.gridColumn14.Caption = "EMAILID";
-            this.gridColumn14.FieldName = "EMAILID";
-            this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 6;
             // 
             // frmBranchList
             // 
