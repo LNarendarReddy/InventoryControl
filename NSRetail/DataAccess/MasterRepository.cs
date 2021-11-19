@@ -334,7 +334,7 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[AMS_R_USERLOGIN]";
+                    cmd.CommandText = "[USP_R_USERLOGIN]";
                     cmd.Parameters.Add("@USERNAME", UserName);
                     cmd.Parameters.Add("@PASSWORD", Password);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
