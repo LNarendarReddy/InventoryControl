@@ -86,6 +86,18 @@
     <Compile Include="Master\frmDealer.Designer.cs">
       <DependentUpon>frmDealer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\frmGST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmGST.Designer.cs">
+      <DependentUpon>frmGST.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmGSTList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmGSTList.Designer.cs">
+      <DependentUpon>frmGSTList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\frmModeofPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +196,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmDealer.resx">
       <DependentUpon>frmDealer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmGST.resx">
+      <DependentUpon>frmGST.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmGSTList.resx">
+      <DependentUpon>frmGSTList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmModeofPayment.resx">
       <DependentUpon>frmModeofPayment.cs</DependentUpon>

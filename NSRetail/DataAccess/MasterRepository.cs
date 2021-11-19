@@ -763,5 +763,100 @@ namespace DataAccess
             }
             return ObjUOM;
         }
+        public GST SaveGST(GST ObjGST)
+        {
+            int GSTID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_GST]";
+                    cmd.Parameters.Add("@GSTID", ObjGST.GSTID);
+                    cmd.Parameters.Add("@GSTCODE", ObjGST.GSTCODE);
+                    cmd.Parameters.Add("@CGST", ObjGST.CGST);
+                    cmd.Parameters.Add("@SGST", ObjGST.SGST);
+                    cmd.Parameters.Add("@IGST", ObjGST.IGST);
+                    cmd.Parameters.Add("@CESS", ObjGST.CESS);
+                    cmd.Parameters.Add("@USERID", ObjGST.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out GSTID))
+                        throw new Exception(str);
+                    else
+                        ObjGST.GSTID = objReturn;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("UC_GSTCODE"))
+                    throw new Exception("GST Already Exists!!");
+                else
+                    throw new Exception("Error While Saving GST");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjGST;
+        }
+        public DataTable GetGST()
+        {
+            DataTable dtGST = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_GST]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtGST);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving GST List");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtGST;
+        }
+        public GST DeleteGST(GST ObjGST)
+        {
+            int GSTID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_GST]";
+                    cmd.Parameters.Add("@GSTID", ObjGST.GSTID);
+                    cmd.Parameters.Add("@USERID", ObjGST.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out GSTID))
+                        throw new Exception(str);
+                    else
+                        ObjGST.GSTID = objReturn;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Deleteing GST");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjGST;
+        }
     }
 }

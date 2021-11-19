@@ -77,4 +77,13 @@ namespace Entity
         public object BASEUOMID { get; set; }
         public object MULTIPLIER { get; set; }
     }
+    public class GST : Master
+    {
+        public object GSTID { get; set; }
+        public object GSTCODE { get; set; }
+        public object CGST { get; set; }
+        public object SGST { get; set; }
+        public object IGST { get; set; }
+        public object CESS { get; set; }
+    }
 }

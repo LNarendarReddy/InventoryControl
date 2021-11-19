@@ -169,6 +169,7 @@
             this.btnTaxMaster.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
             this.btnTaxMaster.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnTaxMaster.Name = "btnTaxMaster";
+            this.btnTaxMaster.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaxMaster_ItemClick);
             // 
             // btnModeOfPayment
             // 
