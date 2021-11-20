@@ -62,6 +62,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Item\frmAddSKUCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\frmAddSKUCode.Designer.cs">
+      <DependentUpon>frmAddSKUCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Item\frmItemVisualize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\frmItemVisualize.Designer.cs">
+      <DependentUpon>frmItemVisualize.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\frmBranch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,21 +182,27 @@
     <Compile Include="Master\frmUserList.Designer.cs">
       <DependentUpon>frmUserList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Item\frmItem.cs">
+    <Compile Include="Item\frmItemCode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Item\frmItem.Designer.cs">
-      <DependentUpon>frmItem.cs</DependentUpon>
+    <Compile Include="Item\frmItemCode.Designer.cs">
+      <DependentUpon>frmItemCode.cs</DependentUpon>
     </Compile>
-    <Compile Include="Item\frmItemList.cs">
+    <Compile Include="Item\frmItemCodeList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Item\frmItemList.Designer.cs">
-      <DependentUpon>frmItemList.cs</DependentUpon>
+    <Compile Include="Item\frmItemCodeList.Designer.cs">
+      <DependentUpon>frmItemCodeList.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility.cs" />
+    <EmbeddedResource Include="Item\frmAddSKUCode.resx">
+      <DependentUpon>frmAddSKUCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Item\frmItemVisualize.resx">
+      <DependentUpon>frmItemVisualize.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Master\frmBranch.resx">
       <DependentUpon>frmBranch.cs</DependentUpon>
     </EmbeddedResource>
@@ -239,11 +257,11 @@
     <EmbeddedResource Include="Master\frmUserList.resx">
       <DependentUpon>frmUserList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Item\frmItem.resx">
-      <DependentUpon>frmItem.cs</DependentUpon>
+    <EmbeddedResource Include="Item\frmItemCode.resx">
+      <DependentUpon>frmItemCode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Item\frmItemList.resx">
-      <DependentUpon>frmItemList.cs</DependentUpon>
+    <EmbeddedResource Include="Item\frmItemCodeList.resx">
+      <DependentUpon>frmItemCodeList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
