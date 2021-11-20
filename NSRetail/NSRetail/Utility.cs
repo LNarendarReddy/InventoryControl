@@ -1,6 +1,8 @@
-﻿using DevExpress.XtraGrid.Views.Grid;
+﻿using DataAccess;
+using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -11,6 +13,8 @@ namespace NSRetail
 {
     public static class Utility
     {
+        private static DataTable dtGST;
+
         public static int UserID = 4;
         public static string UserName = string.Empty;
         public static string Password = string.Empty;
@@ -24,6 +28,7 @@ namespace NSRetail
         public static int CategoryID = 0;
         public static int BranchID = 0;
         public static string Email = string.Empty;
+
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -66,6 +71,12 @@ namespace NSRetail
         public static string Decrypt(string input)
         {
             return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(input)));
+        }
+
+        public static DataTable GetGSTBaseline()
+        {
+            dtGST = dtGST ?? new MasterRepository().GetGST();
+            return dtGST;
         }
     }
 }

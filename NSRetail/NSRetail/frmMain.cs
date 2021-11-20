@@ -39,7 +39,7 @@ namespace NSRetail
 
         private void btnItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            new frmItemList() { MdiParent = this }.Show();
+            new frmItemCodeList() { MdiParent = this }.Show();
         }
 
         private void btnUser_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

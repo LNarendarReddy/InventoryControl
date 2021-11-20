@@ -14,11 +14,12 @@ using ErrorManagement;
 
 namespace NSRetail
 {
-    public partial class frmItemList : DevExpress.XtraEditors.XtraForm
+    public partial class frmItemCodeList : DevExpress.XtraEditors.XtraForm
     {
+        DataTable dtItemCodes;
         DataTable dtItems;
 
-        public frmItemList()
+        public frmItemCodeList()
         {
             InitializeComponent();
         }
@@ -26,7 +27,7 @@ namespace NSRetail
         private void btnNew_Click(object sender, EventArgs e)
         {
             Item itemObj = new Item();
-            new frmItem(itemObj).ShowDialog();
+            new frmItemCode(itemObj, dtItems).ShowDialog();
             UpdateDataTable(itemObj, true);
         }
 
@@ -34,9 +35,11 @@ namespace NSRetail
         {
             try
             {
-                dtItems = new ItemRepository().GetItems();
-                gcItemList.DataSource = dtItems;
+                dtItemCodes = new ItemCodeRepository().GetItemCodes();
                 btnEdit.Enabled = false;
+                btnVisualize.Enabled = false;
+                dtItems = new DataView(dtItemCodes).ToTable(true, "ITEMID", "ITEMNAME", "SKUCODE", "DESCRIPTION");
+                gcItemList.DataSource = dtItemCodes;
             }
             catch (Exception ex)
             {
@@ -56,9 +59,8 @@ namespace NSRetail
             {
                 if (gvItemList.FocusedRowHandle >= 0)
                 {
-                    Item itemObj = new Item();
-                    itemObj.ItemID = gvItemList.GetFocusedRowCellValue("ITEMID");
-                    new frmItem(itemObj).ShowDialog();
+                    Item itemObj = new Item() { ItemCodeID = gvItemList.GetFocusedRowCellValue("ITEMCODEID") };
+                    new frmItemCode(itemObj, dtItems).ShowDialog();
                     UpdateDataTable(itemObj);
                 }
             }
@@ -79,14 +81,14 @@ namespace NSRetail
             DataRow updateRow;
             if (isNew)
             {
-                updateRow = dtItems.NewRow();
+                updateRow = dtItemCodes.NewRow();
             }
             else
             {
-                int rowHandle = gvItemList.LocateByValue("ITEMID", itemObj.ItemID);
+                int rowHandle = gvItemList.LocateByValue("ITEMCODEID", itemObj.ItemCodeID);
                 if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
                 {
-                    updateRow = dtItems.Rows[rowHandle];
+                    updateRow = dtItemCodes.Rows[rowHandle];
                 }
                 else
                 {
@@ -95,15 +97,16 @@ namespace NSRetail
                 }
             }
 
-            updateRow["ITEMID"] = itemObj.ItemID;
-            updateRow["ITEMNAME"] = itemObj.ItemName;
+            updateRow["ITEMCODEID"] = itemObj.ItemCodeID;
+            updateRow["ITEMID"] = itemObj.ItemID ?? 0;
             updateRow["ITEMCODE"] = itemObj.ItemCode;
+            updateRow["ITEMNAME"] = itemObj.ItemName;
+            updateRow["SKUCODE"] = itemObj.SKUCode;
             updateRow["DESCRIPTION"] = itemObj.Description;
-            updateRow["HSNCODE"] = itemObj.HSNCode;
 
             if (isNew)
             {
-                dtItems.Rows.Add(updateRow);
+                dtItemCodes.Rows.Add(updateRow);
                 Utility.Setfocus(gvItemList, "ITEMID", itemObj.ItemID);
             }
         }
@@ -115,7 +118,25 @@ namespace NSRetail
 
         private void gvItemList_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            btnEdit.Enabled = gvItemList.FocusedRowHandle >= 0;
+            bool enabled = gvItemList.FocusedRowHandle >= 0;
+            btnEdit.Enabled = enabled;
+            btnVisualize.Enabled = enabled;
+        }
+
+        private void btnVisualize_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvItemList.FocusedRowHandle >= 0)
+                {
+                    new frmItemVisualize(gvItemList.GetFocusedRowCellValue("ITEMID")).ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
         }
     }
 }
