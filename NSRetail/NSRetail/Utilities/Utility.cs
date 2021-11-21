@@ -75,8 +75,7 @@ namespace NSRetail
 
         public static DataTable GetGSTBaseline()
         {
-            dtGST = dtGST ?? new MasterRepository().GetGST();
-            return dtGST;
+            return dtGST = dtGST ?? new MasterRepository().GetGST();
         }
     }
 }
