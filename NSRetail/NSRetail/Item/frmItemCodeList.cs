@@ -147,9 +147,9 @@ namespace NSRetail
             {
                 btnEdit_Click(null, null);
             }
-            else if (e.KeyCode == Keys.Delete) 
+            else if (e.KeyCode == Keys.Delete)
             {
-                btnDelete_Click(null, null); 
+                btnDelete_Click(null, null);
             }
         }
 
@@ -163,6 +163,25 @@ namespace NSRetail
             btnEdit.Enabled = enabled;
             btnVisualize.Enabled = enabled;
             btnDelete.Enabled = enabled;
+        }
+
+        private void gvItemList_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
+        {
+            if (e.HitInfo.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
+            {
+                e.Allow = false;
+                pmItemList.ShowPopup(gcItemList.PointToScreen(e.Point));
+            }
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            btnEdit_Click(sender, e);
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            btnVisualize_Click(sender, e);
         }
     }
 }

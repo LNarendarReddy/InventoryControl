@@ -132,6 +132,7 @@
             this.gridColumn24});
             this.gvStockSummary.GridControl = this.gcStockSummary;
             this.gvStockSummary.Name = "gvStockSummary";
+            this.gvStockSummary.OptionsBehavior.ReadOnly = true;
             this.gvStockSummary.OptionsView.EnableAppearanceEvenRow = true;
             this.gvStockSummary.RowHeight = 40;
             // 
@@ -194,6 +195,7 @@
             this.gridColumn20});
             this.gvItemPrice.GridControl = this.gcItemPriceList;
             this.gvItemPrice.Name = "gvItemPrice";
+            this.gvItemPrice.OptionsBehavior.ReadOnly = true;
             this.gvItemPrice.OptionsView.EnableAppearanceEvenRow = true;
             this.gvItemPrice.RowHeight = 40;
             // 
@@ -312,6 +314,7 @@
             this.gridColumn8});
             this.gvItemCodes.GridControl = this.gcItemCodes;
             this.gvItemCodes.Name = "gvItemCodes";
+            this.gvItemCodes.OptionsBehavior.ReadOnly = true;
             this.gvItemCodes.OptionsView.EnableAppearanceEvenRow = true;
             this.gvItemCodes.RowHeight = 40;
             // 
