@@ -29,33 +29,14 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.txtDescription = new DevExpress.XtraEditors.TextEdit();
-            this.txtItemName = new DevExpress.XtraEditors.TextEdit();
-            this.txtSKUCode = new DevExpress.XtraEditors.TextEdit();
-            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.gcItemCodes = new DevExpress.XtraGrid.GridControl();
-            this.gvItemCodes = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gcItemPriceList = new DevExpress.XtraGrid.GridControl();
-            this.gvItemPrice = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gcStockSummary = new DevExpress.XtraGrid.GridControl();
             this.gvStockSummary = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcItemPriceList = new DevExpress.XtraGrid.GridControl();
+            this.gvItemPrice = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -68,12 +49,37 @@
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcItemCodes = new DevExpress.XtraGrid.GridControl();
+            this.gvItemCodes = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtDescription = new DevExpress.XtraEditors.TextEdit();
+            this.txtItemName = new DevExpress.XtraEditors.TextEdit();
+            this.txtSKUCode = new DevExpress.XtraEditors.TextEdit();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcStockSummary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvStockSummary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcItemPriceList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvItemPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcItemCodes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvItemCodes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSKUCode.Properties)).BeginInit();
@@ -82,16 +88,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemCodes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemCodes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemPriceList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcStockSummary)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvStockSummary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,141 +111,60 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // txtDescription
+            // gcStockSummary
             // 
-            this.txtDescription.Location = new System.Drawing.Point(85, 60);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Properties.ReadOnly = true;
-            this.txtDescription.Size = new System.Drawing.Size(695, 20);
-            this.txtDescription.StyleController = this.layoutControl1;
-            this.txtDescription.TabIndex = 6;
+            this.gcStockSummary.Location = new System.Drawing.Point(24, 627);
+            this.gcStockSummary.MainView = this.gvStockSummary;
+            this.gcStockSummary.Name = "gcStockSummary";
+            this.gcStockSummary.Size = new System.Drawing.Size(752, 232);
+            this.gcStockSummary.TabIndex = 9;
+            this.gcStockSummary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvStockSummary});
             // 
-            // txtItemName
+            // gvStockSummary
             // 
-            this.txtItemName.Location = new System.Drawing.Point(475, 20);
-            this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Properties.ReadOnly = true;
-            this.txtItemName.Size = new System.Drawing.Size(305, 20);
-            this.txtItemName.StyleController = this.layoutControl1;
-            this.txtItemName.TabIndex = 5;
+            this.gvStockSummary.Appearance.EvenRow.BackColor = System.Drawing.Color.LightBlue;
+            this.gvStockSummary.Appearance.EvenRow.Options.UseBackColor = true;
+            this.gvStockSummary.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn21,
+            this.gridColumn22,
+            this.gridColumn23,
+            this.gridColumn24});
+            this.gvStockSummary.GridControl = this.gcStockSummary;
+            this.gvStockSummary.Name = "gvStockSummary";
+            this.gvStockSummary.OptionsBehavior.ReadOnly = true;
+            this.gvStockSummary.OptionsView.EnableAppearanceEvenRow = true;
+            this.gvStockSummary.RowHeight = 40;
             // 
-            // txtSKUCode
+            // gridColumn21
             // 
-            this.txtSKUCode.Location = new System.Drawing.Point(85, 20);
-            this.txtSKUCode.Name = "txtSKUCode";
-            this.txtSKUCode.Properties.ReadOnly = true;
-            this.txtSKUCode.Size = new System.Drawing.Size(305, 20);
-            this.txtSKUCode.StyleController = this.layoutControl1;
-            this.txtSKUCode.TabIndex = 4;
+            this.gridColumn21.Caption = "BRANCHID";
+            this.gridColumn21.FieldName = "BRANCHID";
+            this.gridColumn21.Name = "gridColumn21";
             // 
-            // Root
+            // gridColumn22
             // 
-            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.Root.GroupBordersVisible = false;
-            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem2,
-            this.layoutControlItem3,
-            this.layoutControlGroup1,
-            this.layoutControlGroup2,
-            this.layoutControlGroup3});
-            this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(800, 883);
-            this.Root.TextVisible = false;
+            this.gridColumn22.Caption = "Branch Name";
+            this.gridColumn22.FieldName = "BRANCHNAME";
+            this.gridColumn22.Name = "gridColumn22";
+            this.gridColumn22.Visible = true;
+            this.gridColumn22.VisibleIndex = 0;
             // 
-            // layoutControlItem1
+            // gridColumn23
             // 
-            this.layoutControlItem1.Control = this.txtSKUCode;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem1.Size = new System.Drawing.Size(390, 40);
-            this.layoutControlItem1.Text = "SKU Code";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(53, 13);
+            this.gridColumn23.Caption = "Available Quantity";
+            this.gridColumn23.FieldName = "QUANTITY";
+            this.gridColumn23.Name = "gridColumn23";
+            this.gridColumn23.Visible = true;
+            this.gridColumn23.VisibleIndex = 1;
             // 
-            // layoutControlItem2
+            // gridColumn24
             // 
-            this.layoutControlItem2.Control = this.txtItemName;
-            this.layoutControlItem2.Location = new System.Drawing.Point(390, 0);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem2.Size = new System.Drawing.Size(390, 40);
-            this.layoutControlItem2.Text = "Item Name";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(53, 13);
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.txtDescription;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 40);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem3.Size = new System.Drawing.Size(780, 40);
-            this.layoutControlItem3.Text = "Description";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(53, 13);
-            // 
-            // layoutControlGroup1
-            // 
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem4});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 80);
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(780, 264);
-            this.layoutControlGroup1.Text = "Item Code List";
-            // 
-            // layoutControlGroup2
-            // 
-            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem5});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 344);
-            this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(780, 238);
-            this.layoutControlGroup2.Text = "Item Price List";
-            // 
-            // layoutControlGroup3
-            // 
-            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem6});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 582);
-            this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(780, 281);
-            this.layoutControlGroup3.Text = "Item Summary";
-            // 
-            // gcItemCodes
-            // 
-            this.gcItemCodes.Location = new System.Drawing.Point(24, 125);
-            this.gcItemCodes.MainView = this.gvItemCodes;
-            this.gcItemCodes.Name = "gcItemCodes";
-            this.gcItemCodes.Size = new System.Drawing.Size(752, 215);
-            this.gcItemCodes.TabIndex = 7;
-            this.gcItemCodes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvItemCodes});
-            // 
-            // gvItemCodes
-            // 
-            this.gvItemCodes.Appearance.EvenRow.BackColor = System.Drawing.Color.LightBlue;
-            this.gvItemCodes.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gvItemCodes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3,
-            this.gridColumn4,
-            this.gridColumn5,
-            this.gridColumn6,
-            this.gridColumn7,
-            this.gridColumn8});
-            this.gvItemCodes.GridControl = this.gcItemCodes;
-            this.gvItemCodes.Name = "gvItemCodes";
-            this.gvItemCodes.OptionsView.EnableAppearanceEvenRow = true;
-            this.gvItemCodes.RowHeight = 40;
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.gcItemCodes;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(756, 219);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
+            this.gridColumn24.Caption = "In Transit Quantity";
+            this.gridColumn24.FieldName = "INTRANSITQUANTITY";
+            this.gridColumn24.Name = "gridColumn24";
+            this.gridColumn24.Visible = true;
+            this.gridColumn24.VisibleIndex = 2;
             // 
             // gcItemPriceList
             // 
@@ -276,112 +195,9 @@
             this.gridColumn20});
             this.gvItemPrice.GridControl = this.gcItemPriceList;
             this.gvItemPrice.Name = "gvItemPrice";
+            this.gvItemPrice.OptionsBehavior.ReadOnly = true;
             this.gvItemPrice.OptionsView.EnableAppearanceEvenRow = true;
             this.gvItemPrice.RowHeight = 40;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.gcItemPriceList;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(756, 193);
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
-            // 
-            // gcStockSummary
-            // 
-            this.gcStockSummary.Location = new System.Drawing.Point(24, 627);
-            this.gcStockSummary.MainView = this.gvStockSummary;
-            this.gcStockSummary.Name = "gcStockSummary";
-            this.gcStockSummary.Size = new System.Drawing.Size(752, 232);
-            this.gcStockSummary.TabIndex = 9;
-            this.gcStockSummary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvStockSummary});
-            // 
-            // gvStockSummary
-            // 
-            this.gvStockSummary.Appearance.EvenRow.BackColor = System.Drawing.Color.LightBlue;
-            this.gvStockSummary.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gvStockSummary.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn21,
-            this.gridColumn22,
-            this.gridColumn23,
-            this.gridColumn24});
-            this.gvStockSummary.GridControl = this.gcStockSummary;
-            this.gvStockSummary.Name = "gvStockSummary";
-            this.gvStockSummary.OptionsView.EnableAppearanceEvenRow = true;
-            this.gvStockSummary.RowHeight = 40;
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.gcStockSummary;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(756, 236);
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "ITEMCODEID";
-            this.gridColumn1.FieldName = "ITEMCODEID";
-            this.gridColumn1.Name = "gridColumn1";
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Item (EAN \\ SKU) Code ";
-            this.gridColumn2.FieldName = "ITEMCODE";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Is EAN Code";
-            this.gridColumn3.FieldName = "ISEAN";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "HSN Code";
-            this.gridColumn4.FieldName = "HSNCODE";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 2;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "Created By";
-            this.gridColumn5.FieldName = "CREATEDBY";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 3;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Created Date";
-            this.gridColumn6.FieldName = "Created Date";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 4;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Updated By";
-            this.gridColumn7.FieldName = "UPDATEDBY";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 5;
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "Updated Date";
-            this.gridColumn8.FieldName = "UPDATEDATE";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 6;
             // 
             // gridColumn9
             // 
@@ -473,35 +289,222 @@
             this.gridColumn20.Visible = true;
             this.gridColumn20.VisibleIndex = 8;
             // 
-            // gridColumn21
+            // gcItemCodes
             // 
-            this.gridColumn21.Caption = "BRANCHID";
-            this.gridColumn21.FieldName = "BRANCHID";
-            this.gridColumn21.Name = "gridColumn21";
+            this.gcItemCodes.Location = new System.Drawing.Point(24, 125);
+            this.gcItemCodes.MainView = this.gvItemCodes;
+            this.gcItemCodes.Name = "gcItemCodes";
+            this.gcItemCodes.Size = new System.Drawing.Size(752, 215);
+            this.gcItemCodes.TabIndex = 7;
+            this.gcItemCodes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvItemCodes});
             // 
-            // gridColumn22
+            // gvItemCodes
             // 
-            this.gridColumn22.Caption = "Branch Name";
-            this.gridColumn22.FieldName = "BRANCHNAME";
-            this.gridColumn22.Name = "gridColumn22";
-            this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 0;
+            this.gvItemCodes.Appearance.EvenRow.BackColor = System.Drawing.Color.LightBlue;
+            this.gvItemCodes.Appearance.EvenRow.Options.UseBackColor = true;
+            this.gvItemCodes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6,
+            this.gridColumn7,
+            this.gridColumn8});
+            this.gvItemCodes.GridControl = this.gcItemCodes;
+            this.gvItemCodes.Name = "gvItemCodes";
+            this.gvItemCodes.OptionsBehavior.ReadOnly = true;
+            this.gvItemCodes.OptionsView.EnableAppearanceEvenRow = true;
+            this.gvItemCodes.RowHeight = 40;
             // 
-            // gridColumn23
+            // gridColumn1
             // 
-            this.gridColumn23.Caption = "Quantity";
-            this.gridColumn23.FieldName = "QUANTITY";
-            this.gridColumn23.Name = "gridColumn23";
-            this.gridColumn23.Visible = true;
-            this.gridColumn23.VisibleIndex = 1;
+            this.gridColumn1.Caption = "ITEMCODEID";
+            this.gridColumn1.FieldName = "ITEMCODEID";
+            this.gridColumn1.Name = "gridColumn1";
             // 
-            // gridColumn24
+            // gridColumn2
             // 
-            this.gridColumn24.Caption = "In Transit Quantity";
-            this.gridColumn24.FieldName = "INTRANSITQUANTITY";
-            this.gridColumn24.Name = "gridColumn24";
-            this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 2;
+            this.gridColumn2.Caption = "Item (EAN \\ SKU) Code ";
+            this.gridColumn2.FieldName = "ITEMCODE";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Is EAN Code";
+            this.gridColumn3.FieldName = "ISEAN";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 1;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "HSN Code";
+            this.gridColumn4.FieldName = "HSNCODE";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 2;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Created By";
+            this.gridColumn5.FieldName = "CREATEDBY";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 3;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Created Date";
+            this.gridColumn6.FieldName = "CREATEDDATE";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 4;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Updated By";
+            this.gridColumn7.FieldName = "UPDATEDBY";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 5;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "Updated Date";
+            this.gridColumn8.FieldName = "UPDATEDATE";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 6;
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(85, 60);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Properties.ReadOnly = true;
+            this.txtDescription.Size = new System.Drawing.Size(695, 20);
+            this.txtDescription.StyleController = this.layoutControl1;
+            this.txtDescription.TabIndex = 6;
+            // 
+            // txtItemName
+            // 
+            this.txtItemName.Location = new System.Drawing.Point(475, 20);
+            this.txtItemName.Name = "txtItemName";
+            this.txtItemName.Properties.ReadOnly = true;
+            this.txtItemName.Size = new System.Drawing.Size(305, 20);
+            this.txtItemName.StyleController = this.layoutControl1;
+            this.txtItemName.TabIndex = 5;
+            // 
+            // txtSKUCode
+            // 
+            this.txtSKUCode.Location = new System.Drawing.Point(85, 20);
+            this.txtSKUCode.Name = "txtSKUCode";
+            this.txtSKUCode.Properties.ReadOnly = true;
+            this.txtSKUCode.Size = new System.Drawing.Size(305, 20);
+            this.txtSKUCode.StyleController = this.layoutControl1;
+            this.txtSKUCode.TabIndex = 4;
+            // 
+            // Root
+            // 
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem1,
+            this.layoutControlItem2,
+            this.layoutControlItem3,
+            this.layoutControlGroup1,
+            this.layoutControlGroup2,
+            this.layoutControlGroup3});
+            this.Root.Name = "Root";
+            this.Root.Size = new System.Drawing.Size(800, 883);
+            this.Root.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.txtSKUCode;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem1.Size = new System.Drawing.Size(390, 40);
+            this.layoutControlItem1.Text = "SKU Code";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(53, 13);
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.txtItemName;
+            this.layoutControlItem2.Location = new System.Drawing.Point(390, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem2.Size = new System.Drawing.Size(390, 40);
+            this.layoutControlItem2.Text = "Item Name";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(53, 13);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.txtDescription;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 40);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem3.Size = new System.Drawing.Size(780, 40);
+            this.layoutControlItem3.Text = "Description";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(53, 13);
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem4});
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 80);
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(780, 264);
+            this.layoutControlGroup1.Text = "Item Code List";
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.gcItemCodes;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(756, 219);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem5});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 344);
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(780, 238);
+            this.layoutControlGroup2.Text = "Item Price List";
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.gcItemPriceList;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(756, 193);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlGroup3
+            // 
+            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem6});
+            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 582);
+            this.layoutControlGroup3.Name = "layoutControlGroup3";
+            this.layoutControlGroup3.Size = new System.Drawing.Size(780, 281);
+            this.layoutControlGroup3.Text = "Item Summary";
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.gcStockSummary;
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(756, 236);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem6.TextVisible = false;
             // 
             // frmItemVisualize
             // 
@@ -514,8 +517,15 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Item Visualiser";
             this.Load += new System.EventHandler(this.frmItemDrillDown_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmItemVisualize_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcStockSummary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvStockSummary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcItemPriceList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvItemPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcItemCodes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvItemCodes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSKUCode.Properties)).EndInit();
@@ -524,16 +534,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemCodes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemCodes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemPriceList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcStockSummary)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvStockSummary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             this.ResumeLayout(false);
 

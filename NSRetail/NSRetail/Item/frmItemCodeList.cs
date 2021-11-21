@@ -24,6 +24,16 @@ namespace NSRetail
             InitializeComponent();
         }
 
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
+        }
+
         private void btnNew_Click(object sender, EventArgs e)
         {
             Item itemObj = new Item();
@@ -35,9 +45,8 @@ namespace NSRetail
         {
             try
             {
+                EnableDisableControls(false);
                 dtItemCodes = new ItemCodeRepository().GetItemCodes();
-                btnEdit.Enabled = false;
-                btnVisualize.Enabled = false;
                 dtItems = new DataView(dtItemCodes).ToTable(true, "ITEMID", "ITEMNAME", "SKUCODE", "DESCRIPTION");
                 gcItemList.DataSource = dtItemCodes;
             }
@@ -46,11 +55,6 @@ namespace NSRetail
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
             }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -118,9 +122,7 @@ namespace NSRetail
 
         private void gvItemList_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            bool enabled = gvItemList.FocusedRowHandle >= 0;
-            btnEdit.Enabled = enabled;
-            btnVisualize.Enabled = enabled;
+            EnableDisableControls(gvItemList.FocusedRowHandle >= 0);
         }
 
         private void btnVisualize_Click(object sender, EventArgs e)
@@ -137,6 +139,49 @@ namespace NSRetail
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
             }
+        }
+
+        private void gcItemList_ProcessGridKey(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnEdit_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.Delete)
+            {
+                btnDelete_Click(null, null);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EnableDisableControls(bool enabled)
+        {
+            btnEdit.Enabled = enabled;
+            btnVisualize.Enabled = enabled;
+            btnDelete.Enabled = enabled;
+        }
+
+        private void gvItemList_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
+        {
+            if (e.HitInfo.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
+            {
+                e.Allow = false;
+                pmItemList.ShowPopup(gcItemList.PointToScreen(e.Point));
+            }
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            btnEdit_Click(sender, e);
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            btnVisualize_Click(sender, e);
         }
     }
 }

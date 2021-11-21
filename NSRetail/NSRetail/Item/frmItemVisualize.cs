@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using System;
 using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail
 {
@@ -25,6 +26,14 @@ namespace NSRetail
             gcItemCodes.DataSource = dsItemVisualizer.Tables["ITEMCODES"];
             gcItemPriceList.DataSource = dsItemVisualizer.Tables["ITEMPRICES"];
             gcStockSummary.DataSource = dsItemVisualizer.Tables["ITEMSTOCKSUMMARY"];
+        }
+
+        private void frmItemVisualize_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }
