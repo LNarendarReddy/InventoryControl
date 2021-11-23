@@ -128,5 +128,14 @@ namespace NSRetail
             obj.MdiParent = this;
             obj.Show();
         }
+
+        private void btnBarCodePrint_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmBarCodePrint obj = new frmBarCodePrint();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
+        }
     }
 }

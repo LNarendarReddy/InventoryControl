@@ -1,5 +1,7 @@
 ﻿using DataAccess;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.UI;
+using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -76,6 +78,38 @@ namespace NSRetail
         public static DataTable GetGSTBaseline()
         {
             return dtGST = dtGST ?? new MasterRepository().GetGST();
+        }
+        public static void PrintBarCode(object ItemCode, object ItemName, string SalePrice, object oQuantity)
+        {
+            try
+            {
+                int Quantity = 0;
+                if (int.TryParse(Convert.ToString(oQuantity), out Quantity))
+                {
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("ItemCode", typeof(string));
+                    dt.Columns.Add("ItemName", typeof(string));
+                    dt.Columns.Add("SalePrice", typeof(string));
+                    DataRow dr = null;
+                    for (int i = 0; i < Quantity; i++)
+                    {
+                        dr = dt.NewRow();
+                        dr["ItemCode"] = ItemCode;
+                        dr["ItemName"] = ItemName;
+                        dr["SalePrice"] = SalePrice;
+                        dt.Rows.Add(dr);
+                    }
+                    rptBarcode rpt = new rptBarcode();
+                    rpt.DataSource = dt;
+                    rpt.CreateDocument();
+                    //rpt.ShowPreview();
+                    rpt.Print();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

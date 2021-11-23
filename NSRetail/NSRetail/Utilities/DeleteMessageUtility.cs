@@ -8,5 +8,6 @@ namespace NSRetail.Utilities
 {
     public class DeleteMessageUtility
     {
+
     }
 }

@@ -108,5 +108,10 @@ namespace NSRetail
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
+
+        private void gvBranch_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
+        {
+
+        }
     }
 }

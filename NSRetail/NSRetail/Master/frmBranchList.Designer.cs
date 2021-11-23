@@ -163,6 +163,7 @@
             this.gridColumn13});
             this.gvBranch.GridControl = this.gcBranch;
             this.gvBranch.Name = "gvBranch";
+            this.gvBranch.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvBranch_PopupMenuShowing);
             // 
             // gridColumn1
             // 
