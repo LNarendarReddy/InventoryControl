@@ -46,8 +46,9 @@ namespace NSRetail
             try
             {
                 EnableDisableControls(false);
-                dtItemCodes = new ItemCodeRepository().GetItemCodes();
-                dtItems = new DataView(dtItemCodes).ToTable(true, "ITEMID", "ITEMNAME", "SKUCODE", "DESCRIPTION");
+                DataSet dsItemCodes = new ItemCodeRepository().GetItemCodes();
+                dtItemCodes = dsItemCodes.Tables["ITEMCODES"];
+                dtItems = dsItemCodes.Tables["ITEMS"];
                 gcItemList.DataSource = dtItemCodes;
             }
             catch (Exception ex)
@@ -111,7 +112,7 @@ namespace NSRetail
             if (isNew)
             {
                 dtItemCodes.Rows.Add(updateRow);
-                Utility.Setfocus(gvItemList, "ITEMID", itemObj.ItemID);
+                Utility.Setfocus(gvItemList, "ITEMCODEID", itemObj.ItemCodeID);
             }
         }
 
@@ -182,6 +183,11 @@ namespace NSRetail
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             btnVisualize_Click(sender, e);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

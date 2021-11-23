@@ -70,6 +70,8 @@ namespace NSRetail
                 
                 // re assign the item id in case of new SKU
                 dtItems.Rows[dtItems.Rows.Count - 1]["ITEMID"] = itemObj.ItemID;
+                dtItems.Rows[dtItems.Rows.Count - 1]["ITEMNAME"] = itemObj.ItemName;
+                dtItems.Rows[dtItems.Rows.Count - 1]["DESCRIPTION"] = itemObj.Description;
 
                 itemObj.IsSave = true;
                 this.Close();
@@ -94,32 +96,28 @@ namespace NSRetail
 
         private void searchLookUpEdit1_Properties_EditValueChanged(object sender, EventArgs e)
         {
-            bool hasValue = sluSKUCode.EditValue != null && searchLookUpEdit1View.GetFocusedDataRow() != null;
+            bool hasValue = sluSKUCode.EditValue != null && (int)sluSKUCode.EditValue > 0 && searchLookUpEdit1View.GetFocusedDataRow() != null;
 
             txtItemName.EditValue = hasValue ? searchLookUpEdit1View.GetFocusedDataRow()["ITEMNAME"] : string.Empty;
             txtDescription.EditValue = hasValue ? searchLookUpEdit1View.GetFocusedDataRow()["DESCRIPTION"] : string.Empty;
             txtItemCode.EditValue = hasValue && !chkIsEAN.Checked ? sluSKUCode.Text : txtItemCode.EditValue;
         }
 
-        private void searchLookUpEdit1_Properties_AddNewValue(object sender, DevExpress.XtraEditors.Controls.AddNewValueEventArgs e)
+        private void btnAddSKU_Click(object sender, EventArgs e)
         {
             ItemSKUCode itemSKUCodeObj = new ItemSKUCode();
             new frmAddSKUCode(itemSKUCodeObj).ShowDialog();
-            if(!itemSKUCodeObj.IsSave)
+            if (!itemSKUCodeObj.IsSave)
             {
                 return;
             }
 
             DataRow drNewSKUCode = dtItems.NewRow();
             drNewSKUCode["ITEMID"] = 0;
-            drNewSKUCode["ITEMNAME"] = itemSKUCodeObj.ItemName;
             drNewSKUCode["SKUCODE"] = itemSKUCodeObj.SKUCode;
-            drNewSKUCode["DESCRIPTION"] = itemSKUCodeObj.Description;
             dtItems.Rows.Add(drNewSKUCode);
             searchLookUpEdit1View.RefreshData();
-            Utility.Setfocus(searchLookUpEdit1View, "ITEMID", 0);
-            //searchLookUpEdit1View.FocusedRowHandle = searchLookUpEdit1View.LocateByValue("ITEMID", 0);
-            e.NewValue = 0;
+            sluSKUCode.EditValue = 0;
         }
     }
 }

@@ -229,8 +229,8 @@
             // 
             // gridColumn13
             // 
-            this.gridColumn13.Caption = "SALEPRICE";
-            this.gridColumn13.FieldName = "Sale Price";
+            this.gridColumn13.Caption = "Sale Price";
+            this.gridColumn13.FieldName = "SALEPRICE";
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 2;
