@@ -17,8 +17,6 @@ namespace NSRetail
         {
             if (!dxAddSKUValidationProvider.Validate())
                 return;
-            itemSKUCodeObj.ItemName = txtItemName.EditValue;
-            itemSKUCodeObj.Description = txtDescription.EditValue;
             itemSKUCodeObj.SKUCode = txtSKUCode.EditValue;
             itemSKUCodeObj.IsSave = true;
             this.Close();

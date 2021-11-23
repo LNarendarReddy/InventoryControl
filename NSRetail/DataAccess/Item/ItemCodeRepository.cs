@@ -7,9 +7,9 @@ namespace DataAccess
 {
     public class ItemCodeRepository
     {
-        public DataTable GetItemCodes()
+        public DataSet GetItemCodes()
         {
-            DataTable dtItemCodes = new DataTable();
+            DataSet dsItemCodes = new DataSet();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -19,8 +19,11 @@ namespace DataAccess
                     cmd.CommandText = "[USP_R_ITEMCODES]";
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        da.Fill(dtItemCodes);
+                        da.Fill(dsItemCodes);
                     }
+
+                    dsItemCodes.Tables[0].TableName = "ITEMS";
+                    dsItemCodes.Tables[1].TableName = "ITEMCODES";
                 }
             }
             catch (Exception ex)
@@ -31,7 +34,7 @@ namespace DataAccess
             {
                 SQLCon.Sqlconn().Close();
             }
-            return dtItemCodes;
+            return dsItemCodes;
         }
 
         public DataTable GetItemCode(object itemCodeID)
