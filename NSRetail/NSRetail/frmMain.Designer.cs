@@ -46,6 +46,7 @@
             this.btnItem = new DevExpress.XtraBars.BarButtonItem();
             this.btnLogout = new DevExpress.XtraBars.BarButtonItem();
             this.btnChangePassword = new DevExpress.XtraBars.BarButtonItem();
+            this.btnBarCodePrint = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -55,7 +56,7 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.btnBarCodePrint = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPrinterMaster = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -77,9 +78,10 @@
             this.btnItem,
             this.btnLogout,
             this.btnChangePassword,
-            this.btnBarCodePrint});
+            this.btnBarCodePrint,
+            this.btnPrinterMaster});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 17;
+            this.ribbonControl1.MaxItemId = 18;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -243,6 +245,20 @@
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChangePassword_ItemClick);
             // 
+            // btnBarCodePrint
+            // 
+            this.btnBarCodePrint.Caption = "Print Barcode";
+            this.btnBarCodePrint.Id = 16;
+            this.btnBarCodePrint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBarCodePrint.ImageOptions.SvgImage")));
+            this.btnBarCodePrint.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnBarCodePrint.ItemAppearance.Hovered.Options.UseFont = true;
+            this.btnBarCodePrint.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnBarCodePrint.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnBarCodePrint.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnBarCodePrint.ItemAppearance.Pressed.Options.UseFont = true;
+            this.btnBarCodePrint.Name = "btnBarCodePrint";
+            this.btnBarCodePrint.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBarCodePrint_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Appearance.Font = new System.Drawing.Font("Arial", 10F);
@@ -264,6 +280,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnUnitsofMeasure);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnTaxMaster);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnBarCodePrint);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnPrinterMaster);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Masters";
             // 
@@ -317,19 +334,19 @@
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
             // 
-            // btnBarCodePrint
+            // btnPrinterMaster
             // 
-            this.btnBarCodePrint.Caption = "Print Barcode";
-            this.btnBarCodePrint.Id = 16;
-            this.btnBarCodePrint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.btnBarCodePrint.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnBarCodePrint.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnBarCodePrint.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnBarCodePrint.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnBarCodePrint.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnBarCodePrint.ItemAppearance.Pressed.Options.UseFont = true;
-            this.btnBarCodePrint.Name = "btnBarCodePrint";
-            this.btnBarCodePrint.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBarCodePrint_ItemClick);
+            this.btnPrinterMaster.Caption = "Printer Master";
+            this.btnPrinterMaster.Id = 17;
+            this.btnPrinterMaster.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrinterMaster.ImageOptions.SvgImage")));
+            this.btnPrinterMaster.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnPrinterMaster.ItemAppearance.Hovered.Options.UseFont = true;
+            this.btnPrinterMaster.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnPrinterMaster.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnPrinterMaster.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnPrinterMaster.ItemAppearance.Pressed.Options.UseFont = true;
+            this.btnPrinterMaster.Name = "btnPrinterMaster";
+            this.btnPrinterMaster.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPrinterMaster_ItemClick);
             // 
             // frmMain
             // 
@@ -376,6 +393,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.BarButtonItem btnChangePassword;
         private DevExpress.XtraBars.BarButtonItem btnBarCodePrint;
+        private DevExpress.XtraBars.BarButtonItem btnPrinterMaster;
     }
 }
 

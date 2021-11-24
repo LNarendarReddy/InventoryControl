@@ -30,8 +30,10 @@ namespace NSRetail
         public static int CategoryID = 0;
         public static int BranchID = 0;
         public static string Email = string.Empty;
-
-
+        public static string DotMatrixPrinter = string.Empty;
+        public static string BarcodePrinter = string.Empty;
+        public static string A4SizePrinter = string.Empty;
+        public static string ThermalPrinter = string.Empty;
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
             try
@@ -74,7 +76,6 @@ namespace NSRetail
         {
             return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(input)));
         }
-
         public static DataTable GetGSTBaseline()
         {
             return dtGST = dtGST ?? new MasterRepository().GetGST();
@@ -102,8 +103,8 @@ namespace NSRetail
                     rptBarcode rpt = new rptBarcode();
                     rpt.DataSource = dt;
                     rpt.CreateDocument();
-                    //rpt.ShowPreview();
-                    rpt.Print();
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
+                    printTool.Print(Utility.BarcodePrinter);
                 }
             }
             catch (Exception ex)

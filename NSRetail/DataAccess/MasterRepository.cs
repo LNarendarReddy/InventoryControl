@@ -325,9 +325,9 @@ namespace DataAccess
             }
             return dtRole;
         }
-        public DataTable GetUserCredentials(string UserName, string Password)
+        public DataSet GetUserCredentials(string UserName, string Password)
         {
-            DataTable dtUser = new DataTable();
+            DataSet dSUser = new DataSet();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -339,12 +339,12 @@ namespace DataAccess
                     cmd.Parameters.Add("@PASSWORD", Password);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        da.Fill(dtUser);
+                        da.Fill(dSUser);
                     }
-                    if (dtUser != null && dtUser.Rows.Count > 0)
+                    if (dSUser != null && dSUser.Tables[0].Rows.Count > 0)
                     {
                         int Ivalue = 0;
-                        string str = Convert.ToString(dtUser.Rows[0][0]);
+                        string str = Convert.ToString(dSUser.Tables[0].Rows[0][0]);
                         if (!int.TryParse(str, out Ivalue))
                             throw new Exception(str);
                     }
@@ -357,7 +357,7 @@ namespace DataAccess
                 throw ex;
             }
             finally { SQLCon.Sqlconn().Close(); }
-            return dtUser;
+            return dSUser;
         }
         public DataTable ChangePassword(User ObjUser)
         {
@@ -857,6 +857,94 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
             return ObjGST;
+        }
+        public DataTable GetPrinterType()
+        {
+            DataTable dtPrinterType = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_PRINTERTYPE]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtPrinterType);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Printer Type");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtPrinterType;
+        }
+        public PrinterSettings SavePrinterSettings(PrinterSettings ObjPrinterSettings)
+        {
+            int PRINTERSETTINGSID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_PRINTERSETTINGS]";
+                    cmd.Parameters.Add("@PRINTERSETTINGSID", ObjPrinterSettings.PRINTERSETTINGSID);
+                    cmd.Parameters.Add("@PRINTERTYPEID", ObjPrinterSettings.PRINTERTYPEID);
+                    cmd.Parameters.Add("@PRINTERNAME", ObjPrinterSettings.PRINTERNAME);
+                    cmd.Parameters.Add("@USERID", ObjPrinterSettings.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out PRINTERSETTINGSID))
+                        throw new Exception(str);
+                    else
+                        ObjPrinterSettings.PRINTERSETTINGSID = objReturn;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("UC_PRINTERSETTING"))
+                    throw new Exception("Printer Already Exists!!");
+                else
+                    throw new Exception("Error While Saving Printer");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjPrinterSettings;
+        }
+        public DataTable GetPrinterSettings(object UserID)
+        {
+            DataTable dtPrinterSettings = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_PRINTERSETTINGS]";
+                    cmd.Parameters.Add("@USERID", UserID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtPrinterSettings);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Printer Settings");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtPrinterSettings;
         }
     }
 }

@@ -137,5 +137,14 @@ namespace NSRetail
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
         }
+
+        private void btnPrinterMaster_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmPrinterMaster obj = new frmPrinterMaster();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
+        }
     }
 }

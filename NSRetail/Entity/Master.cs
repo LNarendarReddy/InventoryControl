@@ -86,4 +86,10 @@ namespace Entity
         public object IGST { get; set; }
         public object CESS { get; set; }
     }
+    public class PrinterSettings : EntityBase
+    {
+        public object PRINTERSETTINGSID { get; set; }
+        public object PRINTERTYPEID { get; set; }
+        public object PRINTERNAME { get; set; }
+    }
 }

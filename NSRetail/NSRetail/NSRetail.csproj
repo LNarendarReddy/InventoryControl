@@ -139,6 +139,12 @@
     <Compile Include="Master\frmModeofPayment.Designer.cs">
       <DependentUpon>frmModeofPayment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\frmPrinterMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmPrinterMaster.designer.cs">
+      <DependentUpon>frmPrinterMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\frmUOM List.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmModeofPayment.resx">
       <DependentUpon>frmModeofPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmPrinterMaster.resx">
+      <DependentUpon>frmPrinterMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmUOM List.resx">
       <DependentUpon>frmUOM List.cs</DependentUpon>
