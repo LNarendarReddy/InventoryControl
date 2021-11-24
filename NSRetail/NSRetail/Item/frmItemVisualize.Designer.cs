@@ -504,6 +504,7 @@
             // 
             // layoutControlGroup1
             // 
+            this.layoutControlGroup1.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem4});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 84);
@@ -523,6 +524,7 @@
             // 
             // layoutControlGroup2
             // 
+            this.layoutControlGroup2.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem5});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 350);
@@ -542,6 +544,7 @@
             // 
             // layoutControlGroup3
             // 
+            this.layoutControlGroup3.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem6});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 593);

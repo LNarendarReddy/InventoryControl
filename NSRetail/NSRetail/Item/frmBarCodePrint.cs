@@ -53,7 +53,7 @@ namespace NSRetail
         {
             try
             {
-                cmbItemCode.Properties.DataSource = objItemRep.GetItemList();
+                cmbItemCode.Properties.DataSource = objItemRep. GetEANList();
                 cmbItemCode.Properties.DisplayMember = "ITEMCODE";
                 cmbItemCode.Properties.ValueMember = "ITEMCODEID";
             }

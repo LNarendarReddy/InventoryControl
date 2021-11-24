@@ -105,7 +105,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1160, 330, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(800, 450);
+            this.layoutControl1.Size = new System.Drawing.Size(1056, 594);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -113,7 +113,7 @@
             // 
             this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
             this.btnDelete.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnDelete.Location = new System.Drawing.Point(516, 4);
+            this.btnDelete.Location = new System.Drawing.Point(772, 4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(135, 36);
             this.btnDelete.StyleController = this.layoutControl1;
@@ -126,9 +126,9 @@
             // 
             this.btnVisualize.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualize.ImageOptions.Image")));
             this.btnVisualize.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnVisualize.Location = new System.Drawing.Point(390, 4);
+            this.btnVisualize.Location = new System.Drawing.Point(627, 4);
             this.btnVisualize.Name = "btnVisualize";
-            this.btnVisualize.Size = new System.Drawing.Size(122, 36);
+            this.btnVisualize.Size = new System.Drawing.Size(141, 36);
             this.btnVisualize.StyleController = this.layoutControl1;
             this.btnVisualize.TabIndex = 8;
             this.btnVisualize.Text = "&Visualize";
@@ -139,7 +139,7 @@
             this.btnEdit.AutoWidthInLayoutControl = true;
             this.btnEdit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.ImageOptions.Image")));
             this.btnEdit.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnEdit.Location = new System.Drawing.Point(247, 4);
+            this.btnEdit.Location = new System.Drawing.Point(484, 4);
             this.btnEdit.MinimumSize = new System.Drawing.Size(139, 0);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(139, 36);
@@ -153,7 +153,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(655, 4);
+            this.btnCancel.Location = new System.Drawing.Point(911, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(141, 36);
             this.btnCancel.StyleController = this.layoutControl1;
@@ -165,7 +165,7 @@
             // 
             this.btnNew.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnNew.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNew.ImageOptions.SvgImage")));
-            this.btnNew.Location = new System.Drawing.Point(104, 4);
+            this.btnNew.Location = new System.Drawing.Point(341, 4);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(139, 36);
             this.btnNew.StyleController = this.layoutControl1;
@@ -178,7 +178,7 @@
             this.gcItemList.Location = new System.Drawing.Point(4, 44);
             this.gcItemList.MainView = this.gvItemList;
             this.gcItemList.Name = "gcItemList";
-            this.gcItemList.Size = new System.Drawing.Size(792, 402);
+            this.gcItemList.Size = new System.Drawing.Size(1048, 546);
             this.gcItemList.TabIndex = 4;
             this.gcItemList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvItemList});
@@ -206,7 +206,11 @@
             this.gridColumn11});
             this.gvItemList.GridControl = this.gcItemList;
             this.gvItemList.Name = "gvItemList";
+            this.gvItemList.OptionsFind.FindFilterColumns = "ITEMCODE,ITEMNAME,SKUCODE";
+            this.gvItemList.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always;
+            this.gvItemList.OptionsFind.ShowFindButton = false;
             this.gvItemList.OptionsView.EnableAppearanceEvenRow = true;
+            this.gvItemList.OptionsView.ShowGroupPanel = false;
             this.gvItemList.RowHeight = 40;
             this.gvItemList.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvItemList_PopupMenuShowing);
             this.gvItemList.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvItemList_FocusedRowChanged);
@@ -313,7 +317,7 @@
             this.layoutControlItem6});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(800, 450);
+            this.Root.Size = new System.Drawing.Size(1056, 594);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -321,14 +325,14 @@
             this.layoutControlItem1.Control = this.gcItemList;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 40);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(796, 406);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1052, 550);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnNew;
-            this.layoutControlItem2.Location = new System.Drawing.Point(100, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(337, 0);
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(143, 40);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(143, 40);
             this.layoutControlItem2.Name = "layoutControlItem2";
@@ -340,7 +344,7 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnCancel;
-            this.layoutControlItem3.Location = new System.Drawing.Point(651, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(907, 0);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(145, 40);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(139, 40);
             this.layoutControlItem3.Name = "layoutControlItem3";
@@ -354,13 +358,13 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(100, 40);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(337, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnEdit;
-            this.layoutControlItem4.Location = new System.Drawing.Point(243, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(480, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(143, 40);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -369,11 +373,11 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnVisualize;
-            this.layoutControlItem5.Location = new System.Drawing.Point(386, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(623, 0);
             this.layoutControlItem5.MaxSize = new System.Drawing.Size(145, 40);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(99, 40);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(126, 40);
+            this.layoutControlItem5.Size = new System.Drawing.Size(145, 40);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
@@ -381,7 +385,7 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.btnDelete;
-            this.layoutControlItem6.Location = new System.Drawing.Point(512, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(768, 0);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(139, 40);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(92, 40);
             this.layoutControlItem6.Name = "layoutControlItem6";
@@ -435,15 +439,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(800, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1056, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 450);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 594);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(800, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1056, 0);
             // 
             // barDockControlLeft
             // 
@@ -451,22 +455,22 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 450);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 594);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(800, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(1056, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 450);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 594);
             // 
             // frmItemCodeList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1056, 594);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);

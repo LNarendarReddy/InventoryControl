@@ -237,6 +237,12 @@
     <Compile Include="Reports\XtraReport1.Designer.cs">
       <DependentUpon>XtraReport1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stock\frmStockDispatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmStockDispatch.Designer.cs">
+      <DependentUpon>frmStockDispatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\DeleteMessageUtility.cs" />
     <Compile Include="Utilities\Utility.cs" />
     <EmbeddedResource Include="Item\frmAddSKUCode.resx">
@@ -331,6 +337,9 @@
     <EmbeddedResource Include="Reports\XtraReport1.resx">
       <DependentUpon>XtraReport1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmStockDispatch.resx">
+      <DependentUpon>frmStockDispatch.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -372,6 +381,7 @@
   <ItemGroup>
     <None Include="Resources\Victory_Resized1.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

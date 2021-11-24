@@ -35,6 +35,11 @@ namespace NSRetail
                 txtDescription.EditValue = ObjBranch.Description;
                 txtPhoneNo.EditValue = ObjBranch.PHONENO;
                 txtEmailID.EditValue = ObjBranch.EMAILID;
+                if (Convert.ToBoolean(ObjBranch.ISWAREHOUSE))
+                    chkIsWarehouse.Checked = true;
+                else
+                    chkIsWarehouse.Checked = false;
+                chkIsWarehouse.Enabled = false;
             }
         }
 
@@ -56,6 +61,7 @@ namespace NSRetail
                 ObjBranch.ADDRESS = txtAddress.EditValue;
                 ObjBranch.PHONENO = txtPhoneNo.EditValue;
                 ObjBranch.EMAILID = txtEmailID.EditValue;
+                ObjBranch.ISWAREHOUSE = Convert.ToBoolean(chkIsWarehouse.CheckState);
                 ObjBranch.UserID = Utility.UserID;
                 objMasterRep.SaveBranch(ObjBranch);
                 ObjBranch.IsSave = true;

@@ -29,6 +29,7 @@ namespace DataAccess
                     cmd.Parameters.Add("@PHONENO", ObjBranch.PHONENO);
                     cmd.Parameters.Add("@EMAILID", ObjBranch.EMAILID);
                     cmd.Parameters.Add("@USERID", ObjBranch.UserID);
+                    cmd.Parameters.Add("@ISWAREHOUSE", ObjBranch.ISWAREHOUSE);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out BRanchID))

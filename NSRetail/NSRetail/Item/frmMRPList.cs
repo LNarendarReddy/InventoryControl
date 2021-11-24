@@ -30,5 +30,10 @@ namespace NSRetail
             _IsSave = true;
             drSelected = gvMRPList.GetFocusedRow();
         }
+
+        private void frmMRPList_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

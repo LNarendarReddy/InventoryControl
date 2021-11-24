@@ -22,6 +22,7 @@ namespace Entity
         public object ADDRESS { get; set; }
         public object PHONENO { get; set; }
         public object EMAILID { get; set; }
+        public object ISWAREHOUSE { get; set; }
     }
 
     public class Category : EntityBase

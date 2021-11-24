@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using NSRetail.Master;
+using NSRetail.Stock;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -156,7 +157,12 @@ namespace NSRetail
 
         private void btnStockDispatch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            frmStockDispatch obj = new frmStockDispatch();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
         }
     }
 }

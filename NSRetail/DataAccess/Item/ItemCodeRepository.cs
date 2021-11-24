@@ -142,7 +142,7 @@ namespace DataAccess
             return dsItemVisualizer;
         }
 
-        public DataTable GetItemList()
+        public DataTable GetEANList()
         {
             DataTable dtItemCodes = new DataTable();
             try
@@ -195,6 +195,33 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
             return dtItemCodes;
+        }
+
+        public DataTable GetItemList()
+        {
+            DataTable dtItem = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_ITEM]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtItem);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Item List", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtItem;
         }
     }
 }
