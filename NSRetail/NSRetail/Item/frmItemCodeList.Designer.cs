@@ -216,6 +216,7 @@
             this.gridColumn6.Caption = "ITEMCODEID";
             this.gridColumn6.FieldName = "ITEMCODEID";
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn1
             // 
@@ -248,6 +249,7 @@
             this.gridColumn7.Caption = "SKU Code";
             this.gridColumn7.FieldName = "SKUCODE";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 3;
             // 
@@ -287,8 +289,6 @@
             this.gridColumn10.FieldName = "UPDATEDBY";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 6;
             // 
             // gridColumn11
             // 
@@ -296,8 +296,6 @@
             this.gridColumn11.FieldName = "UPDATEDATE";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
-            this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 7;
             // 
             // Root
             // 

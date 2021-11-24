@@ -39,7 +39,9 @@ namespace NSRetail
 
         private void btnItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            new frmItemCodeList() { MdiParent = this }.Show();
+            new frmItemCodeList() { ShowInTaskbar = false, MdiParent = this,
+                StartPosition = FormStartPosition.CenterParent,
+            WindowState = FormWindowState.Maximized}.Show();
         }
 
         private void btnUser_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -145,6 +147,16 @@ namespace NSRetail
             obj.IconOptions.ShowIcon = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
+        }
+
+        private void btnStockEntry_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnStockDispatch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }
