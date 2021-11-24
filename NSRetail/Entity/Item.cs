@@ -33,12 +33,11 @@ namespace Entity
 
     }
 
-    public class ItemSKUCode : EntityBase
+    public class ItemNewCode : EntityBase
     {
-        public object ItemID => 0;
 
-        public object ItemName { get; set; }
+        public object Code { get; set; }
 
-        public object SKUCode { get; set; }
+        public bool isSKUorItem { get; set; }
     }
 }

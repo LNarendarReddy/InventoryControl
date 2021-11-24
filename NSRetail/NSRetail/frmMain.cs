@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using DevExpress.XtraSplashScreen;
+using Microsoft.Win32;
 using NSRetail.Master;
 using NSRetail.Stock;
 using System;
@@ -17,6 +18,16 @@ namespace NSRetail
         public frmMain()
         {
             InitializeComponent();
+        }
+
+        public event EventHandler RefreshBaseLineData;
+
+        protected override void OnLoad(EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(frmSplashScreen), true, true);
+            base.OnLoad(e);
+            Utility.FillBaseLine();
+            SplashScreenManager.CloseForm();
         }
 
         private void btnBranch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -163,6 +174,14 @@ namespace NSRetail
             obj.IconOptions.ShowIcon = false;
             obj.MdiParent = this;
             obj.Show();
+        }
+
+        private void bbiRefreshData_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(frmSplashScreen), true, true);
+            Utility.FillBaseLine();
+            RefreshBaseLineData?.Invoke(null, null);
+            SplashScreenManager.CloseForm();
         }
     }
 }

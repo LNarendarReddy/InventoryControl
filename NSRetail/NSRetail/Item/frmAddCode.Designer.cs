@@ -1,6 +1,6 @@
 ﻿namespace NSRetail
 {
-    partial class frmAddSKUCode
+    partial class frmAddCode
     {
         /// <summary>
         /// Required designer variable.
@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddSKUCode));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddCode));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.RootLayout = new DevExpress.XtraLayout.LayoutControl();
             this.btnGenerateSKU = new DevExpress.XtraEditors.SimpleButton();
             this.btnApply = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.txtSKUCode = new DevExpress.XtraEditors.TextEdit();
+            this.txtCode = new DevExpress.XtraEditors.TextEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lcCode = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -45,9 +45,9 @@
             this.dxAddSKUValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.RootLayout)).BeginInit();
             this.RootLayout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSKUCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
@@ -60,7 +60,7 @@
             this.RootLayout.Controls.Add(this.btnGenerateSKU);
             this.RootLayout.Controls.Add(this.btnApply);
             this.RootLayout.Controls.Add(this.btnCancel);
-            this.RootLayout.Controls.Add(this.txtSKUCode);
+            this.RootLayout.Controls.Add(this.txtCode);
             this.RootLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RootLayout.Location = new System.Drawing.Point(0, 0);
             this.RootLayout.Name = "RootLayout";
@@ -104,24 +104,24 @@
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             // 
-            // txtSKUCode
+            // txtCode
             // 
-            this.txtSKUCode.Location = new System.Drawing.Point(79, 20);
-            this.txtSKUCode.Name = "txtSKUCode";
-            this.txtSKUCode.Size = new System.Drawing.Size(419, 20);
-            this.txtSKUCode.StyleController = this.RootLayout;
-            this.txtSKUCode.TabIndex = 4;
+            this.txtCode.Location = new System.Drawing.Point(57, 20);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(441, 20);
+            this.txtCode.StyleController = this.RootLayout;
+            this.txtCode.TabIndex = 4;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule2.ErrorText = "The value cannot be empty";
             conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxAddSKUValidationProvider.SetValidationRule(this.txtSKUCode, conditionValidationRule2);
+            this.dxAddSKUValidationProvider.SetValidationRule(this.txtCode, conditionValidationRule2);
             // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
+            this.lcCode,
             this.layoutControlItem4,
             this.layoutControlItem5,
             this.emptySpaceItem2,
@@ -130,15 +130,15 @@
             this.Root.Size = new System.Drawing.Size(518, 104);
             this.Root.TextVisible = false;
             // 
-            // layoutControlItem1
+            // lcCode
             // 
-            this.layoutControlItem1.Control = this.txtSKUCode;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem1.Size = new System.Drawing.Size(498, 40);
-            this.layoutControlItem1.Text = "SKU Code";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(47, 13);
+            this.lcCode.Control = this.txtCode;
+            this.lcCode.Location = new System.Drawing.Point(0, 0);
+            this.lcCode.Name = "lcCode";
+            this.lcCode.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.lcCode.Size = new System.Drawing.Size(498, 40);
+            this.lcCode.Text = "Code";
+            this.lcCode.TextSize = new System.Drawing.Size(25, 13);
             // 
             // layoutControlItem4
             // 
@@ -175,7 +175,7 @@
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
-            // frmAddSKUCode
+            // frmAddCode
             // 
             this.AcceptButton = this.btnApply;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,14 +184,15 @@
             this.ClientSize = new System.Drawing.Size(518, 104);
             this.Controls.Add(this.RootLayout);
             this.IconOptions.ShowIcon = false;
-            this.Name = "frmAddSKUCode";
+            this.Name = "frmAddCode";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add New SKU Code";
+            this.Text = "Add New Code";
+            this.Load += new System.EventHandler(this.frmAddCode_Load);
             ((System.ComponentModel.ISupportInitialize)(this.RootLayout)).EndInit();
             this.RootLayout.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtSKUCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
@@ -208,8 +209,8 @@
         private DevExpress.XtraEditors.SimpleButton btnGenerateSKU;
         private DevExpress.XtraEditors.SimpleButton btnApply;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.TextEdit txtSKUCode;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraEditors.TextEdit txtCode;
+        private DevExpress.XtraLayout.LayoutControlItem lcCode;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
