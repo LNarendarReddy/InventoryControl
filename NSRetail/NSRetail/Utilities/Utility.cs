@@ -16,6 +16,8 @@ namespace NSRetail
     public static class Utility
     {
         private static DataTable dtGST;
+        private static DataTable dtItemSKUList;
+        private static DataTable dtItemCodeList;
 
         public static int UserID = 4;
         public static string UserName = string.Empty;
@@ -68,6 +70,14 @@ namespace NSRetail
             cs.Close();
             return ms.ToArray();
         }
+
+        private static void FillItemBaseline()
+        {
+            DataSet dsItemBaseline = new ItemCodeRepository().GetItemCodes();
+            dtItemSKUList = dsItemBaseline.Tables["ITEMS"];
+            dtItemCodeList = dsItemBaseline.Tables["ITEMCODES"];
+        }
+
         public static string Encrypt(string input)
         {
             return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(input)));
@@ -80,6 +90,33 @@ namespace NSRetail
         {
             return dtGST = dtGST ?? new MasterRepository().GetGST();
         }
+
+        public static DataTable GetItemSKUList()
+        {
+            if(dtItemSKUList == null)
+            {
+                FillItemBaseline();
+            }
+
+            return dtItemSKUList;
+        }
+
+        public static DataTable GetItemCodeList()
+        {
+            if (dtItemCodeList == null)
+            {
+                FillItemBaseline();
+            }
+
+            return dtItemCodeList;
+        }
+
+        public static void FillBaseLine()
+        {
+            FillItemBaseline();
+            GetGSTBaseline();
+        }
+
         public static void PrintBarCode(object ItemCode, object ItemName, string SalePrice, object oQuantity)
         {
             try

@@ -37,7 +37,7 @@ namespace NSRetail
         private void btnNew_Click(object sender, EventArgs e)
         {
             Item itemObj = new Item();
-            new frmItemCode(itemObj, dtItems).ShowDialog();
+            new frmItemCode(itemObj).ShowDialog();
             UpdateDataTable(itemObj, true);
         }
 
@@ -46,16 +46,23 @@ namespace NSRetail
             try
             {
                 EnableDisableControls(false);
-                DataSet dsItemCodes = new ItemCodeRepository().GetItemCodes();
-                dtItemCodes = dsItemCodes.Tables["ITEMCODES"];
-                dtItems = dsItemCodes.Tables["ITEMS"];
+                dtItemCodes = Utility.GetItemCodeList();
+                dtItems = Utility.GetItemSKUList();
                 gcItemList.DataSource = dtItemCodes;
+                ((frmMain)this.MdiParent).RefreshBaseLineData += FrmItemCodeList_RefreshBaseLineData;
             }
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
             }
+        }
+
+        private void FrmItemCodeList_RefreshBaseLineData(object sender, EventArgs e)
+        {
+            dtItemCodes = Utility.GetItemCodeList();
+            dtItems = Utility.GetItemSKUList();
+            gcItemList.DataSource = dtItemCodes;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -65,7 +72,7 @@ namespace NSRetail
                 if (gvItemList.FocusedRowHandle >= 0)
                 {
                     Item itemObj = new Item() { ItemCodeID = gvItemList.GetFocusedRowCellValue("ITEMCODEID") };
-                    new frmItemCode(itemObj, dtItems).ShowDialog();
+                    new frmItemCode(itemObj).ShowDialog();
                     UpdateDataTable(itemObj);
                 }
             }
@@ -107,7 +114,7 @@ namespace NSRetail
             updateRow["ITEMCODE"] = itemObj.ItemCode;
             updateRow["ITEMNAME"] = itemObj.ItemName;
             updateRow["SKUCODE"] = itemObj.SKUCode;
-            updateRow["DESCRIPTION"] = itemObj.Description;
+            //updateRow["DESCRIPTION"] = itemObj.Description;
 
             if (isNew)
             {

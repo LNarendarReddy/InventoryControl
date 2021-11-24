@@ -73,11 +73,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Item\frmAddSKUCode.cs">
+    <Compile Include="Item\frmAddCode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Item\frmAddSKUCode.Designer.cs">
-      <DependentUpon>frmAddSKUCode.cs</DependentUpon>
+    <Compile Include="Item\frmAddCode.Designer.cs">
+      <DependentUpon>frmAddCode.cs</DependentUpon>
     </Compile>
     <Compile Include="Item\frmBarCodePrint.cs">
       <SubType>Form</SubType>
@@ -245,8 +245,8 @@
     </Compile>
     <Compile Include="Utilities\DeleteMessageUtility.cs" />
     <Compile Include="Utilities\Utility.cs" />
-    <EmbeddedResource Include="Item\frmAddSKUCode.resx">
-      <DependentUpon>frmAddSKUCode.cs</DependentUpon>
+    <EmbeddedResource Include="Item\frmAddCode.resx">
+      <DependentUpon>frmAddCode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Item\frmBarCodePrint.resx">
       <DependentUpon>frmBarCodePrint.cs</DependentUpon>

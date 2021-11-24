@@ -26,6 +26,7 @@ namespace NSRetail.Stock
         {
             try
             {
+                ((frmMain)MdiParent).RefreshBaseLineData += FrmStockDispatch_RefreshBaseLineData;
                 DataTable dtBranch = ObjMasterRep.GetBranch();
                 DataView dvBranch = dtBranch.Copy().DefaultView;
                 dvBranch.RowFilter = "ISWAREHOUSE = 0";
@@ -39,12 +40,21 @@ namespace NSRetail.Stock
                 cmbFromBranch.Properties.ValueMember = "BRANCHID";
                 cmbFromBranch.Properties.DisplayMember = "BRANCHNAME";
 
-                cmbItemCode.Properties.DataSource = ObjItemRep.GetItemList();
+                cmbItemCode.Properties.DataSource = Utility.GetItemCodeList();
                 cmbItemCode.Properties.ValueMember = "ITEMCODEID";
                 cmbItemCode.Properties.DisplayMember = "ITEMCODE";
 
             }
             catch (Exception){}
+        }
+
+        private void FrmStockDispatch_RefreshBaseLineData(object sender, EventArgs e)
+        {
+            object selectedValue = cmbItemCode.EditValue;
+            cmbItemCode.Properties.DataSource = Utility.GetItemCodeList();
+            cmbItemCode.Properties.ValueMember = "ITEMCODEID";
+            cmbItemCode.Properties.DisplayMember = "ITEMCODE";
+            cmbItemCode.EditValue = selectedValue;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

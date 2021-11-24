@@ -208,7 +208,6 @@
             this.gvItemList.Name = "gvItemList";
             this.gvItemList.OptionsFind.FindFilterColumns = "ITEMCODE,ITEMNAME,SKUCODE";
             this.gvItemList.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always;
-            this.gvItemList.OptionsFind.ShowFindButton = false;
             this.gvItemList.OptionsView.EnableAppearanceEvenRow = true;
             this.gvItemList.OptionsView.ShowGroupPanel = false;
             this.gvItemList.RowHeight = 40;
@@ -255,7 +254,7 @@
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 3;
+            this.gridColumn7.VisibleIndex = 2;
             // 
             // gridColumn4
             // 
@@ -263,8 +262,6 @@
             this.gridColumn4.FieldName = "DESCRIPTION";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 2;
             this.gridColumn4.Width = 178;
             // 
             // gridColumn8
@@ -274,7 +271,7 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 4;
+            this.gridColumn8.VisibleIndex = 3;
             this.gridColumn8.Width = 86;
             // 
             // gridColumn9
@@ -284,7 +281,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 5;
+            this.gridColumn9.VisibleIndex = 4;
             this.gridColumn9.Width = 125;
             // 
             // gridColumn10
