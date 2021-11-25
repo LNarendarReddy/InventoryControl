@@ -34,6 +34,7 @@
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.gcMRPList = new DevExpress.XtraGrid.GridControl();
             this.gvMRPList = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -41,7 +42,6 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcMRPList)).BeginInit();
@@ -74,9 +74,9 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(333, 323);
+            this.btnCancel.Location = new System.Drawing.Point(426, 322);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(214, 36);
+            this.btnCancel.Size = new System.Drawing.Size(120, 36);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
@@ -86,9 +86,9 @@
             // 
             this.btnOk.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnOk.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnOk.ImageOptions.SvgImage")));
-            this.btnOk.Location = new System.Drawing.Point(127, 323);
+            this.btnOk.Location = new System.Drawing.Point(296, 322);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(204, 36);
+            this.btnOk.Size = new System.Drawing.Size(126, 36);
             this.btnOk.StyleController = this.layoutControl1;
             this.btnOk.TabIndex = 5;
             this.btnOk.Text = "Ok";
@@ -96,10 +96,10 @@
             // 
             // gcMRPList
             // 
-            this.gcMRPList.Location = new System.Drawing.Point(1, 1);
+            this.gcMRPList.Location = new System.Drawing.Point(2, 2);
             this.gcMRPList.MainView = this.gvMRPList;
             this.gcMRPList.Name = "gcMRPList";
-            this.gcMRPList.Size = new System.Drawing.Size(546, 320);
+            this.gcMRPList.Size = new System.Drawing.Size(544, 316);
             this.gcMRPList.TabIndex = 4;
             this.gcMRPList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvMRPList});
@@ -120,6 +120,15 @@
             this.gvMRPList.OptionsBehavior.Editable = false;
             this.gvMRPList.OptionsView.ShowGroupPanel = false;
             // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Cost Price";
+            this.gridColumn3.FieldName = "COSTPRICE";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 0;
+            this.gridColumn3.Width = 173;
+            // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "MRP";
@@ -127,6 +136,7 @@
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 1;
+            this.gridColumn1.Width = 173;
             // 
             // gridColumn2
             // 
@@ -135,6 +145,7 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 2;
+            this.gridColumn2.Width = 178;
             // 
             // Root
             // 
@@ -157,44 +168,35 @@
             this.layoutControlItem1.Control = this.gcMRPList;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(548, 322);
+            this.layoutControlItem1.Size = new System.Drawing.Size(548, 320);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnOk;
-            this.layoutControlItem2.Location = new System.Drawing.Point(126, 322);
+            this.layoutControlItem2.Location = new System.Drawing.Point(294, 320);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(206, 38);
+            this.layoutControlItem2.Size = new System.Drawing.Size(130, 40);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnCancel;
-            this.layoutControlItem3.Location = new System.Drawing.Point(332, 322);
+            this.layoutControlItem3.Location = new System.Drawing.Point(424, 320);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(216, 38);
+            this.layoutControlItem3.Size = new System.Drawing.Size(124, 40);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 322);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 320);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(126, 38);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(294, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Cost Price";
-            this.gridColumn3.FieldName = "COSTPRICE";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 0;
-            this.gridColumn3.Width = 50;
             // 
             // frmMRPList
             // 
@@ -204,7 +206,10 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(548, 360);
             this.Controls.Add(this.layoutControl1);
+            this.IconOptions.ShowIcon = false;
             this.Name = "frmMRPList";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MRP List";
             this.Load += new System.EventHandler(this.frmMRPList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

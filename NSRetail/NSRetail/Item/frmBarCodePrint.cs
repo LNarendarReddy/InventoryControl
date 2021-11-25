@@ -74,9 +74,9 @@ namespace NSRetail
                         obj.ShowDialog();
                         if (obj._IsSave)
                         {
-                            txtCostPrice.EditValue = ((DataRow)obj.drSelected)["COSTPRICE"];
-                            txtMRP.EditValue = ((DataRow)obj.drSelected)["MRP"];
-                            txtSalePrice.EditValue = ((DataRow)obj.drSelected)["SALEPRICE"];
+                            txtCostPrice.EditValue = ((DataRowView)obj.drSelected)["COSTPRICE"];
+                            txtMRP.EditValue = ((DataRowView)obj.drSelected)["MRP"];
+                            txtSalePrice.EditValue = ((DataRowView)obj.drSelected)["SALEPRICE"];
                         }
                     }
                     else

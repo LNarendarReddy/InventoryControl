@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnBranch = new DevExpress.XtraBars.BarButtonItem();
             this.btnBranchCouter = new DevExpress.XtraBars.BarButtonItem();
@@ -50,17 +50,17 @@
             this.btnPrinterMaster = new DevExpress.XtraBars.BarButtonItem();
             this.btnStockEntry = new DevExpress.XtraBars.BarButtonItem();
             this.btnStockDispatch = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiRefreshData = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.bbiRefreshData = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -308,6 +308,22 @@
             this.btnStockDispatch.Name = "btnStockDispatch";
             this.btnStockDispatch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockDispatch_ItemClick);
             // 
+            // bbiRefreshData
+            // 
+            this.bbiRefreshData.Caption = "Refresh Data";
+            this.bbiRefreshData.Hint = "Refresh Item SKU and Item Code Data";
+            this.bbiRefreshData.Id = 20;
+            this.bbiRefreshData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiRefreshData.ImageOptions.Image")));
+            this.bbiRefreshData.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiRefreshData.ImageOptions.LargeImage")));
+            this.bbiRefreshData.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.bbiRefreshData.ItemAppearance.Hovered.Options.UseFont = true;
+            this.bbiRefreshData.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.bbiRefreshData.ItemAppearance.Normal.Options.UseFont = true;
+            this.bbiRefreshData.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.bbiRefreshData.ItemAppearance.Pressed.Options.UseFont = true;
+            this.bbiRefreshData.Name = "bbiRefreshData";
+            this.bbiRefreshData.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRefreshData_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Appearance.Font = new System.Drawing.Font("Arial", 10F);
@@ -365,12 +381,20 @@
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Stock";
             // 
+            // ribbonPageGroup5
+            // 
+            this.ribbonPageGroup5.Alignment = DevExpress.XtraBars.Ribbon.RibbonPageGroupAlignment.Far;
+            this.ribbonPageGroup5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPageGroup5.ImageOptions.Image")));
+            this.ribbonPageGroup5.ItemLinks.Add(this.bbiRefreshData);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "Refresh";
+            // 
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
-            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -385,24 +409,6 @@
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
-            // 
-            // ribbonPageGroup5
-            // 
-            this.ribbonPageGroup5.Alignment = DevExpress.XtraBars.Ribbon.RibbonPageGroupAlignment.Far;
-            this.ribbonPageGroup5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPageGroup5.ImageOptions.Image")));
-            this.ribbonPageGroup5.ItemLinks.Add(this.bbiRefreshData);
-            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.Text = "Refresh";
-            // 
-            // bbiRefreshData
-            // 
-            this.bbiRefreshData.Caption = "Refresh Data";
-            this.bbiRefreshData.Hint = "Refresh Item SKU and Item Code Data";
-            this.bbiRefreshData.Id = 20;
-            this.bbiRefreshData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.bbiRefreshData.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.bbiRefreshData.Name = "bbiRefreshData";
-            this.bbiRefreshData.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRefreshData_ItemClick);
             // 
             // frmMain
             // 

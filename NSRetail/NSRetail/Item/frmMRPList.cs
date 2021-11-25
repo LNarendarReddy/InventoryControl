@@ -15,11 +15,10 @@ namespace NSRetail
     {
         public object drSelected = null;
         public bool _IsSave = false;
-        DataTable dtMRP;
         public frmMRPList(DataTable _dtMRP)
         {
             InitializeComponent();
-            dtMRP = _dtMRP;
+            gcMRPList.DataSource = _dtMRP;
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -27,13 +26,19 @@ namespace NSRetail
         }
         private void btnOk_Click(object sender, EventArgs e)
         {
-            _IsSave = true;
-            drSelected = gvMRPList.GetFocusedRow();
+            try
+            {
+                _IsSave = true;
+                drSelected = gvMRPList.GetFocusedRow();
+                this.Close();
+            }
+            catch (Exception){}
         }
 
         private void frmMRPList_Load(object sender, EventArgs e)
         {
 
         }
+
     }
 }

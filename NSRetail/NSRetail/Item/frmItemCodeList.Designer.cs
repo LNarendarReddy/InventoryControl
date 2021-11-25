@@ -206,7 +206,6 @@
             this.gridColumn11});
             this.gvItemList.GridControl = this.gcItemList;
             this.gvItemList.Name = "gvItemList";
-            this.gvItemList.OptionsFind.FindFilterColumns = "ITEMCODE,ITEMNAME,SKUCODE";
             this.gvItemList.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always;
             this.gvItemList.OptionsView.EnableAppearanceEvenRow = true;
             this.gvItemList.OptionsView.ShowGroupPanel = false;

@@ -97,6 +97,12 @@
     <Compile Include="Item\frmMRPList.designer.cs">
       <DependentUpon>frmMRPList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\frmProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmProgress.Designer.cs">
+      <DependentUpon>frmProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\frmBranch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Item\frmMRPList.resx">
       <DependentUpon>frmMRPList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\frmProgress.resx">
+      <DependentUpon>frmProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmBranch.resx">
       <DependentUpon>frmBranch.cs</DependentUpon>

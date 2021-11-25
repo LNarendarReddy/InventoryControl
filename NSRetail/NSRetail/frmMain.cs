@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraSplashScreen;
 using Microsoft.Win32;
+using NSRetail.Login;
 using NSRetail.Master;
 using NSRetail.Stock;
 using System;
@@ -24,7 +25,7 @@ namespace NSRetail
 
         protected override void OnLoad(EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(frmSplashScreen), true, true);
+            SplashScreenManager.ShowForm(typeof(frmProgress), true, true);
             base.OnLoad(e);
             Utility.FillBaseLine();
             SplashScreenManager.CloseForm();
@@ -178,7 +179,7 @@ namespace NSRetail
 
         private void bbiRefreshData_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(frmSplashScreen), true, true);
+            SplashScreenManager.ShowForm(typeof(frmProgress ), true, true);
             Utility.FillBaseLine();
             RefreshBaseLineData?.Invoke(null, null);
             SplashScreenManager.CloseForm();
