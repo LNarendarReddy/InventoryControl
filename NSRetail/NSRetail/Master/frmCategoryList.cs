@@ -55,6 +55,7 @@ namespace NSRetail
                 DataRow row = (e.Row as DataRowView).Row;
                 ObjCategory.CATEGORYNAME = Convert.ToString(row["CATEGORYNAME"]);
                 ObjCategory.CATEGORYID = Convert.ToInt32(row["CATEGORYID"]);
+                ObjCategory.AllowOpenItems = Convert.ToBoolean(row["ALLOWOPENITEMS"]);
                 ObjCategory.UserID = Utility.UserID;
                 ObjMasterRep.SaveCategory(ObjCategory);
                 row["CATEGORYID"] = ObjCategory.CATEGORYID;

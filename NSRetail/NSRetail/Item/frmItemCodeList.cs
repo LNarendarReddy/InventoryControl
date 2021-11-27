@@ -16,13 +16,85 @@ namespace NSRetail
 {
     public partial class frmItemCodeList : DevExpress.XtraEditors.XtraForm
     {
+        #region Private Variables 
+
         DataTable dtItemCodes;
         DataTable dtItems;
+
+        #endregion
+
+        #region Constructor
 
         public frmItemCodeList()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Grid Button events
+
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            ItemNewCode itemNewCode = new ItemNewCode();
+            new frmAddCode(itemNewCode).ShowDialog();
+            if(!itemNewCode.IsSave)
+            { 
+                return;
+            }
+
+            Item itemObj = new Item() { ItemCode = itemNewCode.Code };
+            new frmItemCode(itemObj).ShowDialog();
+            Utility.Setfocus(gvItemList, "ITEMCODEID", itemObj.ItemCodeID);
+
+            if(Convert.ToBoolean(itemObj.IsNewToggleSwitched))
+            {
+                btnNew_Click(sender, e);
+            }
+        }
+
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvItemList.FocusedRowHandle >= 0)
+                {
+                    Item itemObj = new Item() { ItemCodeID = gvItemList.GetFocusedRowCellValue("ITEMCODEID") };
+                    new frmItemCode(itemObj).ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnVisualize_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvItemList.FocusedRowHandle >= 0)
+                {
+                    new frmItemVisualize(gvItemList.GetFocusedRowCellValue("ITEMID")).ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+
+
+        #endregion
 
         protected override bool ProcessDialogKey(Keys keyData)
         {
@@ -32,13 +104,6 @@ namespace NSRetail
                 return true;
             }
             return base.ProcessDialogKey(keyData);
-        }
-
-        private void btnNew_Click(object sender, EventArgs e)
-        {
-            Item itemObj = new Item();
-            new frmItemCode(itemObj).ShowDialog();
-            UpdateDataTable(itemObj, true);
         }
 
         private void frmItemList_Load(object sender, EventArgs e)
@@ -65,64 +130,6 @@ namespace NSRetail
             gcItemList.DataSource = dtItemCodes;
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (gvItemList.FocusedRowHandle >= 0)
-                {
-                    Item itemObj = new Item() { ItemCodeID = gvItemList.GetFocusedRowCellValue("ITEMCODEID") };
-                    new frmItemCode(itemObj).ShowDialog();
-                    UpdateDataTable(itemObj);
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
-            }
-        }
-
-        private void UpdateDataTable(Item itemObj, bool isNew = false)
-        {
-            if (!itemObj.IsSave)
-            {
-                return;
-            }
-
-            DataRow updateRow;
-            if (isNew)
-            {
-                updateRow = dtItemCodes.NewRow();
-            }
-            else
-            {
-                int rowHandle = gvItemList.LocateByValue("ITEMCODEID", itemObj.ItemCodeID);
-                if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
-                {
-                    updateRow = dtItemCodes.Rows[rowHandle];
-                }
-                else
-                {
-                    XtraMessageBox.Show("Refresh of grid failed");
-                    return;
-                }
-            }
-
-            updateRow["ITEMCODEID"] = itemObj.ItemCodeID;
-            updateRow["ITEMID"] = itemObj.ItemID ?? 0;
-            updateRow["ITEMCODE"] = itemObj.ItemCode;
-            updateRow["ITEMNAME"] = itemObj.ItemName;
-            updateRow["SKUCODE"] = itemObj.SKUCode;
-            //updateRow["DESCRIPTION"] = itemObj.Description;
-
-            if (isNew)
-            {
-                dtItemCodes.Rows.Add(updateRow);
-                Utility.Setfocus(gvItemList, "ITEMCODEID", itemObj.ItemCodeID);
-            }
-        }
-
         private void gcItemList_DoubleClick(object sender, EventArgs e)
         {
             btnEdit_Click(null, null);
@@ -131,22 +138,6 @@ namespace NSRetail
         private void gvItemList_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             EnableDisableControls(gvItemList.FocusedRowHandle >= 0);
-        }
-
-        private void btnVisualize_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (gvItemList.FocusedRowHandle >= 0)
-                {
-                    new frmItemVisualize(gvItemList.GetFocusedRowCellValue("ITEMID")).ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
-            }
         }
 
         private void gcItemList_ProcessGridKey(object sender, KeyEventArgs e)
@@ -159,11 +150,6 @@ namespace NSRetail
             {
                 btnDelete_Click(null, null);
             }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void EnableDisableControls(bool enabled)

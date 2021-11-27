@@ -187,7 +187,7 @@
             // 
             // gvItemList
             // 
-            this.gvItemList.Appearance.EvenRow.BackColor = System.Drawing.Color.LightBlue;
+            this.gvItemList.Appearance.EvenRow.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.gvItemList.Appearance.EvenRow.Options.UseBackColor = true;
             this.gvItemList.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.gvItemList.Appearance.HeaderPanel.Options.UseFont = true;

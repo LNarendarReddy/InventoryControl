@@ -12,6 +12,8 @@ namespace Entity
         public object UpdatedDate { get; set; }
         public object UserID { get; set; }
 
+        public object IsNewToggleSwitched { get; set; }
+
     }
 
     public class Branch : EntityBase
@@ -29,6 +31,8 @@ namespace Entity
     {
         public object CATEGORYID { get; set; }
         public object CATEGORYNAME { get; set; }
+
+        public object AllowOpenItems { get; set; }
     }
 
     public class User:EntityBase

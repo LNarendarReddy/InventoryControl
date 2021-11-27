@@ -37,9 +37,9 @@ namespace DataAccess
             return dsItemCodes;
         }
 
-        public DataTable GetItemCode(object itemCodeID)
+        public DataSet GetItemCode(object itemCodeID)
         {
-            DataTable dtItemCode = new DataTable();
+            DataSet dsItemCode = new DataSet();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -50,8 +50,11 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ItemCodeID", itemCodeID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        da.Fill(dtItemCode);
+                        da.Fill(dsItemCode);
                     }
+
+                    dsItemCode.Tables[0].TableName = "ITEMCODEDETAIL";
+                    dsItemCode.Tables[1].TableName = "ITEMCODEPRICES";
                 }
             }
             catch (Exception ex)
@@ -62,7 +65,7 @@ namespace DataAccess
             {
                 SQLCon.Sqlconn().Close();
             }
-            return dtItemCode;
+            return dsItemCode;
         }
 
         public Item SaveItemCode(Item itemObj)
@@ -79,6 +82,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ItemName", itemObj.ItemName);
                     cmd.Parameters.AddWithValue("@ItemCode", itemObj.ItemCode);
                     cmd.Parameters.AddWithValue("@Description", itemObj.Description);
+                    cmd.Parameters.AddWithValue("@CategoryID", itemObj.CategoryID);
                     cmd.Parameters.AddWithValue("@HSNCode", itemObj.HSNCode);
                     cmd.Parameters.AddWithValue("@IsEAN", itemObj.IsEAN);
                     cmd.Parameters.AddWithValue("@SKUCode", itemObj.SKUCode);
@@ -222,6 +226,30 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
             return dtItem;
+        }
+
+        public string GetNextSKUCode()
+        {
+            string nextSKUCode = string.Empty;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_NEXTSKUCODE]";
+                    nextSKUCode = Convert.ToString(cmd.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return nextSKUCode;
         }
     }
 }

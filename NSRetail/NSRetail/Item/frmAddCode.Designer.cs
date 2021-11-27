@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddCode));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.RootLayout = new DevExpress.XtraLayout.LayoutControl();
             this.btnGenerateSKU = new DevExpress.XtraEditors.SimpleButton();
             this.btnApply = new DevExpress.XtraEditors.SimpleButton();
@@ -79,6 +79,7 @@
             this.btnGenerateSKU.StyleController = this.RootLayout;
             this.btnGenerateSKU.TabIndex = 9;
             this.btnGenerateSKU.Text = "Generate SKU Code";
+            this.btnGenerateSKU.Click += new System.EventHandler(this.btnGenerateSKU_Click);
             // 
             // btnApply
             // 
@@ -108,13 +109,14 @@
             // 
             this.txtCode.Location = new System.Drawing.Point(57, 20);
             this.txtCode.Name = "txtCode";
+            this.txtCode.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtCode.Size = new System.Drawing.Size(441, 20);
             this.txtCode.StyleController = this.RootLayout;
             this.txtCode.TabIndex = 4;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "The value cannot be empty";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxAddSKUValidationProvider.SetValidationRule(this.txtCode, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "The value cannot be empty";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxAddSKUValidationProvider.SetValidationRule(this.txtCode, conditionValidationRule1);
             // 
             // Root
             // 

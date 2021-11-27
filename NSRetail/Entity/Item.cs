@@ -30,6 +30,7 @@ namespace Entity
         public object MRP { get; set; }
 
         public object GSTID { get; set; }
+        public object CategoryID { get; set; }
 
     }
 

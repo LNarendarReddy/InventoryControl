@@ -44,6 +44,7 @@
             this.gvCategory = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -65,17 +66,17 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.Control.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlDropDown.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlDropDownHeader.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
             this.layoutControl1.Controls.Add(this.gcCategory);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -83,7 +84,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1160, 330, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(492, 509);
+            this.layoutControl1.Size = new System.Drawing.Size(550, 509);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -95,20 +96,21 @@
             this.gcCategory.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEdit,
             this.btnDelete});
-            this.gcCategory.Size = new System.Drawing.Size(484, 501);
+            this.gcCategory.Size = new System.Drawing.Size(542, 501);
             this.gcCategory.TabIndex = 4;
             this.gcCategory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCategory});
             // 
             // gvCategory
             // 
-            this.gvCategory.Appearance.HeaderPanel.Font = new System.Drawing.Font("Helvetica", 10F, System.Drawing.FontStyle.Bold);
+            this.gvCategory.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.gvCategory.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvCategory.Appearance.Row.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.gvCategory.Appearance.Row.Font = new System.Drawing.Font("Arial", 10F);
             this.gvCategory.Appearance.Row.Options.UseFont = true;
             this.gvCategory.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
+            this.gridColumn3,
             this.gridColumn8,
             this.gridColumn9,
             this.gridColumn10,
@@ -136,7 +138,16 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
-            this.gridColumn2.Width = 345;
+            this.gridColumn2.Width = 422;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Allow Open Items";
+            this.gridColumn3.FieldName = "ALLOWOPENITEMS";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 1;
+            this.gridColumn3.Width = 160;
             // 
             // gridColumn8
             // 
@@ -176,8 +187,8 @@
             this.gridColumn5.ColumnEdit = this.btnDelete;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 1;
-            this.gridColumn5.Width = 114;
+            this.gridColumn5.VisibleIndex = 2;
+            this.gridColumn5.Width = 103;
             // 
             // btnDelete
             // 
@@ -200,7 +211,7 @@
             // 
             // Root
             // 
-            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 10F);
             this.Root.AppearanceItemCaption.Options.UseFont = true;
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
@@ -208,7 +219,7 @@
             this.layoutControlItem1});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(492, 509);
+            this.Root.Size = new System.Drawing.Size(550, 509);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -216,7 +227,7 @@
             this.layoutControlItem1.Control = this.gcCategory;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(488, 505);
+            this.layoutControlItem1.Size = new System.Drawing.Size(546, 505);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -224,7 +235,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 509);
+            this.ClientSize = new System.Drawing.Size(550, 509);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmCategoryList";
             this.Text = "Category";
@@ -257,5 +268,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
     }
 }
