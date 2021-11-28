@@ -7,7 +7,7 @@ namespace DataAccess
 {
     public class ItemCodeRepository
     {
-        public DataSet GetItemCodes()
+        public DataSet GetItemCodes(object CategoryID)
         {
             DataSet dsItemCodes = new DataSet();
             try
@@ -17,6 +17,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_ITEMCODES]";
+                    cmd.Parameters.Add("@CATEGORYID", CategoryID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dsItemCodes);

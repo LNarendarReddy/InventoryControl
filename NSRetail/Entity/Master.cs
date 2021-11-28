@@ -34,6 +34,12 @@ namespace Entity
 
         public object AllowOpenItems { get; set; }
     }
+    public class SubCategory : EntityBase
+    {
+        public object SUBCATEGORYID { get; set; }
+        public object SUBCATEGORYNAME { get; set; }
+        public object CATEGORYID { get; set; }
+    }
 
     public class User:EntityBase
     {

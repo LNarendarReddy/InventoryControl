@@ -184,5 +184,14 @@ namespace NSRetail
             RefreshBaseLineData?.Invoke(null, null);
             SplashScreenManager.CloseForm();
         }
+
+        private void btnSubCategory_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmSubCategoryList obj = new frmSubCategoryList();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
+        }
     }
 }

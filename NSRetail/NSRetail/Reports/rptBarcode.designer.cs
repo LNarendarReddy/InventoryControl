@@ -55,7 +55,7 @@
             this.xrLabel2,
             this.xrLabel1,
             this.xrBarCode1});
-            this.rptDetail.HeightF = 90F;
+            this.rptDetail.HeightF = 102.5F;
             this.rptDetail.MultiColumn.ColumnCount = 2;
             this.rptDetail.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
             this.rptDetail.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;

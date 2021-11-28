@@ -151,6 +151,18 @@
     <Compile Include="Master\frmPrinterMaster.designer.cs">
       <DependentUpon>frmPrinterMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\frmSubCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmSubCategory.Designer.cs">
+      <DependentUpon>frmSubCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmSubCategoryList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmSubCategoryList.Designer.cs">
+      <DependentUpon>frmSubCategoryList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\frmUOM List.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -289,6 +301,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmPrinterMaster.resx">
       <DependentUpon>frmPrinterMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmSubCategory.resx">
+      <DependentUpon>frmSubCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmSubCategoryList.resx">
+      <DependentUpon>frmSubCategoryList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmUOM List.resx">
       <DependentUpon>frmUOM List.cs</DependentUpon>

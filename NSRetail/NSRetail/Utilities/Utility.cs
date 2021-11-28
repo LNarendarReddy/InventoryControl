@@ -73,7 +73,7 @@ namespace NSRetail
 
         private static void FillItemBaseline()
         {
-            DataSet dsItemBaseline = new ItemCodeRepository().GetItemCodes();
+            DataSet dsItemBaseline = new ItemCodeRepository().GetItemCodes(CategoryID);
             dtItemSKUList = dsItemBaseline.Tables["ITEMS"];
             dtItemCodeList = dsItemBaseline.Tables["ITEMCODES"];
         }

@@ -201,6 +201,99 @@ namespace DataAccess
             }
             return ObjCategory;
         }
+        public SubCategory SaveSubCategory(SubCategory ObjSubCategory)
+        {
+            int SubCategoryID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_SUBCATEGORY]";
+                    cmd.Parameters.Add("@SUBCATEGORYID", ObjSubCategory.SUBCATEGORYID);
+                    cmd.Parameters.Add("@SUBCATEGORYNAME", ObjSubCategory.SUBCATEGORYNAME);
+                    cmd.Parameters.Add("@CATEGORYID", ObjSubCategory.CATEGORYID);
+                    cmd.Parameters.Add("@USERID", ObjSubCategory.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out SubCategoryID))
+                        throw new Exception(str);
+                    else
+                        ObjSubCategory.SUBCATEGORYID = objReturn;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("UC_COUNTERNAME"))
+                    throw new Exception("Sub Category Already Exists!!");
+                else
+                    throw new Exception("Error While Saving Sub Category");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjSubCategory;
+        }
+        public DataTable GetSubCategory()
+        {
+            DataTable dtSubCategory = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_SUBCATEGORY]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtSubCategory);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Sub Category List");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtSubCategory;
+        }
+        public SubCategory DeleteSubCategory(SubCategory ObjSubCategory)
+        {
+            int SubCategoryID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_SUBCATEGORY]";
+                    cmd.Parameters.Add("@SUBCATEGORYID", ObjSubCategory.SUBCATEGORYID);
+                    cmd.Parameters.Add("@USERID", ObjSubCategory.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out SubCategoryID))
+                        throw new Exception(str);
+                    else
+                        ObjSubCategory.SUBCATEGORYID = objReturn;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Deleteing Sub Category");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjSubCategory;
+        }
         public User SaveUser(User ObjUser)
         {
             int UserID = 0;
