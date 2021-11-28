@@ -121,6 +121,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_CU_CATEGORY]";
                     cmd.Parameters.Add("@CATEGORYID", ObjCategory.CATEGORYID);
                     cmd.Parameters.Add("@CATEGORYNAME", ObjCategory.CATEGORYNAME);
+                    cmd.Parameters.AddWithValue("@ALLOWOPENITEMS", ObjCategory.AllowOpenItems);
                     cmd.Parameters.Add("@USERID", ObjCategory.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
