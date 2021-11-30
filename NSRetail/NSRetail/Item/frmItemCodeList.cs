@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 using Entity;
 using ErrorManagement;
 
@@ -32,20 +33,20 @@ namespace NSRetail
 
         #endregion
 
+        #region Public Properties
+
+        public GridView ItemCodeListGridView { get { return gvItemList; } }
+
+        #endregion
+
         #region Grid Button events
 
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            ItemNewCode itemNewCode = new ItemNewCode();
-            new frmAddCode(itemNewCode).ShowDialog();
-            if(!itemNewCode.IsSave)
-            { 
-                return;
-            }
+            Item itemObj = new Item();
+            new frmItemCode(itemObj) { Owner = this }.ShowDialog();
 
-            Item itemObj = new Item() { ItemCode = itemNewCode.Code };
-            new frmItemCode(itemObj).ShowDialog();
             Utility.Setfocus(gvItemList, "ITEMCODEID", itemObj.ItemCodeID);
 
             if(Convert.ToBoolean(itemObj.IsNewToggleSwitched))
@@ -61,8 +62,13 @@ namespace NSRetail
             {
                 if (gvItemList.FocusedRowHandle >= 0)
                 {
-                    Item itemObj = new Item() { ItemCodeID = gvItemList.GetFocusedRowCellValue("ITEMCODEID") };
-                    new frmItemCode(itemObj).ShowDialog();
+                    Item itemObj = new Item() { ItemCode = gvItemList.GetFocusedRowCellValue("ITEMCODE") };
+                    new frmItemCode(itemObj) { Owner = this }.ShowDialog();
+
+                    if (Convert.ToBoolean(itemObj.IsNewToggleSwitched))
+                    {
+                        btnNew_Click(sender, e);
+                    }
                 }
             }
             catch (Exception ex)

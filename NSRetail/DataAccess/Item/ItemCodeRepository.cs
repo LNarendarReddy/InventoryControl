@@ -38,7 +38,7 @@ namespace DataAccess
             return dsItemCodes;
         }
 
-        public DataSet GetItemCode(object itemCodeID)
+        public DataSet GetItemCode(object itemCodeID, object CategoryID)
         {
             DataSet dsItemCode = new DataSet();
             try
@@ -49,6 +49,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_ITEMCODE]";
                     cmd.Parameters.AddWithValue("@ItemCodeID", itemCodeID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dsItemCode);
@@ -251,6 +252,35 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
             return nextSKUCode;
+        }
+
+        public DataTable GetParentItems(object CategoryID)
+        {
+            DataTable dtParentItems = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_PARENTITEMS]";
+                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtParentItems);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Parent Item List", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtParentItems;
         }
     }
 }

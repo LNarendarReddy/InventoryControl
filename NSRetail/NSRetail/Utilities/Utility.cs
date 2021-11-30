@@ -18,6 +18,7 @@ namespace NSRetail
         private static DataTable dtGST;
         private static DataTable dtItemSKUList;
         private static DataTable dtItemCodeList;
+        private static DataTable dtParentItemList;
 
         public static int UserID = 4;
         public static string UserName = string.Empty;
@@ -78,6 +79,11 @@ namespace NSRetail
             dtItemCodeList = dsItemBaseline.Tables["ITEMCODES"];
         }
 
+        private static void FillParentItemBaseline()
+        {
+            dtParentItemList = new ItemCodeRepository().GetParentItems(CategoryID);
+        }
+
         public static string Encrypt(string input)
         {
             return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(input)));
@@ -111,10 +117,21 @@ namespace NSRetail
             return dtItemCodeList;
         }
 
+        public static DataTable GetParentItemList()
+        {
+            if(dtParentItemList == null)
+            {
+                FillParentItemBaseline();
+            }
+
+            return dtParentItemList;
+        }
+
         public static void FillBaseLine()
         {
             FillItemBaseline();
             GetGSTBaseline();
+            FillParentItemBaseline();
         }
 
         public static void PrintBarCode(object ItemCode, object ItemName, string SalePrice, object oQuantity)

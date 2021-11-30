@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using DataAccess;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 using Entity;
 using ErrorManagement;
 
@@ -11,6 +12,8 @@ namespace NSRetail
     public partial class frmItemCode : DevExpress.XtraEditors.XtraForm
     {
         Item itemObj;
+        GridView gvItemCode;
+        bool isLoading;
 
         public frmItemCode(Item item)
         {
@@ -20,35 +23,14 @@ namespace NSRetail
 
         private void frmItem_Load(object sender, EventArgs e)
         {
+            frmItemCodeList parentForm = Owner as frmItemCodeList;
+            gvItemCode = parentForm.ItemCodeListGridView;
+
             chkIsEAN_CheckedChanged(null, null);
             BindDataSource(false);
-            if(Convert.ToInt32(itemObj.ItemCodeID) > 0)
-            {
-                // setting the item code calls the get proc and loads all values
-                sluItemCode.EditValue = itemObj.ItemCodeID;
-            }
-            else if(!string.IsNullOrEmpty(Convert.ToString(itemObj.ItemCode)))
-            {
-                int rowHandle = gvItemCode.LocateByValue("ITEMCODE", itemObj.ItemCode);
-                
-                // if the scanned item is already existing, go into edit mode
-                if (rowHandle != GridControl.InvalidRowHandle)
-                {
-                    gvItemCode.FocusedRowHandle = rowHandle;
-                    itemObj.ItemCodeID = gvItemCode.GetFocusedRowCellValue("ITEMCODEID");
-                }
-                else
-                {
-                    DataTable dtItemCodes = Utility.GetItemCodeList();
-                    DataRow drNewItemCode = dtItemCodes.NewRow();
-                    drNewItemCode["ITEMCODE"] = itemObj.ItemCode;
-                    itemObj.ItemCodeID = -1;
-                    drNewItemCode["ITEMCODEID"] = itemObj.ItemCodeID;
-                    dtItemCodes.Rows.Add(drNewItemCode);
-                }
 
-                sluItemCode.EditValue = itemObj.ItemCodeID;
-            }
+            // setting the item code calls the get proc and loads all values
+            txtItemCode.EditValue = itemObj.ItemCode;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -57,14 +39,12 @@ namespace NSRetail
             {
                 if (!dxItemValidationProvider.Validate())
                     return;
-                itemObj.ItemCode = sluItemCode.Text;                
-                itemObj.ItemCodeID = sluItemCode.EditValue;
+                itemObj.ItemCode = txtItemCode.Text;                
                 itemObj.HSNCode = txtHSNCode.EditValue;
                 itemObj.IsEAN = chkIsEAN.EditValue;
                 itemObj.SKUCode = sluSKUCode.Text;
                 itemObj.ItemID = sluSKUCode.EditValue;
                 itemObj.ItemName = txtItemName.EditValue;
-                //itemObj.Description = txtDescription.EditValue;
                 itemObj.CostPrice = txtCostPrice.EditValue;
                 itemObj.SalePrice = txtSalePrice.EditValue;
                 itemObj.MRP = txtMRP.EditValue;
@@ -98,6 +78,15 @@ namespace NSRetail
                     drItemCode["ITEMCODEID"] = itemObj.ItemCodeID;
                     drItemCode["SKUCODE"] = itemObj.SKUCode;
                 }
+                else
+                {
+                    DataTable dtItemCodes = Utility.GetItemCodeList();
+                    DataRow drNewItemCode = dtItemCodes.NewRow();
+                    drNewItemCode["ITEMCODE"] = itemObj.ItemCode;
+                    drNewItemCode["ITEMCODEID"] = itemObj.ItemCodeID;
+                    drNewItemCode["SKUCODE"] = itemObj.SKUCode;
+                    dtItemCodes.Rows.Add(drNewItemCode);
+                }
 
                 itemObj.IsSave = true;
                 itemObj.IsNewToggleSwitched = tsCreateNew.EditValue;
@@ -113,21 +102,23 @@ namespace NSRetail
 
         private void chkIsEAN_CheckedChanged(object sender, EventArgs e)
         {
-            //txtItemCode.ReadOnly = !chkIsEAN.Checked;
-            //if (!chkIsEAN.Checked)
-            //{                
-            //    txtItemCode.EditValue = sluSKUCode.Text;
-            //}
+            if (isLoading) return;
 
+            txtItemCode.ReadOnly = !chkIsEAN.Checked;
+            if (!chkIsEAN.Checked)
+            {
+                txtItemCode.EditValue = sluSKUCode.Text;
+            }
         }
 
         private void searchLookUpEdit1_Properties_EditValueChanged(object sender, EventArgs e)
         {
+            if (isLoading) return;
+
             bool hasValue = sluSKUCode.EditValue != null && (int)sluSKUCode.EditValue > 0 && gvItemSKU.GetFocusedDataRow() != null;
 
             txtItemName.EditValue = hasValue ? gvItemSKU.GetFocusedDataRow()["ITEMNAME"] : string.Empty;
-            //txtDescription.EditValue = hasValue ? searchLookUpEdit1View.GetFocusedDataRow()["DESCRIPTION"] : string.Empty;
-            //txtItemCode.EditValue = hasValue && !chkIsEAN.Checked ? sluSKUCode.Text : txtItemCode.EditValue;
+            txtItemCode.EditValue = hasValue && !chkIsEAN.Checked ? gvItemSKU.GetFocusedDataRow()["SKUCODE"] : txtItemCode.EditValue;
         }
 
         private void btnAddSKU_Click(object sender, EventArgs e)
@@ -150,87 +141,60 @@ namespace NSRetail
 
         private void BindDataSource(bool refresh)
         {
-            object selectedSKU = null, selectedGST = null, selectedItemCode = null;
+            object selectedSKU = null, selectedGST = null, selectedItemCode = null, selectedParentItemID = null;
             if(refresh)
             {
                 selectedSKU = sluSKUCode.EditValue;
-                selectedItemCode = sluItemCode.EditValue;
+                selectedItemCode = txtItemCode.EditValue;
                 selectedGST = luGST.EditValue;
+                selectedParentItemID = sluParentItem.EditValue;
             }
 
             sluSKUCode.Properties.DataSource = Utility.GetItemSKUList();
             sluSKUCode.Properties.DisplayMember = "SKUCODE";
             sluSKUCode.Properties.ValueMember = "ITEMID";
             
-            sluItemCode.Properties.DataSource = Utility.GetItemCodeList();
-            sluItemCode.Properties.DisplayMember = "ITEMCODE";
-            sluItemCode.Properties.ValueMember = "ITEMCODEID";
+            //txtItemCode.Properties.DataSource = Utility.GetItemCodeList();
+            //txtItemCode.Properties.DisplayMember = "ITEMCODE";
+            //txtItemCode.Properties.ValueMember = "ITEMCODEID";
 
             luGST.Properties.DataSource = Utility.GetGSTBaseline();
             luGST.Properties.DisplayMember = "GSTCODE";
             luGST.Properties.ValueMember = "GSTID";
 
-            gluCategory.Properties.DataSource = new MasterRepository().GetCategory();
+            DataView dvCategory = new MasterRepository().GetCategory().DefaultView;
+            dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
+            gluCategory.Properties.DataSource = dvCategory;
             gluCategory.Properties.DisplayMember = "CATEGORYNAME";
             gluCategory.Properties.ValueMember = "CATEGORYID";
+            if(dvCategory.Count == 1)
+            {
+                gluCategory.EditValue = dvCategory[0]["CATEGORYID"];
+            }
+
+            sluParentItem.Properties.DataSource = Utility.GetParentItemList();
+            sluParentItem.Properties.DisplayMember = "ITEMNAME";
+            sluParentItem.Properties.ValueMember = "ITEMID";
+
+            luUOM.Properties.DataSource = new MasterRepository().GetUOM();
 
             if (refresh)
             {
-                sluItemCode.EditValue = selectedItemCode;
+                txtItemCode.EditValue = selectedItemCode;
                 sluSKUCode.EditValue = selectedSKU;
                 luGST.EditValue = selectedGST;
+                sluParentItem.EditValue = selectedParentItemID;
             }
 
             if(!refresh)
             {
-                // force grid view data source to be opened even before popup is invoked
-                gvItemCode.GridControl.BindingContext = new BindingContext();
-                gvItemCode.GridControl.DataSource = sluItemCode.Properties.DataSource;
+                //// force grid view data source to be opened even before popup is invoked
+                //gvItemCode.GridControl.BindingContext = new BindingContext();
+                //gvItemCode.GridControl.DataSource = txtItemCode.Properties.DataSource;
 
                 gvItemSKU.GridControl.BindingContext = new BindingContext();
                 gvItemSKU.GridControl.DataSource = sluSKUCode.Properties.DataSource;
             }
-        }
-
-        private void sluItemCode_EditValueChanged(object sender, EventArgs e)
-        {
-            if (Convert.ToInt32(sluItemCode.EditValue) <= 0)
-            {
-                return;
-            }
-
-            DataSet dsItemDetails = new ItemCodeRepository().GetItemCode(sluItemCode.EditValue);
-
-            DataTable dtItemDetails = dsItemDetails.Tables["ITEMCODEDETAIL"];
-
-            txtHSNCode.EditValue = dtItemDetails.Rows[0]["HSNCODE"];
-            chkIsEAN.EditValue = dtItemDetails.Rows[0]["ISEAN"];
-            sluSKUCode.EditValue = dtItemDetails.Rows[0]["ITEMID"];
-            txtItemName.EditValue = dtItemDetails.Rows[0]["ITEMNAME"];
-            Text = "Edit Item - " + txtItemName.Text;
-            itemObj.ItemID = dtItemDetails.Rows[0]["ITEMID"];
-            //txtDescription.EditValue = dtItemDetails.Rows[0]["DESCRIPTION"];
-            gluCategory.EditValue = dtItemDetails.Rows[0]["CATEGORYID"];
-
-            DataTable dtItemCodePrices = dsItemDetails.Tables["ITEMCODEPRICES"];
-            DataRow selectedPrice = dtItemCodePrices.Rows[0];
-            
-            if(dtItemCodePrices.Rows.Count > 1)
-            {
-                frmMRPList frmMRPList = new frmMRPList(dtItemCodePrices);
-                frmMRPList.ShowDialog();
-                if (!frmMRPList._IsSave)
-                {
-                    return;
-                }
-
-                selectedPrice = (frmMRPList.drSelected as DataRowView).Row;
-            }
-
-            txtCostPrice.EditValue = selectedPrice["COSTPRICE"];
-            txtSalePrice.EditValue = selectedPrice["SALEPRICE"];
-            txtMRP.EditValue = selectedPrice["MRP"];
-            luGST.EditValue = selectedPrice["GSTID"];
         }
 
         private void frmItemCode_FormClosing(object sender, FormClosingEventArgs e)
@@ -257,6 +221,123 @@ namespace NSRetail
             {
                 dtItemCodeList.Rows.RemoveAt(itemCodeRowHandle);
             }
+        }
+
+        private void luCategory_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+            int rowHandle = glCategoryView.LocateByValue("CATEGORYID", gluCategory.EditValue);
+
+            if(rowHandle == GridControl.InvalidRowHandle)
+            {
+                return;
+            }
+
+            DataRow drCategory = ((DataTable)gluCategory.Properties.DataSource).Rows[rowHandle];
+            chkIsOpenItem.Enabled = Convert.ToBoolean(drCategory["ALLOWOPENITEMS"]);
+        }
+
+        private void chkIsOpenItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if(!chkIsOpenItem.Checked)
+            {
+                return;
+            }
+
+            sluParentItem.Enabled = true;
+        }
+
+        private void ClearUI()
+        {
+            txtHSNCode.EditValue = null;
+            chkIsEAN.EditValue = true;
+            sluSKUCode.EditValue = null;
+            txtItemName.EditValue = null;
+            Text = "New Item";
+            itemObj.ItemID = null;
+            gluCategory.EditValue = null;
+            txtCostPrice.EditValue = null;
+            txtSalePrice.EditValue = null;
+            txtMRP.EditValue = null;
+            luGST.EditValue = null;
+            chkIsOpenItem.EditValue = null;
+            sluParentItem.EditValue = null;
+            luSubCategory.EditValue = null;
+        }
+
+        private void txtItemCode_Properties_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(txtItemCode.EditValue)))
+            {
+                ClearUI();
+                return;
+            }
+
+            int rowHandle = gvItemCode.LocateByValue("ITEMCODE", txtItemCode.EditValue);
+
+            // if the scanned item is already existing, go into edit mode
+            if (rowHandle != GridControl.InvalidRowHandle)
+            {
+                gvItemCode.FocusedRowHandle = rowHandle;
+                itemObj.ItemCodeID = gvItemCode.GetFocusedRowCellValue("ITEMCODEID");
+            }
+            else
+            {
+                ClearUI();
+                return;
+            }
+
+            DataSet dsItemDetails = new ItemCodeRepository().GetItemCode(itemObj.ItemCodeID, Utility.CategoryID);
+
+            DataTable dtItemDetails = dsItemDetails.Tables["ITEMCODEDETAIL"];
+
+            if(dtItemDetails.Rows.Count == 0)
+            {
+                ClearUI();
+                return;
+            }
+
+            isLoading = true;
+            txtHSNCode.EditValue = dtItemDetails.Rows[0]["HSNCODE"];
+            chkIsEAN.EditValue = dtItemDetails.Rows[0]["ISEAN"];
+            sluSKUCode.EditValue = dtItemDetails.Rows[0]["ITEMID"];
+            txtItemName.EditValue = dtItemDetails.Rows[0]["ITEMNAME"];
+            Text = "Edit Item - " + txtItemName.Text;
+            itemObj.ItemID = dtItemDetails.Rows[0]["ITEMID"];
+            //txtDescription.EditValue = dtItemDetails.Rows[0]["DESCRIPTION"];
+            gluCategory.EditValue = dtItemDetails.Rows[0]["CATEGORYID"];
+            chkIsOpenItem.EditValue = dtItemDetails.Rows[0]["ISOPENITEM"];
+            sluParentItem.EditValue = dtItemDetails.Rows[0]["PARENTITEMID"];
+            luSubCategory.EditValue = dtItemDetails.Rows[0]["SUBCATEGORYID"];
+
+            DataTable dtItemCodePrices = dsItemDetails.Tables["ITEMCODEPRICES"];
+            DataRow selectedPrice = dtItemCodePrices.Rows[0];
+
+            if (dtItemCodePrices.Rows.Count > 1)
+            {
+                frmMRPList frmMRPList = new frmMRPList(dtItemCodePrices);
+                frmMRPList.ShowDialog();
+                if (!frmMRPList._IsSave)
+                {
+                    ClearUI();
+                    return;
+                }
+
+                selectedPrice = (frmMRPList.drSelected as DataRowView).Row;
+            }
+
+            txtCostPrice.EditValue = selectedPrice["COSTPRICE"];
+            txtSalePrice.EditValue = selectedPrice["SALEPRICE"];
+            txtMRP.EditValue = selectedPrice["MRP"];
+            luGST.EditValue = selectedPrice["GSTID"];
+
+            isLoading = false;
+        }
+
+        private void sluParentItem_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+            if (isLoading) return;
+
+            luUOM.Enabled = sluParentItem.EditValue != null;
         }
     }
 }

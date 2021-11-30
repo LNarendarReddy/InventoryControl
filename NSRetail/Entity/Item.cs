@@ -30,7 +30,14 @@ namespace Entity
         public object MRP { get; set; }
 
         public object GSTID { get; set; }
+
         public object CategoryID { get; set; }
+
+        public object SubCategoryID { get; set; }
+
+        public object IsOpenItem { get; set; }
+
+        public object ParentItemID { get; set; }
 
     }
 
