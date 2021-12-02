@@ -13,8 +13,7 @@ namespace Entity
     public class StockDispatch : EntityBase
     {
 
-        private object _STOCKDISPATCHID = 0;
-        public object STOCKDISPATCHID { get { return _STOCKDISPATCHID; } set { _STOCKDISPATCHID = value; } }
+        public object STOCKDISPATCHID { get; set; }
         public object FROMBRANCHID { get; set; }
         public object TOBRANCHID { get; set; }
         public object CATEGORYID { get; set; }
@@ -28,5 +27,27 @@ namespace Entity
         public object TRAYNUMBER { get; set; }
         public object DISPATCHQUANTITY { get; set; }
         public object WEIGHTINKGS { get; set; }
+    }
+    public class StockEntry : EntityBase
+    {
+        public object STOCKENTRYID { get; set; }
+        public object SUPPLIERID { get; set; }
+        public object SUPPLIERINVOICENO { get; set; }
+        public object TAXINCLUSIVE { get; set; }
+        public object CATEGORYID { get; set; }
+        public DataTable dtStockEntry { get; set; }
+    }
+    public class StockEntryDetail : EntityBase
+    {
+        public object STOCKENTRYDETAILID { get; set; }
+        public object STOCKENTRYID { get; set; }
+        public object ITEMCODEID { get; set; }
+        public object ITEMPRICEID { get; set; }
+        public object QUANTITY { get; set; }
+        public object WEIGHTINKGS { get; set; }
+        public object COSTPRICE { get; set; }
+        public object MRP { get; set; }
+        public object SALEPRICE { get; set; }
+
     }
 }

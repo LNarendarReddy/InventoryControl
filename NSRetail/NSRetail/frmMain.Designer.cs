@@ -51,6 +51,7 @@
             this.btnStockEntry = new DevExpress.XtraBars.BarButtonItem();
             this.btnStockDispatch = new DevExpress.XtraBars.BarButtonItem();
             this.bbiRefreshData = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSubCategory = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -61,7 +62,8 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.btnSubCategory = new DevExpress.XtraBars.BarButtonItem();
+            this.btnInvoiceList = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDispatchList = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -88,13 +90,15 @@
             this.btnStockEntry,
             this.btnStockDispatch,
             this.bbiRefreshData,
-            this.btnSubCategory});
+            this.btnSubCategory,
+            this.btnInvoiceList,
+            this.btnDispatchList});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 22;
+            this.ribbonControl1.MaxItemId = 24;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.ribbonPage1,
-            this.ribbonPage3});
+            this.ribbonPage3,
+            this.ribbonPage1});
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1});
             this.ribbonControl1.Size = new System.Drawing.Size(1178, 161);
@@ -326,6 +330,20 @@
             this.bbiRefreshData.Name = "bbiRefreshData";
             this.bbiRefreshData.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRefreshData_ItemClick);
             // 
+            // btnSubCategory
+            // 
+            this.btnSubCategory.Caption = "Sub Category";
+            this.btnSubCategory.Id = 21;
+            this.btnSubCategory.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSubCategory.ImageOptions.SvgImage")));
+            this.btnSubCategory.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnSubCategory.ItemAppearance.Hovered.Options.UseFont = true;
+            this.btnSubCategory.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnSubCategory.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnSubCategory.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnSubCategory.ItemAppearance.Pressed.Options.UseFont = true;
+            this.btnSubCategory.Name = "btnSubCategory";
+            this.btnSubCategory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSubCategory_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Appearance.Font = new System.Drawing.Font("Arial", 10F);
@@ -381,6 +399,8 @@
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.btnStockEntry);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnStockDispatch);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnInvoiceList);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnDispatchList);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Stock";
             // 
@@ -413,19 +433,33 @@
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
             // 
-            // btnSubCategory
+            // btnInvoiceList
             // 
-            this.btnSubCategory.Caption = "Sub Category";
-            this.btnSubCategory.Id = 21;
-            this.btnSubCategory.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSubCategory.ImageOptions.SvgImage")));
-            this.btnSubCategory.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnSubCategory.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnSubCategory.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnSubCategory.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnSubCategory.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnSubCategory.ItemAppearance.Pressed.Options.UseFont = true;
-            this.btnSubCategory.Name = "btnSubCategory";
-            this.btnSubCategory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSubCategory_ItemClick);
+            this.btnInvoiceList.Caption = "Invoice List";
+            this.btnInvoiceList.Id = 22;
+            this.btnInvoiceList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnInvoiceList.ImageOptions.SvgImage")));
+            this.btnInvoiceList.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnInvoiceList.ItemAppearance.Hovered.Options.UseFont = true;
+            this.btnInvoiceList.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnInvoiceList.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnInvoiceList.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnInvoiceList.ItemAppearance.Pressed.Options.UseFont = true;
+            this.btnInvoiceList.Name = "btnInvoiceList";
+            this.btnInvoiceList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnInvoiceList_ItemClick);
+            // 
+            // btnDispatchList
+            // 
+            this.btnDispatchList.Caption = "Dispatch List";
+            this.btnDispatchList.Id = 23;
+            this.btnDispatchList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDispatchList.ImageOptions.SvgImage")));
+            this.btnDispatchList.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnDispatchList.ItemAppearance.Hovered.Options.UseFont = true;
+            this.btnDispatchList.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnDispatchList.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnDispatchList.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnDispatchList.ItemAppearance.Pressed.Options.UseFont = true;
+            this.btnDispatchList.Name = "btnDispatchList";
+            this.btnDispatchList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDispatchList_ItemClick);
             // 
             // frmMain
             // 
@@ -478,6 +512,8 @@
         private DevExpress.XtraBars.BarButtonItem bbiRefreshData;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.BarButtonItem btnSubCategory;
+        private DevExpress.XtraBars.BarButtonItem btnInvoiceList;
+        private DevExpress.XtraBars.BarButtonItem btnDispatchList;
     }
 }
 
