@@ -85,14 +85,19 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ItemCode", itemObj.ItemCode);
                     cmd.Parameters.AddWithValue("@Description", itemObj.Description);
                     cmd.Parameters.AddWithValue("@CategoryID", itemObj.CategoryID);
+                    cmd.Parameters.AddWithValue("@SubCategoryID", itemObj.SubCategoryID);
                     cmd.Parameters.AddWithValue("@HSNCode", itemObj.HSNCode);
                     cmd.Parameters.AddWithValue("@IsEAN", itemObj.IsEAN);
                     cmd.Parameters.AddWithValue("@SKUCode", itemObj.SKUCode);
-                    cmd.Parameters.AddWithValue("@CostPrice", itemObj.CostPrice);
+                    cmd.Parameters.AddWithValue("@CostPriceWT", itemObj.CostPriceWT);
+                    cmd.Parameters.AddWithValue("@CostPriceWOT", itemObj.CostPriceWOT);
                     cmd.Parameters.AddWithValue("@SalePrice", itemObj.SalePrice);
                     cmd.Parameters.AddWithValue("@MRP", itemObj.MRP);
                     cmd.Parameters.AddWithValue("@GSTID", itemObj.GSTID);
                     cmd.Parameters.AddWithValue("@UserID", itemObj.UserID);
+                    cmd.Parameters.AddWithValue("@IsOpenItem", itemObj.IsOpenItem);
+                    cmd.Parameters.AddWithValue("@ParentItemID", itemObj.ParentItemID);
+                    cmd.Parameters.AddWithValue("@UOMID", itemObj.UOMID);
                     object objReturn = cmd.ExecuteScalar();
 
                     string str = Convert.ToString(objReturn.ToString().Split(',')[0]);

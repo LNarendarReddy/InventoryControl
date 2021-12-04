@@ -49,7 +49,7 @@ namespace NSRetail
 
             Utility.Setfocus(gvItemList, "ITEMCODEID", itemObj.ItemCodeID);
 
-            if(Convert.ToBoolean(itemObj.IsNewToggleSwitched))
+            if(itemObj.IsSave && Convert.ToBoolean(itemObj.IsNewToggleSwitched))
             {
                 btnNew_Click(sender, e);
             }

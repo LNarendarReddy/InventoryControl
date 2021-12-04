@@ -29,15 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemCode));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemCode));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtCostPriceWOT = new DevExpress.XtraEditors.TextEdit();
             this.luUOM = new DevExpress.XtraEditors.LookUpEdit();
             this.luSubCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.sluParentItem = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -57,7 +59,7 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtSalePrice = new DevExpress.XtraEditors.TextEdit();
             this.txtMRP = new DevExpress.XtraEditors.TextEdit();
-            this.txtCostPrice = new DevExpress.XtraEditors.TextEdit();
+            this.txtCostPriceWT = new DevExpress.XtraEditors.TextEdit();
             this.luGST = new DevExpress.XtraEditors.LookUpEdit();
             this.chkIsEAN = new DevExpress.XtraEditors.CheckEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -72,14 +74,10 @@
             this.txtItemCode = new DevExpress.XtraEditors.TextEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -90,10 +88,16 @@
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxItemValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostPriceWOT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.luUOM.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.luSubCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluParentItem.Properties)).BeginInit();
@@ -104,7 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvItemSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSalePrice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCostPrice.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostPriceWT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.luGST.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsEAN.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHSNCode.Properties)).BeginInit();
@@ -114,14 +118,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
@@ -132,7 +132,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxItemValidationProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,6 +155,7 @@
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
             this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
+            this.layoutControl1.Controls.Add(this.txtCostPriceWOT);
             this.layoutControl1.Controls.Add(this.luUOM);
             this.layoutControl1.Controls.Add(this.luSubCategory);
             this.layoutControl1.Controls.Add(this.sluParentItem);
@@ -160,7 +166,7 @@
             this.layoutControl1.Controls.Add(this.sluSKUCode);
             this.layoutControl1.Controls.Add(this.txtSalePrice);
             this.layoutControl1.Controls.Add(this.txtMRP);
-            this.layoutControl1.Controls.Add(this.txtCostPrice);
+            this.layoutControl1.Controls.Add(this.txtCostPriceWT);
             this.layoutControl1.Controls.Add(this.luGST);
             this.layoutControl1.Controls.Add(this.chkIsEAN);
             this.layoutControl1.Controls.Add(this.btnCancel);
@@ -174,26 +180,44 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(794, 320, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(585, 381);
+            this.layoutControl1.Size = new System.Drawing.Size(789, 343);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtCostPriceWOT
+            // 
+            this.txtCostPriceWOT.Location = new System.Drawing.Point(660, 264);
+            this.txtCostPriceWOT.Name = "txtCostPriceWOT";
+            this.txtCostPriceWOT.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtCostPriceWOT.Properties.MaskSettings.Set("mask", "#####.##");
+            this.txtCostPriceWOT.Size = new System.Drawing.Size(117, 22);
+            this.txtCostPriceWOT.StyleController = this.layoutControl1;
+            this.txtCostPriceWOT.TabIndex = 24;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtCostPriceWOT, conditionValidationRule1);
+            this.txtCostPriceWOT.EditValueChanged += new System.EventHandler(this.txtCostPriceWOT_EditValueChanged);
             // 
             // luUOM
             // 
             this.luUOM.EnterMoveNextControl = true;
-            this.luUOM.Location = new System.Drawing.Point(103, 222);
+            this.luUOM.Location = new System.Drawing.Point(660, 180);
             this.luUOM.Name = "luUOM";
             this.luUOM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.luUOM.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("UOMID", "UOMID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DISPLAYVALUE", "Value"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BASEUOMID", "BASEUOMID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.luUOM.Properties.NullText = "";
-            this.luUOM.Size = new System.Drawing.Size(170, 22);
+            this.luUOM.Size = new System.Drawing.Size(117, 22);
             this.luUOM.StyleController = this.layoutControl1;
             this.luUOM.TabIndex = 23;
             // 
             // luSubCategory
             // 
             this.luSubCategory.EnterMoveNextControl = true;
-            this.luSubCategory.Location = new System.Drawing.Point(393, 138);
+            this.luSubCategory.Location = new System.Drawing.Point(529, 138);
             this.luSubCategory.Name = "luSubCategory";
             this.luSubCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -202,7 +226,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYID", "CATEGORYID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SUBCATEGORYNAME", "Sub Category ")});
             this.luSubCategory.Properties.NullText = "";
-            this.luSubCategory.Size = new System.Drawing.Size(180, 22);
+            this.luSubCategory.Size = new System.Drawing.Size(248, 22);
             this.luSubCategory.StyleController = this.layoutControl1;
             this.luSubCategory.TabIndex = 22;
             // 
@@ -211,14 +235,14 @@
             this.sluParentItem.EditValue = "";
             this.sluParentItem.Enabled = false;
             this.sluParentItem.EnterMoveNextControl = true;
-            this.sluParentItem.Location = new System.Drawing.Point(223, 180);
+            this.sluParentItem.Location = new System.Drawing.Point(280, 180);
             this.sluParentItem.Name = "sluParentItem";
             this.sluParentItem.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sluParentItem.Properties.NullText = "";
             this.sluParentItem.Properties.PopupView = this.gvParentItem;
             this.sluParentItem.Properties.EditValueChanged += new System.EventHandler(this.sluParentItem_Properties_EditValueChanged);
-            this.sluParentItem.Size = new System.Drawing.Size(350, 22);
+            this.sluParentItem.Size = new System.Drawing.Size(235, 22);
             this.sluParentItem.StyleController = this.layoutControl1;
             this.sluParentItem.TabIndex = 21;
             // 
@@ -262,14 +286,15 @@
             this.chkIsOpenItem.Location = new System.Drawing.Point(12, 180);
             this.chkIsOpenItem.Name = "chkIsOpenItem";
             this.chkIsOpenItem.Properties.Caption = "Is Open Item";
-            this.chkIsOpenItem.Size = new System.Drawing.Size(100, 20);
+            this.chkIsOpenItem.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+            this.chkIsOpenItem.Size = new System.Drawing.Size(123, 20);
             this.chkIsOpenItem.StyleController = this.layoutControl1;
             this.chkIsOpenItem.TabIndex = 20;
             this.chkIsOpenItem.CheckedChanged += new System.EventHandler(this.chkIsOpenItem_CheckedChanged);
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(109, 348);
+            this.labelControl1.Location = new System.Drawing.Point(274, 306);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(67, 16);
             this.labelControl1.StyleController = this.layoutControl1;
@@ -279,7 +304,7 @@
             // tsCreateNew
             // 
             this.tsCreateNew.EnterMoveNextControl = true;
-            this.tsCreateNew.Location = new System.Drawing.Point(196, 348);
+            this.tsCreateNew.Location = new System.Drawing.Point(361, 306);
             this.tsCreateNew.Name = "tsCreateNew";
             this.tsCreateNew.Properties.OffText = "Off";
             this.tsCreateNew.Properties.OnText = "On";
@@ -291,9 +316,9 @@
             // 
             this.btnAddSKU.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddSKU.ImageOptions.Image")));
             this.btnAddSKU.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnAddSKU.Location = new System.Drawing.Point(417, 46);
+            this.btnAddSKU.Location = new System.Drawing.Point(592, 46);
             this.btnAddSKU.Name = "btnAddSKU";
-            this.btnAddSKU.Size = new System.Drawing.Size(164, 36);
+            this.btnAddSKU.Size = new System.Drawing.Size(193, 36);
             this.btnAddSKU.StyleController = this.layoutControl1;
             this.btnAddSKU.TabIndex = 14;
             this.btnAddSKU.Text = "Add SKU Code";
@@ -303,7 +328,7 @@
             // 
             this.sluSKUCode.EditValue = "";
             this.sluSKUCode.EnterMoveNextControl = true;
-            this.sluSKUCode.Location = new System.Drawing.Point(103, 54);
+            this.sluSKUCode.Location = new System.Drawing.Point(137, 54);
             this.sluSKUCode.Name = "sluSKUCode";
             this.sluSKUCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -311,12 +336,12 @@
             this.sluSKUCode.Properties.NullText = "";
             this.sluSKUCode.Properties.PopupView = this.gvItemSKU;
             this.sluSKUCode.Properties.EditValueChanged += new System.EventHandler(this.searchLookUpEdit1_Properties_EditValueChanged);
-            this.sluSKUCode.Size = new System.Drawing.Size(302, 22);
+            this.sluSKUCode.Size = new System.Drawing.Size(443, 22);
             this.sluSKUCode.StyleController = this.layoutControl1;
             this.sluSKUCode.TabIndex = 3;
-            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule8.ErrorText = "Value cannot be Empty";
-            this.dxItemValidationProvider.SetValidationRule(this.sluSKUCode, conditionValidationRule8);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Value cannot be Empty";
+            this.dxItemValidationProvider.SetValidationRule(this.sluSKUCode, conditionValidationRule2);
             // 
             // gvItemSKU
             // 
@@ -361,49 +386,50 @@
             // txtSalePrice
             // 
             this.txtSalePrice.EnterMoveNextControl = true;
-            this.txtSalePrice.Location = new System.Drawing.Point(103, 306);
+            this.txtSalePrice.Location = new System.Drawing.Point(399, 222);
             this.txtSalePrice.Name = "txtSalePrice";
             this.txtSalePrice.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtSalePrice.Properties.MaskSettings.Set("mask", "#####.##");
-            this.txtSalePrice.Size = new System.Drawing.Size(170, 22);
+            this.txtSalePrice.Size = new System.Drawing.Size(116, 22);
             this.txtSalePrice.StyleController = this.layoutControl1;
             this.txtSalePrice.TabIndex = 11;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtSalePrice, conditionValidationRule1);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtSalePrice, conditionValidationRule3);
             // 
             // txtMRP
             // 
             this.txtMRP.EnterMoveNextControl = true;
-            this.txtMRP.Location = new System.Drawing.Point(384, 264);
+            this.txtMRP.Location = new System.Drawing.Point(660, 222);
             this.txtMRP.Name = "txtMRP";
             this.txtMRP.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtMRP.Properties.MaskSettings.Set("mask", "#####.##");
-            this.txtMRP.Size = new System.Drawing.Size(189, 22);
+            this.txtMRP.Size = new System.Drawing.Size(117, 22);
             this.txtMRP.StyleController = this.layoutControl1;
             this.txtMRP.TabIndex = 9;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtMRP, conditionValidationRule2);
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtMRP, conditionValidationRule4);
             // 
-            // txtCostPrice
+            // txtCostPriceWT
             // 
-            this.txtCostPrice.EnterMoveNextControl = true;
-            this.txtCostPrice.Location = new System.Drawing.Point(103, 264);
-            this.txtCostPrice.Name = "txtCostPrice";
-            this.txtCostPrice.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtCostPrice.Properties.MaskSettings.Set("mask", "#####.##");
-            this.txtCostPrice.Size = new System.Drawing.Size(170, 22);
-            this.txtCostPrice.StyleController = this.layoutControl1;
-            this.txtCostPrice.TabIndex = 8;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtCostPrice, conditionValidationRule3);
+            this.txtCostPriceWT.EnterMoveNextControl = true;
+            this.txtCostPriceWT.Location = new System.Drawing.Point(399, 264);
+            this.txtCostPriceWT.Name = "txtCostPriceWT";
+            this.txtCostPriceWT.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtCostPriceWT.Properties.MaskSettings.Set("mask", "#####.##");
+            this.txtCostPriceWT.Size = new System.Drawing.Size(116, 22);
+            this.txtCostPriceWT.StyleController = this.layoutControl1;
+            this.txtCostPriceWT.TabIndex = 8;
+            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule5.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtCostPriceWT, conditionValidationRule5);
+            this.txtCostPriceWT.EditValueChanged += new System.EventHandler(this.txtCostPriceWT_EditValueChanged);
             // 
             // luGST
             // 
             this.luGST.EnterMoveNextControl = true;
-            this.luGST.Location = new System.Drawing.Point(384, 306);
+            this.luGST.Location = new System.Drawing.Point(137, 264);
             this.luGST.Name = "luGST";
             this.luGST.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -411,19 +437,20 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTID", "GSTID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTCODE", "GST Code")});
             this.luGST.Properties.NullText = "";
-            this.luGST.Size = new System.Drawing.Size(189, 22);
+            this.luGST.Size = new System.Drawing.Size(117, 22);
             this.luGST.StyleController = this.layoutControl1;
             this.luGST.TabIndex = 7;
-            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule4.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.luGST, conditionValidationRule4);
+            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule6.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.luGST, conditionValidationRule6);
+            this.luGST.EditValueChanged += new System.EventHandler(this.luGST_EditValueChanged);
             // 
             // chkIsEAN
             // 
             this.chkIsEAN.AutoSizeInLayoutControl = true;
             this.chkIsEAN.EditValue = true;
             this.chkIsEAN.EnterMoveNextControl = true;
-            this.chkIsEAN.Location = new System.Drawing.Point(509, 12);
+            this.chkIsEAN.Location = new System.Drawing.Point(713, 12);
             this.chkIsEAN.Name = "chkIsEAN";
             this.chkIsEAN.Properties.Caption = "Is EAN";
             this.chkIsEAN.Size = new System.Drawing.Size(64, 20);
@@ -436,9 +463,9 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(425, 340);
+            this.btnCancel.Location = new System.Drawing.Point(608, 298);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(156, 36);
+            this.btnCancel.Size = new System.Drawing.Size(177, 36);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 13;
             this.btnCancel.Text = "Cancel";
@@ -447,9 +474,9 @@
             // 
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnSave.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSave.ImageOptions.SvgImage")));
-            this.btnSave.Location = new System.Drawing.Point(285, 340);
+            this.btnSave.Location = new System.Drawing.Point(450, 298);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(136, 36);
+            this.btnSave.Size = new System.Drawing.Size(154, 36);
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 12;
             this.btnSave.Text = "Save";
@@ -458,36 +485,35 @@
             // txtHSNCode
             // 
             this.txtHSNCode.EnterMoveNextControl = true;
-            this.txtHSNCode.Location = new System.Drawing.Point(384, 222);
+            this.txtHSNCode.Location = new System.Drawing.Point(137, 222);
             this.txtHSNCode.Name = "txtHSNCode";
-            this.txtHSNCode.Size = new System.Drawing.Size(189, 22);
+            this.txtHSNCode.Size = new System.Drawing.Size(117, 22);
             this.txtHSNCode.StyleController = this.layoutControl1;
             this.txtHSNCode.TabIndex = 6;
             // 
             // txtItemName
             // 
             this.txtItemName.EnterMoveNextControl = true;
-            this.txtItemName.Location = new System.Drawing.Point(103, 96);
+            this.txtItemName.Location = new System.Drawing.Point(137, 96);
             this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(470, 22);
+            this.txtItemName.Size = new System.Drawing.Size(640, 22);
             this.txtItemName.StyleController = this.layoutControl1;
             this.txtItemName.TabIndex = 4;
-            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule5.ErrorText = "Value cannot be empty";
-            conditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.txtItemName, conditionValidationRule5);
+            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule7.ErrorText = "Value cannot be empty";
+            conditionValidationRule7.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.txtItemName, conditionValidationRule7);
             // 
             // gluCategory
             // 
             this.gluCategory.EnterMoveNextControl = true;
-            this.gluCategory.Location = new System.Drawing.Point(103, 138);
+            this.gluCategory.Location = new System.Drawing.Point(137, 138);
             this.gluCategory.Name = "gluCategory";
             this.gluCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.gluCategory.Properties.NullText = "";
             this.gluCategory.Properties.PopupView = this.glCategoryView;
-            this.gluCategory.Properties.EditValueChanged += new System.EventHandler(this.luCategory_Properties_EditValueChanged);
-            this.gluCategory.Size = new System.Drawing.Size(179, 22);
+            this.gluCategory.Size = new System.Drawing.Size(247, 22);
             this.gluCategory.StyleController = this.layoutControl1;
             this.gluCategory.TabIndex = 19;
             this.gluCategory.EditValueChanged += new System.EventHandler(this.gluCategory_EditValueChanged);
@@ -529,18 +555,18 @@
             // 
             this.txtItemCode.EditValue = "";
             this.txtItemCode.EnterMoveNextControl = true;
-            this.txtItemCode.Location = new System.Drawing.Point(103, 12);
+            this.txtItemCode.Location = new System.Drawing.Point(137, 12);
             this.txtItemCode.Name = "txtItemCode";
             this.txtItemCode.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtItemCode.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtItemCode.Properties.MaskSettings.Set("mask", "####################");
             this.txtItemCode.Properties.Leave += new System.EventHandler(this.txtItemCode_Properties_Leave);
-            this.txtItemCode.Size = new System.Drawing.Size(386, 22);
+            this.txtItemCode.Size = new System.Drawing.Size(556, 22);
             this.txtItemCode.StyleController = this.layoutControl1;
             this.txtItemCode.TabIndex = 16;
-            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule6.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtItemCode, conditionValidationRule6);
+            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule8.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtItemCode, conditionValidationRule8);
             // 
             // Root
             // 
@@ -550,14 +576,10 @@
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem8,
-            this.layoutControlItem11,
-            this.layoutControlItem12,
             this.emptySpaceItem1,
             this.layoutControlItem7,
             this.layoutControlItem6,
             this.layoutControlItem4,
-            this.layoutControlItem13,
-            this.layoutControlItem10,
             this.layoutControlItem2,
             this.layoutControlItem1,
             this.layoutControlItem5,
@@ -568,55 +590,40 @@
             this.layoutControlItem17,
             this.layoutControlItem16,
             this.layoutControlItem18,
-            this.layoutControlItem19});
+            this.layoutControlItem10,
+            this.layoutControlItem11,
+            this.layoutControlItem20,
+            this.layoutControlItem19,
+            this.layoutControlItem13,
+            this.layoutControlItem12});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(585, 381);
+            this.Root.Size = new System.Drawing.Size(789, 343);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnCancel;
-            this.layoutControlItem8.Location = new System.Drawing.Point(421, 336);
+            this.layoutControlItem8.Location = new System.Drawing.Point(604, 294);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(160, 41);
+            this.layoutControlItem8.Size = new System.Drawing.Size(181, 45);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
-            // 
-            // layoutControlItem11
-            // 
-            this.layoutControlItem11.Control = this.txtCostPrice;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 252);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem11.Size = new System.Drawing.Size(281, 42);
-            this.layoutControlItem11.Text = "Cost Price";
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(79, 16);
-            // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.txtMRP;
-            this.layoutControlItem12.Location = new System.Drawing.Point(281, 252);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem12.Size = new System.Drawing.Size(300, 42);
-            this.layoutControlItem12.Text = "MRP";
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(79, 16);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 336);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 294);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(97, 41);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(262, 45);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnSave;
-            this.layoutControlItem7.Location = new System.Drawing.Point(281, 336);
+            this.layoutControlItem7.Location = new System.Drawing.Point(446, 294);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(140, 41);
+            this.layoutControlItem7.Size = new System.Drawing.Size(158, 45);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
@@ -626,39 +633,19 @@
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 42);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem6.Size = new System.Drawing.Size(413, 42);
+            this.layoutControlItem6.Size = new System.Drawing.Size(588, 42);
             this.layoutControlItem6.Text = "SKU Code";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(79, 16);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(113, 16);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtHSNCode;
-            this.layoutControlItem4.Location = new System.Drawing.Point(281, 210);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 210);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem4.Size = new System.Drawing.Size(300, 42);
+            this.layoutControlItem4.Size = new System.Drawing.Size(262, 42);
             this.layoutControlItem4.Text = "HSN Code";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(79, 16);
-            // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.txtSalePrice;
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 294);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem13.Size = new System.Drawing.Size(281, 42);
-            this.layoutControlItem13.Text = "Sale Price";
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(79, 16);
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.luGST;
-            this.layoutControlItem10.Location = new System.Drawing.Point(281, 294);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem10.Size = new System.Drawing.Size(300, 42);
-            this.layoutControlItem10.Text = "GST";
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(79, 16);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(113, 16);
             // 
             // layoutControlItem2
             // 
@@ -666,9 +653,9 @@
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 84);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem2.Size = new System.Drawing.Size(581, 42);
+            this.layoutControlItem2.Size = new System.Drawing.Size(785, 42);
             this.layoutControlItem2.Text = "Item Name";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(79, 16);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(113, 16);
             // 
             // layoutControlItem1
             // 
@@ -676,15 +663,15 @@
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem1.Size = new System.Drawing.Size(497, 42);
+            this.layoutControlItem1.Size = new System.Drawing.Size(701, 42);
             this.layoutControlItem1.Text = "Item Code";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(79, 16);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(113, 16);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.BestFitWeight = 50;
             this.layoutControlItem5.Control = this.chkIsEAN;
-            this.layoutControlItem5.Location = new System.Drawing.Point(497, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(701, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItem5.Size = new System.Drawing.Size(84, 42);
@@ -694,19 +681,19 @@
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnAddSKU;
-            this.layoutControlItem9.Location = new System.Drawing.Point(413, 42);
+            this.layoutControlItem9.Location = new System.Drawing.Point(588, 42);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(168, 42);
+            this.layoutControlItem9.Size = new System.Drawing.Size(197, 42);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.tsCreateNew;
-            this.layoutControlItem3.Location = new System.Drawing.Point(184, 336);
+            this.layoutControlItem3.Location = new System.Drawing.Point(349, 294);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem3.Size = new System.Drawing.Size(97, 41);
+            this.layoutControlItem3.Size = new System.Drawing.Size(97, 45);
             this.layoutControlItem3.Text = "Create New";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -714,10 +701,10 @@
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.labelControl1;
-            this.layoutControlItem14.Location = new System.Drawing.Point(97, 336);
+            this.layoutControlItem14.Location = new System.Drawing.Point(262, 294);
             this.layoutControlItem14.Name = "layoutControlItem14";
             this.layoutControlItem14.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem14.Size = new System.Drawing.Size(87, 41);
+            this.layoutControlItem14.Size = new System.Drawing.Size(87, 45);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
@@ -727,19 +714,19 @@
             this.layoutControlItem15.Location = new System.Drawing.Point(0, 126);
             this.layoutControlItem15.Name = "layoutControlItem15";
             this.layoutControlItem15.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem15.Size = new System.Drawing.Size(290, 42);
+            this.layoutControlItem15.Size = new System.Drawing.Size(392, 42);
             this.layoutControlItem15.Text = "Category";
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(79, 16);
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(113, 16);
             // 
             // layoutControlItem17
             // 
             this.layoutControlItem17.Control = this.sluParentItem;
-            this.layoutControlItem17.Location = new System.Drawing.Point(120, 168);
+            this.layoutControlItem17.Location = new System.Drawing.Point(143, 168);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem17.Size = new System.Drawing.Size(461, 42);
+            this.layoutControlItem17.Size = new System.Drawing.Size(380, 42);
             this.layoutControlItem17.Text = "Parent Item";
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(79, 16);
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(113, 16);
             // 
             // layoutControlItem16
             // 
@@ -747,36 +734,86 @@
             this.layoutControlItem16.Location = new System.Drawing.Point(0, 168);
             this.layoutControlItem16.Name = "layoutControlItem16";
             this.layoutControlItem16.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem16.Size = new System.Drawing.Size(120, 42);
+            this.layoutControlItem16.Size = new System.Drawing.Size(143, 42);
             this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem16.TextVisible = false;
             // 
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.luSubCategory;
-            this.layoutControlItem18.Location = new System.Drawing.Point(290, 126);
+            this.layoutControlItem18.Location = new System.Drawing.Point(392, 126);
             this.layoutControlItem18.Name = "layoutControlItem18";
             this.layoutControlItem18.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem18.Size = new System.Drawing.Size(291, 42);
+            this.layoutControlItem18.Size = new System.Drawing.Size(393, 42);
             this.layoutControlItem18.Text = "Sub Category";
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(79, 16);
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(113, 16);
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.luGST;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 252);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem10.Size = new System.Drawing.Size(262, 42);
+            this.layoutControlItem10.Text = "GST";
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(113, 16);
+            // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.Control = this.txtCostPriceWT;
+            this.layoutControlItem11.Location = new System.Drawing.Point(262, 252);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem11.Size = new System.Drawing.Size(261, 42);
+            this.layoutControlItem11.Text = "Cost Price with Tax";
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(113, 16);
+            // 
+            // layoutControlItem20
+            // 
+            this.layoutControlItem20.Control = this.txtCostPriceWOT;
+            this.layoutControlItem20.Location = new System.Drawing.Point(523, 252);
+            this.layoutControlItem20.Name = "layoutControlItem20";
+            this.layoutControlItem20.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem20.Size = new System.Drawing.Size(262, 42);
+            this.layoutControlItem20.Text = "Cost Price w/o Tax";
+            this.layoutControlItem20.TextSize = new System.Drawing.Size(113, 16);
             // 
             // layoutControlItem19
             // 
             this.layoutControlItem19.Control = this.luUOM;
-            this.layoutControlItem19.Location = new System.Drawing.Point(0, 210);
+            this.layoutControlItem19.Location = new System.Drawing.Point(523, 168);
             this.layoutControlItem19.Name = "layoutControlItem19";
             this.layoutControlItem19.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem19.Size = new System.Drawing.Size(281, 42);
+            this.layoutControlItem19.Size = new System.Drawing.Size(262, 42);
             this.layoutControlItem19.Text = "UOM";
-            this.layoutControlItem19.TextSize = new System.Drawing.Size(79, 16);
+            this.layoutControlItem19.TextSize = new System.Drawing.Size(113, 16);
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.txtSalePrice;
+            this.layoutControlItem13.Location = new System.Drawing.Point(262, 210);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem13.Size = new System.Drawing.Size(261, 42);
+            this.layoutControlItem13.Text = "Sale Price";
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(113, 16);
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.txtMRP;
+            this.layoutControlItem12.Location = new System.Drawing.Point(523, 210);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem12.Size = new System.Drawing.Size(262, 42);
+            this.layoutControlItem12.Text = "MRP";
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(113, 16);
             // 
             // frmItemCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(585, 381);
+            this.ClientSize = new System.Drawing.Size(789, 343);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
             this.Name = "frmItemCode";
@@ -787,6 +824,7 @@
             this.Load += new System.EventHandler(this.frmItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostPriceWOT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.luUOM.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.luSubCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluParentItem.Properties)).EndInit();
@@ -797,7 +835,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvItemSKU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSalePrice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCostPrice.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostPriceWT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.luGST.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsEAN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHSNCode.Properties)).EndInit();
@@ -807,14 +845,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
@@ -825,7 +859,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxItemValidationProvider)).EndInit();
             this.ResumeLayout(false);
 
@@ -850,7 +889,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraEditors.TextEdit txtSalePrice;
         private DevExpress.XtraEditors.TextEdit txtMRP;
-        private DevExpress.XtraEditors.TextEdit txtCostPrice;
+        private DevExpress.XtraEditors.TextEdit txtCostPriceWT;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
@@ -888,5 +927,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
         private DevExpress.XtraEditors.LookUpEdit luUOM;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
+        private DevExpress.XtraEditors.TextEdit txtCostPriceWOT;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
     }
 }

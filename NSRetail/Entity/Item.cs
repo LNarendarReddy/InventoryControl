@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Entity
 {    
     public class Item : EntityBase
-    { 
+    {        
         public object ItemCodeID { get; set; }
 
         public object ItemID { get; set; }
@@ -24,6 +24,7 @@ namespace Entity
         public object IsEAN { get; set; }
 
         public object CostPriceWT { get; set; }
+
         public object CostPriceWOT { get; set; }
 
         public object SalePrice { get; set; }
@@ -39,6 +40,8 @@ namespace Entity
         public object IsOpenItem { get; set; }
 
         public object ParentItemID { get; set; }
+
+        public object UOMID { get; set; }
 
     }
 

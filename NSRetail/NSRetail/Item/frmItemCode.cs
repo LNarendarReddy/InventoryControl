@@ -48,12 +48,17 @@ namespace NSRetail
                 itemObj.SKUCode = sluSKUCode.Text;
                 itemObj.ItemID = sluSKUCode.EditValue;
                 itemObj.ItemName = txtItemName.EditValue;
-                itemObj.CostPrice = txtCostPrice.EditValue;
+                itemObj.CostPriceWT = txtCostPriceWT.EditValue;
+                itemObj.CostPriceWOT = txtCostPriceWOT.EditValue;
                 itemObj.SalePrice = txtSalePrice.EditValue;
                 itemObj.MRP = txtMRP.EditValue;
                 itemObj.UserID = Utility.UserID;
                 itemObj.GSTID = luGST.EditValue;
                 itemObj.CategoryID = gluCategory.EditValue;
+                itemObj.SubCategoryID = luSubCategory.EditValue;
+                itemObj.IsOpenItem = chkIsOpenItem.EditValue;
+                itemObj.ParentItemID = sluParentItem.EditValue;
+                itemObj.UOMID = luUOM.EditValue;
                 
                 new ItemCodeRepository().SaveItemCode(itemObj);
 
@@ -85,6 +90,8 @@ namespace NSRetail
                 {
                     DataTable dtItemCodes = Utility.GetItemCodeList();
                     DataRow drNewItemCode = dtItemCodes.NewRow();
+                    drNewItemCode["ITEMID"] = itemObj.ItemID;
+                    drNewItemCode["ITEMNAME"] = itemObj.ItemName;
                     drNewItemCode["ITEMCODE"] = itemObj.ItemCode;
                     drNewItemCode["ITEMCODEID"] = itemObj.ItemCodeID;
                     drNewItemCode["SKUCODE"] = itemObj.SKUCode;
@@ -161,7 +168,7 @@ namespace NSRetail
             //txtItemCode.Properties.DisplayMember = "ITEMCODE";
             //txtItemCode.Properties.ValueMember = "ITEMCODEID";
 
-            luGST.Properties.DataSource = Utility.GetGSTBaseline();
+            luGST.Properties.DataSource = Utility.GetGSTInfoList();
             luGST.Properties.DisplayMember = "GSTCODE";
             luGST.Properties.ValueMember = "GSTID";
 
@@ -179,7 +186,9 @@ namespace NSRetail
             sluParentItem.Properties.DisplayMember = "ITEMNAME";
             sluParentItem.Properties.ValueMember = "ITEMID";
 
-            luUOM.Properties.DataSource = new MasterRepository().GetUOM();
+            luUOM.Properties.DataSource = new MasterRepository().GetUOM().DefaultView;
+            luUOM.Properties.DisplayMember = "DISPLAYVALUE";
+            luUOM.Properties.ValueMember = "UOMID";
 
             luSubCategory.Properties.DataSource = new MasterRepository().GetSubCategory();
             luSubCategory.Properties.DisplayMember = "SUBCATEGORYNAME";
@@ -230,25 +239,9 @@ namespace NSRetail
             }
         }
 
-        private void luCategory_Properties_EditValueChanged(object sender, EventArgs e)
-        {
-            int rowHandle = glCategoryView.LocateByValue("CATEGORYID", gluCategory.EditValue);
-
-            if(rowHandle == GridControl.InvalidRowHandle)
-            {
-                return;
-            }
-
-            DataRow drCategory = ((DataView)gluCategory.Properties.DataSource).Table.Rows[rowHandle];
-            chkIsOpenItem.Enabled = Convert.ToBoolean(drCategory["ALLOWOPENITEMS"]);
-        }
-
         private void chkIsOpenItem_CheckedChanged(object sender, EventArgs e)
         {
-            if(isLoading)
-            {
-                return;
-            }
+            if(isLoading) return;
 
             sluParentItem.Enabled = !Convert.ToBoolean(chkIsOpenItem.EditValue);
             sluParentItem.EditValue = null;
@@ -263,13 +256,15 @@ namespace NSRetail
             Text = "New Item";
             itemObj.ItemID = null;
             gluCategory.EditValue = null;
-            txtCostPrice.EditValue = null;
+            txtCostPriceWT.EditValue = null;
             txtSalePrice.EditValue = null;
             txtMRP.EditValue = null;
             luGST.EditValue = null;
             chkIsOpenItem.EditValue = null;
             sluParentItem.EditValue = null;
             luSubCategory.EditValue = null;
+            txtCostPriceWOT.EditValue = null;
+            luUOM.EditValue = null;
         }
 
         private void txtItemCode_Properties_Leave(object sender, EventArgs e)
@@ -316,6 +311,7 @@ namespace NSRetail
             chkIsOpenItem.EditValue = dtItemDetails.Rows[0]["ISOPENITEM"];
             sluParentItem.EditValue = dtItemDetails.Rows[0]["PARENTITEMID"];
             luSubCategory.EditValue = dtItemDetails.Rows[0]["SUBCATEGORYID"];
+            luUOM.EditValue = dtItemDetails.Rows[0]["UOMID"];
 
             DataTable dtItemCodePrices = dsItemDetails.Tables["ITEMCODEPRICES"];
             DataRow selectedPrice = dtItemCodePrices.Rows[0];
@@ -333,7 +329,8 @@ namespace NSRetail
                 selectedPrice = (frmMRPList.drSelected as DataRowView).Row;
             }
 
-            txtCostPrice.EditValue = selectedPrice["COSTPRICE"];
+            txtCostPriceWT.EditValue = selectedPrice["COSTPRICEWT"];
+            txtCostPriceWOT.EditValue = selectedPrice["COSTPRICEWOT"];
             txtSalePrice.EditValue = selectedPrice["SALEPRICE"];
             txtMRP.EditValue = selectedPrice["MRP"];
             luGST.EditValue = selectedPrice["GSTID"];
@@ -345,12 +342,54 @@ namespace NSRetail
         {
             if (isLoading) return;
 
-            luUOM.Enabled = sluParentItem.EditValue != null;
+            luUOM.Enabled = !Convert.ToBoolean(chkIsOpenItem.EditValue) && sluParentItem.EditValue != null;
+            if (luUOM.Enabled)
+            {
+                DataView dvUOM = luUOM.Properties.DataSource as DataView;
+                dvUOM.RowFilter = "BASEUOMID = " + (sluParentItem.GetSelectedDataRow() as DataRowView)["UOMID"];
+            }
         }
 
         private void gluCategory_EditValueChanged(object sender, EventArgs e)
         {
-            luSubCategory.EditValue = null;
+            DataRowView drCategory = gluCategory.GetSelectedDataRow() as DataRowView;
+            bool allowOpenItems = drCategory != null && Convert.ToBoolean(drCategory["ALLOWOPENITEMS"]);
+            chkIsOpenItem.Enabled = allowOpenItems;
+            sluParentItem.Enabled = allowOpenItems;
+
+            if (isLoading) return;
+
+            luSubCategory.EditValue = null;                        
+        }
+
+        private void luGST_EditValueChanged(object sender, EventArgs e)
+        {
+            if (isLoading) return;
+
+            isLoading = true;
+            decimal costPriceWithTax = Convert.ToDecimal(txtCostPriceWT.EditValue);
+            txtCostPriceWOT.EditValue = costPriceWithTax - costPriceWithTax * (luGST.GetSelectedDataRow() as GSTInfo).TAXPercent;
+            isLoading = false;
+        }
+
+        private void txtCostPriceWT_EditValueChanged(object sender, EventArgs e)
+        {
+            if (isLoading || luGST.EditValue == null) return;
+
+            isLoading = true;
+            decimal costPriceWithTax = Convert.ToDecimal(txtCostPriceWT.EditValue);
+            txtCostPriceWOT.EditValue = costPriceWithTax - costPriceWithTax * (luGST.GetSelectedDataRow() as GSTInfo).TAXPercent;
+            isLoading = false;
+        }
+
+        private void txtCostPriceWOT_EditValueChanged(object sender, EventArgs e)
+        {
+            if (isLoading || luGST.EditValue == null) return;
+
+            isLoading = true;
+            decimal costPriceWithoutTax = Convert.ToDecimal(txtCostPriceWOT.EditValue);
+            txtCostPriceWT.EditValue = costPriceWithoutTax + costPriceWithoutTax * (luGST.GetSelectedDataRow() as GSTInfo).TAXPercent;
+            isLoading = false;
         }
     }
 }
