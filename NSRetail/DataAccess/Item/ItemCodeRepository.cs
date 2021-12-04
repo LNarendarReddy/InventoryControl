@@ -252,5 +252,33 @@ namespace DataAccess
             }
             return nextSKUCode;
         }
+
+        public DataTable GetParentItems(object CategoryID)
+        {
+            DataTable dtItem = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_PARENTITEMS]";
+                    cmd.Parameters.Add("@CATEGORYID", CategoryID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtItem);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Item List", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtItem;
+        }
     }
 }

@@ -34,6 +34,7 @@ namespace Entity
         public object SUPPLIERID { get; set; }
         public object SUPPLIERINVOICENO { get; set; }
         public object TAXINCLUSIVE { get; set; }
+        public object InvoiceDate { get; set; }
         public object CATEGORYID { get; set; }
         public DataTable dtStockEntry { get; set; }
     }
@@ -41,11 +42,16 @@ namespace Entity
     {
         public object STOCKENTRYDETAILID { get; set; }
         public object STOCKENTRYID { get; set; }
+        public object ITEMID { get; set; }
         public object ITEMCODEID { get; set; }
         public object ITEMPRICEID { get; set; }
+        public object ITEMCODE { get; set; }
+        public object ITEMNAME { get; set; }
+        public object SKUCODE { get; set; }
         public object QUANTITY { get; set; }
         public object WEIGHTINKGS { get; set; }
-        public object COSTPRICE { get; set; }
+        public object COSTPRICEWT { get; set; }
+        public object COSTPRICEWOT { get; set; }
         public object MRP { get; set; }
         public object SALEPRICE { get; set; }
 

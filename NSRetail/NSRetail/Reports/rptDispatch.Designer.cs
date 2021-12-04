@@ -152,7 +152,7 @@
             this.xrTableCell21.Multiline = true;
             this.xrTableCell21.Name = "xrTableCell21";
             this.xrTableCell21.Text = "ITEMNAME";
-            this.xrTableCell21.Weight = 1.8887746788237707D;
+            this.xrTableCell21.Weight = 1.8524520908036517D;
             // 
             // xrTableCell22
             // 
@@ -161,7 +161,7 @@
             this.xrTableCell22.Multiline = true;
             this.xrTableCell22.Name = "xrTableCell22";
             this.xrTableCell22.Text = "MRP";
-            this.xrTableCell22.Weight = 0.7264517726122D;
+            this.xrTableCell22.Weight = 0.70829047860214045D;
             // 
             // xrTableCell23
             // 
@@ -170,7 +170,7 @@
             this.xrTableCell23.Multiline = true;
             this.xrTableCell23.Name = "xrTableCell23";
             this.xrTableCell23.Text = "SALEPRICE";
-            this.xrTableCell23.Weight = 0.72645174631747522D;
+            this.xrTableCell23.Weight = 0.74461304032753473D;
             // 
             // xrTableCell24
             // 
@@ -179,7 +179,7 @@
             this.xrTableCell24.Multiline = true;
             this.xrTableCell24.Name = "xrTableCell24";
             this.xrTableCell24.Text = "QUANTITY";
-            this.xrTableCell24.Weight = 0.72645174631748D;
+            this.xrTableCell24.Weight = 0.7446130403275395D;
             // 
             // xrTableCell25
             // 
@@ -188,7 +188,7 @@
             this.xrTableCell25.Multiline = true;
             this.xrTableCell25.Name = "xrTableCell25";
             this.xrTableCell25.Text = "WEIGHT(KGS)";
-            this.xrTableCell25.Weight = 0.72645168653295811D;
+            this.xrTableCell25.Weight = 0.74461298054301761D;
             // 
             // GroupHeader1
             // 

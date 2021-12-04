@@ -17,7 +17,6 @@ namespace NSRetail
 {
     public partial class frmBarCodePrint : DevExpress.XtraEditors.XtraForm
     {
-        //Branch ObjBranch = null;
         ItemCodeRepository objItemRep = new ItemCodeRepository();
         public frmBarCodePrint()
         {
@@ -53,7 +52,7 @@ namespace NSRetail
         {
             try
             {
-                cmbItemCode.Properties.DataSource = objItemRep. GetEANList();
+                cmbItemCode.Properties.DataSource = objItemRep.GetEANList();
                 cmbItemCode.Properties.DisplayMember = "ITEMCODE";
                 cmbItemCode.Properties.ValueMember = "ITEMCODEID";
             }
@@ -74,14 +73,16 @@ namespace NSRetail
                         obj.ShowDialog();
                         if (obj._IsSave)
                         {
-                            txtCostPrice.EditValue = ((DataRowView)obj.drSelected)["COSTPRICE"];
+                            txtCostPriceWT.EditValue = ((DataRowView)obj.drSelected)["COSTPRICEWT"];
+                            txtCostPriceWT.EditValue = ((DataRowView)obj.drSelected)["COSTPRICEWOT"];
                             txtMRP.EditValue = ((DataRowView)obj.drSelected)["MRP"];
                             txtSalePrice.EditValue = ((DataRowView)obj.drSelected)["SALEPRICE"];
                         }
                     }
                     else
                     {
-                        txtCostPrice.EditValue = dtMRPList.Rows[0]["COSTPRICE"];
+                        txtCostPriceWT.EditValue = dtMRPList.Rows[0]["COSTPRICEWT"];
+                        txtCostPriceWT.EditValue = dtMRPList.Rows[0]["COSTPRICEWOT"];
                         txtMRP.EditValue = dtMRPList.Rows[0]["MRP"];
                         txtSalePrice.EditValue = dtMRPList.Rows[0]["SALEPRICE"];
                     }

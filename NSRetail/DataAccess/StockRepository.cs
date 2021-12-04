@@ -226,7 +226,6 @@ namespace DataAccess
             }
             return ds;
         }
-
         public StockEntry SaveInvoice(StockEntry ObjStockEntry)
         {
             int StockEntryID = 0;
@@ -241,6 +240,7 @@ namespace DataAccess
                     cmd.Parameters.Add("@SUPPLIERID", ObjStockEntry.SUPPLIERID);
                     cmd.Parameters.Add("@SUPPLIERINVOICENO", ObjStockEntry.SUPPLIERINVOICENO);
                     cmd.Parameters.Add("@TAXINCLUSIVE", ObjStockEntry.TAXINCLUSIVE);
+                    cmd.Parameters.Add("@INVOICEDATE", ObjStockEntry.InvoiceDate);
                     cmd.Parameters.Add("@CATEGORYID", ObjStockEntry.CATEGORYID);
                     cmd.Parameters.Add("@USERID", ObjStockEntry.UserID);
                     object objReturn = cmd.ExecuteScalar();
@@ -276,7 +276,8 @@ namespace DataAccess
                     cmd.Parameters.Add("@STOCKENTRYDETAILID", ObjStockEntryDetail.STOCKENTRYDETAILID);
                     cmd.Parameters.Add("@STOCKENTRYID", ObjStockEntryDetail.STOCKENTRYID);
                     cmd.Parameters.Add("@ITEMCODEID", ObjStockEntryDetail.ITEMCODEID);
-                    cmd.Parameters.Add("@COSTPRICE", ObjStockEntryDetail.COSTPRICE);
+                    cmd.Parameters.Add("@COSTPRICEWT", ObjStockEntryDetail.COSTPRICEWT);
+                    cmd.Parameters.Add("@COSTPRICEWOT", ObjStockEntryDetail.COSTPRICEWOT);
                     cmd.Parameters.Add("@MRP", ObjStockEntryDetail.MRP);
                     cmd.Parameters.Add("@SALEPRICE", ObjStockEntryDetail.SALEPRICE);
                     cmd.Parameters.Add("@QUANTITY", ObjStockEntryDetail.QUANTITY);
@@ -338,6 +339,7 @@ namespace DataAccess
                             objStockEntry.SUPPLIERID = ds.Tables[0].Rows[0]["SUPPLIERID"];
                             objStockEntry.SUPPLIERINVOICENO = ds.Tables[0].Rows[0]["SUPPLIERINVOICENO"];
                             objStockEntry.TAXINCLUSIVE = ds.Tables[0].Rows[0]["TAXINCLUSIVE"];
+                            objStockEntry.InvoiceDate = ds.Tables[0].Rows[0]["INVOICEDATE"];
                             objStockEntry.dtStockEntry = ds.Tables[1].Copy();
                         }
                     }

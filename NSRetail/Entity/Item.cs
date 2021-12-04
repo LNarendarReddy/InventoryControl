@@ -23,7 +23,8 @@ namespace Entity
 
         public object IsEAN { get; set; }
 
-        public object CostPrice { get; set; }
+        public object CostPriceWT { get; set; }
+        public object CostPriceWOT { get; set; }
 
         public object SalePrice { get; set; }
 

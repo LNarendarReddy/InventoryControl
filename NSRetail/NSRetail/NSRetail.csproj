@@ -261,6 +261,12 @@
     <Compile Include="Reports\rptInvoice.Designer.cs">
       <DependentUpon>rptInvoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stock\frmAddStockRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmAddStockRecord.Designer.cs">
+      <DependentUpon>frmAddStockRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stock\frmDispatchList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -390,6 +396,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptInvoice.resx">
       <DependentUpon>rptInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmAddStockRecord.resx">
+      <DependentUpon>frmAddStockRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmDispatchList.resx">
       <DependentUpon>frmDispatchList.cs</DependentUpon>

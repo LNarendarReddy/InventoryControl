@@ -30,6 +30,7 @@ namespace NSRetail
         public static int RoleID = 0;
         public static int ReportingLeadID = 0;
         public static int CategoryID = 0;
+        public static bool IsOpenCategory = false;
         public static int BranchID = 0;
         public static string Email = string.Empty;
         public static string DotMatrixPrinter = string.Empty;
@@ -140,8 +141,9 @@ namespace NSRetail
                     rptBarcode rpt = new rptBarcode();
                     rpt.DataSource = dt;
                     rpt.CreateDocument();
-                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-                    printTool.Print(Utility.BarcodePrinter);
+                    rpt.ShowRibbonPreview();
+                    //ReportPrintTool printTool = new ReportPrintTool(rpt);
+                    //printTool.Print(Utility.BarcodePrinter);
                 }
             }
             catch (Exception ex)
