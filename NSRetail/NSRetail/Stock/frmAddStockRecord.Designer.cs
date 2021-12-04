@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddStockRecord));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
@@ -41,14 +42,14 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule10 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule11 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule12 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtCess = new DevExpress.XtraEditors.TextEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.txtTPWithTax = new DevExpress.XtraEditors.TextEdit();
-            this.txtTPWithoutTax = new DevExpress.XtraEditors.TextEdit();
-            this.txtCPWithoutTax = new DevExpress.XtraEditors.TextEdit();
-            this.txtCPWithTax = new DevExpress.XtraEditors.TextEdit();
+            this.txtTotalPriceWT = new DevExpress.XtraEditors.TextEdit();
+            this.txtTotalPriceWOT = new DevExpress.XtraEditors.TextEdit();
+            this.txtCostPriceWOT = new DevExpress.XtraEditors.TextEdit();
+            this.txtCostPriceWT = new DevExpress.XtraEditors.TextEdit();
             this.txtGSTCode = new DevExpress.XtraEditors.TextEdit();
             this.txtWeightInKGs = new DevExpress.XtraEditors.TextEdit();
             this.txtQuantity = new DevExpress.XtraEditors.TextEdit();
@@ -70,27 +71,27 @@
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.txtCess = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTPWithTax.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTPWithoutTax.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCPWithoutTax.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCPWithTax.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCess.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalPriceWT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalPriceWOT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostPriceWOT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostPriceWT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightInKGs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).BeginInit();
@@ -102,28 +103,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCess.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
             this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.Control.Options.UseFont = true;
+            this.layoutControl1.Appearance.ControlDisabled.BackColor = System.Drawing.Color.White;
             this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.ControlDisabled.Options.UseBackColor = true;
             this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
             this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlDropDown.Options.UseFont = true;
@@ -133,13 +135,15 @@
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
             this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 10F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
+            this.layoutControl1.Appearance.DisabledLayoutItem.BackColor = System.Drawing.Color.Transparent;
+            this.layoutControl1.Appearance.DisabledLayoutItem.Options.UseBackColor = true;
             this.layoutControl1.Controls.Add(this.txtCess);
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.btnSave);
-            this.layoutControl1.Controls.Add(this.txtTPWithTax);
-            this.layoutControl1.Controls.Add(this.txtTPWithoutTax);
-            this.layoutControl1.Controls.Add(this.txtCPWithoutTax);
-            this.layoutControl1.Controls.Add(this.txtCPWithTax);
+            this.layoutControl1.Controls.Add(this.txtTotalPriceWT);
+            this.layoutControl1.Controls.Add(this.txtTotalPriceWOT);
+            this.layoutControl1.Controls.Add(this.txtCostPriceWOT);
+            this.layoutControl1.Controls.Add(this.txtCostPriceWT);
             this.layoutControl1.Controls.Add(this.txtGSTCode);
             this.layoutControl1.Controls.Add(this.txtWeightInKGs);
             this.layoutControl1.Controls.Add(this.txtQuantity);
@@ -156,6 +160,20 @@
             this.layoutControl1.Size = new System.Drawing.Size(690, 342);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtCess
+            // 
+            this.txtCess.Enabled = false;
+            this.txtCess.EnterMoveNextControl = true;
+            this.txtCess.Location = new System.Drawing.Point(485, 222);
+            this.txtCess.Name = "txtCess";
+            this.txtCess.Size = new System.Drawing.Size(193, 22);
+            this.txtCess.StyleController = this.layoutControl1;
+            this.txtCess.TabIndex = 10;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtCess, conditionValidationRule1);
             // 
             // btnCancel
             // 
@@ -182,60 +200,65 @@
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtTPWithTax
+            // txtTotalPriceWT
             // 
-            this.txtTPWithTax.EnterMoveNextControl = true;
-            this.txtTPWithTax.Location = new System.Drawing.Point(484, 138);
-            this.txtTPWithTax.Name = "txtTPWithTax";
-            this.txtTPWithTax.Size = new System.Drawing.Size(194, 22);
-            this.txtTPWithTax.StyleController = this.layoutControl1;
-            this.txtTPWithTax.TabIndex = 6;
+            this.txtTotalPriceWT.Enabled = false;
+            this.txtTotalPriceWT.EnterMoveNextControl = true;
+            this.txtTotalPriceWT.Location = new System.Drawing.Point(484, 138);
+            this.txtTotalPriceWT.Name = "txtTotalPriceWT";
+            this.txtTotalPriceWT.Size = new System.Drawing.Size(194, 22);
+            this.txtTotalPriceWT.StyleController = this.layoutControl1;
+            this.txtTotalPriceWT.TabIndex = 6;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule2.ErrorText = "Mandatory";
             conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtTPWithTax, conditionValidationRule2);
+            this.dxValidationProvider1.SetValidationRule(this.txtTotalPriceWT, conditionValidationRule2);
             // 
-            // txtTPWithoutTax
+            // txtTotalPriceWOT
             // 
-            this.txtTPWithoutTax.EnterMoveNextControl = true;
-            this.txtTPWithoutTax.Location = new System.Drawing.Point(142, 138);
-            this.txtTPWithoutTax.Name = "txtTPWithoutTax";
-            this.txtTPWithoutTax.Size = new System.Drawing.Size(192, 22);
-            this.txtTPWithoutTax.StyleController = this.layoutControl1;
-            this.txtTPWithoutTax.TabIndex = 5;
+            this.txtTotalPriceWOT.Enabled = false;
+            this.txtTotalPriceWOT.EnterMoveNextControl = true;
+            this.txtTotalPriceWOT.Location = new System.Drawing.Point(142, 138);
+            this.txtTotalPriceWOT.Name = "txtTotalPriceWOT";
+            this.txtTotalPriceWOT.Size = new System.Drawing.Size(192, 22);
+            this.txtTotalPriceWOT.StyleController = this.layoutControl1;
+            this.txtTotalPriceWOT.TabIndex = 5;
             conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule3.ErrorText = "Mandatory";
             conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtTPWithoutTax, conditionValidationRule3);
+            this.dxValidationProvider1.SetValidationRule(this.txtTotalPriceWOT, conditionValidationRule3);
             // 
-            // txtCPWithoutTax
+            // txtCostPriceWOT
             // 
-            this.txtCPWithoutTax.EnterMoveNextControl = true;
-            this.txtCPWithoutTax.Location = new System.Drawing.Point(142, 96);
-            this.txtCPWithoutTax.Name = "txtCPWithoutTax";
-            this.txtCPWithoutTax.Size = new System.Drawing.Size(192, 22);
-            this.txtCPWithoutTax.StyleController = this.layoutControl1;
-            this.txtCPWithoutTax.TabIndex = 3;
+            this.txtCostPriceWOT.EnterMoveNextControl = true;
+            this.txtCostPriceWOT.Location = new System.Drawing.Point(142, 96);
+            this.txtCostPriceWOT.Name = "txtCostPriceWOT";
+            this.txtCostPriceWOT.Size = new System.Drawing.Size(192, 22);
+            this.txtCostPriceWOT.StyleController = this.layoutControl1;
+            this.txtCostPriceWOT.TabIndex = 3;
             conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule4.ErrorText = "Mandatory";
             conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtCPWithoutTax, conditionValidationRule4);
+            this.dxValidationProvider1.SetValidationRule(this.txtCostPriceWOT, conditionValidationRule4);
+            this.txtCostPriceWOT.EditValueChanged += new System.EventHandler(this.txtCostPriceWOT_EditValueChanged);
             // 
-            // txtCPWithTax
+            // txtCostPriceWT
             // 
-            this.txtCPWithTax.EnterMoveNextControl = true;
-            this.txtCPWithTax.Location = new System.Drawing.Point(484, 96);
-            this.txtCPWithTax.Name = "txtCPWithTax";
-            this.txtCPWithTax.Size = new System.Drawing.Size(194, 22);
-            this.txtCPWithTax.StyleController = this.layoutControl1;
-            this.txtCPWithTax.TabIndex = 4;
+            this.txtCostPriceWT.EnterMoveNextControl = true;
+            this.txtCostPriceWT.Location = new System.Drawing.Point(484, 96);
+            this.txtCostPriceWT.Name = "txtCostPriceWT";
+            this.txtCostPriceWT.Size = new System.Drawing.Size(194, 22);
+            this.txtCostPriceWT.StyleController = this.layoutControl1;
+            this.txtCostPriceWT.TabIndex = 4;
             conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule5.ErrorText = "Mandatory";
             conditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtCPWithTax, conditionValidationRule5);
+            this.dxValidationProvider1.SetValidationRule(this.txtCostPriceWT, conditionValidationRule5);
+            this.txtCostPriceWT.EditValueChanged += new System.EventHandler(this.txtCostPriceWT_EditValueChanged);
             // 
             // txtGSTCode
             // 
+            this.txtGSTCode.Enabled = false;
             this.txtGSTCode.EnterMoveNextControl = true;
             this.txtGSTCode.Location = new System.Drawing.Point(142, 222);
             this.txtGSTCode.Name = "txtGSTCode";
@@ -276,6 +299,7 @@
             // 
             // txtSalePrice
             // 
+            this.txtSalePrice.Enabled = false;
             this.txtSalePrice.EnterMoveNextControl = true;
             this.txtSalePrice.Location = new System.Drawing.Point(484, 180);
             this.txtSalePrice.Name = "txtSalePrice";
@@ -289,6 +313,7 @@
             // 
             // txtMRP
             // 
+            this.txtMRP.Enabled = false;
             this.txtMRP.EnterMoveNextControl = true;
             this.txtMRP.Location = new System.Drawing.Point(142, 180);
             this.txtMRP.Name = "txtMRP";
@@ -473,16 +498,6 @@
             this.layoutControlItem2.Text = "Item Name";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(118, 16);
             // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.txtSalePrice;
-            this.layoutControlItem5.Location = new System.Drawing.Point(342, 168);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem5.Size = new System.Drawing.Size(344, 42);
-            this.layoutControlItem5.Text = "Sale Price";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(118, 16);
-            // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.txtQuantity;
@@ -492,26 +507,6 @@
             this.layoutControlItem6.Size = new System.Drawing.Size(342, 42);
             this.layoutControlItem6.Text = "Quantity";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(118, 16);
-            // 
-            // layoutControlItem11
-            // 
-            this.layoutControlItem11.Control = this.txtTPWithoutTax;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 126);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem11.Size = new System.Drawing.Size(342, 42);
-            this.layoutControlItem11.Text = "Total Price W/O Tax";
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(118, 16);
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.txtCPWithoutTax;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 84);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem10.Size = new System.Drawing.Size(342, 42);
-            this.layoutControlItem10.Text = "CP W/O Tax";
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(118, 16);
             // 
             // layoutControlItem4
             // 
@@ -543,26 +538,6 @@
             this.layoutControlItem7.Text = "Weight In KGs";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(118, 16);
             // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.txtCPWithTax;
-            this.layoutControlItem9.Location = new System.Drawing.Point(342, 84);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem9.Size = new System.Drawing.Size(344, 42);
-            this.layoutControlItem9.Text = "CP With Tax";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(118, 16);
-            // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.txtTPWithTax;
-            this.layoutControlItem12.Location = new System.Drawing.Point(342, 126);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem12.Size = new System.Drawing.Size(344, 42);
-            this.layoutControlItem12.Text = "Total Price With Tax";
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(118, 16);
-            // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.btnSave;
@@ -591,17 +566,55 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(399, 44);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // txtCess
+            // layoutControlItem5
             // 
-            this.txtCess.Location = new System.Drawing.Point(485, 222);
-            this.txtCess.Name = "txtCess";
-            this.txtCess.Size = new System.Drawing.Size(193, 22);
-            this.txtCess.StyleController = this.layoutControl1;
-            this.txtCess.TabIndex = 10;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtCess, conditionValidationRule1);
+            this.layoutControlItem5.Control = this.txtSalePrice;
+            this.layoutControlItem5.Location = new System.Drawing.Point(342, 168);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem5.Size = new System.Drawing.Size(344, 42);
+            this.layoutControlItem5.Text = "Sale Price";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(118, 16);
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.txtCostPriceWOT;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 84);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem10.Size = new System.Drawing.Size(342, 42);
+            this.layoutControlItem10.Text = "CP W/O Tax";
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(118, 16);
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.txtCostPriceWT;
+            this.layoutControlItem9.Location = new System.Drawing.Point(342, 84);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem9.Size = new System.Drawing.Size(344, 42);
+            this.layoutControlItem9.Text = "CP With Tax";
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(118, 16);
+            // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.Control = this.txtTotalPriceWOT;
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 126);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem11.Size = new System.Drawing.Size(342, 42);
+            this.layoutControlItem11.Text = "Total Price W/O Tax";
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(118, 16);
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.txtTotalPriceWT;
+            this.layoutControlItem12.Location = new System.Drawing.Point(342, 126);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem12.Size = new System.Drawing.Size(344, 42);
+            this.layoutControlItem12.Text = "Total Price With Tax";
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(118, 16);
             // 
             // layoutControlItem3
             // 
@@ -625,10 +638,11 @@
             this.Load += new System.EventHandler(this.frmAddStockRecord_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtTPWithTax.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTPWithoutTax.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCPWithoutTax.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCPWithTax.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCess.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalPriceWT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalPriceWOT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostPriceWOT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostPriceWT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightInKGs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).EndInit();
@@ -640,21 +654,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCess.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -678,12 +691,12 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraEditors.TextEdit txtGSTCode;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
-        private DevExpress.XtraEditors.TextEdit txtCPWithTax;
+        private DevExpress.XtraEditors.TextEdit txtCostPriceWT;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
-        private DevExpress.XtraEditors.TextEdit txtCPWithoutTax;
+        private DevExpress.XtraEditors.TextEdit txtCostPriceWOT;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
-        private DevExpress.XtraEditors.TextEdit txtTPWithTax;
-        private DevExpress.XtraEditors.TextEdit txtTPWithoutTax;
+        private DevExpress.XtraEditors.TextEdit txtTotalPriceWT;
+        private DevExpress.XtraEditors.TextEdit txtTotalPriceWOT;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraEditors.SimpleButton btnSave;

@@ -67,7 +67,8 @@ namespace NSRetail.Stock
                     ObjStockEntry.dtStockEntry.Columns.Add("SKUCODE", typeof(string));
                     ObjStockEntry.dtStockEntry.Columns.Add("ITEMCODE", typeof(string));
                     ObjStockEntry.dtStockEntry.Columns.Add("ITEMNAME", typeof(string));
-                    ObjStockEntry.dtStockEntry.Columns.Add("COSTPRICE", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("COSTPRICEWT", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("COSTPRICEWOT", typeof(decimal));
                     ObjStockEntry.dtStockEntry.Columns.Add("MRP", typeof(decimal));
                     ObjStockEntry.dtStockEntry.Columns.Add("SALEPRICE", typeof(decimal));
                     ObjStockEntry.dtStockEntry.Columns.Add("QUANTITY", typeof(int));
@@ -142,7 +143,8 @@ namespace NSRetail.Stock
                 view.SetRowCellValue(e.RowHandle, "SKUCODE", ObjStockEntryDetail.SKUCODE);
                 view.SetRowCellValue(e.RowHandle, "ITEMCODE", ObjStockEntryDetail.ITEMCODE);
                 view.SetRowCellValue(e.RowHandle, "ITEMNAME", ObjStockEntryDetail.ITEMNAME);
-                view.SetRowCellValue(e.RowHandle, "COSTPRICE", ObjStockEntryDetail.COSTPRICE);
+                view.SetRowCellValue(e.RowHandle, "COSTPRICEWT", ObjStockEntryDetail.COSTPRICEWT);
+                view.SetRowCellValue(e.RowHandle, "COSTPRICEWOT", ObjStockEntryDetail.COSTPRICEWOT);
                 view.SetRowCellValue(e.RowHandle, "MRP", ObjStockEntryDetail.MRP);
                 view.SetRowCellValue(e.RowHandle, "SALEPRICE", ObjStockEntryDetail.SALEPRICE);
                 view.SetRowCellValue(e.RowHandle, "QUANTITY", ObjStockEntryDetail.QUANTITY);
