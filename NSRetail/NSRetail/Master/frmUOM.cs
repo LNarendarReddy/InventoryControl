@@ -45,7 +45,7 @@ namespace NSRetail.Master
                     return;
                 ObjUOM.DISPLAYVALUE = txtDisplayValue.EditValue;
                 ObjUOM.BASEUOMID = cmbBaseUOM.EditValue;
-                ObjUOM.MULTIPLIER = cmbBaseUOM.EditValue;
+                ObjUOM.MULTIPLIER = txtMultipler.EditValue;
                 ObjUOM.UserID = Utility.UserID;
                 objMasterRep.SaveUOM(ObjUOM);
                 ObjUOM.IsSave = true;

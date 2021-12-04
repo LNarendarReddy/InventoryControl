@@ -42,6 +42,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcMRPList)).BeginInit();
@@ -112,6 +113,7 @@
             this.gvMRPList.Appearance.Row.Options.UseFont = true;
             this.gvMRPList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn3,
+            this.gridColumn4,
             this.gridColumn1,
             this.gridColumn2});
             this.gvMRPList.FixedLineWidth = 3;
@@ -122,12 +124,12 @@
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "Cost Price";
-            this.gridColumn3.FieldName = "COSTPRICE";
+            this.gridColumn3.Caption = "Cost Price WT";
+            this.gridColumn3.FieldName = "COSTPRICEWT";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 0;
-            this.gridColumn3.Width = 173;
+            this.gridColumn3.Width = 136;
             // 
             // gridColumn1
             // 
@@ -135,8 +137,8 @@
             this.gridColumn1.FieldName = "MRP";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
-            this.gridColumn1.Width = 173;
+            this.gridColumn1.VisibleIndex = 2;
+            this.gridColumn1.Width = 136;
             // 
             // gridColumn2
             // 
@@ -144,8 +146,8 @@
             this.gridColumn2.FieldName = "SALEPRICE";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 2;
-            this.gridColumn2.Width = 178;
+            this.gridColumn2.VisibleIndex = 3;
+            this.gridColumn2.Width = 136;
             // 
             // Root
             // 
@@ -198,6 +200,15 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(294, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Cost Price WOT";
+            this.gridColumn4.FieldName = "COSTPRICEWOT";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 1;
+            this.gridColumn4.Width = 136;
+            // 
             // frmMRPList
             // 
             this.AcceptButton = this.btnOk;
@@ -240,5 +251,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
     }
 }

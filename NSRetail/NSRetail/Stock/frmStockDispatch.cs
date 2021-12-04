@@ -1,7 +1,10 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.UI;
 using Entity;
 using ErrorManagement;
+using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +24,10 @@ namespace NSRetail.Stock
         StockRepository ObjStockRep = new StockRepository();
         StockDispatch ObjStockDispatch = null;
         StockDispatchDetail ObjStockDispatchDetail = null;
+        object ItemPriceID = null;
+        bool IsParentExist = false;
+        bool IsOpenItem = false;
+        bool IsEdit = false;
         public frmStockDispatch()
         {
             InitializeComponent();
@@ -51,6 +58,7 @@ namespace NSRetail.Stock
                 if (ObjStockDispatch == null)
                     ObjStockDispatch = new StockDispatch();
                 ObjStockDispatch.UserID = Utility.UserID;
+                ObjStockDispatch.CATEGORYID = Utility.CategoryID;
                 ObjStockRep.GetDispatchDraft(ObjStockDispatch);
                 if (Convert.ToInt32(ObjStockDispatch.STOCKDISPATCHID) > 0)
                 {
@@ -91,23 +99,42 @@ namespace NSRetail.Stock
             cmbItemCode.EditValue = selectedValue;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnDispatch_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                int iValue = 0;
+                if (int.TryParse(Convert.ToString(ObjStockDispatch.STOCKDISPATCHID), out iValue) && iValue > 0)
+                {
+                    if (!dxValidationProvider1.Validate())
+                        return;
+                    DataTable dtDspatch = ObjStockRep.UpdateDispatch(ObjStockDispatch);
+                    rptDispatch rpt = new rptDispatch(dtDspatch, ObjStockDispatch.dtDispatch);
+                    rpt.ShowPrintMarginsWarning = false;
+                    rpt.ShowRibbonPreview();
+                    cmbFromBranch.EditValue = null;
+                    cmbToBranch.EditValue = null;
+                    txtTrayNumber.EditValue = null;
+                    cmbFromBranch.Enabled = true;
+                    cmbToBranch.Enabled = true;
+                    ObjStockDispatch.STOCKDISPATCHID = 0;
+                    ObjStockDispatch.dtDispatch = new DataTable();
+                    gcDispatch.DataSource = ObjStockDispatch.dtDispatch;
+                    cmbFromBranch.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        
-        public static class ItemDetails
-        {
-            public static object ItemPriceID = null;
-            public static object ItemID = null;
-            public static object ItemCodeID = null;
-            public static object SKUCode = null;
-        }
+
         private void cmbItemCode_EditValueChanged(object sender, EventArgs e)
         {
             try
@@ -115,9 +142,6 @@ namespace NSRetail.Stock
                 if (cmbItemCode.EditValue != null)
                 {
                     txtItemName.EditValue = cmbLookupView.GetFocusedRowCellValue("ITEMNAME");
-                    ItemDetails.ItemID = cmbLookupView.GetFocusedRowCellValue("ITEMID");
-                    ItemDetails.ItemCodeID = cmbLookupView.GetFocusedRowCellValue("ITEMCODEID");
-                    ItemDetails.SKUCode = cmbLookupView.GetFocusedRowCellValue("SKUCODE");
                     DataTable dtMRPList = ObjItemRep.GetMRPList(cmbItemCode.EditValue);
                     if (dtMRPList.Rows.Count > 1)
                     {
@@ -127,18 +151,41 @@ namespace NSRetail.Stock
                         {
                             txtMRP.EditValue = ((DataRowView)obj.drSelected)["MRP"];
                             txtSalePrice.EditValue = ((DataRowView)obj.drSelected)["SALEPRICE"];
-                            ItemDetails.ItemPriceID = ((DataRowView)obj.drSelected)["ITEMPRICEID"];
-                            txtWeightInKgs.EditValue = 0;
+                            ItemPriceID = ((DataRowView)obj.drSelected)["ITEMPRICEID"];
                         }
                     }
                     else
                     {
                         txtMRP.EditValue = dtMRPList.Rows[0]["MRP"];
                         txtSalePrice.EditValue = dtMRPList.Rows[0]["SALEPRICE"];
-                        ItemDetails.ItemPriceID = dtMRPList.Rows[0]["ITEMPRICEID"];
+                        ItemPriceID = dtMRPList.Rows[0]["ITEMPRICEID"];
+                    }
+
+                   int ParentID = 0;
+                    if(int.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("PARENTITEMID")),out ParentID) 
+                        && ParentID > 0)
+                    {
+                        IsParentExist = true;
+                        if(bool.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("ISOPENITEM")), out IsOpenItem) 
+                            && IsOpenItem)
+                        {
+                            txtQuantity.Enabled = false;
+                            txtWeightInKgs.Enabled = true;
+                        }
+                        else
+                        {
+                            txtQuantity.Enabled = true;
+                            txtWeightInKgs.Enabled = false;
+                        }
+                    }
+                    else
+                    {
                         txtWeightInKgs.EditValue = 0;
+                        txtWeightInKgs.Enabled = false;
+                        IsParentExist = false;
                     }
                     txtQuantity.EditValue = 1;
+                    SendKeys.Send("{ENTER}");
                 }
             }
             catch (Exception ex)
@@ -154,31 +201,20 @@ namespace NSRetail.Stock
             {
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    if (ObjStockDispatch.STOCKDISPATCHID == null)
+                    if (!dxValidationProvider2.Validate())
+                        return;
+                    if (Convert.ToInt32(ObjStockDispatch.STOCKDISPATCHID) == 0)
                         SaveDispatch();
                     ObjStockDispatchDetail = new StockDispatchDetail();
                     ObjStockDispatchDetail.STOCKDISPATCHDETAILID = 0;
                     ObjStockDispatchDetail.STOCKDISPATCHID = ObjStockDispatch.STOCKDISPATCHID;
-                    ObjStockDispatchDetail.ITEMPRICEID = ItemDetails.ItemPriceID;
+                    ObjStockDispatchDetail.ITEMPRICEID = ItemPriceID;
                     ObjStockDispatchDetail.TRAYNUMBER = txtTrayNumber.EditValue;
                     ObjStockDispatchDetail.DISPATCHQUANTITY = txtQuantity.EditValue;
                     ObjStockDispatchDetail.WEIGHTINKGS = txtWeightInKgs.EditValue;
                     ObjStockDispatchDetail.UserID = Utility.UserID;
                     ObjStockRep.SaveDispatchDetail(ObjStockDispatchDetail);
-                    DataRow dr = ObjStockDispatch.dtDispatch.NewRow();
-                    dr["STOCKDISPATCHDETAILID"] = ObjStockDispatchDetail.STOCKDISPATCHDETAILID;
-                    dr["ITEMID"] = ItemDetails.ItemID;
-                    dr["ITEMCODEID"] = ItemDetails.ItemCodeID;
-                    dr["ITEMPRICEID"] = ItemDetails.ItemPriceID;
-                    dr["SKUCODE"] = ItemDetails.SKUCode;
-                    dr["ITEMCODE"] = cmbItemCode.Text;
-                    dr["ITEMNAME"] = txtItemName.EditValue;
-                    dr["MRP"] = txtMRP.EditValue;
-                    dr["SALEPRICE"] = txtSalePrice.EditValue;
-                    dr["DISPATCHQUANTITY"] = txtQuantity.EditValue;
-                    dr["WEIGHTINKGS"] = txtWeightInKgs.EditValue;
-                    dr["TRAYNUMBER"] = txtTrayNumber.EditValue;
-                    ObjStockDispatch.dtDispatch.Rows.Add(dr);
+                    RefreshGrid();
                     ObjStockDispatchDetail.STOCKDISPATCHDETAILID = 0;
                     cmbItemCode.EditValue = null;
                     txtItemName.EditValue = null;
@@ -193,6 +229,41 @@ namespace NSRetail.Stock
             {
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+        private void RefreshGrid()
+        {
+            try
+            {
+                gvDispatch.GridControl.BindingContext = new BindingContext();
+                gvDispatch.GridControl.DataSource = gvDispatch.DataSource;
+                int rowhandle = gvDispatch.LocateByValue("STOCKDISPATCHDETAILID", ObjStockDispatchDetail.STOCKDISPATCHDETAILID);
+                if (rowhandle >= 0)
+                {
+                    if (IsEdit)
+                    {
+                        gvDispatch.SetRowCellValue(rowhandle, "DISPATCHQUANTITY", txtQuantity.EditValue);
+                        gvDispatch.SetRowCellValue(rowhandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
+                    }
+                    else
+                    {
+                        int Qnty = 0;
+                        decimal WeightInKGS = 0;
+                        if (int.TryParse(Convert.ToString(gvDispatch.GetRowCellValue(rowhandle, "DISPATCHQUANTITY")), out Qnty))
+                           gvDispatch.SetRowCellValue(rowhandle, "DISPATCHQUANTITY", Qnty + Convert.ToInt32(txtQuantity.EditValue));
+                        if (decimal.TryParse(Convert.ToString(gvDispatch.GetRowCellValue(rowhandle, "WEIGHTINKGS")), out WeightInKGS))
+                            gvDispatch.SetRowCellValue(rowhandle, "WEIGHTINKGS", WeightInKGS + Convert. ToDecimal(txtWeightInKgs.EditValue));
+
+                    }
+                }
+                else
+                {
+                    gvDispatch.AddNewRow();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -231,6 +302,66 @@ namespace NSRetail.Stock
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
             }
+        }
+
+        private void gvDispatch_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                view.SetRowCellValue(e.RowHandle, "STOCKDISPATCHDETAILID", ObjStockDispatchDetail.STOCKDISPATCHDETAILID);
+                view.SetRowCellValue(e.RowHandle, "ITEMID", cmbLookupView.GetFocusedRowCellValue("ITEMID"));
+                view.SetRowCellValue(e.RowHandle, "ITEMCODEID", cmbItemCode.EditValue);
+                view.SetRowCellValue(e.RowHandle, "ITEMPRICEID", ItemPriceID);
+                view.SetRowCellValue(e.RowHandle, "SKUCODE", cmbLookupView.GetFocusedRowCellValue("SKUCODE"));
+                view.SetRowCellValue(e.RowHandle, "ITEMCODE", cmbItemCode.Text);
+                view.SetRowCellValue(e.RowHandle, "ITEMNAME", txtItemName.EditValue);
+                view.SetRowCellValue(e.RowHandle, "MRP", txtMRP.EditValue);
+                view.SetRowCellValue(e.RowHandle, "SALEPRICE", txtSalePrice.EditValue);
+                view.SetRowCellValue(e.RowHandle, "DISPATCHQUANTITY", txtQuantity.EditValue);
+                view.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
+                view.SetRowCellValue(e.RowHandle, "TRAYNUMBER", txtTrayNumber.EditValue);
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+
+        private void txtQuantity_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtQuantity.EditValue != null && IsParentExist && !IsOpenItem)
+                {
+                    decimal Multi = 0;
+                    if (decimal.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("MULTIPLIER")), out Multi))
+                    {
+                        int Quantity = 0;
+                        if (int.TryParse(Convert.ToString(txtQuantity.EditValue), out Quantity))
+                        {
+                            txtWeightInKgs.EditValue = Multi * Quantity;
+                        }
+                        else
+                            txtWeightInKgs.EditValue = 0;
+                    }
+                    else
+                    {
+                        txtWeightInKgs.EditValue = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+
+        private void gvDispatch_DoubleClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

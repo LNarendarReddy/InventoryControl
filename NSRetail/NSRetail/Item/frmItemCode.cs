@@ -31,6 +31,9 @@ namespace NSRetail
 
             // setting the item code calls the get proc and loads all values
             txtItemCode.EditValue = itemObj.ItemCode;
+            luSubCategory.CascadingOwner = gluCategory;
+            luSubCategory.Properties.CascadingMember = "CATEGORYID";
+            txtItemCode_Properties_Leave(null, null);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -178,6 +181,10 @@ namespace NSRetail
 
             luUOM.Properties.DataSource = new MasterRepository().GetUOM();
 
+            luSubCategory.Properties.DataSource = new MasterRepository().GetSubCategory();
+            luSubCategory.Properties.DisplayMember = "SUBCATEGORYNAME";
+            luSubCategory.Properties.ValueMember = "SUBCATEGORYID";
+
             if (refresh)
             {
                 txtItemCode.EditValue = selectedItemCode;
@@ -232,18 +239,19 @@ namespace NSRetail
                 return;
             }
 
-            DataRow drCategory = ((DataTable)gluCategory.Properties.DataSource).Rows[rowHandle];
+            DataRow drCategory = ((DataView)gluCategory.Properties.DataSource).Table.Rows[rowHandle];
             chkIsOpenItem.Enabled = Convert.ToBoolean(drCategory["ALLOWOPENITEMS"]);
         }
 
         private void chkIsOpenItem_CheckedChanged(object sender, EventArgs e)
         {
-            if(!chkIsOpenItem.Checked)
+            if(isLoading)
             {
                 return;
             }
 
-            sluParentItem.Enabled = true;
+            sluParentItem.Enabled = !Convert.ToBoolean(chkIsOpenItem.EditValue);
+            sluParentItem.EditValue = null;
         }
 
         private void ClearUI()
@@ -338,6 +346,11 @@ namespace NSRetail
             if (isLoading) return;
 
             luUOM.Enabled = sluParentItem.EditValue != null;
+        }
+
+        private void gluCategory_EditValueChanged(object sender, EventArgs e)
+        {
+            luSubCategory.EditValue = null;
         }
     }
 }

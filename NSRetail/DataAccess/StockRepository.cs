@@ -67,7 +67,7 @@ namespace DataAccess
                     if (!int.TryParse(str, out StockDispatchDetailID))
                         throw new Exception(str);
                     else
-                        ObjStockDispatchDetail.STOCKDISPATCHDETAILID = objReturn;
+                        ObjStockDispatchDetail.STOCKDISPATCHDETAILID = StockDispatchDetailID;
                 }
 
             }
@@ -91,6 +91,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_DISPATCHDRAFT]";
+                    cmd.Parameters.Add("@CATEGORYID", objStockDispatch.CATEGORYID);
                     cmd.Parameters.Add("@USERID", objStockDispatch.UserID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
@@ -145,5 +146,318 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
+        public DataTable UpdateDispatch(StockDispatch ObjStockDispatch)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_STOCKDISPATCH]";
+                    cmd.Parameters.Add("@STOCKDISPATCHID", ObjStockDispatch.STOCKDISPATCHID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Updating Dispatch");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
+        public DataTable GetDispatchList()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_DISPATCHLIST]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving Dispatch List");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
+        public DataSet GetDispatch(object StockDispatchID)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_DISPATCH]";
+                    cmd.Parameters.Add("@STOCKDISPATCHID", StockDispatchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(ds);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving Dispatch");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ds;
+        }
+        public StockEntry SaveInvoice(StockEntry ObjStockEntry)
+        {
+            int StockEntryID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_STOCKENTRY]";
+                    cmd.Parameters.Add("@STOCKENTRYID", ObjStockEntry.STOCKENTRYID);
+                    cmd.Parameters.Add("@SUPPLIERID", ObjStockEntry.SUPPLIERID);
+                    cmd.Parameters.Add("@SUPPLIERINVOICENO", ObjStockEntry.SUPPLIERINVOICENO);
+                    cmd.Parameters.Add("@TAXINCLUSIVE", ObjStockEntry.TAXINCLUSIVE);
+                    cmd.Parameters.Add("@INVOICEDATE", ObjStockEntry.InvoiceDate);
+                    cmd.Parameters.Add("@CATEGORYID", ObjStockEntry.CATEGORYID);
+                    cmd.Parameters.Add("@USERID", ObjStockEntry.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out StockEntryID))
+                        throw new Exception(str);
+                    else
+                        ObjStockEntry.STOCKENTRYID = objReturn;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Saving Stock Invoice");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjStockEntry;
+        }
+        public StockEntryDetail SaveInvoiceDetail(StockEntryDetail ObjStockEntryDetail)
+        {
+            DataTable dt = new DataTable();
+            int StockEntryDetailID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_STOCKENTRYDETAIL]";
+                    cmd.Parameters.Add("@STOCKENTRYDETAILID", ObjStockEntryDetail.STOCKENTRYDETAILID);
+                    cmd.Parameters.Add("@STOCKENTRYID", ObjStockEntryDetail.STOCKENTRYID);
+                    cmd.Parameters.Add("@ITEMCODEID", ObjStockEntryDetail.ITEMCODEID);
+                    cmd.Parameters.Add("@COSTPRICEWT", ObjStockEntryDetail.COSTPRICEWT);
+                    cmd.Parameters.Add("@COSTPRICEWOT", ObjStockEntryDetail.COSTPRICEWOT);
+                    cmd.Parameters.Add("@MRP", ObjStockEntryDetail.MRP);
+                    cmd.Parameters.Add("@SALEPRICE", ObjStockEntryDetail.SALEPRICE);
+                    cmd.Parameters.Add("@QUANTITY", ObjStockEntryDetail.QUANTITY);
+                    cmd.Parameters.Add("@WEIGHTINKGS", ObjStockEntryDetail.WEIGHTINKGS);
+                    cmd.Parameters.Add("@USERID", ObjStockEntryDetail.UserID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                    if(dt != null && dt.Rows.Count > 0)
+                    {
+                        string str = Convert.ToString(dt.Rows[0][0]);
+                        if (!int.TryParse(str, out StockEntryDetailID))
+                            throw new Exception(str);
+                        else
+                        {
+                            ObjStockEntryDetail.STOCKENTRYDETAILID = StockEntryDetailID;
+                            ObjStockEntryDetail.ITEMPRICEID = dt.Rows[0][1];
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Saving Invoice Detail");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ObjStockEntryDetail;
+        }
+        public StockEntry GetInvoiceDraft(StockEntry objStockEntry)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_STOCKENTRYDTAFT]";
+                    cmd.Parameters.Add("@CATEGORYID", objStockEntry.CATEGORYID);
+                    cmd.Parameters.Add("@USERID", objStockEntry.UserID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(ds);
+                    }
+                    if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    {
+                        string str = Convert.ToString(ds.Tables[0].Rows[0][0]);
+                        int iValue = 0;
+                        if (!int.TryParse(str, out iValue))
+                            objStockEntry.STOCKENTRYID = 0;
+                        else
+                        {
+                            objStockEntry.STOCKENTRYID = iValue;
+                            objStockEntry.SUPPLIERID = ds.Tables[0].Rows[0]["SUPPLIERID"];
+                            objStockEntry.SUPPLIERINVOICENO = ds.Tables[0].Rows[0]["SUPPLIERINVOICENO"];
+                            objStockEntry.TAXINCLUSIVE = ds.Tables[0].Rows[0]["TAXINCLUSIVE"];
+                            objStockEntry.InvoiceDate = ds.Tables[0].Rows[0]["INVOICEDATE"];
+                            objStockEntry.dtStockEntry = ds.Tables[1].Copy();
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Reading Stock Entry");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return objStockEntry;
+        }
+        public void DeleteInvoiceDetail(object StockEntryDetailID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_STOCKENTRYDETAIL]";
+                    cmd.Parameters.Add("@STOCKENTRYDETAILID", StockEntryDetailID);
+                    object objReturn = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Deleting Invoice Detail");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+        public DataTable UpdateInvoice(StockEntry ObjStockEntry)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_STOCKENTRY]";
+                    cmd.Parameters.Add("@STOCKENTRYID", ObjStockEntry.STOCKENTRYID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Updating Invoice");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
+        public DataTable GetInvoiceList()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_INVOICELIST]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving Invoice List");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
+        public DataSet GetInvoice(object StockEntryID)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_STOCKENTRY]";
+                    cmd.Parameters.Add("@STOCKENTRYID", StockEntryID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(ds);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving Invoice");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ds;
+        }
+
     }
 }
