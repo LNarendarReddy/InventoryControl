@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
+using Entity;
 using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace NSRetail
         private static DataTable dtGST;
         private static DataTable dtItemSKUList;
         private static DataTable dtItemCodeList;
+        private static DataTable dtParentItemList;
+        private static List<GSTInfo> gstInfoList;
 
         public static int UserID = 4;
         public static string UserName = string.Empty;
@@ -79,6 +82,23 @@ namespace NSRetail
             dtItemCodeList = dsItemBaseline.Tables["ITEMCODES"];
         }
 
+        private static void FillParentItemBaseline()
+        {
+            dtParentItemList = new ItemCodeRepository().GetParentItems(CategoryID);
+        }
+
+        private static void FillGSTBaseLine()
+        {
+            dtGST = new MasterRepository().GetGST();
+            gstInfoList = new List<GSTInfo>();
+            foreach(DataRow dr in dtGST.Rows)
+            {
+                GSTInfo gstInfo = new GSTInfo();
+                gstInfo.UpdateGST(dr);
+                gstInfoList.Add(gstInfo);
+            }
+        }
+
         public static string Encrypt(string input)
         {
             return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(input)));
@@ -89,7 +109,12 @@ namespace NSRetail
         }
         public static DataTable GetGSTBaseline()
         {
-            return dtGST = dtGST ?? new MasterRepository().GetGST();
+            if(dtGST == null)
+            {
+                FillGSTBaseLine();
+            }
+
+            return dtGST;
         }
 
         public static DataTable GetItemSKUList()
@@ -112,10 +137,31 @@ namespace NSRetail
             return dtItemCodeList;
         }
 
+        public static DataTable GetParentItemList()
+        {
+            if(dtParentItemList == null)
+            {
+                FillParentItemBaseline();
+            }
+
+            return dtParentItemList;
+        }
+
+        public static IEnumerable<GSTInfo> GetGSTInfoList()
+        {
+            if(dtGST == null)
+            {
+                FillGSTBaseLine();
+            }
+
+            return gstInfoList;
+        }
+
         public static void FillBaseLine()
         {
             FillItemBaseline();
             GetGSTBaseline();
+            FillParentItemBaseline();
         }
 
         public static void PrintBarCode(object ItemCode, object ItemName, string SalePrice, object oQuantity)

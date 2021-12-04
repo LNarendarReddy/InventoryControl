@@ -41,6 +41,7 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -59,13 +60,11 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.txtDescription = new DevExpress.XtraEditors.TextEdit();
             this.txtItemName = new DevExpress.XtraEditors.TextEdit();
             this.txtSKUCode = new DevExpress.XtraEditors.TextEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -80,13 +79,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvItemPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemCodes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemCodes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSKUCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
@@ -116,7 +113,6 @@
             this.layoutControl1.Controls.Add(this.gcStockSummary);
             this.layoutControl1.Controls.Add(this.gcItemPriceList);
             this.layoutControl1.Controls.Add(this.gcItemCodes);
-            this.layoutControl1.Controls.Add(this.txtDescription);
             this.layoutControl1.Controls.Add(this.txtItemName);
             this.layoutControl1.Controls.Add(this.txtSKUCode);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -214,6 +210,7 @@
             this.gridColumn10,
             this.gridColumn11,
             this.gridColumn12,
+            this.gridColumn25,
             this.gridColumn13,
             this.gridColumn14,
             this.gridColumn15,
@@ -254,12 +251,20 @@
             // 
             // gridColumn12
             // 
-            this.gridColumn12.Caption = "Cost Price";
-            this.gridColumn12.FieldName = "COSTPRICE";
+            this.gridColumn12.Caption = "Cost Price With Tax";
+            this.gridColumn12.FieldName = "COSTPRICEWT";
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 1;
+            // 
+            // gridColumn25
+            // 
+            this.gridColumn25.Caption = "Cost Price w/o Tax";
+            this.gridColumn25.FieldName = "COSTPRICEWOT";
+            this.gridColumn25.Name = "gridColumn25";
+            this.gridColumn25.Visible = true;
+            this.gridColumn25.VisibleIndex = 4;
             // 
             // gridColumn13
             // 
@@ -293,7 +298,7 @@
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.OptionsColumn.AllowEdit = false;
             this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 4;
+            this.gridColumn16.VisibleIndex = 5;
             // 
             // gridColumn17
             // 
@@ -302,7 +307,7 @@
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.OptionsColumn.AllowEdit = false;
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 5;
+            this.gridColumn17.VisibleIndex = 6;
             // 
             // gridColumn18
             // 
@@ -311,7 +316,7 @@
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.OptionsColumn.AllowEdit = false;
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 6;
+            this.gridColumn18.VisibleIndex = 7;
             // 
             // gridColumn19
             // 
@@ -329,10 +334,10 @@
             // 
             // gcItemCodes
             // 
-            this.gcItemCodes.Location = new System.Drawing.Point(7, 112);
+            this.gcItemCodes.Location = new System.Drawing.Point(7, 70);
             this.gcItemCodes.MainView = this.gvItemCodes;
             this.gcItemCodes.Name = "gcItemCodes";
-            this.gcItemCodes.Size = new System.Drawing.Size(986, 235);
+            this.gcItemCodes.Size = new System.Drawing.Size(986, 277);
             this.gcItemCodes.TabIndex = 7;
             this.gcItemCodes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvItemCodes});
@@ -427,30 +432,21 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             // 
-            // txtDescription
-            // 
-            this.txtDescription.Location = new System.Drawing.Point(89, 54);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Properties.ReadOnly = true;
-            this.txtDescription.Size = new System.Drawing.Size(899, 22);
-            this.txtDescription.StyleController = this.layoutControl1;
-            this.txtDescription.TabIndex = 6;
-            // 
             // txtItemName
             // 
-            this.txtItemName.Location = new System.Drawing.Point(587, 12);
+            this.txtItemName.Location = new System.Drawing.Point(585, 12);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Properties.ReadOnly = true;
-            this.txtItemName.Size = new System.Drawing.Size(401, 22);
+            this.txtItemName.Size = new System.Drawing.Size(403, 22);
             this.txtItemName.StyleController = this.layoutControl1;
             this.txtItemName.TabIndex = 5;
             // 
             // txtSKUCode
             // 
-            this.txtSKUCode.Location = new System.Drawing.Point(89, 12);
+            this.txtSKUCode.Location = new System.Drawing.Point(87, 12);
             this.txtSKUCode.Name = "txtSKUCode";
             this.txtSKUCode.Properties.ReadOnly = true;
-            this.txtSKUCode.Size = new System.Drawing.Size(401, 22);
+            this.txtSKUCode.Size = new System.Drawing.Size(403, 22);
             this.txtSKUCode.StyleController = this.layoutControl1;
             this.txtSKUCode.TabIndex = 4;
             // 
@@ -463,7 +459,6 @@
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlItem2,
-            this.layoutControlItem3,
             this.layoutControlGroup1,
             this.layoutControlGroup2,
             this.layoutControlGroup3});
@@ -480,7 +475,7 @@
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItem1.Size = new System.Drawing.Size(498, 42);
             this.layoutControlItem1.Text = "SKU Code";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(65, 16);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(63, 16);
             // 
             // layoutControlItem2
             // 
@@ -490,27 +485,17 @@
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItem2.Size = new System.Drawing.Size(498, 42);
             this.layoutControlItem2.Text = "Item Name";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(65, 16);
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.txtDescription;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 42);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem3.Size = new System.Drawing.Size(996, 42);
-            this.layoutControlItem3.Text = "Description";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(65, 16);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(63, 16);
             // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem4});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 84);
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 42);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(996, 266);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(996, 308);
             this.layoutControlGroup1.Text = "Item Code List";
             // 
             // layoutControlItem4
@@ -518,7 +503,7 @@
             this.layoutControlItem4.Control = this.gcItemCodes;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(990, 239);
+            this.layoutControlItem4.Size = new System.Drawing.Size(990, 281);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
@@ -582,13 +567,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvItemPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemCodes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemCodes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSKUCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
@@ -605,10 +588,8 @@
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraEditors.TextEdit txtSKUCode;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.TextEdit txtDescription;
         private DevExpress.XtraEditors.TextEdit txtItemName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
@@ -645,5 +626,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
     }
 }

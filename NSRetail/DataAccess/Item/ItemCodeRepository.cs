@@ -38,7 +38,7 @@ namespace DataAccess
             return dsItemCodes;
         }
 
-        public DataSet GetItemCode(object itemCodeID)
+        public DataSet GetItemCode(object itemCodeID, object CategoryID)
         {
             DataSet dsItemCode = new DataSet();
             try
@@ -49,6 +49,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_ITEMCODE]";
                     cmd.Parameters.AddWithValue("@ItemCodeID", itemCodeID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dsItemCode);
@@ -84,14 +85,19 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ItemCode", itemObj.ItemCode);
                     cmd.Parameters.AddWithValue("@Description", itemObj.Description);
                     cmd.Parameters.AddWithValue("@CategoryID", itemObj.CategoryID);
+                    cmd.Parameters.AddWithValue("@SubCategoryID", itemObj.SubCategoryID);
                     cmd.Parameters.AddWithValue("@HSNCode", itemObj.HSNCode);
                     cmd.Parameters.AddWithValue("@IsEAN", itemObj.IsEAN);
                     cmd.Parameters.AddWithValue("@SKUCode", itemObj.SKUCode);
-                    cmd.Parameters.AddWithValue("@CostPrice", itemObj.CostPrice);
+                    cmd.Parameters.AddWithValue("@CostPriceWT", itemObj.CostPriceWT);
+                    cmd.Parameters.AddWithValue("@CostPriceWOT", itemObj.CostPriceWOT);
                     cmd.Parameters.AddWithValue("@SalePrice", itemObj.SalePrice);
                     cmd.Parameters.AddWithValue("@MRP", itemObj.MRP);
                     cmd.Parameters.AddWithValue("@GSTID", itemObj.GSTID);
                     cmd.Parameters.AddWithValue("@UserID", itemObj.UserID);
+                    cmd.Parameters.AddWithValue("@IsOpenItem", itemObj.IsOpenItem);
+                    cmd.Parameters.AddWithValue("@ParentItemID", itemObj.ParentItemID);
+                    cmd.Parameters.AddWithValue("@UOMID", itemObj.UOMID);
                     object objReturn = cmd.ExecuteScalar();
 
                     string str = Convert.ToString(objReturn.ToString().Split(',')[0]);
@@ -255,7 +261,7 @@ namespace DataAccess
 
         public DataTable GetParentItems(object CategoryID)
         {
-            DataTable dtItem = new DataTable();
+            DataTable dtParentItems = new DataTable();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -263,22 +269,23 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_PARENTITEMS]";
-                    cmd.Parameters.Add("@CATEGORYID", CategoryID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        da.Fill(dtItem);
+                        da.Fill(dtParentItems);
                     }
+
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Retrieving Item List", ex);
+                throw new Exception("Error While Retrieving Parent Item List", ex);
             }
             finally
             {
                 SQLCon.Sqlconn().Close();
             }
-            return dtItem;
+            return dtParentItems;
         }
     }
 }
