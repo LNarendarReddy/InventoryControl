@@ -459,5 +459,33 @@ namespace DataAccess
             return ds;
         }
 
+        public DataTable GetStockSummary(object branchID, object itemID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_STOCKSUMMARY]";
+                    cmd.Parameters.AddWithValue("@BranchID", branchID);
+                    cmd.Parameters.AddWithValue("@ItemID", itemID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving stock summary", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
     }
 }

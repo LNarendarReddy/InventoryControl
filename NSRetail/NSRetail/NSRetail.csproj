@@ -291,6 +291,12 @@
     <Compile Include="Stock\frmStockEntry.Designer.cs">
       <DependentUpon>frmStockEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stock\frmStockSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmStockSummary.Designer.cs">
+      <DependentUpon>frmStockSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\DeleteMessageUtility.cs" />
     <Compile Include="Utilities\Utility.cs" />
     <EmbeddedResource Include="Item\frmAddCode.resx">
@@ -411,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmStockEntry.resx">
       <DependentUpon>frmStockEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmStockSummary.resx">
+      <DependentUpon>frmStockSummary.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />

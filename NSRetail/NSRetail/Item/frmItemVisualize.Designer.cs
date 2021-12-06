@@ -71,6 +71,8 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcStockSummary)).BeginInit();
@@ -145,7 +147,9 @@
             this.gridColumn21,
             this.gridColumn22,
             this.gridColumn23,
-            this.gridColumn24});
+            this.gridColumn24,
+            this.gridColumn26,
+            this.gridColumn27});
             this.gvStockSummary.GridControl = this.gcStockSummary;
             this.gvStockSummary.Name = "gvStockSummary";
             this.gvStockSummary.OptionsBehavior.ReadOnly = true;
@@ -547,6 +551,22 @@
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
+            // gridColumn26
+            // 
+            this.gridColumn26.Caption = "Available weight (in KGs)";
+            this.gridColumn26.FieldName = "WEIGHTINKGS";
+            this.gridColumn26.Name = "gridColumn26";
+            this.gridColumn26.Visible = true;
+            this.gridColumn26.VisibleIndex = 3;
+            // 
+            // gridColumn27
+            // 
+            this.gridColumn27.Caption = "In transit weight (in KGs)";
+            this.gridColumn27.FieldName = "INTRANSITWEIGHTINKGS";
+            this.gridColumn27.Name = "gridColumn27";
+            this.gridColumn27.Visible = true;
+            this.gridColumn27.VisibleIndex = 4;
+            // 
             // frmItemVisualize
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -627,5 +647,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn27;
     }
 }

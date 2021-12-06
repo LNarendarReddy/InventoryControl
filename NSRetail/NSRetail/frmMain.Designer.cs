@@ -54,10 +54,12 @@
             this.btnSubCategory = new DevExpress.XtraBars.BarButtonItem();
             this.btnInvoiceList = new DevExpress.XtraBars.BarButtonItem();
             this.btnDispatchList = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiStockSummary = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -70,7 +72,6 @@
             // 
             // ribbonControl1
             // 
-            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(45, 44, 45, 44);
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -93,18 +94,17 @@
             this.bbiRefreshData,
             this.btnSubCategory,
             this.btnInvoiceList,
-            this.btnDispatchList});
+            this.btnDispatchList,
+            this.bbiStockSummary});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ribbonControl1.MaxItemId = 24;
+            this.ribbonControl1.MaxItemId = 25;
             this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.OptionsMenuMinWidth = 495;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage3,
             this.ribbonPage1});
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1});
-            this.ribbonControl1.Size = new System.Drawing.Size(1767, 235);
+            this.ribbonControl1.Size = new System.Drawing.Size(1178, 161);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // btnBranch
@@ -375,6 +375,15 @@
             this.btnDispatchList.Name = "btnDispatchList";
             this.btnDispatchList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDispatchList_ItemClick);
             // 
+            // bbiStockSummary
+            // 
+            this.bbiStockSummary.Caption = "Stock summary by branch";
+            this.bbiStockSummary.Id = 24;
+            this.bbiStockSummary.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.bbiStockSummary.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.bbiStockSummary.Name = "bbiStockSummary";
+            this.bbiStockSummary.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiStockSummary_ItemClick);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Appearance.Font = new System.Drawing.Font("Arial", 10F);
@@ -382,7 +391,8 @@
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2,
             this.ribbonPageGroup3,
-            this.ribbonPageGroup5});
+            this.ribbonPageGroup5,
+            this.ribbonPageGroup6});
             this.ribbonPage3.Name = "ribbonPage3";
             this.ribbonPage3.Text = "Operations";
             // 
@@ -409,6 +419,12 @@
             this.ribbonPageGroup5.ItemLinks.Add(this.bbiRefreshData);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "Refresh";
+            // 
+            // ribbonPageGroup6
+            // 
+            this.ribbonPageGroup6.ItemLinks.Add(this.bbiStockSummary);
+            this.ribbonPageGroup6.Name = "ribbonPageGroup6";
+            this.ribbonPageGroup6.Text = "Summary";
             // 
             // ribbonPage1
             // 
@@ -454,11 +470,10 @@
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 1073);
-            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 728);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1767, 36);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1178, 24);
             // 
             // ribbonPage2
             // 
@@ -467,13 +482,12 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1767, 1109);
+            this.ClientSize = new System.Drawing.Size(1178, 752);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmMain";
             this.Ribbon = this.ribbonControl1;
             this.StatusBar = this.ribbonStatusBar1;
@@ -519,6 +533,8 @@
         private DevExpress.XtraBars.BarButtonItem btnSubCategory;
         private DevExpress.XtraBars.BarButtonItem btnInvoiceList;
         private DevExpress.XtraBars.BarButtonItem btnDispatchList;
+        private DevExpress.XtraBars.BarButtonItem bbiStockSummary;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
     }
 }
 
