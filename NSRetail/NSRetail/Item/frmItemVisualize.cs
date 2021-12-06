@@ -21,7 +21,6 @@ namespace NSRetail
 
             txtItemName.EditValue = dsItemVisualizer.Tables["ITEM"].Rows[0]["ITEMNAME"];
             txtSKUCode.EditValue = dsItemVisualizer.Tables["ITEM"].Rows[0]["SKUCODE"];
-            txtDescription.EditValue = dsItemVisualizer.Tables["ITEM"].Rows[0]["DESCRIPTION"];
 
             gcItemCodes.DataSource = dsItemVisualizer.Tables["ITEMCODES"];
             gcItemPriceList.DataSource = dsItemVisualizer.Tables["ITEMPRICES"];

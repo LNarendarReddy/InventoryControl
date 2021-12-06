@@ -1,15 +1,8 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
 using Entity;
 using ErrorManagement;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.Stock
@@ -274,33 +267,6 @@ namespace NSRetail.Stock
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
-        public class GSTInfo
-        {
-            public int GSTID { get; set; }
-            public string GSTCODE { get; set; }
-            public decimal CGST { get; set; }
-            public decimal SGST { get; set; }
-            public decimal IGST { get; set; }
-            public decimal CESS { get; set; }
-            public decimal TAXPercent { get; private set; }
-
-            public void UpdateGST (DataRow dr)
-            {
-                GSTID = Convert.ToInt32(dr["GSTID"]);
-                GSTCODE = Convert.ToString(dr["GSTCODE"]);
-                CGST = Convert.ToDecimal(dr["CGST"]);
-                SGST = Convert.ToDecimal(dr["SGST"]);
-                IGST = Convert.ToDecimal(dr["IGST"]);
-                CESS = Convert.ToDecimal(dr["CESS"]);
-                TAXPercent = (CGST + SGST + IGST + CESS) / 100;
-
-            }
-            public void UpdateGST(DataRowView dr)
-            {
-                UpdateGST(dr.Row);
-            }
-        }
-
         private void cmbGST_EditValueChanged(object sender, EventArgs e)
         {
             if (cmbGST.EditValue != null)
