@@ -10,6 +10,7 @@ namespace NSRetail.Stock
     public partial class frmAddStockRecord : DevExpress.XtraEditors.XtraForm
     {
         ItemCodeRepository ObjItemRep = new ItemCodeRepository();
+        MasterRepository ObjMasterRep = new MasterRepository();
         StockRepository ObjStockRep = new StockRepository();
         StockEntry ObjStockEntry = null;
         StockEntryDetail ObjStockEntryDetail = null;
@@ -43,6 +44,9 @@ namespace NSRetail.Stock
                     cmbItemCode.Properties.ValueMember = "ITEMCODEID";
                     cmbItemCode.Properties.DisplayMember = "ITEMCODE";
                 }
+                cmbItemCode.Properties.DataSource = ObjMasterRep.GetGST();
+                cmbItemCode.Properties.ValueMember = "GSTID";
+                cmbItemCode.Properties.DisplayMember = "GSTCODE";
                 if (Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
                     txtCostPriceWOT.Enabled = false;
                 else
@@ -128,9 +132,7 @@ namespace NSRetail.Stock
                             txtMRP.EditValue = ((DataRowView)obj.drSelected)["MRP"];
                             txtSalePrice.EditValue = ((DataRowView)obj.drSelected)["SALEPRICE"];
                             ItemPriceID = ((DataRowView)obj.drSelected)["ITEMPRICEID"];
-                            gSTInfo.UpdateGST((DataRowView)obj.drSelected);
-                            txtGSTCode.EditValue = gSTInfo.GSTCODE;
-                            txtCess.EditValue = gSTInfo.CESS;
+                            cmbGST.EditValue = ((DataRowView)obj.drSelected)["GSTID"];
                             txtCostPriceWOT.EditValue = ((DataRowView)obj.drSelected)["COSTPRICEWOT"];
                             txtCostPriceWT.EditValue = ((DataRowView)obj.drSelected)["COSTPRICEWT"];
                         }
@@ -140,9 +142,7 @@ namespace NSRetail.Stock
                         txtMRP.EditValue = dtMRPList.Rows[0]["MRP"];
                         txtSalePrice.EditValue = dtMRPList.Rows[0]["SALEPRICE"];
                         ItemPriceID = dtMRPList.Rows[0]["ITEMPRICEID"];
-                        gSTInfo.UpdateGST(dtMRPList.Rows[0]);
-                        txtGSTCode.EditValue = gSTInfo.GSTCODE;
-                        txtCess.EditValue = gSTInfo.CESS;
+                        cmbGST.EditValue = dtMRPList.Rows[0]["GSTID"];
                         txtCostPriceWOT.EditValue = dtMRPList.Rows[0]["COSTPRICEWOT"];
                         txtCostPriceWT.EditValue = dtMRPList.Rows[0]["COSTPRICEWT"];
                     }
@@ -172,7 +172,6 @@ namespace NSRetail.Stock
                     }
                     txtQuantity.EditValue = 1;
                     IsLoading = false;
-                    
                     SendKeys.Send("{ENTER}");
                 }
             }
@@ -267,6 +266,11 @@ namespace NSRetail.Stock
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
             }
-        }        
+        }
+        private void cmbGST_EditValueChanged(object sender, EventArgs e)
+        {
+            if (cmbGST.EditValue != null)
+                gSTInfo.UpdateGST((DataRow)cmbGST.GetSelectedDataRow());
+        }
     }
 }
