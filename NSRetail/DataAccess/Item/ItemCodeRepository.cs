@@ -98,6 +98,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@IsOpenItem", itemObj.IsOpenItem);
                     cmd.Parameters.AddWithValue("@ParentItemID", itemObj.ParentItemID);
                     cmd.Parameters.AddWithValue("@UOMID", itemObj.UOMID);
+                    cmd.Parameters.AddWithValue("@FreeItemCodeID", itemObj.FreeItemCodeID);
                     object objReturn = cmd.ExecuteScalar();
 
                     string str = Convert.ToString(objReturn.ToString().Split(',')[0]);

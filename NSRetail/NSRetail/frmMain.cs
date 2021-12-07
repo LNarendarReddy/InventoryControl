@@ -218,5 +218,10 @@ namespace NSRetail
             obj.MdiParent = this;
             obj.Show();
         }
+
+        private void bbiStockSummary_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            new frmStockSummary() { MdiParent = this }.Show();
+        }
     }
 }

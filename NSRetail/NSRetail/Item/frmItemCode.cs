@@ -13,7 +13,7 @@ namespace NSRetail
     {
         Item itemObj;
         GridView gvItemCode;
-        bool isLoading;
+        bool isLoading, isEditMode;
 
         public frmItemCode(Item item)
         {
@@ -59,6 +59,7 @@ namespace NSRetail
                 itemObj.IsOpenItem = chkIsOpenItem.EditValue;
                 itemObj.ParentItemID = sluParentItem.EditValue;
                 itemObj.UOMID = luUOM.EditValue;
+                itemObj.FreeItemCodeID = sluFreeItem.EditValue;
                 
                 new ItemCodeRepository().SaveItemCode(itemObj);
 
@@ -164,10 +165,6 @@ namespace NSRetail
             sluSKUCode.Properties.DisplayMember = "SKUCODE";
             sluSKUCode.Properties.ValueMember = "ITEMID";
             
-            //txtItemCode.Properties.DataSource = Utility.GetItemCodeList();
-            //txtItemCode.Properties.DisplayMember = "ITEMCODE";
-            //txtItemCode.Properties.ValueMember = "ITEMCODEID";
-
             luGST.Properties.DataSource = Utility.GetGSTInfoList();
             luGST.Properties.DisplayMember = "GSTCODE";
             luGST.Properties.ValueMember = "GSTID";
@@ -193,6 +190,10 @@ namespace NSRetail
             luSubCategory.Properties.DataSource = new MasterRepository().GetSubCategory();
             luSubCategory.Properties.DisplayMember = "SUBCATEGORYNAME";
             luSubCategory.Properties.ValueMember = "SUBCATEGORYID";
+
+            sluFreeItem.Properties.DataSource = Utility.GetItemCodeList();
+            sluFreeItem.Properties.DisplayMember = "ITEMNAME";
+            sluFreeItem.Properties.ValueMember = "ITEMCODEID";
 
             if (refresh)
             {
@@ -265,10 +266,15 @@ namespace NSRetail
             luSubCategory.EditValue = null;
             txtCostPriceWOT.EditValue = null;
             luUOM.EditValue = null;
+            sluFreeItem.EditValue = null;
+            isEditMode = false;
         }
 
         private void txtItemCode_Properties_Leave(object sender, EventArgs e)
         {
+            // do not load again unless code changes
+            if (isEditMode && itemObj.ItemCode.Equals(txtItemCode.EditValue)) return;
+
             if (string.IsNullOrEmpty(Convert.ToString(txtItemCode.EditValue)))
             {
                 ClearUI();
@@ -306,12 +312,14 @@ namespace NSRetail
             txtItemName.EditValue = dtItemDetails.Rows[0]["ITEMNAME"];
             Text = "Edit Item - " + txtItemName.Text;
             itemObj.ItemID = dtItemDetails.Rows[0]["ITEMID"];
+            itemObj.ItemCode = dtItemDetails.Rows[0]["ITEMCODE"];
             //txtDescription.EditValue = dtItemDetails.Rows[0]["DESCRIPTION"];
             gluCategory.EditValue = dtItemDetails.Rows[0]["CATEGORYID"];
             chkIsOpenItem.EditValue = dtItemDetails.Rows[0]["ISOPENITEM"];
             sluParentItem.EditValue = dtItemDetails.Rows[0]["PARENTITEMID"];
             luSubCategory.EditValue = dtItemDetails.Rows[0]["SUBCATEGORYID"];
             luUOM.EditValue = dtItemDetails.Rows[0]["UOMID"];
+            sluFreeItem.EditValue = dtItemDetails.Rows[0]["FREEITEMCODEID"];
 
             DataTable dtItemCodePrices = dsItemDetails.Tables["ITEMCODEPRICES"];
             DataRow selectedPrice = dtItemCodePrices.Rows[0];
@@ -336,6 +344,7 @@ namespace NSRetail
             luGST.EditValue = selectedPrice["GSTID"];
 
             isLoading = false;
+            isEditMode = true;
         }
 
         private void sluParentItem_Properties_EditValueChanged(object sender, EventArgs e)
