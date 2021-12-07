@@ -17,7 +17,6 @@ namespace NSRetail.Stock
         object ItemPriceID = null;
         bool IsParentExist = false;
         bool IsOpenItem = false;
-        GSTInfo gSTInfo = new GSTInfo();
         bool IsLoading = false; 
 
         frmStockEntry frmparent = null;
@@ -44,9 +43,11 @@ namespace NSRetail.Stock
                     cmbItemCode.Properties.ValueMember = "ITEMCODEID";
                     cmbItemCode.Properties.DisplayMember = "ITEMCODE";
                 }
-                cmbItemCode.Properties.DataSource = ObjMasterRep.GetGST();
-                cmbItemCode.Properties.ValueMember = "GSTID";
-                cmbItemCode.Properties.DisplayMember = "GSTCODE";
+
+                cmbGST.Properties.DataSource = Utility.GetGSTInfoList();
+                cmbGST.Properties.ValueMember = "GSTID";
+                cmbGST.Properties.DisplayMember = "GSTCODE";
+
                 if (Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
                     txtCostPriceWOT.Enabled = false;
                 else
@@ -59,11 +60,19 @@ namespace NSRetail.Stock
         }
         private void FrmStockDispatch_RefreshBaseLineData(object sender, EventArgs e)
         {
-            object selectedValue = cmbItemCode.EditValue;
+            object selectedItemValue = cmbItemCode.EditValue;
+            object selectedGSTValue = cmbGST.EditValue;
+
             cmbItemCode.Properties.DataSource = Utility.GetItemCodeList();
             cmbItemCode.Properties.ValueMember = "ITEMCODEID";
             cmbItemCode.Properties.DisplayMember = "ITEMCODE";
-            cmbItemCode.EditValue = selectedValue;
+
+            cmbGST.Properties.DataSource = Utility.GetGSTInfoList();
+            cmbGST.Properties.ValueMember = "GSTID";
+            cmbGST.Properties.DisplayMember = "GSTCODE";
+
+            cmbItemCode.EditValue = selectedItemValue;
+            cmbGST.EditValue = selectedGSTValue;
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -89,6 +98,7 @@ namespace NSRetail.Stock
                 ObjStockEntryDetail.QUANTITY = txtQuantity.EditValue;
                 ObjStockEntryDetail.WEIGHTINKGS = txtWeightInKGs.EditValue;
                 ObjStockEntryDetail.UserID = Utility.UserID;
+                ObjStockEntryDetail.GSTID = cmbGST.EditValue;
                 ObjStockRep.SaveInvoiceDetail(ObjStockEntryDetail);
                 frmparent.RefreshGrid(ObjStockEntryDetail);
                 ObjStockEntryDetail.STOCKENTRYDETAILID = 0;
@@ -102,6 +112,7 @@ namespace NSRetail.Stock
                 txtCostPriceWT.EditValue = null;
                 txtTotalPriceWT.EditValue = null;
                 txtTotalPriceWOT.EditValue = null;
+                cmbGST.EditValue = null;
                 cmbItemCode.Focus();
             }
             catch (Exception ex)
@@ -230,10 +241,10 @@ namespace NSRetail.Stock
             {
                 if (IsLoading) return;
                 if (txtCostPriceWOT.EditValue != null && 
-                    !Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
+                    !Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) && cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
                 {
                     txtCostPriceWT.EditValue = Convert.ToDecimal(txtCostPriceWOT.EditValue) +
-                        Convert.ToDecimal(txtCostPriceWOT.EditValue) * gSTInfo.TAXPercent;
+                        Convert.ToDecimal(txtCostPriceWOT.EditValue) * gstInfo.TAXPercent;
                     txtTotalPriceWOT.EditValue = Convert.ToDecimal(txtCostPriceWOT.EditValue)
                         * Convert.ToInt32(txtQuantity.EditValue);
                     txtTotalPriceWT.EditValue = (Convert.ToDecimal(txtCostPriceWT.EditValue))
@@ -251,10 +262,10 @@ namespace NSRetail.Stock
             try
             {
                 if (IsLoading) return;
-                if (txtCostPriceWT.EditValue != null && Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
+                if (txtCostPriceWT.EditValue != null && Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) && cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
                 {
                     txtCostPriceWOT.EditValue = Convert.ToDecimal(txtCostPriceWT.EditValue) -
-                        Convert.ToDecimal(txtCostPriceWT.EditValue) * gSTInfo.TAXPercent;
+                        Convert.ToDecimal(txtCostPriceWT.EditValue) * gstInfo.TAXPercent;
                     txtTotalPriceWT.EditValue = Convert.ToDecimal(txtCostPriceWT.EditValue) 
                         * Convert.ToInt32(txtQuantity.EditValue);
                     txtTotalPriceWOT.EditValue = (Convert.ToDecimal(txtCostPriceWOT.EditValue))
@@ -267,10 +278,15 @@ namespace NSRetail.Stock
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
+
         private void cmbGST_EditValueChanged(object sender, EventArgs e)
         {
-            if (cmbGST.EditValue != null)
-                gSTInfo.UpdateGST((DataRow)cmbGST.GetSelectedDataRow());
+            if (IsLoading) return;
+
+            if (Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
+                txtCostPriceWT_EditValueChanged(null, null);
+            else
+                txtCostPriceWOT_EditValueChanged(null, null);
         }
     }
 }

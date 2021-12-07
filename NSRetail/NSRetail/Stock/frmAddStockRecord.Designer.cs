@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule12 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddStockRecord));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
@@ -41,6 +40,7 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule9 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule10 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule11 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtCess = new DevExpress.XtraEditors.TextEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -66,6 +66,7 @@
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbGST = new DevExpress.XtraEditors.LookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -79,11 +80,10 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.cmbGST = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCess.Properties)).BeginInit();
@@ -98,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbLookupView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbGST.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -111,11 +112,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbGST.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -164,15 +164,11 @@
             // 
             this.txtCess.Enabled = false;
             this.txtCess.EnterMoveNextControl = true;
-            this.txtCess.Location = new System.Drawing.Point(485, 222);
+            this.txtCess.Location = new System.Drawing.Point(484, 180);
             this.txtCess.Name = "txtCess";
-            this.txtCess.Size = new System.Drawing.Size(193, 22);
+            this.txtCess.Size = new System.Drawing.Size(194, 22);
             this.txtCess.StyleController = this.layoutControl1;
             this.txtCess.TabIndex = 10;
-            conditionValidationRule12.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule12.ErrorText = "Mandatory";
-            conditionValidationRule12.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtCess, conditionValidationRule12);
             // 
             // btnCancel
             // 
@@ -203,7 +199,7 @@
             // 
             this.txtTotalPriceWT.Enabled = false;
             this.txtTotalPriceWT.EnterMoveNextControl = true;
-            this.txtTotalPriceWT.Location = new System.Drawing.Point(484, 138);
+            this.txtTotalPriceWT.Location = new System.Drawing.Point(484, 264);
             this.txtTotalPriceWT.Name = "txtTotalPriceWT";
             this.txtTotalPriceWT.Size = new System.Drawing.Size(194, 22);
             this.txtTotalPriceWT.StyleController = this.layoutControl1;
@@ -217,7 +213,7 @@
             // 
             this.txtTotalPriceWOT.Enabled = false;
             this.txtTotalPriceWOT.EnterMoveNextControl = true;
-            this.txtTotalPriceWOT.Location = new System.Drawing.Point(142, 138);
+            this.txtTotalPriceWOT.Location = new System.Drawing.Point(142, 264);
             this.txtTotalPriceWOT.Name = "txtTotalPriceWOT";
             this.txtTotalPriceWOT.Size = new System.Drawing.Size(192, 22);
             this.txtTotalPriceWOT.StyleController = this.layoutControl1;
@@ -258,7 +254,7 @@
             // txtWeightInKGs
             // 
             this.txtWeightInKGs.EnterMoveNextControl = true;
-            this.txtWeightInKGs.Location = new System.Drawing.Point(484, 264);
+            this.txtWeightInKGs.Location = new System.Drawing.Point(484, 222);
             this.txtWeightInKGs.Name = "txtWeightInKGs";
             this.txtWeightInKGs.Size = new System.Drawing.Size(194, 22);
             this.txtWeightInKGs.StyleController = this.layoutControl1;
@@ -271,7 +267,7 @@
             // txtQuantity
             // 
             this.txtQuantity.EnterMoveNextControl = true;
-            this.txtQuantity.Location = new System.Drawing.Point(142, 264);
+            this.txtQuantity.Location = new System.Drawing.Point(142, 222);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(192, 22);
             this.txtQuantity.StyleController = this.layoutControl1;
@@ -284,9 +280,8 @@
             // 
             // txtSalePrice
             // 
-            this.txtSalePrice.Enabled = false;
             this.txtSalePrice.EnterMoveNextControl = true;
-            this.txtSalePrice.Location = new System.Drawing.Point(484, 180);
+            this.txtSalePrice.Location = new System.Drawing.Point(484, 138);
             this.txtSalePrice.Name = "txtSalePrice";
             this.txtSalePrice.Size = new System.Drawing.Size(194, 22);
             this.txtSalePrice.StyleController = this.layoutControl1;
@@ -298,9 +293,8 @@
             // 
             // txtMRP
             // 
-            this.txtMRP.Enabled = false;
             this.txtMRP.EnterMoveNextControl = true;
-            this.txtMRP.Location = new System.Drawing.Point(142, 180);
+            this.txtMRP.Location = new System.Drawing.Point(142, 138);
             this.txtMRP.Name = "txtMRP";
             this.txtMRP.Size = new System.Drawing.Size(192, 22);
             this.txtMRP.StyleController = this.layoutControl1;
@@ -435,6 +429,28 @@
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             // 
+            // cmbGST
+            // 
+            this.cmbGST.Location = new System.Drawing.Point(142, 180);
+            this.cmbGST.Name = "cmbGST";
+            this.cmbGST.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbGST.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTID", "GSTID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTCODE", "GSTCODE"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CGST", "CGST", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SGST", "SGST", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("IGST", "IGST", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CESS", "CESS", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.cmbGST.Properties.NullText = "";
+            this.cmbGST.Size = new System.Drawing.Size(192, 22);
+            this.cmbGST.StyleController = this.layoutControl1;
+            this.cmbGST.TabIndex = 9;
+            conditionValidationRule11.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule11.ErrorText = "Value cannot be null";
+            this.dxValidationProvider1.SetValidationRule(this.cmbGST, conditionValidationRule11);
+            this.cmbGST.EditValueChanged += new System.EventHandler(this.cmbGST_EditValueChanged);
+            // 
             // Root
             // 
             this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 10F);
@@ -454,9 +470,9 @@
             this.layoutControlItem5,
             this.layoutControlItem10,
             this.layoutControlItem9,
+            this.layoutControlItem3,
             this.layoutControlItem11,
-            this.layoutControlItem12,
-            this.layoutControlItem3});
+            this.layoutControlItem12});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(690, 342);
@@ -486,7 +502,7 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.txtQuantity;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 252);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 210);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItem6.Size = new System.Drawing.Size(342, 42);
@@ -496,7 +512,7 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtMRP;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 168);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 126);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItem4.Size = new System.Drawing.Size(342, 42);
@@ -506,17 +522,17 @@
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.cmbGST;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 210);
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 168);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem8.Size = new System.Drawing.Size(343, 42);
+            this.layoutControlItem8.Size = new System.Drawing.Size(342, 42);
             this.layoutControlItem8.Text = "GST Code";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(118, 16);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.txtWeightInKGs;
-            this.layoutControlItem7.Location = new System.Drawing.Point(342, 252);
+            this.layoutControlItem7.Location = new System.Drawing.Point(342, 210);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItem7.Size = new System.Drawing.Size(344, 42);
@@ -554,7 +570,7 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.txtSalePrice;
-            this.layoutControlItem5.Location = new System.Drawing.Point(342, 168);
+            this.layoutControlItem5.Location = new System.Drawing.Point(342, 126);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItem5.Size = new System.Drawing.Size(344, 42);
@@ -581,10 +597,20 @@
             this.layoutControlItem9.Text = "CP With Tax";
             this.layoutControlItem9.TextSize = new System.Drawing.Size(118, 16);
             // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.txtCess;
+            this.layoutControlItem3.Location = new System.Drawing.Point(342, 168);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem3.Size = new System.Drawing.Size(344, 42);
+            this.layoutControlItem3.Text = "Cess";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(118, 16);
+            // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.txtTotalPriceWOT;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 126);
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 252);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItem11.Size = new System.Drawing.Size(342, 42);
@@ -594,41 +620,12 @@
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.txtTotalPriceWT;
-            this.layoutControlItem12.Location = new System.Drawing.Point(342, 126);
+            this.layoutControlItem12.Location = new System.Drawing.Point(342, 252);
             this.layoutControlItem12.Name = "layoutControlItem12";
             this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItem12.Size = new System.Drawing.Size(344, 42);
             this.layoutControlItem12.Text = "Total Price With Tax";
             this.layoutControlItem12.TextSize = new System.Drawing.Size(118, 16);
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.txtCess;
-            this.layoutControlItem3.Location = new System.Drawing.Point(343, 210);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem3.Size = new System.Drawing.Size(343, 42);
-            this.layoutControlItem3.Text = "Cess";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(118, 16);
-            // 
-            // cmbGST
-            // 
-            this.cmbGST.Location = new System.Drawing.Point(142, 222);
-            this.cmbGST.Name = "cmbGST";
-            this.cmbGST.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbGST.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTID", "GSTID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTCODE", "GSTCODE"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CGST", "CGST", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SGST", "SGST", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("IGST", "IGST", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CESS", "CESS", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.cmbGST.Properties.NullText = "";
-            this.cmbGST.Size = new System.Drawing.Size(193, 22);
-            this.cmbGST.StyleController = this.layoutControl1;
-            this.cmbGST.TabIndex = 9;
-            this.cmbGST.EditValueChanged += new System.EventHandler(this.cmbGST_EditValueChanged);
             // 
             // frmAddStockRecord
             // 
@@ -654,6 +651,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbLookupView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbGST.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -667,11 +665,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbGST.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

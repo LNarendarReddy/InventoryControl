@@ -283,6 +283,7 @@ namespace DataAccess
                     cmd.Parameters.Add("@QUANTITY", ObjStockEntryDetail.QUANTITY);
                     cmd.Parameters.Add("@WEIGHTINKGS", ObjStockEntryDetail.WEIGHTINKGS);
                     cmd.Parameters.Add("@USERID", ObjStockEntryDetail.UserID);
+                    cmd.Parameters.Add("@GSTID", ObjStockEntryDetail.GSTID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
