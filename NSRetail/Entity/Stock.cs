@@ -54,6 +54,7 @@ namespace Entity
         public object COSTPRICEWOT { get; set; }
         public object MRP { get; set; }
         public object SALEPRICE { get; set; }
+        public object GSTID { get; set; }
 
     }
 }
