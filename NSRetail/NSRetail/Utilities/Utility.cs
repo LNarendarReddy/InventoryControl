@@ -164,7 +164,8 @@ namespace NSRetail
             FillParentItemBaseline();
         }
 
-        public static void PrintBarCode(object ItemCode, object ItemName, string SalePrice, object oQuantity)
+        public static void PrintBarCode(object ItemCode, object ItemName, 
+            string SalePrice, object oQuantity,object MRP,object BatchNumber,object PackedDate)
         {
             try
             {
@@ -175,6 +176,7 @@ namespace NSRetail
                     dt.Columns.Add("ItemCode", typeof(string));
                     dt.Columns.Add("ItemName", typeof(string));
                     dt.Columns.Add("SalePrice", typeof(string));
+                    dt.Columns.Add("MRP", typeof(string));
                     DataRow dr = null;
                     for (int i = 0; i < Quantity; i++)
                     {
@@ -182,14 +184,18 @@ namespace NSRetail
                         dr["ItemCode"] = ItemCode;
                         dr["ItemName"] = ItemName;
                         dr["SalePrice"] = SalePrice;
+                        dr["MRP"] = MRP;
                         dt.Rows.Add(dr);
                     }
                     rptBarcode rpt = new rptBarcode();
                     rpt.DataSource = dt;
+                    rpt.ShowPrintMarginsWarning = false;
+                    rpt.Parameters["BatchNumber"].Value = BatchNumber;
+                    rpt.Parameters["PackedDate"].Value = DateTime.Now.ToString("MM/yyyy");
                     rpt.CreateDocument();
-                    rpt.ShowRibbonPreview();
-                    //ReportPrintTool printTool = new ReportPrintTool(rpt);
-                    //printTool.Print(Utility.BarcodePrinter);
+                    //rpt.ShowRibbonPreview();
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
+                    printTool.Print(Utility.BarcodePrinter);
                 }
             }
             catch (Exception ex)

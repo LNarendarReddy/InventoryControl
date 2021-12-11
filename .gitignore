@@ -1,0 +1,8 @@
+
+SecurityApp/CategisSecurity/bin
+SecurityApp/CategisSecurity/obj
+SecurityApp/CategisSecurity/.vs
+SecurityApp/SecurityApp/bin
+SecurityApp/SecurityApp/obj
+SecurityApp/SecurityApp/.vs
+*.suo

@@ -32,7 +32,8 @@ namespace NSRetail
             try
             {
                 Utility.PrintBarCode(cmbItemCode.Text,txtItemName.Text,
-                    txtSalePrice.Text, txtQuantity.EditValue);
+                    txtSalePrice.Text, txtQuantity.EditValue,txtMRP.EditValue,
+                    txtBatchNumber.EditValue,dtpPackedDate.EditValue);
                 cmbItemCode.EditValue = null;
                 txtItemName.EditValue = null;
                 txtSalePrice.EditValue = null;

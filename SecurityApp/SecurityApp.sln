@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityApp", "SecurityApp\SecurityApp.csproj", "{BD5FA0D5-8BD2-4278-AA07-8055A3532A07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CategisSecurity", "CategisSecurity\CategisSecurity.csproj", "{909D4BAB-BA1D-4F8D-BD5A-A177ECC00542}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD5FA0D5-8BD2-4278-AA07-8055A3532A07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD5FA0D5-8BD2-4278-AA07-8055A3532A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD5FA0D5-8BD2-4278-AA07-8055A3532A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD5FA0D5-8BD2-4278-AA07-8055A3532A07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{909D4BAB-BA1D-4F8D-BD5A-A177ECC00542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{909D4BAB-BA1D-4F8D-BD5A-A177ECC00542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{909D4BAB-BA1D-4F8D-BD5A-A177ECC00542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{909D4BAB-BA1D-4F8D-BD5A-A177ECC00542}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

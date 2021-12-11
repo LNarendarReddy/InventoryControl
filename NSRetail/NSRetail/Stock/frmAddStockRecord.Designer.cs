@@ -431,6 +431,7 @@
             // 
             // cmbGST
             // 
+            this.cmbGST.EnterMoveNextControl = true;
             this.cmbGST.Location = new System.Drawing.Point(142, 180);
             this.cmbGST.Name = "cmbGST";
             this.cmbGST.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
