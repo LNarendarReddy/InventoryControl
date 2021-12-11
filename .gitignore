@@ -6,3 +6,5 @@ SecurityApp/SecurityApp/bin
 SecurityApp/SecurityApp/obj
 SecurityApp/SecurityApp/.vs
 *.suo
+Services/Warehouse/WarehouseCloudSync/WarehouseCloudSync/bin
+Services/Warehouse/WarehouseCloudSync/WarehouseCloudSync/obj
