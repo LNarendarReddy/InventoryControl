@@ -25,6 +25,7 @@ namespace DataAccess
 
                     dsItemCodes.Tables[0].TableName = "ITEMS";
                     dsItemCodes.Tables[1].TableName = "ITEMCODES";
+                    dsItemCodes.Tables[2].TableName = "NONEAN";
                 }
             }
             catch (Exception ex)

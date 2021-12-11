@@ -18,29 +18,38 @@ namespace NSRetail
     public partial class frmBarCodePrint : DevExpress.XtraEditors.XtraForm
     {
         ItemCodeRepository objItemRep = new ItemCodeRepository();
+        MasterRepository objMasterRep = new MasterRepository();
         public frmBarCodePrint()
         {
             InitializeComponent();
-        }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
             try
             {
+                if (cmbCategory.EditValue.Equals(3) || cmbCategory.EditValue.Equals(4))
+                {
+                    if (!dxValidationProvider1.Validate())
+                        return;
+                }
+                else
+                {
+                    if (!dxValidationProvider11.Validate())
+                        return;
+                }
                 Utility.PrintBarCode(cmbItemCode.Text,txtItemName.Text,
                     txtSalePrice.Text, txtQuantity.EditValue,txtMRP.EditValue,
-                    txtBatchNumber.EditValue,dtpPackedDate.EditValue);
+                    txtBatchNumber.EditValue,dtpPackedDate.EditValue,cmbCategory.EditValue);
                 cmbItemCode.EditValue = null;
                 txtItemName.EditValue = null;
+                txtCostPriceWOT.EditValue = null;   
+                txtCostPriceWT.EditValue = null;
                 txtSalePrice.EditValue = null;
                 txtMRP.EditValue = null;
                 txtQuantity.EditValue = null;
+                cmbCategory.EditValue = null;   
                 cmbItemCode.Focus();
-
             }
             catch (Exception ex)
             {
@@ -53,9 +62,15 @@ namespace NSRetail
         {
             try
             {
-                cmbItemCode.Properties.DataSource = objItemRep.GetEANList();
+                cmbItemCode.Properties.DataSource = Utility.GetNonEAN();
                 cmbItemCode.Properties.DisplayMember = "ITEMCODE";
                 cmbItemCode.Properties.ValueMember = "ITEMCODEID";
+
+                cmbCategory.Properties.DataSource = objMasterRep.GetCategory();
+                cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+                cmbCategory.Properties.ValueMember = "CATEGORYID";
+
+                dtpPackedDate.EditValue = DateTime.Now;
             }
             catch (Exception ex){}
         }
@@ -67,6 +82,12 @@ namespace NSRetail
                 if(cmbItemCode.EditValue != null)
                 {
                     txtItemName.EditValue = cmbLookupView.GetFocusedRowCellValue("ITEMNAME");
+                    cmbCategory.EditValue = cmbLookupView.GetFocusedRowCellValue("CATEGORYID");
+                    if (cmbCategory.EditValue.Equals(3) || cmbCategory.EditValue.Equals(4))
+                    {
+                        dtpPackedDate.Enabled = true;
+                        txtBatchNumber.Enabled = true;
+                    }
                     DataTable dtMRPList = objItemRep.GetMRPList(cmbItemCode.EditValue);
                     if (dtMRPList.Rows.Count > 1)
                     {
@@ -95,6 +116,11 @@ namespace NSRetail
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
             }
+        }
+
+        private void brnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
