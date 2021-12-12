@@ -60,11 +60,11 @@ namespace Entity
         public object SALEPRICE { get; set; }
         public object GSTID { get; set; }
 
-        public object DiscountPer { get; set; }
+        public object DiscountPercentage { get; set; }
 
         public object DiscountFlat { get; set; }
 
-        public object SchemePer { get; set; }
+        public object SchemePercentage { get; set; }
 
         public object SchemeFlat { get; set; }
 

@@ -57,6 +57,7 @@ namespace NSRetail.Stock
                 txtDiscountPer.EditValue = 0;
                 txtSchemePer.EditValue = 0;
                 txtSchemeFlat.EditValue = 0;
+                txtFreeQuantity.EditValue = 0;
             }
             catch (Exception ex)
             {
@@ -104,9 +105,9 @@ namespace NSRetail.Stock
                 ObjStockEntryDetail.WEIGHTINKGS = txtWeightInKGs.EditValue;
                 ObjStockEntryDetail.UserID = Utility.UserID;
                 ObjStockEntryDetail.GSTID = cmbGST.EditValue;
-                ObjStockEntryDetail.DiscountPer = txtDiscountPer.EditValue;
+                ObjStockEntryDetail.DiscountPercentage = txtDiscountPer.EditValue;
                 ObjStockEntryDetail.DiscountFlat = txtDiscountFlat.EditValue;
-                ObjStockEntryDetail.SchemePer = txtSchemePer.EditValue;
+                ObjStockEntryDetail.SchemePercentage = txtSchemePer.EditValue;
                 ObjStockEntryDetail.SchemeFlat = txtSchemeFlat.EditValue;
                 ObjStockEntryDetail.FreeQuantity = txtFreeQuantity.EditValue;
                 ObjStockEntryDetail.TotalPriceWT = txtTotalPriceWT.EditValue;
@@ -129,6 +130,11 @@ namespace NSRetail.Stock
                 txtTotalPriceWT.EditValue = null;
                 txtTotalPriceWOT.EditValue = null;
                 cmbGST.EditValue = null;
+                txtDiscountPer.EditValue = 0;
+                txtDiscountFlat.EditValue = 0;
+                txtSchemePer.EditValue = 0;
+                txtSchemeFlat.EditValue = 0;
+                txtFreeQuantity.EditValue = 0;
                 cmbItemCode.Focus();
             }
             catch (Exception ex)
@@ -246,7 +252,12 @@ namespace NSRetail.Stock
         {
             try
             {
-                if (IsLoading) return;
+                if (IsLoading) 
+                {
+                    CalculateReadOnlyFields();
+                    return; 
+                }
+
                 if (txtCostPriceWOT.EditValue != null && 
                     !Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) && cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
                 {
@@ -265,7 +276,12 @@ namespace NSRetail.Stock
         {
             try
             {
-                if (IsLoading) return;
+                if (IsLoading)
+                {
+                    CalculateReadOnlyFields();
+                    return;
+                }
+
                 if (txtCostPriceWT.EditValue != null && Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) && cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
                 {
                     txtCostPriceWOT.EditValue = Convert.ToDecimal(txtCostPriceWT.EditValue) -
@@ -282,7 +298,11 @@ namespace NSRetail.Stock
 
         private void cmbGST_EditValueChanged(object sender, EventArgs e)
         {
-            if (IsLoading) return;
+            if (IsLoading)
+            {
+                CalculateReadOnlyFields();
+                return;
+            }
 
             if (Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
                 txtCostPriceWT_EditValueChanged(null, null);
@@ -291,6 +311,7 @@ namespace NSRetail.Stock
         }
 
         private void CalculateReadOnlyFields()
+        
         {
             decimal totalPriceWT = Convert.ToDecimal(txtCostPriceWT.EditValue)
                         * Convert.ToInt32(txtQuantity.EditValue);

@@ -160,6 +160,17 @@ namespace NSRetail.Stock
                 view.SetRowCellValue(e.RowHandle, "SALEPRICE", ObjStockEntryDetail.SALEPRICE);
                 view.SetRowCellValue(e.RowHandle, "QUANTITY", ObjStockEntryDetail.QUANTITY);
                 view.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", ObjStockEntryDetail.WEIGHTINKGS);
+                view.SetRowCellValue(e.RowHandle, "FREEQUANTITY", ObjStockEntryDetail.FreeQuantity);
+                view.SetRowCellValue(e.RowHandle, "DISCOUNTFLAT", ObjStockEntryDetail.DiscountFlat);
+                view.SetRowCellValue(e.RowHandle, "DISCOUNTPERCENTAGE", ObjStockEntryDetail.DiscountPercentage);
+                view.SetRowCellValue(e.RowHandle, "SCHEMEPERCENTAGE", ObjStockEntryDetail.SchemePercentage);
+                view.SetRowCellValue(e.RowHandle, "SCHEMEFLAT", ObjStockEntryDetail.SchemeFlat);
+                view.SetRowCellValue(e.RowHandle, "TOTALPRICEWT", ObjStockEntryDetail.TotalPriceWT);
+                view.SetRowCellValue(e.RowHandle, "TOTALPRICEWOT", ObjStockEntryDetail.TotalPriceWOT);
+                view.SetRowCellValue(e.RowHandle, "APPLIEDDISCOUNT", ObjStockEntryDetail.AppliedDiscount);
+                view.SetRowCellValue(e.RowHandle, "APPLIEDSCHEME", ObjStockEntryDetail.AppliedScheme);
+                view.SetRowCellValue(e.RowHandle, "APPLIEDDGST", ObjStockEntryDetail.AppliedGST);
+                view.SetRowCellValue(e.RowHandle, "FINALPRICE", ObjStockEntryDetail.FinalPrice);
             }
             catch (Exception ex)
             {
@@ -205,16 +216,58 @@ namespace NSRetail.Stock
                     {
                         gvStockEntry.SetRowCellValue(rowhandle, "QUANTITY", ObjStockEntryDetail.QUANTITY);
                         gvStockEntry.SetRowCellValue(rowhandle, "WEIGHTINKGS", ObjStockEntryDetail.WEIGHTINKGS);
+                        gvStockEntry.SetRowCellValue(rowhandle, "FREEQUANTITY", ObjStockEntryDetail.FreeQuantity);
+                        gvStockEntry.SetRowCellValue(rowhandle, "DISCOUNTFLAT", ObjStockEntryDetail.DiscountFlat);
+                        gvStockEntry.SetRowCellValue(rowhandle, "DISCOUNTPERCENTAGE", ObjStockEntryDetail.DiscountPercentage);
+                        gvStockEntry.SetRowCellValue(rowhandle, "SCHEMEPERCENTAGE", ObjStockEntryDetail.SchemePercentage);
+                        gvStockEntry.SetRowCellValue(rowhandle, "SCHEMEFLAT", ObjStockEntryDetail.SchemeFlat);
+                        gvStockEntry.SetRowCellValue(rowhandle, "TOTALPRICEWT", ObjStockEntryDetail.TotalPriceWT);
+                        gvStockEntry.SetRowCellValue(rowhandle, "TOTALPRICEWOT", ObjStockEntryDetail.TotalPriceWOT);
+                        gvStockEntry.SetRowCellValue(rowhandle, "APPLIEDDISCOUNT", ObjStockEntryDetail.AppliedDiscount);
+                        gvStockEntry.SetRowCellValue(rowhandle, "APPLIEDSCHEME", ObjStockEntryDetail.AppliedScheme);
+                        gvStockEntry.SetRowCellValue(rowhandle, "APPLIEDDGST", ObjStockEntryDetail.AppliedGST);
+                        gvStockEntry.SetRowCellValue(rowhandle, "FINALPRICE", ObjStockEntryDetail.FinalPrice);
                     }
                     else
                     {
-                        int Qnty = 0;
-                        decimal WeightInKGS = 0;
-                        if (int.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "QUANTITY")), out Qnty))
+                        if (int.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "QUANTITY")), out int Qnty))
                             gvStockEntry.SetRowCellValue(rowhandle, "QUANTITY", Qnty + Convert.ToInt32(ObjStockEntryDetail.QUANTITY));
-                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "WEIGHTINKGS")), out WeightInKGS))
+                        
+                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "WEIGHTINKGS")), out decimal WeightInKGS))
                             gvStockEntry.SetRowCellValue(rowhandle, "WEIGHTINKGS", WeightInKGS + Convert.ToDecimal(ObjStockEntryDetail.WEIGHTINKGS));
+                        
+                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "FREEQUANTITY")), out decimal FreeQuantity))
+                            gvStockEntry.SetRowCellValue(rowhandle, "FREEQUANTITY", FreeQuantity + Convert.ToDecimal(ObjStockEntryDetail.FreeQuantity));
 
+                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "DISCOUNTFLAT")), out decimal DiscountFlat))
+                            gvStockEntry.SetRowCellValue(rowhandle, "DISCOUNTFLAT", DiscountFlat + Convert.ToDecimal(ObjStockEntryDetail.DiscountFlat));
+
+                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "DISCOUNTPERCENTAGE")), out decimal DiscountPercentage))
+                            gvStockEntry.SetRowCellValue(rowhandle, "DISCOUNTPERCENTAGE", DiscountPercentage + Convert.ToDecimal(ObjStockEntryDetail.DiscountPercentage));
+
+                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "SCHEMEPERCENTAGE")), out decimal SchemePercentage))
+                            gvStockEntry.SetRowCellValue(rowhandle, "SCHEMEPERCENTAGE", SchemePercentage + Convert.ToDecimal(ObjStockEntryDetail.SchemePercentage));
+
+                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "SCHEMEFLAT")), out decimal SchemeFlat))
+                            gvStockEntry.SetRowCellValue(rowhandle, "SCHEMEFLAT", SchemeFlat + Convert.ToDecimal(ObjStockEntryDetail.SchemeFlat));
+
+                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "TOTALPRICEWT")), out decimal TotalPriceWT))
+                            gvStockEntry.SetRowCellValue(rowhandle, "TOTALPRICEWT", TotalPriceWT + Convert.ToDecimal(ObjStockEntryDetail.TotalPriceWT));
+
+                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "TOTALPRICEWOT")), out decimal TotalPriceWOT))
+                            gvStockEntry.SetRowCellValue(rowhandle, "TOTALPRICEWOT", TotalPriceWOT + Convert.ToDecimal(ObjStockEntryDetail.TotalPriceWOT));
+
+                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "APPLIEDDISCOUNT")), out decimal AppliedDiscount))
+                            gvStockEntry.SetRowCellValue(rowhandle, "APPLIEDDISCOUNT", AppliedDiscount + Convert.ToDecimal(ObjStockEntryDetail.AppliedDiscount));
+
+                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "APPLIEDSCHEME")), out decimal AppliedScheme))
+                            gvStockEntry.SetRowCellValue(rowhandle, "APPLIEDSCHEME", AppliedScheme + Convert.ToDecimal(ObjStockEntryDetail.AppliedScheme));
+
+                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "APPLIEDDGST")), out decimal AppliedGST))
+                            gvStockEntry.SetRowCellValue(rowhandle, "APPLIEDDGST", AppliedGST + Convert.ToDecimal(ObjStockEntryDetail.AppliedGST));
+
+                        if (decimal.TryParse(Convert.ToString(gvStockEntry.GetRowCellValue(rowhandle, "FINALPRICE")), out decimal FinalPrice))
+                            gvStockEntry.SetRowCellValue(rowhandle, "FINALPRICE", FinalPrice + Convert.ToDecimal(ObjStockEntryDetail.FinalPrice));
                     }
                 }
                 else

@@ -289,17 +289,17 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@WEIGHTINKGS", ObjStockEntryDetail.WEIGHTINKGS);
                     cmd.Parameters.AddWithValue("@USERID", ObjStockEntryDetail.UserID);
                     cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
-                    cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
-                    cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
-                    cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
-                    cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
-                    cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
-                    cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
-                    cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
-                    cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
-                    cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
-                    cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
-                    cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
+                    cmd.Parameters.AddWithValue("@FREEQUANTITY", ObjStockEntryDetail.FreeQuantity);
+                    cmd.Parameters.AddWithValue("@DISCOUNTFLAT", ObjStockEntryDetail.DiscountFlat);
+                    cmd.Parameters.AddWithValue("@DISCOUNTPERCENTAGE", ObjStockEntryDetail.DiscountPercentage);
+                    cmd.Parameters.AddWithValue("@SCHEMEPERCENTAGE", ObjStockEntryDetail.SchemePercentage);
+                    cmd.Parameters.AddWithValue("@SCHEMEFLAT", ObjStockEntryDetail.SchemeFlat);
+                    cmd.Parameters.AddWithValue("@TOTALPRICEWT", ObjStockEntryDetail.TotalPriceWT);
+                    cmd.Parameters.AddWithValue("@TOTALPRICEWOT", ObjStockEntryDetail.TotalPriceWOT);
+                    cmd.Parameters.AddWithValue("@APPLIEDDISCOUNT", ObjStockEntryDetail.AppliedDiscount);
+                    cmd.Parameters.AddWithValue("@APPLIEDSCHEME", ObjStockEntryDetail.AppliedScheme);
+                    cmd.Parameters.AddWithValue("@APPLIEDDGST", ObjStockEntryDetail.AppliedGST);
+                    cmd.Parameters.AddWithValue("@FINALPRICE", ObjStockEntryDetail.FinalPrice);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
