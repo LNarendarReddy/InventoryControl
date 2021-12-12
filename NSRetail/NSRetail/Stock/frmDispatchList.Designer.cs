@@ -64,7 +64,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1055, 715);
+            this.layoutControl1.Size = new System.Drawing.Size(659, 414);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -75,16 +75,16 @@
             this.gcDispatch.Name = "gcDispatch";
             this.gcDispatch.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnView});
-            this.gcDispatch.Size = new System.Drawing.Size(1047, 707);
+            this.gcDispatch.Size = new System.Drawing.Size(651, 406);
             this.gcDispatch.TabIndex = 4;
             this.gcDispatch.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvDispatch});
             // 
             // gvDispatch
             // 
-            this.gvDispatch.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.gvDispatch.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.gvDispatch.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvDispatch.Appearance.Row.Font = new System.Drawing.Font("Arial", 10F);
+            this.gvDispatch.Appearance.Row.Font = new System.Drawing.Font("Arial", 8F);
             this.gvDispatch.Appearance.Row.Options.UseFont = true;
             this.gvDispatch.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
@@ -170,7 +170,7 @@
             // btnView
             // 
             this.btnView.AutoHeight = false;
-            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.btnView.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnView.Name = "btnView";
@@ -185,7 +185,7 @@
             this.layoutControlItem1});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(1055, 715);
+            this.Root.Size = new System.Drawing.Size(659, 414);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -193,7 +193,7 @@
             this.layoutControlItem1.Control = this.gcDispatch;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1051, 711);
+            this.layoutControlItem1.Size = new System.Drawing.Size(655, 410);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -201,7 +201,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1055, 715);
+            this.ClientSize = new System.Drawing.Size(659, 414);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmDispatchList";
             this.Text = "Dispatch List";

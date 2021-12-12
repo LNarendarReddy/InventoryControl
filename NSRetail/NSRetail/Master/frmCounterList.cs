@@ -73,7 +73,7 @@ namespace NSRetail.Master
                     obj.ShowDialog();
                     if (ObjCounter.IsSave)
                     {
-                        gcCounter.DataSource = objMasterRep. GetCounter();
+                        gcCounter.DataSource = objMasterRep.GetCounter();
                         Utility.Setfocus(gvCounter, "COUNTERID", ObjCounter.COUNTERID);
                     }
 

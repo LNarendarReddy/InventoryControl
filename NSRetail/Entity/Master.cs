@@ -24,8 +24,10 @@ namespace Entity
         public object BRANCHCODE { get; set; }
         public object ADDRESS { get; set; }
         public object PHONENO { get; set; }
+        public object LANDLINE { get; set; }
         public object EMAILID { get; set; }
         public object ISWAREHOUSE { get; set; }
+        public object SUPERVISERID { get; set; }
     }
 
     public class Category : EntityBase
@@ -67,6 +69,7 @@ namespace Entity
         public object ADDRESS { get; set; }
         public object PHONENO { get; set; }
         public object GSTIN { get; set; }
+        public object PANNUMBER { get; set; }
         public object EMAILID { get; set; }
     }
 
