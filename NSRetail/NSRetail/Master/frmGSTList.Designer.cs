@@ -324,8 +324,11 @@ namespace NSRetail.Master
             // 
             this.layoutControlItem2.Control = this.btnNew;
             this.layoutControlItem2.Location = new System.Drawing.Point(619, 0);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(93, 26);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(93, 26);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(93, 26);
+            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -333,8 +336,11 @@ namespace NSRetail.Master
             // 
             this.layoutControlItem3.Control = this.btnCancel;
             this.layoutControlItem3.Location = new System.Drawing.Point(712, 0);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(89, 26);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(89, 26);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(89, 26);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 

@@ -30,16 +30,16 @@ namespace NSRetail.Master
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUOMList));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
@@ -78,17 +78,17 @@ namespace NSRetail.Master
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.Control.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlDropDown.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlDropDownHeader.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.btnNew);
@@ -98,18 +98,18 @@ namespace NSRetail.Master
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1160, 330, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(899, 632);
+            this.layoutControl1.Size = new System.Drawing.Size(899, 460);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(754, 4);
+            this.btnCancel.Location = new System.Drawing.Point(809, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(141, 36);
+            this.btnCancel.Size = new System.Drawing.Size(86, 22);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
@@ -117,11 +117,11 @@ namespace NSRetail.Master
             // 
             // btnNew
             // 
+            this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
             this.btnNew.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnNew.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNew.ImageOptions.SvgImage")));
-            this.btnNew.Location = new System.Drawing.Point(611, 4);
+            this.btnNew.Location = new System.Drawing.Point(707, 4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(139, 36);
+            this.btnNew.Size = new System.Drawing.Size(98, 22);
             this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 5;
             this.btnNew.Text = "New";
@@ -129,22 +129,22 @@ namespace NSRetail.Master
             // 
             // gcUOM
             // 
-            this.gcUOM.Location = new System.Drawing.Point(4, 44);
+            this.gcUOM.Location = new System.Drawing.Point(4, 30);
             this.gcUOM.MainView = this.gvUOM;
             this.gcUOM.Name = "gcUOM";
             this.gcUOM.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEdit,
             this.btnDelete});
-            this.gcUOM.Size = new System.Drawing.Size(891, 584);
+            this.gcUOM.Size = new System.Drawing.Size(891, 426);
             this.gcUOM.TabIndex = 4;
             this.gcUOM.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvUOM});
             // 
             // gvUOM
             // 
-            this.gvUOM.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.gvUOM.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.gvUOM.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvUOM.Appearance.Row.Font = new System.Drawing.Font("Arial", 10F);
+            this.gvUOM.Appearance.Row.Font = new System.Drawing.Font("Arial", 8F);
             this.gvUOM.Appearance.Row.Options.UseFont = true;
             this.gvUOM.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
@@ -254,9 +254,9 @@ namespace NSRetail.Master
             // btnEdit
             // 
             this.btnEdit.AutoHeight = false;
-            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
+            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
             this.btnEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_ButtonClick);
@@ -275,9 +275,9 @@ namespace NSRetail.Master
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
+            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -295,26 +295,26 @@ namespace NSRetail.Master
             this.emptySpaceItem1});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(899, 632);
+            this.Root.Size = new System.Drawing.Size(899, 460);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gcUOM;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 40);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 26);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(895, 588);
+            this.layoutControlItem1.Size = new System.Drawing.Size(895, 430);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnNew;
-            this.layoutControlItem2.Location = new System.Drawing.Point(607, 0);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(143, 40);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(143, 40);
+            this.layoutControlItem2.Location = new System.Drawing.Point(703, 0);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(102, 26);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(102, 26);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(143, 40);
+            this.layoutControlItem2.Size = new System.Drawing.Size(102, 26);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
@@ -322,11 +322,11 @@ namespace NSRetail.Master
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnCancel;
-            this.layoutControlItem3.Location = new System.Drawing.Point(750, 0);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(145, 40);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(145, 40);
+            this.layoutControlItem3.Location = new System.Drawing.Point(805, 0);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(90, 26);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(90, 26);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(145, 40);
+            this.layoutControlItem3.Size = new System.Drawing.Size(90, 26);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -336,7 +336,7 @@ namespace NSRetail.Master
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(607, 40);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(703, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmUOMList
@@ -344,7 +344,7 @@ namespace NSRetail.Master
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(899, 632);
+            this.ClientSize = new System.Drawing.Size(899, 460);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmUOMList";
             this.Text = "UOM List";

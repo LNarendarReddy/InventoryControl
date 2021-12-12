@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBranchList));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
@@ -50,7 +50,11 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -64,10 +68,6 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcBranch)).BeginInit();
@@ -207,7 +207,7 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.VisibleIndex = 2;
             // 
             // gridColumn7
             // 
@@ -216,7 +216,7 @@
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 4;
+            this.gridColumn7.VisibleIndex = 3;
             this.gridColumn7.Width = 110;
             // 
             // gridColumn3
@@ -226,8 +226,15 @@
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 6;
+            this.gridColumn3.VisibleIndex = 5;
             this.gridColumn3.Width = 110;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "LANDLINE";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 6;
             // 
             // gridColumn14
             // 
@@ -238,6 +245,28 @@
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 7;
             // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "SUPERVISORID";
+            this.gridColumn17.FieldName = "SUPERVISORID";
+            this.gridColumn17.Name = "gridColumn17";
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "SUPERVISOR";
+            this.gridColumn16.FieldName = "SUPERVISOR";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.Visible = true;
+            this.gridColumn16.VisibleIndex = 8;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "SUPERVISORMOBILE";
+            this.gridColumn15.FieldName = "SUPERVISORMOBILE";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 10;
+            // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "CREATEDBY";
@@ -245,7 +274,7 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 5;
+            this.gridColumn8.VisibleIndex = 4;
             this.gridColumn8.Width = 110;
             // 
             // gridColumn9
@@ -255,7 +284,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 8;
+            this.gridColumn9.VisibleIndex = 9;
             this.gridColumn9.Width = 110;
             // 
             // gridColumn10
@@ -286,9 +315,9 @@
             // btnEdit
             // 
             this.btnEdit.AutoHeight = false;
-            editorButtonImageOptions3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions3.SvgImage")));
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.btnEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_ButtonClick);
@@ -307,9 +336,9 @@
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions4.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions4.SvgImage")));
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -343,8 +372,11 @@
             // 
             this.layoutControlItem2.Control = this.btnNew;
             this.layoutControlItem2.Location = new System.Drawing.Point(440, 0);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(98, 26);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(98, 26);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(98, 26);
+            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -352,8 +384,11 @@
             // 
             this.layoutControlItem3.Control = this.btnCancel;
             this.layoutControlItem3.Location = new System.Drawing.Point(538, 0);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(100, 26);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(100, 26);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(100, 26);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -364,35 +399,6 @@
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(440, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "LANDLINE";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 6;
-            // 
-            // gridColumn15
-            // 
-            this.gridColumn15.Caption = "SUPERVISORMOBILE";
-            this.gridColumn15.FieldName = "SUPERVISORMOBILE";
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 9;
-            // 
-            // gridColumn16
-            // 
-            this.gridColumn16.Caption = "SUPERVISOR";
-            this.gridColumn16.FieldName = "SUPERVISOR";
-            this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 8;
-            // 
-            // gridColumn17
-            // 
-            this.gridColumn17.Caption = "SUPERVISORID";
-            this.gridColumn17.FieldName = "SUPERVISORID";
-            this.gridColumn17.Name = "gridColumn17";
             // 
             // frmBranchList
             // 

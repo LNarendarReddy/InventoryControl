@@ -126,9 +126,9 @@
             // 
             this.btnVisualize.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualize.ImageOptions.Image")));
             this.btnVisualize.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnVisualize.Location = new System.Drawing.Point(838, 4);
+            this.btnVisualize.Location = new System.Drawing.Point(666, 4);
             this.btnVisualize.Name = "btnVisualize";
-            this.btnVisualize.Size = new System.Drawing.Size(77, 22);
+            this.btnVisualize.Size = new System.Drawing.Size(106, 22);
             this.btnVisualize.StyleController = this.layoutControl1;
             this.btnVisualize.TabIndex = 8;
             this.btnVisualize.Text = "&Visualize";
@@ -139,7 +139,7 @@
             this.btnEdit.AutoWidthInLayoutControl = true;
             this.btnEdit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.ImageOptions.Image")));
             this.btnEdit.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnEdit.Location = new System.Drawing.Point(695, 4);
+            this.btnEdit.Location = new System.Drawing.Point(776, 4);
             this.btnEdit.MinimumSize = new System.Drawing.Size(139, 0);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(139, 22);
@@ -165,9 +165,9 @@
             // 
             this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
             this.btnNew.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnNew.Location = new System.Drawing.Point(635, 4);
+            this.btnNew.Location = new System.Drawing.Point(563, 4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(56, 22);
+            this.btnNew.Size = new System.Drawing.Size(99, 22);
             this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 5;
             this.btnNew.Text = "&New";
@@ -308,8 +308,8 @@
             this.layoutControlItem3,
             this.emptySpaceItem1,
             this.layoutControlItem4,
-            this.layoutControlItem5,
-            this.layoutControlItem6});
+            this.layoutControlItem6,
+            this.layoutControlItem5});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(1056, 594);
@@ -327,9 +327,9 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnNew;
-            this.layoutControlItem2.Location = new System.Drawing.Point(631, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(559, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(60, 26);
+            this.layoutControlItem2.Size = new System.Drawing.Size(103, 26);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -347,13 +347,13 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(631, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(559, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnEdit;
-            this.layoutControlItem4.Location = new System.Drawing.Point(691, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(772, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(143, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -362,9 +362,9 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnVisualize;
-            this.layoutControlItem5.Location = new System.Drawing.Point(834, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(662, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(81, 26);
+            this.layoutControlItem5.Size = new System.Drawing.Size(110, 26);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 

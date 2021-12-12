@@ -65,17 +65,17 @@ namespace NSRetail.Master
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.Control.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlDropDown.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlDropDownHeader.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
             this.layoutControl1.Controls.Add(this.txtMultipler);
             this.layoutControl1.Controls.Add(this.btnCancel);
@@ -88,18 +88,18 @@ namespace NSRetail.Master
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(680, 34, 650, 400);
             this.layoutControl1.OptionsFocus.EnableAutoTabOrder = false;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(420, 174);
+            this.layoutControl1.Size = new System.Drawing.Size(420, 129);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // txtMultipler
             // 
             this.txtMultipler.EnterMoveNextControl = true;
-            this.txtMultipler.Location = new System.Drawing.Point(104, 96);
+            this.txtMultipler.Location = new System.Drawing.Point(85, 67);
             this.txtMultipler.Name = "txtMultipler";
             this.txtMultipler.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtMultipler.Properties.MaskSettings.Set("mask", "n");
-            this.txtMultipler.Size = new System.Drawing.Size(304, 22);
+            this.txtMultipler.Size = new System.Drawing.Size(328, 20);
             this.txtMultipler.StyleController = this.layoutControl1;
             this.txtMultipler.TabIndex = 3;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -110,11 +110,11 @@ namespace NSRetail.Master
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(304, 130);
+            this.btnCancel.Location = new System.Drawing.Point(323, 97);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(112, 36);
+            this.btnCancel.Size = new System.Drawing.Size(90, 25);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
@@ -122,11 +122,11 @@ namespace NSRetail.Master
             // 
             // btnSave
             // 
+            this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSave.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSave.ImageOptions.SvgImage")));
-            this.btnSave.Location = new System.Drawing.Point(180, 130);
+            this.btnSave.Location = new System.Drawing.Point(224, 97);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(120, 36);
+            this.btnSave.Size = new System.Drawing.Size(89, 25);
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
@@ -135,9 +135,9 @@ namespace NSRetail.Master
             // txtDisplayValue
             // 
             this.txtDisplayValue.EnterMoveNextControl = true;
-            this.txtDisplayValue.Location = new System.Drawing.Point(104, 12);
+            this.txtDisplayValue.Location = new System.Drawing.Point(85, 7);
             this.txtDisplayValue.Name = "txtDisplayValue";
-            this.txtDisplayValue.Size = new System.Drawing.Size(304, 22);
+            this.txtDisplayValue.Size = new System.Drawing.Size(328, 20);
             this.txtDisplayValue.StyleController = this.layoutControl1;
             this.txtDisplayValue.TabIndex = 1;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -148,7 +148,7 @@ namespace NSRetail.Master
             // cmbBaseUOM
             // 
             this.cmbBaseUOM.EnterMoveNextControl = true;
-            this.cmbBaseUOM.Location = new System.Drawing.Point(104, 54);
+            this.cmbBaseUOM.Location = new System.Drawing.Point(85, 37);
             this.cmbBaseUOM.Name = "cmbBaseUOM";
             this.cmbBaseUOM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -157,7 +157,7 @@ namespace NSRetail.Master
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DISPLAYVALUE", "DISPLAYVALUE"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MULTIPLIER", "MULTIPLIER")});
             this.cmbBaseUOM.Properties.NullText = "";
-            this.cmbBaseUOM.Size = new System.Drawing.Size(304, 22);
+            this.cmbBaseUOM.Size = new System.Drawing.Size(328, 20);
             this.cmbBaseUOM.StyleController = this.layoutControl1;
             this.cmbBaseUOM.TabIndex = 2;
             conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -167,7 +167,7 @@ namespace NSRetail.Master
             // 
             // Root
             // 
-            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 8F);
             this.Root.AppearanceItemCaption.Options.UseFont = true;
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
@@ -180,7 +180,7 @@ namespace NSRetail.Master
             this.layoutControlItem3});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(420, 174);
+            this.Root.Size = new System.Drawing.Size(420, 129);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -188,63 +188,71 @@ namespace NSRetail.Master
             this.layoutControlItem1.Control = this.txtDisplayValue;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem1.Size = new System.Drawing.Size(416, 42);
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem1.Size = new System.Drawing.Size(416, 30);
             this.layoutControlItem1.Text = "Display Value";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(80, 15);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(66, 14);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.cmbBaseUOM;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 42);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 30);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem2.Size = new System.Drawing.Size(416, 42);
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem2.Size = new System.Drawing.Size(416, 30);
             this.layoutControlItem2.Text = "Base UOM";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(80, 15);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(66, 14);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnSave;
-            this.layoutControlItem7.Location = new System.Drawing.Point(176, 126);
+            this.layoutControlItem7.Location = new System.Drawing.Point(217, 90);
+            this.layoutControlItem7.MaxSize = new System.Drawing.Size(99, 35);
+            this.layoutControlItem7.MinSize = new System.Drawing.Size(99, 35);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(124, 44);
+            this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem7.Size = new System.Drawing.Size(99, 35);
+            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnCancel;
-            this.layoutControlItem8.Location = new System.Drawing.Point(300, 126);
+            this.layoutControlItem8.Location = new System.Drawing.Point(316, 90);
+            this.layoutControlItem8.MaxSize = new System.Drawing.Size(100, 35);
+            this.layoutControlItem8.MinSize = new System.Drawing.Size(100, 35);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(116, 44);
+            this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem8.Size = new System.Drawing.Size(100, 35);
+            this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 126);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 90);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(176, 44);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(217, 35);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.txtMultipler;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 84);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 60);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem3.Size = new System.Drawing.Size(416, 42);
+            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem3.Size = new System.Drawing.Size(416, 30);
             this.layoutControlItem3.Text = "Multiplier";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(80, 15);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(66, 14);
             // 
             // frmUOM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(420, 174);
+            this.ClientSize = new System.Drawing.Size(420, 129);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmUOM";
             this.Text = "Unit of Measurement";

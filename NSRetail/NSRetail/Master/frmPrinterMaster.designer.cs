@@ -110,7 +110,7 @@
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(934, 175, 650, 400);
             this.layoutControl1.OptionsFocus.EnableAutoTabOrder = false;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(613, 512);
+            this.layoutControl1.Size = new System.Drawing.Size(613, 383);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -118,9 +118,9 @@
             // 
             this.btnDetect.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnDetect.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDetect.ImageOptions.SvgImage")));
-            this.btnDetect.Location = new System.Drawing.Point(491, 84);
+            this.btnDetect.Location = new System.Drawing.Point(272, 94);
             this.btnDetect.Name = "btnDetect";
-            this.btnDetect.Size = new System.Drawing.Size(118, 36);
+            this.btnDetect.Size = new System.Drawing.Size(103, 36);
             this.btnDetect.StyleController = this.layoutControl1;
             this.btnDetect.TabIndex = 7;
             this.btnDetect.Text = "Detect";
@@ -131,9 +131,9 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(491, 124);
+            this.btnCancel.Location = new System.Drawing.Point(494, 94);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(118, 36);
+            this.btnCancel.Size = new System.Drawing.Size(115, 36);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
@@ -143,9 +143,9 @@
             // 
             this.btnSAve.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnSAve.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSAve.ImageOptions.SvgImage")));
-            this.btnSAve.Location = new System.Drawing.Point(351, 124);
+            this.btnSAve.Location = new System.Drawing.Point(379, 94);
             this.btnSAve.Name = "btnSAve";
-            this.btnSAve.Size = new System.Drawing.Size(136, 36);
+            this.btnSAve.Size = new System.Drawing.Size(111, 36);
             this.btnSAve.StyleController = this.layoutControl1;
             this.btnSAve.TabIndex = 4;
             this.btnSAve.Text = "Save";
@@ -153,21 +153,21 @@
             // 
             // gcPrinters
             // 
-            this.gcPrinters.Location = new System.Drawing.Point(4, 164);
+            this.gcPrinters.Location = new System.Drawing.Point(4, 134);
             this.gcPrinters.MainView = this.gvPrinters;
             this.gcPrinters.Name = "gcPrinters";
             this.gcPrinters.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEdit});
-            this.gcPrinters.Size = new System.Drawing.Size(605, 344);
+            this.gcPrinters.Size = new System.Drawing.Size(605, 245);
             this.gcPrinters.TabIndex = 6;
             this.gcPrinters.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvPrinters});
             // 
             // gvPrinters
             // 
-            this.gvPrinters.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.gvPrinters.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.gvPrinters.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvPrinters.Appearance.Row.Font = new System.Drawing.Font("Arial", 10F);
+            this.gvPrinters.Appearance.Row.Font = new System.Drawing.Font("Arial", 8F);
             this.gvPrinters.Appearance.Row.Options.UseFont = true;
             this.gvPrinters.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
@@ -247,22 +247,22 @@
             // txtUserName
             // 
             this.txtUserName.Enabled = false;
-            this.txtUserName.Location = new System.Drawing.Point(85, 12);
+            this.txtUserName.Location = new System.Drawing.Point(80, 7);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(516, 20);
+            this.txtUserName.Size = new System.Drawing.Size(526, 20);
             this.txtUserName.StyleController = this.layoutControl1;
             this.txtUserName.TabIndex = 1;
             // 
             // cmbPrinterName
             // 
             this.cmbPrinterName.EnterMoveNextControl = true;
-            this.cmbPrinterName.Location = new System.Drawing.Point(85, 92);
+            this.cmbPrinterName.Location = new System.Drawing.Point(80, 67);
             this.cmbPrinterName.Name = "cmbPrinterName";
             this.cmbPrinterName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbPrinterName.Properties.NullText = "";
             this.cmbPrinterName.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.cmbPrinterName.Size = new System.Drawing.Size(394, 20);
+            this.cmbPrinterName.Size = new System.Drawing.Size(526, 20);
             this.cmbPrinterName.StyleController = this.layoutControl1;
             this.cmbPrinterName.TabIndex = 3;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -273,7 +273,7 @@
             // cmbPrinterType
             // 
             this.cmbPrinterType.EnterMoveNextControl = true;
-            this.cmbPrinterType.Location = new System.Drawing.Point(85, 52);
+            this.cmbPrinterType.Location = new System.Drawing.Point(80, 37);
             this.cmbPrinterType.Name = "cmbPrinterType";
             this.cmbPrinterType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -281,7 +281,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PrinterType", "Printer Type")});
             this.cmbPrinterType.Properties.NullText = "";
             this.cmbPrinterType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.cmbPrinterType.Size = new System.Drawing.Size(516, 20);
+            this.cmbPrinterType.Size = new System.Drawing.Size(526, 20);
             this.cmbPrinterType.StyleController = this.layoutControl1;
             this.cmbPrinterType.TabIndex = 2;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -301,31 +301,31 @@
             this.layoutControlItem3,
             this.layoutControlItem4,
             this.layoutControlItem5,
-            this.layoutControlItem6,
+            this.emptySpaceItem1,
             this.layoutControlItem7,
-            this.emptySpaceItem1});
+            this.layoutControlItem6});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(613, 512);
+            this.Root.Size = new System.Drawing.Size(613, 383);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.cmbPrinterType;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 40);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 30);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem1.Size = new System.Drawing.Size(609, 40);
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem1.Size = new System.Drawing.Size(609, 30);
             this.layoutControlItem1.Text = "Printer Type";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(61, 14);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.cmbPrinterName;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 80);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 60);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem2.Size = new System.Drawing.Size(487, 40);
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem2.Size = new System.Drawing.Size(609, 30);
             this.layoutControlItem2.Text = "Printer Name";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(61, 14);
             // 
@@ -334,53 +334,53 @@
             this.layoutControlItem3.Control = this.txtUserName;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem3.Size = new System.Drawing.Size(609, 40);
+            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem3.Size = new System.Drawing.Size(609, 30);
             this.layoutControlItem3.Text = "User Name";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(61, 14);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.gcPrinters;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 160);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 130);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(609, 348);
+            this.layoutControlItem4.Size = new System.Drawing.Size(609, 249);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnSAve;
-            this.layoutControlItem5.Location = new System.Drawing.Point(347, 120);
+            this.layoutControlItem5.Location = new System.Drawing.Point(375, 90);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(140, 40);
+            this.layoutControlItem5.Size = new System.Drawing.Size(115, 40);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.btnCancel;
-            this.layoutControlItem6.Location = new System.Drawing.Point(487, 120);
+            this.layoutControlItem6.Location = new System.Drawing.Point(490, 90);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(122, 40);
+            this.layoutControlItem6.Size = new System.Drawing.Size(119, 40);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnDetect;
-            this.layoutControlItem7.Location = new System.Drawing.Point(487, 80);
+            this.layoutControlItem7.Location = new System.Drawing.Point(268, 90);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(122, 40);
+            this.layoutControlItem7.Size = new System.Drawing.Size(107, 40);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 120);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 90);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(347, 40);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(268, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmPrinterMaster
@@ -388,7 +388,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(613, 512);
+            this.ClientSize = new System.Drawing.Size(613, 383);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.IconOptions.ShowIcon = false;
