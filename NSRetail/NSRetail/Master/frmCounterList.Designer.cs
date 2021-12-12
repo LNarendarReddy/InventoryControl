@@ -108,7 +108,7 @@ namespace NSRetail.Master
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCancel.Location = new System.Drawing.Point(864, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(101, 36);
+            this.btnCancel.Size = new System.Drawing.Size(101, 22);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
@@ -120,7 +120,7 @@ namespace NSRetail.Master
             this.btnNew.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnNew.Location = new System.Drawing.Point(757, 4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(103, 36);
+            this.btnNew.Size = new System.Drawing.Size(103, 22);
             this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 5;
             this.btnNew.Text = "New";
@@ -128,13 +128,13 @@ namespace NSRetail.Master
             // 
             // gcCounter
             // 
-            this.gcCounter.Location = new System.Drawing.Point(4, 44);
+            this.gcCounter.Location = new System.Drawing.Point(4, 30);
             this.gcCounter.MainView = this.gvCounter;
             this.gcCounter.Name = "gcCounter";
             this.gcCounter.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEdit,
             this.btnDelete});
-            this.gcCounter.Size = new System.Drawing.Size(961, 526);
+            this.gcCounter.Size = new System.Drawing.Size(961, 540);
             this.gcCounter.TabIndex = 4;
             this.gcCounter.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCounter});
@@ -242,7 +242,7 @@ namespace NSRetail.Master
             // btnEdit
             // 
             this.btnEdit.AutoHeight = false;
-            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.btnEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEdit.Name = "btnEdit";
@@ -263,7 +263,7 @@ namespace NSRetail.Master
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
@@ -289,9 +289,9 @@ namespace NSRetail.Master
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gcCounter;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 40);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 26);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(965, 530);
+            this.layoutControlItem1.Size = new System.Drawing.Size(965, 544);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -299,11 +299,8 @@ namespace NSRetail.Master
             // 
             this.layoutControlItem2.Control = this.btnNew;
             this.layoutControlItem2.Location = new System.Drawing.Point(753, 0);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(107, 40);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(107, 40);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(107, 40);
-            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem2.Size = new System.Drawing.Size(107, 26);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -311,11 +308,8 @@ namespace NSRetail.Master
             // 
             this.layoutControlItem3.Control = this.btnCancel;
             this.layoutControlItem3.Location = new System.Drawing.Point(860, 0);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(105, 40);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(105, 40);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(105, 40);
-            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem3.Size = new System.Drawing.Size(105, 26);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -324,7 +318,7 @@ namespace NSRetail.Master
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(753, 40);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(753, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmCounterList

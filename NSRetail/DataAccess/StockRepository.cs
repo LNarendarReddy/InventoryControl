@@ -241,6 +241,11 @@ namespace DataAccess
                     cmd.Parameters.Add("@SUPPLIERINVOICENO", ObjStockEntry.SUPPLIERINVOICENO);
                     cmd.Parameters.Add("@TAXINCLUSIVE", ObjStockEntry.TAXINCLUSIVE);
                     cmd.Parameters.Add("@INVOICEDATE", ObjStockEntry.InvoiceDate);
+                    cmd.Parameters.Add("@TCS", ObjStockEntry.TCS);
+                    cmd.Parameters.Add("@DISCOUNTPER", ObjStockEntry.DISCOUNTPER);
+                    cmd.Parameters.Add("@DISCOUNT", ObjStockEntry.DISCOUNTFLAT);
+                    cmd.Parameters.Add("@EXPENSES", ObjStockEntry.EXPENSES);
+                    cmd.Parameters.Add("@TRANSPORT", ObjStockEntry.TRANSPORT);
                     cmd.Parameters.Add("@CATEGORYID", ObjStockEntry.CATEGORYID);
                     cmd.Parameters.Add("@USERID", ObjStockEntry.UserID);
                     object objReturn = cmd.ExecuteScalar();
@@ -341,6 +346,11 @@ namespace DataAccess
                             objStockEntry.SUPPLIERINVOICENO = ds.Tables[0].Rows[0]["SUPPLIERINVOICENO"];
                             objStockEntry.TAXINCLUSIVE = ds.Tables[0].Rows[0]["TAXINCLUSIVE"];
                             objStockEntry.InvoiceDate = ds.Tables[0].Rows[0]["INVOICEDATE"];
+                            objStockEntry.TCS = ds.Tables[0].Rows[0]["TCS"];
+                            objStockEntry.DISCOUNTPER = ds.Tables[0].Rows[0]["DISCOUNTPER"];
+                            objStockEntry.DISCOUNTFLAT = ds.Tables[0].Rows[0]["DISCOUNT"];
+                            objStockEntry.EXPENSES = ds.Tables[0].Rows[0]["EXPENSES"];
+                            objStockEntry.TRANSPORT = ds.Tables[0].Rows[0]["TRANSPORT"];
                             objStockEntry.dtStockEntry = ds.Tables[1].Copy();
                         }
                     }
@@ -390,6 +400,11 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_STOCKENTRY]";
                     cmd.Parameters.Add("@STOCKENTRYID", ObjStockEntry.STOCKENTRYID);
+                    cmd.Parameters.Add("@TCS", ObjStockEntry.TCS);
+                    cmd.Parameters.Add("@DISCOUNTPER", ObjStockEntry.DISCOUNTPER);
+                    cmd.Parameters.Add("@DISCOUNTFLAT", ObjStockEntry.DISCOUNTFLAT);
+                    cmd.Parameters.Add("@EXPENSES", ObjStockEntry.EXPENSES);
+                    cmd.Parameters.Add("@TRANSPORT", ObjStockEntry.TRANSPORT);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);

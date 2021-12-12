@@ -56,7 +56,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1086, 101, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(950, 682);
+            this.layoutControl1.Size = new System.Drawing.Size(600, 434);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -66,7 +66,7 @@
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(437, 665);
+            this.labelControl1.Location = new System.Drawing.Point(262, 417);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(75, 15);
             this.labelControl1.StyleController = this.layoutControl1;
@@ -76,15 +76,15 @@
             // marqueeProgressBarControl1
             // 
             this.marqueeProgressBarControl1.EditValue = 0;
-            this.marqueeProgressBarControl1.Location = new System.Drawing.Point(0, 515);
+            this.marqueeProgressBarControl1.Location = new System.Drawing.Point(0, 319);
             this.marqueeProgressBarControl1.Name = "marqueeProgressBarControl1";
-            this.marqueeProgressBarControl1.Size = new System.Drawing.Size(950, 22);
+            this.marqueeProgressBarControl1.Size = new System.Drawing.Size(600, 10);
             this.marqueeProgressBarControl1.StyleController = this.layoutControl1;
             this.marqueeProgressBarControl1.TabIndex = 5;
             // 
             // Root
             // 
-            this.Root.BackgroundImageOptions.Image = global::NSRetail.Properties.Resources.TransLogo;
+            this.Root.BackgroundImageOptions.Image = global::NSRetail.Properties.Resources.Victory_Resized;
             this.Root.BackgroundImageOptions.Visible = true;
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
@@ -95,7 +95,7 @@
             this.layoutControlItem3});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.Root.Size = new System.Drawing.Size(950, 682);
+            this.Root.Size = new System.Drawing.Size(600, 434);
             this.Root.TextVisible = false;
             // 
             // emptySpaceItem3
@@ -103,18 +103,18 @@
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(950, 515);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(600, 319);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.marqueeProgressBarControl1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 515);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 319);
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(0, 22);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(54, 10);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlItem2.Size = new System.Drawing.Size(950, 22);
+            this.layoutControlItem2.Size = new System.Drawing.Size(600, 10);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
@@ -122,18 +122,18 @@
             // emptySpaceItem5
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 537);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 329);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(950, 126);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(600, 86);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem3.Control = this.labelControl1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 663);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 415);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(950, 19);
+            this.layoutControlItem3.Size = new System.Drawing.Size(600, 19);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -141,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(952, 684);
+            this.ClientSize = new System.Drawing.Size(602, 436);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmSplashScreen";
             this.Padding = new System.Windows.Forms.Padding(1);
