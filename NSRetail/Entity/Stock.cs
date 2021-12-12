@@ -12,7 +12,6 @@ namespace Entity
     }
     public class StockDispatch : EntityBase
     {
-
         public object STOCKDISPATCHID { get; set; }
         public object FROMBRANCHID { get; set; }
         public object TOBRANCHID { get; set; }
@@ -55,6 +54,30 @@ namespace Entity
         public object MRP { get; set; }
         public object SALEPRICE { get; set; }
         public object GSTID { get; set; }
+
+        public object DiscountPer { get; set; }
+
+        public object DiscountFlat { get; set; }
+
+        public object SchemePer { get; set; }
+
+        public object SchemeFlat { get; set; }
+
+        public object FreeQuantity { get; set; }
+
+        public object FreeItemMRPID { get; set; }
+        
+        public object TotalPriceWT { get; set; }
+
+        public object TotalPriceWOT { get; set; }
+
+        public object AppliedDiscount { get; set; }
+
+        public object AppliedScheme { get; set; }
+        
+        public object AppliedGST { get; set; }
+
+        public object FinalPrice { get; set; }
 
     }
 }

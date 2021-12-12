@@ -52,6 +52,11 @@ namespace NSRetail.Stock
                     txtCostPriceWOT.Enabled = false;
                 else
                     txtCostPriceWT.Enabled = false;
+
+                txtDiscountFlat.EditValue = 0;
+                txtDiscountPer.EditValue = 0;
+                txtSchemePer.EditValue = 0;
+                txtSchemeFlat.EditValue = 0;
             }
             catch (Exception ex)
             {
@@ -99,6 +104,17 @@ namespace NSRetail.Stock
                 ObjStockEntryDetail.WEIGHTINKGS = txtWeightInKGs.EditValue;
                 ObjStockEntryDetail.UserID = Utility.UserID;
                 ObjStockEntryDetail.GSTID = cmbGST.EditValue;
+                ObjStockEntryDetail.DiscountPer = txtDiscountPer.EditValue;
+                ObjStockEntryDetail.DiscountFlat = txtDiscountFlat.EditValue;
+                ObjStockEntryDetail.SchemePer = txtSchemePer.EditValue;
+                ObjStockEntryDetail.SchemeFlat = txtSchemeFlat.EditValue;
+                ObjStockEntryDetail.FreeQuantity = txtFreeQuantity.EditValue;
+                ObjStockEntryDetail.TotalPriceWT = txtTotalPriceWT.EditValue;
+                ObjStockEntryDetail.TotalPriceWOT = txtTotalPriceWOT.EditValue;
+                ObjStockEntryDetail.AppliedDiscount = txtAppliedDiscount.EditValue;
+                ObjStockEntryDetail.AppliedScheme = txtAppliedScheme.EditValue;
+                ObjStockEntryDetail.AppliedGST = txtAppliedGST.EditValue;
+                ObjStockEntryDetail.FinalPrice = txtFinalPrice.EditValue;
                 ObjStockRep.SaveInvoiceDetail(ObjStockEntryDetail);
                 frmparent.RefreshGrid(ObjStockEntryDetail);
                 ObjStockEntryDetail.STOCKENTRYDETAILID = 0;
@@ -200,20 +216,11 @@ namespace NSRetail.Stock
                 
                 if (IsParentExist && !IsOpenItem)
                 {
-                    decimal Multi = 0;
-                    if (decimal.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("MULTIPLIER")), out Multi))
+                    txtWeightInKGs.EditValue = 0;
+                    if (decimal.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("MULTIPLIER")), out decimal Multi)
+                        && int.TryParse(Convert.ToString(txtQuantity.EditValue), out int Quantity))
                     {
-                        int Quantity = 0;
-                        if (int.TryParse(Convert.ToString(txtQuantity.EditValue), out Quantity))
-                        {
-                            txtWeightInKGs.EditValue = Multi * Quantity;
-                        }
-                        else
-                            txtWeightInKGs.EditValue = 0;
-                    }
-                    else
-                    {
-                        txtWeightInKGs.EditValue = 0;
+                        txtWeightInKGs.EditValue = Multi * Quantity;
                     }
                 }
                 if (!IsLoading)
@@ -245,10 +252,7 @@ namespace NSRetail.Stock
                 {
                     txtCostPriceWT.EditValue = Convert.ToDecimal(txtCostPriceWOT.EditValue) +
                         Convert.ToDecimal(txtCostPriceWOT.EditValue) * gstInfo.TAXPercent;
-                    txtTotalPriceWOT.EditValue = Convert.ToDecimal(txtCostPriceWOT.EditValue)
-                        * Convert.ToInt32(txtQuantity.EditValue);
-                    txtTotalPriceWT.EditValue = (Convert.ToDecimal(txtCostPriceWT.EditValue))
-                        * Convert.ToInt32(txtQuantity.EditValue);
+                    CalculateReadOnlyFields();
                 }
             }
             catch (Exception ex)
@@ -266,10 +270,7 @@ namespace NSRetail.Stock
                 {
                     txtCostPriceWOT.EditValue = Convert.ToDecimal(txtCostPriceWT.EditValue) -
                         Convert.ToDecimal(txtCostPriceWT.EditValue) * gstInfo.TAXPercent;
-                    txtTotalPriceWT.EditValue = Convert.ToDecimal(txtCostPriceWT.EditValue) 
-                        * Convert.ToInt32(txtQuantity.EditValue);
-                    txtTotalPriceWOT.EditValue = (Convert.ToDecimal(txtCostPriceWOT.EditValue))
-                        * Convert.ToInt32(txtQuantity.EditValue);
+                    CalculateReadOnlyFields();
                 }
             }
             catch (Exception ex)
@@ -287,6 +288,55 @@ namespace NSRetail.Stock
                 txtCostPriceWT_EditValueChanged(null, null);
             else
                 txtCostPriceWOT_EditValueChanged(null, null);
+        }
+
+        private void CalculateReadOnlyFields()
+        {
+            decimal totalPriceWT = Convert.ToDecimal(txtCostPriceWT.EditValue)
+                        * Convert.ToInt32(txtQuantity.EditValue);
+            decimal totalPriceWOT = (Convert.ToDecimal(txtCostPriceWOT.EditValue))
+                * Convert.ToInt32(txtQuantity.EditValue);
+            decimal discountPer = txtDiscountPer.EditValue != null ? Convert.ToDecimal(txtDiscountPer.EditValue) : 0;
+            decimal discountFlat = txtDiscountPer.EditValue != null && discountPer == 0 && txtDiscountFlat.EditValue != null
+                ? Convert.ToDecimal(txtDiscountFlat.EditValue) : 0;             
+            decimal schemePer = txtSchemePer.EditValue != null ? Convert.ToDecimal(txtSchemePer.EditValue) : 0;
+            decimal schemeFlat = txtSchemeFlat.EditValue != null && schemePer == 0 && txtSchemeFlat.EditValue != null
+                ? Convert.ToDecimal(txtSchemeFlat.EditValue) : 0;
+            decimal appliedDiscount = discountFlat > 0
+                    ? discountFlat
+                    : discountPer > 0
+                        ? (totalPriceWOT * (discountPer / 100))
+                        : 0;
+            decimal appliedScheme = schemeFlat > 0
+                    ? schemeFlat
+                    : schemePer > 0
+                        ? (totalPriceWOT * (schemePer / 100))
+                        : 0;
+            decimal finalPriceWOT = totalPriceWOT - appliedDiscount - appliedScheme;
+            decimal appliedGST = cmbGST.GetSelectedDataRow() is GSTInfo gstInfo ?
+                finalPriceWOT * gstInfo.TAXPercent : 0;
+            decimal finalPrice = finalPriceWOT + appliedGST;
+
+            txtTotalPriceWT.EditValue = totalPriceWT;
+            txtTotalPriceWOT.EditValue = totalPriceWOT;
+            txtAppliedDiscount.EditValue = appliedDiscount;
+            txtAppliedScheme.EditValue = appliedScheme;
+            txtFinalPrice.EditValue = finalPrice;
+            txtAppliedGST.EditValue = appliedGST;
+        }
+
+        private void txtDiscountValue_EditValueChanged(object sender, EventArgs e)
+        {
+            (sender == txtDiscountPer && txtDiscountPer.EditValue != null && Convert.ToDecimal(txtDiscountPer.EditValue) > 0
+                ? txtDiscountFlat : txtDiscountPer).EditValue = 0;
+            CalculateReadOnlyFields();
+        }
+
+        private void txtSchemeValue_EditValueChanged(object sender, EventArgs e)
+        {
+            (sender == txtSchemePer && txtSchemePer.EditValue != null && Convert.ToDecimal(txtSchemePer.EditValue) > 0
+                ? txtSchemeFlat : txtSchemePer).EditValue = 0;
+            CalculateReadOnlyFields();
         }
     }
 }
