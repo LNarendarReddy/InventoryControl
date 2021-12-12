@@ -50,6 +50,12 @@ namespace NSRetail.Stock
                     txtInvoiceNumber.EditValue = ObjStockEntry.SUPPLIERINVOICENO;
                     chkTaxInclusive.EditValue = ObjStockEntry.TAXINCLUSIVE;
                     dtpInvoice.EditValue = ObjStockEntry.InvoiceDate;
+                    txtTCS.EditValue = ObjStockEntry.TCS;
+                    txtDiscountPer.EditValue = ObjStockEntry.DISCOUNTPER;
+                    txtDiscountFlat.EditValue = ObjStockEntry.DISCOUNTFLAT;
+                    txtExpenses.EditValue = ObjStockEntry.EXPENSES;
+                    txtTransport.EditValue = ObjStockEntry.TRANSPORT;
+
                     gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
                     cmbSupplier.Enabled = false;
                     txtInvoiceNumber.Enabled = false;
@@ -96,6 +102,11 @@ namespace NSRetail.Stock
                     cmbSupplier.EditValue = null;
                     txtInvoiceNumber.EditValue = null;
                     dtpInvoice.EditValue = DateTime.Now;
+                    txtTCS.EditValue = null;
+                    txtDiscountPer.EditValue = null;
+                    txtDiscountFlat.EditValue = null;
+                    txtExpenses.EditValue = null;
+                    txtTransport.EditValue = null;
                     cmbSupplier.Enabled = true;
                     txtInvoiceNumber.Enabled = true;
                     dtpInvoice.Enabled = true;
@@ -231,6 +242,11 @@ namespace NSRetail.Stock
                 ObjStockEntry.TAXINCLUSIVE = chkTaxInclusive.EditValue;
                 ObjStockEntry.InvoiceDate = dtpInvoice.EditValue;
                 ObjStockEntry.CATEGORYID = Utility.CategoryID;
+                ObjStockEntry.TCS = txtTCS.EditValue;
+                ObjStockEntry.DISCOUNTPER = txtDiscountPer.EditValue;
+                ObjStockEntry.DISCOUNTFLAT = txtDiscountFlat.EditValue;
+                ObjStockEntry.EXPENSES = txtExpenses.EditValue;
+                ObjStockEntry.TRANSPORT = txtTransport.EditValue;
                 ObjStockEntry.UserID = Utility.UserID;
                 ObjStockRep.SaveInvoice(ObjStockEntry);
                 cmbSupplier.Enabled = false;

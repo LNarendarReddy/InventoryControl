@@ -35,6 +35,11 @@ namespace Entity
         public object TAXINCLUSIVE { get; set; }
         public object InvoiceDate { get; set; }
         public object CATEGORYID { get; set; }
+        public object TCS { get; set; }
+        public object DISCOUNTPER { get; set; }
+        public object DISCOUNTFLAT { get; set; }
+        public object EXPENSES { get; set; }
+        public object TRANSPORT { get; set; }
         public DataTable dtStockEntry { get; set; }
     }
     public class StockEntryDetail : EntityBase

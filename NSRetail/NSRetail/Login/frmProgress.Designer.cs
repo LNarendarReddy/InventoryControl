@@ -46,14 +46,14 @@ namespace NSRetail.Login
             this.progressPanel1.AppearanceDescription.Options.UseFont = true;
             this.progressPanel1.AppearanceDescription.Options.UseTextOptions = true;
             this.progressPanel1.AppearanceDescription.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.progressPanel1.Caption = "                              Please Wait";
-            this.progressPanel1.Description = "                                        Loading...";
+            this.progressPanel1.Caption = "     Please Wait";
+            this.progressPanel1.Description = "       Loading...";
             this.progressPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressPanel1.ImageHorzOffset = 20;
             this.progressPanel1.Location = new System.Drawing.Point(0, 17);
             this.progressPanel1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.progressPanel1.Name = "progressPanel1";
-            this.progressPanel1.Size = new System.Drawing.Size(369, 90);
+            this.progressPanel1.Size = new System.Drawing.Size(272, 57);
             this.progressPanel1.TabIndex = 0;
             this.progressPanel1.Text = "progressPanel1";
             this.progressPanel1.WaitAnimationType = DevExpress.Utils.Animation.WaitingAnimatorType.Line;
@@ -72,7 +72,7 @@ namespace NSRetail.Login
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 14, 0, 14);
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(369, 124);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(272, 91);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // frmProgress
@@ -81,7 +81,7 @@ namespace NSRetail.Login
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(369, 124);
+            this.ClientSize = new System.Drawing.Size(272, 91);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.Name = "frmProgress";

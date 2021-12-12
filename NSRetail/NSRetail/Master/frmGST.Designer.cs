@@ -30,12 +30,12 @@ namespace NSRetail.Master
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGST));
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtCESS = new DevExpress.XtraEditors.TextEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -75,17 +75,17 @@ namespace NSRetail.Master
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.Control.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlDropDown.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlDropDownHeader.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
             this.layoutControl1.Controls.Add(this.txtCESS);
             this.layoutControl1.Controls.Add(this.btnCancel);
@@ -100,34 +100,34 @@ namespace NSRetail.Master
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(680, 34, 650, 400);
             this.layoutControl1.OptionsFocus.EnableAutoTabOrder = false;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(408, 254);
+            this.layoutControl1.Size = new System.Drawing.Size(408, 181);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // txtCESS
             // 
             this.txtCESS.EnterMoveNextControl = true;
-            this.txtCESS.Location = new System.Drawing.Point(85, 180);
+            this.txtCESS.Location = new System.Drawing.Point(68, 127);
             this.txtCESS.Name = "txtCESS";
             this.txtCESS.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtCESS.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtCESS.Properties.MaskSettings.Set("mask", "n");
-            this.txtCESS.Size = new System.Drawing.Size(311, 22);
+            this.txtCESS.Size = new System.Drawing.Size(333, 20);
             this.txtCESS.StyleController = this.layoutControl1;
             this.txtCESS.TabIndex = 5;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtCESS, conditionValidationRule1);
+            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule6.ErrorText = "Mandatory";
+            conditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtCESS, conditionValidationRule6);
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(283, 214);
+            this.btnCancel.Location = new System.Drawing.Point(283, 154);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(121, 36);
+            this.btnCancel.Size = new System.Drawing.Size(121, 22);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
@@ -135,11 +135,11 @@ namespace NSRetail.Master
             // 
             // btnSave
             // 
+            this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSave.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSave.ImageOptions.SvgImage")));
-            this.btnSave.Location = new System.Drawing.Point(146, 214);
+            this.btnSave.Location = new System.Drawing.Point(146, 154);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(133, 36);
+            this.btnSave.Size = new System.Drawing.Size(133, 22);
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
@@ -148,67 +148,67 @@ namespace NSRetail.Master
             // txtIGST
             // 
             this.txtIGST.EnterMoveNextControl = true;
-            this.txtIGST.Location = new System.Drawing.Point(85, 138);
+            this.txtIGST.Location = new System.Drawing.Point(68, 97);
             this.txtIGST.Name = "txtIGST";
             this.txtIGST.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtIGST.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtIGST.Properties.MaskSettings.Set("mask", "n");
-            this.txtIGST.Size = new System.Drawing.Size(311, 22);
+            this.txtIGST.Size = new System.Drawing.Size(333, 20);
             this.txtIGST.StyleController = this.layoutControl1;
             this.txtIGST.TabIndex = 4;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtIGST, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtIGST, conditionValidationRule1);
             // 
             // txtSGST
             // 
             this.txtSGST.EnterMoveNextControl = true;
-            this.txtSGST.Location = new System.Drawing.Point(85, 96);
+            this.txtSGST.Location = new System.Drawing.Point(68, 67);
             this.txtSGST.Name = "txtSGST";
             this.txtSGST.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtSGST.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtSGST.Properties.MaskSettings.Set("mask", "n");
-            this.txtSGST.Size = new System.Drawing.Size(311, 22);
+            this.txtSGST.Size = new System.Drawing.Size(333, 20);
             this.txtSGST.StyleController = this.layoutControl1;
             this.txtSGST.TabIndex = 3;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "Mandatory";
-            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtSGST, conditionValidationRule3);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Mandatory";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtSGST, conditionValidationRule2);
             // 
             // txtCGST
             // 
             this.txtCGST.EnterMoveNextControl = true;
-            this.txtCGST.Location = new System.Drawing.Point(85, 54);
+            this.txtCGST.Location = new System.Drawing.Point(68, 37);
             this.txtCGST.Name = "txtCGST";
             this.txtCGST.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtCGST.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtCGST.Properties.MaskSettings.Set("mask", "n");
-            this.txtCGST.Size = new System.Drawing.Size(311, 22);
+            this.txtCGST.Size = new System.Drawing.Size(333, 20);
             this.txtCGST.StyleController = this.layoutControl1;
             this.txtCGST.TabIndex = 2;
-            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule4.ErrorText = "Mandatory";
-            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtCGST, conditionValidationRule4);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Mandatory";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtCGST, conditionValidationRule3);
             // 
             // txtGSTCode
             // 
             this.txtGSTCode.EnterMoveNextControl = true;
-            this.txtGSTCode.Location = new System.Drawing.Point(85, 12);
+            this.txtGSTCode.Location = new System.Drawing.Point(68, 7);
             this.txtGSTCode.Name = "txtGSTCode";
-            this.txtGSTCode.Size = new System.Drawing.Size(311, 22);
+            this.txtGSTCode.Size = new System.Drawing.Size(333, 20);
             this.txtGSTCode.StyleController = this.layoutControl1;
             this.txtGSTCode.TabIndex = 1;
-            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule5.ErrorText = "Mandatory";
-            conditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtGSTCode, conditionValidationRule5);
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "Mandatory";
+            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtGSTCode, conditionValidationRule4);
             // 
             // Root
             // 
-            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 8F);
             this.Root.AppearanceItemCaption.Options.UseFont = true;
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
@@ -223,7 +223,7 @@ namespace NSRetail.Master
             this.layoutControlItem5});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(408, 254);
+            this.Root.Size = new System.Drawing.Size(408, 181);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -231,83 +231,83 @@ namespace NSRetail.Master
             this.layoutControlItem1.Control = this.txtGSTCode;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem1.Size = new System.Drawing.Size(404, 42);
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem1.Size = new System.Drawing.Size(404, 30);
             this.layoutControlItem1.Text = "GST Code";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(61, 15);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(49, 14);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtCGST;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 42);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 30);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem2.Size = new System.Drawing.Size(404, 42);
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem2.Size = new System.Drawing.Size(404, 30);
             this.layoutControlItem2.Text = "CGST %";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(61, 15);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(49, 14);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.txtSGST;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 84);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 60);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem3.Size = new System.Drawing.Size(404, 42);
+            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem3.Size = new System.Drawing.Size(404, 30);
             this.layoutControlItem3.Text = "SGST %";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(61, 15);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(49, 14);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtIGST;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 126);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 90);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem4.Size = new System.Drawing.Size(404, 42);
+            this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem4.Size = new System.Drawing.Size(404, 30);
             this.layoutControlItem4.Text = "IGST %";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(61, 15);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(49, 14);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnSave;
-            this.layoutControlItem7.Location = new System.Drawing.Point(142, 210);
+            this.layoutControlItem7.Location = new System.Drawing.Point(142, 150);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(137, 40);
+            this.layoutControlItem7.Size = new System.Drawing.Size(137, 27);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnCancel;
-            this.layoutControlItem8.Location = new System.Drawing.Point(279, 210);
+            this.layoutControlItem8.Location = new System.Drawing.Point(279, 150);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(125, 40);
+            this.layoutControlItem8.Size = new System.Drawing.Size(125, 27);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 210);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 150);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(142, 40);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(142, 27);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.txtCESS;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 168);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 120);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem5.Size = new System.Drawing.Size(404, 42);
+            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem5.Size = new System.Drawing.Size(404, 30);
             this.layoutControlItem5.Text = "CESS";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(61, 15);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(49, 14);
             // 
             // frmGST
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(408, 254);
+            this.ClientSize = new System.Drawing.Size(408, 181);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmGST";
             this.Text = "Add GST";
