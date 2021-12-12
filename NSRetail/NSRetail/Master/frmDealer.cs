@@ -34,6 +34,7 @@ namespace NSRetail.Master
                 txtPhoneNumber.EditValue = ObjDealer.PHONENO;
                 txtEmail.EditValue = ObjDealer.EMAILID;
                 txtGSTIN.EditValue = ObjDealer.GSTIN;
+                txtPanNumber.EditValue = ObjDealer.PANNUMBER;
             }
         }
 
@@ -48,6 +49,7 @@ namespace NSRetail.Master
                 ObjDealer.PHONENO = txtPhoneNumber.EditValue;
                 ObjDealer.EMAILID = txtEmail.EditValue;
                 ObjDealer.GSTIN = txtGSTIN.EditValue;
+                ObjDealer.PANNUMBER = txtPanNumber.EditValue;
                 ObjDealer.UserID = Utility.UserID;
                 objMasterRep.SaveDealer(ObjDealer);
                 ObjDealer.IsSave = true;

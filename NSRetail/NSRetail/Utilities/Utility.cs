@@ -19,6 +19,7 @@ namespace NSRetail
         private static DataTable dtGST;
         private static DataTable dtItemSKUList;
         private static DataTable dtItemCodeList;
+        private static DataTable dtNonEAN;
         private static DataTable dtParentItemList;
         private static List<GSTInfo> gstInfoList;
 
@@ -80,6 +81,7 @@ namespace NSRetail
             DataSet dsItemBaseline = new ItemCodeRepository().GetItemCodes(CategoryID);
             dtItemSKUList = dsItemBaseline.Tables["ITEMS"];
             dtItemCodeList = dsItemBaseline.Tables["ITEMCODES"];
+            dtNonEAN = dsItemBaseline.Tables["NONEAN"]; 
         }
 
         private static void FillParentItemBaseline()
@@ -146,6 +148,16 @@ namespace NSRetail
 
             return dtParentItemList;
         }
+        
+        public static DataTable GetNonEAN()
+        {
+            if (dtNonEAN == null)
+            {
+                FillItemBaseline();
+            }
+
+            return dtNonEAN;
+        }
 
         public static IEnumerable<GSTInfo> GetGSTInfoList()
         {
@@ -165,7 +177,8 @@ namespace NSRetail
         }
 
         public static void PrintBarCode(object ItemCode, object ItemName, 
-            string SalePrice, object oQuantity,object MRP,object BatchNumber,object PackedDate)
+            string SalePrice, object oQuantity,object MRP,object BatchNumber,
+            object PackedDate, object CategoryID)
         {
             try
             {
@@ -192,6 +205,7 @@ namespace NSRetail
                     rpt.ShowPrintMarginsWarning = false;
                     rpt.Parameters["BatchNumber"].Value = BatchNumber;
                     rpt.Parameters["PackedDate"].Value = DateTime.Now.ToString("MM/yyyy");
+                    rpt.Parameters["CategoryID"].Value = CategoryID;
                     rpt.CreateDocument();
                     //rpt.ShowRibbonPreview();
                     ReportPrintTool printTool = new ReportPrintTool(rpt);

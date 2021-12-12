@@ -84,7 +84,7 @@
             this.xrLabel5.Dpi = 254F;
             this.xrLabel5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'PKD:\' + ?PackedDate"),
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(?CategoryID = 4 | ?CategoryID = 3,True,False )")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(?CategoryID = 3 || ?CategoryID = 4,true ,false )")});
             this.xrLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(463F, 1F);
             this.xrLabel5.Multiline = true;
@@ -101,7 +101,8 @@
             this.xrLabel4.Angle = 90F;
             this.xrLabel4.Dpi = 254F;
             this.xrLabel4.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'BATCH: \' + ?BatchNumber")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'BATCH: \' + ?BatchNumber"),
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(?CategoryID = 3 || ?CategoryID = 4,true ,false )")});
             this.xrLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1F);
             this.xrLabel4.Multiline = true;
@@ -142,7 +143,7 @@
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.StylePriority.UseTextAlignment = false;
             this.xrTableCell1.Text = "xrTableCell1";
-            this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell1.Weight = 0.81102374219518836D;
             // 
             // xrLabel3

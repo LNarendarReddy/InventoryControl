@@ -24,12 +24,13 @@ namespace DataAccess
                     cmd.Parameters.Add("@BRANCHID", ObjBranch.BRANCHID);
                     cmd.Parameters.Add("@BRANCHNAME", ObjBranch.BRANCHNAME);
                     cmd.Parameters.Add("@BRANCHCODE", ObjBranch.BRANCHCODE);
-                    cmd.Parameters.Add("@DESCRIPTION", ObjBranch.Description);
                     cmd.Parameters.Add("@ADDRESS", ObjBranch.ADDRESS);
                     cmd.Parameters.Add("@PHONENO", ObjBranch.PHONENO);
+                    cmd.Parameters.Add("@LANDLINE", ObjBranch.LANDLINE);
                     cmd.Parameters.Add("@EMAILID", ObjBranch.EMAILID);
                     cmd.Parameters.Add("@USERID", ObjBranch.UserID);
                     cmd.Parameters.Add("@ISWAREHOUSE", ObjBranch.ISWAREHOUSE);
+                    cmd.Parameters.Add("@SUPERVISORID", ObjBranch. SUPERVISERID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out BRanchID))
@@ -501,6 +502,7 @@ namespace DataAccess
                     cmd.Parameters.Add("@ADDRESS", ObjDealer.ADDRESS);
                     cmd.Parameters.Add("@PHONENO", ObjDealer.PHONENO);
                     cmd.Parameters.Add("@GSTIN", ObjDealer.GSTIN);
+                    cmd.Parameters.Add("@PANNUMBER", ObjDealer.PANNUMBER);
                     cmd.Parameters.Add("@EMAILID", ObjDealer.EMAILID);
                     cmd.Parameters.Add("@USERID", ObjDealer.UserID);
                     object objReturn = cmd.ExecuteScalar();
@@ -591,7 +593,7 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_CU_COUNTER]";
+                    cmd.CommandText = "[USP_CU_BRANCHCOUNTER]";
                     cmd.Parameters.Add("@COUNTERID", ObjCounter.COUNTERID);
                     cmd.Parameters.Add("@COUNTERNAME", ObjCounter.COUNTERNAME);
                     cmd.Parameters.Add("@BRANCHID", ObjCounter.BRANCHID);
@@ -627,7 +629,7 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_COUNTER]";
+                    cmd.CommandText = "[USP_R_BRANCHCOUNTER]";
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtCounter);
@@ -653,7 +655,7 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_D_COUNTER]";
+                    cmd.CommandText = "[USP_D_BRANCHCOUNTER]";
                     cmd.Parameters.Add("@COUNTERID", ObjCounter.COUNTERID);
                     cmd.Parameters.Add("@USERID", ObjCounter.UserID);
                     object objReturn = cmd.ExecuteScalar();

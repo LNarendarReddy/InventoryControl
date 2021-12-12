@@ -26,15 +26,19 @@ namespace NSRetail
 
         private void frmAddBranch_Load(object sender, EventArgs e)
         {
-            if(Convert.ToInt32(ObjBranch.BRANCHID) > 0)
+            cmbSupervisor.Properties.DataSource = objMasterRep.GetUser();
+            cmbSupervisor.Properties.ValueMember = "USERID";
+            cmbSupervisor.Properties.DisplayMember = "USERNAME";
+            if (Convert.ToInt32(ObjBranch.BRANCHID) > 0)
             {
                 this.Text = "Edit Branch";
                 txtBranchCode.EditValue = ObjBranch.BRANCHCODE;
                 txtBranchName.EditValue = ObjBranch.BRANCHNAME;
                 txtAddress.EditValue = ObjBranch.ADDRESS;
-                txtDescription.EditValue = ObjBranch.Description;
                 txtPhoneNo.EditValue = ObjBranch.PHONENO;
+                txtLandLine.EditValue = ObjBranch.LANDLINE;
                 txtEmailID.EditValue = ObjBranch.EMAILID;
+                cmbSupervisor .EditValue = ObjBranch. SUPERVISERID;
                 if (Convert.ToBoolean(ObjBranch.ISWAREHOUSE))
                     chkIsWarehouse.Checked = true;
                 else
@@ -57,11 +61,12 @@ namespace NSRetail
                     return;
                 ObjBranch.BRANCHCODE = txtBranchCode.EditValue;
                 ObjBranch.BRANCHNAME = txtBranchName.EditValue;
-                ObjBranch.Description = txtDescription.EditValue;
                 ObjBranch.ADDRESS = txtAddress.EditValue;
                 ObjBranch.PHONENO = txtPhoneNo.EditValue;
+                ObjBranch.LANDLINE = txtLandLine.EditValue;
                 ObjBranch.EMAILID = txtEmailID.EditValue;
                 ObjBranch.ISWAREHOUSE = Convert.ToBoolean(chkIsWarehouse.CheckState);
+                ObjBranch. SUPERVISERID = cmbSupervisor.EditValue;
                 ObjBranch.UserID = Utility.UserID;
                 objMasterRep.SaveBranch(ObjBranch);
                 ObjBranch.IsSave = true;

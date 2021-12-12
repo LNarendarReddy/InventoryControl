@@ -77,17 +77,17 @@ namespace NSRetail.Master
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.Control.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlDropDown.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlDropDownHeader.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 10F);
+            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.btnNew);
@@ -104,11 +104,11 @@ namespace NSRetail.Master
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(824, 4);
+            this.btnCancel.Location = new System.Drawing.Point(864, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(141, 36);
+            this.btnCancel.Size = new System.Drawing.Size(101, 36);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
@@ -116,11 +116,11 @@ namespace NSRetail.Master
             // 
             // btnNew
             // 
+            this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
             this.btnNew.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnNew.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNew.ImageOptions.SvgImage")));
-            this.btnNew.Location = new System.Drawing.Point(681, 4);
+            this.btnNew.Location = new System.Drawing.Point(757, 4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(139, 36);
+            this.btnNew.Size = new System.Drawing.Size(103, 36);
             this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 5;
             this.btnNew.Text = "New";
@@ -141,9 +141,9 @@ namespace NSRetail.Master
             // 
             // gvCounter
             // 
-            this.gvCounter.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.gvCounter.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.gvCounter.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvCounter.Appearance.Row.Font = new System.Drawing.Font("Arial", 10F);
+            this.gvCounter.Appearance.Row.Font = new System.Drawing.Font("Arial", 8F);
             this.gvCounter.Appearance.Row.Options.UseFont = true;
             this.gvCounter.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
@@ -272,7 +272,7 @@ namespace NSRetail.Master
             // 
             // Root
             // 
-            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 10F);
+            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 8F);
             this.Root.AppearanceItemCaption.Options.UseFont = true;
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
@@ -298,11 +298,11 @@ namespace NSRetail.Master
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnNew;
-            this.layoutControlItem2.Location = new System.Drawing.Point(677, 0);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(143, 40);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(143, 40);
+            this.layoutControlItem2.Location = new System.Drawing.Point(753, 0);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(107, 40);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(107, 40);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(143, 40);
+            this.layoutControlItem2.Size = new System.Drawing.Size(107, 40);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
@@ -310,11 +310,11 @@ namespace NSRetail.Master
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnCancel;
-            this.layoutControlItem3.Location = new System.Drawing.Point(820, 0);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(145, 40);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(145, 40);
+            this.layoutControlItem3.Location = new System.Drawing.Point(860, 0);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(105, 40);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(105, 40);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(145, 40);
+            this.layoutControlItem3.Size = new System.Drawing.Size(105, 40);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -324,7 +324,7 @@ namespace NSRetail.Master
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(677, 40);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(753, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmCounterList

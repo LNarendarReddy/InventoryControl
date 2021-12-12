@@ -69,6 +69,7 @@ namespace NSRetail.Master
                     ObjDealer.PHONENO = gvDealer.GetFocusedRowCellValue("PHONENO");
                     ObjDealer.EMAILID = gvDealer.GetFocusedRowCellValue("EMAILID");
                     ObjDealer.GSTIN = gvDealer.GetFocusedRowCellValue("GSTIN");
+                    ObjDealer.PANNUMBER = gvDealer.GetFocusedRowCellValue("PANNUMBER");
                     frmDealer obj = new frmDealer(ObjDealer);
                     obj.ShowInTaskbar = false;
                     obj.StartPosition = FormStartPosition.CenterScreen;
