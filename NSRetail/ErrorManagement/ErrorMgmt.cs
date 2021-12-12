@@ -9,6 +9,7 @@ namespace ErrorManagement
     public static class ErrorMgmt
     {
         public static readonly ILog Errorlog = LogManager.GetLogger("Errorlog");
+
         /// <summary>
         /// show the exceptions throwed
         /// </summary>
