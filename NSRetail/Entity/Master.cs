@@ -126,7 +126,7 @@ namespace Entity
             SGST = Convert.ToDecimal(dr["SGST"]);
             IGST = Convert.ToDecimal(dr["IGST"]);
             CESS = Convert.ToDecimal(dr["CESS"]);
-            TAXPercent = (CGST + SGST + IGST + CESS) / 100;
+            TAXPercent = Math.Round((CGST + SGST + IGST + CESS) / 100, 2);
 
         }
         public void UpdateGST(DataRowView dr)
