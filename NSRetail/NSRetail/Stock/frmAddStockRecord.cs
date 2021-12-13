@@ -132,11 +132,11 @@ namespace NSRetail.Stock
                 txtTotalPriceWT.EditValue = null;
                 txtTotalPriceWOT.EditValue = null;
                 cmbGST.EditValue = null;
-                txtDiscountPer.EditValue = 0;
-                txtDiscountFlat.EditValue = 0;
-                txtSchemePer.EditValue = 0;
-                txtSchemeFlat.EditValue = 0;
-                txtFreeQuantity.EditValue = 0;
+                txtDiscountPer.EditValue = 0.00;
+                txtDiscountFlat.EditValue = 0.00;
+                txtSchemePer.EditValue = 0.00;
+                txtSchemeFlat.EditValue = 0.00;
+                txtFreeQuantity.EditValue = 0.00;
                 cmbItemCode.Focus();
             }
             catch (Exception ex)
@@ -265,7 +265,7 @@ namespace NSRetail.Stock
                     !Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) && cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
                 {
                     txtCostPriceWT.EditValue = Convert.ToDecimal(txtCostPriceWOT.EditValue) +
-                        Math.Round(Convert.ToDecimal(txtCostPriceWOT.EditValue) * gstInfo.TAXPercent, 2);
+                        Math.Round(Convert.ToDecimal(txtCostPriceWOT.EditValue) * gstInfo.TAXPercent, 4);
                     CalculateReadOnlyFields();
                 }
             }
@@ -288,7 +288,7 @@ namespace NSRetail.Stock
                 if (txtCostPriceWT.EditValue != null && Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) && cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
                 {
                     txtCostPriceWOT.EditValue = Convert.ToDecimal(txtCostPriceWT.EditValue) -
-                        Math.Round(Convert.ToDecimal(txtCostPriceWT.EditValue) * gstInfo.TAXPercent, 2);
+                        Math.Round(Convert.ToDecimal(txtCostPriceWT.EditValue) * gstInfo.TAXPercent, 4);
                     CalculateReadOnlyFields();
                 }
             }
@@ -328,16 +328,24 @@ namespace NSRetail.Stock
             decimal appliedDiscount = discountFlat > 0
                     ? discountFlat
                     : discountPer > 0
-                        ? Math.Round(totalPriceWOT * (discountPer / 100), 2)
+                        ? Math.Round(totalPriceWOT * (discountPer / 100), 4)
                         : 0;
             decimal appliedScheme = schemeFlat > 0
                     ? schemeFlat
                     : schemePer > 0
-                        ? Math.Round(totalPriceWOT * (schemePer / 100), 2)
+                        ? Math.Round(totalPriceWOT * (schemePer / 100), 4)
                         : 0;
             decimal finalPriceWOT = totalPriceWOT - appliedDiscount - appliedScheme;
-            decimal appliedGST = cmbGST.GetSelectedDataRow() is GSTInfo gstInfo ?
-                Math.Round(finalPriceWOT * gstInfo.TAXPercent) : 0;
+            decimal appliedGST = 0.0M;
+            if (cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
+            {
+                decimal cGST = Math.Round(finalPriceWOT * gstInfo.CGST / 100, 2);
+                decimal sGST = Math.Round(finalPriceWOT * gstInfo.SGST / 100, 2);
+                decimal iGST = Math.Round(finalPriceWOT * gstInfo.IGST / 100, 2);
+                decimal cess = Math.Round(finalPriceWOT * gstInfo.CESS / 100, 2);
+                appliedGST = cGST + sGST + iGST + cess;
+            }
+
             decimal finalPrice = finalPriceWOT + appliedGST;
 
             txtTotalPriceWT.EditValue = totalPriceWT;
@@ -351,14 +359,14 @@ namespace NSRetail.Stock
         private void txtDiscountValue_EditValueChanged(object sender, EventArgs e)
         {
             (sender == txtDiscountPer && txtDiscountPer.EditValue != null && Convert.ToDecimal(txtDiscountPer.EditValue) > 0
-                ? txtDiscountFlat : txtDiscountPer).EditValue = 0;
+                ? txtDiscountFlat : txtDiscountPer).EditValue = 0.00;
             CalculateReadOnlyFields();
         }
 
         private void txtSchemeValue_EditValueChanged(object sender, EventArgs e)
         {
             (sender == txtSchemePer && txtSchemePer.EditValue != null && Convert.ToDecimal(txtSchemePer.EditValue) > 0
-                ? txtSchemeFlat : txtSchemePer).EditValue = 0;
+                ? txtSchemeFlat : txtSchemePer).EditValue = 0.00;
             CalculateReadOnlyFields();
         }
     }
