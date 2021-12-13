@@ -430,7 +430,7 @@
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem2.Size = new System.Drawing.Size(486, 30);
-            this.layoutControlItem2.Text = "Item Code";
+            this.layoutControlItem2.Text = "EAN Code";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(77, 14);
             // 
             // layoutControlItem10

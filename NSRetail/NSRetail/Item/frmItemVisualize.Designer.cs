@@ -256,7 +256,7 @@
             // 
             // gridColumn11
             // 
-            this.gridColumn11.Caption = "Item Code";
+            this.gridColumn11.Caption = "EAN Code";
             this.gridColumn11.FieldName = "ITEMCODE";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
@@ -388,7 +388,7 @@
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Item (EAN \\ SKU) Code ";
+            this.gridColumn2.Caption = "EAN Code ";
             this.gridColumn2.FieldName = "ITEMCODE";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;

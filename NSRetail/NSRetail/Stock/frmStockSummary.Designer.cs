@@ -157,7 +157,7 @@
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "SKU Code";
+            this.gridColumn3.Caption = "SKU/Item Code";
             this.gridColumn3.FieldName = "SKUCODE";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
