@@ -452,7 +452,7 @@
             this.txtCostPriceWOT.Name = "txtCostPriceWOT";
             this.txtCostPriceWOT.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtCostPriceWOT.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.txtCostPriceWOT.Properties.MaskSettings.Set("mask", "#####.##");
+            this.txtCostPriceWOT.Properties.MaskSettings.Set("mask", "n3");
             this.txtCostPriceWOT.Size = new System.Drawing.Size(162, 20);
             this.txtCostPriceWOT.StyleController = this.layoutControl1;
             this.txtCostPriceWOT.TabIndex = 8;
@@ -469,7 +469,7 @@
             this.txtCostPriceWT.Name = "txtCostPriceWT";
             this.txtCostPriceWT.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtCostPriceWT.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.txtCostPriceWT.Properties.MaskSettings.Set("mask", "#####.##");
+            this.txtCostPriceWT.Properties.MaskSettings.Set("mask", "n3");
             this.txtCostPriceWT.Size = new System.Drawing.Size(162, 20);
             this.txtCostPriceWT.StyleController = this.layoutControl1;
             this.txtCostPriceWT.TabIndex = 7;
