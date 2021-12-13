@@ -259,7 +259,7 @@ namespace NSRetail.Reports
             // 
             this.xrTableCell17.Multiline = true;
             this.xrTableCell17.Name = "xrTableCell17";
-            this.xrTableCell17.Text = "ITEMCODE";
+            this.xrTableCell17.Text = "EANCODE";
             this.xrTableCell17.Weight = 2.5735349088686461D;
             // 
             // xrTableCell18
