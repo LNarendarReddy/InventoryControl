@@ -374,6 +374,7 @@
             this.gridColumn24.Caption = "COSTPRICEWT";
             this.gridColumn24.FieldName = "COSTPRICEWT";
             this.gridColumn24.Name = "gridColumn24";
+            this.gridColumn24.OptionsColumn.AllowEdit = false;
             this.gridColumn24.Visible = true;
             this.gridColumn24.VisibleIndex = 3;
             this.gridColumn24.Width = 119;
@@ -383,6 +384,7 @@
             this.gridColumn1.Caption = "COSTPRICEWOT";
             this.gridColumn1.FieldName = "COSTPRICEWOT";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 4;
             this.gridColumn1.Width = 124;
@@ -430,6 +432,7 @@
             this.gridColumn25.Caption = "Free Quantity";
             this.gridColumn25.FieldName = "FREEQUANTITY";
             this.gridColumn25.Name = "gridColumn25";
+            this.gridColumn25.OptionsColumn.AllowEdit = false;
             this.gridColumn25.Visible = true;
             this.gridColumn25.VisibleIndex = 8;
             // 
@@ -438,6 +441,7 @@
             this.gridColumn23.Caption = "Discount Flat";
             this.gridColumn23.FieldName = "DISCOUNTFLAT";
             this.gridColumn23.Name = "gridColumn23";
+            this.gridColumn23.OptionsColumn.AllowEdit = false;
             this.gridColumn23.Visible = true;
             this.gridColumn23.VisibleIndex = 9;
             // 
@@ -446,6 +450,7 @@
             this.gridColumn22.Caption = "Discount %";
             this.gridColumn22.FieldName = "DISCOUNTPERCENTAGE";
             this.gridColumn22.Name = "gridColumn22";
+            this.gridColumn22.OptionsColumn.AllowEdit = false;
             this.gridColumn22.Visible = true;
             this.gridColumn22.VisibleIndex = 10;
             // 
@@ -454,6 +459,7 @@
             this.gridColumn21.Caption = "Scheme Flat";
             this.gridColumn21.FieldName = "SCHEMEFLAT";
             this.gridColumn21.Name = "gridColumn21";
+            this.gridColumn21.OptionsColumn.AllowEdit = false;
             this.gridColumn21.Visible = true;
             this.gridColumn21.VisibleIndex = 11;
             // 
@@ -462,6 +468,7 @@
             this.gridColumn20.Caption = "Scheme %";
             this.gridColumn20.FieldName = "SCHEMEPERCENTAGE";
             this.gridColumn20.Name = "gridColumn20";
+            this.gridColumn20.OptionsColumn.AllowEdit = false;
             this.gridColumn20.Visible = true;
             this.gridColumn20.VisibleIndex = 12;
             // 
@@ -470,6 +477,7 @@
             this.gridColumn19.Caption = "Total Price with Tax";
             this.gridColumn19.FieldName = "TOTALPRICEWT";
             this.gridColumn19.Name = "gridColumn19";
+            this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.Visible = true;
             this.gridColumn19.VisibleIndex = 13;
             // 
@@ -478,6 +486,7 @@
             this.gridColumn17.Caption = "Total Price w/o Tax";
             this.gridColumn17.FieldName = "TOTALPRICEWOT";
             this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.OptionsColumn.AllowEdit = false;
             this.gridColumn17.Visible = true;
             this.gridColumn17.VisibleIndex = 14;
             // 
@@ -486,6 +495,7 @@
             this.gridColumn5.Caption = "Applied Discount";
             this.gridColumn5.FieldName = "APPLIEDDISCOUNT";
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 15;
             // 
@@ -494,6 +504,7 @@
             this.gridColumn4.Caption = "Applied Scheme";
             this.gridColumn4.FieldName = "APPLIEDSCHEME";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 16;
             // 
@@ -502,6 +513,7 @@
             this.gridColumn3.Caption = "Applied GST";
             this.gridColumn3.FieldName = "APPLIEDDGST";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 17;
             // 
@@ -510,6 +522,7 @@
             this.gridColumn2.Caption = "Final Price";
             this.gridColumn2.FieldName = "FINALPRICE";
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 18;
             // 
