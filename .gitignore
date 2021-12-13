@@ -4,3 +4,8 @@ obj
 *.suo
 packages
 licenses.licx
+Setup/NSRetail/Input/*
+Setup/NSRetail/Output/*
+
+!Setup/NSRetail/Input/.gitignore
+!Setup/NSRetail/Output/.gitignore

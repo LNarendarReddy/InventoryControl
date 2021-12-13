@@ -255,6 +255,12 @@
     <Compile Include="Reports\rptDispatch.Designer.cs">
       <DependentUpon>rptDispatch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptDispatchDC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptDispatchDC.Designer.cs">
+      <DependentUpon>rptDispatchDC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptInvoice.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -399,6 +405,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptDispatch.resx">
       <DependentUpon>rptDispatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptDispatchDC.resx">
+      <DependentUpon>rptDispatchDC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptInvoice.resx">
       <DependentUpon>rptInvoice.cs</DependentUpon>
