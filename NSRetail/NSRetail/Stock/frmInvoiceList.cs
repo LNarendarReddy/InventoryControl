@@ -45,5 +45,10 @@ namespace NSRetail.Stock
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
+
+        private void frmInvoiceList_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

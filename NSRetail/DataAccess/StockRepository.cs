@@ -416,10 +416,7 @@ namespace DataAccess
                     cmd.Parameters.Add("@DISCOUNTFLAT", ObjStockEntry.DISCOUNTFLAT);
                     cmd.Parameters.Add("@EXPENSES", ObjStockEntry.EXPENSES);
                     cmd.Parameters.Add("@TRANSPORT", ObjStockEntry.TRANSPORT);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dt);
-                    }
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
@@ -485,7 +482,6 @@ namespace DataAccess
             }
             return ds;
         }
-
         public DataTable GetStockSummary(object branchID, object itemID)
         {
             DataTable dt = new DataTable();

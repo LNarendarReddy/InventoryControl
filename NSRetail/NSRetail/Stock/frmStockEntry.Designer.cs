@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockEntry));
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtTransport = new DevExpress.XtraEditors.TextEdit();
             this.txtExpenses = new DevExpress.XtraEditors.TextEdit();
@@ -271,10 +271,10 @@
             this.txtInvoiceNumber.Size = new System.Drawing.Size(159, 20);
             this.txtInvoiceNumber.StyleController = this.layoutControl1;
             this.txtInvoiceNumber.TabIndex = 1;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtInvoiceNumber, conditionValidationRule1);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Mandatory";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtInvoiceNumber, conditionValidationRule3);
             // 
             // gcStockEntry
             // 
@@ -435,7 +435,7 @@
             // 
             // gridColumn16
             // 
-            this.gridColumn16.Caption = "WEIGHTINKGS";
+            this.gridColumn16.Caption = "WEG(Kgs)";
             this.gridColumn16.FieldName = "WEIGHTINKGS";
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.OptionsColumn.AllowEdit = false;
@@ -445,12 +445,10 @@
             // 
             // gridColumn25
             // 
-            this.gridColumn25.Caption = "Free Quantity";
+            this.gridColumn25.Caption = "Free Qnty";
             this.gridColumn25.FieldName = "FREEQUANTITY";
             this.gridColumn25.Name = "gridColumn25";
             this.gridColumn25.OptionsColumn.AllowEdit = false;
-            this.gridColumn25.Visible = true;
-            this.gridColumn25.VisibleIndex = 8;
             // 
             // gridColumn23
             // 
@@ -458,8 +456,6 @@
             this.gridColumn23.FieldName = "DISCOUNTFLAT";
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.OptionsColumn.AllowEdit = false;
-            this.gridColumn23.Visible = true;
-            this.gridColumn23.VisibleIndex = 9;
             // 
             // gridColumn22
             // 
@@ -467,8 +463,6 @@
             this.gridColumn22.FieldName = "DISCOUNTPERCENTAGE";
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.OptionsColumn.AllowEdit = false;
-            this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 10;
             // 
             // gridColumn21
             // 
@@ -476,8 +470,6 @@
             this.gridColumn21.FieldName = "SCHEMEFLAT";
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.OptionsColumn.AllowEdit = false;
-            this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 11;
             // 
             // gridColumn20
             // 
@@ -485,62 +477,60 @@
             this.gridColumn20.FieldName = "SCHEMEPERCENTAGE";
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.OptionsColumn.AllowEdit = false;
-            this.gridColumn20.Visible = true;
-            this.gridColumn20.VisibleIndex = 12;
             // 
             // gridColumn19
             // 
-            this.gridColumn19.Caption = "Total Price with Tax";
+            this.gridColumn19.Caption = "TP with Tax";
             this.gridColumn19.FieldName = "TOTALPRICEWT";
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 13;
+            this.gridColumn19.VisibleIndex = 8;
             // 
             // gridColumn17
             // 
-            this.gridColumn17.Caption = "Total Price w/o Tax";
+            this.gridColumn17.Caption = "TP w/o Tax";
             this.gridColumn17.FieldName = "TOTALPRICEWOT";
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.OptionsColumn.AllowEdit = false;
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 14;
+            this.gridColumn17.VisibleIndex = 9;
             // 
             // gridColumn5
             // 
-            this.gridColumn5.Caption = "Applied Discount";
+            this.gridColumn5.Caption = "Disc Value";
             this.gridColumn5.FieldName = "APPLIEDDISCOUNT";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 15;
+            this.gridColumn5.VisibleIndex = 10;
             // 
             // gridColumn4
             // 
-            this.gridColumn4.Caption = "Applied Scheme";
+            this.gridColumn4.Caption = "Sch Value";
             this.gridColumn4.FieldName = "APPLIEDSCHEME";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 16;
+            this.gridColumn4.VisibleIndex = 11;
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "Applied GST";
+            this.gridColumn3.Caption = "GST";
             this.gridColumn3.FieldName = "APPLIEDDGST";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 17;
+            this.gridColumn3.VisibleIndex = 12;
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Final Price";
+            this.gridColumn2.Caption = "Net Price";
             this.gridColumn2.FieldName = "FINALPRICE";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 18;
+            this.gridColumn2.VisibleIndex = 13;
             // 
             // gridColumn18
             // 
@@ -550,15 +540,15 @@
             this.gridColumn18.ColumnEdit = this.btnDelete;
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 19;
+            this.gridColumn18.VisibleIndex = 14;
             this.gridColumn18.Width = 91;
             // 
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
+            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -604,10 +594,10 @@
             this.cmbSupplier.Size = new System.Drawing.Size(159, 20);
             this.cmbSupplier.StyleController = this.layoutControl1;
             this.cmbSupplier.TabIndex = 0;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbSupplier, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbSupplier, conditionValidationRule1);
             // 
             // Root
             // 

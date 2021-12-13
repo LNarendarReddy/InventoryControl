@@ -24,7 +24,6 @@ namespace NSRetail.Stock
         StockRepository ObjStockRep = new StockRepository();
         StockEntry ObjStockEntry = null;
         StockEntryDetail ObjStockEntryDetail = null;
-        bool IsEdit = false;
         public frmStockEntry()
         {
             InitializeComponent();
@@ -106,8 +105,10 @@ namespace NSRetail.Stock
                 {
                     if (!dxValidationProvider1.Validate())
                         return;
-                    DataTable dtInvoice = ObjStockRep.UpdateInvoice(ObjStockEntry);
-                    rptInvoice rpt = new rptInvoice(dtInvoice, ObjStockEntry.dtStockEntry);
+                    ObjStockRep.UpdateInvoice(ObjStockEntry);
+
+                    DataSet ds = ObjStockRep.GetInvoice(ObjStockEntry.STOCKENTRYID);
+                    rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);
                     rpt.ShowPrintMarginsWarning = false;
                     rpt.ShowRibbonPreview();
                     cmbSupplier.EditValue = null;

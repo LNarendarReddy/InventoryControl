@@ -215,6 +215,7 @@
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmInvoiceList";
             this.Text = "Invoice List";
+            this.Load += new System.EventHandler(this.frmInvoiceList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcInvoice)).EndInit();
