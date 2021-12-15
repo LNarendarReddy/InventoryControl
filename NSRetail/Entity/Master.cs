@@ -23,6 +23,7 @@ namespace Entity
         public object BRANCHNAME { get; set; }
         public object BRANCHCODE { get; set; }
         public object ADDRESS { get; set; }
+        public object STATEID { get; set; }
         public object PHONENO { get; set; }
         public object LANDLINE { get; set; }
         public object EMAILID { get; set; }
@@ -71,6 +72,7 @@ namespace Entity
         public object GSTIN { get; set; }
         public object PANNUMBER { get; set; }
         public object EMAILID { get; set; }
+        public object STATEID { get;set; }
     }
 
     public class Counter:EntityBase

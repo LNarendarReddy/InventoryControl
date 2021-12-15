@@ -48,6 +48,7 @@ namespace NSRetail.Master
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -60,6 +61,7 @@ namespace NSRetail.Master
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.cmbState = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -71,6 +73,7 @@ namespace NSRetail.Master
             ((System.ComponentModel.ISupportInitialize)(this.gvDealer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -136,7 +139,8 @@ namespace NSRetail.Master
             this.gcDealer.Name = "gcDealer";
             this.gcDealer.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEdit,
-            this.btnDelete});
+            this.btnDelete,
+            this.cmbState});
             this.gcDealer.Size = new System.Drawing.Size(872, 413);
             this.gcDealer.TabIndex = 4;
             this.gcDealer.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -152,6 +156,7 @@ namespace NSRetail.Master
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn5,
+            this.gridColumn14,
             this.gridColumn6,
             this.gridColumn7,
             this.gridColumn3,
@@ -192,6 +197,15 @@ namespace NSRetail.Master
             this.gridColumn5.VisibleIndex = 1;
             this.gridColumn5.Width = 100;
             // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "STATE";
+            this.gridColumn14.ColumnEdit = this.cmbState;
+            this.gridColumn14.FieldName = "STATEID";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 3;
+            // 
             // gridColumn6
             // 
             this.gridColumn6.Caption = "PHONENO";
@@ -209,7 +223,7 @@ namespace NSRetail.Master
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 3;
+            this.gridColumn7.VisibleIndex = 4;
             this.gridColumn7.Width = 100;
             // 
             // gridColumn3
@@ -219,7 +233,7 @@ namespace NSRetail.Master
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 4;
+            this.gridColumn3.VisibleIndex = 5;
             // 
             // gridColumn4
             // 
@@ -228,7 +242,7 @@ namespace NSRetail.Master
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 5;
+            this.gridColumn4.VisibleIndex = 6;
             // 
             // gridColumn8
             // 
@@ -237,7 +251,7 @@ namespace NSRetail.Master
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 6;
+            this.gridColumn8.VisibleIndex = 7;
             this.gridColumn8.Width = 100;
             // 
             // gridColumn9
@@ -247,7 +261,7 @@ namespace NSRetail.Master
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 7;
+            this.gridColumn9.VisibleIndex = 8;
             this.gridColumn9.Width = 100;
             // 
             // gridColumn10
@@ -272,7 +286,7 @@ namespace NSRetail.Master
             this.gridColumn12.ColumnEdit = this.btnEdit;
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 8;
+            this.gridColumn12.VisibleIndex = 9;
             this.gridColumn12.Width = 37;
             // 
             // btnEdit
@@ -293,7 +307,7 @@ namespace NSRetail.Master
             this.gridColumn13.ColumnEdit = this.btnDelete;
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 9;
+            this.gridColumn13.VisibleIndex = 10;
             this.gridColumn13.Width = 38;
             // 
             // btnDelete
@@ -305,6 +319,17 @@ namespace NSRetail.Master
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
+            // 
+            // cmbState
+            // 
+            this.cmbState.AutoHeight = false;
+            this.cmbState.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbState.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("STATEID", "STATEID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("STATENAME", "STATENAME")});
+            this.cmbState.Name = "cmbState";
+            this.cmbState.NullText = "";
             // 
             // Root
             // 
@@ -379,6 +404,7 @@ namespace NSRetail.Master
             ((System.ComponentModel.ISupportInitialize)(this.gvDealer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbState)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -415,5 +441,7 @@ namespace NSRetail.Master
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbState;
     }
 }

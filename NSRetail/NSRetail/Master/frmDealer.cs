@@ -26,6 +26,10 @@ namespace NSRetail.Master
 
         private void frmDealer_Load(object sender, EventArgs e)
         {
+
+            cmbState.Properties.DataSource = objMasterRep.GetStates();
+            cmbState.Properties.ValueMember = "STATEID";
+            cmbState.Properties.DisplayMember = "STATENAME";
             if (Convert.ToInt32(ObjDealer.DEALERID) > 0)
             {
                 this.Text = "Edit Dealer";
@@ -35,6 +39,7 @@ namespace NSRetail.Master
                 txtEmail.EditValue = ObjDealer.EMAILID;
                 txtGSTIN.EditValue = ObjDealer.GSTIN;
                 txtPanNumber.EditValue = ObjDealer.PANNUMBER;
+                cmbState.EditValue = ObjDealer.STATEID;
             }
         }
 
@@ -50,6 +55,7 @@ namespace NSRetail.Master
                 ObjDealer.EMAILID = txtEmail.EditValue;
                 ObjDealer.GSTIN = txtGSTIN.EditValue;
                 ObjDealer.PANNUMBER = txtPanNumber.EditValue;
+                ObjDealer.STATEID = cmbState.EditValue;
                 ObjDealer.UserID = Utility.UserID;
                 objMasterRep.SaveDealer(ObjDealer);
                 ObjDealer.IsSave = true;
