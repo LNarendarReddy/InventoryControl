@@ -49,6 +49,7 @@ namespace NSRetail.Master
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbState = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -61,7 +62,6 @@ namespace NSRetail.Master
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.cmbState = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -71,9 +71,9 @@ namespace NSRetail.Master
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcDealer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDealer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -203,8 +203,20 @@ namespace NSRetail.Master
             this.gridColumn14.ColumnEdit = this.cmbState;
             this.gridColumn14.FieldName = "STATEID";
             this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 3;
+            // 
+            // cmbState
+            // 
+            this.cmbState.AutoHeight = false;
+            this.cmbState.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbState.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("STATEID", "STATEID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("STATENAME", "STATENAME")});
+            this.cmbState.Name = "cmbState";
+            this.cmbState.NullText = "";
             // 
             // gridColumn6
             // 
@@ -320,17 +332,6 @@ namespace NSRetail.Master
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
             // 
-            // cmbState
-            // 
-            this.cmbState.AutoHeight = false;
-            this.cmbState.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbState.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("STATEID", "STATEID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("STATENAME", "STATENAME")});
-            this.cmbState.Name = "cmbState";
-            this.cmbState.NullText = "";
-            // 
             // Root
             // 
             this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 8F);
@@ -402,9 +403,9 @@ namespace NSRetail.Master
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcDealer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDealer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbState)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbState)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();

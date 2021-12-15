@@ -25,6 +25,7 @@ namespace DataAccess
                     cmd.Parameters.Add("@BRANCHNAME", ObjBranch.BRANCHNAME);
                     cmd.Parameters.Add("@BRANCHCODE", ObjBranch.BRANCHCODE);
                     cmd.Parameters.Add("@ADDRESS", ObjBranch.ADDRESS);
+                    cmd.Parameters.Add("@STATEID", ObjBranch.STATEID);
                     cmd.Parameters.Add("@PHONENO", ObjBranch.PHONENO);
                     cmd.Parameters.Add("@LANDLINE", ObjBranch.LANDLINE);
                     cmd.Parameters.Add("@EMAILID", ObjBranch.EMAILID);
@@ -1045,6 +1046,7 @@ namespace DataAccess
             return dtPrinterSettings;
         }
         public DataTable GetStates()
+        {
             DataTable dtStates = new DataTable();
             try
             {

@@ -26,6 +26,10 @@ namespace NSRetail
 
         private void frmAddBranch_Load(object sender, EventArgs e)
         {
+            cmbState.Properties.DataSource = objMasterRep.GetStates();
+            cmbState.Properties.ValueMember = "STATEID";
+            cmbState.Properties.DisplayMember = "STATENAME";
+
             cmbSupervisor.Properties.DataSource = objMasterRep.GetUser();
             cmbSupervisor.Properties.ValueMember = "USERID";
             cmbSupervisor.Properties.DisplayMember = "USERNAME";
@@ -38,7 +42,8 @@ namespace NSRetail
                 txtPhoneNo.EditValue = ObjBranch.PHONENO;
                 txtLandLine.EditValue = ObjBranch.LANDLINE;
                 txtEmailID.EditValue = ObjBranch.EMAILID;
-                cmbSupervisor .EditValue = ObjBranch. SUPERVISERID;
+                cmbSupervisor.EditValue = ObjBranch.SUPERVISERID;
+                cmbState.EditValue = ObjBranch.STATEID;
                 if (Convert.ToBoolean(ObjBranch.ISWAREHOUSE))
                     chkIsWarehouse.Checked = true;
                 else
@@ -62,6 +67,7 @@ namespace NSRetail
                 ObjBranch.BRANCHCODE = txtBranchCode.EditValue;
                 ObjBranch.BRANCHNAME = txtBranchName.EditValue;
                 ObjBranch.ADDRESS = txtAddress.EditValue;
+                ObjBranch.STATEID = cmbState.EditValue;
                 ObjBranch.PHONENO = txtPhoneNo.EditValue;
                 ObjBranch.LANDLINE = txtLandLine.EditValue;
                 ObjBranch.EMAILID = txtEmailID.EditValue;
