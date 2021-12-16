@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSRetailPOS", "NSRetailPOS\NSRetailPOS.csproj", "{CC528966-0DB9-469C-B739-B327684F2C7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC528966-0DB9-469C-B739-B327684F2C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC528966-0DB9-469C-B739-B327684F2C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC528966-0DB9-469C-B739-B327684F2C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC528966-0DB9-469C-B739-B327684F2C7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BBC1A50D-664F-4E73-8E3E-F85052BAA951}
+	EndGlobalSection
+EndGlobal
