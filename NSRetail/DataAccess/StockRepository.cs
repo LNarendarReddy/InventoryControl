@@ -146,9 +146,8 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
-        public DataTable UpdateDispatch(StockDispatch ObjStockDispatch)
+        public void UpdateDispatch(StockDispatch ObjStockDispatch)
         {
-            DataTable dt = new DataTable();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -157,10 +156,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_STOCKDISPATCH]";
                     cmd.Parameters.Add("@STOCKDISPATCHID", ObjStockDispatch.STOCKDISPATCHID);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dt);
-                    }
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
@@ -171,7 +167,6 @@ namespace DataAccess
             {
                 SQLCon.Sqlconn().Close();
             }
-            return dt;
         }
         public DataTable GetDispatchList()
         {
@@ -300,6 +295,10 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@APPLIEDSCHEME", ObjStockEntryDetail.AppliedScheme);
                     cmd.Parameters.AddWithValue("@APPLIEDDGST", ObjStockEntryDetail.AppliedGST);
                     cmd.Parameters.AddWithValue("@FINALPRICE", ObjStockEntryDetail.FinalPrice);
+                    cmd.Parameters.AddWithValue("@CGST", ObjStockEntryDetail.CGST);
+                    cmd.Parameters.AddWithValue("@SGST", ObjStockEntryDetail.SGST);
+                    cmd.Parameters.AddWithValue("@IGST", ObjStockEntryDetail.IGST);
+                    cmd.Parameters.AddWithValue("@CESS", ObjStockEntryDetail.CESS);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);

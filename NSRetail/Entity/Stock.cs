@@ -83,6 +83,10 @@ namespace Entity
         public object AppliedGST { get; set; }
 
         public object FinalPrice { get; set; }
+        public object CGST { get; set; }
+        public object SGST { get; set; }
+        public object IGST { get; set; }
+        public object CESS { get; set; }
 
     }
 }
