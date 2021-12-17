@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 //using System.Data.SQLite;
 
 namespace NSRetailPOS
@@ -24,6 +25,18 @@ namespace NSRetailPOS
             //DataSet dsEmployees = new DataSet();
             //adapter.Fill(dsEmployees, "Employees");
             //gridControl1.DataSource = dsEmployees.Tables[0];
+
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\NSRetailPOS.mdf;Integrated security=true";
+
+            var con = new SqlConnection(cs);
+            con.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter(
+                "SELECT * FROM ITEMCODE IC " +
+                "INNER JOIN ITEMPRICE IP ON IP.ITEMCODEID = IC.ITEMCODEID" +
+                " ", con);
+            DataSet dsEmployees = new DataSet();
+            adapter.Fill(dsEmployees, "prices");
+            gridControl1.DataSource = dsEmployees.Tables[0];
         }
     }
 }
