@@ -87,7 +87,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\BillingRepository.cs" />
     <Compile Include="Data\ItemRepository.cs" />
+    <Compile Include="Data\SQLCon.cs" />
+    <Compile Include="Entity\Bill.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +99,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\frmMRPSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmMRPSelection.Designer.cs">
+      <DependentUpon>frmMRPSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +119,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\frmMRPSelection.resx">
+      <DependentUpon>frmMRPSelection.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -143,5 +156,6 @@
       <DependentUpon>NSRetailPOS.mdf</DependentUpon>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

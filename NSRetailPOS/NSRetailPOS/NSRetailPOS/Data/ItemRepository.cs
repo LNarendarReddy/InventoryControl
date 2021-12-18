@@ -10,24 +10,10 @@ namespace NSRetailPOS.Data
 {
     public class ItemRepository
     {
-        public SqlConnection Sqlconn()
-        {
-            SqlConnection ObjCon = new SqlConnection();
-
-            try
-            {
-                string str = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\NSRetailPOS.mdf;Integrated security=true";
-                ObjCon.ConnectionString = str;
-                ObjCon.Open();
-            }
-            catch (Exception ex) { throw ex; }
-            return ObjCon;
-        }
-
         public DataTable GetItemCodes()
         {
             DataTable dtItemCodes = new DataTable();
-            SqlConnection conn = Sqlconn();
+            SqlConnection conn = SQLCon.Sqlconn();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -55,7 +41,7 @@ namespace NSRetailPOS.Data
         public DataTable GetMOPs()
         {
             DataTable dtItemCodes = new DataTable();
-            SqlConnection conn = Sqlconn();
+            SqlConnection conn = SQLCon.Sqlconn();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -76,6 +62,34 @@ namespace NSRetailPOS.Data
             finally
             {
                 conn.Close();
+            }
+            return dtItemCodes;
+        }
+
+        public DataTable GetMRPList(object ITEMCODEID)
+        {
+            DataTable dtItemCodes = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_ITEMMRPLIST]";
+                    cmd.Parameters.AddWithValue("@ITEMCODEID", ITEMCODEID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtItemCodes);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving MRP List", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
             }
             return dtItemCodes;
         }
