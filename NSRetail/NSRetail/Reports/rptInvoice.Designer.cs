@@ -408,7 +408,7 @@ namespace NSRetail.Reports
             this.xrTableCell30.Name = "xrTableCell30";
             this.xrTableCell30.StylePriority.UseFont = false;
             this.xrTableCell30.Text = "SUPPLIER : ";
-            this.xrTableCell30.Weight = 0.66666666666666663D;
+            this.xrTableCell30.Weight = 0.691823899371069D;
             // 
             // xrTableCell32
             // 
@@ -417,7 +417,7 @@ namespace NSRetail.Reports
             this.xrTableCell32.Multiline = true;
             this.xrTableCell32.Name = "xrTableCell32";
             this.xrTableCell32.Text = "xrTableCell5";
-            this.xrTableCell32.Weight = 1.3333333333333333D;
+            this.xrTableCell32.Weight = 1.8867924528301869D;
             // 
             // xrTableCell33
             // 
@@ -426,7 +426,7 @@ namespace NSRetail.Reports
             this.xrTableCell33.Name = "xrTableCell33";
             this.xrTableCell33.StylePriority.UseFont = false;
             this.xrTableCell33.Text = "INVOICE NO : ";
-            this.xrTableCell33.Weight = 0.66666666666666352D;
+            this.xrTableCell33.Weight = 0.69182389937106592D;
             // 
             // xrTableCell34
             // 
@@ -435,7 +435,7 @@ namespace NSRetail.Reports
             this.xrTableCell34.Multiline = true;
             this.xrTableCell34.Name = "xrTableCell34";
             this.xrTableCell34.Text = "xrTableCell6";
-            this.xrTableCell34.Weight = 1.3333333333333277D;
+            this.xrTableCell34.Weight = 1.3522012578616294D;
             // 
             // xrTableCell11
             // 
@@ -444,7 +444,7 @@ namespace NSRetail.Reports
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.StylePriority.UseFont = false;
             this.xrTableCell11.Text = "INVOICE DATE : ";
-            this.xrTableCell11.Weight = 1.3333333333333277D;
+            this.xrTableCell11.Weight = 0.69182389937106559D;
             // 
             // xrTableCell7
             // 
@@ -453,7 +453,8 @@ namespace NSRetail.Reports
             this.xrTableCell7.Multiline = true;
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.Text = "xrTableCell7";
-            this.xrTableCell7.Weight = 1.3333333333333277D;
+            this.xrTableCell7.TextFormatString = "{0:dd/MM/yyyy}";
+            this.xrTableCell7.Weight = 1.3522012578616296D;
             // 
             // xrTableRow11
             // 
@@ -474,7 +475,7 @@ namespace NSRetail.Reports
             this.xrTableCell35.Name = "xrTableCell35";
             this.xrTableCell35.StylePriority.UseFont = false;
             this.xrTableCell35.Text = "CATEGORY : ";
-            this.xrTableCell35.Weight = 0.66666666666666663D;
+            this.xrTableCell35.Weight = 0.69182389937106914D;
             // 
             // xrTableCell36
             // 
@@ -482,7 +483,7 @@ namespace NSRetail.Reports
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[CATEGORYNAME]")});
             this.xrTableCell36.Multiline = true;
             this.xrTableCell36.Name = "xrTableCell36";
-            this.xrTableCell36.Weight = 1.3333333333333333D;
+            this.xrTableCell36.Weight = 1.8867924528301887D;
             // 
             // xrTableCell37
             // 
@@ -491,7 +492,7 @@ namespace NSRetail.Reports
             this.xrTableCell37.Name = "xrTableCell37";
             this.xrTableCell37.StylePriority.UseFont = false;
             this.xrTableCell37.Text = "GSTIN";
-            this.xrTableCell37.Weight = 0.66666666666666674D;
+            this.xrTableCell37.Weight = 0.69182389937106925D;
             // 
             // xrTableCell38
             // 
@@ -500,7 +501,7 @@ namespace NSRetail.Reports
             this.xrTableCell38.Multiline = true;
             this.xrTableCell38.Name = "xrTableCell38";
             this.xrTableCell38.Text = "xrTableCell9";
-            this.xrTableCell38.Weight = 1.3333333333333333D;
+            this.xrTableCell38.Weight = 1.3522012578616351D;
             // 
             // xrTableCell12
             // 
@@ -509,7 +510,7 @@ namespace NSRetail.Reports
             this.xrTableCell12.Name = "xrTableCell12";
             this.xrTableCell12.StylePriority.UseFont = false;
             this.xrTableCell12.Text = "TAX INCLUSIVE :";
-            this.xrTableCell12.Weight = 1.3333333333333333D;
+            this.xrTableCell12.Weight = 0.69182389937106914D;
             // 
             // xrTableCell8
             // 
@@ -518,7 +519,7 @@ namespace NSRetail.Reports
             this.xrTableCell8.Multiline = true;
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.Text = "xrTableCell8";
-            this.xrTableCell8.Weight = 1.3333333333333333D;
+            this.xrTableCell8.Weight = 1.3522012578616351D;
             // 
             // xrTableRow1
             // 
@@ -539,7 +540,7 @@ namespace NSRetail.Reports
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.StylePriority.UseFont = false;
             this.xrTableCell1.Text = "ENTRY DATE : ";
-            this.xrTableCell1.Weight = 0.66666666666666663D;
+            this.xrTableCell1.Weight = 0.69182389937106914D;
             // 
             // xrTableCell2
             // 
@@ -548,7 +549,8 @@ namespace NSRetail.Reports
             this.xrTableCell2.Multiline = true;
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.Text = "xrTableCell2";
-            this.xrTableCell2.Weight = 1.3333333333333333D;
+            this.xrTableCell2.TextFormatString = "{0:dd/MM/yyyy hh:mm:ss tt}";
+            this.xrTableCell2.Weight = 1.8867924528301887D;
             // 
             // xrTableCell3
             // 
@@ -557,7 +559,7 @@ namespace NSRetail.Reports
             this.xrTableCell3.Name = "xrTableCell3";
             this.xrTableCell3.StylePriority.UseFont = false;
             this.xrTableCell3.Text = "ENTRY BY : ";
-            this.xrTableCell3.Weight = 0.66666666666666674D;
+            this.xrTableCell3.Weight = 0.69182389937106925D;
             // 
             // xrTableCell4
             // 
@@ -566,19 +568,19 @@ namespace NSRetail.Reports
             this.xrTableCell4.Multiline = true;
             this.xrTableCell4.Name = "xrTableCell4";
             this.xrTableCell4.Text = "xrTableCell4";
-            this.xrTableCell4.Weight = 1.3333333333333333D;
+            this.xrTableCell4.Weight = 1.3522012578616351D;
             // 
             // xrTableCell13
             // 
             this.xrTableCell13.Multiline = true;
             this.xrTableCell13.Name = "xrTableCell13";
-            this.xrTableCell13.Weight = 1.3333333333333333D;
+            this.xrTableCell13.Weight = 0.69182389937106914D;
             // 
             // xrTableCell9
             // 
             this.xrTableCell9.Multiline = true;
             this.xrTableCell9.Name = "xrTableCell9";
-            this.xrTableCell9.Weight = 1.3333333333333333D;
+            this.xrTableCell9.Weight = 1.3522012578616351D;
             // 
             // drItems
             // 

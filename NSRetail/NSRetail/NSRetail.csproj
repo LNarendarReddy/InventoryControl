@@ -85,6 +85,12 @@
     <Compile Include="Item\frmBarCodePrint.designer.cs">
       <DependentUpon>frmBarCodePrint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Item\frmCostPriceList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\frmCostPriceList.Designer.cs">
+      <DependentUpon>frmCostPriceList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Item\frmItemVisualize.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -310,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Item\frmBarCodePrint.resx">
       <DependentUpon>frmBarCodePrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Item\frmCostPriceList.resx">
+      <DependentUpon>frmCostPriceList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Item\frmItemVisualize.resx">
       <DependentUpon>frmItemVisualize.cs</DependentUpon>

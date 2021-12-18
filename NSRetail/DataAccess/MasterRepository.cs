@@ -25,6 +25,7 @@ namespace DataAccess
                     cmd.Parameters.Add("@BRANCHNAME", ObjBranch.BRANCHNAME);
                     cmd.Parameters.Add("@BRANCHCODE", ObjBranch.BRANCHCODE);
                     cmd.Parameters.Add("@ADDRESS", ObjBranch.ADDRESS);
+                    cmd.Parameters.Add("@STATEID", ObjBranch.STATEID);
                     cmd.Parameters.Add("@PHONENO", ObjBranch.PHONENO);
                     cmd.Parameters.Add("@LANDLINE", ObjBranch.LANDLINE);
                     cmd.Parameters.Add("@EMAILID", ObjBranch.EMAILID);
@@ -500,6 +501,7 @@ namespace DataAccess
                     cmd.Parameters.Add("@DEALERID", ObjDealer.DEALERID);
                     cmd.Parameters.Add("@DEALERNAME", ObjDealer.DEALERNAME);
                     cmd.Parameters.Add("@ADDRESS", ObjDealer.ADDRESS);
+                    cmd.Parameters.Add("@STATEID", ObjDealer.STATEID);
                     cmd.Parameters.Add("@PHONENO", ObjDealer.PHONENO);
                     cmd.Parameters.Add("@GSTIN", ObjDealer.GSTIN);
                     cmd.Parameters.Add("@PANNUMBER", ObjDealer.PANNUMBER);
@@ -1042,6 +1044,32 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
             return dtPrinterSettings;
+        }
+        public DataTable GetStates()
+        {
+            DataTable dtStates = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_STATE]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtStates);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving State List");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtStates;
         }
     }
 }

@@ -27,6 +27,9 @@ namespace NSRetail.Master
         {
             try
             {
+                cmbState.DataSource = objMasterRep.GetStates();
+                cmbState.DisplayMember = "STATENAME";
+                cmbState.ValueMember = "STATEID";
                 gcDealer.DataSource = objMasterRep.GetDealer();
             }
             catch (Exception ex)
@@ -66,6 +69,7 @@ namespace NSRetail.Master
                     ObjDealer.DEALERID = gvDealer.GetFocusedRowCellValue("DEALERID");
                     ObjDealer.DEALERNAME = gvDealer.GetFocusedRowCellValue("DEALERNAME");
                     ObjDealer.ADDRESS = gvDealer.GetFocusedRowCellValue("ADDRESS");
+                    ObjDealer.STATEID = gvDealer.GetFocusedRowCellValue("STATEID");
                     ObjDealer.PHONENO = gvDealer.GetFocusedRowCellValue("PHONENO");
                     ObjDealer.EMAILID = gvDealer.GetFocusedRowCellValue("EMAILID");
                     ObjDealer.GSTIN = gvDealer.GetFocusedRowCellValue("GSTIN");

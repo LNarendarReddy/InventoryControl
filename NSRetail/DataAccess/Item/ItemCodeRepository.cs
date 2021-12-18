@@ -289,5 +289,33 @@ namespace DataAccess
             }
             return dtParentItems;
         }
+
+        public DataTable GetCostPriceList(object ITEMCODEID)
+        {
+            DataTable dtItemCodes = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_COSTPRICELIST]";
+                    cmd.Parameters.Add("@ITEMCODEID", ITEMCODEID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtItemCodes);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Cost Price List", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtItemCodes;
+        }
     }
 }

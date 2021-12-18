@@ -89,6 +89,10 @@ namespace NSRetail.Stock
                     ObjStockEntry.dtStockEntry.Columns.Add("APPLIEDSCHEME", typeof(decimal));
                     ObjStockEntry.dtStockEntry.Columns.Add("APPLIEDDGST", typeof(decimal));
                     ObjStockEntry.dtStockEntry.Columns.Add("FINALPRICE", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("SGST", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("CGST", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("IGST", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("CESS", typeof(decimal));
                     gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
                 }
 
@@ -183,6 +187,10 @@ namespace NSRetail.Stock
                 view.SetRowCellValue(e.RowHandle, "APPLIEDSCHEME", ObjStockEntryDetail.AppliedScheme);
                 view.SetRowCellValue(e.RowHandle, "APPLIEDDGST", ObjStockEntryDetail.AppliedGST);
                 view.SetRowCellValue(e.RowHandle, "FINALPRICE", ObjStockEntryDetail.FinalPrice);
+                view.SetRowCellValue(e.RowHandle, "CGST", ObjStockEntryDetail.CGST);
+                view.SetRowCellValue(e.RowHandle, "SGST", ObjStockEntryDetail.SGST);
+                view.SetRowCellValue(e.RowHandle, "IGST", ObjStockEntryDetail.IGST);
+                view.SetRowCellValue(e.RowHandle, "CESS", ObjStockEntryDetail.CESS);
             }
             catch (Exception ex)
             {

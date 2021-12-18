@@ -161,30 +161,30 @@ namespace NSRetail
 
         private void frmLogin_Shown(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    RegistryKey RGkey = Registry.CurrentUser.OpenSubKey(@"Software\NSRetail", true);
-            //    if (RGkey != null)
-            //    {
-            //        if (!string.IsNullOrEmpty(Convert.ToString(RGkey.GetValue("LastUser")))
-            //            && !string.IsNullOrEmpty(Convert.ToString(RGkey.GetValue("PasswordString"))))
-            //        {
-            //            txtUserName.EditValue = RGkey.GetValue("LastUser");
-            //            txtPassword.EditValue = RGkey.GetValue("PasswordString");
-            //            btnLogin_Click(null, null);
-            //        }
-            //        else
-            //        {
-            //            txtUserName.EditValue = RGkey.GetValue("LastUser");
-            //            txtPassword.EditValue = RGkey.GetValue("PasswordString");
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    ErrorMgmt.ShowError(ex);
-            //    ErrorMgmt.Errorlog.Error(ex);
-            //}
+            try
+            {
+                RegistryKey RGkey = Registry.CurrentUser.OpenSubKey(@"Software\NSRetail", true);
+                if (RGkey != null)
+                {
+                    if (!string.IsNullOrEmpty(Convert.ToString(RGkey.GetValue("LastUser")))
+                        && !string.IsNullOrEmpty(Convert.ToString(RGkey.GetValue("PasswordString"))))
+                    {
+                        txtUserName.EditValue = RGkey.GetValue("LastUser");
+                        txtPassword.EditValue = RGkey.GetValue("PasswordString");
+                        btnLogin_Click(null, null);
+                    }
+                    else
+                    {
+                        txtUserName.EditValue = RGkey.GetValue("LastUser");
+                        txtPassword.EditValue = RGkey.GetValue("PasswordString");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
         }
     }
 }

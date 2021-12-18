@@ -47,6 +47,9 @@ namespace NSRetail
         {
             try
             {
+                cmbState.DataSource = objMasterRep.GetStates();
+                cmbState.DisplayMember = "STATENAME";
+                cmbState.ValueMember = "STATEID";
                 gcBranch.DataSource = objMasterRep.GetBranch();
             }
             catch (Exception ex){
@@ -66,11 +69,12 @@ namespace NSRetail
                     ObjBranch.BRANCHNAME = gvBranch.GetFocusedRowCellValue("BRANCHNAME");
                     ObjBranch.BRANCHCODE = gvBranch.GetFocusedRowCellValue("BRANCHCODE");
                     ObjBranch.ADDRESS = gvBranch.GetFocusedRowCellValue("ADDRESS");
+                    ObjBranch.STATEID = gvBranch.GetFocusedRowCellValue("STATEID");
                     ObjBranch.PHONENO = gvBranch.GetFocusedRowCellValue("PHONENO");
                     ObjBranch.EMAILID = gvBranch.GetFocusedRowCellValue("EMAILID");
                     ObjBranch.ISWAREHOUSE = gvBranch.GetFocusedRowCellValue("ISWAREHOUSE");
                     ObjBranch.LANDLINE = gvBranch.GetFocusedRowCellValue("LANDLINE");
-                    ObjBranch.SUPERVISERID = gvBranch.GetFocusedRowCellValue("SUPERVISERID");
+                    ObjBranch.SUPERVISERID = gvBranch.GetFocusedRowCellValue("SUPERVISORID");
                     frmBranch obj = new frmBranch(ObjBranch);
                     obj.ShowInTaskbar = false;
                     obj.StartPosition = FormStartPosition.CenterScreen;

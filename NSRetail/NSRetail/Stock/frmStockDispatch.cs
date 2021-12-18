@@ -108,8 +108,9 @@ namespace NSRetail.Stock
                 {
                     if (!dxValidationProvider1.Validate())
                         return;
-                    DataTable dtDspatch = ObjStockRep.UpdateDispatch(ObjStockDispatch);
-                    rptDispatch rpt = new rptDispatch(dtDspatch, ObjStockDispatch.dtDispatch);
+                    ObjStockRep.UpdateDispatch(ObjStockDispatch);
+                    DataSet ds = ObjStockRep.GetDispatch(ObjStockDispatch.STOCKDISPATCHID);
+                    rptDispatch rpt = new rptDispatch(ds.Tables[0], ds.Tables[1]);
                     rpt.ShowPrintMarginsWarning = false;
                     rpt.ShowRibbonPreview();
                     cmbFromBranch.EditValue = null;
