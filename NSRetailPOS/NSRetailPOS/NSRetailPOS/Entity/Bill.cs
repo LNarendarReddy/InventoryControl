@@ -1,8 +1,9 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 
 namespace NSRetailPOS.Entity
 {
-    public class Bill
+    public class Bill : ICloneable
     {
         public object BillID { get; set; }
 
@@ -12,22 +13,16 @@ namespace NSRetailPOS.Entity
 
         public object LastBilledQuantity { get; set; }
 
-        public object MRP { get; set; }
-
-        public object SalePrice { get; set; }
-
-        public object Savings { get; set; }
-
-        public object SGST { get; set; }
-
-        public object CGST { get; set; }
-
-        public object IGST { get; set; }
-
-        public object CESS { get; set; }
-
-        public object GSTSUM { get; set; }
-
         public DataTable dtBillDetails { get; set; }
+
+        public object Clone()
+        {
+            Bill clonedBillObj = new Bill();
+            clonedBillObj.BillID = BillID;
+            clonedBillObj.BillNumber = BillNumber;
+            clonedBillObj.dtBillDetails = dtBillDetails.Copy();
+
+            return clonedBillObj;
+        }
     }
 }

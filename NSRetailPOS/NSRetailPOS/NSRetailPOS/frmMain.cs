@@ -44,16 +44,11 @@ namespace NSRetailPOS
                 return;
             }
 
-            billObj = Utility.GetBill(dsInitialData);
-
-            this.Text = $"NS Retail POS - Bill Number : {billObj.BillNumber}";
-
-            lblLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
-            lblLastBilledQunatity.Text = billObj.LastBilledQuantity.ToString();
-
             sluItemCode.Properties.DataSource = itemRepository.GetItemCodes();
             sluItemCode.Properties.DisplayMember = "ITEMCODE";
             sluItemCode.Properties.ValueMember = "ITEMCODEID";
+
+            LoadBillData(dsInitialData);
         }
 
         private void txtQuantity_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -63,11 +58,49 @@ namespace NSRetailPOS
                 return;
             }
 
-            gvBilling.AddNewRow();
+            gvBilling.GridControl.BindingContext = new BindingContext();
+            gvBilling.GridControl.DataSource = billObj.dtBillDetails;
+
+            int rowHandle = gvBilling.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
+            if (rowHandle < 0)
+            {
+                gvBilling.AddNewRow(); 
+            }
+            else
+            {
+                int newQuantity = Convert.ToInt32(txtQuantity.EditValue) + Convert.ToInt32(gvBilling.GetRowCellValue(rowHandle, "QUANTITY"));
+                if (newQuantity > 0)
+                {
+                    gvBilling.SetRowCellValue(rowHandle, "QUANTITY", newQuantity); 
+                }
+                else
+                {
+                    object billDetailID = gvBilling.GetRowCellValue(rowHandle, "BILLDETAILID");
+                    billingRepository.DeleteBillDetail(billDetailID, userID);
+                    gvBilling.DeleteRow(rowHandle);
+                    UpdateSummary();
+                }
+            }
+
+            gvBilling.GridControl.BindingContext = new BindingContext();
+            gvBilling.GridControl.DataSource = billObj.dtBillDetails;
+
+            rowHandle = gvBilling.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
+            if (rowHandle >= 0)
+            {
+                CalculateFields(rowHandle);
+                SaveBillDetail(rowHandle);
+            }
+            ClearItemData();
         }
 
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)
         {
+            if(sluItemCode.EditValue == null)
+            {
+                return;
+            }
+
             DataTable dtPrices = itemRepository.GetMRPList(sluItemCode.EditValue);
             if(dtPrices.Rows.Count > 1)
             {
@@ -101,7 +134,106 @@ namespace NSRetailPOS
 
         private void gvBilling_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
-            //gvBilling.SetRowCellValue(e.RowHandle, "STOCKDISPATCHDETAILID", ObjStockDispatchDetail.STOCKDISPATCHDETAILID);
+            gvBilling.SetRowCellValue(e.RowHandle, "BILLDETAILID", -1);
+            gvBilling.SetRowCellValue(e.RowHandle, "BILLID", billObj.BillID);
+            gvBilling.SetRowCellValue(e.RowHandle, "ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
+            gvBilling.SetRowCellValue(e.RowHandle, "SNO", SNo++);
+            gvBilling.SetRowCellValue(e.RowHandle, "ITEMNAME", txtItemName.EditValue);
+            gvBilling.SetRowCellValue(e.RowHandle, "ITEMCODE", sluItemCode.Text);
+            gvBilling.SetRowCellValue(e.RowHandle, "MRP", drSelectedPrice["MRP"]);
+            gvBilling.SetRowCellValue(e.RowHandle, "SALEPRICE", drSelectedPrice["SALEPRICE"]);
+            gvBilling.SetRowCellValue(e.RowHandle, "GSTCODE", drSelectedPrice["GSTCODE"]);
+            gvBilling.SetRowCellValue(e.RowHandle, "QUANTITY", txtQuantity.EditValue);
+            gvBilling.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", 0.00);
         }
-    }
-}
+        
+        private void btnCloseBill_Click(object sender, EventArgs e)
+        {
+            if (billObj.dtBillDetails.Rows.Count == 0)
+            {
+                XtraMessageBox.Show("No items to bill", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DataSet nextBillDetails = billingRepository.FinishBill(billObj.BillID, userID, daySequenceID);
+
+            // use this object for printing
+            Bill oldBillObj = billObj.Clone() as Bill;
+
+            LoadBillData(nextBillDetails);
+        }
+
+        private void CalculateFields(int rowHandle)
+        {
+            DataRow drBillDetail = (gvBilling.GetRow(rowHandle) as DataRowView).Row;
+            decimal salePrice = Convert.ToDecimal(drBillDetail["SALEPRICE"])
+                , cGSTPer = Convert.ToDecimal(drSelectedPrice["CGST"])
+                , sGSTPer = Convert.ToDecimal(drSelectedPrice["SGST"])
+                , iGSTPer = Convert.ToDecimal(drSelectedPrice["IGST"])
+                , cess = Convert.ToDecimal(drSelectedPrice["CESS"])
+                , billedAmount, cGSTValue, sGSTValue, iGSTValue, cessValue, totalGSTValue;
+
+            int.TryParse(drBillDetail["QUANTITY"].ToString(), out int quantity);
+            billedAmount = salePrice * quantity;
+            cGSTValue = Math.Round((billedAmount * cGSTPer) / 100, 2);
+            sGSTValue = Math.Round((billedAmount * sGSTPer) / 100, 2);
+            iGSTValue = Math.Round((billedAmount * iGSTPer) / 100, 2);
+            cessValue = Math.Round((billedAmount * cess) / 100, 2);
+
+            totalGSTValue = cGSTValue + sGSTValue + iGSTValue + cessValue;
+
+            drBillDetail["CGST"] = cGSTValue;
+            drBillDetail["SGST"] = sGSTValue;
+            drBillDetail["IGST"] = iGSTValue;
+            drBillDetail["CESS"] = cessValue;
+            drBillDetail["GSTVALUE"] = totalGSTValue;
+            drBillDetail["BILLEDAMOUNT"] = billedAmount;
+
+            UpdateSummary();
+        }   
+        
+        private void SaveBillDetail(int rowHandle)
+        {
+            DataRow drBillDetail = (gvBilling.GetRow(rowHandle) as DataRowView).Row;
+            int billDetailID = billingRepository.SaveBillDetail(drBillDetail, userID);
+            drBillDetail["BILLDETAILID"] = billDetailID;
+        }
+
+        private void ClearItemData()
+        {
+            sluItemCode.EditValue = null;
+            txtItemName.EditValue = null;
+            txtMRP.EditValue = null;
+            txtDiscount.EditValue = null;
+            txtSalePrice.EditValue = null;
+            txtQuantity.EditValue = 1;
+            sluItemCode.Focus();
+        }
+
+        private void UpdateSummary()
+        {
+            lblTotalBill.Text = gvBilling.Columns["BILLEDAMOUNT"].SummaryItem.SummaryValue.ToString();
+            lblTotalItems.Text = gvBilling.Columns["QUANTITY"].SummaryItem.SummaryValue.ToString();
+        }
+        
+        private void LoadBillData(DataSet dsBillInfo)
+        {
+            billObj = Utility.GetBill(dsBillInfo);
+
+            this.Text = $"NS Retail POS - Bill Number : {billObj.BillNumber}";
+
+            lblLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
+            lblLastBilledQunatity.Text = billObj.LastBilledQuantity.ToString();
+
+            lblLastBilledAmount.Text = string.IsNullOrEmpty(lblLastBilledAmount.Text) ? "0.00" : lblLastBilledAmount.Text;
+            lblLastBilledQunatity.Text = string.IsNullOrEmpty(lblLastBilledQunatity.Text) ? "0" : lblLastBilledQunatity.Text;
+
+            gcBilling.DataSource = billObj.dtBillDetails;
+
+            UpdateSummary();
+            SNo = 1;
+
+            sluItemCode.Focus();
+        }
+    }                       
+}                           
