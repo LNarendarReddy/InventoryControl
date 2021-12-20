@@ -48,6 +48,9 @@ namespace NSRetailPOS
             sluItemCode.Properties.DisplayMember = "ITEMCODE";
             sluItemCode.Properties.ValueMember = "ITEMCODEID";
 
+            sluItemCodeView.GridControl.BindingContext = new BindingContext();
+            sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
+
             LoadBillData(dsInitialData);
         }
 
@@ -199,15 +202,18 @@ namespace NSRetailPOS
             drBillDetail["BILLDETAILID"] = billDetailID;
         }
 
-        private void ClearItemData()
+        private void ClearItemData(bool focusItemCode = true)
         {
+            txtItemCode.EditValue = null;
             sluItemCode.EditValue = null;
             txtItemName.EditValue = null;
             txtMRP.EditValue = null;
             txtDiscount.EditValue = null;
             txtSalePrice.EditValue = null;
             txtQuantity.EditValue = 1;
-            sluItemCode.Focus();
+
+            if (focusItemCode)
+                txtItemCode.Focus();
         }
 
         private void UpdateSummary()
@@ -231,9 +237,24 @@ namespace NSRetailPOS
             gcBilling.DataSource = billObj.dtBillDetails;
 
             UpdateSummary();
-            SNo = 1;
+            SNo = billObj.dtBillDetails.Rows.Count + 1;
 
-            sluItemCode.Focus();
+            txtItemCode.Focus();
+        }
+
+        private void txtItemCode_Leave(object sender, EventArgs e)
+        {
+            int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
+            if(rowHandle >=  0)
+            {
+                sluItemCode.Enabled = false;
+                sluItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODEID");
+            }
+            else
+            {
+                ClearItemData(false);
+                sluItemCode.Enabled = true;
+            }
         }
     }                       
 }                           
