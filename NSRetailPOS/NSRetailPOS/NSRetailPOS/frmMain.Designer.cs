@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.lblTotalItems = new DevExpress.XtraEditors.LabelControl();
+            this.lblTotalBill = new DevExpress.XtraEditors.LabelControl();
             this.lblLastBilledQunatity = new DevExpress.XtraEditors.LabelControl();
             this.lblLastBilledAmount = new DevExpress.XtraEditors.LabelControl();
             this.lblUser = new DevExpress.XtraEditors.LabelControl();
@@ -41,6 +44,7 @@
             this.gcBilling = new DevExpress.XtraGrid.GridControl();
             this.gvBilling = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -80,10 +84,16 @@
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcBilling)).BeginInit();
@@ -109,14 +119,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.labelControl1);
+            this.layoutControl1.Controls.Add(this.lblTotalItems);
+            this.layoutControl1.Controls.Add(this.lblTotalBill);
             this.layoutControl1.Controls.Add(this.lblLastBilledQunatity);
             this.layoutControl1.Controls.Add(this.lblLastBilledAmount);
             this.layoutControl1.Controls.Add(this.lblUser);
@@ -140,27 +159,56 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(1025, 131);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(63, 13);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 25;
+            this.labelControl1.Text = "labelControl1";
+            // 
+            // lblTotalItems
+            // 
+            this.lblTotalItems.Location = new System.Drawing.Point(1129, 316);
+            this.lblTotalItems.Name = "lblTotalItems";
+            this.lblTotalItems.Size = new System.Drawing.Size(54, 13);
+            this.lblTotalItems.StyleController = this.layoutControl1;
+            this.lblTotalItems.TabIndex = 24;
+            this.lblTotalItems.Text = "Total Items";
+            // 
+            // lblTotalBill
+            // 
+            this.lblTotalBill.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.lblTotalBill.Appearance.Options.UseFont = true;
+            this.lblTotalBill.Location = new System.Drawing.Point(1129, 290);
+            this.lblTotalBill.Name = "lblTotalBill";
+            this.lblTotalBill.Size = new System.Drawing.Size(53, 16);
+            this.lblTotalBill.StyleController = this.layoutControl1;
+            this.lblTotalBill.TabIndex = 23;
+            this.lblTotalBill.Text = "Total Bill";
+            // 
             // lblLastBilledQunatity
             // 
-            this.lblLastBilledQunatity.Location = new System.Drawing.Point(1117, 121);
+            this.lblLastBilledQunatity.Location = new System.Drawing.Point(1129, 222);
             this.lblLastBilledQunatity.Name = "lblLastBilledQunatity";
-            this.lblLastBilledQunatity.Size = new System.Drawing.Size(63, 13);
+            this.lblLastBilledQunatity.Size = new System.Drawing.Size(90, 13);
             this.lblLastBilledQunatity.StyleController = this.layoutControl1;
             this.lblLastBilledQunatity.TabIndex = 21;
-            this.lblLastBilledQunatity.Text = "labelControl2";
+            this.lblLastBilledQunatity.Text = "Last billed quantity";
             // 
             // lblLastBilledAmount
             // 
-            this.lblLastBilledAmount.Location = new System.Drawing.Point(1117, 98);
+            this.lblLastBilledAmount.Location = new System.Drawing.Point(1129, 199);
             this.lblLastBilledAmount.Name = "lblLastBilledAmount";
-            this.lblLastBilledAmount.Size = new System.Drawing.Size(63, 13);
+            this.lblLastBilledAmount.Size = new System.Drawing.Size(86, 13);
             this.lblLastBilledAmount.StyleController = this.layoutControl1;
             this.lblLastBilledAmount.TabIndex = 20;
-            this.lblLastBilledAmount.Text = "labelControl1";
+            this.lblLastBilledAmount.Text = "Last billed amount";
             // 
             // lblUser
             // 
-            this.lblUser.Location = new System.Drawing.Point(1117, 75);
+            this.lblUser.Location = new System.Drawing.Point(1129, 108);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(63, 13);
             this.lblUser.StyleController = this.layoutControl1;
@@ -188,6 +236,7 @@
             this.btnCloseBill.StyleController = this.layoutControl1;
             this.btnCloseBill.TabIndex = 17;
             this.btnCloseBill.Text = "&Finish bill";
+            this.btnCloseBill.Click += new System.EventHandler(this.btnCloseBill_Click);
             // 
             // btnSaveBill
             // 
@@ -236,6 +285,7 @@
             // 
             this.gvBilling.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn4,
+            this.gridColumn20,
             this.gridColumn5,
             this.gridColumn6,
             this.gridColumn7,
@@ -253,9 +303,8 @@
             this.gridColumn19});
             this.gvBilling.GridControl = this.gcBilling;
             this.gvBilling.Name = "gvBilling";
+            this.gvBilling.OptionsBehavior.Editable = false;
             this.gvBilling.OptionsMenu.EnableGroupPanelMenu = false;
-            this.gvBilling.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways;
-            this.gvBilling.OptionsView.ShowFooter = true;
             this.gvBilling.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn6, DevExpress.Data.ColumnSortOrder.Descending)});
             this.gvBilling.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvBilling_InitNewRow);
@@ -265,6 +314,12 @@
             this.gridColumn4.Caption = "BILLDETAILID";
             this.gridColumn4.FieldName = "BILLDETAILID";
             this.gridColumn4.Name = "gridColumn4";
+            // 
+            // gridColumn20
+            // 
+            this.gridColumn20.Caption = "BILLID";
+            this.gridColumn20.FieldName = "BILLID";
+            this.gridColumn20.Name = "gridColumn20";
             // 
             // gridColumn5
             // 
@@ -323,8 +378,10 @@
             // gridColumn12
             // 
             this.gridColumn12.Caption = "Quantity";
-            this.gridColumn12.FieldName = "Quantity";
+            this.gridColumn12.FieldName = "QUANTITY";
             this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QUANTITY", "{0:0.##}")});
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 6;
             // 
@@ -341,6 +398,8 @@
             this.gridColumn14.Caption = "Billed Amount";
             this.gridColumn14.FieldName = "BILLEDAMOUNT";
             this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BILLEDAMOUNT", "{0:0.##}")});
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 8;
             // 
@@ -506,10 +565,10 @@
             this.layoutControlItem13,
             this.layoutControlItem7,
             this.layoutControlItem14,
+            this.layoutControlGroup1,
             this.emptySpaceItem2,
-            this.layoutControlItem8,
-            this.layoutControlItem10,
-            this.layoutControlItem15});
+            this.layoutControlGroup2,
+            this.layoutControlGroup3});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1308, 764);
             this.Root.TextVisible = false;
@@ -641,43 +700,103 @@
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem17,
+            this.layoutControlItem18});
+            this.layoutControlGroup1.Location = new System.Drawing.Point(998, 242);
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(290, 94);
+            this.layoutControlGroup1.Text = "Bill Summary";
+            // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.Control = this.lblTotalBill;
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem17.Size = new System.Drawing.Size(266, 26);
+            this.layoutControlItem17.Text = "Total Bill";
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(92, 13);
+            // 
+            // layoutControlItem18
+            // 
+            this.layoutControlItem18.Control = this.lblTotalItems;
+            this.layoutControlItem18.Location = new System.Drawing.Point(0, 26);
+            this.layoutControlItem18.Name = "layoutControlItem18";
+            this.layoutControlItem18.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem18.Size = new System.Drawing.Size(266, 23);
+            this.layoutControlItem18.Text = "Total Items";
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(92, 13);
+            // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(998, 129);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(998, 336);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(290, 583);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(290, 376);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutControlItem8
+            // layoutControlGroup2
             // 
-            this.layoutControlItem8.Control = this.lblUser;
-            this.layoutControlItem8.Location = new System.Drawing.Point(998, 60);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem8.Size = new System.Drawing.Size(290, 23);
-            this.layoutControlItem8.Text = "Logged In User";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(92, 13);
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem10,
+            this.layoutControlItem15});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(998, 151);
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(290, 91);
+            this.layoutControlGroup2.Text = "Last Bill Details";
             // 
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.lblLastBilledAmount;
-            this.layoutControlItem10.Location = new System.Drawing.Point(998, 83);
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem10.Size = new System.Drawing.Size(290, 23);
+            this.layoutControlItem10.Size = new System.Drawing.Size(266, 23);
             this.layoutControlItem10.Text = "Last Billed Amount";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(92, 13);
             // 
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.lblLastBilledQunatity;
-            this.layoutControlItem15.Location = new System.Drawing.Point(998, 106);
+            this.layoutControlItem15.Location = new System.Drawing.Point(0, 23);
             this.layoutControlItem15.Name = "layoutControlItem15";
             this.layoutControlItem15.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem15.Size = new System.Drawing.Size(290, 23);
+            this.layoutControlItem15.Size = new System.Drawing.Size(266, 23);
             this.layoutControlItem15.Text = "Last Billed Quantity";
             this.layoutControlItem15.TextSize = new System.Drawing.Size(92, 13);
+            // 
+            // layoutControlGroup3
+            // 
+            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem8,
+            this.layoutControlItem16});
+            this.layoutControlGroup3.Location = new System.Drawing.Point(998, 60);
+            this.layoutControlGroup3.Name = "layoutControlGroup3";
+            this.layoutControlGroup3.Size = new System.Drawing.Size(290, 91);
+            this.layoutControlGroup3.Text = "User details";
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.lblUser;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem8.Size = new System.Drawing.Size(266, 23);
+            this.layoutControlItem8.Text = "Logged In User";
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(92, 13);
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.Control = this.labelControl1;
+            this.layoutControlItem16.Location = new System.Drawing.Point(0, 23);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem16.Size = new System.Drawing.Size(266, 23);
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem16.TextVisible = false;
             // 
             // frmMain
             // 
@@ -714,10 +833,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -754,7 +879,6 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraEditors.LabelControl lblUser;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraEditors.LabelControl lblLastBilledQunatity;
         private DevExpress.XtraEditors.LabelControl lblLastBilledAmount;
@@ -779,6 +903,17 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+        private DevExpress.XtraEditors.LabelControl lblTotalItems;
+        private DevExpress.XtraEditors.LabelControl lblTotalBill;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
     }
 }
 

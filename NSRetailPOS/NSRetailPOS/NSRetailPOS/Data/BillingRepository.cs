@@ -6,55 +6,46 @@ namespace NSRetailPOS.Data
 {
     public class BillingRepository
     {
-        //public Item SaveItemCode(Item itemObj)
-        //{
-        //    try
-        //    {
-        //        using (SqlCommand cmd = new SqlCommand())
-        //        {
-        //            cmd.Connection = SQLCon.Sqlconn();
-        //            cmd.CommandType = CommandType.StoredProcedure;
-        //            cmd.CommandText = "[USP_CU_ITEMCODE]";
-        //            cmd.Parameters.AddWithValue("@ItemCodeID", itemObj.ItemCodeID);
-        //            cmd.Parameters.AddWithValue("@ItemID", itemObj.ItemID);
-        //            cmd.Parameters.AddWithValue("@ItemName", itemObj.ItemName);
-        //            cmd.Parameters.AddWithValue("@ItemCode", itemObj.ItemCode);
-        //            cmd.Parameters.AddWithValue("@Description", itemObj.Description);
-        //            cmd.Parameters.AddWithValue("@CategoryID", itemObj.CategoryID);
-        //            cmd.Parameters.AddWithValue("@SubCategoryID", itemObj.SubCategoryID);
-        //            cmd.Parameters.AddWithValue("@HSNCode", itemObj.HSNCode);
-        //            cmd.Parameters.AddWithValue("@IsEAN", itemObj.IsEAN);
-        //            cmd.Parameters.AddWithValue("@SKUCode", itemObj.SKUCode);
-        //            cmd.Parameters.AddWithValue("@CostPriceWT", itemObj.CostPriceWT);
-        //            cmd.Parameters.AddWithValue("@CostPriceWOT", itemObj.CostPriceWOT);
-        //            cmd.Parameters.AddWithValue("@SalePrice", itemObj.SalePrice);
-        //            cmd.Parameters.AddWithValue("@MRP", itemObj.MRP);
-        //            cmd.Parameters.AddWithValue("@GSTID", itemObj.GSTID);
-        //            cmd.Parameters.AddWithValue("@UserID", itemObj.UserID);
-        //            cmd.Parameters.AddWithValue("@IsOpenItem", itemObj.IsOpenItem);
-        //            cmd.Parameters.AddWithValue("@ParentItemID", itemObj.ParentItemID);
-        //            cmd.Parameters.AddWithValue("@UOMID", itemObj.UOMID);
-        //            cmd.Parameters.AddWithValue("@FreeItemCodeID", itemObj.FreeItemCodeID);
-        //            object objReturn = cmd.ExecuteScalar();
+        public int SaveBillDetail(DataRow drBillDetail, int userID)
+        {
+            int billDetailID;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_BILLDETAIL]";
+                    cmd.Parameters.AddWithValue("@BillDetailID", drBillDetail["BILLDETAILID"]);
+                    cmd.Parameters.AddWithValue("@BillID", drBillDetail["BILLID"]);
+                    cmd.Parameters.AddWithValue("@ItemPriceID", drBillDetail["ITEMPRICEID"]);
+                    cmd.Parameters.AddWithValue("@SNo", drBillDetail["SNO"]);
+                    cmd.Parameters.AddWithValue("@Quantity", drBillDetail["QUANTITY"]);
+                    cmd.Parameters.AddWithValue("@WeightInKgs", drBillDetail["WEIGHTINKGS"]);
+                    cmd.Parameters.AddWithValue("@BilledAmount", drBillDetail["BILLEDAMOUNT"]);
+                    cmd.Parameters.AddWithValue("@GSTID", drBillDetail["GSTID"]);
+                    cmd.Parameters.AddWithValue("@CGST", drBillDetail["CGST"]);
+                    cmd.Parameters.AddWithValue("@SGST", drBillDetail["SGST"]);
+                    cmd.Parameters.AddWithValue("@IGST", drBillDetail["IGST"]);
+                    cmd.Parameters.AddWithValue("@Cess", drBillDetail["CESS"]);
+                    cmd.Parameters.AddWithValue("@GSTVALUE", drBillDetail["GSTVALUE"]);
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+                    object objReturn = cmd.ExecuteScalar();
 
-        //            string str = Convert.ToString(objReturn.ToString().Split(',')[0]);
-        //            if (!int.TryParse(str, out int itemCodeID))
-        //                throw new Exception(str);
-
-        //            itemObj.ItemCodeID = itemCodeID;
-        //            itemObj.ItemID = objReturn.ToString().Split(',')[1];
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        SQLCon.Sqlconn().Close();
-        //    }
-        //    return itemObj;
-        //}
+                    if (!int.TryParse(objReturn.ToString(), out billDetailID))
+                        throw new Exception(objReturn.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return billDetailID;
+        }
 
         public DataSet GetInitialLoad(int userID, int branchCounterID)
         {
@@ -90,6 +81,63 @@ namespace NSRetailPOS.Data
                 SQLCon.Sqlconn().Close();
             }
             return dsInitialLoad;
+        }
+
+        public DataSet FinishBill(object billID, int userID, int daySequenceID)
+        {
+            DataSet dsNextBill = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_FINISH_BILL]";
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+                    cmd.Parameters.AddWithValue("@BillID", billID);
+                    cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsNextBill);
+                    }
+
+                    dsNextBill.Tables[0].TableName = "BILL";
+                    dsNextBill.Tables[1].TableName = "BILLDETAILS";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While finishing and getting next bill", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dsNextBill;
+        }
+
+        public void DeleteBillDetail(object billDetailID, int userID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_BILLDETAIL]";
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+                    cmd.Parameters.AddWithValue("@BillDetailID", billDetailID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While deleting bill detail", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
         }
     }
 }
