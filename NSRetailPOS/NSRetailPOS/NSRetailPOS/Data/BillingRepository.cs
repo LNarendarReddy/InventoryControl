@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NSRetailPOS.Entity;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -83,7 +84,7 @@ namespace NSRetailPOS.Data
             return dsInitialLoad;
         }
 
-        public DataSet FinishBill(object billID, int userID, int daySequenceID)
+        public DataSet FinishBill(int userID, int daySequenceID, Bill billObj)
         {
             DataSet dsNextBill = new DataSet();
             try
@@ -94,8 +95,11 @@ namespace NSRetailPOS.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_FINISH_BILL]";
                     cmd.Parameters.AddWithValue("@UserID", userID);
-                    cmd.Parameters.AddWithValue("@BillID", billID);
+                    cmd.Parameters.AddWithValue("@BillID", billObj.BillID);
                     cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
+                    cmd.Parameters.AddWithValue("@CustomerName", billObj.CustomerName);
+                    cmd.Parameters.AddWithValue("@CustomerNumber", billObj.CustomerNumber);
+                    cmd.Parameters.AddWithValue("@MopValues", billObj.dtMopValues);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dsNextBill);
@@ -138,6 +142,33 @@ namespace NSRetailPOS.Data
             {
                 SQLCon.Sqlconn().Close();
             }
+        }
+
+        public DataTable GetMOPs()
+        {
+            DataTable dtMOPs = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_MOP]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtMOPs);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While getting mode of payments", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtMOPs;
         }
     }
 }

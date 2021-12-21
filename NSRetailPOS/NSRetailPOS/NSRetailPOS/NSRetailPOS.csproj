@@ -134,6 +134,9 @@
     <EmbeddedResource Include="UI\frmMRPSelection.resx">
       <DependentUpon>frmMRPSelection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmPayment.resx">
+      <DependentUpon>frmPayment.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
