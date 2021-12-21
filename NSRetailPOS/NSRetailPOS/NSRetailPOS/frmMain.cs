@@ -131,8 +131,17 @@ namespace NSRetailPOS
             txtSalePrice.EditValue = drSelectedPrice["SALEPRICE"];
 
             txtQuantity.EditValue = 1;
-            txtQuantity.Focus();
-            txtQuantity.SelectAll();
+
+            if (chkSingleQuantity.Checked)
+            {
+                txtQuantity_KeyDown(txtQuantity, new KeyEventArgs(Keys.Enter));
+            }
+            else
+            {
+                txtQuantity.Focus();
+                txtQuantity.SelectAll();
+            }
+
         }
 
         private void gvBilling_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
@@ -157,8 +166,11 @@ namespace NSRetailPOS
                 XtraMessageBox.Show("No items to bill", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            frmPayment paymentForm = new frmPayment(billObj);
+            paymentForm.ShowDialog();
+            if (!paymentForm.IsPaid) { return; }
 
-            DataSet nextBillDetails = billingRepository.FinishBill(billObj.BillID, userID, daySequenceID);
+            DataSet nextBillDetails = billingRepository.FinishBill(userID, daySequenceID, billObj);
 
             // use this object for printing
             Bill oldBillObj = billObj.Clone() as Bill;
@@ -217,16 +229,18 @@ namespace NSRetailPOS
         }
 
         private void UpdateSummary()
-        {
-            lblTotalBill.Text = gvBilling.Columns["BILLEDAMOUNT"].SummaryItem.SummaryValue.ToString();
-            lblTotalItems.Text = gvBilling.Columns["QUANTITY"].SummaryItem.SummaryValue.ToString();
+        {           
+            billObj.Amount = gvBilling.Columns["BILLEDAMOUNT"].SummaryItem.SummaryValue;
+            billObj.Quantity = gvBilling.Columns["QUANTITY"].SummaryItem.SummaryValue;
+            lblTotalBill.Text = billObj.Amount.ToString();
+            lblTotalItems.Text = billObj.Quantity.ToString();
         }
         
         private void LoadBillData(DataSet dsBillInfo)
         {
             billObj = Utility.GetBill(dsBillInfo);
 
-            this.Text = $"NS Retail POS - Bill Number : {billObj.BillNumber}";
+            lblBillNumber.Text = billObj.BillNumber.ToString();
 
             lblLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
             lblLastBilledQunatity.Text = billObj.LastBilledQuantity.ToString();

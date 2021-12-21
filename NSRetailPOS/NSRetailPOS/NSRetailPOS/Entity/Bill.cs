@@ -13,7 +13,17 @@ namespace NSRetailPOS.Entity
 
         public object LastBilledQuantity { get; set; }
 
+        public object Amount { get; set; }
+
+        public object Quantity { get; set; }
+
         public DataTable dtBillDetails { get; set; }
+
+        public object CustomerNumber { get; set; }
+
+        public object CustomerName { get; set; }
+
+        public DataTable dtMopValues { get; set; }
 
         public object Clone()
         {
