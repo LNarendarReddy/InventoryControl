@@ -20,7 +20,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_ITEMCODES]";
+                    cmd.CommandText = "[POS_USP_R_ITEMCODES]";
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtItemCodes);
@@ -48,7 +48,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_MOP]";
+                    cmd.CommandText = "[POS_USP_R_MOP]";
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtItemCodes);
@@ -75,7 +75,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_ITEMMRPLIST]";
+                    cmd.CommandText = "[POS_USP_R_ITEMMRPLIST]";
                     cmd.Parameters.AddWithValue("@ITEMCODEID", ITEMCODEID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
