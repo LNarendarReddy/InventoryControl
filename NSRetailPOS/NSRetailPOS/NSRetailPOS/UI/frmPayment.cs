@@ -36,7 +36,8 @@ namespace NSRetailPOS.UI
         {
             if (remainingAmount > 0.00M)
             {
-                XtraMessageBox.Show($"Bill cannot be closed. Pending balance to be paid {remainingAmount}");
+                XtraMessageBox.Show($"Bill cannot be closed. Pending balance to be paid {remainingAmount}"
+                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 

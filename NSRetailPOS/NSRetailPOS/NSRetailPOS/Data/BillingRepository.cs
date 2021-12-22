@@ -120,6 +120,39 @@ namespace NSRetailPOS.Data
             return dsNextBill;
         }
 
+        public DataSet DraftBill(int userID, int daySequenceID, object billID)
+        {
+            DataSet dsNextBill = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_DRAFT_BILL]";
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+                    cmd.Parameters.AddWithValue("@BillID", billID);
+                    cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsNextBill);
+                    }
+
+                    dsNextBill.Tables[0].TableName = "BILL";
+                    dsNextBill.Tables[1].TableName = "BILLDETAILS";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While drafting and getting next bill", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dsNextBill;
+        }
+
         public void DeleteBillDetail(object billDetailID, int userID)
         {
             try
@@ -169,6 +202,66 @@ namespace NSRetailPOS.Data
                 SQLCon.Sqlconn().Close();
             }
             return dtMOPs;
+        }
+
+        public DataTable GetDraftBills(int daySequenceID)
+        {
+            DataTable draftBills = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_DRAFTBILLS]";
+                    cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(draftBills);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While getting draft bills", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return draftBills;
+        }
+
+        public DataSet GetBill(int daySequenceID, object billID)
+        {
+            DataSet dsBillDetails = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_BILL]";
+                    cmd.Parameters.AddWithValue("@BillID", billID);
+                    cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsBillDetails);
+                    }
+
+                    dsBillDetails.Tables[0].TableName = "BILL";
+                    dsBillDetails.Tables[1].TableName = "BILLDETAILS";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While getting bill", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dsBillDetails;
         }
     }
 }
