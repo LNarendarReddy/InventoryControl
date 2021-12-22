@@ -131,6 +131,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\frmDraftList.resx">
+      <DependentUpon>frmDraftList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmMRPSelection.resx">
       <DependentUpon>frmMRPSelection.cs</DependentUpon>
     </EmbeddedResource>

@@ -270,5 +270,35 @@ namespace NSRetailPOS
                 sluItemCode.Enabled = true;
             }
         }
-    }                       
+
+        private void btnSaveBill_Click(object sender, EventArgs e)
+        {
+            if (billObj.dtBillDetails.Rows.Count == 0)
+            {
+                XtraMessageBox.Show("No items to draft", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DataSet nextBillDetails = billingRepository.DraftBill(userID, daySequenceID, billObj.BillID);
+            LoadBillData(nextBillDetails);
+        }
+
+        private void btnLoadDraftBill_Click(object sender, EventArgs e)
+        {
+            if(billObj.dtBillDetails.Rows.Count >= 0)
+            {
+                DialogResult dialogResult = XtraMessageBox.Show("Pending items in the bill, Do you want to draft bill?", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Cancel) return;
+
+                btnSaveBill_Click(null, null);
+            }
+
+            frmDraftList draftListForm = new frmDraftList(daySequenceID);
+            draftListForm.ShowDialog();
+            if(draftListForm.SelectedDraftBillID > 0)
+            {
+
+            }
+        }
+    }
 }                           
