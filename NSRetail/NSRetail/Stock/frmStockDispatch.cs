@@ -178,12 +178,26 @@ namespace NSRetail.Stock
                             txtQuantity.Enabled = true;
                             txtWeightInKgs.Enabled = false;
                         }
+                        DataTable dt = ObjStockRep.GetCurrentStock(cmbFromBranch.EditValue, cmbToBranch.EditValue,
+                            cmbItemCode.EditValue, ParentID);
+                        if(dt != null && dt.Rows.Count > 0)
+                        {
+                            txtWarehouseStock.EditValue = dt.Rows[0][0];
+                            txtBranchStock.EditValue = dt.Rows[0][1];
+                        }
                     }
                     else
                     {
                         txtWeightInKgs.EditValue = 0;
                         txtWeightInKgs.Enabled = false;
                         IsParentExist = false;
+                        DataTable dt = ObjStockRep.GetCurrentStock(cmbFromBranch.EditValue, cmbToBranch.EditValue,
+                            cmbItemCode.EditValue, ParentID);
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            txtWarehouseStock.EditValue = dt.Rows[0][0];
+                            txtBranchStock.EditValue = dt.Rows[0][1];
+                        }
                     }
                     txtQuantity.EditValue = 1;
                     SendKeys.Send("{ENTER}");

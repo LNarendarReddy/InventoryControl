@@ -354,7 +354,7 @@ namespace DataAccess
                             objStockEntry.STOCKENTRYID = iValue;
                             objStockEntry.SUPPLIERID = ds.Tables[0].Rows[0]["SUPPLIERID"];
                             objStockEntry.SUPPLIERINVOICENO = ds.Tables[0].Rows[0]["SUPPLIERINVOICENO"];
-                            objStockEntry.TAXINCLUSIVE = ds.Tables[0].Rows[0]["TAXINCLUSIVE"];
+                            objStockEntry.TAXINCLUSIVE = ds.Tables[0].Rows[0]["TAXINCLUSIVEVALUE"];
                             objStockEntry.InvoiceDate = ds.Tables[0].Rows[0]["INVOICEDATE"];
                             objStockEntry.TCS = ds.Tables[0].Rows[0]["TCS"];
                             objStockEntry.DISCOUNTPER = ds.Tables[0].Rows[0]["DISCOUNTPER"];
@@ -508,6 +508,143 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
             return dt;
+        }
+        public DataSet SaveDispatchDC(object BranchID,object CategoryID,object UserID)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_DISPATCHDC]";
+                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(ds);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Saving Dispatch DC", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ds;
+        }
+        public DataSet GetDispatchDC(object DispatchDCID)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_STOCKDISPATCHDC]";
+                    cmd.Parameters.AddWithValue("@DISPATCHDCID", DispatchDCID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(ds);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving Dispatch DC", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ds;
+        }
+        public DataTable GetDCList()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_DISPATCHDCLIST]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving Dispatch DC List", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
+        public DataTable GetCurrentStock(object FROMBRANCHID,object TOBRANCHID,
+            object ITEMCODEID,object PARENTITEMID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_CURRENTSTOCK]";
+                    cmd.Parameters.Add("@FROMBRANCHID", FROMBRANCHID);
+                    cmd.Parameters.Add("@TOBRANCHID", TOBRANCHID);
+                    cmd.Parameters.Add("@ITEMCODEID", ITEMCODEID);
+                    cmd.Parameters.Add("@PARENTITEMID", PARENTITEMID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving Current Stock", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
+        public void DiscardStockEntry(object StockEntryID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_DISCARDSTOCKENTRY]";
+                    cmd.Parameters.Add("@STOCKENTRYID", StockEntryID);
+                    int RowsAffected = cmd.ExecuteNonQuery();
+                    if (RowsAffected <= 0)
+                        throw new Exception("Nothing is deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Deleting Invoice");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
         }
     }
 }

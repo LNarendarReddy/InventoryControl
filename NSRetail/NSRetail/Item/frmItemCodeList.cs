@@ -138,7 +138,7 @@ namespace NSRetail
 
         private void gcItemList_DoubleClick(object sender, EventArgs e)
         {
-            btnEdit_Click(null, null);
+            //btnEdit_Click(null, null);
         }
 
         private void gvItemList_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -162,7 +162,6 @@ namespace NSRetail
         {
             btnEdit.Enabled = enabled;
             btnVisualize.Enabled = enabled;
-            btnDelete.Enabled = enabled;
         }
 
         private void gvItemList_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
@@ -187,6 +186,11 @@ namespace NSRetail
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnViewReport_Click(object sender, EventArgs e)
+        {
+            gcItemList.ShowRibbonPrintPreview();
         }
     }
 }

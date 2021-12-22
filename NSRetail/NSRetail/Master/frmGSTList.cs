@@ -109,5 +109,10 @@ namespace NSRetail.Master
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
+
+        private void btnViewReport_Click(object sender, EventArgs e)
+        {
+            gcGST.ShowRibbonPrintPreview();
+        }
     }
 }

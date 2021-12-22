@@ -86,5 +86,15 @@ namespace NSRetail
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnViewReport_Click(object sender, EventArgs e)
+        {
+            gcCategory.ShowRibbonPrintPreview();
+        }
     }
 }

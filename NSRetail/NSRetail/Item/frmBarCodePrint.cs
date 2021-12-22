@@ -95,16 +95,12 @@ namespace NSRetail
                         obj.ShowDialog();
                         if (obj._IsSave)
                         {
-                            txtCostPriceWT.EditValue = ((DataRowView)obj.drSelected)["COSTPRICEWT"];
-                            txtCostPriceWT.EditValue = ((DataRowView)obj.drSelected)["COSTPRICEWOT"];
                             txtMRP.EditValue = ((DataRowView)obj.drSelected)["MRP"];
                             txtSalePrice.EditValue = ((DataRowView)obj.drSelected)["SALEPRICE"];
                         }
                     }
                     else
                     {
-                        txtCostPriceWT.EditValue = dtMRPList.Rows[0]["COSTPRICEWT"];
-                        txtCostPriceWT.EditValue = dtMRPList.Rows[0]["COSTPRICEWOT"];
                         txtMRP.EditValue = dtMRPList.Rows[0]["MRP"];
                         txtSalePrice.EditValue = dtMRPList.Rows[0]["SALEPRICE"];
                     }

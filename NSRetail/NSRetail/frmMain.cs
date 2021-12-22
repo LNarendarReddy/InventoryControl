@@ -223,5 +223,21 @@ namespace NSRetail
         {
             new frmStockSummary() { MdiParent = this }.Show();
         }
+
+        private void btnPrintDC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmDispatchDCPrint obj = new frmDispatchDCPrint();
+            obj.ShowDialog();
+        }
+
+        private void btnDCList_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmDispatchDCList obj = new frmDispatchDCList();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
     }
 }

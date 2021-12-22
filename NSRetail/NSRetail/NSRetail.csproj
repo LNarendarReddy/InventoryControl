@@ -279,6 +279,18 @@
     <Compile Include="Stock\frmAddStockRecord.Designer.cs">
       <DependentUpon>frmAddStockRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stock\frmDispatchDCList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmDispatchDCList.Designer.cs">
+      <DependentUpon>frmDispatchDCList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\frmDispatchDCPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmDispatchDCPrint.Designer.cs">
+      <DependentUpon>frmDispatchDCPrint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stock\frmDispatchList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -423,6 +435,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmAddStockRecord.resx">
       <DependentUpon>frmAddStockRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmDispatchDCList.resx">
+      <DependentUpon>frmDispatchDCList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmDispatchDCPrint.resx">
+      <DependentUpon>frmDispatchDCPrint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmDispatchList.resx">
       <DependentUpon>frmDispatchList.cs</DependentUpon>
