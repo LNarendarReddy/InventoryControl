@@ -79,7 +79,19 @@ namespace NSRetailPOS
                 else
                 {
                     object billDetailID = gvBilling.GetRowCellValue(rowHandle, "BILLDETAILID");
-                    billingRepository.DeleteBillDetail(billDetailID, userID);
+                    SNo = Convert.ToInt32(gvBilling.GetRowCellValue(rowHandle, "SNO"));
+                    DataTable dtSNos = new DataTable();
+                    dtSNos.Columns.Add("BILLDETAILID", typeof(int));
+                    dtSNos.Columns.Add("SNO", typeof(int));
+
+                    for (int curRowHandle = rowHandle - 1; curRowHandle >= 0; curRowHandle--)
+                    {
+                        gvBilling.SetRowCellValue(curRowHandle, "SNO", SNo);
+                        dtSNos.Rows.Add(gvBilling.GetRowCellValue(curRowHandle, "BILLDETAILID"), SNo);
+                        SNo++;
+                    }
+
+                    billingRepository.DeleteBillDetail(billDetailID, userID, dtSNos);
                     gvBilling.DeleteRow(rowHandle);
                     UpdateSummary();
                 }

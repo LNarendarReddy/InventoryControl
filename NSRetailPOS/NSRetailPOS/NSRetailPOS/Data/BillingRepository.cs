@@ -153,7 +153,7 @@ namespace NSRetailPOS.Data
             return dsNextBill;
         }
 
-        public void DeleteBillDetail(object billDetailID, int userID)
+        public void DeleteBillDetail(object billDetailID, int userID, DataTable dtSNos)
         {
             try
             {
@@ -164,6 +164,7 @@ namespace NSRetailPOS.Data
                     cmd.CommandText = "[POS_USP_D_BILLDETAIL]";
                     cmd.Parameters.AddWithValue("@UserID", userID);
                     cmd.Parameters.AddWithValue("@BillDetailID", billDetailID);
+                    cmd.Parameters.AddWithValue("@SNos", dtSNos);
                     cmd.ExecuteNonQuery();
                 }
             }
