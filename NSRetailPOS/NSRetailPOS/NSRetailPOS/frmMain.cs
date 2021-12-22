@@ -126,7 +126,7 @@ namespace NSRetailPOS
                 return;
             }
 
-            txtItemName.EditValue = (sluItemCode.GetSelectedDataRow() as DataRowView)?.Row["ITEMNAME"];
+            //txtItemName.EditValue = (sluItemCode.GetSelectedDataRow() as DataRowView)?.Row["ITEMNAME"];
             txtMRP.EditValue = drSelectedPrice["MRP"];
             txtSalePrice.EditValue = drSelectedPrice["SALEPRICE"];
 
@@ -150,8 +150,8 @@ namespace NSRetailPOS
             gvBilling.SetRowCellValue(e.RowHandle, "BILLID", billObj.BillID);
             gvBilling.SetRowCellValue(e.RowHandle, "ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
             gvBilling.SetRowCellValue(e.RowHandle, "SNO", SNo++);
-            gvBilling.SetRowCellValue(e.RowHandle, "ITEMNAME", txtItemName.EditValue);
-            gvBilling.SetRowCellValue(e.RowHandle, "ITEMCODE", sluItemCode.Text);
+            gvBilling.SetRowCellValue(e.RowHandle, "ITEMNAME", sluItemCode.Text);
+            gvBilling.SetRowCellValue(e.RowHandle, "ITEMCODE", txtItemCode.EditValue);
             gvBilling.SetRowCellValue(e.RowHandle, "MRP", drSelectedPrice["MRP"]);
             gvBilling.SetRowCellValue(e.RowHandle, "SALEPRICE", drSelectedPrice["SALEPRICE"]);
             gvBilling.SetRowCellValue(e.RowHandle, "GSTCODE", drSelectedPrice["GSTCODE"]);
@@ -218,7 +218,6 @@ namespace NSRetailPOS
         {
             txtItemCode.EditValue = null;
             sluItemCode.EditValue = null;
-            txtItemName.EditValue = null;
             txtMRP.EditValue = null;
             txtDiscount.EditValue = null;
             txtSalePrice.EditValue = null;
@@ -261,13 +260,14 @@ namespace NSRetailPOS
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
             if(rowHandle >=  0)
             {
-                sluItemCode.Enabled = false;
+                //sluItemCode.Enabled = false;
                 sluItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODEID");
+                txtQuantity.Focus();
             }
             else
             {
                 ClearItemData(false);
-                sluItemCode.Enabled = true;
+                //sluItemCode.Enabled = true;
             }
         }
 
@@ -285,7 +285,7 @@ namespace NSRetailPOS
 
         private void btnLoadDraftBill_Click(object sender, EventArgs e)
         {
-            if(billObj.dtBillDetails.Rows.Count >= 0)
+            if(billObj.dtBillDetails.Rows.Count > 0)
             {
                 DialogResult dialogResult = XtraMessageBox.Show("Pending items in the bill, Do you want to draft bill?", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Cancel) return;
@@ -302,4 +302,4 @@ namespace NSRetailPOS
             }
         }
     }
-}                           
+}
