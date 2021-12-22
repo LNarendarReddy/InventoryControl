@@ -45,7 +45,7 @@ namespace NSRetailPOS
             }
 
             sluItemCode.Properties.DataSource = itemRepository.GetItemCodes();
-            sluItemCode.Properties.DisplayMember = "ITEMCODE";
+            sluItemCode.Properties.DisplayMember = "ITEMNAME";
             sluItemCode.Properties.ValueMember = "ITEMCODEID";
 
             sluItemCodeView.GridControl.BindingContext = new BindingContext();
@@ -297,7 +297,8 @@ namespace NSRetailPOS
             draftListForm.ShowDialog();
             if(draftListForm.SelectedDraftBillID > 0)
             {
-
+                DataSet dsBillDetails = billingRepository.GetBill(daySequenceID, draftListForm.SelectedDraftBillID);
+                LoadBillData(dsBillDetails);
             }
         }
     }

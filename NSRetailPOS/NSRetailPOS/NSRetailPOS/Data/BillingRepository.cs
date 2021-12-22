@@ -16,7 +16,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_CU_BILLDETAIL]";
+                    cmd.CommandText = "[POS_USP_CU_BILLDETAIL]";
                     cmd.Parameters.AddWithValue("@BillDetailID", drBillDetail["BILLDETAILID"]);
                     cmd.Parameters.AddWithValue("@BillID", drBillDetail["BILLID"]);
                     cmd.Parameters.AddWithValue("@ItemPriceID", drBillDetail["ITEMPRICEID"]);
@@ -57,7 +57,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_LOAD]";
+                    cmd.CommandText = "[POS_USP_R_LOAD]";
                     cmd.Parameters.AddWithValue("@USerID", userID);
                     cmd.Parameters.AddWithValue("@BranchCounterID", branchCounterID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -93,7 +93,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_FINISH_BILL]";
+                    cmd.CommandText = "[POS_USP_FINISH_BILL]";
                     cmd.Parameters.AddWithValue("@UserID", userID);
                     cmd.Parameters.AddWithValue("@BillID", billObj.BillID);
                     cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
@@ -129,7 +129,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_DRAFT_BILL]";
+                    cmd.CommandText = "[POS_USP_DRAFT_BILL]";
                     cmd.Parameters.AddWithValue("@UserID", userID);
                     cmd.Parameters.AddWithValue("@BillID", billID);
                     cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
@@ -161,7 +161,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_D_BILLDETAIL]";
+                    cmd.CommandText = "[POS_USP_D_BILLDETAIL]";
                     cmd.Parameters.AddWithValue("@UserID", userID);
                     cmd.Parameters.AddWithValue("@BillDetailID", billDetailID);
                     cmd.ExecuteNonQuery();
@@ -186,7 +186,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_MOP]";
+                    cmd.CommandText = "[POS_USP_R_MOP]";
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtMOPs);
@@ -213,7 +213,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_DRAFTBILLS]";
+                    cmd.CommandText = "[POS_USP_R_DRAFTBILLS]";
                     cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
@@ -241,7 +241,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_BILL]";
+                    cmd.CommandText = "[POS_USP_R_BILL]";
                     cmd.Parameters.AddWithValue("@BillID", billID);
                     cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
