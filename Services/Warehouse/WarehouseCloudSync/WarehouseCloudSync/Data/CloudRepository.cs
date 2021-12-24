@@ -14,12 +14,9 @@ namespace WarehouseCloudSync.Data
             , { "ITEMPRICE",  new EntityMapping("USP_CU_ITEMPRICE", "@ItemPrices") }
             , { "BRANCH",  new EntityMapping("USP_CU_BRANCH", "@Branches") }
             , { "GST",  new EntityMapping("USP_CU_GSTDETAIL", "@GSTDetails") }
-            , { "DEALER",  new EntityMapping("USP_CU_DEALER", "@Dealer") }
             , { "STOCKDISPATCH",  new EntityMapping("USP_CU_STOCKDISPATCH", "@StockDispatch") }
             , { "STOCKDISPATCHDETAIL",  new EntityMapping("USP_CU_STOCKDISPATCHDETAIL", "@StockDispatchDetail") }
-            , { "SUBCATEGORY",  new EntityMapping("USP_CU_SUBCATEGORY", "@SubCategory") }
-            , { "CATEGORY",  new EntityMapping("USP_CU_CATEGORY", "@Category") }
-            , { "COUNTER",  new EntityMapping("USP_CU_COUNTER", "@Counter") }
+            , { "BRANCHCOUNTER",  new EntityMapping("USP_CU_BRANCHCOUNTER", "@BranchCounters") }
             , { "MOP",  new EntityMapping("USP_CU_MOP", "@MOP") }
             , { "ROLE",  new EntityMapping("USP_CU_ROLE", "@Role") }
             , { "USER",  new EntityMapping("USP_CU_USER", "@User") }
