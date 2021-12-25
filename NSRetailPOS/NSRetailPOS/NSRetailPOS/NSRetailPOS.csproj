@@ -119,12 +119,6 @@
     <Compile Include="Reports\rptBill.Designer.cs">
       <DependentUpon>rptBill.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\XtraReport1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\XtraReport1.Designer.cs">
-      <DependentUpon>XtraReport1.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\frmChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,9 +172,6 @@
     </Compile>
     <EmbeddedResource Include="Reports\rptBill.resx">
       <DependentUpon>rptBill.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\XtraReport1.resx">
-      <DependentUpon>XtraReport1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>

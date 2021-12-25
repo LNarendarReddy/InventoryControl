@@ -23,7 +23,7 @@ namespace NSRetailPOS.UI
         private void frmLogin_Load(object sender, EventArgs e)
         {
             txtUserName.EditValue = "rvp1";
-            txtPassword.EditValue = "12345";
+            txtPassword.EditValue = "1234";
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
