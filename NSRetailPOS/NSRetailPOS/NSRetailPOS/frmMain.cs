@@ -120,10 +120,11 @@ namespace NSRetailPOS
             DataTable dtPrices = itemRepository.GetMRPList(sluItemCode.EditValue);
             if(dtPrices.Rows.Count > 1)
             {
-                frmMRPSelection mRPSelection = new frmMRPSelection(dtPrices);
+                frmMRPSelection mRPSelection = new frmMRPSelection(dtPrices) { StartPosition = FormStartPosition.CenterScreen };
                 mRPSelection.ShowDialog();
                 if(!mRPSelection._IsSave)
                 {
+                    ClearItemData();
                     return;
                 }
 
@@ -142,6 +143,7 @@ namespace NSRetailPOS
             //txtItemName.EditValue = (sluItemCode.GetSelectedDataRow() as DataRowView)?.Row["ITEMNAME"];
             txtMRP.EditValue = drSelectedPrice["MRP"];
             txtSalePrice.EditValue = drSelectedPrice["SALEPRICE"];
+            txtItemCode.EditValue = sluItemCodeView.GetRowCellValue(sluItemCodeView.LocateByValue("ITEMCODEID", sluItemCode.EditValue), "ITEMCODE");
 
             txtQuantity.EditValue = 1;
 
@@ -265,11 +267,11 @@ namespace NSRetailPOS
 
             this.Text = "NSRetail - "  + billObj.BillNumber.ToString();
 
-            lblLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
-            lblLastBilledQunatity.Text = billObj.LastBilledQuantity.ToString();
+            txtLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
+            txtLastBilledQuantity.Text = billObj.LastBilledQuantity.ToString();
 
-            lblLastBilledAmount.Text = string.IsNullOrEmpty(lblLastBilledAmount.Text) ? "0.00" : lblLastBilledAmount.Text;
-            lblLastBilledQunatity.Text = string.IsNullOrEmpty(lblLastBilledQunatity.Text) ? "0" : lblLastBilledQunatity.Text;
+            txtLastBilledAmount.Text = string.IsNullOrEmpty(txtLastBilledAmount.Text) ? "0.00" : txtLastBilledAmount.Text;
+            txtLastBilledQuantity.Text = string.IsNullOrEmpty(txtLastBilledQuantity.Text) ? "0" : txtLastBilledQuantity.Text;
 
             gcBilling.DataSource = billObj.dtBillDetails;
 
@@ -286,7 +288,8 @@ namespace NSRetailPOS
             {
                 //sluItemCode.Enabled = false;
                 sluItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODEID");
-                txtQuantity.Focus();
+                if (sluItemCode.EditValue != null)
+                    txtQuantity.Focus();
             }
             else
             {
@@ -362,6 +365,16 @@ namespace NSRetailPOS
             {
                 XtraMessageBox.Show(ex.Message);
             } 
+        }
+
+        private void txtItemCode_Enter(object sender, EventArgs e)
+        {
+            txtItemCode.SelectAll();
+        }
+
+        private void txtItemCode_Click(object sender, EventArgs e)
+        {
+            txtItemCode.SelectAll();
         }
     }
 }
