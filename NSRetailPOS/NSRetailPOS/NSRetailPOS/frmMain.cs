@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
+using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
 using System;
 using System.Configuration;
@@ -186,6 +187,17 @@ namespace NSRetailPOS
 
             // use this object for printing
             Bill oldBillObj = billObj.Clone() as Bill;
+            rptBill rpt = new rptBill(oldBillObj.dtBillDetails, oldBillObj.dtMopValues);
+            rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
+            rpt.Parameters["FSSAI"].Value = "10114004000548";
+            rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
+            rpt.Parameters["BillDate"].Value = DateTime.Now;
+            rpt.Parameters["BillNumber"].Value = oldBillObj.BillNumber;
+            rpt.Parameters["BranchName"].Value = Utility.branchinfo.BranchName;
+            rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
+            rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
+            rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
+            rpt.Print();
 
             LoadBillData(nextBillDetails);
         }
@@ -243,15 +255,15 @@ namespace NSRetailPOS
         {           
             billObj.Amount = gvBilling.Columns["BILLEDAMOUNT"].SummaryItem.SummaryValue;
             billObj.Quantity = gvBilling.Columns["QUANTITY"].SummaryItem.SummaryValue;
-            lblTotalBill.Text = billObj.Amount.ToString();
-            lblTotalItems.Text = billObj.Quantity.ToString();
+            //lblTotalBill.Text = billObj.Amount.ToString();
+            //lblTotalItems.Text = billObj.Quantity.ToString();
         }
         
         private void LoadBillData(DataSet dsBillInfo)
         {
             billObj = Utility.GetBill(dsBillInfo);
 
-            lblBillNumber.Text = billObj.BillNumber.ToString();
+            this.Text = "NSRetail - "  + billObj.BillNumber.ToString();
 
             lblLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
             lblLastBilledQunatity.Text = billObj.LastBilledQuantity.ToString();
@@ -312,6 +324,44 @@ namespace NSRetailPOS
                 DataSet dsBillDetails = billingRepository.GetBill(daySequenceID, draftListForm.SelectedDraftBillID);
                 LoadBillData(dsBillDetails);
             }
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            frmChangePassword obj = new frmChangePassword();
+            obj.ShowInTaskbar = false;
+            obj.StartPosition = FormStartPosition.CenterParent;
+            obj.IconOptions.ShowIcon = false;
+            obj.ShowDialog();
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnLastBillPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataSet dsLastBillDetails = new BillingRepository().GetLastBill(daySequenceID, billObj.LastBillID);
+                Bill LastBillObj = Utility.GetBill(dsLastBillDetails);
+                rptBill rpt = new rptBill(LastBillObj.dtBillDetails, LastBillObj.dtMopValues);
+                rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
+                rpt.Parameters["FSSAI"].Value = "10114004000548";
+                rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
+                rpt.Parameters["BillDate"].Value = DateTime.Now;
+                rpt.Parameters["BillNumber"].Value = LastBillObj.BillNumber;
+                rpt.Parameters["BranchName"].Value = Utility.branchinfo.BranchName;
+                rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
+                rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
+                rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
+                rpt.Print();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message);
+            } 
         }
     }
 }

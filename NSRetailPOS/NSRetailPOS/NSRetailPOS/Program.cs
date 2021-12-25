@@ -1,5 +1,9 @@
-﻿using System;
+﻿using DevExpress.LookAndFeel;
+using NSRetailPOS.Data;
+using NSRetailPOS.UI;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,9 +18,18 @@ namespace NSRetailPOS
         [STAThread]
         static void Main()
         {
+            UserLookAndFeel.Default.SetSkinStyle("Office 2019 Colorful");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            DataTable dt = new POSRepository().GetPOSConfiguration();
+            if(dt != null && dt.Rows.Count > 0)
+            {
+                Utility.branchinfo.BranchID = dt.Rows[0]["BRANCHID"];
+                Utility.branchinfo.BranchCounterID = dt.Rows[0]["BRANCHCOUNTERID"];
+                Application.Run(new frmLogin());
+            }
+            else
+                Application.Run(new frmConfiguration());
         }
     }
 }

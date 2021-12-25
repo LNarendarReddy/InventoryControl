@@ -9,6 +9,7 @@ namespace NSRetailPOS.Entity
 
         public object BillNumber { get; set; }
 
+        public object LastBillID { get; set; }
         public object LastBilledAmount { get; set; }
 
         public object LastBilledQuantity { get; set; }
@@ -31,7 +32,7 @@ namespace NSRetailPOS.Entity
             clonedBillObj.BillID = BillID;
             clonedBillObj.BillNumber = BillNumber;
             clonedBillObj.dtBillDetails = dtBillDetails.Copy();
-
+            clonedBillObj.dtMopValues = dtMopValues.Copy();
             return clonedBillObj;
         }
     }

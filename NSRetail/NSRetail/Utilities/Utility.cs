@@ -75,7 +75,14 @@ namespace NSRetail
             cs.Close();
             return ms.ToArray();
         }
-
+        public static string Encrypt(string input)
+        {
+            return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(input)));
+        }
+        public static string Decrypt(string input)
+        {
+            return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(input)));
+        }
         private static void FillItemBaseline()
         {
             DataSet dsItemBaseline = new ItemCodeRepository().GetItemCodes(CategoryID);
@@ -101,14 +108,6 @@ namespace NSRetail
             }
         }
 
-        public static string Encrypt(string input)
-        {
-            return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(input)));
-        }
-        public static string Decrypt(string input)
-        {
-            return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(input)));
-        }
         public static DataTable GetGSTBaseline()
         {
             if(dtGST == null)

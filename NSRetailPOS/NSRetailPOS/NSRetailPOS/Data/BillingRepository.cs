@@ -99,7 +99,12 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
                     cmd.Parameters.AddWithValue("@CustomerName", billObj.CustomerName);
                     cmd.Parameters.AddWithValue("@CustomerNumber", billObj.CustomerNumber);
-                    cmd.Parameters.AddWithValue("@MopValues", billObj.dtMopValues);
+                    DataTable dtTemp = billObj.dtMopValues.Copy();
+                    if (dtTemp.Columns.Contains("MOPNAME"))
+                    {
+                        dtTemp.Columns.Remove("MOPNAME");
+                    }
+                    cmd.Parameters.AddWithValue("@MopValues", dtTemp);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dsNextBill);
@@ -252,6 +257,39 @@ namespace NSRetailPOS.Data
 
                     dsBillDetails.Tables[0].TableName = "BILL";
                     dsBillDetails.Tables[1].TableName = "BILLDETAILS";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While getting bill", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dsBillDetails;
+        }
+
+        public DataSet GetLastBill(int daySequenceID, object billID)
+        {
+            DataSet dsBillDetails = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_R_LASTBILL]";
+                    cmd.Parameters.AddWithValue("@BillID", billID);
+                    cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsBillDetails);
+                    }
+
+                    dsBillDetails.Tables[0].TableName = "BILL";
+                    dsBillDetails.Tables[1].TableName = "BILLDETAILS";
+                    dsBillDetails.Tables[2].TableName = "MOPDETAILS";
                 }
             }
             catch (Exception ex)
