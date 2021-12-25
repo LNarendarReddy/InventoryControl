@@ -460,6 +460,7 @@
             this.ReportFooter1,
             this.ReportHeader1,
             this.GroupHeader2});
+            this.drItems.Expanded = false;
             this.drItems.Level = 0;
             this.drItems.Name = "drItems";
             // 
@@ -467,6 +468,7 @@
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable3});
+            this.Detail.Expanded = false;
             this.Detail.HeightF = 33F;
             this.Detail.Name = "Detail";
             // 
@@ -557,6 +559,7 @@
             this.xrLine2,
             this.xrLine1,
             this.xrTable4});
+            this.ReportFooter1.Expanded = false;
             this.ReportFooter1.HeightF = 36F;
             this.ReportFooter1.Name = "ReportFooter1";
             // 
@@ -643,6 +646,7 @@
             // 
             this.ReportHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable1});
+            this.ReportHeader1.Expanded = false;
             this.ReportHeader1.HeightF = 40F;
             this.ReportHeader1.Name = "ReportHeader1";
             // 
@@ -724,6 +728,7 @@
             // 
             this.GroupHeader2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable11});
+            this.GroupHeader2.Expanded = false;
             this.GroupHeader2.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("GSTCODE", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader2.HeightF = 28F;
@@ -752,8 +757,8 @@
             // xrTableCell49
             // 
             this.xrTableCell49.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[GSTCODE] + \': CGST @ \' + [CGSTDESC] + \' SGST @ \' + [SGSTDESC] + \' CESS @ \' + [CE" +
-                    "SSDESC]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[GSTCODE] + \': CGST @ \' + [CGSTDESC] + \'% SGST @ \' + [SGSTDESC] + \'% CESS @ \' + [" +
+                    "CESSDESC] + \'%\'")});
             this.xrTableCell49.Name = "xrTableCell49";
             this.xrTableCell49.Text = "xrTableCell49";
             this.xrTableCell49.Weight = 0.91696970159357294D;
@@ -766,11 +771,13 @@
             this.ReportHeader2,
             this.ReportFooter,
             this.GroupHeader1});
+            this.drGST.Expanded = false;
             this.drGST.Level = 1;
             this.drGST.Name = "drGST";
             // 
             // Detail1
             // 
+            this.Detail1.Expanded = false;
             this.Detail1.HeightF = 0F;
             this.Detail1.Name = "Detail1";
             // 
@@ -778,6 +785,7 @@
             // 
             this.ReportHeader2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable5});
+            this.ReportHeader2.Expanded = false;
             this.ReportHeader2.HeightF = 49F;
             this.ReportHeader2.Name = "ReportHeader2";
             // 
@@ -879,6 +887,7 @@
             this.xrLine4,
             this.xrLine3,
             this.xrTable7});
+            this.ReportFooter.Expanded = false;
             this.ReportFooter.HeightF = 34F;
             this.ReportFooter.Name = "ReportFooter";
             // 
@@ -989,6 +998,7 @@
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable6});
+            this.GroupHeader1.Expanded = false;
             this.GroupHeader1.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("GSTCODE", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader1.HeightF = 22F;
@@ -1090,6 +1100,7 @@
             this.ReportFooter2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable10,
             this.xrBarCode1});
+            this.ReportFooter2.Expanded = false;
             this.ReportFooter2.HeightF = 56.93791F;
             this.ReportFooter2.Name = "ReportFooter2";
             // 
