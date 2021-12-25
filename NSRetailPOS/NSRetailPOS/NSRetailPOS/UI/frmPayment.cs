@@ -44,11 +44,6 @@ namespace NSRetailPOS.UI
             billObj.CustomerName = txtCustomerName.EditValue;
             billObj.CustomerNumber = txtMobileNo.EditValue;
             billObj.dtMopValues = gcMOP.DataSource as DataTable;
-            if(billObj.dtMopValues.Columns.Contains("MOPNAME"))
-            {
-                billObj.dtMopValues.Columns.Remove("MOPNAME");
-            }
-
             IsPaid = true;
             Close();
         }
@@ -58,8 +53,9 @@ namespace NSRetailPOS.UI
             DataTable dtMOPs = billingRepository.GetMOPs();
             gcMOP.DataSource = dtMOPs;
 
-            lblBillNumber.Text = billObj.BillNumber.ToString();
-            lblItemQuantity.Text = billObj.Quantity.ToString();
+            txtBillNumber.EditValue = billObj.BillNumber;
+            txtItemQuantity.EditValue = billObj.Quantity;
+            txtBilledAmount.EditValue = billObj.Amount;
             decimal.TryParse(billObj.Amount.ToString(), out payableAmount);
             remainingAmount = payableAmount;
             UpdateLabels();
@@ -67,9 +63,8 @@ namespace NSRetailPOS.UI
 
         private void UpdateLabels()
         {
-            lblPayableAmount.Text = payableAmount.ToString();
-            lblPaidAmount.Text = paidAmount.ToString();
-            lblRemainingAmount.Text = remainingAmount.ToString();
+            txtPaidAmount.EditValue = paidAmount;
+            txtRemainingAmount.EditValue = remainingAmount;
         }
     }
 }

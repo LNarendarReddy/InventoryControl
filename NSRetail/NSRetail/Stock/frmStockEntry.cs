@@ -93,6 +93,7 @@ namespace NSRetail.Stock
                     ObjStockEntry.dtStockEntry.Columns.Add("CGST", typeof(decimal));
                     ObjStockEntry.dtStockEntry.Columns.Add("IGST", typeof(decimal));
                     ObjStockEntry.dtStockEntry.Columns.Add("CESS", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("GSTID", typeof(int));
                     gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
                 }
 
@@ -191,6 +192,7 @@ namespace NSRetail.Stock
                 view.SetRowCellValue(e.RowHandle, "SGST", ObjStockEntryDetail.SGST);
                 view.SetRowCellValue(e.RowHandle, "IGST", ObjStockEntryDetail.IGST);
                 view.SetRowCellValue(e.RowHandle, "CESS", ObjStockEntryDetail.CESS);
+                view.SetRowCellValue(e.RowHandle, "GSTID", ObjStockEntryDetail.GSTID);
             }
             catch (Exception ex)
             {
@@ -214,7 +216,8 @@ namespace NSRetail.Stock
                 ObjStockEntry.SUPPLIERINVOICENO = txtInvoiceNumber.EditValue;
                 ObjStockEntry.TAXINCLUSIVE = chkTaxInclusive.EditValue;
                 ObjStockEntry.InvoiceDate = dtpInvoice.EditValue;
-                frmAddStockRecord obj = new frmAddStockRecord(ObjStockEntry, this);
+                ObjStockEntryDetail = new StockEntryDetail();
+                frmAddStockRecord obj = new frmAddStockRecord(ObjStockEntry, this,ObjStockEntryDetail);
                 obj.ShowInTaskbar = false;
                 obj.StartPosition = FormStartPosition.CenterParent;
                 obj.IconOptions.ShowIcon = false;
@@ -227,7 +230,41 @@ namespace NSRetail.Stock
             try
             {
                 ObjStockEntryDetail = _ObjStockEntryDetail;
-                gvStockEntry.AddNewRow();
+                int rowhandle = gvStockEntry.LocateByValue("STOCKENTRYDETAILID", ObjStockEntryDetail.STOCKENTRYDETAILID);
+                if (rowhandle > 0)
+                {
+                    gvStockEntry.SetRowCellValue(rowhandle, "STOCKENTRYDETAILID", ObjStockEntryDetail.STOCKENTRYDETAILID);
+                    gvStockEntry.SetRowCellValue(rowhandle, "ITEMID", ObjStockEntryDetail.ITEMID);
+                    gvStockEntry.SetRowCellValue(rowhandle, "ITEMCODEID", ObjStockEntryDetail.ITEMCODEID);
+                    gvStockEntry.SetRowCellValue(rowhandle, "ITEMPRICEID", ObjStockEntryDetail.ITEMPRICEID);
+                    gvStockEntry.SetRowCellValue(rowhandle, "SKUCODE", ObjStockEntryDetail.SKUCODE);
+                    gvStockEntry.SetRowCellValue(rowhandle, "ITEMCODE", ObjStockEntryDetail.ITEMCODE);
+                    gvStockEntry.SetRowCellValue(rowhandle, "ITEMNAME", ObjStockEntryDetail.ITEMNAME);
+                    gvStockEntry.SetRowCellValue(rowhandle, "COSTPRICEWT", ObjStockEntryDetail.COSTPRICEWT);
+                    gvStockEntry.SetRowCellValue(rowhandle, "COSTPRICEWOT", ObjStockEntryDetail.COSTPRICEWOT);
+                    gvStockEntry.SetRowCellValue(rowhandle, "MRP", ObjStockEntryDetail.MRP);
+                    gvStockEntry.SetRowCellValue(rowhandle, "SALEPRICE", ObjStockEntryDetail.SALEPRICE);
+                    gvStockEntry.SetRowCellValue(rowhandle, "QUANTITY", ObjStockEntryDetail.QUANTITY);
+                    gvStockEntry.SetRowCellValue(rowhandle, "WEIGHTINKGS", ObjStockEntryDetail.WEIGHTINKGS);
+                    gvStockEntry.SetRowCellValue(rowhandle, "FREEQUANTITY", ObjStockEntryDetail.FreeQuantity);
+                    gvStockEntry.SetRowCellValue(rowhandle, "DISCOUNTFLAT", ObjStockEntryDetail.DiscountFlat);
+                    gvStockEntry.SetRowCellValue(rowhandle, "DISCOUNTPERCENTAGE", ObjStockEntryDetail.DiscountPercentage);
+                    gvStockEntry.SetRowCellValue(rowhandle, "SCHEMEPERCENTAGE", ObjStockEntryDetail.SchemePercentage);
+                    gvStockEntry.SetRowCellValue(rowhandle, "SCHEMEFLAT", ObjStockEntryDetail.SchemeFlat);
+                    gvStockEntry.SetRowCellValue(rowhandle, "TOTALPRICEWT", ObjStockEntryDetail.TotalPriceWT);
+                    gvStockEntry.SetRowCellValue(rowhandle, "TOTALPRICEWOT", ObjStockEntryDetail.TotalPriceWOT);
+                    gvStockEntry.SetRowCellValue(rowhandle, "APPLIEDDISCOUNT", ObjStockEntryDetail.AppliedDiscount);
+                    gvStockEntry.SetRowCellValue(rowhandle, "APPLIEDSCHEME", ObjStockEntryDetail.AppliedScheme);
+                    gvStockEntry.SetRowCellValue(rowhandle, "APPLIEDDGST", ObjStockEntryDetail.AppliedGST);
+                    gvStockEntry.SetRowCellValue(rowhandle, "FINALPRICE", ObjStockEntryDetail.FinalPrice);
+                    gvStockEntry.SetRowCellValue(rowhandle, "CGST", ObjStockEntryDetail.CGST);
+                    gvStockEntry.SetRowCellValue(rowhandle, "SGST", ObjStockEntryDetail.SGST);
+                    gvStockEntry.SetRowCellValue(rowhandle, "IGST", ObjStockEntryDetail.IGST);
+                    gvStockEntry.SetRowCellValue(rowhandle, "CESS", ObjStockEntryDetail.CESS);
+                    gvStockEntry.SetRowCellValue(rowhandle, "GSTID", ObjStockEntryDetail.GSTID);
+                }
+                else
+                    gvStockEntry.AddNewRow();
             }
             catch (Exception ex)
             {
@@ -264,6 +301,125 @@ namespace NSRetail.Stock
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        private void cmbSupplier_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbSupplier.EditValue != null)
+                    txtGSTIN.EditValue = cmbSupplier.GetColumnValue("GSTIN");
+                else
+                    txtGSTIN.EditValue = null;
+            }
+            catch (Exception ex){}
+        }
+
+        private void btnEdit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (gvStockEntry.FocusedRowHandle > 0)
+            {
+                ObjStockEntry.SUPPLIERID = cmbSupplier.EditValue;
+                ObjStockEntry.SUPPLIERINVOICENO = txtInvoiceNumber.EditValue;
+                ObjStockEntry.TAXINCLUSIVE = chkTaxInclusive.EditValue;
+                ObjStockEntry.InvoiceDate = dtpInvoice.EditValue;
+
+                ObjStockEntryDetail = new StockEntryDetail();
+                ObjStockEntryDetail.STOCKENTRYDETAILID = gvStockEntry.GetFocusedRowCellValue("STOCKENTRYDETAILID");
+                ObjStockEntryDetail.ITEMID = gvStockEntry.GetFocusedRowCellValue("ITEMID");
+                ObjStockEntryDetail.ITEMCODEID = gvStockEntry.GetFocusedRowCellValue("ITEMCODEID");
+                ObjStockEntryDetail.ITEMPRICEID = gvStockEntry.GetFocusedRowCellValue("ITEMPRICEID");
+                ObjStockEntryDetail.SKUCODE = gvStockEntry.GetFocusedRowCellValue("SKUCODE");
+                ObjStockEntryDetail.ITEMCODE = gvStockEntry.GetFocusedRowCellValue("ITEMCODE");
+                ObjStockEntryDetail.ITEMNAME = gvStockEntry.GetFocusedRowCellValue("ITEMNAME");
+                ObjStockEntryDetail.COSTPRICEWT = gvStockEntry.GetFocusedRowCellValue("COSTPRICEWT");
+                ObjStockEntryDetail.COSTPRICEWOT = gvStockEntry.GetFocusedRowCellValue("COSTPRICEWOT");
+                ObjStockEntryDetail.MRP = gvStockEntry.GetFocusedRowCellValue("MRP");
+                ObjStockEntryDetail.SALEPRICE = gvStockEntry.GetFocusedRowCellValue("SALEPRICE");
+                ObjStockEntryDetail.QUANTITY = gvStockEntry.GetFocusedRowCellValue("QUANTITY");
+                ObjStockEntryDetail.WEIGHTINKGS = gvStockEntry.GetFocusedRowCellValue("WEIGHTINKGS");
+                ObjStockEntryDetail.FreeQuantity = gvStockEntry.GetFocusedRowCellValue("FREEQUANTITY");
+                ObjStockEntryDetail.DiscountFlat = gvStockEntry.GetFocusedRowCellValue("DISCOUNTFLAT");
+                ObjStockEntryDetail.DiscountPercentage = gvStockEntry.GetFocusedRowCellValue("DISCOUNTPERCENTAGE");
+                ObjStockEntryDetail.SchemePercentage = gvStockEntry.GetFocusedRowCellValue("SCHEMEPERCENTAGE");
+                ObjStockEntryDetail.SchemeFlat = gvStockEntry.GetFocusedRowCellValue("SCHEMEFLAT");
+                ObjStockEntryDetail.TotalPriceWT = gvStockEntry.GetFocusedRowCellValue("TOTALPRICEWT");
+                ObjStockEntryDetail.TotalPriceWOT = gvStockEntry.GetFocusedRowCellValue("TOTALPRICEWOT");
+                ObjStockEntryDetail.AppliedDiscount = gvStockEntry.GetFocusedRowCellValue("APPLIEDDISCOUNT");
+                ObjStockEntryDetail.AppliedScheme = gvStockEntry.GetFocusedRowCellValue("APPLIEDSCHEME");
+                ObjStockEntryDetail.AppliedGST = gvStockEntry.GetFocusedRowCellValue("APPLIEDDGST");
+                ObjStockEntryDetail.FinalPrice = gvStockEntry.GetFocusedRowCellValue("FINALPRICE");
+                ObjStockEntryDetail.CGST = gvStockEntry.GetFocusedRowCellValue("CGST");
+                ObjStockEntryDetail.SGST = gvStockEntry.GetFocusedRowCellValue("SGST");
+                ObjStockEntryDetail.IGST = gvStockEntry.GetFocusedRowCellValue("IGST");
+                ObjStockEntryDetail.CESS = gvStockEntry.GetFocusedRowCellValue("CESS");
+                ObjStockEntryDetail.GSTID = gvStockEntry.GetFocusedRowCellValue("GSTID");
+                frmAddStockRecord obj = new frmAddStockRecord(ObjStockEntry, this, ObjStockEntryDetail);
+                obj.ShowInTaskbar = false;
+                obj.StartPosition = FormStartPosition.CenterParent;
+                obj.IconOptions.ShowIcon = false;
+                obj.ShowDialog();
+            }
+        }
+
+        private void btnDiscardInvoice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int Ivalue = 0;
+                if (int.TryParse(Convert.ToString(ObjStockEntry.STOCKENTRYID),out Ivalue) && Ivalue > 0)
+                {
+                    ObjStockRep.DiscardStockEntry(ObjStockEntry.STOCKENTRYID);
+                    cmbSupplier.EditValue = null;
+                    txtInvoiceNumber.EditValue = null;
+                    dtpInvoice.EditValue = DateTime.Now;
+                    txtTCS.EditValue = null;
+                    txtDiscountFlat.EditValue = null;
+                    txtDiscountPer.EditValue = null;
+                    txtTransport.EditValue = null;
+                    txtExpenses.EditValue = null;
+                    ObjStockEntry.dtStockEntry = new DataTable();
+                    ObjStockEntry.dtStockEntry.Columns.Add("STOCKENTRYDETAILID", typeof(int));
+                    ObjStockEntry.dtStockEntry.Columns.Add("ITEMID", typeof(int));
+                    ObjStockEntry.dtStockEntry.Columns.Add("ITEMCODEID", typeof(int));
+                    ObjStockEntry.dtStockEntry.Columns.Add("ITEMPRICEID", typeof(int));
+                    ObjStockEntry.dtStockEntry.Columns.Add("SKUCODE", typeof(string));
+                    ObjStockEntry.dtStockEntry.Columns.Add("ITEMCODE", typeof(string));
+                    ObjStockEntry.dtStockEntry.Columns.Add("ITEMNAME", typeof(string));
+                    ObjStockEntry.dtStockEntry.Columns.Add("COSTPRICEWT", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("COSTPRICEWOT", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("MRP", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("SALEPRICE", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("QUANTITY", typeof(int));
+                    ObjStockEntry.dtStockEntry.Columns.Add("WEIGHTINKGS", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("FREEQUANTITY", typeof(int));
+                    ObjStockEntry.dtStockEntry.Columns.Add("DISCOUNTFLAT", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("DISCOUNTPERCENTAGE", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("SCHEMEPERCENTAGE", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("SCHEMEFLAT", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("TOTALPRICEWT", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("TOTALPRICEWOT", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("APPLIEDDISCOUNT", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("APPLIEDSCHEME", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("APPLIEDDGST", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("FINALPRICE", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("SGST", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("CGST", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("IGST", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("CESS", typeof(decimal));
+                    ObjStockEntry.dtStockEntry.Columns.Add("GSTID", typeof(int));
+                    gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
+                    cmbSupplier.Enabled = true;
+                    txtInvoiceNumber.Enabled = true;
+                    dtpInvoice.Enabled = true;
+                    chkTaxInclusive.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
             }
         }
     }

@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnBranch = new DevExpress.XtraBars.BarButtonItem();
             this.btnBranchCouter = new DevExpress.XtraBars.BarButtonItem();
@@ -55,6 +55,8 @@
             this.btnInvoiceList = new DevExpress.XtraBars.BarButtonItem();
             this.btnDispatchList = new DevExpress.XtraBars.BarButtonItem();
             this.bbiStockSummary = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPrintDC = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDCList = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -66,12 +68,14 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
             // 
+            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(45, 44, 45, 44);
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -95,16 +99,21 @@
             this.btnSubCategory,
             this.btnInvoiceList,
             this.btnDispatchList,
-            this.bbiStockSummary});
+            this.bbiStockSummary,
+            this.btnPrintDC,
+            this.btnDCList,
+            this.skinDropDownButtonItem1});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 25;
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.ribbonControl1.MaxItemId = 28;
             this.ribbonControl1.Name = "ribbonControl1";
+            this.ribbonControl1.OptionsMenuMinWidth = 495;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage3,
             this.ribbonPage1});
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1});
-            this.ribbonControl1.Size = new System.Drawing.Size(1178, 161);
+            this.ribbonControl1.Size = new System.Drawing.Size(1767, 233);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // btnBranch
@@ -112,11 +121,13 @@
             this.btnBranch.Caption = "Branch";
             this.btnBranch.Id = 1;
             this.btnBranch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBranch.ImageOptions.SvgImage")));
-            this.btnBranch.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnBranch.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnBranch.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnBranch.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnBranch.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnBranch.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnBranch.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnBranch.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnBranch.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnBranch.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnBranch.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnBranch.Name = "btnBranch";
             this.btnBranch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBranch_ItemClick);
@@ -126,11 +137,13 @@
             this.btnBranchCouter.Caption = "Branch Counter";
             this.btnBranchCouter.Id = 2;
             this.btnBranchCouter.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBranchCouter.ImageOptions.SvgImage")));
-            this.btnBranchCouter.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnBranchCouter.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnBranchCouter.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnBranchCouter.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnBranchCouter.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnBranchCouter.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnBranchCouter.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnBranchCouter.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnBranchCouter.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnBranchCouter.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnBranchCouter.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnBranchCouter.Name = "btnBranchCouter";
             this.btnBranchCouter.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBranchCouter_ItemClick);
@@ -140,11 +153,13 @@
             this.btnUser.Caption = "User";
             this.btnUser.Id = 3;
             this.btnUser.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnUser.ImageOptions.SvgImage")));
-            this.btnUser.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnUser.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnUser.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnUser.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnUser.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnUser.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnUser.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnUser.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnUser.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnUser.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnUser.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnUser.Name = "btnUser";
             this.btnUser.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUser_ItemClick);
@@ -154,11 +169,13 @@
             this.btnCategory.Caption = "Category";
             this.btnCategory.Id = 4;
             this.btnCategory.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCategory.ImageOptions.SvgImage")));
-            this.btnCategory.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnCategory.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnCategory.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnCategory.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnCategory.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnCategory.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnCategory.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnCategory.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnCategory.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnCategory.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnCategory.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnCategory.Name = "btnCategory";
             this.btnCategory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCategory_ItemClick);
@@ -168,11 +185,13 @@
             this.btnDealer.Caption = "Dealer";
             this.btnDealer.Id = 5;
             this.btnDealer.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDealer.ImageOptions.SvgImage")));
-            this.btnDealer.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnDealer.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnDealer.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnDealer.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnDealer.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnDealer.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnDealer.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnDealer.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnDealer.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnDealer.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnDealer.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnDealer.Name = "btnDealer";
             this.btnDealer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDealer_ItemClick);
@@ -182,11 +201,13 @@
             this.btnTaxMaster.Caption = "Tax";
             this.btnTaxMaster.Id = 6;
             this.btnTaxMaster.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTaxMaster.ImageOptions.SvgImage")));
-            this.btnTaxMaster.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnTaxMaster.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnTaxMaster.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnTaxMaster.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnTaxMaster.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnTaxMaster.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnTaxMaster.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnTaxMaster.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnTaxMaster.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnTaxMaster.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnTaxMaster.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnTaxMaster.Name = "btnTaxMaster";
             this.btnTaxMaster.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaxMaster_ItemClick);
@@ -196,11 +217,13 @@
             this.btnModeOfPayment.Caption = "Mode Of Payment";
             this.btnModeOfPayment.Id = 7;
             this.btnModeOfPayment.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnModeOfPayment.ImageOptions.SvgImage")));
-            this.btnModeOfPayment.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnModeOfPayment.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnModeOfPayment.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnModeOfPayment.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnModeOfPayment.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnModeOfPayment.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnModeOfPayment.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnModeOfPayment.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnModeOfPayment.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnModeOfPayment.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnModeOfPayment.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnModeOfPayment.Name = "btnModeOfPayment";
             this.btnModeOfPayment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnModeOfPayment_ItemClick);
@@ -210,11 +233,13 @@
             this.btnUnitsofMeasure.Caption = "Units Of Measurement";
             this.btnUnitsofMeasure.Id = 8;
             this.btnUnitsofMeasure.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnUnitsofMeasure.ImageOptions.SvgImage")));
-            this.btnUnitsofMeasure.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnUnitsofMeasure.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnUnitsofMeasure.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnUnitsofMeasure.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnUnitsofMeasure.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnUnitsofMeasure.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnUnitsofMeasure.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnUnitsofMeasure.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnUnitsofMeasure.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnUnitsofMeasure.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnUnitsofMeasure.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnUnitsofMeasure.Name = "btnUnitsofMeasure";
             this.btnUnitsofMeasure.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUnitsofMeasure_ItemClick);
@@ -224,11 +249,13 @@
             this.btnItem.Caption = "Item";
             this.btnItem.Id = 10;
             this.btnItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnItem.ImageOptions.SvgImage")));
-            this.btnItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnItem.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnItem.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnItem.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnItem.Name = "btnItem";
             this.btnItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItem_ItemClick);
@@ -238,11 +265,13 @@
             this.btnLogout.Caption = "Log out";
             this.btnLogout.Id = 13;
             this.btnLogout.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLogout.ImageOptions.SvgImage")));
-            this.btnLogout.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnLogout.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnLogout.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnLogout.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnLogout.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnLogout.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnLogout.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnLogout.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnLogout.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnLogout.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnLogout.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogout_ItemClick);
@@ -252,11 +281,13 @@
             this.btnChangePassword.Caption = "Change Password";
             this.btnChangePassword.Id = 14;
             this.btnChangePassword.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnChangePassword.ImageOptions.SvgImage")));
-            this.btnChangePassword.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnChangePassword.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnChangePassword.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnChangePassword.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnChangePassword.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnChangePassword.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnChangePassword.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnChangePassword.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnChangePassword.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnChangePassword.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnChangePassword.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChangePassword_ItemClick);
@@ -266,11 +297,13 @@
             this.btnBarCodePrint.Caption = "Print Barcode";
             this.btnBarCodePrint.Id = 16;
             this.btnBarCodePrint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBarCodePrint.ImageOptions.SvgImage")));
-            this.btnBarCodePrint.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnBarCodePrint.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnBarCodePrint.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnBarCodePrint.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnBarCodePrint.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnBarCodePrint.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnBarCodePrint.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnBarCodePrint.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnBarCodePrint.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnBarCodePrint.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnBarCodePrint.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnBarCodePrint.Name = "btnBarCodePrint";
             this.btnBarCodePrint.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBarCodePrint_ItemClick);
@@ -280,11 +313,13 @@
             this.btnPrinterMaster.Caption = "Printer Master";
             this.btnPrinterMaster.Id = 17;
             this.btnPrinterMaster.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrinterMaster.ImageOptions.SvgImage")));
-            this.btnPrinterMaster.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnPrinterMaster.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnPrinterMaster.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnPrinterMaster.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnPrinterMaster.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnPrinterMaster.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnPrinterMaster.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnPrinterMaster.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnPrinterMaster.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnPrinterMaster.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnPrinterMaster.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnPrinterMaster.Name = "btnPrinterMaster";
             this.btnPrinterMaster.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPrinterMaster_ItemClick);
@@ -294,11 +329,13 @@
             this.btnStockEntry.Caption = "Stock Entry";
             this.btnStockEntry.Id = 18;
             this.btnStockEntry.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockEntry.ImageOptions.SvgImage")));
-            this.btnStockEntry.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnStockEntry.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnStockEntry.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnStockEntry.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnStockEntry.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnStockEntry.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnStockEntry.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnStockEntry.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnStockEntry.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnStockEntry.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnStockEntry.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnStockEntry.Name = "btnStockEntry";
             this.btnStockEntry.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockEntry_ItemClick);
@@ -308,11 +345,13 @@
             this.btnStockDispatch.Caption = "Stock Dispatch";
             this.btnStockDispatch.Id = 19;
             this.btnStockDispatch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockDispatch.ImageOptions.SvgImage")));
-            this.btnStockDispatch.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnStockDispatch.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnStockDispatch.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnStockDispatch.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnStockDispatch.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnStockDispatch.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnStockDispatch.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnStockDispatch.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnStockDispatch.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnStockDispatch.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnStockDispatch.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnStockDispatch.Name = "btnStockDispatch";
             this.btnStockDispatch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockDispatch_ItemClick);
@@ -324,11 +363,13 @@
             this.bbiRefreshData.Id = 20;
             this.bbiRefreshData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiRefreshData.ImageOptions.Image")));
             this.bbiRefreshData.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiRefreshData.ImageOptions.LargeImage")));
-            this.bbiRefreshData.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.bbiRefreshData.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.bbiRefreshData.ItemAppearance.Disabled.Options.UseFont = true;
+            this.bbiRefreshData.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.bbiRefreshData.ItemAppearance.Hovered.Options.UseFont = true;
-            this.bbiRefreshData.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.bbiRefreshData.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.bbiRefreshData.ItemAppearance.Normal.Options.UseFont = true;
-            this.bbiRefreshData.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.bbiRefreshData.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.bbiRefreshData.ItemAppearance.Pressed.Options.UseFont = true;
             this.bbiRefreshData.Name = "bbiRefreshData";
             this.bbiRefreshData.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRefreshData_ItemClick);
@@ -338,11 +379,13 @@
             this.btnSubCategory.Caption = "Sub Category";
             this.btnSubCategory.Id = 21;
             this.btnSubCategory.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSubCategory.ImageOptions.SvgImage")));
-            this.btnSubCategory.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnSubCategory.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnSubCategory.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnSubCategory.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnSubCategory.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnSubCategory.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnSubCategory.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnSubCategory.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnSubCategory.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnSubCategory.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnSubCategory.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnSubCategory.Name = "btnSubCategory";
             this.btnSubCategory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSubCategory_ItemClick);
@@ -352,11 +395,13 @@
             this.btnInvoiceList.Caption = "Invoice List";
             this.btnInvoiceList.Id = 22;
             this.btnInvoiceList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnInvoiceList.ImageOptions.SvgImage")));
-            this.btnInvoiceList.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnInvoiceList.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnInvoiceList.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnInvoiceList.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnInvoiceList.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnInvoiceList.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnInvoiceList.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnInvoiceList.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnInvoiceList.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnInvoiceList.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnInvoiceList.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnInvoiceList.Name = "btnInvoiceList";
             this.btnInvoiceList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnInvoiceList_ItemClick);
@@ -366,11 +411,13 @@
             this.btnDispatchList.Caption = "Dispatch List";
             this.btnDispatchList.Id = 23;
             this.btnDispatchList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDispatchList.ImageOptions.SvgImage")));
-            this.btnDispatchList.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnDispatchList.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnDispatchList.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnDispatchList.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
             this.btnDispatchList.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnDispatchList.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnDispatchList.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
             this.btnDispatchList.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnDispatchList.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnDispatchList.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
             this.btnDispatchList.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnDispatchList.Name = "btnDispatchList";
             this.btnDispatchList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDispatchList_ItemClick);
@@ -379,14 +426,46 @@
             // 
             this.bbiStockSummary.Caption = "Stock summary by branch";
             this.bbiStockSummary.Id = 24;
-            this.bbiStockSummary.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.bbiStockSummary.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.bbiStockSummary.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiStockSummary.ImageOptions.Image")));
+            this.bbiStockSummary.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiStockSummary.ImageOptions.LargeImage")));
+            this.bbiStockSummary.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.bbiStockSummary.ItemAppearance.Disabled.Options.UseFont = true;
+            this.bbiStockSummary.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
+            this.bbiStockSummary.ItemAppearance.Hovered.Options.UseFont = true;
+            this.bbiStockSummary.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
+            this.bbiStockSummary.ItemAppearance.Normal.Options.UseFont = true;
+            this.bbiStockSummary.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
+            this.bbiStockSummary.ItemAppearance.Pressed.Options.UseFont = true;
             this.bbiStockSummary.Name = "bbiStockSummary";
             this.bbiStockSummary.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiStockSummary_ItemClick);
             // 
+            // btnPrintDC
+            // 
+            this.btnPrintDC.Caption = "Print Delivery Challana";
+            this.btnPrintDC.Id = 25;
+            this.btnPrintDC.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintDC.ImageOptions.SvgImage")));
+            this.btnPrintDC.Name = "btnPrintDC";
+            this.btnPrintDC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPrintDC_ItemClick);
+            // 
+            // btnDCList
+            // 
+            this.btnDCList.Caption = "Dispatch DC List";
+            this.btnDCList.Id = 26;
+            this.btnDCList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDCList.ImageOptions.SvgImage")));
+            this.btnDCList.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnDCList.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnDCList.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnDCList.ItemAppearance.Hovered.Options.UseFont = true;
+            this.btnDCList.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnDCList.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnDCList.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnDCList.ItemAppearance.Pressed.Options.UseFont = true;
+            this.btnDCList.Name = "btnDCList";
+            this.btnDCList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDCList_ItemClick);
+            // 
             // ribbonPage3
             // 
-            this.ribbonPage3.Appearance.Font = new System.Drawing.Font("Arial", 10F);
+            this.ribbonPage3.Appearance.Font = new System.Drawing.Font("Arial", 9F);
             this.ribbonPage3.Appearance.Options.UseFont = true;
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2,
@@ -409,6 +488,8 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.btnStockDispatch);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnInvoiceList);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnDispatchList);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnPrintDC);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnDCList);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Stock";
             // 
@@ -417,6 +498,9 @@
             this.ribbonPageGroup5.Alignment = DevExpress.XtraBars.Ribbon.RibbonPageGroupAlignment.Far;
             this.ribbonPageGroup5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPageGroup5.ImageOptions.Image")));
             this.ribbonPageGroup5.ItemLinks.Add(this.bbiRefreshData);
+            this.ribbonPageGroup5.ItemLinks.Add(this.btnChangePassword);
+            this.ribbonPageGroup5.ItemLinks.Add(this.skinDropDownButtonItem1);
+            this.ribbonPageGroup5.ItemLinks.Add(this.btnLogout);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "Refresh";
             // 
@@ -428,7 +512,7 @@
             // 
             // ribbonPage1
             // 
-            this.ribbonPage1.Appearance.Font = new System.Drawing.Font("Arial", 10F);
+            this.ribbonPage1.Appearance.Font = new System.Drawing.Font("Arial", 9F);
             this.ribbonPage1.Appearance.Options.UseFont = true;
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
@@ -454,40 +538,45 @@
             // ribbonPageGroup4
             // 
             this.ribbonPageGroup4.Alignment = DevExpress.XtraBars.Ribbon.RibbonPageGroupAlignment.Far;
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnChangePassword);
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnLogout);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "Profile";
             // 
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
-            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
+            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 728);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 1063);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1178, 24);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1767, 36);
             // 
             // ribbonPage2
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
             // 
+            // skinDropDownButtonItem1
+            // 
+            this.skinDropDownButtonItem1.Id = 27;
+            this.skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
+            // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1178, 752);
+            this.ClientSize = new System.Drawing.Size(1767, 1099);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.Ribbon = this.ribbonControl1;
             this.StatusBar = this.ribbonStatusBar1;
@@ -535,6 +624,9 @@
         private DevExpress.XtraBars.BarButtonItem btnDispatchList;
         private DevExpress.XtraBars.BarButtonItem bbiStockSummary;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
+        private DevExpress.XtraBars.BarButtonItem btnPrintDC;
+        private DevExpress.XtraBars.BarButtonItem btnDCList;
+        private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
     }
 }
 

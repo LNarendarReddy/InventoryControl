@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.XtraEditors;
 using Entity;
 using ErrorManagement;
 using NSRetail;
@@ -18,14 +19,17 @@ namespace NSRetail.Stock
         object ItemPriceID = null;
         bool IsParentExist = false;
         bool IsOpenItem = false;
-        bool IsLoading = false; 
+        bool IsLoading = false;
+        bool IsEditMode = false;
 
         frmStockEntry frmparent = null;
-        public frmAddStockRecord(StockEntry _ObjStockEntry,frmStockEntry _frmparent)
+        public frmAddStockRecord(StockEntry _ObjStockEntry,frmStockEntry _frmparent,
+            StockEntryDetail _ObjStockEntryDetail)
         {
             InitializeComponent();
             ObjStockEntry = _ObjStockEntry;
             frmparent = _frmparent;
+            ObjStockEntryDetail = _ObjStockEntryDetail;
         }
         private void frmAddStockRecord_Load(object sender, EventArgs e)
         {
@@ -51,11 +55,45 @@ namespace NSRetail.Stock
                 else
                     txtCostPriceWT.Enabled = false;
 
-                txtDiscountFlat.EditValue = 0.00;
-                txtDiscountPer.EditValue = 0.00;
-                txtSchemePer.EditValue = 0.00;
-                txtSchemeFlat.EditValue = 0.00;
-                txtFreeQuantity.EditValue = 0.00;
+                int Ivalue = 0;
+                if (ObjStockEntryDetail.STOCKENTRYDETAILID != null && 
+                    int.TryParse(Convert.ToString(ObjStockEntryDetail.STOCKENTRYDETAILID), out Ivalue) && Ivalue > 0)
+                {
+                    IsEditMode = true;
+                    cmbItemCode.EditValue = ObjStockEntryDetail.ITEMCODEID;
+                    txtItemName.EditValue = ObjStockEntryDetail.ITEMNAME;
+                    txtQuantity.EditValue = ObjStockEntryDetail.QUANTITY;
+                    txtWeightInKGs.EditValue = ObjStockEntryDetail.WEIGHTINKGS;
+                    txtMRP.EditValue = ObjStockEntryDetail.MRP;
+                    txtSalePrice.EditValue = ObjStockEntryDetail.SALEPRICE;
+                    txtCostPriceWOT.EditValue = ObjStockEntryDetail.COSTPRICEWOT;
+                    txtCostPriceWT.EditValue = ObjStockEntryDetail.COSTPRICEWT;
+                    txtFreeQuantity.EditValue = ObjStockEntryDetail.FreeItemMRPID;
+                    txtDiscountPer.EditValue = ObjStockEntryDetail.DiscountPercentage;
+                    txtDiscountFlat.EditValue = ObjStockEntryDetail.DiscountFlat;
+                    txtSchemePer.EditValue = ObjStockEntryDetail.SchemePercentage;
+                    txtSchemeFlat.EditValue = ObjStockEntryDetail.SchemeFlat;
+                    cmbGST.EditValue = ObjStockEntryDetail.GSTID;
+                    txtIGST.EditValue = ObjStockEntryDetail.IGST;
+                    txtSGST.EditValue = ObjStockEntryDetail.SGST;
+                    txtCGST.EditValue = ObjStockEntryDetail.CGST;
+                    txtCESS.EditValue = ObjStockEntryDetail.CESS;
+                    txtAppliedGST.EditValue = ObjStockEntryDetail.AppliedGST;
+                    txtTotalPriceWOT.EditValue = ObjStockEntryDetail.TotalPriceWOT;
+                    txtTotalPriceWT.EditValue = ObjStockEntryDetail.TotalPriceWT;
+                    txtAppliedDiscount.EditValue = ObjStockEntryDetail.AppliedDiscount;
+                    txtAppliedScheme.EditValue = ObjStockEntryDetail.AppliedScheme;
+                    txtFinalPrice.EditValue = ObjStockEntryDetail.FinalPrice;
+
+                }
+                else
+                {
+                    txtDiscountFlat.EditValue = 0.00;
+                    txtDiscountPer.EditValue = 0.00;
+                    txtSchemePer.EditValue = 0.00;
+                    txtSchemeFlat.EditValue = 0.00;
+                    txtFreeQuantity.EditValue = 0.00;
+                }
             }
             catch (Exception ex)
             {
@@ -89,15 +127,24 @@ namespace NSRetail.Stock
             {
                 if (!dxValidationProvider1.Validate())
                     return;
+
+                if(sluFreeItem.EditValue!= null)
+                {
+                    if (txtFreeQuantity.EditValue == null)
+                    {
+                        XtraMessageBox.Show("Free Quantity is Mandatory!");
+                        return;
+                    }
+                }
                 if (Convert.ToInt32(ObjStockEntry.STOCKENTRYID) == 0)
                     frmparent.SaveInvoice();
-                ObjStockEntryDetail = new StockEntryDetail();
-                ObjStockEntryDetail.STOCKENTRYDETAILID = 0;
+                if (!IsEditMode)
+                    ObjStockEntryDetail = new StockEntryDetail();
                 ObjStockEntryDetail.STOCKENTRYID = ObjStockEntry.STOCKENTRYID;
-                ObjStockEntryDetail.ITEMID = cmbLookupView.GetFocusedRowCellValue("ITEMID");
                 ObjStockEntryDetail.ITEMCODEID = cmbItemCode.EditValue;
+                ObjStockEntryDetail.ITEMID = ((DataRowView)cmbItemCode.GetSelectedDataRow())["ITEMID"];
                 ObjStockEntryDetail.ITEMPRICEID = ItemPriceID;
-                ObjStockEntryDetail.SKUCODE = cmbLookupView.GetFocusedRowCellValue("SKUCODE");
+                ObjStockEntryDetail.SKUCODE = ((DataRowView)cmbItemCode.GetSelectedDataRow())["SKUCODE"];
                 ObjStockEntryDetail.ITEMCODE = cmbItemCode.Text;
                 ObjStockEntryDetail.ITEMNAME = txtItemName.EditValue;
                 ObjStockEntryDetail.COSTPRICEWT = txtCostPriceWT.EditValue;
@@ -146,6 +193,7 @@ namespace NSRetail.Stock
                 txtSGST.EditValue = 0.00;
                 txtIGST.EditValue = 0.00;
                 txtCESS.EditValue = 0.00;
+                IsEditMode = false;
                 cmbItemCode.Focus();
             }
             catch (Exception ex)
@@ -162,11 +210,15 @@ namespace NSRetail.Stock
         {
             try
             {
-                sluFreeItem.EditValue = cmbItemCode.EditValue;
                 if (cmbItemCode.EditValue != null)
                 {
+                    int IValue = 0;
+                    if (int.TryParse(Convert.ToString(ObjStockEntryDetail.STOCKENTRYDETAILID), out IValue) && IValue > 0)
+                    { 
+                        return;
+                        }
                     IsLoading = true;
-                    txtItemName.EditValue = cmbLookupView.GetFocusedRowCellValue("ITEMNAME");
+                    txtItemName.EditValue = cmbLookupView.GetFocusedDataRow()["ITEMNAME"];
                     DataTable dtCPList = ObjItemRep.GetCostPriceList(cmbItemCode.EditValue);
                     if (dtCPList.Rows.Count > 1)
                     {
@@ -193,11 +245,11 @@ namespace NSRetail.Stock
                     }
 
                     int ParentID = 0;
-                    if (int.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("PARENTITEMID")), out ParentID)
+                    if (int.TryParse(Convert.ToString(cmbLookupView.GetFocusedDataRow()["PARENTITEMID"]), out ParentID)
                         && ParentID > 0)
                     {
                         IsParentExist = true;
-                        if (bool.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("ISOPENITEM")), out IsOpenItem)
+                        if (bool.TryParse(Convert.ToString(cmbLookupView.GetFocusedDataRow()["ISOPENITEM"]), out IsOpenItem)
                             && IsOpenItem)
                         {
                             txtQuantity.Enabled = false;
@@ -230,13 +282,14 @@ namespace NSRetail.Stock
         {
             try
             {
+                
                 if (string.IsNullOrEmpty(Convert.ToString(txtQuantity.EditValue))) return;
                 
                 
                 if (IsParentExist && !IsOpenItem)
                 {
                     txtWeightInKGs.EditValue = 0;
-                    if (decimal.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("MULTIPLIER")), out decimal Multi)
+                    if (decimal.TryParse(Convert.ToString(cmbLookupView.GetFocusedDataRow()["MULTIPLIER"]), out decimal Multi)
                         && int.TryParse(Convert.ToString(txtQuantity.EditValue), out int Quantity))
                     {
                         txtWeightInKGs.EditValue = Multi * Quantity;
@@ -273,7 +326,8 @@ namespace NSRetail.Stock
                 }
 
                 if (txtCostPriceWOT.EditValue != null && 
-                    !Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) && cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
+                    !Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) 
+                    && cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
                 {
                     decimal cpWT = 0;
                     if (decimal.TryParse(Convert.ToString(txtCostPriceWOT.EditValue), out cpWT))
@@ -392,6 +446,13 @@ namespace NSRetail.Stock
             (sender == txtSchemePer && txtSchemePer.EditValue != null && Convert.ToDecimal(txtSchemePer.EditValue) > 0
                 ? txtSchemeFlat : txtSchemePer).EditValue = 0.00;
             CalculateReadOnlyFields();
+        }
+        private void sluFreeItem_EditValueChanged(object sender, EventArgs e)
+        {
+            if (sluFreeItem.EditValue != null)
+                txtFreeQuantity.Enabled = true;  
+           else
+                txtFreeQuantity.Enabled = false;
         }
     }
 }
