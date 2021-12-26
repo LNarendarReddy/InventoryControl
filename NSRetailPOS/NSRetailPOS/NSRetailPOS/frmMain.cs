@@ -14,10 +14,6 @@ namespace NSRetailPOS
 {
     public partial class frmMain : DevExpress.XtraEditors.XtraForm
     {
-        private int userID = 6;
-
-        private int branchCounterID = 3;
-
         private int daySequenceID;
 
         private int SNo = 1;
@@ -36,7 +32,7 @@ namespace NSRetailPOS
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataSet dsInitialData = billingRepository.GetInitialLoad(userID, branchCounterID);
+            DataSet dsInitialData = billingRepository.GetInitialLoad(Utility.logininfo.UserID, Utility.branchinfo.BranchCounterID);
 
             if (!int.TryParse(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString(), out daySequenceID))
             {
@@ -57,8 +53,9 @@ namespace NSRetailPOS
 
         private void txtQuantity_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if(e.KeyCode != Keys.Enter || sluItemCode.EditValue == null || drSelectedPrice == null || txtQuantity.EditValue == null || txtQuantity.EditValue.Equals(0))
+            if (e.KeyCode != Keys.Enter || sluItemCode.EditValue == null || drSelectedPrice == null || txtQuantity.EditValue == null || txtQuantity.EditValue.Equals(0))
             {
+                txtItemCode.Focus();
                 return;
             }
 
@@ -68,14 +65,14 @@ namespace NSRetailPOS
             int rowHandle = gvBilling.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
             if (rowHandle < 0)
             {
-                gvBilling.AddNewRow(); 
+                gvBilling.AddNewRow();
             }
             else
             {
                 int newQuantity = Convert.ToInt32(txtQuantity.EditValue) + Convert.ToInt32(gvBilling.GetRowCellValue(rowHandle, "QUANTITY"));
                 if (newQuantity > 0)
                 {
-                    gvBilling.SetRowCellValue(rowHandle, "QUANTITY", newQuantity); 
+                    gvBilling.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
                 }
                 else
                 {
@@ -92,7 +89,7 @@ namespace NSRetailPOS
                         SNo++;
                     }
 
-                    billingRepository.DeleteBillDetail(billDetailID, userID, dtSNos);
+                    billingRepository.DeleteBillDetail(billDetailID, Utility.logininfo.UserID, dtSNos);
                     gvBilling.DeleteRow(rowHandle);
                     UpdateSummary();
                 }
@@ -112,17 +109,20 @@ namespace NSRetailPOS
 
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)
         {
-            if(sluItemCode.EditValue == null)
+            if (sluItemCode.EditValue == null)
             {
                 return;
             }
 
+            txtItemCode.EditValue = sluItemCodeView.GetRowCellValue(sluItemCodeView.LocateByValue("ITEMCODEID", 
+                sluItemCode.EditValue), "ITEMCODE");
             DataTable dtPrices = itemRepository.GetMRPList(sluItemCode.EditValue);
-            if(dtPrices.Rows.Count > 1)
+            if (dtPrices.Rows.Count > 1)
             {
-                frmMRPSelection mRPSelection = new frmMRPSelection(dtPrices) { StartPosition = FormStartPosition.CenterScreen };
+                frmMRPSelection mRPSelection = new frmMRPSelection(dtPrices,txtItemCode.EditValue,sluItemCode.Text) 
+                { StartPosition = FormStartPosition.CenterScreen };
                 mRPSelection.ShowDialog();
-                if(!mRPSelection._IsSave)
+                if (!mRPSelection._IsSave)
                 {
                     ClearItemData();
                     return;
@@ -130,12 +130,12 @@ namespace NSRetailPOS
 
                 drSelectedPrice = (mRPSelection.drSelected as DataRowView)?.Row;
             }
-            else if(dtPrices.Rows.Count == 1)
+            else if (dtPrices.Rows.Count == 1)
             {
                 drSelectedPrice = dtPrices.Rows[0];
             }
 
-            if(drSelectedPrice == null)
+            if (drSelectedPrice == null)
             {
                 return;
             }
@@ -143,8 +143,6 @@ namespace NSRetailPOS
             //txtItemName.EditValue = (sluItemCode.GetSelectedDataRow() as DataRowView)?.Row["ITEMNAME"];
             txtMRP.EditValue = drSelectedPrice["MRP"];
             txtSalePrice.EditValue = drSelectedPrice["SALEPRICE"];
-            txtItemCode.EditValue = sluItemCodeView.GetRowCellValue(sluItemCodeView.LocateByValue("ITEMCODEID", sluItemCode.EditValue), "ITEMCODE");
-
             txtQuantity.EditValue = 1;
 
             if (chkSingleQuantity.Checked)
@@ -170,10 +168,13 @@ namespace NSRetailPOS
             gvBilling.SetRowCellValue(e.RowHandle, "MRP", drSelectedPrice["MRP"]);
             gvBilling.SetRowCellValue(e.RowHandle, "SALEPRICE", drSelectedPrice["SALEPRICE"]);
             gvBilling.SetRowCellValue(e.RowHandle, "GSTCODE", drSelectedPrice["GSTCODE"]);
+            gvBilling.SetRowCellValue(e.RowHandle, "CGSTDESC", drSelectedPrice["CGST"]);
+            gvBilling.SetRowCellValue(e.RowHandle, "SGSTDESC", drSelectedPrice["SGST"]);
+            gvBilling.SetRowCellValue(e.RowHandle, "CESSDESC", drSelectedPrice["CESS"]);
             gvBilling.SetRowCellValue(e.RowHandle, "QUANTITY", txtQuantity.EditValue);
             gvBilling.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", 0.00);
         }
-        
+
         private void btnCloseBill_Click(object sender, EventArgs e)
         {
             if (billObj.dtBillDetails.Rows.Count == 0)
@@ -185,11 +186,13 @@ namespace NSRetailPOS
             paymentForm.ShowDialog();
             if (!paymentForm.IsPaid) { return; }
 
-            DataSet nextBillDetails = billingRepository.FinishBill(userID, daySequenceID, billObj);
+            DataSet nextBillDetails = billingRepository.FinishBill(Utility.logininfo.UserID, daySequenceID, billObj);
 
             // use this object for printing
             Bill oldBillObj = billObj.Clone() as Bill;
-            rptBill rpt = new rptBill(oldBillObj.dtBillDetails, oldBillObj.dtMopValues);
+            DataView dv = oldBillObj.dtMopValues.DefaultView;
+            dv.RowFilter = "MOPVALUE > 0";
+            rptBill rpt = new rptBill(oldBillObj.dtBillDetails, dv.ToTable());
             rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
             rpt.Parameters["FSSAI"].Value = "10114004000548";
             rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
@@ -208,11 +211,12 @@ namespace NSRetailPOS
         {
             DataRow drBillDetail = (gvBilling.GetRow(rowHandle) as DataRowView).Row;
             decimal salePrice = Convert.ToDecimal(drBillDetail["SALEPRICE"])
+                , MRP = Convert.ToDecimal(drBillDetail["MRP"])
                 , cGSTPer = Convert.ToDecimal(drSelectedPrice["CGST"])
                 , sGSTPer = Convert.ToDecimal(drSelectedPrice["SGST"])
                 , iGSTPer = Convert.ToDecimal(drSelectedPrice["IGST"])
                 , cess = Convert.ToDecimal(drSelectedPrice["CESS"])
-                , billedAmount, cGSTValue, sGSTValue, iGSTValue, cessValue, totalGSTValue;
+                , billedAmount, cGSTValue, sGSTValue, iGSTValue, cessValue, totalGSTValue, Discount;
 
             int.TryParse(drBillDetail["QUANTITY"].ToString(), out int quantity);
             billedAmount = salePrice * quantity;
@@ -222,6 +226,7 @@ namespace NSRetailPOS
             cessValue = Math.Round((billedAmount * cess) / 100, 2);
 
             totalGSTValue = cGSTValue + sGSTValue + iGSTValue + cessValue;
+            Discount = Math.Round(MRP - salePrice, 2);
 
             drBillDetail["CGST"] = cGSTValue;
             drBillDetail["SGST"] = sGSTValue;
@@ -229,14 +234,15 @@ namespace NSRetailPOS
             drBillDetail["CESS"] = cessValue;
             drBillDetail["GSTVALUE"] = totalGSTValue;
             drBillDetail["BILLEDAMOUNT"] = billedAmount;
+            drBillDetail["DISCOUNT"] = Discount;
 
             UpdateSummary();
-        }   
-        
+        }
+
         private void SaveBillDetail(int rowHandle)
         {
             DataRow drBillDetail = (gvBilling.GetRow(rowHandle) as DataRowView).Row;
-            int billDetailID = billingRepository.SaveBillDetail(drBillDetail, userID);
+            int billDetailID = billingRepository.SaveBillDetail(drBillDetail, Utility.logininfo.UserID);
             drBillDetail["BILLDETAILID"] = billDetailID;
         }
 
@@ -245,7 +251,6 @@ namespace NSRetailPOS
             txtItemCode.EditValue = null;
             sluItemCode.EditValue = null;
             txtMRP.EditValue = null;
-            txtDiscount.EditValue = null;
             txtSalePrice.EditValue = null;
             txtQuantity.EditValue = 1;
 
@@ -254,18 +259,18 @@ namespace NSRetailPOS
         }
 
         private void UpdateSummary()
-        {           
+        {
             billObj.Amount = gvBilling.Columns["BILLEDAMOUNT"].SummaryItem.SummaryValue;
             billObj.Quantity = gvBilling.Columns["QUANTITY"].SummaryItem.SummaryValue;
             //lblTotalBill.Text = billObj.Amount.ToString();
             //lblTotalItems.Text = billObj.Quantity.ToString();
         }
-        
+
         private void LoadBillData(DataSet dsBillInfo)
         {
             billObj = Utility.GetBill(dsBillInfo);
 
-            this.Text = "NSRetail - "  + billObj.BillNumber.ToString();
+            this.Text = "NSRetail - " + billObj.BillNumber.ToString();
 
             txtLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
             txtLastBilledQuantity.Text = billObj.LastBilledQuantity.ToString();
@@ -284,7 +289,7 @@ namespace NSRetailPOS
         private void txtItemCode_Leave(object sender, EventArgs e)
         {
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
-            if(rowHandle >=  0)
+            if (rowHandle >= 0)
             {
                 //sluItemCode.Enabled = false;
                 sluItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODEID");
@@ -306,13 +311,13 @@ namespace NSRetailPOS
                 return;
             }
 
-            DataSet nextBillDetails = billingRepository.DraftBill(userID, daySequenceID, billObj.BillID);
+            DataSet nextBillDetails = billingRepository.DraftBill(Utility.logininfo.UserID, daySequenceID, billObj.BillID);
             LoadBillData(nextBillDetails);
         }
 
         private void btnLoadDraftBill_Click(object sender, EventArgs e)
         {
-            if(billObj.dtBillDetails.Rows.Count > 0)
+            if (billObj.dtBillDetails.Rows.Count > 0)
             {
                 DialogResult dialogResult = XtraMessageBox.Show("Pending items in the bill, Do you want to draft bill?", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Cancel) return;
@@ -322,7 +327,7 @@ namespace NSRetailPOS
 
             frmDraftList draftListForm = new frmDraftList(daySequenceID);
             draftListForm.ShowDialog();
-            if(draftListForm.SelectedDraftBillID > 0)
+            if (draftListForm.SelectedDraftBillID > 0)
             {
                 DataSet dsBillDetails = billingRepository.GetBill(daySequenceID, draftListForm.SelectedDraftBillID);
                 LoadBillData(dsBillDetails);
@@ -360,11 +365,12 @@ namespace NSRetailPOS
                 rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
                 rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
                 rpt.Print();
+                txtItemCode.Focus();
             }
             catch (Exception ex)
             {
                 XtraMessageBox.Show(ex.Message);
-            } 
+            }
         }
 
         private void txtItemCode_Enter(object sender, EventArgs e)
@@ -375,6 +381,27 @@ namespace NSRetailPOS
         private void txtItemCode_Click(object sender, EventArgs e)
         {
             txtItemCode.SelectAll();
+        }
+
+        private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            object billDetailID = gvBilling.GetFocusedRowCellValue("BILLDETAILID");
+            SNo = Convert.ToInt32(gvBilling.GetFocusedRowCellValue("SNO"));
+            DataTable dtSNos = new DataTable();
+            dtSNos.Columns.Add("BILLDETAILID", typeof(int));
+            dtSNos.Columns.Add("SNO", typeof(int));
+
+            for (int curRowHandle = gvBilling.FocusedRowHandle - 1; curRowHandle >= 0; curRowHandle--)
+            {
+                gvBilling.SetRowCellValue(curRowHandle, "SNO", SNo);
+                dtSNos.Rows.Add(gvBilling.GetRowCellValue(curRowHandle, "BILLDETAILID"), SNo);
+                SNo++;
+            }
+
+            billingRepository.DeleteBillDetail(billDetailID, Utility.logininfo.UserID, dtSNos);
+            gvBilling.DeleteRow(gvBilling.FocusedRowHandle);
+            UpdateSummary();
+            txtItemCode.Focus();
         }
     }
 }

@@ -16,10 +16,12 @@ namespace NSRetailPOS.UI
         public object drSelected = null;
         public bool _IsSave = false;
 
-        public frmMRPSelection(DataTable dtMRPList)
+        public frmMRPSelection(DataTable dtMRPList,object ItemCode, Object ItemName)
         {
             InitializeComponent();
             gcMRPList.DataSource = dtMRPList;
+            txtItemCode.EditValue = ItemCode;
+            txtItemName.EditValue = ItemName;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -31,6 +33,11 @@ namespace NSRetailPOS.UI
                 this.Close();
             }
             catch (Exception) { }
+        }
+
+        private void frmMRPSelection_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

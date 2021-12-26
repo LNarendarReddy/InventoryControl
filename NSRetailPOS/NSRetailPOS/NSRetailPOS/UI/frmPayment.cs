@@ -20,6 +20,7 @@ namespace NSRetailPOS.UI
         {
             InitializeComponent();
             billObj = bill;
+            this.Text = this.Text + billObj.BillNumber;
         }
 
         private void gvMOP_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -48,12 +49,29 @@ namespace NSRetailPOS.UI
             Close();
         }
 
+        private void gvMOP_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                gvMOP.MoveNext();
+            }
+        }
+
+        private void txtCustomerName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                gvMOP.FocusedColumn = gvMOP.Columns[2];
+                gvMOP.FocusedRowHandle = 0;
+                gvMOP.Focus();
+                gvMOP.ShowEditor();
+            }
+        }
+
         private void frmPayment_Load(object sender, System.EventArgs e)
         {
             DataTable dtMOPs = billingRepository.GetMOPs();
             gcMOP.DataSource = dtMOPs;
-
-            txtBillNumber.EditValue = billObj.BillNumber;
             txtItemQuantity.EditValue = billObj.Quantity;
             txtBilledAmount.EditValue = billObj.Amount;
             decimal.TryParse(billObj.Amount.ToString(), out payableAmount);

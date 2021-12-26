@@ -12,6 +12,7 @@ namespace NSRetailPOS.Reports
         public rptBill(DataTable dtItems,DataTable dtMOP)
         {
             InitializeComponent();
+            drFooter.DataSource = dtItems;
             drItems.DataSource = dtItems;
             drGST.DataSource = dtItems;
             drMOP.DataSource = dtMOP;

@@ -7,7 +7,7 @@ namespace NSRetailPOS.Data
 {
     public class BillingRepository
     {
-        public int SaveBillDetail(DataRow drBillDetail, int userID)
+        public int SaveBillDetail(DataRow drBillDetail, object userID)
         {
             int billDetailID;
             try
@@ -30,6 +30,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@IGST", drBillDetail["IGST"]);
                     cmd.Parameters.AddWithValue("@Cess", drBillDetail["CESS"]);
                     cmd.Parameters.AddWithValue("@GSTVALUE", drBillDetail["GSTVALUE"]);
+                    cmd.Parameters.AddWithValue("@DISCOUNT", drBillDetail["DISCOUNT"]);
                     cmd.Parameters.AddWithValue("@UserID", userID);
                     object objReturn = cmd.ExecuteScalar();
 
@@ -48,7 +49,7 @@ namespace NSRetailPOS.Data
             return billDetailID;
         }
 
-        public DataSet GetInitialLoad(int userID, int branchCounterID)
+        public DataSet GetInitialLoad(object userID, object branchCounterID)
         {
             DataSet dsInitialLoad = new DataSet();
             try
@@ -84,7 +85,7 @@ namespace NSRetailPOS.Data
             return dsInitialLoad;
         }
 
-        public DataSet FinishBill(int userID, int daySequenceID, Bill billObj)
+        public DataSet FinishBill(object userID, int daySequenceID, Bill billObj)
         {
             DataSet dsNextBill = new DataSet();
             try
@@ -125,7 +126,7 @@ namespace NSRetailPOS.Data
             return dsNextBill;
         }
 
-        public DataSet DraftBill(int userID, int daySequenceID, object billID)
+        public DataSet DraftBill(object userID, int daySequenceID, object billID)
         {
             DataSet dsNextBill = new DataSet();
             try
@@ -158,7 +159,7 @@ namespace NSRetailPOS.Data
             return dsNextBill;
         }
 
-        public void DeleteBillDetail(object billDetailID, int userID, DataTable dtSNos)
+        public void DeleteBillDetail(object billDetailID, object userID, DataTable dtSNos)
         {
             try
             {
