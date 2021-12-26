@@ -10,7 +10,7 @@ namespace NSRetailPOS.Data
 {
     public class CloudRepository
     {
-        public DataTable GetEntityWiseData(object EntityName, int branchCounterID)
+        public DataTable GetEntityWiseData(object EntityName, object branchCounterID)
         {
             DataTable dtEntity = new DataTable();
             try
@@ -39,7 +39,7 @@ namespace NSRetailPOS.Data
             return dtEntity;
         }
 
-        public void UpdateEntitySyncStatus(string entityName, int branchCounterID, DateTime syncTime)
+        public void UpdateEntitySyncStatus(string entityName, object branchCounterID, DateTime syncTime)
         {
             try
             {

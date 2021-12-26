@@ -20,12 +20,6 @@ namespace NSRetailPOS.UI
             InitializeComponent();
         }
 
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-            txtUserName.EditValue = "rvp1";
-            txtPassword.EditValue = "1234";
-        }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -80,11 +74,6 @@ namespace NSRetailPOS.UI
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void frmLogin_Shown(object sender, EventArgs e)
-        {
-            btnLogin_Click(null, null);
         }
     }
 }

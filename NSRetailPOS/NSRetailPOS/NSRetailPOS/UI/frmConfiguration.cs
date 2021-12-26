@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,12 @@ namespace NSRetailPOS.UI
                 if (!dxValidationProvider1.Validate())
                     return;
                 ObjPOSRep.SavePOSConfiguration(cmbBranch.EditValue, cmbCounter.EditValue);
+
+                SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
+                Utility.branchinfo.BranchCounterID = cmbCounter.EditValue;
+                Utility.branchinfo.BranchID = cmbBranch.EditValue;
+                Utility.StartSync(null);
+                SplashScreenManager.CloseForm();
                 Application.Restart();
             }
             catch (Exception ex)
