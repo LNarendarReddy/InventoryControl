@@ -4,9 +4,11 @@ using NSRetailPOS.Entity;
 using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
 using System;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Windows.Forms;
 //using System.Data.SQLite;
 
@@ -24,6 +26,8 @@ namespace NSRetailPOS
         Bill billObj;
 
         DataRow drSelectedPrice;
+
+        BackgroundWorker bgSyncWorker = new BackgroundWorker();
 
         public frmMain()
         {
@@ -49,6 +53,23 @@ namespace NSRetailPOS
             sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
 
             LoadBillData(dsInitialData);
+            bgSyncWorker.WorkerReportsProgress = true;
+            bgSyncWorker.DoWork += BgSyncWorker_DoWork;
+            bgSyncWorker.ProgressChanged += BgSyncWorker_ProgressChanged;
+            bgSyncWorker.RunWorkerAsync();
+        }
+
+        private void BgSyncWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            syncProgressBar.Text = e.UserState?.ToString();
+        }
+
+        private void BgSyncWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Utility.StartSync(bgSyncWorker);
+            Thread.Sleep(3600000);
+            BgSyncWorker_DoWork(sender, e);
+
         }
 
         private void txtQuantity_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -74,25 +95,25 @@ namespace NSRetailPOS
                 {
                     gvBilling.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
                 }
-                else
-                {
-                    object billDetailID = gvBilling.GetRowCellValue(rowHandle, "BILLDETAILID");
-                    SNo = Convert.ToInt32(gvBilling.GetRowCellValue(rowHandle, "SNO"));
-                    DataTable dtSNos = new DataTable();
-                    dtSNos.Columns.Add("BILLDETAILID", typeof(int));
-                    dtSNos.Columns.Add("SNO", typeof(int));
+                //else
+                //{
+                //    object billDetailID = gvBilling.GetRowCellValue(rowHandle, "BILLDETAILID");
+                //    SNo = Convert.ToInt32(gvBilling.GetRowCellValue(rowHandle, "SNO"));
+                //    DataTable dtSNos = new DataTable();
+                //    dtSNos.Columns.Add("BILLDETAILID", typeof(int));
+                //    dtSNos.Columns.Add("SNO", typeof(int));
 
-                    for (int curRowHandle = rowHandle - 1; curRowHandle >= 0; curRowHandle--)
-                    {
-                        gvBilling.SetRowCellValue(curRowHandle, "SNO", SNo);
-                        dtSNos.Rows.Add(gvBilling.GetRowCellValue(curRowHandle, "BILLDETAILID"), SNo);
-                        SNo++;
-                    }
+                //    for (int curRowHandle = rowHandle - 1; curRowHandle >= 0; curRowHandle--)
+                //    {
+                //        gvBilling.SetRowCellValue(curRowHandle, "SNO", SNo);
+                //        dtSNos.Rows.Add(gvBilling.GetRowCellValue(curRowHandle, "BILLDETAILID"), SNo);
+                //        SNo++;
+                //    }
 
-                    billingRepository.DeleteBillDetail(billDetailID, Utility.logininfo.UserID, dtSNos);
-                    gvBilling.DeleteRow(rowHandle);
-                    UpdateSummary();
-                }
+                //    billingRepository.DeleteBillDetail(billDetailID, Utility.logininfo.UserID, dtSNos);
+                //    gvBilling.DeleteRow(rowHandle);
+                //    UpdateSummary();
+                //}
             }
 
             gvBilling.GridControl.BindingContext = new BindingContext();
@@ -151,7 +172,7 @@ namespace NSRetailPOS
             }
             else
             {
-                txtQuantity.Focus();
+                //txtQuantity.Focus();
                 txtQuantity.SelectAll();
             }
 
@@ -226,7 +247,7 @@ namespace NSRetailPOS
             cessValue = Math.Round((billedAmount * cess) / 100, 2);
 
             totalGSTValue = cGSTValue + sGSTValue + iGSTValue + cessValue;
-            Discount = Math.Round(MRP - salePrice, 2);
+            Discount = Math.Round((MRP - salePrice) * quantity, 2);
 
             drBillDetail["CGST"] = cGSTValue;
             drBillDetail["SGST"] = sGSTValue;
@@ -287,19 +308,18 @@ namespace NSRetailPOS
         }
 
         private void txtItemCode_Leave(object sender, EventArgs e)
-        {
+        {            
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
             if (rowHandle >= 0)
             {
-                //sluItemCode.Enabled = false;
+                sluItemCode.EditValue = null;
                 sluItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODEID");
-                if (sluItemCode.EditValue != null)
-                    txtQuantity.Focus();
+                //if (sluItemCode.EditValue != null)
+                //    txtQuantity.Focus();
             }
             else
             {
                 ClearItemData(false);
-                //sluItemCode.Enabled = true;
             }
         }
 
@@ -403,5 +423,18 @@ namespace NSRetailPOS
             UpdateSummary();
             txtItemCode.Focus();
         }
+
+        private void syncProgressBar_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e)
+        {
+            //e.DisplayText = bgSyncReportText;
+        }
+
+        //private void gvBilling_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        //{
+        //    if (e.Column.FieldName != "QUANTITY") return;
+
+        //    CalculateFields(e.RowHandle);
+        //    SaveBillDetail(e.RowHandle);
+        //}
     }
 }
