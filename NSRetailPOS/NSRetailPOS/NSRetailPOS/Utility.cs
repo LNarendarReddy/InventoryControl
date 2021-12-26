@@ -1,4 +1,5 @@
-﻿using NSRetailPOS.Data;
+﻿using DevExpress.XtraSplashScreen;
+using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using System;
 using System.Collections.Generic;
@@ -33,28 +34,26 @@ namespace NSRetailPOS
         public static void StartSync(BackgroundWorker backgroundWorker)
         {
             LoggerUtility.InitializeLogger();
-            int BranchCounterID = 3;
             DateTime syncStartTime = DateTime.Now;
-            LoggerUtility.Logger.Info($"POS sync started at {syncStartTime.ToLongTimeString()}");
-            backgroundWorker.ReportProgress(0, $"POS sync started at {syncStartTime.ToLongTimeString()}");
+            //LoggerUtility.Logger.Info($"POS sync started at {syncStartTime.ToLongTimeString()}");
+            backgroundWorker?.ReportProgress(0, $"POS sync started at {syncStartTime.ToLongTimeString()}");
             SyncRepository syncRepository = new SyncRepository();
             CloudRepository cloudRepository = new CloudRepository();
-            DataTable dtEntity = cloudRepository.GetEntityWiseData("ENTITY", BranchCounterID);
+            DataTable dtEntity = cloudRepository.GetEntityWiseData("ENTITY", branchinfo.BranchCounterID);
             foreach (DataRow entityRow in dtEntity.Rows)
             {
                 string entityName = entityRow["ENTITYNAME"].ToString();
                 //LoggerUtility.Logger.Info($"{entityName} sync started");
                 ReportText(backgroundWorker, $"{entityName} sync started");
-                DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(entityName, BranchCounterID);
+                DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(entityName, branchinfo.BranchCounterID);
                 ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to sync in entity : {entityName} ");
                 syncRepository.SaveData(entityName, dtEntityWiseData);
-                cloudRepository.UpdateEntitySyncStatus(entityName, BranchCounterID
-                    , syncStartTime);
+                cloudRepository.UpdateEntitySyncStatus(entityName, branchinfo.BranchCounterID, syncStartTime);
                 ReportText(backgroundWorker, $"{entityName} sync completed");
             }
 
             //LoggerUtility.Logger.Info($"POS sync completed");
-            backgroundWorker.ReportProgress(0, $"POS sync completed at {DateTime.Now.ToLongTimeString()}");
+            backgroundWorker?.ReportProgress(0, $"POS sync completed at {DateTime.Now.ToLongTimeString()}");
         }
         private static byte[] Encrypt(byte[] input)
         {
@@ -91,7 +90,12 @@ namespace NSRetailPOS
 
         private static void ReportText(BackgroundWorker bgwSyncWorker, string text)
         {
-            bgwSyncWorker.ReportProgress(0, DateTime.Now.ToString() + " : " + text);
+            string displayText = DateTime.Now.ToString() + " : " + text;
+            bgwSyncWorker?.ReportProgress(0, displayText);
+            if(bgwSyncWorker == null)
+            {
+                SplashScreenManager.Default.SetWaitFormDescription(displayText);
+            }
         }
     }
     

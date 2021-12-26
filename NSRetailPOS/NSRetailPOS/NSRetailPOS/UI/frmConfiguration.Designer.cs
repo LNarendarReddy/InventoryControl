@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConfiguration));
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnAttachDatabase = new DevExpress.XtraEditors.SimpleButton();
             this.btnBrowse = new DevExpress.XtraEditors.SimpleButton();
@@ -53,6 +53,7 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::NSRetailPOS.UI.frmWaitForm), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDBFilePath.Properties)).BeginInit();
@@ -111,9 +112,9 @@
             // 
             this.btnAttachDatabase.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnAttachDatabase.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAttachDatabase.ImageOptions.SvgImage")));
-            this.btnAttachDatabase.Location = new System.Drawing.Point(433, 256);
+            this.btnAttachDatabase.Location = new System.Drawing.Point(428, 256);
             this.btnAttachDatabase.Name = "btnAttachDatabase";
-            this.btnAttachDatabase.Size = new System.Drawing.Size(132, 36);
+            this.btnAttachDatabase.Size = new System.Drawing.Size(137, 36);
             this.btnAttachDatabase.StyleController = this.layoutControl1;
             this.btnAttachDatabase.TabIndex = 10;
             this.btnAttachDatabase.Text = "Attach Database";
@@ -125,7 +126,7 @@
             this.btnBrowse.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBrowse.ImageOptions.SvgImage")));
             this.btnBrowse.Location = new System.Drawing.Point(271, 256);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(142, 36);
+            this.btnBrowse.Size = new System.Drawing.Size(137, 36);
             this.btnBrowse.StyleController = this.layoutControl1;
             this.btnBrowse.TabIndex = 9;
             this.btnBrowse.Text = "Browse";
@@ -177,10 +178,10 @@
             this.cmbCounter.Size = new System.Drawing.Size(453, 22);
             this.cmbCounter.StyleController = this.layoutControl1;
             this.cmbCounter.TabIndex = 5;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbCounter, conditionValidationRule1);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Mandatory";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbCounter, conditionValidationRule3);
             // 
             // cmbBranch
             // 
@@ -196,10 +197,10 @@
             this.cmbBranch.Size = new System.Drawing.Size(453, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 4;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbBranch, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbBranch, conditionValidationRule1);
             // 
             // Root
             // 
@@ -302,10 +303,10 @@
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnAttachDatabase;
-            this.layoutControlItem7.Location = new System.Drawing.Point(401, 42);
+            this.layoutControlItem7.Location = new System.Drawing.Point(396, 42);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 2, 2);
-            this.layoutControlItem7.Size = new System.Drawing.Size(152, 45);
+            this.layoutControlItem7.Size = new System.Drawing.Size(157, 45);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
@@ -315,7 +316,7 @@
             this.layoutControlItem6.Location = new System.Drawing.Point(239, 42);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 2, 2);
-            this.layoutControlItem6.Size = new System.Drawing.Size(162, 45);
+            this.layoutControlItem6.Size = new System.Drawing.Size(157, 45);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
@@ -326,6 +327,10 @@
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(239, 45);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // splashScreenManager1
+            // 
+            this.splashScreenManager1.ClosingDelay = 500;
             // 
             // frmConfiguration
             // 
@@ -383,5 +388,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
     }
 }

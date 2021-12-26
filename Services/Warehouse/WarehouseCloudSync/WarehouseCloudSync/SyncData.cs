@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Threading;
 using WarehouseCloudSync.Data;
 
 namespace WarehouseCloudSync
@@ -28,6 +29,9 @@ namespace WarehouseCloudSync
             }
 
             LoggerUtility.Logger.Info($"Warehouse sync completed");
+
+            Thread.Sleep(5 * 60 * 1000);
+            StartSync();
         }
     }
 }
