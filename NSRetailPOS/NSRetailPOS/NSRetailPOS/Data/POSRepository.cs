@@ -17,9 +17,9 @@ namespace NSRetailPOS.Data
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Connection = SQLCon.SqlCloudconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[POS_USP_R_BRANCH]";
+                    cmd.CommandText = "[USP_R_BRANCH]";
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtBranch);
@@ -43,9 +43,9 @@ namespace NSRetailPOS.Data
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Connection = SQLCon.SqlCloudconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[POS_USP_R_BRANCHCOUNTER]";
+                    cmd.CommandText = "[USP_R_BRANCHCOUNTER]";
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtBranch);
