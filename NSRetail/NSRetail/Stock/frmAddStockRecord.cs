@@ -38,7 +38,7 @@ namespace NSRetail.Stock
                 ((frmMain)frmparent.MdiParent).RefreshBaseLineData += FrmStockDispatch_RefreshBaseLineData;
                 
                 cmbItemCode.Properties.DataSource = !Utility.IsOpenCategory ?
-                    Utility.GetItemCodeList() : ObjItemRep.GetParentItems(Utility.CategoryID);
+                    Utility.GetItemCodeListFiltered() : ObjItemRep.GetParentItems(Utility.CategoryID);
                 cmbItemCode.Properties.ValueMember = "ITEMCODEID";
                 cmbItemCode.Properties.DisplayMember = "ITEMCODE";
 

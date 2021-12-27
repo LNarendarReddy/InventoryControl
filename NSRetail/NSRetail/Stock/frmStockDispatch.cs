@@ -51,7 +51,7 @@ namespace NSRetail.Stock
                 cmbFromBranch.Properties.ValueMember = "BRANCHID";
                 cmbFromBranch.Properties.DisplayMember = "BRANCHNAME";
 
-                cmbItemCode.Properties.DataSource = Utility.GetItemCodeList();
+                cmbItemCode.Properties.DataSource = Utility.GetItemCodeListFiltered();
                 cmbItemCode.Properties.ValueMember = "ITEMCODEID";
                 cmbItemCode.Properties.DisplayMember = "ITEMCODE";
 
@@ -93,7 +93,7 @@ namespace NSRetail.Stock
         private void FrmStockDispatch_RefreshBaseLineData(object sender, EventArgs e)
         {
             object selectedValue = cmbItemCode.EditValue;
-            cmbItemCode.Properties.DataSource = Utility.GetItemCodeList();
+            cmbItemCode.Properties.DataSource = Utility.GetItemCodeListFiltered();
             cmbItemCode.Properties.ValueMember = "ITEMCODEID";
             cmbItemCode.Properties.DisplayMember = "ITEMCODE";
             cmbItemCode.EditValue = selectedValue;

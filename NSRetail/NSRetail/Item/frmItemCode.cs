@@ -66,7 +66,7 @@ namespace NSRetail
                 // refresh values back in data tables
 
                 DataTable dtItemSKUList = Utility.GetItemSKUList();
-                DataTable dtItemCodeList = Utility.GetItemCodeList();
+                DataTable dtItemCodeList = Utility.GetItemCodeListFiltered();
 
                 int itemSKURowHandle, itemCodeRowHandle;
                 itemSKURowHandle = gvItemSKU.LocateByValue("SKUCODE", itemObj.SKUCode);
@@ -89,7 +89,7 @@ namespace NSRetail
                 }
                 else
                 {
-                    DataTable dtItemCodes = Utility.GetItemCodeList();
+                    DataTable dtItemCodes = Utility.GetItemCodeListFiltered();
                     DataRow drNewItemCode = dtItemCodes.NewRow();
                     drNewItemCode["ITEMID"] = itemObj.ItemID;
                     drNewItemCode["ITEMNAME"] = itemObj.ItemName;
@@ -191,7 +191,7 @@ namespace NSRetail
             luSubCategory.Properties.DisplayMember = "SUBCATEGORYNAME";
             luSubCategory.Properties.ValueMember = "SUBCATEGORYID";
 
-            sluFreeItem.Properties.DataSource = Utility.GetItemCodeList();
+            sluFreeItem.Properties.DataSource = Utility.GetItemCodeListFiltered();
             sluFreeItem.Properties.DisplayMember = "ITEMNAME";
             sluFreeItem.Properties.ValueMember = "ITEMCODEID";
 
@@ -223,7 +223,7 @@ namespace NSRetail
 
             // remove items added to data tables but not saved
             DataTable dtItemSKUList = Utility.GetItemSKUList();
-            DataTable dtItemCodeList = Utility.GetItemCodeList();
+            DataTable dtItemCodeList = Utility.GetItemCodeListFiltered();
 
             int itemSKURowHandle, itemCodeRowHandle;
             itemSKURowHandle = gvItemSKU.LocateByValue("ITEMID", -1);

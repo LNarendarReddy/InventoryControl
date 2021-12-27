@@ -117,7 +117,7 @@ namespace NSRetail
             try
             {
                 EnableDisableControls(false);
-                dtItemCodes = Utility.GetItemCodeList();
+                dtItemCodes = Utility.GetItemCodeListFiltered();
                 dtItems = Utility.GetItemSKUList();
                 gcItemList.DataSource = dtItemCodes;
                 ((frmMain)this.MdiParent).RefreshBaseLineData += FrmItemCodeList_RefreshBaseLineData;
@@ -131,7 +131,7 @@ namespace NSRetail
 
         private void FrmItemCodeList_RefreshBaseLineData(object sender, EventArgs e)
         {
-            dtItemCodes = Utility.GetItemCodeList();
+            dtItemCodes = Utility.GetItemCodeListFiltered();
             dtItems = Utility.GetItemSKUList();
             gcItemList.DataSource = dtItemCodes;
         }
