@@ -19,6 +19,7 @@ namespace NSRetail
         private static DataTable dtGST;
         private static DataTable dtItemSKUList;
         private static DataTable dtItemCodeList;
+        private static DataTable dtItemCodeFiltered;
         private static DataTable dtNonEAN;
         private static DataTable dtParentItemList;
         private static List<GSTInfo> gstInfoList;
@@ -88,7 +89,10 @@ namespace NSRetail
             DataSet dsItemBaseline = new ItemCodeRepository().GetItemCodes(CategoryID);
             dtItemSKUList = dsItemBaseline.Tables["ITEMS"];
             dtItemCodeList = dsItemBaseline.Tables["ITEMCODES"];
-            dtNonEAN = dsItemBaseline.Tables["NONEAN"]; 
+            dtNonEAN = dsItemBaseline.Tables["NONEAN"];
+            if (dsItemBaseline.Tables.Count > 3)
+                dtItemCodeFiltered = dsItemBaseline.Tables["ITEMCODESFILTERED"];
+
         }
 
         private static void FillParentItemBaseline()
@@ -128,16 +132,22 @@ namespace NSRetail
             return dtItemSKUList;
         }
 
+        public static DataTable GetItemCodeListFiltered()
+        {
+            if (dtItemCodeList == null)
+            {
+                FillItemBaseline();
+            }
+            return Category ==  "All" ? dtItemCodeList : dtItemCodeFiltered;
+        }
         public static DataTable GetItemCodeList()
         {
             if (dtItemCodeList == null)
             {
                 FillItemBaseline();
             }
-
             return dtItemCodeList;
         }
-
         public static DataTable GetParentItemList()
         {
             if(dtParentItemList == null)

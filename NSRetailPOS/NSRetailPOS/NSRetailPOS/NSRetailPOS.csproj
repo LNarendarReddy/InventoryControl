@@ -49,6 +49,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>vLogo_Small_1.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Charts.v21.2.Core, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -166,6 +169,12 @@
     <Compile Include="UI\frmPayment.Designer.cs">
       <DependentUpon>frmPayment.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\frmRefund.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmRefund.Designer.cs">
+      <DependentUpon>frmRefund.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmWaitForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +217,9 @@
     <EmbeddedResource Include="UI\frmPayment.resx">
       <DependentUpon>frmPayment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmRefund.resx">
+      <DependentUpon>frmRefund.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmWaitForm.resx">
       <DependentUpon>frmWaitForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -249,6 +261,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>NSRetailPOS.mdf</DependentUpon>
     </Content>
+    <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

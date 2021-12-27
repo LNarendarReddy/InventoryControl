@@ -74,7 +74,10 @@ namespace NSRetailPOS
 
         private void txtQuantity_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (e.KeyCode != Keys.Enter || sluItemCode.EditValue == null || drSelectedPrice == null || txtQuantity.EditValue == null || txtQuantity.EditValue.Equals(0))
+            if (e.KeyCode != Keys.Enter)
+                return;
+
+            if (sluItemCode.EditValue == null || drSelectedPrice == null || txtQuantity.EditValue == null || txtQuantity.EditValue.Equals(0))
             {
                 txtItemCode.Focus();
                 return;
@@ -95,25 +98,6 @@ namespace NSRetailPOS
                 {
                     gvBilling.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
                 }
-                //else
-                //{
-                //    object billDetailID = gvBilling.GetRowCellValue(rowHandle, "BILLDETAILID");
-                //    SNo = Convert.ToInt32(gvBilling.GetRowCellValue(rowHandle, "SNO"));
-                //    DataTable dtSNos = new DataTable();
-                //    dtSNos.Columns.Add("BILLDETAILID", typeof(int));
-                //    dtSNos.Columns.Add("SNO", typeof(int));
-
-                //    for (int curRowHandle = rowHandle - 1; curRowHandle >= 0; curRowHandle--)
-                //    {
-                //        gvBilling.SetRowCellValue(curRowHandle, "SNO", SNo);
-                //        dtSNos.Rows.Add(gvBilling.GetRowCellValue(curRowHandle, "BILLDETAILID"), SNo);
-                //        SNo++;
-                //    }
-
-                //    billingRepository.DeleteBillDetail(billDetailID, Utility.logininfo.UserID, dtSNos);
-                //    gvBilling.DeleteRow(rowHandle);
-                //    UpdateSummary();
-                //}
             }
 
             gvBilling.GridControl.BindingContext = new BindingContext();
