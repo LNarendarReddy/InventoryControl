@@ -11,6 +11,7 @@ namespace NSRetailPOS.Data
     public static class SQLCon
     {
         private static SqlConnection connection = null;
+        private static SqlConnection syncConnection = null;
         private static SqlConnection ObjCloudCon = null;
 
         public static SqlConnection Sqlconn()
@@ -29,6 +30,24 @@ namespace NSRetailPOS.Data
             }
             catch (Exception ex) { throw ex; }
             return connection;
+        }
+
+        public static SqlConnection SqlSyncConn()
+        {
+            try
+            {
+                if (syncConnection?.State == ConnectionState.Open)
+                {
+                    return syncConnection;
+                }
+
+                string str = ConfigurationManager.AppSettings["Connection"].ToString();
+                syncConnection = new SqlConnection();
+                syncConnection.ConnectionString = str;
+                syncConnection.Open();
+            }
+            catch (Exception ex) { throw ex; }
+            return syncConnection;
         }
 
         public static SqlConnection SqlCloudconn()

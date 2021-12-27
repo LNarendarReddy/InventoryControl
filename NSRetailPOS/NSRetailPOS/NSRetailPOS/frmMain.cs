@@ -5,16 +5,13 @@ using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
 using System;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Threading;
 using System.Windows.Forms;
-//using System.Data.SQLite;
 
 namespace NSRetailPOS
 {
-    public partial class frmMain : DevExpress.XtraEditors.XtraForm
+    public partial class frmMain : XtraForm
     {
         private int daySequenceID;
 
@@ -28,6 +25,9 @@ namespace NSRetailPOS
         DataRow drSelectedPrice;
 
         BackgroundWorker bgSyncWorker = new BackgroundWorker();
+
+        bool isItemScanned;
+
 
         public frmMain()
         {
@@ -67,7 +67,7 @@ namespace NSRetailPOS
         private void BgSyncWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             Utility.StartSync(bgSyncWorker);
-            Thread.Sleep(3600000);
+            Thread.Sleep(5 * 60 * 1000);
             BgSyncWorker_DoWork(sender, e);
 
         }
@@ -110,6 +110,7 @@ namespace NSRetailPOS
                 SaveBillDetail(rowHandle);
             }
             ClearItemData();
+            gvBilling.FocusedRowHandle = rowHandle;
         }
 
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)
@@ -156,7 +157,8 @@ namespace NSRetailPOS
             }
             else
             {
-                //txtQuantity.Focus();
+                if (!isItemScanned)
+                    txtQuantity.Focus();
                 txtQuantity.SelectAll();
             }
 
@@ -217,10 +219,10 @@ namespace NSRetailPOS
             DataRow drBillDetail = (gvBilling.GetRow(rowHandle) as DataRowView).Row;
             decimal salePrice = Convert.ToDecimal(drBillDetail["SALEPRICE"])
                 , MRP = Convert.ToDecimal(drBillDetail["MRP"])
-                , cGSTPer = Convert.ToDecimal(drSelectedPrice["CGST"])
-                , sGSTPer = Convert.ToDecimal(drSelectedPrice["SGST"])
-                , iGSTPer = Convert.ToDecimal(drSelectedPrice["IGST"])
-                , cess = Convert.ToDecimal(drSelectedPrice["CESS"])
+                , cGSTPer = Convert.ToDecimal(drSelectedPrice["CGST"] ?? drBillDetail["CGST"])
+                , sGSTPer = Convert.ToDecimal(drSelectedPrice["SGST"] ?? drBillDetail["SGST"])
+                , iGSTPer = Convert.ToDecimal(drSelectedPrice["IGST"] ?? drBillDetail["IGST"])
+                , cess = Convert.ToDecimal(drSelectedPrice["CESS"] ?? drBillDetail["CESS"])
                 , billedAmount, cGSTValue, sGSTValue, iGSTValue, cessValue, totalGSTValue, Discount;
 
             int.TryParse(drBillDetail["QUANTITY"].ToString(), out int quantity);
@@ -275,7 +277,7 @@ namespace NSRetailPOS
         {
             billObj = Utility.GetBill(dsBillInfo);
 
-            this.Text = "NSRetail - " + billObj.BillNumber.ToString();
+            this.Text = $"NSRetail POS - {billObj.BillNumber}";
 
             txtLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
             txtLastBilledQuantity.Text = billObj.LastBilledQuantity.ToString();
@@ -296,6 +298,7 @@ namespace NSRetailPOS
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
             if (rowHandle >= 0)
             {
+                isItemScanned = true;
                 sluItemCode.EditValue = null;
                 sluItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODEID");
                 //if (sluItemCode.EditValue != null)
@@ -305,6 +308,8 @@ namespace NSRetailPOS
             {
                 ClearItemData(false);
             }
+
+            isItemScanned = false;
         }
 
         private void btnSaveBill_Click(object sender, EventArgs e)
@@ -413,12 +418,25 @@ namespace NSRetailPOS
             //e.DisplayText = bgSyncReportText;
         }
 
-        //private void gvBilling_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        //{
-        //    if (e.Column.FieldName != "QUANTITY") return;
+        private void gvBilling_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.FieldName != "QUANTITY") return;
 
-        //    CalculateFields(e.RowHandle);
-        //    SaveBillDetail(e.RowHandle);
-        //}
+            CalculateFields(e.RowHandle);
+            SaveBillDetail(e.RowHandle);
+        }
+
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                sluItemCode.Focus();
+            }
+        }
+
+        private void btnStockIn_Click(object sender, EventArgs e)
+        {
+            new frmStockInList().ShowDialog();
+        }
     }
 }

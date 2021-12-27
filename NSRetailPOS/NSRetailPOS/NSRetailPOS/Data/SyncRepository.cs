@@ -25,11 +25,16 @@ namespace NSRetailPOS.Data
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)
         {
+            if(dtEntityWiseData?.Rows.Count == 0)
+            {
+                return;
+            }
+
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Connection = SQLCon.SqlSyncConn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = entityMapping[entityName].ProcedureName;
                     cmd.Parameters.AddWithValue(entityMapping[entityName].ParameterName, dtEntityWiseData);
