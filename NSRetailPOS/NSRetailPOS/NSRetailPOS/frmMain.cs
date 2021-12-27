@@ -67,7 +67,7 @@ namespace NSRetailPOS
         private void BgSyncWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             Utility.StartSync(bgSyncWorker);
-            Thread.Sleep(3600000);
+            Thread.Sleep(5 * 60 * 1000);
             BgSyncWorker_DoWork(sender, e);
 
         }
@@ -233,10 +233,10 @@ namespace NSRetailPOS
             DataRow drBillDetail = (gvBilling.GetRow(rowHandle) as DataRowView).Row;
             decimal salePrice = Convert.ToDecimal(drBillDetail["SALEPRICE"])
                 , MRP = Convert.ToDecimal(drBillDetail["MRP"])
-                , cGSTPer = Convert.ToDecimal(drSelectedPrice["CGST"])
-                , sGSTPer = Convert.ToDecimal(drSelectedPrice["SGST"])
-                , iGSTPer = Convert.ToDecimal(drSelectedPrice["IGST"])
-                , cess = Convert.ToDecimal(drSelectedPrice["CESS"])
+                , cGSTPer = Convert.ToDecimal(drSelectedPrice["CGST"] ?? drBillDetail["CGST"])
+                , sGSTPer = Convert.ToDecimal(drSelectedPrice["SGST"] ?? drBillDetail["SGST"])
+                , iGSTPer = Convert.ToDecimal(drSelectedPrice["IGST"] ?? drBillDetail["IGST"])
+                , cess = Convert.ToDecimal(drSelectedPrice["CESS"] ?? drBillDetail["CESS"])
                 , billedAmount, cGSTValue, sGSTValue, iGSTValue, cessValue, totalGSTValue, Discount;
 
             int.TryParse(drBillDetail["QUANTITY"].ToString(), out int quantity);
@@ -429,12 +429,12 @@ namespace NSRetailPOS
             //e.DisplayText = bgSyncReportText;
         }
 
-        //private void gvBilling_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        //{
-        //    if (e.Column.FieldName != "QUANTITY") return;
+        private void gvBilling_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.FieldName != "QUANTITY") return;
 
-        //    CalculateFields(e.RowHandle);
-        //    SaveBillDetail(e.RowHandle);
-        //}
+            CalculateFields(e.RowHandle);
+            SaveBillDetail(e.RowHandle);
+        }
     }
 }
