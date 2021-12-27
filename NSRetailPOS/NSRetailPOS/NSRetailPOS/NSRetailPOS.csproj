@@ -116,6 +116,7 @@
     <Compile Include="Data\ItemRepository.cs" />
     <Compile Include="Data\POSRepository.cs" />
     <Compile Include="Data\SQLCon.cs" />
+    <Compile Include="Data\StockInRepository.cs" />
     <Compile Include="Data\SyncRepository.cs" />
     <Compile Include="Entity\Bill.cs" />
     <Compile Include="frmMain.cs">
@@ -175,6 +176,18 @@
     <Compile Include="UI\frmRefund.Designer.cs">
       <DependentUpon>frmRefund.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\frmStockInDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmStockInDetail.Designer.cs">
+      <DependentUpon>frmStockInDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmStockInList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmStockInList.Designer.cs">
+      <DependentUpon>frmStockInList.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmWaitForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +232,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmRefund.resx">
       <DependentUpon>frmRefund.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmStockInDetail.resx">
+      <DependentUpon>frmStockInDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmStockInList.resx">
+      <DependentUpon>frmStockInList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmWaitForm.resx">
       <DependentUpon>frmWaitForm.cs</DependentUpon>

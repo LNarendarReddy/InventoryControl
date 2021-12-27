@@ -5,16 +5,13 @@ using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
 using System;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Threading;
 using System.Windows.Forms;
-//using System.Data.SQLite;
 
 namespace NSRetailPOS
 {
-    public partial class frmMain : DevExpress.XtraEditors.XtraForm
+    public partial class frmMain : XtraForm
     {
         private int daySequenceID;
 
@@ -28,6 +25,9 @@ namespace NSRetailPOS
         DataRow drSelectedPrice;
 
         BackgroundWorker bgSyncWorker = new BackgroundWorker();
+
+        bool isItemScanned;
+
 
         public frmMain()
         {
@@ -110,6 +110,7 @@ namespace NSRetailPOS
                 SaveBillDetail(rowHandle);
             }
             ClearItemData();
+            gvBilling.FocusedRowHandle = rowHandle;
         }
 
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)
@@ -156,7 +157,8 @@ namespace NSRetailPOS
             }
             else
             {
-                //txtQuantity.Focus();
+                if (!isItemScanned)
+                    txtQuantity.Focus();
                 txtQuantity.SelectAll();
             }
 
@@ -275,7 +277,7 @@ namespace NSRetailPOS
         {
             billObj = Utility.GetBill(dsBillInfo);
 
-            this.Text = "NSRetail - " + billObj.BillNumber.ToString();
+            this.Text = $"NSRetail POS - {billObj.BillNumber}";
 
             txtLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
             txtLastBilledQuantity.Text = billObj.LastBilledQuantity.ToString();
@@ -296,6 +298,7 @@ namespace NSRetailPOS
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
             if (rowHandle >= 0)
             {
+                isItemScanned = true;
                 sluItemCode.EditValue = null;
                 sluItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODEID");
                 //if (sluItemCode.EditValue != null)
@@ -305,6 +308,8 @@ namespace NSRetailPOS
             {
                 ClearItemData(false);
             }
+
+            isItemScanned = false;
         }
 
         private void btnSaveBill_Click(object sender, EventArgs e)
@@ -419,6 +424,19 @@ namespace NSRetailPOS
 
             CalculateFields(e.RowHandle);
             SaveBillDetail(e.RowHandle);
+        }
+
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                sluItemCode.Focus();
+            }
+        }
+
+        private void btnStockIn_Click(object sender, EventArgs e)
+        {
+            new frmStockInList().ShowDialog();
         }
     }
 }
