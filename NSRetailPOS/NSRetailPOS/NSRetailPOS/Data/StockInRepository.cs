@@ -33,5 +33,58 @@ namespace NSRetailPOS.Data
             }
             return dtStockDispatches;
         }
-    }
+
+        public DataTable GetStockDispatchDetail(object stockDispatchID)
+        {
+            DataTable dtStockDispatchDetail = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_R_STOCKDISPATCHDETAIL]";
+                    cmd.Parameters.AddWithValue("@StockDispatchID", stockDispatchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtStockDispatchDetail);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While getting stock in detail", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtStockDispatchDetail;
+        }
+
+        public void AcceptDispatch(object stockDispatchID, DataTable dtDispatchDetail)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_FINISH_STOCKIN]";
+                    cmd.Parameters.AddWithValue("@UserID", Utility.logininfo.UserID);
+                    cmd.Parameters.AddWithValue("@StockDispatchID", stockDispatchID);
+                    cmd.Parameters.AddWithValue("@DispatchDetails", dtDispatchDetail);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While closing stock in", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+    }    
 }
