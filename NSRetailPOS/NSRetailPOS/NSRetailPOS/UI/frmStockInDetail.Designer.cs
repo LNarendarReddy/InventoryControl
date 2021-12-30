@@ -114,7 +114,7 @@
             this.btnAddStock.Size = new System.Drawing.Size(114, 22);
             this.btnAddStock.StyleController = this.layoutControl1;
             this.btnAddStock.TabIndex = 9;
-            this.btnAddStock.Text = "Add Stock";
+            this.btnAddStock.Text = "Accept";
             this.btnAddStock.Click += new System.EventHandler(this.btnAddStock_Click);
             // 
             // gcDispatchDetail
