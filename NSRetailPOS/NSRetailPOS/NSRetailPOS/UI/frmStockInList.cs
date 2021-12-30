@@ -17,7 +17,12 @@ namespace NSRetailPOS.UI
 
         private void btnStockIn_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
+            if(gvStockInList.FocusedRowHandle < 0)
+            { 
+                return;
+            }
 
+            new frmStockInDetail(gvStockInList.GetFocusedRow()).ShowDialog();
         }
     }
 }
