@@ -7,6 +7,7 @@ namespace NSRetailPOS.UI
     public partial class frmStockInDetail : XtraForm
     {
         DataRowView selectedDispatch;
+        public bool IsSave { get; private set; }
 
         public frmStockInDetail(object selectedStockDispatch)
         {
@@ -35,6 +36,7 @@ namespace NSRetailPOS.UI
             dtDispatchDetail.Columns.Remove("TRAYNUMBER");
             dtDispatchDetail.Columns.Remove("DISPATCHQUANTITY");
             new StockInRepository().AcceptDispatch(selectedDispatch["STOCKDISPATCHID"], dtDispatchDetail);
+            IsSave = true;
             this.Close();
         }
     }

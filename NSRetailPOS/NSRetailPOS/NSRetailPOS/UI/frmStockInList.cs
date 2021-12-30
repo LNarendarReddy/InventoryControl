@@ -22,7 +22,12 @@ namespace NSRetailPOS.UI
                 return;
             }
 
-            new frmStockInDetail(gvStockInList.GetFocusedRow()).ShowDialog();
+            frmStockInDetail stockInDetailForm = new frmStockInDetail(gvStockInList.GetFocusedRow());
+            stockInDetailForm.ShowDialog();
+            if(stockInDetailForm.IsSave)
+            {
+                gcStockInList.DataSource = new StockInRepository().GetStockDispatches(Utility.branchinfo.BranchID);
+            }
         }
     }
 }
