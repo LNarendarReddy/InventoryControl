@@ -57,6 +57,7 @@
             this.bbiStockSummary = new DevExpress.XtraBars.BarButtonItem();
             this.btnPrintDC = new DevExpress.XtraBars.BarButtonItem();
             this.btnDCList = new DevExpress.XtraBars.BarButtonItem();
+            this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -68,14 +69,13 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
+            this.bbiSyncStatus = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
             // 
-            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(45, 44, 45, 44);
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -102,18 +102,17 @@
             this.bbiStockSummary,
             this.btnPrintDC,
             this.btnDCList,
-            this.skinDropDownButtonItem1});
+            this.skinDropDownButtonItem1,
+            this.bbiSyncStatus});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbonControl1.MaxItemId = 28;
+            this.ribbonControl1.MaxItemId = 29;
             this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.OptionsMenuMinWidth = 495;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage3,
             this.ribbonPage1});
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1});
-            this.ribbonControl1.Size = new System.Drawing.Size(1767, 233);
+            this.ribbonControl1.Size = new System.Drawing.Size(1178, 160);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // btnBranch
@@ -463,6 +462,11 @@
             this.btnDCList.Name = "btnDCList";
             this.btnDCList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDCList_ItemClick);
             // 
+            // skinDropDownButtonItem1
+            // 
+            this.skinDropDownButtonItem1.Id = 27;
+            this.skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Appearance.Font = new System.Drawing.Font("Arial", 9F);
@@ -507,6 +511,7 @@
             // ribbonPageGroup6
             // 
             this.ribbonPageGroup6.ItemLinks.Add(this.bbiStockSummary);
+            this.ribbonPageGroup6.ItemLinks.Add(this.bbiSyncStatus);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             this.ribbonPageGroup6.Text = "Summary";
             // 
@@ -552,31 +557,33 @@
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 1063);
-            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(4);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 728);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1767, 36);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1178, 24);
             // 
             // ribbonPage2
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
             // 
-            // skinDropDownButtonItem1
+            // bbiSyncStatus
             // 
-            this.skinDropDownButtonItem1.Id = 27;
-            this.skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
+            this.bbiSyncStatus.Caption = "Sync Status";
+            this.bbiSyncStatus.Id = 28;
+            this.bbiSyncStatus.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiSyncStatus.ImageOptions.Image")));
+            this.bbiSyncStatus.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiSyncStatus.ImageOptions.LargeImage")));
+            this.bbiSyncStatus.Name = "bbiSyncStatus";
+            this.bbiSyncStatus.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSyncStatus_ItemClick);
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1767, 1099);
+            this.ClientSize = new System.Drawing.Size(1178, 752);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.Ribbon = this.ribbonControl1;
             this.StatusBar = this.ribbonStatusBar1;
@@ -627,6 +634,7 @@
         private DevExpress.XtraBars.BarButtonItem btnPrintDC;
         private DevExpress.XtraBars.BarButtonItem btnDCList;
         private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem bbiSyncStatus;
     }
 }
 
