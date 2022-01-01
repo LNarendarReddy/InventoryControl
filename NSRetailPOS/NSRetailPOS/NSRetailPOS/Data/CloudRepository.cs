@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NSRetailPOS.Data
 {
     public class CloudRepository
     {
-        public DataTable GetEntityWiseData(object EntityName, object branchCounterID)
+        public DataTable GetEntityWiseData(object EntityName, object SyncDate)
         {
             DataTable dtEntity = new DataTable();
             try
@@ -19,9 +15,9 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.SqlCloudconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_GETSYNC]";
+                    cmd.CommandText = "[USP_R_GETSYNCDATA]";
                     cmd.Parameters.AddWithValue("@EntityName", EntityName);
-                    cmd.Parameters.AddWithValue("@BranchCounterID", branchCounterID);
+                    cmd.Parameters.AddWithValue("@SyncDate", SyncDate);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtEntity);
@@ -39,7 +35,37 @@ namespace NSRetailPOS.Data
             return dtEntity;
         }
 
-        public void UpdateEntitySyncStatus(string entityName, object branchCounterID, DateTime syncTime)
+        public DataTable GetEntityData(object locationID, string syncDirection)
+        {
+            DataTable dtEntity = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlCloudconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_GETSYNC]";
+                    cmd.Parameters.AddWithValue("@LocationID", locationID);
+                    cmd.Parameters.AddWithValue("@LocationType", "BranchCounter");
+                    cmd.Parameters.AddWithValue("@SyncDirection", syncDirection);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtEntity);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving Entity data List", ex);
+            }
+            finally
+            {
+                SQLCon.SqlCloudconn().Close();
+            }
+            return dtEntity;
+        }
+
+        public void UpdateEntitySyncStatus(object entitySyncStatusID, DateTime syncTime)
         {
             try
             {
@@ -48,15 +74,14 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.SqlCloudconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_ENTITYSYNCTIME]";
-                    cmd.Parameters.AddWithValue("@EntityName", entityName);
-                    cmd.Parameters.AddWithValue("@BranchCounterID", branchCounterID);
+                    cmd.Parameters.AddWithValue("@EntitySyncStatusID", entitySyncStatusID);
                     cmd.Parameters.AddWithValue("@SyncTime", syncTime);
                     cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Retreiving Entity wise data List", ex);
+                throw new Exception("Error While saving Entity sync status", ex);
             }
             finally
             {

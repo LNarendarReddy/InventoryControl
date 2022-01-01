@@ -39,16 +39,16 @@ namespace NSRetailPOS
             backgroundWorker?.ReportProgress(0, $"POS sync started at {syncStartTime.ToLongTimeString()}");
             SyncRepository syncRepository = new SyncRepository();
             CloudRepository cloudRepository = new CloudRepository();
-            DataTable dtEntity = cloudRepository.GetEntityWiseData("ENTITY", branchinfo.BranchCounterID);
+            DataTable dtEntity = cloudRepository.GetEntityData(branchinfo.BranchCounterID, "FromCloud");
             foreach (DataRow entityRow in dtEntity.Rows)
             {
                 string entityName = entityRow["ENTITYNAME"].ToString();
                 //LoggerUtility.Logger.Info($"{entityName} sync started");
                 ReportText(backgroundWorker, $"{entityName} sync started");
-                DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(entityName, branchinfo.BranchCounterID);
+                DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(entityName, syncStartTime);
                 ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to sync in entity : {entityName} ");
                 syncRepository.SaveData(entityName, dtEntityWiseData);
-                cloudRepository.UpdateEntitySyncStatus(entityName, branchinfo.BranchCounterID, syncStartTime);
+                cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
                 ReportText(backgroundWorker, $"{entityName} sync completed");
             }
 
