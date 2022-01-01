@@ -239,5 +239,10 @@ namespace NSRetail
             obj.MdiParent = this;
             obj.Show();
         }
+
+        private void bbiSyncStatus_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            new Utilities.frmSyncStatus() { MdiParent = this }.Show();
+        }
     }
 }
