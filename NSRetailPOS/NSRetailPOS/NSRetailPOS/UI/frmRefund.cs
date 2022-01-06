@@ -1,4 +1,7 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
 using NSRetailPOS.Data;
 using NSRetailPOS.Reports;
 using System;
@@ -83,16 +86,21 @@ namespace NSRetailPOS.UI
                 gvBillDetails.MoveNext();
         }
 
-        private void txtRefundQantity_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        private void gvBillDetails_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
         {
+            ColumnView view = sender as ColumnView;
+            GridColumn column = (e as EditFormValidateEditorEventArgs)?.Column ?? view.FocusedColumn;
+            if (column.FieldName != "REFUNDQUANTITY") return;
+
             try
             {
                 DataRow drBillDetail = (gvBillDetails.GetRow(gvBillDetails.FocusedRowHandle) as DataRowView).Row;
-                int.TryParse(e.NewValue.ToString(), out int rquantity);
+                int.TryParse(e.Value.ToString(), out int rquantity);
                 int.TryParse(drBillDetail["QUANTITY"].ToString(), out int bquantity);
                 if (bquantity < rquantity)
                 {
-                    e.Cancel = true;
+                    e.Valid = false;
+                    e.ErrorText = "Refund quantity cannot be greater than sold quantity";
                     return;
                 }
                 decimal salePrice = Convert.ToDecimal(drBillDetail["SALEPRICE"])
@@ -122,12 +130,6 @@ namespace NSRetailPOS.UI
             {
                 XtraMessageBox.Show(ex.Message);
             }
-        }
-        
-        private void gvBillDetails_ShowingEditor(object sender, CancelEventArgs e)
-        {
-            if (gvBillDetails.ActiveEditor == null) return;
-            gvBillDetails.ActiveEditor.EditValueChanging += txtRefundQantity_EditValueChanging;
         }
     }
 }
