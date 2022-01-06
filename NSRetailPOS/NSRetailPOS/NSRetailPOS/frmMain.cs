@@ -438,5 +438,15 @@ namespace NSRetailPOS
         {
             new frmStockInList().ShowDialog();
         }
+
+        private void btnRefund_Click(object sender, EventArgs e)
+        {
+            frmRefund obj = new frmRefund();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
+            
+        }
     }
 }

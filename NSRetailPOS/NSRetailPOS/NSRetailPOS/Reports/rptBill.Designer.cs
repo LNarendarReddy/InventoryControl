@@ -782,7 +782,6 @@
             // 
             // Detail1
             // 
-            this.Detail1.Expanded = false;
             this.Detail1.HeightF = 0F;
             this.Detail1.Name = "Detail1";
             // 
@@ -1106,6 +1105,7 @@
             this.Detail2,
             this.ReportHeader3,
             this.ReportFooter3});
+            this.drMOP.Expanded = false;
             this.drMOP.Level = 2;
             this.drMOP.Name = "drMOP";
             // 

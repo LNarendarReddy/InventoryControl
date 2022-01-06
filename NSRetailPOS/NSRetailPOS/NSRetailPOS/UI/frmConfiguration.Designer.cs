@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConfiguration));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnAttachDatabase = new DevExpress.XtraEditors.SimpleButton();
             this.btnBrowse = new DevExpress.XtraEditors.SimpleButton();
@@ -167,6 +167,7 @@
             // 
             // cmbCounter
             // 
+            this.cmbCounter.EnterMoveNextControl = true;
             this.cmbCounter.Location = new System.Drawing.Point(112, 95);
             this.cmbCounter.Name = "cmbCounter";
             this.cmbCounter.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -178,13 +179,14 @@
             this.cmbCounter.Size = new System.Drawing.Size(453, 22);
             this.cmbCounter.StyleController = this.layoutControl1;
             this.cmbCounter.TabIndex = 5;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "Mandatory";
-            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbCounter, conditionValidationRule3);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbCounter, conditionValidationRule1);
             // 
             // cmbBranch
             // 
+            this.cmbBranch.EnterMoveNextControl = true;
             this.cmbBranch.Location = new System.Drawing.Point(112, 53);
             this.cmbBranch.Name = "cmbBranch";
             this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -197,10 +199,10 @@
             this.cmbBranch.Size = new System.Drawing.Size(453, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 4;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbBranch, conditionValidationRule1);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Mandatory";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbBranch, conditionValidationRule2);
             // 
             // Root
             // 

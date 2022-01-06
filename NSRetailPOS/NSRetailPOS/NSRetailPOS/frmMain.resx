@@ -175,7 +175,7 @@
         MmD/iFtMrCBW/gXrP2B7SwlLqZ8NJ/Wz4b4DSiiDz6Oi8sIAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="simpleButton1.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnStockIn.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABV0RVh0VGl0
         bGUARG93bmxvYWQ7QXJyb3c77I8a0AAAAk9JREFUOE91km1IU1EYxzfvsib2gkY5KaSLK4WhMLg6cdvd
@@ -264,7 +264,7 @@
 </value>
   </data>
   <assembly alias="DevExpress.Data.v21.2" name="DevExpress.Data.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="editorButtonImageOptions2.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="editorButtonImageOptions1.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4z
         LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YQUBAAAAHURl
