@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.syncProgressBar = new DevExpress.XtraEditors.MarqueeProgressBarControl();
+            this.lblProgressText = new DevExpress.XtraEditors.LabelControl();
             this.txtOffer = new DevExpress.XtraEditors.TextEdit();
             this.txtLastBilledQuantity = new DevExpress.XtraEditors.TextEdit();
             this.txtLastBilledAmount = new DevExpress.XtraEditors.TextEdit();
@@ -103,10 +103,9 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.syncProgressBar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOffer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastBilledQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastBilledAmount.Properties)).BeginInit();
@@ -144,7 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -167,7 +166,7 @@
             this.layoutControl1.Appearance.DisabledLayoutGroupCaption.Options.UseFont = true;
             this.layoutControl1.Appearance.DisabledLayoutItem.Font = new System.Drawing.Font("Arial", 9F);
             this.layoutControl1.Appearance.DisabledLayoutItem.Options.UseFont = true;
-            this.layoutControl1.Controls.Add(this.syncProgressBar);
+            this.layoutControl1.Controls.Add(this.lblProgressText);
             this.layoutControl1.Controls.Add(this.txtOffer);
             this.layoutControl1.Controls.Add(this.txtLastBilledQuantity);
             this.layoutControl1.Controls.Add(this.txtLastBilledAmount);
@@ -196,17 +195,17 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // syncProgressBar
+            // lblProgressText
             // 
-            this.syncProgressBar.EditValue = "Test value";
-            this.syncProgressBar.Location = new System.Drawing.Point(662, 222);
-            this.syncProgressBar.Name = "syncProgressBar";
-            this.syncProgressBar.Properties.ShowTitle = true;
-            this.syncProgressBar.Properties.TextOrientation = DevExpress.Utils.Drawing.TextOrientation.Horizontal;
-            this.syncProgressBar.Size = new System.Drawing.Size(250, 18);
-            this.syncProgressBar.StyleController = this.layoutControl1;
-            this.syncProgressBar.TabIndex = 28;
-            this.syncProgressBar.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.syncProgressBar_CustomDisplayText);
+            this.lblProgressText.Appearance.Options.UseTextOptions = true;
+            this.lblProgressText.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.lblProgressText.Location = new System.Drawing.Point(662, 222);
+            this.lblProgressText.MaximumSize = new System.Drawing.Size(254, 0);
+            this.lblProgressText.Name = "lblProgressText";
+            this.lblProgressText.Size = new System.Drawing.Size(250, 15);
+            this.lblProgressText.StyleController = this.layoutControl1;
+            this.lblProgressText.TabIndex = 29;
+            this.lblProgressText.Text = "Sync Progress";
             // 
             // txtOffer
             // 
@@ -584,9 +583,9 @@
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
+            editorButtonImageOptions4.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions4.SvgImage")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -692,7 +691,7 @@
             this.layoutControlGroup4,
             this.layoutControlGroup5,
             this.layoutControlGroup6,
-            this.layoutControlItem10});
+            this.layoutControlItem15});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(916, 521);
@@ -710,9 +709,9 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(658, 240);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(658, 237);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(254, 29);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(254, 32);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup2
@@ -942,14 +941,14 @@
             this.layoutControlItem5.Text = "Offer";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(105, 15);
             // 
-            // layoutControlItem10
+            // layoutControlItem15
             // 
-            this.layoutControlItem10.Control = this.syncProgressBar;
-            this.layoutControlItem10.Location = new System.Drawing.Point(658, 218);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(254, 22);
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem10.TextVisible = false;
+            this.layoutControlItem15.Control = this.lblProgressText;
+            this.layoutControlItem15.Location = new System.Drawing.Point(658, 218);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Size = new System.Drawing.Size(254, 19);
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem15.TextVisible = false;
             // 
             // frmMain
             // 
@@ -967,7 +966,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.syncProgressBar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOffer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastBilledQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastBilledAmount.Properties)).EndInit();
@@ -1005,7 +1003,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1080,8 +1078,8 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraEditors.TextEdit txtOffer;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraEditors.MarqueeProgressBarControl syncProgressBar;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
+        private DevExpress.XtraEditors.LabelControl lblProgressText;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
     }
 }
 

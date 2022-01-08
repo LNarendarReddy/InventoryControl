@@ -105,9 +105,9 @@ namespace NSRetailPOS.UI
                 }
                 decimal salePrice = Convert.ToDecimal(drBillDetail["SALEPRICE"])
                     , MRP = Convert.ToDecimal(drBillDetail["MRP"])
-                    , cGSTPer = Convert.ToDecimal(drBillDetail["CGSTDESC"] ?? drBillDetail["CGSTDESC"])
-                    , sGSTPer = Convert.ToDecimal(drBillDetail["SGSTDESC"] ?? drBillDetail["SGSTDESC"])
-                    , cess = Convert.ToDecimal(drBillDetail["CESSDESC"] ?? drBillDetail["CESSDESC"])
+                    , cGSTPer = Convert.ToDecimal(drBillDetail["CGSTDESC"])
+                    , sGSTPer = Convert.ToDecimal(drBillDetail["SGSTDESC"])
+                    , cess = Convert.ToDecimal(drBillDetail["CESSDESC"])
                     , billedAmount, cGSTValue, sGSTValue, cessValue, totalGSTValue, Discount;
 
                 billedAmount = salePrice * rquantity;
