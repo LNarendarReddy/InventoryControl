@@ -61,7 +61,7 @@ namespace NSRetailPOS
 
         private void BgSyncWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            syncProgressBar.Text = e.UserState?.ToString();
+            lblProgressText.Text = e.UserState?.ToString();
         }
 
         private void BgSyncWorker_DoWork(object sender, DoWorkEventArgs e)

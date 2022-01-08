@@ -52,6 +52,19 @@ namespace NSRetailPOS
                 ReportText(backgroundWorker, $"{entityName} sync completed");
             }
 
+            // start up sync
+            dtEntity = cloudRepository.GetEntityData(branchinfo.BranchCounterID, "ToCloud");
+            foreach (DataRow entityRow in dtEntity.Rows)
+            {
+                string entityName = entityRow["ENTITYNAME"].ToString();
+                ReportText(backgroundWorker, $"{entityName} up sync started");
+                DataTable dtEntityWiseData = syncRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"]);
+                ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to up sync in entity : {entityName} ");
+                cloudRepository.SaveData(entityName, dtEntityWiseData);
+                cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+                ReportText(backgroundWorker, $"{entityName} up sync completed");
+            }
+
             //LoggerUtility.Logger.Info($"POS sync completed");
             backgroundWorker?.ReportProgress(0, $"POS sync completed at {DateTime.Now.ToLongTimeString()}");
         }

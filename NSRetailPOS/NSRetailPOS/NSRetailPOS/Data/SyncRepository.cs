@@ -50,18 +50,50 @@ namespace NSRetailPOS.Data
                 SQLCon.Sqlconn().Close();
             }
         }
+
+        public DataTable GetEntityWiseData(object EntityName, object SyncDate)
+        {
+            DataTable dtEntity = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlSyncConn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_GETSYNCDATA]";
+                    cmd.Parameters.AddWithValue("@EntityName", EntityName);
+                    cmd.Parameters.AddWithValue("@SyncDate", SyncDate);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtEntity);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving Entity wise data List", ex);
+            }
+            finally
+            {
+                SQLCon.SqlSyncConn().Close();
+            }
+            return dtEntity;
+        }
     }
 
     class EntityMapping
     {
-        public EntityMapping(string procedureName, string parameterName)
+        public EntityMapping(string procedureName, string parameterName, bool includeBranchCounterID = false)
         {
             ProcedureName = procedureName;
             ParameterName = parameterName;
+            IncludeBranchCounterID = includeBranchCounterID;
         }
 
         public string ProcedureName { get; }
 
         public string ParameterName { get; }
+
+        public bool IncludeBranchCounterID { get; }
     }
 }
