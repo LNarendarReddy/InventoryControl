@@ -81,6 +81,35 @@ namespace WarehouseCloudSync.Data
             return dtEntity;
         }
 
+        public DataTable GetEntityWiseData(object EntityName, object SyncDate)
+        {
+            DataTable dtEntity = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SqlCon.SqlCloudconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_GETSYNCDATA]";
+                    cmd.Parameters.AddWithValue("@EntityName", EntityName);
+                    cmd.Parameters.AddWithValue("@SyncDate", SyncDate);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtEntity);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving Entity wise data List", ex);
+            }
+            finally
+            {
+                SqlCon.SqlCloudconn().Close();
+            }
+            return dtEntity;
+        }
+
         public void UpdateEntitySyncStatus(object entitySyncStatusID, DateTime syncTime)
         {
             try

@@ -27,6 +27,19 @@ namespace WarehouseCloudSync
                 LoggerUtility.Logger.Info($"{entityName} sync completed");
             }
 
+            // start down sync from cloud
+             dtEntity = cloudRepository.GetEntityData(BranchID, "FromCloud");
+            foreach (DataRow entityRow in dtEntity.Rows)
+            {
+                string entityName = entityRow["ENTITYNAME"].ToString();
+                LoggerUtility.Logger.Info($"{entityName} sync started");
+                DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"]);
+                LoggerUtility.Logger.Info($"Found {dtEntityWiseData.Rows.Count} records to sync in entity : {entityName} ");
+                warehouseRepository.SaveData(entityName, dtEntityWiseData);
+                cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+                LoggerUtility.Logger.Info($"{entityName} sync completed");
+            }
+
             LoggerUtility.Logger.Info($"Warehouse sync completed");
 
             Thread.Sleep(5 * 60 * 1000);
