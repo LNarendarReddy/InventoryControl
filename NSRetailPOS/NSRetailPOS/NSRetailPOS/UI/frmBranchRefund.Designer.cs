@@ -29,27 +29,27 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBranchRefund));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions20 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject77 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject78 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject79 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject80 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBranchRefund));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtWeightInKgs = new DevExpress.XtraEditors.TextEdit();
             this.txtTrayNumber = new DevExpress.XtraEditors.TextEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtItemCode = new DevExpress.XtraEditors.TextEdit();
-            this.gcBilling = new DevExpress.XtraGrid.GridControl();
-            this.gvBilling = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcRefund = new DevExpress.XtraGrid.GridControl();
+            this.gvRefund = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -89,8 +89,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightInKgs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTrayNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemCode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcBilling)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvBilling)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcRefund)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRefund)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSalePrice.Properties)).BeginInit();
@@ -137,7 +137,7 @@
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.btnSave);
             this.layoutControl1.Controls.Add(this.txtItemCode);
-            this.layoutControl1.Controls.Add(this.gcBilling);
+            this.layoutControl1.Controls.Add(this.gcRefund);
             this.layoutControl1.Controls.Add(this.txtQuantity);
             this.layoutControl1.Controls.Add(this.txtSalePrice);
             this.layoutControl1.Controls.Add(this.txtMRP);
@@ -159,10 +159,10 @@
             this.txtWeightInKgs.Size = new System.Drawing.Size(194, 22);
             this.txtWeightInKgs.StyleController = this.layoutControl1;
             this.txtWeightInKgs.TabIndex = 2;
-            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule6.ErrorText = "Mandatory";
-            conditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtWeightInKgs, conditionValidationRule6);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtWeightInKgs, conditionValidationRule1);
             this.txtWeightInKgs.Enter += new System.EventHandler(this.txtQuantity_Enter);
             this.txtWeightInKgs.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQuantity_KeyDown);
             // 
@@ -173,10 +173,10 @@
             this.txtTrayNumber.Size = new System.Drawing.Size(193, 22);
             this.txtTrayNumber.StyleController = this.layoutControl1;
             this.txtTrayNumber.TabIndex = 8;
-            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule7.ErrorText = "Mandatory";
-            conditionValidationRule7.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtTrayNumber, conditionValidationRule7);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Mandatory";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtTrayNumber, conditionValidationRule2);
             // 
             // btnCancel
             // 
@@ -211,36 +211,36 @@
             this.txtItemCode.Size = new System.Drawing.Size(193, 22);
             this.txtItemCode.StyleController = this.layoutControl1;
             this.txtItemCode.TabIndex = 0;
-            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule8.ErrorText = "Mandatory";
-            conditionValidationRule8.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtItemCode, conditionValidationRule8);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Mandatory";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtItemCode, conditionValidationRule3);
             this.txtItemCode.Click += new System.EventHandler(this.txtItemCode_Click);
             this.txtItemCode.Enter += new System.EventHandler(this.txtItemCode_Enter);
             this.txtItemCode.Leave += new System.EventHandler(this.txtItemCode_Leave);
             // 
-            // gcBilling
+            // gcRefund
             // 
-            this.gcBilling.Location = new System.Drawing.Point(4, 145);
-            this.gcBilling.MainView = this.gvBilling;
-            this.gcBilling.Name = "gcBilling";
-            this.gcBilling.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.gcRefund.Location = new System.Drawing.Point(4, 145);
+            this.gcRefund.MainView = this.gvRefund;
+            this.gcRefund.Name = "gcRefund";
+            this.gcRefund.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDelete});
-            this.gcBilling.Size = new System.Drawing.Size(1046, 473);
-            this.gcBilling.TabIndex = 9;
-            this.gcBilling.TabStop = false;
-            this.gcBilling.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvBilling});
+            this.gcRefund.Size = new System.Drawing.Size(1046, 473);
+            this.gcRefund.TabIndex = 9;
+            this.gcRefund.TabStop = false;
+            this.gcRefund.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvRefund});
             // 
-            // gvBilling
+            // gvRefund
             // 
-            this.gvBilling.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
-            this.gvBilling.Appearance.FooterPanel.Options.UseFont = true;
-            this.gvBilling.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvBilling.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvBilling.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F);
-            this.gvBilling.Appearance.Row.Options.UseFont = true;
-            this.gvBilling.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvRefund.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            this.gvRefund.Appearance.FooterPanel.Options.UseFont = true;
+            this.gvRefund.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.gvRefund.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvRefund.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F);
+            this.gvRefund.Appearance.Row.Options.UseFont = true;
+            this.gvRefund.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn4,
             this.gridColumn20,
             this.gridColumn5,
@@ -253,15 +253,15 @@
             this.gridColumn13,
             this.gridColumn11,
             this.gridColumn22});
-            this.gvBilling.GridControl = this.gcBilling;
-            this.gvBilling.Name = "gvBilling";
-            this.gvBilling.OptionsMenu.EnableGroupPanelMenu = false;
-            this.gvBilling.OptionsView.ShowFooter = true;
-            this.gvBilling.OptionsView.ShowGroupPanel = false;
-            this.gvBilling.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            this.gvRefund.GridControl = this.gcRefund;
+            this.gvRefund.Name = "gvRefund";
+            this.gvRefund.OptionsMenu.EnableGroupPanelMenu = false;
+            this.gvRefund.OptionsView.ShowFooter = true;
+            this.gvRefund.OptionsView.ShowGroupPanel = false;
+            this.gvRefund.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn6, DevExpress.Data.ColumnSortOrder.Descending)});
-            this.gvBilling.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvRefund_InitNewRow);
-            this.gvBilling.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvBilling_CellValueChanged);
+            this.gvRefund.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvRefund_InitNewRow);
+            this.gvRefund.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvBilling_CellValueChanged);
             // 
             // gridColumn4
             // 
@@ -381,9 +381,9 @@
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions20.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions20.SvgImage")));
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions20, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject77, serializableAppearanceObject78, serializableAppearanceObject79, serializableAppearanceObject80, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -398,10 +398,10 @@
             this.txtQuantity.Size = new System.Drawing.Size(194, 22);
             this.txtQuantity.StyleController = this.layoutControl1;
             this.txtQuantity.TabIndex = 1;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtQuantity, conditionValidationRule1);
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "Mandatory";
+            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtQuantity, conditionValidationRule4);
             this.txtQuantity.Enter += new System.EventHandler(this.txtQuantity_Enter);
             this.txtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQuantity_KeyDown);
             // 
@@ -416,10 +416,10 @@
             this.txtSalePrice.StyleController = this.layoutControl1;
             this.txtSalePrice.TabIndex = 4;
             this.txtSalePrice.TabStop = false;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtSalePrice, conditionValidationRule2);
+            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule5.ErrorText = "Mandatory";
+            conditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtSalePrice, conditionValidationRule5);
             // 
             // txtMRP
             // 
@@ -432,10 +432,10 @@
             this.txtMRP.StyleController = this.layoutControl1;
             this.txtMRP.TabIndex = 5;
             this.txtMRP.TabStop = false;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "Mandatory";
-            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtMRP, conditionValidationRule3);
+            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule6.ErrorText = "Mandatory";
+            conditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtMRP, conditionValidationRule6);
             // 
             // sluItemCode
             // 
@@ -449,10 +449,10 @@
             this.sluItemCode.StyleController = this.layoutControl1;
             this.sluItemCode.TabIndex = 3;
             this.sluItemCode.TabStop = false;
-            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule4.ErrorText = "Mandatory";
-            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.sluItemCode, conditionValidationRule4);
+            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule7.ErrorText = "Mandatory";
+            conditionValidationRule7.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.sluItemCode, conditionValidationRule7);
             this.sluItemCode.EditValueChanged += new System.EventHandler(this.sluItemCode_EditValueChanged);
             // 
             // sluItemCodeView
@@ -506,7 +506,7 @@
             // 
             // layoutControlItem9
             // 
-            this.layoutControlItem9.Control = this.gcBilling;
+            this.layoutControlItem9.Control = this.gcRefund;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 141);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(1050, 477);
@@ -647,8 +647,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightInKgs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTrayNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemCode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcBilling)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvBilling)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcRefund)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRefund)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSalePrice.Properties)).EndInit();
@@ -676,8 +676,8 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraEditors.TextEdit txtItemCode;
-        private DevExpress.XtraGrid.GridControl gcBilling;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvBilling;
+        private DevExpress.XtraGrid.GridControl gcRefund;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvRefund;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;

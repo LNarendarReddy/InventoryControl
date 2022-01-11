@@ -36,7 +36,7 @@ namespace NSRetailPOS.UI
                 BRefundNumber = dSInitialData.Tables[0].Rows[0]["BREFUNDNUMBER"];
                 this.Text = "Branch Refund" + "-" + BRefundNumber;
                 dtRefund = dSInitialData.Tables[1].Copy();
-                gcBilling.DataSource = dtRefund;
+                gcRefund.DataSource = dtRefund;
                 SNo = dtRefund.Rows.Count + 1;
             }
         }
@@ -141,21 +141,21 @@ namespace NSRetailPOS.UI
         }
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            object BRDetailID = gvBilling.GetFocusedRowCellValue("BREFUNDDETAILID");
-            SNo = Convert.ToInt32(gvBilling.GetFocusedRowCellValue("SNO"));
+            object BRDetailID = gvRefund.GetFocusedRowCellValue("BREFUNDDETAILID");
+            SNo = Convert.ToInt32(gvRefund.GetFocusedRowCellValue("SNO"));
             DataTable dtSNos = new DataTable();
             dtSNos.Columns.Add("BREFUNDDETAILID", typeof(int));
             dtSNos.Columns.Add("SNO", typeof(int));
 
-            for (int curRowHandle = gvBilling.FocusedRowHandle - 1; curRowHandle >= 0; curRowHandle--)
+            for (int curRowHandle = gvRefund.FocusedRowHandle - 1; curRowHandle >= 0; curRowHandle--)
             {
-                gvBilling.SetRowCellValue(curRowHandle, "SNO", SNo);
-                dtSNos.Rows.Add(gvBilling.GetRowCellValue(curRowHandle, "BREFUNDDETAILID"), SNo);
+                gvRefund.SetRowCellValue(curRowHandle, "SNO", SNo);
+                dtSNos.Rows.Add(gvRefund.GetRowCellValue(curRowHandle, "BREFUNDDETAILID"), SNo);
                 SNo++;
             }
 
             new RefundRepository().DeleteBRefundDetail(BRDetailID, Utility.logininfo.UserID, dtSNos);
-            gvBilling.DeleteRow(gvBilling.FocusedRowHandle);
+            gvRefund.DeleteRow(gvRefund.FocusedRowHandle);
             txtItemCode.Focus();
         }
         private void txtQuantity_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -173,54 +173,54 @@ namespace NSRetailPOS.UI
             if (!dxValidationProvider1.Validate())
                 return;
 
-            gvBilling.GridControl.BindingContext = new BindingContext();
-            gvBilling.GridControl.DataSource = dtRefund;
+            gvRefund.GridControl.BindingContext = new BindingContext();
+            gvRefund.GridControl.DataSource = dtRefund;
             isEventCall = true;
-            int rowHandle = gvBilling.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
+            int rowHandle = gvRefund.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
             if (rowHandle < 0)
             {
-                gvBilling.AddNewRow();
+                gvRefund.AddNewRow();
             }
             else
             {
                 int newQuantity = Convert.ToInt32(txtQuantity.EditValue) + 
-                    Convert.ToInt32(gvBilling.GetRowCellValue(rowHandle, "QUANTITY"));
+                    Convert.ToInt32(gvRefund.GetRowCellValue(rowHandle, "QUANTITY"));
                 if (newQuantity > 0)
                 {
-                    gvBilling.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
+                    gvRefund.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
                 }
             }
             isEventCall = false;
-            gvBilling.GridControl.BindingContext = new BindingContext();
-            gvBilling.GridControl.DataSource = dtRefund;
+            gvRefund.GridControl.BindingContext = new BindingContext();
+            gvRefund.GridControl.DataSource = dtRefund;
 
-            rowHandle = gvBilling.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
+            rowHandle = gvRefund.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
             if (rowHandle >= 0)
             {
                 SaveRefundDetail(rowHandle);
             }
             ClearItemData();
-            gvBilling.FocusedRowHandle = rowHandle;
+            gvRefund.FocusedRowHandle = rowHandle;
         }
         private void SaveRefundDetail(int rowHandle)
         {
-            DataRow drDetail = (gvBilling.GetRow(rowHandle) as DataRowView).Row;
+            DataRow drDetail = (gvRefund.GetRow(rowHandle) as DataRowView).Row;
             int BRefundDetailID = new RefundRepository().SaveBRefundDetail(drDetail);
             drDetail["BREFUNDDETAILID"] = BRefundDetailID;
         }
         private void gvRefund_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
-            gvBilling.SetRowCellValue(e.RowHandle, "BREFUNDDETAILID", -1);
-            gvBilling.SetRowCellValue(e.RowHandle, "BREFUNDID", BRefundID);
-            gvBilling.SetRowCellValue(e.RowHandle, "ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
-            gvBilling.SetRowCellValue(e.RowHandle, "SNO", SNo++);
-            gvBilling.SetRowCellValue(e.RowHandle, "ITEMNAME", sluItemCode.Text);
-            gvBilling.SetRowCellValue(e.RowHandle, "ITEMCODE", txtItemCode.EditValue);
-            gvBilling.SetRowCellValue(e.RowHandle, "MRP", drSelectedPrice["MRP"]);
-            gvBilling.SetRowCellValue(e.RowHandle, "SALEPRICE", drSelectedPrice["SALEPRICE"]);
-            gvBilling.SetRowCellValue(e.RowHandle, "QUANTITY", txtQuantity.EditValue);
-            gvBilling.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
-            gvBilling.SetRowCellValue(e.RowHandle, "TRAYNUMBER", txtTrayNumber.EditValue);
+            gvRefund.SetRowCellValue(e.RowHandle, "BREFUNDDETAILID", -1);
+            gvRefund.SetRowCellValue(e.RowHandle, "BREFUNDID", BRefundID);
+            gvRefund.SetRowCellValue(e.RowHandle, "ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
+            gvRefund.SetRowCellValue(e.RowHandle, "SNO", SNo++);
+            gvRefund.SetRowCellValue(e.RowHandle, "ITEMNAME", sluItemCode.Text);
+            gvRefund.SetRowCellValue(e.RowHandle, "ITEMCODE", txtItemCode.EditValue);
+            gvRefund.SetRowCellValue(e.RowHandle, "MRP", drSelectedPrice["MRP"]);
+            gvRefund.SetRowCellValue(e.RowHandle, "SALEPRICE", drSelectedPrice["SALEPRICE"]);
+            gvRefund.SetRowCellValue(e.RowHandle, "QUANTITY", txtQuantity.EditValue);
+            gvRefund.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
+            gvRefund.SetRowCellValue(e.RowHandle, "TRAYNUMBER", txtTrayNumber.EditValue);
         }
         private void frmBranchRefund_KeyDown(object sender, KeyEventArgs e)
         {

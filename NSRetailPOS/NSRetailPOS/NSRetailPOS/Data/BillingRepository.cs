@@ -303,5 +303,76 @@ namespace NSRetailPOS.Data
             }
             return dsBillDetails;
         }
+
+        public DataSet GetDayClosure()
+        {
+            DataSet dsDayClosure = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_R_DAYCLOSURE]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsDayClosure);
+                    }
+                    if (dsDayClosure != null && dsDayClosure.Tables.Count > 0)
+                    {
+                        if (dsDayClosure.Tables[0].Rows.Count == 1)
+                            throw new Exception(Convert.ToString(dsDayClosure.Tables[0].Rows[0][0]));
+                        dsDayClosure.Tables[0].TableName = "DENOMINATION";
+                        dsDayClosure.Tables[1].TableName = "MOP";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("No Bills Available!"))
+                    throw ex;
+                else
+                    throw new Exception("Error While getting Day Closure", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dsDayClosure;
+        }
+
+        public void SaveDayClosure(object BranchCounterID, DataTable dtDenomination, DataTable dtMOP,object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    dtDenomination.Columns.Remove("DISPLAYVALUE");
+                    dtDenomination.Columns.Remove("MULTIPLIER");
+                    dtDenomination.Columns.Remove("QUANTITY");
+
+                    dtMOP.Columns.Remove("MOPNAME");
+
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_CU_DAYCLOSURE]";
+                    cmd.Parameters.Add("@BRANCHCOUNTERID", BranchCounterID);
+                    cmd.Parameters.Add("@dtDenomination", dtDenomination);
+                    cmd.Parameters.Add("@dtMOP", dtMOP);
+                    cmd.Parameters.Add("@USERID", UserID);
+                    int rowsaffected = cmd.ExecuteNonQuery();
+                    if (rowsaffected <= 0)
+                        throw new Exception("Error while saving day cllosure");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While saving Day Closure", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 }

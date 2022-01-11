@@ -79,6 +79,7 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -104,7 +105,6 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightInKgs.Properties)).BeginInit();
@@ -283,6 +283,7 @@
             this.btnDayClosure.TabIndex = 19;
             this.btnDayClosure.TabStop = false;
             this.btnDayClosure.Text = "Day &Closure";
+            this.btnDayClosure.Click += new System.EventHandler(this.btnDayClosure_Click);
             // 
             // btnLoadDraftBill
             // 
@@ -679,6 +680,12 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
             // 
+            // gridColumn23
+            // 
+            this.gridColumn23.Caption = "ISOPENITEM";
+            this.gridColumn23.FieldName = "ISOPENITEM";
+            this.gridColumn23.Name = "gridColumn23";
+            // 
             // Root
             // 
             this.Root.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
@@ -952,12 +959,6 @@
             this.layoutControlItem15.Size = new System.Drawing.Size(254, 19);
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
-            // 
-            // gridColumn23
-            // 
-            this.gridColumn23.Caption = "ISOPENITEM";
-            this.gridColumn23.FieldName = "ISOPENITEM";
-            this.gridColumn23.Name = "gridColumn23";
             // 
             // frmMain
             // 

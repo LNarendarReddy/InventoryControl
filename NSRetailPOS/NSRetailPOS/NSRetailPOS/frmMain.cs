@@ -488,5 +488,19 @@ namespace NSRetailPOS
             { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen};
             obj.ShowDialog();
         }
+
+        private void btnDayClosure_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmDayClosure obj = new frmDayClosure()
+                { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
+                obj.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message,"Error");
+            }
+        }
     }
 }
