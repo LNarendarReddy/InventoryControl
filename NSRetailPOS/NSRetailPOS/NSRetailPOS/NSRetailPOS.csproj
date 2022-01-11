@@ -137,11 +137,23 @@
     <Compile Include="Reports\rptBill.Designer.cs">
       <DependentUpon>rptBill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptBRefund.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptBRefund.Designer.cs">
+      <DependentUpon>rptBRefund.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptCRefund.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\rptCRefund.Designer.cs">
       <DependentUpon>rptCRefund.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmBranchRefund.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmBranchRefund.Designer.cs">
+      <DependentUpon>frmBranchRefund.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\frmChangePassword.cs">
       <SubType>Form</SubType>
@@ -221,8 +233,14 @@
     <EmbeddedResource Include="Reports\rptBill.resx">
       <DependentUpon>rptBill.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptBRefund.resx">
+      <DependentUpon>rptBRefund.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptCRefund.resx">
       <DependentUpon>rptCRefund.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmBranchRefund.resx">
+      <DependentUpon>frmBranchRefund.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>

@@ -448,5 +448,12 @@ namespace NSRetailPOS
             obj.ShowDialog();
             
         }
+
+        private void btnBranchRefund_Click(object sender, EventArgs e)
+        {
+            frmBranchRefund obj = new frmBranchRefund()
+            { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen};
+            obj.ShowDialog();
+        }
     }
 }

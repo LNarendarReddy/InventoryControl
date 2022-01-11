@@ -72,5 +72,117 @@ namespace NSRetailPOS.Data
                 SQLCon.Sqlconn().Close();
             }
         }
+
+        public DataSet GetInitialLoad(object userID,object BranchID)
+        {
+            DataSet dSInitialLoad = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_R_BREFUND]";
+                    cmd.Parameters.AddWithValue("@USERID", userID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dSInitialLoad);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving initial load details", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dSInitialLoad;
+        }
+
+        public int SaveBRefundDetail(DataRow drDetail)
+        {
+            int BRefundDetailID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_CU_BREFUNDDETAIL]";
+                    cmd.Parameters.AddWithValue("@BREFUNDDETAILID", drDetail["BREFUNDDETAILID"]);
+                    cmd.Parameters.AddWithValue("@BREFUNDID", drDetail["BREFUNDID"]);
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", drDetail["ITEMPRICEID"]);
+                    cmd.Parameters.AddWithValue("@QUANTITY", drDetail["QUANTITY"]);
+                    cmd.Parameters.AddWithValue("@WEIGHTINKGS", drDetail["WEIGHTINKGS"]);
+                    cmd.Parameters.AddWithValue("@SNO", drDetail["SNO"]);
+                    object objReturn = cmd.ExecuteScalar();
+
+                    if (!int.TryParse(objReturn.ToString(), out BRefundDetailID))
+                        throw new Exception(objReturn.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return BRefundDetailID;
+        }
+
+        public void DeleteBRefundDetail(object BRefundDetailID, object userID, DataTable dtSnos)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_D_BREFUNDDETAIL]";
+                    cmd.Parameters.AddWithValue("@BREFUNDDETAILID", BRefundDetailID);
+                    cmd.Parameters.AddWithValue("@USERID", userID);
+                    cmd.Parameters.AddWithValue("@SNos", dtSnos);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While deleting bill refund detail", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+
+        public void FinishBRefund(object BRefundID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_FINISHBREFUND]";
+                    cmd.Parameters.AddWithValue("@BREFUNDID", BRefundID);
+                    int rowsaffected = cmd.ExecuteNonQuery();
+                    if (rowsaffected == 0)
+                        throw new Exception("Error while saving Branch Refund");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 }
