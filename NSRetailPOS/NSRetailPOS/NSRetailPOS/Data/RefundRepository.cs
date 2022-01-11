@@ -118,6 +118,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@QUANTITY", drDetail["QUANTITY"]);
                     cmd.Parameters.AddWithValue("@WEIGHTINKGS", drDetail["WEIGHTINKGS"]);
                     cmd.Parameters.AddWithValue("@SNO", drDetail["SNO"]);
+                    cmd.Parameters.AddWithValue("@TRAYNUMBER", drDetail["TRAYNUMBER"]);
                     object objReturn = cmd.ExecuteScalar();
 
                     if (!int.TryParse(objReturn.ToString(), out BRefundDetailID))

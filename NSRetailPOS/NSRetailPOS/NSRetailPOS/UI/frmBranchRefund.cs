@@ -19,6 +19,8 @@ namespace NSRetailPOS.UI
         object BRefundNumber = null;
         DataRow drSelectedPrice;
         bool isItemScanned;
+        bool isOpenItem;
+        bool isEventCall;
         private int SNo = 1;
         DataTable dtRefund = null;  
         public frmBranchRefund()
@@ -35,6 +37,7 @@ namespace NSRetailPOS.UI
                 this.Text = "Branch Refund" + "-" + BRefundNumber;
                 dtRefund = dSInitialData.Tables[1].Copy();
                 gcBilling.DataSource = dtRefund;
+                SNo = dtRefund.Rows.Count + 1;
             }
         }
         private void frmBranchRefund_Load(object sender, EventArgs e)
@@ -49,13 +52,10 @@ namespace NSRetailPOS.UI
         }
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)
         {
-            if (sluItemCode.EditValue == null)
-            {
-                return;
-            }
-
-            txtItemCode.EditValue = sluItemCodeView.GetRowCellValue(sluItemCodeView.LocateByValue("ITEMCODEID",
-                sluItemCode.EditValue), "ITEMCODE");
+            if (sluItemCode.EditValue == null){return;}
+            int rowHandle = sluItemCodeView.LocateByValue("ITEMCODEID", sluItemCode.EditValue);
+            txtItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODE");
+            isOpenItem = Convert.ToBoolean(sluItemCodeView.GetRowCellValue(rowHandle, "ISOPENITEM"));
             DataTable dtPrices = new ItemRepository().GetMRPList(sluItemCode.EditValue);
             if (dtPrices.Rows.Count > 1)
             {
@@ -83,10 +83,25 @@ namespace NSRetailPOS.UI
             txtMRP.EditValue = drSelectedPrice["MRP"];
             txtSalePrice.EditValue = drSelectedPrice["SALEPRICE"];
             txtQuantity.EditValue = 1;
-
+            if (isOpenItem)
+            {
+                txtWeightInKgs.Enabled = true;
+                txtQuantity.EditValue = 1;
+                txtQuantity.Enabled = false;
+            }
+            else
+            {
+                txtWeightInKgs.EditValue = "0.00";
+                txtWeightInKgs.Enabled = false;
+                txtQuantity.Enabled = true;
+             }
             if (!isItemScanned)
-                txtQuantity.Focus();
-            txtQuantity.SelectAll();
+            {
+                if (isOpenItem)
+                    txtWeightInKgs.Focus();
+                else
+                    txtQuantity.Focus();
+            }
         }
         private void ClearItemData(bool focusItemCode = true)
         {
@@ -95,6 +110,7 @@ namespace NSRetailPOS.UI
             txtMRP.EditValue = null;
             txtSalePrice.EditValue = null;
             txtQuantity.EditValue = 1;
+            txtWeightInKgs.EditValue = 0.00;
 
             if (focusItemCode)
                 txtItemCode.Focus();
@@ -147,15 +163,19 @@ namespace NSRetailPOS.UI
             if (e.KeyCode != Keys.Enter)
                 return;
 
-            if (sluItemCode.EditValue == null || drSelectedPrice == null || txtQuantity.EditValue == null || txtQuantity.EditValue.Equals(0))
+            if (sluItemCode.EditValue == null || drSelectedPrice == null || txtQuantity.EditValue == null 
+                || txtQuantity.EditValue.Equals(0))
             {
                 txtItemCode.Focus();
                 return;
             }
 
+            if (!dxValidationProvider1.Validate())
+                return;
+
             gvBilling.GridControl.BindingContext = new BindingContext();
             gvBilling.GridControl.DataSource = dtRefund;
-
+            isEventCall = true;
             int rowHandle = gvBilling.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
             if (rowHandle < 0)
             {
@@ -163,13 +183,14 @@ namespace NSRetailPOS.UI
             }
             else
             {
-                int newQuantity = Convert.ToInt32(txtQuantity.EditValue) + Convert.ToInt32(gvBilling.GetRowCellValue(rowHandle, "QUANTITY"));
+                int newQuantity = Convert.ToInt32(txtQuantity.EditValue) + 
+                    Convert.ToInt32(gvBilling.GetRowCellValue(rowHandle, "QUANTITY"));
                 if (newQuantity > 0)
                 {
                     gvBilling.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
                 }
             }
-
+            isEventCall = false;
             gvBilling.GridControl.BindingContext = new BindingContext();
             gvBilling.GridControl.DataSource = dtRefund;
 
@@ -198,7 +219,8 @@ namespace NSRetailPOS.UI
             gvBilling.SetRowCellValue(e.RowHandle, "MRP", drSelectedPrice["MRP"]);
             gvBilling.SetRowCellValue(e.RowHandle, "SALEPRICE", drSelectedPrice["SALEPRICE"]);
             gvBilling.SetRowCellValue(e.RowHandle, "QUANTITY", txtQuantity.EditValue);
-            gvBilling.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", 0.00);
+            gvBilling.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
+            gvBilling.SetRowCellValue(e.RowHandle, "TRAYNUMBER", txtTrayNumber.EditValue);
         }
         private void frmBranchRefund_KeyDown(object sender, KeyEventArgs e)
         {
@@ -213,7 +235,7 @@ namespace NSRetailPOS.UI
         }
         private void gvBilling_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            if (e.Column.FieldName != "QUANTITY") return;
+            if (e.Column.FieldName != "QUANTITY" || isEventCall) return;
             SaveRefundDetail(e.RowHandle);
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -227,6 +249,11 @@ namespace NSRetailPOS.UI
             rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
             rpt.Print();
             InitialLoad();
+        }
+        private void txtQuantity_Enter(object sender, EventArgs e)
+        {
+            TextEdit textedit = sender as TextEdit;
+            textedit.SelectAll();
         }
     }
 }

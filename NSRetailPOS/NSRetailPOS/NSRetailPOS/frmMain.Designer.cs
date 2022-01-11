@@ -36,7 +36,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.lblProgressText = new DevExpress.XtraEditors.LabelControl();
-            this.txtOffer = new DevExpress.XtraEditors.TextEdit();
+            this.txtWeightInKgs = new DevExpress.XtraEditors.TextEdit();
             this.txtLastBilledQuantity = new DevExpress.XtraEditors.TextEdit();
             this.txtLastBilledAmount = new DevExpress.XtraEditors.TextEdit();
             this.btnLastBillPrint = new DevExpress.XtraEditors.SimpleButton();
@@ -104,9 +104,10 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOffer.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightInKgs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastBilledQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastBilledAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSingleQuantity.Properties)).BeginInit();
@@ -167,7 +168,7 @@
             this.layoutControl1.Appearance.DisabledLayoutItem.Font = new System.Drawing.Font("Arial", 9F);
             this.layoutControl1.Appearance.DisabledLayoutItem.Options.UseFont = true;
             this.layoutControl1.Controls.Add(this.lblProgressText);
-            this.layoutControl1.Controls.Add(this.txtOffer);
+            this.layoutControl1.Controls.Add(this.txtWeightInKgs);
             this.layoutControl1.Controls.Add(this.txtLastBilledQuantity);
             this.layoutControl1.Controls.Add(this.txtLastBilledAmount);
             this.layoutControl1.Controls.Add(this.btnLastBillPrint);
@@ -207,15 +208,15 @@
             this.lblProgressText.TabIndex = 29;
             this.lblProgressText.Text = "Sync Progress";
             // 
-            // txtOffer
+            // txtWeightInKgs
             // 
-            this.txtOffer.Enabled = false;
-            this.txtOffer.Location = new System.Drawing.Point(973, 72);
-            this.txtOffer.Name = "txtOffer";
-            this.txtOffer.Size = new System.Drawing.Size(153, 22);
-            this.txtOffer.StyleController = this.layoutControl1;
-            this.txtOffer.TabIndex = 27;
-            this.txtOffer.TabStop = false;
+            this.txtWeightInKgs.Enabled = false;
+            this.txtWeightInKgs.Location = new System.Drawing.Point(973, 72);
+            this.txtWeightInKgs.Name = "txtWeightInKgs";
+            this.txtWeightInKgs.Size = new System.Drawing.Size(153, 22);
+            this.txtWeightInKgs.StyleController = this.layoutControl1;
+            this.txtWeightInKgs.TabIndex = 27;
+            this.txtWeightInKgs.TabStop = false;
             // 
             // txtLastBilledQuantity
             // 
@@ -649,7 +650,8 @@
             this.sluItemCodeView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
-            this.gridColumn3});
+            this.gridColumn3,
+            this.gridColumn23});
             this.sluItemCodeView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.sluItemCodeView.Name = "sluItemCodeView";
             this.sluItemCodeView.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -934,12 +936,12 @@
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.txtOffer;
+            this.layoutControlItem5.Control = this.txtWeightInKgs;
             this.layoutControlItem5.Location = new System.Drawing.Point(837, 32);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem5.Size = new System.Drawing.Size(280, 32);
-            this.layoutControlItem5.Text = "Offer";
+            this.layoutControlItem5.Text = "Weight In Kgs";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(105, 15);
             // 
             // layoutControlItem15
@@ -950,6 +952,12 @@
             this.layoutControlItem15.Size = new System.Drawing.Size(254, 19);
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
+            // 
+            // gridColumn23
+            // 
+            this.gridColumn23.Caption = "ISOPENITEM";
+            this.gridColumn23.FieldName = "ISOPENITEM";
+            this.gridColumn23.Name = "gridColumn23";
             // 
             // frmMain
             // 
@@ -967,7 +975,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtOffer.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightInKgs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastBilledQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastBilledAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSingleQuantity.Properties)).EndInit();
@@ -1077,10 +1085,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
-        private DevExpress.XtraEditors.TextEdit txtOffer;
+        private DevExpress.XtraEditors.TextEdit txtWeightInKgs;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.LabelControl lblProgressText;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
     }
 }
 
