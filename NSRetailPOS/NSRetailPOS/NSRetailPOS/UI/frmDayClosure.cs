@@ -22,8 +22,8 @@ namespace NSRetailPOS.UI
             gcMOP.DataSource = dsDayClosure.Tables[1];
             gvDenomination.FocusedRowHandle = 0;
             gvDenomination.FocusedColumn = gcQuantity;
+            txtRefundAmount.EditValue = dsDayClosure.Tables[2].Rows[0]["REFUNDAMOUNT"];
             updateSummary();
-
         }
 
         private void frmDayClosure_Load(object sender, EventArgs e)
@@ -36,7 +36,8 @@ namespace NSRetailPOS.UI
             try
             {
                 new BillingRepository().SaveDayClosure(Utility.branchinfo.BranchCounterID,
-                    gcDenomination.DataSource as DataTable, gcMOP.DataSource as DataTable, Utility.logininfo.UserID);
+                    gcDenomination.DataSource as DataTable, gcMOP.DataSource as DataTable, 
+                    Utility.logininfo.UserID,txtRefundAmount.EditValue);
                 this.Close();
             }
             catch (Exception ex)
@@ -71,11 +72,12 @@ namespace NSRetailPOS.UI
         {
 
         }
+
         private void updateSummary()
         {
             txtTotalAmount.EditValue = 
             Convert.ToDecimal(gvDenomination.Columns["CLOSUREVALUE"].SummaryItem.SummaryValue) + 
-            Convert.ToDecimal(gvMOP.Columns["MOPVALUE"].SummaryItem.SummaryValue);
+            Convert.ToDecimal(gvMOP.Columns["MOPVALUE"].SummaryItem.SummaryValue) - Convert.ToDecimal(txtRefundAmount.EditValue);
         }
     }
 } 
