@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnBranch = new DevExpress.XtraBars.BarButtonItem();
             this.btnBranchCouter = new DevExpress.XtraBars.BarButtonItem();
@@ -58,18 +58,23 @@
             this.btnPrintDC = new DevExpress.XtraBars.BarButtonItem();
             this.btnDCList = new DevExpress.XtraBars.BarButtonItem();
             this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
+            this.bbiSyncStatus = new DevExpress.XtraBars.BarButtonItem();
+            this.btnItemGroup = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.bbiSyncStatus = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnOfferList = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -103,12 +108,15 @@
             this.btnPrintDC,
             this.btnDCList,
             this.skinDropDownButtonItem1,
-            this.bbiSyncStatus});
+            this.bbiSyncStatus,
+            this.btnItemGroup,
+            this.btnOfferList});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 29;
+            this.ribbonControl1.MaxItemId = 31;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage3,
+            this.ribbonPage4,
             this.ribbonPage1});
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1});
@@ -467,6 +475,31 @@
             this.skinDropDownButtonItem1.Id = 27;
             this.skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
             // 
+            // bbiSyncStatus
+            // 
+            this.bbiSyncStatus.Caption = "Sync Status";
+            this.bbiSyncStatus.Id = 28;
+            this.bbiSyncStatus.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiSyncStatus.ImageOptions.Image")));
+            this.bbiSyncStatus.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiSyncStatus.ImageOptions.LargeImage")));
+            this.bbiSyncStatus.Name = "bbiSyncStatus";
+            this.bbiSyncStatus.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSyncStatus_ItemClick);
+            // 
+            // btnItemGroup
+            // 
+            this.btnItemGroup.Caption = "Item Group";
+            this.btnItemGroup.Id = 29;
+            this.btnItemGroup.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnItemGroup.ImageOptions.SvgImage")));
+            this.btnItemGroup.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnItemGroup.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnItemGroup.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnItemGroup.ItemAppearance.Hovered.Options.UseFont = true;
+            this.btnItemGroup.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnItemGroup.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnItemGroup.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnItemGroup.ItemAppearance.Pressed.Options.UseFont = true;
+            this.btnItemGroup.Name = "btnItemGroup";
+            this.btnItemGroup.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItemGroup_ItemClick);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Appearance.Font = new System.Drawing.Font("Arial", 9F);
@@ -475,7 +508,8 @@
             this.ribbonPageGroup2,
             this.ribbonPageGroup3,
             this.ribbonPageGroup5,
-            this.ribbonPageGroup6});
+            this.ribbonPageGroup6,
+            this.ribbonPageGroup8});
             this.ribbonPage3.Name = "ribbonPage3";
             this.ribbonPage3.Text = "Operations";
             // 
@@ -515,6 +549,20 @@
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             this.ribbonPageGroup6.Text = "Summary";
             // 
+            // ribbonPage4
+            // 
+            this.ribbonPage4.Appearance.Font = new System.Drawing.Font("Arial", 9F);
+            this.ribbonPage4.Appearance.Options.UseFont = true;
+            this.ribbonPage4.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup7});
+            this.ribbonPage4.Name = "ribbonPage4";
+            this.ribbonPage4.Text = "Offer & Deals";
+            // 
+            // ribbonPageGroup7
+            // 
+            this.ribbonPageGroup7.Name = "ribbonPageGroup7";
+            this.ribbonPageGroup7.Text = "Item";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Appearance.Font = new System.Drawing.Font("Arial", 9F);
@@ -549,9 +597,9 @@
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
-            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
+            editorButtonImageOptions3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions3.SvgImage")));
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -567,14 +615,28 @@
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
             // 
-            // bbiSyncStatus
+            // ribbonPageGroup8
             // 
-            this.bbiSyncStatus.Caption = "Sync Status";
-            this.bbiSyncStatus.Id = 28;
-            this.bbiSyncStatus.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiSyncStatus.ImageOptions.Image")));
-            this.bbiSyncStatus.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiSyncStatus.ImageOptions.LargeImage")));
-            this.bbiSyncStatus.Name = "bbiSyncStatus";
-            this.bbiSyncStatus.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSyncStatus_ItemClick);
+            this.ribbonPageGroup8.ItemLinks.Add(this.btnItemGroup);
+            this.ribbonPageGroup8.ItemLinks.Add(this.btnOfferList);
+            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
+            this.ribbonPageGroup8.Text = "Offer & Deals";
+            // 
+            // btnOfferList
+            // 
+            this.btnOfferList.Caption = "Offer List";
+            this.btnOfferList.Id = 30;
+            this.btnOfferList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnOfferList.ImageOptions.SvgImage")));
+            this.btnOfferList.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnOfferList.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnOfferList.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnOfferList.ItemAppearance.Hovered.Options.UseFont = true;
+            this.btnOfferList.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnOfferList.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnOfferList.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnOfferList.ItemAppearance.Pressed.Options.UseFont = true;
+            this.btnOfferList.Name = "btnOfferList";
+            this.btnOfferList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOfferList_ItemClick);
             // 
             // frmMain
             // 
@@ -635,6 +697,11 @@
         private DevExpress.XtraBars.BarButtonItem btnDCList;
         private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
         private DevExpress.XtraBars.BarButtonItem bbiSyncStatus;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage4;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
+        private DevExpress.XtraBars.BarButtonItem btnItemGroup;
+        private DevExpress.XtraBars.BarButtonItem btnOfferList;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
     }
 }
 

@@ -226,5 +226,27 @@ namespace NSRetail
                 throw ex;
             }
         }
+        public static DataTable AppliesTo()
+        {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("AppliesToID", typeof(int));
+            dataTable.Columns.Add("AppliesToName", typeof(string));
+            DataRow dr = dataTable.NewRow();
+            dr["AppliesToID"] = 1;
+            dr["AppliesToName"] = "Category";
+            dataTable.Rows.Add(dr);
+
+            DataRow dr1 = dataTable.NewRow();
+            dr1["AppliesToID"] = 2;
+            dr1["AppliesToName"] = "Item Group";
+            dataTable.Rows.Add(dr1);
+
+            DataRow dr2 = dataTable.NewRow();
+            dr2["AppliesToID"] = 3;
+            dr2["AppliesToName"] = "Item";
+            dataTable.Rows.Add(dr2);
+
+            return dataTable;
+        }
     }
 }

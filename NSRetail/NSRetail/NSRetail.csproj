@@ -250,6 +250,36 @@
     <Compile Include="Item\frmItemCodeList.Designer.cs">
       <DependentUpon>frmItemCodeList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Offer\frmGroupItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Offer\frmGroupItems.Designer.cs">
+      <DependentUpon>frmGroupItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Offer\frmItemGroupList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Offer\frmItemGroupList.Designer.cs">
+      <DependentUpon>frmItemGroupList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Offer\frmOfferBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Offer\frmOfferBranch.Designer.cs">
+      <DependentUpon>frmOfferBranch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Offer\frmOfferList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Offer\frmOfferList.Designer.cs">
+      <DependentUpon>frmOfferList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Offer\frmOfferManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Offer\frmOfferManagement.Designer.cs">
+      <DependentUpon>frmOfferManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\rptBarcode.cs">
@@ -418,6 +448,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Item\frmItemCodeList.resx">
       <DependentUpon>frmItemCodeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Offer\frmGroupItems.resx">
+      <DependentUpon>frmGroupItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Offer\frmItemGroupList.resx">
+      <DependentUpon>frmItemGroupList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Offer\frmOfferBranch.resx">
+      <DependentUpon>frmOfferBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Offer\frmOfferList.resx">
+      <DependentUpon>frmOfferList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Offer\frmOfferManagement.resx">
+      <DependentUpon>frmOfferManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
