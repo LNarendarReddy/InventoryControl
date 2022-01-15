@@ -7,7 +7,7 @@ namespace NSRetailPOS.Data
 {
     public class CloudRepository
     {
-        public DataTable GetEntityWiseData(object EntityName, object SyncDate)
+        public DataTable GetEntityWiseData(object EntityName, object SyncDate, object BranchID)
         {
             DataTable dtEntity = new DataTable();
             try
@@ -19,6 +19,7 @@ namespace NSRetailPOS.Data
                     cmd.CommandText = "[USP_R_GETSYNCDATA]";
                     cmd.Parameters.AddWithValue("@EntityName", EntityName);
                     cmd.Parameters.AddWithValue("@SyncDate", SyncDate);
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtEntity);
@@ -27,7 +28,7 @@ namespace NSRetailPOS.Data
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Retreiving Entity wise data List", ex);
+                throw new Exception($"Error While Retreiving Entity wise data List - {EntityName}", ex);
             }
             finally
             {
