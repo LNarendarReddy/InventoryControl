@@ -45,7 +45,7 @@ namespace NSRetailPOS
                 string entityName = entityRow["ENTITYNAME"].ToString();
                 //LoggerUtility.Logger.Info($"{entityName} sync started");
                 ReportText(backgroundWorker, $"{entityName} sync started");
-                DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"]);
+                DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"], branchinfo.BranchID);
                 ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to sync in entity : {entityName} ");
                 syncRepository.SaveData(entityName, dtEntityWiseData);
                 cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);

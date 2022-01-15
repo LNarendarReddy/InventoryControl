@@ -21,6 +21,12 @@ namespace NSRetailPOS.Data
             , { "ROLE",  new EntityMapping("POS_USP_CU_ROLE", "@Role") }
             , { "USER",  new EntityMapping("POS_USP_CU_USER", "@User") }
             , { "UOM",  new EntityMapping("POS_USP_CU_UOM", "@UOM") }
+            , { "ITEMGROUP",  new EntityMapping("POS_USP_CU_ITEMGROUP", "@ItemGroups") }
+            , { "ITEMGROUPDETAIL",  new EntityMapping("POS_USP_CU_ITEMGROUPDETAIL", "@ItemGroupDetails") }
+            , { "OFFERTYPE",  new EntityMapping("POS_USP_CU_OFFERTYPE", "@OfferTypes") }
+            , { "OFFER",  new EntityMapping("POS_USP_CU_OFFER", "@Offers") }
+            , { "OFFERBRANCH",  new EntityMapping("POS_USP_CU_OFFERBRANCH", "@OfferBranches") }
+            , { "OFFERITEMMAP",  new EntityMapping("POS_USP_CU_OFFERITEMMAP", "@OfferItemMaps") }
         };
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)
@@ -43,7 +49,7 @@ namespace NSRetailPOS.Data
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While saving Entity wise data List", ex);
+                throw new Exception($"Error While saving Entity {entityName} wise data List", ex);
             }
             finally
             {

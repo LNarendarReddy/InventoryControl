@@ -21,6 +21,12 @@ namespace WarehouseCloudSync.Data
             , { "ROLE",  new EntityMapping("USP_CU_ROLE", "@Role") }
             , { "USER",  new EntityMapping("USP_CU_USER", "@User") }
             , { "UOM",  new EntityMapping("USP_CU_UOM", "@UOM") }
+            , { "ITEMGROUP",  new EntityMapping("USP_CU_ITEMGROUP", "@ItemGroups") }
+            , { "ITEMGROUPDETAIL",  new EntityMapping("USP_CU_ITEMGROUPDETAIL", "@ItemGroupDetails") }
+            , { "OFFERTYPE",  new EntityMapping("USP_CU_OFFERTYPE", "@OfferTypes") }
+            , { "OFFER",  new EntityMapping("USP_CU_OFFER", "@Offers") }
+            , { "OFFERBRANCH",  new EntityMapping("USP_CU_OFFERBRANCH", "@OfferBranches") }
+            , { "OFFERITEMMAP",  new EntityMapping("USP_CU_OFFERITEMMAP", "@OfferItemMaps") }
         };
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)
@@ -43,7 +49,7 @@ namespace WarehouseCloudSync.Data
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While saving Entity wise data List", ex);
+                throw new Exception($"Error While saving Entity {entityName} wise data List", ex);
             }
             finally
             {
