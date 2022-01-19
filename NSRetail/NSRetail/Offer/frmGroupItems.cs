@@ -57,21 +57,6 @@ namespace NSRetail
             }
         }
 
-        private void cmbItemCode_EditValueChanged(object sender, EventArgs e)
-        {
-            if (cmbItemCode.EditValue == null) return;
-            gvItems.GridControl.BindingContext = new BindingContext();
-            gvItems.GridControl.DataSource = dtItems;
-            if (gvItems.LocateByValue("ITEMCODEID", cmbItemCode.EditValue) >= 0)
-            {
-                XtraMessageBox.Show("Item Already Exists!");
-                cmbItemCode.EditValue = null;
-                cmbItemCode.Focus();
-            }
-            else
-                gvItems.AddNewRow();
-        }
-
         private void gvItems_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
             if (IsGroupItem)
@@ -95,10 +80,6 @@ namespace NSRetail
             gvItems.SetRowCellValue(e.RowHandle, "SUBCATEGORYID", cmbItemCodeView.GetRowCellValue(rowhandle, "SUBCATEGORYID"));
             gvItems.SetRowCellValue(e.RowHandle, "CATEGORYNAME", cmbItemCodeView.GetRowCellValue(rowhandle, "CATEGORYNAME"));
             gvItems.SetRowCellValue(e.RowHandle, "SUBCATEGORYNAME", cmbItemCodeView.GetRowCellValue(rowhandle, "SUBCATEGORYNAME"));
-            cmbItemCode.EditValue = null;
-            cmbItemCode.Focus();
-            gvItems.GridControl.BindingContext = new BindingContext();
-            gvItems.GridControl.DataSource = dtItems;
         }
 
         private void frmGroupItems_KeyPress(object sender, KeyPressEventArgs e)
@@ -107,9 +88,27 @@ namespace NSRetail
                 this.Close();
         }
 
-        private void frmGroupItems_Load(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (cmbItemCode.EditValue == null) return;
+            gvItems.GridControl.BindingContext = new BindingContext();
+            gvItems.GridControl.DataSource = dtItems;
+            if (gvItems.LocateByValue("ITEMCODEID", cmbItemCode.EditValue) >= 0)
+            {
+                XtraMessageBox.Show("Item Already Exists!");
+                cmbItemCode.EditValue = null;
+                cmbItemCode.Focus();
+                return;
+            }
+            else
+                gvItems.AddNewRow();
 
+            gvItems.GridControl.BindingContext = new BindingContext();
+            gvItems.GridControl.DataSource = dtItems;
+            int rowHandle = gvItems.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
+            cmbItemCode.EditValue = null;
+            cmbItemCode.Focus();
+            gvItems.FocusedRowHandle = rowHandle;
         }
     }
 }

@@ -21,9 +21,9 @@ namespace NSRetail
             InitializeComponent();
             this.Text = "Offer Branches - " + OfferName;
             OfferID = _OfferID;
-            gcBranch.DataSource = new OfferRepository().GetOfferBranch(OfferID);
+            gcBranch.DataSource = dtBranch = new OfferRepository().GetOfferBranch(OfferID);
 
-            cmBranch.Properties.DataSource = dtBranch = new MasterRepository().GetBranch();
+            cmBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmBranch.Properties.ValueMember = "BRANCHID";
             cmBranch.Properties.DisplayMember = "BRANCHNAME";
         }
@@ -35,7 +35,25 @@ namespace NSRetail
             gvBranch.DeleteRow(gvBranch.FocusedRowHandle);
         }
 
-        private void cmBranch_EditValueChanged(object sender, EventArgs e)
+        private void gvBranch_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        {
+            int OfferBranchID = new OfferRepository().SaveOfferBranch(OfferID,
+                cmBranch.EditValue, Utility.UserID);
+            gvBranch.SetRowCellValue(e.RowHandle, "OFFERBRANCHID", OfferBranchID);
+            int rowhandle = cmbBranchView.LocateByValue("BRANCHID", cmBranch.EditValue);
+            gvBranch.SetRowCellValue(e.RowHandle, "BRANCHID", cmBranch.EditValue);
+            gvBranch.SetRowCellValue(e.RowHandle, "BRANCHNAME", cmBranch.Text);
+            gvBranch.SetRowCellValue(e.RowHandle, "BRANCHCODE", cmbBranchView.GetRowCellValue(rowhandle, "BRANCHCODE"));
+            gvBranch.SetRowCellValue(e.RowHandle, "PHONENO", cmbBranchView.GetRowCellValue(rowhandle, "PHONENO"));
+        }
+
+        private void frmOfferBranch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Escape)
+                this.Close();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             if (cmBranch.EditValue == null) return;
             if (gvBranch.LocateByValue("BRANCHID", cmBranch.EditValue) >= 0)
@@ -43,35 +61,16 @@ namespace NSRetail
                 XtraMessageBox.Show("Branch Already Exists!");
                 cmBranch.EditValue = null;
                 cmBranch.Focus();
+                return;
             }
             else
                 gvBranch.AddNewRow();
-        }
-
-        private void gvBranch_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
-        {
-            int OfferBranchID = new OfferRepository().SaveOfferBranch(OfferID,
-                cmBranch.EditValue, Utility.UserID);
-            gvBranch.SetRowCellValue(e.RowHandle, "OFFERBRANCHID", OfferBranchID);
-            int rowhandle = cmbBranchView.LocateByValue("BRANCHID", cmBranch.EditValue);
-            gvBranch.SetRowCellValue(e.RowHandle, "BRANCHNAME", cmBranch.Text);
-            gvBranch.SetRowCellValue(e.RowHandle, "BRANCHCODE", cmbBranchView.GetRowCellValue(rowhandle, "BRANCHCODE"));
-            gvBranch.SetRowCellValue(e.RowHandle, "PHONENO", cmbBranchView.GetRowCellValue(rowhandle, "PHONENO"));
             gvBranch.GridControl.BindingContext = new BindingContext();
             gvBranch.GridControl.DataSource = dtBranch;
+            int rowhandle = gvBranch.LocateByValue("BRANCHID", cmBranch.EditValue);
             cmBranch.EditValue = null;
             cmBranch.Focus();
-        }
-
-        private void frmOfferBranch_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmOfferBranch_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Escape)
-                this.Close();
+            gvBranch.FocusedRowHandle = rowhandle;
         }
     }
 }

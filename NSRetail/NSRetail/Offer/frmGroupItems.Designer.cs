@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGroupItems));
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.cmbItemCode = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.cmbItemCodeView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -62,6 +63,7 @@
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode.Properties)).BeginInit();
@@ -72,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -92,6 +95,7 @@
             this.layoutControl1.Appearance.DisabledLayoutGroupCaption.Options.UseFont = true;
             this.layoutControl1.Appearance.DisabledLayoutItem.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.DisabledLayoutItem.Options.UseFont = true;
+            this.layoutControl1.Controls.Add(this.btnAdd);
             this.layoutControl1.Controls.Add(this.cmbItemCode);
             this.layoutControl1.Controls.Add(this.gcItems);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -102,19 +106,31 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnAdd
+            // 
+            this.btnAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.Image")));
+            this.btnAdd.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnAdd.Location = new System.Drawing.Point(954, 10);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(93, 22);
+            this.btnAdd.StyleController = this.layoutControl1;
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Text = "Add Item";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // cmbItemCode
             // 
             this.cmbItemCode.EditValue = "";
+            this.cmbItemCode.EnterMoveNextControl = true;
             this.cmbItemCode.Location = new System.Drawing.Point(105, 10);
             this.cmbItemCode.Name = "cmbItemCode";
             this.cmbItemCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbItemCode.Properties.NullText = "";
             this.cmbItemCode.Properties.PopupView = this.cmbItemCodeView;
-            this.cmbItemCode.Size = new System.Drawing.Size(942, 20);
+            this.cmbItemCode.Size = new System.Drawing.Size(839, 20);
             this.cmbItemCode.StyleController = this.layoutControl1;
-            this.cmbItemCode.TabIndex = 5;
-            this.cmbItemCode.EditValueChanged += new System.EventHandler(this.cmbItemCode_EditValueChanged);
+            this.cmbItemCode.TabIndex = 0;
             // 
             // cmbItemCodeView
             // 
@@ -192,13 +208,13 @@
             // 
             // gcItems
             // 
-            this.gcItems.Location = new System.Drawing.Point(7, 37);
+            this.gcItems.Location = new System.Drawing.Point(7, 39);
             this.gcItems.MainView = this.gvItems;
             this.gcItems.Name = "gcItems";
             this.gcItems.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDelete});
-            this.gcItems.Size = new System.Drawing.Size(1043, 621);
-            this.gcItems.TabIndex = 4;
+            this.gcItems.Size = new System.Drawing.Size(1043, 619);
+            this.gcItems.TabIndex = 2;
             this.gcItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvItems});
             // 
@@ -337,7 +353,8 @@
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
-            this.layoutControlItem2});
+            this.layoutControlItem2,
+            this.layoutControlItem3});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.Root.Size = new System.Drawing.Size(1057, 665);
@@ -346,9 +363,9 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gcItems;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 30);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1047, 625);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1047, 623);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -358,9 +375,19 @@
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem2.Size = new System.Drawing.Size(1047, 30);
+            this.layoutControlItem2.Size = new System.Drawing.Size(944, 32);
             this.layoutControlItem2.Text = "Item Code / Name";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(83, 14);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.btnAdd;
+            this.layoutControlItem3.Location = new System.Drawing.Point(944, 0);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem3.Size = new System.Drawing.Size(103, 32);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
             // 
             // frmGroupItems
             // 
@@ -372,7 +399,6 @@
             this.KeyPreview = true;
             this.Name = "frmGroupItems";
             this.Text = "Group Items";
-            this.Load += new System.EventHandler(this.frmGroupItems_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmGroupItems_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
@@ -384,6 +410,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -418,5 +445,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
+        private DevExpress.XtraEditors.SimpleButton btnAdd;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
     }
 }
