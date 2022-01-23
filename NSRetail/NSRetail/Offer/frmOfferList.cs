@@ -48,14 +48,7 @@ namespace NSRetail
             gvOffer.SetRowCellValue(rowhandle, "OFFERTYPECODE", offer.OfferTypeCode);
             gvOffer.SetRowCellValue(rowhandle, "OFFERTYPENAME", offer.OfferTypeName);
             gvOffer.SetRowCellValue(rowhandle, "AppliesToID", offer.AppliesToID);
-            
-            if (offer.AppliesToID.Equals(0))
-                gvOffer.SetRowCellValue(rowhandle, "AppliesToName", "Category");
-            else if (offer.AppliesToID.Equals(1))
-                gvOffer.SetRowCellValue(rowhandle, "AppliesToName", "Item Group");
-            if (offer.AppliesToID.Equals(2))
-                gvOffer.SetRowCellValue(rowhandle, "AppliesToName", "Item");
-
+            gvOffer.SetRowCellValue(rowhandle, "AppliesToName", offer.AppliesToName);
             gvOffer.SetRowCellValue(rowhandle, "CATEGORYID", offer.CategoryID);
             gvOffer.SetRowCellValue(rowhandle, "CATEGORYNAME", offer.CategoryName);
             gvOffer.SetRowCellValue(rowhandle, "ITEMGROUPID", offer.ItemGroupID);

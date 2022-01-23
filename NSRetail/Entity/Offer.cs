@@ -16,6 +16,8 @@ namespace Entity
         public object DiscountFlat { get; set; }
         public object DiscountPer { get; set; }
         public object AppliesToID { get; set; }
+
+        public object AppliesToName { get; set; }
         public object OfferTypeID { get; set; }
         public object OfferTypeCode { get; set; }
         public object OfferTypeName { get; set; }

@@ -53,6 +53,7 @@ namespace NSRetail
                 txtDiscountPer.EditValue = offer.DiscountPer;
                 cmbCategory.EditValue = offer.CategoryID;
                 cmbItemGroup.EditValue = offer.ItemGroupID;
+                cmbAppliesto.EditValue = offer.AppliesToID;
             }
         }
 
@@ -70,6 +71,7 @@ namespace NSRetail
                 offer.OfferTypeCode = dataRow["OFFERTYPECODE"];
                 offer.OfferTypeName = cmbOfferType.Text;
                 offer.AppliesToID = cmbAppliesto.EditValue;
+                offer.AppliesToName = cmbAppliesto.Text;
                 offer.DiscountFlat = txtDiscountFlat.EditValue;
                 offer.DiscountPer = txtDiscountPer.EditValue;
                 offer.CategoryID = cmbCategory.EditValue;
@@ -107,6 +109,13 @@ namespace NSRetail
                 txtDiscountPer.Enabled = true;
                 txtDiscountFlat.EditValue = null;
             }
+            else if (cmbOfferType.EditValue.Equals(3))
+            {
+                txtDiscountFlat.Enabled = false;
+                txtDiscountPer.Enabled = false;
+                txtDiscountFlat.EditValue = null;
+                txtDiscountPer.EditValue = null;
+            }
             else
             {
                 txtDiscountFlat.Enabled = false;
@@ -120,8 +129,9 @@ namespace NSRetail
         {
             if (cmbAppliesto.EditValue.Equals(1))
             {
-                cmbCategory.Enabled = true;
+                cmbCategory.Enabled = false;
                 cmbItemGroup.Enabled = false;
+                cmbCategory.EditValue = null;
                 cmbItemGroup.EditValue = null;
             }
             else if (cmbAppliesto.EditValue.Equals(2))
@@ -132,9 +142,8 @@ namespace NSRetail
             }
             else
             {
-                cmbCategory.Enabled = false;
+                cmbCategory.Enabled = true;
                 cmbItemGroup.Enabled = false;
-                cmbCategory.EditValue = null;
                 cmbItemGroup.EditValue = null;
             }
         }

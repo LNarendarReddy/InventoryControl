@@ -418,5 +418,32 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
+
+        public DataTable GetApliesTo()
+        {
+            DataTable dtAppliesTo = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_APPLIESTO]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtAppliesTo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Applies To", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtAppliesTo;
+        }
     }
 }
