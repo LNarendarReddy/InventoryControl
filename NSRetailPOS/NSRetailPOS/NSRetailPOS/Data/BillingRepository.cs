@@ -7,9 +7,9 @@ namespace NSRetailPOS.Data
 {
     public class BillingRepository
     {
-        public int SaveBillDetail(DataRow drBillDetail, object userID)
+        public DataTable SaveBillDetail(object billID, object ItemPriceID, object quantity, object weightInKGS, object userID, object billDetailID)
         {
-            int billDetailID;
+            DataTable dtBillDetails = new DataTable();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -17,25 +17,16 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_CU_BILLDETAIL]";
-                    cmd.Parameters.AddWithValue("@BillDetailID", drBillDetail["BILLDETAILID"]);
-                    cmd.Parameters.AddWithValue("@BillID", drBillDetail["BILLID"]);
-                    cmd.Parameters.AddWithValue("@ItemPriceID", drBillDetail["ITEMPRICEID"]);
-                    cmd.Parameters.AddWithValue("@SNo", drBillDetail["SNO"]);
-                    cmd.Parameters.AddWithValue("@Quantity", drBillDetail["QUANTITY"]);
-                    cmd.Parameters.AddWithValue("@WeightInKgs", drBillDetail["WEIGHTINKGS"]);
-                    cmd.Parameters.AddWithValue("@BilledAmount", drBillDetail["BILLEDAMOUNT"]);
-                    cmd.Parameters.AddWithValue("@GSTID", drBillDetail["GSTID"]);
-                    cmd.Parameters.AddWithValue("@CGST", drBillDetail["CGST"]);
-                    cmd.Parameters.AddWithValue("@SGST", drBillDetail["SGST"]);
-                    cmd.Parameters.AddWithValue("@IGST", drBillDetail["IGST"]);
-                    cmd.Parameters.AddWithValue("@Cess", drBillDetail["CESS"]);
-                    cmd.Parameters.AddWithValue("@GSTVALUE", drBillDetail["GSTVALUE"]);
-                    cmd.Parameters.AddWithValue("@DISCOUNT", drBillDetail["DISCOUNT"]);
+                    cmd.Parameters.AddWithValue("@BillID", billID);
+                    cmd.Parameters.AddWithValue("@ItemPriceID", ItemPriceID);
+                    cmd.Parameters.AddWithValue("@Quantity", quantity);
+                    cmd.Parameters.AddWithValue("@WeightInKgs", weightInKGS);
                     cmd.Parameters.AddWithValue("@UserID", userID);
-                    object objReturn = cmd.ExecuteScalar();
-
-                    if (!int.TryParse(objReturn.ToString(), out billDetailID))
-                        throw new Exception(objReturn.ToString());
+                    cmd.Parameters.AddWithValue("@BillDetailID", billDetailID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtBillDetails);
+                    }
                 }
             }
             catch (Exception ex)
@@ -46,7 +37,7 @@ namespace NSRetailPOS.Data
             {
                 SQLCon.Sqlconn().Close();
             }
-            return billDetailID;
+            return dtBillDetails;
         }
 
         public DataSet GetInitialLoad(object userID, object branchCounterID)

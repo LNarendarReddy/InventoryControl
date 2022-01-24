@@ -69,6 +69,8 @@
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.txtQuantity = new DevExpress.XtraEditors.TextEdit();
@@ -403,6 +405,8 @@
             this.gridColumn17,
             this.gridColumn18,
             this.gridColumn19,
+            this.gridColumn24,
+            this.gridColumn25,
             this.gridColumn22});
             this.gvBilling.GridControl = this.gcBilling;
             this.gvBilling.Name = "gvBilling";
@@ -411,7 +415,6 @@
             this.gvBilling.OptionsView.ShowGroupPanel = false;
             this.gvBilling.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn6, DevExpress.Data.ColumnSortOrder.Descending)});
-            this.gvBilling.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvBilling_InitNewRow);
             this.gvBilling.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvBilling_CellValueChanged);
             // 
             // gridColumn4
@@ -522,7 +525,7 @@
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.OptionsColumn.AllowEdit = false;
             this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 7;
+            this.gridColumn21.VisibleIndex = 8;
             this.gridColumn21.Width = 43;
             // 
             // gridColumn14
@@ -534,7 +537,7 @@
             this.gridColumn14.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BILLEDAMOUNT", "{0:0.00}")});
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 8;
+            this.gridColumn14.VisibleIndex = 9;
             this.gridColumn14.Width = 65;
             // 
             // gridColumn15
@@ -572,6 +575,20 @@
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.OptionsColumn.AllowEdit = false;
             // 
+            // gridColumn24
+            // 
+            this.gridColumn24.Caption = "OFFERID";
+            this.gridColumn24.FieldName = "OFFERID";
+            this.gridColumn24.Name = "gridColumn24";
+            // 
+            // gridColumn25
+            // 
+            this.gridColumn25.Caption = "Offer Type Code";
+            this.gridColumn25.FieldName = "OFFERTYPECODE";
+            this.gridColumn25.Name = "gridColumn25";
+            this.gridColumn25.Visible = true;
+            this.gridColumn25.VisibleIndex = 7;
+            // 
             // gridColumn22
             // 
             this.gridColumn22.AppearanceHeader.Options.UseTextOptions = true;
@@ -580,7 +597,7 @@
             this.gridColumn22.ColumnEdit = this.btnDelete;
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 9;
+            this.gridColumn22.VisibleIndex = 10;
             this.gridColumn22.Width = 39;
             // 
             // btnDelete
@@ -1091,6 +1108,8 @@
         private DevExpress.XtraEditors.LabelControl lblProgressText;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
     }
 }
 
