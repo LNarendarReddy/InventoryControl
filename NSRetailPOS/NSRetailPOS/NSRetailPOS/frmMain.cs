@@ -86,46 +86,8 @@ namespace NSRetailPOS
                 return;
             }
 
-            gvBilling.GridControl.BindingContext = new BindingContext();
-            gvBilling.GridControl.DataSource = billObj.dtBillDetails;
-
-            isEventCall = true;
-            int rowHandle = gvBilling.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
-            if (rowHandle < 0)
-            {
-                gvBilling.AddNewRow();
-            }
-            else
-            {
-                if (isOpenItem)
-                {
-                    decimal newWeightInKgs = Convert.ToDecimal(txtWeightInKgs.EditValue) +
-                        Convert.ToDecimal(gvBilling.GetRowCellValue(rowHandle, "WEIGHTINKGS"));
-                    if(newWeightInKgs > 0)
-                        gvBilling.SetRowCellValue(rowHandle, "WEIGHTINKGS", newWeightInKgs);
-                }
-                else
-                {
-                    int newQuantity = Convert.ToInt32(txtQuantity.EditValue) +
-                        Convert.ToInt32(gvBilling.GetRowCellValue(rowHandle, "QUANTITY"));
-                    if (newQuantity > 0)
-                    {
-                        gvBilling.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
-                    }
-                }
-            }
-            isEventCall = false;
-            gvBilling.GridControl.BindingContext = new BindingContext();
-            gvBilling.GridControl.DataSource = billObj.dtBillDetails;
-
-            rowHandle = gvBilling.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
-            if (rowHandle >= 0)
-            {
-                CalculateFields(rowHandle);
-                SaveBillDetail(rowHandle);
-            }
+            SaveBillDetail(drSelectedPrice["ITEMPRICEID"], txtQuantity.EditValue, txtWeightInKgs.EditValue, 0);
             ClearItemData();
-            gvBilling.FocusedRowHandle = rowHandle;
         }
 
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)
@@ -180,26 +142,6 @@ namespace NSRetailPOS
             }
         }
         
-        private void gvBilling_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
-        {
-            gvBilling.SetRowCellValue(e.RowHandle, "BILLDETAILID", -1);
-            gvBilling.SetRowCellValue(e.RowHandle, "BILLID", billObj.BillID);
-            gvBilling.SetRowCellValue(e.RowHandle, "ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
-            gvBilling.SetRowCellValue(e.RowHandle, "SNO", SNo++);
-            gvBilling.SetRowCellValue(e.RowHandle, "ITEMNAME", sluItemCode.Text);
-            gvBilling.SetRowCellValue(e.RowHandle, "ITEMCODE", txtItemCode.EditValue);
-            gvBilling.SetRowCellValue(e.RowHandle, "MRP", drSelectedPrice["MRP"]);
-            gvBilling.SetRowCellValue(e.RowHandle, "SALEPRICE", drSelectedPrice["SALEPRICE"]);
-            gvBilling.SetRowCellValue(e.RowHandle, "GSTCODE", drSelectedPrice["GSTCODE"]);
-            gvBilling.SetRowCellValue(e.RowHandle, "CGSTDESC", drSelectedPrice["CGST"]);
-            gvBilling.SetRowCellValue(e.RowHandle, "SGSTDESC", drSelectedPrice["SGST"]);
-            gvBilling.SetRowCellValue(e.RowHandle, "CESSDESC", drSelectedPrice["CESS"]);
-            gvBilling.SetRowCellValue(e.RowHandle, "ISOPENITEM", isOpenItem);
-            gvBilling.SetRowCellValue(e.RowHandle, "QUANTITY", txtQuantity.EditValue);
-            gvBilling.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
-            gvBilling.SetRowCellValue(e.RowHandle, "ISOPENITEM", isOpenItem);
-        }
-
         private void btnCloseBill_Click(object sender, EventArgs e)
         {
             if (billObj.dtBillDetails.Rows.Count == 0)
@@ -232,50 +174,59 @@ namespace NSRetailPOS
             LoadBillData(nextBillDetails);
         }
 
-        private void CalculateFields(int rowHandle)
+        private void SaveBillDetail(object itemPriceID, object quantity, object weightInKgs, object billDetailID)
         {
-            DataRow drBillDetail = (gvBilling.GetRow(rowHandle) as DataRowView).Row;
-            decimal salePrice = Convert.ToDecimal(drBillDetail["SALEPRICE"])
-                , MRP = Convert.ToDecimal(drBillDetail["MRP"])
-                ,WeightInKgs = Convert.ToDecimal(drBillDetail["WEIGHTINKGS"])
-                , cGSTPer = Convert.ToDecimal(drSelectedPrice["CGST"] ?? drBillDetail["CGST"])
-                , sGSTPer = Convert.ToDecimal(drSelectedPrice["SGST"] ?? drBillDetail["SGST"])
-                , iGSTPer = Convert.ToDecimal(drSelectedPrice["IGST"] ?? drBillDetail["IGST"])
-                , cess = Convert.ToDecimal(drSelectedPrice["CESS"] ?? drBillDetail["CESS"])
-                , billedAmount, cGSTValue, sGSTValue, iGSTValue, cessValue, totalGSTValue, Discount;
+            DataTable dtBillDetails = billingRepository.SaveBillDetail(billObj.BillID
+                , itemPriceID, quantity, weightInKgs, Utility.logininfo.UserID, billDetailID);
+            int updatedRowHandle = 0;
 
-            int.TryParse(drBillDetail["QUANTITY"].ToString(), out int quantity);
-            if (isOpenItem)
-                billedAmount = Math.Round(salePrice * WeightInKgs,2);
-            else
-                billedAmount = Math.Round(salePrice * quantity,2);
-            cGSTValue = Math.Round((billedAmount * cGSTPer) / 100, 2);
-            sGSTValue = Math.Round((billedAmount * sGSTPer) / 100, 2);
-            iGSTValue = Math.Round((billedAmount * iGSTPer) / 100, 2);
-            cessValue = Math.Round((billedAmount * cess) / 100, 2);
+            foreach (DataRow drUpdatedBillDetail in dtBillDetails.Rows)
+            {
+                DataRow drBillDetail;
+                updatedRowHandle = gvBilling.LocateByValue("BILLDETAILID", drUpdatedBillDetail["BILLDETAILID"]);
+                if (updatedRowHandle <= 0)
+                {
+                    drBillDetail = billObj.dtBillDetails.NewRow();
+                    billObj.dtBillDetails.Rows.Add(drBillDetail);
+                    updatedRowHandle = 0;
+                }
+                else
+                {
+                    drBillDetail = gvBilling.GetDataRow(updatedRowHandle);
+                }
 
-            totalGSTValue = cGSTValue + sGSTValue + iGSTValue + cessValue;
-            if (isOpenItem)
-                Discount = Math.Round((MRP - salePrice) * WeightInKgs, 2);
-            else
-                Discount = Math.Round((MRP - salePrice) * quantity, 2);
-
-            drBillDetail["CGST"] = cGSTValue;
-            drBillDetail["SGST"] = sGSTValue;
-            drBillDetail["IGST"] = iGSTValue;
-            drBillDetail["CESS"] = cessValue;
-            drBillDetail["GSTVALUE"] = totalGSTValue;
-            drBillDetail["BILLEDAMOUNT"] = billedAmount;
-            drBillDetail["DISCOUNT"] = Discount;
+                drBillDetail["BILLDETAILID"] = drUpdatedBillDetail["BILLDETAILID"];
+                drBillDetail["BILLID"] = drUpdatedBillDetail["BILLID"];
+                drBillDetail["ITEMPRICEID"] = drUpdatedBillDetail["ITEMPRICEID"];
+                drBillDetail["SNO"] = drUpdatedBillDetail["SNO"];
+                drBillDetail["ITEMNAME"] = drUpdatedBillDetail["ITEMNAME"];
+                drBillDetail["ITEMCODE"] = drUpdatedBillDetail["ITEMCODE"];
+                drBillDetail["HSNCODE"] = drUpdatedBillDetail["HSNCODE"];
+                drBillDetail["MRP"] = drUpdatedBillDetail["MRP"];
+                drBillDetail["SALEPRICE"] = drUpdatedBillDetail["SALEPRICE"];
+                drBillDetail["GSTCODE"] = drUpdatedBillDetail["GSTCODE"];
+                drBillDetail["QUANTITY"] = drUpdatedBillDetail["QUANTITY"];
+                drBillDetail["WEIGHTINKGS"] = drUpdatedBillDetail["WEIGHTINKGS"];
+                drBillDetail["BILLEDAMOUNT"] = drUpdatedBillDetail["BILLEDAMOUNT"];
+                drBillDetail["DISCOUNT"] = drUpdatedBillDetail["DISCOUNT"];
+                drBillDetail["CGST"] = drUpdatedBillDetail["CGST"];
+                drBillDetail["SGST"] = drUpdatedBillDetail["SGST"];
+                drBillDetail["IGST"] = drUpdatedBillDetail["IGST"];
+                drBillDetail["CESS"] = drUpdatedBillDetail["CESS"];
+                drBillDetail["GSTVALUE"] = drUpdatedBillDetail["GSTVALUE"];
+                drBillDetail["GSTID"] = drUpdatedBillDetail["GSTID"];
+                drBillDetail["CGSTDESC"] = drUpdatedBillDetail["CGSTDESC"];
+                drBillDetail["SGSTDESC"] = drUpdatedBillDetail["SGSTDESC"];
+                drBillDetail["CESSDESC"] = drUpdatedBillDetail["CESSDESC"];
+                drBillDetail["ISOPENITEM"] = drUpdatedBillDetail["ISOPENITEM"];
+                drBillDetail["DISCOUNT"] = drUpdatedBillDetail["DISCOUNT"];
+                drBillDetail["OFFERID"] = drUpdatedBillDetail["OFFERID"];
+                drBillDetail["OFFERTYPECODE"] = drUpdatedBillDetail["OFFERTYPECODE"];
+            }
 
             UpdateSummary();
-        }
 
-        private void SaveBillDetail(int rowHandle)
-        {
-            DataRow drBillDetail = (gvBilling.GetRow(rowHandle) as DataRowView).Row;
-            int billDetailID = billingRepository.SaveBillDetail(drBillDetail, Utility.logininfo.UserID);
-            drBillDetail["BILLDETAILID"] = billDetailID;
+            gvBilling.FocusedRowHandle = updatedRowHandle;
         }
 
         private void ClearItemData(bool focusItemCode = true)
@@ -293,6 +244,9 @@ namespace NSRetailPOS
 
         private void UpdateSummary()
         {
+            gvBilling.GridControl.BindingContext = new BindingContext();
+            gvBilling.GridControl.DataSource = billObj.dtBillDetails;
+
             billObj.Amount = gvBilling.Columns["BILLEDAMOUNT"].SummaryItem.SummaryValue;
             billObj.Quantity = gvBilling.Columns["QUANTITY"].SummaryItem.SummaryValue;
             //lblTotalBill.Text = billObj.Amount.ToString();
@@ -455,8 +409,8 @@ namespace NSRetailPOS
         private void gvBilling_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             if (e.Column.FieldName != "QUANTITY" ||  isEventCall) return;
-            CalculateFields(e.RowHandle);
-            SaveBillDetail(e.RowHandle);
+            DataRow drUpdatedBill = gvBilling.GetDataRow(e.RowHandle);
+            SaveBillDetail(drUpdatedBill["ITEMPRICEID"], drUpdatedBill["QUANTITY"], drUpdatedBill["WEIGHTINKGS"], drUpdatedBill["BILLDETAILID"]);
         }
 
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
@@ -478,8 +432,7 @@ namespace NSRetailPOS
             obj.ShowInTaskbar = false;
             obj.IconOptions.ShowIcon = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
-            obj.ShowDialog();
-            
+            obj.ShowDialog();            
         }
 
         private void btnBranchRefund_Click(object sender, EventArgs e)
