@@ -42,8 +42,7 @@ namespace NSRetail
             gvOffer.SetRowCellValue(rowhandle, "OFFERNAME", offer.OfferName);
             gvOffer.SetRowCellValue(rowhandle, "STARTDATE", offer.StartDate);
             gvOffer.SetRowCellValue(rowhandle, "ENDDATE", offer.EndDate);
-            gvOffer.SetRowCellValue(rowhandle, "DISCOUNTFLAT", offer.DiscountFlat);
-            gvOffer.SetRowCellValue(rowhandle, "DISCOUNTPER", offer.DiscountPer);
+            gvOffer.SetRowCellValue(rowhandle, "OFFERVALUE", offer.OfferValue);
             gvOffer.SetRowCellValue(rowhandle, "OFFERTYPEID", offer.OfferTypeID);
             gvOffer.SetRowCellValue(rowhandle, "OFFERTYPECODE", offer.OfferTypeCode);
             gvOffer.SetRowCellValue(rowhandle, "OFFERTYPENAME", offer.OfferTypeName);
@@ -82,8 +81,7 @@ namespace NSRetail
             offer.OfferName = gvOffer.GetFocusedRowCellValue("OFFERNAME");
             offer.StartDate = gvOffer.GetFocusedRowCellValue("STARTDATE");
             offer.EndDate = gvOffer.GetFocusedRowCellValue("ENDDATE");
-            offer.DiscountFlat = gvOffer.GetFocusedRowCellValue("DISCOUNTFLAT");
-            offer.DiscountPer = gvOffer.GetFocusedRowCellValue("DISCOUNTPER");
+            offer.OfferValue = gvOffer.GetFocusedRowCellValue("OFFERVALUE");
             offer.OfferTypeID = gvOffer.GetFocusedRowCellValue("OFFERTYPEID");
             offer.AppliesToID = gvOffer.GetFocusedRowCellValue("AppliesToID");
             offer.OfferTypeCode = gvOffer.GetFocusedRowCellValue("OFFERTYPECODE");
@@ -118,6 +116,9 @@ namespace NSRetail
         }
         private void btnViewItems_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
+
+            if(!gvOffer.GetFocusedRowCellValue("APPLIESTOID").Equals(1))
+                return;
             frmGroupItems obj = new frmGroupItems(null,null,gvOffer.GetFocusedRowCellValue("OFFERNAME"),
                 gvOffer.GetFocusedRowCellValue("OFFERID"),false)
             { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };

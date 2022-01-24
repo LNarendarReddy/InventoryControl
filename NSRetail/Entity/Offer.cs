@@ -13,8 +13,7 @@ namespace Entity
         public object OfferCode { get; set; }
         public object StartDate { get; set; }
         public object EndDate { get; set; }
-        public object DiscountFlat { get; set; }
-        public object DiscountPer { get; set; }
+        public object OfferValue { get; set; }
         public object AppliesToID { get; set; }
 
         public object AppliesToName { get; set; }

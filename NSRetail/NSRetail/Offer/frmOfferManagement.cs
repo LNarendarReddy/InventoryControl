@@ -18,6 +18,7 @@ namespace NSRetail
     {
         public Offer offer { get; set; }
         public bool IsSave = false;
+        private DataTable dtAppliesTo = null;
         public frmOfferManagement()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace NSRetail
 
         private void frmOfferManagement_Load(object sender, EventArgs e)
         {
-            cmbAppliesto.Properties.DataSource = Utility.AppliesTo();
+            cmbAppliesto.Properties.DataSource = dtAppliesTo = Utility.AppliesTo().Copy();
             cmbAppliesto.Properties.ValueMember = "AppliesToID";
             cmbAppliesto.Properties.DisplayMember = "AppliesToName";
 
@@ -49,8 +50,7 @@ namespace NSRetail
                 dtpEndDate.EditValue = offer.EndDate;
                 cmbOfferType.EditValue = offer.OfferTypeID;
                 chkIsActive.EditValue = offer.IsActive;
-                txtDiscountFlat.EditValue = offer.DiscountFlat;
-                txtDiscountPer.EditValue = offer.DiscountPer;
+                txtOfferValue.EditValue = offer.OfferValue;
                 cmbCategory.EditValue = offer.CategoryID;
                 cmbItemGroup.EditValue = offer.ItemGroupID;
                 cmbAppliesto.EditValue = offer.AppliesToID;
@@ -72,8 +72,7 @@ namespace NSRetail
                 offer.OfferTypeName = cmbOfferType.Text;
                 offer.AppliesToID = cmbAppliesto.EditValue;
                 offer.AppliesToName = cmbAppliesto.Text;
-                offer.DiscountFlat = txtDiscountFlat.EditValue;
-                offer.DiscountPer = txtDiscountPer.EditValue;
+                offer.OfferValue = txtOfferValue.EditValue;
                 offer.CategoryID = cmbCategory.EditValue;
                 offer.CategoryName = cmbCategory.Text;
                 offer.ItemGroupID = cmbItemGroup.EditValue;
@@ -97,31 +96,27 @@ namespace NSRetail
 
         private void cmbOfferType_EditValueChanged(object sender, EventArgs e)
         {
-            if (cmbOfferType.EditValue.Equals(1))
+            bool filterCategory = false;
+            if (cmbOfferType.EditValue.Equals(1) || 
+                cmbOfferType.EditValue.Equals(2) || 
+                cmbOfferType.EditValue.Equals(3))
             {
-                txtDiscountFlat.Enabled = true;
-                txtDiscountPer.Enabled = false;
-                txtDiscountPer.EditValue = null;
-            }
-            else if (cmbOfferType.EditValue.Equals(2))
-            {
-                txtDiscountFlat.Enabled = false;
-                txtDiscountPer.Enabled = true;
-                txtDiscountFlat.EditValue = null;
-            }
-            else if (cmbOfferType.EditValue.Equals(3))
-            {
-                txtDiscountFlat.Enabled = false;
-                txtDiscountPer.Enabled = false;
-                txtDiscountFlat.EditValue = null;
-                txtDiscountPer.EditValue = null;
+                txtOfferValue.Enabled = true;
+                if (cmbOfferType.EditValue.Equals(3))
+                    filterCategory = true;
             }
             else
             {
-                txtDiscountFlat.Enabled = false;
-                txtDiscountPer.Enabled = false;
-                txtDiscountFlat.EditValue = null;
-                txtDiscountPer.EditValue = null;
+                txtOfferValue.Enabled = false;
+                txtOfferValue.EditValue = null;
+                filterCategory = true;
+            }
+
+            if (filterCategory)
+            {
+                DataView dv = dtAppliesTo.Copy().DefaultView;
+                dv.RowFilter = "AppliesToID <> 3";
+                cmbAppliesto.Properties.DataSource = dv.ToTable();
             }
         }
 
@@ -136,9 +131,9 @@ namespace NSRetail
             }
             else if (cmbAppliesto.EditValue.Equals(2))
             {
-                cmbCategory.Enabled = false;
                 cmbItemGroup.Enabled = true;
                 cmbCategory.EditValue = null;
+                cmbCategory.Enabled = false;
             }
             else
             {

@@ -210,8 +210,7 @@ namespace DataAccess
                     cmd.Parameters.Add("@OfferCode", offer.OfferCode);
                     cmd.Parameters.Add("@StartDate", offer.StartDate);
                     cmd.Parameters.Add("@EndDate", offer.EndDate);
-                    cmd.Parameters.Add("@DiscountFlat", offer.DiscountFlat);
-                    cmd.Parameters.Add("@DiscountPer", offer.DiscountPer);
+                    cmd.Parameters.Add("@OfferValue", offer.OfferValue);
                     cmd.Parameters.Add("@AppliesToID", offer.AppliesToID);
                     cmd.Parameters.Add("@OfferTypeID", offer.OfferTypeID);
                     cmd.Parameters.Add("@CategoryID", offer.CategoryID);
@@ -418,7 +417,6 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
-
         public DataTable GetApliesTo()
         {
             DataTable dtAppliesTo = new DataTable();
