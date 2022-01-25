@@ -116,8 +116,7 @@ namespace NSRetail
         }
         private void btnViewItems_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-
-            if(!gvOffer.GetFocusedRowCellValue("APPLIESTOID").Equals(1))
+            if(!gvOffer.GetFocusedRowCellValue("AppliesToID").Equals(1))
                 return;
             frmGroupItems obj = new frmGroupItems(null,null,gvOffer.GetFocusedRowCellValue("OFFERNAME"),
                 gvOffer.GetFocusedRowCellValue("OFFERID"),false)

@@ -93,5 +93,33 @@ namespace NSRetailPOS.Data
             }
             return dtItemCodes;
         }
+
+        public DataTable GetOfferList(object ItemPriceID)
+        {
+            DataTable dtOffers = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_R_GETOFFERS]";
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtOffers);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Offer List", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtOffers;
+        }
     }
 }

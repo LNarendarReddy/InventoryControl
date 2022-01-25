@@ -156,12 +156,12 @@
             this.drFooter = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail3 = new DevExpress.XtraReports.UI.DetailBand();
             this.ReportFooter4 = new DevExpress.XtraReports.UI.ReportFooterBand();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrBarCode1 = new DevExpress.XtraReports.UI.XRBarCode();
             this.xrTable10 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow19 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell45 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
@@ -733,6 +733,7 @@
             // 
             this.GroupHeader2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable11});
+            this.GroupHeader2.Expanded = false;
             this.GroupHeader2.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("CGSTDESC", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader2.HeightF = 28F;
@@ -781,6 +782,7 @@
             // 
             // Detail1
             // 
+            this.Detail1.Expanded = false;
             this.Detail1.HeightF = 0F;
             this.Detail1.Name = "Detail1";
             // 
@@ -1231,11 +1233,13 @@
             this.drFooter.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail3,
             this.ReportFooter4});
+            this.drFooter.Expanded = false;
             this.drFooter.Level = 3;
             this.drFooter.Name = "drFooter";
             // 
             // Detail3
             // 
+            this.Detail3.Expanded = false;
             this.Detail3.HeightF = 0F;
             this.Detail3.Name = "Detail3";
             // 
@@ -1246,8 +1250,20 @@
             this.xrBarCode1,
             this.xrTable10,
             this.xrLabel1});
+            this.ReportFooter4.Expanded = false;
             this.ReportFooter4.HeightF = 134.9379F;
             this.ReportFooter4.Name = "ReportFooter4";
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 122.9379F);
+            this.xrLabel2.Multiline = true;
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(275F, 12F);
+            this.xrLabel2.StylePriority.UseTextAlignment = false;
+            this.xrLabel2.Text = "***";
+            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrBarCode1
             // 
@@ -1305,17 +1321,6 @@
             this.xrLabel1.Summary = xrSummary14;
             this.xrLabel1.Text = "xrLabel1";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
-            // xrLabel2
-            // 
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 122.9379F);
-            this.xrLabel2.Multiline = true;
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(275F, 12F);
-            this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = "***";
-            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // rptBill
             // 

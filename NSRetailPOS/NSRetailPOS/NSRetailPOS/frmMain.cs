@@ -55,6 +55,10 @@ namespace NSRetailPOS
             sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
 
             LoadBillData(dsInitialData);
+
+            lblOffer.Text = "Offer : ";
+            lblDeal.Text = "Deal : ";
+
             bgSyncWorker.WorkerReportsProgress = true;
             bgSyncWorker.DoWork += BgSyncWorker_DoWork;
             bgSyncWorker.ProgressChanged += BgSyncWorker_ProgressChanged;
@@ -125,6 +129,11 @@ namespace NSRetailPOS
                 return;
             }
 
+            DataTable dtOffers = itemRepository.GetOfferList(drSelectedPrice["ITEMPRICEID"]);
+
+            lblOffer.Text = Convert.ToString(dtOffers.Rows[0]["OFFERTYPE"]);
+            lblDeal.Text = Convert.ToString(dtOffers.Rows[0]["DEALTYPE"]);
+
             //txtItemName.EditValue = (sluItemCode.GetSelectedDataRow() as DataRowView)?.Row["ITEMNAME"];
             txtMRP.EditValue = drSelectedPrice["MRP"];
             txtSalePrice.EditValue = drSelectedPrice["SALEPRICE"];
@@ -184,7 +193,7 @@ namespace NSRetailPOS
             {
                 DataRow drBillDetail;
                 updatedRowHandle = gvBilling.LocateByValue("BILLDETAILID", drUpdatedBillDetail["BILLDETAILID"]);
-                if (updatedRowHandle <= 0)
+                if (updatedRowHandle < 0)
                 {
                     drBillDetail = billObj.dtBillDetails.NewRow();
                     billObj.dtBillDetails.Rows.Add(drBillDetail);
@@ -238,6 +247,8 @@ namespace NSRetailPOS
             txtQuantity.EditValue = 1;
             txtWeightInKgs.EditValue = 0.00;
             txtQuantity.ReadOnly = false;
+            lblOffer.Text = "Offer : ";
+            lblDeal.Text = "Deal : ";
             if (focusItemCode)
                 txtItemCode.Focus();
         }
