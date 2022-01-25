@@ -187,55 +187,8 @@ namespace NSRetailPOS
         {
             DataTable dtBillDetails = billingRepository.SaveBillDetail(billObj.BillID
                 , itemPriceID, quantity, weightInKgs, Utility.logininfo.UserID, billDetailID);
-            int updatedRowHandle = 0;
 
-            foreach (DataRow drUpdatedBillDetail in dtBillDetails.Rows)
-            {
-                DataRow drBillDetail;
-                updatedRowHandle = gvBilling.LocateByValue("BILLDETAILID", drUpdatedBillDetail["BILLDETAILID"]);
-                if (updatedRowHandle < 0)
-                {
-                    drBillDetail = billObj.dtBillDetails.NewRow();
-                    billObj.dtBillDetails.Rows.Add(drBillDetail);
-                    updatedRowHandle = 0;
-                }
-                else
-                {
-                    drBillDetail = gvBilling.GetDataRow(updatedRowHandle);
-                }
-
-                drBillDetail["BILLDETAILID"] = drUpdatedBillDetail["BILLDETAILID"];
-                drBillDetail["BILLID"] = drUpdatedBillDetail["BILLID"];
-                drBillDetail["ITEMPRICEID"] = drUpdatedBillDetail["ITEMPRICEID"];
-                drBillDetail["SNO"] = drUpdatedBillDetail["SNO"];
-                drBillDetail["ITEMNAME"] = drUpdatedBillDetail["ITEMNAME"];
-                drBillDetail["ITEMCODE"] = drUpdatedBillDetail["ITEMCODE"];
-                drBillDetail["HSNCODE"] = drUpdatedBillDetail["HSNCODE"];
-                drBillDetail["MRP"] = drUpdatedBillDetail["MRP"];
-                drBillDetail["SALEPRICE"] = drUpdatedBillDetail["SALEPRICE"];
-                drBillDetail["GSTCODE"] = drUpdatedBillDetail["GSTCODE"];
-                drBillDetail["QUANTITY"] = drUpdatedBillDetail["QUANTITY"];
-                drBillDetail["WEIGHTINKGS"] = drUpdatedBillDetail["WEIGHTINKGS"];
-                drBillDetail["BILLEDAMOUNT"] = drUpdatedBillDetail["BILLEDAMOUNT"];
-                drBillDetail["DISCOUNT"] = drUpdatedBillDetail["DISCOUNT"];
-                drBillDetail["CGST"] = drUpdatedBillDetail["CGST"];
-                drBillDetail["SGST"] = drUpdatedBillDetail["SGST"];
-                drBillDetail["IGST"] = drUpdatedBillDetail["IGST"];
-                drBillDetail["CESS"] = drUpdatedBillDetail["CESS"];
-                drBillDetail["GSTVALUE"] = drUpdatedBillDetail["GSTVALUE"];
-                drBillDetail["GSTID"] = drUpdatedBillDetail["GSTID"];
-                drBillDetail["CGSTDESC"] = drUpdatedBillDetail["CGSTDESC"];
-                drBillDetail["SGSTDESC"] = drUpdatedBillDetail["SGSTDESC"];
-                drBillDetail["CESSDESC"] = drUpdatedBillDetail["CESSDESC"];
-                drBillDetail["ISOPENITEM"] = drUpdatedBillDetail["ISOPENITEM"];
-                drBillDetail["DISCOUNT"] = drUpdatedBillDetail["DISCOUNT"];
-                drBillDetail["OFFERID"] = drUpdatedBillDetail["OFFERID"];
-                drBillDetail["OFFERTYPECODE"] = drUpdatedBillDetail["OFFERTYPECODE"];
-            }
-
-            UpdateSummary();
-
-            gvBilling.FocusedRowHandle = updatedRowHandle;
+            UpdateBillDetails(dtBillDetails);            
         }
 
         private void ClearItemData(bool focusItemCode = true)
@@ -406,9 +359,9 @@ namespace NSRetailPOS
                 SNo++;
             }
 
-            billingRepository.DeleteBillDetail(billDetailID, Utility.logininfo.UserID, dtSNos);
+            DataTable dtBillingDetails = billingRepository.DeleteBillDetail(billDetailID, Utility.logininfo.UserID, dtSNos);
             gvBilling.DeleteRow(gvBilling.FocusedRowHandle);
-            UpdateSummary();
+            UpdateBillDetails(dtBillingDetails);
             txtItemCode.Focus();
         }
 
@@ -465,6 +418,59 @@ namespace NSRetailPOS
             {
                 XtraMessageBox.Show(ex.Message,"Error");
             }
+        }
+
+        private void UpdateBillDetails(DataTable dtBillDetails)
+        {
+            int updatedRowHandle = 0;
+
+            foreach (DataRow drUpdatedBillDetail in dtBillDetails.Rows)
+            {
+                DataRow drBillDetail;
+                updatedRowHandle = gvBilling.LocateByValue("BILLDETAILID", drUpdatedBillDetail["BILLDETAILID"]);
+                if (updatedRowHandle < 0)
+                {
+                    drBillDetail = billObj.dtBillDetails.NewRow();
+                    billObj.dtBillDetails.Rows.Add(drBillDetail);
+                    updatedRowHandle = 0;
+                }
+                else
+                {
+                    drBillDetail = gvBilling.GetDataRow(updatedRowHandle);
+                }
+
+                drBillDetail["BILLDETAILID"] = drUpdatedBillDetail["BILLDETAILID"];
+                drBillDetail["BILLID"] = drUpdatedBillDetail["BILLID"];
+                drBillDetail["ITEMPRICEID"] = drUpdatedBillDetail["ITEMPRICEID"];
+                drBillDetail["SNO"] = drUpdatedBillDetail["SNO"];
+                drBillDetail["ITEMNAME"] = drUpdatedBillDetail["ITEMNAME"];
+                drBillDetail["ITEMCODE"] = drUpdatedBillDetail["ITEMCODE"];
+                drBillDetail["HSNCODE"] = drUpdatedBillDetail["HSNCODE"];
+                drBillDetail["MRP"] = drUpdatedBillDetail["MRP"];
+                drBillDetail["SALEPRICE"] = drUpdatedBillDetail["SALEPRICE"];
+                drBillDetail["GSTCODE"] = drUpdatedBillDetail["GSTCODE"];
+                drBillDetail["QUANTITY"] = drUpdatedBillDetail["QUANTITY"];
+                drBillDetail["WEIGHTINKGS"] = drUpdatedBillDetail["WEIGHTINKGS"];
+                drBillDetail["BILLEDAMOUNT"] = drUpdatedBillDetail["BILLEDAMOUNT"];
+                drBillDetail["DISCOUNT"] = drUpdatedBillDetail["DISCOUNT"];
+                drBillDetail["CGST"] = drUpdatedBillDetail["CGST"];
+                drBillDetail["SGST"] = drUpdatedBillDetail["SGST"];
+                drBillDetail["IGST"] = drUpdatedBillDetail["IGST"];
+                drBillDetail["CESS"] = drUpdatedBillDetail["CESS"];
+                drBillDetail["GSTVALUE"] = drUpdatedBillDetail["GSTVALUE"];
+                drBillDetail["GSTID"] = drUpdatedBillDetail["GSTID"];
+                drBillDetail["CGSTDESC"] = drUpdatedBillDetail["CGSTDESC"];
+                drBillDetail["SGSTDESC"] = drUpdatedBillDetail["SGSTDESC"];
+                drBillDetail["CESSDESC"] = drUpdatedBillDetail["CESSDESC"];
+                drBillDetail["ISOPENITEM"] = drUpdatedBillDetail["ISOPENITEM"];
+                drBillDetail["DISCOUNT"] = drUpdatedBillDetail["DISCOUNT"];
+                drBillDetail["OFFERID"] = drUpdatedBillDetail["OFFERID"];
+                drBillDetail["OFFERTYPECODE"] = drUpdatedBillDetail["OFFERTYPECODE"];
+            }
+
+            UpdateSummary();
+
+            gvBilling.FocusedRowHandle = updatedRowHandle;
         }
     }
 }

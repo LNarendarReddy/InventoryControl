@@ -150,8 +150,9 @@ namespace NSRetailPOS.Data
             return dsNextBill;
         }
 
-        public void DeleteBillDetail(object billDetailID, object userID, DataTable dtSNos)
+        public DataTable DeleteBillDetail(object billDetailID, object userID, DataTable dtSNos)
         {
+            DataTable dtBillDetails = new DataTable();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -162,7 +163,10 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@UserID", userID);
                     cmd.Parameters.AddWithValue("@BillDetailID", billDetailID);
                     cmd.Parameters.AddWithValue("@SNos", dtSNos);
-                    cmd.ExecuteNonQuery();
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtBillDetails);
+                    }
                 }
             }
             catch (Exception ex)
@@ -173,6 +177,8 @@ namespace NSRetailPOS.Data
             {
                 SQLCon.Sqlconn().Close();
             }
+
+            return dtBillDetails;
         }
 
         public DataTable GetMOPs()
