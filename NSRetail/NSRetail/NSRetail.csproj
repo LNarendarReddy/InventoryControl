@@ -76,6 +76,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Counting\frmStockCounting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Counting\frmStockCounting.Designer.cs">
+      <DependentUpon>frmStockCounting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Counting\frmViewItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Counting\frmViewItems.Designer.cs">
+      <DependentUpon>frmViewItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Item\frmAddCode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,6 +374,12 @@
       <DependentUpon>frmSyncStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Utility.cs" />
+    <EmbeddedResource Include="Counting\frmStockCounting.resx">
+      <DependentUpon>frmStockCounting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Counting\frmViewItems.resx">
+      <DependentUpon>frmViewItems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Item\frmAddCode.resx">
       <DependentUpon>frmAddCode.cs</DependentUpon>
     </EmbeddedResource>
@@ -558,9 +576,7 @@
   <ItemGroup>
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Counting\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
