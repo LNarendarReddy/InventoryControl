@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnBranch = new DevExpress.XtraBars.BarButtonItem();
             this.btnBranchCouter = new DevExpress.XtraBars.BarButtonItem();
@@ -60,11 +60,15 @@
             this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             this.bbiSyncStatus = new DevExpress.XtraBars.BarButtonItem();
             this.btnItemGroup = new DevExpress.XtraBars.BarButtonItem();
+            this.btnOfferList = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStockCounting = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -73,8 +77,6 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnOfferList = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -110,9 +112,10 @@
             this.skinDropDownButtonItem1,
             this.bbiSyncStatus,
             this.btnItemGroup,
-            this.btnOfferList});
+            this.btnOfferList,
+            this.btnStockCounting});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 31;
+            this.ribbonControl1.MaxItemId = 32;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage3,
@@ -500,6 +503,38 @@
             this.btnItemGroup.Name = "btnItemGroup";
             this.btnItemGroup.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItemGroup_ItemClick);
             // 
+            // btnOfferList
+            // 
+            this.btnOfferList.Caption = "Offer List";
+            this.btnOfferList.Id = 30;
+            this.btnOfferList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnOfferList.ImageOptions.SvgImage")));
+            this.btnOfferList.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnOfferList.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnOfferList.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnOfferList.ItemAppearance.Hovered.Options.UseFont = true;
+            this.btnOfferList.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnOfferList.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnOfferList.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnOfferList.ItemAppearance.Pressed.Options.UseFont = true;
+            this.btnOfferList.Name = "btnOfferList";
+            this.btnOfferList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOfferList_ItemClick);
+            // 
+            // btnStockCounting
+            // 
+            this.btnStockCounting.Caption = "Stock Counting";
+            this.btnStockCounting.Id = 31;
+            this.btnStockCounting.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockCounting.ImageOptions.SvgImage")));
+            this.btnStockCounting.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnStockCounting.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnStockCounting.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnStockCounting.ItemAppearance.Hovered.Options.UseFont = true;
+            this.btnStockCounting.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnStockCounting.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnStockCounting.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnStockCounting.ItemAppearance.Pressed.Options.UseFont = true;
+            this.btnStockCounting.Name = "btnStockCounting";
+            this.btnStockCounting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockCounting_ItemClick);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Appearance.Font = new System.Drawing.Font("Arial", 9F);
@@ -509,7 +544,8 @@
             this.ribbonPageGroup3,
             this.ribbonPageGroup5,
             this.ribbonPageGroup6,
-            this.ribbonPageGroup8});
+            this.ribbonPageGroup8,
+            this.ribbonPageGroup9});
             this.ribbonPage3.Name = "ribbonPage3";
             this.ribbonPage3.Text = "Operations";
             // 
@@ -548,6 +584,19 @@
             this.ribbonPageGroup6.ItemLinks.Add(this.bbiSyncStatus);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             this.ribbonPageGroup6.Text = "Summary";
+            // 
+            // ribbonPageGroup8
+            // 
+            this.ribbonPageGroup8.ItemLinks.Add(this.btnItemGroup);
+            this.ribbonPageGroup8.ItemLinks.Add(this.btnOfferList);
+            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
+            this.ribbonPageGroup8.Text = "Offer & Deals";
+            // 
+            // ribbonPageGroup9
+            // 
+            this.ribbonPageGroup9.ItemLinks.Add(this.btnStockCounting);
+            this.ribbonPageGroup9.Name = "ribbonPageGroup9";
+            this.ribbonPageGroup9.Text = "Stock Counting";
             // 
             // ribbonPage4
             // 
@@ -597,9 +646,9 @@
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
-            editorButtonImageOptions3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions3.SvgImage")));
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -614,29 +663,6 @@
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
-            // 
-            // ribbonPageGroup8
-            // 
-            this.ribbonPageGroup8.ItemLinks.Add(this.btnItemGroup);
-            this.ribbonPageGroup8.ItemLinks.Add(this.btnOfferList);
-            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
-            this.ribbonPageGroup8.Text = "Offer & Deals";
-            // 
-            // btnOfferList
-            // 
-            this.btnOfferList.Caption = "Offer List";
-            this.btnOfferList.Id = 30;
-            this.btnOfferList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnOfferList.ImageOptions.SvgImage")));
-            this.btnOfferList.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 9F);
-            this.btnOfferList.ItemAppearance.Disabled.Options.UseFont = true;
-            this.btnOfferList.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 9F);
-            this.btnOfferList.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnOfferList.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 9F);
-            this.btnOfferList.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnOfferList.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 9F);
-            this.btnOfferList.ItemAppearance.Pressed.Options.UseFont = true;
-            this.btnOfferList.Name = "btnOfferList";
-            this.btnOfferList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOfferList_ItemClick);
             // 
             // frmMain
             // 
@@ -702,6 +728,8 @@
         private DevExpress.XtraBars.BarButtonItem btnItemGroup;
         private DevExpress.XtraBars.BarButtonItem btnOfferList;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
+        private DevExpress.XtraBars.BarButtonItem btnStockCounting;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
     }
 }
 

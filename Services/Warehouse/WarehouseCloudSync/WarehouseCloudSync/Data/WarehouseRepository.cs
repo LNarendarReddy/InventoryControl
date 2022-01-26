@@ -14,10 +14,8 @@ namespace WarehouseCloudSync.Data
             , { "STOCKDISPATCH",  new EntityMapping("USP_SYNC_CU_STOCKDISPATCH", "@StockDispatch") }
             , { "STOCKDISPATCHDETAIL",  new EntityMapping("USP_SYNC_CU_STOCKDISPATCHDETAIL", "@StockDispatchDetail") }
             , { "USER",  new EntityMapping("POS_USP_CU_USER", "@User") }
-            , { "CLOUD_STOCKCOUNTING",  new EntityMapping("POS_USP_CU_USER", "@User") }
-            , { "CLOUD_STOCKCOUNTINGDETAIL",  new EntityMapping("POS_USP_CU_USER", "@User") }
-            , { "CLOUD_STOCKDISPATCH",  new EntityMapping("POS_USP_CU_USER", "@User") }
-            , { "CLOUD_STOCKDISPATCHDETAIL",  new EntityMapping("POS_USP_CU_USER", "@User") }
+            , { "CLOUD_STOCKCOUNTING",  new EntityMapping("USP_SYNC_CU_STOCKCOUNTING", "@StockCounting") }
+            , { "CLOUD_STOCKCOUNTINGDETAIL",  new EntityMapping("USP_SYNC_CU_STOCKCOUNTINGDETAIL", "@StockCountingDetail") }
         };
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)

@@ -188,7 +188,7 @@ namespace NSRetailPOS
             DataTable dtBillDetails = billingRepository.SaveBillDetail(billObj.BillID
                 , itemPriceID, quantity, weightInKgs, Utility.logininfo.UserID, billDetailID);
 
-            UpdateBillDetails(dtBillDetails);            
+            UpdateBillDetails(dtBillDetails, itemPriceID);
         }
 
         private void ClearItemData(bool focusItemCode = true)
@@ -361,7 +361,7 @@ namespace NSRetailPOS
 
             DataTable dtBillingDetails = billingRepository.DeleteBillDetail(billDetailID, Utility.logininfo.UserID, dtSNos);
             gvBilling.DeleteRow(gvBilling.FocusedRowHandle);
-            UpdateBillDetails(dtBillingDetails);
+            UpdateBillDetails(dtBillingDetails, 0);
             txtItemCode.Focus();
         }
 
@@ -420,7 +420,7 @@ namespace NSRetailPOS
             }
         }
 
-        private void UpdateBillDetails(DataTable dtBillDetails)
+        private void UpdateBillDetails(DataTable dtBillDetails, object itemPriceID)
         {
             int updatedRowHandle = 0;
 
@@ -470,7 +470,7 @@ namespace NSRetailPOS
 
             UpdateSummary();
 
-            gvBilling.FocusedRowHandle = updatedRowHandle;
+            gvBilling.FocusedRowHandle = gvBilling.LocateByValue("ITEMPRICEID", itemPriceID);
         }
     }
 }
