@@ -228,10 +228,10 @@
             // 
             this.lblProgressText.Appearance.Options.UseTextOptions = true;
             this.lblProgressText.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.lblProgressText.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
             this.lblProgressText.Location = new System.Drawing.Point(4, 626);
-            this.lblProgressText.MaximumSize = new System.Drawing.Size(254, 0);
             this.lblProgressText.Name = "lblProgressText";
-            this.lblProgressText.Size = new System.Drawing.Size(254, 15);
+            this.lblProgressText.Size = new System.Drawing.Size(80, 15);
             this.lblProgressText.StyleController = this.layoutControl1;
             this.lblProgressText.TabIndex = 29;
             this.lblProgressText.Text = "Sync Progress";
@@ -1052,6 +1052,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            this.layoutControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightInKgs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastBilledQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastBilledAmount.Properties)).EndInit();
