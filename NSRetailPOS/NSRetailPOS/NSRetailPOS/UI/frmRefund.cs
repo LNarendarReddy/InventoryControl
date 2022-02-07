@@ -108,10 +108,14 @@ namespace NSRetailPOS.UI
                     , cGSTPer = Convert.ToDecimal(drBillDetail["CGSTDESC"])
                     , sGSTPer = Convert.ToDecimal(drBillDetail["SGSTDESC"])
                     , cess = Convert.ToDecimal(drBillDetail["CESSDESC"])
-                    , billedAmount, cGSTValue, sGSTValue, cessValue, totalGSTValue, Discount;
+                    , billedAmount = Convert.ToDecimal(drBillDetail["BILLEDAMOUNT"])
+                    , cGSTValue, sGSTValue, cessValue, totalGSTValue, Discount,
+                    SalePriceAfterDiscount,RefundAmount;
 
-                billedAmount = salePrice * rquantity;
-                cGSTValue = Math.Round((billedAmount * cGSTPer) / 100, 2);
+
+                SalePriceAfterDiscount = billedAmount / bquantity;
+                RefundAmount = SalePriceAfterDiscount * rquantity;
+                 cGSTValue = Math.Round((billedAmount * cGSTPer) / 100, 2);
                 sGSTValue = Math.Round((billedAmount * sGSTPer) / 100, 2);
                 cessValue = Math.Round((billedAmount * cess) / 100, 2);
 

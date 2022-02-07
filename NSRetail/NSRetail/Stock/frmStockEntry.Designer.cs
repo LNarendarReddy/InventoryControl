@@ -372,6 +372,7 @@
             this.gridColumn18});
             this.gvStockEntry.GridControl = this.gcStockEntry;
             this.gvStockEntry.Name = "gvStockEntry";
+            this.gvStockEntry.OptionsView.ShowFooter = true;
             this.gvStockEntry.OptionsView.ShowGroupPanel = false;
             this.gvStockEntry.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvStockEntry_InitNewRow);
             this.gvStockEntry.DoubleClick += new System.EventHandler(this.gvStockEntry_DoubleClick);

@@ -11,9 +11,15 @@ namespace WarehouseCloudSync.Data
         {
             { "POS_BILL",  new EntityMapping("USP_CU_POS_BILL", "@Bills") }
             , { "POS_BILLDETAIL",  new EntityMapping("USP_CU_POS_BILLDETAIL", "@BillDetails") }
+            , { "POS_BILLMOPDETAIL",  new EntityMapping("USP_SYNC_CU_BILLMOPDETAIL", "@BillMopDetails") }
+            , { "POS_BREFUND",  new EntityMapping("USP_SYNC_CU_BREFUND", "@BRefundDetails") }
+            , { "POS_BREFUNDDETAIL",  new EntityMapping("USP_SYNC_CU_BREFUNDDETAL", "@BRefundDetails") }
+            , { "POS_CREFUND",  new EntityMapping("USP_SYNC_CU_CREFUND", "@CRefundDetails") }
+            , { "POS_DAYCLOSURE",  new EntityMapping("USP_SYNC_CU_DAYCLOSURE", "@DayClosure") }
+            , { "POS_DAYCLOSUREDETAIL",  new EntityMapping("USP_SYNC_CU_DAYCLOSUREDETAIL", "@DayClosureDetail") }
             , { "STOCKDISPATCH",  new EntityMapping("USP_SYNC_CU_STOCKDISPATCH", "@StockDispatch") }
             , { "STOCKDISPATCHDETAIL",  new EntityMapping("USP_SYNC_CU_STOCKDISPATCHDETAIL", "@StockDispatchDetail") }
-            , { "USER",  new EntityMapping("POS_USP_CU_USER", "@User") }
+            , { "USER",  new EntityMapping("USP_SYNC_CU_USER", "@User") }
             , { "CLOUD_STOCKCOUNTING",  new EntityMapping("USP_SYNC_CU_STOCKCOUNTING", "@StockCounting") }
             , { "CLOUD_STOCKCOUNTINGDETAIL",  new EntityMapping("USP_SYNC_CU_STOCKCOUNTINGDETAIL", "@StockCountingDetail") }
         };

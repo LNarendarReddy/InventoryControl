@@ -9,14 +9,14 @@ namespace WarehouseCloudSync
         /// </summary>
         static void Main()
         {
-            //ServiceBase[] ServicesToRun;
-            //ServicesToRun = new ServiceBase[]
-            //{
-            //    new NSRetailWareHouseCloudSync()
-            //};
-            //ServiceBase.Run(ServicesToRun);
+            ServiceBase[] ServicesToRun;
+            ServicesToRun = new ServiceBase[]
+            {
+                new NSRetailWareHouseCloudSync()
+            };
+            ServiceBase.Run(ServicesToRun);
 
-            new SyncData().StartSync();
+            //new SyncData().StartSync();
         }
     }
 }

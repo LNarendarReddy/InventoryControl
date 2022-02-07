@@ -7,6 +7,21 @@ namespace NSRetailPOS.Data
 {
     public class CloudRepository
     {
+
+        Dictionary<string, EntityMapping> entityMapping = new Dictionary<string, EntityMapping>()
+        {
+              { "POS_BILL",  new EntityMapping("USP_CU_POS_BILL", "@Bills", true) }
+            , { "POS_BILLDETAIL",  new EntityMapping("USP_CU_POS_BILLDETAIL", "@BillDetails", true) }
+            , { "POS_BILLMOPDETAIL",  new EntityMapping("USP_CU_POS_BILLMOPDETAIL", "@BillMopDetails", true) }
+            , { "POS_CREFUND",  new EntityMapping("USP_CU_POS_CREFUND", "@CRefundDetails", true) }
+            , { "POS_BREFUND",  new EntityMapping("USP_CU_POS_BREFUND", "@BRefundDetails", true) }
+            , { "POS_BREFUNDDETAIL",  new EntityMapping("USP_CU_POS_BREFUNDDETAL", "@BRefundDetails", true) }
+            , { "POS_DAYCLOSURE",  new EntityMapping("USP_CU_POS_DAYCLOSURE", "@DayClosure", true) }
+            , { "POS_DAYCLOSUREDETAIL",  new EntityMapping("USP_CU_POS_DAYCLOSUREDETAIL", "@DayClosureDetail", true) }
+            , { "STOCKDISPATCH",  new EntityMapping("USP_CU_STOCKDISPATCH", "@StockDispatch") }
+            , { "STOCKDISPATCHDETAIL",  new EntityMapping("USP_CU_STOCKDISPATCHDETAIL", "@StockDispatchDetail") }
+            , { "USER",  new EntityMapping("USP_CU_USER", "@User") }
+        };
         public DataTable GetEntityWiseData(object EntityName, object SyncDate, object BranchID)
         {
             DataTable dtEntity = new DataTable();
@@ -90,15 +105,6 @@ namespace NSRetailPOS.Data
                 SQLCon.SqlCloudconn().Close();
             }
         }
-
-        Dictionary<string, EntityMapping> entityMapping = new Dictionary<string, EntityMapping>()
-        {
-            { "POS_BILL",  new EntityMapping("USP_CU_POS_BILL", "@Bills", true) }
-            , { "POS_BILLDETAIL",  new EntityMapping("USP_CU_POS_BILLDETAIL", "@BillDetails", true) }
-            , { "STOCKDISPATCH",  new EntityMapping("USP_CU_STOCKDISPATCH", "@StockDispatch") }
-            , { "STOCKDISPATCHDETAIL",  new EntityMapping("USP_CU_STOCKDISPATCHDETAIL", "@StockDispatchDetail") }
-            , { "USER",  new EntityMapping("POS_USP_CU_USER", "@User") }
-        };
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)
         {

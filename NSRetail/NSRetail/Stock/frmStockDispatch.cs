@@ -246,6 +246,7 @@ namespace NSRetail.Stock
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
+        
         private void RefreshGrid()
         {
             try

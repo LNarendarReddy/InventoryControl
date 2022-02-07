@@ -13,7 +13,6 @@ namespace NSRetailPOS.Reports
         {
             InitializeComponent();
             drItems.DataSource = dtItems;
-            drGST.DataSource = dtItems;
         }
 
     }

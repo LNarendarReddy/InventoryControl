@@ -274,5 +274,31 @@ namespace NSRetail
             obj.MdiParent = this;
             obj.Show();
         }
+
+        private void btnBranchRefund_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmBRefundList  obj = new frmBRefundList();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void btnDayClosure_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmDayClosureList obj = new frmDayClosureList();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}";
+            lblVersion.Caption = "Version : V 1.0";
+        }
     }
 }

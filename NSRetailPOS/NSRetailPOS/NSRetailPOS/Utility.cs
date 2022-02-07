@@ -33,40 +33,44 @@ namespace NSRetailPOS
 
         public static void StartSync(BackgroundWorker backgroundWorker)
         {
-            LoggerUtility.InitializeLogger();
-            DateTime syncStartTime = DateTime.Now.AddMinutes(-15);
-            //LoggerUtility.Logger.Info($"POS sync started at {syncStartTime.ToLongTimeString()}");
-            backgroundWorker?.ReportProgress(0, $"POS sync started at {syncStartTime.ToLongTimeString()}");
-            SyncRepository syncRepository = new SyncRepository();
-            CloudRepository cloudRepository = new CloudRepository();
-            DataTable dtEntity = cloudRepository.GetEntityData(branchinfo.BranchCounterID, "FromCloud");
-            foreach (DataRow entityRow in dtEntity.Rows)
+            try
             {
-                string entityName = entityRow["ENTITYNAME"].ToString();
-                //LoggerUtility.Logger.Info($"{entityName} sync started");
-                ReportText(backgroundWorker, $"{entityName} sync started");
-                DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"], branchinfo.BranchID);
-                ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to sync in entity : {entityName} ");
-                syncRepository.SaveData(entityName, dtEntityWiseData);
-                cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
-                ReportText(backgroundWorker, $"{entityName} sync completed");
-            }
+                LoggerUtility.InitializeLogger();
+                DateTime syncStartTime = DateTime.Now.AddMinutes(-15);
+                //LoggerUtility.Logger.Info($"POS sync started at {syncStartTime.ToLongTimeString()}");
+                backgroundWorker?.ReportProgress(0, $"POS sync started at {syncStartTime.ToLongTimeString()}");
+                SyncRepository syncRepository = new SyncRepository();
+                CloudRepository cloudRepository = new CloudRepository();
+                DataTable dtEntity = cloudRepository.GetEntityData(branchinfo.BranchCounterID, "FromCloud");
+                foreach (DataRow entityRow in dtEntity.Rows)
+                {
+                    string entityName = entityRow["ENTITYNAME"].ToString();
+                    //LoggerUtility.Logger.Info($"{entityName} down sync started");
+                    ReportText(backgroundWorker, $"{entityName} down sync started");
+                    DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"], branchinfo.BranchID);
+                    ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
+                    syncRepository.SaveData(entityName, dtEntityWiseData);
+                    cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+                    ReportText(backgroundWorker, $"{entityName} down sync completed");
+                }
 
-            // start up sync
-            dtEntity = cloudRepository.GetEntityData(branchinfo.BranchCounterID, "ToCloud");
-            foreach (DataRow entityRow in dtEntity.Rows)
-            {
-                string entityName = entityRow["ENTITYNAME"].ToString();
-                ReportText(backgroundWorker, $"{entityName} up sync started");
-                DataTable dtEntityWiseData = syncRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"]);
-                ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to up sync in entity : {entityName} ");
-                cloudRepository.SaveData(entityName, dtEntityWiseData);
-                cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
-                ReportText(backgroundWorker, $"{entityName} up sync completed");
-            }
+                // start up sync
+                dtEntity = cloudRepository.GetEntityData(branchinfo.BranchCounterID, "ToCloud");
+                foreach (DataRow entityRow in dtEntity.Rows)
+                {
+                    string entityName = entityRow["ENTITYNAME"].ToString();
+                    ReportText(backgroundWorker, $"{entityName} up sync started");
+                    DataTable dtEntityWiseData = syncRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"]);
+                    ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to up sync in entity : {entityName} ");
+                    cloudRepository.SaveData(entityName, dtEntityWiseData);
+                    cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+                    ReportText(backgroundWorker, $"{entityName} up sync completed");
+                }
 
-            //LoggerUtility.Logger.Info($"POS sync completed");
-            backgroundWorker?.ReportProgress(0, $"POS sync completed at {DateTime.Now.ToLongTimeString()}");
+                //LoggerUtility.Logger.Info($"POS sync completed");
+                backgroundWorker?.ReportProgress(0, $"POS sync completed at {DateTime.Now.ToLongTimeString()}");
+            }
+            catch (Exception ex){}
         }
         private static byte[] Encrypt(byte[] input)
         {
