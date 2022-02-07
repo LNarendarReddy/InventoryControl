@@ -97,7 +97,7 @@ namespace NSRetailPOS.Data
             , { "POS_BILLDETAIL",  new EntityMapping("USP_CU_POS_BILLDETAIL", "@BillDetails", true) }
             , { "STOCKDISPATCH",  new EntityMapping("USP_CU_STOCKDISPATCH", "@StockDispatch") }
             , { "STOCKDISPATCHDETAIL",  new EntityMapping("USP_CU_STOCKDISPATCHDETAIL", "@StockDispatchDetail") }
-            , { "USER",  new EntityMapping("POS_USP_CU_USER", "@User") }
+            , { "USER",  new EntityMapping("USP_CU_USER", "@User") }
         };
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)
