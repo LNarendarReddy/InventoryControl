@@ -488,6 +488,28 @@ namespace DataAccess
             finally { SQLCon.Sqlconn().Close(); }
             return dtUser;
         }
+        public void ResetPassword(object UserID, string PasswordString)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_CHANGEPASSWORD]";
+                    cmd.Parameters.Add("@USERID", UserID);
+                    cmd.Parameters.Add("@PASSWORDSTRING", PasswordString);
+                    if (cmd.ExecuteNonQuery() == 0)
+                        throw new Exception("Error while resetting the password");
+                        
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { SQLCon.Sqlconn().Close(); }
+        }
         public Dealer SaveDealer(Dealer ObjDealer)
         {
             int DealerID = 0;

@@ -32,5 +32,27 @@ namespace DataAccess
             }
             return dtSyncStatus;
         }
+        public void DeleteSyncStatus(object LocationID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlCloudConn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_SYNCSTATUS]";
+                    cmd.Parameters.Add("@LocationID", LocationID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While deleteing sync status from cloud database", ex);
+            }
+            finally
+            {
+                SQLCon.SqlCloudConn().Close();
+            }
+        }
     }
 }

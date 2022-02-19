@@ -21,5 +21,14 @@ namespace NSRetail.Utilities
         {
             btnRefresh_Click(null, null);
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if(gvSyncStatus.FocusedRowHandle >= 0)
+            {
+                new CloudRepository().DeleteSyncStatus(gvSyncStatus.GetFocusedRowCellValue("LOCATIONID"));
+                btnRefresh_Click(null, null);
+            }
+        }
     }
 }

@@ -38,6 +38,7 @@ namespace NSRetailPOS
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            lblUserName.Text = $"Loggedin User : {Utility.logininfo.UserFullName}   Application Version 1.0.3 (15-02-2022)";
             DataSet dsInitialData = billingRepository.GetInitialLoad(Utility.logininfo.UserID, Utility.branchinfo.BranchCounterID);
 
             if (!int.TryParse(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString(), out daySequenceID))

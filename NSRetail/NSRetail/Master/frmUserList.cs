@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using DataAccess;
 using Entity;
 using ErrorManagement;
+using DevExpress.Utils.Menu;
 
 namespace NSRetail
 {
@@ -108,10 +109,30 @@ namespace NSRetail
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
-
         private void btnViewReport_Click(object sender, EventArgs e)
         {
             gcUser.ShowRibbonPrintPreview();
+        }
+        private void gvUser_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
+        {
+            e.Menu.Items.Add(new DXMenuItem("Reset Password", new EventHandler(OnResetPassword_Click)));
+        }
+        void OnResetPassword_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvUser.FocusedRowHandle >= 0)
+                {
+                    new MasterRepository().ResetPassword(gvUser.GetFocusedRowCellValue("USERID"),
+                        Utility.Encrypt("Password@1234"));
+                    XtraMessageBox.Show($"Password reset successfully done {Environment.NewLine}Please login with 'Password@1234'");
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
         }
     }
 }

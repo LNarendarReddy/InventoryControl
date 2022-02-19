@@ -27,6 +27,7 @@ namespace NSRetailPOS.Data
             , { "OFFER",  new EntityMapping("POS_USP_CU_OFFER", "@Offers") }
             , { "OFFERBRANCH",  new EntityMapping("POS_USP_CU_OFFERBRANCH", "@OfferBranches") }
             , { "OFFERITEMMAP",  new EntityMapping("POS_USP_CU_OFFERITEMMAP", "@OfferItemMaps") }
+            , { "POS_DENOMINATION",  new EntityMapping("USP_CU_DENOMINATION", "@Denomination") }
         };
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)

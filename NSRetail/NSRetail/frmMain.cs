@@ -297,8 +297,7 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}";
-            lblVersion.Caption = "Version : V 1.0";
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : V 1.0.6  ";
         }
     }
 }
