@@ -39,7 +39,7 @@ Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-source: "G:\Projects\InventoryControl\Setup\NSRetailPOS\Input\*"; destdir: "{win}\NSRetailPOS"; flags: ignoreversion recursesubdirs createallsubdirs
+source: "..\..\NSRetailPOS\NSRetailPOS\NSRetailPOS\bin\Release\*"; destdir: "{win}\NSRetailPOS"; flags: ignoreversion recursesubdirs createallsubdirs
 
 [Dirs]
 
