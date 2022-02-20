@@ -19,7 +19,7 @@ namespace NSRetail
         public frmBRefundDetail(DataTable dtItems,object _CounterID,object _BRefundID, bool IsAccepted = false)
         {
             InitializeComponent();
-            btnSave.Enabled = IsAccepted;
+            btnSave.Enabled = !IsAccepted;
             gcItems.DataSource = dtItems;
             CounterID = _CounterID;
             BRefundID = _BRefundID;

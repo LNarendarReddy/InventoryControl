@@ -198,6 +198,7 @@
             // gridColumn9
             // 
             this.gridColumn9.Caption = "Accepted Qnty";
+            this.gridColumn9.FieldName = "ACCEPTEDQUANTITY";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 7;
@@ -205,6 +206,7 @@
             // gridColumn10
             // 
             this.gridColumn10.Caption = "Accepted Weight";
+            this.gridColumn10.FieldName = "ACCEPTEDWEIGHTKGS";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 8;

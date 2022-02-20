@@ -54,6 +54,7 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcBRefund)).BeginInit();
@@ -120,7 +121,8 @@
             this.gridColumn20,
             this.gridColumn21,
             this.gridColumn22,
-            this.gridColumn23});
+            this.gridColumn23,
+            this.gridColumn1});
             this.gvBRefund.GridControl = this.gcBRefund;
             this.gvBRefund.Name = "gvBRefund";
             this.gvBRefund.OptionsView.ShowGroupPanel = false;
@@ -173,6 +175,8 @@
             this.gridColumn20.Caption = "STATUS";
             this.gridColumn20.FieldName = "STATUS";
             this.gridColumn20.Name = "gridColumn20";
+            this.gridColumn20.Visible = true;
+            this.gridColumn20.VisibleIndex = 4;
             // 
             // gridColumn21
             // 
@@ -194,7 +198,7 @@
             this.gridColumn23.ColumnEdit = this.btnView;
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.Visible = true;
-            this.gridColumn23.VisibleIndex = 4;
+            this.gridColumn23.VisibleIndex = 5;
             this.gridColumn23.Width = 92;
             // 
             // btnView
@@ -294,6 +298,12 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "IsAccepted";
+            this.gridColumn1.FieldName = "IsAccepted";
+            this.gridColumn1.Name = "gridColumn1";
+            // 
             // frmBRefundList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,5 +350,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnView;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }
 }
