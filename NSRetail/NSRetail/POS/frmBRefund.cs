@@ -39,10 +39,17 @@ namespace NSRetail
                 return;
             DataTable dtItems = new POSRepository().GetBRefundDetail(gvBRefund.GetFocusedRowCellValue("BREFUNDID"),
                 gvBRefund.GetFocusedRowCellValue("COUNTERID"));
-            frmBRefundDetail obj = new frmBRefundDetail(dtItems);
+            frmBRefundDetail obj = new frmBRefundDetail(dtItems, gvBRefund.GetFocusedRowCellValue("COUNTERID"),
+                gvBRefund.GetFocusedRowCellValue("BREFUNDID"), 
+                Convert.ToBoolean(gvBRefund.GetFocusedRowCellValue("IsAccepted")));
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
+            if (obj.IsSave)
+            {
+                gvBRefund.SetRowCellValue(gvBRefund.FocusedRowHandle, "IsAccepted", true);
+                gvBRefund.SetRowCellValue(gvBRefund.FocusedRowHandle, "STATUS", "Accepted");
+            }
         }
     }
 }

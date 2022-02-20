@@ -260,5 +260,30 @@ namespace DataAccess
             }
             return dtbillDetail;
         }
+        public void AcceptBRefund(object CounterID, object BRefundID,object UserID ,DataTable dtBRefundDetail)
+        {
+            try
+             {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_BREFUND]";
+                    cmd.Parameters.AddWithValue("@dtbrd", dtBRefundDetail);
+                    cmd.Parameters.AddWithValue("@COUNTERID", CounterID);
+                    cmd.Parameters.AddWithValue("@BREFUNDID", BRefundID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Accepting Branch Refund", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 }
