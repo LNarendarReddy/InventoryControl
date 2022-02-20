@@ -154,6 +154,7 @@
             this.gcBillDetails.TabStop = false;
             this.gcBillDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvBillDetails});
+            this.gcBillDetails.Click += new System.EventHandler(this.gcBillDetails_Click);
             // 
             // gvBillDetails
             // 

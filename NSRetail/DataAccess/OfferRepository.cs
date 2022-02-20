@@ -72,10 +72,10 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_ITEMGROUP]";
-                    cmd.Parameters.Add("@ItemGroupID", ItemGroupID);
-                    cmd.Parameters.Add("@GroupName", GroupName);
-                    cmd.Parameters.Add("@IsActive", IsActive);
-                    cmd.Parameters.Add("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@ItemGroupID", ItemGroupID);
+                    cmd.Parameters.AddWithValue("@GroupName", GroupName);
+                    cmd.Parameters.AddWithValue("@IsActive", IsActive);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
                     ItemGroupID = cmd.ExecuteScalar();
                 }
             }
@@ -99,7 +99,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_ITEMGROUPDETAIL]";
-                    cmd.Parameters.Add("@ItemGroupID", ItemGroupID);
+                    cmd.Parameters.AddWithValue("@ItemGroupID", ItemGroupID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtItemGroupDetail);
@@ -126,9 +126,9 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_ITEMGROUPDETAIL]";
-                    cmd.Parameters.Add("@ItemGroupID", ItemGroupID);
-                    cmd.Parameters.Add("@ItemCodeID", ItemCodeID);
-                    cmd.Parameters.Add("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@ItemGroupID", ItemGroupID);
+                    cmd.Parameters.AddWithValue("@ItemCodeID", ItemCodeID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
                      object objreturn = cmd.ExecuteScalar();
                     if (!int.TryParse(objreturn.ToString(), out ItemGroupDetailID))
                         throw new Exception("Error while saivng item group detail");
@@ -153,8 +153,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_ITEMGROUPDETAIL]";
-                    cmd.Parameters.Add("@ITEMGROUPDETAILID", itemGroupDetailID);
-                    cmd.Parameters.Add("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@ITEMGROUPDETAILID", itemGroupDetailID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
                     int rowsaffected = cmd.ExecuteNonQuery();
                     if (rowsaffected <= 0)
                         throw new Exception("Error while deleting item group detail");
@@ -205,18 +205,18 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_OFFER]";
-                    cmd.Parameters.Add("@OfferID", offer.OfferID);
-                    cmd.Parameters.Add("@OfferName", offer.OfferName);
-                    cmd.Parameters.Add("@OfferCode", offer.OfferCode);
-                    cmd.Parameters.Add("@StartDate", offer.StartDate);
-                    cmd.Parameters.Add("@EndDate", offer.EndDate);
-                    cmd.Parameters.Add("@OfferValue", offer.OfferValue);
-                    cmd.Parameters.Add("@AppliesToID", offer.AppliesToID);
-                    cmd.Parameters.Add("@OfferTypeID", offer.OfferTypeID);
-                    cmd.Parameters.Add("@CategoryID", offer.CategoryID);
-                    cmd.Parameters.Add("@ItemGroupID", offer.ItemGroupID);
-                    cmd.Parameters.Add("@IsActive", offer.IsActive);
-                    cmd.Parameters.Add("@UserID", offer.UserID);
+                    cmd.Parameters.AddWithValue("@OfferID", offer.OfferID);
+                    cmd.Parameters.AddWithValue("@OfferName", offer.OfferName);
+                    cmd.Parameters.AddWithValue("@OfferCode", offer.OfferCode);
+                    cmd.Parameters.AddWithValue("@StartDate", offer.StartDate);
+                    cmd.Parameters.AddWithValue("@EndDate", offer.EndDate);
+                    cmd.Parameters.AddWithValue("@OfferValue", offer.OfferValue);
+                    cmd.Parameters.AddWithValue("@AppliesToID", offer.AppliesToID);
+                    cmd.Parameters.AddWithValue("@OfferTypeID", offer.OfferTypeID);
+                    cmd.Parameters.AddWithValue("@CategoryID", offer.CategoryID);
+                    cmd.Parameters.AddWithValue("@ItemGroupID", offer.ItemGroupID);
+                    cmd.Parameters.AddWithValue("@IsActive", offer.IsActive);
+                    cmd.Parameters.AddWithValue("@UserID", offer.UserID);
                     object objreturn = cmd.ExecuteScalar();
                     if (!int.TryParse(objreturn.ToString(), out OfferID))
                         throw new Exception("Error while saivng offer");
@@ -241,8 +241,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_OFFER]";
-                    cmd.Parameters.Add("@OfferID", OfferID);
-                    cmd.Parameters.Add("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@OfferID", OfferID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
                     int rowsaffected = cmd.ExecuteNonQuery();
                     if (rowsaffected <= 0)
                         throw new Exception("Error while deleting offer");
@@ -267,7 +267,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_OFFERBRANCH]";
-                    cmd.Parameters.Add("@OfferID", OfferID);
+                    cmd.Parameters.AddWithValue("@OfferID", OfferID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtOfferBranch);
@@ -294,9 +294,9 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_OFFERBRANCH]";
-                    cmd.Parameters.Add("@OfferID", OfferID);
-                    cmd.Parameters.Add("@BranchID", BranchID);
-                    cmd.Parameters.Add("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@OfferID", OfferID);
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
                     object objreturn = cmd.ExecuteScalar();
                     if (!int.TryParse(objreturn.ToString(), out OfferBranchID))
                         throw new Exception("Error while saivng offer branch");
@@ -321,8 +321,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_OFFERBRANCH]";
-                    cmd.Parameters.Add("@OfferBranchID", OfferBranchID);
-                    cmd.Parameters.Add("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@OfferBranchID", OfferBranchID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
                     int rowsaffected = cmd.ExecuteNonQuery();
                     if (rowsaffected <= 0)
                         throw new Exception("Error while deleting offer branch");
@@ -347,7 +347,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_OFFERITEM]";
-                    cmd.Parameters.Add("@OfferID", OfferID);
+                    cmd.Parameters.AddWithValue("@OfferID", OfferID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtOfferItem);
@@ -374,9 +374,9 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_OFFERITEM]";
-                    cmd.Parameters.Add("@OfferID", OfferID);
-                    cmd.Parameters.Add("@ItemCodeID", BranchID);
-                    cmd.Parameters.Add("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@OfferID", OfferID);
+                    cmd.Parameters.AddWithValue("@ItemCodeID", BranchID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
                     object objreturn = cmd.ExecuteScalar();
                     if (!int.TryParse(objreturn.ToString(), out OfferBranchID))
                         throw new Exception("Error while saivng offer item");
@@ -401,8 +401,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_OFFERITEM]";
-                    cmd.Parameters.Add("@OFFERITEMMAPID", OfferItemMapID);
-                    cmd.Parameters.Add("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@OFFERITEMMAPID", OfferItemMapID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
                     int rowsaffected = cmd.ExecuteNonQuery();
                     if (rowsaffected <= 0)
                         throw new Exception("Error while deleting offer item");

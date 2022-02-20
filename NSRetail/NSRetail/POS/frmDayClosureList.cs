@@ -37,27 +37,70 @@ namespace NSRetail
         {
             if (gvDayClosure.FocusedRowHandle < 0)
                 return;
-            DataTable dtDayClosureSummary = new POSRepository().GetDayClosureDetail(gvDayClosure.GetFocusedRowCellValue("DAYCLOSUREID"),
+            DataTable dtDayClosureSummary = new POSRepository().GetDayClosureDetail(
+                gvDayClosure.GetFocusedRowCellValue("DAYCLOSUREID"),
                 gvDayClosure.GetFocusedRowCellValue("BRANCHCOUNTERID"));
             frmDayClosureSummary obj = new frmDayClosureSummary(dtDayClosureSummary);
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.IconOptions.ShowIcon = false;
             obj.ShowDialog();
         }
 
         private void btnViewBills_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-
+            if (gvDayClosure.FocusedRowHandle < 0)
+                return;
+            DataTable dtBills = new POSRepository().GetDayClosureBills(
+                gvDayClosure.GetFocusedRowCellValue("BRANCHCOUNTERID"), 
+                gvDayClosure.GetFocusedRowCellValue("DAYCLOSUREID"));
+             frmViewDCBills obj = new frmViewDCBills(dtBills, gvDayClosure.GetFocusedRowCellValue("BRANCHCOUNTERID"));
+            obj.ShowInTaskbar = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.IconOptions.ShowIcon = false;
+            obj.ShowDialog();
         }
 
         private void btnViewItems_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-
+            if (gvDayClosure.FocusedRowHandle < 0)
+                return;
+            DataTable dtItems = new POSRepository().GetDayClosureItems(
+                gvDayClosure.GetFocusedRowCellValue("BRANCHCOUNTERID"),
+                gvDayClosure.GetFocusedRowCellValue("DAYCLOSUREID"));
+            frmViewDCItems obj = new frmViewDCItems(dtItems,false);
+            obj.ShowInTaskbar = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.IconOptions.ShowIcon = false;
+            obj.ShowDialog();
         }
 
         private void btnViewRefunds_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
+            if (gvDayClosure.FocusedRowHandle < 0)
+                return;
+            DataTable dtItems = new POSRepository().GetDayClosureRefund(
+                gvDayClosure.GetFocusedRowCellValue("BRANCHCOUNTERID"),
+                gvDayClosure.GetFocusedRowCellValue("DAYCLOSUREID"));
+            frmViewDCItems obj = new frmViewDCItems(dtItems,false,true);
+            obj.ShowInTaskbar = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.IconOptions.ShowIcon = false;
+            obj.ShowDialog();
+        }
 
+        private void btnVoidItems_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (gvDayClosure.FocusedRowHandle < 0)
+                return;
+            DataTable dtItems = new POSRepository().GetDayClosureVoidItems(
+                gvDayClosure.GetFocusedRowCellValue("BRANCHCOUNTERID"),
+                gvDayClosure.GetFocusedRowCellValue("DAYCLOSUREID"));
+            frmViewDCItems obj = new frmViewDCItems(dtItems,false);
+            obj.ShowInTaskbar = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.IconOptions.ShowIcon = false;
+            obj.ShowDialog();
         }
     }
 }

@@ -313,11 +313,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NSRetailPOS.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NSRetailPOS_log.ldf">
       <DependentUpon>NSRetailPOS.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>

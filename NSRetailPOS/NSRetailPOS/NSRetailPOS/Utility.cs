@@ -31,7 +31,7 @@ namespace NSRetailPOS
             return billObj;
         }
 
-        public static void StartSync(BackgroundWorker backgroundWorker)
+        public static void StartSync(BackgroundWorker backgroundWorker, bool forceFullSync = false)
         {
             try
             {
@@ -47,7 +47,10 @@ namespace NSRetailPOS
                     string entityName = entityRow["ENTITYNAME"].ToString();
                     //LoggerUtility.Logger.Info($"{entityName} down sync started");
                     ReportText(backgroundWorker, $"{entityName} down sync started");
-                    DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"], branchinfo.BranchID);
+                    DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(
+                        entityName, 
+                        forceFullSync ? "01-01-1900" : entityRow["SYNCDATE"]
+                        , branchinfo.BranchID);
                     ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
                     syncRepository.SaveData(entityName, dtEntityWiseData);
                     cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);

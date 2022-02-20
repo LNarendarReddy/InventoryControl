@@ -54,9 +54,7 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_CU_CREFUND]";
-                    DataView dv = dtRefund.DefaultView;
-                    dv.RowFilter = "REFUNDQUANTITY > 0";
-                    cmd.Parameters.AddWithValue("@dtRefund", dv.ToTable());
+                    cmd.Parameters.AddWithValue("@dtRefund", dtRefund);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     int ivalue = cmd.ExecuteNonQuery();
                     if(ivalue<=0)

@@ -25,9 +25,13 @@ namespace NSRetailPOS.UI
 
         private void txtBillNumber_Leave(object sender, EventArgs e)
         {
+            if (txtBillNumber.EditValue == null)
+                return;
             try
             {
                 DataTable dt = new RefundRepository().GetBillByNumber(txtBillNumber.EditValue);
+                if (dt.Rows.Count == 0)
+                    return;
                 this.Text = "Customer Refund - " + txtBillNumber.EditValue;
                 txtBillDate.EditValue = dt.Rows[0]["CREATEDDATE"];
                 gcBillDetails.DataSource = dt;
@@ -58,9 +62,12 @@ namespace NSRetailPOS.UI
                         continue;
                     dt.Columns.Remove(dc.ColumnName);
                 }
-                new RefundRepository().InsertCRefund(dt,Utility.logininfo.UserID);
-                DataView dv = dtCloned.DefaultView;
+                DataView dv = dt.DefaultView;
                 dv.RowFilter = "REFUNDQUANTITY > 0";
+                DataTable dtFiltered = dv.ToTable();
+                if (dtFiltered.Rows.Count == 0)
+                    throw new Exception("Refund quantity should be greater than '0'");
+                new RefundRepository().InsertCRefund(dtFiltered, Utility.logininfo.UserID);
                 rptCRefund rpt = new rptCRefund(dv.ToTable());
                 rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
                 rpt.Parameters["FSSAI"].Value = "10114004000548";
@@ -134,6 +141,11 @@ namespace NSRetailPOS.UI
             {
                 XtraMessageBox.Show(ex.Message);
             }
+        }
+
+        private void gcBillDetails_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

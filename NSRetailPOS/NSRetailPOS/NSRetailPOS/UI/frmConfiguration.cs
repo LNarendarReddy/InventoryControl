@@ -45,7 +45,7 @@ namespace NSRetailPOS.UI
                 SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
                 Utility.branchinfo.BranchCounterID = cmbCounter.EditValue;
                 Utility.branchinfo.BranchID = cmbBranch.EditValue;
-                Utility.StartSync(null);
+                Utility.StartSync(null, true);
                 SplashScreenManager.CloseForm();
                 Application.Restart();
             }

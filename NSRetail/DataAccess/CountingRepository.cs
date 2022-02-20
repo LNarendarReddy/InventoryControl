@@ -20,7 +20,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_STOCKCOUNTING]";
-                    cmd.Parameters.Add("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtStockCounting);
@@ -47,7 +47,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_STOCKCOUNTINGDETAIL]";
-                    cmd.Parameters.Add("@STOCKCOUNTINGID", StockCountingID);
+                    cmd.Parameters.AddWithValue("@STOCKCOUNTINGID", StockCountingID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtStockCountingDetail);
@@ -75,7 +75,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_STOCKCONTINGDIFF]";
-                    cmd.Parameters.Add("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtStockCountingDiff);

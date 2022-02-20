@@ -221,6 +221,7 @@
             // 
             // cmbBranch
             // 
+            this.cmbBranch.EnterMoveNextControl = true;
             this.cmbBranch.Location = new System.Drawing.Point(54, 7);
             this.cmbBranch.Name = "cmbBranch";
             this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

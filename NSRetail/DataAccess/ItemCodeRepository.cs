@@ -17,7 +17,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_ITEMCODES]";
-                    cmd.Parameters.Add("@CATEGORYID", CategoryID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dsItemCodes);
@@ -193,7 +193,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_ITEMMRPLIST]";
-                    cmd.Parameters.Add("@ITEMCODEID", ITEMCODEID);
+                    cmd.Parameters.AddWithValue("@ITEMCODEID", ITEMCODEID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtItemCodes);
@@ -301,7 +301,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_COSTPRICELIST]";
-                    cmd.Parameters.Add("@ITEMCODEID", ITEMCODEID);
+                    cmd.Parameters.AddWithValue("@ITEMCODEID", ITEMCODEID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtItemCodes);

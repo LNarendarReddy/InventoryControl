@@ -33,6 +33,7 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnFullSync = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnLogin = new DevExpress.XtraEditors.SimpleButton();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
@@ -42,7 +43,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -53,7 +54,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +72,7 @@
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
             this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
+            this.layoutControl1.Controls.Add(this.btnFullSync);
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.btnLogin);
             this.layoutControl1.Controls.Add(this.txtPassword);
@@ -85,14 +87,26 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnFullSync
+            // 
+            this.btnFullSync.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnFullSync.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnFullSync.ImageOptions.SvgImage")));
+            this.btnFullSync.Location = new System.Drawing.Point(82, 170);
+            this.btnFullSync.Name = "btnFullSync";
+            this.btnFullSync.Size = new System.Drawing.Size(106, 36);
+            this.btnFullSync.StyleController = this.layoutControl1;
+            this.btnFullSync.TabIndex = 4;
+            this.btnFullSync.Text = "Sync Data";
+            this.btnFullSync.Click += new System.EventHandler(this.btnFullSync_Click);
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(299, 170);
+            this.btnCancel.Location = new System.Drawing.Point(302, 170);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(117, 36);
+            this.btnCancel.Size = new System.Drawing.Size(114, 36);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
@@ -102,9 +116,9 @@
             // 
             this.btnLogin.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnLogin.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLogin.ImageOptions.SvgImage")));
-            this.btnLogin.Location = new System.Drawing.Point(174, 170);
+            this.btnLogin.Location = new System.Drawing.Point(192, 170);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(121, 36);
+            this.btnLogin.Size = new System.Drawing.Size(106, 36);
             this.btnLogin.StyleController = this.layoutControl1;
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Login";
@@ -148,7 +162,7 @@
             this.layoutControlItem2,
             this.layoutControlItem3,
             this.layoutControlItem4,
-            this.emptySpaceItem2});
+            this.layoutControlItem5});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(80, 80, 80, 80);
             this.Root.Size = new System.Drawing.Size(498, 291);
@@ -177,28 +191,29 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnLogin;
-            this.layoutControlItem3.Location = new System.Drawing.Point(92, 88);
+            this.layoutControlItem3.Location = new System.Drawing.Point(110, 88);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(125, 43);
+            this.layoutControlItem3.Size = new System.Drawing.Size(110, 43);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnCancel;
-            this.layoutControlItem4.Location = new System.Drawing.Point(217, 88);
+            this.layoutControlItem4.Location = new System.Drawing.Point(220, 88);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(121, 43);
+            this.layoutControlItem4.Size = new System.Drawing.Size(118, 43);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // emptySpaceItem2
+            // layoutControlItem5
             // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 88);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(92, 43);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.Control = this.btnFullSync;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 88);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(110, 43);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
             // 
             // frmLogin
             // 
@@ -207,6 +222,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(498, 291);
             this.Controls.Add(this.layoutControl1);
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmLogin.IconOptions.Icon")));
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
@@ -219,7 +235,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
@@ -236,8 +252,9 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
+        private DevExpress.XtraEditors.SimpleButton btnFullSync;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
     }
 }

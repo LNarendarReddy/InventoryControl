@@ -129,8 +129,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 394);
             this.Controls.Add(this.layoutControl1);
+            this.KeyPreview = true;
             this.Name = "frmDayClosureSummary";
             this.Text = "Day Closure Summary";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmDayClosureSummary_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcDayClosureSummary)).EndInit();

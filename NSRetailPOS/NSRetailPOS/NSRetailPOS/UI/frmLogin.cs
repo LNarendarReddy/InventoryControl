@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using System;
 using System.Collections.Generic;
@@ -74,6 +75,13 @@ namespace NSRetailPOS.UI
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnFullSync_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
+            Utility.StartSync(null, true);
+            SplashScreenManager.CloseForm();
         }
     }
 }

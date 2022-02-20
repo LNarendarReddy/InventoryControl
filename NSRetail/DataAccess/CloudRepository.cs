@@ -41,7 +41,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.SqlCloudConn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_SYNCSTATUS]";
-                    cmd.Parameters.Add("@LocationID", LocationID);
+                    cmd.Parameters.AddWithValue("@LocationID", LocationID);
                     cmd.ExecuteNonQuery();
                 }
             }

@@ -316,6 +316,18 @@
     <Compile Include="POS\frmDayClosureSummary.Designer.cs">
       <DependentUpon>frmDayClosureSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="POS\frmViewDCBills.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="POS\frmViewDCBills.Designer.cs">
+      <DependentUpon>frmViewDCBills.cs</DependentUpon>
+    </Compile>
+    <Compile Include="POS\frmViewDCItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="POS\frmViewDCItems.Designer.cs">
+      <DependentUpon>frmViewDCItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\rptBarcode.cs">
@@ -517,6 +529,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="POS\frmDayClosureSummary.resx">
       <DependentUpon>frmDayClosureSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="POS\frmViewDCBills.resx">
+      <DependentUpon>frmViewDCBills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="POS\frmViewDCItems.resx">
+      <DependentUpon>frmViewDCItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

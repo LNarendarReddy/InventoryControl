@@ -21,11 +21,11 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_STOCKDISPATCH]";
-                    cmd.Parameters.Add("@STOCKDISPATCHID", ObjStockDispatch.STOCKDISPATCHID);
-                    cmd.Parameters.Add("@FROMBRANCHID", ObjStockDispatch.FROMBRANCHID);
-                    cmd.Parameters.Add("@TOBRANCHID", ObjStockDispatch.TOBRANCHID);
-                    cmd.Parameters.Add("@CATEGORYID", ObjStockDispatch.CATEGORYID);
-                    cmd.Parameters.Add("@USERID", ObjStockDispatch.UserID);
+                    cmd.Parameters.AddWithValue("@STOCKDISPATCHID", ObjStockDispatch.STOCKDISPATCHID);
+                    cmd.Parameters.AddWithValue("@FROMBRANCHID", ObjStockDispatch.FROMBRANCHID);
+                    cmd.Parameters.AddWithValue("@TOBRANCHID", ObjStockDispatch.TOBRANCHID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", ObjStockDispatch.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjStockDispatch.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out StockDispatchID))
@@ -55,13 +55,13 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_STOCKDISPATCHDETAIL]";
-                    cmd.Parameters.Add("@STOCKDISPATCHDETAILID", ObjStockDispatchDetail.STOCKDISPATCHDETAILID);
-                    cmd.Parameters.Add("@STOCKDISPATCHID", ObjStockDispatchDetail.STOCKDISPATCHID);
-                    cmd.Parameters.Add("@ITEMPRICEID", ObjStockDispatchDetail.ITEMPRICEID);
-                    cmd.Parameters.Add("@TRAYNUMBER", ObjStockDispatchDetail.TRAYNUMBER);
-                    cmd.Parameters.Add("@DISPATCHQUANTITY", ObjStockDispatchDetail.DISPATCHQUANTITY);
-                    cmd.Parameters.Add("@WEIGHTINKGS", ObjStockDispatchDetail.WEIGHTINKGS);
-                    cmd.Parameters.Add("@USERID", ObjStockDispatchDetail.UserID);
+                    cmd.Parameters.AddWithValue("@STOCKDISPATCHDETAILID", ObjStockDispatchDetail.STOCKDISPATCHDETAILID);
+                    cmd.Parameters.AddWithValue("@STOCKDISPATCHID", ObjStockDispatchDetail.STOCKDISPATCHID);
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ObjStockDispatchDetail.ITEMPRICEID);
+                    cmd.Parameters.AddWithValue("@TRAYNUMBER", ObjStockDispatchDetail.TRAYNUMBER);
+                    cmd.Parameters.AddWithValue("@DISPATCHQUANTITY", ObjStockDispatchDetail.DISPATCHQUANTITY);
+                    cmd.Parameters.AddWithValue("@WEIGHTINKGS", ObjStockDispatchDetail.WEIGHTINKGS);
+                    cmd.Parameters.AddWithValue("@USERID", ObjStockDispatchDetail.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out StockDispatchDetailID))
@@ -91,8 +91,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_DISPATCHDRAFT]";
-                    cmd.Parameters.Add("@CATEGORYID", objStockDispatch.CATEGORYID);
-                    cmd.Parameters.Add("@USERID", objStockDispatch.UserID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", objStockDispatch.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@USERID", objStockDispatch.UserID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);
@@ -133,7 +133,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_STOCKDISPATCHDETAILS]";
-                    cmd.Parameters.Add("@STOCKDISPATCHDETAILID", StockDispatchDetailID);
+                    cmd.Parameters.AddWithValue("@STOCKDISPATCHDETAILID", StockDispatchDetailID);
                     object objReturn = cmd.ExecuteNonQuery();
                 }
             }
@@ -155,7 +155,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_STOCKDISPATCH]";
-                    cmd.Parameters.Add("@STOCKDISPATCHID", ObjStockDispatch.STOCKDISPATCHID);
+                    cmd.Parameters.AddWithValue("@STOCKDISPATCHID", ObjStockDispatch.STOCKDISPATCHID);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -204,7 +204,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_DISPATCH]";
-                    cmd.Parameters.Add("@STOCKDISPATCHID", StockDispatchID);
+                    cmd.Parameters.AddWithValue("@STOCKDISPATCHID", StockDispatchID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);
@@ -231,18 +231,18 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_STOCKENTRY]";
-                    cmd.Parameters.Add("@STOCKENTRYID", ObjStockEntry.STOCKENTRYID);
-                    cmd.Parameters.Add("@SUPPLIERID", ObjStockEntry.SUPPLIERID);
-                    cmd.Parameters.Add("@SUPPLIERINVOICENO", ObjStockEntry.SUPPLIERINVOICENO);
-                    cmd.Parameters.Add("@TAXINCLUSIVE", ObjStockEntry.TAXINCLUSIVE);
-                    cmd.Parameters.Add("@INVOICEDATE", ObjStockEntry.InvoiceDate);
-                    cmd.Parameters.Add("@TCS", ObjStockEntry.TCS);
-                    cmd.Parameters.Add("@DISCOUNTPER", ObjStockEntry.DISCOUNTPER);
-                    cmd.Parameters.Add("@DISCOUNT", ObjStockEntry.DISCOUNTFLAT);
-                    cmd.Parameters.Add("@EXPENSES", ObjStockEntry.EXPENSES);
-                    cmd.Parameters.Add("@TRANSPORT", ObjStockEntry.TRANSPORT);
-                    cmd.Parameters.Add("@CATEGORYID", ObjStockEntry.CATEGORYID);
-                    cmd.Parameters.Add("@USERID", ObjStockEntry.UserID);
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", ObjStockEntry.STOCKENTRYID);
+                    cmd.Parameters.AddWithValue("@SUPPLIERID", ObjStockEntry.SUPPLIERID);
+                    cmd.Parameters.AddWithValue("@SUPPLIERINVOICENO", ObjStockEntry.SUPPLIERINVOICENO);
+                    cmd.Parameters.AddWithValue("@TAXINCLUSIVE", ObjStockEntry.TAXINCLUSIVE);
+                    cmd.Parameters.AddWithValue("@INVOICEDATE", ObjStockEntry.InvoiceDate);
+                    cmd.Parameters.AddWithValue("@TCS", ObjStockEntry.TCS);
+                    cmd.Parameters.AddWithValue("@DISCOUNTPER", ObjStockEntry.DISCOUNTPER);
+                    cmd.Parameters.AddWithValue("@DISCOUNT", ObjStockEntry.DISCOUNTFLAT);
+                    cmd.Parameters.AddWithValue("@EXPENSES", ObjStockEntry.EXPENSES);
+                    cmd.Parameters.AddWithValue("@TRANSPORT", ObjStockEntry.TRANSPORT);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", ObjStockEntry.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjStockEntry.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out StockEntryID))
@@ -337,8 +337,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_STOCKENTRYDTAFT]";
-                    cmd.Parameters.Add("@CATEGORYID", objStockEntry.CATEGORYID);
-                    cmd.Parameters.Add("@USERID", objStockEntry.UserID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", objStockEntry.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@USERID", objStockEntry.UserID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);
@@ -386,7 +386,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_STOCKENTRYDETAIL]";
-                    cmd.Parameters.Add("@STOCKENTRYDETAILID", StockEntryDetailID);
+                    cmd.Parameters.AddWithValue("@STOCKENTRYDETAILID", StockEntryDetailID);
                     object objReturn = cmd.ExecuteNonQuery();
                 }
             }
@@ -409,12 +409,12 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_STOCKENTRY]";
-                    cmd.Parameters.Add("@STOCKENTRYID", ObjStockEntry.STOCKENTRYID);
-                    cmd.Parameters.Add("@TCS", ObjStockEntry.TCS);
-                    cmd.Parameters.Add("@DISCOUNTPER", ObjStockEntry.DISCOUNTPER);
-                    cmd.Parameters.Add("@DISCOUNTFLAT", ObjStockEntry.DISCOUNTFLAT);
-                    cmd.Parameters.Add("@EXPENSES", ObjStockEntry.EXPENSES);
-                    cmd.Parameters.Add("@TRANSPORT", ObjStockEntry.TRANSPORT);
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", ObjStockEntry.STOCKENTRYID);
+                    cmd.Parameters.AddWithValue("@TCS", ObjStockEntry.TCS);
+                    cmd.Parameters.AddWithValue("@DISCOUNTPER", ObjStockEntry.DISCOUNTPER);
+                    cmd.Parameters.AddWithValue("@DISCOUNTFLAT", ObjStockEntry.DISCOUNTFLAT);
+                    cmd.Parameters.AddWithValue("@EXPENSES", ObjStockEntry.EXPENSES);
+                    cmd.Parameters.AddWithValue("@TRANSPORT", ObjStockEntry.TRANSPORT);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -464,7 +464,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_STOCKENTRY]";
-                    cmd.Parameters.Add("@STOCKENTRYID", StockEntryID);
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);
@@ -602,10 +602,10 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_CURRENTSTOCK]";
-                    cmd.Parameters.Add("@FROMBRANCHID", FROMBRANCHID);
-                    cmd.Parameters.Add("@TOBRANCHID", TOBRANCHID);
-                    cmd.Parameters.Add("@ITEMCODEID", ITEMCODEID);
-                    cmd.Parameters.Add("@PARENTITEMID", PARENTITEMID);
+                    cmd.Parameters.AddWithValue("@FROMBRANCHID", FROMBRANCHID);
+                    cmd.Parameters.AddWithValue("@TOBRANCHID", TOBRANCHID);
+                    cmd.Parameters.AddWithValue("@ITEMCODEID", ITEMCODEID);
+                    cmd.Parameters.AddWithValue("@PARENTITEMID", PARENTITEMID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
@@ -631,7 +631,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_DISCARDSTOCKENTRY]";
-                    cmd.Parameters.Add("@STOCKENTRYID", StockEntryID);
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
                     int RowsAffected = cmd.ExecuteNonQuery();
                     if (RowsAffected <= 0)
                         throw new Exception("Nothing is deleted");

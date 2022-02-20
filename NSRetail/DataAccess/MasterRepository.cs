@@ -21,17 +21,17 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_BRANCH]";
-                    cmd.Parameters.Add("@BRANCHID", ObjBranch.BRANCHID);
-                    cmd.Parameters.Add("@BRANCHNAME", ObjBranch.BRANCHNAME);
-                    cmd.Parameters.Add("@BRANCHCODE", ObjBranch.BRANCHCODE);
-                    cmd.Parameters.Add("@ADDRESS", ObjBranch.ADDRESS);
-                    cmd.Parameters.Add("@STATEID", ObjBranch.STATEID);
-                    cmd.Parameters.Add("@PHONENO", ObjBranch.PHONENO);
-                    cmd.Parameters.Add("@LANDLINE", ObjBranch.LANDLINE);
-                    cmd.Parameters.Add("@EMAILID", ObjBranch.EMAILID);
-                    cmd.Parameters.Add("@USERID", ObjBranch.UserID);
-                    cmd.Parameters.Add("@ISWAREHOUSE", ObjBranch.ISWAREHOUSE);
-                    cmd.Parameters.Add("@SUPERVISORID", ObjBranch. SUPERVISERID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", ObjBranch.BRANCHID);
+                    cmd.Parameters.AddWithValue("@BRANCHNAME", ObjBranch.BRANCHNAME);
+                    cmd.Parameters.AddWithValue("@BRANCHCODE", ObjBranch.BRANCHCODE);
+                    cmd.Parameters.AddWithValue("@ADDRESS", ObjBranch.ADDRESS);
+                    cmd.Parameters.AddWithValue("@STATEID", ObjBranch.STATEID);
+                    cmd.Parameters.AddWithValue("@PHONENO", ObjBranch.PHONENO);
+                    cmd.Parameters.AddWithValue("@LANDLINE", ObjBranch.LANDLINE);
+                    cmd.Parameters.AddWithValue("@EMAILID", ObjBranch.EMAILID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjBranch.UserID);
+                    cmd.Parameters.AddWithValue("@ISWAREHOUSE", ObjBranch.ISWAREHOUSE);
+                    cmd.Parameters.AddWithValue("@SUPERVISORID", ObjBranch. SUPERVISERID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out BRanchID))
@@ -90,8 +90,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_BRANCH]";
-                    cmd.Parameters.Add("@BRANCHID", ObjBranch.BRANCHID);
-                    cmd.Parameters.Add("@USERID", ObjBranch.UserID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", ObjBranch.BRANCHID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjBranch.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out BRanchID))
@@ -121,10 +121,10 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_CATEGORY]";
-                    cmd.Parameters.Add("@CATEGORYID", ObjCategory.CATEGORYID);
-                    cmd.Parameters.Add("@CATEGORYNAME", ObjCategory.CATEGORYNAME);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", ObjCategory.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@CATEGORYNAME", ObjCategory.CATEGORYNAME);
                     cmd.Parameters.AddWithValue("@ALLOWOPENITEMS", ObjCategory.AllowOpenItems);
-                    cmd.Parameters.Add("@USERID", ObjCategory.UserID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjCategory.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out CategoryID))
@@ -182,8 +182,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_CATEGORY]";
-                    cmd.Parameters.Add("@CATEGORYID", ObjCategory.CATEGORYID);
-                    cmd.Parameters.Add("@USERID", ObjCategory.UserID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", ObjCategory.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjCategory.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out CategoryID))
@@ -213,10 +213,10 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_SUBCATEGORY]";
-                    cmd.Parameters.Add("@SUBCATEGORYID", ObjSubCategory.SUBCATEGORYID);
-                    cmd.Parameters.Add("@SUBCATEGORYNAME", ObjSubCategory.SUBCATEGORYNAME);
-                    cmd.Parameters.Add("@CATEGORYID", ObjSubCategory.CATEGORYID);
-                    cmd.Parameters.Add("@USERID", ObjSubCategory.UserID);
+                    cmd.Parameters.AddWithValue("@SUBCATEGORYID", ObjSubCategory.SUBCATEGORYID);
+                    cmd.Parameters.AddWithValue("@SUBCATEGORYNAME", ObjSubCategory.SUBCATEGORYNAME);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", ObjSubCategory.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjSubCategory.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out SubCategoryID))
@@ -275,8 +275,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_SUBCATEGORY]";
-                    cmd.Parameters.Add("@SUBCATEGORYID", ObjSubCategory.SUBCATEGORYID);
-                    cmd.Parameters.Add("@USERID", ObjSubCategory.UserID);
+                    cmd.Parameters.AddWithValue("@SUBCATEGORYID", ObjSubCategory.SUBCATEGORYID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjSubCategory.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out SubCategoryID))
@@ -306,18 +306,18 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_USER]";
-                    cmd.Parameters.Add("@USERID", ObjUser.USERID);
-                    cmd.Parameters.Add("@ROLEID", ObjUser.ROLEID);
-                    cmd.Parameters.Add("@REPORTINGLEADID", ObjUser.REPORTINGLEADID);
-                    cmd.Parameters.Add("@CATEGORYID", ObjUser.CATEGORYID);
-                    cmd.Parameters.Add("@BRANCHID", ObjUser.BRANCHID);
-                    cmd.Parameters.Add("@USERNAME", ObjUser.USERNAME);
-                    cmd.Parameters.Add("@PASSWORDSTRING", ObjUser.PASSWORDSTRING);
-                    cmd.Parameters.Add("@FULLNAME", ObjUser.FULLNAME);
-                    cmd.Parameters.Add("@EMAIL", ObjUser.EMAIL);
-                    cmd.Parameters.Add("@CNUMBER", ObjUser.CNUMBER);
-                    cmd.Parameters.Add("@GENDER", ObjUser.GENDER);
-                    cmd.Parameters.Add("@CUSERID", ObjUser.CUSERID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjUser.USERID);
+                    cmd.Parameters.AddWithValue("@ROLEID", ObjUser.ROLEID);
+                    cmd.Parameters.AddWithValue("@REPORTINGLEADID", ObjUser.REPORTINGLEADID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", ObjUser.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", ObjUser.BRANCHID);
+                    cmd.Parameters.AddWithValue("@USERNAME", ObjUser.USERNAME);
+                    cmd.Parameters.AddWithValue("@PASSWORDSTRING", ObjUser.PASSWORDSTRING);
+                    cmd.Parameters.AddWithValue("@FULLNAME", ObjUser.FULLNAME);
+                    cmd.Parameters.AddWithValue("@EMAIL", ObjUser.EMAIL);
+                    cmd.Parameters.AddWithValue("@CNUMBER", ObjUser.CNUMBER);
+                    cmd.Parameters.AddWithValue("@GENDER", ObjUser.GENDER);
+                    cmd.Parameters.AddWithValue("@CUSERID", ObjUser.CUSERID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out UserID))
@@ -375,8 +375,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_USER]";
-                    cmd.Parameters.Add("@USERID", ObjUser.USERID);
-                    cmd.Parameters.Add("@DUSERID", ObjUser.CUSERID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjUser.USERID);
+                    cmd.Parameters.AddWithValue("@DUSERID", ObjUser.CUSERID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out UserID))
@@ -432,8 +432,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_USERLOGIN]";
-                    cmd.Parameters.Add("@USERNAME", UserName);
-                    cmd.Parameters.Add("@PASSWORD", Password);
+                    cmd.Parameters.AddWithValue("@USERNAME", UserName);
+                    cmd.Parameters.AddWithValue("@PASSWORD", Password);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dSUser);
@@ -466,8 +466,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_PASSWORD]";
-                    cmd.Parameters.Add("@USERID", ObjUser.USERID);
-                    cmd.Parameters.Add("@PASSWORDSTRING", ObjUser.PASSWORDSTRING);
+                    cmd.Parameters.AddWithValue("@USERID", ObjUser.USERID);
+                    cmd.Parameters.AddWithValue("@PASSWORDSTRING", ObjUser.PASSWORDSTRING);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtUser);
@@ -497,8 +497,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_CHANGEPASSWORD]";
-                    cmd.Parameters.Add("@USERID", UserID);
-                    cmd.Parameters.Add("@PASSWORDSTRING", PasswordString);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@PASSWORDSTRING", PasswordString);
                     if (cmd.ExecuteNonQuery() == 0)
                         throw new Exception("Error while resetting the password");
                         
@@ -520,15 +520,15 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_DEALER]";
-                    cmd.Parameters.Add("@DEALERID", ObjDealer.DEALERID);
-                    cmd.Parameters.Add("@DEALERNAME", ObjDealer.DEALERNAME);
-                    cmd.Parameters.Add("@ADDRESS", ObjDealer.ADDRESS);
-                    cmd.Parameters.Add("@STATEID", ObjDealer.STATEID);
-                    cmd.Parameters.Add("@PHONENO", ObjDealer.PHONENO);
-                    cmd.Parameters.Add("@GSTIN", ObjDealer.GSTIN);
-                    cmd.Parameters.Add("@PANNUMBER", ObjDealer.PANNUMBER);
-                    cmd.Parameters.Add("@EMAILID", ObjDealer.EMAILID);
-                    cmd.Parameters.Add("@USERID", ObjDealer.UserID);
+                    cmd.Parameters.AddWithValue("@DEALERID", ObjDealer.DEALERID);
+                    cmd.Parameters.AddWithValue("@DEALERNAME", ObjDealer.DEALERNAME);
+                    cmd.Parameters.AddWithValue("@ADDRESS", ObjDealer.ADDRESS);
+                    cmd.Parameters.AddWithValue("@STATEID", ObjDealer.STATEID);
+                    cmd.Parameters.AddWithValue("@PHONENO", ObjDealer.PHONENO);
+                    cmd.Parameters.AddWithValue("@GSTIN", ObjDealer.GSTIN);
+                    cmd.Parameters.AddWithValue("@PANNUMBER", ObjDealer.PANNUMBER);
+                    cmd.Parameters.AddWithValue("@EMAILID", ObjDealer.EMAILID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjDealer.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out DealerID))
@@ -587,8 +587,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_DEALER]";
-                    cmd.Parameters.Add("@DEALERID", ObjDealer.DEALERID);
-                    cmd.Parameters.Add("@USERID", ObjDealer.UserID);
+                    cmd.Parameters.AddWithValue("@DEALERID", ObjDealer.DEALERID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjDealer.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out DealerID))
@@ -618,10 +618,10 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_BRANCHCOUNTER]";
-                    cmd.Parameters.Add("@COUNTERID", ObjCounter.COUNTERID);
-                    cmd.Parameters.Add("@COUNTERNAME", ObjCounter.COUNTERNAME);
-                    cmd.Parameters.Add("@BRANCHID", ObjCounter.BRANCHID);
-                    cmd.Parameters.Add("@USERID", ObjCounter.UserID);
+                    cmd.Parameters.AddWithValue("@COUNTERID", ObjCounter.COUNTERID);
+                    cmd.Parameters.AddWithValue("@COUNTERNAME", ObjCounter.COUNTERNAME);
+                    cmd.Parameters.AddWithValue("@BRANCHID", ObjCounter.BRANCHID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjCounter.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out CounterID))
@@ -680,8 +680,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_BRANCHCOUNTER]";
-                    cmd.Parameters.Add("@COUNTERID", ObjCounter.COUNTERID);
-                    cmd.Parameters.Add("@USERID", ObjCounter.UserID);
+                    cmd.Parameters.AddWithValue("@COUNTERID", ObjCounter.COUNTERID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjCounter.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out CounterID))
@@ -711,9 +711,9 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_MOP]";
-                    cmd.Parameters.Add("@MOPID", ObjMOP.MOPID);
-                    cmd.Parameters.Add("@MOPNAME", ObjMOP.MOPNAME);
-                    cmd.Parameters.Add("@USERID", ObjMOP.UserID);
+                    cmd.Parameters.AddWithValue("@MOPID", ObjMOP.MOPID);
+                    cmd.Parameters.AddWithValue("@MOPNAME", ObjMOP.MOPNAME);
+                    cmd.Parameters.AddWithValue("@USERID", ObjMOP.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out MOPID))
@@ -771,8 +771,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_MOP]";
-                    cmd.Parameters.Add("@CATEGORYID", ObjMOP.MOPID);
-                    cmd.Parameters.Add("@USERID", ObjMOP.UserID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", ObjMOP.MOPID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjMOP.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out MOPID))
@@ -801,11 +801,11 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_UOM]";
-                    cmd.Parameters.Add("@UOMID", ObjUOM.UOMID);
-                    cmd.Parameters.Add("@DISPLAYVALUE", ObjUOM.DISPLAYVALUE);
-                    cmd.Parameters.Add("@BASEUOMID", ObjUOM.BASEUOMID);
-                    cmd.Parameters.Add("@MULTIPLIER", ObjUOM.MULTIPLIER);
-                    cmd.Parameters.Add("@USERID", ObjUOM.UserID);
+                    cmd.Parameters.AddWithValue("@UOMID", ObjUOM.UOMID);
+                    cmd.Parameters.AddWithValue("@DISPLAYVALUE", ObjUOM.DISPLAYVALUE);
+                    cmd.Parameters.AddWithValue("@BASEUOMID", ObjUOM.BASEUOMID);
+                    cmd.Parameters.AddWithValue("@MULTIPLIER", ObjUOM.MULTIPLIER);
+                    cmd.Parameters.AddWithValue("@USERID", ObjUOM.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out UOMID))
@@ -863,8 +863,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_UOM]";
-                    cmd.Parameters.Add("@UOMID", ObjUOM.UOMID);
-                    cmd.Parameters.Add("@USERID", ObjUOM.UserID);
+                    cmd.Parameters.AddWithValue("@UOMID", ObjUOM.UOMID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjUOM.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out UOMID))
@@ -894,13 +894,13 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_GST]";
-                    cmd.Parameters.Add("@GSTID", ObjGST.GSTID);
-                    cmd.Parameters.Add("@GSTCODE", ObjGST.GSTCODE);
-                    cmd.Parameters.Add("@CGST", ObjGST.CGST);
-                    cmd.Parameters.Add("@SGST", ObjGST.SGST);
-                    cmd.Parameters.Add("@IGST", ObjGST.IGST);
-                    cmd.Parameters.Add("@CESS", ObjGST.CESS);
-                    cmd.Parameters.Add("@USERID", ObjGST.UserID);
+                    cmd.Parameters.AddWithValue("@GSTID", ObjGST.GSTID);
+                    cmd.Parameters.AddWithValue("@GSTCODE", ObjGST.GSTCODE);
+                    cmd.Parameters.AddWithValue("@CGST", ObjGST.CGST);
+                    cmd.Parameters.AddWithValue("@SGST", ObjGST.SGST);
+                    cmd.Parameters.AddWithValue("@IGST", ObjGST.IGST);
+                    cmd.Parameters.AddWithValue("@CESS", ObjGST.CESS);
+                    cmd.Parameters.AddWithValue("@USERID", ObjGST.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out GSTID))
@@ -958,8 +958,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_GST]";
-                    cmd.Parameters.Add("@GSTID", ObjGST.GSTID);
-                    cmd.Parameters.Add("@USERID", ObjGST.UserID);
+                    cmd.Parameters.AddWithValue("@GSTID", ObjGST.GSTID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjGST.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out GSTID))
@@ -1015,10 +1015,10 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_PRINTERSETTINGS]";
-                    cmd.Parameters.Add("@PRINTERSETTINGSID", ObjPrinterSettings.PRINTERSETTINGSID);
-                    cmd.Parameters.Add("@PRINTERTYPEID", ObjPrinterSettings.PRINTERTYPEID);
-                    cmd.Parameters.Add("@PRINTERNAME", ObjPrinterSettings.PRINTERNAME);
-                    cmd.Parameters.Add("@USERID", ObjPrinterSettings.UserID);
+                    cmd.Parameters.AddWithValue("@PRINTERSETTINGSID", ObjPrinterSettings.PRINTERSETTINGSID);
+                    cmd.Parameters.AddWithValue("@PRINTERTYPEID", ObjPrinterSettings.PRINTERTYPEID);
+                    cmd.Parameters.AddWithValue("@PRINTERNAME", ObjPrinterSettings.PRINTERNAME);
+                    cmd.Parameters.AddWithValue("@USERID", ObjPrinterSettings.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out PRINTERSETTINGSID))
@@ -1050,7 +1050,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_PRINTERSETTINGS]";
-                    cmd.Parameters.Add("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtPrinterSettings);
