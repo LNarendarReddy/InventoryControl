@@ -44,25 +44,9 @@ namespace NSRetailPOS
             }
             else
             {
-                GrantAccess();
                 Application.Run(new frmConfiguration());
             }
-        }
-
-        private static void GrantAccess()
-        {
-            DirectoryInfo dInfo = new DirectoryInfo(Environment.CurrentDirectory);
-            DirectorySecurity dSecurity = dInfo.GetAccessControl();
-            dSecurity.AddAccessRule(new FileSystemAccessRule(
-                new SecurityIdentifier(WellKnownSidType.WorldSid, null),
-                FileSystemRights.FullControl,
-                InheritanceFlags.ObjectInherit |
-                   InheritanceFlags.ContainerInherit,
-                PropagationFlags.NoPropagateInherit,
-                AccessControlType.Allow));
-
-            dInfo.SetAccessControl(dSecurity);
-        }
+        }               
     }
     public class SkinRegistration : Component
     {

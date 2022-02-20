@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraSplashScreen;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using System;
@@ -73,7 +74,10 @@ namespace NSRetailPOS
                 //LoggerUtility.Logger.Info($"POS sync completed");
                 backgroundWorker?.ReportProgress(0, $"POS sync completed at {DateTime.Now.ToLongTimeString()}");
             }
-            catch (Exception ex){}
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error while running sync : {ex.Message} {Environment.NewLine} {ex.StackTrace}");
+            }
         }
         private static byte[] Encrypt(byte[] input)
         {

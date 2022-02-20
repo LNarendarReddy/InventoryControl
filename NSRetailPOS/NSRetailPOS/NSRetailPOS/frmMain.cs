@@ -186,10 +186,18 @@ namespace NSRetailPOS
 
         private void SaveBillDetail(object itemPriceID, object quantity, object weightInKgs, object billDetailID)
         {
-            DataTable dtBillDetails = billingRepository.SaveBillDetail(billObj.BillID
-                , itemPriceID, quantity, weightInKgs, Utility.logininfo.UserID, billDetailID);
+            try
+            {
+                DataTable dtBillDetails = billingRepository.SaveBillDetail(billObj.BillID
+                    , itemPriceID, quantity, weightInKgs, Utility.logininfo.UserID, billDetailID);
 
-            UpdateBillDetails(dtBillDetails, itemPriceID);
+                UpdateBillDetails(dtBillDetails, itemPriceID);
+            }
+            catch(Exception ex)
+            {
+                XtraMessageBox.Show($"Error while saving bill item : {ex.Message}", "Error");
+                ClearItemData();
+            }
         }
 
         private void ClearItemData(bool focusItemCode = true)

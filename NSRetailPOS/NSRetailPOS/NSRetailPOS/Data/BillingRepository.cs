@@ -10,11 +10,14 @@ namespace NSRetailPOS.Data
         public DataTable SaveBillDetail(object billID, object ItemPriceID, object quantity, object weightInKGS, object userID, object billDetailID)
         {
             DataTable dtBillDetails = new DataTable();
+            SqlTransaction transaction = null;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.Sqlconn();
+                    transaction = SQLCon.Sqlconn().BeginTransaction();
+                    cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_CU_BILLDETAIL]";
                     cmd.Parameters.AddWithValue("@BillID", billID);
@@ -26,11 +29,13 @@ namespace NSRetailPOS.Data
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtBillDetails);
+                        transaction.Commit();
                     }
                 }
             }
             catch (Exception ex)
             {
+                transaction?.Rollback();
                 throw ex;
             }
             finally
@@ -353,11 +358,11 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_CU_DAYCLOSURE]";
-                    cmd.Parameters.Add("@BRANCHCOUNTERID", BranchCounterID);
-                    cmd.Parameters.Add("@dtDenomination", dtDenomination);
-                    cmd.Parameters.Add("@dtMOP", dtMOP);
-                    cmd.Parameters.Add("@USERID", UserID);
-                    cmd.Parameters.Add("@RefundAmount", RefundAmount);
+                    cmd.Parameters.AddWithValue("@BRANCHCOUNTERID", BranchCounterID);
+                    cmd.Parameters.AddWithValue("@dtDenomination", dtDenomination);
+                    cmd.Parameters.AddWithValue("@dtMOP", dtMOP);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@RefundAmount", RefundAmount);
                     int rowsaffected = cmd.ExecuteNonQuery();
                     if (rowsaffected <= 0)
                         throw new Exception("Error while saving day cllosure");

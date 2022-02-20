@@ -97,8 +97,8 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_C_POSDETAILS]";
-                    cmd.Parameters.Add("@BRANCHID", BranchID);
-                    cmd.Parameters.Add("@BRANCHCOUNTERID", BranchCounterID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@BRANCHCOUNTERID", BranchCounterID);
                     int IValue = cmd.ExecuteNonQuery();
                     if (IValue == 0)
                         throw new Exception("Error While Saving POS Configuration");
@@ -123,10 +123,10 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_R_USERCREDENTIALS]";
-                    cmd.Parameters.Add("@BRANCHID", BranchID);
-                    cmd.Parameters.Add("@BRANCHCOUNTERID", BranchCounterID);
-                    cmd.Parameters.Add("@USERNAME", Username);
-                    cmd.Parameters.Add("@PASSWORDSTRING", PasswordString);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@BRANCHCOUNTERID", BranchCounterID);
+                    cmd.Parameters.AddWithValue("@USERNAME", Username);
+                    cmd.Parameters.AddWithValue("@PASSWORDSTRING", PasswordString);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dSUserInfo);
@@ -152,8 +152,8 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_U_PASSWORD]";
-                    cmd.Parameters.Add("@USERID", UserID);
-                    cmd.Parameters.Add("@PASSWORDSTRING", PasswordString);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@PASSWORDSTRING", PasswordString);
                     int IValue = cmd.ExecuteNonQuery();
                     if (IValue == 0)
                         throw new Exception("Error While Changing the Password!");
