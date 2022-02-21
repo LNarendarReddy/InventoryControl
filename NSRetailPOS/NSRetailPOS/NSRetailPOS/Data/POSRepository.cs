@@ -88,7 +88,7 @@ namespace NSRetailPOS.Data
             }
             return dtPOSConfiguration;
         }
-        public void SavePOSConfiguration(object BranchID,object BranchCounterID)
+        public void SavePOSConfiguration(object BranchID,object BranchCounterID, object DayClosureID, object BranchRefundID)
         {
             try
             {
@@ -99,6 +99,8 @@ namespace NSRetailPOS.Data
                     cmd.CommandText = "[POS_USP_C_POSDETAILS]";
                     cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
                     cmd.Parameters.AddWithValue("@BRANCHCOUNTERID", BranchCounterID);
+                    cmd.Parameters.AddWithValue("@DayClosureID", DayClosureID);
+                    cmd.Parameters.AddWithValue("@BranchRefundID", BranchRefundID);
                     int IValue = cmd.ExecuteNonQuery();
                     if (IValue == 0)
                         throw new Exception("Error While Saving POS Configuration");

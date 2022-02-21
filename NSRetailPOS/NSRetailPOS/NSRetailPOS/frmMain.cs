@@ -44,7 +44,7 @@ namespace NSRetailPOS
             if (!int.TryParse(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString(), out daySequenceID))
             {
                 XtraMessageBox.Show(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
+                Application.Exit();
                 return;
             }
 
@@ -419,7 +419,7 @@ namespace NSRetailPOS
         {
             try
             {
-                frmDayClosure obj = new frmDayClosure()
+                frmDayClosure obj = new frmDayClosure(daySequenceID)
                 { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
                 obj.ShowDialog();
             }

@@ -343,7 +343,8 @@ namespace NSRetailPOS.Data
             return dsDayClosure;
         }
 
-        public void SaveDayClosure(object BranchCounterID, DataTable dtDenomination, DataTable dtMOP,object UserID,object RefundAmount)
+        public void SaveDayClosure(object BranchCounterID, DataTable dtDenomination, DataTable dtMOP,object UserID,object RefundAmount
+            , int DaySequenceID)
         {
             try
             {
@@ -363,6 +364,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@dtMOP", dtMOP);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
                     cmd.Parameters.AddWithValue("@RefundAmount", RefundAmount);
+                    cmd.Parameters.AddWithValue("@DaySequenceID", DaySequenceID);
                     int rowsaffected = cmd.ExecuteNonQuery();
                     if (rowsaffected <= 0)
                         throw new Exception("Error while saving day cllosure");

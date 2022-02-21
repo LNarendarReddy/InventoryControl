@@ -14,7 +14,9 @@ namespace NSRetailPOS.UI
 {
     public partial class frmDayClosure : DevExpress.XtraEditors.XtraForm
     {
-        public frmDayClosure()
+        int daySequenceID;
+
+        public frmDayClosure(int daySeqID)
         {
             InitializeComponent();
             DataSet dsDayClosure = new BillingRepository().GetDayClosure();
@@ -24,6 +26,7 @@ namespace NSRetailPOS.UI
             gvDenomination.FocusedColumn = gcQuantity;
             txtRefundAmount.EditValue = dsDayClosure.Tables[2].Rows[0]["REFUNDAMOUNT"];
             updateSummary();
+            daySequenceID = daySeqID;
         }
 
         private void frmDayClosure_Load(object sender, EventArgs e)
@@ -37,8 +40,8 @@ namespace NSRetailPOS.UI
             {
                 new BillingRepository().SaveDayClosure(Utility.branchinfo.BranchCounterID,
                     gcDenomination.DataSource as DataTable, gcMOP.DataSource as DataTable, 
-                    Utility.logininfo.UserID,txtRefundAmount.EditValue);
-                this.Close();
+                    Utility.logininfo.UserID,txtRefundAmount.EditValue, daySequenceID);
+                Application.Exit();
             }
             catch (Exception ex)
             {

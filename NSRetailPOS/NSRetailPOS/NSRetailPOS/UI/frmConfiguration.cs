@@ -40,7 +40,9 @@ namespace NSRetailPOS.UI
             {
                 if (!dxValidationProvider1.Validate())
                     return;
-                ObjPOSRep.SavePOSConfiguration(cmbBranch.EditValue, cmbCounter.EditValue);
+                DataRowView drSelectedCounter = cmbCounter.GetSelectedDataRow() as DataRowView;
+                ObjPOSRep.SavePOSConfiguration(cmbBranch.EditValue, cmbCounter.EditValue
+                    , drSelectedCounter["DAYCLOSUREID"], drSelectedCounter["BRANCHREFUNDID"]);
 
                 SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
                 Utility.branchinfo.BranchCounterID = cmbCounter.EditValue;
