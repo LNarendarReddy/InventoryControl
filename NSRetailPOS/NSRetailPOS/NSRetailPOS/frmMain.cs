@@ -44,7 +44,7 @@ namespace NSRetailPOS
             if (!int.TryParse(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString(), out daySequenceID))
             {
                 XtraMessageBox.Show(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
+                DisableBilling();
                 return;
             }
 
@@ -267,7 +267,7 @@ namespace NSRetailPOS
             else
             {
                 XtraMessageBox.Show("Item Does Not Exists!");
-                ClearItemData(false);
+                ClearItemData();
             }
 
             isItemScanned = false;
@@ -388,9 +388,37 @@ namespace NSRetailPOS
 
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F2)
+            switch(e.KeyCode)
             {
-                sluItemCode.Focus();
+                case Keys.F1:
+                    btnCloseBill_Click(sender, e);
+                    break;
+                case Keys.F2:
+                    sluItemCode.Focus();
+                    break;
+                case Keys.F5:
+                    btnSaveBill_Click(sender, e);
+                    break;
+                case Keys.F6:
+                    btnLoadDraftBill_Click(sender, e);
+                    break;
+                case Keys.F7:
+                    btnRefund_Click(sender, e);
+                    break;
+                case Keys.F8:
+                    btnLastBillPrint_Click(sender, e);
+                    break;
+                case Keys.F9:
+                    btnDayClosure_Click(sender, e);
+                    break;
+                case Keys.F10:
+                    btnStockIn_Click(sender, e);
+                    break;
+                case Keys.F11:
+                    btnBranchRefund_Click(sender, e);
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -422,6 +450,10 @@ namespace NSRetailPOS
                 frmDayClosure obj = new frmDayClosure(daySequenceID)
                 { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
                 obj.ShowDialog();
+                if(obj.DayClosed)
+                {
+                    DisableBilling();
+                }
             }
             catch (Exception ex)
             {
@@ -480,6 +512,19 @@ namespace NSRetailPOS
             UpdateSummary();
 
             gvBilling.FocusedRowHandle = gvBilling.LocateByValue("ITEMPRICEID", itemPriceID);
+        }
+
+        private void DisableBilling()
+        {
+            txtItemCode.Enabled = false;
+            sluItemCode.Enabled = false;
+            txtQuantity.Enabled = false;
+            btnCloseBill.Enabled = false;
+            btnSaveBill.Enabled = false;
+            btnLoadDraftBill.Enabled = false;
+            btnRefund.Enabled = false;
+            btnLastBillPrint.Enabled = false;
+            btnDayClosure.Enabled = false;
         }
     }
 }

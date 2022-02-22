@@ -5,15 +5,9 @@ using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.UI;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Security.AccessControl;
-using System.Security.Principal;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS
@@ -27,9 +21,9 @@ namespace NSRetailPOS
         static void Main()
         {
 
-            Assembly asm = typeof(DevExpress.UserSkins.NSRetailPOSSkin).Assembly;
-            DevExpress.Skins.SkinManager.Default.RegisterAssembly(asm);
-            SplashScreenManager.RegisterUserSkins(typeof(DevExpress.UserSkins.NSRetailPOSSkin).Assembly);
+            Assembly asm = typeof(NSRetailPOSSkin).Assembly;
+            SkinManager.Default.RegisterAssembly(asm);
+            SplashScreenManager.RegisterUserSkins(typeof(NSRetailPOSSkin).Assembly);
             UserLookAndFeel.Default.SetSkinStyle("NSRetailPOSSkin");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -52,7 +46,7 @@ namespace NSRetailPOS
     {
         public SkinRegistration()
         {
-            DevExpress.Skins.SkinManager.Default.RegisterAssembly(typeof(DevExpress.UserSkins.NSRetailPOSSkin).Assembly);
+            SkinManager.Default.RegisterAssembly(typeof(NSRetailPOSSkin).Assembly);
         }
     }
 }

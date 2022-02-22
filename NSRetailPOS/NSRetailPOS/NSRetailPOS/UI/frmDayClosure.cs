@@ -1,20 +1,15 @@
 ﻿using DevExpress.XtraEditors;
 using NSRetailPOS.Data;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
 {
-    public partial class frmDayClosure : DevExpress.XtraEditors.XtraForm
+    public partial class frmDayClosure : XtraForm
     {
         int daySequenceID;
+        public bool DayClosed { get; private set; }
 
         public frmDayClosure(int daySeqID)
         {
@@ -41,7 +36,8 @@ namespace NSRetailPOS.UI
                 new BillingRepository().SaveDayClosure(Utility.branchinfo.BranchCounterID,
                     gcDenomination.DataSource as DataTable, gcMOP.DataSource as DataTable, 
                     Utility.logininfo.UserID,txtRefundAmount.EditValue, daySequenceID);
-                Application.Exit();
+                DayClosed = true;
+                this.Close();
             }
             catch (Exception ex)
             {
