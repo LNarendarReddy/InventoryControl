@@ -343,9 +343,10 @@ namespace NSRetailPOS.Data
             return dsDayClosure;
         }
 
-        public void SaveDayClosure(object BranchCounterID, DataTable dtDenomination, DataTable dtMOP,object UserID,object RefundAmount
-            , int DaySequenceID)
+        public int SaveDayClosure(object BranchCounterID,DataTable dtDenomination
+            ,DataTable dtMOP,object UserID,object RefundAmount,int DaySequenceID)
         {
+            int DayClosureID =0;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -353,7 +354,6 @@ namespace NSRetailPOS.Data
                     dtDenomination.Columns.Remove("DISPLAYVALUE");
                     dtDenomination.Columns.Remove("MULTIPLIER");
                     dtDenomination.Columns.Remove("QUANTITY");
-
                     dtMOP.Columns.Remove("MOPNAME");
 
                     cmd.Connection = SQLCon.Sqlconn();
@@ -365,8 +365,8 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@USERID", UserID);
                     cmd.Parameters.AddWithValue("@RefundAmount", RefundAmount);
                     cmd.Parameters.AddWithValue("@DaySequenceID", DaySequenceID);
-                    int rowsaffected = cmd.ExecuteNonQuery();
-                    if (rowsaffected <= 0)
+                    object objReturn = cmd.ExecuteNonQuery();
+                    if (!int.TryParse(Convert.ToString(objReturn),out DayClosureID))
                         throw new Exception("Error while saving day cllosure");
                 }
             }
@@ -378,6 +378,42 @@ namespace NSRetailPOS.Data
             {
                 SQLCon.Sqlconn().Close();
             }
+            return DayClosureID;
+        }
+
+        public DataSet GetDayClosureForReport(int dayClosureID)
+        {
+            DataSet dsDayClosure = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_RPT_DAYCLOSURE]";
+                    cmd.Parameters.AddWithValue("@DAYCLOSUREID", dayClosureID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsDayClosure);
+                    }
+                    if (dsDayClosure != null && dsDayClosure.Tables.Count > 0)
+                    {
+                        dsDayClosure.Tables[0].TableName = "DAYCLOSURE";
+                        dsDayClosure.Tables[1].TableName = "DENOMINATION";
+                        dsDayClosure.Tables[2].TableName = "MOP";
+                        dsDayClosure.Tables[3].TableName = "BILLS";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While getting day closure", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dsDayClosure;
         }
     }
 }

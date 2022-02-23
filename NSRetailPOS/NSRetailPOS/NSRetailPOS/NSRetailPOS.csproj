@@ -149,6 +149,12 @@
     <Compile Include="Reports\rptCRefund.Designer.cs">
       <DependentUpon>rptCRefund.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptDayClosure.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptDayClosure.Designer.cs">
+      <DependentUpon>rptDayClosure.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmBranchRefund.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptCRefund.resx">
       <DependentUpon>rptCRefund.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptDayClosure.resx">
+      <DependentUpon>rptDayClosure.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmBranchRefund.resx">
       <DependentUpon>frmBranchRefund.cs</DependentUpon>

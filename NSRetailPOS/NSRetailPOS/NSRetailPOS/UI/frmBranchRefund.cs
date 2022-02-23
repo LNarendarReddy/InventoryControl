@@ -247,6 +247,7 @@ namespace NSRetailPOS.UI
             rpt.Parameters["BillNumber"].Value = BRefundNumber;
             rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
             rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
+            rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
             rpt.Print();
             InitialLoad();
         }

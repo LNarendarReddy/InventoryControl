@@ -78,6 +78,9 @@
             this.BillNumber = new DevExpress.XtraReports.Parameters.Parameter();
             this.Phone = new DevExpress.XtraReports.Parameters.Parameter();
             this.UserName = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrTableRow8 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CounterName = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -105,8 +108,7 @@
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2,
             this.xrPictureBox1});
-            this.ReportHeader.Expanded = false;
-            this.ReportHeader.HeightF = 232.3077F;
+            this.ReportHeader.HeightF = 252.3077F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // xrTable2
@@ -120,8 +122,9 @@
             this.xrTableRow11,
             this.xrTableRow12,
             this.xrTableRow1,
-            this.xrTableRow13});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(275F, 132.3077F);
+            this.xrTableRow13,
+            this.xrTableRow8});
+            this.xrTable2.SizeF = new System.Drawing.SizeF(275F, 152.3077F);
             this.xrTable2.StylePriority.UseTextAlignment = false;
             this.xrTable2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
@@ -539,6 +542,35 @@
             this.UserName.Name = "UserName";
             this.UserName.Visible = false;
             // 
+            // xrTableRow8
+            // 
+            this.xrTableRow8.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
+            this.xrTableRow8.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell12});
+            this.xrTableRow8.Name = "xrTableRow8";
+            this.xrTableRow8.StylePriority.UseBorders = false;
+            this.xrTableRow8.Weight = 0.94642854758671369D;
+            // 
+            // xrTableCell12
+            // 
+            this.xrTableCell12.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'Counter Name : \' + ?CounterName")});
+            this.xrTableCell12.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell12.Multiline = true;
+            this.xrTableCell12.Name = "xrTableCell12";
+            this.xrTableCell12.StylePriority.UseFont = false;
+            this.xrTableCell12.StylePriority.UseTextAlignment = false;
+            this.xrTableCell12.Text = "xrTableCell12";
+            this.xrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell12.Weight = 1D;
+            // 
+            // CounterName
+            // 
+            this.CounterName.AllowNull = true;
+            this.CounterName.Description = "CounterName";
+            this.CounterName.Name = "CounterName";
+            this.CounterName.Visible = false;
+            // 
             // rptBRefund
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -556,7 +588,8 @@
             this.BillDate,
             this.BillNumber,
             this.Phone,
-            this.UserName});
+            this.UserName,
+            this.CounterName});
             this.Version = "21.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
@@ -616,5 +649,8 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell4;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow8;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
+        private DevExpress.XtraReports.Parameters.Parameter CounterName;
     }
 }

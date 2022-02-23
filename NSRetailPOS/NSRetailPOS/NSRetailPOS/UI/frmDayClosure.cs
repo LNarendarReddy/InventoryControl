@@ -1,5 +1,7 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 using NSRetailPOS.Data;
+using NSRetailPOS.Reports;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -33,10 +35,13 @@ namespace NSRetailPOS.UI
         {
             try
             {
-                new BillingRepository().SaveDayClosure(Utility.branchinfo.BranchCounterID,
+                int dayClosureid = new BillingRepository().SaveDayClosure(Utility.branchinfo.BranchCounterID,
                     gcDenomination.DataSource as DataTable, gcMOP.DataSource as DataTable, 
                     Utility.logininfo.UserID,txtRefundAmount.EditValue, daySequenceID);
                 DayClosed = true;
+                DataSet ds = new BillingRepository().GetDayClosureForReport(dayClosureid);
+                rptDayClosure rpt = new rptDayClosure(ds);
+                rpt.ShowRibbonPreview();
                 this.Close();
             }
             catch (Exception ex)
