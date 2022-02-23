@@ -21,6 +21,7 @@ namespace NSRetailPOS.Data
             , { "STOCKDISPATCH",  new EntityMapping("USP_CU_STOCKDISPATCH", "@StockDispatch") }
             , { "STOCKDISPATCHDETAIL",  new EntityMapping("USP_CU_STOCKDISPATCHDETAIL", "@StockDispatchDetail") }
             , { "USER",  new EntityMapping("USP_CU_USER", "@User") }
+            , { "POS_DAYSEQUENCE",  new EntityMapping("USP_CU_POS_DAYSEQUENCE", "@DaySequence") }
         };
         public DataTable GetEntityWiseData(object EntityName, object SyncDate, object BranchID)
         {
@@ -137,6 +138,36 @@ namespace NSRetailPOS.Data
             {
                 SQLCon.SqlCloudconn().Close();
             }
+        }
+
+        public DataSet GetDaySequence(object branchCounterID)
+        {
+            DataSet dsRestoreData = new DataSet();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlCloudconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_POS_IMPORTDATA]";
+                    cmd.Parameters.AddWithValue("@BranchCounterID", branchCounterID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsRestoreData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While getting restore data", ex);
+            }
+            finally
+            {
+                SQLCon.SqlCloudconn().Close();
+            }
+
+            return dsRestoreData;
         }
     }
 }

@@ -86,6 +86,32 @@ namespace NSRetailPOS.Data
             }
             return dtEntity;
         }
+
+        public void ImportDaySequence(DataSet dsRestoreData)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "USP_CU_POS_IMPORTDATE";
+                    cmd.Parameters.AddWithValue("@Bill", dsRestoreData.Tables[0]);
+                    cmd.Parameters.AddWithValue("@BillDetail", dsRestoreData.Tables[1]);
+                    cmd.Parameters.AddWithValue("@BillMOPDetail", dsRestoreData.Tables[2]);
+                    cmd.Parameters.AddWithValue("@DaySequence", dsRestoreData.Tables[3]);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error While importing day sequence", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 
     class EntityMapping

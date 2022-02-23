@@ -2,20 +2,17 @@
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
 {
-    public partial class frmConfiguration : DevExpress.XtraEditors.XtraForm
+    public partial class frmConfiguration : XtraForm
     {
         POSRepository ObjPOSRep = new POSRepository();
+        CloudRepository objCloudRepository = new CloudRepository();
+        SyncRepository objSyncRepository = new SyncRepository();
+
         public frmConfiguration()
         {
             InitializeComponent();
@@ -48,6 +45,9 @@ namespace NSRetailPOS.UI
                 Utility.branchinfo.BranchCounterID = cmbCounter.EditValue;
                 Utility.branchinfo.BranchID = cmbBranch.EditValue;
                 Utility.StartSync(null, true);
+                DataSet dsRestoreData = objCloudRepository.GetDaySequence(cmbCounter.EditValue);
+                objSyncRepository.ImportDaySequence(dsRestoreData);
+
                 SplashScreenManager.CloseForm();
                 Application.Restart();
             }
