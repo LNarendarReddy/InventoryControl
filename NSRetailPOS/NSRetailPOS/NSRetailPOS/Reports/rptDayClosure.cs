@@ -12,7 +12,10 @@ namespace NSRetailPOS.Reports
         public rptDayClosure(DataSet ds)
         {
             InitializeComponent();
+            this.DataSource = ds.Tables[0];
+            drDenominations.DataSource = ds.Tables[1];
+            drMOP.DataSource = ds.Tables[2];
+            drFooter.DataSource = ds.Tables[3];
         }
-
     }
 }
