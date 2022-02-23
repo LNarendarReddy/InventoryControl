@@ -179,6 +179,7 @@ namespace NSRetailPOS
             rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
             rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
             rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
+            rpt.Parameters["RoundingFactor"].Value = oldBillObj.Rounding;
             rpt.Print();
 
             LoadBillData(nextBillDetails);
@@ -334,6 +335,7 @@ namespace NSRetailPOS
                 rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
                 rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
                 rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
+                rpt.Parameters["RoundingFactor"].Value = LastBillObj.Rounding;
                 rpt.Print();
                 txtItemCode.Focus();
             }
@@ -393,7 +395,7 @@ namespace NSRetailPOS
                 case Keys.F1:
                     btnCloseBill_Click(sender, e);
                     break;
-                case Keys.F2:
+                case Keys.F3:
                     sluItemCode.Focus();
                     break;
                 case Keys.F5:

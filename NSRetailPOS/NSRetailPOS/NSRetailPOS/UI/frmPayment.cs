@@ -29,14 +29,14 @@ namespace NSRetailPOS.UI
             gvMOP.GridControl.BindingContext = new BindingContext();
             gvMOP.GridControl.DataSource = gcMOP.DataSource;
 
-            if(gvMOP.GetFocusedRowCellValue("MOPNAME").ToString().ToUpper() == "CASH"
-                && decimal.TryParse(e.Value.ToString(), out decimal cashValue)
-                && cashValue - Math.Round(cashValue) != 0.0M)
-            {
-                XtraMessageBox.Show($"Cash cannot have decimal places");
-                gvMOP.SetRowCellValue(e.RowHandle, "MOPVALUE", 0.00);
-                return;
-            }
+            //if(gvMOP.GetFocusedRowCellValue("MOPNAME").ToString().ToUpper() == "CASH"
+            //    && decimal.TryParse(e.Value.ToString(), out decimal cashValue)
+            //    && cashValue - Math.Round(cashValue) != 0.0M)
+            //{
+            //    XtraMessageBox.Show($"Cash cannot have decimal places");
+            //    gvMOP.SetRowCellValue(e.RowHandle, "MOPVALUE", 0.00);
+            //    return;
+            //}
 
             decimal.TryParse(gvMOP.Columns["MOPVALUE"].SummaryItem.SummaryValue.ToString(), out paidAmount);
             remainingAmount = payableAmount - paidAmount;

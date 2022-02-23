@@ -44,7 +44,8 @@ namespace NSRetailPOS.UI
                 rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
                 rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
                 rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
-                rpt.ShowRibbonPreview();
+                rpt.Parameters["UserName"].Value = Utility.logininfo.UserName;
+                rpt.Print();
                 this.Close();
             }
             catch (Exception ex)

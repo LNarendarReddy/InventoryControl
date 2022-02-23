@@ -366,7 +366,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@USERID", UserID);
                     cmd.Parameters.AddWithValue("@RefundAmount", RefundAmount);
                     cmd.Parameters.AddWithValue("@DaySequenceID", DaySequenceID);
-                    object objReturn = cmd.ExecuteNonQuery();
+                    object objReturn = cmd.ExecuteScalar();
                     if (!int.TryParse(Convert.ToString(objReturn),out DayClosureID))
                         throw new Exception("Error while saving day cllosure");
                 }
