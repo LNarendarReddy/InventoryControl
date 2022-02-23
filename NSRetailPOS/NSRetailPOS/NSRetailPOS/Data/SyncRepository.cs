@@ -95,7 +95,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "USP_CU_POS_IMPORTDATE";
+                    cmd.CommandText = "USP_CU_POS_IMPORTDATA";
                     cmd.Parameters.AddWithValue("@Bill", dsRestoreData.Tables[0]);
                     cmd.Parameters.AddWithValue("@BillDetail", dsRestoreData.Tables[1]);
                     cmd.Parameters.AddWithValue("@BillMOPDetail", dsRestoreData.Tables[2]);
