@@ -41,6 +41,9 @@ namespace NSRetailPOS.UI
                 DayClosed = true;
                 DataSet ds = new BillingRepository().GetDayClosureForReport(dayClosureid);
                 rptDayClosure rpt = new rptDayClosure(ds);
+                rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
+                rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
+                rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
                 rpt.ShowRibbonPreview();
                 this.Close();
             }
