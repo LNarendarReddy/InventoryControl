@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
+using System;
 using System.Data;
 using System.Windows.Forms;
 
@@ -14,7 +15,7 @@ namespace NSRetailPOS.UI
 
         BillingRepository billingRepository = new BillingRepository();
 
-        decimal paidAmount = 0.00M, payableAmount = 0.00M, remainingAmount = 0.00M;
+        decimal paidAmount = 0.00M, payableAmount = 0.00M, remainingAmount = 0.00M, billedAmount = 0.00M;
 
         public frmPayment(Bill bill)
         {
@@ -28,14 +29,23 @@ namespace NSRetailPOS.UI
             gvMOP.GridControl.BindingContext = new BindingContext();
             gvMOP.GridControl.DataSource = gcMOP.DataSource;
 
+            if(gvMOP.GetFocusedRowCellValue("MOPNAME").ToString().ToUpper() == "CASH"
+                && decimal.TryParse(e.Value.ToString(), out decimal cashValue)
+                && cashValue - Math.Round(cashValue) != 0.0M)
+            {
+                XtraMessageBox.Show($"Cash cannot have decimal places");
+                gvMOP.SetRowCellValue(e.RowHandle, "MOPVALUE", 0.00);
+                return;
+            }
+
             decimal.TryParse(gvMOP.Columns["MOPVALUE"].SummaryItem.SummaryValue.ToString(), out paidAmount);
             remainingAmount = payableAmount - paidAmount;
             UpdateLabels();
         }
 
-        private void btnOk_Click(object sender, System.EventArgs e)
+        private void btnOk_Click(object sender, EventArgs e)
         {
-            if (remainingAmount > 0.00M)
+            if (Math.Round(remainingAmount) > 0.00M)
             {
                 XtraMessageBox.Show($"Bill cannot be closed. Pending balance to be paid {remainingAmount}"
                     , "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -45,6 +55,7 @@ namespace NSRetailPOS.UI
             billObj.CustomerName = txtCustomerName.EditValue;
             billObj.CustomerNumber = txtMobileNo.EditValue;
             billObj.dtMopValues = gcMOP.DataSource as DataTable;
+            billObj.Rounding = paidAmount - billedAmount;
             IsPaid = true;
             Close();
         }
@@ -74,15 +85,16 @@ namespace NSRetailPOS.UI
             gcMOP.DataSource = dtMOPs;
             txtItemQuantity.EditValue = billObj.Quantity;
             txtBilledAmount.EditValue = billObj.Amount;
-            decimal.TryParse(billObj.Amount.ToString(), out payableAmount);
-            remainingAmount = payableAmount;
+            decimal.TryParse(billObj.Amount.ToString(), out billedAmount);
+            payableAmount = billedAmount;
+            remainingAmount = billedAmount;
             UpdateLabels();
         }
 
         private void UpdateLabels()
         {
             txtPaidAmount.EditValue = paidAmount;
-            txtRemainingAmount.EditValue = remainingAmount;
+            txtRemainingAmount.EditValue = $"{remainingAmount} ( Rounded value : {Math.Round(remainingAmount)} )";
         }
     }
 }

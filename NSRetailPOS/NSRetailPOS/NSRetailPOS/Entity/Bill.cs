@@ -24,6 +24,8 @@ namespace NSRetailPOS.Entity
 
         public object CustomerName { get; set; }
 
+        public object Rounding { get; set; }
+
         public DataTable dtMopValues { get; set; }
 
         public object Clone()

@@ -96,6 +96,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
                     cmd.Parameters.AddWithValue("@CustomerName", billObj.CustomerName);
                     cmd.Parameters.AddWithValue("@CustomerNumber", billObj.CustomerNumber);
+                    cmd.Parameters.AddWithValue("@Rounding", billObj.Rounding);
                     DataTable dtTemp = billObj.dtMopValues.Copy();
                     if (dtTemp.Columns.Contains("MOPNAME"))
                     {

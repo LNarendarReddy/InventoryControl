@@ -25,6 +25,7 @@ namespace NSRetailPOS
             billObj.BillNumber = dsBillDetails.Tables["BILL"].Rows[0]["BILLNUMBER"];
             billObj.LastBilledAmount = dsBillDetails.Tables["BILL"].Rows[0]["LASTBILLEDAMOUNT"];
             billObj.LastBilledQuantity = dsBillDetails.Tables["BILL"].Rows[0]["LASTBILLEDQUANTITY"];
+            billObj.Rounding = dsBillDetails.Tables["BILL"].Rows[0]["ROUNDING"];
             billObj.LastBillID = dsBillDetails.Tables["BILL"].Rows[0]["LASTBILLID"];
             billObj.dtBillDetails = dsBillDetails.Tables["BILLDETAILS"];
             if (dsBillDetails.Tables.Count > 2)
