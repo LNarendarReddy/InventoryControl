@@ -33,6 +33,7 @@ namespace NSRetailPOS.Entity
             Bill clonedBillObj = new Bill();
             clonedBillObj.BillID = BillID;
             clonedBillObj.BillNumber = BillNumber;
+            clonedBillObj.Rounding = Rounding;
             clonedBillObj.dtBillDetails = dtBillDetails.Copy();
             clonedBillObj.dtMopValues = dtMopValues.Copy();
             return clonedBillObj;

@@ -282,6 +282,7 @@
             // 
             // layoutControlGroup2
             // 
+            this.layoutControlGroup2.Enabled = false;
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem5,
             this.layoutControlItem7,
