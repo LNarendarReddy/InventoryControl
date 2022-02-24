@@ -278,6 +278,7 @@ namespace NSRetail
             this.txtFullName.EnterMoveNextControl = true;
             this.txtFullName.Location = new System.Drawing.Point(92, 37);
             this.txtFullName.Name = "txtFullName";
+            this.txtFullName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtFullName.Size = new System.Drawing.Size(409, 20);
             this.txtFullName.StyleController = this.layoutControl1;
             this.txtFullName.TabIndex = 2;

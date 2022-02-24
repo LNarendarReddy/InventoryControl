@@ -38,7 +38,7 @@ namespace NSRetailPOS
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            lblUserName.Text = $"Loggedin User : {Utility.logininfo.UserFullName}   Application Version 1.0.8 (23-02-2022)";
+            lblUserName.Text = $"Loggedin User : {Utility.logininfo.UserFullName}   Application Version 1.1.0 (25-02-2022)";
             DataSet dsInitialData = billingRepository.GetInitialLoad(Utility.logininfo.UserID, Utility.branchinfo.BranchCounterID);
 
             if (!int.TryParse(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString(), out daySequenceID))
@@ -162,8 +162,16 @@ namespace NSRetailPOS
             frmPayment paymentForm = new frmPayment(billObj);
             paymentForm.ShowDialog();
             if (!paymentForm.IsPaid) { return; }
-
-            DataSet nextBillDetails = billingRepository.FinishBill(Utility.logininfo.UserID, daySequenceID, billObj);
+            DataSet nextBillDetails = null;
+            try
+            {
+                nextBillDetails = billingRepository.FinishBill(Utility.logininfo.UserID, daySequenceID, billObj);
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // use this object for printing
             Bill oldBillObj = billObj.Clone() as Bill;
