@@ -28,7 +28,8 @@ namespace NSRetailPOS.UI
                 if (!dxValidationProvider1.Validate())
                     return;
                 DataSet dSUserInfo = objPOSRep.GetUserInfo(Utility.branchinfo.BranchID,
-                    Utility.branchinfo.BranchCounterID,txtUserName.EditValue, Utility.Encrypt(Convert.ToString(txtPassword.EditValue)));
+                    Utility.branchinfo.BranchCounterID,txtUserName.EditValue, Utility.Encrypt(Convert.ToString(txtPassword.EditValue))
+                    , Utility.GetHDDSerialNumber());
                 if(dSUserInfo != null && dSUserInfo.Tables.Count > 0 &&
                     dSUserInfo.Tables[0].Rows.Count > 0)
                 {

@@ -169,5 +169,29 @@ namespace NSRetailPOS.Data
 
             return dsRestoreData;
         }
+
+        public void CheckOrAddHDDSerialNumber(object branchCounterID, string HDDSNo)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlCloudconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_BRANCHCOUNTER_HDDNO]";
+                    cmd.Parameters.AddWithValue("@BranchCounterID", branchCounterID);
+                    cmd.Parameters.AddWithValue("@HDDSNO", HDDSNo);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.SqlCloudconn().Close();
+            }
+        }
     }
 }

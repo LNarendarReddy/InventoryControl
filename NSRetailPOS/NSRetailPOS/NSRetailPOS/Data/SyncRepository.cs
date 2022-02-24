@@ -112,6 +112,30 @@ namespace NSRetailPOS.Data
                 SQLCon.Sqlconn().Close();
             }
         }
+
+        public void SaveHDDSNo(string HDDSNo)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "USP_U_POS_HDDSNO";
+                    cmd.Parameters.AddWithValue("@BranchCounterID", Utility.branchinfo.BranchCounterID);
+                    cmd.Parameters.AddWithValue("@HDDSNO", HDDSNo);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error While saving machine identifier", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 
     class EntityMapping

@@ -115,7 +115,7 @@ namespace NSRetailPOS.Data
                 SQLCon.Sqlconn().Close();
             }
         }
-        public DataSet GetUserInfo(object BranchID,object BranchCounterID,object Username,object PasswordString)
+        public DataSet GetUserInfo(object BranchID,object BranchCounterID,object Username,object PasswordString, string HDDSNo)
         {
             DataSet dSUserInfo = new DataSet();
             try
@@ -129,6 +129,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@BRANCHCOUNTERID", BranchCounterID);
                     cmd.Parameters.AddWithValue("@USERNAME", Username);
                     cmd.Parameters.AddWithValue("@PASSWORDSTRING", PasswordString);
+                    cmd.Parameters.AddWithValue("@HDDSNO", HDDSNo);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dSUserInfo);

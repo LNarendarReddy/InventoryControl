@@ -3,6 +3,7 @@ using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using System;
 using System.Data;
+using System.Management;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
@@ -44,7 +45,10 @@ namespace NSRetailPOS.UI
                 SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
                 Utility.branchinfo.BranchCounterID = cmbCounter.EditValue;
                 Utility.branchinfo.BranchID = cmbBranch.EditValue;
+                string HDDSno = Utility.GetHDDSerialNumber();
+                objCloudRepository.CheckOrAddHDDSerialNumber(Utility.branchinfo.BranchCounterID, HDDSno);
                 Utility.StartSync(null, true);
+                objSyncRepository.SaveHDDSNo(HDDSno);
                 DataSet dsRestoreData = objCloudRepository.GetDaySequence(cmbCounter.EditValue);
                 objSyncRepository.ImportDaySequence(dsRestoreData);
 
@@ -71,5 +75,6 @@ namespace NSRetailPOS.UI
         {
 
         }
+                
     }
 }

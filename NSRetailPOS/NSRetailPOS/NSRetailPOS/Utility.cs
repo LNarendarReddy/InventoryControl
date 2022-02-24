@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
+using System.Management;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -118,6 +119,19 @@ namespace NSRetailPOS
             {
                 SplashScreenManager.Default.SetWaitFormDescription(displayText);
             }
+        }
+
+        public static string GetHDDSerialNumber()
+        {
+            ManagementObjectSearcher moSearcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
+
+            foreach (ManagementObject wmi_HD in moSearcher.Get())
+            {
+                object serialNo = wmi_HD["SerialNumber"];
+                if (!string.IsNullOrEmpty(serialNo as string)) { return serialNo.ToString(); }
+            }
+
+            return string.Empty;
         }
     }
     
