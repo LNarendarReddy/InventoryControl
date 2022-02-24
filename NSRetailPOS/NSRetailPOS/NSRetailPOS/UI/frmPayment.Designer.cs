@@ -215,6 +215,7 @@
             this.gridColumn3});
             this.gvMOP.GridControl = this.gcMOP;
             this.gvMOP.Name = "gvMOP";
+            this.gvMOP.OptionsCustomization.AllowSort = false;
             this.gvMOP.OptionsView.ShowGroupPanel = false;
             this.gvMOP.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvMOP_CellValueChanged);
             this.gvMOP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvMOP_KeyDown);

@@ -17,6 +17,8 @@ namespace NSRetailPOS.UI
 
         decimal paidAmount = 0.00M, payableAmount = 0.00M, remainingAmount = 0.00M, billedAmount = 0.00M;
 
+        int cashRowHandle = -1;
+
         public frmPayment(Bill bill)
         {
             InitializeComponent();
@@ -55,7 +57,11 @@ namespace NSRetailPOS.UI
             billObj.CustomerName = txtCustomerName.EditValue;
             billObj.CustomerNumber = txtMobileNo.EditValue;
             billObj.dtMopValues = gcMOP.DataSource as DataTable;
-            billObj.Rounding = paidAmount - billedAmount;
+            billObj.Rounding = Math.Round(billedAmount) - billedAmount;
+            if (decimal.TryParse(gvMOP.GetRowCellValue(cashRowHandle, "MOPVALUE").ToString(), out decimal cashValue))
+            {
+                gvMOP.SetRowCellValue(cashRowHandle, "MOPVALUE", cashValue + Math.Round(remainingAmount));
+            }
             IsPaid = true;
             Close();
         }
@@ -88,13 +94,16 @@ namespace NSRetailPOS.UI
             decimal.TryParse(billObj.Amount.ToString(), out billedAmount);
             payableAmount = billedAmount;
             remainingAmount = billedAmount;
+            cashRowHandle = gvMOP.LocateByValue("MOPNAME", "Cash");
+            cashRowHandle = cashRowHandle < 0 ? gvMOP.LocateByValue("MOPNAME", "CASH") : cashRowHandle; 
             UpdateLabels();
         }
 
         private void UpdateLabels()
         {
             txtPaidAmount.EditValue = paidAmount;
-            txtRemainingAmount.EditValue = $"{remainingAmount} ( Rounded value : {Math.Round(remainingAmount)} )";
+            decimal roundedRemaining = remainingAmount < 0.00m ? 0 : Math.Round(remainingAmount);
+            txtRemainingAmount.EditValue = $"{Math.Round(remainingAmount)} ( Rounded value : {roundedRemaining} )";
         }
     }
 }
