@@ -51,10 +51,21 @@ namespace NSRetailPOS.Data
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    DataTable dtCloned = dtRefund.Copy();
+                    foreach (DataColumn dc in dtRefund.Columns)
+                    {
+                        if (dc.ColumnName == "BILLDETAILID" ||
+                             dc.ColumnName == "REFUNDQUANTITY" ||
+                             dc.ColumnName == "REFUNDWEIGHTINKGS" ||
+                             dc.ColumnName == "REFUNDAMOUNT")
+                            continue;
+                        dtCloned.Columns.Remove(dc.ColumnName);
+                    }
+
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_CU_CREFUND]";
-                    cmd.Parameters.AddWithValue("@dtRefund", dtRefund);
+                    cmd.Parameters.AddWithValue("@dtRefund", dtCloned);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     int ivalue = cmd.ExecuteNonQuery();
                     if(ivalue<=0)

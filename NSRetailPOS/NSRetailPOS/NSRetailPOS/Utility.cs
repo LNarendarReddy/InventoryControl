@@ -1,7 +1,9 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
+using NSRetailPOS.Reports;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -132,6 +134,48 @@ namespace NSRetailPOS
             }
 
             return string.Empty;
+        }
+
+        public static void PrintBarCode(object ItemCode, object ItemName,
+            string SalePrice, object oQuantity, object MRP, object BatchNumber,
+            object PackedDate, object CategoryID,object IsOpenCategory)
+        {
+            try
+            {
+                int Quantity = 0;
+                if (int.TryParse(Convert.ToString(oQuantity), out Quantity))
+                {
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("ItemCode", typeof(string));
+                    dt.Columns.Add("ItemName", typeof(string));
+                    dt.Columns.Add("SalePrice", typeof(string));
+                    dt.Columns.Add("MRP", typeof(string));
+                    DataRow dr = null;
+                    for (int i = 0; i < Quantity; i++)
+                    {
+                        dr = dt.NewRow();
+                        dr["ItemCode"] = ItemCode;
+                        dr["ItemName"] = ItemName;
+                        dr["SalePrice"] = SalePrice;
+                        dr["MRP"] = MRP;
+                        dt.Rows.Add(dr);
+                    }
+                    rptBarcode rpt = new rptBarcode();
+                    rpt.DataSource = dt;
+                    rpt.ShowPrintMarginsWarning = false;
+                    rpt.Parameters["BatchNumber"].Value = BatchNumber;
+                    rpt.Parameters["PackedDate"].Value = DateTime.Now.ToString("MM/yyyy");
+                    rpt.Parameters["CategoryID"].Value = CategoryID;
+                    rpt.Parameters["IsOpenCategory"].Value = IsOpenCategory;
+                    rpt.CreateDocument();
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
+                    printTool.Print();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
     

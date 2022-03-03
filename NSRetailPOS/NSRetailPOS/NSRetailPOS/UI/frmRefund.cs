@@ -52,23 +52,13 @@ namespace NSRetailPOS.UI
             try
             {
                 DataTable dt = gcBillDetails.DataSource as DataTable;
-                DataTable dtCloned = dt.Copy();
-                foreach (DataColumn dc in dtCloned.Columns)
-                {
-                    if (dc.ColumnName == "BILLDETAILID" ||
-                         dc.ColumnName == "REFUNDQUANTITY" ||
-                         dc.ColumnName == "REFUNDWEIGHTINKGS" ||
-                         dc.ColumnName == "REFUNDAMOUNT")
-                        continue;
-                    dt.Columns.Remove(dc.ColumnName);
-                }
                 DataView dv = dt.DefaultView;
                 dv.RowFilter = "REFUNDQUANTITY > 0";
                 DataTable dtFiltered = dv.ToTable();
                 if (dtFiltered.Rows.Count == 0)
                     throw new Exception("Refund quantity should be greater than '0'");
                 new RefundRepository().InsertCRefund(dtFiltered, Utility.logininfo.UserID);
-                rptCRefund rpt = new rptCRefund(dv.ToTable());
+                rptCRefund rpt = new rptCRefund(dtFiltered);
                 rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
                 rpt.Parameters["FSSAI"].Value = "10114004000548";
                 rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
@@ -134,7 +124,7 @@ namespace NSRetailPOS.UI
                 drBillDetail["CESS"] = cessValue;
                 drBillDetail["GSTVALUE"] = totalGSTValue;
                 drBillDetail["REFUNDWEIGHTINKGS"] = drBillDetail["WEIGHTINKGS"];
-                drBillDetail["REFUNDAMOUNT"] = billedAmount;
+                drBillDetail["REFUNDAMOUNT"] = RefundAmount;
                 drBillDetail["DISCOUNT"] = Discount;
             }
             catch (Exception ex)

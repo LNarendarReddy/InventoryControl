@@ -21,10 +21,10 @@ namespace NSRetailPOS
         static void Main()
         {
 
-            Assembly asm = typeof(NSRetailPOSSkin).Assembly;
+            Assembly asm = typeof(NSRetailPOSSkinDARK).Assembly;
             SkinManager.Default.RegisterAssembly(asm);
-            SplashScreenManager.RegisterUserSkins(typeof(NSRetailPOSSkin).Assembly);
-            UserLookAndFeel.Default.SetSkinStyle("NSRetailPOSSkin");
+            SplashScreenManager.RegisterUserSkins(typeof(NSRetailPOSSkinDARK).Assembly);
+            UserLookAndFeel.Default.SetSkinStyle("NSRetailPOSSkinDARK");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             SkinManager.EnableFormSkins();
@@ -46,7 +46,7 @@ namespace NSRetailPOS
     {
         public SkinRegistration()
         {
-            SkinManager.Default.RegisterAssembly(typeof(NSRetailPOSSkin).Assembly);
+            SkinManager.Default.RegisterAssembly(typeof(NSRetailPOSSkinDARK).Assembly);
         }
     }
 }

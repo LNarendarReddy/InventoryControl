@@ -188,6 +188,7 @@ namespace NSRetailPOS
             rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
             rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
             rpt.Parameters["RoundingFactor"].Value = oldBillObj.Rounding;
+            rpt.Parameters["IsDuplicate"].Value = false;
             rpt.Print();
 
             LoadBillData(nextBillDetails);
@@ -344,6 +345,7 @@ namespace NSRetailPOS
                 rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
                 rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
                 rpt.Parameters["RoundingFactor"].Value = LastBillObj.Rounding;
+                rpt.Parameters["IsDuplicate"].Value = true;
                 rpt.Print();
                 txtItemCode.Focus();
             }
@@ -365,6 +367,9 @@ namespace NSRetailPOS
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
+            if (XtraMessageBox.Show("Are you sure want to delete the item?", "Confirmation!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
             object billDetailID = gvBilling.GetFocusedRowCellValue("BILLDETAILID");
             SNo = Convert.ToInt32(gvBilling.GetFocusedRowCellValue("SNO"));
             DataTable dtSNos = new DataTable();
@@ -394,6 +399,7 @@ namespace NSRetailPOS
             if (e.Column.FieldName != "QUANTITY" ||  isEventCall) return;
             DataRow drUpdatedBill = gvBilling.GetDataRow(e.RowHandle);
             SaveBillDetail(drUpdatedBill["ITEMPRICEID"], drUpdatedBill["QUANTITY"], drUpdatedBill["WEIGHTINKGS"], drUpdatedBill["BILLDETAILID"]);
+            txtItemCode.Focus();
         }
 
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
@@ -402,6 +408,11 @@ namespace NSRetailPOS
             {
                 case Keys.F1:
                     btnCloseBill_Click(sender, e);
+                    break;
+                case Keys.F2:
+                    gvBilling.Focus();
+                    gvBilling.FocusedRowHandle = 0;
+                    gvBilling.FocusedColumn = gvBilling.Columns["QUANTITY"];
                     break;
                 case Keys.F3:
                     sluItemCode.Focus();
@@ -535,6 +546,24 @@ namespace NSRetailPOS
             btnRefund.Enabled = false;
             btnLastBillPrint.Enabled = false;
             btnDayClosure.Enabled = false;
+        }
+
+        private void btnChangePassword_Click_1(object sender, EventArgs e)
+        {
+            frmChangePassword obj = new frmChangePassword();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            frmBarCodePrint obj = new frmBarCodePrint();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
         }
     }
 }

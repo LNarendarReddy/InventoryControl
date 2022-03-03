@@ -269,6 +269,7 @@
             this.gridColumn4.FieldName = "BREFUNDDETAILID";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
+            this.gridColumn4.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             // 
             // gridColumn20
             // 
@@ -276,6 +277,7 @@
             this.gridColumn20.FieldName = "BREFUNDID";
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.OptionsColumn.AllowEdit = false;
+            this.gridColumn20.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             // 
             // gridColumn5
             // 
@@ -283,6 +285,7 @@
             this.gridColumn5.FieldName = "ITEMPRICEID";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
+            this.gridColumn5.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             // 
             // gridColumn6
             // 
@@ -302,6 +305,7 @@
             this.gridColumn7.FieldName = "ITEMNAME";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
+            this.gridColumn7.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 2;
             this.gridColumn7.Width = 320;
@@ -312,6 +316,7 @@
             this.gridColumn8.FieldName = "ITEMCODE";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
+            this.gridColumn8.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 1;
             this.gridColumn8.Width = 120;
@@ -322,6 +327,7 @@
             this.gridColumn9.FieldName = "MRP";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
+            this.gridColumn9.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 3;
             this.gridColumn9.Width = 85;
@@ -332,6 +338,7 @@
             this.gridColumn10.FieldName = "SALEPRICE";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
+            this.gridColumn10.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 4;
             this.gridColumn10.Width = 85;
@@ -341,6 +348,7 @@
             this.gridColumn12.Caption = "Quantity";
             this.gridColumn12.FieldName = "QUANTITY";
             this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn12.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QUANTITY", "{0:0.##}")});
             this.gridColumn12.Visible = true;
@@ -353,6 +361,7 @@
             this.gridColumn13.FieldName = "WEIGHTINKGS";
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.OptionsColumn.AllowEdit = false;
+            this.gridColumn13.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 6;
             this.gridColumn13.Width = 85;
@@ -363,6 +372,7 @@
             this.gridColumn11.FieldName = "TRAYNUMBER";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
+            this.gridColumn11.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 7;
             this.gridColumn11.Width = 85;
@@ -374,6 +384,7 @@
             this.gridColumn22.Caption = "Delete";
             this.gridColumn22.ColumnEdit = this.btnDelete;
             this.gridColumn22.Name = "gridColumn22";
+            this.gridColumn22.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn22.Visible = true;
             this.gridColumn22.VisibleIndex = 8;
             this.gridColumn22.Width = 86;
