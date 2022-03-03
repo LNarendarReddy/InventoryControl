@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.Reports;
@@ -564,6 +565,13 @@ namespace NSRetailPOS
             obj.IconOptions.ShowIcon = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
+        }
+
+        private void btnSyncData_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
+            Utility.StartSync(null);
+            SplashScreenManager.CloseForm();
         }
     }
 }

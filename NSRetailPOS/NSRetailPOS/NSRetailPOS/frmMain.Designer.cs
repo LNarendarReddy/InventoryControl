@@ -251,6 +251,7 @@
             this.btnSyncData.StyleController = this.layoutControl1;
             this.btnSyncData.TabIndex = 34;
             this.btnSyncData.Text = "Sync Data(F4)";
+            this.btnSyncData.Click += new System.EventHandler(this.btnSyncData_Click);
             // 
             // btnChangePassword
             // 
@@ -1238,7 +1239,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            this.layoutControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightInKgs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastBilledQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastBilledAmount.Properties)).EndInit();
