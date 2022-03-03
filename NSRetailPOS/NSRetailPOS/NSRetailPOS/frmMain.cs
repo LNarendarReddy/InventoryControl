@@ -368,8 +368,14 @@ namespace NSRetailPOS
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            if (XtraMessageBox.Show("Are you sure want to delete the item?", "Confirmation!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            if (gvBilling.FocusedRowHandle < 0)
                 return;
+            if (XtraMessageBox.Show($"Are you sure want to delete {gvBilling.GetFocusedRowCellValue("ITEMNAME")} ?"
+                , "Confirmation!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                txtItemCode.Focus();
+                return;
+            }
 
             object billDetailID = gvBilling.GetFocusedRowCellValue("BILLDETAILID");
             SNo = Convert.ToInt32(gvBilling.GetFocusedRowCellValue("SNO"));
@@ -418,6 +424,9 @@ namespace NSRetailPOS
                 case Keys.F3:
                     sluItemCode.Focus();
                     break;
+                case Keys.F4:
+                    btnSyncData_Click(sender,e);
+                    break;
                 case Keys.F5:
                     btnSaveBill_Click(sender, e);
                     break;
@@ -438,6 +447,9 @@ namespace NSRetailPOS
                     break;
                 case Keys.F11:
                     btnBranchRefund_Click(sender, e);
+                    break;
+                case Keys.Delete:
+                    btnDelete_ButtonClick(null, null);
                     break;
                 default:
                     break;
