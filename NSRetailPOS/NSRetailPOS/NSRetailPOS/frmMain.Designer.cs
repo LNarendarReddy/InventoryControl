@@ -544,6 +544,7 @@
             this.gvBilling.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn6, DevExpress.Data.ColumnSortOrder.Descending)});
             this.gvBilling.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvBilling_CellValueChanged);
+            this.gvBilling.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvBilling_KeyDown);
             // 
             // gridColumn4
             // 

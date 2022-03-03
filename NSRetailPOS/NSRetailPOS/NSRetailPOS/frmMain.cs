@@ -448,9 +448,6 @@ namespace NSRetailPOS
                 case Keys.F11:
                     btnBranchRefund_Click(sender, e);
                     break;
-                case Keys.Delete:
-                    btnDelete_ButtonClick(null, null);
-                    break;
                 default:
                     break;
             }
@@ -584,6 +581,12 @@ namespace NSRetailPOS
             SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
             Utility.StartSync(null);
             SplashScreenManager.CloseForm();
+        }
+
+        private void gvBilling_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Delete)
+                btnDelete_ButtonClick(null, null);
         }
     }
 }
