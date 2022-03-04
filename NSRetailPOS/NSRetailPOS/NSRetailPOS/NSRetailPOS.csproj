@@ -189,6 +189,12 @@
     <Compile Include="UI\frmConfiguration.Designer.cs">
       <DependentUpon>frmConfiguration.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\frmCustomerRefund.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmCustomerRefund.Designer.cs">
+      <DependentUpon>frmCustomerRefund.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmDayClosure.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmConfiguration.resx">
       <DependentUpon>frmConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmCustomerRefund.resx">
+      <DependentUpon>frmCustomerRefund.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmDayClosure.resx">
       <DependentUpon>frmDayClosure.cs</DependentUpon>
