@@ -1,10 +1,13 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.Reports;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
@@ -176,6 +179,18 @@ namespace NSRetailPOS
             {
                 throw ex;
             }
+        }
+
+        public static List<int> AllLocateByValue(this GridView view, string fieldName, object value)
+        {
+            List<int> list = new List<int>();
+            int rowHandle = view.LocateByValue(fieldName, value);
+            while (rowHandle != GridControl.InvalidRowHandle)
+            {
+                list.Add(rowHandle);
+                rowHandle = view.LocateByValue(rowHandle + 1, view.Columns[fieldName], value);
+            }
+            return list;
         }
     }
     

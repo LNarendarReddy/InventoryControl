@@ -5,8 +5,10 @@ using NSRetailPOS.Entity;
 using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -269,13 +271,29 @@ namespace NSRetailPOS
                 txtQuantity.ReadOnly = true;
             }
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
+
+            if(rowHandle < 0)
+            {
+                List<int> rowHandles = sluItemCodeView.AllLocateByValue("SKUCODE", txtItemCode.EditValue);
+                if (rowHandles.Count == 1)
+                {
+                    rowHandle = rowHandles.First();
+                }
+                else if (rowHandles.Count > 1)
+                {
+                    sluItemCode.ShowPopup();
+                    sluItemCodeView.FindFilterText = txtItemCode.EditValue.ToString();
+                    isItemScanned = true;
+                }
+            }
+
             if (rowHandle >= 0)
             {
                 isItemScanned = true;
                 sluItemCode.EditValue = null;
                 sluItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODEID");
             }
-            else
+            else if(!isItemScanned)
             {
                 XtraMessageBox.Show("Item Does Not Exists!");
                 ClearItemData();
