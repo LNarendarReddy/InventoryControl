@@ -84,26 +84,18 @@ namespace NSRetailPOS.Data
 
         public void InsertCRefundWOBill(DataTable dtRefund, object UserID,object CustomerName,object CustomerMobile)
         {
+            List<string> columnsToRemove = new List<string> { "ITEMCODE", "ITEMNAME", "MRP", "SALEPRICE", "ISOPENITEM" };
             try
             {
                 DataTable dtTemp = dtRefund.Copy();
-                foreach(DataColumn dc in dtRefund.Columns)
-                {
-                    if (dc.ColumnName == "ITEMCODE" ||
-                        dc.ColumnName == "ITEMNAME" ||
-                        dc.ColumnName == "MRP" ||
-                        dc.ColumnName == "SALEPRICE" ||
-                        dc.ColumnName == "ISOPENITEM")
-                        dtTemp.Columns.Remove(dc.ColumnName);
-
-                }
-
+                columnsToRemove.Where(dtTemp.Columns.Contains).ToList().ForEach(x => dtTemp.Columns.Remove(x));
+                
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_C_CR_WO_BILL]";
-                    cmd.Parameters.AddWithValue("@dtRefund", dtRefund);
+                    cmd.Parameters.AddWithValue("@CR_WO_Bills", dtTemp);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     cmd.Parameters.AddWithValue("@CustomerName", CustomerName);
                     cmd.Parameters.AddWithValue("@CustomerMobile", CustomerMobile);

@@ -2,18 +2,12 @@
 using NSRetailPOS.Data;
 using NSRetailPOS.Reports;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
 {
-    public partial class frmCustomerRefund : DevExpress.XtraEditors.XtraForm
+    public partial class frmCustomerRefund : XtraForm
     {
         DataRow drSelectedPrice;
         bool isItemScanned;
@@ -203,22 +197,22 @@ namespace NSRetailPOS.UI
             gvRefund.SetRowCellValue(e.RowHandle, "ITEMNAME", sluItemCode.Text);
             gvRefund.SetRowCellValue(e.RowHandle, "MRP", txtMRP.EditValue);
             gvRefund.SetRowCellValue(e.RowHandle, "SALEPRICE", txtSalePrice.EditValue);
-            gvRefund.SetRowCellValue(e.RowHandle, "QUANTITY", txtQuantity.EditValue);
-            gvRefund.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
+            gvRefund.SetRowCellValue(e.RowHandle, "REFUNDQUANTITY", txtQuantity.EditValue);
+            gvRefund.SetRowCellValue(e.RowHandle, "REFUNDWEIGHTINKGS", txtWeightInKgs.EditValue);
             gvRefund.SetRowCellValue(e.RowHandle, "ISOPENITEM", isOpenItem);
-            if (decimal.TryParse(txtSalePrice.Text,out decimal saleprice))
+            if (decimal.TryParse(txtSalePrice.Text, out decimal saleprice))
             {
-                if (isOpenItem)
+                decimal refundMultiplier = 0.0m;
+                if (isOpenItem && decimal.TryParse(txtWeightInKgs.Text, out decimal weightinkgs))
                 {
-                    if (decimal.TryParse(txtWeightInKgs.Text, out decimal weightinkgs))
-                        gvRefund.SetRowCellValue(e.RowHandle, 
-                            "AMOUNT", Math.Round(saleprice * weightinkgs,2));
+                    refundMultiplier = weightinkgs;
                 }
-                else if(int.TryParse(txtQuantity.Text, out int quantity))
+                else if(!isOpenItem && int.TryParse(txtQuantity.Text, out int quantity))
                 {
-                    gvRefund.SetRowCellValue(e.RowHandle, 
-                        "AMOUNT", Math.Round(saleprice * quantity,2));
+                    refundMultiplier = quantity;
                 }
+
+                gvRefund.SetRowCellValue(e.RowHandle, "REFUNDAMOUNT", Math.Round(refundMultiplier * saleprice, 2));
             }
         }
 
