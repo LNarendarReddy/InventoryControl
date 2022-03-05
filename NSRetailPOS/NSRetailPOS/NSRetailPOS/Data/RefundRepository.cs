@@ -82,17 +82,31 @@ namespace NSRetailPOS.Data
             }
         }
 
-        public void InsertCRefundWOBill(DataTable dtRefund, object UserID)
+        public void InsertCRefundWOBill(DataTable dtRefund, object UserID,object CustomerName,object CustomerMobile)
         {
             try
             {
+                DataTable dtTemp = dtRefund.Copy();
+                foreach(DataColumn dc in dtRefund.Columns)
+                {
+                    if (dc.ColumnName == "ITEMCODE" ||
+                        dc.ColumnName == "ITEMNAME" ||
+                        dc.ColumnName == "MRP" ||
+                        dc.ColumnName == "SALEPRICE" ||
+                        dc.ColumnName == "ISOPENITEM")
+                        dtTemp.Columns.Remove(dc.ColumnName);
+
+                }
+
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[POS_USP_CU_CREFUND]";
+                    cmd.CommandText = "[POS_USP_C_CR_WO_BILL]";
                     cmd.Parameters.AddWithValue("@dtRefund", dtRefund);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@CustomerName", CustomerName);
+                    cmd.Parameters.AddWithValue("@CustomerMobile", CustomerMobile);
                     int ivalue = cmd.ExecuteNonQuery();
                     if (ivalue <= 0)
                         throw new Exception("Error while saving Refund Details!");

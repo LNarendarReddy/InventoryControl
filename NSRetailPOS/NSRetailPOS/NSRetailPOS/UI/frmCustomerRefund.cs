@@ -18,8 +18,8 @@ namespace NSRetailPOS.UI
         DataRow drSelectedPrice;
         bool isItemScanned;
         bool isOpenItem;
-        bool isEventCall;
         DataTable dtRefund = null;
+        bool isEventCall;
         public frmCustomerRefund()
         {
             InitializeComponent();
@@ -99,9 +99,10 @@ namespace NSRetailPOS.UI
             dtRefund.Columns.Add("ITEMNAME", typeof(string));
             dtRefund.Columns.Add("MRP", typeof(decimal));
             dtRefund.Columns.Add("SALEPRICE", typeof(decimal));
-            dtRefund.Columns.Add("QUANTITY", typeof(int));
-            dtRefund.Columns.Add("WEIGHTINKGS", typeof(decimal));
-            dtRefund.Columns.Add("AMOUNT", typeof(decimal));
+            dtRefund.Columns.Add("REFUNDQUANTITY", typeof(int));
+            dtRefund.Columns.Add("REFUNDWEIGHTINKGS", typeof(decimal));
+            dtRefund.Columns.Add("REFUNDAMOUNT", typeof(decimal));
+            dtRefund.Columns.Add("ISOPENITEM", typeof(bool));
             gcRefund.DataSource = dtRefund;
         }
 
@@ -204,7 +205,8 @@ namespace NSRetailPOS.UI
             gvRefund.SetRowCellValue(e.RowHandle, "SALEPRICE", txtSalePrice.EditValue);
             gvRefund.SetRowCellValue(e.RowHandle, "QUANTITY", txtQuantity.EditValue);
             gvRefund.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
-            if(decimal.TryParse(txtSalePrice.Text,out decimal saleprice))
+            gvRefund.SetRowCellValue(e.RowHandle, "ISOPENITEM", isOpenItem);
+            if (decimal.TryParse(txtSalePrice.Text,out decimal saleprice))
             {
                 if (isOpenItem)
                 {
@@ -241,8 +243,27 @@ namespace NSRetailPOS.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            new RefundRepository().InsertCRefundWOBill(dtRefund, Utility.logininfo.UserID);
-            BindDataTable();
+            if (!dxValidationProvider2.Validate())
+                return;
+            if (gvRefund.RowCount == 0)
+                return;
+            new RefundRepository().InsertCRefundWOBill(dtRefund, 
+                Utility.logininfo.UserID, 
+                txtCustomerName.EditValue,
+                txtCustomerMobile.EditValue);
+
+            rptCRefund rpt = new rptCRefund(dtRefund);
+            rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
+            rpt.Parameters["FSSAI"].Value = "10114004000548";
+            rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
+            rpt.Parameters["BillDate"].Value = DateTime.Now;
+            rpt.Parameters["BillNumber"].Value = "NA";
+            rpt.Parameters["BranchName"].Value = Utility.branchinfo.BranchName;
+            rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
+            rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
+            rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
+            rpt.Print();
+            this.Close();
         }
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)

@@ -559,7 +559,7 @@
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem1.Size = new System.Drawing.Size(720, 32);
-            this.layoutControlItem1.Text = "Item Search (F2)";
+            this.layoutControlItem1.Text = "Item Search (F3)";
             this.layoutControlItem1.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(91, 15);
             // 
