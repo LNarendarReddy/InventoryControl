@@ -95,16 +95,6 @@ BEGIN
  -- RETURN        
  --END        
         
- --IF @EntityName = 'CATEGORY'        
- --BEGIN        
- -- SELECT * FROM TBLCATEGORY CAT        
- -- WHERE        
- --  CAT.CREATEDDATE > @SyncDate        
- --  OR CAT.UPDATEDDATE > @SyncDate        
- --  OR CAT.DELETEDDATE > @SyncDate        
- -- RETURN        
- --END        
-        
  IF @EntityName = 'BRANCHCOUNTER'        
  BEGIN        
   SELECT COUNTERID, COUNTERNAME, BRANCHID, CREATEDDATE, UPDATEDDATE, DELETEDDATE     

@@ -1,11 +1,26 @@
+IF NOT EXISTS (SELECT 1 FROM ENTITY WHERE ENTITYNAME = 'TBLCATEGORY')
+BEGIN
 INSERT INTO ENTITY(ENTITYNAME)
 VALUES ('TBLCATEGORY')
+END
 GO
+
+DECLARE @EntityID INT
+SELECT @EntityID = ENTITYID FROM ENTITY WHERE ENTITYNAME = 'TBLCATEGORY'
+
+IF NOT EXISTS (SELECT 1 FROM ENTITYSYNCORDER WHERE ENTITYID = @EntityID AND LOCATIONTYPE = 'Warehouse' AND SYNCDIRECTION = 'ToCloud')
+BEGIN
 INSERT INTO ENTITYSYNCORDER(ENTITYID,SYNCORDER,LOCATIONTYPE,SYNCDIRECTION)
-VALUES(1028,21,'Warehouse','ToCloud')
+VALUES(@EntityID,21,'Warehouse','ToCloud')
+END
 GO
+
+IF NOT EXISTS (SELECT 1 FROM ENTITYSYNCORDER WHERE ENTITYID = @EntityID AND LOCATIONTYPE = 'BranchCounter' AND SYNCDIRECTION = 'FromCloud')
+BEGIN
 INSERT INTO ENTITYSYNCORDER(ENTITYID,SYNCORDER,LOCATIONTYPE,SYNCDIRECTION)
-VALUES(1028,20,'BranchCounter','FromCloud')
+VALUES(@EntityID,20,'BranchCounter','FromCloud')
+END
+
 GO
 /****** Object:  Table [dbo].[TBLCATEGORY]    Script Date: 03-Mar-22 9:46:35 AM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBLCATEGORY]') AND type in (N'U'))
@@ -181,16 +196,7 @@ BEGIN
  --  OR SC.DELETEDDATE > @SyncDate                     
  -- RETURN                        
  --END                        
-                        
- --IF @EntityName = 'CATEGORY'                        
- --BEGIN                        
- -- SELECT * FROM TBLCATEGORY CAT                        
- -- WHERE                        
- --  CAT.CREATEDDATE > @SyncDate                        
- --  OR CAT.UPDATEDDATE > @SyncDate                        
- --  OR CAT.DELETEDDATE > @SyncDate                        
- -- RETURN                        
- --END                        
+                          
                         
  IF @EntityName = 'BRANCHCOUNTER'           BEGIN                        
   SELECT COUNTERID, COUNTERNAME, BRANCHID, CREATEDDATE, UPDATEDDATE, DELETEDDATE                         
