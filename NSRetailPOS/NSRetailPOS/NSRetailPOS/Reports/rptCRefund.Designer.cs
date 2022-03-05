@@ -117,7 +117,6 @@
             // 
             // Detail
             // 
-            this.Detail.Expanded = false;
             this.Detail.HeightF = 0F;
             this.Detail.Name = "Detail";
             // 
@@ -136,7 +135,6 @@
             // 
             this.Detail1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable3});
-            this.Detail1.Expanded = false;
             this.Detail1.HeightF = 28F;
             this.Detail1.Name = "Detail1";
             // 
@@ -658,7 +656,7 @@
             this.xrTableCell14.Multiline = true;
             this.xrTableCell14.Name = "xrTableCell14";
             this.xrTableCell14.StylePriority.UseFont = false;
-            this.xrTableCell14.Text = "REFUND RECIEPT";
+            this.xrTableCell14.Text = "REFUND RECIEPT W/O BILL";
             this.xrTableCell14.Weight = 1D;
             // 
             // xrTableRow12

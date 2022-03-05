@@ -606,5 +606,14 @@ namespace NSRetailPOS
             if (e.KeyData == Keys.Delete)
                 btnDelete_ButtonClick(null, null);
         }
+
+        private void btnCRWithoutBill_Click(object sender, EventArgs e)
+        {
+            frmCustomerRefund obj = new frmCustomerRefund();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
+        }
     }
 }
