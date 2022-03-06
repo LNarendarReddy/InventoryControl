@@ -37,11 +37,30 @@ namespace NSRetailPOS
         public frmMain()
         {
             InitializeComponent();
+            this.gvBilling.Appearance.FocusedCell.BackColor = System.Drawing.Color.SaddleBrown;
+            this.gvBilling.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvBilling.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
+            this.gvBilling.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.gvBilling.Appearance.FocusedCell.Options.UseFont = true;
+            this.gvBilling.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.gvBilling.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
+            this.gvBilling.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvBilling.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.gvBilling.Appearance.FocusedRow.Options.UseFont = true;
+            this.gvBilling.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            this.gvBilling.Appearance.FooterPanel.Options.UseFont = true;
+            this.gvBilling.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.gvBilling.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvBilling.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.gvBilling.Appearance.Row.Options.UseFont = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            lblUserName.Text = $"Loggedin User : {Utility.logininfo.UserFullName}   Application Version 1.1.0 (25-02-2022)";
+
+            lblUserinfo.Text = $"Loggedin User : {Utility.logininfo.UserFullName}    Role : {Utility.logininfo.RoleName} ";
+            lblVersionInfo.Text = $"Application Version 1.1.1 (06-03-2022)";
+            btnCRWithoutBill.Enabled = Utility.logininfo.RoleName.ToString() == "Store Manager";
             DataSet dsInitialData = billingRepository.GetInitialLoad(Utility.logininfo.UserID, Utility.branchinfo.BranchCounterID);
 
             if (!int.TryParse(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString(), out daySequenceID))
@@ -224,6 +243,7 @@ namespace NSRetailPOS
             txtQuantity.ReadOnly = false;
             lblOffer.Text = "Offer : ";
             lblDeal.Text = "Deal : ";
+            gvBilling.FocusedColumn = gvBilling.Columns["QUANTITY"];
             if (focusItemCode)
                 txtItemCode.Focus();
         }

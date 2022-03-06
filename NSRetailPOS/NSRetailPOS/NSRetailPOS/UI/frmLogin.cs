@@ -40,6 +40,7 @@ namespace NSRetailPOS.UI
                         Utility.logininfo.UserName = dSUserInfo.Tables[0].Rows[0]["USERNAME"];
                         Utility.logininfo.Password = dSUserInfo.Tables[0].Rows[0]["PASSWORDSTRING"];
                         Utility.logininfo.UserFullName = dSUserInfo.Tables[0].Rows[0]["FULLNAME"];
+                        Utility.logininfo.RoleName = dSUserInfo.Tables[0].Rows[0]["ROLENAME"];
                         Utility.branchinfo.BranchID = dSUserInfo.Tables[0].Rows[0]["BRANCHID"];
                         Utility.branchinfo.BranchName = dSUserInfo.Tables[0].Rows[0]["BRANCHNAME"];
                         Utility.branchinfo.BranchCode = dSUserInfo.Tables[0].Rows[0]["BRANCHCODE"];
@@ -83,6 +84,12 @@ namespace NSRetailPOS.UI
             SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
             Utility.StartSync(null, true);
             SplashScreenManager.CloseForm();
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            lblBranch.Text = Convert.ToString(Utility.branchinfo.BranchName);
+            lblCounter.Text = $"Counter : {Convert.ToString(Utility.branchinfo.BranchCounterName)}";
         }
     }
 }

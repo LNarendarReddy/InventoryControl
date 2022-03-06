@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.btnCRWithoutBill = new DevExpress.XtraEditors.SimpleButton();
@@ -41,7 +41,7 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnSyncData = new DevExpress.XtraEditors.SimpleButton();
             this.btnChangePassword = new DevExpress.XtraEditors.SimpleButton();
-            this.lblUserName = new DevExpress.XtraEditors.LabelControl();
+            this.lblVersionInfo = new DevExpress.XtraEditors.LabelControl();
             this.lblDeal = new DevExpress.XtraEditors.LabelControl();
             this.lblOffer = new DevExpress.XtraEditors.LabelControl();
             this.lblProgressText = new DevExpress.XtraEditors.LabelControl();
@@ -132,6 +132,9 @@
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lblUserinfo = new DevExpress.XtraEditors.LabelControl();
+            this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightInKgs.Properties)).BeginInit();
@@ -187,6 +190,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -211,13 +216,14 @@
             this.layoutControl1.Appearance.DisabledLayoutItem.ForeColor = System.Drawing.Color.White;
             this.layoutControl1.Appearance.DisabledLayoutItem.Options.UseFont = true;
             this.layoutControl1.Appearance.DisabledLayoutItem.Options.UseForeColor = true;
+            this.layoutControl1.Controls.Add(this.lblUserinfo);
             this.layoutControl1.Controls.Add(this.labelControl3);
             this.layoutControl1.Controls.Add(this.btnCRWithoutBill);
             this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.simpleButton1);
             this.layoutControl1.Controls.Add(this.btnSyncData);
             this.layoutControl1.Controls.Add(this.btnChangePassword);
-            this.layoutControl1.Controls.Add(this.lblUserName);
+            this.layoutControl1.Controls.Add(this.lblVersionInfo);
             this.layoutControl1.Controls.Add(this.lblDeal);
             this.layoutControl1.Controls.Add(this.lblOffer);
             this.layoutControl1.Controls.Add(this.lblProgressText);
@@ -319,18 +325,18 @@
             this.btnChangePassword.Text = "Change Pass&word";
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click_1);
             // 
-            // lblUserName
+            // lblVersionInfo
             // 
-            this.lblUserName.Appearance.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.lblUserName.Appearance.ForeColor = System.Drawing.Color.White;
-            this.lblUserName.Appearance.Options.UseFont = true;
-            this.lblUserName.Appearance.Options.UseForeColor = true;
-            this.lblUserName.Location = new System.Drawing.Point(1122, 704);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(85, 16);
-            this.lblUserName.StyleController = this.layoutControl1;
-            this.lblUserName.TabIndex = 32;
-            this.lblUserName.Text = "labelControl1";
+            this.lblVersionInfo.Appearance.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblVersionInfo.Appearance.ForeColor = System.Drawing.Color.White;
+            this.lblVersionInfo.Appearance.Options.UseFont = true;
+            this.lblVersionInfo.Appearance.Options.UseForeColor = true;
+            this.lblVersionInfo.Location = new System.Drawing.Point(1122, 704);
+            this.lblVersionInfo.Name = "lblVersionInfo";
+            this.lblVersionInfo.Size = new System.Drawing.Size(85, 16);
+            this.lblVersionInfo.StyleController = this.layoutControl1;
+            this.lblVersionInfo.TabIndex = 32;
+            this.lblVersionInfo.Text = "labelControl1";
             // 
             // lblDeal
             // 
@@ -791,9 +797,9 @@
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -938,7 +944,9 @@
             this.emptySpaceItem3,
             this.emptySpaceItem4,
             this.layoutControlItem29,
-            this.emptySpaceItem5});
+            this.emptySpaceItem5,
+            this.layoutControlItem28,
+            this.emptySpaceItem6});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(1211, 724);
@@ -1233,7 +1241,7 @@
             // 
             // layoutControlItem17
             // 
-            this.layoutControlItem17.Control = this.lblUserName;
+            this.layoutControlItem17.Control = this.lblVersionInfo;
             this.layoutControlItem17.Location = new System.Drawing.Point(1118, 700);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Size = new System.Drawing.Size(89, 20);
@@ -1245,7 +1253,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(94, 700);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(402, 20);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(275, 20);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
@@ -1354,6 +1362,39 @@
             this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // lblUserinfo
+            // 
+            this.lblUserinfo.Appearance.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblUserinfo.Appearance.ForeColor = System.Drawing.Color.White;
+            this.lblUserinfo.Appearance.Options.UseFont = true;
+            this.lblUserinfo.Appearance.Options.UseForeColor = true;
+            this.lblUserinfo.Location = new System.Drawing.Point(373, 704);
+            this.lblUserinfo.Name = "lblUserinfo";
+            this.lblUserinfo.Size = new System.Drawing.Size(85, 16);
+            this.lblUserinfo.StyleController = this.layoutControl1;
+            this.lblUserinfo.TabIndex = 40;
+            this.lblUserinfo.Text = "labelControl2";
+            // 
+            // layoutControlItem28
+            // 
+            this.layoutControlItem28.Control = this.lblUserinfo;
+            this.layoutControlItem28.Location = new System.Drawing.Point(369, 700);
+            this.layoutControlItem28.Name = "layoutControlItem28";
+            this.layoutControlItem28.Size = new System.Drawing.Size(89, 20);
+            this.layoutControlItem28.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem28.TextVisible = false;
+            // 
+            // emptySpaceItem6
+            // 
+            this.emptySpaceItem6.AllowHotTrack = false;
+            this.emptySpaceItem6.Location = new System.Drawing.Point(458, 700);
+            this.emptySpaceItem6.MaxSize = new System.Drawing.Size(38, 0);
+            this.emptySpaceItem6.MinSize = new System.Drawing.Size(38, 10);
+            this.emptySpaceItem6.Name = "emptySpaceItem6";
+            this.emptySpaceItem6.Size = new System.Drawing.Size(38, 20);
+            this.emptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1423,6 +1464,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1493,7 +1536,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraEditors.TextEdit txtWeightInKgs;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.LabelControl lblProgressText;
@@ -1506,7 +1548,7 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
-        private DevExpress.XtraEditors.LabelControl lblUserName;
+        private DevExpress.XtraEditors.LabelControl lblVersionInfo;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
@@ -1527,6 +1569,10 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
+        private DevExpress.XtraEditors.LabelControl lblUserinfo;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
     }
 }
 

@@ -204,6 +204,7 @@ namespace NSRetailPOS
         public object UserName { get; set; }
         public object Password { get; set; }
         public object UserFullName { get; set; }
+        public object RoleName { get; set; }
     }
     public class BranchInfo
     {

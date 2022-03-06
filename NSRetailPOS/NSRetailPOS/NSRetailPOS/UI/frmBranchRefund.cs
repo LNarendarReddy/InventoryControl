@@ -26,6 +26,22 @@ namespace NSRetailPOS.UI
         public frmBranchRefund()
         {
             InitializeComponent();
+            this.gvRefund.Appearance.FocusedCell.BackColor = System.Drawing.Color.SaddleBrown;
+            this.gvRefund.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvRefund.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
+            this.gvRefund.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.gvRefund.Appearance.FocusedCell.Options.UseFont = true;
+            this.gvRefund.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.gvRefund.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
+            this.gvRefund.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvRefund.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.gvRefund.Appearance.FocusedRow.Options.UseFont = true;
+            this.gvRefund.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            this.gvRefund.Appearance.FooterPanel.Options.UseFont = true;
+            this.gvRefund.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.gvRefund.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvRefund.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.gvRefund.Appearance.Row.Options.UseFont = true;
         }
         private void InitialLoad()
         {

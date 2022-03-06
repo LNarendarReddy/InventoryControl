@@ -13,6 +13,22 @@ namespace NSRetailPOS.UI
         {
             InitializeComponent();
             selectedDispatch = selectedStockDispatch as DataRowView;
+            this.gvDispatchDetail.Appearance.FocusedCell.BackColor = System.Drawing.Color.SaddleBrown;
+            this.gvDispatchDetail.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvDispatchDetail.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
+            this.gvDispatchDetail.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.gvDispatchDetail.Appearance.FocusedCell.Options.UseFont = true;
+            this.gvDispatchDetail.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.gvDispatchDetail.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
+            this.gvDispatchDetail.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvDispatchDetail.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.gvDispatchDetail.Appearance.FocusedRow.Options.UseFont = true;
+            this.gvDispatchDetail.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            this.gvDispatchDetail.Appearance.FooterPanel.Options.UseFont = true;
+            this.gvDispatchDetail.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.gvDispatchDetail.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvDispatchDetail.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.gvDispatchDetail.Appearance.Row.Options.UseFont = true;
         }
 
         private void frmStockInDetail_Load(object sender, System.EventArgs e)
