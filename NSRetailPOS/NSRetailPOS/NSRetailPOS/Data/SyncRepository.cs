@@ -33,7 +33,7 @@ namespace NSRetailPOS.Data
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)
         {
-            if(dtEntityWiseData?.Rows.Count == 0)
+            if(dtEntityWiseData?.Rows.Count == 0 || !entityMapping.ContainsKey(entityName))
             {
                 return;
             }
@@ -55,7 +55,29 @@ namespace NSRetailPOS.Data
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                SQLCon.SqlSyncConn().Close();
+            }
+        }
+
+        public void ClearOldData()
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlSyncConn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "POS_USP_D_OLD_DATA";                    
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error While clearing old data", ex);
+            }
+            finally
+            {
+                SQLCon.SqlSyncConn().Close();
             }
         }
 

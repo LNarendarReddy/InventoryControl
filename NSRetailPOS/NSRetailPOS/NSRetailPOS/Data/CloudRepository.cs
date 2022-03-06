@@ -109,7 +109,7 @@ namespace NSRetailPOS.Data
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)
         {
-            if (dtEntityWiseData?.Rows.Count == 0)
+            if (dtEntityWiseData?.Rows.Count == 0 || !entityMapping.ContainsKey(entityName))
             {
                 return;
             }

@@ -75,6 +75,10 @@ namespace NSRetailPOS
                     ReportText(backgroundWorker, $"{entityName} up sync completed");
                 }
 
+                // clear old data
+                ReportText(backgroundWorker, $"clearing one month old data");
+                syncRepository.ClearOldData();
+
                 //LoggerUtility.Logger.Info($"POS sync completed");
                 backgroundWorker?.ReportProgress(0, $"POS sync completed at {DateTime.Now.ToLongTimeString()}");
             }
