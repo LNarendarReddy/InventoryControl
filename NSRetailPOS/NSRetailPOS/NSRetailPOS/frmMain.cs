@@ -38,13 +38,13 @@ namespace NSRetailPOS
         {
             InitializeComponent();
             this.gvBilling.Appearance.FocusedCell.BackColor = System.Drawing.Color.SaddleBrown;
-            this.gvBilling.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvBilling.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.gvBilling.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
             this.gvBilling.Appearance.FocusedCell.Options.UseBackColor = true;
             this.gvBilling.Appearance.FocusedCell.Options.UseFont = true;
             this.gvBilling.Appearance.FocusedCell.Options.UseForeColor = true;
             this.gvBilling.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
-            this.gvBilling.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvBilling.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.gvBilling.Appearance.FocusedRow.Options.UseBackColor = true;
             this.gvBilling.Appearance.FocusedRow.Options.UseFont = true;
             this.gvBilling.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
@@ -59,7 +59,7 @@ namespace NSRetailPOS
         {
 
             lblUserinfo.Text = $"Loggedin User : {Utility.logininfo.UserFullName}    Role : {Utility.logininfo.RoleName} ";
-            lblVersionInfo.Text = $"Application Version 1.1.1 (06-03-2022)";
+            lblVersionInfo.Text = $"Application Version 1.1.3 (07-03-2022)";
             btnCRWithoutBill.Enabled = Utility.logininfo.RoleName.ToString() == "Store Manager";
             DataSet dsInitialData = billingRepository.GetInitialLoad(Utility.logininfo.UserID, Utility.branchinfo.BranchCounterID);
 

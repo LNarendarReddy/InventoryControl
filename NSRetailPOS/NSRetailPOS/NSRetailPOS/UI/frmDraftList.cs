@@ -16,11 +16,11 @@ namespace NSRetailPOS.UI
             DataTable dtDraftBills = new BillingRepository().GetDraftBills(daySequenceID);
             gcDraftBills.DataSource = dtDraftBills;
             this.gvDraftBills.Appearance.FocusedCell.BackColor = System.Drawing.Color.White;
-            this.gvDraftBills.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvDraftBills.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.gvDraftBills.Appearance.FocusedCell.Options.UseBackColor = true;
             this.gvDraftBills.Appearance.FocusedCell.Options.UseFont = true;
             this.gvDraftBills.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
-            this.gvDraftBills.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvDraftBills.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.gvDraftBills.Appearance.FocusedRow.Options.UseBackColor = true;
             this.gvDraftBills.Appearance.FocusedRow.Options.UseFont = true;
             this.gvDraftBills.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);

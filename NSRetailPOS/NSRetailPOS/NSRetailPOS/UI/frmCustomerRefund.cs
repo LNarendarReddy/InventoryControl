@@ -18,11 +18,11 @@ namespace NSRetailPOS.UI
         {
             InitializeComponent();
             this.gvRefund.Appearance.FocusedCell.BackColor = System.Drawing.Color.White;
-            this.gvRefund.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvRefund.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.gvRefund.Appearance.FocusedCell.Options.UseBackColor = true;
             this.gvRefund.Appearance.FocusedCell.Options.UseFont = true;
             this.gvRefund.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
-            this.gvRefund.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvRefund.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.gvRefund.Appearance.FocusedRow.Options.UseBackColor = true;
             this.gvRefund.Appearance.FocusedRow.Options.UseFont = true;
             this.gvRefund.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);

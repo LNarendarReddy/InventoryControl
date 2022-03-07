@@ -25,13 +25,13 @@ namespace NSRetailPOS.UI
             billObj = bill;
             this.Text = this.Text + billObj.BillNumber;
             this.gvMOP.Appearance.FocusedCell.BackColor = System.Drawing.Color.SaddleBrown;
-            this.gvMOP.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvMOP.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.gvMOP.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
             this.gvMOP.Appearance.FocusedCell.Options.UseBackColor = true;
             this.gvMOP.Appearance.FocusedCell.Options.UseFont = true;
             this.gvMOP.Appearance.FocusedCell.Options.UseForeColor = true;
             this.gvMOP.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
-            this.gvMOP.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.gvMOP.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.gvMOP.Appearance.FocusedRow.Options.UseBackColor = true;
             this.gvMOP.Appearance.FocusedRow.Options.UseFont = true;
             this.gvMOP.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
