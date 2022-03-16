@@ -57,8 +57,11 @@ namespace NSRetailPOS
                         forceFullSync ? "01-01-1900" : entityRow["SYNCDATE"]
                         , branchinfo.BranchID);
                     ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
-                    syncRepository.SaveData(entityName, dtEntityWiseData);
-                    cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+                    if (dtEntityWiseData?.Rows.Count > 0)
+                    {
+                        syncRepository.SaveData(entityName, dtEntityWiseData);
+                        cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+                    }
                     ReportText(backgroundWorker, $"{entityName} down sync completed");
                 }
 
@@ -70,8 +73,11 @@ namespace NSRetailPOS
                     ReportText(backgroundWorker, $"{entityName} up sync started");
                     DataTable dtEntityWiseData = syncRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"]);
                     ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to up sync in entity : {entityName} ");
-                    cloudRepository.SaveData(entityName, dtEntityWiseData);
-                    cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+                    if (dtEntityWiseData?.Rows.Count > 0)
+                    {
+                        cloudRepository.SaveData(entityName, dtEntityWiseData);
+                        cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+                    }
                     ReportText(backgroundWorker, $"{entityName} up sync completed");
                 }
 

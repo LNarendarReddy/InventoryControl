@@ -28,8 +28,11 @@ namespace WarehouseCloudSync
                     DataTable dtEntityWiseData = warehouseRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"]);
                     //LoggerUtility.Logger.Info($"Found {dtEntityWiseData.Rows.Count} records to up sync in entity : {entityName} ");
                     Console.WriteLine($"Found {dtEntityWiseData.Rows.Count} records to up sync in entity : {entityName} ");
-                    cloudRepository.SaveData(entityName, dtEntityWiseData);
-                    cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+                    if (dtEntityWiseData?.Rows.Count > 0)
+                    {
+                        cloudRepository.SaveData(entityName, dtEntityWiseData);
+                        cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+                    }
                     //LoggerUtility.Logger.Info($"{entityName} up sync completed");
                     //Console.WriteLine($"{entityName} up sync completed");
                 }
@@ -44,8 +47,11 @@ namespace WarehouseCloudSync
                     DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"]);
                     //LoggerUtility.Logger.Info($"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
                     Console.WriteLine($"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
-                    warehouseRepository.SaveData(entityName, dtEntityWiseData);
-                    cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+                    if (dtEntityWiseData?.Rows.Count > 0)
+                    {
+                        warehouseRepository.SaveData(entityName, dtEntityWiseData);
+                        cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+                    }
                     //LoggerUtility.Logger.Info($"{entityName} down sync completed");
                     //Console.WriteLine($"{entityName} down sync completed");
                 }
