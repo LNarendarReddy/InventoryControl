@@ -119,7 +119,7 @@ namespace NSRetail.Stock
                     cmbFromBranch.Enabled = true;
                     cmbToBranch.Enabled = true;
                     ObjStockDispatch.STOCKDISPATCHID = 0;
-                    ObjStockDispatch.dtDispatch = new DataTable();
+                    ObjStockDispatch.dtDispatch = ObjStockDispatch.dtDispatch.Clone();
                     gcDispatch.DataSource = ObjStockDispatch.dtDispatch;
                     cmbFromBranch.Focus();
                 }

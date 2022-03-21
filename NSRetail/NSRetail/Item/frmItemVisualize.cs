@@ -22,7 +22,7 @@ namespace NSRetail
             txtItemName.EditValue = dsItemVisualizer.Tables["ITEM"].Rows[0]["ITEMNAME"];
             txtSKUCode.EditValue = dsItemVisualizer.Tables["ITEM"].Rows[0]["SKUCODE"];
 
-            gcItemCodes.DataSource = dsItemVisualizer.Tables["ITEMCODES"];
+            //gcItemCodes.DataSource = dsItemVisualizer.Tables["ITEMCODES"];
             gcItemPriceList.DataSource = dsItemVisualizer.Tables["ITEMPRICES"];
             gcStockSummary.DataSource = dsItemVisualizer.Tables["ITEMSTOCKSUMMARY"];
         }
