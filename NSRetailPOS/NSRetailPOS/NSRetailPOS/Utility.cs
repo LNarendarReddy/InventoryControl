@@ -21,6 +21,9 @@ namespace NSRetailPOS
     {
         public static LoginInfo logininfo = new LoginInfo();
         public static BranchInfo branchinfo = new BranchInfo();
+
+        public static event EventHandler ItemOrCodeChanged;
+
         public static Bill GetBill(DataSet dsBillDetails)
         {
             Bill billObj = new Bill();
@@ -61,6 +64,11 @@ namespace NSRetailPOS
                     {
                         syncRepository.SaveData(entityName, dtEntityWiseData);
                         cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
+
+                        if (entityName == "ITEM" || entityName == "ITEMCODE")
+                        {
+                            ItemOrCodeChanged?.Invoke(null, null);
+                        }
                     }
                     ReportText(backgroundWorker, $"{entityName} down sync completed");
                 }

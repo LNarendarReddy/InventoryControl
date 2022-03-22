@@ -70,13 +70,8 @@ namespace NSRetailPOS
                 return;
             }
 
-            sluItemCode.Properties.DataSource = itemRepository.GetItemCodes();
-            sluItemCode.Properties.DisplayMember = "ITEMNAME";
-            sluItemCode.Properties.ValueMember = "ITEMCODEID";
-
-            sluItemCodeView.GridControl.BindingContext = new BindingContext();
-            sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
-
+            Utility.ItemOrCodeChanged += Utility_ItemOrCodeChanged;
+            LoadItemCodes();
             LoadBillData(dsInitialData);
 
             lblOffer.Text = "Offer : ";
@@ -86,6 +81,11 @@ namespace NSRetailPOS
             bgSyncWorker.DoWork += BgSyncWorker_DoWork;
             bgSyncWorker.ProgressChanged += BgSyncWorker_ProgressChanged;
             bgSyncWorker.RunWorkerAsync();
+        }
+
+        private void Utility_ItemOrCodeChanged(object sender, EventArgs e)
+        {
+            LoadItemCodes();
         }
 
         private void BgSyncWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -634,6 +634,22 @@ namespace NSRetailPOS
             obj.IconOptions.ShowIcon = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
+        }
+
+        private void LoadItemCodes()
+        {
+            if(InvokeRequired)
+            {
+                BeginInvoke((Action)LoadItemCodes);
+                return;
+            }
+
+            sluItemCode.Properties.DataSource = itemRepository.GetItemCodes();
+            sluItemCode.Properties.DisplayMember = "ITEMNAME";
+            sluItemCode.Properties.ValueMember = "ITEMCODEID";
+
+            sluItemCodeView.GridControl.BindingContext = new BindingContext();
+            sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
         }
     }
 }
