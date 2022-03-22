@@ -44,7 +44,7 @@ namespace NSRetailPOS
             try
             {
                 LoggerUtility.InitializeLogger();
-                DateTime syncStartTime = DateTime.Now.AddMinutes(-15);
+                DateTime syncStartTime = DateTime.Now.AddMinutes(-5);
                 //LoggerUtility.Logger.Info($"POS sync started at {syncStartTime.ToLongTimeString()}");
                 backgroundWorker?.ReportProgress(0, $"POS sync started at {syncStartTime.ToLongTimeString()}");
                 SyncRepository syncRepository = new SyncRepository();

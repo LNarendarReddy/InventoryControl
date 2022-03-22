@@ -13,7 +13,7 @@ namespace WarehouseCloudSync
             {
                 LoggerUtility.InitializeLogger();
                 int BranchID = 45;
-                DateTime syncStartTime = DateTime.Now.AddMinutes(-15);
+                DateTime syncStartTime = DateTime.Now.AddMinutes(-5);
                 //LoggerUtility.Logger.Info($"Warehouse sync started at {syncStartTime.ToLongTimeString()}");
                 //Console.Clear();
                 Console.WriteLine($"Warehouse sync started at {syncStartTime.ToLongTimeString()}");
