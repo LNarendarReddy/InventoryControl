@@ -32,6 +32,8 @@
             this.gcStockSummary = new DevExpress.XtraGrid.GridControl();
             this.gvStockSummary = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn29 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn28 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -52,16 +54,6 @@
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcItemCodes = new DevExpress.XtraGrid.GridControl();
-            this.gvItemCodes = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtItemName = new DevExpress.XtraEditors.TextEdit();
             this.txtSKUCode = new DevExpress.XtraEditors.TextEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -69,7 +61,6 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -77,8 +68,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvStockSummary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemPriceList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemPrice)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemCodes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemCodes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSKUCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
@@ -86,7 +75,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,37 +98,36 @@
             this.layoutControl1.Appearance.DisabledLayoutItem.Options.UseFont = true;
             this.layoutControl1.Controls.Add(this.gcStockSummary);
             this.layoutControl1.Controls.Add(this.gcItemPriceList);
-            this.layoutControl1.Controls.Add(this.gcItemCodes);
             this.layoutControl1.Controls.Add(this.txtItemName);
             this.layoutControl1.Controls.Add(this.txtSKUCode);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(822, 527);
+            this.layoutControl1.Size = new System.Drawing.Size(1076, 684);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // gcStockSummary
             // 
-            this.gcStockSummary.Location = new System.Drawing.Point(7, 389);
+            this.gcStockSummary.Location = new System.Drawing.Point(7, 251);
             this.gcStockSummary.MainView = this.gvStockSummary;
             this.gcStockSummary.Name = "gcStockSummary";
-            this.gcStockSummary.Size = new System.Drawing.Size(808, 131);
+            this.gcStockSummary.Size = new System.Drawing.Size(1062, 426);
             this.gcStockSummary.TabIndex = 9;
             this.gcStockSummary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvStockSummary});
             // 
             // gvStockSummary
             // 
-            this.gvStockSummary.Appearance.EvenRow.BackColor = System.Drawing.Color.LightBlue;
-            this.gvStockSummary.Appearance.EvenRow.Options.UseBackColor = true;
             this.gvStockSummary.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.gvStockSummary.Appearance.HeaderPanel.Options.UseFont = true;
             this.gvStockSummary.Appearance.Row.Font = new System.Drawing.Font("Arial", 8F);
             this.gvStockSummary.Appearance.Row.Options.UseFont = true;
             this.gvStockSummary.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn21,
+            this.gridColumn29,
+            this.gridColumn28,
             this.gridColumn22,
             this.gridColumn23,
             this.gridColumn24,
@@ -148,7 +135,7 @@
             this.gridColumn27});
             this.gvStockSummary.GridControl = this.gcStockSummary;
             this.gvStockSummary.Name = "gvStockSummary";
-            this.gvStockSummary.OptionsBehavior.ReadOnly = true;
+            this.gvStockSummary.OptionsBehavior.Editable = false;
             this.gvStockSummary.OptionsView.EnableAppearanceEvenRow = true;
             this.gvStockSummary.OptionsView.ShowGroupPanel = false;
             // 
@@ -159,6 +146,24 @@
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.OptionsColumn.AllowEdit = false;
             // 
+            // gridColumn29
+            // 
+            this.gridColumn29.Caption = "EAN Code";
+            this.gridColumn29.FieldName = "ITEMCODE";
+            this.gridColumn29.Name = "gridColumn29";
+            this.gridColumn29.Visible = true;
+            this.gridColumn29.VisibleIndex = 1;
+            this.gridColumn29.Width = 148;
+            // 
+            // gridColumn28
+            // 
+            this.gridColumn28.Caption = "MRP";
+            this.gridColumn28.FieldName = "MRP";
+            this.gridColumn28.Name = "gridColumn28";
+            this.gridColumn28.Visible = true;
+            this.gridColumn28.VisibleIndex = 2;
+            this.gridColumn28.Width = 93;
+            // 
             // gridColumn22
             // 
             this.gridColumn22.Caption = "Branch Name";
@@ -167,6 +172,7 @@
             this.gridColumn22.OptionsColumn.AllowEdit = false;
             this.gridColumn22.Visible = true;
             this.gridColumn22.VisibleIndex = 0;
+            this.gridColumn22.Width = 148;
             // 
             // gridColumn23
             // 
@@ -175,7 +181,8 @@
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.OptionsColumn.AllowEdit = false;
             this.gridColumn23.Visible = true;
-            this.gridColumn23.VisibleIndex = 1;
+            this.gridColumn23.VisibleIndex = 3;
+            this.gridColumn23.Width = 160;
             // 
             // gridColumn24
             // 
@@ -184,7 +191,8 @@
             this.gridColumn24.Name = "gridColumn24";
             this.gridColumn24.OptionsColumn.AllowEdit = false;
             this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 2;
+            this.gridColumn24.VisibleIndex = 4;
+            this.gridColumn24.Width = 160;
             // 
             // gridColumn26
             // 
@@ -192,7 +200,8 @@
             this.gridColumn26.FieldName = "WEIGHTINKGS";
             this.gridColumn26.Name = "gridColumn26";
             this.gridColumn26.Visible = true;
-            this.gridColumn26.VisibleIndex = 3;
+            this.gridColumn26.VisibleIndex = 5;
+            this.gridColumn26.Width = 160;
             // 
             // gridColumn27
             // 
@@ -200,22 +209,21 @@
             this.gridColumn27.FieldName = "INTRANSITWEIGHTINKGS";
             this.gridColumn27.Name = "gridColumn27";
             this.gridColumn27.Visible = true;
-            this.gridColumn27.VisibleIndex = 4;
+            this.gridColumn27.VisibleIndex = 6;
+            this.gridColumn27.Width = 168;
             // 
             // gcItemPriceList
             // 
-            this.gcItemPriceList.Location = new System.Drawing.Point(4, 218);
+            this.gcItemPriceList.Location = new System.Drawing.Point(4, 51);
             this.gcItemPriceList.MainView = this.gvItemPrice;
             this.gcItemPriceList.Name = "gcItemPriceList";
-            this.gcItemPriceList.Size = new System.Drawing.Size(814, 147);
+            this.gcItemPriceList.Size = new System.Drawing.Size(1068, 176);
             this.gcItemPriceList.TabIndex = 8;
             this.gcItemPriceList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvItemPrice});
             // 
             // gvItemPrice
             // 
-            this.gvItemPrice.Appearance.EvenRow.BackColor = System.Drawing.Color.LightBlue;
-            this.gvItemPrice.Appearance.EvenRow.Options.UseBackColor = true;
             this.gvItemPrice.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.gvItemPrice.Appearance.HeaderPanel.Options.UseFont = true;
             this.gvItemPrice.Appearance.Row.Font = new System.Drawing.Font("Arial", 8F);
@@ -236,7 +244,7 @@
             this.gridColumn20});
             this.gvItemPrice.GridControl = this.gcItemPriceList;
             this.gvItemPrice.Name = "gvItemPrice";
-            this.gvItemPrice.OptionsBehavior.ReadOnly = true;
+            this.gvItemPrice.OptionsBehavior.Editable = false;
             this.gvItemPrice.OptionsView.EnableAppearanceEvenRow = true;
             this.gvItemPrice.OptionsView.ShowGroupPanel = false;
             // 
@@ -270,7 +278,7 @@
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 1;
+            this.gridColumn12.VisibleIndex = 3;
             // 
             // gridColumn25
             // 
@@ -296,7 +304,7 @@
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 3;
+            this.gridColumn14.VisibleIndex = 1;
             // 
             // gridColumn15
             // 
@@ -346,111 +354,12 @@
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.OptionsColumn.AllowEdit = false;
             // 
-            // gcItemCodes
-            // 
-            this.gcItemCodes.Location = new System.Drawing.Point(4, 51);
-            this.gcItemCodes.MainView = this.gvItemCodes;
-            this.gcItemCodes.Name = "gcItemCodes";
-            this.gcItemCodes.Size = new System.Drawing.Size(814, 146);
-            this.gcItemCodes.TabIndex = 7;
-            this.gcItemCodes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvItemCodes});
-            // 
-            // gvItemCodes
-            // 
-            this.gvItemCodes.Appearance.EvenRow.BackColor = System.Drawing.Color.LightBlue;
-            this.gvItemCodes.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gvItemCodes.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
-            this.gvItemCodes.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvItemCodes.Appearance.Row.Font = new System.Drawing.Font("Arial", 8F);
-            this.gvItemCodes.Appearance.Row.Options.UseFont = true;
-            this.gvItemCodes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3,
-            this.gridColumn4,
-            this.gridColumn5,
-            this.gridColumn6,
-            this.gridColumn7,
-            this.gridColumn8});
-            this.gvItemCodes.GridControl = this.gcItemCodes;
-            this.gvItemCodes.Name = "gvItemCodes";
-            this.gvItemCodes.OptionsBehavior.ReadOnly = true;
-            this.gvItemCodes.OptionsView.EnableAppearanceEvenRow = true;
-            this.gvItemCodes.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "ITEMCODEID";
-            this.gridColumn1.FieldName = "ITEMCODEID";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "EAN Code ";
-            this.gridColumn2.FieldName = "ITEMCODE";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Is EAN Code";
-            this.gridColumn3.FieldName = "ISEAN";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.OptionsColumn.AllowEdit = false;
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "HSN Code";
-            this.gridColumn4.FieldName = "HSNCODE";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.OptionsColumn.AllowEdit = false;
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 2;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "Created By";
-            this.gridColumn5.FieldName = "CREATEDBY";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.OptionsColumn.AllowEdit = false;
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 3;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Created Date";
-            this.gridColumn6.FieldName = "CREATEDDATE";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.OptionsColumn.AllowEdit = false;
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 4;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Updated By";
-            this.gridColumn7.FieldName = "UPDATEDBY";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.OptionsColumn.AllowEdit = false;
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "Updated Date";
-            this.gridColumn8.FieldName = "UPDATEDATE";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.OptionsColumn.AllowEdit = false;
-            // 
             // txtItemName
             // 
-            this.txtItemName.Location = new System.Drawing.Point(509, 7);
+            this.txtItemName.Location = new System.Drawing.Point(636, 7);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Properties.ReadOnly = true;
-            this.txtItemName.Size = new System.Drawing.Size(306, 20);
+            this.txtItemName.Size = new System.Drawing.Size(433, 20);
             this.txtItemName.StyleController = this.layoutControl1;
             this.txtItemName.TabIndex = 5;
             // 
@@ -459,7 +368,7 @@
             this.txtSKUCode.Location = new System.Drawing.Point(100, 7);
             this.txtSKUCode.Name = "txtSKUCode";
             this.txtSKUCode.Properties.ReadOnly = true;
-            this.txtSKUCode.Size = new System.Drawing.Size(306, 20);
+            this.txtSKUCode.Size = new System.Drawing.Size(433, 20);
             this.txtSKUCode.StyleController = this.layoutControl1;
             this.txtSKUCode.TabIndex = 4;
             // 
@@ -473,11 +382,10 @@
             this.layoutControlItem1,
             this.layoutControlItem2,
             this.layoutControlGroup3,
-            this.layoutControlItem4,
             this.layoutControlItem5});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(822, 527);
+            this.Root.Size = new System.Drawing.Size(1076, 684);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -486,17 +394,17 @@
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem1.Size = new System.Drawing.Size(409, 30);
+            this.layoutControlItem1.Size = new System.Drawing.Size(536, 30);
             this.layoutControlItem1.Text = "SKU Code";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(81, 14);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtItemName;
-            this.layoutControlItem2.Location = new System.Drawing.Point(409, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(536, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem2.Size = new System.Drawing.Size(409, 30);
+            this.layoutControlItem2.Size = new System.Drawing.Size(536, 30);
             this.layoutControlItem2.Text = "Item Name";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(81, 14);
             // 
@@ -505,10 +413,10 @@
             this.layoutControlGroup3.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem6});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 365);
+            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 227);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
             this.layoutControlGroup3.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup3.Size = new System.Drawing.Size(818, 158);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(1072, 453);
             this.layoutControlGroup3.Text = "Item Summary";
             this.layoutControlGroup3.TextVisible = false;
             // 
@@ -519,31 +427,19 @@
             this.layoutControlItem6.Control = this.gcStockSummary;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(812, 152);
+            this.layoutControlItem6.Size = new System.Drawing.Size(1066, 447);
             this.layoutControlItem6.Text = "Item Summary";
             this.layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(81, 14);
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
-            this.layoutControlItem4.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem4.Control = this.gcItemCodes;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 30);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(818, 167);
-            this.layoutControlItem4.Text = "Item Code List";
-            this.layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(81, 14);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.layoutControlItem5.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem5.Control = this.gcItemPriceList;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 197);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 30);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(818, 168);
+            this.layoutControlItem5.Size = new System.Drawing.Size(1072, 197);
             this.layoutControlItem5.Text = "Item Price List";
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(81, 14);
@@ -552,7 +448,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 527);
+            this.ClientSize = new System.Drawing.Size(1076, 684);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
             this.Name = "frmItemVisualize";
@@ -566,8 +462,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvStockSummary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemPriceList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemPrice)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemCodes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemCodes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSKUCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
@@ -575,7 +469,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             this.ResumeLayout(false);
 
@@ -594,16 +487,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gvStockSummary;
         private DevExpress.XtraGrid.GridControl gcItemPriceList;
         private DevExpress.XtraGrid.Views.Grid.GridView gvItemPrice;
-        private DevExpress.XtraGrid.GridControl gcItemCodes;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvItemCodes;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
@@ -624,7 +507,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn27;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn29;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn28;
     }
 }

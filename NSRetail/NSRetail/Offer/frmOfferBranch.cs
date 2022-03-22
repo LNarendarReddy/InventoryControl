@@ -72,5 +72,10 @@ namespace NSRetail
             cmBranch.Focus();
             gvBranch.FocusedRowHandle = rowhandle;
         }
+
+        private void gcBranch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -111,5 +111,10 @@ namespace NSRetail.Master
         {
             gcCounter.ShowRibbonPrintPreview();
         }
+
+        private void gcCounter_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

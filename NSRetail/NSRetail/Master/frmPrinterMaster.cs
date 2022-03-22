@@ -116,5 +116,10 @@ namespace NSRetail
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
+
+        private void gcPrinters_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

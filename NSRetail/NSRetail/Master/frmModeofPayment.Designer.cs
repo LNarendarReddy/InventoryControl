@@ -132,7 +132,7 @@ namespace NSRetail.Master
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "MOPNAME";
+            this.gridColumn2.Caption = "MOP";
             this.gridColumn2.FieldName = "MOPNAME";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
