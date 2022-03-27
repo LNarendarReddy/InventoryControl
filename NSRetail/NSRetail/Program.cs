@@ -16,7 +16,6 @@ namespace NSRetail
         [STAThread]
         static void Main()
         {
-            UserLookAndFeel.Default.SetSkinStyle("Office 2019 Dark Gray");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLogin());

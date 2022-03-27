@@ -140,9 +140,8 @@ namespace DataAccess
                 }
 
                 dsItemVisualizer.Tables[0].TableName = "ITEM";
-                dsItemVisualizer.Tables[1].TableName = "ITEMCODES";
-                dsItemVisualizer.Tables[2].TableName = "ITEMPRICES";
-                dsItemVisualizer.Tables[3].TableName = "ITEMSTOCKSUMMARY";
+                dsItemVisualizer.Tables[1].TableName = "ITEMPRICES";
+                dsItemVisualizer.Tables[2].TableName = "ITEMSTOCKSUMMARY";
 
             }
             catch (Exception ex)
@@ -317,6 +316,89 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
             return dtItemCodes;
+        }
+
+        public DataTable GetOffers(object ItemPriceID)
+        {
+            DataTable dtOffers = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_GETOFFERS]";
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtOffers);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Offers", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtOffers;
+        }
+
+        public void DeleteItemPrice(object ItemPriceID,object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_ITEMPRICE]";
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    int rowsafftected = cmd.ExecuteNonQuery();
+                    if (rowsafftected <= 0)
+                        throw new Exception("Error while deleting itemprice");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while deleting itemprice", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+
+        public void UpdateItemPrice(object ItemPriceID, object UserID,object SalePrice)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_ITEMPRICE]";
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@SALEPRICE", SalePrice);
+                    int rowsafftected = cmd.ExecuteNonQuery();
+                    if (rowsafftected <= 0)
+                        throw new Exception("Error while updating itemprice");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while updating itemprice", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
         }
     }
 }

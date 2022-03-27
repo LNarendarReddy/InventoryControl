@@ -24,6 +24,8 @@ namespace NSRetail
         }
         private void gvBills_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
+            if (gvBills.FocusedRowHandle < 0)
+                return; 
             e.Menu.Items.Add(new DXMenuItem("View Report", new EventHandler(OnResetPassword_Click)));
         }
         private void OnResetPassword_Click(object sender, EventArgs e)

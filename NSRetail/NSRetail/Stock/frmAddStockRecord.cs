@@ -17,8 +17,8 @@ namespace NSRetail.Stock
         StockEntry ObjStockEntry = null;
         StockEntryDetail ObjStockEntryDetail = null;
         object ItemPriceID = null;
-        bool IsParentExist = false;
         bool IsOpenItem = false;
+        bool IsParentExist = false;
         bool IsLoading = false;
         bool IsEditMode = false;
 
@@ -229,9 +229,9 @@ namespace NSRetail.Stock
                             txtMRP.EditValue = ((DataRowView)obj.drSelected)["MRP"];
                             txtSalePrice.EditValue = ((DataRowView)obj.drSelected)["SALEPRICE"];
                             ItemPriceID = ((DataRowView)obj.drSelected)["ITEMPRICEID"];
-                            cmbGST.EditValue = ((DataRowView)obj.drSelected)["GSTID"];
                             txtCostPriceWOT.EditValue = ((DataRowView)obj.drSelected)["COSTPRICEWOT"] == DBNull.Value ? 0.00 : ((DataRowView)obj.drSelected)["COSTPRICEWOT"];
                             txtCostPriceWT.EditValue = ((DataRowView)obj.drSelected)["COSTPRICEWT"] == DBNull.Value ? 0.00 : ((DataRowView)obj.drSelected)["COSTPRICEWT"];
+                            cmbGST.EditValue = ((DataRowView)obj.drSelected)["GSTID"];
                         }
                     }
                     else if(dtCPList.Rows.Count > 0)
@@ -239,9 +239,9 @@ namespace NSRetail.Stock
                         txtMRP.EditValue = dtCPList.Rows[0]["MRP"];
                         txtSalePrice.EditValue = dtCPList.Rows[0]["SALEPRICE"];
                         ItemPriceID = dtCPList.Rows[0]["ITEMPRICEID"];
-                        cmbGST.EditValue = dtCPList.Rows[0]["GSTID"];
                         txtCostPriceWOT.EditValue = dtCPList.Rows[0]["COSTPRICEWOT"] == DBNull.Value ? 0.00 : dtCPList.Rows[0]["COSTPRICEWOT"];
                         txtCostPriceWT.EditValue = dtCPList.Rows[0]["COSTPRICEWT"] == DBNull.Value ? 0.00 : dtCPList.Rows[0]["COSTPRICEWT"];
+                        cmbGST.EditValue = dtCPList.Rows[0]["GSTID"];
                     }
 
                     int ParentID = 0;
@@ -284,17 +284,6 @@ namespace NSRetail.Stock
             {
                 
                 if (string.IsNullOrEmpty(Convert.ToString(txtQuantity.EditValue))) return;
-                
-                
-                if (IsParentExist && !IsOpenItem)
-                {
-                    txtWeightInKGs.EditValue = 0;
-                    if (decimal.TryParse(Convert.ToString(cmbLookupView.GetFocusedDataRow()["MULTIPLIER"]), out decimal Multi)
-                        && int.TryParse(Convert.ToString(txtQuantity.EditValue), out int Quantity))
-                    {
-                        txtWeightInKGs.EditValue = Multi * Quantity;
-                    }
-                }
                 if (!IsLoading)
                 {
                     if (Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
@@ -387,10 +376,13 @@ namespace NSRetail.Stock
         }
         private void CalculateReadOnlyFields()
         {
-            decimal totalPriceWT = Convert.ToDecimal(txtCostPriceWT.EditValue)
-                        * Convert.ToInt32(txtQuantity.EditValue);
-            decimal totalPriceWOT = (Convert.ToDecimal(txtCostPriceWOT.EditValue))
-                * Convert.ToInt32(txtQuantity.EditValue);
+            decimal Quantity = 0;
+            if (IsOpenItem)
+                Quantity = Convert.ToDecimal(txtWeightInKGs.EditValue);
+            else
+                Quantity = Convert.ToDecimal(txtQuantity.EditValue);
+            decimal totalPriceWT = Math.Round(Convert.ToDecimal(txtCostPriceWT.EditValue) * Quantity,2);
+            decimal totalPriceWOT = Math.Round((Convert.ToDecimal(txtCostPriceWOT.EditValue)) * Quantity,2);
             decimal discountPer = txtDiscountPer.EditValue != null ? Convert.ToDecimal(txtDiscountPer.EditValue) : 0;
             decimal discountFlat = txtDiscountPer.EditValue != null && discountPer == 0 && txtDiscountFlat.EditValue != null
                 ? Convert.ToDecimal(txtDiscountFlat.EditValue) : 0;             
@@ -408,6 +400,7 @@ namespace NSRetail.Stock
                         ? Math.Round(totalPriceWOT * (schemePer / 100), 4)
                         : 0;
             decimal finalPriceWOT = totalPriceWOT - appliedDiscount - appliedScheme;
+            decimal finaPriceWT = totalPriceWT - appliedDiscount - appliedScheme;
             decimal appliedGST = 0.0M;
             decimal cGST = 0.0M;
             decimal sGST = 0.0M;
@@ -415,14 +408,29 @@ namespace NSRetail.Stock
             decimal cess = 0.0M;
             if (cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
             {
-                cGST = Math.Round(finalPriceWOT * gstInfo.CGST / 100, 2);
-                sGST = Math.Round(finalPriceWOT * gstInfo.SGST / 100, 2);
-                iGST = Math.Round(finalPriceWOT * gstInfo.IGST / 100, 2);
-                cess = Math.Round(finalPriceWOT * gstInfo.CESS / 100, 2);
-                appliedGST = cGST + sGST + iGST + cess;
+                if (!Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
+                {
+                    cGST = Math.Round(finalPriceWOT * gstInfo.CGST / 100, 2);
+                    sGST = Math.Round(finalPriceWOT * gstInfo.SGST / 100, 2);
+                    iGST = Math.Round(finalPriceWOT * gstInfo.IGST / 100, 2);
+                    cess = Math.Round(finalPriceWOT * gstInfo.CESS / 100, 2);
+                    appliedGST = cGST + sGST + iGST + cess;
+                }
+                else
+                {
+                    cGST = Math.Round(finaPriceWT * gstInfo.CGST / 100, 2);
+                    sGST = Math.Round(finaPriceWT * gstInfo.SGST / 100, 2);
+                    iGST = Math.Round(finaPriceWT * gstInfo.IGST / 100, 2);
+                    cess = Math.Round(finaPriceWT * gstInfo.CESS / 100, 2);
+                    appliedGST = cGST + sGST + iGST + cess;
+                }
             }
 
-            decimal finalPrice = finalPriceWOT + appliedGST;
+            decimal finalPrice = 0;
+            if (!Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
+                finalPrice = finalPriceWOT + appliedGST;
+            else
+                finalPrice = finaPriceWT;
 
             txtCGST.EditValue = cGST;
             txtSGST.EditValue = sGST;

@@ -192,5 +192,28 @@ namespace NSRetail
         {
             gcItemList.ShowRibbonPrintPreview();
         }
+
+        private void btnMRPList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvItemList.FocusedRowHandle >= 0)
+                {
+                    DataTable dtMRPList = 
+                        new ItemCodeRepository().GetMRPList(gvItemList.GetFocusedRowCellValue("ITEMCODEID"));
+                    new frmMRPList(dtMRPList,true).ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            btnMRPList_Click(sender, e);
+        }
     }
 }

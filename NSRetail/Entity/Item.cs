@@ -35,7 +35,10 @@ namespace Entity
 
         public object CategoryID { get; set; }
 
+        public object CategoryName { get; set; }
+
         public object SubCategoryID { get; set; }
+        public object SubCategoryName { get; set; }
 
         public object IsOpenItem { get; set; }
 
@@ -55,3 +58,4 @@ namespace Entity
         public bool isSKUorItem { get; set; }
     }
 }
+

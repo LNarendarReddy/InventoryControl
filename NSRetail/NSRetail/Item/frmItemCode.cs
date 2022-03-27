@@ -55,7 +55,9 @@ namespace NSRetail
                 itemObj.UserID = Utility.UserID;
                 itemObj.GSTID = luGST.EditValue;
                 itemObj.CategoryID = gluCategory.EditValue;
+                itemObj.CategoryName = gluCategory.Text;
                 itemObj.SubCategoryID = luSubCategory.EditValue;
+                itemObj.SubCategoryName = luSubCategory.Text;
                 itemObj.IsOpenItem = chkIsOpenItem.EditValue;
                 itemObj.ParentItemID = sluParentItem.EditValue;
                 itemObj.UOMID = luUOM.EditValue;
@@ -96,6 +98,10 @@ namespace NSRetail
                     drNewItemCode["ITEMCODE"] = itemObj.ItemCode;
                     drNewItemCode["ITEMCODEID"] = itemObj.ItemCodeID;
                     drNewItemCode["SKUCODE"] = itemObj.SKUCode;
+                    drNewItemCode["CATEGORYNAME"] = itemObj.CategoryName;
+                    drNewItemCode["SUBCATEGORYNAME"] = itemObj.SubCategoryName;
+                    drNewItemCode["CREATEDBY"] = Utility.FullName;
+                    drNewItemCode["CREATEDDATE"] = DateTime.Now;
                     dtItemCodes.Rows.Add(drNewItemCode);
                 }
 

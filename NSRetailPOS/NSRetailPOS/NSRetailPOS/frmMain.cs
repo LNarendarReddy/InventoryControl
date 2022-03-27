@@ -59,7 +59,7 @@ namespace NSRetailPOS
         {
 
             lblUserinfo.Text = $"Loggedin User : {Utility.logininfo.UserFullName}    Role : {Utility.logininfo.RoleName} ";
-            lblVersionInfo.Text = $"Application Version 1.1.3 (07-03-2022)";
+            lblVersionInfo.Text = $"Application Version 1.1.6 (27-03-2022)";
             btnCRWithoutBill.Enabled = Utility.logininfo.RoleName.ToString() == "Store Manager";
             DataSet dsInitialData = billingRepository.GetInitialLoad(Utility.logininfo.UserID, Utility.branchinfo.BranchCounterID);
 
@@ -96,7 +96,7 @@ namespace NSRetailPOS
         private void BgSyncWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             Utility.StartSync(bgSyncWorker);
-            Thread.Sleep(5 * 60 * 1000);
+            Thread.Sleep(30 * 60 * 1000);
             BgSyncWorker_DoWork(sender, e);
 
         }

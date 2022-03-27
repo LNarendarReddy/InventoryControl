@@ -172,6 +172,7 @@ namespace NSRetail.Stock
                         {
                             txtQuantity.Enabled = false;
                             txtWeightInKgs.Enabled = true;
+                        
                         }
                         else
                         {
@@ -190,6 +191,7 @@ namespace NSRetail.Stock
                     {
                         txtWeightInKgs.EditValue = 0;
                         txtWeightInKgs.Enabled = false;
+                        txtQuantity.Enabled = true;
                         IsParentExist = false;
                         DataTable dt = ObjStockRep.GetCurrentStock(cmbFromBranch.EditValue, cmbToBranch.EditValue,
                             cmbItemCode.EditValue, ParentID);
