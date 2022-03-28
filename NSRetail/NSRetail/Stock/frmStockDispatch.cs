@@ -51,25 +51,30 @@ namespace NSRetail.Stock
                 cmbFromBranch.Properties.ValueMember = "BRANCHID";
                 cmbFromBranch.Properties.DisplayMember = "BRANCHNAME";
 
-                cmbItemCode.Properties.DataSource = Utility.GetItemCodeListFiltered();
-                cmbItemCode.Properties.ValueMember = "ITEMCODEID";
-                cmbItemCode.Properties.DisplayMember = "ITEMCODE";
+                cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
+                cmbCategory.Properties.ValueMember = "CATEGORYID";
+                cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 
                 if (ObjStockDispatch == null)
                     ObjStockDispatch = new StockDispatch();
                 ObjStockDispatch.UserID = Utility.UserID;
-                ObjStockDispatch.CATEGORYID = Utility.CategoryID;
+
                 ObjStockRep.GetDispatchDraft(ObjStockDispatch);
                 if (Convert.ToInt32(ObjStockDispatch.STOCKDISPATCHID) > 0)
                 {
                     cmbFromBranch.EditValue = ObjStockDispatch.FROMBRANCHID;
                     cmbToBranch.EditValue = ObjStockDispatch.TOBRANCHID;
+                    cmbCategory.EditValue = ObjStockDispatch.CATEGORYID;
                     gcDispatch.DataSource = ObjStockDispatch.dtDispatch;
                     cmbFromBranch.Enabled = false;
                     cmbToBranch.Enabled = false;
+                    cmbCategory.Enabled = false;
                 }
                 else
                 {
+                    cmbCategory.EditValue = ObjStockDispatch.CATEGORYID = Utility.CategoryID;
+                    if (cmbCategory.Text != "ALL")
+                        cmbCategory.Enabled = false;
                     ObjStockDispatch.dtDispatch = new DataTable();
                     ObjStockDispatch.dtDispatch.Columns.Add("STOCKDISPATCHDETAILID",typeof(int));
                     ObjStockDispatch.dtDispatch.Columns.Add("ITEMID", typeof(int));
@@ -118,6 +123,8 @@ namespace NSRetail.Stock
                     txtTrayNumber.EditValue = null;
                     cmbFromBranch.Enabled = true;
                     cmbToBranch.Enabled = true;
+                    cmbCategory.Enabled = true;
+                    cmbCategory.EditValue = Utility.CategoryID;
                     ObjStockDispatch.STOCKDISPATCHID = 0;
                     ObjStockDispatch.dtDispatch = ObjStockDispatch.dtDispatch.Clone();
                     gcDispatch.DataSource = ObjStockDispatch.dtDispatch;
@@ -296,11 +303,12 @@ namespace NSRetail.Stock
                 }
                 ObjStockDispatch.FROMBRANCHID = cmbFromBranch.EditValue;
                 ObjStockDispatch.TOBRANCHID = cmbToBranch.EditValue;
-                ObjStockDispatch.CATEGORYID = Utility.CategoryID;
+                ObjStockDispatch.CATEGORYID = cmbCategory.EditValue;
                 ObjStockDispatch.UserID = Utility.UserID;
                 ObjStockRep.SaveDispatch(ObjStockDispatch);
                 cmbFromBranch.Enabled = false;
                 cmbToBranch.Enabled = false;
+                cmbCategory.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -380,6 +388,18 @@ namespace NSRetail.Stock
         private void gvDispatch_DoubleClick(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbCategory_EditValueChanged(object sender, EventArgs e)
+        {
+            if (cmbCategory.EditValue == null)
+                return;
+            DataTable dtTemp = Utility.GetItemCodeListFiltered().Copy();
+            DataView dv = dtTemp.DefaultView;
+            dv.RowFilter = "CATEGORYID = " + cmbCategory.EditValue;
+            cmbItemCode.Properties.DataSource = dv.ToTable();
+            cmbItemCode.Properties.ValueMember = "ITEMCODEID";
+            cmbItemCode.Properties.DisplayMember = "ITEMCODE";
         }
     }
 }

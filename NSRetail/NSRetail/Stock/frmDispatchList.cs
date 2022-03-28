@@ -55,5 +55,10 @@ namespace NSRetail.Stock
         {
             gcDispatch.ShowRibbonPrintPreview();
         }
+
+        private void frmDispatchList_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

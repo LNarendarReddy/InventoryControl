@@ -108,6 +108,7 @@ namespace DataAccess
                             objStockDispatch.STOCKDISPATCHID = iValue;
                             objStockDispatch.FROMBRANCHID = ds.Tables[0].Rows[0]["FROMBRANCHID"];
                             objStockDispatch.TOBRANCHID = ds.Tables[0].Rows[0]["TOBRANCHID"];
+                            objStockDispatch.CATEGORYID = ds.Tables[0].Rows[0]["CATEGORYID"];
                             objStockDispatch.dtDispatch = ds.Tables[1].Copy();
                         }
                     }
