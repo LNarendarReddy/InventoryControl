@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using ErrorManagement;
 using DataAccess;
 
@@ -20,8 +12,8 @@ namespace NSRetail
         public frmMRPList(DataTable _dtMRP,bool IsItemListCall = false)
         {
             InitializeComponent();
-            gcDelete.Visible = IsItemListCall;
-            gcSalePrice.OptionsColumn.AllowEdit = IsItemListCall;
+            gcDelete.Visible = IsItemListCall && Utility.Role != "Division Manager" && Utility.Role != "Division User"; ;
+            //gcSalePrice.OptionsColumn.AllowEdit = IsItemListCall;
             gcMRPList.DataSource = _dtMRP;
             
         }

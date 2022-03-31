@@ -34,6 +34,8 @@ namespace NSRetail
             luSubCategory.CascadingOwner = gluCategory;
             luSubCategory.Properties.CascadingMember = "CATEGORYID";
             txtItemCode_Properties_Leave(null, null);
+
+            btnSave.Enabled = Utility.Role != "Division Manager" && Utility.Role != "Division User";
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -336,7 +338,7 @@ namespace NSRetail
                 frmMRPList.ShowDialog();
                 if (!frmMRPList._IsSave)
                 {
-                    ClearUI();
+                    this.Close();
                     return;
                 }
 

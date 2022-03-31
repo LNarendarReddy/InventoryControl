@@ -1,9 +1,13 @@
-﻿using DevExpress.XtraSplashScreen;
+﻿using DevExpress.XtraBars;
+using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraSplashScreen;
 using Microsoft.Win32;
 using NSRetail.Login;
 using NSRetail.Master;
 using NSRetail.Stock;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace NSRetail
@@ -291,7 +295,71 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : V 1.1.3 (31-03-2022) ";
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : V 1.1.4 (31-03-2022) ";
+
+            List<BarButtonItem> availableItems = new List<BarButtonItem>()
+            { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,
+             btnStockDispatch, btnDispatchList, btnDCList, btnPrintDC, btnStockCounting, bbiStockSummary, bbiSyncStatus
+            , btnBranch, btnBranchCouter, btnSubCategory, btnUser, btnDealer , btnModeOfPayment, btnUnitsofMeasure
+            , btnTaxMaster, btnPrinterMaster, btnBranchRefund, btnDayClosure, btnSales, btnCategory};
+
+            List<RibbonPageGroup> ribbonPageGroups = new List<RibbonPageGroup>()
+            { ribbonPageGroup1, ribbonPageGroup2, ribbonPageGroup3, ribbonPageGroup4, ribbonPageGroup5, ribbonPageGroup6,
+            ribbonPageGroup7, ribbonPageGroup8, ribbonPageGroup9, ribbonPageGroup10, ribbonPageGroup11, ribbonPageGroup12
+            , ribbonPageGroup13};
+
+            List<RibbonPage> ribbonPages = new List<RibbonPage>()
+            {
+                ribbonPage1, ribbonPage3, ribbonPage4, ribbonPage5
+            };
+
+            bool revisitMenuItems = false;
+
+            if(Utility.Role == "Divison Manager")
+            {
+                availableItems.ForEach(x => x.Visibility = BarItemVisibility.Never);
+                revisitMenuItems = true;
+
+                btnBarCodePrint.Visibility = BarItemVisibility.Always;
+                btnItem.Visibility = BarItemVisibility.Always;
+                btnStockDispatch.Visibility = BarItemVisibility.Always;
+                btnDispatchList.Visibility = BarItemVisibility.Always;
+                bbiStockSummary.Visibility = BarItemVisibility.Always;
+            }
+            else if(Utility.Role == "Divison User")
+            {
+                availableItems.ForEach(x => x.Visibility = BarItemVisibility.Never);
+                revisitMenuItems = true;
+
+                btnBarCodePrint.Visibility = BarItemVisibility.Always;
+                btnItem.Visibility = BarItemVisibility.Always;
+                btnStockDispatch.Visibility = BarItemVisibility.Always;
+                btnDispatchList.Visibility = BarItemVisibility.Always;
+                bbiStockSummary.Visibility = BarItemVisibility.Always;
+            }
+            else if (Utility.Role == "IT User")
+            {
+                availableItems.ForEach(x => x.Visibility = BarItemVisibility.Never);
+                revisitMenuItems = true;
+
+                btnItem.Visibility = BarItemVisibility.Always;
+                btnBarCodePrint.Visibility = BarItemVisibility.Always;
+                btnStockEntry.Visibility = BarItemVisibility.Always;
+                btnInvoiceList.Visibility = BarItemVisibility.Always;
+                btnStockDispatch.Visibility = BarItemVisibility.Always;
+                btnDispatchList.Visibility = BarItemVisibility.Always;
+                btnDCList.Visibility = BarItemVisibility.Always;
+                btnPrintDC.Visibility = BarItemVisibility.Always;
+                bbiStockSummary.Visibility = BarItemVisibility.Always;
+                bbiSyncStatus.Visibility = BarItemVisibility.Always;
+            }
+
+            if (revisitMenuItems)
+            {
+                ribbonPageGroups.ForEach(x => x.Visible = Enumerable.Range(0, x.ItemLinks.Count)
+                    .Any(y => x.ItemLinks[y].Item.Visibility == BarItemVisibility.Always));
+                ribbonPages.ForEach(x => x.Visible = Enumerable.Range(0, x.Groups.Count).Any(y => x.Groups[y].Visible));
+            }
         }
     }
 }
