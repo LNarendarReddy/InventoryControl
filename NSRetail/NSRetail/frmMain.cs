@@ -4,12 +4,6 @@ using NSRetail.Login;
 using NSRetail.Master;
 using NSRetail.Stock;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace NSRetail
@@ -297,7 +291,7 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : V 1.1.1 (27-03-2022) ";
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : V 1.1.3 (31-03-2022) ";
         }
     }
 }
