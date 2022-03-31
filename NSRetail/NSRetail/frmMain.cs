@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace NSRetail
 {
-    public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class frmMain : RibbonForm
     {
         public frmMain()
         {
@@ -27,9 +27,13 @@ namespace NSRetail
             base.OnLoad(e);
             Utility.FillBaseLine();
             SplashScreenManager.CloseForm();
+
+            DevExpress.LookAndFeel.UserLookAndFeel.Default.SetDefaultStyle();
+            DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2019 Dark Gray";
+            DevExpress.LookAndFeel.UserLookAndFeel.Default.UpdateStyleSettings();
         }
 
-        private void btnBranch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnBranch_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmBranchList obj = new frmBranchList();
             obj.ShowInTaskbar = false;
@@ -39,7 +43,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnCategory_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnCategory_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmCategoryList obj = new frmCategoryList();
             obj.ShowInTaskbar = false;
@@ -48,14 +52,14 @@ namespace NSRetail
             obj.ShowDialog();
         }
 
-        private void btnItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnItem_ItemClick(object sender, ItemClickEventArgs e)
         {
             new frmItemCodeList() { ShowInTaskbar = false, MdiParent = this,
                 StartPosition = FormStartPosition.CenterParent,
             WindowState = FormWindowState.Maximized}.Show();
         }
 
-        private void btnUser_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnUser_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmUserList obj = new frmUserList();
             obj.ShowInTaskbar = false;
@@ -65,7 +69,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnChangePassword_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnChangePassword_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmChangePassword obj = new frmChangePassword();
             obj.ShowInTaskbar = false;
@@ -74,7 +78,7 @@ namespace NSRetail
             obj.ShowDialog();
         }
 
-        private void btnLogout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnLogout_ItemClick(object sender, ItemClickEventArgs e)
         {
             try
             {
@@ -93,7 +97,7 @@ namespace NSRetail
             Application.Exit();
         }
 
-        private void btnDealer_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnDealer_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmDealerList obj = new frmDealerList();
             obj.ShowInTaskbar = false;
@@ -103,7 +107,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnBranchCouter_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnBranchCouter_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmCounterList obj = new frmCounterList();
             obj.ShowInTaskbar = false;
@@ -113,7 +117,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnModeOfPayment_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnModeOfPayment_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmModeofPayment obj = new frmModeofPayment();
             obj.ShowInTaskbar = false;
@@ -122,7 +126,7 @@ namespace NSRetail
             obj.ShowDialog();
         }
 
-        private void btnUnitsofMeasure_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnUnitsofMeasure_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmUOMList obj = new frmUOMList();
             obj.ShowInTaskbar = false;
@@ -132,7 +136,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnTaxMaster_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnTaxMaster_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmGSTList obj = new frmGSTList();
             obj.ShowInTaskbar = false;
@@ -142,7 +146,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnBarCodePrint_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnBarCodePrint_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmBarCodePrint obj = new frmBarCodePrint();
             obj.ShowInTaskbar = false;
@@ -151,7 +155,7 @@ namespace NSRetail
             obj.ShowDialog();
         }
 
-        private void btnPrinterMaster_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnPrinterMaster_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmPrinterMaster obj = new frmPrinterMaster();
             obj.ShowInTaskbar = false;
@@ -160,7 +164,7 @@ namespace NSRetail
             obj.ShowDialog();
         }
 
-        private void btnStockEntry_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnStockEntry_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmStockEntry obj = new frmStockEntry();
             obj.ShowInTaskbar = false;
@@ -170,7 +174,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnStockDispatch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnStockDispatch_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmStockDispatch obj = new frmStockDispatch();
             obj.ShowInTaskbar = false;
@@ -180,7 +184,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void bbiRefreshData_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void bbiRefreshData_ItemClick(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmProgress ), true, true);
             Utility.FillBaseLine();
@@ -188,7 +192,7 @@ namespace NSRetail
             SplashScreenManager.CloseForm();
         }
 
-        private void btnSubCategory_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnSubCategory_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmSubCategoryList obj = new frmSubCategoryList();
             obj.ShowInTaskbar = false;
@@ -197,7 +201,7 @@ namespace NSRetail
             obj.ShowDialog();
         }
 
-        private void btnInvoiceList_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnInvoiceList_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmInvoiceList obj = new frmInvoiceList();
             obj.ShowInTaskbar = false;
@@ -207,7 +211,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnDispatchList_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnDispatchList_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmDispatchList obj = new frmDispatchList();
             obj.ShowInTaskbar = false;
@@ -217,18 +221,18 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void bbiStockSummary_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void bbiStockSummary_ItemClick(object sender, ItemClickEventArgs e)
         {
             new frmStockSummary() { MdiParent = this }.Show();
         }
 
-        private void btnPrintDC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnPrintDC_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmDispatchDCPrint obj = new frmDispatchDCPrint();
             obj.ShowDialog();
         }
 
-        private void btnDCList_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnDCList_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmDispatchDCList obj = new frmDispatchDCList();
             obj.ShowInTaskbar = false;
@@ -238,12 +242,12 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void bbiSyncStatus_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void bbiSyncStatus_ItemClick(object sender, ItemClickEventArgs e)
         {
             new Utilities.frmSyncStatus() { MdiParent = this }.Show();
         }
 
-        private void btnItemGroup_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnItemGroup_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmItemGroupList obj = new frmItemGroupList();
             obj.ShowInTaskbar = false;
@@ -253,7 +257,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnOfferList_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnOfferList_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmOfferList obj = new frmOfferList();
             obj.ShowInTaskbar = false;
@@ -263,7 +267,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnStockCounting_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnStockCounting_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmStockCounting obj = new frmStockCounting();
             obj.ShowInTaskbar = false;
@@ -273,7 +277,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnBranchRefund_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnBranchRefund_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmBRefundList  obj = new frmBRefundList();
             obj.ShowInTaskbar = false;
@@ -283,7 +287,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnDayClosure_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnDayClosure_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmDayClosureList obj = new frmDayClosureList();
             obj.ShowInTaskbar = false;
