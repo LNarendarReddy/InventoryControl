@@ -2,23 +2,20 @@
 using DevExpress.XtraEditors;
 using Entity;
 using ErrorManagement;
-using NSRetail;
 using System;
 using System.Data;
 using System.Windows.Forms;
 
 namespace NSRetail.Stock
 {
-    public partial class frmAddStockRecord : DevExpress.XtraEditors.XtraForm
+    public partial class frmAddStockRecord : XtraForm
     {
         ItemCodeRepository ObjItemRep = new ItemCodeRepository();
-        MasterRepository ObjMasterRep = new MasterRepository();
         StockRepository ObjStockRep = new StockRepository();
         StockEntry ObjStockEntry = null;
         StockEntryDetail ObjStockEntryDetail = null;
         object ItemPriceID = null;
         bool IsOpenItem = false;
-        bool IsParentExist = false;
         bool IsLoading = false;
         bool IsEditMode = false;
 
@@ -214,9 +211,9 @@ namespace NSRetail.Stock
                 {
                     int IValue = 0;
                     if (int.TryParse(Convert.ToString(ObjStockEntryDetail.STOCKENTRYDETAILID), out IValue) && IValue > 0)
-                    { 
+                    {
                         return;
-                        }
+                    }
                     IsLoading = true;
                     txtItemName.EditValue = cmbLookupView.GetFocusedDataRow()["ITEMNAME"];
                     DataTable dtCPList = ObjItemRep.GetCostPriceList(cmbItemCode.EditValue);
@@ -234,7 +231,7 @@ namespace NSRetail.Stock
                             cmbGST.EditValue = ((DataRowView)obj.drSelected)["GSTID"];
                         }
                     }
-                    else if(dtCPList.Rows.Count > 0)
+                    else if (dtCPList.Rows.Count > 0)
                     {
                         txtMRP.EditValue = dtCPList.Rows[0]["MRP"];
                         txtSalePrice.EditValue = dtCPList.Rows[0]["SALEPRICE"];
@@ -244,29 +241,12 @@ namespace NSRetail.Stock
                         cmbGST.EditValue = dtCPList.Rows[0]["GSTID"];
                     }
 
-                    int ParentID = 0;
-                    if (int.TryParse(Convert.ToString(cmbLookupView.GetFocusedDataRow()["PARENTITEMID"]), out ParentID)
-                        && ParentID > 0)
-                    {
-                        IsParentExist = true;
-                        if (bool.TryParse(Convert.ToString(cmbLookupView.GetFocusedDataRow()["ISOPENITEM"]), out IsOpenItem)
-                            && IsOpenItem)
-                        {
-                            txtQuantity.Enabled = false;
-                            txtWeightInKGs.Enabled = true;
-                        }
-                        else
-                        {
-                            txtQuantity.Enabled = true;
-                            txtWeightInKGs.Enabled = false;
-                        }
-                    }
-                    else
-                    {
-                        txtWeightInKGs.EditValue = 0;
-                        txtWeightInKGs.Enabled = false;
-                        IsParentExist = false;
-                    }
+                    bool IsOpenItem = false;
+                    IsOpenItem = bool.TryParse(Convert.ToString(cmbLookupView.GetFocusedDataRow()["ISOPENITEM"]), out IsOpenItem) && IsOpenItem;
+
+                    txtQuantity.Enabled = !IsOpenItem;
+                    txtWeightInKGs.Enabled = IsOpenItem;
+
                     txtQuantity.EditValue = 1;
                     IsLoading = false;
                     SendKeys.Send("{ENTER}");

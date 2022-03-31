@@ -6,18 +6,12 @@ using Entity;
 using ErrorManagement;
 using NSRetail.Reports;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.Stock
 {
-    public partial class frmStockDispatch : DevExpress.XtraEditors.XtraForm
+    public partial class frmStockDispatch : XtraForm
     {
         MasterRepository ObjMasterRep = new MasterRepository();
         ItemCodeRepository ObjItemRep = new ItemCodeRepository();
@@ -169,46 +163,23 @@ namespace NSRetail.Stock
                         ItemPriceID = dtMRPList.Rows[0]["ITEMPRICEID"];
                     }
 
-                   int ParentID = 0;
-                    if(int.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("PARENTITEMID")),out ParentID) 
-                        && ParentID > 0)
-                    {
-                        IsParentExist = true;
-                        if(bool.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("ISOPENITEM")), out IsOpenItem) 
-                            && IsOpenItem)
-                        {
-                            txtQuantity.Enabled = false;
-                            txtWeightInKgs.Enabled = true;
-                        
-                        }
-                        else
-                        {
-                            txtQuantity.Enabled = true;
-                            txtWeightInKgs.Enabled = false;
-                        }
-                        DataTable dt = ObjStockRep.GetCurrentStock(cmbFromBranch.EditValue, cmbToBranch.EditValue,
+                    int ParentID = 0;
+                    IsParentExist = int.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("PARENTITEMID")), out ParentID)
+                        && ParentID > 0;
+                    IsOpenItem = bool.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("ISOPENITEM")), out IsOpenItem) && IsOpenItem;
+
+                    txtQuantity.Enabled = !IsOpenItem;
+                    txtWeightInKgs.Enabled = IsOpenItem;
+
+                    DataTable dt = ObjStockRep.GetCurrentStock(cmbFromBranch.EditValue, cmbToBranch.EditValue,
                             cmbItemCode.EditValue, ParentID);
-                        if(dt != null && dt.Rows.Count > 0)
-                        {
-                            txtWarehouseStock.EditValue = dt.Rows[0][0];
-                            txtBranchStock.EditValue = dt.Rows[0][1];
-                        }
-                    }
-                    else
-                    {
-                        txtWeightInKgs.EditValue = 0;
-                        txtWeightInKgs.Enabled = false;
-                        txtQuantity.Enabled = true;
-                        IsParentExist = false;
-                        DataTable dt = ObjStockRep.GetCurrentStock(cmbFromBranch.EditValue, cmbToBranch.EditValue,
-                            cmbItemCode.EditValue, ParentID);
-                        if (dt != null && dt.Rows.Count > 0)
-                        {
-                            txtWarehouseStock.EditValue = dt.Rows[0][0];
-                            txtBranchStock.EditValue = dt.Rows[0][1];
-                        }
-                    }
+                    DataRow drStockValue = dt?.Rows[0];
+                    txtWarehouseStock.EditValue = drStockValue?[0];
+                    txtBranchStock.EditValue = drStockValue?[1];
+
+                    txtWeightInKgs.EditValue = 0.00;
                     txtQuantity.EditValue = 1;
+
                     SendKeys.Send("{ENTER}");
                 }
             }
