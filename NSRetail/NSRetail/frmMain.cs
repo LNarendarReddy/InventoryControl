@@ -319,7 +319,7 @@ namespace NSRetail
 
             bool revisitMenuItems = false;
 
-            if(Utility.Role == "Divison Manager")
+            if(Utility.Role == "Division Manager")
             {
                 availableItems.ForEach(x => x.Visibility = BarItemVisibility.Never);
                 revisitMenuItems = true;
@@ -330,7 +330,7 @@ namespace NSRetail
                 btnDispatchList.Visibility = BarItemVisibility.Always;
                 bbiStockSummary.Visibility = BarItemVisibility.Always;
             }
-            else if(Utility.Role == "Divison User")
+            else if(Utility.Role == "Division User")
             {
                 availableItems.ForEach(x => x.Visibility = BarItemVisibility.Never);
                 revisitMenuItems = true;
