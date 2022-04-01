@@ -84,7 +84,6 @@ namespace NSRetail.Stock
                     ObjStockDispatch.dtDispatch.Columns.Add("TRAYNUMBER", typeof(int));
                     gcDispatch.DataSource = ObjStockDispatch.dtDispatch;
                 }
-
             }
             catch (Exception) { }
         }
@@ -117,7 +116,8 @@ namespace NSRetail.Stock
                     txtTrayNumber.EditValue = null;
                     cmbFromBranch.Enabled = true;
                     cmbToBranch.Enabled = true;
-                    cmbCategory.Enabled = true;
+                    if (Utility.Category != "ALL")
+                        cmbCategory.Enabled = true;
                     cmbCategory.EditValue = Utility.CategoryID;
                     ObjStockDispatch.STOCKDISPATCHID = 0;
                     ObjStockDispatch.dtDispatch = ObjStockDispatch.dtDispatch.Clone();
@@ -371,6 +371,25 @@ namespace NSRetail.Stock
             cmbItemCode.Properties.DataSource = dv.ToTable();
             cmbItemCode.Properties.ValueMember = "ITEMCODEID";
             cmbItemCode.Properties.DisplayMember = "ITEMCODE";
+        }
+
+        private void bntDiscardDispatch_Click(object sender, EventArgs e)
+        {
+            if (XtraMessageBox.Show("Are you sure want to discard dispatch?", "Confirmation!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+            ObjStockRep.DiscardStockDispatch(ObjStockDispatch.STOCKDISPATCHID);
+            cmbFromBranch.EditValue = null;
+            cmbToBranch.EditValue = null;
+            txtTrayNumber.EditValue = null;
+            cmbFromBranch.Enabled = true;
+            cmbToBranch.Enabled = true;
+            if (Utility.Category != "ALL")
+                cmbCategory.Enabled = true;
+            cmbCategory.EditValue = Utility.CategoryID;
+            ObjStockDispatch.STOCKDISPATCHID = 0;
+            ObjStockDispatch.dtDispatch = ObjStockDispatch.dtDispatch.Clone();
+            gcDispatch.DataSource = ObjStockDispatch.dtDispatch;
+            cmbFromBranch.Focus();
         }
     }
 }

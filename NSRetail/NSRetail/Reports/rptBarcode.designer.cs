@@ -84,7 +84,7 @@
             this.xrLabel5.Dpi = 254F;
             this.xrLabel5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'PKD:\' + ?PackedDate"),
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(?CategoryID = 3 || ?CategoryID = 4,true ,false )")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(?CategoryID = 2 || ?CategoryID = 7,true ,false )")});
             this.xrLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(463F, 1F);
             this.xrLabel5.Multiline = true;
@@ -102,7 +102,7 @@
             this.xrLabel4.Dpi = 254F;
             this.xrLabel4.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'BATCH: \' + ?BatchNumber"),
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(?CategoryID = 3 || ?CategoryID = 4,true ,false )")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(?CategoryID = 2 || ?CategoryID = 7,true ,false )")});
             this.xrLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1F);
             this.xrLabel4.Multiline = true;

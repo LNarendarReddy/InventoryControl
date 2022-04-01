@@ -491,6 +491,7 @@
             // 
             this.skinDropDownButtonItem1.Id = 27;
             this.skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
+            this.skinDropDownButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // bbiSyncStatus
             // 
@@ -573,7 +574,7 @@
             // 
             this.btnSales.Caption = "Sales";
             this.btnSales.Id = 38;
-            this.btnSales.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnSales.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSales.ImageOptions.SvgImage")));
             this.btnSales.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
             this.btnSales.ItemAppearance.Disabled.Options.UseFont = true;
             this.btnSales.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
@@ -768,6 +769,7 @@
             this.ClientSize = new System.Drawing.Size(1374, 787);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmMain.IconOptions.Icon")));
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmMain";

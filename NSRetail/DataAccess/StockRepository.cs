@@ -647,5 +647,29 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
+        public void DiscardStockDispatch(object StockDispatchID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_DISPATCH]";
+                    cmd.Parameters.AddWithValue("@StockDispatchID", StockDispatchID);
+                    int RowsAffected = cmd.ExecuteNonQuery();
+                    if (RowsAffected <= 0)
+                        throw new Exception("Nothing is deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Deleting Dispatch");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 }

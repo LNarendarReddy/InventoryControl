@@ -233,10 +233,10 @@
             this.gvItemList.DetailHeight = 404;
             this.gvItemList.GridControl = this.gcItemList;
             this.gvItemList.Name = "gvItemList";
-            this.gvItemList.OptionsBehavior.Editable = false;
             this.gvItemList.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
             this.gvItemList.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always;
             this.gvItemList.OptionsView.EnableAppearanceEvenRow = true;
+            this.gvItemList.OptionsView.ShowFooter = true;
             this.gvItemList.OptionsView.ShowGroupPanel = false;
             this.gvItemList.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvItemList_PopupMenuShowing);
             this.gvItemList.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvItemList_FocusedRowChanged);

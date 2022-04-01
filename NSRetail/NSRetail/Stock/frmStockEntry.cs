@@ -365,6 +365,8 @@ namespace NSRetail.Stock
 
         private void btnDiscardInvoice_Click(object sender, EventArgs e)
         {
+            if (XtraMessageBox.Show("Are you sure want to discard invoice?", "Question?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
             try
             {
                 int Ivalue = 0;

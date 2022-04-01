@@ -14,6 +14,7 @@ namespace NSRetail.Reports
             InitializeComponent();
             this.DataSource = dtDC;
             this.drItems.DataSource = dtItems;
+            this.drSummary.DataSource = dtItems;
         }
 
     }

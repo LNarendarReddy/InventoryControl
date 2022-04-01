@@ -299,7 +299,7 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : V 1.1.4 (31-03-2022) ";
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : V 1.1.6 (01-04-2022) ";
 
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,
@@ -319,7 +319,7 @@ namespace NSRetail
 
             bool revisitMenuItems = false;
 
-            if(Utility.Role == "Divison Manager")
+            if(Utility.Role == "Division Manager")
             {
                 availableItems.ForEach(x => x.Visibility = BarItemVisibility.Never);
                 revisitMenuItems = true;
@@ -329,8 +329,10 @@ namespace NSRetail
                 btnStockDispatch.Visibility = BarItemVisibility.Always;
                 btnDispatchList.Visibility = BarItemVisibility.Always;
                 bbiStockSummary.Visibility = BarItemVisibility.Always;
+                btnPrintDC.Visibility = BarItemVisibility.Always;
+                btnDCList.Visibility = BarItemVisibility.Always;
             }
-            else if(Utility.Role == "Divison User")
+            else if(Utility.Role == "Division User")
             {
                 availableItems.ForEach(x => x.Visibility = BarItemVisibility.Never);
                 revisitMenuItems = true;
@@ -356,6 +358,7 @@ namespace NSRetail
                 btnPrintDC.Visibility = BarItemVisibility.Always;
                 bbiStockSummary.Visibility = BarItemVisibility.Always;
                 bbiSyncStatus.Visibility = BarItemVisibility.Always;
+                btnDealer.Visibility = BarItemVisibility.Always;
             }
 
             if (revisitMenuItems)

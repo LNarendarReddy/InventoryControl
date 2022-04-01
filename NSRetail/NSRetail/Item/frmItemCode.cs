@@ -82,19 +82,35 @@ namespace NSRetail
                     drItemSKU["ITEMID"] = itemObj.ItemID;
                     drItemSKU["ITEMNAME"] = itemObj.ItemName;
                 }
+                else
+                {
+                    DataRow drNew = dtItemSKUList.NewRow();
+                    drNew["ITEMID"] = itemObj.ItemID;
+                    drNew["ITEMNAME"] = itemObj.ItemName;
+                    dtItemSKUList.Rows.Add(drNew);
+                }
+
 
                 if (itemCodeRowHandle != GridControl.InvalidRowHandle)
                 {
-                    DataRow drItemCode = dtItemCodeList.Rows[itemCodeRowHandle];
-                    drItemCode["ITEMID"] = itemObj.ItemID;
-                    drItemCode["ITEMNAME"] = itemObj.ItemName;
-                    drItemCode["ITEMCODEID"] = itemObj.ItemCodeID;
-                    drItemCode["SKUCODE"] = itemObj.SKUCode;
+                    gvItemCode.SetRowCellValue(itemCodeRowHandle, "ITEMID", itemObj.ItemID);
+                    gvItemCode.SetRowCellValue(itemCodeRowHandle, "ITEMNAME", itemObj.ItemName);
+                    gvItemCode.SetRowCellValue(itemCodeRowHandle, "ITEMCODEID", itemObj.ItemCodeID);
+                    gvItemCode.SetRowCellValue(itemCodeRowHandle, "SKUCODE", itemObj.SKUCode);
+                    gvItemCode.SetRowCellValue(itemCodeRowHandle, "CATEGORYNAME", itemObj.CategoryName);
+                    gvItemCode.SetRowCellValue(itemCodeRowHandle, "SUBCATEGORYNAME", itemObj.SubCategoryName);
+
+                    //DataRow drItemCode = dtItemCodeList.Rows[itemCodeRowHandle];
+                    //drItemCode["ITEMID"] = itemObj.ItemID;
+                    //drItemCode["ITEMNAME"] = itemObj.ItemName;
+                    //drItemCode["ITEMCODEID"] = itemObj.ItemCodeID;
+                    //drItemCode["SKUCODE"] = itemObj.SKUCode;
+                    //drItemCode["CATEGORYNAME"] = itemObj.CategoryName;
+                    //drItemCode["SUBCATEGORYNAME"] = itemObj.SubCategoryName;
                 }
                 else
                 {
-                    DataTable dtItemCodes = Utility.GetItemCodeListFiltered();
-                    DataRow drNewItemCode = dtItemCodes.NewRow();
+                    DataRow drNewItemCode = dtItemCodeList.NewRow();
                     drNewItemCode["ITEMID"] = itemObj.ItemID;
                     drNewItemCode["ITEMNAME"] = itemObj.ItemName;
                     drNewItemCode["ITEMCODE"] = itemObj.ItemCode;
@@ -104,7 +120,7 @@ namespace NSRetail
                     drNewItemCode["SUBCATEGORYNAME"] = itemObj.SubCategoryName;
                     drNewItemCode["CREATEDBY"] = Utility.FullName;
                     drNewItemCode["CREATEDDATE"] = DateTime.Now;
-                    dtItemCodes.Rows.Add(drNewItemCode);
+                    dtItemCodeList.Rows.Add(drNewItemCode);
                 }
 
                 itemObj.IsSave = true;
