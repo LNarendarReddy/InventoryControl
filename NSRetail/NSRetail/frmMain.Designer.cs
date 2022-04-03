@@ -59,9 +59,12 @@
             this.btnStockCounting = new DevExpress.XtraBars.BarButtonItem();
             this.btnBranchRefund = new DevExpress.XtraBars.BarButtonItem();
             this.btnDayClosure = new DevExpress.XtraBars.BarButtonItem();
-            this.btnSales = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRunningSale = new DevExpress.XtraBars.BarButtonItem();
             this.lblUserName = new DevExpress.XtraBars.BarStaticItem();
             this.lblVersion = new DevExpress.XtraBars.BarStaticItem();
+            this.btnTaxWiseSales = new DevExpress.XtraBars.BarButtonItem();
+            this.btnZeroStock = new DevExpress.XtraBars.BarButtonItem();
+            this.btnItemWiseSales = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -122,12 +125,15 @@
             this.btnStockCounting,
             this.btnBranchRefund,
             this.btnDayClosure,
-            this.btnSales,
+            this.btnRunningSale,
             this.lblUserName,
-            this.lblVersion});
+            this.lblVersion,
+            this.btnTaxWiseSales,
+            this.btnZeroStock,
+            this.btnItemWiseSales});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ribbonControl1.MaxItemId = 42;
+            this.ribbonControl1.MaxItemId = 45;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -491,7 +497,6 @@
             // 
             this.skinDropDownButtonItem1.Id = 27;
             this.skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
-            this.skinDropDownButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // bbiSyncStatus
             // 
@@ -570,20 +575,21 @@
             this.btnDayClosure.Name = "btnDayClosure";
             this.btnDayClosure.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDayClosure_ItemClick);
             // 
-            // btnSales
+            // btnRunningSale
             // 
-            this.btnSales.Caption = "Sales";
-            this.btnSales.Id = 38;
-            this.btnSales.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSales.ImageOptions.SvgImage")));
-            this.btnSales.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
-            this.btnSales.ItemAppearance.Disabled.Options.UseFont = true;
-            this.btnSales.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
-            this.btnSales.ItemAppearance.Hovered.Options.UseFont = true;
-            this.btnSales.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
-            this.btnSales.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnSales.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
-            this.btnSales.ItemAppearance.Pressed.Options.UseFont = true;
-            this.btnSales.Name = "btnSales";
+            this.btnRunningSale.Caption = "Running Sales";
+            this.btnRunningSale.Id = 38;
+            this.btnRunningSale.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRunningSale.ImageOptions.SvgImage")));
+            this.btnRunningSale.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnRunningSale.ItemAppearance.Disabled.Options.UseFont = true;
+            this.btnRunningSale.ItemAppearance.Hovered.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnRunningSale.ItemAppearance.Hovered.Options.UseFont = true;
+            this.btnRunningSale.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnRunningSale.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnRunningSale.ItemAppearance.Pressed.Font = new System.Drawing.Font("Arial", 8F);
+            this.btnRunningSale.ItemAppearance.Pressed.Options.UseFont = true;
+            this.btnRunningSale.Name = "btnRunningSale";
+            this.btnRunningSale.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRunningSale_ItemClick);
             // 
             // lblUserName
             // 
@@ -599,6 +605,30 @@
             this.lblVersion.ItemAppearance.Normal.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.lblVersion.ItemAppearance.Normal.Options.UseFont = true;
             this.lblVersion.Name = "lblVersion";
+            // 
+            // btnTaxWiseSales
+            // 
+            this.btnTaxWiseSales.Caption = "Tax Wise Sales";
+            this.btnTaxWiseSales.Id = 42;
+            this.btnTaxWiseSales.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTaxWiseSales.ImageOptions.SvgImage")));
+            this.btnTaxWiseSales.Name = "btnTaxWiseSales";
+            this.btnTaxWiseSales.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaxWiseSales_ItemClick);
+            // 
+            // btnZeroStock
+            // 
+            this.btnZeroStock.Caption = "Zero Stock";
+            this.btnZeroStock.Id = 43;
+            this.btnZeroStock.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnZeroStock.ImageOptions.SvgImage")));
+            this.btnZeroStock.Name = "btnZeroStock";
+            this.btnZeroStock.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnZeroStock_ItemClick);
+            // 
+            // btnItemWiseSales
+            // 
+            this.btnItemWiseSales.Caption = "Item Wise Sales";
+            this.btnItemWiseSales.Id = 44;
+            this.btnItemWiseSales.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnItemWiseSales.ImageOptions.SvgImage")));
+            this.btnItemWiseSales.Name = "btnItemWiseSales";
+            this.btnItemWiseSales.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItemWiseSales_ItemClick);
             // 
             // ribbonPage3
             // 
@@ -735,7 +765,10 @@
             // 
             this.ribbonPageGroup13.ItemLinks.Add(this.btnBranchRefund);
             this.ribbonPageGroup13.ItemLinks.Add(this.btnDayClosure);
-            this.ribbonPageGroup13.ItemLinks.Add(this.btnSales);
+            this.ribbonPageGroup13.ItemLinks.Add(this.btnRunningSale);
+            this.ribbonPageGroup13.ItemLinks.Add(this.btnTaxWiseSales);
+            this.ribbonPageGroup13.ItemLinks.Add(this.btnZeroStock);
+            this.ribbonPageGroup13.ItemLinks.Add(this.btnItemWiseSales);
             this.ribbonPageGroup13.Name = "ribbonPageGroup13";
             this.ribbonPageGroup13.Text = "Branch Operations";
             // 
@@ -838,9 +871,12 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup13;
         private DevExpress.XtraBars.BarButtonItem btnBranchRefund;
         private DevExpress.XtraBars.BarButtonItem btnDayClosure;
-        private DevExpress.XtraBars.BarButtonItem btnSales;
+        private DevExpress.XtraBars.BarButtonItem btnRunningSale;
         private DevExpress.XtraBars.BarStaticItem lblUserName;
         private DevExpress.XtraBars.BarStaticItem lblVersion;
+        private DevExpress.XtraBars.BarButtonItem btnTaxWiseSales;
+        private DevExpress.XtraBars.BarButtonItem btnZeroStock;
+        private DevExpress.XtraBars.BarButtonItem btnItemWiseSales;
     }
 }
 

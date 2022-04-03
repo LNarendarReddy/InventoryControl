@@ -104,7 +104,9 @@ namespace NSRetail.Stock
                 int iValue = 0;
                 if (int.TryParse(Convert.ToString(ObjStockDispatch.STOCKDISPATCHID), out iValue) && iValue > 0)
                 {
-                    if (!dxValidationProvider1.Validate())
+                    if (!dxValidationProvider1.Validate() || 
+                        XtraMessageBox.Show("Are you sure want to save dispatch?","Confirm",
+                        MessageBoxButtons.YesNo,MessageBoxIcon.Question) != DialogResult.Yes)
                         return;
                     ObjStockRep.UpdateDispatch(ObjStockDispatch);
                     DataSet ds = ObjStockRep.GetDispatch(ObjStockDispatch.STOCKDISPATCHID);
@@ -291,6 +293,9 @@ namespace NSRetail.Stock
         {
             try
             {
+                if (XtraMessageBox.Show("Are you sure want to delete item?", "Confirm",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
                 ObjStockRep.DeleteDispatchDetail(gvDispatch.GetFocusedRowCellValue("STOCKDISPATCHDETAILID"));
                 gvDispatch.DeleteRow(gvDispatch.FocusedRowHandle);
             }
@@ -375,7 +380,8 @@ namespace NSRetail.Stock
 
         private void bntDiscardDispatch_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show("Are you sure want to discard dispatch?", "Confirmation!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            if (XtraMessageBox.Show("Are you sure want to discard dispatch?", "Confirm", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             ObjStockRep.DiscardStockDispatch(ObjStockDispatch.STOCKDISPATCHID);
             cmbFromBranch.EditValue = null;

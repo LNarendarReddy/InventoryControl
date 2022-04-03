@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using DataAccess;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using Entity;
@@ -44,6 +45,24 @@ namespace NSRetail
             {
                 if (!dxItemValidationProvider.Validate())
                     return;
+                if (decimal.TryParse(Convert.ToString(txtMRP.EditValue), out decimal MRP) &&
+                    decimal.TryParse(Convert.ToString(txtCostPriceWT.EditValue), out decimal CostPriceWT) &&
+                    decimal.TryParse(Convert.ToString(txtSalePrice.EditValue), out decimal salePrice))
+                {
+                    string message = String.Empty;
+
+                    message = MRP < salePrice ? "MRP cannot be less than sale price" : message;
+                    message = salePrice < CostPriceWT ? "Cost Price cannot be less than sale price" : message;
+
+                    if (!string.IsNullOrEmpty(message))
+                    {
+                        XtraMessageBox.Show(message);
+                        return;
+                    }
+                }
+
+               
+
                 itemObj.ItemCode = txtItemCode.Text;                
                 itemObj.HSNCode = txtHSNCode.EditValue;
                 itemObj.IsEAN = chkIsEAN.EditValue;

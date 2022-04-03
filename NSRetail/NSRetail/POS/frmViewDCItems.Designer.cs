@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.gcMOP = new DevExpress.XtraGrid.GridControl();
+            this.gvMOP = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcItems = new DevExpress.XtraGrid.GridControl();
             this.gvItems = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -43,16 +49,21 @@
             this.gcGSTValue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciMOP = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcMOP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvMOP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciMOP)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.gcMOP);
             this.layoutControl1.Controls.Add(this.gcItems);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -63,6 +74,62 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // gcMOP
+            // 
+            this.gcMOP.Location = new System.Drawing.Point(4, 484);
+            this.gcMOP.MainView = this.gvMOP;
+            this.gcMOP.Name = "gcMOP";
+            this.gcMOP.Size = new System.Drawing.Size(1020, 157);
+            this.gcMOP.TabIndex = 5;
+            this.gcMOP.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvMOP});
+            // 
+            // gvMOP
+            // 
+            this.gvMOP.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gvMOP.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gvMOP.Appearance.Row.Options.UseTextOptions = true;
+            this.gvMOP.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gvMOP.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn8,
+            this.gridColumn9,
+            this.gridColumn10,
+            this.gridColumn11});
+            this.gvMOP.GridControl = this.gcMOP;
+            this.gvMOP.Name = "gvMOP";
+            this.gvMOP.OptionsBehavior.Editable = false;
+            this.gvMOP.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "BILLMOPDETAILID";
+            this.gridColumn8.FieldName = "BILLMOPDETAILID";
+            this.gridColumn8.Name = "gridColumn8";
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "MOPID";
+            this.gridColumn9.FieldName = "MOPID";
+            this.gridColumn9.Name = "gridColumn9";
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "Mode of Payment";
+            this.gridColumn10.FieldName = "MOPNAME";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 0;
+            this.gridColumn10.Width = 113;
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "MOP Value";
+            this.gridColumn11.FieldName = "MOPVALUE";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 1;
+            this.gridColumn11.Width = 882;
+            // 
             // gcItems
             // 
             this.gcItems.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
@@ -70,7 +137,7 @@
             this.gcItems.MainView = this.gvItems;
             this.gcItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcItems.Name = "gcItems";
-            this.gcItems.Size = new System.Drawing.Size(1020, 637);
+            this.gcItems.Size = new System.Drawing.Size(1020, 476);
             this.gcItems.TabIndex = 4;
             this.gcItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvItems});
@@ -96,6 +163,7 @@
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
             this.gvItems.OptionsView.ShowFooter = true;
+            this.gvItems.OptionsView.ShowGroupPanel = false;
             this.gvItems.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvItems_PopupMenuShowing);
             // 
             // gridColumn1
@@ -217,7 +285,8 @@
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1});
+            this.layoutControlItem1,
+            this.lciMOP});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(1028, 645);
@@ -228,9 +297,18 @@
             this.layoutControlItem1.Control = this.gcItems;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1024, 641);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1024, 480);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
+            // 
+            // lciMOP
+            // 
+            this.lciMOP.Control = this.gcMOP;
+            this.lciMOP.Location = new System.Drawing.Point(0, 480);
+            this.lciMOP.Name = "lciMOP";
+            this.lciMOP.Size = new System.Drawing.Size(1024, 161);
+            this.lciMOP.TextSize = new System.Drawing.Size(0, 0);
+            this.lciMOP.TextVisible = false;
             // 
             // frmViewDCItems
             // 
@@ -242,13 +320,17 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmViewDCItems";
             this.Text = "Day Closure Items";
+            this.Load += new System.EventHandler(this.frmViewDCItems_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmViewDCItems_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcMOP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvMOP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciMOP)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -270,5 +352,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcDiscount;
         private DevExpress.XtraGrid.Columns.GridColumn gcGSTCode;
         private DevExpress.XtraGrid.Columns.GridColumn gcGSTValue;
+        private DevExpress.XtraGrid.GridControl gcMOP;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvMOP;
+        private DevExpress.XtraLayout.LayoutControlItem lciMOP;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
     }
 }

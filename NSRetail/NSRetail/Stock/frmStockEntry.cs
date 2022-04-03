@@ -97,15 +97,18 @@ namespace NSRetail.Stock
 
         private void btnSaveInvoice_Click(object sender, EventArgs e)
         {
+            if (gvStockEntry.RowCount == 0)return;
             try
             {
                 int iValue = 0;
                 if (int.TryParse(Convert.ToString(ObjStockEntry.STOCKENTRYID), out iValue) && iValue > 0)
                 {
-                    if (!dxValidationProvider1.Validate())
+                    if (!dxValidationProvider1.Validate() ||
+                        XtraMessageBox.Show("Are you sure want to save invoice?", "Confirm", 
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                         return;
-                    ObjStockRep.UpdateInvoice(ObjStockEntry);
 
+                    ObjStockRep.UpdateInvoice(ObjStockEntry);
                     DataSet ds = ObjStockRep.GetInvoice(ObjStockEntry.STOCKENTRYID);
                     rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);
                     rpt.ShowPrintMarginsWarning = false;
@@ -141,7 +144,8 @@ namespace NSRetail.Stock
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            if (XtraMessageBox.Show("Are you sure to delete?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) 
+            if (XtraMessageBox.Show("Are you sure to delete?", "Confirm", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) 
                 return;
 
             try
@@ -367,7 +371,8 @@ namespace NSRetail.Stock
 
         private void btnDiscardInvoice_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show("Are you sure want to discard invoice?", "Question?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            if (XtraMessageBox.Show("Are you sure want to discard invoice?", "Confirm?", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             try
             {

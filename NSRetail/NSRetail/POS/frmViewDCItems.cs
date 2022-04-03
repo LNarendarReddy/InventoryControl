@@ -14,21 +14,26 @@ namespace NSRetail
 {
     public partial class frmViewDCItems : DevExpress.XtraEditors.XtraForm
     {
-        public frmViewDCItems(DataTable dtItems, bool IsBilldetail = false,bool IsCustomerRefund = false)
+        public frmViewDCItems(DataSet dsItems, bool IsBilldetail = false, bool IsCustomerRefund = false)
         {
             InitializeComponent();
             gcGSTCode.Visible = IsBilldetail;
             gcGSTValue.Visible = IsBilldetail;
             gcDiscount.Visible = IsCustomerRefund;
-            gcItems.DataSource = dtItems;
+            if (!IsBilldetail)
+                lciMOP.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            gcItems.DataSource = dsItems.Tables[0];
+            if(dsItems.Tables.Count > 1)
+                gcMOP.DataSource = dsItems.Tables[1];
+
         }
         private void gvItems_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
-            if(gvItems.FocusedRowHandle < 0)
+            if (gvItems.FocusedRowHandle < 0)
                 return;
-            e.Menu.Items.Add(new DXMenuItem("View Report", new EventHandler(OnResetPassword_Click)));
+            e.Menu.Items.Add(new DXMenuItem("View Report", new EventHandler(ViewReport_Click)));
         }
-        private void OnResetPassword_Click(object sender, EventArgs e)
+        private void ViewReport_Click(object sender, EventArgs e)
         {
             gcItems.ShowRibbonPrintPreview();
         }
@@ -36,6 +41,11 @@ namespace NSRetail
         {
             if (e.KeyCode == Keys.Escape)
                 this.Close();
+        }
+
+        private void frmViewDCItems_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

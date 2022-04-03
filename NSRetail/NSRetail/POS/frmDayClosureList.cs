@@ -28,8 +28,6 @@ namespace NSRetail
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            if (cmbBranch.EditValue == null)
-                return;
             gcDayClosure.DataSource = new POSRepository().GetDayClosure(cmbBranch.EditValue);
         }
 
@@ -65,10 +63,10 @@ namespace NSRetail
         {
             if (gvDayClosure.FocusedRowHandle < 0)
                 return;
-            DataTable dtItems = new POSRepository().GetDayClosureItems(
+            DataSet dsItems = new POSRepository().GetDayClosureItems(
                 gvDayClosure.GetFocusedRowCellValue("BRANCHCOUNTERID"),
                 gvDayClosure.GetFocusedRowCellValue("DAYCLOSUREID"));
-            frmViewDCItems obj = new frmViewDCItems(dtItems,false);
+            frmViewDCItems obj = new frmViewDCItems(dsItems, false);
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.IconOptions.ShowIcon = false;
@@ -79,10 +77,10 @@ namespace NSRetail
         {
             if (gvDayClosure.FocusedRowHandle < 0)
                 return;
-            DataTable dtItems = new POSRepository().GetDayClosureRefund(
+            DataSet dsItems = new POSRepository().GetDayClosureRefund(
                 gvDayClosure.GetFocusedRowCellValue("BRANCHCOUNTERID"),
                 gvDayClosure.GetFocusedRowCellValue("DAYCLOSUREID"));
-            frmViewDCItems obj = new frmViewDCItems(dtItems,false,true);
+            frmViewDCItems obj = new frmViewDCItems(dsItems, false,true);
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.IconOptions.ShowIcon = false;
@@ -93,14 +91,24 @@ namespace NSRetail
         {
             if (gvDayClosure.FocusedRowHandle < 0)
                 return;
-            DataTable dtItems = new POSRepository().GetDayClosureVoidItems(
+            DataSet dsItems = new POSRepository().GetDayClosureVoidItems(
                 gvDayClosure.GetFocusedRowCellValue("BRANCHCOUNTERID"),
                 gvDayClosure.GetFocusedRowCellValue("DAYCLOSUREID"));
-            frmViewDCItems obj = new frmViewDCItems(dtItems,false);
+            frmViewDCItems obj = new frmViewDCItems(dsItems, false);
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.IconOptions.ShowIcon = false;
             obj.ShowDialog();
+        }
+
+        private void cmbBranch_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            gcDayClosure.ShowRibbonPrintPreview();
         }
     }
 }

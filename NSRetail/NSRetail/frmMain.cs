@@ -54,9 +54,13 @@ namespace NSRetail
 
         private void btnItem_ItemClick(object sender, ItemClickEventArgs e)
         {
-            new frmItemCodeList() { ShowInTaskbar = false, MdiParent = this,
+            new frmItemCodeList()
+            {
+                ShowInTaskbar = false,
+                MdiParent = this,
                 StartPosition = FormStartPosition.CenterParent,
-            WindowState = FormWindowState.Maximized}.Show();
+                WindowState = FormWindowState.Maximized
+            }.Show();
         }
 
         private void btnUser_ItemClick(object sender, ItemClickEventArgs e)
@@ -186,7 +190,7 @@ namespace NSRetail
 
         private void bbiRefreshData_ItemClick(object sender, ItemClickEventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(frmProgress ), true, true);
+            SplashScreenManager.ShowForm(typeof(frmProgress), true, true);
             Utility.FillBaseLine();
             RefreshBaseLineData?.Invoke(null, null);
             SplashScreenManager.CloseForm();
@@ -279,7 +283,7 @@ namespace NSRetail
 
         private void btnBranchRefund_ItemClick(object sender, ItemClickEventArgs e)
         {
-            frmBRefundList  obj = new frmBRefundList();
+            frmBRefundList obj = new frmBRefundList();
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;
             obj.IconOptions.ShowIcon = false;
@@ -299,13 +303,13 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : V 1.1.6 (01-04-2022) ";
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : V 1.1.7 (03-04-2022) ";
 
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,
              btnStockDispatch, btnDispatchList, btnDCList, btnPrintDC, btnStockCounting, bbiStockSummary, bbiSyncStatus
             , btnBranch, btnBranchCouter, btnSubCategory, btnUser, btnDealer , btnModeOfPayment, btnUnitsofMeasure
-            , btnTaxMaster, btnPrinterMaster, btnBranchRefund, btnDayClosure, btnSales, btnCategory};
+            , btnTaxMaster, btnPrinterMaster, btnBranchRefund, btnDayClosure, btnRunningSale, btnCategory};
 
             List<RibbonPageGroup> ribbonPageGroups = new List<RibbonPageGroup>()
             { ribbonPageGroup1, ribbonPageGroup2, ribbonPageGroup3, ribbonPageGroup4, ribbonPageGroup5, ribbonPageGroup6,
@@ -319,7 +323,7 @@ namespace NSRetail
 
             bool revisitMenuItems = false;
 
-            if(Utility.Role == "Division Manager")
+            if (Utility.Role == "Division Manager")
             {
                 availableItems.ForEach(x => x.Visibility = BarItemVisibility.Never);
                 revisitMenuItems = true;
@@ -332,7 +336,7 @@ namespace NSRetail
                 btnPrintDC.Visibility = BarItemVisibility.Always;
                 btnDCList.Visibility = BarItemVisibility.Always;
             }
-            else if(Utility.Role == "Division User")
+            else if (Utility.Role == "Division User")
             {
                 availableItems.ForEach(x => x.Visibility = BarItemVisibility.Never);
                 revisitMenuItems = true;
@@ -367,6 +371,46 @@ namespace NSRetail
                     .Any(y => x.ItemLinks[y].Item.Visibility == BarItemVisibility.Always));
                 ribbonPages.ForEach(x => x.Visible = Enumerable.Range(0, x.Groups.Count).Any(y => x.Groups[y].Visible));
             }
+        }
+
+        private void btnRunningSale_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmRunningSales obj = new frmRunningSales();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void btnTaxWiseSales_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmTaxwisesale obj = new frmTaxwisesale();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void btnZeroStock_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmZeroStock obj = new frmZeroStock();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void btnItemWiseSales_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmItemwiseSales obj = new frmItemwiseSales();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
         }
     }
 }

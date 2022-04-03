@@ -39,7 +39,8 @@ namespace NSRetail.Stock
         {
             try
             {
-                if (!dxValidationProvider1.Validate())
+                if (!dxValidationProvider1.Validate() &&
+                    XtraMessageBox.Show("Are you sure want to print Dispatch DC?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                     return;
                 DataSet ds = new StockRepository().SaveDispatchDC(cmbBranch.EditValue, cmbCategory.EditValue,Utility.UserID);
                 if (ds == null || ds.Tables.Count == 0) throw new Exception("No Dispatch Exists");

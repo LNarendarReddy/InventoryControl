@@ -26,9 +26,9 @@ namespace NSRetail
         {
             if (gvBills.FocusedRowHandle < 0)
                 return; 
-            e.Menu.Items.Add(new DXMenuItem("View Report", new EventHandler(OnResetPassword_Click)));
+            e.Menu.Items.Add(new DXMenuItem("View Report", new EventHandler(ViewReport_Click)));
         }
-        private void OnResetPassword_Click(object sender, EventArgs e)
+        private void ViewReport_Click(object sender, EventArgs e)
         {
             gcBills.ShowRibbonPrintPreview();
         }
@@ -36,19 +36,13 @@ namespace NSRetail
         {
             if (gvBills.FocusedRowHandle < 0)
                 return;
-            DataTable dtItems = new POSRepository().GetBillDetailByID(CounterID,
+            DataSet dsItems = new POSRepository().GetBillDetailByID(CounterID,
                 gvBills.GetFocusedRowCellValue("BILLID"));
-            frmViewDCItems obj = new frmViewDCItems(dtItems,true);
+            frmViewDCItems obj = new frmViewDCItems(dsItems, true);
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.IconOptions.ShowIcon = false;
             obj.ShowDialog();
-        }
-
-        private void frmViewDCBills_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-                this.Close();
         }
     }
 }

@@ -148,9 +148,9 @@ namespace DataAccess
             }
             return dtDayClosureBill;
         }
-        public DataTable GetDayClosureItems(object CounterID, object DayClosureID)
+        public DataSet GetDayClosureItems(object CounterID, object DayClosureID)
         {
-            DataTable dtDayClosureItems = new DataTable();
+            DataSet dsDayClosureItems = new DataSet();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -162,7 +162,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@DAYCLOSUREID", DayClosureID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        da.Fill(dtDayClosureItems);
+                        da.Fill(dsDayClosureItems);
                     }
                 }
             }
@@ -174,11 +174,11 @@ namespace DataAccess
             {
                 SQLCon.Sqlconn().Close();
             }
-            return dtDayClosureItems;
+            return dsDayClosureItems;
         }
-        public DataTable GetDayClosureRefund(object CounterID, object DayClosureID)
+        public DataSet GetDayClosureRefund(object CounterID, object DayClosureID)
         {
-            DataTable dtDayClosureRefund = new DataTable();
+            DataSet dsDayClosureRefund = new DataSet();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -190,7 +190,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@DAYCLOSUREID", DayClosureID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        da.Fill(dtDayClosureRefund);
+                        da.Fill(dsDayClosureRefund);
                     }
                 }
             }
@@ -202,11 +202,11 @@ namespace DataAccess
             {
                 SQLCon.Sqlconn().Close();
             }
-            return dtDayClosureRefund;
+            return dsDayClosureRefund;
         }
-        public DataTable GetDayClosureVoidItems(object CounterID, object DayClosureID)
+        public DataSet GetDayClosureVoidItems(object CounterID, object DayClosureID)
         {
-            DataTable dtDayClosureVoidItems = new DataTable();
+            DataSet dsDayClosureVoidItems = new DataSet();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -218,7 +218,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@DAYCLOSUREID", DayClosureID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        da.Fill(dtDayClosureVoidItems);
+                        da.Fill(dsDayClosureVoidItems);
                     }
                 }
             }
@@ -230,11 +230,11 @@ namespace DataAccess
             {
                 SQLCon.Sqlconn().Close();
             }
-            return dtDayClosureVoidItems;
+            return dsDayClosureVoidItems;
         }
-        public DataTable GetBillDetailByID(object CounterID, object DayClosureID)
+        public DataSet GetBillDetailByID(object CounterID, object DayClosureID)
         {
-            DataTable dtbillDetail = new DataTable();
+            DataSet dsbillDetail = new DataSet();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -246,7 +246,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@BILLID", DayClosureID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        da.Fill(dtbillDetail);
+                        da.Fill(dsbillDetail);
                     }
                 }
             }
@@ -258,7 +258,7 @@ namespace DataAccess
             {
                 SQLCon.Sqlconn().Close();
             }
-            return dtbillDetail;
+            return dsbillDetail;
         }
         public void AcceptBRefund(object CounterID, object BRefundID,object UserID ,DataTable dtBRefundDetail)
         {
@@ -284,6 +284,114 @@ namespace DataAccess
             {
                 SQLCon.Sqlconn().Close();
             }
+        }
+        public DataTable GetRunningSale(object BranchID)
+        {
+            DataTable dtRunningSale = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_RPT_RUNNINGSALE]";
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtRunningSale);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Running Sale", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtRunningSale;
+        }
+        public DataTable GetTaxWiseSales(object BranchID)
+        {
+            DataTable dtTaxWiseSale = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_RPT_BRANCHSALEBYGST]";
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtTaxWiseSale);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Taxwise Sales", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtTaxWiseSale;
+        }
+        public DataTable GetZeroStock(object BranchID)
+        {
+            DataTable dtTaxWiseSale = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_RPT_ZEROSTOCK]";
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtTaxWiseSale);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Zero Stock", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtTaxWiseSale;
+        }
+        public DataTable GetItemwiseSales(object BranchID)
+        {
+            DataTable dtItemwiseSale = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_RPT_ITEMWISESALE]";
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtItemwiseSale);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Running Sale", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtItemwiseSale;
         }
     }
 }
