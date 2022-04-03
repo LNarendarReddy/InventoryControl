@@ -30,6 +30,7 @@ namespace NSRetail.Stock
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockDispatch));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
@@ -44,8 +45,8 @@ namespace NSRetail.Stock
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule9 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockDispatch));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.bntDiscardDispatch = new DevExpress.XtraEditors.SimpleButton();
             this.cmbCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.txtBranchStock = new DevExpress.XtraEditors.TextEdit();
             this.txtWarehouseStock = new DevExpress.XtraEditors.TextEdit();
@@ -106,10 +107,9 @@ namespace NSRetail.Stock
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.dxValidationProvider2 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.bntDiscardDispatch = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
@@ -147,9 +147,9 @@ namespace NSRetail.Stock
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -192,6 +192,18 @@ namespace NSRetail.Stock
             this.layoutControl1.Size = new System.Drawing.Size(1147, 719);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // bntDiscardDispatch
+            // 
+            this.bntDiscardDispatch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bntDiscardDispatch.ImageOptions.Image")));
+            this.bntDiscardDispatch.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.bntDiscardDispatch.Location = new System.Drawing.Point(919, 137);
+            this.bntDiscardDispatch.Name = "bntDiscardDispatch";
+            this.bntDiscardDispatch.Size = new System.Drawing.Size(149, 22);
+            this.bntDiscardDispatch.StyleController = this.layoutControl1;
+            this.bntDiscardDispatch.TabIndex = 15;
+            this.bntDiscardDispatch.Text = "Discard Dispatch";
+            this.bntDiscardDispatch.Click += new System.EventHandler(this.bntDiscardDispatch_Click);
             // 
             // cmbCategory
             // 
@@ -242,10 +254,10 @@ namespace NSRetail.Stock
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(1035, 137);
+            this.btnCancel.Location = new System.Drawing.Point(1080, 137);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(104, 22);
+            this.btnCancel.Size = new System.Drawing.Size(59, 22);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel";
@@ -491,10 +503,10 @@ namespace NSRetail.Stock
             // 
             this.btnDispatch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDispatch.ImageOptions.Image")));
             this.btnDispatch.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnDispatch.Location = new System.Drawing.Point(912, 137);
+            this.btnDispatch.Location = new System.Drawing.Point(776, 137);
             this.btnDispatch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDispatch.Name = "btnDispatch";
-            this.btnDispatch.Size = new System.Drawing.Size(111, 22);
+            this.btnDispatch.Size = new System.Drawing.Size(131, 22);
             this.btnDispatch.StyleController = this.layoutControl1;
             this.btnDispatch.TabIndex = 10;
             this.btnDispatch.Text = "Dispatch";
@@ -912,20 +924,20 @@ namespace NSRetail.Stock
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnCancel;
-            this.layoutControlItem9.Location = new System.Drawing.Point(1027, 129);
+            this.layoutControlItem9.Location = new System.Drawing.Point(1072, 129);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem9.Size = new System.Drawing.Size(116, 34);
+            this.layoutControlItem9.Size = new System.Drawing.Size(71, 34);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnDispatch;
-            this.layoutControlItem8.Location = new System.Drawing.Point(904, 129);
+            this.layoutControlItem8.Location = new System.Drawing.Point(768, 129);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem8.Size = new System.Drawing.Size(123, 34);
+            this.layoutControlItem8.Size = new System.Drawing.Size(143, 34);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
@@ -937,25 +949,13 @@ namespace NSRetail.Stock
             this.emptySpaceItem1.Size = new System.Drawing.Size(768, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // bntDiscardDispatch
-            // 
-            this.bntDiscardDispatch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.bntDiscardDispatch.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.bntDiscardDispatch.Location = new System.Drawing.Point(776, 137);
-            this.bntDiscardDispatch.Name = "bntDiscardDispatch";
-            this.bntDiscardDispatch.Size = new System.Drawing.Size(124, 22);
-            this.bntDiscardDispatch.StyleController = this.layoutControl1;
-            this.bntDiscardDispatch.TabIndex = 15;
-            this.bntDiscardDispatch.Text = "Discard Dispatch";
-            this.bntDiscardDispatch.Click += new System.EventHandler(this.bntDiscardDispatch_Click);
-            // 
             // layoutControlItem16
             // 
             this.layoutControlItem16.Control = this.bntDiscardDispatch;
-            this.layoutControlItem16.Location = new System.Drawing.Point(768, 129);
+            this.layoutControlItem16.Location = new System.Drawing.Point(911, 129);
             this.layoutControlItem16.Name = "layoutControlItem16";
             this.layoutControlItem16.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem16.Size = new System.Drawing.Size(136, 34);
+            this.layoutControlItem16.Size = new System.Drawing.Size(161, 34);
             this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem16.TextVisible = false;
             // 
@@ -1007,9 +1007,9 @@ namespace NSRetail.Stock
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             this.ResumeLayout(false);
 
         }

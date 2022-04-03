@@ -47,14 +47,11 @@ namespace NSRetail.Stock
                 cmbGST.Properties.ValueMember = "GSTID";
                 cmbGST.Properties.DisplayMember = "GSTCODE";
 
-                if (Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
-                    txtCostPriceWOT.Enabled = false;
-                else
-                    txtCostPriceWT.Enabled = false;
+                bool enabled = !Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE);
+                txtCostPriceWOT.Enabled = enabled;
+                txtCostPriceWT.Enabled = enabled;
 
-                int Ivalue = 0;
-                if (ObjStockEntryDetail.STOCKENTRYDETAILID != null && 
-                    int.TryParse(Convert.ToString(ObjStockEntryDetail.STOCKENTRYDETAILID), out Ivalue) && Ivalue > 0)
+                if (int.TryParse(Convert.ToString(ObjStockEntryDetail.STOCKENTRYDETAILID), out int Ivalue) && Ivalue > 0)
                 {
                     IsEditMode = true;
                     cmbItemCode.EditValue = ObjStockEntryDetail.ITEMCODEID;
@@ -81,7 +78,6 @@ namespace NSRetail.Stock
                     txtAppliedDiscount.EditValue = ObjStockEntryDetail.AppliedDiscount;
                     txtAppliedScheme.EditValue = ObjStockEntryDetail.AppliedScheme;
                     txtFinalPrice.EditValue = ObjStockEntryDetail.FinalPrice;
-
                 }
                 else
                 {
@@ -241,13 +237,13 @@ namespace NSRetail.Stock
                         cmbGST.EditValue = dtCPList.Rows[0]["GSTID"];
                     }
 
-                    bool IsOpenItem = false;
                     IsOpenItem = bool.TryParse(Convert.ToString(cmbLookupView.GetFocusedDataRow()["ISOPENITEM"]), out IsOpenItem) && IsOpenItem;
 
                     txtQuantity.Enabled = !IsOpenItem;
                     txtWeightInKGs.Enabled = IsOpenItem;
 
                     txtQuantity.EditValue = 1;
+                    CalculateReadOnlyFields();
                     IsLoading = false;
                     SendKeys.Send("{ENTER}");
                 }
@@ -356,13 +352,9 @@ namespace NSRetail.Stock
         }
         private void CalculateReadOnlyFields()
         {
-            decimal Quantity = 0;
-            if (IsOpenItem)
-                Quantity = Convert.ToDecimal(txtWeightInKGs.EditValue);
-            else
-                Quantity = Convert.ToDecimal(txtQuantity.EditValue);
-            decimal totalPriceWT = Math.Round(Convert.ToDecimal(txtCostPriceWT.EditValue) * Quantity,2);
-            decimal totalPriceWOT = Math.Round((Convert.ToDecimal(txtCostPriceWOT.EditValue)) * Quantity,2);
+            decimal Quantity = Convert.ToDecimal((IsOpenItem ? txtWeightInKGs : txtQuantity).EditValue);
+            decimal totalPriceWT = Math.Round(Convert.ToDecimal(txtCostPriceWT.EditValue) * Quantity, 2);
+            decimal totalPriceWOT = Math.Round((Convert.ToDecimal(txtCostPriceWOT.EditValue)) * Quantity, 2);
             decimal discountPer = txtDiscountPer.EditValue != null ? Convert.ToDecimal(txtDiscountPer.EditValue) : 0;
             decimal discountFlat = txtDiscountPer.EditValue != null && discountPer == 0 && txtDiscountFlat.EditValue != null
                 ? Convert.ToDecimal(txtDiscountFlat.EditValue) : 0;             
@@ -388,29 +380,17 @@ namespace NSRetail.Stock
             decimal cess = 0.0M;
             if (cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
             {
-                if (!Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
-                {
-                    cGST = Math.Round(finalPriceWOT * gstInfo.CGST / 100, 2);
-                    sGST = Math.Round(finalPriceWOT * gstInfo.SGST / 100, 2);
-                    iGST = Math.Round(finalPriceWOT * gstInfo.IGST / 100, 2);
-                    cess = Math.Round(finalPriceWOT * gstInfo.CESS / 100, 2);
-                    appliedGST = cGST + sGST + iGST + cess;
-                }
-                else
-                {
-                    cGST = Math.Round(finaPriceWT * gstInfo.CGST / 100, 2);
-                    sGST = Math.Round(finaPriceWT * gstInfo.SGST / 100, 2);
-                    iGST = Math.Round(finaPriceWT * gstInfo.IGST / 100, 2);
-                    cess = Math.Round(finaPriceWT * gstInfo.CESS / 100, 2);
-                    appliedGST = cGST + sGST + iGST + cess;
-                }
+                decimal finalPriceToConsider = Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) ? finaPriceWT : finalPriceWOT;
+
+                cGST = Math.Round(finalPriceToConsider * gstInfo.CGST / 100, 2);
+                sGST = Math.Round(finalPriceToConsider * gstInfo.SGST / 100, 2);
+                iGST = Math.Round(finalPriceToConsider * gstInfo.IGST / 100, 2);
+                cess = Math.Round(finalPriceToConsider * gstInfo.CESS / 100, 2);
+
+                appliedGST = cGST + sGST + iGST + cess;
             }
 
-            decimal finalPrice = 0;
-            if (!Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
-                finalPrice = finalPriceWOT + appliedGST;
-            else
-                finalPrice = finaPriceWT;
+            decimal finalPrice = Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) ? finaPriceWT : finalPriceWOT + appliedGST;
 
             txtCGST.EditValue = cGST;
             txtSGST.EditValue = sGST;
