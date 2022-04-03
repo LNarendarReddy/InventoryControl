@@ -7,10 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace NSRetail
 {
@@ -42,6 +40,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
+        public static string AppVersion = "1.1.8";
+
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
             try

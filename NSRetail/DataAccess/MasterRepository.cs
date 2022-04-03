@@ -1,11 +1,7 @@
 ﻿using Entity;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
@@ -13,7 +9,6 @@ namespace DataAccess
     {
         public Branch SaveBranch(Branch ObjBranch)
         {
-            int BRanchID = 0;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -31,9 +26,10 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@EMAILID", ObjBranch.EMAILID);
                     cmd.Parameters.AddWithValue("@USERID", ObjBranch.UserID);
                     cmd.Parameters.AddWithValue("@ISWAREHOUSE", ObjBranch.ISWAREHOUSE);
-                    cmd.Parameters.AddWithValue("@SUPERVISORID", ObjBranch. SUPERVISERID);
+                    cmd.Parameters.AddWithValue("@SUPERVISORID", ObjBranch.SUPERVISERID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
+                    int BRanchID;
                     if (!int.TryParse(str, out BRanchID))
                         throw new Exception(str);
                     else
@@ -72,7 +68,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Retrieving Branch List");
+                throw new Exception("Error While Retrieving Branch List", ex);
             }
             finally
             {
@@ -82,7 +78,6 @@ namespace DataAccess
         }
         public Branch DeleteBranch(Branch ObjBranch)
         {
-            int BRanchID = 0;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -94,6 +89,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@USERID", ObjBranch.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
+                    int BRanchID;
                     if (!int.TryParse(str, out BRanchID))
                         throw new Exception(str);
                     else
@@ -103,7 +99,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Deleteing Branch");
+                throw new Exception("Error While Deleteing Branch", ex);
             }
             finally
             {
@@ -113,7 +109,6 @@ namespace DataAccess
         }
         public Category SaveCategory(Category ObjCategory)
         {
-            int CategoryID = 0;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -127,6 +122,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@USERID", ObjCategory.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
+                    int CategoryID;
                     if (!int.TryParse(str, out CategoryID))
                         throw new Exception(str);
                     else
@@ -164,7 +160,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Retrieving Category List");
+                throw new Exception("Error While Retrieving Category List", ex);
             }
             finally
             {
@@ -174,7 +170,6 @@ namespace DataAccess
         }
         public Category DeleteCategory(Category ObjCategory)
         {
-            int CategoryID = 0;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -186,6 +181,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@USERID", ObjCategory.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
+                    int CategoryID;
                     if (!int.TryParse(str, out CategoryID))
                         throw new Exception(str);
                     else
@@ -195,7 +191,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Deleteing Category");
+                throw new Exception("Error While Deleteing Category", ex);
             }
             finally
             {
@@ -422,7 +418,7 @@ namespace DataAccess
             }
             return dtRole;
         }
-        public DataSet GetUserCredentials(string UserName, string Password)
+        public DataSet GetUserCredentials(string UserName, string Password, string AppVersion)
         {
             DataSet dSUser = new DataSet();
             try
@@ -434,6 +430,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_R_USERLOGIN]";
                     cmd.Parameters.AddWithValue("@USERNAME", UserName);
                     cmd.Parameters.AddWithValue("@PASSWORD", Password);
+                    cmd.Parameters.AddWithValue("@APPVERSION", AppVersion);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dSUser);

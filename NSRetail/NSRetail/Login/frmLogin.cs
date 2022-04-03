@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using DevExpress.XtraSplashScreen;
-using System.Threading;
 using Microsoft.Win32;
-using System.Net;
-using log4net;
 using DataAccess;
 using ErrorManagement;
 
@@ -42,7 +31,8 @@ namespace NSRetail
                     txtPassword.Text = txtPassword.Text.Trim();
                     if (!dxValidationProvider1.Validate())
                         return;
-                    DataSet ds = objMasterRep.GetUserCredentials(txtUserName.Text.ToLower(), Utility.Encrypt(txtPassword.Text));
+                    DataSet ds = objMasterRep.GetUserCredentials(txtUserName.Text.ToLower(), Utility.Encrypt(txtPassword.Text)
+                        , Utility.AppVersion);
                     if (ds != null && ds.Tables.Count > 0)
                     {
                         if (int.TryParse(Convert.ToString(ds.Tables[0].Rows[0]["USERID"]), out Utility.UserID))
