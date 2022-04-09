@@ -626,7 +626,7 @@ namespace DataAccess
             }
             return dt;
         }
-        public void DiscardStockEntry(object StockEntryID)
+        public void DiscardStockEntry(object StockEntryID, object UserID)
         {
             try
             {
@@ -636,6 +636,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_DISCARDSTOCKENTRY]";
                     cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
                     int RowsAffected = cmd.ExecuteNonQuery();
                     if (RowsAffected <= 0)
                         throw new Exception("Nothing is deleted");
@@ -643,7 +644,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Deleting Invoice");
+                throw new Exception("Error While Deleting Invoice", ex);
             }
             finally
             {

@@ -292,11 +292,7 @@ namespace NSRetail.Stock
         {
             try
             {
-                if (ObjStockEntry == null)
-                {
-                    ObjStockEntry = new StockEntry();
-                    ObjStockEntry.STOCKENTRYID = 0;
-                }
+                ObjStockEntry = ObjStockEntry ?? new StockEntry() { STOCKENTRYID = 0 };
                 ObjStockEntry.SUPPLIERID = cmbSupplier.EditValue;
                 ObjStockEntry.SUPPLIERINVOICENO = txtInvoiceNumber.EditValue;
                 ObjStockEntry.TAXINCLUSIVE = chkTaxInclusive.EditValue;
@@ -387,9 +383,9 @@ namespace NSRetail.Stock
             try
             {
                 int Ivalue = 0;
-                if (int.TryParse(Convert.ToString(ObjStockEntry.STOCKENTRYID),out Ivalue) && Ivalue > 0)
+                if (int.TryParse(Convert.ToString(ObjStockEntry.STOCKENTRYID), out Ivalue) && Ivalue > 0)
                 {
-                    ObjStockRep.DiscardStockEntry(ObjStockEntry.STOCKENTRYID);
+                    ObjStockRep.DiscardStockEntry(ObjStockEntry.STOCKENTRYID, Utility.UserID);
                     cmbSupplier.EditValue = null;
                     txtInvoiceNumber.EditValue = null;
                     dtpInvoice.EditValue = DateTime.Now;
