@@ -40,6 +40,12 @@ namespace Entity
         public object DISCOUNTFLAT { get; set; }
         public object EXPENSES { get; set; }
         public object TRANSPORT { get; set; }
+        public object SumTotalPriceWT { get; set; }
+        public object SumTotalPriceWOT { get; set; }
+        public object SumGSTValue { get; set; }
+        public object SumFinalPrice { get; set; }
+
+        public bool CalculateIGST = false;
         public DataTable dtStockEntry { get; set; }
     }
     public class StockEntryDetail : EntityBase
@@ -87,6 +93,7 @@ namespace Entity
         public object SGST { get; set; }
         public object IGST { get; set; }
         public object CESS { get; set; }
+        public object HSNCODE { get; set; }
 
     }
 }

@@ -59,7 +59,7 @@ namespace NSRetailPOS
         {
 
             lblUserinfo.Text = $"Loggedin User : {Utility.logininfo.UserFullName}    Role : {Utility.logininfo.RoleName} ";
-            lblVersionInfo.Text = $"Application Version 1.1.6 (27-03-2022)";
+            lblVersionInfo.Text = $"Application Version 1.1.7 (05-04-2022)";
             btnCRWithoutBill.Enabled = Utility.logininfo.RoleName.ToString() == "Store Manager";
             DataSet dsInitialData = billingRepository.GetInitialLoad(Utility.logininfo.UserID, Utility.branchinfo.BranchCounterID);
 

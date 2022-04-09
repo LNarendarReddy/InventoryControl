@@ -30,5 +30,10 @@ namespace NSRetail.Stock
         {
             Close();
         }
+
+        private void btnViewReport_Click(object sender, EventArgs e)
+        {
+            gcStockSummary.ShowRibbonPrintPreview();
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace NSRetail
         {
             try
             {
-                gcUser.DataSource = objMasterRep. GetUser();
+                gcUser.DataSource = objMasterRep.GetUser();
             }
             catch (Exception ex)
             {
@@ -93,15 +93,14 @@ namespace NSRetail
         {
             try
             {
-                var dlgResult = XtraMessageBox.Show("Are you sure want to delete?", "Confirmation!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                if (Convert.ToString(dlgResult) == "OK" && gvUser.FocusedRowHandle >= 0)
-                {
-                    ObjUser = new  User();
-                    ObjUser.BRANCHID = gvUser.GetFocusedRowCellValue("USERID");
-                    ObjUser.USERID = Utility.UserID;
-                    objMasterRep.DeleteUser(ObjUser);
-                    gvUser.DeleteRow(gvUser.FocusedRowHandle);
-                }
+                if (gvUser.FocusedRowHandle < 0 || XtraMessageBox.Show("Are you sure want to delete?", "Confirm!",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
+                ObjUser = new User();
+                ObjUser.USERID = gvUser.GetFocusedRowCellValue("USERID");
+                ObjUser.CUSERID = Utility.UserID;
+                objMasterRep.DeleteUser(ObjUser);
+                gvUser.SetFocusedRowCellValue("USERSTATUS", "IN-ACTIVE");
             }
             catch (Exception ex)
             {

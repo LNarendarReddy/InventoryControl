@@ -300,6 +300,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SGST", ObjStockEntryDetail.SGST);
                     cmd.Parameters.AddWithValue("@IGST", ObjStockEntryDetail.IGST);
                     cmd.Parameters.AddWithValue("@CESS", ObjStockEntryDetail.CESS);
+                    cmd.Parameters.AddWithValue("@HSNCODE", ObjStockEntryDetail.HSNCODE);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
@@ -378,7 +379,7 @@ namespace DataAccess
             }
             return objStockEntry;
         }
-        public void DeleteInvoiceDetail(object StockEntryDetailID)
+        public void DeleteInvoiceDetail(object StockEntryDetailID,object UserID)
         {
             try
             {
@@ -388,6 +389,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_STOCKENTRYDETAIL]";
                     cmd.Parameters.AddWithValue("@STOCKENTRYDETAILID", StockEntryDetailID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
                     object objReturn = cmd.ExecuteNonQuery();
                 }
             }
@@ -592,6 +594,7 @@ namespace DataAccess
             }
             return dt;
         }
+
         public DataTable GetCurrentStock(object FROMBRANCHID,object TOBRANCHID,
             object ITEMCODEID,object PARENTITEMID)
         {

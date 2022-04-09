@@ -37,6 +37,7 @@ namespace DataAccess
             }
             return dtStockCounting;
         }
+        
         public DataTable GetStockCountingDetail(object StockCountingID)
         {
             DataTable dtStockCountingDetail = new DataTable();

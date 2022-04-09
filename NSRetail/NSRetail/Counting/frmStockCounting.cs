@@ -34,9 +34,7 @@ namespace NSRetail
         }
         private void cmbBranch_Leave(object sender, EventArgs e)
         {
-            if (cmbBranch.EditValue == null)
-                return;
-            gcStockCounting.DataSource = new CountingRepository().GetStockCounting(cmbBranch.EditValue);
+            
         }
         private void btnViewDifferences_Click(object sender, EventArgs e)
         {
@@ -44,10 +42,25 @@ namespace NSRetail
                 return;
             frmViewItems obj =
                 new frmViewItems(new CountingRepository().GetStockCountingDiff(
-                    cmbBranch.EditValue));
+                    cmbBranch.EditValue),true);
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
+        }
+        private void cmbBranch_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            if (cmbBranch.EditValue == null)
+                return;
+            gcStockCounting.DataSource = new CountingRepository().GetStockCounting(cmbBranch.EditValue);
+        }
+
+        private void gcStockCounting_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

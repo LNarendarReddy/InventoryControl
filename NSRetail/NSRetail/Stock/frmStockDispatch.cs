@@ -145,7 +145,8 @@ namespace NSRetail.Stock
             {
                 if (cmbItemCode.EditValue != null)
                 {
-                    txtItemName.EditValue = cmbLookupView.GetFocusedRowCellValue("ITEMNAME");
+                    int rowhandle = cmbLookupView.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
+                    txtItemName.EditValue = cmbLookupView.GetRowCellValue(rowhandle,"ITEMNAME");
                     DataTable dtMRPList = ObjItemRep.GetMRPList(cmbItemCode.EditValue);
                     if (dtMRPList.Rows.Count > 1)
                     {
@@ -166,9 +167,10 @@ namespace NSRetail.Stock
                     }
 
                     int ParentID = 0;
-                    IsParentExist = int.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("PARENTITEMID")), out ParentID)
+                    IsParentExist = int.TryParse(Convert.ToString(cmbLookupView.GetRowCellValue(rowhandle,"PARENTITEMID")), out ParentID)
                         && ParentID > 0;
-                    IsOpenItem = bool.TryParse(Convert.ToString(cmbLookupView.GetFocusedRowCellValue("ISOPENITEM")), out IsOpenItem) && IsOpenItem;
+                    IsOpenItem = bool.TryParse(Convert.ToString(cmbLookupView.GetRowCellValue(rowhandle,"ISOPENITEM")), out IsOpenItem) 
+                        && IsOpenItem;
 
                     txtQuantity.Enabled = !IsOpenItem;
                     txtWeightInKgs.Enabled = IsOpenItem;

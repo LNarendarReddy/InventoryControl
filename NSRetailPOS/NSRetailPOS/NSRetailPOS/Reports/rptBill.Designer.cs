@@ -170,9 +170,6 @@
             this.xrTable10 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow19 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell45 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.RoundingFactor = new DevExpress.XtraReports.Parameters.Parameter();
-            this.IsDuplicate = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrTableRow23 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell54 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow24 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -185,6 +182,9 @@
             this.xrTableCell58 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow28 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell59 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.RoundingFactor = new DevExpress.XtraReports.Parameters.Parameter();
+            this.IsDuplicate = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
@@ -892,7 +892,6 @@
             this.ReportHeader2,
             this.ReportFooter,
             this.GroupHeader1});
-            this.drGST.Expanded = false;
             this.drGST.Level = 1;
             this.drGST.Name = "drGST";
             // 
@@ -1119,7 +1118,6 @@
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable6});
-            this.GroupHeader1.Expanded = false;
             this.GroupHeader1.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("CGSTDESC", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader1.HeightF = 22F;
@@ -1427,40 +1425,6 @@
             this.xrTableCell45.Text = "This is computer generated invoice.";
             this.xrTableCell45.Weight = 1D;
             // 
-            // xrLabel1
-            // 
-            this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'* * Saved Rs. \' + sumSum([DISCOUNT]) + \' /- On MRP * *\'")});
-            this.xrLabel1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrLabel1.Multiline = true;
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(275F, 35F);
-            this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.StylePriority.UseTextAlignment = false;
-            xrSummary15.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
-            this.xrLabel1.Summary = xrSummary15;
-            this.xrLabel1.Text = "xrLabel1";
-            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
-            // RoundingFactor
-            // 
-            this.RoundingFactor.AllowNull = true;
-            this.RoundingFactor.Description = "RoundingFactor";
-            this.RoundingFactor.Name = "RoundingFactor";
-            this.RoundingFactor.Type = typeof(decimal);
-            this.RoundingFactor.ValueInfo = "0";
-            this.RoundingFactor.Visible = false;
-            // 
-            // IsDuplicate
-            // 
-            this.IsDuplicate.AllowNull = true;
-            this.IsDuplicate.Description = "IsDuplicate";
-            this.IsDuplicate.Name = "IsDuplicate";
-            this.IsDuplicate.Type = typeof(bool);
-            this.IsDuplicate.Visible = false;
-            // 
             // xrTableRow23
             // 
             this.xrTableRow23.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
@@ -1544,6 +1508,40 @@
             this.xrTableCell59.Name = "xrTableCell59";
             this.xrTableCell59.Text = "Plastic, gifts, jwellery, toys and offer items are not refundable,";
             this.xrTableCell59.Weight = 1D;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'* * Saved Rs. \' + sumSum([DISCOUNT]) + \' /- On MRP * *\'")});
+            this.xrLabel1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrLabel1.Multiline = true;
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(275F, 35F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            xrSummary15.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
+            this.xrLabel1.Summary = xrSummary15;
+            this.xrLabel1.Text = "xrLabel1";
+            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // RoundingFactor
+            // 
+            this.RoundingFactor.AllowNull = true;
+            this.RoundingFactor.Description = "RoundingFactor";
+            this.RoundingFactor.Name = "RoundingFactor";
+            this.RoundingFactor.Type = typeof(decimal);
+            this.RoundingFactor.ValueInfo = "0";
+            this.RoundingFactor.Visible = false;
+            // 
+            // IsDuplicate
+            // 
+            this.IsDuplicate.AllowNull = true;
+            this.IsDuplicate.Description = "IsDuplicate";
+            this.IsDuplicate.Name = "IsDuplicate";
+            this.IsDuplicate.Type = typeof(bool);
+            this.IsDuplicate.Visible = false;
             // 
             // rptBill
             // 

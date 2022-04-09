@@ -479,10 +479,9 @@ namespace NSRetail.Reports
             // 
             // xrTableCell36
             // 
-            this.xrTableCell36.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[CATEGORYNAME]")});
             this.xrTableCell36.Multiline = true;
             this.xrTableCell36.Name = "xrTableCell36";
+            this.xrTableCell36.Text = "ALL";
             this.xrTableCell36.Weight = 1.8867924528301887D;
             // 
             // xrTableCell37

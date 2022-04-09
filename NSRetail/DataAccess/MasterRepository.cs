@@ -372,7 +372,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_USER]";
                     cmd.Parameters.AddWithValue("@USERID", ObjUser.USERID);
-                    cmd.Parameters.AddWithValue("@DUSERID", ObjUser.CUSERID);
+                    cmd.Parameters.AddWithValue("@CUSERID", ObjUser.CUSERID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out UserID))

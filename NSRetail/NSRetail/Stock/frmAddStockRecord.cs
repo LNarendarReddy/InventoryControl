@@ -47,8 +47,8 @@ namespace NSRetail.Stock
                 cmbGST.Properties.ValueMember = "GSTID";
                 cmbGST.Properties.DisplayMember = "GSTCODE";
 
-                bool enabled = !Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE);
-                txtCostPriceWOT.Enabled = enabled;
+                bool enabled = Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE);
+                txtCostPriceWOT.Enabled = !enabled;
                 txtCostPriceWT.Enabled = enabled;
 
                 if (int.TryParse(Convert.ToString(ObjStockEntryDetail.STOCKENTRYDETAILID), out int Ivalue) && Ivalue > 0)
@@ -121,7 +121,23 @@ namespace NSRetail.Stock
                 if (!dxValidationProvider1.Validate())
                     return;
 
-                if(sluFreeItem.EditValue!= null)
+                if (decimal.TryParse(Convert.ToString(txtMRP.EditValue), out decimal MRP) &&
+                    decimal.TryParse(Convert.ToString(txtCostPriceWT.EditValue), out decimal CostPriceWT) &&
+                    decimal.TryParse(Convert.ToString(txtSalePrice.EditValue), out decimal salePrice))
+                {
+                    string message = String.Empty;
+
+                    message = MRP < salePrice ? "MRP cannot be less than sale price" : message;
+                    message = salePrice < CostPriceWT ? "Cost Price cannot be less than sale price" : message;
+
+                    if (!string.IsNullOrEmpty(message))
+                    {
+                        XtraMessageBox.Show(message);
+                        return;
+                    }
+                }
+
+                if (sluFreeItem.EditValue!= null)
                 {
                     if (txtFreeQuantity.EditValue == null)
                     {
@@ -163,6 +179,7 @@ namespace NSRetail.Stock
                 ObjStockEntryDetail.SGST = txtSGST.EditValue;
                 ObjStockEntryDetail.IGST = txtIGST.EditValue;
                 ObjStockEntryDetail.CESS = txtCESS.EditValue;
+                ObjStockEntryDetail.HSNCODE = txtHSNCode.EditValue;
                 ObjStockRep.SaveInvoiceDetail(ObjStockEntryDetail);
                 frmparent.RefreshGrid(ObjStockEntryDetail);
                 ObjStockEntryDetail.STOCKENTRYDETAILID = 0;
@@ -177,6 +194,7 @@ namespace NSRetail.Stock
                 txtTotalPriceWT.EditValue = null;
                 txtTotalPriceWOT.EditValue = null;
                 cmbGST.EditValue = null;
+                txtHSNCode.EditValue = null;    
                 txtDiscountPer.EditValue = 0.00;
                 txtDiscountFlat.EditValue = 0.00;
                 txtSchemePer.EditValue = 0.00;
@@ -186,6 +204,7 @@ namespace NSRetail.Stock
                 txtSGST.EditValue = 0.00;
                 txtIGST.EditValue = 0.00;
                 txtCESS.EditValue = 0.00;
+                txtHSNCode.EditValue = null;
                 IsEditMode = false;
                 cmbItemCode.Focus();
             }
@@ -211,33 +230,39 @@ namespace NSRetail.Stock
                         return;
                     }
                     IsLoading = true;
-                    txtItemName.EditValue = cmbLookupView.GetFocusedDataRow()["ITEMNAME"];
+
+                    int rowhandle = cmbLookupView.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
+                    txtItemName.EditValue = cmbLookupView.GetRowCellValue(rowhandle, "ITEMNAME");
+                    txtHSNCode.EditValue = cmbLookupView.GetRowCellValue(rowhandle, "HSNCODE");
                     DataTable dtCPList = ObjItemRep.GetCostPriceList(cmbItemCode.EditValue);
                     if (dtCPList.Rows.Count > 1)
                     {
+
                         frmCostPriceList obj = new frmCostPriceList(dtCPList);
+
                         obj.ShowDialog();
                         if (obj._IsSave)
                         {
+                            cmbGST.EditValue = ((DataRowView)obj.drSelected)["GSTID"];
                             txtMRP.EditValue = ((DataRowView)obj.drSelected)["MRP"];
                             txtSalePrice.EditValue = ((DataRowView)obj.drSelected)["SALEPRICE"];
                             ItemPriceID = ((DataRowView)obj.drSelected)["ITEMPRICEID"];
                             txtCostPriceWOT.EditValue = ((DataRowView)obj.drSelected)["COSTPRICEWOT"] == DBNull.Value ? 0.00 : ((DataRowView)obj.drSelected)["COSTPRICEWOT"];
                             txtCostPriceWT.EditValue = ((DataRowView)obj.drSelected)["COSTPRICEWT"] == DBNull.Value ? 0.00 : ((DataRowView)obj.drSelected)["COSTPRICEWT"];
-                            cmbGST.EditValue = ((DataRowView)obj.drSelected)["GSTID"];
                         }
                     }
                     else if (dtCPList.Rows.Count > 0)
                     {
+                        cmbGST.EditValue = dtCPList.Rows[0]["GSTID"];
                         txtMRP.EditValue = dtCPList.Rows[0]["MRP"];
                         txtSalePrice.EditValue = dtCPList.Rows[0]["SALEPRICE"];
                         ItemPriceID = dtCPList.Rows[0]["ITEMPRICEID"];
                         txtCostPriceWOT.EditValue = dtCPList.Rows[0]["COSTPRICEWOT"] == DBNull.Value ? 0.00 : dtCPList.Rows[0]["COSTPRICEWOT"];
                         txtCostPriceWT.EditValue = dtCPList.Rows[0]["COSTPRICEWT"] == DBNull.Value ? 0.00 : dtCPList.Rows[0]["COSTPRICEWT"];
-                        cmbGST.EditValue = dtCPList.Rows[0]["GSTID"];
                     }
 
-                    IsOpenItem = bool.TryParse(Convert.ToString(cmbLookupView.GetFocusedDataRow()["ISOPENITEM"]), out IsOpenItem) && IsOpenItem;
+                    IsOpenItem = bool.TryParse(Convert.ToString(cmbLookupView.GetRowCellValue(rowhandle, "ISOPENITEM")), 
+                        out IsOpenItem) && IsOpenItem;
 
                     txtQuantity.Enabled = !IsOpenItem;
                     txtWeightInKGs.Enabled = IsOpenItem;
@@ -352,6 +377,7 @@ namespace NSRetail.Stock
         }
         private void CalculateReadOnlyFields()
         {
+            
             decimal Quantity = Convert.ToDecimal((IsOpenItem ? txtWeightInKGs : txtQuantity).EditValue);
             decimal totalPriceWT = Math.Round(Convert.ToDecimal(txtCostPriceWT.EditValue) * Quantity, 2);
             decimal totalPriceWOT = Math.Round((Convert.ToDecimal(txtCostPriceWOT.EditValue)) * Quantity, 2);
@@ -381,13 +407,15 @@ namespace NSRetail.Stock
             if (cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
             {
                 decimal finalPriceToConsider = Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) ? finaPriceWT : finalPriceWOT;
-
-                cGST = Math.Round(finalPriceToConsider * gstInfo.CGST / 100, 2);
-                sGST = Math.Round(finalPriceToConsider * gstInfo.SGST / 100, 2);
-                iGST = Math.Round(finalPriceToConsider * gstInfo.IGST / 100, 2);
-                cess = Math.Round(finalPriceToConsider * gstInfo.CESS / 100, 2);
-
-                appliedGST = cGST + sGST + iGST + cess;
+                if (!ObjStockEntry.CalculateIGST)
+                {
+                    cGST = Math.Round(finalPriceToConsider * gstInfo.CGST / 100, 2);
+                    sGST = Math.Round(finalPriceToConsider * gstInfo.SGST / 100, 2);
+                    cess = Math.Round(finalPriceToConsider * gstInfo.CESS / 100, 2);
+                    appliedGST = cGST + sGST + cess;
+                }
+                else
+                    appliedGST = iGST = Math.Round(finalPriceToConsider * gstInfo.IGST / 100, 2);
             }
 
             decimal finalPrice = Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) ? finaPriceWT : finalPriceWOT + appliedGST;
@@ -422,5 +450,6 @@ namespace NSRetail.Stock
            else
                 txtFreeQuantity.Enabled = false;
         }
+
     }
 }

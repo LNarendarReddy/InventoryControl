@@ -37,6 +37,7 @@
     <ApplicationIcon>vLogo_Small_1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="DevExpress.BonusSkins.v21.2" />
     <Reference Include="DevExpress.Charts.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.CodeParser.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -80,6 +81,7 @@
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -438,6 +440,12 @@
     <Compile Include="Stock\frmStockEntry.Designer.cs">
       <DependentUpon>frmStockEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stock\frmStockEntryPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmStockEntryPreview.Designer.cs">
+      <DependentUpon>frmStockEntryPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stock\frmStockSummary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -633,6 +641,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmStockEntry.resx">
       <DependentUpon>frmStockEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmStockEntryPreview.resx">
+      <DependentUpon>frmStockEntryPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmStockSummary.resx">
       <DependentUpon>frmStockSummary.cs</DependentUpon>

@@ -43,12 +43,6 @@ namespace NSRetail.Stock
                     txtInvoiceNumber.EditValue = ObjStockEntry.SUPPLIERINVOICENO;
                     chkTaxInclusive.EditValue = ObjStockEntry.TAXINCLUSIVE;
                     dtpInvoice.EditValue = ObjStockEntry.InvoiceDate;
-                    txtTCS.EditValue = ObjStockEntry.TCS;
-                    txtDiscountPer.EditValue = ObjStockEntry.DISCOUNTPER;
-                    txtDiscountFlat.EditValue = ObjStockEntry.DISCOUNTFLAT;
-                    txtExpenses.EditValue = ObjStockEntry.EXPENSES;
-                    txtTransport.EditValue = ObjStockEntry.TRANSPORT;
-
                     gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
                     cmbSupplier.Enabled = false;
                     txtInvoiceNumber.Enabled = false;
@@ -97,37 +91,54 @@ namespace NSRetail.Stock
 
         private void btnSaveInvoice_Click(object sender, EventArgs e)
         {
-            if (gvStockEntry.RowCount == 0)return;
+            if (gvStockEntry.RowCount == 0) return;
             try
             {
                 int iValue = 0;
                 if (int.TryParse(Convert.ToString(ObjStockEntry.STOCKENTRYID), out iValue) && iValue > 0)
                 {
                     if (!dxValidationProvider1.Validate() ||
-                        XtraMessageBox.Show("Are you sure want to save invoice?", "Confirm", 
+                        XtraMessageBox.Show("Are you sure want to save invoice?", "Confirm",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                         return;
 
-                    ObjStockRep.UpdateInvoice(ObjStockEntry);
-                    DataSet ds = ObjStockRep.GetInvoice(ObjStockEntry.STOCKENTRYID);
-                    rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);
-                    rpt.ShowPrintMarginsWarning = false;
-                    rpt.ShowRibbonPreview();
-                    cmbSupplier.EditValue = null;
-                    txtInvoiceNumber.EditValue = null;
-                    dtpInvoice.EditValue = DateTime.Now;
-                    txtTCS.EditValue = null;
-                    txtDiscountPer.EditValue = null;
-                    txtDiscountFlat.EditValue = null;
-                    txtExpenses.EditValue = null;
-                    txtTransport.EditValue = null;
-                    cmbSupplier.Enabled = true;
-                    txtInvoiceNumber.Enabled = true;
-                    dtpInvoice.Enabled = true;
-                    ObjStockEntry.STOCKENTRYID = 0;
-                    ObjStockEntry.dtStockEntry = new DataTable();
-                    gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
-                    cmbSupplier.Focus();
+                    gvStockEntry.GridControl.BindingContext = new BindingContext();
+                    gvStockEntry.GridControl.DataSource = ObjStockEntry.dtStockEntry;
+
+                    ObjStockEntry.SumTotalPriceWT = gvStockEntry.Columns["TOTALPRICEWT"].SummaryItem.SummaryValue;
+                    ObjStockEntry.SumTotalPriceWOT = gvStockEntry.Columns["TOTALPRICEWOT"].SummaryItem.SummaryValue;
+
+                    decimal CGST =  Convert.ToDecimal(gvStockEntry.Columns["CGST"].SummaryItem.SummaryValue);
+                    decimal SGST = Convert.ToDecimal(gvStockEntry.Columns["SGST"].SummaryItem.SummaryValue);
+                    decimal IGST = Convert.ToDecimal(gvStockEntry.Columns["IGST"].SummaryItem.SummaryValue);
+                    decimal CESS = Convert.ToDecimal(gvStockEntry.Columns["CESS"].SummaryItem.SummaryValue);
+
+                    ObjStockEntry.SumGSTValue = CGST + SGST + IGST + CESS;
+                    ObjStockEntry.SumFinalPrice = gvStockEntry.Columns["FINALPRICE"].SummaryItem.SummaryValue;
+
+                    frmStockEntryPreview obj = new frmStockEntryPreview(ObjStockEntry);
+                    obj.ShowInTaskbar = false;
+                    obj.IconOptions.ShowIcon = false;
+                    obj.WindowState = FormWindowState.Normal;
+                    obj.StartPosition = FormStartPosition.CenterScreen;
+                    obj.ShowDialog();
+                    if (ObjStockEntry.IsSave)
+                    {
+                        DataSet ds = ObjStockRep.GetInvoice(ObjStockEntry.STOCKENTRYID);
+                        rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);
+                        rpt.ShowPrintMarginsWarning = false;
+                        rpt.ShowRibbonPreview();
+                        cmbSupplier.EditValue = null;
+                        txtInvoiceNumber.EditValue = null;
+                        dtpInvoice.EditValue = DateTime.Now;
+                        cmbSupplier.Enabled = true;
+                        txtInvoiceNumber.Enabled = true;
+                        dtpInvoice.Enabled = true;
+                        ObjStockEntry.STOCKENTRYID = 0;
+                        ObjStockEntry.dtStockEntry.Rows.Clear();
+                        gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
+                        cmbSupplier.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -150,7 +161,8 @@ namespace NSRetail.Stock
 
             try
             {                
-                ObjStockRep.DeleteInvoiceDetail(gvStockEntry.GetFocusedRowCellValue("STOCKENTRYDETAILID"));
+                ObjStockRep.DeleteInvoiceDetail(gvStockEntry.GetFocusedRowCellValue("STOCKENTRYDETAILID"),
+                    Utility.UserID);
                 gvStockEntry.DeleteRow(gvStockEntry.FocusedRowHandle);
             }
             catch (Exception ex)
@@ -290,11 +302,6 @@ namespace NSRetail.Stock
                 ObjStockEntry.TAXINCLUSIVE = chkTaxInclusive.EditValue;
                 ObjStockEntry.InvoiceDate = dtpInvoice.EditValue;
                 ObjStockEntry.CATEGORYID = Utility.CategoryID;
-                ObjStockEntry.TCS = txtTCS.EditValue;
-                ObjStockEntry.DISCOUNTPER = txtDiscountPer.EditValue;
-                ObjStockEntry.DISCOUNTFLAT = txtDiscountFlat.EditValue;
-                ObjStockEntry.EXPENSES = txtExpenses.EditValue;
-                ObjStockEntry.TRANSPORT = txtTransport.EditValue;
                 ObjStockEntry.UserID = Utility.UserID;
                 ObjStockRep.SaveInvoice(ObjStockEntry);
                 cmbSupplier.Enabled = false;
@@ -313,7 +320,10 @@ namespace NSRetail.Stock
             try
             {
                 if (cmbSupplier.EditValue != null)
+                {
                     txtGSTIN.EditValue = cmbSupplier.GetColumnValue("GSTIN");
+                    ObjStockEntry.CalculateIGST = !txtGSTIN.Text.StartsWith("37");
+                }
                 else
                     txtGSTIN.EditValue = null;
             }
@@ -383,11 +393,6 @@ namespace NSRetail.Stock
                     cmbSupplier.EditValue = null;
                     txtInvoiceNumber.EditValue = null;
                     dtpInvoice.EditValue = DateTime.Now;
-                    txtTCS.EditValue = null;
-                    txtDiscountFlat.EditValue = null;
-                    txtDiscountPer.EditValue = null;
-                    txtTransport.EditValue = null;
-                    txtExpenses.EditValue = null;
                     ObjStockEntry.dtStockEntry = new DataTable();
                     ObjStockEntry.dtStockEntry.Columns.Add("STOCKENTRYDETAILID", typeof(int));
                     ObjStockEntry.dtStockEntry.Columns.Add("ITEMID", typeof(int));

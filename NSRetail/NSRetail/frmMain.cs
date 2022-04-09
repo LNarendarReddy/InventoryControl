@@ -303,7 +303,7 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (03-04-2022) ";
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (07-04-2022)";
 
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,
@@ -371,6 +371,8 @@ namespace NSRetail
                     .Any(y => x.ItemLinks[y].Item.Visibility == BarItemVisibility.Always));
                 ribbonPages.ForEach(x => x.Visible = Enumerable.Range(0, x.Groups.Count).Any(y => x.Groups[y].Visible));
             }
+            ribbonPageGroup9.Visible = true;
+            btnStockCounting.Visibility = BarItemVisibility.Always;
         }
 
         private void btnRunningSale_ItemClick(object sender, ItemClickEventArgs e)
