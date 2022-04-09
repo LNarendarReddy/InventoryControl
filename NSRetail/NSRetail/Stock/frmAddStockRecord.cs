@@ -54,6 +54,7 @@ namespace NSRetail.Stock
                 if (int.TryParse(Convert.ToString(ObjStockEntryDetail.STOCKENTRYDETAILID), out int Ivalue) && Ivalue > 0)
                 {
                     IsEditMode = true;
+                    IsLoading = true;
                     cmbItemCode.EditValue = ObjStockEntryDetail.ITEMCODEID;
                     txtItemName.EditValue = ObjStockEntryDetail.ITEMNAME;
                     txtQuantity.EditValue = ObjStockEntryDetail.QUANTITY;
@@ -78,6 +79,7 @@ namespace NSRetail.Stock
                     txtAppliedDiscount.EditValue = ObjStockEntryDetail.AppliedDiscount;
                     txtAppliedScheme.EditValue = ObjStockEntryDetail.AppliedScheme;
                     txtFinalPrice.EditValue = ObjStockEntryDetail.FinalPrice;
+                    IsLoading = false;
                 }
                 else
                 {
@@ -433,22 +435,27 @@ namespace NSRetail.Stock
         }
         private void txtDiscountValue_EditValueChanged(object sender, EventArgs e)
         {
-            (sender == txtDiscountPer && txtDiscountPer.EditValue != null && Convert.ToDecimal(txtDiscountPer.EditValue) > 0
-                ? txtDiscountFlat : txtDiscountPer).EditValue = 0.00;
+            if (!IsLoading)
+            {
+                (sender == txtDiscountPer && txtDiscountPer.EditValue != null && Convert.ToDecimal(txtDiscountPer.EditValue) > 0
+                 ? txtDiscountFlat : txtDiscountPer).EditValue = 0.00;
+            }
+
             CalculateReadOnlyFields();
         }
         private void txtSchemeValue_EditValueChanged(object sender, EventArgs e)
         {
-            (sender == txtSchemePer && txtSchemePer.EditValue != null && Convert.ToDecimal(txtSchemePer.EditValue) > 0
-                ? txtSchemeFlat : txtSchemePer).EditValue = 0.00;
+            if (!IsLoading)
+            {
+                (sender == txtSchemePer && txtSchemePer.EditValue != null && Convert.ToDecimal(txtSchemePer.EditValue) > 0
+                 ? txtSchemeFlat : txtSchemePer).EditValue = 0.00;
+            }
+
             CalculateReadOnlyFields();
         }
         private void sluFreeItem_EditValueChanged(object sender, EventArgs e)
         {
-            if (sluFreeItem.EditValue != null)
-                txtFreeQuantity.Enabled = true;  
-           else
-                txtFreeQuantity.Enabled = false;
+            txtFreeQuantity.Enabled = sluFreeItem.EditValue != null;
         }
 
     }
