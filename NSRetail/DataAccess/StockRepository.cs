@@ -651,7 +651,7 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
-        public void DiscardStockDispatch(object StockDispatchID, object userID)
+        public void DiscardStockDispatch(object StockDispatchID)
         {
             try
             {
@@ -661,7 +661,6 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_DISPATCH]";
                     cmd.Parameters.AddWithValue("@StockDispatchID", StockDispatchID);
-                    cmd.Parameters.AddWithValue("@UserID", userID);
                     int RowsAffected = cmd.ExecuteNonQuery();
                     if (RowsAffected <= 0)
                         throw new Exception("Nothing is deleted");

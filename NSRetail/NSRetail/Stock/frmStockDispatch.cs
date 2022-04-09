@@ -385,7 +385,7 @@ namespace NSRetail.Stock
             if (XtraMessageBox.Show("Are you sure want to discard dispatch?", "Confirm", 
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
-            ObjStockRep.DiscardStockDispatch(ObjStockDispatch.STOCKDISPATCHID, Utility.UserID);
+            ObjStockRep.DiscardStockDispatch(ObjStockDispatch.STOCKDISPATCHID);
             cmbFromBranch.EditValue = null;
             cmbToBranch.EditValue = null;
             txtTrayNumber.EditValue = null;
