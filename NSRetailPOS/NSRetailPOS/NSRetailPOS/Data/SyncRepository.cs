@@ -145,7 +145,7 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "USP_U_POS_HDDSNO";
-                    cmd.Parameters.AddWithValue("@BranchCounterID", Utility.branchinfo.BranchCounterID);
+                    cmd.Parameters.AddWithValue("@BranchCounterID", Utility.branchInfo.BranchCounterID);
                     cmd.Parameters.AddWithValue("@HDDSNO", HDDSNo);
                     cmd.ExecuteNonQuery();
                 }

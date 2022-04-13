@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NSRetailPOS.Data
 {
     public class RefundRepository
     {
-        public DataTable GetBillByNumber(object BillNumber)
+        public DataSet GetBillByNumber(object BillNumber)
         {
-            DataTable dtBillDetails = new DataTable();
+            DataSet dsBillDetails = new DataSet();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -23,12 +21,13 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@BILLNUMBER", BillNumber);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        da.Fill(dtBillDetails);
+                        da.Fill(dsBillDetails);
                     }
-                    if (dtBillDetails != null && dtBillDetails.Rows.Count > 0
-                        && int.TryParse(Convert.ToString(dtBillDetails.Rows[0][0]), out int ivalue))
+                    if (dsBillDetails != null && dsBillDetails.Tables[0].Rows.Count > 0
+                        && int.TryParse(Convert.ToString(dsBillDetails.Tables[0].Rows[0][0]), out int ivalue))
                     {
-                        dtBillDetails.TableName = "BILLDETAILS";
+                        dsBillDetails.Tables[0].TableName = "BILL";
+                        dsBillDetails.Tables[1].TableName = "BILLDETAILS";
                     }
                     else
                         throw new Exception("Bill Does Not Exists!");
@@ -42,10 +41,10 @@ namespace NSRetailPOS.Data
             {
                 SQLCon.Sqlconn().Close();
             }
-            return dtBillDetails;
+            return dsBillDetails;
         }
 
-        public void InsertCRefund(DataTable dtRefund,object UserID)
+        public void InsertCRefund(DataTable dtRefund,object UserID, object billID, object customerName, object customerNumber)
         {
             try
             {
@@ -67,6 +66,10 @@ namespace NSRetailPOS.Data
                     cmd.CommandText = "[POS_USP_CU_CREFUND]";
                     cmd.Parameters.AddWithValue("@dtRefund", dtCloned);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@BillID", billID);
+                    cmd.Parameters.AddWithValue("@CustomerName", customerName);
+                    cmd.Parameters.AddWithValue("@CustomerNumber", customerNumber);
+
                     int ivalue = cmd.ExecuteNonQuery();
                     if(ivalue<=0)
                         throw new Exception("Error while saving Refund Details!");

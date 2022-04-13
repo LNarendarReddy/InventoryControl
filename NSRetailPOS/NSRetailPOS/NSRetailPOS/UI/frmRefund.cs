@@ -5,38 +5,21 @@ using DevExpress.XtraGrid.Views.Grid;
 using NSRetailPOS.Data;
 using NSRetailPOS.Reports;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
 {
-    public partial class frmRefund : DevExpress.XtraEditors.XtraForm
+    public partial class frmRefund : XtraForm
     {
+        object billID;
+
         public frmRefund()
         {
             InitializeComponent();
-            this.gvBillDetails.Appearance.FocusedCell.BackColor = System.Drawing.Color.SaddleBrown;
-            this.gvBillDetails.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvBillDetails.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
-            this.gvBillDetails.Appearance.FocusedCell.Options.UseBackColor = true;
-            this.gvBillDetails.Appearance.FocusedCell.Options.UseFont = true;
-            this.gvBillDetails.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.gvBillDetails.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
-            this.gvBillDetails.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvBillDetails.Appearance.FocusedRow.Options.UseBackColor = true;
-            this.gvBillDetails.Appearance.FocusedRow.Options.UseFont = true;
-            this.gvBillDetails.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
-            this.gvBillDetails.Appearance.FooterPanel.Options.UseFont = true;
-            this.gvBillDetails.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvBillDetails.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvBillDetails.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvBillDetails.Appearance.Row.Options.UseFont = true;
+
+            Utility.SetGridFormatting(gvBillDetails);
         }
 
         private void txtBillNumber_Leave(object sender, EventArgs e)
@@ -45,12 +28,20 @@ namespace NSRetailPOS.UI
                 return;
             try
             {
-                DataTable dt = new RefundRepository().GetBillByNumber(txtBillNumber.EditValue);
-                if (dt.Rows.Count == 0)
+                DataSet ds = new RefundRepository().GetBillByNumber(txtBillNumber.EditValue);
+                if (ds.Tables["BILL"].Rows.Count == 0)
                     return;
-                this.Text = "Customer Refund - " + txtBillNumber.EditValue;
-                txtBillDate.EditValue = dt.Rows[0]["CREATEDDATE"];
-                gcBillDetails.DataSource = dt;
+                Text = "Customer Refund - " + txtBillNumber.EditValue;
+
+                txtBillDate.EditValue = ds.Tables["BILL"].Rows[0]["CREATEDDATE"];
+                txtCustomerName.EditValue = ds.Tables["BILL"].Rows[0]["CUSTOMERNAME"];
+                txtCustomerPhone.EditValue = ds.Tables["BILL"].Rows[0]["CUSTOMERNUMBER"];
+                billID = ds.Tables["BILL"].Rows[0]["BILLID"];
+
+                txtCustomerName.Enabled = string.IsNullOrEmpty(txtCustomerName.EditValue?.ToString());
+                txtCustomerPhone.Enabled = string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString());
+
+                gcBillDetails.DataSource = ds.Tables["BILLDETAILS"];
             }
             catch (Exception ex)
             {
@@ -73,17 +64,17 @@ namespace NSRetailPOS.UI
                 DataTable dtFiltered = dv.ToTable();
                 if (dtFiltered.Rows.Count == 0)
                     throw new Exception("Refund quantity should be greater than '0'");
-                new RefundRepository().InsertCRefund(dtFiltered, Utility.logininfo.UserID);
+                new RefundRepository().InsertCRefund(dtFiltered, Utility.loginInfo.UserID, billID, txtCustomerName.EditValue, txtCustomerPhone.EditValue);
                 rptCRefund rpt = new rptCRefund(dtFiltered);
                 rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
                 rpt.Parameters["FSSAI"].Value = "10114004000548";
-                rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
+                rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
                 rpt.Parameters["BillDate"].Value = DateTime.Now;
                 rpt.Parameters["BillNumber"].Value = txtBillNumber.EditValue;
-                rpt.Parameters["BranchName"].Value = Utility.branchinfo.BranchName;
-                rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
-                rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
-                rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
+                rpt.Parameters["BranchName"].Value = Utility.branchInfo.BranchName;
+                rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
+                rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
+                rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
                 rpt.Print();
                 this.Close();
             }

@@ -26,8 +26,15 @@ namespace NSRetailPOS.Entity
 
         public object Rounding { get; set; }
 
+        public object TenderedCash { get; set; }
+        
+        public object TenderedChange { get; set; }
+
+        public object IsDoorDelivery { get; set; }
+
         public DataTable dtMopValues { get; set; }
 
+        public object PaymentMode { get; set; }
         public object Clone()
         {
             Bill clonedBillObj = new Bill();

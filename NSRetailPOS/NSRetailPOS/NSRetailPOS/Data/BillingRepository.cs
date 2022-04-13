@@ -97,6 +97,9 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@CustomerName", billObj.CustomerName);
                     cmd.Parameters.AddWithValue("@CustomerNumber", billObj.CustomerNumber);
                     cmd.Parameters.AddWithValue("@Rounding", billObj.Rounding);
+                    cmd.Parameters.AddWithValue("@IsDoorDelivery", billObj.IsDoorDelivery);
+                    cmd.Parameters.AddWithValue("@TenderedCash", billObj.TenderedCash);
+                    cmd.Parameters.AddWithValue("@TenderedChange", billObj.TenderedChange);
                     DataTable dtTemp = billObj.dtMopValues.Copy();
                     if (dtTemp.Columns.Contains("MOPNAME"))
                     {
@@ -415,6 +418,41 @@ namespace NSRetailPOS.Data
                 SQLCon.Sqlconn().Close();
             }
             return dsDayClosure;
+        }
+
+        public DataTable ApplySpecialDiscount(object discountPer, object billID, object userID)
+        {
+            DataTable dtBillDetails = new DataTable();
+            SqlTransaction transaction = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    transaction = SQLCon.Sqlconn().BeginTransaction();
+                    cmd.Transaction = transaction;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_U_APPLYSPLDISCPER]";
+                    cmd.Parameters.AddWithValue("@BillID", billID);
+                    cmd.Parameters.AddWithValue("@SpecialDiscountPer", discountPer);
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtBillDetails);
+                        transaction.Commit();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                transaction?.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtBillDetails;
         }
     }
 }

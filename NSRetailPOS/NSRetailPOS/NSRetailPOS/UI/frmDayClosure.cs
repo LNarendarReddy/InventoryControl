@@ -25,39 +25,9 @@ namespace NSRetailPOS.UI
             txtRefundAmount.EditValue = dsDayClosure.Tables[2].Rows[0]["REFUNDAMOUNT"];
             updateSummary();
             daySequenceID = daySeqID;
-            this.gvDenomination.Appearance.FocusedCell.BackColor = System.Drawing.Color.SaddleBrown;
-            this.gvDenomination.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvDenomination.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
-            this.gvDenomination.Appearance.FocusedCell.Options.UseBackColor = true;
-            this.gvDenomination.Appearance.FocusedCell.Options.UseFont = true;
-            this.gvDenomination.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.gvDenomination.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
-            this.gvDenomination.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvDenomination.Appearance.FocusedRow.Options.UseBackColor = true;
-            this.gvDenomination.Appearance.FocusedRow.Options.UseFont = true;
-            this.gvDenomination.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
-            this.gvDenomination.Appearance.FooterPanel.Options.UseFont = true;
-            this.gvDenomination.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvDenomination.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvDenomination.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvDenomination.Appearance.Row.Options.UseFont = true;
-
-            this.gvMOP.Appearance.FocusedCell.BackColor = System.Drawing.Color.SaddleBrown;
-            this.gvMOP.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvMOP.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
-            this.gvMOP.Appearance.FocusedCell.Options.UseBackColor = true;
-            this.gvMOP.Appearance.FocusedCell.Options.UseFont = true;
-            this.gvMOP.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.gvMOP.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
-            this.gvMOP.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvMOP.Appearance.FocusedRow.Options.UseBackColor = true;
-            this.gvMOP.Appearance.FocusedRow.Options.UseFont = true;
-            this.gvMOP.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
-            this.gvMOP.Appearance.FooterPanel.Options.UseFont = true;
-            this.gvMOP.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvMOP.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvMOP.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvMOP.Appearance.Row.Options.UseFont = true;
+            
+            Utility.SetGridFormatting(gvDenomination);
+            Utility.SetGridFormatting(gvMOP);
         }
 
         private void frmDayClosure_Load(object sender, EventArgs e)
@@ -67,18 +37,20 @@ namespace NSRetailPOS.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (XtraMessageBox.Show("Are you sure to day close?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+
             try
             {
-                int dayClosureid = new BillingRepository().SaveDayClosure(Utility.branchinfo.BranchCounterID,
+                int dayClosureid = new BillingRepository().SaveDayClosure(Utility.branchInfo.BranchCounterID,
                     gcDenomination.DataSource as DataTable, gcMOP.DataSource as DataTable, 
-                    Utility.logininfo.UserID,txtRefundAmount.EditValue, daySequenceID);
+                    Utility.loginInfo.UserID,txtRefundAmount.EditValue, daySequenceID);
                 DayClosed = true;
                 DataSet ds = new BillingRepository().GetDayClosureForReport(dayClosureid);
                 rptDayClosure rpt = new rptDayClosure(ds);
-                rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
-                rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
-                rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
-                rpt.Parameters["UserName"].Value = Utility.logininfo.UserName;
+                rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
+                rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
+                rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
+                rpt.Parameters["UserName"].Value = Utility.loginInfo.UserName;
                 rpt.Print();
                 rpt.Print();
                 SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);

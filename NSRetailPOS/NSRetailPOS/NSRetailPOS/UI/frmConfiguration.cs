@@ -43,10 +43,10 @@ namespace NSRetailPOS.UI
                     , drSelectedCounter["DAYCLOSUREID"], drSelectedCounter["BRANCHREFUNDID"]);
 
                 SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
-                Utility.branchinfo.BranchCounterID = cmbCounter.EditValue;
-                Utility.branchinfo.BranchID = cmbBranch.EditValue;
+                Utility.branchInfo.BranchCounterID = cmbCounter.EditValue;
+                Utility.branchInfo.BranchID = cmbBranch.EditValue;
                 string HDDSno = Utility.GetHDDSerialNumber();
-                objCloudRepository.CheckOrAddHDDSerialNumber(Utility.branchinfo.BranchCounterID, HDDSno);
+                objCloudRepository.CheckOrAddHDDSerialNumber(Utility.branchInfo.BranchCounterID, HDDSno);
                 Utility.StartSync(null, true);
                 objSyncRepository.SaveHDDSNo(HDDSno);
                 DataSet dsRestoreData = objCloudRepository.GetDaySequence(cmbCounter.EditValue);

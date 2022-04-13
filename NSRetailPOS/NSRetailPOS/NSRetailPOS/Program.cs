@@ -21,10 +21,10 @@ namespace NSRetailPOS
         static void Main()
         {
 
-            Assembly asm = typeof(NSRetailPOSSkinDARK).Assembly;
-            SkinManager.Default.RegisterAssembly(asm);
-            SplashScreenManager.RegisterUserSkins(typeof(NSRetailPOSSkinDARK).Assembly);
-            UserLookAndFeel.Default.SetSkinStyle("NSRetailPOSSkinDARK");
+            //Assembly asm = typeof(NSRetailPOSSkinDARK).Assembly;
+            //SkinManager.Default.RegisterAssembly(asm);
+            //SplashScreenManager.RegisterUserSkins(typeof(NSRetailPOSSkinDARK).Assembly);
+            //UserLookAndFeel.Default.SetSkinStyle("NSRetailPOSSkinDARK");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             SkinManager.EnableFormSkins();
@@ -32,10 +32,10 @@ namespace NSRetailPOS
             DataTable dt = new POSRepository().GetPOSConfiguration();
             if (dt != null && dt.Rows.Count > 0)
             {
-                Utility.branchinfo.BranchID = dt.Rows[0]["BRANCHID"];
-                Utility.branchinfo.BranchCounterID = dt.Rows[0]["BRANCHCOUNTERID"];
-                Utility.branchinfo.BranchName = dt.Rows[0]["BRANCHNAME"];
-                Utility.branchinfo.BranchCounterName = dt.Rows[0]["COUNTERNAME"];
+                Utility.branchInfo.BranchID = dt.Rows[0]["BRANCHID"];
+                Utility.branchInfo.BranchCounterID = dt.Rows[0]["BRANCHCOUNTERID"];
+                Utility.branchInfo.BranchName = dt.Rows[0]["BRANCHNAME"];
+                Utility.branchInfo.BranchCounterName = dt.Rows[0]["COUNTERNAME"];
                 Application.Run(new frmLogin());
             }
             else

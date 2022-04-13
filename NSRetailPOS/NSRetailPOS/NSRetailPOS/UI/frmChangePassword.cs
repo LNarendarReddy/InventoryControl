@@ -35,11 +35,11 @@ namespace NSRetailPOS.UI
                 txtcPassword.Text = txtcPassword.Text.Trim();
                 if (!dxValidationProvider1.Validate())
                     return;
-                if (Utility.Encrypt(txtOPassword.Text) != Convert.ToString(Utility.logininfo.Password))
+                if (Utility.Encrypt(txtOPassword.Text) != Convert.ToString(Utility.loginInfo.Password))
                     throw new Exception("Invalid Old Password");
                 if(txtNPassword.Text != txtcPassword.Text)
                     throw new Exception("Both Passwords Should be same");
-                objPOSRep.ChangePassword(Utility.logininfo.UserID, Utility.Encrypt(txtNPassword.Text));
+                objPOSRep.ChangePassword(Utility.loginInfo.UserID, Utility.Encrypt(txtNPassword.Text));
                 Application.Restart();
             }
             catch (Exception ex)

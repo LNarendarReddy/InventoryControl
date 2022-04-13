@@ -2,18 +2,12 @@
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
 {
-    public partial class frmLogin : DevExpress.XtraEditors.XtraForm
+    public partial class frmLogin : XtraForm
     {
         POSRepository objPOSRep = new POSRepository();
         public frmLogin()
@@ -27,8 +21,8 @@ namespace NSRetailPOS.UI
             {
                 if (!dxValidationProvider1.Validate())
                     return;
-                DataSet dSUserInfo = objPOSRep.GetUserInfo(Utility.branchinfo.BranchID,
-                    Utility.branchinfo.BranchCounterID,txtUserName.EditValue, Utility.Encrypt(Convert.ToString(txtPassword.EditValue))
+                DataSet dSUserInfo = objPOSRep.GetUserInfo(Utility.branchInfo.BranchID,
+                    Utility.branchInfo.BranchCounterID,txtUserName.EditValue, Utility.Encrypt(Convert.ToString(txtPassword.EditValue))
                     , Utility.GetHDDSerialNumber());
                 if(dSUserInfo != null && dSUserInfo.Tables.Count > 0 &&
                     dSUserInfo.Tables[0].Rows.Count > 0)
@@ -36,19 +30,19 @@ namespace NSRetailPOS.UI
                     int IValue = 0;
                     if (int.TryParse(Convert.ToString(dSUserInfo.Tables[0].Rows[0][0]), out IValue))
                     {
-                        Utility.logininfo.UserID = IValue;
-                        Utility.logininfo.UserName = dSUserInfo.Tables[0].Rows[0]["USERNAME"];
-                        Utility.logininfo.Password = dSUserInfo.Tables[0].Rows[0]["PASSWORDSTRING"];
-                        Utility.logininfo.UserFullName = dSUserInfo.Tables[0].Rows[0]["FULLNAME"];
-                        Utility.logininfo.RoleName = dSUserInfo.Tables[0].Rows[0]["ROLENAME"];
-                        Utility.branchinfo.BranchID = dSUserInfo.Tables[0].Rows[0]["BRANCHID"];
-                        Utility.branchinfo.BranchName = dSUserInfo.Tables[0].Rows[0]["BRANCHNAME"];
-                        Utility.branchinfo.BranchCode = dSUserInfo.Tables[0].Rows[0]["BRANCHCODE"];
-                        Utility.branchinfo.BranchAddress = dSUserInfo.Tables[0].Rows[0]["ADDRESS"];
-                        Utility.branchinfo.PhoneNumber = dSUserInfo.Tables[0].Rows[0]["PHONENO"];
-                        Utility.branchinfo.LandLine = dSUserInfo.Tables[0].Rows[0]["LANDLINE"];
-                        Utility.branchinfo.BranchCounterID = dSUserInfo.Tables[1].Rows[0]["COUNTERID"];
-                        Utility.branchinfo.BranchCounterName = dSUserInfo.Tables[1].Rows[0]["COUNTERNAME"];
+                        Utility.loginInfo.UserID = IValue;
+                        Utility.loginInfo.UserName = dSUserInfo.Tables[0].Rows[0]["USERNAME"];
+                        Utility.loginInfo.Password = dSUserInfo.Tables[0].Rows[0]["PASSWORDSTRING"];
+                        Utility.loginInfo.UserFullName = dSUserInfo.Tables[0].Rows[0]["FULLNAME"];
+                        Utility.loginInfo.RoleName = dSUserInfo.Tables[0].Rows[0]["ROLENAME"];
+                        Utility.branchInfo.BranchID = dSUserInfo.Tables[0].Rows[0]["BRANCHID"];
+                        Utility.branchInfo.BranchName = dSUserInfo.Tables[0].Rows[0]["BRANCHNAME"];
+                        Utility.branchInfo.BranchCode = dSUserInfo.Tables[0].Rows[0]["BRANCHCODE"];
+                        Utility.branchInfo.BranchAddress = dSUserInfo.Tables[0].Rows[0]["ADDRESS"];
+                        Utility.branchInfo.PhoneNumber = dSUserInfo.Tables[0].Rows[0]["PHONENO"];
+                        Utility.branchInfo.LandLine = dSUserInfo.Tables[0].Rows[0]["LANDLINE"];
+                        Utility.branchInfo.BranchCounterID = dSUserInfo.Tables[1].Rows[0]["COUNTERID"];
+                        Utility.branchInfo.BranchCounterName = dSUserInfo.Tables[1].Rows[0]["COUNTERNAME"];
                         bool ISOTP = Convert.ToBoolean(dSUserInfo.Tables[0].Rows[0]["ISOTP"]);
                         if (ISOTP)
                         {
@@ -88,8 +82,8 @@ namespace NSRetailPOS.UI
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            lblBranch.Text = Convert.ToString(Utility.branchinfo.BranchName);
-            lblCounter.Text = $"Counter : {Convert.ToString(Utility.branchinfo.BranchCounterName)}";
+            lblBranch.Text = Convert.ToString(Utility.branchInfo.BranchName);
+            lblCounter.Text = $"Counter : {Convert.ToString(Utility.branchInfo.BranchCounterName)}";
         }
     }
 }

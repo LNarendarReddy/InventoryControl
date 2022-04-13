@@ -125,7 +125,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue(map.ParameterName, dtEntityWiseData);
                     if (map.IncludeBranchCounterID)
                     { 
-                        cmd.Parameters.AddWithValue("@BranchCounterID", Utility.branchinfo.BranchCounterID); 
+                        cmd.Parameters.AddWithValue("@BranchCounterID", Utility.branchInfo.BranchCounterID); 
                     }
                     cmd.ExecuteNonQuery();
                 }

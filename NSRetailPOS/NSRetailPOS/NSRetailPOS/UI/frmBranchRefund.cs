@@ -2,18 +2,12 @@
 using NSRetailPOS.Data;
 using NSRetailPOS.Reports;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
 {
-    public partial class frmBranchRefund : DevExpress.XtraEditors.XtraForm
+    public partial class frmBranchRefund : XtraForm
     {
         object BRefundID = null;
         object BRefundNumber = null;
@@ -26,26 +20,12 @@ namespace NSRetailPOS.UI
         public frmBranchRefund()
         {
             InitializeComponent();
-            this.gvRefund.Appearance.FocusedCell.BackColor = System.Drawing.Color.SaddleBrown;
-            this.gvRefund.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvRefund.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
-            this.gvRefund.Appearance.FocusedCell.Options.UseBackColor = true;
-            this.gvRefund.Appearance.FocusedCell.Options.UseFont = true;
-            this.gvRefund.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.gvRefund.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
-            this.gvRefund.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvRefund.Appearance.FocusedRow.Options.UseBackColor = true;
-            this.gvRefund.Appearance.FocusedRow.Options.UseFont = true;
-            this.gvRefund.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
-            this.gvRefund.Appearance.FooterPanel.Options.UseFont = true;
-            this.gvRefund.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvRefund.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvRefund.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvRefund.Appearance.Row.Options.UseFont = true;
+            Utility.SetGridFormatting(gvRefund);
+            Utility.SetGridFormatting(sluItemCodeView);
         }
         private void InitialLoad()
         {
-            DataSet dSInitialData = new RefundRepository().GetInitialLoad(Utility.logininfo.UserID, Utility.branchinfo.BranchID);
+            DataSet dSInitialData = new RefundRepository().GetInitialLoad(Utility.loginInfo.UserID, Utility.branchInfo.BranchID);
             if (dSInitialData != null && dSInitialData.Tables.Count > 0)
             {
                 BRefundID = dSInitialData.Tables[0].Rows[0]["BREFUNDID"];
@@ -170,7 +150,7 @@ namespace NSRetailPOS.UI
                 SNo++;
             }
 
-            new RefundRepository().DeleteBRefundDetail(BRDetailID, Utility.logininfo.UserID, dtSNos);
+            new RefundRepository().DeleteBRefundDetail(BRDetailID, Utility.loginInfo.UserID, dtSNos);
             gvRefund.DeleteRow(gvRefund.FocusedRowHandle);
             txtItemCode.Focus();
         }
@@ -258,12 +238,12 @@ namespace NSRetailPOS.UI
         {
             new RefundRepository().FinishBRefund(BRefundID);
             rptBRefund rpt = new rptBRefund(dtRefund);
-            rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
+            rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
             rpt.Parameters["BillDate"].Value = DateTime.Now;
             rpt.Parameters["BillNumber"].Value = BRefundNumber;
-            rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
-            rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
-            rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
+            rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
+            rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
+            rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
             rpt.Print();
             rpt.Print();
             rpt.Print();

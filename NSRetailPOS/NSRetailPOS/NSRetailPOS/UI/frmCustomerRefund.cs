@@ -17,20 +17,9 @@ namespace NSRetailPOS.UI
         public frmCustomerRefund()
         {
             InitializeComponent();
-            this.gvRefund.Appearance.FocusedCell.BackColor = System.Drawing.Color.White;
-            this.gvRefund.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvRefund.Appearance.FocusedCell.Options.UseBackColor = true;
-            this.gvRefund.Appearance.FocusedCell.Options.UseFont = true;
-            this.gvRefund.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
-            this.gvRefund.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvRefund.Appearance.FocusedRow.Options.UseBackColor = true;
-            this.gvRefund.Appearance.FocusedRow.Options.UseFont = true;
-            this.gvRefund.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
-            this.gvRefund.Appearance.FooterPanel.Options.UseFont = true;
-            this.gvRefund.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvRefund.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvRefund.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvRefund.Appearance.Row.Options.UseFont = true;
+            Utility.SetGridFormatting(gvRefund);
+            Utility.SetGridFormatting(sluItemCodeView);
+
         }
 
         private void frmCustomerRefund_Load(object sender, EventArgs e)
@@ -256,20 +245,20 @@ namespace NSRetailPOS.UI
             if (gvRefund.RowCount == 0)
                 return;
             new RefundRepository().InsertCRefundWOBill(dtRefund, 
-                Utility.logininfo.UserID, 
+                Utility.loginInfo.UserID, 
                 txtCustomerName.EditValue,
                 txtCustomerMobile.EditValue);
 
             rptCRefund rpt = new rptCRefund(dtRefund);
             rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
             rpt.Parameters["FSSAI"].Value = "10114004000548";
-            rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
+            rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
             rpt.Parameters["BillDate"].Value = DateTime.Now;
             rpt.Parameters["BillNumber"].Value = "NA";
-            rpt.Parameters["BranchName"].Value = Utility.branchinfo.BranchName;
-            rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
-            rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
-            rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
+            rpt.Parameters["BranchName"].Value = Utility.branchInfo.BranchName;
+            rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
+            rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
+            rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
             rpt.Print();
             this.Close();
         }

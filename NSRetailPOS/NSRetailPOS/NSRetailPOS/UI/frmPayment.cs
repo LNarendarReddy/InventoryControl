@@ -1,8 +1,10 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
@@ -22,24 +24,12 @@ namespace NSRetailPOS.UI
         public frmPayment(Bill bill)
         {
             InitializeComponent();
+
+            Utility.SetGridFormatting(gvMOP);
+            gvMOP.RowStyle += GvMOP_RowStyle;
+
             billObj = bill;
-            this.Text = this.Text + billObj.BillNumber;
-            this.gvMOP.Appearance.FocusedCell.BackColor = System.Drawing.Color.SaddleBrown;
-            this.gvMOP.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvMOP.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
-            this.gvMOP.Appearance.FocusedCell.Options.UseBackColor = true;
-            this.gvMOP.Appearance.FocusedCell.Options.UseFont = true;
-            this.gvMOP.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.gvMOP.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
-            this.gvMOP.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvMOP.Appearance.FocusedRow.Options.UseBackColor = true;
-            this.gvMOP.Appearance.FocusedRow.Options.UseFont = true;
-            this.gvMOP.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
-            this.gvMOP.Appearance.FooterPanel.Options.UseFont = true;
-            this.gvMOP.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvMOP.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvMOP.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvMOP.Appearance.Row.Options.UseFont = true;
+            Text += billObj.BillNumber;
         }
 
         private void gvMOP_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -70,12 +60,22 @@ namespace NSRetailPOS.UI
                 return;
             }
 
+            if(chkIsDoorDelivery.Checked && (txtCustomerName.EditValue == null || txtMobileNo.EditValue == null))
+            {
+                XtraMessageBox.Show("Enter customer details to continue", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                (txtMobileNo.EditValue == null ? txtMobileNo : txtCustomerName).Focus();
+                return;
+            }
+
             billObj.CustomerName = txtCustomerName.EditValue;
             billObj.CustomerNumber = txtMobileNo.EditValue;
+            billObj.IsDoorDelivery = chkIsDoorDelivery.EditValue;
             billObj.dtMopValues = gcMOP.DataSource as DataTable;
-            billObj.Rounding = Math.Round(billedAmount) - billedAmount;
-            if (decimal.TryParse(gvMOP.GetRowCellValue(cashRowHandle, "MOPVALUE").ToString(), out decimal cashValue))
+            billObj.Rounding = Math.Round(billedAmount) - billedAmount;            
+            if (decimal.TryParse(gvMOP.GetRowCellValue(cashRowHandle, "MOPVALUE").ToString(), out decimal cashValue) && cashValue > 0)
             {
+                billObj.TenderedCash = cashValue;
+                billObj.TenderedChange = remainingAmount + Math.Round(billedAmount) - billedAmount;
                 gvMOP.SetRowCellValue(cashRowHandle, "MOPVALUE", cashValue + Math.Round(remainingAmount));
             }
             IsPaid = true;
@@ -90,21 +90,37 @@ namespace NSRetailPOS.UI
             }
         }
 
-        private void txtCustomerName_KeyPress(object sender, KeyPressEventArgs e)
+        private void gvMOP_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                gvMOP.FocusedColumn = gvMOP.Columns[2];
-                gvMOP.FocusedRowHandle = 0;
-                gvMOP.Focus();
-                gvMOP.ShowEditor();
+            var selectedPayment = rgPaymentOptions.EditValue;
+            if (selectedPayment.Equals("Multiple")
+                || (selectedPayment.Equals("CASH") && gvMOP.GetRowCellValue(gvMOP.FocusedRowHandle, "MOPNAME").Equals("CASH"))) 
+            { 
+                return; 
             }
+
+            e.Cancel = true;
         }
 
-        private void frmPayment_Load(object sender, System.EventArgs e)
+        private void frmPayment_Load(object sender, EventArgs e)
         {
             DataTable dtMOPs = billingRepository.GetMOPs();
             gcMOP.DataSource = dtMOPs;
+
+            gcMOP.Refresh();
+
+            foreach (DataRow drMOP in dtMOPs.Rows)
+            {
+                rgPaymentOptions.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem() { Description = drMOP["MOPNAME"].ToString() });
+            }
+
+            rgPaymentOptions.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem() { Description = "Multiple" });
+            rgPaymentOptions.Properties.Items.ToList().ForEach(x => x.Value = x.Description);
+
+            txtCustomerName.EditValue = billObj.CustomerName;
+            txtMobileNo.EditValue = billObj.CustomerNumber;
+            chkIsDoorDelivery.EditValue = billObj.IsDoorDelivery;
+            rgPaymentOptions.EditValue = billObj.PaymentMode;
             txtItemQuantity.EditValue = billObj.Quantity;
             txtBilledAmount.EditValue = billObj.Amount;
             decimal.TryParse(billObj.Amount.ToString(), out billedAmount);
@@ -113,6 +129,27 @@ namespace NSRetailPOS.UI
             cashRowHandle = gvMOP.LocateByValue("MOPNAME", "Cash");
             cashRowHandle = cashRowHandle < 0 ? gvMOP.LocateByValue("MOPNAME", "CASH") : cashRowHandle; 
             UpdateLabels();
+
+            if (!billObj.PaymentMode.Equals("Multiple") && !billObj.PaymentMode.Equals("CASH"))
+            {
+                gvMOP.SetRowCellValue(gvMOP.LocateByValue("MOPNAME", billObj.PaymentMode), "MOPVALUE", billObj.Amount);
+                btnOk.Focus();
+            }
+            else
+            {
+                gvMOP.FocusedColumn = gvMOP.Columns[2];
+                gvMOP.FocusedRowHandle = cashRowHandle;
+                gvMOP.Focus();
+                gvMOP.ShowEditor();
+                //gvMOP.RefreshRowCell(cashRowHandle, gvMOP.Columns["MOPVALUE"]);
+            }
+
+        }
+
+        private void GvMOP_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            if (e.State.HasFlag(DevExpress.XtraGrid.Views.Base.GridRowCellState.FocusedAndGridFocused))
+                gvMOP.ShowEditor();
         }
 
         private void UpdateLabels()

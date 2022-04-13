@@ -71,7 +71,7 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_FINISH_STOCKIN]";
-                    cmd.Parameters.AddWithValue("@UserID", Utility.logininfo.UserID);
+                    cmd.Parameters.AddWithValue("@UserID", Utility.loginInfo.UserID);
                     cmd.Parameters.AddWithValue("@StockDispatchID", stockDispatchID);
                     cmd.Parameters.AddWithValue("@DispatchDetails", dtDispatchDetail);
                     cmd.ExecuteNonQuery();

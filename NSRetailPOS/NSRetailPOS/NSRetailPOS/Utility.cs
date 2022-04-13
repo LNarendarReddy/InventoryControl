@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Management;
 using System.Security.Cryptography;
@@ -19,8 +20,8 @@ namespace NSRetailPOS
 {
     public static class Utility
     {
-        public static LoginInfo logininfo = new LoginInfo();
-        public static BranchInfo branchinfo = new BranchInfo();
+        public static LoginInfo loginInfo = new LoginInfo();
+        public static BranchInfo branchInfo = new BranchInfo();
 
         public static event EventHandler ItemOrCodeChanged;
 
@@ -49,7 +50,7 @@ namespace NSRetailPOS
                 backgroundWorker?.ReportProgress(0, $"POS sync started at {syncStartTime.ToLongTimeString()}");
                 SyncRepository syncRepository = new SyncRepository();
                 CloudRepository cloudRepository = new CloudRepository();
-                DataTable dtEntity = cloudRepository.GetEntityData(branchinfo.BranchCounterID, "FromCloud");
+                DataTable dtEntity = cloudRepository.GetEntityData(branchInfo.BranchCounterID, "FromCloud");
                 foreach (DataRow entityRow in dtEntity.Rows)
                 {
                     string entityName = entityRow["ENTITYNAME"].ToString();
@@ -58,7 +59,7 @@ namespace NSRetailPOS
                     DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(
                         entityName, 
                         forceFullSync ? "01-01-1900" : entityRow["SYNCDATE"]
-                        , branchinfo.BranchID);
+                        , branchInfo.BranchID);
                     ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
                     if (dtEntityWiseData?.Rows.Count > 0)
                     {
@@ -74,7 +75,7 @@ namespace NSRetailPOS
                 }
 
                 // start up sync
-                dtEntity = cloudRepository.GetEntityData(branchinfo.BranchCounterID, "ToCloud");
+                dtEntity = cloudRepository.GetEntityData(branchInfo.BranchCounterID, "ToCloud");
                 foreach (DataRow entityRow in dtEntity.Rows)
                 {
                     string entityName = entityRow["ENTITYNAME"].ToString();
@@ -209,6 +210,46 @@ namespace NSRetailPOS
                 rowHandle = view.LocateByValue(rowHandle + 1, view.Columns[fieldName], value);
             }
             return list;
+        }
+
+        public static void SetGridFormatting(GridView gridView)
+        {
+            gridView.Appearance.FocusedCell.BackColor = Color.DarkSeaGreen;
+            gridView.Appearance.FocusedCell.Font = new Font("Arial", 11F, FontStyle.Bold);
+            gridView.Appearance.FocusedCell.ForeColor = Color.White;
+            gridView.Appearance.FocusedCell.Options.UseBackColor = true;
+            gridView.Appearance.FocusedCell.Options.UseFont = true;
+            gridView.Appearance.FocusedCell.Options.UseForeColor = true;
+
+            gridView.Appearance.FocusedRow.BackColor = Color.GhostWhite;
+            gridView.Appearance.FocusedRow.Font = new Font("Arial", 11F, FontStyle.Bold);
+            gridView.Appearance.FocusedRow.ForeColor = Color.Black;
+            gridView.Appearance.FocusedRow.Options.UseForeColor = true;
+            gridView.Appearance.FocusedRow.Options.UseFont = true;
+
+            gridView.Appearance.FooterPanel.Font = new Font("Arial", 14F, FontStyle.Bold);
+            gridView.Appearance.FooterPanel.Options.UseFont = true;
+            gridView.Appearance.HeaderPanel.Font = new Font("Arial", 10F, FontStyle.Bold);
+            gridView.Appearance.HeaderPanel.Options.UseFont = true;
+
+            gridView.Appearance.Row.Font = new Font("Arial", 10F, FontStyle.Bold);
+            gridView.Appearance.Row.Options.UseFont = true;
+
+            gridView.RowStyle += GridView_RowStyle;
+        }
+
+        private static void GridView_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (view.IsRowSelected(e.RowHandle) || view.FocusedRowHandle == e.RowHandle)
+            {
+                e.Appearance.BackColor = Color.GhostWhite;
+                e.Appearance.Font = new Font("Arial", 11F, FontStyle.Bold);
+                e.Appearance.ForeColor = Color.Black;
+                e.Appearance.Options.UseForeColor = true;
+                e.Appearance.Options.UseFont = true;
+                e.HighPriority = true;                
+            }
         }
     }
     

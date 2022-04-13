@@ -8,25 +8,12 @@ namespace NSRetailPOS.UI
         public frmStockInList()
         {
             InitializeComponent();
-            this.gvStockInList.Appearance.FocusedCell.BackColor = System.Drawing.Color.White;
-            this.gvStockInList.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvStockInList.Appearance.FocusedCell.Options.UseBackColor = true;
-            this.gvStockInList.Appearance.FocusedCell.Options.UseFont = true;
-            this.gvStockInList.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
-            this.gvStockInList.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvStockInList.Appearance.FocusedRow.Options.UseBackColor = true;
-            this.gvStockInList.Appearance.FocusedRow.Options.UseFont = true;
-            this.gvStockInList.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
-            this.gvStockInList.Appearance.FooterPanel.Options.UseFont = true;
-            this.gvStockInList.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvStockInList.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvStockInList.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvStockInList.Appearance.Row.Options.UseFont = true;
+            Utility.SetGridFormatting(gvStockInList);
         }
 
         private void frmStockIn_Load(object sender, System.EventArgs e)
         {
-            gcStockInList.DataSource = new StockInRepository().GetStockDispatches(Utility.branchinfo.BranchID);
+            gcStockInList.DataSource = new StockInRepository().GetStockDispatches(Utility.branchInfo.BranchID);
         }
 
         private void btnStockIn_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -40,7 +27,7 @@ namespace NSRetailPOS.UI
             stockInDetailForm.ShowDialog();
             if(stockInDetailForm.IsSave)
             {
-                gcStockInList.DataSource = new StockInRepository().GetStockDispatches(Utility.branchinfo.BranchID);
+                gcStockInList.DataSource = new StockInRepository().GetStockDispatches(Utility.branchInfo.BranchID);
             }
         }
     }

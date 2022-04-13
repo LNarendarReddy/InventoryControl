@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -32,36 +33,27 @@ namespace NSRetailPOS
         bool isItemScanned;
         bool isOpenItem = false;
         bool isEventCall = false;
-
+        private const string noOfferText = "Offer : None   ";
+        private const string noDealText = "Deal : None";
 
         public frmMain()
         {
             InitializeComponent();
-            this.gvBilling.Appearance.FocusedCell.BackColor = System.Drawing.Color.SaddleBrown;
-            this.gvBilling.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvBilling.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
-            this.gvBilling.Appearance.FocusedCell.Options.UseBackColor = true;
-            this.gvBilling.Appearance.FocusedCell.Options.UseFont = true;
-            this.gvBilling.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.gvBilling.Appearance.FocusedRow.BackColor = System.Drawing.Color.White;
-            this.gvBilling.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.gvBilling.Appearance.FocusedRow.Options.UseBackColor = true;
-            this.gvBilling.Appearance.FocusedRow.Options.UseFont = true;
-            this.gvBilling.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
-            this.gvBilling.Appearance.FooterPanel.Options.UseFont = true;
-            this.gvBilling.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvBilling.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvBilling.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvBilling.Appearance.Row.Options.UseFont = true;
+            Utility.SetGridFormatting(gvBilling);
+            Utility.SetGridFormatting(sluItemCodeView);
+
+            gvBilling.Columns["OFFERTYPECODE"].AppearanceCell.ForeColor = Color.YellowGreen;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            lblUserinfo.Text = $"Loggedin User : {Utility.logininfo.UserFullName}    Role : {Utility.logininfo.RoleName} ";
+            lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    Role : {Utility.loginInfo.RoleName}    ";
             lblVersionInfo.Text = $"Application Version 1.1.7 (05-04-2022)";
-            btnCRWithoutBill.Enabled = Utility.logininfo.RoleName.ToString() == "Store Manager";
-            DataSet dsInitialData = billingRepository.GetInitialLoad(Utility.logininfo.UserID, Utility.branchinfo.BranchCounterID);
+            btnCRWithoutBill.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager") || Utility.loginInfo.RoleName.Equals("Discount Admin");
+            txtSplDiscPer.Enabled = Utility.loginInfo.RoleName.Equals("Discount Admin");
+            btnApplyDiscount.Enabled = Utility.loginInfo.RoleName.Equals("Discount Admin");
+
+            DataSet dsInitialData = billingRepository.GetInitialLoad(Utility.loginInfo.UserID, Utility.branchInfo.BranchCounterID);
 
             if (!int.TryParse(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString(), out daySequenceID))
             {
@@ -74,8 +66,9 @@ namespace NSRetailPOS
             LoadItemCodes();
             LoadBillData(dsInitialData);
 
-            lblOffer.Text = "Offer : ";
-            lblDeal.Text = "Deal : ";
+            lblOffer.Text = noOfferText;
+            lblDeal.Text = noDealText;
+            HighlightOffer();
 
             bgSyncWorker.WorkerReportsProgress = true;
             bgSyncWorker.DoWork += BgSyncWorker_DoWork;
@@ -98,7 +91,6 @@ namespace NSRetailPOS
             Utility.StartSync(bgSyncWorker);
             Thread.Sleep(30 * 60 * 1000);
             BgSyncWorker_DoWork(sender, e);
-
         }
 
         private void txtQuantity_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -106,7 +98,7 @@ namespace NSRetailPOS
             if (e.KeyCode != Keys.Enter)
                 return;
 
-            if (sluItemCode.EditValue == null || drSelectedPrice == null || 
+            if (sluItemCode.EditValue == null || drSelectedPrice == null ||
                 txtQuantity.EditValue == null || txtQuantity.EditValue.Equals(0))
             {
                 txtItemCode.Focus();
@@ -131,7 +123,7 @@ namespace NSRetailPOS
             DataTable dtPrices = itemRepository.GetMRPList(sluItemCode.EditValue);
             if (dtPrices.Rows.Count > 1)
             {
-                frmMRPSelection mRPSelection = new frmMRPSelection(dtPrices,txtItemCode.EditValue,sluItemCode.Text) 
+                frmMRPSelection mRPSelection = new frmMRPSelection(dtPrices, txtItemCode.EditValue, sluItemCode.Text)
                 { StartPosition = FormStartPosition.CenterScreen };
                 mRPSelection.ShowDialog();
                 if (!mRPSelection._IsSave)
@@ -157,10 +149,13 @@ namespace NSRetailPOS
             lblOffer.Text = Convert.ToString(dtOffers.Rows[0]["OFFERTYPE"]);
             lblDeal.Text = Convert.ToString(dtOffers.Rows[0]["DEALTYPE"]);
 
+            HighlightOffer();
+
             //txtItemName.EditValue = (sluItemCode.GetSelectedDataRow() as DataRowView)?.Row["ITEMNAME"];
             txtMRP.EditValue = drSelectedPrice["MRP"];
             txtSalePrice.EditValue = drSelectedPrice["SALEPRICE"];
             txtQuantity.EditValue = 1;
+            gcBilling.Refresh();
 
             if (chkSingleQuantity.Checked)
             {
@@ -173,7 +168,7 @@ namespace NSRetailPOS
                 txtQuantity.SelectAll();
             }
         }
-        
+
         private void btnCloseBill_Click(object sender, EventArgs e)
         {
             if (billObj.dtBillDetails.Rows.Count == 0)
@@ -181,13 +176,18 @@ namespace NSRetailPOS
                 XtraMessageBox.Show("No items to bill", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            frmPayment paymentForm = new frmPayment(billObj);
+            //frmPayment paymentForm = new frmPayment(billObj);
+            //paymentForm.ShowDialog();
+            //if (!paymentForm.IsPaid) { return; }
+
+            frmPrePayment paymentForm = new frmPrePayment(billObj);
             paymentForm.ShowDialog();
             if (!paymentForm.IsPaid) { return; }
+
             DataSet nextBillDetails = null;
             try
             {
-                nextBillDetails = billingRepository.FinishBill(Utility.logininfo.UserID, daySequenceID, billObj);
+                nextBillDetails = billingRepository.FinishBill(Utility.loginInfo.UserID, daySequenceID, billObj);
             }
             catch (Exception ex)
             {
@@ -202,13 +202,13 @@ namespace NSRetailPOS
             rptBill rpt = new rptBill(oldBillObj.dtBillDetails, dv.ToTable());
             rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
             rpt.Parameters["FSSAI"].Value = "10114004000548";
-            rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
+            rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
             rpt.Parameters["BillDate"].Value = DateTime.Now;
             rpt.Parameters["BillNumber"].Value = oldBillObj.BillNumber;
-            rpt.Parameters["BranchName"].Value = Utility.branchinfo.BranchName;
-            rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
-            rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
-            rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
+            rpt.Parameters["BranchName"].Value = Utility.branchInfo.BranchName;
+            rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
+            rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
+            rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
             rpt.Parameters["RoundingFactor"].Value = oldBillObj.Rounding;
             rpt.Parameters["IsDuplicate"].Value = false;
             rpt.Print();
@@ -221,11 +221,11 @@ namespace NSRetailPOS
             try
             {
                 DataTable dtBillDetails = billingRepository.SaveBillDetail(billObj.BillID
-                    , itemPriceID, quantity, weightInKgs, Utility.logininfo.UserID, billDetailID);
+                    , itemPriceID, quantity, weightInKgs, Utility.loginInfo.UserID, billDetailID);
 
                 UpdateBillDetails(dtBillDetails, itemPriceID);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 XtraMessageBox.Show($"Error while saving bill item : {ex.Message}", "Error");
                 ClearItemData();
@@ -241,8 +241,9 @@ namespace NSRetailPOS
             txtQuantity.EditValue = 1;
             txtWeightInKgs.EditValue = 0.00;
             txtQuantity.ReadOnly = false;
-            lblOffer.Text = "Offer : ";
-            lblDeal.Text = "Deal : ";
+            lblOffer.Text = noOfferText;
+            lblDeal.Text = noDealText;
+            HighlightOffer();
             gvBilling.FocusedColumn = gvBilling.Columns["QUANTITY"];
             if (focusItemCode)
                 txtItemCode.Focus();
@@ -265,13 +266,14 @@ namespace NSRetailPOS
 
             this.Text = $"NSRetail POS - {billObj.BillNumber}";
 
-            txtLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
-            txtLastBilledQuantity.Text = billObj.LastBilledQuantity.ToString();
+            //txtLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
+            //txtLastBilledQuantity.Text = billObj.LastBilledQuantity.ToString();
 
-            txtLastBilledAmount.Text = string.IsNullOrEmpty(txtLastBilledAmount.Text) ? "0.00" : txtLastBilledAmount.Text;
-            txtLastBilledQuantity.Text = string.IsNullOrEmpty(txtLastBilledQuantity.Text) ? "0" : txtLastBilledQuantity.Text;
+            //txtLastBilledAmount.Text = string.IsNullOrEmpty(txtLastBilledAmount.Text) ? "0.00" : txtLastBilledAmount.Text;
+            //txtLastBilledQuantity.Text = string.IsNullOrEmpty(txtLastBilledQuantity.Text) ? "0" : txtLastBilledQuantity.Text;
 
             gcBilling.DataSource = billObj.dtBillDetails;
+            gcBilling.Refresh();
 
             UpdateSummary();
             SNo = billObj.dtBillDetails.Rows.Count + 1;
@@ -292,7 +294,7 @@ namespace NSRetailPOS
             }
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
 
-            if(rowHandle < 0)
+            if (rowHandle < 0)
             {
                 List<int> rowHandles = sluItemCodeView.AllLocateByValue("SKUCODE", txtItemCode.EditValue);
                 if (rowHandles.Count == 1)
@@ -313,7 +315,7 @@ namespace NSRetailPOS
                 sluItemCode.EditValue = null;
                 sluItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODEID");
             }
-            else if(!isItemScanned)
+            else if (!isItemScanned)
             {
                 XtraMessageBox.Show("Item Does Not Exists!");
                 ClearItemData();
@@ -330,7 +332,7 @@ namespace NSRetailPOS
                 return;
             }
 
-            DataSet nextBillDetails = billingRepository.DraftBill(Utility.logininfo.UserID, daySequenceID, billObj.BillID);
+            DataSet nextBillDetails = billingRepository.DraftBill(Utility.loginInfo.UserID, daySequenceID, billObj.BillID);
             LoadBillData(nextBillDetails);
         }
 
@@ -376,13 +378,13 @@ namespace NSRetailPOS
                 rptBill rpt = new rptBill(LastBillObj.dtBillDetails, LastBillObj.dtMopValues);
                 rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
                 rpt.Parameters["FSSAI"].Value = "10114004000548";
-                rpt.Parameters["Address"].Value = Utility.branchinfo.BranchAddress;
+                rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
                 rpt.Parameters["BillDate"].Value = DateTime.Now;
                 rpt.Parameters["BillNumber"].Value = LastBillObj.BillNumber;
-                rpt.Parameters["BranchName"].Value = Utility.branchinfo.BranchName;
-                rpt.Parameters["CounterName"].Value = Utility.branchinfo.BranchCounterName;
-                rpt.Parameters["Phone"].Value = Utility.branchinfo.PhoneNumber;
-                rpt.Parameters["UserName"].Value = Utility.logininfo.UserFullName;
+                rpt.Parameters["BranchName"].Value = Utility.branchInfo.BranchName;
+                rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
+                rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
+                rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
                 rpt.Parameters["RoundingFactor"].Value = LastBillObj.Rounding;
                 rpt.Parameters["IsDuplicate"].Value = true;
                 rpt.Print();
@@ -428,7 +430,7 @@ namespace NSRetailPOS
                 SNo++;
             }
 
-            DataTable dtBillingDetails = billingRepository.DeleteBillDetail(billDetailID, Utility.logininfo.UserID, dtSNos);
+            DataTable dtBillingDetails = billingRepository.DeleteBillDetail(billDetailID, Utility.loginInfo.UserID, dtSNos);
             gvBilling.DeleteRow(gvBilling.FocusedRowHandle);
             UpdateBillDetails(dtBillingDetails, 0);
             txtItemCode.Focus();
@@ -441,7 +443,7 @@ namespace NSRetailPOS
 
         private void gvBilling_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            if (e.Column.FieldName != "QUANTITY" ||  isEventCall) return;
+            if (e.Column.FieldName != "QUANTITY" || isEventCall) return;
             DataRow drUpdatedBill = gvBilling.GetDataRow(e.RowHandle);
             SaveBillDetail(drUpdatedBill["ITEMPRICEID"], drUpdatedBill["QUANTITY"], drUpdatedBill["WEIGHTINKGS"], drUpdatedBill["BILLDETAILID"]);
             txtItemCode.Focus();
@@ -449,7 +451,7 @@ namespace NSRetailPOS
 
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
-            switch(e.KeyCode)
+            switch (e.KeyCode)
             {
                 case Keys.F1:
                     btnCloseBill_Click(sender, e);
@@ -458,12 +460,13 @@ namespace NSRetailPOS
                     gvBilling.Focus();
                     gvBilling.FocusedRowHandle = 0;
                     gvBilling.FocusedColumn = gvBilling.Columns["QUANTITY"];
+                    gvBilling.ShowEditor();
                     break;
                 case Keys.F3:
                     sluItemCode.Focus();
                     break;
                 case Keys.F4:
-                    btnSyncData_Click(sender,e);
+                    btnSyncData_Click(sender, e);
                     break;
                 case Keys.F5:
                     btnSaveBill_Click(sender, e);
@@ -502,13 +505,13 @@ namespace NSRetailPOS
             obj.ShowInTaskbar = false;
             obj.IconOptions.ShowIcon = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
-            obj.ShowDialog();            
+            obj.ShowDialog();
         }
 
         private void btnBranchRefund_Click(object sender, EventArgs e)
         {
             frmBranchRefund obj = new frmBranchRefund()
-            { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen};
+            { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
             obj.ShowDialog();
         }
 
@@ -519,14 +522,14 @@ namespace NSRetailPOS
                 frmDayClosure obj = new frmDayClosure(daySequenceID)
                 { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
                 obj.ShowDialog();
-                if(obj.DayClosed)
+                if (obj.DayClosed)
                 {
                     DisableBilling();
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message,"Error");
+                XtraMessageBox.Show(ex.Message, "Error");
             }
         }
 
@@ -638,7 +641,7 @@ namespace NSRetailPOS
 
         private void LoadItemCodes()
         {
-            if(InvokeRequired)
+            if (InvokeRequired)
             {
                 BeginInvoke((Action)LoadItemCodes);
                 return;
@@ -650,6 +653,56 @@ namespace NSRetailPOS
 
             sluItemCodeView.GridControl.BindingContext = new BindingContext();
             sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
+        }
+
+        private void gvBilling_CustomDrawFooter(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e)
+        {
+            if (billObj == null) return;
+
+            StringFormat stringFormat = new StringFormat();
+            stringFormat.Alignment = StringAlignment.Near;
+            stringFormat.LineAlignment = StringAlignment.Center;
+            var rect = e.Bounds;
+            rect.X += 10;
+            e.DefaultDraw();
+            string message = "Last Billed Amount : " + (string.IsNullOrEmpty(billObj.LastBilledAmount?.ToString()) ? "0.00" : billObj.LastBilledAmount.ToString());
+            message += "  Last Billed Quantity : " + (string.IsNullOrEmpty(billObj.LastBilledQuantity?.ToString()) ? "0" : billObj.LastBilledQuantity.ToString());
+            e.Cache.DrawString(message, e.Appearance.GetFont(), e.Appearance.GetForeBrush(e.Cache), rect, stringFormat);
+            e.Handled = true;
+        }
+
+        private void btnApplyDiscount_Click(object sender, EventArgs e)
+        {
+            if (txtSplDiscPer.EditValue == null) return;
+
+            DataTable dtBillDetails = billingRepository.ApplySpecialDiscount(txtSplDiscPer.EditValue, billObj.BillID, Utility.loginInfo.UserID);
+
+            UpdateBillDetails(dtBillDetails, 0);
+        }
+
+        private void HighlightOffer()
+        {
+            if (lblOffer.Text.Trim().Equals(noOfferText.Trim()))
+            {
+                lblOffer.Appearance.Font = new Font("Tahoma", 9.5F, FontStyle.Regular);
+                lblOffer.Appearance.ForeColor = Color.WhiteSmoke;
+            }
+            else
+            {
+                lblOffer.Appearance.Font = new Font("Arial", 11F, FontStyle.Bold);
+                lblOffer.Appearance.ForeColor = Color.YellowGreen;
+            }
+
+            if (lblDeal.Text.Trim().Equals(noDealText.Trim()))
+            {
+                lblDeal.Appearance.Font = new Font("Tahoma", 9.5F, FontStyle.Regular);
+                lblDeal.Appearance.ForeColor = Color.WhiteSmoke;
+            }
+            else
+            {
+                lblDeal.Appearance.Font = new Font("Arial", 11F, FontStyle.Bold);
+                lblDeal.Appearance.ForeColor = Color.YellowGreen;
+            }
         }
     }
 }
