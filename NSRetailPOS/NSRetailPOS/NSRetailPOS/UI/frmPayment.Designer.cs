@@ -43,6 +43,7 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtPaymentValue = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.txtCustomerName = new DevExpress.XtraEditors.TextEdit();
             this.txtMobileNo = new DevExpress.XtraEditors.TextEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -70,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtItemQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcMOP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMOP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPaymentValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCustomerName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobileNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
@@ -224,6 +226,8 @@
             this.gcMOP.Location = new System.Drawing.Point(4, 227);
             this.gcMOP.MainView = this.gvMOP;
             this.gcMOP.Name = "gcMOP";
+            this.gcMOP.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.txtPaymentValue});
             this.gcMOP.Size = new System.Drawing.Size(1063, 350);
             this.gcMOP.TabIndex = 8;
             this.gcMOP.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -266,12 +270,24 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Paid Amount";
+            this.gridColumn3.ColumnEdit = this.txtPaymentValue;
             this.gridColumn3.FieldName = "MOPVALUE";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MOPVALUE", "{0:0.##}")});
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
+            // 
+            // txtPaymentValue
+            // 
+            this.txtPaymentValue.AutoHeight = false;
+            this.txtPaymentValue.DisplayFormat.FormatString = "n2";
+            this.txtPaymentValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtPaymentValue.EditFormat.FormatString = "n2";
+            this.txtPaymentValue.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtPaymentValue.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtPaymentValue.MaskSettings.Set("mask", "n2");
+            this.txtPaymentValue.Name = "txtPaymentValue";
             // 
             // txtCustomerName
             // 
@@ -489,6 +505,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtItemQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcMOP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMOP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPaymentValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCustomerName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobileNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
@@ -543,5 +560,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.CheckEdit chkIsDoorDelivery;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtPaymentValue;
     }
 }

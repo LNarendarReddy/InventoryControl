@@ -142,7 +142,6 @@ namespace NSRetailPOS.UI
                 gvMOP.FocusedRowHandle = cashRowHandle;
                 gvMOP.Focus();
                 gvMOP.ShowEditor();
-                //gvMOP.RefreshRowCell(cashRowHandle, gvMOP.Columns["MOPVALUE"]);
             }
 
         }
