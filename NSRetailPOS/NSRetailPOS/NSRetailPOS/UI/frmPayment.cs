@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
@@ -111,10 +112,10 @@ namespace NSRetailPOS.UI
 
             foreach (DataRow drMOP in dtMOPs.Rows)
             {
-                rgPaymentOptions.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem() { Description = drMOP["MOPNAME"].ToString() });
+                rgPaymentOptions.Properties.Items.Add(new RadioGroupItem() { Description = drMOP["MOPNAME"].ToString() });
             }
 
-            rgPaymentOptions.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem() { Description = "Multiple" });
+            rgPaymentOptions.Properties.Items.Add(new RadioGroupItem() { Description = "Multiple" });
             rgPaymentOptions.Properties.Items.ToList().ForEach(x => x.Value = x.Description);
 
             txtCustomerName.EditValue = billObj.CustomerName;

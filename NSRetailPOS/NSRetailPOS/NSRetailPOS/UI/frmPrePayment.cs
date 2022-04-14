@@ -39,6 +39,7 @@ namespace NSRetailPOS.UI
             txtBilledAmt.EditValue = billObj.Amount;
 
             rgSaleType.EditValue = false;
+            rgPaymentModes.EditValue = "CASH";
         }
 
         private void btnApply_Click(object sender, EventArgs e)
