@@ -85,10 +85,19 @@ namespace NSRetailPOS.UI
 
         private void gvMOP_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode != Keys.Enter)
             {
-                gvMOP.MoveNext();
+                return;
             }
+
+            //if (gvMOP.FocusedRowHandle == gvMOP.DataRowCount - 1)
+            //{
+            //    gvMOP.CloseEditor();
+            //    btnOk.Focus();
+            //    return;
+            //}
+
+            gvMOP.MoveNext();
         }
 
         private void gvMOP_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)

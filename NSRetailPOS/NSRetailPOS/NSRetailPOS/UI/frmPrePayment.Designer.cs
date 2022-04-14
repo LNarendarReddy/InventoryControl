@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrePayment));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnApply = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -70,6 +70,10 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 12F);
+            this.layoutControl1.Appearance.Control.Options.UseFont = true;
+            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 12F);
+            this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
             this.layoutControl1.Controls.Add(this.btnApply);
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.rgPaymentModes);
@@ -81,7 +85,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(444, 319);
+            this.layoutControl1.Size = new System.Drawing.Size(482, 346);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -89,9 +93,9 @@
             // 
             this.btnApply.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnApply.ImageOptions.Image")));
             this.btnApply.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnApply.Location = new System.Drawing.Point(218, 282);
+            this.btnApply.Location = new System.Drawing.Point(236, 308);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(106, 22);
+            this.btnApply.Size = new System.Drawing.Size(116, 23);
             this.btnApply.StyleController = this.layoutControl1;
             this.btnApply.TabIndex = 5;
             this.btnApply.Text = "Apply";
@@ -102,9 +106,9 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(334, 282);
+            this.btnCancel.Location = new System.Drawing.Point(362, 308);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(95, 22);
+            this.btnCancel.Size = new System.Drawing.Size(105, 23);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
@@ -112,59 +116,63 @@
             // rgPaymentModes
             // 
             this.rgPaymentModes.EnterMoveNextControl = true;
-            this.rgPaymentModes.Location = new System.Drawing.Point(117, 165);
+            this.rgPaymentModes.Location = new System.Drawing.Point(136, 181);
             this.rgPaymentModes.Name = "rgPaymentModes";
-            this.rgPaymentModes.Size = new System.Drawing.Size(312, 107);
+            this.rgPaymentModes.Size = new System.Drawing.Size(331, 117);
             this.rgPaymentModes.StyleController = this.layoutControl1;
             this.rgPaymentModes.TabIndex = 4;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Select mode of payment";
-            this.dxValidationProvider1.SetValidationRule(this.rgPaymentModes, conditionValidationRule1);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Select mode of payment";
+            this.dxValidationProvider1.SetValidationRule(this.rgPaymentModes, conditionValidationRule2);
             // 
             // txtBilledAmt
             // 
             this.txtBilledAmt.Enabled = false;
             this.txtBilledAmt.EnterMoveNextControl = true;
-            this.txtBilledAmt.Location = new System.Drawing.Point(117, 125);
+            this.txtBilledAmt.Location = new System.Drawing.Point(136, 138);
             this.txtBilledAmt.Name = "txtBilledAmt";
             this.txtBilledAmt.Properties.Appearance.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBilledAmt.Properties.Appearance.Options.UseFont = true;
-            this.txtBilledAmt.Size = new System.Drawing.Size(312, 30);
+            this.txtBilledAmt.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.txtBilledAmt.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.txtBilledAmt.Size = new System.Drawing.Size(331, 30);
             this.txtBilledAmt.StyleController = this.layoutControl1;
             this.txtBilledAmt.TabIndex = 3;
             // 
             // txtCustomerPhone
             // 
             this.txtCustomerPhone.EnterMoveNextControl = true;
-            this.txtCustomerPhone.Location = new System.Drawing.Point(117, 95);
+            this.txtCustomerPhone.Location = new System.Drawing.Point(136, 104);
             this.txtCustomerPhone.Name = "txtCustomerPhone";
-            this.txtCustomerPhone.Size = new System.Drawing.Size(312, 20);
+            this.txtCustomerPhone.Size = new System.Drawing.Size(331, 24);
             this.txtCustomerPhone.StyleController = this.layoutControl1;
             this.txtCustomerPhone.TabIndex = 2;
             // 
             // txtCustomerName
             // 
             this.txtCustomerName.EnterMoveNextControl = true;
-            this.txtCustomerName.Location = new System.Drawing.Point(117, 65);
+            this.txtCustomerName.Location = new System.Drawing.Point(136, 70);
             this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.Size = new System.Drawing.Size(312, 20);
+            this.txtCustomerName.Size = new System.Drawing.Size(331, 24);
             this.txtCustomerName.StyleController = this.layoutControl1;
             this.txtCustomerName.TabIndex = 1;
             // 
             // rgSaleType
             // 
             this.rgSaleType.EnterMoveNextControl = true;
-            this.rgSaleType.Location = new System.Drawing.Point(117, 15);
+            this.rgSaleType.Location = new System.Drawing.Point(136, 15);
             this.rgSaleType.Name = "rgSaleType";
             this.rgSaleType.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(false, "Walk-In"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(true, "Door Delivery")});
-            this.rgSaleType.Size = new System.Drawing.Size(312, 40);
+            this.rgSaleType.Size = new System.Drawing.Size(331, 45);
             this.rgSaleType.StyleController = this.layoutControl1;
             this.rgSaleType.TabIndex = 0;
             // 
             // Root
             // 
+            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 10F);
+            this.Root.AppearanceItemCaption.Options.UseFont = true;
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -177,7 +185,7 @@
             this.layoutControlItem7,
             this.layoutControlItem8});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(444, 319);
+            this.Root.Size = new System.Drawing.Size(482, 346);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -187,78 +195,78 @@
             this.layoutControlItem1.MinSize = new System.Drawing.Size(159, 17);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem1.Size = new System.Drawing.Size(424, 50);
+            this.layoutControlItem1.Size = new System.Drawing.Size(462, 55);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.Text = "Sale type";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(90, 13);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(109, 16);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtCustomerName;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 50);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 55);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem2.Size = new System.Drawing.Size(424, 30);
+            this.layoutControlItem2.Size = new System.Drawing.Size(462, 34);
             this.layoutControlItem2.Text = "Customer Name";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(90, 13);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(109, 16);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.txtCustomerPhone;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 80);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 89);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem3.Size = new System.Drawing.Size(424, 30);
+            this.layoutControlItem3.Size = new System.Drawing.Size(462, 34);
             this.layoutControlItem3.Text = "Customer Mobile #";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(90, 13);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(109, 16);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 267);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 293);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(203, 32);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(221, 33);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.txtBilledAmt;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 110);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 123);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(162, 40);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem5.Size = new System.Drawing.Size(424, 40);
+            this.layoutControlItem5.Size = new System.Drawing.Size(462, 43);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.Text = "Billed Amount";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(90, 13);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(109, 16);
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.rgPaymentModes;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 150);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 166);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem6.Size = new System.Drawing.Size(424, 117);
+            this.layoutControlItem6.Size = new System.Drawing.Size(462, 127);
             this.layoutControlItem6.Text = "Payment Mode";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(90, 13);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(109, 16);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnCancel;
-            this.layoutControlItem7.Location = new System.Drawing.Point(319, 267);
+            this.layoutControlItem7.Location = new System.Drawing.Point(347, 293);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem7.Size = new System.Drawing.Size(105, 32);
+            this.layoutControlItem7.Size = new System.Drawing.Size(115, 33);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnApply;
-            this.layoutControlItem8.Location = new System.Drawing.Point(203, 267);
+            this.layoutControlItem8.Location = new System.Drawing.Point(221, 293);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem8.Size = new System.Drawing.Size(116, 32);
+            this.layoutControlItem8.Size = new System.Drawing.Size(126, 33);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
@@ -267,7 +275,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(444, 319);
+            this.ClientSize = new System.Drawing.Size(482, 346);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmPrePayment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

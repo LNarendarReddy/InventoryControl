@@ -131,10 +131,10 @@
             // 
             this.chkIsDoorDelivery.Enabled = false;
             this.chkIsDoorDelivery.EnterMoveNextControl = true;
-            this.chkIsDoorDelivery.Location = new System.Drawing.Point(137, 33);
+            this.chkIsDoorDelivery.Location = new System.Drawing.Point(142, 33);
             this.chkIsDoorDelivery.Name = "chkIsDoorDelivery";
             this.chkIsDoorDelivery.Properties.Caption = "";
-            this.chkIsDoorDelivery.Size = new System.Drawing.Size(35, 18);
+            this.chkIsDoorDelivery.Size = new System.Drawing.Size(30, 18);
             this.chkIsDoorDelivery.StyleController = this.layoutControl1;
             this.chkIsDoorDelivery.TabIndex = 0;
             // 
@@ -142,54 +142,54 @@
             // 
             this.rgPaymentOptions.Enabled = false;
             this.rgPaymentOptions.EnterMoveNextControl = true;
-            this.rgPaymentOptions.Location = new System.Drawing.Point(132, 185);
+            this.rgPaymentOptions.Location = new System.Drawing.Point(137, 185);
             this.rgPaymentOptions.MaximumSize = new System.Drawing.Size(0, 35);
             this.rgPaymentOptions.Name = "rgPaymentOptions";
-            this.rgPaymentOptions.Size = new System.Drawing.Size(766, 35);
+            this.rgPaymentOptions.Size = new System.Drawing.Size(761, 35);
             this.rgPaymentOptions.StyleController = this.layoutControl1;
             this.rgPaymentOptions.TabIndex = 7;
             // 
             // txtRemainingAmount
             // 
             this.txtRemainingAmount.Enabled = false;
-            this.txtRemainingAmount.Location = new System.Drawing.Point(665, 140);
+            this.txtRemainingAmount.Location = new System.Drawing.Point(670, 140);
             this.txtRemainingAmount.Name = "txtRemainingAmount";
             this.txtRemainingAmount.Properties.Appearance.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRemainingAmount.Properties.Appearance.Options.UseFont = true;
-            this.txtRemainingAmount.Size = new System.Drawing.Size(394, 30);
+            this.txtRemainingAmount.Size = new System.Drawing.Size(389, 30);
             this.txtRemainingAmount.StyleController = this.layoutControl1;
             this.txtRemainingAmount.TabIndex = 6;
             // 
             // txtPaidAmount
             // 
             this.txtPaidAmount.Enabled = false;
-            this.txtPaidAmount.Location = new System.Drawing.Point(137, 140);
+            this.txtPaidAmount.Location = new System.Drawing.Point(142, 140);
             this.txtPaidAmount.Name = "txtPaidAmount";
             this.txtPaidAmount.Properties.Appearance.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaidAmount.Properties.Appearance.Options.UseFont = true;
-            this.txtPaidAmount.Size = new System.Drawing.Size(393, 30);
+            this.txtPaidAmount.Size = new System.Drawing.Size(388, 30);
             this.txtPaidAmount.StyleController = this.layoutControl1;
             this.txtPaidAmount.TabIndex = 5;
             // 
             // txtBilledAmount
             // 
             this.txtBilledAmount.Enabled = false;
-            this.txtBilledAmount.Location = new System.Drawing.Point(665, 100);
+            this.txtBilledAmount.Location = new System.Drawing.Point(670, 100);
             this.txtBilledAmount.Name = "txtBilledAmount";
             this.txtBilledAmount.Properties.Appearance.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBilledAmount.Properties.Appearance.Options.UseFont = true;
-            this.txtBilledAmount.Size = new System.Drawing.Size(394, 30);
+            this.txtBilledAmount.Size = new System.Drawing.Size(389, 30);
             this.txtBilledAmount.StyleController = this.layoutControl1;
             this.txtBilledAmount.TabIndex = 4;
             // 
             // txtItemQuantity
             // 
             this.txtItemQuantity.Enabled = false;
-            this.txtItemQuantity.Location = new System.Drawing.Point(137, 100);
+            this.txtItemQuantity.Location = new System.Drawing.Point(142, 100);
             this.txtItemQuantity.Name = "txtItemQuantity";
             this.txtItemQuantity.Properties.Appearance.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtItemQuantity.Properties.Appearance.Options.UseFont = true;
-            this.txtItemQuantity.Size = new System.Drawing.Size(393, 30);
+            this.txtItemQuantity.Size = new System.Drawing.Size(388, 30);
             this.txtItemQuantity.StyleController = this.layoutControl1;
             this.txtItemQuantity.TabIndex = 3;
             // 
@@ -235,9 +235,9 @@
             // 
             // gvMOP
             // 
-            this.gvMOP.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.gvMOP.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.gvMOP.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvMOP.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F);
+            this.gvMOP.Appearance.Row.Font = new System.Drawing.Font("Arial", 10F);
             this.gvMOP.Appearance.Row.Options.UseFont = true;
             this.gvMOP.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
@@ -293,9 +293,9 @@
             // 
             this.txtCustomerName.Enabled = false;
             this.txtCustomerName.EnterMoveNextControl = true;
-            this.txtCustomerName.Location = new System.Drawing.Point(664, 33);
+            this.txtCustomerName.Location = new System.Drawing.Point(669, 33);
             this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.Size = new System.Drawing.Size(395, 26);
+            this.txtCustomerName.Size = new System.Drawing.Size(390, 26);
             this.txtCustomerName.StyleController = this.layoutControl1;
             this.txtCustomerName.TabIndex = 2;
             // 
@@ -303,9 +303,9 @@
             // 
             this.txtMobileNo.Enabled = false;
             this.txtMobileNo.EnterMoveNextControl = true;
-            this.txtMobileNo.Location = new System.Drawing.Point(307, 33);
+            this.txtMobileNo.Location = new System.Drawing.Point(312, 33);
             this.txtMobileNo.Name = "txtMobileNo";
-            this.txtMobileNo.Size = new System.Drawing.Size(222, 26);
+            this.txtMobileNo.Size = new System.Drawing.Size(217, 26);
             this.txtMobileNo.StyleController = this.layoutControl1;
             this.txtMobileNo.TabIndex = 1;
             // 
@@ -313,7 +313,7 @@
             // 
             this.Root.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.Root.AppearanceGroup.Options.UseFont = true;
-            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9F);
+            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 10F);
             this.Root.AppearanceItemCaption.Options.UseFont = true;
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
@@ -394,7 +394,7 @@
             this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem12.Size = new System.Drawing.Size(528, 40);
             this.layoutControlItem12.Text = "Item Quantity";
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(113, 15);
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(118, 16);
             // 
             // layoutControlItem13
             // 
@@ -404,7 +404,7 @@
             this.layoutControlItem13.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem13.Size = new System.Drawing.Size(529, 40);
             this.layoutControlItem13.Text = "Bill Amount";
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(113, 15);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(118, 16);
             // 
             // layoutControlItem3
             // 
@@ -414,7 +414,7 @@
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem3.Size = new System.Drawing.Size(528, 40);
             this.layoutControlItem3.Text = "Paid Amount";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(113, 15);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(118, 16);
             // 
             // layoutControlItem4
             // 
@@ -424,7 +424,7 @@
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem4.Size = new System.Drawing.Size(529, 40);
             this.layoutControlItem4.Text = "Remaining Amount";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(113, 15);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(118, 16);
             // 
             // layoutControlGroup2
             // 
@@ -446,7 +446,7 @@
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem1.Size = new System.Drawing.Size(357, 36);
             this.layoutControlItem1.Text = "Customer Mobile No";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(113, 15);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(118, 16);
             // 
             // layoutControlItem2
             // 
@@ -456,7 +456,7 @@
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem2.Size = new System.Drawing.Size(530, 36);
             this.layoutControlItem2.Text = "Customer Name";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(113, 15);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(118, 16);
             // 
             // layoutControlItem11
             // 
@@ -466,7 +466,7 @@
             this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem11.Size = new System.Drawing.Size(170, 36);
             this.layoutControlItem11.Text = "Door Delivery";
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(113, 15);
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(118, 16);
             // 
             // layoutControlItem5
             // 
@@ -479,7 +479,7 @@
             this.layoutControlItem5.Size = new System.Drawing.Size(1067, 45);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.Text = "Payment selection";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(113, 15);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(118, 16);
             // 
             // frmPayment
             // 
