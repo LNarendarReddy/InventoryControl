@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrePayment));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnApply = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -121,9 +121,9 @@
             this.rgPaymentModes.Size = new System.Drawing.Size(331, 117);
             this.rgPaymentModes.StyleController = this.layoutControl1;
             this.rgPaymentModes.TabIndex = 4;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Select mode of payment";
-            this.dxValidationProvider1.SetValidationRule(this.rgPaymentModes, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Select mode of payment";
+            this.dxValidationProvider1.SetValidationRule(this.rgPaymentModes, conditionValidationRule1);
             // 
             // txtBilledAmt
             // 
@@ -144,6 +144,13 @@
             this.txtCustomerPhone.EnterMoveNextControl = true;
             this.txtCustomerPhone.Location = new System.Drawing.Point(136, 104);
             this.txtCustomerPhone.Name = "txtCustomerPhone";
+            this.txtCustomerPhone.Properties.DisplayFormat.FormatString = "d";
+            this.txtCustomerPhone.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtCustomerPhone.Properties.EditFormat.FormatString = "d";
+            this.txtCustomerPhone.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtCustomerPhone.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtCustomerPhone.Properties.MaskSettings.Set("mask", "d");
+            this.txtCustomerPhone.Properties.MaxLength = 10;
             this.txtCustomerPhone.Size = new System.Drawing.Size(331, 24);
             this.txtCustomerPhone.StyleController = this.layoutControl1;
             this.txtCustomerPhone.TabIndex = 2;
