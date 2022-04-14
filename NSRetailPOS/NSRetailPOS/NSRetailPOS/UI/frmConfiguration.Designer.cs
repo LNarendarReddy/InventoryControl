@@ -342,6 +342,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(597, 321);
             this.Controls.Add(this.layoutControl1);
+            this.IconOptions.ShowIcon = false;
             this.Name = "frmConfiguration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "POS Configuration";

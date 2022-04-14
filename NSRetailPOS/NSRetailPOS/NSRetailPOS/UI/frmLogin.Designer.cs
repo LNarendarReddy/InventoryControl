@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::NSRetailPOS.UI.frmSplashScreen), true, true, true);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.lblCounter = new DevExpress.XtraEditors.LabelControl();
             this.lblBranch = new DevExpress.XtraEditors.LabelControl();
@@ -105,7 +105,9 @@
             // lblCounter
             // 
             this.lblCounter.Appearance.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            this.lblCounter.Appearance.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Question;
             this.lblCounter.Appearance.Options.UseFont = true;
+            this.lblCounter.Appearance.Options.UseForeColor = true;
             this.lblCounter.Location = new System.Drawing.Point(214, 115);
             this.lblCounter.Name = "lblCounter";
             this.lblCounter.Size = new System.Drawing.Size(124, 22);
@@ -116,7 +118,9 @@
             // lblBranch
             // 
             this.lblBranch.Appearance.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            this.lblBranch.Appearance.ForeColor = System.Drawing.Color.YellowGreen;
             this.lblBranch.Appearance.Options.UseFont = true;
+            this.lblBranch.Appearance.Options.UseForeColor = true;
             this.lblBranch.Location = new System.Drawing.Point(214, 77);
             this.lblBranch.Name = "lblBranch";
             this.lblBranch.Size = new System.Drawing.Size(124, 22);
@@ -170,10 +174,10 @@
             this.txtPassword.Size = new System.Drawing.Size(399, 22);
             this.txtPassword.StyleController = this.layoutControl1;
             this.txtPassword.TabIndex = 1;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtPassword, conditionValidationRule1);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Mandatory";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtPassword, conditionValidationRule3);
             // 
             // txtUserName
             // 
@@ -183,10 +187,10 @@
             this.txtUserName.Size = new System.Drawing.Size(399, 22);
             this.txtUserName.StyleController = this.layoutControl1;
             this.txtUserName.TabIndex = 0;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtUserName, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtUserName, conditionValidationRule1);
             // 
             // Root
             // 

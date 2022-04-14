@@ -48,7 +48,7 @@ namespace NSRetailPOS
         private void Form1_Load(object sender, EventArgs e)
         {
             lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    Role : {Utility.loginInfo.RoleName}    ";
-            lblVersionInfo.Text = $"Application Version 1.1.7 (05-04-2022)";
+            lblVersionInfo.Text = $"Application Version 1.1.8 (14-04-2022)";
             btnCRWithoutBill.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager") || Utility.loginInfo.RoleName.Equals("Discount Admin");
             txtSplDiscPer.Enabled = Utility.loginInfo.RoleName.Equals("Discount Admin");
             btnApplyDiscount.Enabled = Utility.loginInfo.RoleName.Equals("Discount Admin");

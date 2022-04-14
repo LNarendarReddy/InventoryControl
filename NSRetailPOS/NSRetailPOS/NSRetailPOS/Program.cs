@@ -25,6 +25,12 @@ namespace NSRetailPOS
             //SkinManager.Default.RegisterAssembly(asm);
             //SplashScreenManager.RegisterUserSkins(typeof(NSRetailPOSSkinDARK).Assembly);
             //UserLookAndFeel.Default.SetSkinStyle("NSRetailPOSSkinDARK");
+
+            Assembly asm = typeof(NSRetailPOSBlack).Assembly;
+            SkinManager.Default.RegisterAssembly(asm);
+            SplashScreenManager.RegisterUserSkins(typeof(NSRetailPOSBlack).Assembly);
+            UserLookAndFeel.Default.SetSkinStyle("NSRetailPOSBlack");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             SkinManager.EnableFormSkins();
@@ -48,7 +54,7 @@ namespace NSRetailPOS
     {
         public SkinRegistration()
         {
-            SkinManager.Default.RegisterAssembly(typeof(NSRetailPOSSkinDARK).Assembly);
+            SkinManager.Default.RegisterAssembly(typeof(NSRetailPOSBlack).Assembly);
         }
     }
 }
