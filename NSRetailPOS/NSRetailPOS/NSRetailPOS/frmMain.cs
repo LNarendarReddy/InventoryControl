@@ -205,6 +205,11 @@ namespace NSRetailPOS
             rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
             rpt.Parameters["BillDate"].Value = DateTime.Now;
             rpt.Parameters["BillNumber"].Value = oldBillObj.BillNumber;
+            rpt.Parameters["CustomerName"].Value = oldBillObj.CustomerName;
+            rpt.Parameters["CustomerNumber"].Value = oldBillObj.CustomerNumber;
+            rpt.Parameters["TenderedCash"].Value = oldBillObj.TenderedCash;
+            rpt.Parameters["TenderedChange"].Value = oldBillObj.TenderedChange;
+            rpt.Parameters["IsDoorDelivery"].Value = oldBillObj.IsDoorDelivery;
             rpt.Parameters["BranchName"].Value = Utility.branchInfo.BranchName;
             rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
             rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
@@ -381,6 +386,11 @@ namespace NSRetailPOS
                 rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
                 rpt.Parameters["BillDate"].Value = DateTime.Now;
                 rpt.Parameters["BillNumber"].Value = LastBillObj.BillNumber;
+                rpt.Parameters["CustomerName"].Value = LastBillObj.CustomerName;
+                rpt.Parameters["CustomerNumber"].Value = LastBillObj.CustomerNumber;
+                rpt.Parameters["TenderedCash"].Value = LastBillObj.TenderedCash;
+                rpt.Parameters["TenderedChange"].Value = LastBillObj.TenderedChange;
+                rpt.Parameters["IsDoorDelivery"].Value = LastBillObj.IsDoorDelivery;
                 rpt.Parameters["BranchName"].Value = Utility.branchInfo.BranchName;
                 rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
                 rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;

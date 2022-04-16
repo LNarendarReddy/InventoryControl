@@ -34,6 +34,11 @@ namespace NSRetailPOS
             billObj.LastBilledQuantity = dsBillDetails.Tables["BILL"].Rows[0]["LASTBILLEDQUANTITY"];
             billObj.Rounding = dsBillDetails.Tables["BILL"].Rows[0]["ROUNDING"];
             billObj.LastBillID = dsBillDetails.Tables["BILL"].Rows[0]["LASTBILLID"];
+            billObj.CustomerName = dsBillDetails.Tables["BILL"].Rows[0]["CUSTOMERNAME"];
+            billObj.CustomerNumber = dsBillDetails.Tables["BILL"].Rows[0]["CUSTOMERNUMBER"];
+            billObj.TenderedCash = dsBillDetails.Tables["BILL"].Rows[0]["TENDEREDCASH"];
+            billObj.TenderedChange = dsBillDetails.Tables["BILL"].Rows[0]["TENDEREDCHANGE"];
+            billObj.IsDoorDelivery = dsBillDetails.Tables["BILL"].Rows[0]["ISDOORDELIVERY"];
             billObj.dtBillDetails = dsBillDetails.Tables["BILLDETAILS"];
             if (dsBillDetails.Tables.Count > 2)
                 billObj.dtMopValues = dsBillDetails.Tables["MOPDETAILS"];
