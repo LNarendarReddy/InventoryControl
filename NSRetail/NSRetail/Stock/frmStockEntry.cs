@@ -420,6 +420,7 @@ namespace NSRetail.Stock
                     ObjStockEntry.dtStockEntry.Columns.Add("CESS", typeof(decimal));
                     ObjStockEntry.dtStockEntry.Columns.Add("GSTID", typeof(int));
                     gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
+                    ObjStockEntry.STOCKENTRYID = 0;
                     cmbSupplier.Enabled = true;
                     txtInvoiceNumber.Enabled = true;
                     dtpInvoice.Enabled = true;

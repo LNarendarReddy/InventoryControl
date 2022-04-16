@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockSummary));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
             this.gcStockSummary = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -61,7 +62,6 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -111,6 +111,18 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnViewReport
+            // 
+            this.btnViewReport.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnViewReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnViewReport.ImageOptions.SvgImage")));
+            this.btnViewReport.Location = new System.Drawing.Point(919, 17);
+            this.btnViewReport.Name = "btnViewReport";
+            this.btnViewReport.Size = new System.Drawing.Size(139, 36);
+            this.btnViewReport.StyleController = this.layoutControl1;
+            this.btnViewReport.TabIndex = 9;
+            this.btnViewReport.Text = "View Report";
+            this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
+            // 
             // gcStockSummary
             // 
             this.gcStockSummary.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
@@ -146,7 +158,6 @@
             this.gridView1.GridControl = this.gcStockSummary;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
             // 
             // gridColumn1
             // 
@@ -459,18 +470,6 @@
             this.layoutControlItem2.Text = "Item";
             this.layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(35, 14);
-            // 
-            // btnViewReport
-            // 
-            this.btnViewReport.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnViewReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnViewReport.ImageOptions.SvgImage")));
-            this.btnViewReport.Location = new System.Drawing.Point(919, 17);
-            this.btnViewReport.Name = "btnViewReport";
-            this.btnViewReport.Size = new System.Drawing.Size(139, 36);
-            this.btnViewReport.StyleController = this.layoutControl1;
-            this.btnViewReport.TabIndex = 9;
-            this.btnViewReport.Text = "View Report";
-            this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
             // 
             // layoutControlItem6
             // 

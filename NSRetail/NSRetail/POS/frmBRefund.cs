@@ -21,6 +21,8 @@ namespace NSRetail
 
         private void frmBRefundList_Load(object sender, EventArgs e)
         {
+            dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
+            dtpToDate.EditValue = DateTime.Now;
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
@@ -30,7 +32,8 @@ namespace NSRetail
         {
             if (cmbBranch.EditValue == null)
                 return;
-            gcBRefund.DataSource = new POSRepository().GetBRefund(cmbBranch.EditValue);
+            gcBRefund.DataSource = new POSRepository().GetBRefund(cmbBranch.EditValue,
+                dtpFromDate.EditValue,dtpToDate.DateTime.AddDays(1));
         }
 
         private void btnView_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -50,6 +53,11 @@ namespace NSRetail
                 gvBRefund.SetRowCellValue(gvBRefund.FocusedRowHandle, "IsAccepted", true);
                 gvBRefund.SetRowCellValue(gvBRefund.FocusedRowHandle, "STATUS", "Accepted");
             }
+        }
+
+        private void btnViewReport_Click(object sender, EventArgs e)
+        {
+            gcBRefund.ShowRibbonPrintPreview();
         }
     }
 }

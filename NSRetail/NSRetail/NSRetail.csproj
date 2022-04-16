@@ -66,6 +66,9 @@
     <Reference Include="DevExpress.XtraPrinting.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v21.2.Extensions, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="IITSkin">
+      <HintPath>..\..\..\IIT\Skin\IITSkin\IITSkin.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.13\lib\net45\log4net.dll</HintPath>
       <Private>True</Private>
@@ -336,10 +339,10 @@
     <Compile Include="POS\frmDayClosureSummary.Designer.cs">
       <DependentUpon>frmDayClosureSummary.cs</DependentUpon>
     </Compile>
-    <Compile Include="POS\frmItemwiseSales.cs">
+    <Compile Include="ReportForms\frmItemwiseSales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="POS\frmItemwiseSales.Designer.cs">
+    <Compile Include="ReportForms\frmItemwiseSales.Designer.cs">
       <DependentUpon>frmItemwiseSales.cs</DependentUpon>
     </Compile>
     <Compile Include="POS\frmRunningSales.cs">
@@ -348,10 +351,10 @@
     <Compile Include="POS\frmRunningSales.Designer.cs">
       <DependentUpon>frmRunningSales.cs</DependentUpon>
     </Compile>
-    <Compile Include="POS\frmTaxwisesale.cs">
+    <Compile Include="ReportForms\frmTaxwisesale.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="POS\frmTaxwisesale.Designer.cs">
+    <Compile Include="ReportForms\frmTaxwisesale.Designer.cs">
       <DependentUpon>frmTaxwisesale.cs</DependentUpon>
     </Compile>
     <Compile Include="POS\frmViewDCBills.cs">
@@ -366,10 +369,10 @@
     <Compile Include="POS\frmViewDCItems.Designer.cs">
       <DependentUpon>frmViewDCItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="POS\frmZeroStock.cs">
+    <Compile Include="ReportForms\frmZeroStock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="POS\frmZeroStock.Designer.cs">
+    <Compile Include="ReportForms\frmZeroStock.Designer.cs">
       <DependentUpon>frmZeroStock.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -580,13 +583,13 @@
     <EmbeddedResource Include="POS\frmDayClosureSummary.resx">
       <DependentUpon>frmDayClosureSummary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="POS\frmItemwiseSales.resx">
+    <EmbeddedResource Include="ReportForms\frmItemwiseSales.resx">
       <DependentUpon>frmItemwiseSales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POS\frmRunningSales.resx">
       <DependentUpon>frmRunningSales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="POS\frmTaxwisesale.resx">
+    <EmbeddedResource Include="ReportForms\frmTaxwisesale.resx">
       <DependentUpon>frmTaxwisesale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POS\frmViewDCBills.resx">
@@ -595,7 +598,7 @@
     <EmbeddedResource Include="POS\frmViewDCItems.resx">
       <DependentUpon>frmViewDCItems.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="POS\frmZeroStock.resx">
+    <EmbeddedResource Include="ReportForms\frmZeroStock.resx">
       <DependentUpon>frmZeroStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

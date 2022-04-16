@@ -21,7 +21,6 @@ namespace NSRetail.Stock
         public frmInvoiceList()
         {
             InitializeComponent();
-            gcInvoice.DataSource = ObjStockRep.GetInvoiceList();
         }
 
         private void btnView_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -48,7 +47,8 @@ namespace NSRetail.Stock
 
         private void frmInvoiceList_Load(object sender, EventArgs e)
         {
-
+            dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
+            dtpToDate.EditValue = DateTime.Now;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -59,6 +59,12 @@ namespace NSRetail.Stock
         private void btnViewReport_Click(object sender, EventArgs e)
         {
             gvInvoice.ShowRibbonPrintPreview();
+        }
+
+        private void btnShowResult_Click(object sender, EventArgs e)
+        {
+            gcInvoice.DataSource = ObjStockRep.GetInvoiceList(
+                dtpFromDate.EditValue,dtpToDate.DateTime.AddDays(1));
         }
     }
 }

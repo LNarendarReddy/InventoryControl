@@ -6,6 +6,8 @@ using DevExpress.UserSkins;
 using DevExpress.Skins;
 using DevExpress.LookAndFeel;
 using DevExpress.XtraSplashScreen;
+using System.Reflection;
+using System.ComponentModel;
 
 namespace NSRetail
 {
@@ -17,9 +19,11 @@ namespace NSRetail
         [STAThread]
         static void Main()
         {
-
+            //Assembly asm = typeof(DevExpress.UserSkins.IITSkin).Assembly;
+            //DevExpress.Skins.SkinManager.Default.RegisterAssembly(asm);
+            //BonusSkins.Register();
+            //UserLookAndFeel.Default.SetSkinStyle("IITSkin");
             BonusSkins.Register();
-            SplashScreenManager.RegisterUserSkins(typeof(DevExpress.UserSkins.OfficeSkins).Assembly);
             SkinManager.EnableFormSkins();
             SkinManager.EnableMdiFormSkins();
             Application.EnableVisualStyles();
@@ -27,4 +31,11 @@ namespace NSRetail
             Application.Run(new frmLogin());
         }
     }
+    //public class SkinRegistration : Component
+    //{
+    //    public SkinRegistration()
+    //    {
+    //        DevExpress.Skins.SkinManager.Default.RegisterAssembly(typeof(DevExpress.UserSkins.IITSkin).Assembly);
+    //    }
+    //}
 }

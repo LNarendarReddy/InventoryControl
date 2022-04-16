@@ -10,7 +10,7 @@ namespace DataAccess
 {
     public class POSRepository
     {
-        public DataTable GetBRefund(object BranchID)
+        public DataTable GetBRefund(object BranchID,object FromDate,object ToDate)
         {
             DataTable dtBRefund = new DataTable();
             try
@@ -21,6 +21,8 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_BREFUND]";
                     cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                    cmd.Parameters.AddWithValue("@ToDate", ToDate);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtBRefund);
@@ -65,7 +67,7 @@ namespace DataAccess
             }
             return dtBRefundDetail;
         }
-        public DataTable GetDayClosure(object BranchID)
+        public DataTable GetDayClosure(object BranchID,object FromDate,object ToDate)
         {
             DataTable dtDayClosure = new DataTable();
             try
@@ -76,6 +78,8 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_DAYCLOSURE]";
                     cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                    cmd.Parameters.AddWithValue("@ToDate", ToDate);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtDayClosure);
@@ -366,7 +370,7 @@ namespace DataAccess
             }
             return dtTaxWiseSale;
         }
-        public DataTable GetItemwiseSales(object BranchID)
+        public DataTable GetItemwiseSales(object BranchID,object FromDate,object ToDate)
         {
             DataTable dtItemwiseSale = new DataTable();
             try
@@ -377,6 +381,8 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_RPT_ITEMWISESALE]";
                     cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                    cmd.Parameters.AddWithValue("@ToDate", ToDate);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtItemwiseSale);
@@ -385,7 +391,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Retrieving Running Sale", ex);
+                throw new Exception("Error While Retrieving Itemwise Sale", ex);
             }
             finally
             {

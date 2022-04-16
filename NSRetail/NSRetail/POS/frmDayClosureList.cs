@@ -21,6 +21,8 @@ namespace NSRetail
 
         private void frmDayClosureList_Load(object sender, EventArgs e)
         {
+            dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
+            dtpToDate.EditValue = DateTime.Now;
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
@@ -28,7 +30,8 @@ namespace NSRetail
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            gcDayClosure.DataSource = new POSRepository().GetDayClosure(cmbBranch.EditValue);
+            gcDayClosure.DataSource = new POSRepository().GetDayClosure(cmbBranch.EditValue,
+                dtpFromDate.EditValue,dtpToDate.DateTime.AddDays(1));
         }
 
         private void btnViewSummary_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)

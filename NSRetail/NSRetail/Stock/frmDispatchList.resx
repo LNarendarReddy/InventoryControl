@@ -118,6 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnShowResult.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACB0RVh0VGl0
+        bGUAU2hvd091dGxpbmVGb3JtUGl2b3RUYWJsZTssgC1cAAABSElEQVQ4T4WT3UrDMBiGu9HuxAPxWnZT
+        IogiwhgyZYgoojCZILiTHYgKE0VURPDEE8GfGxFFN7euf2k/vzcsxWUJKzwQ8j55adLGISKHn0Lz7PXo
+        8PydpgEPPtbJtaOC4sHJC2UZkUgzK8jhwdcL3L32MyUio/L8bU4Yp2MghwdfL/C2j59YSCmIhBXk8ODr
+        BaV685HiJCU/FDntzptEjZHDgz9RsN54oIiFQZBYQQ7PWLC2f8/7FPTrxznqDdQYOTxjQXX3Tu6zO4is
+        IIdnLKjs3NCQhf9f4bsfjYEcnrFgdeuaDyuhr15oBTk8Y8HK5hX5fFCf3SBHnYEaI4dnLFiuX8qT/vgJ
+        rCCHZyrwljYu5O/aH8ZWkMODrxe4C9XT1mKtQ9OAB18vKDIlZoaZZeYMYB45vInLVMAk4zIeA0kH88jh
+        ja4zOX9/r6JmUhHo9AAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="btnViewReport.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -154,7 +166,7 @@
         YemAckaxhd1bVssfI/2W9EGQzVrPjn9go4cyO0KBwR+nGRqWKfsCHQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="editorButtonImageOptions4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="editorButtonImageOptions1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAB90RVh0VGl0
         bGUAVmlld1RhYmxlR3JpZGxpbmVzO1RhYmxlO9yNJykAAAJFSURBVDhPnZNdUxJhGIZNFJzy+2f0YdYv

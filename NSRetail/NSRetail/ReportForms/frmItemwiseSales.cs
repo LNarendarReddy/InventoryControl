@@ -21,6 +21,8 @@ namespace NSRetail
 
         private void frmItemwiseSales_Load(object sender, EventArgs e)
         {
+            dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
+            dtpToDate.EditValue = DateTime.Now;
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
@@ -28,7 +30,8 @@ namespace NSRetail
 
         private void btbGenerate_Click(object sender, EventArgs e)
         {
-            gcItems.DataSource = new POSRepository().GetItemwiseSales(cmbBranch.EditValue);
+            gcItems.DataSource = new POSRepository().GetItemwiseSales(cmbBranch.EditValue,
+                dtpFromDate.EditValue,dtpToDate.DateTime.AddDays(1));
         }
 
         private void btnViewReport_Click(object sender, EventArgs e)

@@ -19,7 +19,7 @@ namespace NSRetail
 
             string ver = Convert.ToString(Assembly.GetExecutingAssembly().GetName().Version);
 
-            this.labelControl1.Text = "Ver. " + ver + " | Copyright © 1998-" + Convert.ToString(DateTime.Now.Year) + " NSoftsol Private Limited.";
+            this.labelControl1.Text = "Ver. " + ver + " | Copyright © 1998-" + Convert.ToString(DateTime.Now.Year) + " NSRetail Solutions.";
         }
 
         #region Overrides

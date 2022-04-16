@@ -212,8 +212,6 @@
             // 
             // gvItemList
             // 
-            this.gvItemList.Appearance.EvenRow.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.gvItemList.Appearance.EvenRow.Options.UseBackColor = true;
             this.gvItemList.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.gvItemList.Appearance.HeaderPanel.Options.UseFont = true;
             this.gvItemList.Appearance.Row.Font = new System.Drawing.Font("Arial", 8F);
@@ -237,7 +235,6 @@
             this.gvItemList.Name = "gvItemList";
             this.gvItemList.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
             this.gvItemList.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always;
-            this.gvItemList.OptionsView.EnableAppearanceEvenRow = true;
             this.gvItemList.OptionsView.ShowFooter = true;
             this.gvItemList.OptionsView.ShowGroupPanel = false;
             this.gvItemList.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvItemList_PopupMenuShowing);

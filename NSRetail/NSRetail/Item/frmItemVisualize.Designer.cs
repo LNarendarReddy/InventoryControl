@@ -229,7 +229,6 @@
             this.gvStockSummary.GridControl = this.gcStockSummary;
             this.gvStockSummary.Name = "gvStockSummary";
             this.gvStockSummary.OptionsBehavior.Editable = false;
-            this.gvStockSummary.OptionsView.EnableAppearanceEvenRow = true;
             this.gvStockSummary.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn21
@@ -340,7 +339,6 @@
             this.gvItemPrice.GridControl = this.gcItemPriceList;
             this.gvItemPrice.Name = "gvItemPrice";
             this.gvItemPrice.OptionsBehavior.Editable = false;
-            this.gvItemPrice.OptionsView.EnableAppearanceEvenRow = true;
             this.gvItemPrice.OptionsView.ShowGroupPanel = false;
             this.gvItemPrice.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvItemPrice_FocusedRowChanged);
             // 

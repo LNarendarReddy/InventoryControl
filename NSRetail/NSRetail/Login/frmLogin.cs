@@ -107,10 +107,6 @@ namespace NSRetail
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            btnLogin.LookAndFeel.UseDefaultLookAndFeel = false;
-            btnCancel.LookAndFeel.UseDefaultLookAndFeel = false;
-            btnLogin.LookAndFeel.SkinName = "Office 2019 Colorful";
-            btnCancel.LookAndFeel.SkinName = "Office 2019 Colorful";
             txtUserName.Focus();
         }
 
@@ -157,16 +153,17 @@ namespace NSRetail
                 if (RGkey != null)
                 {
                     if (!string.IsNullOrEmpty(Convert.ToString(RGkey.GetValue("LastUser")))
-                        && !string.IsNullOrEmpty(Convert.ToString(RGkey.GetValue("PasswordString"))))
+                        //&& !string.IsNullOrEmpty(Convert.ToString(RGkey.GetValue("PasswordString")))
+                        )
                     {
                         txtUserName.EditValue = RGkey.GetValue("LastUser");
-                        txtPassword.EditValue = RGkey.GetValue("PasswordString");
-                        btnLogin_Click(null, null);
+                        //txtPassword.EditValue = RGkey.GetValue("PasswordString");
+                        //btnLogin_Click(null, null);
                     }
                     else
                     {
                         txtUserName.EditValue = RGkey.GetValue("LastUser");
-                        txtPassword.EditValue = RGkey.GetValue("PasswordString");
+                        //txtPassword.EditValue = RGkey.GetValue("PasswordString");
                     }
                 }
             }

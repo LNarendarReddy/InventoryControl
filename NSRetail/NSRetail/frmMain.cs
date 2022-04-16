@@ -28,9 +28,9 @@ namespace NSRetail
             Utility.FillBaseLine();
             SplashScreenManager.CloseForm();
 
-            DevExpress.LookAndFeel.UserLookAndFeel.Default.SetDefaultStyle();
-            DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2019 Dark Gray";
-            DevExpress.LookAndFeel.UserLookAndFeel.Default.UpdateStyleSettings();
+            //DevExpress.LookAndFeel.UserLookAndFeel.Default.SetDefaultStyle();
+            //DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2019 Black";
+            //DevExpress.LookAndFeel.UserLookAndFeel.Default.UpdateStyleSettings();
         }
 
         private void btnBranch_ItemClick(object sender, ItemClickEventArgs e)
@@ -303,7 +303,7 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (09-04-2022)";
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (14-04-2022)";
 
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,

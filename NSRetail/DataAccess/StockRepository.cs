@@ -169,7 +169,7 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
-        public DataTable GetDispatchList()
+        public DataTable GetDispatchList(object FromDate,object ToDate)
         {
             DataTable dt = new DataTable();
             try
@@ -179,6 +179,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_DISPATCHLIST]";
+                    cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                    cmd.Parameters.AddWithValue("@ToDate", ToDate);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
@@ -431,7 +433,7 @@ namespace DataAccess
             }
             return dt;
         }
-        public DataTable GetInvoiceList()
+        public DataTable GetInvoiceList(object  FromDate,object ToDate)
         {
             DataTable dt = new DataTable();
             try
@@ -441,6 +443,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_INVOICELIST]";
+                    cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                    cmd.Parameters.AddWithValue("@ToDate", ToDate);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
@@ -568,7 +572,7 @@ namespace DataAccess
             }
             return ds;
         }
-        public DataTable GetDCList()
+        public DataTable GetDCList(object FromDate,object ToDate)
         {
             DataTable dt = new DataTable();
             try
@@ -578,6 +582,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_DISPATCHDCLIST]";
+                    cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                    cmd.Parameters.AddWithValue("@ToDate", ToDate);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
@@ -651,7 +657,7 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
-        public void DiscardStockDispatch(object StockDispatchID)
+        public void DiscardStockDispatch(object StockDispatchID,object UserID)
         {
             try
             {
@@ -661,6 +667,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_DISPATCH]";
                     cmd.Parameters.AddWithValue("@StockDispatchID", StockDispatchID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
                     int RowsAffected = cmd.ExecuteNonQuery();
                     if (RowsAffected <= 0)
                         throw new Exception("Nothing is deleted");

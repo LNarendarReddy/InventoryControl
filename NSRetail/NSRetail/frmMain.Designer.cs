@@ -143,7 +143,7 @@
             this.ribbonPage5});
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1});
-            this.ribbonControl1.Size = new System.Drawing.Size(1374, 164);
+            this.ribbonControl1.Size = new System.Drawing.Size(1374, 163);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // btnBranch
@@ -497,6 +497,7 @@
             // 
             this.skinDropDownButtonItem1.Id = 27;
             this.skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
+            this.skinDropDownButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // bbiSyncStatus
             // 

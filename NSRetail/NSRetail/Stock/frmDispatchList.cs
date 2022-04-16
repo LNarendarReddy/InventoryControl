@@ -21,7 +21,6 @@ namespace NSRetail.Stock
         public frmDispatchList()
         {
             InitializeComponent();
-            gcDispatch.DataSource = ObjStockRep.GetDispatchList();
         }
 
         private void btnView_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -58,7 +57,14 @@ namespace NSRetail.Stock
 
         private void frmDispatchList_Load(object sender, EventArgs e)
         {
+            dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
+            dtpToDate.EditValue = DateTime.Now;
+        }
 
+        private void btnShowResult_Click(object sender, EventArgs e)
+        {
+            gcDispatch.DataSource = ObjStockRep.GetDispatchList(dtpFromDate.EditValue,
+                dtpToDate.DateTime.AddDays(1));
         }
     }
 }
