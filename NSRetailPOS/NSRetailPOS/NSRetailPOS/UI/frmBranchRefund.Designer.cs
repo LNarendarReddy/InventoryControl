@@ -42,6 +42,7 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtWeightInKgs = new DevExpress.XtraEditors.TextEdit();
             this.txtTrayNumber = new DevExpress.XtraEditors.TextEdit();
@@ -63,6 +64,8 @@
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtQuantity = new DevExpress.XtraEditors.TextEdit();
             this.txtSalePrice = new DevExpress.XtraEditors.TextEdit();
             this.txtMRP = new DevExpress.XtraEditors.TextEdit();
@@ -71,6 +74,7 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbRFR = new DevExpress.XtraEditors.LookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -83,6 +87,7 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -97,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCodeView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbRFR.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
@@ -109,6 +115,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,7 +123,6 @@
             // 
             this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 9F);
             this.layoutControl1.Appearance.Control.Options.UseFont = true;
-            //this.layoutControl1.Appearance.ControlDisabled.BackColor = System.Drawing.Color.White;
             this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9F);
             this.layoutControl1.Appearance.ControlDisabled.Options.UseBackColor = true;
             this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
@@ -142,6 +148,7 @@
             this.layoutControl1.Controls.Add(this.txtSalePrice);
             this.layoutControl1.Controls.Add(this.txtMRP);
             this.layoutControl1.Controls.Add(this.sluItemCode);
+            this.layoutControl1.Controls.Add(this.cmbRFR);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -154,9 +161,9 @@
             // 
             // txtWeightInKgs
             // 
-            this.txtWeightInKgs.Location = new System.Drawing.Point(428, 104);
+            this.txtWeightInKgs.Location = new System.Drawing.Point(449, 104);
             this.txtWeightInKgs.Name = "txtWeightInKgs";
-            this.txtWeightInKgs.Size = new System.Drawing.Size(194, 22);
+            this.txtWeightInKgs.Size = new System.Drawing.Size(177, 22);
             this.txtWeightInKgs.StyleController = this.layoutControl1;
             this.txtWeightInKgs.TabIndex = 2;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -168,9 +175,9 @@
             // 
             // txtTrayNumber
             // 
-            this.txtTrayNumber.Location = new System.Drawing.Point(122, 72);
+            this.txtTrayNumber.Location = new System.Drawing.Point(135, 72);
             this.txtTrayNumber.Name = "txtTrayNumber";
-            this.txtTrayNumber.Size = new System.Drawing.Size(193, 22);
+            this.txtTrayNumber.Size = new System.Drawing.Size(188, 22);
             this.txtTrayNumber.StyleController = this.layoutControl1;
             this.txtTrayNumber.TabIndex = 8;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -206,9 +213,9 @@
             // txtItemCode
             // 
             this.txtItemCode.EnterMoveNextControl = true;
-            this.txtItemCode.Location = new System.Drawing.Point(122, 40);
+            this.txtItemCode.Location = new System.Drawing.Point(135, 40);
             this.txtItemCode.Name = "txtItemCode";
-            this.txtItemCode.Size = new System.Drawing.Size(193, 22);
+            this.txtItemCode.Size = new System.Drawing.Size(188, 22);
             this.txtItemCode.StyleController = this.layoutControl1;
             this.txtItemCode.TabIndex = 0;
             conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -221,13 +228,13 @@
             // 
             // gcRefund
             // 
-            this.gcRefund.Location = new System.Drawing.Point(4, 145);
+            this.gcRefund.Location = new System.Drawing.Point(4, 147);
             this.gcRefund.MainView = this.gvRefund;
             this.gcRefund.Name = "gcRefund";
             this.gcRefund.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDelete});
-            this.gcRefund.Size = new System.Drawing.Size(1046, 473);
-            this.gcRefund.TabIndex = 9;
+            this.gcRefund.Size = new System.Drawing.Size(1046, 471);
+            this.gcRefund.TabIndex = 10;
             this.gcRefund.TabStop = false;
             this.gcRefund.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvRefund});
@@ -252,7 +259,9 @@
             this.gridColumn12,
             this.gridColumn13,
             this.gridColumn11,
-            this.gridColumn22});
+            this.gridColumn22,
+            this.gridColumn14,
+            this.gridColumn15});
             this.gvRefund.GridControl = this.gcRefund;
             this.gvRefund.Name = "gvRefund";
             this.gvRefund.OptionsMenu.EnableGroupPanelMenu = false;
@@ -386,8 +395,8 @@
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 8;
-            this.gridColumn22.Width = 86;
+            this.gridColumn22.VisibleIndex = 9;
+            this.gridColumn22.Width = 63;
             // 
             // btnDelete
             // 
@@ -399,14 +408,29 @@
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
             // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "Reason ID";
+            this.gridColumn14.FieldName = "REASONID";
+            this.gridColumn14.Name = "gridColumn14";
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "Reason";
+            this.gridColumn15.FieldName = "REASONNAME";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 8;
+            this.gridColumn15.Width = 89;
+            // 
             // txtQuantity
             // 
-            this.txtQuantity.Location = new System.Drawing.Point(428, 72);
+            this.txtQuantity.Location = new System.Drawing.Point(449, 72);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Properties.AllowMouseWheel = false;
             this.txtQuantity.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtQuantity.Properties.MaskSettings.Set("mask", "d");
-            this.txtQuantity.Size = new System.Drawing.Size(194, 22);
+            this.txtQuantity.Size = new System.Drawing.Size(177, 22);
             this.txtQuantity.StyleController = this.layoutControl1;
             this.txtQuantity.TabIndex = 1;
             conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -419,11 +443,11 @@
             // txtSalePrice
             // 
             this.txtSalePrice.Enabled = false;
-            this.txtSalePrice.Location = new System.Drawing.Point(735, 72);
+            this.txtSalePrice.Location = new System.Drawing.Point(752, 72);
             this.txtSalePrice.Name = "txtSalePrice";
             this.txtSalePrice.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtSalePrice.Properties.MaskSettings.Set("mask", "N2");
-            this.txtSalePrice.Size = new System.Drawing.Size(192, 22);
+            this.txtSalePrice.Size = new System.Drawing.Size(175, 22);
             this.txtSalePrice.StyleController = this.layoutControl1;
             this.txtSalePrice.TabIndex = 4;
             this.txtSalePrice.TabStop = false;
@@ -435,11 +459,11 @@
             // txtMRP
             // 
             this.txtMRP.Enabled = false;
-            this.txtMRP.Location = new System.Drawing.Point(735, 104);
+            this.txtMRP.Location = new System.Drawing.Point(752, 104);
             this.txtMRP.Name = "txtMRP";
             this.txtMRP.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtMRP.Properties.MaskSettings.Set("mask", "N2");
-            this.txtMRP.Size = new System.Drawing.Size(192, 22);
+            this.txtMRP.Size = new System.Drawing.Size(175, 22);
             this.txtMRP.StyleController = this.layoutControl1;
             this.txtMRP.TabIndex = 5;
             this.txtMRP.TabStop = false;
@@ -450,13 +474,13 @@
             // 
             // sluItemCode
             // 
-            this.sluItemCode.Location = new System.Drawing.Point(428, 40);
+            this.sluItemCode.Location = new System.Drawing.Point(449, 40);
             this.sluItemCode.Name = "sluItemCode";
             this.sluItemCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sluItemCode.Properties.NullText = "";
             this.sluItemCode.Properties.PopupView = this.sluItemCodeView;
-            this.sluItemCode.Size = new System.Drawing.Size(607, 22);
+            this.sluItemCode.Size = new System.Drawing.Size(586, 22);
             this.sluItemCode.StyleController = this.layoutControl1;
             this.sluItemCode.TabIndex = 3;
             this.sluItemCode.TabStop = false;
@@ -499,6 +523,27 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
             // 
+            // cmbRFR
+            // 
+            this.cmbRFR.EnterMoveNextControl = true;
+            this.cmbRFR.Location = new System.Drawing.Point(136, 105);
+            this.cmbRFR.Name = "cmbRFR";
+            this.cmbRFR.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbRFR.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("REASONID", "REASONID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("REASONNAME", "REASONNAME")});
+            this.cmbRFR.Properties.NullText = "";
+            this.cmbRFR.Properties.PopupSizeable = false;
+            this.cmbRFR.Properties.ShowHeader = false;
+            this.cmbRFR.Size = new System.Drawing.Size(186, 22);
+            this.cmbRFR.StyleController = this.layoutControl1;
+            this.cmbRFR.TabIndex = 9;
+            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule8.ErrorText = "Mandatory";
+            conditionValidationRule8.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbRFR, conditionValidationRule8);
+            // 
             // Root
             // 
             this.Root.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
@@ -518,9 +563,9 @@
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.gcRefund;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 141);
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 143);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(1050, 477);
+            this.layoutControlItem9.Size = new System.Drawing.Size(1050, 475);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
@@ -536,10 +581,11 @@
             this.layoutControlItem6,
             this.layoutControlItem3,
             this.layoutControlItem8,
-            this.layoutControlItem5});
+            this.layoutControlItem5,
+            this.layoutControlItem10});
             this.layoutControlGroup6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(1050, 141);
+            this.layoutControlGroup6.Size = new System.Drawing.Size(1050, 143);
             this.layoutControlGroup6.Text = "Item Details";
             // 
             // layoutControlItem22
@@ -548,30 +594,30 @@
             this.layoutControlItem22.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem22.Name = "layoutControlItem22";
             this.layoutControlItem22.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem22.Size = new System.Drawing.Size(306, 32);
+            this.layoutControlItem22.Size = new System.Drawing.Size(314, 32);
             this.layoutControlItem22.Text = "Item Code";
-            this.layoutControlItem22.TextSize = new System.Drawing.Size(91, 15);
+            this.layoutControlItem22.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.sluItemCode;
-            this.layoutControlItem1.Location = new System.Drawing.Point(306, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(314, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem1.Size = new System.Drawing.Size(720, 32);
+            this.layoutControlItem1.Size = new System.Drawing.Size(712, 32);
             this.layoutControlItem1.Text = "Item Search (F3)";
             this.layoutControlItem1.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(91, 15);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtSalePrice;
-            this.layoutControlItem4.Location = new System.Drawing.Point(613, 32);
+            this.layoutControlItem4.Location = new System.Drawing.Point(617, 32);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem4.Size = new System.Drawing.Size(305, 32);
+            this.layoutControlItem4.Size = new System.Drawing.Size(301, 32);
             this.layoutControlItem4.Text = "Sale Price";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(91, 15);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem2
             // 
@@ -592,40 +638,40 @@
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem7.Size = new System.Drawing.Size(306, 64);
+            this.layoutControlItem7.Size = new System.Drawing.Size(314, 32);
             this.layoutControlItem7.Text = "Tray Number";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(91, 15);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.txtQuantity;
-            this.layoutControlItem6.Location = new System.Drawing.Point(306, 32);
+            this.layoutControlItem6.Location = new System.Drawing.Point(314, 32);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem6.Size = new System.Drawing.Size(307, 32);
+            this.layoutControlItem6.Size = new System.Drawing.Size(303, 32);
             this.layoutControlItem6.Text = "Quantity";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(91, 15);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.txtMRP;
-            this.layoutControlItem3.Location = new System.Drawing.Point(613, 64);
+            this.layoutControlItem3.Location = new System.Drawing.Point(617, 64);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem3.Size = new System.Drawing.Size(305, 32);
+            this.layoutControlItem3.Size = new System.Drawing.Size(301, 34);
             this.layoutControlItem3.Text = "MRP";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(91, 15);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.txtWeightInKgs;
             this.layoutControlItem8.CustomizationFormText = "Weight In Kgs";
-            this.layoutControlItem8.Location = new System.Drawing.Point(306, 64);
+            this.layoutControlItem8.Location = new System.Drawing.Point(314, 64);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem8.Size = new System.Drawing.Size(307, 32);
+            this.layoutControlItem8.Size = new System.Drawing.Size(303, 34);
             this.layoutControlItem8.Text = "Weight In Kgs";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(91, 15);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem5
             // 
@@ -635,10 +681,20 @@
             this.layoutControlItem5.MinSize = new System.Drawing.Size(108, 32);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem5.Size = new System.Drawing.Size(108, 32);
+            this.layoutControlItem5.Size = new System.Drawing.Size(108, 34);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.cmbRFR;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 64);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem10.Size = new System.Drawing.Size(314, 34);
+            this.layoutControlItem10.Text = "Reason for Refund";
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(104, 15);
             // 
             // frmBranchRefund
             // 
@@ -666,6 +722,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCodeView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbRFR.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
@@ -678,6 +735,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
@@ -727,5 +785,9 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
+        private DevExpress.XtraEditors.LookUpEdit cmbRFR;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
     }
 }

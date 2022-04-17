@@ -44,6 +44,11 @@ namespace NSRetailPOS.UI
 
             sluItemCodeView.GridControl.BindingContext = new BindingContext();
             sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
+
+            cmbRFR.Properties.DataSource = new RefundRepository().GETRFR();
+            cmbRFR.Properties.DisplayMember = "REASONNAME";
+            cmbRFR.Properties.ValueMember = "REASONID";
+
             InitialLoad();
         }
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)
@@ -217,6 +222,8 @@ namespace NSRetailPOS.UI
             gvRefund.SetRowCellValue(e.RowHandle, "QUANTITY", txtQuantity.EditValue);
             gvRefund.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
             gvRefund.SetRowCellValue(e.RowHandle, "TRAYNUMBER", txtTrayNumber.EditValue);
+            gvRefund.SetRowCellValue(e.RowHandle, "REASONID", cmbRFR.EditValue);
+            gvRefund.SetRowCellValue(e.RowHandle, "REASONNAME", cmbRFR.Text);
         }
         private void frmBranchRefund_KeyDown(object sender, KeyEventArgs e)
         {

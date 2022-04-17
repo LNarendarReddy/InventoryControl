@@ -13,6 +13,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Management;
+using System.Printing;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -195,8 +196,21 @@ namespace NSRetailPOS
                     rpt.Parameters["CategoryID"].Value = CategoryID;
                     rpt.Parameters["IsOpenCategory"].Value = IsOpenCategory;
                     rpt.CreateDocument();
-                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-                    printTool.Print();
+
+                    List<string> l = new List<string>();
+                    foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+                    {
+                        if (printer.StartsWith("TSC"))
+                            l.Add(printer);
+                    }
+
+                    var server = new LocalPrintServer();
+                    foreach (string printer in l)
+                    {
+                        ReportPrintTool printTool = new ReportPrintTool(rpt);
+                        printTool.Print(printer);
+                        break;
+                    }
                 }
             }
             catch (Exception ex)
@@ -219,7 +233,7 @@ namespace NSRetailPOS
 
         public static void SetGridFormatting(GridView gridView)
         {
-            gridView.Appearance.FocusedCell.BackColor = Color.DarkSeaGreen;
+            gridView.Appearance.FocusedCell.BackColor = Color.DarkGreen;
             gridView.Appearance.FocusedCell.Font = new Font("Arial", 11F, FontStyle.Bold);
             gridView.Appearance.FocusedCell.ForeColor = Color.White;
             gridView.Appearance.FocusedCell.Options.UseBackColor = true;

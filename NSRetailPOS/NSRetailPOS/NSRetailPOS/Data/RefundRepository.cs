@@ -163,6 +163,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@WEIGHTINKGS", drDetail["WEIGHTINKGS"]);
                     cmd.Parameters.AddWithValue("@SNO", drDetail["SNO"]);
                     cmd.Parameters.AddWithValue("@TRAYNUMBER", drDetail["TRAYNUMBER"]);
+                    cmd.Parameters.AddWithValue("@REASONID", drDetail["REASONID"]);
                     object objReturn = cmd.ExecuteScalar();
 
                     if (!int.TryParse(objReturn.ToString(), out BRefundDetailID))
@@ -228,6 +229,33 @@ namespace NSRetailPOS.Data
             {
                 SQLCon.Sqlconn().Close();
             }
+        }
+
+        public DataTable GETRFR()
+        {
+            DataTable dtRFR = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_REASONFORREFUND]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtRFR);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Reason For Refund", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtRFR;
         }
     }
 }
