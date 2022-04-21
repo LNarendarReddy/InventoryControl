@@ -49,6 +49,7 @@ namespace NSRetailPOS.UI
                 rptDayClosure rpt = new rptDayClosure(ds);
                 rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
                 rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
+                rpt.Parameters["BranchName"].Value = Utility.branchInfo.BranchName;
                 rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
                 rpt.Parameters["UserName"].Value = Utility.loginInfo.UserName;
                 rpt.Print();

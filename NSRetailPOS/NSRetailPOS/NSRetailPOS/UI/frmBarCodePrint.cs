@@ -47,13 +47,12 @@ namespace NSRetailPOS.UI
                     return;
                 Utility.PrintBarCode(cmbItemCode.Text, txtItemName.Text,
                     txtSalePrice.Text, txtQuantity.EditValue, txtMRP.EditValue,
-                    txtBatchNumber.EditValue, dtpPackedDate.EditValue, cmbCategory.EditValue, allowOpenItems);
+                    "", dtpPackedDate.EditValue, cmbCategory.EditValue, allowOpenItems);
                 cmbItemCode.EditValue = null;
                 txtItemName.EditValue = null;
                 txtSalePrice.EditValue = null;
                 txtMRP.EditValue = null;
                 txtQuantity.EditValue = null;
-                txtBatchNumber.EditValue = null;
                 cmbCategory.EditValue = null;
                 cmbItemCode.Focus();
             }
@@ -92,7 +91,6 @@ namespace NSRetailPOS.UI
                 if (allowOpenItems.Equals(true))
                 {
                     dtpPackedDate.Enabled = true;
-                    txtBatchNumber.Enabled = true;
                 }
                 txtQuantity.EditValue = 1;
             }
