@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Reports;
@@ -37,7 +36,7 @@ namespace NSRetailPOS.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show("Are you sure to day close?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+            if (XtraMessageBox.Show("This operation cannot be reversed. Please confirm that all the enetered values are correct?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
 
             try
             {
@@ -84,6 +83,7 @@ namespace NSRetailPOS.UI
             int Quantity = Convert.ToInt32(e.Value);
             decimal Multiplier = Convert.ToDecimal(gvDenomination.GetRowCellValue(e.RowHandle,"MULTIPLIER"));
             gvDenomination.SetRowCellValue(e.RowHandle, "CLOSUREVALUE", Math.Round(Quantity * Multiplier, 2));
+            gvDenomination.UpdateTotalSummary();
             updateSummary();
         }
 

@@ -119,6 +119,12 @@ namespace NSRetailPOS.UI
         private void txtItemCode_Leave(object sender, EventArgs e)
         {
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
+            if(rowHandle < 0)
+            {
+                // try finding in sku code
+                rowHandle = sluItemCodeView.LocateByValue("SKUCODE", txtItemCode.EditValue);
+            }
+
             if (rowHandle >= 0)
             {
                 isItemScanned = true;

@@ -530,6 +530,9 @@ namespace NSRetailPOS
 
         private void btnDayClosure_Click(object sender, EventArgs e)
         {
+            if (XtraMessageBox.Show("Are you sure want to day close?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
             try
             {
                 frmDayClosure obj = new frmDayClosure(daySequenceID)

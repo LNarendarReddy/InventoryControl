@@ -88,6 +88,7 @@
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.dxValidationProvider2 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCustomerMobile.Properties)).BeginInit();
@@ -125,7 +126,6 @@
             // 
             this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 9F);
             this.layoutControl1.Appearance.Control.Options.UseFont = true;
-            //this.layoutControl1.Appearance.ControlDisabled.BackColor = System.Drawing.Color.White;
             this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9F);
             this.layoutControl1.Appearance.ControlDisabled.Options.UseBackColor = true;
             this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
@@ -468,7 +468,8 @@
             this.sluItemCodeView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
-            this.gridColumn3});
+            this.gridColumn3,
+            this.gridColumn6});
             this.sluItemCodeView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.sluItemCodeView.Name = "sluItemCodeView";
             this.sluItemCodeView.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -486,7 +487,7 @@
             this.gridColumn2.FieldName = "ITEMCODE";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
+            this.gridColumn2.VisibleIndex = 2;
             // 
             // gridColumn3
             // 
@@ -667,6 +668,14 @@
             this.layoutControlItem10.Text = "Mobile Number";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(92, 15);
             // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "SKU Code";
+            this.gridColumn6.FieldName = "SKUCODE";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 0;
+            // 
             // frmCustomerRefund
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -761,5 +770,6 @@
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }

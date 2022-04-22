@@ -68,7 +68,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     cmd.Parameters.AddWithValue("@BillID", billID);
                     cmd.Parameters.AddWithValue("@CustomerName", customerName);
-                    cmd.Parameters.AddWithValue("@CustomerNumber", customerNumber);
+                    cmd.Parameters.AddWithValue("@CustomerPhone", customerNumber);
 
                     int ivalue = cmd.ExecuteNonQuery();
                     if(ivalue<=0)

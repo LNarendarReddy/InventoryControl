@@ -56,6 +56,8 @@ namespace NSRetailPOS.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!dxValidationProvider1.Validate()) return;
+
             try
             {
                 DataTable dt = gcBillDetails.DataSource as DataTable;
