@@ -57,7 +57,6 @@ namespace NSRetail
                 return;
             gcStockCounting.DataSource = new CountingRepository().GetStockCounting(cmbBranch.EditValue);
         }
-
         private void gcStockCounting_Click(object sender, EventArgs e)
         {
 

@@ -231,6 +231,10 @@ namespace NSRetailPOS.UI
             {
                 sluItemCode.Focus();
             }
+            else if (e.KeyCode == Keys.F1)
+            {
+                btnSave_Click(null, null);
+            }
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -243,6 +247,10 @@ namespace NSRetailPOS.UI
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (gvRefund.RowCount == 0 ||
+                XtraMessageBox.Show("Are you sure to continue?", "Confirm!",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
             new RefundRepository().FinishBRefund(BRefundID);
             rptBRefund rpt = new rptBRefund(dtRefund);
             rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;

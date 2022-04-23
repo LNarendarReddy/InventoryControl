@@ -49,9 +49,9 @@ namespace NSRetailPOS
         {
             lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    Role : {Utility.loginInfo.RoleName}    ";
             lblVersionInfo.Text = $"Application Version 1.1.9 (17-04-2022)";
-            btnCRWithoutBill.Enabled = Utility.loginInfo.RoleName.Equals("Discount Admin");
-            txtSplDiscPer.Enabled = Utility.loginInfo.RoleName.Equals("Discount Admin");
-            btnApplyDiscount.Enabled = Utility.loginInfo.RoleName.Equals("Discount Admin");
+            btnCRWithoutBill.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
+            txtSplDiscPer.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
+            btnApplyDiscount.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             btnDayClosure.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
             btnStockIn.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
             btnBranchRefund.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");

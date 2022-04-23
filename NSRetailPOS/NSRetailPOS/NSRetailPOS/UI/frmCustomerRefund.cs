@@ -231,6 +231,10 @@ namespace NSRetailPOS.UI
             {
                 sluItemCode.Focus();
             }
+            else if (e.KeyCode == Keys.F1)
+            {
+                btnSave_Click(null, null);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -246,9 +250,10 @@ namespace NSRetailPOS.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!dxValidationProvider2.Validate())
-                return;
-            if (gvRefund.RowCount == 0)
+            if (!dxValidationProvider2.Validate() ||
+                gvRefund.RowCount == 0 ||
+                XtraMessageBox.Show("Are you sure to continue?", "Confirm!",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             new RefundRepository().InsertCRefundWOBill(dtRefund, 
                 Utility.loginInfo.UserID, 
@@ -265,6 +270,7 @@ namespace NSRetailPOS.UI
             rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
             rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
             rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
+            rpt.Parameters["IsWithBill"].Value = false;
             rpt.Print();
             this.Close();
         }

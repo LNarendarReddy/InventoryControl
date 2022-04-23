@@ -56,11 +56,13 @@ namespace NSRetailPOS.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!dxValidationProvider1.Validate()) return;
+            if (!dxValidationProvider1.Validate() ||
+                XtraMessageBox.Show("Are you sure to continue?","Confirm!",
+                MessageBoxButtons.YesNo,MessageBoxIcon.Question) != DialogResult.Yes) return;
 
             try
             {
-                DataTable dt = gcBillDetails.DataSource as DataTable;
+                DataTable dt = (gcBillDetails.DataSource as DataTable).Copy();
                 DataView dv = dt.DefaultView;
                 dv.RowFilter = "REFUNDQUANTITY > 0";
                 DataTable dtFiltered = dv.ToTable();
@@ -77,6 +79,7 @@ namespace NSRetailPOS.UI
                 rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
                 rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
                 rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
+                rpt.Parameters["IsWithBill"].Value = true;
                 rpt.Print();
                 this.Close();
             }
@@ -142,9 +145,12 @@ namespace NSRetailPOS.UI
             }
         }
 
-        private void gcBillDetails_Click(object sender, EventArgs e)
+        private void frmRefund_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.F1)
+            {
+                btnSave_Click(null, null);
+            }
         }
     }
 }

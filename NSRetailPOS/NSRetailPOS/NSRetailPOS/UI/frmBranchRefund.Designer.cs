@@ -175,6 +175,7 @@
             // 
             // txtTrayNumber
             // 
+            this.txtTrayNumber.EnterMoveNextControl = true;
             this.txtTrayNumber.Location = new System.Drawing.Point(135, 72);
             this.txtTrayNumber.Name = "txtTrayNumber";
             this.txtTrayNumber.Size = new System.Drawing.Size(188, 22);
