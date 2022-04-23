@@ -219,7 +219,7 @@ namespace NSRetailPOS
             }
         }
 
-        public static List<int> AllLocateByValue(this GridView view, string fieldName, object value)
+        public static List<int> LocateAllRowsByValue(this GridView view, string fieldName, object value)
         {
             List<int> list = new List<int>();
             int rowHandle = view.LocateByValue(fieldName, value);
