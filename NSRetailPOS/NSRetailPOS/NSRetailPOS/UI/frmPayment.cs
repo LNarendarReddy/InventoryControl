@@ -34,19 +34,8 @@ namespace NSRetailPOS.UI
         }
 
         private void gvMOP_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            gvMOP.GridControl.BindingContext = new BindingContext();
-            gvMOP.GridControl.DataSource = gcMOP.DataSource;
-
-            //if(gvMOP.GetFocusedRowCellValue("MOPNAME").ToString().ToUpper() == "CASH"
-            //    && decimal.TryParse(e.Value.ToString(), out decimal cashValue)
-            //    && cashValue - Math.Round(cashValue) != 0.0M)
-            //{
-            //    XtraMessageBox.Show($"Cash cannot have decimal places");
-            //    gvMOP.SetRowCellValue(e.RowHandle, "MOPVALUE", 0.00);
-            //    return;
-            //}
-
+        {   
+            gvMOP.RefreshData();
             decimal.TryParse(gvMOP.Columns["MOPVALUE"].SummaryItem.SummaryValue.ToString(), out paidAmount);
             remainingAmount = payableAmount - paidAmount;
             UpdateLabels();
@@ -72,9 +61,10 @@ namespace NSRetailPOS.UI
             billObj.CustomerNumber = txtMobileNo.EditValue;
             billObj.IsDoorDelivery = chkIsDoorDelivery.EditValue;
             billObj.dtMopValues = gcMOP.DataSource as DataTable;
-            billObj.Rounding = Math.Round(billedAmount) - billedAmount;            
+
             if (decimal.TryParse(gvMOP.GetRowCellValue(cashRowHandle, "MOPVALUE").ToString(), out decimal cashValue) && cashValue > 0)
             {
+                billObj.Rounding = billObj.PaymentMode.Equals("CASH") ? Math.Round(billedAmount) - billedAmount : 0.00M;
                 billObj.TenderedCash = cashValue;
                 billObj.TenderedChange = remainingAmount + Math.Round(billedAmount) - billedAmount;
                 gvMOP.SetRowCellValue(cashRowHandle, "MOPVALUE", cashValue + Math.Round(remainingAmount));
@@ -89,14 +79,6 @@ namespace NSRetailPOS.UI
             {
                 return;
             }
-
-            //if (gvMOP.FocusedRowHandle == gvMOP.DataRowCount - 1)
-            //{
-            //    gvMOP.CloseEditor();
-            //    btnOk.Focus();
-            //    return;
-            //}
-
             gvMOP.MoveNext();
         }
 
@@ -108,7 +90,6 @@ namespace NSRetailPOS.UI
             { 
                 return; 
             }
-
             e.Cancel = true;
         }
 
@@ -142,7 +123,9 @@ namespace NSRetailPOS.UI
 
             if (!billObj.PaymentMode.Equals("Multiple") && !billObj.PaymentMode.Equals("CASH"))
             {
-                gvMOP.SetRowCellValue(gvMOP.LocateByValue("MOPNAME", billObj.PaymentMode), "MOPVALUE", billObj.Amount);
+                int rowhandle = gvMOP.LocateByValue("MOPNAME", billObj.PaymentMode);
+                gvMOP.SetRowCellValue(rowhandle, "MOPVALUE", billObj.Amount);
+                gvMOP.FocusedRowHandle = rowhandle;
                 btnOk.Focus();
             }
             else

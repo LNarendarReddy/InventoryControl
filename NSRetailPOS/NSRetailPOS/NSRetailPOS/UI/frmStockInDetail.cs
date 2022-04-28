@@ -25,7 +25,7 @@ namespace NSRetailPOS.UI
             dtApprovedDate.EditValue = selectedDispatch["STATUSAPPROVEDDATE"];
 
             gcDispatchDetail.DataSource = new StockInRepository().GetStockDispatchDetail(selectedDispatch["STOCKDISPATCHID"]);
-            btnAddStock.Enabled = selectedDispatch["STATUS"].Equals(1);
+            btnAddStock.Enabled = selectedDispatch["STATUS"].Equals("1");
         }
 
         private void btnAddStock_Click(object sender, System.EventArgs e)
