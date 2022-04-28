@@ -60,15 +60,20 @@ namespace NSRetailPOS.UI
             billObj.CustomerName = txtCustomerName.EditValue;
             billObj.CustomerNumber = txtMobileNo.EditValue;
             billObj.IsDoorDelivery = chkIsDoorDelivery.EditValue;
-            billObj.dtMopValues = gcMOP.DataSource as DataTable;
 
             if (decimal.TryParse(gvMOP.GetRowCellValue(cashRowHandle, "MOPVALUE").ToString(), out decimal cashValue) && cashValue > 0)
             {
                 billObj.Rounding = billObj.PaymentMode.Equals("CASH") ? Math.Round(billedAmount) - billedAmount : 0.00M;
                 billObj.TenderedCash = cashValue;
                 billObj.TenderedChange = remainingAmount + Math.Round(billedAmount) - billedAmount;
+                gvMOP.FocusedRowHandle = cashRowHandle;
                 gvMOP.SetRowCellValue(cashRowHandle, "MOPVALUE", cashValue + Math.Round(remainingAmount));
+                gvMOP.CloseEditor();
+                gvMOP.UpdateCurrentRow();
             }
+
+            billObj.dtMopValues = gcMOP.DataSource as DataTable;
+            
             IsPaid = true;
             Close();
         }
