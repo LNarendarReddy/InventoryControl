@@ -48,7 +48,7 @@ namespace NSRetailPOS
         private void Form1_Load(object sender, EventArgs e)
         {
             lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    Role : {Utility.loginInfo.RoleName}    ";
-            lblVersionInfo.Text = $"Application Version 1.1.9 (17-04-2022)";
+            lblVersionInfo.Text = $"Application Version 1.2 (25-04-2022)";
             btnCRWithoutBill.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             txtSplDiscPer.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             btnApplyDiscount.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
@@ -304,7 +304,7 @@ namespace NSRetailPOS
 
             if (rowHandle < 0)
             {
-                List<int> rowHandles = sluItemCodeView.AllLocateByValue("SKUCODE", txtItemCode.EditValue);
+                List<int> rowHandles = sluItemCodeView.LocateAllRowsByValue("SKUCODE", txtItemCode.EditValue);
                 if (rowHandles.Count == 1)
                 {
                     rowHandle = rowHandles.First();

@@ -487,7 +487,7 @@
             this.gridColumn2.FieldName = "ITEMCODE";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 2;
+            this.gridColumn2.VisibleIndex = 0;
             // 
             // gridColumn3
             // 
@@ -503,7 +503,7 @@
             this.gridColumn6.FieldName = "SKUCODE";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 0;
+            this.gridColumn6.VisibleIndex = 2;
             // 
             // Root
             // 

@@ -2,7 +2,9 @@
 using NSRetailPOS.Data;
 using NSRetailPOS.Reports;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
@@ -119,6 +121,22 @@ namespace NSRetailPOS.UI
         private void txtItemCode_Leave(object sender, EventArgs e)
         {
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
+
+            if (rowHandle < 0)
+            {
+                List<int> rowHandles = sluItemCodeView.LocateAllRowsByValue("SKUCODE", txtItemCode.EditValue);
+                if (rowHandles.Count == 1)
+                {
+                    rowHandle = rowHandles.First();
+                }
+                else if (rowHandles.Count > 1)
+                {
+                    sluItemCode.ShowPopup();
+                    sluItemCodeView.FindFilterText = txtItemCode.EditValue.ToString();
+                    isItemScanned = true;
+                }
+            }
+
             if (rowHandle >= 0)
             {
                 isItemScanned = true;
