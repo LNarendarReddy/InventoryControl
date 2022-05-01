@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemwiseSales));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.dtpToDate = new DevExpress.XtraEditors.DateEdit();
+            this.dtpFromDate = new DevExpress.XtraEditors.DateEdit();
             this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
             this.btbGenerate = new DevExpress.XtraEditors.SimpleButton();
             this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
@@ -42,20 +44,25 @@
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.dtpFromDate = new DevExpress.XtraEditors.DateEdit();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dtpToDate = new DevExpress.XtraEditors.DateEdit();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItems)).BeginInit();
@@ -65,11 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,6 +94,34 @@
             this.layoutControl1.Size = new System.Drawing.Size(1148, 759);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // dtpToDate
+            // 
+            this.dtpToDate.EditValue = null;
+            this.dtpToDate.EnterMoveNextControl = true;
+            this.dtpToDate.Location = new System.Drawing.Point(589, 8);
+            this.dtpToDate.Name = "dtpToDate";
+            this.dtpToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpToDate.Size = new System.Drawing.Size(120, 22);
+            this.dtpToDate.StyleController = this.layoutControl1;
+            this.dtpToDate.TabIndex = 2;
+            // 
+            // dtpFromDate
+            // 
+            this.dtpFromDate.EditValue = null;
+            this.dtpFromDate.EnterMoveNextControl = true;
+            this.dtpFromDate.Location = new System.Drawing.Point(395, 8);
+            this.dtpFromDate.Name = "dtpFromDate";
+            this.dtpFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFromDate.Size = new System.Drawing.Size(112, 22);
+            this.dtpFromDate.StyleController = this.layoutControl1;
+            this.dtpFromDate.TabIndex = 1;
             // 
             // cmbBranch
             // 
@@ -159,8 +190,11 @@
             this.gridColumn14,
             this.gridColumn1,
             this.gridColumn2,
+            this.gridColumn7,
+            this.gridColumn4,
             this.gridColumn5,
-            this.gridColumn6});
+            this.gridColumn6,
+            this.gridColumn9});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -198,7 +232,7 @@
             this.gridColumn11.FieldName = "SUBCATEGORYNAME";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 7;
+            this.gridColumn11.VisibleIndex = 9;
             // 
             // gridColumn14
             // 
@@ -230,6 +264,24 @@
             this.gridColumn2.VisibleIndex = 4;
             this.gridColumn2.Width = 87;
             // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "MRP";
+            this.gridColumn7.FieldName = "MRP";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 7;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Sale Price";
+            this.gridColumn4.FieldName = "SALEPRICE";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 8;
+            // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "Quantity";
@@ -249,8 +301,17 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 8;
+            this.gridColumn6.VisibleIndex = 10;
             this.gridColumn6.Width = 87;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "Dealer Name";
+            this.gridColumn9.FieldName = "DEALERNAME";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 11;
             // 
             // Root
             // 
@@ -325,20 +386,6 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(162, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // dtpFromDate
-            // 
-            this.dtpFromDate.EditValue = null;
-            this.dtpFromDate.EnterMoveNextControl = true;
-            this.dtpFromDate.Location = new System.Drawing.Point(395, 8);
-            this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFromDate.Size = new System.Drawing.Size(112, 22);
-            this.dtpFromDate.StyleController = this.layoutControl1;
-            this.dtpFromDate.TabIndex = 1;
-            // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.dtpFromDate;
@@ -351,20 +398,6 @@
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.Text = "From Date";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(58, 15);
-            // 
-            // dtpToDate
-            // 
-            this.dtpToDate.EditValue = null;
-            this.dtpToDate.EnterMoveNextControl = true;
-            this.dtpToDate.Location = new System.Drawing.Point(589, 8);
-            this.dtpToDate.Name = "dtpToDate";
-            this.dtpToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpToDate.Size = new System.Drawing.Size(120, 22);
-            this.dtpToDate.StyleController = this.layoutControl1;
-            this.dtpToDate.TabIndex = 2;
             // 
             // layoutControlItem6
             // 
@@ -392,6 +425,10 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmItemwiseSales_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItems)).EndInit();
@@ -401,11 +438,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             this.ResumeLayout(false);
 
@@ -438,5 +471,8 @@
         private DevExpress.XtraEditors.DateEdit dtpFromDate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
     }
 }
