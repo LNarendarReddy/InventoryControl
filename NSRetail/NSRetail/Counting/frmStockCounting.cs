@@ -1,13 +1,5 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail
@@ -34,7 +26,7 @@ namespace NSRetail
         }
         private void cmbBranch_Leave(object sender, EventArgs e)
         {
-            
+
         }
         private void btnViewDifferences_Click(object sender, EventArgs e)
         {
@@ -42,7 +34,7 @@ namespace NSRetail
                 return;
             frmViewItems obj =
                 new frmViewItems(new CountingRepository().GetStockCountingDiff(
-                    cmbBranch.EditValue),true);
+                    cmbBranch.EditValue), true);
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
@@ -60,6 +52,18 @@ namespace NSRetail
         private void gcStockCounting_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnNotEntered_Click(object sender, EventArgs e)
+        {
+            if (cmbBranch.EditValue == null)
+                return;
+            frmViewItems obj =
+                new frmViewItems(new CountingRepository().GetStockCountingDiff(
+                    cmbBranch.EditValue), true);
+            obj.ShowInTaskbar = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
         }
     }
 }

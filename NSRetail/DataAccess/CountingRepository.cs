@@ -93,5 +93,33 @@ namespace DataAccess
             }
             return dtStockCountingDiff;
         }
+
+        public DataTable GetStockCountingNoteEntered(object BranchID)
+        {
+            DataTable dtStockCountingDiff = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_STOCKCONTINGNOTENTERED]";
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtStockCountingDiff);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Stock Counting Not Entered", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtStockCountingDiff;
+        }
     }
 }
