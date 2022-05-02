@@ -370,7 +370,7 @@ namespace DataAccess
             }
             return dtTaxWiseSale;
         }
-        public DataTable GetItemwiseSales(object BranchID,object FromDate,object ToDate)
+        public DataTable GetItemwiseSales(object BranchID,object FromDate,object ToDate, object includeBillDate)
         {
             DataTable dtItemwiseSale = new DataTable();
             try
@@ -383,6 +383,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@BranchID", BranchID);
                     cmd.Parameters.AddWithValue("@FromDate", FromDate);
                     cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                    cmd.Parameters.AddWithValue("@IncludeBillDate", includeBillDate);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtItemwiseSale);

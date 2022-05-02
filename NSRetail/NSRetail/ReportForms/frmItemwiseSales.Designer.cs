@@ -38,7 +38,7 @@
             this.gcItems = new DevExpress.XtraGrid.GridControl();
             this.gvItems = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gColBillDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -57,6 +57,9 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chkIncludeDate = new DevExpress.XtraEditors.CheckEdit();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -74,10 +77,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIncludeDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.chkIncludeDate);
             this.layoutControl1.Controls.Add(this.dtpToDate);
             this.layoutControl1.Controls.Add(this.dtpFromDate);
             this.layoutControl1.Controls.Add(this.cmbBranch);
@@ -142,7 +148,7 @@
             // 
             this.btbGenerate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btbGenerate.ImageOptions.Image")));
             this.btbGenerate.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btbGenerate.Location = new System.Drawing.Point(720, 7);
+            this.btbGenerate.Location = new System.Drawing.Point(842, 7);
             this.btbGenerate.Name = "btbGenerate";
             this.btbGenerate.Size = new System.Drawing.Size(122, 22);
             this.btbGenerate.StyleController = this.layoutControl1;
@@ -154,7 +160,7 @@
             // 
             this.btnViewReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnViewReport.ImageOptions.Image")));
             this.btnViewReport.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnViewReport.Location = new System.Drawing.Point(852, 7);
+            this.btnViewReport.Location = new System.Drawing.Point(974, 7);
             this.btnViewReport.Name = "btnViewReport";
             this.btnViewReport.Size = new System.Drawing.Size(127, 22);
             this.btnViewReport.StyleController = this.layoutControl1;
@@ -184,7 +190,7 @@
             this.gvItems.Appearance.HeaderPanel.Options.UseFont = true;
             this.gvItems.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn8,
-            this.gridColumn3,
+            this.gColBillDate,
             this.gridColumn10,
             this.gridColumn11,
             this.gridColumn14,
@@ -194,7 +200,8 @@
             this.gridColumn4,
             this.gridColumn5,
             this.gridColumn6,
-            this.gridColumn9});
+            this.gridColumn9,
+            this.gridColumn12});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -210,13 +217,13 @@
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 0;
             // 
-            // gridColumn3
+            // gColBillDate
             // 
-            this.gridColumn3.Caption = "Bill Date";
-            this.gridColumn3.FieldName = "BILLDATE";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
+            this.gColBillDate.Caption = "Bill Date";
+            this.gColBillDate.FieldName = "BILLDATE";
+            this.gColBillDate.Name = "gColBillDate";
+            this.gColBillDate.Visible = true;
+            this.gColBillDate.VisibleIndex = 1;
             // 
             // gridColumn10
             // 
@@ -232,7 +239,7 @@
             this.gridColumn11.FieldName = "SUBCATEGORYNAME";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 9;
+            this.gridColumn11.VisibleIndex = 6;
             // 
             // gridColumn14
             // 
@@ -290,7 +297,7 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 6;
+            this.gridColumn5.VisibleIndex = 9;
             this.gridColumn5.Width = 87;
             // 
             // gridColumn6
@@ -311,7 +318,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 11;
+            this.gridColumn9.VisibleIndex = 12;
             // 
             // Root
             // 
@@ -324,7 +331,8 @@
             this.layoutControlItem4,
             this.emptySpaceItem1,
             this.layoutControlItem5,
-            this.layoutControlItem6});
+            this.layoutControlItem6,
+            this.layoutControlItem7});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(1148, 759);
@@ -342,7 +350,7 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnViewReport;
-            this.layoutControlItem2.Location = new System.Drawing.Point(845, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(967, 0);
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(137, 32);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(137, 32);
             this.layoutControlItem2.Name = "layoutControlItem2";
@@ -355,7 +363,7 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btbGenerate;
-            this.layoutControlItem3.Location = new System.Drawing.Point(713, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(835, 0);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(132, 32);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(132, 32);
             this.layoutControlItem3.Name = "layoutControlItem3";
@@ -381,9 +389,9 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(982, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(1104, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(162, 34);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(40, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem5
@@ -411,6 +419,33 @@
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.Text = "To Date";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(58, 15);
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "Actual Billed Amount";
+            this.gridColumn12.FieldName = "ACTUALBILLEDAMOUNT";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 11;
+            // 
+            // chkIncludeDate
+            // 
+            this.chkIncludeDate.Location = new System.Drawing.Point(721, 8);
+            this.chkIncludeDate.Name = "chkIncludeDate";
+            this.chkIncludeDate.Properties.Caption = "Include Bill Date";
+            this.chkIncludeDate.Size = new System.Drawing.Size(110, 19);
+            this.chkIncludeDate.StyleController = this.layoutControl1;
+            this.chkIncludeDate.TabIndex = 6;
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.chkIncludeDate;
+            this.layoutControlItem7.Location = new System.Drawing.Point(713, 0);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem7.Size = new System.Drawing.Size(122, 34);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
             // 
             // frmItemwiseSales
             // 
@@ -440,6 +475,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIncludeDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -466,7 +503,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gColBillDate;
         private DevExpress.XtraEditors.DateEdit dtpToDate;
         private DevExpress.XtraEditors.DateEdit dtpFromDate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
@@ -474,5 +511,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraEditors.CheckEdit chkIncludeDate;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
     }
 }

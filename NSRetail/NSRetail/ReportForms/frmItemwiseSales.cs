@@ -1,13 +1,5 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail
@@ -31,7 +23,8 @@ namespace NSRetail
         private void btbGenerate_Click(object sender, EventArgs e)
         {
             gcItems.DataSource = new POSRepository().GetItemwiseSales(cmbBranch.EditValue,
-                dtpFromDate.EditValue,dtpToDate.DateTime.AddDays(1));
+                dtpFromDate.EditValue,dtpToDate.DateTime.AddDays(1), chkIncludeDate.EditValue);
+            gColBillDate.Visible = Convert.ToBoolean(chkIncludeDate.EditValue);
         }
 
         private void btnViewReport_Click(object sender, EventArgs e)

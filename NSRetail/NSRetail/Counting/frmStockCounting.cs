@@ -59,7 +59,7 @@ namespace NSRetail
             if (cmbBranch.EditValue == null)
                 return;
             frmViewItems obj =
-                new frmViewItems(new CountingRepository().GetStockCountingDiff(
+                new frmViewItems(new CountingRepository().GetStockCountingNoteEntered(
                     cmbBranch.EditValue), true);
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;

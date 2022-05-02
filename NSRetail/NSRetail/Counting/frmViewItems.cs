@@ -1,12 +1,5 @@
-﻿using DevExpress.XtraEditors;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail
@@ -35,6 +28,11 @@ namespace NSRetail
         {
             if (e.KeyData == Keys.Escape)
                 this.Close();
+        }
+
+        private void btnViewReport_Click(object sender, EventArgs e)
+        {
+            gcItems.ShowRibbonPrintPreview();
         }
     }
 }

@@ -43,19 +43,25 @@
             this.gcQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcPhysicalStock = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSystemStock = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcStockDiff = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gcStockDiff = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnViewReport);
             this.layoutControl1.Controls.Add(this.gcItems);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -69,11 +75,11 @@
             // gcItems
             // 
             this.gcItems.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.gcItems.Location = new System.Drawing.Point(4, 4);
+            this.gcItems.Location = new System.Drawing.Point(4, 38);
             this.gcItems.MainView = this.gvItems;
             this.gcItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcItems.Name = "gcItems";
-            this.gcItems.Size = new System.Drawing.Size(1132, 684);
+            this.gcItems.Size = new System.Drawing.Size(1132, 650);
             this.gcItems.TabIndex = 4;
             this.gcItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvItems});
@@ -197,12 +203,22 @@
             this.gcSystemStock.Visible = true;
             this.gcSystemStock.VisibleIndex = 8;
             // 
+            // gcStockDiff
+            // 
+            this.gcStockDiff.Caption = "Stock Diff";
+            this.gcStockDiff.FieldName = "STOCKDIFF";
+            this.gcStockDiff.Name = "gcStockDiff";
+            this.gcStockDiff.Visible = true;
+            this.gcStockDiff.VisibleIndex = 9;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1});
+            this.layoutControlItem1,
+            this.emptySpaceItem1,
+            this.layoutControlItem2});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(1140, 692);
@@ -211,19 +227,39 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gcItems;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 34);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1136, 688);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1136, 654);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // gcStockDiff
+            // emptySpaceItem1
             // 
-            this.gcStockDiff.Caption = "Stock Diff";
-            this.gcStockDiff.FieldName = "STOCKDIFF";
-            this.gcStockDiff.Name = "gcStockDiff";
-            this.gcStockDiff.Visible = true;
-            this.gcStockDiff.VisibleIndex = 9;
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(948, 34);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // btnViewReport
+            // 
+            this.btnViewReport.Location = new System.Drawing.Point(956, 8);
+            this.btnViewReport.Name = "btnViewReport";
+            this.btnViewReport.Size = new System.Drawing.Size(176, 22);
+            this.btnViewReport.StyleController = this.layoutControl1;
+            this.btnViewReport.TabIndex = 5;
+            this.btnViewReport.Text = "View Report";
+            this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.btnViewReport;
+            this.layoutControlItem2.Location = new System.Drawing.Point(948, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem2.Size = new System.Drawing.Size(188, 34);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
             // 
             // frmViewItems
             // 
@@ -244,6 +280,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -268,5 +306,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcPhysicalStock;
         private DevExpress.XtraGrid.Columns.GridColumn gcSystemStock;
         private DevExpress.XtraGrid.Columns.GridColumn gcStockDiff;
+        private DevExpress.XtraEditors.SimpleButton btnViewReport;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
     }
 }
