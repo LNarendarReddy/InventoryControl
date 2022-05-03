@@ -124,6 +124,9 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@BillDetail", dsRestoreData.Tables[1]);
                     cmd.Parameters.AddWithValue("@BillMOPDetail", dsRestoreData.Tables[2]);
                     cmd.Parameters.AddWithValue("@DaySequence", dsRestoreData.Tables[3]);
+                    cmd.Parameters.AddWithValue("@CRefund", dsRestoreData.Tables[4]);
+                    cmd.Parameters.AddWithValue("@BRefund", dsRestoreData.Tables[5]);
+                    cmd.Parameters.AddWithValue("@BRefundDetail", dsRestoreData.Tables[6]);
                     cmd.ExecuteNonQuery();
                 }
             }
