@@ -41,6 +41,9 @@ namespace NSRetail
                 dt.Columns.Remove("ITEMNAME");
                 dt.Columns.Remove("MRP");
                 dt.Columns.Remove("SALEPRICE");
+                dt.Columns.Remove("REASONID");
+                dt.Columns.Remove("DELETEDDATE");
+                dt.Columns.Remove("REASONNAME");
                 new POSRepository().AcceptBRefund(CounterID, BRefundID, Utility.UserID, dt);
                 IsSave = true;
                 this.Close();

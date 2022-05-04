@@ -121,5 +121,31 @@ namespace DataAccess
             }
             return dtStockCountingDiff;
         }
+
+        public void AcceptStockCounting(object BranchID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_STOCKCOUNTING]";
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    object objReturn = cmd.ExecuteScalar();
+
+                    if (!int.TryParse(Convert.ToString(objReturn), out int ivalue))
+                        throw new Exception(Convert.ToString(objReturn));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Accepting Stock Counting", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 }
