@@ -194,6 +194,7 @@
             this.gridColumn15.FieldName = "BREFUNDID";
             this.gridColumn15.MinWidth = 23;
             this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.OptionsColumn.AllowEdit = false;
             this.gridColumn15.Width = 87;
             // 
             // gridColumn16
@@ -257,6 +258,7 @@
             this.gridColumn21.FieldName = "COUNTERID";
             this.gridColumn21.MinWidth = 23;
             this.gridColumn21.Name = "gridColumn21";
+            this.gridColumn21.OptionsColumn.AllowEdit = false;
             this.gridColumn21.Width = 87;
             // 
             // gridColumn22
@@ -265,6 +267,7 @@
             this.gridColumn22.FieldName = "BRANCHID";
             this.gridColumn22.MinWidth = 23;
             this.gridColumn22.Name = "gridColumn22";
+            this.gridColumn22.OptionsColumn.AllowEdit = false;
             this.gridColumn22.Width = 87;
             // 
             // gridColumn23
@@ -295,6 +298,7 @@
             this.gridColumn1.FieldName = "IsAccepted";
             this.gridColumn1.MinWidth = 23;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Width = 87;
             // 
             // btnShow
