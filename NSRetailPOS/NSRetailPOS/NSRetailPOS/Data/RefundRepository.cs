@@ -35,7 +35,10 @@ namespace NSRetailPOS.Data
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Retrieving Bill Details", ex);
+                if (ex.Message.Contains("Bill Does Not Exists!"))
+                    throw ex;
+                else
+                    throw new Exception("Error While Retrieving Bill Details", ex);
             }
             finally
             {
