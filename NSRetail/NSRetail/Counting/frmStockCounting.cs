@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.XtraEditors;
 using System;
 using System.Windows.Forms;
 
@@ -53,7 +54,6 @@ namespace NSRetail
         {
 
         }
-
         private void btnNotEntered_Click(object sender, EventArgs e)
         {
             if (cmbBranch.EditValue == null)
@@ -64,6 +64,14 @@ namespace NSRetail
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
+        }
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            if (cmbBranch.EditValue == null)
+                return;
+            new CountingRepository().AcceptStockCounting(cmbBranch.EditValue);
+            btnView_Click(null, null);
+            XtraMessageBox.Show("Counting accepted succefully");
         }
     }
 }
