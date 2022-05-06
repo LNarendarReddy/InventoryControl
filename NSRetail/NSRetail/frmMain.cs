@@ -4,6 +4,7 @@ using DevExpress.XtraSplashScreen;
 using Microsoft.Win32;
 using NSRetail.Login;
 using NSRetail.Master;
+using NSRetail.ReportForms;
 using NSRetail.Stock;
 using System;
 using System.Collections.Generic;
@@ -408,6 +409,16 @@ namespace NSRetail
         private void btnItemWiseSales_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmItemwiseSales obj = new frmItemwiseSales();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void bbiReport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmReportPlaceHolder obj = new frmReportPlaceHolder();
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;
             obj.IconOptions.ShowIcon = false;

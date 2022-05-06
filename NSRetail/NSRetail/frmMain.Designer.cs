@@ -85,6 +85,8 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.bbiReport = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -130,10 +132,11 @@
             this.lblVersion,
             this.btnTaxWiseSales,
             this.btnZeroStock,
-            this.btnItemWiseSales});
+            this.btnItemWiseSales,
+            this.bbiReport});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ribbonControl1.MaxItemId = 45;
+            this.ribbonControl1.MaxItemId = 46;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -637,7 +640,8 @@
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2,
             this.ribbonPageGroup5,
-            this.ribbonPageGroup8});
+            this.ribbonPageGroup8,
+            this.ribbonPageGroup14});
             this.ribbonPage3.Name = "ribbonPage3";
             this.ribbonPage3.Text = "Operations";
             // 
@@ -796,6 +800,20 @@
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
             // 
+            // ribbonPageGroup14
+            // 
+            this.ribbonPageGroup14.ItemLinks.Add(this.bbiReport);
+            this.ribbonPageGroup14.Name = "ribbonPageGroup14";
+            this.ribbonPageGroup14.Text = "Reports";
+            // 
+            // bbiReport
+            // 
+            this.bbiReport.Caption = "Reports";
+            this.bbiReport.Id = 45;
+            this.bbiReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiReport.ImageOptions.SvgImage")));
+            this.bbiReport.Name = "bbiReport";
+            this.bbiReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiReport_ItemClick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -878,6 +896,8 @@
         private DevExpress.XtraBars.BarButtonItem btnTaxWiseSales;
         private DevExpress.XtraBars.BarButtonItem btnZeroStock;
         private DevExpress.XtraBars.BarButtonItem btnItemWiseSales;
+        private DevExpress.XtraBars.BarButtonItem bbiReport;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
     }
 }
 

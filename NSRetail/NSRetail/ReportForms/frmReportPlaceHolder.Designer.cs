@@ -1,0 +1,378 @@
+﻿namespace NSRetail.ReportForms
+{
+    partial class frmReportPlaceHolder
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReportPlaceHolder));
+            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
+            this.btnReport = new DevExpress.XtraEditors.SimpleButton();
+            this.gcResults = new DevExpress.XtraGrid.GridControl();
+            this.gvResults = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.tlReport = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.dpLeft = new DevExpress.XtraBars.Docking.DockPanel();
+            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.dpTop = new DevExpress.XtraBars.Docking.DockPanel();
+            this.controlContainer1 = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.pcSearchCriteria = new DevExpress.XtraEditors.PanelControl();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
+            this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcResults)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvResults)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tlReport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
+            this.dpLeft.SuspendLayout();
+            this.dockPanel1_Container.SuspendLayout();
+            this.dpTop.SuspendLayout();
+            this.controlContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcSearchCriteria)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // layoutControl1
+            // 
+            this.layoutControl1.Controls.Add(this.btnClose);
+            this.layoutControl1.Controls.Add(this.btnSearch);
+            this.layoutControl1.Controls.Add(this.btnReport);
+            this.layoutControl1.Controls.Add(this.gcResults);
+            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl1.Location = new System.Drawing.Point(269, 110);
+            this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.Root = this.Root;
+            this.layoutControl1.Size = new System.Drawing.Size(840, 553);
+            this.layoutControl1.TabIndex = 0;
+            this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
+            this.btnClose.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnClose.Location = new System.Drawing.Point(737, 16);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(87, 22);
+            this.btnClose.StyleController = this.layoutControl1;
+            this.btnClose.TabIndex = 9;
+            this.btnClose.Text = "Close";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
+            this.btnSearch.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnSearch.Location = new System.Drawing.Point(474, 16);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(119, 22);
+            this.btnSearch.StyleController = this.layoutControl1;
+            this.btnSearch.TabIndex = 8;
+            this.btnSearch.Text = "&Search";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnReport
+            // 
+            this.btnReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReport.ImageOptions.Image")));
+            this.btnReport.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnReport.Location = new System.Drawing.Point(605, 16);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(120, 22);
+            this.btnReport.StyleController = this.layoutControl1;
+            this.btnReport.TabIndex = 6;
+            this.btnReport.Text = "&Report";
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
+            // 
+            // gcResults
+            // 
+            this.gcResults.Location = new System.Drawing.Point(12, 46);
+            this.gcResults.MainView = this.gvResults;
+            this.gcResults.Name = "gcResults";
+            this.gcResults.Size = new System.Drawing.Size(816, 495);
+            this.gcResults.TabIndex = 5;
+            this.gcResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvResults});
+            // 
+            // gvResults
+            // 
+            this.gvResults.GridControl = this.gcResults;
+            this.gvResults.Name = "gvResults";
+            // 
+            // Root
+            // 
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem2,
+            this.emptySpaceItem2,
+            this.layoutControlItem3,
+            this.layoutControlItem5,
+            this.layoutControlItem1});
+            this.Root.Name = "Root";
+            this.Root.Size = new System.Drawing.Size(840, 553);
+            this.Root.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.gcResults;
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 34);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(820, 499);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(458, 34);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.btnReport;
+            this.layoutControlItem3.Location = new System.Drawing.Point(589, 0);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(132, 34);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(132, 34);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem3.Size = new System.Drawing.Size(132, 34);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.btnSearch;
+            this.layoutControlItem5.Location = new System.Drawing.Point(458, 0);
+            this.layoutControlItem5.MaxSize = new System.Drawing.Size(131, 34);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(131, 34);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem5.Size = new System.Drawing.Size(131, 34);
+            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.btnClose;
+            this.layoutControlItem1.Location = new System.Drawing.Point(721, 0);
+            this.layoutControlItem1.MaxSize = new System.Drawing.Size(99, 34);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(99, 34);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem1.Size = new System.Drawing.Size(99, 34);
+            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
+            // tlReport
+            // 
+            this.tlReport.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn1});
+            this.tlReport.CustomizationFormBounds = new System.Drawing.Rectangle(49, 506, 264, 292);
+            this.tlReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlReport.Location = new System.Drawing.Point(0, 0);
+            this.tlReport.Name = "tlReport";
+            this.tlReport.BeginUnboundLoad();
+            this.tlReport.AppendNode(new object[] {
+            null}, -1, "POS");
+            this.tlReport.AppendNode(new object[] {
+            null}, 0, "POS 1");
+            this.tlReport.AppendNode(new object[] {
+            null}, 0);
+            this.tlReport.AppendNode(new object[] {
+            null}, 0);
+            this.tlReport.AppendNode(new object[] {
+            null}, 0);
+            this.tlReport.AppendNode(new object[] {
+            null}, 0);
+            this.tlReport.AppendNode(new object[] {
+            null}, 0);
+            this.tlReport.AppendNode(new object[] {
+            null}, -1);
+            this.tlReport.AppendNode(new object[] {
+            null}, -1);
+            this.tlReport.AppendNode(new object[] {
+            null}, -1);
+            this.tlReport.EndUnboundLoad();
+            this.tlReport.Size = new System.Drawing.Size(262, 614);
+            this.tlReport.TabIndex = 4;
+            this.tlReport.SelectionChanged += new System.EventHandler(this.tlReport_SelectionChanged);
+            // 
+            // treeListColumn1
+            // 
+            this.treeListColumn1.Caption = "Report";
+            this.treeListColumn1.FieldName = "ReportName";
+            this.treeListColumn1.Name = "treeListColumn1";
+            this.treeListColumn1.OptionsColumn.AllowEdit = false;
+            this.treeListColumn1.Visible = true;
+            this.treeListColumn1.VisibleIndex = 0;
+            // 
+            // dockManager1
+            // 
+            this.dockManager1.Form = this;
+            this.dockManager1.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
+            this.dpLeft,
+            this.dpTop});
+            this.dockManager1.TopZIndexControls.AddRange(new string[] {
+            "DevExpress.XtraBars.BarDockControl",
+            "DevExpress.XtraBars.StandaloneBarDockControl",
+            "System.Windows.Forms.MenuStrip",
+            "System.Windows.Forms.StatusStrip",
+            "System.Windows.Forms.StatusBar",
+            "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
+            "DevExpress.XtraBars.Ribbon.RibbonControl",
+            "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
+            "DevExpress.XtraBars.Navigation.TileNavPane",
+            "DevExpress.XtraBars.TabFormControl",
+            "DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl",
+            "DevExpress.XtraBars.ToolbarForm.ToolbarFormControl"});
+            // 
+            // dpLeft
+            // 
+            this.dpLeft.Controls.Add(this.dockPanel1_Container);
+            this.dpLeft.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
+            this.dpLeft.ID = new System.Guid("bc731495-822c-4af8-a65a-b6ae0ca45d41");
+            this.dpLeft.Location = new System.Drawing.Point(0, 0);
+            this.dpLeft.Name = "dpLeft";
+            this.dpLeft.OriginalSize = new System.Drawing.Size(269, 200);
+            this.dpLeft.Size = new System.Drawing.Size(269, 663);
+            this.dpLeft.Text = "Reports";
+            // 
+            // dockPanel1_Container
+            // 
+            this.dockPanel1_Container.Controls.Add(this.tlReport);
+            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 46);
+            this.dockPanel1_Container.Name = "dockPanel1_Container";
+            this.dockPanel1_Container.Size = new System.Drawing.Size(262, 614);
+            this.dockPanel1_Container.TabIndex = 0;
+            // 
+            // dpTop
+            // 
+            this.dpTop.Controls.Add(this.controlContainer1);
+            this.dpTop.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
+            this.dpTop.ID = new System.Guid("87049d0f-cd5a-404c-a6d3-24128e75ad45");
+            this.dpTop.Location = new System.Drawing.Point(269, 0);
+            this.dpTop.Name = "dpTop";
+            this.dpTop.OriginalSize = new System.Drawing.Size(200, 110);
+            this.dpTop.Size = new System.Drawing.Size(840, 110);
+            this.dpTop.Text = "Search Criteria";
+            // 
+            // controlContainer1
+            // 
+            this.controlContainer1.Controls.Add(this.pcSearchCriteria);
+            this.controlContainer1.Location = new System.Drawing.Point(3, 46);
+            this.controlContainer1.Name = "controlContainer1";
+            this.controlContainer1.Size = new System.Drawing.Size(834, 60);
+            this.controlContainer1.TabIndex = 0;
+            // 
+            // pcSearchCriteria
+            // 
+            this.pcSearchCriteria.AutoSize = true;
+            this.pcSearchCriteria.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pcSearchCriteria.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.pcSearchCriteria.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pcSearchCriteria.Location = new System.Drawing.Point(0, 0);
+            this.pcSearchCriteria.Name = "pcSearchCriteria";
+            this.pcSearchCriteria.Padding = new System.Windows.Forms.Padding(5);
+            this.pcSearchCriteria.Size = new System.Drawing.Size(834, 60);
+            this.pcSearchCriteria.TabIndex = 0;
+            // 
+            // frmReportPlaceHolder
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
+            this.ClientSize = new System.Drawing.Size(1109, 663);
+            this.Controls.Add(this.layoutControl1);
+            this.Controls.Add(this.dpTop);
+            this.Controls.Add(this.dpLeft);
+            this.Name = "frmReportPlaceHolder";
+            this.Text = "Report Viewer";
+            this.Load += new System.EventHandler(this.frmReportPlaceHolder_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
+            this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcResults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvResults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tlReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
+            this.dpLeft.ResumeLayout(false);
+            this.dockPanel1_Container.ResumeLayout(false);
+            this.dpTop.ResumeLayout(false);
+            this.controlContainer1.ResumeLayout(false);
+            this.controlContainer1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcSearchCriteria)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private DevExpress.XtraLayout.LayoutControl layoutControl1;
+        private DevExpress.XtraLayout.LayoutControlGroup Root;
+        private DevExpress.XtraTreeList.TreeList tlReport;
+        private DevExpress.XtraEditors.SimpleButton btnSearch;
+        private DevExpress.XtraEditors.SimpleButton btnReport;
+        private DevExpress.XtraGrid.GridControl gcResults;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvResults;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraBars.Docking.DockManager dockManager1;
+        private DevExpress.XtraBars.Docking.DockPanel dpLeft;
+        private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
+        private DevExpress.XtraBars.Docking.DockPanel dpTop;
+        private DevExpress.XtraBars.Docking.ControlContainer controlContainer1;
+        private DevExpress.XtraEditors.PanelControl pcSearchCriteria;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
+        private DevExpress.XtraEditors.SimpleButton btnClose;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+    }
+}

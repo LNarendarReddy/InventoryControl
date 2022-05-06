@@ -49,6 +49,7 @@
     <Compile Include="OfferRepository.cs" />
     <Compile Include="POSRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\POSReportsRepository.cs" />
     <Compile Include="SQLCon.cs" />
     <Compile Include="StockRepository.cs" />
   </ItemGroup>
