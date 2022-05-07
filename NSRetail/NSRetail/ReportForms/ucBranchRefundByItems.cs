@@ -20,8 +20,8 @@ namespace NSRetail.ReportForms
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
 
-            deFromDate.EditValue = DateTime.Now.AddDays(-7);
-            deToDate.EditValue = DateTime.Now;
+            dtFromDate.EditValue = DateTime.Now.AddDays(-7);
+            dtToDate.EditValue = DateTime.Now;
         }
 
         public override DataTable GetData()
@@ -29,8 +29,8 @@ namespace NSRetail.ReportForms
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "BranchID", cmbBranch.EditValue }
-                , { "FromDate", deFromDate.EditValue }
-                , { "ToDate", deToDate.EditValue }
+                , { "FromDate", dtFromDate.EditValue }
+                , { "ToDate", dtToDate.EditValue }
             };
             return GetReportData("USP_RPT_ITEMWISEBRANCHREFUND", parameters);
         }

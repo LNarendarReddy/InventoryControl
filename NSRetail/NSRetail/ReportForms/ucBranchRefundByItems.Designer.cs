@@ -29,30 +29,30 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.dtToDate = new DevExpress.XtraEditors.DateEdit();
+            this.dtFromDate = new DevExpress.XtraEditors.DateEdit();
             this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.deFromDate = new DevExpress.XtraEditors.DateEdit();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.deToDate = new DevExpress.XtraEditors.DateEdit();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deFromDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deToDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deToDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.deToDate);
-            this.layoutControl1.Controls.Add(this.deFromDate);
+            this.layoutControl1.Controls.Add(this.dtToDate);
+            this.layoutControl1.Controls.Add(this.dtFromDate);
             this.layoutControl1.Controls.Add(this.cmbBranch);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -62,12 +62,39 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // dtToDate
+            // 
+            this.dtToDate.EditValue = null;
+            this.dtToDate.Location = new System.Drawing.Point(538, 16);
+            this.dtToDate.Name = "dtToDate";
+            this.dtToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtToDate.Size = new System.Drawing.Size(119, 22);
+            this.dtToDate.StyleController = this.layoutControl1;
+            this.dtToDate.TabIndex = 6;
+            // 
+            // dtFromDate
+            // 
+            this.dtFromDate.EditValue = null;
+            this.dtFromDate.Location = new System.Drawing.Point(341, 16);
+            this.dtFromDate.Name = "dtFromDate";
+            this.dtFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtFromDate.Size = new System.Drawing.Size(115, 22);
+            this.dtFromDate.StyleController = this.layoutControl1;
+            this.dtFromDate.TabIndex = 5;
+            // 
             // cmbBranch
             // 
             this.cmbBranch.Location = new System.Drawing.Point(86, 16);
             this.cmbBranch.Name = "cmbBranch";
             this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbBranch.Properties.NullText = "";
             this.cmbBranch.Size = new System.Drawing.Size(173, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 4;
@@ -94,22 +121,9 @@
             this.layoutControlItem1.Text = "Branch";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(58, 15);
             // 
-            // deFromDate
-            // 
-            this.deFromDate.EditValue = null;
-            this.deFromDate.Location = new System.Drawing.Point(341, 16);
-            this.deFromDate.Name = "deFromDate";
-            this.deFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deFromDate.Size = new System.Drawing.Size(115, 22);
-            this.deFromDate.StyleController = this.layoutControl1;
-            this.deFromDate.TabIndex = 5;
-            // 
             // layoutControlItem2
             // 
-            this.layoutControlItem2.Control = this.deFromDate;
+            this.layoutControlItem2.Control = this.dtFromDate;
             this.layoutControlItem2.Location = new System.Drawing.Point(255, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
@@ -117,22 +131,9 @@
             this.layoutControlItem2.Text = "From Date";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(58, 15);
             // 
-            // deToDate
-            // 
-            this.deToDate.EditValue = null;
-            this.deToDate.Location = new System.Drawing.Point(538, 16);
-            this.deToDate.Name = "deToDate";
-            this.deToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deToDate.Size = new System.Drawing.Size(119, 22);
-            this.deToDate.StyleController = this.layoutControl1;
-            this.deToDate.TabIndex = 6;
-            // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.deToDate;
+            this.layoutControlItem3.Control = this.dtToDate;
             this.layoutControlItem3.Location = new System.Drawing.Point(452, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
@@ -150,14 +151,14 @@
             this.Size = new System.Drawing.Size(673, 56);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deFromDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deToDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deToDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.ResumeLayout(false);
 
@@ -168,8 +169,8 @@
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraEditors.LookUpEdit cmbBranch;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.DateEdit deToDate;
-        private DevExpress.XtraEditors.DateEdit deFromDate;
+        private DevExpress.XtraEditors.DateEdit dtToDate;
+        private DevExpress.XtraEditors.DateEdit dtFromDate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
     }
