@@ -28,6 +28,8 @@ namespace NSRetail.ReportForms
 
         public virtual List<string> ForceShowColumns { get; }
 
+        public virtual List<string> TotalSummaryFields { get; }
+
         public Dictionary<string, string> GenericColumnHeaders { get; }
 
     }

@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraGrid.Columns;
+﻿using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
@@ -40,8 +41,9 @@ namespace NSRetail.ReportForms
 
         private void BgwGetData_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (handle != null)
-                SplashScreenManager.CloseOverlayForm(handle);
+            if (handle == null) return;
+            SplashScreenManager.CloseOverlayForm(handle);
+            handle = null;
         }
 
         private void BgwGetData_DoWork(object sender, DoWorkEventArgs e)
@@ -58,18 +60,33 @@ namespace NSRetail.ReportForms
             }
 
             gcResults.DataSource = dtReportData;
+            lblRecordCount.Text = $"Record count: {dtReportData.Rows.Count}";
+            SearchCriteriaBase searchCriteria = selectedReportHolder.SearchCriteriaControl;
 
             foreach (GridColumn column in gvResults.Columns)
             {
                 column.Visible = !column.FieldName.EndsWith("ID");
 
                 // first set the generic headers if available
-                if (selectedReportHolder.SearchCriteriaControl.GenericColumnHeaders.ContainsKey(column.FieldName))
-                    column.Caption = selectedReportHolder.SearchCriteriaControl.GenericColumnHeaders[column.FieldName];
+                if (searchCriteria.GenericColumnHeaders != null && searchCriteria.GenericColumnHeaders.ContainsKey(column.FieldName))
+                    column.Caption = searchCriteria.GenericColumnHeaders[column.FieldName];
 
                 // override generic header if a specific header is available
-                if (selectedReportHolder.SearchCriteriaControl.SpecificColumnHeaders.ContainsKey(column.FieldName))
-                    column.Caption = selectedReportHolder.SearchCriteriaControl.SpecificColumnHeaders[column.FieldName];
+                if (searchCriteria.SpecificColumnHeaders != null && searchCriteria.SpecificColumnHeaders.ContainsKey(column.FieldName))
+                    column.Caption = searchCriteria.SpecificColumnHeaders[column.FieldName];
+
+                if(searchCriteria.TotalSummaryFields != null && searchCriteria.TotalSummaryFields.Contains(column.FieldName))
+                {
+                    GridColumnSummaryItem siTotal = new GridColumnSummaryItem
+                    {
+                        SummaryType = DevExpress.Data.SummaryItemType.Sum,
+                        FieldName = column.FieldName,
+                        DisplayFormat = "Total: {0:#.##}"
+                    };
+
+                    column.Summary.Add(siTotal);
+                    gvResults.OptionsView.ShowFooter = true;
+                }
             }
         }
 
@@ -79,6 +96,7 @@ namespace NSRetail.ReportForms
             btnSearch.Enabled = false;
             btnReport.Enabled = false;
             gcResults.DataSource = null;
+            lblRecordCount.Text = string.Empty;
 
             selectedReportHolder = tlReport.GetFocusedRow() as ReportHolder;
             if (selectedReportHolder == null || selectedReportHolder.SearchCriteriaControl == null) return;
