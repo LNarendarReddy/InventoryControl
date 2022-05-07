@@ -435,5 +435,15 @@ namespace NSRetail
             obj.MdiParent = this;
             obj.Show();
         }
+
+        private void btnCounting_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmCounting obj = new frmCounting();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
     }
 }

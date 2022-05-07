@@ -50,9 +50,9 @@
             this.btnViewItems = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gcItemValue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcMOPValue = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcBills)).BeginInit();
@@ -120,6 +120,7 @@
             this.gridColumn1.FieldName = "BILLID";
             this.gridColumn1.MinWidth = 23;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Width = 87;
             // 
             // gridColumn2
@@ -128,6 +129,7 @@
             this.gridColumn2.FieldName = "BRANCHCOUNTERID";
             this.gridColumn2.MinWidth = 23;
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Width = 87;
             // 
             // gridColumn3
@@ -136,6 +138,7 @@
             this.gridColumn3.FieldName = "DAYCLOSUREID";
             this.gridColumn3.MinWidth = 23;
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Width = 87;
             // 
             // gridColumn4
@@ -144,6 +147,7 @@
             this.gridColumn4.FieldName = "BILLNUMBER";
             this.gridColumn4.MinWidth = 23;
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 0;
@@ -242,6 +246,15 @@
             this.gcMOPValue.VisibleIndex = 2;
             this.gcMOPValue.Width = 87;
             // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "Difference";
+            this.gridColumn11.FieldName = "BillDIFF";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.OptionsColumn.AllowEdit = false;
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 3;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -261,14 +274,6 @@
             this.layoutControlItem1.Size = new System.Drawing.Size(1132, 656);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
-            // 
-            // gridColumn11
-            // 
-            this.gridColumn11.Caption = "Difference";
-            this.gridColumn11.FieldName = "BillDIFF";
-            this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 3;
             // 
             // frmViewDCBills
             // 

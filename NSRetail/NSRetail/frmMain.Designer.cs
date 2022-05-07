@@ -66,6 +66,7 @@
             this.btnZeroStock = new DevExpress.XtraBars.BarButtonItem();
             this.btnItemWiseSales = new DevExpress.XtraBars.BarButtonItem();
             this.bbiReport = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiItemSummary = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -87,7 +88,7 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.bbiItemSummary = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCounting = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -135,10 +136,11 @@
             this.btnZeroStock,
             this.btnItemWiseSales,
             this.bbiReport,
-            this.bbiItemSummary});
+            this.bbiItemSummary,
+            this.btnCounting});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ribbonControl1.MaxItemId = 47;
+            this.ribbonControl1.MaxItemId = 48;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -539,7 +541,7 @@
             // 
             // btnStockCounting
             // 
-            this.btnStockCounting.Caption = "Stock Counting";
+            this.btnStockCounting.Caption = "Stock Counting Sheets";
             this.btnStockCounting.Id = 31;
             this.btnStockCounting.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockCounting.ImageOptions.SvgImage")));
             this.btnStockCounting.ItemAppearance.Disabled.Options.UseFont = true;
@@ -644,6 +646,15 @@
             this.bbiReport.Name = "bbiReport";
             this.bbiReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiReport_ItemClick);
             // 
+            // bbiItemSummary
+            // 
+            this.bbiItemSummary.Caption = "Item Summary";
+            this.bbiItemSummary.Id = 46;
+            this.bbiItemSummary.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiItemSummary.ImageOptions.Image")));
+            this.bbiItemSummary.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiItemSummary.ImageOptions.LargeImage")));
+            this.bbiItemSummary.Name = "bbiItemSummary";
+            this.bbiItemSummary.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiItemSummary_ItemClick);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Appearance.Options.UseFont = true;
@@ -717,6 +728,7 @@
             // ribbonPageGroup9
             // 
             this.ribbonPageGroup9.ItemLinks.Add(this.btnStockCounting);
+            this.ribbonPageGroup9.ItemLinks.Add(this.btnCounting);
             this.ribbonPageGroup9.Name = "ribbonPageGroup9";
             this.ribbonPageGroup9.Text = "Stock Counting";
             // 
@@ -817,14 +829,13 @@
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
             // 
-            // bbiItemSummary
+            // btnCounting
             // 
-            this.bbiItemSummary.Caption = "Item Summary";
-            this.bbiItemSummary.Id = 46;
-            this.bbiItemSummary.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiItemSummary.ImageOptions.Image")));
-            this.bbiItemSummary.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiItemSummary.ImageOptions.LargeImage")));
-            this.bbiItemSummary.Name = "bbiItemSummary";
-            this.bbiItemSummary.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiItemSummary_ItemClick);
+            this.btnCounting.Caption = "Stock Counting";
+            this.btnCounting.Id = 47;
+            this.btnCounting.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCounting.ImageOptions.SvgImage")));
+            this.btnCounting.Name = "btnCounting";
+            this.btnCounting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCounting_ItemClick);
             // 
             // frmMain
             // 
@@ -911,6 +922,7 @@
         private DevExpress.XtraBars.BarButtonItem bbiReport;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
         private DevExpress.XtraBars.BarButtonItem bbiItemSummary;
+        private DevExpress.XtraBars.BarButtonItem btnCounting;
     }
 }
 

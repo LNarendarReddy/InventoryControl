@@ -100,6 +100,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Counting\frmCounting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Counting\frmCounting.Designer.cs">
+      <DependentUpon>frmCounting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Counting\frmStockCounting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -488,6 +494,9 @@
       <DependentUpon>frmSyncStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Utility.cs" />
+    <EmbeddedResource Include="Counting\frmCounting.resx">
+      <DependentUpon>frmCounting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Counting\frmStockCounting.resx">
       <DependentUpon>frmStockCounting.cs</DependentUpon>
     </EmbeddedResource>

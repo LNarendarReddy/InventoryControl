@@ -244,6 +244,7 @@
             this.gridColumn1.FieldName = "DAYCLOSUREID";
             this.gridColumn1.MinWidth = 23;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Width = 87;
             // 
             // gridColumn2
@@ -263,6 +264,7 @@
             this.gridColumn3.FieldName = "BRANCHCOUNTERID";
             this.gridColumn3.MinWidth = 23;
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Width = 87;
             // 
             // gcTurnOver

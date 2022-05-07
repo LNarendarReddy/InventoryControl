@@ -81,6 +81,7 @@
             this.gvDayClosureSummary.DetailHeight = 404;
             this.gvDayClosureSummary.GridControl = this.gcDayClosureSummary;
             this.gvDayClosureSummary.Name = "gvDayClosureSummary";
+            this.gvDayClosureSummary.OptionsBehavior.Editable = false;
             this.gvDayClosureSummary.OptionsView.ShowFooter = true;
             this.gvDayClosureSummary.OptionsView.ShowGroupPanel = false;
             // 

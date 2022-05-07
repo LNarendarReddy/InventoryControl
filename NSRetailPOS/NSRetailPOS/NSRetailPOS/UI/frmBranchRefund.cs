@@ -287,5 +287,10 @@ namespace NSRetailPOS.UI
             TextEdit textedit = sender as TextEdit;
             textedit.SelectAll();
         }
+
+        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
     }
 }

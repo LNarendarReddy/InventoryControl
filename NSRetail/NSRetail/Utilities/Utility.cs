@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
 using Entity;
@@ -229,6 +230,17 @@ namespace NSRetail
         public static DataTable AppliesTo()
         {
             return new OfferRepository().GetApliesTo();
+        }
+        public static List<int> LocateAllRowsByValue(this GridView view, string fieldName, object value)
+        {
+            List<int> list = new List<int>();
+            int rowHandle = view.LocateByValue(fieldName, value);
+            while (rowHandle != GridControl.InvalidRowHandle)
+            {
+                list.Add(rowHandle);
+                rowHandle = view.LocateByValue(rowHandle + 1, view.Columns[fieldName], value);
+            }
+            return list;
         }
     }
 }

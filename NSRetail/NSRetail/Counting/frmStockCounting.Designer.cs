@@ -29,7 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockCounting));
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnAccept = new DevExpress.XtraEditors.SimpleButton();
             this.btnNotEntered = new DevExpress.XtraEditors.SimpleButton();
             this.btnView = new DevExpress.XtraEditors.SimpleButton();
             this.btnViewDifferences = new DevExpress.XtraEditors.SimpleButton();
@@ -51,7 +57,6 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnAccept = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -99,13 +104,25 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnAccept
+            // 
+            this.btnAccept.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAccept.ImageOptions.Image")));
+            this.btnAccept.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnAccept.Location = new System.Drawing.Point(775, 8);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(106, 22);
+            this.btnAccept.StyleController = this.layoutControl1;
+            this.btnAccept.TabIndex = 9;
+            this.btnAccept.Text = "Accept Counting";
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
+            // 
             // btnNotEntered
             // 
             this.btnNotEntered.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNotEntered.ImageOptions.Image")));
             this.btnNotEntered.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnNotEntered.Location = new System.Drawing.Point(1001, 8);
+            this.btnNotEntered.Location = new System.Drawing.Point(1017, 8);
             this.btnNotEntered.Name = "btnNotEntered";
-            this.btnNotEntered.Size = new System.Drawing.Size(126, 22);
+            this.btnNotEntered.Size = new System.Drawing.Size(110, 22);
             this.btnNotEntered.StyleController = this.layoutControl1;
             this.btnNotEntered.TabIndex = 8;
             this.btnNotEntered.Text = "Not entered items";
@@ -127,10 +144,10 @@
             // 
             this.btnViewDifferences.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnViewDifferences.ImageOptions.Image")));
             this.btnViewDifferences.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnViewDifferences.Location = new System.Drawing.Point(837, 8);
+            this.btnViewDifferences.Location = new System.Drawing.Point(893, 8);
             this.btnViewDifferences.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnViewDifferences.Name = "btnViewDifferences";
-            this.btnViewDifferences.Size = new System.Drawing.Size(152, 21);
+            this.btnViewDifferences.Size = new System.Drawing.Size(112, 22);
             this.btnViewDifferences.StyleController = this.layoutControl1;
             this.btnViewDifferences.TabIndex = 6;
             this.btnViewDifferences.Text = "View Differences";
@@ -270,8 +287,9 @@
             // btnViewItems
             // 
             this.btnViewItems.AutoHeight = false;
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
             this.btnViewItems.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnViewItems.Name = "btnViewItems";
             this.btnViewItems.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnViewItems.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnViewItems_ButtonClick);
@@ -320,12 +338,12 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnViewDifferences;
-            this.layoutControlItem3.Location = new System.Drawing.Point(829, 0);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(164, 33);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(164, 33);
+            this.layoutControlItem3.Location = new System.Drawing.Point(885, 0);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(124, 34);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(124, 34);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem3.Size = new System.Drawing.Size(164, 34);
+            this.layoutControlItem3.Size = new System.Drawing.Size(124, 34);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -335,7 +353,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(480, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(217, 34);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(287, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
@@ -354,35 +372,26 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnNotEntered;
-            this.layoutControlItem5.Location = new System.Drawing.Point(993, 0);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(138, 34);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(138, 34);
+            this.layoutControlItem5.Location = new System.Drawing.Point(1009, 0);
+            this.layoutControlItem5.MaxSize = new System.Drawing.Size(122, 34);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(122, 34);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem5.Size = new System.Drawing.Size(138, 34);
+            this.layoutControlItem5.Size = new System.Drawing.Size(122, 34);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
-            // btnAccept
-            // 
-            this.btnAccept.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAccept.ImageOptions.Image")));
-            this.btnAccept.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnAccept.Location = new System.Drawing.Point(705, 8);
-            this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(120, 22);
-            this.btnAccept.StyleController = this.layoutControl1;
-            this.btnAccept.TabIndex = 9;
-            this.btnAccept.Text = "Accept Counting";
-            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
-            // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.btnAccept;
-            this.layoutControlItem6.Location = new System.Drawing.Point(697, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(767, 0);
+            this.layoutControlItem6.MaxSize = new System.Drawing.Size(118, 34);
+            this.layoutControlItem6.MinSize = new System.Drawing.Size(118, 34);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem6.Size = new System.Drawing.Size(132, 34);
+            this.layoutControlItem6.Size = new System.Drawing.Size(118, 34);
+            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 

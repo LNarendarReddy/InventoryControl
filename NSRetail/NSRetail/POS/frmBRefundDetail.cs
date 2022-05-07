@@ -28,6 +28,12 @@ namespace NSRetail
         {
             this.Close();
         }
+
+        private void frmBRefundDetail_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (XtraMessageBox.Show("Are you sure want to accept refund sheet", "Confirmation!",
