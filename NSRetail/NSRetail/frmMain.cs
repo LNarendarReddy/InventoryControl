@@ -425,5 +425,15 @@ namespace NSRetail
             obj.MdiParent = this;
             obj.Show();
         }
+
+        private void bbiItemSummary_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmItemSummary obj = new frmItemSummary();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
     }
 }

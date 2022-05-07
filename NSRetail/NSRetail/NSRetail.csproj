@@ -340,6 +340,12 @@
     <Compile Include="POS\frmDayClosureSummary.Designer.cs">
       <DependentUpon>frmDayClosureSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\frmItemSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\frmItemSummary.Designer.cs">
+      <DependentUpon>frmItemSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\frmItemwiseSales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -601,6 +607,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="POS\frmDayClosureSummary.resx">
       <DependentUpon>frmDayClosureSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\frmItemSummary.resx">
+      <DependentUpon>frmItemSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\frmItemwiseSales.resx">
       <DependentUpon>frmItemwiseSales.cs</DependentUpon>
