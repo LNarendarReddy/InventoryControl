@@ -60,6 +60,9 @@ namespace NSRetail.ReportForms
             }
 
             gcResults.DataSource = dtReportData;
+
+            if (dtReportData == null) return;
+            
             lblRecordCount.Text = $"Record count: {dtReportData.Rows.Count}";
             SearchCriteriaBase searchCriteria = selectedReportHolder.SearchCriteriaControl;
 

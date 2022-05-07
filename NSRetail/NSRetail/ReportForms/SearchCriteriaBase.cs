@@ -1,10 +1,13 @@
-﻿using System;
+﻿using DataAccess;
+using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms
 {
-    public partial class SearchCriteriaBase : DevExpress.XtraEditors.XtraUserControl
+    public partial class SearchCriteriaBase : XtraUserControl
     {
         public SearchCriteriaBase()
         {
@@ -31,6 +34,21 @@ namespace NSRetail.ReportForms
         public virtual List<string> TotalSummaryFields { get; }
 
         public Dictionary<string, string> GenericColumnHeaders { get; }
+
+        public DataTable GetReportData(string procName, Dictionary<string, object> parameters)
+        {
+            DataTable reportdata = null;
+            try
+            {
+                reportdata = new ReportRepository().GetReportData(procName, parameters);
+            }
+            catch(Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return reportdata;
+        }
 
     }
 }
