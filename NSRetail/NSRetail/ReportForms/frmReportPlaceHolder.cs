@@ -2,6 +2,8 @@
 using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 
 namespace NSRetail.ReportForms
 {
@@ -13,6 +15,8 @@ namespace NSRetail.ReportForms
         }
 
         ReportHolder selectedReportHolder;
+        IOverlaySplashScreenHandle handle;
+        BackgroundWorker bgwGetData = new BackgroundWorker();
 
         private void frmReportPlaceHolder_Load(object sender, EventArgs e)
         {
@@ -26,9 +30,47 @@ namespace NSRetail.ReportForms
             itemReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales 2", SearchCriteriaControl = null });
             reportList.Add(itemReports);
 
+            bgwGetData.DoWork += BgwGetData_DoWork;
+            bgwGetData.RunWorkerCompleted += BgwGetData_RunWorkerCompleted;
+
             tlReport.DataSource = reportList;
             tlReport.ChildListFieldName = "SubCategory";
             tlReport.ExpandAll();
+        }
+
+        private void BgwGetData_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (handle != null)
+                SplashScreenManager.CloseOverlayForm(handle);
+        }
+
+        private void BgwGetData_DoWork(object sender, DoWorkEventArgs e)
+        {
+            InvokeUIOperation(selectedReportHolder.SearchCriteriaControl.GetData());
+        }
+
+        private void InvokeUIOperation(DataTable dtReportData)
+        {
+            if (InvokeRequired) 
+            {
+                BeginInvoke((Action)(() => InvokeUIOperation(dtReportData))); 
+                return; 
+            }
+
+            gcResults.DataSource = dtReportData;
+
+            foreach (GridColumn column in gvResults.Columns)
+            {
+                column.Visible = !column.FieldName.EndsWith("ID");
+
+                // first set the generic headers if available
+                if (selectedReportHolder.SearchCriteriaControl.GenericColumnHeaders.ContainsKey(column.FieldName))
+                    column.Caption = selectedReportHolder.SearchCriteriaControl.GenericColumnHeaders[column.FieldName];
+
+                // override generic header if a specific header is available
+                if (selectedReportHolder.SearchCriteriaControl.SpecificColumnHeaders.ContainsKey(column.FieldName))
+                    column.Caption = selectedReportHolder.SearchCriteriaControl.SpecificColumnHeaders[column.FieldName];
+            }
         }
 
         private void tlReport_SelectionChanged(object sender, EventArgs e)
@@ -52,24 +94,8 @@ namespace NSRetail.ReportForms
         {
             if (selectedReportHolder == null || selectedReportHolder.SearchCriteriaControl == null) return;
 
-            IOverlaySplashScreenHandle handle = SplashScreenManager.ShowOverlayForm(this);
-            gcResults.DataSource = selectedReportHolder.SearchCriteriaControl.GetData();
-
-            foreach (GridColumn column in gvResults.Columns)
-            {
-                column.Visible = !column.FieldName.EndsWith("ID");
-
-                // first set the generic headers if available
-                if (selectedReportHolder.SearchCriteriaControl.GenericColumnHeaders.ContainsKey(column.FieldName))
-                    column.Caption = selectedReportHolder.SearchCriteriaControl.GenericColumnHeaders[column.FieldName];
-
-                // override generic header if a specific header is available
-                if (selectedReportHolder.SearchCriteriaControl.SpecificColumnHeaders.ContainsKey(column.FieldName))
-                    column.Caption = selectedReportHolder.SearchCriteriaControl.SpecificColumnHeaders[column.FieldName];
-            }
-
-            if (handle != null)
-                SplashScreenManager.CloseOverlayForm(handle);
+            handle = SplashScreenManager.ShowOverlayForm(this);
+            bgwGetData.RunWorkerAsync();            
         }
 
         private void btnReport_Click(object sender, EventArgs e)
