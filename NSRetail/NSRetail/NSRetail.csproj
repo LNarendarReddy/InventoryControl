@@ -402,6 +402,12 @@
     <Compile Include="ReportForms\SearchCriteriaBase.Designer.cs">
       <DependentUpon>SearchCriteriaBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\ucBranchIndent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\ucBranchIndent.Designer.cs">
+      <DependentUpon>ucBranchIndent.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\ucBranchRefundByItems.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -652,6 +658,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ReportForms\ucBranchIndent.resx">
+      <DependentUpon>ucBranchIndent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\ucBranchRefundByItems.resx">
       <DependentUpon>ucBranchRefundByItems.cs</DependentUpon>
     </EmbeddedResource>

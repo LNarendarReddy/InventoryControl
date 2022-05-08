@@ -22,6 +22,7 @@ namespace NSRetail.ReportForms
                 , {"ITEMCODE", "Item Code"}
                 , {"CATEGORY", "Category"}
                 , {"SUBCATEGORY", "Sub Category"}
+                , {"SNO", "SNo"}
             };
         }
 

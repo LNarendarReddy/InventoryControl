@@ -24,6 +24,7 @@ namespace NSRetail.ReportForms
             List<ReportHolder> reportList = new List<ReportHolder>();
             ReportHolder posReports = new ReportHolder() { ReportName = "POS Reports" };
             posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds by Item", SearchCriteriaControl = new ucBranchRefundByItems() });
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
             reportList.Add(posReports);
 
             ReportHolder itemReports = new ReportHolder() { ReportName = "Item Reports" };
@@ -63,7 +64,7 @@ namespace NSRetail.ReportForms
 
             if (dtReportData == null) return;
             
-            lblRecordCount.Text = $"Record count: {dtReportData.Rows.Count}";
+            lblRecordCount.Text = $"Record count : {dtReportData.Rows.Count}";
             SearchCriteriaBase searchCriteria = selectedReportHolder.SearchCriteriaControl;
 
             foreach (GridColumn column in gvResults.Columns)
