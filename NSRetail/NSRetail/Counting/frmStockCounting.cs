@@ -67,7 +67,9 @@ namespace NSRetail
         }
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            if (cmbBranch.EditValue == null)
+            if (cmbBranch.EditValue == null ||
+                XtraMessageBox.Show("Are you sure want to accept sheets?","Confirm",
+                MessageBoxButtons.YesNo,MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             new CountingRepository().AcceptStockCounting(cmbBranch.EditValue);
             btnView_Click(null, null);

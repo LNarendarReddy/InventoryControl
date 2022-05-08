@@ -50,7 +50,7 @@ namespace DataAccess
             }
             return ObjBranch;
         }
-        public DataTable GetBranch()
+        public DataTable GetBranch(bool UsedInReport = false)
         {
             DataTable dtBranch = new DataTable();
             try
@@ -63,6 +63,13 @@ namespace DataAccess
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtBranch);
+                    }
+                    if(UsedInReport)
+                    {
+                        DataRow dr = dtBranch.NewRow();
+                        dr["BRANCHID"] = 0;
+                        dr["BRANCHNAME"] = "ALL";
+                        dtBranch.Rows.InsertAt(dr, 0);
                     }
                 }
             }
@@ -548,7 +555,7 @@ namespace DataAccess
             }
             return ObjDealer;
         }
-        public DataTable GetDealer()
+        public DataTable GetDealer(bool UsedInReport = false)
         {
             DataTable dtDealer = new DataTable();
             try
@@ -561,6 +568,13 @@ namespace DataAccess
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtDealer);
+                    }
+                    if(UsedInReport)
+                    {
+                        DataRow dr = dtDealer.NewRow();
+                        dr["DEALERID"] = 0;
+                        dr["DEALERNAME"] = "All";
+                        dtDealer.Rows.InsertAt(dr,0);
                     }
                 }
             }

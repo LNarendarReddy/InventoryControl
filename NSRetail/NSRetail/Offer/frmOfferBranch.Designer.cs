@@ -28,7 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOfferBranch));
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnAddAllBranches = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.cmBranch = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.cmbBranchView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -49,7 +56,6 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnAddAllBranches = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -96,6 +102,16 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnAddAllBranches
+            // 
+            this.btnAddAllBranches.Location = new System.Drawing.Point(839, 12);
+            this.btnAddAllBranches.Name = "btnAddAllBranches";
+            this.btnAddAllBranches.Size = new System.Drawing.Size(92, 22);
+            this.btnAddAllBranches.StyleController = this.layoutControl1;
+            this.btnAddAllBranches.TabIndex = 4;
+            this.btnAddAllBranches.Text = "Add All Branches";
+            this.btnAddAllBranches.Click += new System.EventHandler(this.btnAddAllBranches_Click);
+            // 
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(762, 12);
@@ -111,14 +127,14 @@
             // 
             this.cmBranch.EditValue = "";
             this.cmBranch.EnterMoveNextControl = true;
-            this.cmBranch.Location = new System.Drawing.Point(125, 12);
+            this.cmBranch.Location = new System.Drawing.Point(123, 12);
             this.cmBranch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmBranch.Name = "cmBranch";
             this.cmBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmBranch.Properties.NullText = "";
             this.cmBranch.Properties.PopupView = this.cmbBranchView;
-            this.cmBranch.Size = new System.Drawing.Size(625, 20);
+            this.cmBranch.Size = new System.Drawing.Size(627, 20);
             this.cmBranch.StyleController = this.layoutControl1;
             this.cmBranch.TabIndex = 0;
             // 
@@ -204,6 +220,7 @@
             this.gvBranch.DetailHeight = 404;
             this.gvBranch.GridControl = this.gcBranch;
             this.gvBranch.Name = "gvBranch";
+            this.gvBranch.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn1
             // 
@@ -271,8 +288,9 @@
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -321,16 +339,6 @@
             this.layoutControlItem3.Size = new System.Drawing.Size(77, 34);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
-            // 
-            // btnAddAllBranches
-            // 
-            this.btnAddAllBranches.Location = new System.Drawing.Point(839, 12);
-            this.btnAddAllBranches.Name = "btnAddAllBranches";
-            this.btnAddAllBranches.Size = new System.Drawing.Size(92, 22);
-            this.btnAddAllBranches.StyleController = this.layoutControl1;
-            this.btnAddAllBranches.TabIndex = 4;
-            this.btnAddAllBranches.Text = "Add All Branches";
-            this.btnAddAllBranches.Click += new System.EventHandler(this.btnAddAllBranches_Click);
             // 
             // layoutControlItem4
             // 

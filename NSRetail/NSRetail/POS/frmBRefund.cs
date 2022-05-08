@@ -23,9 +23,10 @@ namespace NSRetail
         {
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
+            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
+            cmbBranch.EditValue = 0;
         }
 
         private void btnShow_Click(object sender, EventArgs e)

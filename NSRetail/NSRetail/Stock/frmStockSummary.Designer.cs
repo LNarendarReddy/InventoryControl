@@ -32,7 +32,7 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
             this.gcStockSummary = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gvStockSummary = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -66,7 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcStockSummary)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvStockSummary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.luBranch.Properties)).BeginInit();
@@ -127,23 +127,23 @@
             // 
             this.gcStockSummary.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.gcStockSummary.Location = new System.Drawing.Point(4, 68);
-            this.gcStockSummary.MainView = this.gridView1;
+            this.gcStockSummary.MainView = this.gvStockSummary;
             this.gcStockSummary.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcStockSummary.Name = "gcStockSummary";
             this.gcStockSummary.Size = new System.Drawing.Size(1205, 753);
             this.gcStockSummary.TabIndex = 8;
             this.gcStockSummary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gvStockSummary});
             // 
-            // gridView1
+            // gvStockSummary
             // 
-            this.gridView1.Appearance.EvenRow.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.gridView1.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 8F);
-            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Arial", 8F);
-            this.gridView1.Appearance.Row.Options.UseFont = true;
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvStockSummary.Appearance.EvenRow.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.gvStockSummary.Appearance.EvenRow.Options.UseBackColor = true;
+            this.gvStockSummary.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 8F);
+            this.gvStockSummary.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvStockSummary.Appearance.Row.Font = new System.Drawing.Font("Arial", 8F);
+            this.gvStockSummary.Appearance.Row.Options.UseFont = true;
+            this.gvStockSummary.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3,
@@ -154,10 +154,10 @@
             this.gridColumn9,
             this.gridColumn10,
             this.gridColumn11});
-            this.gridView1.DetailHeight = 404;
-            this.gridView1.GridControl = this.gcStockSummary;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
+            this.gvStockSummary.DetailHeight = 404;
+            this.gvStockSummary.GridControl = this.gcStockSummary;
+            this.gvStockSummary.Name = "gvStockSummary";
+            this.gvStockSummary.OptionsBehavior.Editable = false;
             // 
             // gridColumn1
             // 
@@ -501,7 +501,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcStockSummary)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvStockSummary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItem.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.luBranch.Properties)).EndInit();
@@ -523,7 +523,7 @@
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraGrid.GridControl gcStockSummary;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvStockSummary;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnSearch;
         private DevExpress.XtraEditors.SearchLookUpEdit sluItem;

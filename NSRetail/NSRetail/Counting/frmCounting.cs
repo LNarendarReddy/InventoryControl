@@ -78,7 +78,9 @@ namespace NSRetail
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (gvCounting.RowCount == 0)
+            if (gvCounting.RowCount == 0 ||
+                XtraMessageBox.Show("Are you sure want to submit sheet", "Confirm",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             stockCounting.UserID = Utility.UserID;
             new CloudRepository().UpdateStockCounting(stockCounting);
@@ -278,7 +280,9 @@ namespace NSRetail
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            if (gvCounting.FocusedRowHandle < 0)
+            if (gvCounting.FocusedRowHandle < 0 ||
+                XtraMessageBox.Show("Are you sure want to delete item", "Confirm",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             new CloudRepository().DeleteStockCounting(gvCounting.GetFocusedRowCellValue("STOCKCOUNTINGDETAILID"));
             gvCounting.DeleteRow(gvCounting.FocusedRowHandle);

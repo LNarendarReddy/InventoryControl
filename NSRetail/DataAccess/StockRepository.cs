@@ -169,7 +169,7 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
-        public DataTable GetDispatchList(object FromDate,object ToDate)
+        public DataTable GetDispatchList(object BranchID, object FromDate,object ToDate)
         {
             DataTable dt = new DataTable();
             try
@@ -179,6 +179,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_DISPATCHLIST]";
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
                     cmd.Parameters.AddWithValue("@FromDate", FromDate);
                     cmd.Parameters.AddWithValue("@ToDate", ToDate);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -433,7 +434,7 @@ namespace DataAccess
             }
             return dt;
         }
-        public DataTable GetInvoiceList(object  FromDate,object ToDate)
+        public DataTable GetInvoiceList(object DealerID, object  FromDate,object ToDate)
         {
             DataTable dt = new DataTable();
             try
@@ -443,6 +444,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_INVOICELIST]";
+                    cmd.Parameters.AddWithValue("@DealerID", DealerID);
                     cmd.Parameters.AddWithValue("@FromDate", FromDate);
                     cmd.Parameters.AddWithValue("@ToDate", ToDate);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -572,7 +574,7 @@ namespace DataAccess
             }
             return ds;
         }
-        public DataTable GetDCList(object FromDate,object ToDate)
+        public DataTable GetDCList(object BranchID, object FromDate,object ToDate)
         {
             DataTable dt = new DataTable();
             try
@@ -582,6 +584,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_DISPATCHDCLIST]";
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
                     cmd.Parameters.AddWithValue("@FromDate", FromDate);
                     cmd.Parameters.AddWithValue("@ToDate", ToDate);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))

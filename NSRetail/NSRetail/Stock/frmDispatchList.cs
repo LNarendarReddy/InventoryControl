@@ -57,14 +57,19 @@ namespace NSRetail.Stock
 
         private void frmDispatchList_Load(object sender, EventArgs e)
         {
+            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
+            cmbBranch.Properties.ValueMember = "BRANCHID";
+            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
+            cmbBranch.EditValue = 0;
+
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
         }
 
         private void btnShowResult_Click(object sender, EventArgs e)
         {
-            gcDispatch.DataSource = ObjStockRep.GetDispatchList(dtpFromDate.EditValue,
-                dtpToDate.DateTime.AddDays(1));
+            gcDispatch.DataSource = ObjStockRep.GetDispatchList(cmbBranch.EditValue, 
+                dtpFromDate.EditValue, dtpToDate.DateTime.AddDays(1));
         }
     }
 }

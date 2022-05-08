@@ -17,9 +17,10 @@ namespace NSRetail.Stock
 
         private void frmStockSummary_Load(object sender, EventArgs e)
         {
-            luBranch.Properties.DataSource = new MasterRepository().GetBranch();
+            luBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
             luBranch.Properties.ValueMember = "BRANCHID";
             luBranch.Properties.DisplayMember = "BRANCHNAME";
+            luBranch.EditValue = 0;
 
             sluItem.Properties.DataSource = Utility.GetItemSKUList();
             sluItem.Properties.ValueMember = "ITEMID";

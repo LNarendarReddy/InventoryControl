@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReportPlaceHolder));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.lblRecordCount = new DevExpress.XtraEditors.LabelControl();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.btnReport = new DevExpress.XtraEditors.SimpleButton();
@@ -42,6 +43,7 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.tlReport = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
@@ -50,8 +52,6 @@
             this.dpTop = new DevExpress.XtraBars.Docking.DockPanel();
             this.controlContainer1 = new DevExpress.XtraBars.Docking.ControlContainer();
             this.pcSearchCriteria = new DevExpress.XtraEditors.PanelControl();
-            this.lblRecordCount = new DevExpress.XtraEditors.LabelControl();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcResults)).BeginInit();
@@ -62,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dpLeft.SuspendLayout();
@@ -69,7 +70,6 @@
             this.dpTop.SuspendLayout();
             this.controlContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcSearchCriteria)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -87,12 +87,26 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // lblRecordCount
+            // 
+            this.lblRecordCount.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.lblRecordCount.Appearance.Options.UseFont = true;
+            this.lblRecordCount.Appearance.Options.UseTextOptions = true;
+            this.lblRecordCount.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblRecordCount.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.lblRecordCount.Location = new System.Drawing.Point(4, 4);
+            this.lblRecordCount.Name = "lblRecordCount";
+            this.lblRecordCount.Padding = new System.Windows.Forms.Padding(4);
+            this.lblRecordCount.Size = new System.Drawing.Size(8, 27);
+            this.lblRecordCount.StyleController = this.layoutControl1;
+            this.lblRecordCount.TabIndex = 10;
+            // 
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
             this.btnClose.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnClose.Location = new System.Drawing.Point(737, 16);
+            this.btnClose.Location = new System.Drawing.Point(745, 8);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(87, 22);
             this.btnClose.StyleController = this.layoutControl1;
@@ -104,7 +118,7 @@
             // 
             this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
             this.btnSearch.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSearch.Location = new System.Drawing.Point(474, 16);
+            this.btnSearch.Location = new System.Drawing.Point(482, 8);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(119, 22);
             this.btnSearch.StyleController = this.layoutControl1;
@@ -116,7 +130,7 @@
             // 
             this.btnReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReport.ImageOptions.Image")));
             this.btnReport.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnReport.Location = new System.Drawing.Point(605, 16);
+            this.btnReport.Location = new System.Drawing.Point(613, 8);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(120, 22);
             this.btnReport.StyleController = this.layoutControl1;
@@ -126,10 +140,10 @@
             // 
             // gcResults
             // 
-            this.gcResults.Location = new System.Drawing.Point(12, 46);
+            this.gcResults.Location = new System.Drawing.Point(4, 38);
             this.gcResults.MainView = this.gvResults;
             this.gcResults.Name = "gcResults";
-            this.gcResults.Size = new System.Drawing.Size(816, 495);
+            this.gcResults.Size = new System.Drawing.Size(832, 511);
             this.gcResults.TabIndex = 5;
             this.gcResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvResults});
@@ -138,6 +152,7 @@
             // 
             this.gvResults.GridControl = this.gcResults;
             this.gvResults.Name = "gvResults";
+            this.gvResults.OptionsBehavior.Editable = false;
             this.gvResults.OptionsView.ShowGroupPanel = false;
             // 
             // Root
@@ -152,6 +167,7 @@
             this.layoutControlItem1,
             this.layoutControlItem4});
             this.Root.Name = "Root";
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(840, 553);
             this.Root.TextVisible = false;
             // 
@@ -160,7 +176,7 @@
             this.layoutControlItem2.Control = this.gcResults;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 34);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(820, 499);
+            this.layoutControlItem2.Size = new System.Drawing.Size(836, 515);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -169,13 +185,13 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(12, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(446, 34);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(462, 34);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnReport;
-            this.layoutControlItem3.Location = new System.Drawing.Point(589, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(605, 0);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(132, 34);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(132, 34);
             this.layoutControlItem3.Name = "layoutControlItem3";
@@ -188,7 +204,7 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnSearch;
-            this.layoutControlItem5.Location = new System.Drawing.Point(458, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(474, 0);
             this.layoutControlItem5.MaxSize = new System.Drawing.Size(131, 34);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(131, 34);
             this.layoutControlItem5.Name = "layoutControlItem5";
@@ -201,7 +217,7 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.btnClose;
-            this.layoutControlItem1.Location = new System.Drawing.Point(721, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(737, 0);
             this.layoutControlItem1.MaxSize = new System.Drawing.Size(99, 34);
             this.layoutControlItem1.MinSize = new System.Drawing.Size(99, 34);
             this.layoutControlItem1.Name = "layoutControlItem1";
@@ -210,6 +226,15 @@
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.lblRecordCount;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(12, 34);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
             // 
             // tlReport
             // 
@@ -324,29 +349,6 @@
             this.pcSearchCriteria.Size = new System.Drawing.Size(834, 60);
             this.pcSearchCriteria.TabIndex = 0;
             // 
-            // lblRecordCount
-            // 
-            this.lblRecordCount.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.lblRecordCount.Appearance.Options.UseFont = true;
-            this.lblRecordCount.Appearance.Options.UseTextOptions = true;
-            this.lblRecordCount.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblRecordCount.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
-            this.lblRecordCount.Location = new System.Drawing.Point(12, 12);
-            this.lblRecordCount.Name = "lblRecordCount";
-            this.lblRecordCount.Padding = new System.Windows.Forms.Padding(4);
-            this.lblRecordCount.Size = new System.Drawing.Size(8, 27);
-            this.lblRecordCount.StyleController = this.layoutControl1;
-            this.lblRecordCount.TabIndex = 10;
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.lblRecordCount;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(12, 34);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
-            // 
             // frmReportPlaceHolder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -369,6 +371,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.dpLeft.ResumeLayout(false);
@@ -377,7 +380,6 @@
             this.controlContainer1.ResumeLayout(false);
             this.controlContainer1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcSearchCriteria)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
 
         }

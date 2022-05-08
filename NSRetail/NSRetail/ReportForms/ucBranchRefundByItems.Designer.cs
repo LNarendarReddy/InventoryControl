@@ -58,44 +58,51 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(673, 56);
+            this.layoutControl1.Size = new System.Drawing.Size(847, 56);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // dtToDate
             // 
             this.dtToDate.EditValue = null;
-            this.dtToDate.Location = new System.Drawing.Point(538, 16);
+            this.dtToDate.EnterMoveNextControl = true;
+            this.dtToDate.Location = new System.Drawing.Point(658, 16);
             this.dtToDate.Name = "dtToDate";
             this.dtToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtToDate.Size = new System.Drawing.Size(119, 22);
+            this.dtToDate.Size = new System.Drawing.Size(173, 22);
             this.dtToDate.StyleController = this.layoutControl1;
             this.dtToDate.TabIndex = 6;
             // 
             // dtFromDate
             // 
             this.dtFromDate.EditValue = null;
-            this.dtFromDate.Location = new System.Drawing.Point(341, 16);
+            this.dtFromDate.EnterMoveNextControl = true;
+            this.dtFromDate.Location = new System.Drawing.Point(409, 16);
             this.dtFromDate.Name = "dtFromDate";
             this.dtFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtFromDate.Size = new System.Drawing.Size(115, 22);
+            this.dtFromDate.Size = new System.Drawing.Size(167, 22);
             this.dtFromDate.StyleController = this.layoutControl1;
             this.dtFromDate.TabIndex = 5;
             // 
             // cmbBranch
             // 
+            this.cmbBranch.EnterMoveNextControl = true;
             this.cmbBranch.Location = new System.Drawing.Point(86, 16);
             this.cmbBranch.Name = "cmbBranch";
             this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHID", "BRANCHID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHNAME", "BRANCHNAME")});
             this.cmbBranch.Properties.NullText = "";
-            this.cmbBranch.Size = new System.Drawing.Size(173, 22);
+            this.cmbBranch.Properties.ShowHeader = false;
+            this.cmbBranch.Size = new System.Drawing.Size(241, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 4;
             // 
@@ -108,7 +115,7 @@
             this.layoutControlItem2,
             this.layoutControlItem3});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(673, 56);
+            this.Root.Size = new System.Drawing.Size(847, 56);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -117,27 +124,27 @@
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem1.Size = new System.Drawing.Size(255, 36);
+            this.layoutControlItem1.Size = new System.Drawing.Size(323, 36);
             this.layoutControlItem1.Text = "Branch";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(58, 15);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.dtFromDate;
-            this.layoutControlItem2.Location = new System.Drawing.Point(255, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(323, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(197, 36);
+            this.layoutControlItem2.Size = new System.Drawing.Size(249, 36);
             this.layoutControlItem2.Text = "From Date";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(58, 15);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.dtToDate;
-            this.layoutControlItem3.Location = new System.Drawing.Point(452, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(572, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem3.Size = new System.Drawing.Size(201, 36);
+            this.layoutControlItem3.Size = new System.Drawing.Size(255, 36);
             this.layoutControlItem3.Text = "To Date";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(58, 15);
             // 
@@ -148,7 +155,7 @@
             this.AutoSize = true;
             this.Controls.Add(this.layoutControl1);
             this.Name = "ucBranchRefundByItems";
-            this.Size = new System.Drawing.Size(673, 56);
+            this.Size = new System.Drawing.Size(847, 56);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).EndInit();

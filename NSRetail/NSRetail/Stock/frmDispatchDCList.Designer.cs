@@ -35,6 +35,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
             this.btnShowResult = new DevExpress.XtraEditors.SimpleButton();
             this.dtpToDate = new DevExpress.XtraEditors.DateEdit();
             this.dtpFromDate = new DevExpress.XtraEditors.DateEdit();
@@ -59,8 +60,10 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -76,10 +79,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.cmbBranch);
             this.layoutControl1.Controls.Add(this.btnShowResult);
             this.layoutControl1.Controls.Add(this.dtpToDate);
             this.layoutControl1.Controls.Add(this.dtpFromDate);
@@ -96,15 +101,31 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // cmbBranch
+            // 
+            this.cmbBranch.EnterMoveNextControl = true;
+            this.cmbBranch.Location = new System.Drawing.Point(78, 8);
+            this.cmbBranch.Name = "cmbBranch";
+            this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHID", "BranchID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHNAME", "BRANCHNAME")});
+            this.cmbBranch.Properties.NullText = "";
+            this.cmbBranch.Properties.ShowHeader = false;
+            this.cmbBranch.Size = new System.Drawing.Size(192, 22);
+            this.cmbBranch.StyleController = this.layoutControl1;
+            this.cmbBranch.TabIndex = 0;
+            // 
             // btnShowResult
             // 
             this.btnShowResult.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnShowResult.ImageOptions.Image")));
             this.btnShowResult.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnShowResult.Location = new System.Drawing.Point(430, 8);
+            this.btnShowResult.Location = new System.Drawing.Point(704, 8);
             this.btnShowResult.Name = "btnShowResult";
             this.btnShowResult.Size = new System.Drawing.Size(132, 22);
             this.btnShowResult.StyleController = this.layoutControl1;
-            this.btnShowResult.TabIndex = 2;
+            this.btnShowResult.TabIndex = 3;
             this.btnShowResult.Text = "Show Result";
             this.btnShowResult.Click += new System.EventHandler(this.btnShowResult_Click);
             // 
@@ -112,7 +133,7 @@
             // 
             this.dtpToDate.EditValue = null;
             this.dtpToDate.EnterMoveNextControl = true;
-            this.dtpToDate.Location = new System.Drawing.Point(290, 8);
+            this.dtpToDate.Location = new System.Drawing.Point(564, 8);
             this.dtpToDate.Name = "dtpToDate";
             this.dtpToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -120,13 +141,13 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpToDate.Size = new System.Drawing.Size(128, 22);
             this.dtpToDate.StyleController = this.layoutControl1;
-            this.dtpToDate.TabIndex = 1;
+            this.dtpToDate.TabIndex = 2;
             // 
             // dtpFromDate
             // 
             this.dtpFromDate.EditValue = null;
             this.dtpFromDate.EnterMoveNextControl = true;
-            this.dtpFromDate.Location = new System.Drawing.Point(78, 8);
+            this.dtpFromDate.Location = new System.Drawing.Point(352, 8);
             this.dtpFromDate.Name = "dtpFromDate";
             this.dtpFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -134,18 +155,18 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFromDate.Size = new System.Drawing.Size(130, 22);
             this.dtpFromDate.StyleController = this.layoutControl1;
-            this.dtpFromDate.TabIndex = 0;
+            this.dtpFromDate.TabIndex = 1;
             // 
             // btnViewReport
             // 
             this.btnViewReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnViewReport.ImageOptions.Image")));
             this.btnViewReport.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnViewReport.Location = new System.Drawing.Point(574, 8);
+            this.btnViewReport.Location = new System.Drawing.Point(848, 8);
             this.btnViewReport.Margin = new System.Windows.Forms.Padding(2);
             this.btnViewReport.Name = "btnViewReport";
             this.btnViewReport.Size = new System.Drawing.Size(135, 22);
             this.btnViewReport.StyleController = this.layoutControl1;
-            this.btnViewReport.TabIndex = 3;
+            this.btnViewReport.TabIndex = 4;
             this.btnViewReport.Text = "View Report";
             this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
             // 
@@ -154,12 +175,12 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(721, 8);
+            this.btnCancel.Location = new System.Drawing.Point(995, 8);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(127, 22);
             this.btnCancel.StyleController = this.layoutControl1;
-            this.btnCancel.TabIndex = 4;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -172,7 +193,8 @@
             this.gcDispatchDC.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnView});
             this.gcDispatchDC.Size = new System.Drawing.Size(1202, 701);
-            this.gcDispatchDC.TabIndex = 5;
+            this.gcDispatchDC.TabIndex = 6;
+            this.gcDispatchDC.TabStop = false;
             this.gcDispatchDC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvDispatchDC});
             // 
@@ -303,7 +325,8 @@
             this.layoutControlItem5,
             this.layoutControlItem6,
             this.layoutControlItem3,
-            this.layoutControlItem2});
+            this.layoutControlItem2,
+            this.layoutControlItem7});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(1210, 743);
@@ -321,15 +344,15 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(852, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(1126, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(354, 34);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(80, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.dtpFromDate;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(274, 0);
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(212, 34);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(212, 34);
             this.layoutControlItem4.Name = "layoutControlItem4";
@@ -342,7 +365,7 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.dtpToDate;
-            this.layoutControlItem5.Location = new System.Drawing.Point(212, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(486, 0);
             this.layoutControlItem5.MaxSize = new System.Drawing.Size(210, 34);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(210, 34);
             this.layoutControlItem5.Name = "layoutControlItem5";
@@ -355,7 +378,7 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.btnShowResult;
-            this.layoutControlItem6.Location = new System.Drawing.Point(422, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(696, 0);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(144, 34);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(144, 34);
             this.layoutControlItem6.Name = "layoutControlItem6";
@@ -368,7 +391,7 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnViewReport;
-            this.layoutControlItem3.Location = new System.Drawing.Point(566, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(840, 0);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(147, 34);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(147, 34);
             this.layoutControlItem3.Name = "layoutControlItem3";
@@ -381,7 +404,7 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnCancel;
-            this.layoutControlItem2.Location = new System.Drawing.Point(713, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(987, 0);
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(139, 34);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(139, 34);
             this.layoutControlItem2.Name = "layoutControlItem2";
@@ -390,6 +413,19 @@
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.cmbBranch;
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem7.MaxSize = new System.Drawing.Size(274, 34);
+            this.layoutControlItem7.MinSize = new System.Drawing.Size(274, 34);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem7.Size = new System.Drawing.Size(274, 34);
+            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem7.Text = "Branch";
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(58, 15);
             // 
             // frmDispatchDCList
             // 
@@ -405,6 +441,7 @@
             this.Load += new System.EventHandler(this.frmDispatchDCList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).EndInit();
@@ -420,6 +457,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -451,5 +489,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.SimpleButton btnShowResult;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraEditors.LookUpEdit cmbBranch;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
     }
 }

@@ -183,6 +183,7 @@
             this.btnViewItems});
             this.gcStockCounting.Size = new System.Drawing.Size(1127, 652);
             this.gcStockCounting.TabIndex = 4;
+            this.gcStockCounting.TabStop = false;
             this.gcStockCounting.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvStockCounting});
             this.gcStockCounting.Click += new System.EventHandler(this.gcStockCounting_Click);

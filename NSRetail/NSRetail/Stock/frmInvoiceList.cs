@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraReports.UI;
 using ErrorManagement;
 using NSRetail.Reports;
@@ -15,7 +16,7 @@ using System.Windows.Forms;
 
 namespace NSRetail.Stock
 {
-    public partial class frmInvoiceList : DevExpress.XtraEditors.XtraForm
+    public partial class frmInvoiceList : XtraForm
     {
         StockRepository ObjStockRep = new StockRepository();
         public frmInvoiceList()
@@ -23,7 +24,7 @@ namespace NSRetail.Stock
             InitializeComponent();
         }
 
-        private void btnView_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void btnView_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             try
             {
@@ -47,6 +48,10 @@ namespace NSRetail.Stock
 
         private void frmInvoiceList_Load(object sender, EventArgs e)
         {
+            cmbDealer.Properties.DataSource = new MasterRepository().GetDealer(true);
+            cmbDealer.Properties.DisplayMember = "DEALERNAME";
+            cmbDealer.Properties.ValueMember = "DEALERID";
+            cmbDealer.EditValue = 0;
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
         }
@@ -63,7 +68,7 @@ namespace NSRetail.Stock
 
         private void btnShowResult_Click(object sender, EventArgs e)
         {
-            gcInvoice.DataSource = ObjStockRep.GetInvoiceList(
+            gcInvoice.DataSource = ObjStockRep.GetInvoiceList(cmbDealer.EditValue,
                 dtpFromDate.EditValue,dtpToDate.DateTime.AddDays(1));
         }
     }

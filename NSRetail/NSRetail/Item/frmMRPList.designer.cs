@@ -134,6 +134,7 @@
             this.gvMRPList.FixedLineWidth = 3;
             this.gvMRPList.GridControl = this.gcMRPList;
             this.gvMRPList.Name = "gvMRPList";
+            this.gvMRPList.OptionsBehavior.Editable = false;
             this.gvMRPList.OptionsView.ShowGroupPanel = false;
             this.gvMRPList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvMRPList_CellValueChanged);
             // 
