@@ -22,7 +22,7 @@ namespace NSRetail.ReportForms
         private void frmReportPlaceHolder_Load(object sender, EventArgs e)
         {
             List<ReportHolder> reportList = new List<ReportHolder>();
-            ReportHolder posReports = new ReportHolder() { ReportName = "POS Reports" };
+            ReportHolder posReports = new ReportHolder() { ReportName = "Branch Reports" };
             posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds by Item", SearchCriteriaControl = new ucBranchRefundByItems() });
             posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
             reportList.Add(posReports);

@@ -27,7 +27,6 @@ namespace NSRetail.ReportForms
                 , { "INDENTWEIGHT", "Indent Weight In KGs" }
             };
 
-
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
