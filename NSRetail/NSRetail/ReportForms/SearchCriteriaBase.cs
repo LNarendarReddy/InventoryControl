@@ -51,5 +51,6 @@ namespace NSRetail.ReportForms
             return reportdata;
         }
 
+        public virtual List<BaseEdit> MandatoryFields { get; }
     }
 }

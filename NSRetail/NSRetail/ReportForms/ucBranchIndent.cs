@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,15 +17,11 @@ namespace NSRetail.ReportForms
             columnHeaders = new Dictionary<string, string>
             {
                 { "WAREHOUSEQUANTITY", "Warehouse Quantity" }
-                , { "WAREHOUSEWEIGHTINKGS", "Warehouse Weight In KGs" }
-                , { "BRANCHQUANTITY", "Branch Quantity" }
-                , { "BRANCHWEIGHTINKGS", "Branch Weight In KGs" }
-                , { "BRANCHINTRANSITQUANTITY", "Branch In-Transit Quantity" }
-                , { "BRANCHINTRANSITWEIGHTINKGS", "Branch In-Transit Weight In KGs" }
+                , { "BRANCHSTOCK", "Branch Stock" }
                 , { "SALEQUANTITY", "Sale Quantity" }
-                , { "SALEWEIGHTINKGS", "Sale Weight In KGs" }
+                , { "DISPATCHQUANTITY", "Dispatch Quantity" }
                 , { "INDENTQUANTITY", "Indent Quantity" }
-                , { "INDENTWEIGHT", "Indent Weight In KGs" }
+                , { "SUBCATEGORYNAME", "Sub Category" }
             };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
@@ -53,5 +50,7 @@ namespace NSRetail.ReportForms
         }
 
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
+
+        public override List<BaseEdit> MandatoryFields => new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate }; 
     }
 }

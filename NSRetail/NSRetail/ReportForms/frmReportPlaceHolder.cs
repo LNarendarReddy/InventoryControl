@@ -1,10 +1,14 @@
-﻿using DevExpress.XtraGrid;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraLayout;
 using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms
 {
@@ -102,6 +106,8 @@ namespace NSRetail.ReportForms
             gcResults.DataSource = null;
             lblRecordCount.Text = string.Empty;
             dpTop.Text = "Search Criteria";
+            gvResults.RefreshData();
+            gvResults.Columns.Clear();
 
             selectedReportHolder = tlReport.GetFocusedRow() as ReportHolder;
             if (selectedReportHolder == null || selectedReportHolder.SearchCriteriaControl == null) return;
@@ -117,6 +123,19 @@ namespace NSRetail.ReportForms
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (selectedReportHolder == null || selectedReportHolder.SearchCriteriaControl == null) return;
+                        
+            var layoutControlOfSearch = selectedReportHolder.SearchCriteriaControl.Controls.OfType<LayoutControl>().First();
+            var missingValues = selectedReportHolder.SearchCriteriaControl.MandatoryFields?
+                                    .Where(x => x.EditValue == null)
+                                    .Select(x => $"{Environment.NewLine}\t* " + layoutControlOfSearch.GetItemByControl(x).Text);
+
+            if(missingValues != null && missingValues.Any())
+            {
+                XtraMessageBox.Show("Please select the values for : " + Environment.NewLine + string.Join(string.Empty, missingValues)
+                    , "Mandatoy", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                selectedReportHolder.SearchCriteriaControl.MandatoryFields.First(x => x.EditValue == null).Focus();
+                return;
+            }
 
             handle = SplashScreenManager.ShowOverlayForm(this);
             bgwGetData.RunWorkerAsync();            

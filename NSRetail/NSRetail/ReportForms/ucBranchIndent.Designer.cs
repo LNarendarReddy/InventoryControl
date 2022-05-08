@@ -70,6 +70,7 @@
             // dtToDate
             // 
             this.dtToDate.EditValue = null;
+            this.dtToDate.EnterMoveNextControl = true;
             this.dtToDate.Location = new System.Drawing.Point(883, 16);
             this.dtToDate.Name = "dtToDate";
             this.dtToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -78,11 +79,12 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtToDate.Size = new System.Drawing.Size(118, 22);
             this.dtToDate.StyleController = this.layoutControl1;
-            this.dtToDate.TabIndex = 7;
+            this.dtToDate.TabIndex = 3;
             // 
             // dtFromDate
             // 
             this.dtFromDate.EditValue = null;
+            this.dtFromDate.EnterMoveNextControl = true;
             this.dtFromDate.Location = new System.Drawing.Point(683, 16);
             this.dtFromDate.Name = "dtFromDate";
             this.dtFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -91,10 +93,11 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtFromDate.Size = new System.Drawing.Size(118, 22);
             this.dtFromDate.StyleController = this.layoutControl1;
-            this.dtFromDate.TabIndex = 6;
+            this.dtFromDate.TabIndex = 2;
             // 
             // cmbCategory
             // 
+            this.cmbCategory.EnterMoveNextControl = true;
             this.cmbCategory.Location = new System.Drawing.Point(362, 16);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -105,10 +108,11 @@
             this.cmbCategory.Properties.NullText = "";
             this.cmbCategory.Size = new System.Drawing.Size(239, 22);
             this.cmbCategory.StyleController = this.layoutControl1;
-            this.cmbCategory.TabIndex = 5;
+            this.cmbCategory.TabIndex = 1;
             // 
             // cmbBranch
             // 
+            this.cmbBranch.EnterMoveNextControl = true;
             this.cmbBranch.Location = new System.Drawing.Point(86, 16);
             this.cmbBranch.Name = "cmbBranch";
             this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -120,7 +124,7 @@
             this.cmbBranch.Properties.NullText = "";
             this.cmbBranch.Size = new System.Drawing.Size(194, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
-            this.cmbBranch.TabIndex = 4;
+            this.cmbBranch.TabIndex = 0;
             // 
             // Root
             // 

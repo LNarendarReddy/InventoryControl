@@ -110,7 +110,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(87, 22);
             this.btnClose.StyleController = this.layoutControl1;
-            this.btnClose.TabIndex = 9;
+            this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -122,7 +122,7 @@
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(119, 22);
             this.btnSearch.StyleController = this.layoutControl1;
-            this.btnSearch.TabIndex = 8;
+            this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "&Search";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -134,7 +134,7 @@
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(120, 22);
             this.btnReport.StyleController = this.layoutControl1;
-            this.btnReport.TabIndex = 6;
+            this.btnReport.TabIndex = 1;
             this.btnReport.Text = "&Report";
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
@@ -144,7 +144,7 @@
             this.gcResults.MainView = this.gvResults;
             this.gcResults.Name = "gcResults";
             this.gcResults.Size = new System.Drawing.Size(832, 511);
-            this.gcResults.TabIndex = 5;
+            this.gcResults.TabIndex = 3;
             this.gcResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvResults});
             // 
@@ -267,7 +267,7 @@
             null}, -1);
             this.tlReport.EndUnboundLoad();
             this.tlReport.Size = new System.Drawing.Size(262, 614);
-            this.tlReport.TabIndex = 4;
+            this.tlReport.TabIndex = 0;
             this.tlReport.SelectionChanged += new System.EventHandler(this.tlReport_SelectionChanged);
             // 
             // treeListColumn1
