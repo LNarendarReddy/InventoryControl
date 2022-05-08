@@ -101,6 +101,7 @@ namespace NSRetail.ReportForms
             btnReport.Enabled = false;
             gcResults.DataSource = null;
             lblRecordCount.Text = string.Empty;
+            dpTop.Text = "Search Criteria";
 
             selectedReportHolder = tlReport.GetFocusedRow() as ReportHolder;
             if (selectedReportHolder == null || selectedReportHolder.SearchCriteriaControl == null) return;
@@ -110,6 +111,7 @@ namespace NSRetail.ReportForms
 
             btnSearch.Enabled = true;
             btnReport.Enabled = true;
+            dpTop.Text = $"{dpTop.Text} for {selectedReportHolder.ReportName}";
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
