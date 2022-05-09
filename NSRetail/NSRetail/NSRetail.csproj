@@ -414,6 +414,12 @@
     <Compile Include="ReportForms\ucBranchRefundByItems.Designer.cs">
       <DependentUpon>ucBranchRefundByItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\ucDealerIndent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\ucDealerIndent.Designer.cs">
+      <DependentUpon>ucDealerIndent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptBarcode.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -663,6 +669,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\ucBranchRefundByItems.resx">
       <DependentUpon>ucBranchRefundByItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\ucDealerIndent.resx">
+      <DependentUpon>ucDealerIndent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptBarcode.resx">
       <DependentUpon>rptBarcode.cs</DependentUpon>

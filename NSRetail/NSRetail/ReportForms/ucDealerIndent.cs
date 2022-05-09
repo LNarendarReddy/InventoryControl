@@ -6,11 +6,12 @@ using System.Data;
 
 namespace NSRetail.ReportForms
 {
-    public partial class ucBranchIndent : SearchCriteriaBase
+    public partial class ucDealerIndent : SearchCriteriaBase
     {
         Dictionary<string, string> columnHeaders;
+        MasterRepository masterRepository = new MasterRepository();
 
-        public ucBranchIndent()
+        public ucDealerIndent()
         {
             InitializeComponent();
 
@@ -24,11 +25,11 @@ namespace NSRetail.ReportForms
                 , { "SUBCATEGORYNAME", "Sub Category" }
             };
 
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
+            cmbDealer.Properties.DataSource = masterRepository.GetDealer();
+            cmbDealer.Properties.ValueMember = "DEALERID";
+            cmbDealer.Properties.DisplayMember = "DEALERNAME";
 
-            cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
+            cmbCategory.Properties.DataSource = masterRepository.GetCategory();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 
@@ -40,17 +41,17 @@ namespace NSRetail.ReportForms
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                { "BranchID", cmbBranch.EditValue }
+                { "DealerID", cmbDealer.EditValue }
                 , { "FromDate", dtFromDate.EditValue }
                 , { "ToDate", dtToDate.EditValue }
                 , { "CategoryID", cmbCategory.EditValue}
             };
 
-            return GetReportData("USP_R_BRANCHINDENT", parameters);
+            return GetReportData("USP_R_DEALERINDENT", parameters);
         }
 
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
 
-        public override List<BaseEdit> MandatoryFields => new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
+        public override List<BaseEdit> MandatoryFields => new List<BaseEdit>() { cmbDealer, cmbCategory, dtFromDate, dtToDate };
     }
 }

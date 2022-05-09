@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace NSRetail.ReportForms
 {
-    public partial class frmReportPlaceHolder : DevExpress.XtraEditors.XtraForm
+    public partial class frmReportPlaceHolder : XtraForm
     {
         public frmReportPlaceHolder()
         {
@@ -30,6 +30,10 @@ namespace NSRetail.ReportForms
             posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds by Item", SearchCriteriaControl = new ucBranchRefundByItems() });
             posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
             reportList.Add(posReports);
+
+            ReportHolder wareHouseReports = new ReportHolder() { ReportName = "Warehouse Reports" };
+            wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Dealer Indent", SearchCriteriaControl = new ucDealerIndent() });
+            reportList.Add(wareHouseReports);
 
             ReportHolder itemReports = new ReportHolder() { ReportName = "Item Reports" };
             itemReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales", SearchCriteriaControl = null });
@@ -89,7 +93,7 @@ namespace NSRetail.ReportForms
                     {
                         SummaryType = DevExpress.Data.SummaryItemType.Sum,
                         FieldName = column.FieldName,
-                        DisplayFormat = "Total: {0:#.##}"
+                        DisplayFormat = $"{column.FieldName} Total : {0:#.##}"
                     };
 
                     column.Summary.Add(siTotal);
