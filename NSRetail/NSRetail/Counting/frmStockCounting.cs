@@ -67,13 +67,20 @@ namespace NSRetail
         }
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            if (cmbBranch.EditValue == null ||
-                XtraMessageBox.Show("Are you sure want to accept sheets?","Confirm",
-                MessageBoxButtons.YesNo,MessageBoxIcon.Question) != DialogResult.Yes)
-                return;
-            new CountingRepository().AcceptStockCounting(cmbBranch.EditValue);
-            btnView_Click(null, null);
-            XtraMessageBox.Show("Counting accepted succefully");
+            try
+            {
+                if (cmbBranch.EditValue == null ||
+                XtraMessageBox.Show("Are you sure want to accept sheets?", "Confirm",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
+                new CountingRepository().AcceptStockCounting(cmbBranch.EditValue);
+                btnView_Click(null, null);
+                XtraMessageBox.Show("Counting accepted succefully");
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
     }
 }

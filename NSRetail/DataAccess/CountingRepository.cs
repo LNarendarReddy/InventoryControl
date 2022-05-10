@@ -140,14 +140,17 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Accepting Stock Counting", ex);
+                if (ex.Message.Contains("Pending sheets") ||
+                    ex.Message.Contains("No Counting") ||
+                    ex.Message.Contains("Multiple categories"))
+                    throw ex;
+                else
+                    throw new Exception("Error While Accepting Stock Counting", ex);
             }
             finally
             {
                 SQLCon.Sqlconn().Close();
             }
         }
-
-
     }
 }
