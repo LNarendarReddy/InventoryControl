@@ -74,9 +74,9 @@
             // 
             // btnViewReport
             // 
-            this.btnViewReport.Location = new System.Drawing.Point(956, 8);
+            this.btnViewReport.Location = new System.Drawing.Point(1003, 8);
             this.btnViewReport.Name = "btnViewReport";
-            this.btnViewReport.Size = new System.Drawing.Size(176, 22);
+            this.btnViewReport.Size = new System.Drawing.Size(129, 22);
             this.btnViewReport.StyleController = this.layoutControl1;
             this.btnViewReport.TabIndex = 5;
             this.btnViewReport.Text = "View Report";
@@ -251,16 +251,16 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(948, 34);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(995, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnViewReport;
-            this.layoutControlItem2.Location = new System.Drawing.Point(948, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(995, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(188, 34);
+            this.layoutControlItem2.Size = new System.Drawing.Size(141, 34);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 

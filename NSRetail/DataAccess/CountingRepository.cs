@@ -152,5 +152,33 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
+
+        public DataTable GetConsolidatedItems(object BranchID)
+        {
+            DataTable dtStockCounting = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_CONSOLIDATEDSTOCKCOUNTING]";
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtStockCounting);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Consolidated Items", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtStockCounting;
+        }
     }
 }

@@ -29,6 +29,7 @@ namespace NSRetail.ReportForms
             ReportHolder posReports = new ReportHolder() { ReportName = "Branch Reports" };
             posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds by Item", SearchCriteriaControl = new ucBranchRefundByItems() });
             posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
             reportList.Add(posReports);
 
             ReportHolder wareHouseReports = new ReportHolder() { ReportName = "Warehouse Reports" };

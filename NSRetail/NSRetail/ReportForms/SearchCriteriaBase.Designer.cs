@@ -1,4 +1,4 @@
-﻿namespace NSRetail.ReportForms
+﻿namespace NSRetail
 {
     partial class SearchCriteriaBase
     {

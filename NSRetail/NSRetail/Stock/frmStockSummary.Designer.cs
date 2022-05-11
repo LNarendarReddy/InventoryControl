@@ -43,6 +43,7 @@
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.sluItem = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -63,7 +64,6 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcStockSummary)).BeginInit();
@@ -159,7 +159,6 @@
             this.gvStockSummary.DetailHeight = 404;
             this.gvStockSummary.GridControl = this.gcStockSummary;
             this.gvStockSummary.Name = "gvStockSummary";
-            this.gvStockSummary.OptionsBehavior.Editable = false;
             // 
             // gridColumn1
             // 
@@ -167,6 +166,7 @@
             this.gridColumn1.FieldName = "STOCKSUMMARYID";
             this.gridColumn1.MinWidth = 23;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Width = 87;
             // 
             // gridColumn2
@@ -175,6 +175,7 @@
             this.gridColumn2.FieldName = "BRANCHNAME";
             this.gridColumn2.MinWidth = 23;
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
             this.gridColumn2.Width = 87;
@@ -203,6 +204,7 @@
             this.gridColumn4.FieldName = "ITEMNAME";
             this.gridColumn4.MinWidth = 23;
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
             this.gridColumn4.Width = 87;
@@ -213,6 +215,7 @@
             this.gridColumn5.FieldName = "ISOPENITEM";
             this.gridColumn5.MinWidth = 23;
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Width = 87;
             // 
             // gridColumn8
@@ -221,6 +224,7 @@
             this.gridColumn8.FieldName = "QUANTITY";
             this.gridColumn8.MinWidth = 23;
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 5;
             this.gridColumn8.Width = 87;
@@ -231,6 +235,7 @@
             this.gridColumn9.FieldName = "INTRANSITQUANTITY";
             this.gridColumn9.MinWidth = 23;
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 6;
             this.gridColumn9.Width = 87;
@@ -241,6 +246,7 @@
             this.gridColumn10.FieldName = "WEIGHTINKGS";
             this.gridColumn10.MinWidth = 23;
             this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 7;
             this.gridColumn10.Width = 87;
@@ -251,9 +257,19 @@
             this.gridColumn11.FieldName = "INTRANSITWEIGHTINKGS";
             this.gridColumn11.MinWidth = 23;
             this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 8;
             this.gridColumn11.Width = 87;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Category";
+            this.gridColumn7.FieldName = "CATEGORYNAME";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 4;
             // 
             // btnCancel
             // 
@@ -485,14 +501,6 @@
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Category";
-            this.gridColumn7.FieldName = "CATEGORYNAME";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 4;
             // 
             // frmStockSummary
             // 

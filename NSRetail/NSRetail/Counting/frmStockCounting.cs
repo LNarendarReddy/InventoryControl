@@ -82,5 +82,16 @@ namespace NSRetail
                 XtraMessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
+        private void btnViewConsolidatedStock_Click(object sender, EventArgs e)
+        {
+            if (cmbBranch.EditValue == null)
+                return;
+            frmViewItems obj =
+                new frmViewItems(new CountingRepository().GetConsolidatedItems(
+                    cmbBranch.EditValue));
+            obj.ShowInTaskbar = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
+        }
     }
 }

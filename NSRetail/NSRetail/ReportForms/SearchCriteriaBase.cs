@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
-namespace NSRetail.ReportForms
+namespace NSRetail
 {
     public partial class SearchCriteriaBase : XtraUserControl
     {

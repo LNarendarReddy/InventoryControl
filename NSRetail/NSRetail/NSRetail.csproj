@@ -396,28 +396,34 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportForms\POS\ucDispatchDifferences.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\POS\ucDispatchDifferences.Designer.cs">
+      <DependentUpon>ucDispatchDifferences.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\SearchCriteriaBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ReportForms\SearchCriteriaBase.Designer.cs">
       <DependentUpon>SearchCriteriaBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\ucBranchIndent.cs">
+    <Compile Include="ReportForms\POS\ucBranchIndent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportForms\ucBranchIndent.Designer.cs">
+    <Compile Include="ReportForms\POS\ucBranchIndent.Designer.cs">
       <DependentUpon>ucBranchIndent.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\ucBranchRefundByItems.cs">
+    <Compile Include="ReportForms\POS\ucBranchRefundByItems.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportForms\ucBranchRefundByItems.Designer.cs">
+    <Compile Include="ReportForms\POS\ucBranchRefundByItems.Designer.cs">
       <DependentUpon>ucBranchRefundByItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\ucDealerIndent.cs">
+    <Compile Include="ReportForms\Wareshouse\ucDealerIndent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportForms\ucDealerIndent.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\ucDealerIndent.Designer.cs">
       <DependentUpon>ucDealerIndent.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\rptBarcode.cs">
@@ -664,13 +670,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ReportForms\ucBranchIndent.resx">
+    <EmbeddedResource Include="ReportForms\POS\ucBranchIndent.resx">
       <DependentUpon>ucBranchIndent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\ucBranchRefundByItems.resx">
+    <EmbeddedResource Include="ReportForms\POS\ucBranchRefundByItems.resx">
       <DependentUpon>ucBranchRefundByItems.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\ucDealerIndent.resx">
+    <EmbeddedResource Include="ReportForms\POS\ucDispatchDifferences.resx">
+      <DependentUpon>ucDispatchDifferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\ucDealerIndent.resx">
       <DependentUpon>ucDealerIndent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptBarcode.resx">
