@@ -824,16 +824,12 @@
             this.gridColumn55.Caption = "Created Date";
             this.gridColumn55.FieldName = "CREATEDDATE";
             this.gridColumn55.Name = "gridColumn55";
-            this.gridColumn55.Visible = true;
-            this.gridColumn55.VisibleIndex = 1;
             // 
             // gridColumn56
             // 
             this.gridColumn56.Caption = "Bill Number";
             this.gridColumn56.FieldName = "BILLNUMBER";
             this.gridColumn56.Name = "gridColumn56";
-            this.gridColumn56.Visible = true;
-            this.gridColumn56.VisibleIndex = 2;
             // 
             // gridColumn57
             // 
@@ -841,7 +837,7 @@
             this.gridColumn57.FieldName = "MRP";
             this.gridColumn57.Name = "gridColumn57";
             this.gridColumn57.Visible = true;
-            this.gridColumn57.VisibleIndex = 3;
+            this.gridColumn57.VisibleIndex = 1;
             // 
             // gridColumn58
             // 
@@ -849,7 +845,7 @@
             this.gridColumn58.FieldName = "SALEPRICE";
             this.gridColumn58.Name = "gridColumn58";
             this.gridColumn58.Visible = true;
-            this.gridColumn58.VisibleIndex = 4;
+            this.gridColumn58.VisibleIndex = 2;
             // 
             // gridColumn59
             // 
@@ -857,7 +853,7 @@
             this.gridColumn59.FieldName = "QUANTITY";
             this.gridColumn59.Name = "gridColumn59";
             this.gridColumn59.Visible = true;
-            this.gridColumn59.VisibleIndex = 5;
+            this.gridColumn59.VisibleIndex = 3;
             // 
             // gridColumn60
             // 
@@ -865,7 +861,7 @@
             this.gridColumn60.FieldName = "WEIGHTINKGS";
             this.gridColumn60.Name = "gridColumn60";
             this.gridColumn60.Visible = true;
-            this.gridColumn60.VisibleIndex = 6;
+            this.gridColumn60.VisibleIndex = 4;
             // 
             // btnShow
             // 

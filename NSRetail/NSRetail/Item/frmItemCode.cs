@@ -369,7 +369,7 @@ namespace NSRetail
 
             if (dtItemCodePrices.Rows.Count > 1)
             {
-                frmMRPList frmMRPList = new frmMRPList(dtItemCodePrices);
+                frmMRPList frmMRPList = new frmMRPList(dtItemCodePrices, showCostPrice: true);
                 frmMRPList.ShowDialog();
                 if (!frmMRPList._IsSave)
                 {

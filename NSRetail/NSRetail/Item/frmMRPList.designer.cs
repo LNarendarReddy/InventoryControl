@@ -44,6 +44,8 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gcCostPriceWT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcCostPriceWOT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -74,7 +76,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(772, 112, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(534, 370);
+            this.layoutControl1.Size = new System.Drawing.Size(619, 370);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -83,10 +85,10 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(415, 346);
+            this.btnCancel.Location = new System.Drawing.Point(481, 346);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(117, 22);
+            this.btnCancel.Size = new System.Drawing.Size(136, 22);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
@@ -96,10 +98,10 @@
             // 
             this.btnOk.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnOk.ImageOptions.Image")));
             this.btnOk.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnOk.Location = new System.Drawing.Point(289, 346);
+            this.btnOk.Location = new System.Drawing.Point(335, 346);
             this.btnOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(122, 22);
+            this.btnOk.Size = new System.Drawing.Size(142, 22);
             this.btnOk.StyleController = this.layoutControl1;
             this.btnOk.TabIndex = 5;
             this.btnOk.Text = "Ok";
@@ -114,7 +116,7 @@
             this.gcMRPList.Name = "gcMRPList";
             this.gcMRPList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDelete});
-            this.gcMRPList.Size = new System.Drawing.Size(530, 340);
+            this.gcMRPList.Size = new System.Drawing.Size(615, 340);
             this.gcMRPList.TabIndex = 4;
             this.gcMRPList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvMRPList});
@@ -129,12 +131,13 @@
             this.gcMRP,
             this.gcSalePrice,
             this.gridColumn3,
-            this.gcDelete});
+            this.gcDelete,
+            this.gcCostPriceWT,
+            this.gcCostPriceWOT});
             this.gvMRPList.DetailHeight = 404;
             this.gvMRPList.FixedLineWidth = 3;
             this.gvMRPList.GridControl = this.gcMRPList;
             this.gvMRPList.Name = "gvMRPList";
-            this.gvMRPList.OptionsBehavior.Editable = false;
             this.gvMRPList.OptionsView.ShowGroupPanel = false;
             this.gvMRPList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvMRPList_CellValueChanged);
             // 
@@ -147,7 +150,7 @@
             this.gcMRP.OptionsColumn.AllowEdit = false;
             this.gcMRP.Visible = true;
             this.gcMRP.VisibleIndex = 0;
-            this.gcMRP.Width = 217;
+            this.gcMRP.Width = 112;
             // 
             // gcSalePrice
             // 
@@ -158,7 +161,7 @@
             this.gcSalePrice.OptionsColumn.AllowEdit = false;
             this.gcSalePrice.Visible = true;
             this.gcSalePrice.VisibleIndex = 1;
-            this.gcSalePrice.Width = 159;
+            this.gcSalePrice.Width = 114;
             // 
             // gridColumn3
             // 
@@ -175,8 +178,8 @@
             this.gcDelete.ColumnEdit = this.btnDelete;
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 2;
-            this.gcDelete.Width = 87;
+            this.gcDelete.VisibleIndex = 4;
+            this.gcDelete.Width = 104;
             // 
             // btnDelete
             // 
@@ -187,6 +190,26 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
+            // 
+            // gcCostPriceWT
+            // 
+            this.gcCostPriceWT.Caption = "Cost Price WT";
+            this.gcCostPriceWT.FieldName = "COSTPRICEWT";
+            this.gcCostPriceWT.Name = "gcCostPriceWT";
+            this.gcCostPriceWT.OptionsColumn.AllowEdit = false;
+            this.gcCostPriceWT.Visible = true;
+            this.gcCostPriceWT.VisibleIndex = 2;
+            this.gcCostPriceWT.Width = 122;
+            // 
+            // gcCostPriceWOT
+            // 
+            this.gcCostPriceWOT.Caption = "Cost Price WOT";
+            this.gcCostPriceWOT.FieldName = "COSTPRICEWOT";
+            this.gcCostPriceWOT.Name = "gcCostPriceWOT";
+            this.gcCostPriceWOT.OptionsColumn.AllowEdit = false;
+            this.gcCostPriceWOT.Visible = true;
+            this.gcCostPriceWOT.VisibleIndex = 3;
+            this.gcCostPriceWOT.Width = 138;
             // 
             // Root
             // 
@@ -201,7 +224,7 @@
             this.emptySpaceItem1});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.Root.Size = new System.Drawing.Size(534, 370);
+            this.Root.Size = new System.Drawing.Size(619, 370);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -209,25 +232,25 @@
             this.layoutControlItem1.Control = this.gcMRPList;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(534, 344);
+            this.layoutControlItem1.Size = new System.Drawing.Size(619, 344);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnOk;
-            this.layoutControlItem2.Location = new System.Drawing.Point(287, 344);
+            this.layoutControlItem2.Location = new System.Drawing.Point(333, 344);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(126, 26);
+            this.layoutControlItem2.Size = new System.Drawing.Size(146, 26);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnCancel;
-            this.layoutControlItem3.Location = new System.Drawing.Point(413, 344);
+            this.layoutControlItem3.Location = new System.Drawing.Point(479, 344);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(121, 26);
+            this.layoutControlItem3.Size = new System.Drawing.Size(140, 26);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -236,7 +259,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 344);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(287, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(333, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmMRPList
@@ -245,7 +268,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(534, 370);
+            this.ClientSize = new System.Drawing.Size(619, 370);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -285,5 +308,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gcDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
+        private DevExpress.XtraGrid.Columns.GridColumn gcCostPriceWT;
+        private DevExpress.XtraGrid.Columns.GridColumn gcCostPriceWOT;
     }
 }

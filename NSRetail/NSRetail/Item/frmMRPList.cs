@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Data;
+using System.Windows.Forms;
 using ErrorManagement;
 using DataAccess;
+using DevExpress.XtraEditors;
 
 namespace NSRetail
 {
-    public partial class frmMRPList : DevExpress.XtraEditors.XtraForm
+    public partial class frmMRPList : XtraForm
     {
         public object drSelected = null;
         public bool _IsSave = false;
-        public frmMRPList(DataTable _dtMRP,bool IsItemListCall = false)
+        public frmMRPList(DataTable _dtMRP,bool IsItemListCall = false, bool showCostPrice = false)
         {
             InitializeComponent();
             gcDelete.Visible = IsItemListCall && Utility.Role != "Division Manager" && Utility.Role != "Division User"; ;
             //gcSalePrice.OptionsColumn.AllowEdit = IsItemListCall;
             gcMRPList.DataSource = _dtMRP;
-            
+
+            gcCostPriceWT.Visible = showCostPrice;
+            gcCostPriceWOT.Visible = showCostPrice;
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -45,6 +50,8 @@ namespace NSRetail
                 return;
             try
             {
+                if (XtraMessageBox.Show("Are you sure you want to delete?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+
                 new ItemCodeRepository().DeleteItemPrice(gvMRPList.GetFocusedRowCellValue("ITEMPRICEID"),Utility.UserID);
                 gvMRPList.DeleteRow(gvMRPList.FocusedRowHandle);
             }
