@@ -9,6 +9,7 @@ namespace NSRetail.ReportForms
     public partial class ucDealerIndent : SearchCriteriaBase
     {
         Dictionary<string, string> columnHeaders;
+        List<string> editableColumns;
         MasterRepository masterRepository = new MasterRepository();
 
         public ucDealerIndent()
@@ -18,12 +19,14 @@ namespace NSRetail.ReportForms
             columnHeaders = new Dictionary<string, string>
             {
                 { "WAREHOUSEQUANTITY", "Warehouse Quantity" }
-                , { "BRANCHSTOCK", "Branch Stock" }
+                , { "ALLBRANCHSTOCK", "All Branch Stock" }
                 , { "SALEQUANTITY", "Sale Quantity" }
                 , { "DISPATCHQUANTITY", "Dispatch Quantity" }
                 , { "INDENTQUANTITY", "Indent Quantity" }
                 , { "SUBCATEGORYNAME", "Sub Category" }
             };
+
+            editableColumns = new List<string>() { "INDENTQUANTITY" };
 
             cmbDealer.Properties.DataSource = masterRepository.GetDealer();
             cmbDealer.Properties.ValueMember = "DEALERID";
@@ -53,5 +56,7 @@ namespace NSRetail.ReportForms
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
 
         public override List<BaseEdit> MandatoryFields => new List<BaseEdit>() { cmbDealer, cmbCategory, dtFromDate, dtToDate };
+
+        public override List<string> EditableColumns => editableColumns;
     }
 }

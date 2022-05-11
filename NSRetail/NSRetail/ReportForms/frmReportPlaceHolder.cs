@@ -100,6 +100,8 @@ namespace NSRetail.ReportForms
                     column.Summary.Add(siTotal);
                     gvResults.OptionsView.ShowFooter = true;
                 }
+
+                column.OptionsColumn.AllowEdit = searchCriteria.EditableColumns != null && searchCriteria.EditableColumns.Contains(column.FieldName);
             }
         }
 

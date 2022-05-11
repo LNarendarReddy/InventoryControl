@@ -52,5 +52,7 @@ namespace NSRetail
         }
 
         public virtual List<BaseEdit> MandatoryFields { get; }
+
+        public virtual List<string> EditableColumns { get; }
     }
 }

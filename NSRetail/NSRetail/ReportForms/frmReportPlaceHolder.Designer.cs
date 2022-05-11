@@ -152,7 +152,6 @@
             // 
             this.gvResults.GridControl = this.gcResults;
             this.gvResults.Name = "gvResults";
-            this.gvResults.OptionsBehavior.Editable = false;
             this.gvResults.OptionsView.ShowGroupPanel = false;
             // 
             // Root
