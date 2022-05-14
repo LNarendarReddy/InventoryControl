@@ -12,10 +12,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Ports;
 using System.Management;
 using System.Printing;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Forms;
 
 namespace NSRetailPOS
 {
@@ -23,6 +25,7 @@ namespace NSRetailPOS
     {
         public static LoginInfo loginInfo = new LoginInfo();
         public static BranchInfo branchInfo = new BranchInfo();
+        static SerialPort _serialPort = new SerialPort();
 
         public static event EventHandler ItemOrCodeChanged;
 
@@ -269,6 +272,26 @@ namespace NSRetailPOS
                 e.Appearance.Options.UseFont = true;
                 e.HighPriority = true;                
             }
+        }
+
+        public static void ListenSerialPort()
+        {
+            //_serialPort = new SerialPort(ConfigurationManager.AppSettings["PortName"].ToString(), 9600, Parity.None, 8, StopBits.One);
+            _serialPort = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
+            _serialPort.Handshake = Handshake.None;
+            _serialPort.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
+            _serialPort.ReadTimeout = 500;
+            _serialPort.WriteTimeout = 500;
+            _serialPort.Open();
+        }
+
+        static void sp_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            if (!(Form.ActiveForm is IBarcodeReceiver)) return;
+
+            string data = _serialPort.ReadExisting();
+            data = data.EndsWith(Environment.NewLine) ? data.Replace(Environment.NewLine, string.Empty) : data;
+            Form.ActiveForm.BeginInvoke((Action)(() => (Form.ActiveForm as IBarcodeReceiver).ReceiveBarCode(data)));
         }
     }
     

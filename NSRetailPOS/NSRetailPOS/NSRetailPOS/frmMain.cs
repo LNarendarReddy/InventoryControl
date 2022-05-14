@@ -9,13 +9,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
 namespace NSRetailPOS
 {
-    public partial class frmMain : XtraForm
+    public partial class frmMain : XtraForm, IBarcodeReceiver
     {
         private int daySequenceID;
 
@@ -43,10 +44,12 @@ namespace NSRetailPOS
             Utility.SetGridFormatting(sluItemCodeView);
 
             gvBilling.Columns["OFFERTYPECODE"].AppearanceCell.ForeColor = Color.YellowGreen;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Utility.ListenSerialPort();
             lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    Role : {Utility.loginInfo.RoleName}    ";
             lblVersionInfo.Text = $"Application Version 1.2.3 (05-05-2022)";
             btnCRWithoutBill.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
@@ -78,6 +81,7 @@ namespace NSRetailPOS
             bgSyncWorker.ProgressChanged += BgSyncWorker_ProgressChanged;
             bgSyncWorker.RunWorkerAsync();
         }
+               
 
         private void Utility_ItemOrCodeChanged(object sender, EventArgs e)
         {
@@ -719,6 +723,12 @@ namespace NSRetailPOS
                 lblDeal.Appearance.Font = new Font("Arial", 11F, FontStyle.Bold);
                 lblDeal.Appearance.ForeColor = Color.YellowGreen;
             }
+        }
+
+        public void ReceiveBarCode(string data)
+        {            
+            txtItemCode.Text = data;
+            txtItemCode_Leave(txtItemCode, new EventArgs());
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
 {
-    public partial class frmRefund : XtraForm
+    public partial class frmRefund : XtraForm, IBarcodeReceiver
     {
         object billID;
 
@@ -151,6 +151,12 @@ namespace NSRetailPOS.UI
             {
                 btnSave_Click(null, null);
             }
+        }
+
+        public void ReceiveBarCode(string data)
+        {
+            txtBillNumber.Text = data;
+            txtBillNumber_Leave(txtBillNumber, new EventArgs());
         }
     }
 }
