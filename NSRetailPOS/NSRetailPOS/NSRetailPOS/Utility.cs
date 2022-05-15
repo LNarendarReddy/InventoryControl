@@ -287,9 +287,9 @@ namespace NSRetailPOS
 
         static void sp_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            string data = _serialPort.ReadExisting();
             if (!(Form.ActiveForm is IBarcodeReceiver)) return;
 
-            string data = _serialPort.ReadExisting();
             data = data.EndsWith(Environment.NewLine) ? data.Replace(Environment.NewLine, string.Empty) : data;
             Form.ActiveForm.BeginInvoke((Action)(() => (Form.ActiveForm as IBarcodeReceiver).ReceiveBarCode(data)));
         }

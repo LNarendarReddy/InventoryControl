@@ -28,51 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode3 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode4 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemSummary));
-            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
-            this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
-            this.dtToDate = new DevExpress.XtraEditors.DateEdit();
-            this.dtFromDate = new DevExpress.XtraEditors.DateEdit();
-            this.tabControlResult = new DevExpress.XtraTab.XtraTabControl();
-            this.tpBranchWiseSummary = new DevExpress.XtraTab.XtraTabPage();
-            this.gcBranchWiseSummary = new DevExpress.XtraGrid.GridControl();
-            this.gvBranchWiseSummary = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gvDispatch = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.tpStockDispatch = new DevExpress.XtraTab.XtraTabPage();
-            this.gcStockDispatch = new DevExpress.XtraGrid.GridControl();
-            this.gvStockDispatch = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcItemSummary = new DevExpress.XtraGrid.GridControl();
+            this.gvBranchReunds = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.tpBranchRefund = new DevExpress.XtraTab.XtraTabPage();
-            this.gcBranchRefund = new DevExpress.XtraGrid.GridControl();
-            this.gvBranchRefund = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gvItemSale = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn28 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn29 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn30 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn31 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn32 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.tpCustomerRefund = new DevExpress.XtraTab.XtraTabPage();
-            this.gcCustomerRefund = new DevExpress.XtraGrid.GridControl();
             this.gvCustomerRefund = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn33 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn34 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -84,30 +74,31 @@
             this.gridColumn40 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn41 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn42 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.gvItemSummary = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn61 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn62 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn63 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn64 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn65 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn66 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn67 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn68 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gcPurchase = new DevExpress.XtraGrid.GridControl();
             this.gvPurchase = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn46 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn47 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn48 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn49 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn50 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn51 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.gcItemSale = new DevExpress.XtraGrid.GridControl();
-            this.gvItemSale = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn52 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn53 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn54 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn55 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn56 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn57 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn58 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn59 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn60 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
+            this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
+            this.dtToDate = new DevExpress.XtraEditors.DateEdit();
+            this.dtFromDate = new DevExpress.XtraEditors.DateEdit();
             this.btnShow = new DevExpress.XtraEditors.SimpleButton();
             this.sluItemCode = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -119,57 +110,497 @@
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            ((System.ComponentModel.ISupportInitialize)(this.gvDispatch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcItemSummary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvBranchReunds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvItemSale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCustomerRefund)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvItemSummary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcPurchase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvPurchase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabControlResult)).BeginInit();
-            this.tabControlResult.SuspendLayout();
-            this.tpBranchWiseSummary.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcBranchWiseSummary)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvBranchWiseSummary)).BeginInit();
-            this.tpStockDispatch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcStockDispatch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvStockDispatch)).BeginInit();
-            this.tpBranchRefund.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcBranchRefund)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvBranchRefund)).BeginInit();
-            this.tpCustomerRefund.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcCustomerRefund)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCustomerRefund)).BeginInit();
-            this.xtraTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcPurchase)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvPurchase)).BeginInit();
-            this.xtraTabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemSale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemSale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             this.SuspendLayout();
+            // 
+            // gvDispatch
+            // 
+            this.gvDispatch.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn9,
+            this.gridColumn10,
+            this.gridColumn11,
+            this.gridColumn12,
+            this.gridColumn13,
+            this.gridColumn14,
+            this.gridColumn15});
+            this.gvDispatch.GridControl = this.gcItemSummary;
+            this.gvDispatch.Name = "gvDispatch";
+            this.gvDispatch.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "BRANCHID";
+            this.gridColumn7.FieldName = "BRANCHID";
+            this.gridColumn7.Name = "gridColumn7";
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "STOCKDISPATCHDETAILID";
+            this.gridColumn8.FieldName = "STOCKDISPATCHDETAILID";
+            this.gridColumn8.Name = "gridColumn8";
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "STOCKDISPATCHID";
+            this.gridColumn9.FieldName = "STOCKDISPATCHID";
+            this.gridColumn9.Name = "gridColumn9";
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "Dispatch Number";
+            this.gridColumn10.FieldName = "DISPATCHNUMBER";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 0;
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "Created Date";
+            this.gridColumn11.FieldName = "CREATEDDATE";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 1;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "MRP";
+            this.gridColumn12.FieldName = "MRP";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 2;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "Sale Price";
+            this.gridColumn13.FieldName = "SALEPRICE";
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 3;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "Dispatch Quantity";
+            this.gridColumn14.FieldName = "DISPATCHQUANTITY";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 4;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "Weight In KGs";
+            this.gridColumn15.FieldName = "WEIGHTINKGS";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 5;
+            // 
+            // gcItemSummary
+            // 
+            gridLevelNode1.LevelTemplate = this.gvDispatch;
+            gridLevelNode1.RelationName = "Stock Dispacth";
+            gridLevelNode2.LevelTemplate = this.gvBranchReunds;
+            gridLevelNode2.RelationName = "Branch Refunds";
+            gridLevelNode3.LevelTemplate = this.gvItemSale;
+            gridLevelNode3.RelationName = "Item Sales";
+            gridLevelNode4.LevelTemplate = this.gvCustomerRefund;
+            gridLevelNode4.RelationName = "Customer Refunds";
+            this.gcItemSummary.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1,
+            gridLevelNode2,
+            gridLevelNode3,
+            gridLevelNode4});
+            this.gcItemSummary.Location = new System.Drawing.Point(12, 46);
+            this.gcItemSummary.MainView = this.gvItemSummary;
+            this.gcItemSummary.Name = "gcItemSummary";
+            this.gcItemSummary.Size = new System.Drawing.Size(1048, 445);
+            this.gcItemSummary.TabIndex = 0;
+            this.gcItemSummary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvBranchReunds,
+            this.gvItemSale,
+            this.gvCustomerRefund,
+            this.gvItemSummary,
+            this.gvDispatch});
+            // 
+            // gvBranchReunds
+            // 
+            this.gvBranchReunds.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn16,
+            this.gridColumn17,
+            this.gridColumn18,
+            this.gridColumn19,
+            this.gridColumn20,
+            this.gridColumn21,
+            this.gridColumn22,
+            this.gridColumn23,
+            this.gridColumn24,
+            this.gridColumn25,
+            this.gridColumn26});
+            this.gvBranchReunds.GridControl = this.gcItemSummary;
+            this.gvBranchReunds.Name = "gvBranchReunds";
+            this.gvBranchReunds.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "BRANCHID";
+            this.gridColumn16.FieldName = "BRANCHID";
+            this.gridColumn16.Name = "gridColumn16";
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "BREFUNDDETAILID";
+            this.gridColumn17.FieldName = "BREFUNDDETAILID";
+            this.gridColumn17.Name = "gridColumn17";
+            // 
+            // gridColumn18
+            // 
+            this.gridColumn18.Caption = "BREFUNDID";
+            this.gridColumn18.FieldName = "BREFUNDID";
+            this.gridColumn18.Name = "gridColumn18";
+            // 
+            // gridColumn19
+            // 
+            this.gridColumn19.Caption = "Branch Refund #";
+            this.gridColumn19.FieldName = "BREFUNDNUMBER";
+            this.gridColumn19.Name = "gridColumn19";
+            this.gridColumn19.Visible = true;
+            this.gridColumn19.VisibleIndex = 0;
+            // 
+            // gridColumn20
+            // 
+            this.gridColumn20.Caption = "Created Date";
+            this.gridColumn20.FieldName = "CREATEDATE";
+            this.gridColumn20.Name = "gridColumn20";
+            this.gridColumn20.Visible = true;
+            this.gridColumn20.VisibleIndex = 1;
+            // 
+            // gridColumn21
+            // 
+            this.gridColumn21.Caption = "MRP";
+            this.gridColumn21.FieldName = "MRP";
+            this.gridColumn21.Name = "gridColumn21";
+            this.gridColumn21.Visible = true;
+            this.gridColumn21.VisibleIndex = 2;
+            // 
+            // gridColumn22
+            // 
+            this.gridColumn22.Caption = "Sale Price";
+            this.gridColumn22.FieldName = "SALEPRICE";
+            this.gridColumn22.Name = "gridColumn22";
+            this.gridColumn22.Visible = true;
+            this.gridColumn22.VisibleIndex = 3;
+            // 
+            // gridColumn23
+            // 
+            this.gridColumn23.Caption = "Quantity";
+            this.gridColumn23.FieldName = "QUANTITY";
+            this.gridColumn23.Name = "gridColumn23";
+            this.gridColumn23.Visible = true;
+            this.gridColumn23.VisibleIndex = 4;
+            // 
+            // gridColumn24
+            // 
+            this.gridColumn24.Caption = "Weight In KGs";
+            this.gridColumn24.FieldName = "WEIGHTINKGS";
+            this.gridColumn24.Name = "gridColumn24";
+            this.gridColumn24.Visible = true;
+            this.gridColumn24.VisibleIndex = 5;
+            // 
+            // gridColumn25
+            // 
+            this.gridColumn25.Caption = "Accepted Qty";
+            this.gridColumn25.FieldName = "ACCEPTEDQUANTITY";
+            this.gridColumn25.Name = "gridColumn25";
+            this.gridColumn25.Visible = true;
+            this.gridColumn25.VisibleIndex = 6;
+            // 
+            // gridColumn26
+            // 
+            this.gridColumn26.Caption = "Accepted Weight In KGs";
+            this.gridColumn26.FieldName = "ACCEPTEDWEIGHTKGS";
+            this.gridColumn26.Name = "gridColumn26";
+            this.gridColumn26.Visible = true;
+            this.gridColumn26.VisibleIndex = 7;
+            // 
+            // gvItemSale
+            // 
+            this.gvItemSale.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn27,
+            this.gridColumn28,
+            this.gridColumn29,
+            this.gridColumn30,
+            this.gridColumn31,
+            this.gridColumn32});
+            this.gvItemSale.GridControl = this.gcItemSummary;
+            this.gvItemSale.Name = "gvItemSale";
+            this.gvItemSale.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn27
+            // 
+            this.gridColumn27.Caption = "BRANCHID";
+            this.gridColumn27.FieldName = "BRANCHID";
+            this.gridColumn27.Name = "gridColumn27";
+            // 
+            // gridColumn28
+            // 
+            this.gridColumn28.Caption = "Bill Number";
+            this.gridColumn28.FieldName = "BILLNUMBER";
+            this.gridColumn28.Name = "gridColumn28";
+            this.gridColumn28.Visible = true;
+            this.gridColumn28.VisibleIndex = 0;
+            // 
+            // gridColumn29
+            // 
+            this.gridColumn29.Caption = "MRP";
+            this.gridColumn29.FieldName = "MRP";
+            this.gridColumn29.Name = "gridColumn29";
+            this.gridColumn29.Visible = true;
+            this.gridColumn29.VisibleIndex = 1;
+            // 
+            // gridColumn30
+            // 
+            this.gridColumn30.Caption = "Sale Price";
+            this.gridColumn30.FieldName = "SALEPRICE";
+            this.gridColumn30.Name = "gridColumn30";
+            this.gridColumn30.Visible = true;
+            this.gridColumn30.VisibleIndex = 2;
+            // 
+            // gridColumn31
+            // 
+            this.gridColumn31.Caption = "Quantity";
+            this.gridColumn31.FieldName = "QUANTITY";
+            this.gridColumn31.Name = "gridColumn31";
+            this.gridColumn31.Visible = true;
+            this.gridColumn31.VisibleIndex = 3;
+            // 
+            // gridColumn32
+            // 
+            this.gridColumn32.Caption = "Weight In KGs";
+            this.gridColumn32.FieldName = "WEIGHTINKGS";
+            this.gridColumn32.Name = "gridColumn32";
+            this.gridColumn32.Visible = true;
+            this.gridColumn32.VisibleIndex = 4;
+            // 
+            // gvCustomerRefund
+            // 
+            this.gvCustomerRefund.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn33,
+            this.gridColumn34,
+            this.gridColumn35,
+            this.gridColumn36,
+            this.gridColumn37,
+            this.gridColumn38,
+            this.gridColumn39,
+            this.gridColumn40,
+            this.gridColumn41,
+            this.gridColumn42});
+            this.gvCustomerRefund.GridControl = this.gcItemSummary;
+            this.gvCustomerRefund.Name = "gvCustomerRefund";
+            this.gvCustomerRefund.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn33
+            // 
+            this.gridColumn33.Caption = "BRANCHID";
+            this.gridColumn33.FieldName = "BRANCHID";
+            this.gridColumn33.Name = "gridColumn33";
+            // 
+            // gridColumn34
+            // 
+            this.gridColumn34.Caption = "REFUNDID";
+            this.gridColumn34.FieldName = "REFUNDID";
+            this.gridColumn34.Name = "gridColumn34";
+            // 
+            // gridColumn35
+            // 
+            this.gridColumn35.Caption = "BILLDETAILID";
+            this.gridColumn35.FieldName = "BILLDETAILID";
+            this.gridColumn35.Name = "gridColumn35";
+            // 
+            // gridColumn36
+            // 
+            this.gridColumn36.Caption = "BILLID";
+            this.gridColumn36.FieldName = "BILLID";
+            this.gridColumn36.Name = "gridColumn36";
+            // 
+            // gridColumn37
+            // 
+            this.gridColumn37.Caption = "Created Date";
+            this.gridColumn37.FieldName = "CREATEDDATE";
+            this.gridColumn37.Name = "gridColumn37";
+            this.gridColumn37.Visible = true;
+            this.gridColumn37.VisibleIndex = 0;
+            // 
+            // gridColumn38
+            // 
+            this.gridColumn38.Caption = "Bill Number";
+            this.gridColumn38.FieldName = "BILLNUMBER";
+            this.gridColumn38.Name = "gridColumn38";
+            this.gridColumn38.Visible = true;
+            this.gridColumn38.VisibleIndex = 1;
+            // 
+            // gridColumn39
+            // 
+            this.gridColumn39.Caption = "MRP";
+            this.gridColumn39.FieldName = "MRP";
+            this.gridColumn39.Name = "gridColumn39";
+            this.gridColumn39.Visible = true;
+            this.gridColumn39.VisibleIndex = 2;
+            // 
+            // gridColumn40
+            // 
+            this.gridColumn40.Caption = "Sale Price";
+            this.gridColumn40.FieldName = "SALEPRICE";
+            this.gridColumn40.Name = "gridColumn40";
+            this.gridColumn40.Visible = true;
+            this.gridColumn40.VisibleIndex = 3;
+            // 
+            // gridColumn41
+            // 
+            this.gridColumn41.Caption = "Refund Quantity";
+            this.gridColumn41.FieldName = "REFUNDQUANTITY";
+            this.gridColumn41.Name = "gridColumn41";
+            this.gridColumn41.Visible = true;
+            this.gridColumn41.VisibleIndex = 4;
+            // 
+            // gridColumn42
+            // 
+            this.gridColumn42.Caption = "Refund Weight In KGs";
+            this.gridColumn42.FieldName = "REFUNDWEIGHTINKGS";
+            this.gridColumn42.Name = "gridColumn42";
+            this.gridColumn42.Visible = true;
+            this.gridColumn42.VisibleIndex = 5;
+            // 
+            // gvItemSummary
+            // 
+            this.gvItemSummary.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn61,
+            this.gridColumn62,
+            this.gridColumn63,
+            this.gridColumn64,
+            this.gridColumn65,
+            this.gridColumn66,
+            this.gridColumn67,
+            this.gridColumn68});
+            this.gvItemSummary.GridControl = this.gcItemSummary;
+            this.gvItemSummary.Name = "gvItemSummary";
+            this.gvItemSummary.OptionsBehavior.AllowGroupExpandAnimation = DevExpress.Utils.DefaultBoolean.True;
+            this.gvItemSummary.OptionsBehavior.Editable = false;
+            this.gvItemSummary.OptionsDetail.AllowExpandEmptyDetails = true;
+            this.gvItemSummary.OptionsDetail.AllowOnlyOneMasterRowExpanded = true;
+            this.gvItemSummary.OptionsView.ShowFooter = true;
+            this.gvItemSummary.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn61
+            // 
+            this.gridColumn61.Caption = "BRANCHID";
+            this.gridColumn61.FieldName = "BRANCHID";
+            this.gridColumn61.Name = "gridColumn61";
+            // 
+            // gridColumn62
+            // 
+            this.gridColumn62.Caption = "Branch Name";
+            this.gridColumn62.FieldName = "BRANCHNAME";
+            this.gridColumn62.Name = "gridColumn62";
+            this.gridColumn62.Visible = true;
+            this.gridColumn62.VisibleIndex = 0;
+            // 
+            // gridColumn63
+            // 
+            this.gridColumn63.Caption = "All Branch Stock";
+            this.gridColumn63.FieldName = "ALLBSTOCK";
+            this.gridColumn63.Name = "gridColumn63";
+            this.gridColumn63.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ALLBSTOCK", "Branch Stock={0:0}")});
+            this.gridColumn63.Visible = true;
+            this.gridColumn63.VisibleIndex = 2;
+            // 
+            // gridColumn64
+            // 
+            this.gridColumn64.Caption = "Dispatch Qty";
+            this.gridColumn64.FieldName = "DISPATCHQUANTITY";
+            this.gridColumn64.Name = "gridColumn64";
+            this.gridColumn64.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DISPATCHQUANTITY", "Dispatch Qty={0:0}")});
+            this.gridColumn64.Visible = true;
+            this.gridColumn64.VisibleIndex = 3;
+            // 
+            // gridColumn65
+            // 
+            this.gridColumn65.Caption = "Sale Quantity";
+            this.gridColumn65.FieldName = "SALEQUANTITY";
+            this.gridColumn65.Name = "gridColumn65";
+            this.gridColumn65.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SALEQUANTITY", "Sale Qty={0:0}")});
+            this.gridColumn65.Visible = true;
+            this.gridColumn65.VisibleIndex = 4;
+            // 
+            // gridColumn66
+            // 
+            this.gridColumn66.Caption = "Branch Refunds";
+            this.gridColumn66.FieldName = "BREFUNDQUANTITY";
+            this.gridColumn66.Name = "gridColumn66";
+            this.gridColumn66.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BREFUNDQUANTITY", "Branch Refunds={0:0}")});
+            this.gridColumn66.Visible = true;
+            this.gridColumn66.VisibleIndex = 5;
+            // 
+            // gridColumn67
+            // 
+            this.gridColumn67.Caption = "Customer Refunds";
+            this.gridColumn67.FieldName = "CREFUNDQUANTITY";
+            this.gridColumn67.Name = "gridColumn67";
+            this.gridColumn67.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CREFUNDQUANTITY", "Customer Refunds={0:0}")});
+            this.gridColumn67.Visible = true;
+            this.gridColumn67.VisibleIndex = 6;
+            // 
+            // gridColumn68
+            // 
+            this.gridColumn68.Caption = "Branch Code";
+            this.gridColumn68.FieldName = "BRANCHCODE";
+            this.gridColumn68.Name = "gridColumn68";
+            this.gridColumn68.Visible = true;
+            this.gridColumn68.VisibleIndex = 1;
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.gcPurchase);
+            this.layoutControl1.Controls.Add(this.gcItemSummary);
             this.layoutControl1.Controls.Add(this.btnViewReport);
             this.layoutControl1.Controls.Add(this.cmbBranch);
             this.layoutControl1.Controls.Add(this.dtToDate);
             this.layoutControl1.Controls.Add(this.dtFromDate);
-            this.layoutControl1.Controls.Add(this.tabControlResult);
             this.layoutControl1.Controls.Add(this.btnShow);
             this.layoutControl1.Controls.Add(this.sluItemCode);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -179,6 +610,101 @@
             this.layoutControl1.Size = new System.Drawing.Size(1072, 677);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // gcPurchase
+            // 
+            this.gcPurchase.Location = new System.Drawing.Point(12, 495);
+            this.gcPurchase.MainView = this.gvPurchase;
+            this.gcPurchase.Name = "gcPurchase";
+            this.gcPurchase.Size = new System.Drawing.Size(1048, 170);
+            this.gcPurchase.TabIndex = 0;
+            this.gcPurchase.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvPurchase});
+            // 
+            // gvPurchase
+            // 
+            this.gvPurchase.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn43,
+            this.gridColumn44,
+            this.gridColumn6,
+            this.gridColumn45,
+            this.gridColumn47,
+            this.gridColumn48,
+            this.gridColumn49,
+            this.gridColumn50,
+            this.gridColumn51});
+            this.gvPurchase.GridControl = this.gcPurchase;
+            this.gvPurchase.Name = "gvPurchase";
+            this.gvPurchase.OptionsBehavior.Editable = false;
+            this.gvPurchase.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn43
+            // 
+            this.gridColumn43.Caption = "STOCKENTRYDETAILID";
+            this.gridColumn43.FieldName = "STOCKENTRYDETAILID";
+            this.gridColumn43.Name = "gridColumn43";
+            // 
+            // gridColumn44
+            // 
+            this.gridColumn44.Caption = "STOCKENTRYID";
+            this.gridColumn44.FieldName = "STOCKENTRYID";
+            this.gridColumn44.Name = "gridColumn44";
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Dealer Name";
+            this.gridColumn6.FieldName = "DEALERNAME";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 0;
+            // 
+            // gridColumn45
+            // 
+            this.gridColumn45.Caption = "Supplier Invoice #";
+            this.gridColumn45.FieldName = "SUPPLIERINVOICENO";
+            this.gridColumn45.Name = "gridColumn45";
+            this.gridColumn45.Visible = true;
+            this.gridColumn45.VisibleIndex = 1;
+            // 
+            // gridColumn47
+            // 
+            this.gridColumn47.Caption = "Created Date";
+            this.gridColumn47.FieldName = "CREATEDDATE";
+            this.gridColumn47.Name = "gridColumn47";
+            this.gridColumn47.Visible = true;
+            this.gridColumn47.VisibleIndex = 2;
+            // 
+            // gridColumn48
+            // 
+            this.gridColumn48.Caption = "MRP";
+            this.gridColumn48.FieldName = "MRP";
+            this.gridColumn48.Name = "gridColumn48";
+            this.gridColumn48.Visible = true;
+            this.gridColumn48.VisibleIndex = 3;
+            // 
+            // gridColumn49
+            // 
+            this.gridColumn49.Caption = "Sale Price";
+            this.gridColumn49.FieldName = "SALEPRICE";
+            this.gridColumn49.Name = "gridColumn49";
+            this.gridColumn49.Visible = true;
+            this.gridColumn49.VisibleIndex = 4;
+            // 
+            // gridColumn50
+            // 
+            this.gridColumn50.Caption = "Quantity";
+            this.gridColumn50.FieldName = "QUANTITY";
+            this.gridColumn50.Name = "gridColumn50";
+            this.gridColumn50.Visible = true;
+            this.gridColumn50.VisibleIndex = 5;
+            // 
+            // gridColumn51
+            // 
+            this.gridColumn51.Caption = "Weight In KGs";
+            this.gridColumn51.FieldName = "WEIGHTINKGS";
+            this.gridColumn51.Name = "gridColumn51";
+            this.gridColumn51.Visible = true;
+            this.gridColumn51.VisibleIndex = 6;
             // 
             // btnViewReport
             // 
@@ -232,636 +758,6 @@
             this.dtFromDate.Size = new System.Drawing.Size(88, 22);
             this.dtFromDate.StyleController = this.layoutControl1;
             this.dtFromDate.TabIndex = 7;
-            // 
-            // tabControlResult
-            // 
-            this.tabControlResult.Location = new System.Drawing.Point(12, 46);
-            this.tabControlResult.Name = "tabControlResult";
-            this.tabControlResult.SelectedTabPage = this.tpBranchWiseSummary;
-            this.tabControlResult.Size = new System.Drawing.Size(1048, 619);
-            this.tabControlResult.TabIndex = 6;
-            this.tabControlResult.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.tpBranchWiseSummary,
-            this.tpStockDispatch,
-            this.tpBranchRefund,
-            this.tpCustomerRefund,
-            this.xtraTabPage1,
-            this.xtraTabPage2});
-            // 
-            // tpBranchWiseSummary
-            // 
-            this.tpBranchWiseSummary.Controls.Add(this.gcBranchWiseSummary);
-            this.tpBranchWiseSummary.Name = "tpBranchWiseSummary";
-            this.tpBranchWiseSummary.Size = new System.Drawing.Size(1046, 594);
-            this.tpBranchWiseSummary.Text = "Branch wise summary";
-            // 
-            // gcBranchWiseSummary
-            // 
-            this.gcBranchWiseSummary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcBranchWiseSummary.Location = new System.Drawing.Point(0, 0);
-            this.gcBranchWiseSummary.MainView = this.gvBranchWiseSummary;
-            this.gcBranchWiseSummary.Name = "gcBranchWiseSummary";
-            this.gcBranchWiseSummary.Size = new System.Drawing.Size(1046, 594);
-            this.gcBranchWiseSummary.TabIndex = 0;
-            this.gcBranchWiseSummary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvBranchWiseSummary});
-            // 
-            // gvBranchWiseSummary
-            // 
-            this.gvBranchWiseSummary.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn6,
-            this.gridColumn7,
-            this.gridColumn8,
-            this.gridColumn9,
-            this.gridColumn10,
-            this.gridColumn11,
-            this.gridColumn12});
-            this.gvBranchWiseSummary.GridControl = this.gcBranchWiseSummary;
-            this.gvBranchWiseSummary.Name = "gvBranchWiseSummary";
-            this.gvBranchWiseSummary.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "BRANCHID";
-            this.gridColumn6.FieldName = "BRANCHID";
-            this.gridColumn6.Name = "gridColumn6";
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "STOCKSUMMARYID";
-            this.gridColumn7.FieldName = "STOCKSUMMARYID";
-            this.gridColumn7.Name = "gridColumn7";
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "Branch Name";
-            this.gridColumn8.FieldName = "BRANCHNAME";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 0;
-            // 
-            // gridColumn9
-            // 
-            this.gridColumn9.Caption = "Quantity";
-            this.gridColumn9.FieldName = "QUANTITY";
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 1;
-            // 
-            // gridColumn10
-            // 
-            this.gridColumn10.Caption = "Weight In KGs";
-            this.gridColumn10.FieldName = "WIGHTINKGS";
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 2;
-            // 
-            // gridColumn11
-            // 
-            this.gridColumn11.Caption = "In-Transit Quantity";
-            this.gridColumn11.FieldName = "INTRANSITQUANTITY";
-            this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 3;
-            // 
-            // gridColumn12
-            // 
-            this.gridColumn12.Caption = "In-Transit Weight In KGs";
-            this.gridColumn12.FieldName = "INTRANSITWEIGHTINKGS";
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 4;
-            // 
-            // tpStockDispatch
-            // 
-            this.tpStockDispatch.Controls.Add(this.gcStockDispatch);
-            this.tpStockDispatch.Name = "tpStockDispatch";
-            this.tpStockDispatch.Size = new System.Drawing.Size(1046, 594);
-            this.tpStockDispatch.Text = "Stock Dispatch";
-            // 
-            // gcStockDispatch
-            // 
-            this.gcStockDispatch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcStockDispatch.Location = new System.Drawing.Point(0, 0);
-            this.gcStockDispatch.MainView = this.gvStockDispatch;
-            this.gcStockDispatch.Name = "gcStockDispatch";
-            this.gcStockDispatch.Size = new System.Drawing.Size(1046, 594);
-            this.gcStockDispatch.TabIndex = 0;
-            this.gcStockDispatch.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvStockDispatch});
-            // 
-            // gvStockDispatch
-            // 
-            this.gvStockDispatch.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn13,
-            this.gridColumn14,
-            this.gridColumn15,
-            this.gridColumn16,
-            this.gridColumn17,
-            this.gridColumn18,
-            this.gridColumn19,
-            this.gridColumn20,
-            this.gridColumn21});
-            this.gvStockDispatch.GridControl = this.gcStockDispatch;
-            this.gvStockDispatch.Name = "gvStockDispatch";
-            this.gvStockDispatch.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn13
-            // 
-            this.gridColumn13.Caption = "STOCKDISPATCHDETAILID";
-            this.gridColumn13.FieldName = "STOCKDISPATCHDETAILID";
-            this.gridColumn13.Name = "gridColumn13";
-            // 
-            // gridColumn14
-            // 
-            this.gridColumn14.Caption = "STOCKDISPATCHID";
-            this.gridColumn14.FieldName = "STOCKDISPATCHID";
-            this.gridColumn14.Name = "gridColumn14";
-            // 
-            // gridColumn15
-            // 
-            this.gridColumn15.Caption = "Branch Name";
-            this.gridColumn15.FieldName = "BRANCHNAME";
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 0;
-            // 
-            // gridColumn16
-            // 
-            this.gridColumn16.Caption = "Dispatch Number";
-            this.gridColumn16.FieldName = "DISPATCHNUMBER";
-            this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 1;
-            // 
-            // gridColumn17
-            // 
-            this.gridColumn17.Caption = "Dispatch Date";
-            this.gridColumn17.FieldName = "CREATEDDATE";
-            this.gridColumn17.Name = "gridColumn17";
-            this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 2;
-            // 
-            // gridColumn18
-            // 
-            this.gridColumn18.Caption = "MRP";
-            this.gridColumn18.FieldName = "MRP";
-            this.gridColumn18.Name = "gridColumn18";
-            this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 3;
-            // 
-            // gridColumn19
-            // 
-            this.gridColumn19.Caption = "Sale Price";
-            this.gridColumn19.FieldName = "SALEPRICE";
-            this.gridColumn19.Name = "gridColumn19";
-            this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 4;
-            // 
-            // gridColumn20
-            // 
-            this.gridColumn20.Caption = "Quantity";
-            this.gridColumn20.FieldName = "DISPATCHQUANTITY";
-            this.gridColumn20.Name = "gridColumn20";
-            this.gridColumn20.Visible = true;
-            this.gridColumn20.VisibleIndex = 5;
-            // 
-            // gridColumn21
-            // 
-            this.gridColumn21.Caption = "Weight In KGs";
-            this.gridColumn21.FieldName = "WEIGHTINKGS";
-            this.gridColumn21.Name = "gridColumn21";
-            this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 6;
-            // 
-            // tpBranchRefund
-            // 
-            this.tpBranchRefund.Controls.Add(this.gcBranchRefund);
-            this.tpBranchRefund.Name = "tpBranchRefund";
-            this.tpBranchRefund.Size = new System.Drawing.Size(1046, 594);
-            this.tpBranchRefund.Text = "Branch Refund";
-            // 
-            // gcBranchRefund
-            // 
-            this.gcBranchRefund.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcBranchRefund.Location = new System.Drawing.Point(0, 0);
-            this.gcBranchRefund.MainView = this.gvBranchRefund;
-            this.gcBranchRefund.Name = "gcBranchRefund";
-            this.gcBranchRefund.Size = new System.Drawing.Size(1046, 594);
-            this.gcBranchRefund.TabIndex = 0;
-            this.gcBranchRefund.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvBranchRefund});
-            // 
-            // gvBranchRefund
-            // 
-            this.gvBranchRefund.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn22,
-            this.gridColumn23,
-            this.gridColumn24,
-            this.gridColumn25,
-            this.gridColumn26,
-            this.gridColumn27,
-            this.gridColumn28,
-            this.gridColumn29,
-            this.gridColumn30,
-            this.gridColumn31,
-            this.gridColumn32});
-            this.gvBranchRefund.GridControl = this.gcBranchRefund;
-            this.gvBranchRefund.Name = "gvBranchRefund";
-            this.gvBranchRefund.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn22
-            // 
-            this.gridColumn22.Caption = "BREFUNDDETAILID";
-            this.gridColumn22.FieldName = "BREFUNDDETAILID";
-            this.gridColumn22.Name = "gridColumn22";
-            // 
-            // gridColumn23
-            // 
-            this.gridColumn23.Caption = "BREFUNDID";
-            this.gridColumn23.FieldName = "BREFUNDID";
-            this.gridColumn23.Name = "gridColumn23";
-            // 
-            // gridColumn24
-            // 
-            this.gridColumn24.Caption = "Branch Name";
-            this.gridColumn24.FieldName = "BRANCHNAME";
-            this.gridColumn24.Name = "gridColumn24";
-            this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 0;
-            // 
-            // gridColumn25
-            // 
-            this.gridColumn25.Caption = "Branch Refund Number";
-            this.gridColumn25.FieldName = "BREFUNDNUMBER";
-            this.gridColumn25.Name = "gridColumn25";
-            this.gridColumn25.Visible = true;
-            this.gridColumn25.VisibleIndex = 1;
-            // 
-            // gridColumn26
-            // 
-            this.gridColumn26.Caption = "Created Date";
-            this.gridColumn26.FieldName = "CREATEDATE";
-            this.gridColumn26.Name = "gridColumn26";
-            this.gridColumn26.Visible = true;
-            this.gridColumn26.VisibleIndex = 2;
-            // 
-            // gridColumn27
-            // 
-            this.gridColumn27.Caption = "MRP";
-            this.gridColumn27.FieldName = "MRP";
-            this.gridColumn27.Name = "gridColumn27";
-            this.gridColumn27.Visible = true;
-            this.gridColumn27.VisibleIndex = 3;
-            // 
-            // gridColumn28
-            // 
-            this.gridColumn28.Caption = "Sale Price";
-            this.gridColumn28.FieldName = "SALEPRICE";
-            this.gridColumn28.Name = "gridColumn28";
-            this.gridColumn28.Visible = true;
-            this.gridColumn28.VisibleIndex = 4;
-            // 
-            // gridColumn29
-            // 
-            this.gridColumn29.Caption = "Quantity";
-            this.gridColumn29.FieldName = "QUANTITY";
-            this.gridColumn29.Name = "gridColumn29";
-            this.gridColumn29.Visible = true;
-            this.gridColumn29.VisibleIndex = 5;
-            // 
-            // gridColumn30
-            // 
-            this.gridColumn30.Caption = "Weight In KGs";
-            this.gridColumn30.FieldName = "WEIGHTINKGS";
-            this.gridColumn30.Name = "gridColumn30";
-            this.gridColumn30.Visible = true;
-            this.gridColumn30.VisibleIndex = 6;
-            // 
-            // gridColumn31
-            // 
-            this.gridColumn31.Caption = "Accepted Quantity";
-            this.gridColumn31.FieldName = "ACCEPTEDQUANTITY";
-            this.gridColumn31.Name = "gridColumn31";
-            this.gridColumn31.Visible = true;
-            this.gridColumn31.VisibleIndex = 7;
-            // 
-            // gridColumn32
-            // 
-            this.gridColumn32.Caption = "Accepted Weight In KGS";
-            this.gridColumn32.FieldName = "ACCEPTEDWEIGHTINKGS";
-            this.gridColumn32.Name = "gridColumn32";
-            this.gridColumn32.Visible = true;
-            this.gridColumn32.VisibleIndex = 8;
-            // 
-            // tpCustomerRefund
-            // 
-            this.tpCustomerRefund.Controls.Add(this.gcCustomerRefund);
-            this.tpCustomerRefund.Name = "tpCustomerRefund";
-            this.tpCustomerRefund.Size = new System.Drawing.Size(1046, 594);
-            this.tpCustomerRefund.Text = "Customer Refund";
-            // 
-            // gcCustomerRefund
-            // 
-            this.gcCustomerRefund.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcCustomerRefund.Location = new System.Drawing.Point(0, 0);
-            this.gcCustomerRefund.MainView = this.gvCustomerRefund;
-            this.gcCustomerRefund.Name = "gcCustomerRefund";
-            this.gcCustomerRefund.Size = new System.Drawing.Size(1046, 594);
-            this.gcCustomerRefund.TabIndex = 0;
-            this.gcCustomerRefund.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvCustomerRefund});
-            // 
-            // gvCustomerRefund
-            // 
-            this.gvCustomerRefund.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn33,
-            this.gridColumn34,
-            this.gridColumn35,
-            this.gridColumn36,
-            this.gridColumn37,
-            this.gridColumn38,
-            this.gridColumn39,
-            this.gridColumn40,
-            this.gridColumn41,
-            this.gridColumn42});
-            this.gvCustomerRefund.GridControl = this.gcCustomerRefund;
-            this.gvCustomerRefund.Name = "gvCustomerRefund";
-            this.gvCustomerRefund.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn33
-            // 
-            this.gridColumn33.Caption = "PCREFUNDID";
-            this.gridColumn33.FieldName = "PCREFUNDID";
-            this.gridColumn33.Name = "gridColumn33";
-            // 
-            // gridColumn34
-            // 
-            this.gridColumn34.Caption = "BILLDETAILID";
-            this.gridColumn34.FieldName = "BILLDETAILID";
-            this.gridColumn34.Name = "gridColumn34";
-            // 
-            // gridColumn35
-            // 
-            this.gridColumn35.Caption = "BILLID";
-            this.gridColumn35.FieldName = "BILLID";
-            this.gridColumn35.Name = "gridColumn35";
-            // 
-            // gridColumn36
-            // 
-            this.gridColumn36.Caption = "Branch Name";
-            this.gridColumn36.FieldName = "BRANCHNAME";
-            this.gridColumn36.Name = "gridColumn36";
-            this.gridColumn36.Visible = true;
-            this.gridColumn36.VisibleIndex = 0;
-            // 
-            // gridColumn37
-            // 
-            this.gridColumn37.Caption = "Refund Date";
-            this.gridColumn37.FieldName = "REFUNDDATE";
-            this.gridColumn37.Name = "gridColumn37";
-            this.gridColumn37.Visible = true;
-            this.gridColumn37.VisibleIndex = 1;
-            // 
-            // gridColumn38
-            // 
-            this.gridColumn38.Caption = "Bill Number";
-            this.gridColumn38.FieldName = "BILLNUMBER";
-            this.gridColumn38.Name = "gridColumn38";
-            this.gridColumn38.Visible = true;
-            this.gridColumn38.VisibleIndex = 2;
-            // 
-            // gridColumn39
-            // 
-            this.gridColumn39.Caption = "MRP";
-            this.gridColumn39.FieldName = "MRP";
-            this.gridColumn39.Name = "gridColumn39";
-            this.gridColumn39.Visible = true;
-            this.gridColumn39.VisibleIndex = 3;
-            // 
-            // gridColumn40
-            // 
-            this.gridColumn40.Caption = "Sale Price";
-            this.gridColumn40.FieldName = "SALEPRICE";
-            this.gridColumn40.Name = "gridColumn40";
-            this.gridColumn40.Visible = true;
-            this.gridColumn40.VisibleIndex = 4;
-            // 
-            // gridColumn41
-            // 
-            this.gridColumn41.Caption = "Refund Quantity";
-            this.gridColumn41.FieldName = "REFUNDQUANTITY";
-            this.gridColumn41.Name = "gridColumn41";
-            this.gridColumn41.Visible = true;
-            this.gridColumn41.VisibleIndex = 5;
-            // 
-            // gridColumn42
-            // 
-            this.gridColumn42.Caption = "Refund Weight In KGs";
-            this.gridColumn42.FieldName = "REFUNDWEIGHTINKGS";
-            this.gridColumn42.Name = "gridColumn42";
-            this.gridColumn42.Visible = true;
-            this.gridColumn42.VisibleIndex = 6;
-            // 
-            // xtraTabPage1
-            // 
-            this.xtraTabPage1.Controls.Add(this.gcPurchase);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1046, 594);
-            this.xtraTabPage1.Text = "Purchase";
-            // 
-            // gcPurchase
-            // 
-            this.gcPurchase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcPurchase.Location = new System.Drawing.Point(0, 0);
-            this.gcPurchase.MainView = this.gvPurchase;
-            this.gcPurchase.Name = "gcPurchase";
-            this.gcPurchase.Size = new System.Drawing.Size(1046, 594);
-            this.gcPurchase.TabIndex = 0;
-            this.gcPurchase.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvPurchase});
-            // 
-            // gvPurchase
-            // 
-            this.gvPurchase.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn43,
-            this.gridColumn44,
-            this.gridColumn45,
-            this.gridColumn46,
-            this.gridColumn47,
-            this.gridColumn48,
-            this.gridColumn49,
-            this.gridColumn50,
-            this.gridColumn51});
-            this.gvPurchase.GridControl = this.gcPurchase;
-            this.gvPurchase.Name = "gvPurchase";
-            this.gvPurchase.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn43
-            // 
-            this.gridColumn43.Caption = "STOCKENTRYDETAILID";
-            this.gridColumn43.FieldName = "STOCKENTRYDETAILID";
-            this.gridColumn43.Name = "gridColumn43";
-            // 
-            // gridColumn44
-            // 
-            this.gridColumn44.Caption = "STOCKENTRYID";
-            this.gridColumn44.FieldName = "STOCKENTRYID";
-            this.gridColumn44.Name = "gridColumn44";
-            // 
-            // gridColumn45
-            // 
-            this.gridColumn45.Caption = "Supplier Invoice #";
-            this.gridColumn45.FieldName = "SUPPLIERINVOICENO";
-            this.gridColumn45.Name = "gridColumn45";
-            this.gridColumn45.Visible = true;
-            this.gridColumn45.VisibleIndex = 0;
-            // 
-            // gridColumn46
-            // 
-            this.gridColumn46.Caption = "Invoice Date";
-            this.gridColumn46.FieldName = "INVOIDEDATE";
-            this.gridColumn46.Name = "gridColumn46";
-            this.gridColumn46.Visible = true;
-            this.gridColumn46.VisibleIndex = 1;
-            // 
-            // gridColumn47
-            // 
-            this.gridColumn47.Caption = "Created Date";
-            this.gridColumn47.FieldName = "CREATEDDATE";
-            this.gridColumn47.Name = "gridColumn47";
-            this.gridColumn47.Visible = true;
-            this.gridColumn47.VisibleIndex = 2;
-            // 
-            // gridColumn48
-            // 
-            this.gridColumn48.Caption = "MRP";
-            this.gridColumn48.FieldName = "MRP";
-            this.gridColumn48.Name = "gridColumn48";
-            this.gridColumn48.Visible = true;
-            this.gridColumn48.VisibleIndex = 3;
-            // 
-            // gridColumn49
-            // 
-            this.gridColumn49.Caption = "Sale Price";
-            this.gridColumn49.FieldName = "SALEPRICE";
-            this.gridColumn49.Name = "gridColumn49";
-            this.gridColumn49.Visible = true;
-            this.gridColumn49.VisibleIndex = 4;
-            // 
-            // gridColumn50
-            // 
-            this.gridColumn50.Caption = "Quantity";
-            this.gridColumn50.FieldName = "QUANTITY";
-            this.gridColumn50.Name = "gridColumn50";
-            this.gridColumn50.Visible = true;
-            this.gridColumn50.VisibleIndex = 5;
-            // 
-            // gridColumn51
-            // 
-            this.gridColumn51.Caption = "Weight In KGs";
-            this.gridColumn51.FieldName = "WEIGHTINKGS";
-            this.gridColumn51.Name = "gridColumn51";
-            this.gridColumn51.Visible = true;
-            this.gridColumn51.VisibleIndex = 6;
-            // 
-            // xtraTabPage2
-            // 
-            this.xtraTabPage2.Controls.Add(this.gcItemSale);
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1046, 594);
-            this.xtraTabPage2.Text = "Item Sale";
-            // 
-            // gcItemSale
-            // 
-            this.gcItemSale.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcItemSale.Location = new System.Drawing.Point(0, 0);
-            this.gcItemSale.MainView = this.gvItemSale;
-            this.gcItemSale.Name = "gcItemSale";
-            this.gcItemSale.Size = new System.Drawing.Size(1046, 594);
-            this.gcItemSale.TabIndex = 0;
-            this.gcItemSale.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvItemSale});
-            // 
-            // gvItemSale
-            // 
-            this.gvItemSale.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn52,
-            this.gridColumn53,
-            this.gridColumn54,
-            this.gridColumn55,
-            this.gridColumn56,
-            this.gridColumn57,
-            this.gridColumn58,
-            this.gridColumn59,
-            this.gridColumn60});
-            this.gvItemSale.GridControl = this.gcItemSale;
-            this.gvItemSale.Name = "gvItemSale";
-            this.gvItemSale.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn52
-            // 
-            this.gridColumn52.Caption = "BILLDETAILID";
-            this.gridColumn52.FieldName = "BILLDETAILID";
-            this.gridColumn52.Name = "gridColumn52";
-            // 
-            // gridColumn53
-            // 
-            this.gridColumn53.Caption = "BILLID";
-            this.gridColumn53.FieldName = "BILLID";
-            this.gridColumn53.Name = "gridColumn53";
-            // 
-            // gridColumn54
-            // 
-            this.gridColumn54.Caption = "Branch Name";
-            this.gridColumn54.FieldName = "BRANCHNAME";
-            this.gridColumn54.Name = "gridColumn54";
-            this.gridColumn54.Visible = true;
-            this.gridColumn54.VisibleIndex = 0;
-            // 
-            // gridColumn55
-            // 
-            this.gridColumn55.Caption = "Created Date";
-            this.gridColumn55.FieldName = "CREATEDDATE";
-            this.gridColumn55.Name = "gridColumn55";
-            // 
-            // gridColumn56
-            // 
-            this.gridColumn56.Caption = "Bill Number";
-            this.gridColumn56.FieldName = "BILLNUMBER";
-            this.gridColumn56.Name = "gridColumn56";
-            // 
-            // gridColumn57
-            // 
-            this.gridColumn57.Caption = "MRP";
-            this.gridColumn57.FieldName = "MRP";
-            this.gridColumn57.Name = "gridColumn57";
-            this.gridColumn57.Visible = true;
-            this.gridColumn57.VisibleIndex = 1;
-            // 
-            // gridColumn58
-            // 
-            this.gridColumn58.Caption = "Sale Price";
-            this.gridColumn58.FieldName = "SALEPRICE";
-            this.gridColumn58.Name = "gridColumn58";
-            this.gridColumn58.Visible = true;
-            this.gridColumn58.VisibleIndex = 2;
-            // 
-            // gridColumn59
-            // 
-            this.gridColumn59.Caption = "Quantity";
-            this.gridColumn59.FieldName = "QUANTITY";
-            this.gridColumn59.Name = "gridColumn59";
-            this.gridColumn59.Visible = true;
-            this.gridColumn59.VisibleIndex = 3;
-            // 
-            // gridColumn60
-            // 
-            this.gridColumn60.Caption = "Weight In KGs";
-            this.gridColumn60.FieldName = "WEIGHTINKGS";
-            this.gridColumn60.Name = "gridColumn60";
-            this.gridColumn60.Visible = true;
-            this.gridColumn60.VisibleIndex = 4;
             // 
             // btnShow
             // 
@@ -943,11 +839,12 @@
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlItem2,
-            this.layoutControlItem3,
             this.layoutControlItem4,
             this.layoutControlItem5,
             this.layoutControlItem6,
-            this.layoutControlItem7});
+            this.layoutControlItem7,
+            this.layoutControlItem8,
+            this.layoutControlItem9});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1072, 677);
             this.Root.TextVisible = false;
@@ -974,15 +871,6 @@
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.tabControlResult;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 34);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(1052, 623);
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
@@ -1027,6 +915,24 @@
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.gcItemSummary;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 34);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(1052, 449);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.gcPurchase;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 483);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(1052, 174);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
             // frmItemSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1036,43 +942,32 @@
             this.Name = "frmItemSummary";
             this.Text = "Item Summary";
             this.Load += new System.EventHandler(this.frmItemSummary_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.gvDispatch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcItemSummary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvBranchReunds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvItemSale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCustomerRefund)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvItemSummary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcPurchase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvPurchase)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabControlResult)).EndInit();
-            this.tabControlResult.ResumeLayout(false);
-            this.tpBranchWiseSummary.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcBranchWiseSummary)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvBranchWiseSummary)).EndInit();
-            this.tpStockDispatch.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcStockDispatch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvStockDispatch)).EndInit();
-            this.tpBranchRefund.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcBranchRefund)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvBranchRefund)).EndInit();
-            this.tpCustomerRefund.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcCustomerRefund)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCustomerRefund)).EndInit();
-            this.xtraTabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcPurchase)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvPurchase)).EndInit();
-            this.xtraTabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemSale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemSale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1086,40 +981,46 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.SimpleButton btnShow;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraTab.XtraTabControl tabControlResult;
-        private DevExpress.XtraTab.XtraTabPage tpBranchWiseSummary;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraTab.XtraTabPage tpStockDispatch;
-        private DevExpress.XtraTab.XtraTabPage tpBranchRefund;
-        private DevExpress.XtraTab.XtraTabPage tpCustomerRefund;
-        private DevExpress.XtraGrid.GridControl gcBranchWiseSummary;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvBranchWiseSummary;
         private DevExpress.XtraEditors.DateEdit dtToDate;
         private DevExpress.XtraEditors.DateEdit dtFromDate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.LookUpEdit cmbBranch;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraEditors.SimpleButton btnViewReport;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraGrid.GridControl gcStockDispatch;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvStockDispatch;
-        private DevExpress.XtraGrid.GridControl gcBranchRefund;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvBranchRefund;
-        private DevExpress.XtraGrid.GridControl gcCustomerRefund;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvCustomerRefund;
         private DevExpress.XtraGrid.GridControl gcPurchase;
         private DevExpress.XtraGrid.Views.Grid.GridView gvPurchase;
-        private DevExpress.XtraGrid.GridControl gcItemSale;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvItemSale;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn44;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn45;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn47;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn48;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn49;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn50;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn51;
+        private DevExpress.XtraGrid.GridControl gcItemSummary;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvItemSummary;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn61;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn62;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn63;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn64;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn65;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn66;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn67;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn68;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvDispatch;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvItemSale;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvBranchReunds;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvCustomerRefund;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
@@ -1156,23 +1057,5 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn40;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn41;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn42;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn44;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn45;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn46;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn47;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn48;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn49;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn50;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn51;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn52;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn53;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn54;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn55;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn56;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn57;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn58;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn59;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn60;
     }
 }

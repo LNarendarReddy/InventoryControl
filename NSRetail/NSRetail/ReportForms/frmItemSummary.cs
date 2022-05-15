@@ -1,10 +1,8 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
-using DevExpress.XtraGrid;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace NSRetail.ReportForms
@@ -46,16 +44,30 @@ namespace NSRetail.ReportForms
                 , { "FromDate", dtFromDate.EditValue }
                 , { "ToDate", dtToDate.EditValue }
                 , { "ItemCodeID", sluItemCode.EditValue }
-                , { "SelectedTab", tabControlResult.SelectedTabPage.Text }
             };
 
-            DataTable dtResult = new ReportRepository().GetReportData("USP_RPT_ITEMSUMMARY", searchCriteria);
-            tabControlResult.SelectedTabPage.Controls.OfType<GridControl>().First().DataSource = dtResult;
+            DataSet dsResult = new ReportRepository().GetReportDataset("USP_RPT_ITEMSUMMARY", searchCriteria);
+            
+            dsResult.Tables[0].TableName = "ITEMSUMMARY";
+            dsResult.Tables[1].TableName = "STOCKIN";
+            dsResult.Tables[2].TableName = "DISPATCH";
+            dsResult.Tables[3].TableName = "BREFUND";
+            dsResult.Tables[4].TableName = "ITEMSALE";
+            dsResult.Tables[5].TableName = "CREFUND";
+
+            DataColumn dcParentBranchID = dsResult.Tables["ITEMSUMMARY"].Columns["BRANCHID"];
+            dsResult.Relations.Add("Stock Dispacth", dcParentBranchID, dsResult.Tables["DISPATCH"].Columns["BRANCHID"]);
+            dsResult.Relations.Add("Branch Refunds", dcParentBranchID, dsResult.Tables["BREFUND"].Columns["BRANCHID"]);
+            dsResult.Relations.Add("Item Sales", dcParentBranchID, dsResult.Tables["ITEMSALE"].Columns["BRANCHID"]);
+            dsResult.Relations.Add("Customer Refunds", dcParentBranchID, dsResult.Tables["CREFUND"].Columns["BRANCHID"]);
+
+            gcItemSummary.DataSource = dsResult.Tables[0];
+            gcPurchase.DataSource = dsResult.Tables[1];
         }
 
         private void btnViewReport_Click(object sender, EventArgs e)
         {
-            tabControlResult.SelectedTabPage.Controls.OfType<GridControl>().First().ShowRibbonPrintPreview();
+            gcItemSummary.ShowRibbonPrintPreview();
         }
     }
 }

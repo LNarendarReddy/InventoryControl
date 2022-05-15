@@ -10,22 +10,25 @@ namespace DataAccess
 {
     public static class SQLCon
     {
+        static SqlConnection ObjCon = new SqlConnection();
+
         public static SqlConnection Sqlconn()
-        {
-            SqlConnection ObjCon = new SqlConnection();
-            string ServerName = Decrypt(ConfigurationManager.AppSettings["ServerName"].ToString());
-            string DBName = Decrypt(ConfigurationManager.AppSettings["DBName"].ToString());
-            string UserName = Decrypt(ConfigurationManager.AppSettings["username"].ToString());
-            string Password = Decrypt(ConfigurationManager.AppSettings["pwd"].ToString());
+        {            
             try
             {
-                if (ObjCon.State == ConnectionState.Open)
+                if (ObjCon?.State == ConnectionState.Open)
                 {
                     return ObjCon;
                 }
                 else
                 {
-                    string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 200";
+                    string ServerName = Decrypt(ConfigurationManager.AppSettings["ServerName"].ToString());
+                    string DBName = Decrypt(ConfigurationManager.AppSettings["DBName"].ToString());
+                    string UserName = Decrypt(ConfigurationManager.AppSettings["username"].ToString());
+                    string Password = Decrypt(ConfigurationManager.AppSettings["pwd"].ToString());
+
+                    ObjCon = new SqlConnection();
+                    string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 2000";
                     ObjCon.ConnectionString = str;
                     ObjCon.Open();
                 }
