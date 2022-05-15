@@ -26,6 +26,7 @@ namespace NSRetail
         {
             SplashScreenManager.ShowForm(typeof(frmProgress), true, true);
             base.OnLoad(e);
+            Utilities.SerialPortListener.ListenSerialPort(this);
             Utility.FillBaseLine();
             SplashScreenManager.CloseForm();
 

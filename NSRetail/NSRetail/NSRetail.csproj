@@ -511,6 +511,7 @@
     <Compile Include="Utilities\frmSyncStatus.Designer.cs">
       <DependentUpon>frmSyncStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\SerialPortListener.cs" />
     <Compile Include="Utilities\Utility.cs" />
     <EmbeddedResource Include="Counting\frmCounting.resx">
       <DependentUpon>frmCounting.cs</DependentUpon>
