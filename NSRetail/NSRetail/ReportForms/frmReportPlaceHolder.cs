@@ -1,8 +1,10 @@
-﻿using DevExpress.XtraEditors;
+﻿using DataAccess;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraLayout;
 using DevExpress.XtraSplashScreen;
+using Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -156,6 +158,26 @@ namespace NSRetail.ReportForms
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DealerIndent dealerIndent = new DealerIndent();
+                dealerIndent.supplierID = (selectedReportHolder.SearchCriteriaControl as ucDealerIndent).cmbDealer.EditValue;
+                dealerIndent.FromDate = (selectedReportHolder.SearchCriteriaControl as ucDealerIndent).dtFromDate.EditValue;
+                dealerIndent.ToDate = (selectedReportHolder.SearchCriteriaControl as ucDealerIndent).dtToDate.EditValue;
+                dealerIndent.CategoryID = (selectedReportHolder.SearchCriteriaControl as ucDealerIndent).cmbCategory.EditValue;
+                dealerIndent.UserID = Utility.UserID;
+                dealerIndent.dtSupplierIndent = ((DataTable)gvResults.DataSource).Copy();
+                new ReportRepository().SaveSupplierIndent(dealerIndent);
+                gcResults.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
         }
     }
 

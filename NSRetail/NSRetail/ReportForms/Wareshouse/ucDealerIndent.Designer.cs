@@ -212,11 +212,11 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraEditors.LookUpEdit cmbDealer;
+        public DevExpress.XtraEditors.LookUpEdit cmbDealer;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.DateEdit dtToDate;
-        private DevExpress.XtraEditors.DateEdit dtFromDate;
-        private DevExpress.XtraEditors.LookUpEdit cmbCategory;
+        public DevExpress.XtraEditors.DateEdit dtToDate;
+        public DevExpress.XtraEditors.DateEdit dtFromDate;
+        public DevExpress.XtraEditors.LookUpEdit cmbCategory;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;

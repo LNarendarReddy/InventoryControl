@@ -258,7 +258,10 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Saving Stock Invoice");
+                if (ex.Message.Contains("Invoice Number Already Exists"))
+                    throw ex;
+                else
+                    throw new Exception("Error While Saving Stock Invoice");
             }
             finally
             {

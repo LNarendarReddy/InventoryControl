@@ -51,6 +51,9 @@
             this.gcItemValue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcMOPValue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -103,7 +106,10 @@
             this.gridColumn10,
             this.gcItemValue,
             this.gcMOPValue,
-            this.gridColumn11});
+            this.gridColumn11,
+            this.gridColumn12,
+            this.gridColumn13,
+            this.gridColumn14});
             this.gvBills.DetailHeight = 404;
             this.gvBills.GridControl = this.gcBills;
             this.gvBills.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -255,6 +261,27 @@
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 3;
             // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "TENDEREDCASH";
+            this.gridColumn12.FieldName = "TENDEREDCASH";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "TENDEREDCHANGE";
+            this.gridColumn13.FieldName = "TENDEREDCHANGE";
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.OptionsColumn.AllowEdit = false;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "Bill Mode";
+            this.gridColumn14.FieldName = "ISDOORDELIVERY";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.OptionsColumn.AllowEdit = false;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -317,5 +344,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcItemValue;
         private DevExpress.XtraGrid.Columns.GridColumn gcMOPValue;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
     }
 }
