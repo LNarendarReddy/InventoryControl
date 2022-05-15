@@ -84,7 +84,8 @@ namespace NSRetail.Stock
                     ObjStockEntry.dtStockEntry.Columns.Add("GSTID", typeof(int));
                     gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
                 }
-
+                gvStockEntry.Columns["STOCKENTRYDETAILID"].SortOrder = 
+                    DevExpress.Data.ColumnSortOrder.Descending;
             }
             catch (Exception) { }
         }
@@ -431,6 +432,15 @@ namespace NSRetail.Stock
             {
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+
+        private void gvStockEntry_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            GridView view = (GridView)sender;
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            {
+                e.Info.DisplayText = (gvStockEntry.RowCount - (e.RowHandle)).ToString();
             }
         }
     }

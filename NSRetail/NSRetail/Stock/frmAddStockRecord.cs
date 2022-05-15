@@ -39,6 +39,9 @@ namespace NSRetail.Stock
                 cmbItemCode.Properties.ValueMember = "ITEMCODEID";
                 cmbItemCode.Properties.DisplayMember = "ITEMCODE";
 
+                cmbLookupView.GridControl.BindingContext = new BindingContext();
+                cmbLookupView.GridControl.DataSource = cmbItemCode.Properties.DataSource;
+
                 sluFreeItem.Properties.DataSource = Utility.GetItemCodeList();
                 sluFreeItem.Properties.ValueMember = "ITEMCODEID";
                 sluFreeItem.Properties.DisplayMember = "ITEMNAME";
@@ -226,14 +229,20 @@ namespace NSRetail.Stock
             {
                 if (cmbItemCode.EditValue != null)
                 {
-                    int IValue = 0;
-                    if (int.TryParse(Convert.ToString(ObjStockEntryDetail.STOCKENTRYDETAILID), out IValue) && IValue > 0)
+                    int rowhandle = cmbLookupView.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
+
+                    IsOpenItem = bool.TryParse(Convert.ToString(cmbLookupView.GetRowCellValue(rowhandle, "ISOPENITEM")),
+                        out IsOpenItem) && IsOpenItem;
+
+                    txtQuantity.Enabled = !IsOpenItem;
+                    txtWeightInKGs.Enabled = IsOpenItem;
+
+                    if (int.TryParse(Convert.ToString(ObjStockEntryDetail.STOCKENTRYDETAILID), out int IValue) &&  IValue > 0)
                     {
                         return;
                     }
                     IsLoading = true;
 
-                    int rowhandle = cmbLookupView.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
                     txtItemName.EditValue = cmbLookupView.GetRowCellValue(rowhandle, "ITEMNAME");
                     txtHSNCode.EditValue = cmbLookupView.GetRowCellValue(rowhandle, "HSNCODE");
                     DataTable dtCPList = ObjItemRep.GetCostPriceList(cmbItemCode.EditValue);
@@ -262,12 +271,6 @@ namespace NSRetail.Stock
                         txtCostPriceWOT.EditValue = dtCPList.Rows[0]["COSTPRICEWOT"] == DBNull.Value ? 0.00 : dtCPList.Rows[0]["COSTPRICEWOT"];
                         txtCostPriceWT.EditValue = dtCPList.Rows[0]["COSTPRICEWT"] == DBNull.Value ? 0.00 : dtCPList.Rows[0]["COSTPRICEWT"];
                     }
-
-                    IsOpenItem = bool.TryParse(Convert.ToString(cmbLookupView.GetRowCellValue(rowhandle, "ISOPENITEM")), 
-                        out IsOpenItem) && IsOpenItem;
-
-                    txtQuantity.Enabled = !IsOpenItem;
-                    txtWeightInKGs.Enabled = IsOpenItem;
 
                     txtQuantity.EditValue = 1;
                     CalculateReadOnlyFields();
