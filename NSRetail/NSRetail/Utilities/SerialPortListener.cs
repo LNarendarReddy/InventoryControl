@@ -20,7 +20,7 @@ namespace NSRetail.Utilities
             _serialPort.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
             _serialPort.ReadTimeout = 500;
             _serialPort.WriteTimeout = 500;
-            _serialPort.Open();
+            //_serialPort.Open();
         }
 
         static void sp_DataReceived(object sender, SerialDataReceivedEventArgs e)

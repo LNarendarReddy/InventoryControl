@@ -67,6 +67,7 @@
             this.btnItemWiseSales = new DevExpress.XtraBars.BarButtonItem();
             this.bbiReport = new DevExpress.XtraBars.BarButtonItem();
             this.bbiItemSummary = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCounting = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -88,7 +89,7 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.btnCounting = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDealerIndent = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -137,10 +138,11 @@
             this.btnItemWiseSales,
             this.bbiReport,
             this.bbiItemSummary,
-            this.btnCounting});
+            this.btnCounting,
+            this.btnDealerIndent});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ribbonControl1.MaxItemId = 48;
+            this.ribbonControl1.MaxItemId = 49;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -655,6 +657,14 @@
             this.bbiItemSummary.Name = "bbiItemSummary";
             this.bbiItemSummary.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiItemSummary_ItemClick);
             // 
+            // btnCounting
+            // 
+            this.btnCounting.Caption = "Stock Counting";
+            this.btnCounting.Id = 47;
+            this.btnCounting.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCounting.ImageOptions.SvgImage")));
+            this.btnCounting.Name = "btnCounting";
+            this.btnCounting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCounting_ItemClick);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Appearance.Options.UseFont = true;
@@ -713,6 +723,7 @@
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.btnStockEntry);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnInvoiceList);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnDealerIndent);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Stock Entry";
             // 
@@ -829,13 +840,13 @@
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
             // 
-            // btnCounting
+            // btnDealerIndent
             // 
-            this.btnCounting.Caption = "Stock Counting";
-            this.btnCounting.Id = 47;
-            this.btnCounting.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCounting.ImageOptions.SvgImage")));
-            this.btnCounting.Name = "btnCounting";
-            this.btnCounting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCounting_ItemClick);
+            this.btnDealerIndent.Caption = "Dealer Indent List";
+            this.btnDealerIndent.Id = 48;
+            this.btnDealerIndent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDealerIndent.ImageOptions.SvgImage")));
+            this.btnDealerIndent.Name = "btnDealerIndent";
+            this.btnDealerIndent.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDealerIndent_ItemClick);
             // 
             // frmMain
             // 
@@ -923,6 +934,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
         private DevExpress.XtraBars.BarButtonItem bbiItemSummary;
         private DevExpress.XtraBars.BarButtonItem btnCounting;
+        private DevExpress.XtraBars.BarButtonItem btnDealerIndent;
     }
 }
 

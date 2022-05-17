@@ -170,7 +170,7 @@ namespace NSRetail.ReportForms
                 dealerIndent.ToDate = (selectedReportHolder.SearchCriteriaControl as ucDealerIndent).dtToDate.EditValue;
                 dealerIndent.CategoryID = (selectedReportHolder.SearchCriteriaControl as ucDealerIndent).cmbCategory.EditValue;
                 dealerIndent.UserID = Utility.UserID;
-                dealerIndent.dtSupplierIndent = ((DataTable)gvResults.DataSource).Copy();
+                dealerIndent.dtSupplierIndent = ((DataTable)gcResults.DataSource).Copy();
                 new ReportRepository().SaveSupplierIndent(dealerIndent);
                 gcResults.DataSource = null;
             }
@@ -178,6 +178,12 @@ namespace NSRetail.ReportForms
             {
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
+        }
+
+        private void gvResults_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+                gvResults.MoveNext();
         }
     }
 

@@ -18,7 +18,7 @@ namespace Entity
         public object CategoryID { get; set; }
         public object FromDate { get; set; }
         public object ToDate { get; set; }
-        public object IsApproved { get; set; }
+        public bool IsApproved { get; set; }
         public DataTable dtSupplierIndent { get; set; }
     }
 }

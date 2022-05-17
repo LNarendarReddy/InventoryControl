@@ -555,7 +555,7 @@ namespace DataAccess
             }
             return ObjDealer;
         }
-        public DataTable GetDealer(bool UsedInReport = false)
+        public DataTable GetDealer()
         {
             DataTable dtDealer = new DataTable();
             try
@@ -568,13 +568,6 @@ namespace DataAccess
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtDealer);
-                    }
-                    if(UsedInReport)
-                    {
-                        DataRow dr = dtDealer.NewRow();
-                        dr["DEALERID"] = 0;
-                        dr["DEALERNAME"] = "All";
-                        dtDealer.Rows.InsertAt(dr,0);
                     }
                 }
             }

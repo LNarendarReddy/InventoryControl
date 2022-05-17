@@ -22,11 +22,12 @@ namespace NSRetail.ReportForms
                 , { "ALLBRANCHSTOCK", "All Branch Stock" }
                 , { "SALEQUANTITY", "Sale Quantity" }
                 , { "DISPATCHQUANTITY", "Dispatch Quantity" }
-                , { "INDENTQUANTITY", "Indent Quantity" }
                 , { "SUBCATEGORYNAME", "Sub Category" }
+                , { "INDENTQUANTITY", "Calculated Indent" }
+                , { "DESIREDINDENT", "Desired Indent" }
             };
 
-            editableColumns = new List<string>() { "INDENTQUANTITY" };
+            editableColumns = new List<string>() { "DESIREDINDENT" };
 
             cmbDealer.Properties.DataSource = masterRepository.GetDealer();
             cmbDealer.Properties.ValueMember = "DEALERID";
@@ -50,7 +51,10 @@ namespace NSRetail.ReportForms
                 , { "CategoryID", cmbCategory.EditValue}
             };
 
-            return GetReportData("USP_R_DEALERINDENT", parameters);
+            DataTable dtTemp = GetReportData("USP_R_DEALERINDENT", parameters);
+            dtTemp.Columns.Add("SUPPLIERINDENTDETAILID", typeof(int));
+            dtTemp.Columns["SUPPLIERINDENTDETAILID"].SetOrdinal(0);
+            return dtTemp;
         }
 
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;

@@ -48,7 +48,7 @@ namespace NSRetail.Stock
 
         private void frmInvoiceList_Load(object sender, EventArgs e)
         {
-            cmbDealer.Properties.DataSource = new MasterRepository().GetDealer(true);
+            cmbDealer.Properties.DataSource = new MasterRepository().GetDealer();
             cmbDealer.Properties.DisplayMember = "DEALERNAME";
             cmbDealer.Properties.ValueMember = "DEALERID";
             cmbDealer.EditValue = 0;

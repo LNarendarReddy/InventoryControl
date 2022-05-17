@@ -78,7 +78,6 @@ namespace DataAccess
 
         public void SaveSupplierIndent(DealerIndent dealerIndent)
         {
-            DataTable dtReportData = new DataTable();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -94,6 +93,10 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@USERID", dealerIndent.UserID);
                     cmd.Parameters.AddWithValue("@dtDetail", dealerIndent.dtSupplierIndent);
                     cmd.Parameters.AddWithValue("@ISAPPROVED", dealerIndent.IsApproved);
+                    dealerIndent.dtSupplierIndent.Columns.Remove("SNO");
+                    dealerIndent.dtSupplierIndent.Columns.Remove("SKUCODE");
+                    dealerIndent.dtSupplierIndent.Columns.Remove("ITEMNAME");
+                    dealerIndent.dtSupplierIndent.Columns.Remove("SUBCATEGORYNAME");
                     int RowsAfftected = cmd.ExecuteNonQuery();
 
                     if (RowsAfftected == 0)
@@ -109,6 +112,64 @@ namespace DataAccess
             {
                 SQLCon.Sqlconn().Close();
             }
+        }
+
+        public DataTable GetSupplierIndent(object CategoryID, object FromDate, object ToDate)
+        {
+            DataTable dtReportData = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_SUPPLIERINDENT]";
+                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
+                    cmd.Parameters.AddWithValue("@FROMDATE", FromDate);
+                    cmd.Parameters.AddWithValue("@TODATE", ToDate);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtReportData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error While Retrieving Supplier Indent", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtReportData;
+        }
+
+        public DataTable GetSupplierIndentDetail(object SupplierIndentID)
+        {
+            DataTable dtReportData = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_SUPPLIERINDENTDETAIL]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERINDENTID", SupplierIndentID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtReportData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error While Retrieving Supplier Indent", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtReportData;
         }
 
         public void DeleteSupplierIndentDetail(object SupplierIndentDetailID,object @UserID)
