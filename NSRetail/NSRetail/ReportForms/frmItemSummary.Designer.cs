@@ -245,7 +245,7 @@
             this.gcItemSummary.MainView = this.gvItemSummary;
             this.gcItemSummary.Name = "gcItemSummary";
             this.gcItemSummary.Size = new System.Drawing.Size(1048, 445);
-            this.gcItemSummary.TabIndex = 0;
+            this.gcItemSummary.TabIndex = 6;
             this.gcItemSummary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvBranchReunds,
             this.gvItemSale,
@@ -617,7 +617,7 @@
             this.gcPurchase.MainView = this.gvPurchase;
             this.gcPurchase.Name = "gcPurchase";
             this.gcPurchase.Size = new System.Drawing.Size(1048, 170);
-            this.gcPurchase.TabIndex = 0;
+            this.gcPurchase.TabIndex = 7;
             this.gcPurchase.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvPurchase});
             // 
@@ -714,12 +714,13 @@
             this.btnViewReport.Name = "btnViewReport";
             this.btnViewReport.Size = new System.Drawing.Size(115, 22);
             this.btnViewReport.StyleController = this.layoutControl1;
-            this.btnViewReport.TabIndex = 10;
+            this.btnViewReport.TabIndex = 5;
             this.btnViewReport.Text = "View Report";
             this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
             // 
             // cmbBranch
             // 
+            this.cmbBranch.EnterMoveNextControl = true;
             this.cmbBranch.Location = new System.Drawing.Point(737, 16);
             this.cmbBranch.Name = "cmbBranch";
             this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -731,11 +732,12 @@
             this.cmbBranch.Properties.NullText = "";
             this.cmbBranch.Size = new System.Drawing.Size(76, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
-            this.cmbBranch.TabIndex = 9;
+            this.cmbBranch.TabIndex = 3;
             // 
             // dtToDate
             // 
             this.dtToDate.EditValue = null;
+            this.dtToDate.EnterMoveNextControl = true;
             this.dtToDate.Location = new System.Drawing.Point(589, 16);
             this.dtToDate.Name = "dtToDate";
             this.dtToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -744,11 +746,12 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtToDate.Size = new System.Drawing.Size(66, 22);
             this.dtToDate.StyleController = this.layoutControl1;
-            this.dtToDate.TabIndex = 8;
+            this.dtToDate.TabIndex = 2;
             // 
             // dtFromDate
             // 
             this.dtFromDate.EditValue = null;
+            this.dtFromDate.EnterMoveNextControl = true;
             this.dtFromDate.Location = new System.Drawing.Point(419, 16);
             this.dtFromDate.Name = "dtFromDate";
             this.dtFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -757,7 +760,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtFromDate.Size = new System.Drawing.Size(88, 22);
             this.dtFromDate.StyleController = this.layoutControl1;
-            this.dtFromDate.TabIndex = 7;
+            this.dtFromDate.TabIndex = 1;
             // 
             // btnShow
             // 
@@ -767,12 +770,13 @@
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(104, 22);
             this.btnShow.StyleController = this.layoutControl1;
-            this.btnShow.TabIndex = 5;
+            this.btnShow.TabIndex = 4;
             this.btnShow.Text = "Show";
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // sluItemCode
             // 
+            this.sluItemCode.EnterMoveNextControl = true;
             this.sluItemCode.Location = new System.Drawing.Point(86, 16);
             this.sluItemCode.Name = "sluItemCode";
             this.sluItemCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -781,7 +785,7 @@
             this.sluItemCode.Properties.PopupView = this.searchLookUpEdit1View;
             this.sluItemCode.Size = new System.Drawing.Size(251, 22);
             this.sluItemCode.StyleController = this.layoutControl1;
-            this.sluItemCode.TabIndex = 4;
+            this.sluItemCode.TabIndex = 0;
             // 
             // searchLookUpEdit1View
             // 

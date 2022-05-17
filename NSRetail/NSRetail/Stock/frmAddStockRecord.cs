@@ -248,9 +248,7 @@ namespace NSRetail.Stock
                     DataTable dtCPList = ObjItemRep.GetCostPriceList(cmbItemCode.EditValue);
                     if (dtCPList.Rows.Count > 1)
                     {
-
                         frmCostPriceList obj = new frmCostPriceList(dtCPList);
-
                         obj.ShowDialog();
                         if (obj._IsSave)
                         {

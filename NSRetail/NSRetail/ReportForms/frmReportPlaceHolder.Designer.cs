@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReportPlaceHolder));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.Save = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.lblRecordCount = new DevExpress.XtraEditors.LabelControl();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
@@ -45,7 +45,7 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lcibtnSave = new DevExpress.XtraLayout.LayoutControlItem();
             this.tlReport = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
@@ -65,7 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcibtnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dpLeft.SuspendLayout();
@@ -77,7 +77,7 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.Save);
+            this.layoutControl1.Controls.Add(this.btnSave);
             this.layoutControl1.Controls.Add(this.lblRecordCount);
             this.layoutControl1.Controls.Add(this.btnClose);
             this.layoutControl1.Controls.Add(this.btnSearch);
@@ -91,17 +91,17 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // Save
+            // btnSave
             // 
-            this.Save.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Save.ImageOptions.Image")));
-            this.Save.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.Save.Location = new System.Drawing.Point(372, 8);
-            this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(98, 22);
-            this.Save.StyleController = this.layoutControl1;
-            this.Save.TabIndex = 11;
-            this.Save.Text = "Save";
-            this.Save.Click += new System.EventHandler(this.Save_Click);
+            this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
+            this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnSave.Location = new System.Drawing.Point(372, 8);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(98, 22);
+            this.btnSave.StyleController = this.layoutControl1;
+            this.btnSave.TabIndex = 11;
+            this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblRecordCount
             // 
@@ -183,7 +183,7 @@
             this.layoutControlItem5,
             this.layoutControlItem1,
             this.layoutControlItem4,
-            this.layoutControlItem6});
+            this.lcibtnSave});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(840, 553);
@@ -254,18 +254,18 @@
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // layoutControlItem6
+            // lcibtnSave
             // 
-            this.layoutControlItem6.Control = this.Save;
-            this.layoutControlItem6.Location = new System.Drawing.Point(364, 0);
-            this.layoutControlItem6.MaxSize = new System.Drawing.Size(110, 34);
-            this.layoutControlItem6.MinSize = new System.Drawing.Size(110, 34);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem6.Size = new System.Drawing.Size(110, 34);
-            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
+            this.lcibtnSave.Control = this.btnSave;
+            this.lcibtnSave.Location = new System.Drawing.Point(364, 0);
+            this.lcibtnSave.MaxSize = new System.Drawing.Size(110, 34);
+            this.lcibtnSave.MinSize = new System.Drawing.Size(110, 34);
+            this.lcibtnSave.Name = "lcibtnSave";
+            this.lcibtnSave.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.lcibtnSave.Size = new System.Drawing.Size(110, 34);
+            this.lcibtnSave.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lcibtnSave.TextSize = new System.Drawing.Size(0, 0);
+            this.lcibtnSave.TextVisible = false;
             // 
             // tlReport
             // 
@@ -403,7 +403,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcibtnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.dpLeft.ResumeLayout(false);
@@ -440,7 +440,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.LabelControl lblRecordCount;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraEditors.SimpleButton Save;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
+        private DevExpress.XtraLayout.LayoutControlItem lcibtnSave;
     }
 }

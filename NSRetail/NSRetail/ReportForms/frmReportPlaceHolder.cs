@@ -126,6 +126,9 @@ namespace NSRetail.ReportForms
 
             btnSearch.Enabled = true;
             btnReport.Enabled = true;
+            lcibtnSave.Visibility = selectedReportHolder.ReportName == "Dealer Indent" ? 
+                DevExpress.XtraLayout.Utils.LayoutVisibility.Always : 
+                DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             dpTop.Text = $"{dpTop.Text} for {selectedReportHolder.ReportName}";
         }
 
@@ -160,10 +163,26 @@ namespace NSRetail.ReportForms
             Close();
         }
 
-        private void Save_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                var layoutControlOfSearch = selectedReportHolder.SearchCriteriaControl.Controls.OfType<LayoutControl>().First();
+                var missingValues = selectedReportHolder.SearchCriteriaControl.MandatoryFields?
+                                        .Where(x => x.EditValue == null)
+                                        .Select(x => $"{Environment.NewLine}\t* " + layoutControlOfSearch.GetItemByControl(x).Text);
+
+                if (missingValues != null && missingValues.Any())
+                {
+                    XtraMessageBox.Show("Please select the values for : " + Environment.NewLine + string.Join(string.Empty, missingValues)
+                        , "Mandatoy", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    selectedReportHolder.SearchCriteriaControl.MandatoryFields.First(x => x.EditValue == null).Focus();
+                    return;
+                }
+
+                if (gvResults.RowCount == 0)
+                    return;
+
                 DealerIndent dealerIndent = new DealerIndent();
                 dealerIndent.supplierID = (selectedReportHolder.SearchCriteriaControl as ucDealerIndent).cmbDealer.EditValue;
                 dealerIndent.FromDate = (selectedReportHolder.SearchCriteriaControl as ucDealerIndent).dtFromDate.EditValue;

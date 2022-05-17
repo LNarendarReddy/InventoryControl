@@ -52,6 +52,7 @@
     <Compile Include="ReportRepository.cs" />
     <Compile Include="SQLCon.cs" />
     <Compile Include="StockRepository.cs" />
+    <Compile Include="SupplierRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entity\Entity.csproj">

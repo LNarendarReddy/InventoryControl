@@ -522,6 +522,18 @@
     <Compile Include="Stock\frmStockSummary.Designer.cs">
       <DependentUpon>frmStockSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stock\frmSupplierReturns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmSupplierReturns.Designer.cs">
+      <DependentUpon>frmSupplierReturns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\frmSupplierReturnsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmSupplierReturnsList.Designer.cs">
+      <DependentUpon>frmSupplierReturnsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\DeleteMessageUtility.cs" />
     <Compile Include="Utilities\frmSyncStatus.cs">
       <SubType>Form</SubType>
@@ -748,6 +760,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmStockSummary.resx">
       <DependentUpon>frmStockSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmSupplierReturns.resx">
+      <DependentUpon>frmSupplierReturns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmSupplierReturnsList.resx">
+      <DependentUpon>frmSupplierReturnsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\frmSyncStatus.resx">
       <DependentUpon>frmSyncStatus.cs</DependentUpon>

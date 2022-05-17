@@ -34,7 +34,7 @@ namespace NSRetail
             try
             {
                 _IsSave = true;
-                drSelected = gvCPList.GetFocusedRow();
+                drSelected = gvCPList.GetDataRow(gvCPList.FocusedRowHandle);
                 this.Close();
             }
             catch (Exception) { }

@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockCounting));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockCounting));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnViewConsolidatedStock = new DevExpress.XtraEditors.SimpleButton();
             this.btnAccept = new DevExpress.XtraEditors.SimpleButton();
             this.btnNotEntered = new DevExpress.XtraEditors.SimpleButton();
             this.btnView = new DevExpress.XtraEditors.SimpleButton();
@@ -58,7 +59,6 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnViewConsolidatedStock = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -107,6 +107,17 @@
             this.layoutControl1.Size = new System.Drawing.Size(1135, 694);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnViewConsolidatedStock
+            // 
+            this.btnViewConsolidatedStock.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnViewConsolidatedStock.ImageOptions.Image")));
+            this.btnViewConsolidatedStock.Location = new System.Drawing.Point(616, 8);
+            this.btnViewConsolidatedStock.Name = "btnViewConsolidatedStock";
+            this.btnViewConsolidatedStock.Size = new System.Drawing.Size(147, 22);
+            this.btnViewConsolidatedStock.StyleController = this.layoutControl1;
+            this.btnViewConsolidatedStock.TabIndex = 10;
+            this.btnViewConsolidatedStock.Text = "View Consolidated Stock";
+            this.btnViewConsolidatedStock.Click += new System.EventHandler(this.btnViewConsolidatedStock_Click);
             // 
             // btnAccept
             // 
@@ -401,17 +412,6 @@
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
-            // btnViewConsolidatedStock
-            // 
-            this.btnViewConsolidatedStock.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnViewConsolidatedStock.ImageOptions.Image")));
-            this.btnViewConsolidatedStock.Location = new System.Drawing.Point(616, 8);
-            this.btnViewConsolidatedStock.Name = "btnViewConsolidatedStock";
-            this.btnViewConsolidatedStock.Size = new System.Drawing.Size(147, 22);
-            this.btnViewConsolidatedStock.StyleController = this.layoutControl1;
-            this.btnViewConsolidatedStock.TabIndex = 10;
-            this.btnViewConsolidatedStock.Text = "View Consolidated Stock";
-            this.btnViewConsolidatedStock.Click += new System.EventHandler(this.btnViewConsolidatedStock_Click);
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnViewConsolidatedStock;
@@ -435,6 +435,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmStockCounting";
             this.Text = "Stock Counting";
+            this.Load += new System.EventHandler(this.frmStockCounting_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();

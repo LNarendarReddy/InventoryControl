@@ -93,5 +93,9 @@ namespace NSRetail
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
         }
+        private void frmStockCounting_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

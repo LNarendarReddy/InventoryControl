@@ -288,16 +288,6 @@ namespace NSRetail
             gvCounting.DeleteRow(gvCounting.FocusedRowHandle);
         }
 
-        private void frmCounting_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-        }
-
-        private void txtItemCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-        }
-
         private void frmCounting_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F3)

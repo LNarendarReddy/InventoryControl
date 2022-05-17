@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraSplashScreen;
+using Entity;
 using Microsoft.Win32;
 using NSRetail.Login;
 using NSRetail.Master;
@@ -305,7 +306,7 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (11-05-2022)";
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (17-05-2022)";
 
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,
@@ -320,7 +321,7 @@ namespace NSRetail
 
             List<RibbonPage> ribbonPages = new List<RibbonPage>()
             {
-                ribbonPage1, ribbonPage3, ribbonPage4, ribbonPage5
+                ribbonPage1, ribbonPage3
             };
 
             bool revisitMenuItems = false;
@@ -450,6 +451,26 @@ namespace NSRetail
         private void btnDealerIndent_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmDealerIndentList obj = new frmDealerIndentList();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void btnSupplierReturns_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmSupplierReturns obj = new frmSupplierReturns();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void btnSupplierReturnsList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmSupplierReturnsList obj = new frmSupplierReturnsList();
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;
             obj.IconOptions.ShowIcon = false;

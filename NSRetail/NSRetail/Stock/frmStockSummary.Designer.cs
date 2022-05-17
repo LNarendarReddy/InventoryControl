@@ -44,6 +44,12 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.sluItem = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -64,7 +70,7 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtMAsk = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcStockSummary)).BeginInit();
@@ -81,6 +87,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMAsk)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -109,7 +116,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(716, 228, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1213, 825);
+            this.layoutControl1.Size = new System.Drawing.Size(1213, 717);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -132,7 +139,9 @@
             this.gcStockSummary.MainView = this.gvStockSummary;
             this.gcStockSummary.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcStockSummary.Name = "gcStockSummary";
-            this.gcStockSummary.Size = new System.Drawing.Size(1205, 753);
+            this.gcStockSummary.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.txtMAsk});
+            this.gcStockSummary.Size = new System.Drawing.Size(1205, 645);
             this.gcStockSummary.TabIndex = 8;
             this.gcStockSummary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvStockSummary});
@@ -157,7 +166,12 @@
             this.gridColumn10,
             this.gridColumn11,
             this.gridColumn7,
-            this.gridColumn18});
+            this.gridColumn19,
+            this.gridColumn20,
+            this.gridColumn18,
+            this.gridColumn21,
+            this.gridColumn22,
+            this.gridColumn23});
             this.gvStockSummary.DetailHeight = 404;
             this.gvStockSummary.GridControl = this.gcStockSummary;
             this.gvStockSummary.Name = "gvStockSummary";
@@ -228,7 +242,7 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 5;
+            this.gridColumn8.VisibleIndex = 6;
             this.gridColumn8.Width = 87;
             // 
             // gridColumn9
@@ -239,7 +253,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 6;
+            this.gridColumn9.VisibleIndex = 7;
             this.gridColumn9.Width = 87;
             // 
             // gridColumn10
@@ -250,7 +264,7 @@
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 7;
+            this.gridColumn10.VisibleIndex = 8;
             this.gridColumn10.Width = 87;
             // 
             // gridColumn11
@@ -261,7 +275,7 @@
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 8;
+            this.gridColumn11.VisibleIndex = 9;
             this.gridColumn11.Width = 87;
             // 
             // gridColumn7
@@ -272,6 +286,63 @@
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 4;
+            // 
+            // gridColumn19
+            // 
+            this.gridColumn19.Caption = "Sub Category";
+            this.gridColumn19.FieldName = "SUBCATEGORYNAME";
+            this.gridColumn19.Name = "gridColumn19";
+            this.gridColumn19.OptionsColumn.AllowEdit = false;
+            this.gridColumn19.Visible = true;
+            this.gridColumn19.VisibleIndex = 5;
+            // 
+            // gridColumn20
+            // 
+            this.gridColumn20.Caption = "Cost Price";
+            this.gridColumn20.FieldName = "COSTPRICEWT";
+            this.gridColumn20.Name = "gridColumn20";
+            this.gridColumn20.OptionsColumn.AllowEdit = false;
+            this.gridColumn20.Visible = true;
+            this.gridColumn20.VisibleIndex = 10;
+            // 
+            // gridColumn18
+            // 
+            this.gridColumn18.Caption = "Total Cost Price WT";
+            this.gridColumn18.FieldName = "TOTALCOSTPRICEWT";
+            this.gridColumn18.Name = "gridColumn18";
+            this.gridColumn18.OptionsColumn.AllowEdit = false;
+            this.gridColumn18.Visible = true;
+            this.gridColumn18.VisibleIndex = 11;
+            // 
+            // gridColumn21
+            // 
+            this.gridColumn21.Caption = "MRP";
+            this.gridColumn21.ColumnEdit = this.txtMAsk;
+            this.gridColumn21.FieldName = "MRP";
+            this.gridColumn21.Name = "gridColumn21";
+            this.gridColumn21.OptionsColumn.AllowEdit = false;
+            this.gridColumn21.Visible = true;
+            this.gridColumn21.VisibleIndex = 12;
+            // 
+            // gridColumn22
+            // 
+            this.gridColumn22.Caption = "Sale Price";
+            this.gridColumn22.ColumnEdit = this.txtMAsk;
+            this.gridColumn22.FieldName = "SALEPRICE";
+            this.gridColumn22.Name = "gridColumn22";
+            this.gridColumn22.OptionsColumn.AllowEdit = false;
+            this.gridColumn22.Visible = true;
+            this.gridColumn22.VisibleIndex = 13;
+            // 
+            // gridColumn23
+            // 
+            this.gridColumn23.Caption = "Total Sale Price";
+            this.gridColumn23.ColumnEdit = this.txtMAsk;
+            this.gridColumn23.FieldName = "TOTALSALEPRICE";
+            this.gridColumn23.Name = "gridColumn23";
+            this.gridColumn23.OptionsColumn.AllowEdit = false;
+            this.gridColumn23.Visible = true;
+            this.gridColumn23.VisibleIndex = 14;
             // 
             // btnCancel
             // 
@@ -424,7 +495,7 @@
             this.layoutControlItem6});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(1213, 825);
+            this.Root.Size = new System.Drawing.Size(1213, 717);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -468,7 +539,7 @@
             this.layoutControlItem5.Control = this.gcStockSummary;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 64);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(1209, 757);
+            this.layoutControlItem5.Size = new System.Drawing.Size(1209, 649);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
@@ -504,20 +575,24 @@
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
-            // gridColumn18
+            // txtMAsk
             // 
-            this.gridColumn18.Caption = "Total Cost Price WT";
-            this.gridColumn18.FieldName = "TOTALCOSTPRICEWT";
-            this.gridColumn18.Name = "gridColumn18";
-            this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 9;
+            this.txtMAsk.AutoHeight = false;
+            this.txtMAsk.DisplayFormat.FormatString = "n2";
+            this.txtMAsk.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtMAsk.EditFormat.FormatString = "n2";
+            this.txtMAsk.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtMAsk.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtMAsk.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.txtMAsk.MaskSettings.Set("mask", "n2");
+            this.txtMAsk.Name = "txtMAsk";
             // 
             // frmStockSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1213, 825);
+            this.ClientSize = new System.Drawing.Size(1213, 717);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -542,6 +617,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMAsk)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -584,5 +660,11 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtMAsk;
     }
 }
