@@ -158,6 +158,7 @@
             this.gridColumn15});
             this.gvDispatch.GridControl = this.gcItemSummary;
             this.gvDispatch.Name = "gvDispatch";
+            this.gvDispatch.OptionsBehavior.Editable = false;
             this.gvDispatch.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn7
@@ -269,6 +270,7 @@
             this.gridColumn26});
             this.gvBranchReunds.GridControl = this.gcItemSummary;
             this.gvBranchReunds.Name = "gvBranchReunds";
+            this.gvBranchReunds.OptionsBehavior.Editable = false;
             this.gvBranchReunds.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn16
@@ -364,6 +366,7 @@
             this.gridColumn32});
             this.gvItemSale.GridControl = this.gcItemSummary;
             this.gvItemSale.Name = "gvItemSale";
+            this.gvItemSale.OptionsBehavior.Editable = false;
             this.gvItemSale.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn27
@@ -427,6 +430,7 @@
             this.gridColumn42});
             this.gvCustomerRefund.GridControl = this.gcItemSummary;
             this.gvCustomerRefund.Name = "gvCustomerRefund";
+            this.gvCustomerRefund.OptionsBehavior.Editable = false;
             this.gvCustomerRefund.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn33

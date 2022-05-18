@@ -71,6 +71,11 @@ namespace NSRetail.ReportForms
             gcItemSummary.DataSource = dsResult.Tables[0];
             gcPurchase.DataSource = dsResult.Tables[1];
 
+            if(gvItemSummary.RowCount == 1)
+            {
+                gvItemSummary.ExpandMasterRow(0);
+            }
+
             SplashScreenManager.CloseOverlayForm(handle);
         }
 
