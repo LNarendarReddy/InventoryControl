@@ -397,6 +397,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportForms\POS\ucDayClosureList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\POS\ucDayClosureList.Designer.cs">
+      <DependentUpon>ucDayClosureList.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\POS\ucDispatchDifferences.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -713,6 +719,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucBranchRefundByItems.resx">
       <DependentUpon>ucBranchRefundByItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\POS\ucDayClosureList.resx">
+      <DependentUpon>ucDayClosureList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucDispatchDifferences.resx">
       <DependentUpon>ucDispatchDifferences.cs</DependentUpon>

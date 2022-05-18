@@ -59,8 +59,8 @@ namespace NSRetail.ReportForms
 
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
 
-        public override List<BaseEdit> MandatoryFields => new List<BaseEdit>() { cmbDealer, cmbCategory, dtFromDate, dtToDate };
+        public override IEnumerable<BaseEdit> MandatoryFields => new List<BaseEdit>() { cmbDealer, cmbCategory, dtFromDate, dtToDate };
 
-        public override List<string> EditableColumns => editableColumns;
+        public override IEnumerable<string> EditableColumns => editableColumns;
     }
 }

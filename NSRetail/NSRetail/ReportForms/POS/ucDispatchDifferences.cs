@@ -54,6 +54,6 @@ namespace NSRetail
 
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
 
-        public override List<BaseEdit> MandatoryFields => new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
+        public override IEnumerable<BaseEdit> MandatoryFields => new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
     }
 }

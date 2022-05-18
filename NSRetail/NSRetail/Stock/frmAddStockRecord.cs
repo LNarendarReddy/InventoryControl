@@ -250,14 +250,15 @@ namespace NSRetail.Stock
                     {
                         frmCostPriceList obj = new frmCostPriceList(dtCPList);
                         obj.ShowDialog();
+                        
                         if (obj._IsSave)
                         {
-                            cmbGST.EditValue = ((DataRowView)obj.drSelected)["GSTID"];
-                            txtMRP.EditValue = ((DataRowView)obj.drSelected)["MRP"];
-                            txtSalePrice.EditValue = ((DataRowView)obj.drSelected)["SALEPRICE"];
-                            ItemPriceID = ((DataRowView)obj.drSelected)["ITEMPRICEID"];
-                            txtCostPriceWOT.EditValue = ((DataRowView)obj.drSelected)["COSTPRICEWOT"] == DBNull.Value ? 0.00 : ((DataRowView)obj.drSelected)["COSTPRICEWOT"];
-                            txtCostPriceWT.EditValue = ((DataRowView)obj.drSelected)["COSTPRICEWT"] == DBNull.Value ? 0.00 : ((DataRowView)obj.drSelected)["COSTPRICEWT"];
+                            cmbGST.EditValue = obj.drSelected["GSTID"];
+                            txtMRP.EditValue = obj.drSelected["MRP"];
+                            txtSalePrice.EditValue = obj.drSelected["SALEPRICE"];
+                            ItemPriceID = obj.drSelected["ITEMPRICEID"];
+                            txtCostPriceWOT.EditValue = obj.drSelected["COSTPRICEWOT"] == DBNull.Value ? 0.00 : obj.drSelected["COSTPRICEWOT"];
+                            txtCostPriceWT.EditValue = obj.drSelected["COSTPRICEWT"] == DBNull.Value ? 0.00 : obj.drSelected["COSTPRICEWT"];
                         }
                     }
                     else if (dtCPList.Rows.Count > 0)

@@ -30,9 +30,9 @@ namespace NSRetail
 
         public virtual Dictionary<string, string> SpecificColumnHeaders { get; }
 
-        public virtual List<string> ForceShowColumns { get; }
+        public virtual IEnumerable<string> ForceShowColumns { get; }
 
-        public virtual List<string> TotalSummaryFields { get; }
+        public virtual IEnumerable<string> TotalSummaryFields { get; }
 
         public Dictionary<string, string> GenericColumnHeaders { get; }
 
@@ -51,8 +51,12 @@ namespace NSRetail
             return reportdata;
         }
 
-        public virtual List<BaseEdit> MandatoryFields { get; }
+        public virtual IEnumerable<BaseEdit> MandatoryFields { get; }
 
-        public virtual List<string> EditableColumns { get; }
+        public virtual IEnumerable<string> EditableColumns { get; }
+
+        public virtual IEnumerable<string> ButtonColumns { get; }
+
+        public virtual void ActionExecute(string buttonText, DataRow drFocusedRow) { }
     }
 }

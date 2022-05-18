@@ -168,7 +168,7 @@ namespace NSRetail.Stock
                 obj.ShowDialog();
                 if (obj._IsSave)
                 {
-                    drSelectedPrice = (DataRow)obj.drSelected;
+                    drSelectedPrice = obj.drSelected;
                 }
             }
             else if (dtCPList.Rows.Count > 0)

@@ -1,19 +1,12 @@
-﻿using DevExpress.XtraEditors;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail
 {
     public partial class frmCostPriceList : DevExpress.XtraEditors.XtraForm
     {
-        public object drSelected = null;
+        public DataRow drSelected = null;
         public bool _IsSave = false;
         public frmCostPriceList(DataTable _dtCP)
         {

@@ -67,6 +67,8 @@ namespace DataAccess
             }
             return dtBRefundDetail;
         }
+
+        [Obsolete]
         public DataTable GetDayClosure(object BranchID,object FromDate,object ToDate)
         {
             DataTable dtDayClosure = new DataTable();

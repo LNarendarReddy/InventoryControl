@@ -5,6 +5,7 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraLayout;
 using DevExpress.XtraSplashScreen;
 using Entity;
+using NSRetail.ReportForms.POS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,10 +29,14 @@ namespace NSRetail.ReportForms
         private void frmReportPlaceHolder_Load(object sender, EventArgs e)
         {
             List<ReportHolder> reportList = new List<ReportHolder>();
-            ReportHolder posReports = new ReportHolder() { ReportName = "Branch Reports" };
-            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds by Item", SearchCriteriaControl = new ucBranchRefundByItems() });
-            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
-            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
+            ReportHolder branchReports = new ReportHolder() { ReportName = "Branch Reports" };
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds by Item", SearchCriteriaControl = new ucBranchRefundByItems() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
+            reportList.Add(branchReports);
+
+            ReportHolder posReports = new ReportHolder() { ReportName = "POS Reports" };
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure", SearchCriteriaControl = new ucDayClosureList() });
             reportList.Add(posReports);
 
             ReportHolder wareHouseReports = new ReportHolder() { ReportName = "Warehouse Reports" };
@@ -96,7 +101,7 @@ namespace NSRetail.ReportForms
                     {
                         SummaryType = DevExpress.Data.SummaryItemType.Sum,
                         FieldName = column.FieldName,
-                        DisplayFormat = $"{column.FieldName} Total : {0:#.##}"
+                        DisplayFormat = $"SUM : {0:#.##}"
                     };
 
                     column.Summary.Add(siTotal);
@@ -104,6 +109,21 @@ namespace NSRetail.ReportForms
                 }
 
                 column.OptionsColumn.AllowEdit = searchCriteria.EditableColumns != null && searchCriteria.EditableColumns.Contains(column.FieldName);
+            }
+
+            foreach (string buttonColumn in searchCriteria.ButtonColumns)
+            {
+                if (gvResults.Columns.ColumnByFieldName(buttonColumn) != null) continue;
+
+                GridColumn gcButtonColumn = new GridColumn()
+                {
+                    Name = buttonColumn,
+                    Caption = buttonColumn,
+                    FieldName = buttonColumn,
+                    VisibleIndex = gvResults.Columns.Count,
+                    ColumnEdit = btnAction
+                };
+                gvResults.Columns.Add(gcButtonColumn);
             }
         }
 
@@ -203,6 +223,11 @@ namespace NSRetail.ReportForms
         {
             if (e.KeyChar == (char)Keys.Enter)
                 gvResults.MoveNext();
+        }
+
+        private void btnAction_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            selectedReportHolder.SearchCriteriaControl.ActionExecute(gvResults.FocusedColumn.Caption, gvResults.GetFocusedDataRow());
         }
     }
 

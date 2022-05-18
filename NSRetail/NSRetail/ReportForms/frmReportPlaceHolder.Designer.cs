@@ -30,6 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReportPlaceHolder));
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.lblRecordCount = new DevExpress.XtraEditors.LabelControl();
@@ -38,6 +43,7 @@
             this.btnReport = new DevExpress.XtraEditors.SimpleButton();
             this.gcResults = new DevExpress.XtraGrid.GridControl();
             this.gvResults = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnAction = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -58,6 +64,7 @@
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcResults)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvResults)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
@@ -159,6 +166,8 @@
             this.gcResults.Location = new System.Drawing.Point(4, 38);
             this.gcResults.MainView = this.gvResults;
             this.gcResults.Name = "gcResults";
+            this.gcResults.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.btnAction});
             this.gcResults.Size = new System.Drawing.Size(832, 511);
             this.gcResults.TabIndex = 3;
             this.gcResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -168,9 +177,20 @@
             // 
             this.gvResults.GridControl = this.gcResults;
             this.gvResults.Name = "gvResults";
+            this.gvResults.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
             this.gvResults.OptionsView.ShowFooter = true;
             this.gvResults.OptionsView.ShowGroupPanel = false;
             this.gvResults.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gvResults_KeyPress);
+            // 
+            // btnAction
+            // 
+            this.btnAction.AutoHeight = false;
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            this.btnAction.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnAction.Name = "btnAction";
+            this.btnAction.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnAction.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnAction_ButtonClick);
             // 
             // Root
             // 
@@ -396,6 +416,7 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcResults)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvResults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
@@ -442,5 +463,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraLayout.LayoutControlItem lcibtnSave;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnAction;
     }
 }
