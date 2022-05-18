@@ -27,27 +27,30 @@ namespace NSRetail.Stock
             cmbSupplier.Properties.ValueMember = "DEALERID";
             cmbSupplier.Properties.DisplayMember = "DEALERNAME";
             cmbSupplier.EditValue = 0;
+            dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
+            dtpToDate.EditValue = DateTime.Now;
         }
 
         private void btnView_Click(object sender, EventArgs e)
         {
             if (cmbSupplier.EditValue == null)
                 return;
-            gcSupplierReturns.DataSource = supplierRepository.GetSupplierReturns(cmbSupplier.EditValue);
+            gcSupplierReturns.DataSource = supplierRepository.GetSupplierReturns(cmbSupplier.EditValue,
+                dtpFromDate.EditValue,dtpToDate.DateTime);
         }
 
         private void btnViewItems_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (gvSupplierReturns.FocusedRowHandle < 0)
                 return;
-            SupplierReturns supplierReturns = new SupplierReturns();
-            supplierReturns.SupplierReturnsID = gvSupplierReturns.GetFocusedRowCellValue("SUPPLIERRETURNSID");
-            supplierReturns.SupplierID = gvSupplierReturns.GetFocusedRowCellValue("SUPPLIERID");
-            frmSupplierReturns obj = new frmSupplierReturns(supplierReturns);
+            DataTable dt = supplierRepository.GetSupllierReturnsDetail(gvSupplierReturns.GetFocusedRowCellValue("SUPPLIERRETURNSID"));
+            frmViewReturnItems obj = new frmViewReturnItems(dt,
+                gvSupplierReturns.GetFocusedRowCellValue("DEALERNAME"),
+                gvSupplierReturns.GetFocusedRowCellValue("SUPPLIERRETURNSID"));
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
-            obj.MdiParent = this.MdiParent;
-            obj.Show();
+            obj.IconOptions.ShowIcon = false;
+            obj.ShowDialog();
         }
 
         private void btnViewReport_Click(object sender, EventArgs e)

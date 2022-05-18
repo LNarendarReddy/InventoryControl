@@ -151,7 +151,7 @@ namespace DataAccess
             }
         }
 
-        public DataTable GetSupplierReturns(object SupplierID)
+        public DataTable GetSupplierReturns(object SupplierID,object FromDate,object ToDate)
         {
             DataTable dt = new DataTable();
             try
@@ -162,6 +162,8 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_SUPPLIERRETURNS]";
                     cmd.Parameters.AddWithValue("@SupplierID", SupplierID);
+                    cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                    cmd.Parameters.AddWithValue("@ToDate", ToDate);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);

@@ -87,6 +87,7 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -462,16 +463,16 @@
     <Compile Include="Stock\frmAddStockRecord.Designer.cs">
       <DependentUpon>frmAddStockRecord.cs</DependentUpon>
     </Compile>
-    <Compile Include="Stock\frmDealerIndent.cs">
+    <Compile Include="Supplier\frmDealerIndent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock\frmDealerIndent.Designer.cs">
+    <Compile Include="Supplier\frmDealerIndent.Designer.cs">
       <DependentUpon>frmDealerIndent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Stock\frmDealerIndentList.cs">
+    <Compile Include="Supplier\frmDealerIndentList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock\frmDealerIndentList.Designer.cs">
+    <Compile Include="Supplier\frmDealerIndentList.Designer.cs">
       <DependentUpon>frmDealerIndentList.cs</DependentUpon>
     </Compile>
     <Compile Include="Stock\frmDispatchDCList.cs">
@@ -522,17 +523,23 @@
     <Compile Include="Stock\frmStockSummary.Designer.cs">
       <DependentUpon>frmStockSummary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Stock\frmSupplierReturns.cs">
+    <Compile Include="Supplier\frmSupplierReturns.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock\frmSupplierReturns.Designer.cs">
+    <Compile Include="Supplier\frmSupplierReturns.Designer.cs">
       <DependentUpon>frmSupplierReturns.cs</DependentUpon>
     </Compile>
-    <Compile Include="Stock\frmSupplierReturnsList.cs">
+    <Compile Include="Supplier\frmSupplierReturnsList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock\frmSupplierReturnsList.Designer.cs">
+    <Compile Include="Supplier\frmSupplierReturnsList.Designer.cs">
       <DependentUpon>frmSupplierReturnsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier\frmViewReturnItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Supplier\frmViewReturnItems.Designer.cs">
+      <DependentUpon>frmViewReturnItems.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\DeleteMessageUtility.cs" />
     <Compile Include="Utilities\frmSyncStatus.cs">
@@ -731,10 +738,10 @@
     <EmbeddedResource Include="Stock\frmAddStockRecord.resx">
       <DependentUpon>frmAddStockRecord.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\frmDealerIndent.resx">
+    <EmbeddedResource Include="Supplier\frmDealerIndent.resx">
       <DependentUpon>frmDealerIndent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\frmDealerIndentList.resx">
+    <EmbeddedResource Include="Supplier\frmDealerIndentList.resx">
       <DependentUpon>frmDealerIndentList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmDispatchDCList.resx">
@@ -761,11 +768,14 @@
     <EmbeddedResource Include="Stock\frmStockSummary.resx">
       <DependentUpon>frmStockSummary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\frmSupplierReturns.resx">
+    <EmbeddedResource Include="Supplier\frmSupplierReturns.resx">
       <DependentUpon>frmSupplierReturns.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\frmSupplierReturnsList.resx">
+    <EmbeddedResource Include="Supplier\frmSupplierReturnsList.resx">
       <DependentUpon>frmSupplierReturnsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Supplier\frmViewReturnItems.resx">
+      <DependentUpon>frmViewReturnItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\frmSyncStatus.resx">
       <DependentUpon>frmSyncStatus.cs</DependentUpon>

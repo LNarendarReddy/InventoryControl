@@ -53,11 +53,7 @@ namespace NSRetail.Stock
             try
             {
                 supplierReturns.UserID = Utility.UserID;
-                if (supplierReturns.SupplierReturnsID != null)
-                    supplierReturns.dtSupplierReturns =
-                        supplierRepository.GetSupllierReturnsDetail(supplierReturns.SupplierReturnsID);
-                else
-                    supplierReturns = supplierRepository.GetInitialLoad(supplierReturns);
+                supplierReturns = supplierRepository.GetInitialLoad(supplierReturns);
                 if (!supplierReturns.SupplierReturnsID.Equals(0))
                 {
                     cmbSupplier.EditValue = supplierReturns.SupplierID;
@@ -241,14 +237,31 @@ namespace NSRetail.Stock
             }
             else
             {
-                int newQuantity = Convert.ToInt32(txtQuantity.EditValue) +
-                    Convert.ToInt32(gvSupplierReturns.GetRowCellValue(rowHandle, "QUANTITY"));
-                if (newQuantity > 0)
+
+                if (isOpenItem)
                 {
-                    gvSupplierReturns.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
-                    if(decimal.TryParse(Convert.ToString(drSelectedPrice["COSTPRICEWT"]),out decimal CostPrice))
+                    decimal weightinKGS = Convert.ToDecimal(txtWeightInKgs.EditValue) +
+                        Convert.ToDecimal(gvSupplierReturns.GetRowCellValue(rowHandle, "WEIGHTINKGS"));
+                    if (weightinKGS > 0)
                     {
-                        gvSupplierReturns.SetRowCellValue(rowHandle, "TOTALCOSTPRICE", newQuantity * CostPrice);
+                        gvSupplierReturns.SetRowCellValue(rowHandle, "WEIGHTINKGS", weightinKGS);
+                        if (decimal.TryParse(Convert.ToString(drSelectedPrice["COSTPRICEWT"]), out decimal CostPrice))
+                        {
+                            gvSupplierReturns.SetRowCellValue(rowHandle, "TOTALCOSTPRICE", weightinKGS * CostPrice);
+                        }
+                    }
+                }
+                else
+                {
+                    int newQuantity = Convert.ToInt32(txtQuantity.EditValue) +
+                    Convert.ToInt32(gvSupplierReturns.GetRowCellValue(rowHandle, "QUANTITY"));
+                    if (newQuantity > 0)
+                    {
+                        gvSupplierReturns.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
+                        if (decimal.TryParse(Convert.ToString(drSelectedPrice["COSTPRICEWT"]), out decimal CostPrice))
+                        {
+                            gvSupplierReturns.SetRowCellValue(rowHandle, "TOTALCOSTPRICE", newQuantity * CostPrice);
+                        }
                     }
                 }
             }
@@ -285,7 +298,10 @@ namespace NSRetail.Stock
             gvSupplierReturns.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
             if (decimal.TryParse(Convert.ToString(drSelectedPrice["COSTPRICEWT"]), out decimal CostPrice))
             {
-                gvSupplierReturns.SetRowCellValue(e.RowHandle, "TOTALCOSTPRICE", Convert.ToInt32(txtQuantity.EditValue) * CostPrice);
+                if (isOpenItem)
+                    gvSupplierReturns.SetRowCellValue(e.RowHandle, "TOTALCOSTPRICE", Convert.ToInt32(txtQuantity.EditValue) * CostPrice);
+                else
+                    gvSupplierReturns.SetRowCellValue(e.RowHandle, "TOTALCOSTPRICE", Convert.ToDecimal(txtWeightInKgs.EditValue) * CostPrice);
             }
         }
         private void txtQuantity_Enter(object sender, EventArgs e)
