@@ -196,33 +196,39 @@ namespace NSRetail.Stock
 
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar != (char)Keys.Enter || !dxValidationProvider2.Validate()) return;
+            double wareHouseStock = Convert.ToDouble(txtWarehouseStock.EditValue);
+            double branchStock = Convert.ToDouble(((TextEdit)sender).EditValue);
+            if(wareHouseStock < branchStock)
+            {
+                XtraMessageBox.Show("Warehouse stock is less than desired dispatch quantity. The operation has been cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return;
+            }
+
             try
             {
-                if (e.KeyChar == (char)Keys.Enter)
-                {
-                    if (!dxValidationProvider2.Validate())
-                        return;
-                    if (Convert.ToInt32(ObjStockDispatch.STOCKDISPATCHID) == 0)
-                        SaveDispatch();
-                    ObjStockDispatchDetail = new StockDispatchDetail();
-                    ObjStockDispatchDetail.STOCKDISPATCHDETAILID = 0;
-                    ObjStockDispatchDetail.STOCKDISPATCHID = ObjStockDispatch.STOCKDISPATCHID;
-                    ObjStockDispatchDetail.ITEMPRICEID = ItemPriceID;
-                    ObjStockDispatchDetail.TRAYNUMBER = txtTrayNumber.EditValue;
-                    ObjStockDispatchDetail.DISPATCHQUANTITY = txtQuantity.EditValue;
-                    ObjStockDispatchDetail.WEIGHTINKGS = txtWeightInKgs.EditValue;
-                    ObjStockDispatchDetail.UserID = Utility.UserID;
-                    ObjStockRep.SaveDispatchDetail(ObjStockDispatchDetail);
-                    RefreshGrid();
-                    ObjStockDispatchDetail.STOCKDISPATCHDETAILID = 0;
-                    cmbItemCode.EditValue = null;
-                    txtItemName.EditValue = null;
-                    txtMRP.EditValue = null;
-                    txtSalePrice.EditValue = null;
-                    txtQuantity.EditValue = null;
-                    txtWeightInKgs.EditValue = null;
-                    cmbItemCode.Focus();
-                }
+
+                if (Convert.ToInt32(ObjStockDispatch.STOCKDISPATCHID) == 0) SaveDispatch();
+
+                ObjStockDispatchDetail = new StockDispatchDetail();
+                ObjStockDispatchDetail.STOCKDISPATCHDETAILID = 0;
+                ObjStockDispatchDetail.STOCKDISPATCHID = ObjStockDispatch.STOCKDISPATCHID;
+                ObjStockDispatchDetail.ITEMPRICEID = ItemPriceID;
+                ObjStockDispatchDetail.TRAYNUMBER = txtTrayNumber.EditValue;
+                ObjStockDispatchDetail.DISPATCHQUANTITY = txtQuantity.EditValue;
+                ObjStockDispatchDetail.WEIGHTINKGS = txtWeightInKgs.EditValue;
+                ObjStockDispatchDetail.UserID = Utility.UserID;
+                ObjStockRep.SaveDispatchDetail(ObjStockDispatchDetail);
+                RefreshGrid();
+                ObjStockDispatchDetail.STOCKDISPATCHDETAILID = 0;
+                cmbItemCode.EditValue = null;
+                txtItemName.EditValue = null;
+                txtMRP.EditValue = null;
+                txtSalePrice.EditValue = null;
+                txtQuantity.EditValue = null;
+                txtWeightInKgs.EditValue = null;
+                cmbItemCode.Focus();
+
             }
             catch (Exception ex)
             {

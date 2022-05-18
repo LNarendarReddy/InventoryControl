@@ -70,6 +70,7 @@
             this.btnCounting = new DevExpress.XtraBars.BarButtonItem();
             this.btnDealerIndent = new DevExpress.XtraBars.BarButtonItem();
             this.btnSupplierReturns = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSupplierReturnsList = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -82,6 +83,7 @@
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -91,8 +93,6 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnSupplierReturnsList = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -575,6 +575,7 @@
             // btnDayClosure
             // 
             this.btnDayClosure.Caption = "Day Closure";
+            this.btnDayClosure.Enabled = false;
             this.btnDayClosure.Id = 37;
             this.btnDayClosure.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDayClosure.ImageOptions.SvgImage")));
             this.btnDayClosure.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
@@ -684,6 +685,14 @@
             this.btnSupplierReturns.Name = "btnSupplierReturns";
             this.btnSupplierReturns.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSupplierReturns_ItemClick);
             // 
+            // btnSupplierReturnsList
+            // 
+            this.btnSupplierReturnsList.Caption = "Supplier Returns List";
+            this.btnSupplierReturnsList.Id = 50;
+            this.btnSupplierReturnsList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSupplierReturnsList.ImageOptions.SvgImage")));
+            this.btnSupplierReturnsList.Name = "btnSupplierReturnsList";
+            this.btnSupplierReturnsList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSupplierReturnsList_ItemClick);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Appearance.Options.UseFont = true;
@@ -788,6 +797,13 @@
             this.ribbonPageGroup13.Name = "ribbonPageGroup13";
             this.ribbonPageGroup13.Text = "Sale Reports";
             // 
+            // ribbonPageGroup14
+            // 
+            this.ribbonPageGroup14.ItemLinks.Add(this.btnStockCounting);
+            this.ribbonPageGroup14.ItemLinks.Add(this.btnSupplierReturnsList);
+            this.ribbonPageGroup14.Name = "ribbonPageGroup14";
+            this.ribbonPageGroup14.Text = "List";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Appearance.Options.UseFont = true;
@@ -858,21 +874,6 @@
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
-            // 
-            // ribbonPageGroup14
-            // 
-            this.ribbonPageGroup14.ItemLinks.Add(this.btnStockCounting);
-            this.ribbonPageGroup14.ItemLinks.Add(this.btnSupplierReturnsList);
-            this.ribbonPageGroup14.Name = "ribbonPageGroup14";
-            this.ribbonPageGroup14.Text = "List";
-            // 
-            // btnSupplierReturnsList
-            // 
-            this.btnSupplierReturnsList.Caption = "Supplier Returns List";
-            this.btnSupplierReturnsList.Id = 50;
-            this.btnSupplierReturnsList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSupplierReturnsList.ImageOptions.SvgImage")));
-            this.btnSupplierReturnsList.Name = "btnSupplierReturnsList";
-            this.btnSupplierReturnsList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSupplierReturnsList_ItemClick);
             // 
             // frmMain
             // 

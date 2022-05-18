@@ -95,13 +95,13 @@ namespace NSRetail.ReportForms
                 if (searchCriteria.SpecificColumnHeaders != null && searchCriteria.SpecificColumnHeaders.ContainsKey(column.FieldName))
                     column.Caption = searchCriteria.SpecificColumnHeaders[column.FieldName];
 
-                if(searchCriteria.TotalSummaryFields != null && searchCriteria.TotalSummaryFields.Contains(column.FieldName))
-                {
+                if(searchCriteria.TotalSummaryFields != null && column.Summary.Count == 0 && searchCriteria.TotalSummaryFields.Contains(column.FieldName))
+                {                    
                     GridColumnSummaryItem siTotal = new GridColumnSummaryItem
                     {
                         SummaryType = DevExpress.Data.SummaryItemType.Sum,
                         FieldName = column.FieldName,
-                        DisplayFormat = $"SUM : {0:#.##}"
+                        DisplayFormat = "SUM : {0:#.##}"
                     };
 
                     column.Summary.Add(siTotal);
