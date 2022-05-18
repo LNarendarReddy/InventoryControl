@@ -537,11 +537,11 @@
             // 
             // gridColumn63
             // 
-            this.gridColumn63.Caption = "All Branch Stock";
-            this.gridColumn63.FieldName = "ALLBSTOCK";
+            this.gridColumn63.Caption = "Branch Stock";
+            this.gridColumn63.FieldName = "BRANCHSTOCK";
             this.gridColumn63.Name = "gridColumn63";
             this.gridColumn63.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ALLBSTOCK", "Branch Stock={0:0}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BRANCHSTOCK", "Branch Stock={0:0}")});
             this.gridColumn63.Visible = true;
             this.gridColumn63.VisibleIndex = 2;
             // 
