@@ -9,6 +9,7 @@ namespace NSRetail
 {
     public partial class SearchCriteriaBase : XtraUserControl
     {
+        List<string> buttonColumns;
         public SearchCriteriaBase()
         {
             InitializeComponent();
@@ -24,6 +25,8 @@ namespace NSRetail
                 , {"SUBCATEGORY", "Sub Category"}
                 , {"SNO", "SNo"}
             };
+
+            buttonColumns = new List<string>();
         }
 
         public virtual DataTable GetData() => throw new NotImplementedException();
@@ -55,7 +58,7 @@ namespace NSRetail
 
         public virtual IEnumerable<string> EditableColumns { get; }
 
-        public virtual IEnumerable<string> ButtonColumns { get; }
+        public virtual IEnumerable<string> ButtonColumns => buttonColumns;
 
         public virtual void ActionExecute(string buttonText, DataRow drFocusedRow) { }
     }
