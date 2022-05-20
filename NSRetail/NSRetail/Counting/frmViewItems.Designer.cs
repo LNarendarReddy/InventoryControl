@@ -45,6 +45,10 @@
             this.gcPhysicalStock = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSystemStock = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcStockDiff = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcCostPriceWT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcPhysicalStockCP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcSystemStockCP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDiffStockCP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -109,7 +113,11 @@
             this.gcQuantity,
             this.gcPhysicalStock,
             this.gcSystemStock,
-            this.gcStockDiff});
+            this.gcStockDiff,
+            this.gcCostPriceWT,
+            this.gcPhysicalStockCP,
+            this.gcSystemStockCP,
+            this.gcDiffStockCP});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -224,6 +232,50 @@
             this.gcStockDiff.Visible = true;
             this.gcStockDiff.VisibleIndex = 9;
             // 
+            // gcCostPriceWT
+            // 
+            this.gcCostPriceWT.Caption = "Cost Price WT";
+            this.gcCostPriceWT.FieldName = "COSTPRICEWT";
+            this.gcCostPriceWT.Name = "gcCostPriceWT";
+            this.gcCostPriceWT.Visible = true;
+            this.gcCostPriceWT.VisibleIndex = 10;
+            // 
+            // gcPhysicalStockCP
+            // 
+            this.gcPhysicalStockCP.Caption = "Physical Stock CP WT";
+            this.gcPhysicalStockCP.FieldName = "gcPhysical";
+            this.gcPhysicalStockCP.Name = "gcPhysicalStockCP";
+            this.gcPhysicalStockCP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcPhysical", "SUM={0:0.##}")});
+            this.gcPhysicalStockCP.UnboundDataType = typeof(decimal);
+            this.gcPhysicalStockCP.UnboundExpression = "Round([PHYSICALSTOCK] * [COSTPRICEWT], 2)";
+            this.gcPhysicalStockCP.Visible = true;
+            this.gcPhysicalStockCP.VisibleIndex = 11;
+            // 
+            // gcSystemStockCP
+            // 
+            this.gcSystemStockCP.Caption = "System stock CP WT";
+            this.gcSystemStockCP.FieldName = "gcSystemStockCP";
+            this.gcSystemStockCP.Name = "gcSystemStockCP";
+            this.gcSystemStockCP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcSystemStockCP", "SUM={0:0.##}")});
+            this.gcSystemStockCP.UnboundDataType = typeof(decimal);
+            this.gcSystemStockCP.UnboundExpression = "Round([SYSTEMSTOCK] * [COSTPRICEWT], 2)";
+            this.gcSystemStockCP.Visible = true;
+            this.gcSystemStockCP.VisibleIndex = 12;
+            // 
+            // gcDiffStockCP
+            // 
+            this.gcDiffStockCP.Caption = "Diff stock CP WT";
+            this.gcDiffStockCP.FieldName = "gridColumn3";
+            this.gcDiffStockCP.Name = "gcDiffStockCP";
+            this.gcDiffStockCP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gridColumn3", "SUM={0:0.##}")});
+            this.gcDiffStockCP.UnboundDataType = typeof(decimal);
+            this.gcDiffStockCP.UnboundExpression = "Round([STOCKDIFF] * [COSTPRICEWT], 2)";
+            this.gcDiffStockCP.Visible = true;
+            this.gcDiffStockCP.VisibleIndex = 13;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -312,5 +364,9 @@
         private DevExpress.XtraEditors.SimpleButton btnViewReport;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraGrid.Columns.GridColumn gcCostPriceWT;
+        private DevExpress.XtraGrid.Columns.GridColumn gcPhysicalStockCP;
+        private DevExpress.XtraGrid.Columns.GridColumn gcSystemStockCP;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDiffStockCP;
     }
 }

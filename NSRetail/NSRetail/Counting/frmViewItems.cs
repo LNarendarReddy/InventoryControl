@@ -6,7 +6,7 @@ namespace NSRetail
 {
     public partial class frmViewItems : DevExpress.XtraEditors.XtraForm
     {
-        public frmViewItems(DataTable dtItems,bool Diff= false)
+        public frmViewItems(DataTable dtItems, string caller, bool Diff = false)
         {
             InitializeComponent();
             gcItems.DataSource = dtItems;
@@ -16,7 +16,10 @@ namespace NSRetail
             gcPhysicalStock.Visible = Diff;
             gcSystemStock.Visible = Diff;
             gcStockDiff.Visible = Diff;
-
+            gcCostPriceWT.Visible = caller == "differences" || caller == "not enetered";
+            gcDiffStockCP.Visible = caller == "differences" || caller == "not enetered";
+            gcPhysicalStockCP.Visible = caller == "differences";
+            gcSystemStockCP.Visible = caller == "differences";
         }
 
         private void frmViewItems_Load(object sender, EventArgs e)

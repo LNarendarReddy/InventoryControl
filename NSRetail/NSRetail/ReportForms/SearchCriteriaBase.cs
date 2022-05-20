@@ -24,6 +24,11 @@ namespace NSRetail
                 , {"CATEGORY", "Category"}
                 , {"SUBCATEGORY", "Sub Category"}
                 , {"SNO", "SNo"}
+                , {"COUNTERNAME", "Counter"}
+                , {"BILLNUMBER", "Bill Number"}
+                , {"SALEPRICE", "Sale Price"}
+                , {"QUANTITY", "Quantity"}
+                , {"BILLEDAMOUNT", "Billed Amount"}
             };
 
             buttonColumns = new List<string>();

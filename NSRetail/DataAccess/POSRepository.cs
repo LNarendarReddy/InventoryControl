@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
     public class POSRepository
     {
+        [Obsolete]
         public DataTable GetBRefund(object BranchID,object FromDate,object ToDate)
         {
             DataTable dtBRefund = new DataTable();
@@ -291,6 +288,8 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
+
+        [Obsolete]
         public DataTable GetRunningSale(object BranchID)
         {
             DataTable dtRunningSale = new DataTable();

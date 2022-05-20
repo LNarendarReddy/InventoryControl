@@ -177,6 +177,7 @@
             // 
             this.gvResults.GridControl = this.gcResults;
             this.gvResults.Name = "gvResults";
+            this.gvResults.OptionsView.RowAutoHeight = true;
             this.gvResults.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
             this.gvResults.OptionsView.ShowFooter = true;
             this.gvResults.OptionsView.ShowGroupPanel = false;

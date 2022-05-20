@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace NSRetail
 {
-    public partial class frmStockCounting : DevExpress.XtraEditors.XtraForm
+    public partial class frmStockCounting : XtraForm
     {
         public frmStockCounting()
         {
@@ -20,7 +20,7 @@ namespace NSRetail
                 return;
             frmViewItems obj =
                 new frmViewItems(new CountingRepository().GetStockCountingDetail(
-                    gvStockCounting.GetFocusedRowCellValue("STOCKCOUNTINGID")));
+                    gvStockCounting.GetFocusedRowCellValue("STOCKCOUNTINGID")), "items");
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
@@ -35,7 +35,7 @@ namespace NSRetail
                 return;
             frmViewItems obj =
                 new frmViewItems(new CountingRepository().GetStockCountingDiff(
-                    cmbBranch.EditValue), true);
+                    cmbBranch.EditValue), "differences", true);
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
@@ -60,7 +60,7 @@ namespace NSRetail
                 return;
             frmViewItems obj =
                 new frmViewItems(new CountingRepository().GetStockCountingNoteEntered(
-                    cmbBranch.EditValue), true);
+                    cmbBranch.EditValue), "not enetered", true);
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
@@ -88,7 +88,7 @@ namespace NSRetail
                 return;
             frmViewItems obj =
                 new frmViewItems(new CountingRepository().GetConsolidatedItems(
-                    cmbBranch.EditValue));
+                    cmbBranch.EditValue), "consolidated");
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();

@@ -592,6 +592,7 @@
             // btnRunningSale
             // 
             this.btnRunningSale.Caption = "Running Sales";
+            this.btnRunningSale.Enabled = false;
             this.btnRunningSale.Id = 38;
             this.btnRunningSale.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRunningSale.ImageOptions.SvgImage")));
             this.btnRunningSale.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);

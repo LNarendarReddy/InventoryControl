@@ -17,6 +17,8 @@ namespace NSRetail.ReportForms
 {
     public partial class frmReportPlaceHolder : XtraForm
     {
+        List<Type> summableTypes = new List<Type>() { typeof(int), typeof(double), typeof(decimal), typeof(float) };
+
         public frmReportPlaceHolder()
         {
             InitializeComponent();
@@ -37,6 +39,8 @@ namespace NSRetail.ReportForms
 
             ReportHolder posReports = new ReportHolder() { ReportName = "POS Reports" };
             posReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure", SearchCriteriaControl = new ucDayClosureList() });
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Running sales", SearchCriteriaControl = new ucRunningSales() });
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucBranchRefunds() });
             reportList.Add(posReports);
 
             ReportHolder wareHouseReports = new ReportHolder() { ReportName = "Warehouse Reports" };
@@ -95,7 +99,8 @@ namespace NSRetail.ReportForms
                 if (searchCriteria.SpecificColumnHeaders != null && searchCriteria.SpecificColumnHeaders.ContainsKey(column.FieldName))
                     column.Caption = searchCriteria.SpecificColumnHeaders[column.FieldName];
 
-                if(searchCriteria.TotalSummaryFields != null && column.Summary.Count == 0 && searchCriteria.TotalSummaryFields.Contains(column.FieldName))
+                //if(searchCriteria.TotalSummaryFields != null && column.Summary.Count == 0 && searchCriteria.TotalSummaryFields.Contains(column.FieldName))
+                if(column.Summary.Count == 0 && summableTypes.Contains(column.ColumnType))
                 {                    
                     GridColumnSummaryItem siTotal = new GridColumnSummaryItem
                     {
