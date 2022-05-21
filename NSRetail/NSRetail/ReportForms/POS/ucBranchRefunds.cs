@@ -14,13 +14,23 @@ namespace NSRetail.ReportForms.POS
 
         private List<string> buttonColumns;
 
-        public override Dictionary<string, string> SpecificColumnHeaders => base.SpecificColumnHeaders;
+        public override Dictionary<string, string> SpecificColumnHeaders => specificColumnHeaders;
 
-        public override IEnumerable<string> ButtonColumns => base.ButtonColumns;
+        public override IEnumerable<string> ButtonColumns => buttonColumns;
 
         public ucBranchRefunds()
         {
             InitializeComponent();
+
+            specificColumnHeaders = new Dictionary<string, string>() 
+                { 
+                    { "BREFUNDNUMBER", "Refund Number" }
+                    , { "CREATEDBY", "Created By" }
+                    , { "CREATEDATE", "Created Date" }
+                    , { "STATUS", "Status" }
+                };
+
+            buttonColumns = new List<string>() { "View" };
         }
 
         private void ucBranchRefunds_Load(object sender, EventArgs e)
@@ -47,7 +57,7 @@ namespace NSRetail.ReportForms.POS
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
             DataTable dtItems = new POSRepository().GetBRefundDetail(drFocusedRow["BREFUNDID"], drFocusedRow["COUNTERID"]);
-            frmBRefundDetail obj = new frmBRefundDetail(dtItems, drFocusedRow["COUNTERID"], drFocusedRow["BREFUNDID"], Convert.ToBoolean(drFocusedRow["IsAccepted"]))
+            frmBRefundDetail obj = new frmBRefundDetail(dtItems, drFocusedRow["COUNTERID"], drFocusedRow["BREFUNDID"], Convert.ToBoolean(drFocusedRow["IsAcceptedID"]))
             {
                 ShowInTaskbar = false,
                 StartPosition = FormStartPosition.CenterScreen
@@ -55,6 +65,8 @@ namespace NSRetail.ReportForms.POS
             obj.ShowDialog();
             if (obj.IsSave)
             {
+                drFocusedRow["STATUS"] = "Accepted";
+                drFocusedRow["IsAccepted"] = true;
                 //gvBRefund.SetRowCellValue(gvBRefund.FocusedRowHandle, "IsAccepted", true);
                 //gvBRefund.SetRowCellValue(gvBRefund.FocusedRowHandle, "STATUS", "Accepted");
             }

@@ -559,6 +559,7 @@
             // btnBranchRefund
             // 
             this.btnBranchRefund.Caption = "Branch Refund";
+            this.btnBranchRefund.Enabled = false;
             this.btnBranchRefund.Id = 36;
             this.btnBranchRefund.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBranchRefund.ImageOptions.SvgImage")));
             this.btnBranchRefund.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
@@ -946,7 +947,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup11;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup12;
-        private DevExpress.XtraBars.BarButtonItem btnBranchRefund;
         private DevExpress.XtraBars.BarButtonItem btnDayClosure;
         private DevExpress.XtraBars.BarButtonItem btnRunningSale;
         private DevExpress.XtraBars.BarStaticItem lblUserName;
@@ -966,6 +966,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup13;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
         private DevExpress.XtraBars.BarButtonItem btnSupplierReturnsList;
+        private DevExpress.XtraBars.BarButtonItem btnBranchRefund;
     }
 }
 
