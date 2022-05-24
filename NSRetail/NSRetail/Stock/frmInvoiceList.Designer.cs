@@ -64,6 +64,7 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDealer.Properties)).BeginInit();
@@ -218,7 +219,8 @@
             this.gridColumn9,
             this.gridColumn8,
             this.gridColumn6,
-            this.gridColumn11});
+            this.gridColumn11,
+            this.gridColumn12});
             this.gvInvoice.DetailHeight = 404;
             this.gvInvoice.GridControl = this.gcInvoice;
             this.gvInvoice.Name = "gvInvoice";
@@ -325,7 +327,7 @@
             this.gridColumn6.MinWidth = 23;
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 8;
+            this.gridColumn6.VisibleIndex = 9;
             this.gridColumn6.Width = 87;
             // 
             // btnView
@@ -457,6 +459,14 @@
             this.layoutControlItem7.Text = "Dealer";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(58, 15);
             // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "Status";
+            this.gridColumn12.FieldName = "STATUS";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 8;
+            // 
             // frmInvoiceList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -522,5 +532,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraEditors.LookUpEdit cmbDealer;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
     }
 }
