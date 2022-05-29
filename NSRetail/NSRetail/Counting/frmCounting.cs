@@ -231,11 +231,23 @@ namespace NSRetail
             }
             else
             {
-                int newQuantity = Convert.ToInt32(txtQuantity.EditValue) +
-                    Convert.ToInt32(gvCounting.GetRowCellValue(rowHandle, "QUANTITY"));
-                if (newQuantity > 0)
+                if (isOpenItem)
                 {
-                    gvCounting.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
+                    decimal newWeightInKgs = Convert.ToDecimal(txtWeightInKgs.EditValue) +
+                        Convert.ToDecimal(gvCounting.GetRowCellValue(rowHandle, "WEIGHTINKGS"));
+                    if (newWeightInKgs > 0)
+                    {
+                        gvCounting.SetRowCellValue(rowHandle, "WEIGHTINKGS", newWeightInKgs);
+                    }
+                }
+                else
+                {
+                    int newQuantity = Convert.ToInt32(txtQuantity.EditValue) +
+                        Convert.ToInt32(gvCounting.GetRowCellValue(rowHandle, "QUANTITY"));
+                    if (newQuantity > 0)
+                    {
+                        gvCounting.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
+                    }
                 }
             }
             isEventCall = false;
