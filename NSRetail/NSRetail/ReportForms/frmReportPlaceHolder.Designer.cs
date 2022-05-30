@@ -302,6 +302,8 @@
             this.tlReport.AppendNode(new object[] {
             null}, 0, "POS 1");
             this.tlReport.AppendNode(new object[] {
+            null}, 1, "POS 2");
+            this.tlReport.AppendNode(new object[] {
             null}, 0);
             this.tlReport.AppendNode(new object[] {
             null}, 0);

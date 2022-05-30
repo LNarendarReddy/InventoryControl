@@ -439,6 +439,12 @@
     <Compile Include="ReportForms\POS\ucBranchRefundByItems.Designer.cs">
       <DependentUpon>ucBranchRefundByItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucItemWise.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucItemWise.Designer.cs">
+      <DependentUpon>ucItemWise.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\ucDealerIndent.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -743,6 +749,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucRunningSales.resx">
       <DependentUpon>ucRunningSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\ucItemWise.resx">
+      <DependentUpon>ucItemWise.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\ucDealerIndent.resx">
       <DependentUpon>ucDealerIndent.cs</DependentUpon>

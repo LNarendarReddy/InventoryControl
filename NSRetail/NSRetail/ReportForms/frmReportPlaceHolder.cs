@@ -6,6 +6,7 @@ using DevExpress.XtraLayout;
 using DevExpress.XtraSplashScreen;
 using Entity;
 using NSRetail.ReportForms.POS;
+using NSRetail.ReportForms.Wareshouse.Profitability;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,6 +46,9 @@ namespace NSRetail.ReportForms
 
             ReportHolder wareHouseReports = new ReportHolder() { ReportName = "Warehouse Reports" };
             wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Dealer Indent", SearchCriteriaControl = new ucDealerIndent() });
+            ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
+            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new ucItemWise() });
+            wareHouseReports.SubCategory.Add(profitabilityReports);
             reportList.Add(wareHouseReports);
 
             ReportHolder itemReports = new ReportHolder() { ReportName = "Item Reports" };
