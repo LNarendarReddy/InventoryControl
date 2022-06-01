@@ -184,8 +184,6 @@
             this.cmbBranch.Size = new System.Drawing.Size(261, 20);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 5;
-            this.cmbBranch.EditValueChanged += new System.EventHandler(this.cmbBranch_EditValueChanged);
-            this.cmbBranch.Leave += new System.EventHandler(this.cmbBranch_Leave);
             // 
             // gcStockCounting
             // 
@@ -201,7 +199,6 @@
             this.gcStockCounting.TabStop = false;
             this.gcStockCounting.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvStockCounting});
-            this.gcStockCounting.Click += new System.EventHandler(this.gcStockCounting_Click);
             // 
             // gvStockCounting
             // 
@@ -435,7 +432,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmStockCounting";
             this.Text = "Stock Counting";
-            this.Load += new System.EventHandler(this.frmStockCounting_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();

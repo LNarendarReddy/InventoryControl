@@ -7,6 +7,7 @@ namespace NSRetail
 {
     public partial class frmStockCounting : XtraForm
     {
+        CountingRepository countingRepository = new CountingRepository();
         public frmStockCounting()
         {
             InitializeComponent();
@@ -19,52 +20,39 @@ namespace NSRetail
             if (gvStockCounting.FocusedRowHandle < 0)
                 return;
             frmViewItems obj =
-                new frmViewItems(new CountingRepository().GetStockCountingDetail(
-                    gvStockCounting.GetFocusedRowCellValue("STOCKCOUNTINGID")), "items");
-            obj.ShowInTaskbar = false;
-            obj.StartPosition = FormStartPosition.CenterScreen;
-            obj.ShowDialog();
+                new frmViewItems(countingRepository.GetStockCountingDetail(
+                    gvStockCounting.GetFocusedRowCellValue("STOCKCOUNTINGID")), "items"
+                    , _allowDelete: !gvStockCounting.GetFocusedRowCellValue("STATUS").Equals("Accepted"));
+            ShowItemsForm(obj);
         }
-        private void cmbBranch_Leave(object sender, EventArgs e)
-        {
 
-        }
         private void btnViewDifferences_Click(object sender, EventArgs e)
         {
             if (cmbBranch.EditValue == null)
                 return;
             frmViewItems obj =
-                new frmViewItems(new CountingRepository().GetStockCountingDiff(
+                new frmViewItems(countingRepository.GetStockCountingDiff(
                     cmbBranch.EditValue), "differences", true);
-            obj.ShowInTaskbar = false;
-            obj.StartPosition = FormStartPosition.CenterScreen;
-            obj.ShowDialog();
+            ShowItemsForm(obj);
         }
-        private void cmbBranch_EditValueChanged(object sender, EventArgs e)
-        {
 
-        }
         private void btnView_Click(object sender, EventArgs e)
         {
             if (cmbBranch.EditValue == null)
                 return;
             gcStockCounting.DataSource = new CountingRepository().GetStockCounting(cmbBranch.EditValue);
         }
-        private void gcStockCounting_Click(object sender, EventArgs e)
-        {
-
-        }
+       
         private void btnNotEntered_Click(object sender, EventArgs e)
         {
             if (cmbBranch.EditValue == null)
                 return;
             frmViewItems obj =
-                new frmViewItems(new CountingRepository().GetStockCountingNoteEntered(
+                new frmViewItems(countingRepository.GetStockCountingNoteEntered(
                     cmbBranch.EditValue), "not enetered", true);
-            obj.ShowInTaskbar = false;
-            obj.StartPosition = FormStartPosition.CenterScreen;
-            obj.ShowDialog();
+            ShowItemsForm(obj);
         }
+
         private void btnAccept_Click(object sender, EventArgs e)
         {
             try
@@ -87,15 +75,16 @@ namespace NSRetail
             if (cmbBranch.EditValue == null)
                 return;
             frmViewItems obj =
-                new frmViewItems(new CountingRepository().GetConsolidatedItems(
+                new frmViewItems(countingRepository.GetConsolidatedItems(
                     cmbBranch.EditValue), "consolidated");
+            ShowItemsForm(obj);
+        }
+
+        private void ShowItemsForm(frmViewItems obj)
+        {
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
-        }
-        private void frmStockCounting_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

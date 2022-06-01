@@ -124,6 +124,7 @@
             this.gvItems.OptionsBehavior.Editable = false;
             this.gvItems.OptionsView.ShowFooter = true;
             this.gvItems.OptionsView.ShowGroupPanel = false;
+            this.gvItems.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvItems_PopupMenuShowing);
             // 
             // gcStockCountingDetailID
             // 

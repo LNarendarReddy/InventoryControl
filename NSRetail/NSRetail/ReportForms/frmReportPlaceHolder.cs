@@ -6,7 +6,7 @@ using DevExpress.XtraLayout;
 using DevExpress.XtraSplashScreen;
 using Entity;
 using NSRetail.ReportForms.POS;
-using NSRetail.ReportForms.Wareshouse.Profitability;
+using NSRetail.ReportForms.Wareshouse;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,7 +47,8 @@ namespace NSRetail.ReportForms
             ReportHolder wareHouseReports = new ReportHolder() { ReportName = "Warehouse Reports" };
             wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Dealer Indent", SearchCriteriaControl = new ucDealerIndent() });
             ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
-            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new ucItemWise() });
+            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new Wareshouse.Profitability.ucPeriodicity() });
+            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new Wareshouse.Profitability.ucItemWise() });
             wareHouseReports.SubCategory.Add(profitabilityReports);
             reportList.Add(wareHouseReports);
 
@@ -110,7 +111,7 @@ namespace NSRetail.ReportForms
                     {
                         SummaryType = DevExpress.Data.SummaryItemType.Sum,
                         FieldName = column.FieldName,
-                        DisplayFormat = "SUM : {0:#.##}"
+                        DisplayFormat = "{0:#.##}"
                     };
 
                     column.Summary.Add(siTotal);
@@ -133,6 +134,28 @@ namespace NSRetail.ReportForms
                     ColumnEdit = btnAction
                 };
                 gvResults.Columns.Add(gcButtonColumn);
+            }
+
+            if(searchCriteria.Periodicity != null && gvResults.Columns.ColumnByFieldName("PERIODOCITY") != null)
+            {
+                GridColumn periodicityColumn = gvResults.Columns.ColumnByFieldName("PERIODOCITY");
+
+                dtpPeriodicity.MaskSettings.MaskManagerType = typeof(DateTime);
+                dtpPeriodicity.MaskSettings.UseMaskAsDisplayFormat = true;
+                switch (searchCriteria.Periodicity.EditValue.ToString())
+                {
+                    case "Daily":
+                        dtpPeriodicity.MaskSettings.MaskExpression = "d";
+                        break;
+                    case "Monthly":
+                        dtpPeriodicity.MaskSettings.MaskExpression = "y";
+                        break;
+                    case "Yearly":
+                        dtpPeriodicity.MaskSettings.MaskExpression = "yyyy";
+                        break;
+                }
+                periodicityColumn.ColumnEdit = dtpPeriodicity;
+
             }
         }
 

@@ -60,6 +60,7 @@
             this.dpTop = new DevExpress.XtraBars.Docking.DockPanel();
             this.controlContainer1 = new DevExpress.XtraBars.Docking.ControlContainer();
             this.pcSearchCriteria = new DevExpress.XtraEditors.PanelControl();
+            this.dtpPeriodicity = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcResults)).BeginInit();
@@ -80,6 +81,8 @@
             this.dpTop.SuspendLayout();
             this.controlContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcSearchCriteria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpPeriodicity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpPeriodicity.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -167,7 +170,8 @@
             this.gcResults.MainView = this.gvResults;
             this.gcResults.Name = "gcResults";
             this.gcResults.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.btnAction});
+            this.btnAction,
+            this.dtpPeriodicity});
             this.gcResults.Size = new System.Drawing.Size(832, 511);
             this.gcResults.TabIndex = 3;
             this.gcResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -403,6 +407,15 @@
             this.pcSearchCriteria.Size = new System.Drawing.Size(834, 60);
             this.pcSearchCriteria.TabIndex = 0;
             // 
+            // dtpPeriodicity
+            // 
+            this.dtpPeriodicity.AutoHeight = false;
+            this.dtpPeriodicity.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpPeriodicity.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpPeriodicity.Name = "dtpPeriodicity";
+            // 
             // frmReportPlaceHolder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -436,6 +449,8 @@
             this.controlContainer1.ResumeLayout(false);
             this.controlContainer1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcSearchCriteria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpPeriodicity.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpPeriodicity)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -467,5 +482,6 @@
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraLayout.LayoutControlItem lcibtnSave;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnAction;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dtpPeriodicity;
     }
 }

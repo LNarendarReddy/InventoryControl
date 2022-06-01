@@ -1,30 +1,21 @@
-﻿
-using DataAccess;
+﻿using DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Data;
 
 namespace NSRetail.ReportForms.Wareshouse.Profitability
 {
-    public partial class ucItemWise : SearchCriteriaBase
+    public partial class ucPeriodicity : SearchCriteriaBase
     {
         private Dictionary<string, string> specificColumnHeaders;
-
         public override Dictionary<string, string> SpecificColumnHeaders => specificColumnHeaders;
 
-        public ucItemWise()
+        public ucPeriodicity()
         {
             InitializeComponent();
 
-            specificColumnHeaders = new Dictionary<string, string>() 
-            {
-                { "SALEPRICEWOT", "Sale Price WOT" },
-                { "SALEPRICETAX", "Sale Price Tax" },
-                { "SALEPRICE", "Sale Price WT" },
-                { "COSTPRICEWOT", "Cost Price WOT" },
-                { "COSTPRICETAX", "Cost Price Tax" },
-                { "COSTPRICEWT", "Cost Price WT" },
-                { "SALEQUANTITY", "Sale Qty or Weight-in KGs" },
+            specificColumnHeaders = new Dictionary<string, string>()
+            {               
                 { "TOTALCOSTPRICEWOT", "Total Cost Price WOT" },
                 { "TOTALCOSTPRICETAX", "Total Cost Price Tax" },
                 { "TOTALCOSTPRICEWT", "Total Cost Price WT" },
@@ -32,11 +23,12 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "TOTALSALETAX", "Total Sale Price Tax" },
                 { "TOTALSALEPRICEWT", "Total Sale Price WT" },
                 { "PROFITMARGIN", "Profit Margin" },
-                { "PROFITMARGINPER", "Profit Margin %" }
+                { "PROFITMARGINPER", "Profit Margin %" },
+                { "PERIODOCITY", "Periodocity" }
             };
         }
 
-        private void ucItemWise_Load(object sender, EventArgs e)
+        private void ucPeriodicity_Load(object sender, EventArgs e)
         {
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
@@ -51,6 +43,8 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
             cmbCategory.Properties.DataSource = masterRepo.GetCategory();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+
+            SetPeriodicty(cmbPeriodicity);
         }
 
         public override DataTable GetData()
@@ -61,8 +55,10 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
                 , { "CategoryID", cmbCategory.EditValue }
+                , { "Periodicity", cmbPeriodicity.EditValue }
             };
-            return GetReportData("USP_RPT_PROFITABILITY_SKUWISE", parameters);
+
+            return GetReportData("USP_RPT_PROFITABILITY_PERIODICITY", parameters);
         }
     }
 }

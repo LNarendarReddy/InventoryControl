@@ -1,12 +1,18 @@
-﻿using System;
+﻿using DataAccess;
+using DevExpress.Utils.Menu;
+using DevExpress.XtraEditors;
+using System;
 using System.Data;
 using System.Windows.Forms;
 
 namespace NSRetail
 {
-    public partial class frmViewItems : DevExpress.XtraEditors.XtraForm
+    public partial class frmViewItems : XtraForm
     {
-        public frmViewItems(DataTable dtItems, string caller, bool Diff = false)
+        private string actionType;
+        private bool allowDelete;
+
+        public frmViewItems(DataTable dtItems, string caller, bool Diff = false, bool _allowDelete = false)
         {
             InitializeComponent();
             gcItems.DataSource = dtItems;
@@ -20,6 +26,8 @@ namespace NSRetail
             gcDiffStockCP.Visible = caller == "differences" || caller == "not enetered";
             gcPhysicalStockCP.Visible = caller == "differences";
             gcSystemStockCP.Visible = caller == "differences";
+            actionType = caller;
+            allowDelete = _allowDelete;
         }
 
         private void frmViewItems_Load(object sender, EventArgs e)
@@ -36,6 +44,23 @@ namespace NSRetail
         private void btnViewReport_Click(object sender, EventArgs e)
         {
             gcItems.ShowRibbonPrintPreview();
+        }
+        
+        private void gvItems_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
+        {
+            if (gvItems.FocusedRowHandle < 0 || actionType != "items" || !allowDelete)
+                return;
+            e.Menu.Items.Add(new DXMenuItem("Delete Item", new EventHandler(DeleteItem_Click)));
+        }
+
+        private void DeleteItem_Click(object sender, EventArgs e)
+        {
+            if (XtraMessageBox.Show("Are you sure want to delete item", "Confirm",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            new CloudRepository().DeleteStockCounting(gvItems.GetFocusedRowCellValue("STOCKCOUNTINGDETAILID"));
+            gvItems.DeleteRow(gvItems.FocusedRowHandle);
         }
     }
 }

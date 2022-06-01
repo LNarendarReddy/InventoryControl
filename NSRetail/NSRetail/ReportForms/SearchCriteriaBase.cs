@@ -10,6 +10,10 @@ namespace NSRetail
     public partial class SearchCriteriaBase : XtraUserControl
     {
         List<string> buttonColumns;
+        LookUpEdit cmbPeriodicity;
+
+        public LookUpEdit Periodicity => cmbPeriodicity;
+
         public SearchCriteriaBase()
         {
             InitializeComponent();
@@ -17,12 +21,12 @@ namespace NSRetail
             {
                 // (for performance management) Add only common column names here
                 // for specific column names, override SpecificColumnHeaders property in child class and specify the values there
-                {"BRANCHNAME", "Branch Name" }
+                {"BRANCHNAME", "Branch" }
                 , {"ITEMNAME", "Item Name"}
                 , {"SKUCODE", "SKU Code"}
                 , {"ITEMCODE", "Item Code"}
-                , {"CATEGORY", "Category"}
-                , {"SUBCATEGORY", "Sub Category"}
+                , {"CATEGORYNAME", "Category"}
+                , {"SUBCATEGORYNAME", "Sub Category"}
                 , {"SNO", "SNo"}
                 , {"COUNTERNAME", "Counter"}
                 , {"BILLNUMBER", "Bill Number"}
@@ -66,5 +70,20 @@ namespace NSRetail
         public virtual IEnumerable<string> ButtonColumns => buttonColumns;
 
         public virtual void ActionExecute(string buttonText, DataRow drFocusedRow) { }
+
+        protected void SetPeriodicty(LookUpEdit cmb)
+        {
+            cmbPeriodicity = cmb;
+            DataTable dtPeriodicity = new DataTable();
+            dtPeriodicity.Columns.Add("Periodicityvalue", typeof(string));
+            dtPeriodicity.Rows.Add(new []{ "Daily" });
+            dtPeriodicity.Rows.Add(new []{ "Monthly" });
+            dtPeriodicity.Rows.Add(new []{ "Yearly" });
+
+            cmbPeriodicity.Properties.DataSource = dtPeriodicity;
+            cmbPeriodicity.Properties.ValueMember = "Periodicityvalue";
+            cmbPeriodicity.Properties.DisplayMember = "Periodicityvalue";
+            cmbPeriodicity.EditValue = "Daily";
+        }
     }
 }
