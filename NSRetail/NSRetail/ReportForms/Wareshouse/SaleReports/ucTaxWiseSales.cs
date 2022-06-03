@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DataAccess;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,15 +22,11 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
 
             columnHeaders = new Dictionary<string, string>
             {
-                { "SALEQUANTITY", "Sale Quantity" }
-                , { "WEIGHTINKGS", "Weight In Kgs" }
-                , { "BILLDATE", "Bill Date" }
-                , { "DEALERNAME", "Supplier" }
-                , { "ACTUALBILLEDAMOUNT", "Billed Amount" }
+                { "CLOSUREDATE", "Closure Date" }
+                , { "GSTCODE", "GST Code" }
+                , { "BILLEDVALUE", "Billed Value" }
             };
 
-            dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
-            dtpToDate.EditValue = DateTime.Now;
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
@@ -40,11 +37,8 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "BranchID", cmbBranch.EditValue }
-                , { "FromDate", dtpFromDate.EditValue }
-                , { "ToDate", dtpToDate.EditValue }
-                , { "IncludeBillDate", dtpToDate.EditValue }
             };
-            return GetReportData("USP_RPT_ITEMWISESALE", parameters);
+            return GetReportData("USP_RPT_BRANCHSALEBYGST", parameters);
         }
     }
 }
