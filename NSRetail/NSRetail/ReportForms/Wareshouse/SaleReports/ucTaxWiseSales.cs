@@ -16,6 +16,8 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
     {
         Dictionary<string, string> columnHeaders;
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
+        public override Control FirstControl => cmbBranch;
+        public override Control LastControl => cmbBranch;
         public ucTaxWiseSales()
         {
             InitializeComponent();

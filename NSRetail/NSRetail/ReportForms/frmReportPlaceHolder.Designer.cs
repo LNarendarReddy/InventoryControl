@@ -44,6 +44,7 @@
             this.gcResults = new DevExpress.XtraGrid.GridControl();
             this.gvResults = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnAction = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.dtpPeriodicity = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -60,12 +61,13 @@
             this.dpTop = new DevExpress.XtraBars.Docking.DockPanel();
             this.controlContainer1 = new DevExpress.XtraBars.Docking.ControlContainer();
             this.pcSearchCriteria = new DevExpress.XtraEditors.PanelControl();
-            this.dtpPeriodicity = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcResults)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvResults)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAction)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpPeriodicity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpPeriodicity.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
@@ -81,8 +83,6 @@
             this.dpTop.SuspendLayout();
             this.controlContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcSearchCriteria)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpPeriodicity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpPeriodicity.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -190,12 +190,21 @@
             // btnAction
             // 
             this.btnAction.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
             this.btnAction.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnAction.Name = "btnAction";
             this.btnAction.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnAction.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnAction_ButtonClick);
+            // 
+            // dtpPeriodicity
+            // 
+            this.dtpPeriodicity.AutoHeight = false;
+            this.dtpPeriodicity.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpPeriodicity.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpPeriodicity.Name = "dtpPeriodicity";
             // 
             // Root
             // 
@@ -407,15 +416,6 @@
             this.pcSearchCriteria.Size = new System.Drawing.Size(834, 60);
             this.pcSearchCriteria.TabIndex = 0;
             // 
-            // dtpPeriodicity
-            // 
-            this.dtpPeriodicity.AutoHeight = false;
-            this.dtpPeriodicity.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpPeriodicity.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpPeriodicity.Name = "dtpPeriodicity";
-            // 
             // frmReportPlaceHolder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -433,6 +433,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcResults)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvResults)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAction)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpPeriodicity.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpPeriodicity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
@@ -449,8 +451,6 @@
             this.controlContainer1.ResumeLayout(false);
             this.controlContainer1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcSearchCriteria)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpPeriodicity.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpPeriodicity)).EndInit();
             this.ResumeLayout(false);
 
         }

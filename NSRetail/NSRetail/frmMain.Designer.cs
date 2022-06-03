@@ -805,6 +805,7 @@
             this.ribbonPageGroup13.ItemLinks.Add(this.btnItemWiseSales);
             this.ribbonPageGroup13.Name = "ribbonPageGroup13";
             this.ribbonPageGroup13.Text = "Sale Reports";
+            this.ribbonPageGroup13.Visible = false;
             // 
             // ribbonPageGroup14
             // 

@@ -145,6 +145,12 @@ namespace NSRetail.ReportForms
                 gcSerialNo.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Near;
                 gcSerialNo.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Near;
             }
+            GridColumn gcStatus = gvResults.Columns.ColumnByFieldName("STATUS");
+            if (gcStatus != null)
+            {
+                gcStatus.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
+                gcStatus.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
+            }
 
             (searchCriteria.FirstControl ?? searchCriteria).Focus();
         }
@@ -281,7 +287,7 @@ namespace NSRetail.ReportForms
             wareHouseReports.SubCategory.Add(StockReports);
 
             ReportHolder saleReports = new ReportHolder() { ReportName = "Sale Reports" };
-            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Running sales", SearchCriteriaControl = new ucRunningSales() });
+            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Running sales", SearchCriteriaControl = new ucRunningSales() });
             saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
             saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales", SearchCriteriaControl = new ucItemWiseSales() });
             reportList.Add(saleReports);
