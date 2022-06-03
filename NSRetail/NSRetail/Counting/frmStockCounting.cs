@@ -21,8 +21,7 @@ namespace NSRetail
                 return;
             frmViewItems obj =
                 new frmViewItems(countingRepository.GetStockCountingDetail(
-                    gvStockCounting.GetFocusedRowCellValue("STOCKCOUNTINGID")), "items"
-                    , _allowDelete: !gvStockCounting.GetFocusedRowCellValue("STATUS").Equals("Accepted"));
+                    gvStockCounting.GetFocusedRowCellValue("STOCKCOUNTINGID")), "items");
             ShowItemsForm(obj);
         }
 
@@ -32,7 +31,7 @@ namespace NSRetail
                 return;
             frmViewItems obj =
                 new frmViewItems(countingRepository.GetStockCountingDiff(
-                    cmbBranch.EditValue), "differences", true);
+                    cmbBranch.EditValue), "differences", true ,cmbBranch.EditValue);
             ShowItemsForm(obj);
         }
 
@@ -70,6 +69,7 @@ namespace NSRetail
                 XtraMessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
+
         private void btnViewConsolidatedStock_Click(object sender, EventArgs e)
         {
             if (cmbBranch.EditValue == null)

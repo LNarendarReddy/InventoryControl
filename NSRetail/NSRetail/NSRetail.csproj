@@ -451,11 +451,41 @@
     <Compile Include="ReportForms\Wareshouse\Profitability\ucPeriodicity.Designer.cs">
       <DependentUpon>ucPeriodicity.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucDispatchDCList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucDispatchDCList.Designer.cs">
+      <DependentUpon>ucDispatchDCList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucDispatchList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucDispatchList.Designer.cs">
+      <DependentUpon>ucDispatchList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucStockSummaryByBranch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucStockSummaryByBranch.Designer.cs">
+      <DependentUpon>ucStockSummaryByBranch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucZeroStock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucZeroStock.Designer.cs">
+      <DependentUpon>ucZeroStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\ucDealerIndent.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ReportForms\Wareshouse\ucDealerIndent.Designer.cs">
       <DependentUpon>ucDealerIndent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucInvoiceList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucInvoiceList.Designer.cs">
+      <DependentUpon>ucInvoiceList.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\rptBarcode.cs">
       <SubType>Component</SubType>
@@ -762,8 +792,23 @@
     <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\ucPeriodicity.resx">
       <DependentUpon>ucPeriodicity.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucDispatchDCList.resx">
+      <DependentUpon>ucDispatchDCList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucDispatchList.resx">
+      <DependentUpon>ucDispatchList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucStockSummaryByBranch.resx">
+      <DependentUpon>ucStockSummaryByBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucZeroStock.resx">
+      <DependentUpon>ucZeroStock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\ucDealerIndent.resx">
       <DependentUpon>ucDealerIndent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucInvoiceList.resx">
+      <DependentUpon>ucInvoiceList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptBarcode.resx">
       <DependentUpon>rptBarcode.cs</DependentUpon>

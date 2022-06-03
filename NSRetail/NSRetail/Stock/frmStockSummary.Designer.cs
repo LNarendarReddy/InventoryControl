@@ -48,6 +48,7 @@
             this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtMAsk = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -70,11 +71,11 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtMAsk = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcStockSummary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvStockSummary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMAsk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.luBranch.Properties)).BeginInit();
@@ -87,7 +88,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMAsk)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -324,6 +324,18 @@
             this.gridColumn21.Visible = true;
             this.gridColumn21.VisibleIndex = 12;
             // 
+            // txtMAsk
+            // 
+            this.txtMAsk.AutoHeight = false;
+            this.txtMAsk.DisplayFormat.FormatString = "n2";
+            this.txtMAsk.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtMAsk.EditFormat.FormatString = "n2";
+            this.txtMAsk.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtMAsk.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtMAsk.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.txtMAsk.MaskSettings.Set("mask", "n2");
+            this.txtMAsk.Name = "txtMAsk";
+            // 
             // gridColumn22
             // 
             this.gridColumn22.Caption = "Sale Price";
@@ -548,7 +560,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(276, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(463, 64);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(463, 68);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
@@ -575,18 +587,6 @@
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
-            // txtMAsk
-            // 
-            this.txtMAsk.AutoHeight = false;
-            this.txtMAsk.DisplayFormat.FormatString = "n2";
-            this.txtMAsk.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtMAsk.EditFormat.FormatString = "n2";
-            this.txtMAsk.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtMAsk.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtMAsk.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.txtMAsk.MaskSettings.Set("mask", "n2");
-            this.txtMAsk.Name = "txtMAsk";
-            // 
             // frmStockSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -605,6 +605,7 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcStockSummary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvStockSummary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMAsk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItem.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.luBranch.Properties)).EndInit();
@@ -617,7 +618,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMAsk)).EndInit();
             this.ResumeLayout(false);
 
         }

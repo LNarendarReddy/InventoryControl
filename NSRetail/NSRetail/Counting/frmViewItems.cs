@@ -10,9 +10,9 @@ namespace NSRetail
     public partial class frmViewItems : XtraForm
     {
         private string actionType;
-        private bool allowDelete;
+        private object BranchID = null;
 
-        public frmViewItems(DataTable dtItems, string caller, bool Diff = false, bool _allowDelete = false)
+        public frmViewItems(DataTable dtItems, string caller, bool Diff = false, object _BranchID = null)
         {
             InitializeComponent();
             gcItems.DataSource = dtItems;
@@ -27,7 +27,7 @@ namespace NSRetail
             gcPhysicalStockCP.Visible = caller == "differences";
             gcSystemStockCP.Visible = caller == "differences";
             actionType = caller;
-            allowDelete = _allowDelete;
+            BranchID = _BranchID;
         }
 
         private void frmViewItems_Load(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace NSRetail
         
         private void gvItems_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
-            if (gvItems.FocusedRowHandle < 0 || actionType != "items" || !allowDelete)
+            if (gvItems.FocusedRowHandle < 0 || actionType != "differences")
                 return;
             e.Menu.Items.Add(new DXMenuItem("Delete Item", new EventHandler(DeleteItem_Click)));
         }
@@ -59,7 +59,7 @@ namespace NSRetail
                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
 
-            new CloudRepository().DeleteStockCounting(gvItems.GetFocusedRowCellValue("STOCKCOUNTINGDETAILID"));
+            new CloudRepository().DeleteStockCounting(BranchID,gvItems.GetFocusedRowCellValue("ITEMCODEID"));
             gvItems.DeleteRow(gvItems.FocusedRowHandle);
         }
     }

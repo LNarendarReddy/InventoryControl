@@ -15,6 +15,7 @@ using System.Windows.Forms;
 
 namespace NSRetail.Stock
 {
+    [Obsolete]
     public partial class frmDispatchDCList : DevExpress.XtraEditors.XtraForm
     {
         StockRepository ObjStockRep = new StockRepository();

@@ -436,6 +436,7 @@
             // btnInvoiceList
             // 
             this.btnInvoiceList.Caption = "Invoice List";
+            this.btnInvoiceList.Enabled = false;
             this.btnInvoiceList.Id = 22;
             this.btnInvoiceList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnInvoiceList.ImageOptions.SvgImage")));
             this.btnInvoiceList.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
@@ -452,6 +453,7 @@
             // btnDispatchList
             // 
             this.btnDispatchList.Caption = "Dispatch List";
+            this.btnDispatchList.Enabled = false;
             this.btnDispatchList.Id = 23;
             this.btnDispatchList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDispatchList.ImageOptions.SvgImage")));
             this.btnDispatchList.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
@@ -468,6 +470,7 @@
             // bbiStockSummary
             // 
             this.bbiStockSummary.Caption = "Stock summary by branch";
+            this.bbiStockSummary.Enabled = false;
             this.bbiStockSummary.Id = 24;
             this.bbiStockSummary.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiStockSummary.ImageOptions.Image")));
             this.bbiStockSummary.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiStockSummary.ImageOptions.LargeImage")));
@@ -493,6 +496,7 @@
             // btnDCList
             // 
             this.btnDCList.Caption = "Dispatch DC List";
+            this.btnDCList.Enabled = false;
             this.btnDCList.Id = 26;
             this.btnDCList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDCList.ImageOptions.SvgImage")));
             this.btnDCList.ItemAppearance.Disabled.Font = new System.Drawing.Font("Arial", 8F);
@@ -633,6 +637,7 @@
             // btnZeroStock
             // 
             this.btnZeroStock.Caption = "Zero Stock";
+            this.btnZeroStock.Enabled = false;
             this.btnZeroStock.Id = 43;
             this.btnZeroStock.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnZeroStock.ImageOptions.SvgImage")));
             this.btnZeroStock.Name = "btnZeroStock";
@@ -783,6 +788,7 @@
             this.ribbonPageGroup7.ItemLinks.Add(this.btnZeroStock);
             this.ribbonPageGroup7.Name = "ribbonPageGroup7";
             this.ribbonPageGroup7.Text = "Stock Reports";
+            this.ribbonPageGroup7.Visible = false;
             // 
             // ribbonPageGroup9
             // 
@@ -791,6 +797,7 @@
             this.ribbonPageGroup9.ItemLinks.Add(this.btnBranchRefund);
             this.ribbonPageGroup9.Name = "ribbonPageGroup9";
             this.ribbonPageGroup9.Text = "POS Reports";
+            this.ribbonPageGroup9.Visible = false;
             // 
             // ribbonPageGroup13
             // 

@@ -16,6 +16,7 @@ using System.Windows.Forms;
 
 namespace NSRetail.Stock
 {
+    [Obsolete]
     public partial class frmInvoiceList : XtraForm
     {
         StockRepository ObjStockRep = new StockRepository();

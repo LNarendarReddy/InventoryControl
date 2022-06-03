@@ -46,6 +46,15 @@ namespace NSRetail.ReportForms
 
             ReportHolder wareHouseReports = new ReportHolder() { ReportName = "Warehouse Reports" };
             wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Dealer Indent", SearchCriteriaControl = new ucDealerIndent() });
+
+            ReportHolder StockReports = new ReportHolder() { ReportName = "Stock Reports" };
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Invoice List", SearchCriteriaControl = new Wareshouse.StockReports.ucInvoiceList() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch List", SearchCriteriaControl = new Wareshouse.StockReports.ucDispatchList() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch DC List", SearchCriteriaControl = new Wareshouse.StockReports.ucDispatchDCList() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Summary By Branch", SearchCriteriaControl = new Wareshouse.StockReports.ucStockSummaryByBranch() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Zero Stock", SearchCriteriaControl = new Wareshouse.StockReports.ucZeroStock() });
+            wareHouseReports.SubCategory.Add(StockReports);
+
             ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
             profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new Wareshouse.Profitability.ucPeriodicity() });
             profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new Wareshouse.Profitability.ucItemWise() });

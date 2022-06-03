@@ -149,7 +149,30 @@ namespace DataAccess
             return stockcountingdetailid;
         }
 
-        public void DeleteStockCounting(object STOCKCOUNTINGDETAILID)
+        public void DeleteStockCounting(object StockCountingDetailID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlCloudConn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[CLOUD_USP_D_STOCKCOUNTINGDETAIL1]";
+                    cmd.Parameters.AddWithValue("@STOCKCOUNTINGDETAILID", StockCountingDetailID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while deleting stock counting detail");
+            }
+            finally
+            {
+                SQLCon.SqlCloudConn().Close();
+            }
+        }
+
+        public void DeleteStockCounting(object BranchID, object ItemCodeID)
         {
             try
             {
@@ -158,8 +181,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.SqlCloudConn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[CLOUD_USP_D_STOCKCOUNTINGDETAIL]";
-                    cmd.Parameters.AddWithValue("@STOCKCOUNTINGDETAILID", STOCKCOUNTINGDETAILID);
-                    cmd.Parameters.AddWithValue("@DELETEDDATE", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    cmd.Parameters.AddWithValue("@ItemCodeID", ItemCodeID);
                     cmd.ExecuteNonQuery();
                 }
             }

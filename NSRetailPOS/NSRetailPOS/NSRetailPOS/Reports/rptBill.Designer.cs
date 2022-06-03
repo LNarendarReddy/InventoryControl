@@ -236,7 +236,6 @@
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2,
             this.xrPictureBox1});
-            this.ReportHeader.Expanded = false;
             this.ReportHeader.HeightF = 272.3077F;
             this.ReportHeader.Name = "ReportHeader";
             // 
@@ -527,6 +526,7 @@
             this.ReportFooter1,
             this.ReportHeader1,
             this.GroupHeader2});
+            this.drItems.Expanded = false;
             this.drItems.Level = 0;
             this.drItems.Name = "drItems";
             // 

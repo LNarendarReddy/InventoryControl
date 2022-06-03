@@ -3,6 +3,7 @@ using DataAccess;
 
 namespace NSRetail.Stock
 {
+    [Obsolete]
     public partial class frmStockSummary : DevExpress.XtraEditors.XtraForm
     {
         public frmStockSummary()

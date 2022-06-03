@@ -55,6 +55,7 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnView = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -64,7 +65,6 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDealer.Properties)).BeginInit();
@@ -349,6 +349,14 @@
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 7;
             // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "Status";
+            this.gridColumn12.FieldName = "STATUS";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 8;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -458,14 +466,6 @@
             this.layoutControlItem7.Size = new System.Drawing.Size(399, 34);
             this.layoutControlItem7.Text = "Dealer";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(58, 15);
-            // 
-            // gridColumn12
-            // 
-            this.gridColumn12.Caption = "Status";
-            this.gridColumn12.FieldName = "STATUS";
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 8;
             // 
             // frmInvoiceList
             // 

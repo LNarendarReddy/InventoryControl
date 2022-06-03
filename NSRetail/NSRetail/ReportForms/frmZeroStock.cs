@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 namespace NSRetail
 {
+    [Obsolete]
     public partial class frmZeroStock : DevExpress.XtraEditors.XtraForm
     {
         public frmZeroStock()
