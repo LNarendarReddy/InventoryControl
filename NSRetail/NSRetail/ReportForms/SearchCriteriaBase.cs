@@ -33,6 +33,10 @@ namespace NSRetail
                 , {"SALEPRICE", "Sale Price"}
                 , {"QUANTITY", "Quantity"}
                 , {"BILLEDAMOUNT", "Billed Amount"}
+                , {"MRP", "MRP"}
+                , {"SALEPRICE", "Sale Price"}
+                , {"CREATEDBY", "User Name"}
+                , {"CREATEDDATE", "Created Date"}
             };
 
             buttonColumns = new List<string>();

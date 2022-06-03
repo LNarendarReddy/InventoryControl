@@ -1,4 +1,4 @@
-﻿namespace NSRetail.ReportForms.POS
+﻿namespace NSRetail.ReportForms.Wareshouse.SaleReports
 {
     partial class ucRunningSales
     {

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemwiseSales));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.chkIncludeDate = new DevExpress.XtraEditors.CheckEdit();
             this.dtpToDate = new DevExpress.XtraEditors.DateEdit();
             this.dtpFromDate = new DevExpress.XtraEditors.DateEdit();
             this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
@@ -49,6 +50,7 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -57,11 +59,10 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.chkIncludeDate = new DevExpress.XtraEditors.CheckEdit();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIncludeDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -77,7 +78,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIncludeDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,6 +100,15 @@
             this.layoutControl1.Size = new System.Drawing.Size(1148, 759);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // chkIncludeDate
+            // 
+            this.chkIncludeDate.Location = new System.Drawing.Point(721, 8);
+            this.chkIncludeDate.Name = "chkIncludeDate";
+            this.chkIncludeDate.Properties.Caption = "Include Bill Date";
+            this.chkIncludeDate.Size = new System.Drawing.Size(110, 19);
+            this.chkIncludeDate.StyleController = this.layoutControl1;
+            this.chkIncludeDate.TabIndex = 6;
             // 
             // dtpToDate
             // 
@@ -320,6 +329,14 @@
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 12;
             // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "Actual Billed Amount";
+            this.gridColumn12.FieldName = "ACTUALBILLEDAMOUNT";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 11;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -420,23 +437,6 @@
             this.layoutControlItem6.Text = "To Date";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(58, 15);
             // 
-            // gridColumn12
-            // 
-            this.gridColumn12.Caption = "Actual Billed Amount";
-            this.gridColumn12.FieldName = "ACTUALBILLEDAMOUNT";
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 11;
-            // 
-            // chkIncludeDate
-            // 
-            this.chkIncludeDate.Location = new System.Drawing.Point(721, 8);
-            this.chkIncludeDate.Name = "chkIncludeDate";
-            this.chkIncludeDate.Properties.Caption = "Include Bill Date";
-            this.chkIncludeDate.Size = new System.Drawing.Size(110, 19);
-            this.chkIncludeDate.StyleController = this.layoutControl1;
-            this.chkIncludeDate.TabIndex = 6;
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.chkIncludeDate;
@@ -460,6 +460,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmItemwiseSales_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chkIncludeDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).EndInit();
@@ -475,7 +476,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIncludeDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             this.ResumeLayout(false);
 

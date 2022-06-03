@@ -7,6 +7,7 @@ using DevExpress.XtraLayout;
 using DevExpress.XtraSplashScreen;
 using Entity;
 using NSRetail.ReportForms.POS;
+using NSRetail.ReportForms.Wareshouse.SaleReports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -257,6 +258,7 @@ namespace NSRetail.ReportForms
         {
             List<ReportHolder> reportList = new List<ReportHolder>();
             ReportHolder branchReports = new ReportHolder() { ReportName = "Branch Reports" };
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucBranchRefunds() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds by Item", SearchCriteriaControl = new ucBranchRefundByItems() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
@@ -264,8 +266,7 @@ namespace NSRetail.ReportForms
 
             ReportHolder posReports = new ReportHolder() { ReportName = "POS Reports" };
             posReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure", SearchCriteriaControl = new ucDayClosureList() });
-            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Running sales", SearchCriteriaControl = new ucRunningSales() });
-            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucBranchRefunds() });
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Returns", SearchCriteriaControl = null});
             reportList.Add(posReports);
 
             ReportHolder wareHouseReports = new ReportHolder() { ReportName = "Warehouse Reports" };
@@ -279,16 +280,17 @@ namespace NSRetail.ReportForms
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Zero Stock", SearchCriteriaControl = new Wareshouse.StockReports.ucZeroStock() });
             wareHouseReports.SubCategory.Add(StockReports);
 
+            ReportHolder saleReports = new ReportHolder() { ReportName = "Sale Reports" };
+            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
+            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales", SearchCriteriaControl = new ucItemWiseSales() });
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Running sales", SearchCriteriaControl = new ucRunningSales() });
+            reportList.Add(saleReports);
+
             ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
             profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new Wareshouse.Profitability.ucPeriodicity() });
             profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new Wareshouse.Profitability.ucItemWise() });
             wareHouseReports.SubCategory.Add(profitabilityReports);
             reportList.Add(wareHouseReports);
-
-            ReportHolder itemReports = new ReportHolder() { ReportName = "Item Reports" };
-            itemReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales", SearchCriteriaControl = null });
-            itemReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales 2", SearchCriteriaControl = null });
-            reportList.Add(itemReports);
 
             reportList.ForEach(x => SubscribeLastControl(x));
 
