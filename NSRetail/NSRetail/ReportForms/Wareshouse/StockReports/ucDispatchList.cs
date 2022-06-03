@@ -47,6 +47,10 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
 
         public override IEnumerable<string> ButtonColumns => buttonColumns;
 
+        public override Control FirstControl => cmbBranch;
+
+        public override Control LastControl => dtpToDate;
+
         public override DataTable GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>

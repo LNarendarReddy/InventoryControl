@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms
 {
@@ -37,5 +38,9 @@ namespace NSRetail.ReportForms
         }
 
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
+
+        public override Control FirstControl => cmbBranch;
+
+        public override Control LastControl => dtToDate;
     }
 }

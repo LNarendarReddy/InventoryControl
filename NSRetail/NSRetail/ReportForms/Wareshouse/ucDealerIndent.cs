@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms
 {
@@ -11,6 +12,7 @@ namespace NSRetail.ReportForms
         Dictionary<string, string> columnHeaders;
         List<string> editableColumns;
         MasterRepository masterRepository = new MasterRepository();
+        List<BaseEdit> mandatoryFields;
 
         public ucDealerIndent()
         {
@@ -28,6 +30,7 @@ namespace NSRetail.ReportForms
             };
 
             editableColumns = new List<string>() { "DESIREDINDENT" };
+            mandatoryFields = new List<BaseEdit>() { cmbDealer, cmbCategory, dtFromDate, dtToDate };
 
             cmbDealer.Properties.DataSource = masterRepository.GetDealer();
             cmbDealer.Properties.ValueMember = "DEALERID";
@@ -59,8 +62,12 @@ namespace NSRetail.ReportForms
 
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
 
-        public override IEnumerable<BaseEdit> MandatoryFields => new List<BaseEdit>() { cmbDealer, cmbCategory, dtFromDate, dtToDate };
+        public override IEnumerable<BaseEdit> MandatoryFields => mandatoryFields;
 
         public override IEnumerable<string> EditableColumns => editableColumns;
+
+        public override Control FirstControl => cmbDealer;
+
+        public override Control LastControl => dtToDate;
     }
 }

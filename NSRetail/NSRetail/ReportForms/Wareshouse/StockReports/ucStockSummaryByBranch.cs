@@ -1,13 +1,6 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.StockReports
@@ -48,7 +41,13 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             sluItem.Properties.ValueMember = "ITEMID";
             sluItem.Properties.DisplayMember = "ITEMNAME";
         }
+        
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
+
+        public override Control FirstControl => luBranch;
+
+        public override Control LastControl => sluItem;
+
         public override DataTable GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>

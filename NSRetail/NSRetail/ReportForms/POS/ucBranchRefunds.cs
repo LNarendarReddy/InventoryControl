@@ -18,6 +18,10 @@ namespace NSRetail.ReportForms.POS
 
         public override IEnumerable<string> ButtonColumns => buttonColumns;
 
+        public override Control FirstControl => cmbBranch;
+
+        public override Control LastControl => dtpToDate;
+
         public ucBranchRefunds()
         {
             InitializeComponent();

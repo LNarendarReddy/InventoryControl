@@ -3,12 +3,14 @@ using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms
 {
     public partial class ucBranchIndent : SearchCriteriaBase
     {
         Dictionary<string, string> columnHeaders;
+        List<BaseEdit> mandatoryFields;
 
         public ucBranchIndent()
         {
@@ -23,6 +25,8 @@ namespace NSRetail.ReportForms
                 , { "INDENTQUANTITY", "Indent Quantity" }
                 , { "SUBCATEGORYNAME", "Sub Category" }
             };
+
+            mandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -51,6 +55,10 @@ namespace NSRetail.ReportForms
 
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
 
-        public override IEnumerable<BaseEdit> MandatoryFields => new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
+        public override IEnumerable<BaseEdit> MandatoryFields => mandatoryFields;
+
+        public override Control FirstControl => cmbBranch;
+
+        public override Control LastControl => dtToDate;
     }
 }

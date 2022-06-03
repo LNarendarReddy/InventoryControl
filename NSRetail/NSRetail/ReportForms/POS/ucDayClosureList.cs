@@ -19,6 +19,10 @@ namespace NSRetail.ReportForms.POS
 
         public override IEnumerable<string> TotalSummaryFields => summaryColumns;
 
+        public override Control FirstControl => cmbBranch;
+
+        public override Control LastControl => dtToDate;
+
         public ucDayClosureList()
         {
             InitializeComponent();

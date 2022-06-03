@@ -3,6 +3,7 @@ using DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.Profitability
 {
@@ -11,6 +12,10 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
         private Dictionary<string, string> specificColumnHeaders;
 
         public override Dictionary<string, string> SpecificColumnHeaders => specificColumnHeaders;
+
+        public override Control FirstControl => cmbBranch;
+
+        public override Control LastControl => dtpToDate;
 
         public ucItemWise()
         {

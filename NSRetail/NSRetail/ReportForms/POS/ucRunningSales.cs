@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.POS
 {
@@ -28,5 +29,9 @@ namespace NSRetail.ReportForms.POS
             };
             return GetReportData("USP_RPT_RUNNINGSALE", parameters);
         }
+
+        public override Control FirstControl => cmbBranch;
+
+        public override Control LastControl => cmbBranch;
     }
 }

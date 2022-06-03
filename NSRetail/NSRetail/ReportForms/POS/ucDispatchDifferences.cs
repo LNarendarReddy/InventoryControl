@@ -15,7 +15,7 @@ namespace NSRetail
     public partial class ucDispatchDifferences : SearchCriteriaBase
     {
         Dictionary<string, string> columnHeaders;
-
+        List<BaseEdit> mandatoryFields;
         public ucDispatchDifferences()
         {
             InitializeComponent();
@@ -25,6 +25,8 @@ namespace NSRetail
                 , { "RECEIVEDQUANTITY", "Recieved Quantity" }
                 , { "STOCKDIFF", "Stock Difference" }
             };
+
+            mandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -54,6 +56,10 @@ namespace NSRetail
 
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
 
-        public override IEnumerable<BaseEdit> MandatoryFields => new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
+        public override IEnumerable<BaseEdit> MandatoryFields => mandatoryFields;
+
+        public override Control FirstControl => cmbBranch;
+
+        public override Control LastControl => dtToDate;
     }
 }

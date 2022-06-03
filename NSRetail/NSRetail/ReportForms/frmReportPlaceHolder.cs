@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
@@ -6,7 +7,6 @@ using DevExpress.XtraLayout;
 using DevExpress.XtraSplashScreen;
 using Entity;
 using NSRetail.ReportForms.POS;
-using NSRetail.ReportForms.Wareshouse;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,46 +30,11 @@ namespace NSRetail.ReportForms
         BackgroundWorker bgwGetData = new BackgroundWorker();
 
         private void frmReportPlaceHolder_Load(object sender, EventArgs e)
-        {
-            List<ReportHolder> reportList = new List<ReportHolder>();
-            ReportHolder branchReports = new ReportHolder() { ReportName = "Branch Reports" };
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds by Item", SearchCriteriaControl = new ucBranchRefundByItems() });
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
-            reportList.Add(branchReports);
-
-            ReportHolder posReports = new ReportHolder() { ReportName = "POS Reports" };
-            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure", SearchCriteriaControl = new ucDayClosureList() });
-            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Running sales", SearchCriteriaControl = new ucRunningSales() });
-            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucBranchRefunds() });
-            reportList.Add(posReports);
-
-            ReportHolder wareHouseReports = new ReportHolder() { ReportName = "Warehouse Reports" };
-            wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Dealer Indent", SearchCriteriaControl = new ucDealerIndent() });
-
-            ReportHolder StockReports = new ReportHolder() { ReportName = "Stock Reports" };
-            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Invoice List", SearchCriteriaControl = new Wareshouse.StockReports.ucInvoiceList() });
-            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch List", SearchCriteriaControl = new Wareshouse.StockReports.ucDispatchList() });
-            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch DC List", SearchCriteriaControl = new Wareshouse.StockReports.ucDispatchDCList() });
-            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Summary By Branch", SearchCriteriaControl = new Wareshouse.StockReports.ucStockSummaryByBranch() });
-            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Zero Stock", SearchCriteriaControl = new Wareshouse.StockReports.ucZeroStock() });
-            wareHouseReports.SubCategory.Add(StockReports);
-
-            ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
-            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new Wareshouse.Profitability.ucPeriodicity() });
-            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new Wareshouse.Profitability.ucItemWise() });
-            wareHouseReports.SubCategory.Add(profitabilityReports);
-            reportList.Add(wareHouseReports);
-
-            ReportHolder itemReports = new ReportHolder() { ReportName = "Item Reports" };
-            itemReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales", SearchCriteriaControl = null });
-            itemReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales 2", SearchCriteriaControl = null });
-            reportList.Add(itemReports);
-
+        {          
             bgwGetData.DoWork += BgwGetData_DoWork;
             bgwGetData.RunWorkerCompleted += BgwGetData_RunWorkerCompleted;
 
-            tlReport.DataSource = reportList;
+            tlReport.DataSource = InitializeTreeList();
             tlReport.ChildListFieldName = "SubCategory";
             tlReport.ExpandAll();
         }
@@ -103,7 +68,10 @@ namespace NSRetail.ReportForms
 
             foreach (GridColumn column in gvResults.Columns)
             {
-                column.Visible = !column.FieldName.EndsWith("ID");
+                column.Visible = !column.FieldName.EndsWith("ID") 
+                    && (searchCriteria.HiddenColumns == null || !searchCriteria.HiddenColumns.Contains(column.FieldName));
+
+                if (!column.Visible) continue;
 
                 // first set the generic headers if available
                 if (searchCriteria.GenericColumnHeaders != null && searchCriteria.GenericColumnHeaders.ContainsKey(column.FieldName))
@@ -125,7 +93,8 @@ namespace NSRetail.ReportForms
 
                     column.Summary.Add(siTotal);
                     gvResults.OptionsView.ShowFooter = true;
-                }
+                    column.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Far;
+                }                             
 
                 column.OptionsColumn.AllowEdit = searchCriteria.EditableColumns != null && searchCriteria.EditableColumns.Contains(column.FieldName);
             }
@@ -142,10 +111,12 @@ namespace NSRetail.ReportForms
                     VisibleIndex = gvResults.Columns.Count,
                     ColumnEdit = btnAction
                 };
+
                 gvResults.Columns.Add(gcButtonColumn);
+                gcButtonColumn.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
             }
 
-            if(searchCriteria.Periodicity != null && gvResults.Columns.ColumnByFieldName("PERIODOCITY") != null)
+            if (searchCriteria.Periodicity != null && gvResults.Columns.ColumnByFieldName("PERIODOCITY") != null)
             {
                 GridColumn periodicityColumn = gvResults.Columns.ColumnByFieldName("PERIODOCITY");
 
@@ -166,6 +137,15 @@ namespace NSRetail.ReportForms
                 periodicityColumn.ColumnEdit = dtpPeriodicity;
 
             }
+
+            GridColumn gcSerialNo = gvResults.Columns.ColumnByFieldName("SNO");
+            if (gcSerialNo != null)
+            {
+                gcSerialNo.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Near;
+                gcSerialNo.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Near;
+            }
+
+            (searchCriteria.FirstControl ?? searchCriteria).Focus();
         }
 
         private void tlReport_SelectionChanged(object sender, EventArgs e)
@@ -191,6 +171,8 @@ namespace NSRetail.ReportForms
                 DevExpress.XtraLayout.Utils.LayoutVisibility.Always : 
                 DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             dpTop.Text = $"{dpTop.Text} for {selectedReportHolder.ReportName}";
+
+            (selectedReportHolder.SearchCriteriaControl.FirstControl ?? selectedReportHolder.SearchCriteriaControl).Focus();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -269,6 +251,63 @@ namespace NSRetail.ReportForms
         private void btnAction_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             selectedReportHolder.SearchCriteriaControl.ActionExecute(gvResults.FocusedColumn.Caption, gvResults.GetFocusedDataRow());
+        }
+
+        private List<ReportHolder> InitializeTreeList()
+        {
+            List<ReportHolder> reportList = new List<ReportHolder>();
+            ReportHolder branchReports = new ReportHolder() { ReportName = "Branch Reports" };
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds by Item", SearchCriteriaControl = new ucBranchRefundByItems() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
+            reportList.Add(branchReports);
+
+            ReportHolder posReports = new ReportHolder() { ReportName = "POS Reports" };
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure", SearchCriteriaControl = new ucDayClosureList() });
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Running sales", SearchCriteriaControl = new ucRunningSales() });
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucBranchRefunds() });
+            reportList.Add(posReports);
+
+            ReportHolder wareHouseReports = new ReportHolder() { ReportName = "Warehouse Reports" };
+            wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Dealer Indent", SearchCriteriaControl = new ucDealerIndent() });
+
+            ReportHolder StockReports = new ReportHolder() { ReportName = "Stock Reports" };
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Invoice List", SearchCriteriaControl = new Wareshouse.StockReports.ucInvoiceList() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch List", SearchCriteriaControl = new Wareshouse.StockReports.ucDispatchList() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch DC List", SearchCriteriaControl = new Wareshouse.StockReports.ucDispatchDCList() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Summary By Branch", SearchCriteriaControl = new Wareshouse.StockReports.ucStockSummaryByBranch() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Zero Stock", SearchCriteriaControl = new Wareshouse.StockReports.ucZeroStock() });
+            wareHouseReports.SubCategory.Add(StockReports);
+
+            ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
+            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new Wareshouse.Profitability.ucPeriodicity() });
+            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new Wareshouse.Profitability.ucItemWise() });
+            wareHouseReports.SubCategory.Add(profitabilityReports);
+            reportList.Add(wareHouseReports);
+
+            ReportHolder itemReports = new ReportHolder() { ReportName = "Item Reports" };
+            itemReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales", SearchCriteriaControl = null });
+            itemReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales 2", SearchCriteriaControl = null });
+            reportList.Add(itemReports);
+
+            reportList.ForEach(x => SubscribeLastControl(x));
+
+            return reportList;
+        }
+
+        private void SubscribeLastControl(ReportHolder rptHolder)
+        {
+            rptHolder.SubCategory?.ForEach(x => SubscribeLastControl(x));
+
+            if (rptHolder?.SearchCriteriaControl?.LastControl == null) return;
+            rptHolder.SearchCriteriaControl.LastControl.KeyDown += LastControl_KeyDown;
+        }
+
+        private void LastControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            btnSearch.Focus();
+            e.Handled = true;
         }
     }
 

@@ -1,13 +1,6 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.StockReports
@@ -37,6 +30,10 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             cmbBranch.EditValue = 0;
         }
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
+
+        public override Control FirstControl => cmbBranch;
+
+        public override Control LastControl => cmbBranch;
 
         public override DataTable GetData()
         {

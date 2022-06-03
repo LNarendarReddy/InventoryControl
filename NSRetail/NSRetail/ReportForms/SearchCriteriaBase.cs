@@ -67,7 +67,13 @@ namespace NSRetail
 
         public virtual IEnumerable<string> EditableColumns { get; }
 
+        public virtual IEnumerable<string> HiddenColumns { get; }
+
         public virtual IEnumerable<string> ButtonColumns => buttonColumns;
+
+        public virtual Control FirstControl { get; }
+
+        public virtual Control LastControl { get; }
 
         public virtual void ActionExecute(string buttonText, DataRow drFocusedRow) { }
 

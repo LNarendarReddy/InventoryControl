@@ -1,15 +1,9 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.StockReports
@@ -19,6 +13,8 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
         Dictionary<string, string> columnHeaders;
         List<string> buttonColumns;
         List<string> summaryColumns;
+        List<string> hiddenColumns;
+
         public ucInvoiceList()
         {
             InitializeComponent();
@@ -38,6 +34,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
 
             buttonColumns = new List<string>() { "View" };
             summaryColumns = new List<string>() { "FINALPRICE"};
+            hiddenColumns = new List<string>() { "TAXINCLUSIVE", "TCS", "DISCOUNTPER", "DISCOUNT", "EXPENSES", "TRANSPORT" };
 
             cmbDealer.Properties.DataSource = new MasterRepository().GetDealer();
             cmbDealer.Properties.DisplayMember = "DEALERNAME";
@@ -52,6 +49,12 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
         public override IEnumerable<string> ButtonColumns => buttonColumns;
 
         public override IEnumerable<string> TotalSummaryFields => summaryColumns;
+
+        public override IEnumerable<string> HiddenColumns => hiddenColumns;
+
+        public override Control FirstControl => cmbDealer;
+
+        public override Control LastControl => dtpToDate;
 
         public override DataTable GetData()
         {
