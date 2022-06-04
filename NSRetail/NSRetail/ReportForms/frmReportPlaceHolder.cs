@@ -249,12 +249,17 @@ namespace NSRetail.ReportForms
             profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new Wareshouse.Profitability.ucPeriodicity() });
             profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new Wareshouse.Profitability.ucItemWise() });
             wareHouseReports.SubCategory.Add(profitabilityReports);
-            reportList.Add(wareHouseReports);
+
+            ReportHolder taxReports = new ReportHolder() { ReportName = "Tax Reports" };
+            taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax break-up day wise", SearchCriteriaControl = new Wareshouse.TaxBreakUp.ucTaxBreakUpDayWise() });
+            wareHouseReports.SubCategory.Add(taxReports);
 
             wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Indent", SearchCriteriaControl = new ucDealerIndent() });
             wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Counting Sheets", SearchCriteriaControl = new ucStockCountingList() });
             wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Returns Sheets", SearchCriteriaControl = new ucSupplierReturnsList() });
             wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Indent List", SearchCriteriaControl = new ucSupplierIndentList() });
+
+            reportList.Add(wareHouseReports);
 
             reportList.ForEach(x => SubscribeLastControl(x));
 

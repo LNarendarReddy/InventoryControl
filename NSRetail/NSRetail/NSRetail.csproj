@@ -107,6 +107,12 @@
     <Compile Include="Counting\frmCounting.Designer.cs">
       <DependentUpon>frmCounting.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.Designer.cs">
+      <DependentUpon>ucTaxBreakUpDayWise.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnUsed\frmStockCounting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -642,6 +648,9 @@
     <Compile Include="Utilities\Utility.cs" />
     <EmbeddedResource Include="Counting\frmCounting.resx">
       <DependentUpon>frmCounting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.resx">
+      <DependentUpon>ucTaxBreakUpDayWise.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UnUsed\frmStockCounting.resx">
       <DependentUpon>frmStockCounting.cs</DependentUpon>
