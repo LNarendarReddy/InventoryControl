@@ -107,10 +107,10 @@
     <Compile Include="Counting\frmCounting.Designer.cs">
       <DependentUpon>frmCounting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Counting\frmStockCounting.cs">
+    <Compile Include="NotUsed\frmStockCounting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Counting\frmStockCounting.Designer.cs">
+    <Compile Include="NotUsed\frmStockCounting.Designer.cs">
       <DependentUpon>frmStockCounting.cs</DependentUpon>
     </Compile>
     <Compile Include="Counting\frmViewItems.cs">
@@ -323,10 +323,10 @@
     <Compile Include="Offer\frmOfferManagement.Designer.cs">
       <DependentUpon>frmOfferManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="POS\frmBRefund.cs">
+    <Compile Include="NotUsed\frmBRefund.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="POS\frmBRefund.Designer.cs">
+    <Compile Include="NotUsed\frmBRefund.Designer.cs">
       <DependentUpon>frmBRefund.cs</DependentUpon>
     </Compile>
     <Compile Include="POS\frmBRefundDetail.cs">
@@ -335,10 +335,10 @@
     <Compile Include="POS\frmBRefundDetail.Designer.cs">
       <DependentUpon>frmBRefundDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="POS\frmDayClosureList.cs">
+    <Compile Include="NotUsed\frmDayClosureList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="POS\frmDayClosureList.Designer.cs">
+    <Compile Include="NotUsed\frmDayClosureList.Designer.cs">
       <DependentUpon>frmDayClosureList.cs</DependentUpon>
     </Compile>
     <Compile Include="POS\frmDayClosureSummary.cs">
@@ -353,10 +353,10 @@
     <Compile Include="ReportForms\frmItemSummary.Designer.cs">
       <DependentUpon>frmItemSummary.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\frmItemwiseSales.cs">
+    <Compile Include="NotUsed\frmItemwiseSales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportForms\frmItemwiseSales.Designer.cs">
+    <Compile Include="NotUsed\frmItemwiseSales.Designer.cs">
       <DependentUpon>frmItemwiseSales.cs</DependentUpon>
     </Compile>
     <Compile Include="POS\frmRunningSales.cs">
@@ -371,10 +371,10 @@
     <Compile Include="ReportForms\frmReportPlaceHolder.Designer.cs">
       <DependentUpon>frmReportPlaceHolder.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\frmTaxwisesale.cs">
+    <Compile Include="NotUsed\frmTaxwisesale.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportForms\frmTaxwisesale.Designer.cs">
+    <Compile Include="NotUsed\frmTaxwisesale.Designer.cs">
       <DependentUpon>frmTaxwisesale.cs</DependentUpon>
     </Compile>
     <Compile Include="POS\frmViewDCBills.cs">
@@ -389,10 +389,10 @@
     <Compile Include="POS\frmViewDCItems.Designer.cs">
       <DependentUpon>frmViewDCItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\frmZeroStock.cs">
+    <Compile Include="NotUsed\frmZeroStock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportForms\frmZeroStock.Designer.cs">
+    <Compile Include="NotUsed\frmZeroStock.Designer.cs">
       <DependentUpon>frmZeroStock.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -505,6 +505,12 @@
     <Compile Include="ReportForms\Wareshouse\ucStockCountingList.Designer.cs">
       <DependentUpon>ucStockCountingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\ucSupplierIndentList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\ucSupplierIndentList.Designer.cs">
+      <DependentUpon>ucSupplierIndentList.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\ucSupplierReturnsList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -553,16 +559,16 @@
     <Compile Include="Supplier\frmDealerIndent.Designer.cs">
       <DependentUpon>frmDealerIndent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Supplier\frmDealerIndentList.cs">
+    <Compile Include="NotUsed\frmDealerIndentList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Supplier\frmDealerIndentList.Designer.cs">
+    <Compile Include="NotUsed\frmDealerIndentList.Designer.cs">
       <DependentUpon>frmDealerIndentList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Stock\frmDispatchDCList.cs">
+    <Compile Include="NotUsed\frmDispatchDCList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock\frmDispatchDCList.Designer.cs">
+    <Compile Include="NotUsed\frmDispatchDCList.Designer.cs">
       <DependentUpon>frmDispatchDCList.cs</DependentUpon>
     </Compile>
     <Compile Include="Stock\frmDispatchDCPrint.cs">
@@ -571,16 +577,16 @@
     <Compile Include="Stock\frmDispatchDCPrint.Designer.cs">
       <DependentUpon>frmDispatchDCPrint.cs</DependentUpon>
     </Compile>
-    <Compile Include="Stock\frmDispatchList.cs">
+    <Compile Include="NotUsed\frmDispatchList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock\frmDispatchList.Designer.cs">
+    <Compile Include="NotUsed\frmDispatchList.Designer.cs">
       <DependentUpon>frmDispatchList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Stock\frmInvoiceList.cs">
+    <Compile Include="NotUsed\frmInvoiceList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock\frmInvoiceList.Designer.cs">
+    <Compile Include="NotUsed\frmInvoiceList.Designer.cs">
       <DependentUpon>frmInvoiceList.cs</DependentUpon>
     </Compile>
     <Compile Include="Stock\frmStockDispatch.cs">
@@ -601,10 +607,10 @@
     <Compile Include="Stock\frmStockEntryPreview.Designer.cs">
       <DependentUpon>frmStockEntryPreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="Stock\frmStockSummary.cs">
+    <Compile Include="NotUsed\frmStockSummary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock\frmStockSummary.Designer.cs">
+    <Compile Include="NotUsed\frmStockSummary.Designer.cs">
       <DependentUpon>frmStockSummary.cs</DependentUpon>
     </Compile>
     <Compile Include="Supplier\frmSupplierReturns.cs">
@@ -613,10 +619,10 @@
     <Compile Include="Supplier\frmSupplierReturns.Designer.cs">
       <DependentUpon>frmSupplierReturns.cs</DependentUpon>
     </Compile>
-    <Compile Include="Supplier\frmSupplierReturnsList.cs">
+    <Compile Include="NotUsed\frmSupplierReturnsList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Supplier\frmSupplierReturnsList.Designer.cs">
+    <Compile Include="NotUsed\frmSupplierReturnsList.Designer.cs">
       <DependentUpon>frmSupplierReturnsList.cs</DependentUpon>
     </Compile>
     <Compile Include="Supplier\frmViewReturnItems.cs">
@@ -637,7 +643,7 @@
     <EmbeddedResource Include="Counting\frmCounting.resx">
       <DependentUpon>frmCounting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Counting\frmStockCounting.resx">
+    <EmbeddedResource Include="NotUsed\frmStockCounting.resx">
       <DependentUpon>frmStockCounting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Counting\frmViewItems.resx">
@@ -745,13 +751,13 @@
     <EmbeddedResource Include="Offer\frmOfferManagement.resx">
       <DependentUpon>frmOfferManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="POS\frmBRefund.resx">
+    <EmbeddedResource Include="NotUsed\frmBRefund.resx">
       <DependentUpon>frmBRefund.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POS\frmBRefundDetail.resx">
       <DependentUpon>frmBRefundDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="POS\frmDayClosureList.resx">
+    <EmbeddedResource Include="NotUsed\frmDayClosureList.resx">
       <DependentUpon>frmDayClosureList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POS\frmDayClosureSummary.resx">
@@ -760,7 +766,7 @@
     <EmbeddedResource Include="ReportForms\frmItemSummary.resx">
       <DependentUpon>frmItemSummary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\frmItemwiseSales.resx">
+    <EmbeddedResource Include="NotUsed\frmItemwiseSales.resx">
       <DependentUpon>frmItemwiseSales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POS\frmRunningSales.resx">
@@ -769,7 +775,7 @@
     <EmbeddedResource Include="ReportForms\frmReportPlaceHolder.resx">
       <DependentUpon>frmReportPlaceHolder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\frmTaxwisesale.resx">
+    <EmbeddedResource Include="NotUsed\frmTaxwisesale.resx">
       <DependentUpon>frmTaxwisesale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POS\frmViewDCBills.resx">
@@ -778,7 +784,7 @@
     <EmbeddedResource Include="POS\frmViewDCItems.resx">
       <DependentUpon>frmViewDCItems.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\frmZeroStock.resx">
+    <EmbeddedResource Include="NotUsed\frmZeroStock.resx">
       <DependentUpon>frmZeroStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -843,6 +849,9 @@
     <EmbeddedResource Include="ReportForms\Wareshouse\ucStockCountingList.resx">
       <DependentUpon>ucStockCountingList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\ucSupplierIndentList.resx">
+      <DependentUpon>ucSupplierIndentList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\ucSupplierReturnsList.resx">
       <DependentUpon>ucSupplierReturnsList.cs</DependentUpon>
     </EmbeddedResource>
@@ -867,19 +876,19 @@
     <EmbeddedResource Include="Supplier\frmDealerIndent.resx">
       <DependentUpon>frmDealerIndent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Supplier\frmDealerIndentList.resx">
+    <EmbeddedResource Include="NotUsed\frmDealerIndentList.resx">
       <DependentUpon>frmDealerIndentList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\frmDispatchDCList.resx">
+    <EmbeddedResource Include="NotUsed\frmDispatchDCList.resx">
       <DependentUpon>frmDispatchDCList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmDispatchDCPrint.resx">
       <DependentUpon>frmDispatchDCPrint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\frmDispatchList.resx">
+    <EmbeddedResource Include="NotUsed\frmDispatchList.resx">
       <DependentUpon>frmDispatchList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\frmInvoiceList.resx">
+    <EmbeddedResource Include="NotUsed\frmInvoiceList.resx">
       <DependentUpon>frmInvoiceList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmStockDispatch.resx">
@@ -891,13 +900,13 @@
     <EmbeddedResource Include="Stock\frmStockEntryPreview.resx">
       <DependentUpon>frmStockEntryPreview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\frmStockSummary.resx">
+    <EmbeddedResource Include="NotUsed\frmStockSummary.resx">
       <DependentUpon>frmStockSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmSupplierReturns.resx">
       <DependentUpon>frmSupplierReturns.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Supplier\frmSupplierReturnsList.resx">
+    <EmbeddedResource Include="NotUsed\frmSupplierReturnsList.resx">
       <DependentUpon>frmSupplierReturnsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmViewReturnItems.resx">

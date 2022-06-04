@@ -74,12 +74,11 @@
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup15 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup16 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -90,6 +89,7 @@
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -678,10 +678,11 @@
             // 
             // btnDealerIndent
             // 
-            this.btnDealerIndent.Caption = "Dealer Indent List";
+            this.btnDealerIndent.Caption = "Supplier Indent List";
             this.btnDealerIndent.Id = 48;
             this.btnDealerIndent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDealerIndent.ImageOptions.SvgImage")));
             this.btnDealerIndent.Name = "btnDealerIndent";
+            this.btnDealerIndent.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnDealerIndent.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDealerIndent_ItemClick);
             // 
             // btnSupplierReturns
@@ -706,10 +707,9 @@
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2,
             this.ribbonPageGroup5,
-            this.ribbonPageGroup8,
             this.ribbonPageGroup3,
             this.ribbonPageGroup15,
-            this.ribbonPageGroup6});
+            this.ribbonPageGroup16});
             this.ribbonPage3.Name = "ribbonPage3";
             this.ribbonPage3.Text = "Operations";
             // 
@@ -717,7 +717,6 @@
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.btnItem);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnBarCodePrint);
-            this.ribbonPageGroup2.ItemLinks.Add(this.bbiItemSummary);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Item";
             // 
@@ -731,13 +730,6 @@
             this.ribbonPageGroup5.ItemLinks.Add(this.btnLogout);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "Refresh";
-            // 
-            // ribbonPageGroup8
-            // 
-            this.ribbonPageGroup8.ItemLinks.Add(this.btnItemGroup);
-            this.ribbonPageGroup8.ItemLinks.Add(this.btnOfferList);
-            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
-            this.ribbonPageGroup8.Text = "Offer && Deals";
             // 
             // ribbonPageGroup3
             // 
@@ -755,29 +747,31 @@
             this.ribbonPageGroup15.Name = "ribbonPageGroup15";
             this.ribbonPageGroup15.Text = "Supplier";
             // 
-            // ribbonPageGroup6
+            // ribbonPageGroup16
             // 
-            this.ribbonPageGroup6.ItemLinks.Add(this.bbiSyncStatus, true);
-            this.ribbonPageGroup6.Name = "ribbonPageGroup6";
-            this.ribbonPageGroup6.Text = "Sync";
+            this.ribbonPageGroup16.ItemLinks.Add(this.bbiItemSummary);
+            this.ribbonPageGroup16.ItemLinks.Add(this.bbiReport);
+            this.ribbonPageGroup16.Name = "ribbonPageGroup16";
+            this.ribbonPageGroup16.Text = "Reports";
             // 
             // ribbonPage6
             // 
             this.ribbonPage6.Appearance.Options.UseFont = true;
             this.ribbonPage6.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup16,
+            this.ribbonPageGroup8,
             this.ribbonPageGroup7,
             this.ribbonPageGroup9,
             this.ribbonPageGroup13,
             this.ribbonPageGroup14});
             this.ribbonPage6.Name = "ribbonPage6";
-            this.ribbonPage6.Text = "Reports";
+            this.ribbonPage6.Text = "Offer & Deals";
             // 
-            // ribbonPageGroup16
+            // ribbonPageGroup8
             // 
-            this.ribbonPageGroup16.ItemLinks.Add(this.bbiReport);
-            this.ribbonPageGroup16.Name = "ribbonPageGroup16";
-            this.ribbonPageGroup16.Text = "Reports";
+            this.ribbonPageGroup8.ItemLinks.Add(this.btnItemGroup);
+            this.ribbonPageGroup8.ItemLinks.Add(this.btnOfferList);
+            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
+            this.ribbonPageGroup8.Text = "Offer && Deals";
             // 
             // ribbonPageGroup7
             // 
@@ -813,6 +807,7 @@
             this.ribbonPageGroup14.ItemLinks.Add(this.btnSupplierReturnsList);
             this.ribbonPageGroup14.Name = "ribbonPageGroup14";
             this.ribbonPageGroup14.Text = "List";
+            this.ribbonPageGroup14.Visible = false;
             // 
             // ribbonPage1
             // 
@@ -822,7 +817,8 @@
             this.ribbonPageGroup4,
             this.ribbonPageGroup10,
             this.ribbonPageGroup11,
-            this.ribbonPageGroup12});
+            this.ribbonPageGroup12,
+            this.ribbonPageGroup6});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Admin";
             // 
@@ -861,6 +857,12 @@
             this.ribbonPageGroup12.ItemLinks.Add(this.btnPrinterMaster);
             this.ribbonPageGroup12.Name = "ribbonPageGroup12";
             this.ribbonPageGroup12.Text = "Other";
+            // 
+            // ribbonPageGroup6
+            // 
+            this.ribbonPageGroup6.ItemLinks.Add(this.bbiSyncStatus, true);
+            this.ribbonPageGroup6.Name = "ribbonPageGroup6";
+            this.ribbonPageGroup6.Text = "Sync";
             // 
             // repositoryItemButtonEdit1
             // 

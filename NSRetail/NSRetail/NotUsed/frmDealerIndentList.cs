@@ -14,6 +14,7 @@ using System.Windows.Forms;
 
 namespace NSRetail
 {
+    [Obsolete]
     public partial class frmDealerIndentList : DevExpress.XtraEditors.XtraForm
     {
         public frmDealerIndentList()
