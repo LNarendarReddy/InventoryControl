@@ -1,11 +1,9 @@
-﻿using DataAccess;
-using DevExpress.Utils;
+﻿using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
-using DevExpress.XtraLayout;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
-using Entity;
 using NSRetail.ReportForms.POS;
 using NSRetail.ReportForms.Wareshouse;
 using NSRetail.ReportForms.Wareshouse.SaleReports;
@@ -21,6 +19,10 @@ namespace NSRetail.ReportForms
     public partial class frmReportPlaceHolder : XtraForm
     {
         List<Type> summableTypes = new List<Type>() { typeof(int), typeof(double), typeof(decimal), typeof(float) };
+
+        public GridControl ResultsGrid => gcResults;
+
+        public GridView ResultsGridView => gvResults;
 
         public frmReportPlaceHolder()
         {
@@ -174,10 +176,7 @@ namespace NSRetail.ReportForms
             selectedReportHolder.SearchCriteriaControl.Location = new System.Drawing.Point(5, 5);
 
             btnSearch.Enabled = true;
-            btnReport.Enabled = true;
-            lcibtnSave.Visibility = selectedReportHolder.ReportName == "Dealer Indent" ? 
-                DevExpress.XtraLayout.Utils.LayoutVisibility.Always : 
-                DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            btnReport.Enabled = true;            
             dpTop.Text = $"{dpTop.Text} for {selectedReportHolder.ReportName}";
 
             (selectedReportHolder.SearchCriteriaControl.FirstControl ?? selectedReportHolder.SearchCriteriaControl).Focus();
@@ -185,20 +184,10 @@ namespace NSRetail.ReportForms
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (selectedReportHolder == null || selectedReportHolder.SearchCriteriaControl == null) return;
-                        
-            var layoutControlOfSearch = selectedReportHolder.SearchCriteriaControl.Controls.OfType<LayoutControl>().First();
-            var missingValues = selectedReportHolder.SearchCriteriaControl.MandatoryFields?
-                                    .Where(x => x.EditValue == null)
-                                    .Select(x => $"{Environment.NewLine}\t* " + layoutControlOfSearch.GetItemByControl(x).Text);
-
-            if(missingValues != null && missingValues.Any())
-            {
-                XtraMessageBox.Show("Please select the values for : " + Environment.NewLine + string.Join(string.Empty, missingValues)
-                    , "Mandatoy", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                selectedReportHolder.SearchCriteriaControl.MandatoryFields.First(x => x.EditValue == null).Focus();
+            if (selectedReportHolder == null
+                || selectedReportHolder.SearchCriteriaControl == null
+                || !selectedReportHolder.SearchCriteriaControl.ValidateMandatoryFields())
                 return;
-            }
 
             handle = SplashScreenManager.ShowOverlayForm(this);
             bgwGetData.RunWorkerAsync();            
@@ -212,42 +201,6 @@ namespace NSRetail.ReportForms
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var layoutControlOfSearch = selectedReportHolder.SearchCriteriaControl.Controls.OfType<LayoutControl>().First();
-                var missingValues = selectedReportHolder.SearchCriteriaControl.MandatoryFields?
-                                        .Where(x => x.EditValue == null)
-                                        .Select(x => $"{Environment.NewLine}\t* " + layoutControlOfSearch.GetItemByControl(x).Text);
-
-                if (missingValues != null && missingValues.Any())
-                {
-                    XtraMessageBox.Show("Please select the values for : " + Environment.NewLine + string.Join(string.Empty, missingValues)
-                        , "Mandatoy", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    selectedReportHolder.SearchCriteriaControl.MandatoryFields.First(x => x.EditValue == null).Focus();
-                    return;
-                }
-
-                if (gvResults.RowCount == 0)
-                    return;
-
-                DealerIndent dealerIndent = new DealerIndent();
-                dealerIndent.supplierID = (selectedReportHolder.SearchCriteriaControl as ucDealerIndent).cmbDealer.EditValue;
-                dealerIndent.FromDate = (selectedReportHolder.SearchCriteriaControl as ucDealerIndent).dtFromDate.EditValue;
-                dealerIndent.ToDate = (selectedReportHolder.SearchCriteriaControl as ucDealerIndent).dtToDate.EditValue;
-                dealerIndent.CategoryID = (selectedReportHolder.SearchCriteriaControl as ucDealerIndent).cmbCategory.EditValue;
-                dealerIndent.UserID = Utility.UserID;
-                dealerIndent.dtSupplierIndent = ((DataTable)gcResults.DataSource).Copy();
-                new ReportRepository().SaveSupplierIndent(dealerIndent);
-                gcResults.DataSource = null;
-            }
-            catch (Exception ex)
-            {
-                ErrorManagement.ErrorMgmt.ShowError(ex);
-            }
         }
 
         private void gvResults_KeyPress(object sender, KeyPressEventArgs e)

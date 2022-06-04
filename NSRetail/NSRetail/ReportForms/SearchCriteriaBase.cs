@@ -1,8 +1,12 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraLayout;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace NSRetail
@@ -13,6 +17,10 @@ namespace NSRetail
         LookUpEdit cmbPeriodicity;
 
         public LookUpEdit Periodicity => cmbPeriodicity;
+
+        protected GridView ResultGridView => (ParentForm as ReportForms.frmReportPlaceHolder)?.ResultsGridView;
+
+        protected GridControl ResultGrid => (ParentForm as ReportForms.frmReportPlaceHolder)?.ResultsGrid;
 
         public SearchCriteriaBase()
         {
@@ -93,5 +101,22 @@ namespace NSRetail
             cmbPeriodicity.Properties.DisplayMember = "Periodicityvalue";
             cmbPeriodicity.EditValue = "Daily";
         }
+
+        public virtual bool ValidateMandatoryFields()
+        {
+            var layoutControlOfSearch = Controls.OfType<LayoutControl>().First();
+            var missingValues = MandatoryFields?.Where(x => x.EditValue == null)
+                                    .Select(x => $"{Environment.NewLine}\t* " + layoutControlOfSearch.GetItemByControl(x).Text);
+
+            if (missingValues != null && missingValues.Any())
+            {
+                XtraMessageBox.Show("Please select the values for : " + Environment.NewLine + string.Join(string.Empty, missingValues)
+                    , "Mandatoy", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MandatoryFields.First(x => x.EditValue == null).Focus();
+                return false;
+            }
+
+            return true;
+        }        
     }
 }

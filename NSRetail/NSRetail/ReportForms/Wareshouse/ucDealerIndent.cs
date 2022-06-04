@@ -1,5 +1,7 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
+using Entity;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -69,5 +71,29 @@ namespace NSRetail.ReportForms
         public override Control FirstControl => cmbDealer;
 
         public override Control LastControl => dtToDate;
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {              
+                if (ResultGridView?.RowCount == 0 || !ValidateMandatoryFields())
+                    return;
+
+                GridControl resultsGrid = ResultGrid;
+                DealerIndent dealerIndent = new DealerIndent();
+                dealerIndent.supplierID = cmbDealer.EditValue;
+                dealerIndent.FromDate = dtFromDate.EditValue;
+                dealerIndent.ToDate = dtToDate.EditValue;
+                dealerIndent.CategoryID = cmbCategory.EditValue;
+                dealerIndent.UserID = Utility.UserID;
+                dealerIndent.dtSupplierIndent = ((DataTable)resultsGrid.DataSource).Copy();
+                new ReportRepository().SaveSupplierIndent(dealerIndent);
+                resultsGrid.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
+        }
     }
 }
