@@ -280,6 +280,19 @@ namespace NSRetail.ReportForms
             btnSearch.Focus();
             e.Handled = true;
         }
+
+        private void frmReportPlaceHolder_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if(e.KeyCode == Keys.F3)
+            //{
+            //    tlReport.Focus();
+            //}
+            //else 
+            if(e.KeyCode == Keys.F2)
+            {
+                (selectedReportHolder?.SearchCriteriaControl?.FirstControl ?? selectedReportHolder?.SearchCriteriaControl)?.Focus();
+            }
+        }
     }
 
     class ReportHolder
