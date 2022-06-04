@@ -499,6 +499,18 @@
     <Compile Include="ReportForms\Wareshouse\StockReports\ucInvoiceList.Designer.cs">
       <DependentUpon>ucInvoiceList.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\ucStockCountingList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\ucStockCountingList.Designer.cs">
+      <DependentUpon>ucStockCountingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\ucSupplierReturnsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\ucSupplierReturnsList.Designer.cs">
+      <DependentUpon>ucSupplierReturnsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptBarcode.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -827,6 +839,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucInvoiceList.resx">
       <DependentUpon>ucInvoiceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\ucStockCountingList.resx">
+      <DependentUpon>ucStockCountingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\ucSupplierReturnsList.resx">
+      <DependentUpon>ucSupplierReturnsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptBarcode.resx">
       <DependentUpon>rptBarcode.cs</DependentUpon>

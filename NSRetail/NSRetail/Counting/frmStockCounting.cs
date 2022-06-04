@@ -5,6 +5,7 @@ using System.Windows.Forms;
 
 namespace NSRetail
 {
+    [Obsolete]
     public partial class frmStockCounting : XtraForm
     {
         CountingRepository countingRepository = new CountingRepository();

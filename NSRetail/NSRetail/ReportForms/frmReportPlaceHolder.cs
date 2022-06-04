@@ -7,6 +7,7 @@ using DevExpress.XtraLayout;
 using DevExpress.XtraSplashScreen;
 using Entity;
 using NSRetail.ReportForms.POS;
+using NSRetail.ReportForms.Wareshouse;
 using NSRetail.ReportForms.Wareshouse.SaleReports;
 using System;
 using System.Collections.Generic;
@@ -276,7 +277,6 @@ namespace NSRetail.ReportForms
             reportList.Add(posReports);
 
             ReportHolder wareHouseReports = new ReportHolder() { ReportName = "Warehouse Reports" };
-            wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Dealer Indent", SearchCriteriaControl = new ucDealerIndent() });
 
             ReportHolder StockReports = new ReportHolder() { ReportName = "Stock Reports" };
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Invoice List", SearchCriteriaControl = new Wareshouse.StockReports.ucInvoiceList() });
@@ -297,6 +297,10 @@ namespace NSRetail.ReportForms
             profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new Wareshouse.Profitability.ucItemWise() });
             wareHouseReports.SubCategory.Add(profitabilityReports);
             reportList.Add(wareHouseReports);
+
+            wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Indent", SearchCriteriaControl = new ucDealerIndent() });
+            wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Counting Sheets", SearchCriteriaControl = new ucStockCountingList() });
+            wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Returns Sheets", SearchCriteriaControl = new ucSupplierReturnsList() });
 
             reportList.ForEach(x => SubscribeLastControl(x));
 

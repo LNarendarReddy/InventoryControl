@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 namespace NSRetail.Stock
 {
+    [Obsolete]
     public partial class frmSupplierReturnsList : DevExpress.XtraEditors.XtraForm
     {
         SupplierRepository supplierRepository = new SupplierRepository();
