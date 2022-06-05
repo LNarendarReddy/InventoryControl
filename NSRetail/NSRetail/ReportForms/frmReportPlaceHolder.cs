@@ -226,7 +226,7 @@ namespace NSRetail.ReportForms
 
             ReportHolder posReports = new ReportHolder() { ReportName = "POS Reports" };
             posReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure", SearchCriteriaControl = new ucDayClosureList() });
-            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Returns", SearchCriteriaControl = null});
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Returns", SearchCriteriaControl = new ucCustomerReturns()});
             reportList.Add(posReports);
 
             ReportHolder wareHouseReports = new ReportHolder() { ReportName = "Warehouse Reports" };
@@ -241,8 +241,9 @@ namespace NSRetail.ReportForms
 
             ReportHolder saleReports = new ReportHolder() { ReportName = "Sale Reports" };
             saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Running sales", SearchCriteriaControl = new ucRunningSales() });
-            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
             saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales", SearchCriteriaControl = new ucItemWiseSales() });
+            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise sales", SearchCriteriaControl = new ucSupplierWiseSales() });
+            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
             reportList.Add(saleReports);
 
             ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };

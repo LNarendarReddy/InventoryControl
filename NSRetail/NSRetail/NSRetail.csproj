@@ -107,6 +107,18 @@
     <Compile Include="Counting\frmCounting.Designer.cs">
       <DependentUpon>frmCounting.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\POS\ucCustomerReturns.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\POS\ucCustomerReturns.Designer.cs">
+      <DependentUpon>ucCustomerReturns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucSupplierWiseSales.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucSupplierWiseSales.Designer.cs">
+      <DependentUpon>ucSupplierWiseSales.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -648,6 +660,12 @@
     <Compile Include="Utilities\Utility.cs" />
     <EmbeddedResource Include="Counting\frmCounting.resx">
       <DependentUpon>frmCounting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\POS\ucCustomerReturns.resx">
+      <DependentUpon>ucCustomerReturns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucSupplierWiseSales.resx">
+      <DependentUpon>ucSupplierWiseSales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.resx">
       <DependentUpon>ucTaxBreakUpDayWise.cs</DependentUpon>

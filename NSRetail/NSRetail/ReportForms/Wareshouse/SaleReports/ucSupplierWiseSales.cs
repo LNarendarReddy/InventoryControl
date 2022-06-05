@@ -12,51 +12,58 @@ using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.SaleReports
 {
-    public partial class ucItemWiseSales : SearchCriteriaBase
+    public partial class ucSupplierWiseSales : SearchCriteriaBase
     {
         Dictionary<string, string> columnHeaders;
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
+        public override Control FirstControl => cmbSupplier;
 
-        public override Control FirstControl => cmbBranch;
         public override Control LastControl => chkIncludeBranch;
 
-        public ucItemWiseSales()
+        public ucSupplierWiseSales()
         {
             InitializeComponent();
-
             columnHeaders = new Dictionary<string, string>
             {
-                { "SALEQUANTITY", "Sale Quantity" }
-                , { "WEIGHTINKGS", "Weight In Kgs" }
+                { "DEALERNAME", "Supplier" }
                 , { "BILLDATE", "Bill Date" }
-                , { "DEALERNAME", "Supplier" }
-                , { "ACTUALBILLEDAMOUNT", "Billed Amount" }
+                , { "WEIGHTINKGS", "Weight In Kgs" }
             };
+
+            cmbSupplier.Properties.DataSource = new MasterRepository().GetDealer(true);
+            cmbSupplier.Properties.ValueMember = "DEALERID";
+            cmbSupplier.Properties.DisplayMember = "DEALERNAME";
+            cmbSupplier.EditValue = 0;
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
         }
-
         public override DataTable GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                { "BranchID", cmbBranch.EditValue }
+                { "DealerID", cmbSupplier.EditValue }
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
-                , { "IncludeBillDate", chkIncludeDate.EditValue}
-                , { "IncludeBillNo", chkIncludeBillNo.EditValue }
-                , { "IncludeBranch", chkIncludeBranch .EditValue }
+                , { "IncludeBillDate", chkIncludeDate .EditValue }
+                , { "IncludeItem", chkIncludeItem.EditValue }
+                , { "IncludeBranch", chkIncludeBranch.EditValue }
             };
-            DataTable dt = GetReportData("USP_RPT_ITEMWISESALE", parameters);
-            if (chkIncludeBillNo.EditValue.Equals(false)) dt.Columns.Remove("BILLNUMBER");
+            DataTable dt = GetReportData("USP_RPT_SUPPLIERWISESALES", parameters);
+            if (chkIncludeItem.EditValue.Equals(false))
+            {
+                dt.Columns.Remove("SKUCODE");
+                dt.Columns.Remove("ITEMCODE");
+                dt.Columns.Remove("ITEMNAME");
+                dt.Columns.Remove("CATEGORYNAME");
+                dt.Columns.Remove("SUBCATEGORYNAME");
+                dt.Columns.Remove("MRP");
+                dt.Columns.Remove("SALEPRICE");
+            }
             if (chkIncludeBranch.EditValue.Equals(false)) dt.Columns.Remove("BRANCHNAME");
             if (chkIncludeDate.EditValue.Equals(false)) dt.Columns.Remove("BILLDATE");
             return dt;
+            
         }
     }
 }

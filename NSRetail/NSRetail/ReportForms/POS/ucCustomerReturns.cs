@@ -10,27 +10,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NSRetail.ReportForms.Wareshouse.SaleReports
+namespace NSRetail.ReportForms.POS
 {
-    public partial class ucItemWiseSales : SearchCriteriaBase
+    public partial class ucCustomerReturns : SearchCriteriaBase
     {
         Dictionary<string, string> columnHeaders;
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
 
         public override Control FirstControl => cmbBranch;
         public override Control LastControl => chkIncludeBranch;
-
-        public ucItemWiseSales()
+        public ucCustomerReturns()
         {
             InitializeComponent();
-
             columnHeaders = new Dictionary<string, string>
             {
-                { "SALEQUANTITY", "Sale Quantity" }
-                , { "WEIGHTINKGS", "Weight In Kgs" }
-                , { "BILLDATE", "Bill Date" }
-                , { "DEALERNAME", "Supplier" }
-                , { "ACTUALBILLEDAMOUNT", "Billed Amount" }
+                { "REFUNDDATE", "Refund Date" }
+                , { "BILLNUMBER", "Bill Number" }
+                , { "REFUNDQUANTITY", "Quantity" }
+                , { "REFUNDWEIGHTINKGS", "Weight In Kgs" }
+                , { "REFUNDAMOUNT", "Refund Amount" }
             };
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
@@ -40,7 +38,6 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
             cmbBranch.EditValue = 0;
         }
-
         public override DataTable GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
@@ -48,14 +45,15 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 { "BranchID", cmbBranch.EditValue }
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
-                , { "IncludeBillDate", chkIncludeDate.EditValue}
-                , { "IncludeBillNo", chkIncludeBillNo.EditValue }
-                , { "IncludeBranch", chkIncludeBranch .EditValue }
+                , { "IncludeBillNo", chkIncludeBillNumber.EditValue }
+                , { "IncludeBranch", chkIncludeBranch.EditValue }
+                , { "IncludeRefundDate", chkIncludeDate.EditValue }
             };
-            DataTable dt = GetReportData("USP_RPT_ITEMWISESALE", parameters);
-            if (chkIncludeBillNo.EditValue.Equals(false)) dt.Columns.Remove("BILLNUMBER");
+            DataTable dt = GetReportData("USP_RPT_CUSTOMERRETURNS", parameters);
+
+            if (chkIncludeBillNumber.EditValue.Equals(false)) dt.Columns.Remove("BILLNUMBER");
             if (chkIncludeBranch.EditValue.Equals(false)) dt.Columns.Remove("BRANCHNAME");
-            if (chkIncludeDate.EditValue.Equals(false)) dt.Columns.Remove("BILLDATE");
+            if (chkIncludeDate.EditValue.Equals(false)) dt.Columns.Remove("REFUNDDATE");
             return dt;
         }
     }
