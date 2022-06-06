@@ -93,6 +93,8 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup17 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.bbiClearProcedureCache = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -144,10 +146,11 @@
             this.btnCounting,
             this.btnDealerIndent,
             this.btnSupplierReturns,
-            this.btnSupplierReturnsList});
+            this.btnSupplierReturnsList,
+            this.bbiClearProcedureCache});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ribbonControl1.MaxItemId = 51;
+            this.ribbonControl1.MaxItemId = 52;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -818,7 +821,8 @@
             this.ribbonPageGroup10,
             this.ribbonPageGroup11,
             this.ribbonPageGroup12,
-            this.ribbonPageGroup6});
+            this.ribbonPageGroup6,
+            this.ribbonPageGroup17});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Admin";
             // 
@@ -886,6 +890,20 @@
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
+            // 
+            // ribbonPageGroup17
+            // 
+            this.ribbonPageGroup17.ItemLinks.Add(this.bbiClearProcedureCache);
+            this.ribbonPageGroup17.Name = "ribbonPageGroup17";
+            this.ribbonPageGroup17.Text = "Database Cache";
+            // 
+            // bbiClearProcedureCache
+            // 
+            this.bbiClearProcedureCache.Caption = "Clear Procedure Cache";
+            this.bbiClearProcedureCache.Id = 51;
+            this.bbiClearProcedureCache.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiClearProcedureCache.ImageOptions.SvgImage")));
+            this.bbiClearProcedureCache.Name = "bbiClearProcedureCache";
+            this.bbiClearProcedureCache.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClearProcedureCache_ItemClick);
             // 
             // frmMain
             // 
@@ -977,6 +995,8 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
         private DevExpress.XtraBars.BarButtonItem btnSupplierReturnsList;
         private DevExpress.XtraBars.BarButtonItem btnBranchRefund;
+        private DevExpress.XtraBars.BarButtonItem bbiClearProcedureCache;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup17;
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using Entity;
 using Microsoft.Win32;
@@ -306,7 +307,7 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (04-06-2022)";
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (06-06-2022)";
 
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,
@@ -375,6 +376,7 @@ namespace NSRetail
                 ribbonPages.ForEach(x => x.Visible = Enumerable.Range(0, x.Groups.Count).Any(y => x.Groups[y].Visible));
             }
             btnStockCounting.Visibility = BarItemVisibility.Always;
+            bbiClearProcedureCache.Enabled = Utility.Role == "Admin";
         }
 
         private void btnRunningSale_ItemClick(object sender, ItemClickEventArgs e)
@@ -475,6 +477,12 @@ namespace NSRetail
             obj.IconOptions.ShowIcon = false;
             obj.MdiParent = this;
             obj.Show();
+        }
+
+        private void bbiClearProcedureCache_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new DataAccess.MasterRepository().ClearProcedureCache();
+            XtraMessageBox.Show("Database procedure cache cleared", "Operation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

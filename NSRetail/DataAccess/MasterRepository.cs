@@ -895,6 +895,7 @@ namespace DataAccess
             }
             return ObjUOM;
         }
+
         public GST SaveGST(GST ObjGST)
         {
             int GSTID = 0;
@@ -933,6 +934,7 @@ namespace DataAccess
             }
             return ObjGST;
         }
+
         public DataTable GetGST()
         {
             DataTable dtGST = new DataTable();
@@ -959,6 +961,7 @@ namespace DataAccess
             }
             return dtGST;
         }
+
         public GST DeleteGST(GST ObjGST)
         {
             int GSTID = 0;
@@ -990,6 +993,7 @@ namespace DataAccess
             }
             return ObjGST;
         }
+
         public DataTable GetPrinterType()
         {
             DataTable dtPrinterType = new DataTable();
@@ -1016,6 +1020,7 @@ namespace DataAccess
             }
             return dtPrinterType;
         }
+
         public PrinterSettings SavePrinterSettings(PrinterSettings ObjPrinterSettings)
         {
             int PRINTERSETTINGSID = 0;
@@ -1051,6 +1056,7 @@ namespace DataAccess
             }
             return ObjPrinterSettings;
         }
+
         public DataTable GetPrinterSettings(object UserID)
         {
             DataTable dtPrinterSettings = new DataTable();
@@ -1078,6 +1084,7 @@ namespace DataAccess
             }
             return dtPrinterSettings;
         }
+
         public DataTable GetStates()
         {
             DataTable dtStates = new DataTable();
@@ -1103,6 +1110,28 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
             return dtStates;
+        }
+
+        public void ClearProcedureCache()
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "DBCC FREEPROCCACHE";
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                 throw new Exception("Error While Clearing cache", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
         }
     }
 }
