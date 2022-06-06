@@ -128,6 +128,9 @@ namespace NSRetail.ReportForms
                 dtpPeriodicity.MaskSettings.UseMaskAsDisplayFormat = true;
                 switch (searchCriteria.Periodicity.EditValue.ToString())
                 {
+                    case "Hourly":
+                        dtpPeriodicity.MaskSettings.MaskExpression = "t";
+                        break;
                     case "Daily":
                         dtpPeriodicity.MaskSettings.MaskExpression = "d";
                         break;
@@ -254,6 +257,11 @@ namespace NSRetail.ReportForms
             ReportHolder taxReports = new ReportHolder() { ReportName = "Tax Reports" };
             taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax break-up day wise", SearchCriteriaControl = new Wareshouse.TaxBreakUp.ucTaxBreakUpDayWise() });
             wareHouseReports.SubCategory.Add(taxReports);
+
+            ReportHolder whSaleReports = new ReportHolder() { ReportName = "Sale Reports" };
+            whSaleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sale Periodicity Item wise", SearchCriteriaControl = new ucSalePeriodicity() });
+            whSaleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sale Hour wise", SearchCriteriaControl = new ucSalehourWise() });
+            wareHouseReports.SubCategory.Add(whSaleReports);
 
             wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Indent", SearchCriteriaControl = new ucDealerIndent() });
             wareHouseReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Counting Sheets", SearchCriteriaControl = new ucStockCountingList() });

@@ -43,6 +43,7 @@ namespace NSRetail
                 , {"BILLEDAMOUNT", "Billed Amount"}
                 , {"CREATEDBY", "User Name"}
                 , {"CREATEDDATE", "Created Date"}
+                , {"TIME", "Time"}
             };
 
             buttonColumns = new List<string>();
@@ -87,11 +88,13 @@ namespace NSRetail
 
         public virtual void ActionExecute(string buttonText, DataRow drFocusedRow) { }
 
-        protected void SetPeriodicty(LookUpEdit cmb)
+        protected void SetPeriodicty(LookUpEdit cmb, bool includeHourly = false)
         {
             cmbPeriodicity = cmb;
             DataTable dtPeriodicity = new DataTable();
             dtPeriodicity.Columns.Add("Periodicityvalue", typeof(string));
+
+            if(includeHourly) dtPeriodicity.Rows.Add(new []{ "Hourly" });
             dtPeriodicity.Rows.Add(new []{ "Daily" });
             dtPeriodicity.Rows.Add(new []{ "Monthly" });
             dtPeriodicity.Rows.Add(new []{ "Yearly" });
