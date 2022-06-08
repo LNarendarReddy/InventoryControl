@@ -11,8 +11,8 @@ import 'package:http/http.dart' as http;
 
 class StockDispatchItem extends StatefulWidget {
   int branchId;
-  int nStockcountingID;
-  StockDispatchItem(this.branchId, this.nStockcountingID);
+  int nStockDispatchID, categoryId;
+  StockDispatchItem(this.branchId, this.nStockDispatchID, this.categoryId);
 
   @override
   _StockDispatchItemState createState() => _StockDispatchItemState();
@@ -29,12 +29,16 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
   TextEditingController MRPController = new TextEditingController();
   TextEditingController salesPriceController = new TextEditingController();
   TextEditingController QuantityController = new TextEditingController();
+  TextEditingController treyNumberController = new TextEditingController();
+  TextEditingController weightInKgsController = new TextEditingController();
   final FocusNode _itemCodefocus = FocusNode();
   final FocusNode _itemNamefocus = FocusNode();
   final FocusNode _MRPfocus = FocusNode();
   final FocusNode _salesPricefocus = FocusNode();
   final FocusNode _Quantityfocus = FocusNode();
   final FocusNode _submitfocus = FocusNode();
+  final FocusNode _treyfocus=FocusNode();
+  final FocusNode _weightinkgsfocus=FocusNode();
   void onChange() {
     setState(() {
       getData();
@@ -64,7 +68,7 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
 
   Future<void> startBarcodeScanStream() async {
     FlutterBarcodeScanner.getBarcodeStreamReceiver(
-        '#ff6666', 'Cancel', true, ScanMode.BARCODE)
+            '#ff6666', 'Cancel', true, ScanMode.BARCODE)
         .listen((barcode) => print(barcode));
   }
 
@@ -123,7 +127,7 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
       String value = prefs.getString('token') ?? "";
       print(itemCodeController.text);
       final response = await http.get(
-          Uri.parse("http://43.228.95.51/nsretailapi/api/stockitems?itemcode=" +
+          Uri.parse("http://103.195.186.197/nsretailapi/api/stockitems?itemcode=" +
               itemCodeController.text),
           headers: {"Authorization": "Bearer $value"});
       _itemsList = loadItems(response.body);
@@ -171,7 +175,43 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
     currentFocus.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
   }
+  TextFormField txtTreyNumber(String title, IconData icon) {
+    return TextFormField(
+        textInputAction: TextInputAction.next,
+        controller: treyNumberController,
+        style: TextStyle(color: Colors.lightBlue),
+        focusNode: _treyfocus,
+        onFieldSubmitted: (term) {
+          _fieldFocusChange(context, _treyfocus, _Quantityfocus);
+        },
+        decoration: InputDecoration(
+          hintText: title,
+          hintStyle: TextStyle(color: Colors.lightBlue),
+          icon: Icon(
+            icon,
+            color: Colors.lightBlue,
+          ),
+        ));
+  }
 
+  TextFormField txtWeightInKgs(String title, IconData icon) {
+    return TextFormField(
+        textInputAction: TextInputAction.next,
+        controller: weightInKgsController,
+        style: TextStyle(color: Colors.lightBlue),
+        focusNode: _weightinkgsfocus,
+        onFieldSubmitted: (term) {
+          _fieldFocusChange(context, _weightinkgsfocus, _submitfocus);
+        },
+        decoration: InputDecoration(
+          hintText: title,
+          hintStyle: TextStyle(color: Colors.lightBlue),
+          icon: Icon(
+            icon,
+            color: Colors.lightBlue,
+          ),
+        ));
+  }
   TextFormField txtItemCode(String title, IconData icon) {
     return TextFormField(
         textInputAction: TextInputAction.next,
@@ -219,7 +259,7 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
       onChanged: (Items newValue) {
         setState(() {
           MRPdropdownvalue = newValue;
-          salesPriceController.text=MRPdropdownvalue.salesPrice.toString();
+          salesPriceController.text = MRPdropdownvalue.salesPrice.toString();
         });
       },
       items: _itemsList.map((Items item) {
@@ -233,6 +273,7 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
       }).toList(),
     );
   }
+
   Items salePricedropdownvalue = null;
   DropdownButton salePricedropDown() {
     print(_itemsList);
@@ -255,6 +296,7 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
       }).toList(),
     );
   }
+
   TextFormField txtMRP(String title, IconData icon) {
     return TextFormField(
         textInputAction: TextInputAction.next,
@@ -300,7 +342,7 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
         style: TextStyle(color: Colors.lightBlue),
         focusNode: _Quantityfocus,
         onFieldSubmitted: (term) {
-          _fieldFocusChange(context, _Quantityfocus, _submitfocus);
+          _fieldFocusChange(context, _Quantityfocus, _weightinkgsfocus);
         },
         decoration: InputDecoration(
           hintText: title,
@@ -321,7 +363,7 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
       child: RaisedButton(
         focusNode: _submitfocus,
         onPressed: () {
-          saveStockCount();
+          saveStockDispatch();
         },
         color: Colors.lightBlue,
         shape: RoundedRectangleBorder(
@@ -335,21 +377,25 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
     );
   }
 
-  saveStockCount() async {
+  saveStockDispatch() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       //Return String
       String value = prefs.getString('token') ?? "";
       String _userId = prefs.getString('userID') ?? "0";
       String insertUrl =
-          "http://43.228.95.51/nsretailapi/api/stockdispatch/InsertStockCounting/"+widget.nStockcountingID.toString()+"/0/" +
+          "http://103.195.186.197/nsretailapi/api/stockdispatch/InsertStockdispatch/" +
+              widget.nStockDispatchID.toString() +
+              "/0/" +
               widget.branchId.toString() +
               "/" +
               _userId +
               "/" +
               MRPdropdownvalue.itemPriceId.toString() +
               "/" +
-              QuantityController.text;
+              QuantityController.text +"/"+
+              treyNumberController.text +"/"+
+              weightInKgsController.text;
       print('insert url: ' + insertUrl);
 
       final response = await http.post(Uri.parse(insertUrl),
@@ -367,12 +413,12 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
   }
 
   clearFields() {
-    itemCodeController.text="";
-    itemNameController.text="";
+    itemCodeController.text = "";
+    itemNameController.text = "";
     MRP();
     //MRPController.text="";
-    salesPriceController.text="";
-    QuantityController.text="";
+    salesPriceController.text = "";
+    QuantityController.text = "";
   }
 
   Container textsection() {
@@ -393,7 +439,11 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
           SizedBox(height: 30.0),
           txtSalesPrice("Sales Price", Icons.price_check),
           SizedBox(height: 30.0),
+          txtTreyNumber("Trey Number",Icons.format_list_numbered),
+          SizedBox(height: 30.0),
           txtQuantity("Quantity", Icons.production_quantity_limits),
+          SizedBox(height: 30.0),
+          txtWeightInKgs("Weight I Kgs",Icons.monitor_weight),
         ],
       ),
     );

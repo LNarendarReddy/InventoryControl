@@ -11,7 +11,10 @@ import 'package:nsretail/api/users.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../login.dart';
+
 class BranchList extends StatefulWidget {
+  String userName;
+  BranchList(this.userName);
   @override
   _BranchListState createState() => _BranchListState();
 }
@@ -25,7 +28,7 @@ class _BranchListState extends State<BranchList> {
   bool loading = true;
   SharedPreferences sharedPreferences;
   String stUserID;
-  final String url = 'http://43.228.95.51/nsretailapi/api/branch';
+  final String url = 'http://103.195.186.197/nsretailapi/api/branch';
 
   void getData() async {
     try {
@@ -36,8 +39,8 @@ class _BranchListState extends State<BranchList> {
 
       print('userid');
       print(stUserID);
-      final response = await http.get(Uri.parse(url),
-          headers: {"Authorization": "Bearer $value"});
+      final response = await http
+          .get(Uri.parse(url), headers: {"Authorization": "Bearer $value"});
       _branchesList = loadBranches(response.body);
       _filteredBranchList = _branchesList;
       print('Branches: ${_branchesList.length}');
@@ -57,11 +60,14 @@ class _BranchListState extends State<BranchList> {
     Map<String, dynamic> map = json.decode(jsonString);
     final parsed = map["data"];
     print(parsed);
+    if (parsed != null)
     //final parsed=json.decode(jsonString).cast<Map<String,dynamic>>();
-    return parsed.map<Branches>((json) => Branches.fromJson(json)).toList();
+    {
+      return parsed.map<Branches>((json) => Branches.fromJson(json)).toList();
+    } else {
+      return [];
+    }
   }
-
-
 
   @override
   void initState() {
@@ -76,14 +82,25 @@ class _BranchListState extends State<BranchList> {
     if (sharedPreferences.getString('token') == null) {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (BuildContext context) => Login()),
-              (route) => false);
+          (route) => false);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Branches'),
+        actions: [
+          new Container(),
+          new Center(
+            child: Text(
+              widget.userName,
+            ),
+          )
+
+          // Icon(Icons.person,color: Colors.white,),
+        ],
       ),
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
@@ -102,7 +119,7 @@ class _BranchListState extends State<BranchList> {
               ),
             ),
             ListTile(
-              title: const Text('Logout'),
+              title: const Text('Logout   Ver 1.1.0'),
               onTap: () {
                 sharedPreferences.clear();
                 sharedPreferences.setString("token", "");
@@ -127,8 +144,8 @@ class _BranchListState extends State<BranchList> {
                 setState(() {
                   _filteredBranchList = _branchesList
                       .where((element) => (element.branchName
-                      .toLowerCase()
-                      .contains(string.toLowerCase())))
+                          .toLowerCase()
+                          .contains(string.toLowerCase())))
                       .toList();
                 });
               },
@@ -141,13 +158,18 @@ class _BranchListState extends State<BranchList> {
                       : 0,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      title: Text(_filteredBranchList[index].branchCode==null?"Branch":_filteredBranchList[index].branchName),
+                      title: Text(_filteredBranchList[index].branchCode == null
+                          ? "Branch"
+                          : _filteredBranchList[index].branchName),
                       trailing: Icon(Icons.arrow_forward),
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => InitialPage(_filteredBranchList[index].branchId,_filteredBranchList[index].branchName),
+                            builder: (context) => InitialPage(
+                                _filteredBranchList[index].branchId,
+                                _filteredBranchList[index].branchName,
+                                widget.userName),
                           ),
                         );
                       },

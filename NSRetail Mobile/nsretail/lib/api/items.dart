@@ -1,4 +1,4 @@
-class Items{
+class Items {
   String itemCode;
   int itemCodeId;
   int itemId;
@@ -6,8 +6,17 @@ class Items{
   int itemPriceId;
   double MRP;
   double salesPrice;
-  Items({this.itemCodeId,this.itemCode,this.itemId, this.itemName,this.itemPriceId, this.MRP,this.salesPrice});
-  factory Items.fromJson(Map<String,dynamic> parsed){
+  bool isOpenItem;
+  Items(
+      {this.itemCodeId,
+      this.itemCode,
+      this.itemId,
+      this.itemName,
+      this.itemPriceId,
+      this.MRP,
+      this.salesPrice,
+      this.isOpenItem});
+  factory Items.fromJson(Map<String, dynamic> parsed) {
     return Items(
         itemCodeId: parsed["itemcodeid"],
         itemCode: parsed["itemcodE1"] as String,
@@ -15,7 +24,7 @@ class Items{
         itemName: parsed["itemname"],
         itemPriceId: parsed["itempriceid"],
         MRP: parsed["mrp"] as double,
-        salesPrice: parsed["saleprice"] as double
-    );
+        salesPrice: parsed["saleprice"] as double,
+        isOpenItem: parsed["isopenitem"]);
   }
 }

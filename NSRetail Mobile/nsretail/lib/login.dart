@@ -134,7 +134,7 @@ class _LoginState extends State<Login> {
     String userID;
     String userName;
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    var url = 'http://43.228.95.51/nsretailapi/token';
+    var url = 'http://103.195.186.197/nsretailapi/token';
 
     var response = await http.post(Uri.parse(url), body: data);
     if (response.statusCode == 200) {
@@ -191,7 +191,7 @@ class _LoginState extends State<Login> {
           SizedBox(height: 30,),
           Center(
             child: Text(_error, style: TextStyle(color: Colors.red,fontSize: 14),),
-          )
+          ),
 
         ],
       ),
