@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:nsretail/Screens/branchList.dart';
 import 'package:nsretail/Screens/stockCountingList.dart';
-import 'package:nsretail/Screens/stockDispatch.dart';
+import 'package:nsretail/Screens/stockDispatchList.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../login.dart';
@@ -11,8 +11,8 @@ import '../login.dart';
 class InitialPage extends StatefulWidget {
   int branchId;
   String branchName;
-
-  InitialPage(this.branchId, this.branchName);
+  String userName;
+  InitialPage(this.branchId, this.branchName, this.userName);
 
   @override
   State<InitialPage> createState() => _InitialPageState();
@@ -32,56 +32,57 @@ class _InitialPageState extends State<InitialPage> {
     if (sharedPreferences.getString('token') == null) {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (BuildContext context) => Login()),
-              (route) => false);
+          (route) => false);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Victory Bazars'),
       ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Image(
-                image: AssetImage('images/logo.png'),
-              ),
-            ),
-            ListTile(
-              title: const Text('Branches'),
-              onTap: () {
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            BranchList()),
-                        (route) => false);
-                //Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Logout'),
-              onTap: () {
-                sharedPreferences.clear();
-                sharedPreferences.setString("token", "");
-                sharedPreferences.remove("token");
-                checkLoginState();
-                print('logout pressed');
-
-              },
-            ),
-          ],
-        ),
-      ),
+      // drawer: Drawer(
+      //   // Add a ListView to the drawer. This ensures the user can scroll
+      //   // through the options in the drawer if there isn't enough vertical
+      //   // space to fit everything.
+      //   child: ListView(
+      //     // Important: Remove any padding from the ListView.
+      //     padding: EdgeInsets.zero,
+      //     children: [
+      //       const DrawerHeader(
+      //         decoration: BoxDecoration(
+      //           color: Colors.blue,
+      //         ),
+      //         child: Image(
+      //           image: AssetImage('images/logo.png'),
+      //         ),
+      //       ),
+      //       ListTile(
+      //         title: const Text('Branches'),
+      //         onTap: () {
+      //           Navigator.of(context).pushAndRemoveUntil(
+      //               MaterialPageRoute(
+      //                   builder: (BuildContext context) =>
+      //                       BranchList()),
+      //                   (route) => false);
+      //           //Navigator.pop(context);
+      //         },
+      //       ),
+      //       ListTile(
+      //         title: const Text('Logout   Ver 1.1.0'),
+      //         onTap: () {
+      //           sharedPreferences.clear();
+      //           sharedPreferences.setString("token", "");
+      //           sharedPreferences.remove("token");
+      //           checkLoginState();
+      //           print('logout pressed');
+      //
+      //         },
+      //       ),
+      //     ],
+      //   ),
+      // ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -125,7 +126,8 @@ class _InitialPageState extends State<InitialPage> {
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                stockCountingList(widget.branchId)),
+                                stockCountingList(
+                                    widget.branchId, widget.branchName, widget.userName)),
                         (route) => false);
                   },
                   child: Ink.image(
@@ -135,24 +137,24 @@ class _InitialPageState extends State<InitialPage> {
                     width: 150,
                   ),
                 )),
-                SizedBox(
-                  width: 30,
-                ),
-                Card(
-                    child: InkWell(
-                  onTap: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                            builder: (BuildContext context) => stockDispatchList(widget.branchId)),
-                            (route) => false);
-                  },
-                  child: Ink.image(
-                    child: Text('Stock Dispatch'),
-                    image: AssetImage('images/stockdispatch.jpg'),
-                    height: 150,
-                    width: 150,
-                  ),
-                )),
+                // SizedBox(
+                //   width: 30,
+                // ),
+                // Card(
+                //     child: InkWell(
+                //   onTap: () {
+                //     Navigator.of(context).pushAndRemoveUntil(
+                //         MaterialPageRoute(
+                //             builder: (BuildContext context) => stockDispatchList(widget.branchId)),
+                //             (route) => false);
+                //   },
+                //   child: Ink.image(
+                //     child: Text('Stock Dispatch'),
+                //     image: AssetImage('images/stockdispatch.jpg'),
+                //     height: 150,
+                //     width: 150,
+                //   ),
+                // )),
               ],
             ),
             SizedBox(
