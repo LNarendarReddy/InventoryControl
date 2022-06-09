@@ -94,10 +94,10 @@
             this.layoutControl1.Controls.Add(this.btnReport);
             this.layoutControl1.Controls.Add(this.gcResults);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(269, 110);
+            this.layoutControl1.Location = new System.Drawing.Point(269, 97);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(840, 553);
+            this.layoutControl1.Size = new System.Drawing.Size(840, 566);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -174,7 +174,7 @@
             this.gcResults.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnAction,
             this.dtpPeriodicity});
-            this.gcResults.Size = new System.Drawing.Size(832, 511);
+            this.gcResults.Size = new System.Drawing.Size(832, 524);
             this.gcResults.TabIndex = 3;
             this.gcResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvResults});
@@ -222,7 +222,7 @@
             this.layoutControlItem6});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(840, 553);
+            this.Root.Size = new System.Drawing.Size(840, 566);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem2
@@ -230,7 +230,7 @@
             this.layoutControlItem2.Control = this.gcResults;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 34);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(836, 515);
+            this.layoutControlItem2.Size = new System.Drawing.Size(836, 528);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -390,9 +390,10 @@
             this.dpTop.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
             this.dpTop.ID = new System.Guid("87049d0f-cd5a-404c-a6d3-24128e75ad45");
             this.dpTop.Location = new System.Drawing.Point(269, 0);
+            this.dpTop.Margin = new System.Windows.Forms.Padding(0);
             this.dpTop.Name = "dpTop";
-            this.dpTop.OriginalSize = new System.Drawing.Size(200, 110);
-            this.dpTop.Size = new System.Drawing.Size(840, 110);
+            this.dpTop.OriginalSize = new System.Drawing.Size(200, 97);
+            this.dpTop.Size = new System.Drawing.Size(840, 97);
             this.dpTop.Text = "Search Criteria";
             // 
             // controlContainer1
@@ -400,7 +401,7 @@
             this.controlContainer1.Controls.Add(this.pcSearchCriteria);
             this.controlContainer1.Location = new System.Drawing.Point(3, 46);
             this.controlContainer1.Name = "controlContainer1";
-            this.controlContainer1.Size = new System.Drawing.Size(834, 60);
+            this.controlContainer1.Size = new System.Drawing.Size(834, 47);
             this.controlContainer1.TabIndex = 0;
             // 
             // pcSearchCriteria
@@ -410,9 +411,9 @@
             this.pcSearchCriteria.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.pcSearchCriteria.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pcSearchCriteria.Location = new System.Drawing.Point(0, 0);
+            this.pcSearchCriteria.Margin = new System.Windows.Forms.Padding(0);
             this.pcSearchCriteria.Name = "pcSearchCriteria";
-            this.pcSearchCriteria.Padding = new System.Windows.Forms.Padding(5);
-            this.pcSearchCriteria.Size = new System.Drawing.Size(834, 60);
+            this.pcSearchCriteria.Size = new System.Drawing.Size(834, 47);
             this.pcSearchCriteria.TabIndex = 0;
             // 
             // frmReportPlaceHolder

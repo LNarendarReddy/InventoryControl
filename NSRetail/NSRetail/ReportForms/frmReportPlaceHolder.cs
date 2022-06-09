@@ -176,7 +176,7 @@ namespace NSRetail.ReportForms
             if (selectedReportHolder == null || selectedReportHolder.SearchCriteriaControl == null) return;
 
             pcSearchCriteria.Controls.Add(selectedReportHolder.SearchCriteriaControl);
-            selectedReportHolder.SearchCriteriaControl.Location = new System.Drawing.Point(5, 5);
+            selectedReportHolder.SearchCriteriaControl.Location = new System.Drawing.Point(2, 2);
 
             btnSearch.Enabled = true;
             btnReport.Enabled = true;            

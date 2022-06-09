@@ -68,7 +68,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(959, 54);
+            this.layoutControl1.Size = new System.Drawing.Size(959, 45);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -76,9 +76,9 @@
             // 
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSave.Location = new System.Drawing.Point(856, 16);
+            this.btnSave.Location = new System.Drawing.Point(854, 11);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(87, 22);
+            this.btnSave.Size = new System.Drawing.Size(94, 22);
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
@@ -88,7 +88,7 @@
             // 
             this.dtToDate.EditValue = null;
             this.dtToDate.EnterMoveNextControl = true;
-            this.dtToDate.Location = new System.Drawing.Point(744, 16);
+            this.dtToDate.Location = new System.Drawing.Point(742, 11);
             this.dtToDate.Name = "dtToDate";
             this.dtToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -102,7 +102,7 @@
             // 
             this.dtFromDate.EditValue = null;
             this.dtFromDate.EnterMoveNextControl = true;
-            this.dtFromDate.Location = new System.Drawing.Point(560, 16);
+            this.dtFromDate.Location = new System.Drawing.Point(558, 11);
             this.dtFromDate.Name = "dtFromDate";
             this.dtFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -115,7 +115,7 @@
             // cmbCategory
             // 
             this.cmbCategory.EnterMoveNextControl = true;
-            this.cmbCategory.Location = new System.Drawing.Point(351, 16);
+            this.cmbCategory.Location = new System.Drawing.Point(349, 11);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -130,7 +130,7 @@
             // cmbDealer
             // 
             this.cmbDealer.EnterMoveNextControl = true;
-            this.cmbDealer.Location = new System.Drawing.Point(86, 16);
+            this.cmbDealer.Location = new System.Drawing.Point(81, 11);
             this.cmbDealer.Name = "cmbDealer";
             this.cmbDealer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -138,7 +138,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERID", "DEALERID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERNAME", "Dealer Name")});
             this.cmbDealer.Properties.NullText = "";
-            this.cmbDealer.Size = new System.Drawing.Size(183, 22);
+            this.cmbDealer.Size = new System.Drawing.Size(186, 22);
             this.cmbDealer.StyleController = this.layoutControl1;
             this.cmbDealer.TabIndex = 0;
             // 
@@ -153,7 +153,8 @@
             this.layoutControlItem4,
             this.layoutControlItem5});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(959, 54);
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.Root.Size = new System.Drawing.Size(959, 45);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -162,19 +163,19 @@
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem1.Size = new System.Drawing.Size(265, 34);
+            this.layoutControlItem1.Size = new System.Drawing.Size(268, 35);
             this.layoutControlItem1.Text = "Dealer";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(58, 15);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.cmbCategory;
-            this.layoutControlItem2.Location = new System.Drawing.Point(265, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(268, 0);
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(209, 34);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(209, 34);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(209, 34);
+            this.layoutControlItem2.Size = new System.Drawing.Size(209, 35);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.Text = "Category";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(58, 15);
@@ -182,12 +183,12 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.dtFromDate;
-            this.layoutControlItem3.Location = new System.Drawing.Point(474, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(477, 0);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(184, 34);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(184, 34);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem3.Size = new System.Drawing.Size(184, 34);
+            this.layoutControlItem3.Size = new System.Drawing.Size(184, 35);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.Text = "From Date";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(58, 15);
@@ -195,12 +196,12 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.dtToDate;
-            this.layoutControlItem4.Location = new System.Drawing.Point(658, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(661, 0);
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(182, 34);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(182, 34);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem4.Size = new System.Drawing.Size(182, 34);
+            this.layoutControlItem4.Size = new System.Drawing.Size(182, 35);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.Text = "To Date";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(58, 15);
@@ -208,10 +209,10 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnSave;
-            this.layoutControlItem5.Location = new System.Drawing.Point(840, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(843, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem5.Size = new System.Drawing.Size(99, 34);
+            this.layoutControlItem5.Size = new System.Drawing.Size(106, 35);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
@@ -220,8 +221,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutControl1);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucDealerIndent";
-            this.Size = new System.Drawing.Size(959, 54);
+            this.Size = new System.Drawing.Size(959, 45);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).EndInit();

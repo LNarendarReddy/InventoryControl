@@ -74,34 +74,34 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsFocus.EnableAutoTabOrder = false;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(957, 58);
+            this.layoutControl1.Size = new System.Drawing.Size(957, 45);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // chkIncludeBranch
             // 
             this.chkIncludeBranch.EnterMoveNextControl = true;
-            this.chkIncludeBranch.Location = new System.Drawing.Point(838, 16);
+            this.chkIncludeBranch.Location = new System.Drawing.Point(839, 11);
             this.chkIncludeBranch.Name = "chkIncludeBranch";
             this.chkIncludeBranch.Properties.Caption = "Include Branch";
-            this.chkIncludeBranch.Size = new System.Drawing.Size(103, 19);
+            this.chkIncludeBranch.Size = new System.Drawing.Size(107, 19);
             this.chkIncludeBranch.StyleController = this.layoutControl1;
             this.chkIncludeBranch.TabIndex = 5;
             // 
             // chkIncludeBillNumber
             // 
             this.chkIncludeBillNumber.EnterMoveNextControl = true;
-            this.chkIncludeBillNumber.Location = new System.Drawing.Point(726, 16);
+            this.chkIncludeBillNumber.Location = new System.Drawing.Point(724, 11);
             this.chkIncludeBillNumber.Name = "chkIncludeBillNumber";
             this.chkIncludeBillNumber.Properties.Caption = "Include Bill No";
-            this.chkIncludeBillNumber.Size = new System.Drawing.Size(100, 19);
+            this.chkIncludeBillNumber.Size = new System.Drawing.Size(103, 19);
             this.chkIncludeBillNumber.StyleController = this.layoutControl1;
             this.chkIncludeBillNumber.TabIndex = 4;
             // 
             // cmbBranch
             // 
             this.cmbBranch.EnterMoveNextControl = true;
-            this.cmbBranch.Location = new System.Drawing.Point(85, 15);
+            this.cmbBranch.Location = new System.Drawing.Point(80, 10);
             this.cmbBranch.Name = "cmbBranch";
             this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -117,7 +117,7 @@
             // 
             this.dtpFromDate.EditValue = null;
             this.dtpFromDate.EnterMoveNextControl = true;
-            this.dtpFromDate.Location = new System.Drawing.Point(316, 16);
+            this.dtpFromDate.Location = new System.Drawing.Point(311, 11);
             this.dtpFromDate.Name = "dtpFromDate";
             this.dtpFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -131,7 +131,7 @@
             // 
             this.dtpToDate.EditValue = null;
             this.dtpToDate.EnterMoveNextControl = true;
-            this.dtpToDate.Location = new System.Drawing.Point(495, 16);
+            this.dtpToDate.Location = new System.Drawing.Point(490, 11);
             this.dtpToDate.Name = "dtpToDate";
             this.dtpToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -144,10 +144,10 @@
             // chkIncludeDate
             // 
             this.chkIncludeDate.EnterMoveNextControl = true;
-            this.chkIncludeDate.Location = new System.Drawing.Point(604, 16);
+            this.chkIncludeDate.Location = new System.Drawing.Point(599, 11);
             this.chkIncludeDate.Name = "chkIncludeDate";
             this.chkIncludeDate.Properties.Caption = "Include Bill Date";
-            this.chkIncludeDate.Size = new System.Drawing.Size(110, 19);
+            this.chkIncludeDate.Size = new System.Drawing.Size(113, 19);
             this.chkIncludeDate.StyleController = this.layoutControl1;
             this.chkIncludeDate.TabIndex = 3;
             // 
@@ -163,7 +163,8 @@
             this.layoutControlItem1,
             this.layoutControlItem2});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(957, 58);
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.Root.Size = new System.Drawing.Size(957, 45);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem4
@@ -176,7 +177,7 @@
             this.layoutControlItem4.MinSize = new System.Drawing.Size(230, 32);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem4.Size = new System.Drawing.Size(230, 38);
+            this.layoutControlItem4.Size = new System.Drawing.Size(230, 35);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.Text = "Branch";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(58, 15);
@@ -191,7 +192,7 @@
             this.layoutControlItem5.MinSize = new System.Drawing.Size(179, 34);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem5.Size = new System.Drawing.Size(179, 38);
+            this.layoutControlItem5.Size = new System.Drawing.Size(179, 35);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.Text = "From Date";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(58, 15);
@@ -206,7 +207,7 @@
             this.layoutControlItem6.MinSize = new System.Drawing.Size(179, 34);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem6.Size = new System.Drawing.Size(179, 38);
+            this.layoutControlItem6.Size = new System.Drawing.Size(179, 35);
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.Text = "To Date";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(58, 15);
@@ -219,27 +220,27 @@
             this.layoutControlItem7.Location = new System.Drawing.Point(588, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem7.Size = new System.Drawing.Size(122, 38);
+            this.layoutControlItem7.Size = new System.Drawing.Size(125, 35);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.chkIncludeBillNumber;
-            this.layoutControlItem1.Location = new System.Drawing.Point(710, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(713, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem1.Size = new System.Drawing.Size(112, 38);
+            this.layoutControlItem1.Size = new System.Drawing.Size(115, 35);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.chkIncludeBranch;
-            this.layoutControlItem2.Location = new System.Drawing.Point(822, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(828, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(115, 38);
+            this.layoutControlItem2.Size = new System.Drawing.Size(119, 35);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -248,8 +249,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutControl1);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucCustomerReturns";
-            this.Size = new System.Drawing.Size(957, 58);
+            this.Size = new System.Drawing.Size(957, 45);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeBranch.Properties)).EndInit();
