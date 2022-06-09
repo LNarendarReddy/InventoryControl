@@ -772,9 +772,11 @@
             // 
             // ribbonPageGroup16
             // 
+            this.ribbonPageGroup16.Enabled = false;
             this.ribbonPageGroup16.ItemLinks.Add(this.bbiReport);
             this.ribbonPageGroup16.Name = "ribbonPageGroup16";
             this.ribbonPageGroup16.Text = "Reports";
+            this.ribbonPageGroup16.Visible = false;
             // 
             // ribbonPage6
             // 

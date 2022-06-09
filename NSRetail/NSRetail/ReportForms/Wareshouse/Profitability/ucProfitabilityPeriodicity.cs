@@ -27,8 +27,10 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "TOTALSALEPRICEWOT", "Total Sale Price WOT" },
                 { "TOTALSALETAX", "Total Sale Price Tax" },
                 { "TOTALSALEPRICEWT", "Total Sale Price WT" },
-                { "PROFITMARGIN", "Profit Margin" },
-                { "PROFITMARGINPER", "Profit Margin %" },
+                { "PROFITMARGINWOT", "Profit Margin WOT" },
+                { "PROFITMARGINPERWOT", "Profit Margin % WOT" },
+                { "PROFITMARGINWT", "Profit Margin WT" },
+                { "PROFITMARGINPERWT", "Profit Margin % WT" },
                 { "PERIODOCITY", "Periodocity" }
             };
         }
