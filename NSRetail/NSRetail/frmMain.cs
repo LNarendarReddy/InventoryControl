@@ -7,6 +7,12 @@ using Microsoft.Win32;
 using NSRetail.Login;
 using NSRetail.Master;
 using NSRetail.ReportForms;
+using NSRetail.ReportForms.POS;
+using NSRetail.ReportForms.Wareshouse;
+using NSRetail.ReportForms.Wareshouse.Profitability;
+using NSRetail.ReportForms.Wareshouse.SaleReports;
+using NSRetail.ReportForms.Wareshouse.StockReports;
+using NSRetail.ReportForms.Wareshouse.TaxBreakUp;
 using NSRetail.Stock;
 using System;
 using System.Collections.Generic;
@@ -421,12 +427,12 @@ namespace NSRetail
 
         private void bbiReport_ItemClick(object sender, ItemClickEventArgs e)
         {
-            frmReportPlaceHolder obj = new frmReportPlaceHolder();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
+            //frmReportPlaceHolder obj = new frmReportPlaceHolder();
+            //obj.ShowInTaskbar = false;
+            //obj.WindowState = FormWindowState.Maximized;
+            //obj.IconOptions.ShowIcon = false;
+            //obj.MdiParent = this;
+            //obj.Show();
         }
 
         private void bbiItemSummary_ItemClick(object sender, ItemClickEventArgs e)
@@ -483,6 +489,82 @@ namespace NSRetail
         {
             new DataAccess.MasterRepository().ClearProcedureCache();
             XtraMessageBox.Show("Database procedure cache cleared", "Operation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void bbiBranchReports_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            List<ReportHolder> reportList = new List<ReportHolder>();
+            ReportHolder branchReports = new ReportHolder() { ReportName = "Branch Reports" };
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucBranchRefunds() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds by Item", SearchCriteriaControl = new ucBranchRefundByItems() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
+            reportList.Add(branchReports);
+
+            ReportHolder posReports = new ReportHolder() { ReportName = "POS Reports" };
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure", SearchCriteriaControl = new ucDayClosureList() });
+            posReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Returns", SearchCriteriaControl = new ucCustomerReturns() });
+            reportList.Add(posReports);
+
+            ShowReportForm(reportList);
+        }
+
+        private void bbiStockReports_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            List<ReportHolder> stockReportList = new List<ReportHolder>();
+
+            ReportHolder StockReports = new ReportHolder() { ReportName = "Stock Reports" };
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Invoice List", SearchCriteriaControl = new ucInvoiceList() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch List", SearchCriteriaControl = new ucDispatchList() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch DC List", SearchCriteriaControl = new ucDispatchDCList() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Summary By Branch", SearchCriteriaControl = new ucStockSummaryByBranch() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Zero Stock", SearchCriteriaControl = new ucZeroStock() });
+            stockReportList.Add(StockReports);
+
+            stockReportList.Add(new ReportHolder() { ReportName = "Supplier Indent", SearchCriteriaControl = new ucDealerIndent() });
+            stockReportList.Add(new ReportHolder() { ReportName = "Stock Counting Sheets", SearchCriteriaControl = new ucStockCountingList() });
+            stockReportList.Add(new ReportHolder() { ReportName = "Supplier Returns Sheets", SearchCriteriaControl = new ucSupplierReturnsList() });
+            stockReportList.Add(new ReportHolder() { ReportName = "Supplier Indent List", SearchCriteriaControl = new ucSupplierIndentList() });
+
+            ShowReportForm(stockReportList);
+        }
+
+        private void bbiWarehouseReports_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            List<ReportHolder> reportList = new List<ReportHolder>();
+
+            ReportHolder saleReports = new ReportHolder() { ReportName = "Sale Reports" };
+            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Running sales", SearchCriteriaControl = new ucRunningSales() });
+            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales", SearchCriteriaControl = new ucItemWiseSales() });
+            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise sales", SearchCriteriaControl = new ucSupplierWiseSales() });
+            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
+            reportList.Add(saleReports);
+
+            ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
+            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new ucPeriodicity() });
+            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new ucItemWise() });
+            reportList.Add(profitabilityReports);
+
+            ReportHolder taxReports = new ReportHolder() { ReportName = "Tax Reports" };
+            taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax break-up day wise", SearchCriteriaControl = new ucTaxBreakUpDayWise() });
+            reportList.Add(taxReports);
+
+            ReportHolder whSaleReports = new ReportHolder() { ReportName = "Sale Reports" };
+            whSaleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sale Periodicity Item wise", SearchCriteriaControl = new ucSalePeriodicity() });
+            whSaleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sale Hour wise", SearchCriteriaControl = new ucSalehourWise() });
+            reportList.Add(whSaleReports);
+
+            ShowReportForm(reportList);
+        }
+
+        private void ShowReportForm(List<ReportHolder> reportHolders)
+        {
+            frmReportPlaceHolder obj = new frmReportPlaceHolder(reportHolders);
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
         }
     }
 }
