@@ -541,8 +541,8 @@ namespace NSRetail
             reportList.Add(saleReports);
 
             ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
-            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new ucPeriodicity() });
-            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new ucItemWise() });
+            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new ucProfitabilityPeriodicity() });
+            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new ucProfitabilityItemWise() });
             reportList.Add(profitabilityReports);
 
             ReportHolder taxReports = new ReportHolder() { ReportName = "Tax Reports" };

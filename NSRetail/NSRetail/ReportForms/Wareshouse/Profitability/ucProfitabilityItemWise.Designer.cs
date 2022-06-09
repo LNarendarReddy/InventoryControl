@@ -1,6 +1,6 @@
 ﻿namespace NSRetail.ReportForms.Wareshouse.Profitability
 {
-    partial class ucItemWise
+    partial class ucProfitabilityItemWise
     {
         /// <summary> 
         /// Required designer variable.

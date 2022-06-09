@@ -475,17 +475,17 @@
     <Compile Include="ReportForms\POS\ucBranchRefundByItems.Designer.cs">
       <DependentUpon>ucBranchRefundByItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\Profitability\ucItemWise.cs">
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityItemWise.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\Profitability\ucItemWise.Designer.cs">
-      <DependentUpon>ucItemWise.cs</DependentUpon>
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityItemWise.Designer.cs">
+      <DependentUpon>ucProfitabilityItemWise.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\Profitability\ucPeriodicity.cs">
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityPeriodicity.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\Profitability\ucPeriodicity.Designer.cs">
-      <DependentUpon>ucPeriodicity.cs</DependentUpon>
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityPeriodicity.Designer.cs">
+      <DependentUpon>ucProfitabilityPeriodicity.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Wareshouse\SaleReports\ucTaxWiseSales.cs">
       <SubType>UserControl</SubType>
@@ -864,11 +864,11 @@
     <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucRunningSales.resx">
       <DependentUpon>ucRunningSales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\ucItemWise.resx">
-      <DependentUpon>ucItemWise.cs</DependentUpon>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\ucProfitabilityItemWise.resx">
+      <DependentUpon>ucProfitabilityItemWise.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\ucPeriodicity.resx">
-      <DependentUpon>ucPeriodicity.cs</DependentUpon>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\ucProfitabilityPeriodicity.resx">
+      <DependentUpon>ucProfitabilityPeriodicity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucTaxWiseSales.resx">
       <DependentUpon>ucTaxWiseSales.cs</DependentUpon>

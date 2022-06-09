@@ -1,4 +1,5 @@
-﻿using DataAccess;
+﻿
+using DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,21 +7,29 @@ using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.Profitability
 {
-    public partial class ucPeriodicity : SearchCriteriaBase
+    public partial class ucProfitabilityItemWise : SearchCriteriaBase
     {
         private Dictionary<string, string> specificColumnHeaders;
+
         public override Dictionary<string, string> SpecificColumnHeaders => specificColumnHeaders;
 
-        public override Control FirstControl => cmbPeriodicity;
+        public override Control FirstControl => cmbBranch;
 
         public override Control LastControl => dtpToDate;
 
-        public ucPeriodicity()
+        public ucProfitabilityItemWise()
         {
             InitializeComponent();
 
-            specificColumnHeaders = new Dictionary<string, string>()
-            {               
+            specificColumnHeaders = new Dictionary<string, string>() 
+            {
+                { "SALEPRICEWOT", "Sale Price WOT" },
+                { "SALEPRICETAX", "Sale Price Tax" },
+                { "SALEPRICE", "Sale Price WT" },
+                { "COSTPRICEWOT", "Cost Price WOT" },
+                { "COSTPRICETAX", "Cost Price Tax" },
+                { "COSTPRICEWT", "Cost Price WT" },
+                { "SALEQUANTITY", "Sale Qty or Weight-in KGs" },
                 { "TOTALCOSTPRICEWOT", "Total Cost Price WOT" },
                 { "TOTALCOSTPRICETAX", "Total Cost Price Tax" },
                 { "TOTALCOSTPRICEWT", "Total Cost Price WT" },
@@ -28,12 +37,11 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "TOTALSALETAX", "Total Sale Price Tax" },
                 { "TOTALSALEPRICEWT", "Total Sale Price WT" },
                 { "PROFITMARGIN", "Profit Margin" },
-                { "PROFITMARGINPER", "Profit Margin %" },
-                { "PERIODOCITY", "Periodocity" }
+                { "PROFITMARGINPER", "Profit Margin %" }
             };
         }
 
-        private void ucPeriodicity_Load(object sender, EventArgs e)
+        private void ucItemWise_Load(object sender, EventArgs e)
         {
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
@@ -48,8 +56,6 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
             cmbCategory.Properties.DataSource = masterRepo.GetCategory();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
-
-            SetPeriodicty(cmbPeriodicity);
         }
 
         public override DataTable GetData()
@@ -60,10 +66,8 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
                 , { "CategoryID", cmbCategory.EditValue }
-                , { "Periodicity", cmbPeriodicity.EditValue }
             };
-
-            return GetReportData("USP_RPT_PROFITABILITY_PERIODICITY", parameters);
+            return GetReportData("USP_RPT_PROFITABILITY_SKUWISE", parameters);
         }
     }
 }

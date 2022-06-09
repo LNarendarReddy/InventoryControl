@@ -101,6 +101,7 @@
             this.ribbonPageGroup19 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.bbiStockReports = new DevExpress.XtraBars.BarButtonItem();
             this.bbiWarehouseReports = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup20 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -771,7 +772,6 @@
             // 
             // ribbonPageGroup16
             // 
-            this.ribbonPageGroup16.ItemLinks.Add(this.bbiItemSummary);
             this.ribbonPageGroup16.ItemLinks.Add(this.bbiReport);
             this.ribbonPageGroup16.Name = "ribbonPageGroup16";
             this.ribbonPageGroup16.Text = "Reports";
@@ -919,6 +919,7 @@
             // ribbonPage4
             // 
             this.ribbonPage4.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup20,
             this.ribbonPageGroup18,
             this.ribbonPageGroup19});
             this.ribbonPage4.Name = "ribbonPage4";
@@ -960,6 +961,12 @@
             this.bbiWarehouseReports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiWarehouseReports.ImageOptions.SvgImage")));
             this.bbiWarehouseReports.Name = "bbiWarehouseReports";
             this.bbiWarehouseReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiWarehouseReports_ItemClick);
+            // 
+            // ribbonPageGroup20
+            // 
+            this.ribbonPageGroup20.ItemLinks.Add(this.bbiItemSummary);
+            this.ribbonPageGroup20.Name = "ribbonPageGroup20";
+            this.ribbonPageGroup20.Text = "Item";
             // 
             // frmMain
             // 
@@ -1059,6 +1066,7 @@
         private DevExpress.XtraBars.BarButtonItem bbiStockReports;
         private DevExpress.XtraBars.BarButtonItem bbiWarehouseReports;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup19;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup20;
     }
 }
 
