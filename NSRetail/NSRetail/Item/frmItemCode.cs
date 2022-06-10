@@ -47,12 +47,16 @@ namespace NSRetail
                     return;
                 if (decimal.TryParse(Convert.ToString(txtMRP.EditValue), out decimal MRP) &&
                     decimal.TryParse(Convert.ToString(txtCostPriceWT.EditValue), out decimal CostPriceWT) &&
+                    decimal.TryParse(Convert.ToString(txtCostPriceWOT.EditValue), out decimal CostPriceWOT) &&
                     decimal.TryParse(Convert.ToString(txtSalePrice.EditValue), out decimal salePrice))
                 {
-                    string message = String.Empty;
+                    string message = string.Empty;
 
                     message = MRP < salePrice ? "MRP cannot be less than sale price" : message;
-                    message = salePrice < CostPriceWT ? "Cost Price cannot be less than sale price" : message;
+                    message = salePrice < CostPriceWT ? "Cost Price cannot be greater than sale price" : message;
+                    message = CostPriceWOT == 0 ? "Cost price with out tax cannot be zero" : message;
+                    message = CostPriceWT == 0 ? "Cost price with tax cannot be zero" : message;
+                    message = CostPriceWOT > CostPriceWT ? "Cost price with tax less than cost price without tax" : message;
 
                     if (!string.IsNullOrEmpty(message))
                     {
