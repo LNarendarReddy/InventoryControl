@@ -2,11 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.SaleReports
 {
     public partial class ucRunningSales : SearchCriteriaBase
     {
+        public override Control FirstControl => cmbBranch;
+        public override Control LastControl => chkIncludeItem;
         public ucRunningSales()
         {
             InitializeComponent();
@@ -25,6 +28,11 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "BranchID", cmbBranch.EditValue }
+                , { "IncludeBranch", chkIncludeBranch .EditValue }
+                , { "IncludeCounter", chkIncludeCounter.EditValue }
+                , { "IncludeBillNo", chkIncludeBillNo.EditValue }
+                , { "IncludeItem", chkIncludeItem.EditValue }
+                , { "IncludeCategory", chkIncludeCategory.EditValue }
             };
             return GetReportData("USP_RPT_RUNNINGSALE", parameters);
         }

@@ -40,6 +40,7 @@ namespace NSRetail
                 , {"BILLNUMBER", "Bill Number"}
                 , {"SALEPRICE", "Sale Price"}
                 , {"QUANTITY", "Quantity"}
+                , {"WEIGHTINKGS", "Weight In Kgs"}
                 , {"BILLEDAMOUNT", "Billed Amount"}
                 , {"CREATEDBY", "User Name"}
                 , {"CREATEDDATE", "Created Date"}
