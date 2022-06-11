@@ -72,7 +72,7 @@ namespace NSRetail
             {
                 if (ShowIncludeSetting)
                 {
-                    IncludeSettingsCollection.ForEach(x => parameters[x.ColumnName] = x.Included);
+                    IncludeSettingsCollection.ForEach(x => parameters[x.ParameterName] = x.Included);
                 }
 
                 reportdata = new ReportRepository().GetReportData(procName, parameters);
@@ -82,10 +82,8 @@ namespace NSRetail
                     return reportdata;
                 }
 
-                List<string> columnsToRemove = IncludeSettingsCollection.SelectMany(x => x.RelatedColumns)
-                                                    .Distinct()
-                                                    .Where(reportdata.Columns.Contains)
-                                                    .ToList();
+                List<string> columnsToRemove = IncludeSettingsCollection.Where(x => !x.Included).SelectMany(x => x.RelatedColumns)
+                                                    .Distinct().Where(reportdata.Columns.Contains).ToList();
                 columnsToRemove.ForEach(x => reportdata.Columns.Remove(x));
                 return reportdata;
             }
