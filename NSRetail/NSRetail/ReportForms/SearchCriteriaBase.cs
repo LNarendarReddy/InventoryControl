@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraLayout;
+using NSRetail.ReportForms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,12 +16,16 @@ namespace NSRetail
     {
         List<string> buttonColumns;
         LookUpEdit cmbPeriodicity;
+        
+        public List<IncludeSettings> IncludeSettingsCollection { get; set; }
 
         public LookUpEdit Periodicity => cmbPeriodicity;
 
-        protected GridView ResultGridView => (ParentForm as ReportForms.frmReportPlaceHolder)?.ResultsGridView;
+        protected GridView ResultGridView => (ParentForm as frmReportPlaceHolder)?.ResultsGridView;
 
-        protected GridControl ResultGrid => (ParentForm as ReportForms.frmReportPlaceHolder)?.ResultsGrid;
+        protected GridControl ResultGrid => (ParentForm as frmReportPlaceHolder)?.ResultsGrid;
+
+        public bool ShowIncludeSetting => IncludeSettingsCollection != null && IncludeSettingsCollection.Any();
 
         public SearchCriteriaBase()
         {
@@ -65,9 +70,26 @@ namespace NSRetail
             DataTable reportdata = null;
             try
             {
+                if (ShowIncludeSetting)
+                {
+                    IncludeSettingsCollection.ForEach(x => parameters[x.ColumnName] = x.Included);
+                }
+
                 reportdata = new ReportRepository().GetReportData(procName, parameters);
+
+                if (!ShowIncludeSetting || reportdata == null)
+                {
+                    return reportdata;
+                }
+
+                List<string> columnsToRemove = IncludeSettingsCollection.SelectMany(x => x.RelatedColumns)
+                                                    .Distinct()
+                                                    .Where(reportdata.Columns.Contains)
+                                                    .ToList();
+                columnsToRemove.ForEach(x => reportdata.Columns.Remove(x));
+                return reportdata;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

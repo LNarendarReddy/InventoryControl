@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
@@ -62,8 +63,9 @@ namespace NSRetail.ReportForms
                 return; 
             }
 
+            gvResults.Columns.Clear();
             gcResults.DataSource = dtReportData;
-
+            
             if (dtReportData == null) return;
             
             lblRecordCount.Text = $"Record count : {dtReportData.Rows.Count}";
@@ -180,7 +182,7 @@ namespace NSRetail.ReportForms
             btnSearch.Enabled = true;
             btnReport.Enabled = true;            
             dpTop.Text = $"{dpTop.Text} for {selectedReportHolder.ReportName}";
-
+            lcIncludeColumns.Visibility = selectedReportHolder.SearchCriteriaControl.ShowIncludeSetting ? LayoutVisibility.Always : LayoutVisibility.Never;
             (selectedReportHolder.SearchCriteriaControl.FirstControl ?? selectedReportHolder.SearchCriteriaControl).Focus();
         }
 
@@ -234,14 +236,18 @@ namespace NSRetail.ReportForms
 
         private void frmReportPlaceHolder_KeyDown(object sender, KeyEventArgs e)
         {
-            //if(e.KeyCode == Keys.F3)
-            //{
-            //    tlReport.Focus();
-            //}
-            //else 
+            if (selectedReportHolder?.SearchCriteriaControl == null)
+            {
+                return;
+            }
+
             if(e.KeyCode == Keys.F2)
             {
                 (selectedReportHolder?.SearchCriteriaControl?.FirstControl ?? selectedReportHolder?.SearchCriteriaControl)?.Focus();
+            }
+            else if(e.KeyCode == Keys.F3 && selectedReportHolder.SearchCriteriaControl.ShowIncludeSetting)
+            {
+                new frmIncludeExclude(selectedReportHolder.SearchCriteriaControl.IncludeSettingsCollection).ShowDialog();
             }
         }
     }

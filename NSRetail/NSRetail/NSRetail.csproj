@@ -107,6 +107,12 @@
     <Compile Include="Counting\frmCounting.Designer.cs">
       <DependentUpon>frmCounting.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\frmIncludeExclude.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\frmIncludeExclude.Designer.cs">
+      <DependentUpon>frmIncludeExclude.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\POS\ucCustomerReturns.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -124,6 +130,12 @@
     </Compile>
     <Compile Include="ReportForms\Wareshouse\SaleReports\ucSalePeriodicity.Designer.cs">
       <DependentUpon>ucSalePeriodicity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucSales.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucSales.Designer.cs">
+      <DependentUpon>ucSales.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Wareshouse\SaleReports\ucSupplierWiseSales.cs">
       <SubType>UserControl</SubType>
@@ -673,6 +685,9 @@
     <EmbeddedResource Include="Counting\frmCounting.resx">
       <DependentUpon>frmCounting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\frmIncludeExclude.resx">
+      <DependentUpon>frmIncludeExclude.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucCustomerReturns.resx">
       <DependentUpon>ucCustomerReturns.cs</DependentUpon>
     </EmbeddedResource>
@@ -681,6 +696,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucSalePeriodicity.resx">
       <DependentUpon>ucSalePeriodicity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucSales.resx">
+      <DependentUpon>ucSales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucSupplierWiseSales.resx">
       <DependentUpon>ucSupplierWiseSales.cs</DependentUpon>

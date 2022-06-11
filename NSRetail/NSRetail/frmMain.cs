@@ -554,6 +554,8 @@ namespace NSRetail
             whSaleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sale Hour wise", SearchCriteriaControl = new ucSalehourWise() });
             reportList.Add(whSaleReports);
 
+            reportList.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
+
             ShowReportForm(reportList);
         }
 
