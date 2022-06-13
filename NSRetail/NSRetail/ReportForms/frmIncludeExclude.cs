@@ -22,6 +22,12 @@ namespace NSRetail.ReportForms
         {
             Close();
         }
+
+        private void btnApplyAndSearch_Click(object sender, System.EventArgs e)
+        {
+            DialogResult = System.Windows.Forms.DialogResult.OK;
+            Close();
+        }
     }
 
     public class IncludeSettings

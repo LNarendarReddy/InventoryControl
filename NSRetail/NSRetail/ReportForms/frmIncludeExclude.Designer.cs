@@ -42,6 +42,8 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.btnApplyAndSearch = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcIncExc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvIncExc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -50,6 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // gridColumn4
@@ -126,6 +129,7 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnApplyAndSearch);
             this.layoutControl1.Controls.Add(this.btnApply);
             this.layoutControl1.Controls.Add(this.gcIncExc);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -140,9 +144,9 @@
             // 
             this.btnApply.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnApply.ImageOptions.Image")));
             this.btnApply.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnApply.Location = new System.Drawing.Point(488, 209);
+            this.btnApply.Location = new System.Drawing.Point(402, 209);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(153, 22);
+            this.btnApply.Size = new System.Drawing.Size(106, 22);
             this.btnApply.StyleController = this.layoutControl1;
             this.btnApply.TabIndex = 5;
             this.btnApply.Text = "Apply columns";
@@ -155,7 +159,8 @@
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlItem2,
-            this.emptySpaceItem1});
+            this.emptySpaceItem1,
+            this.layoutControlItem3});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(657, 247);
             this.Root.TextVisible = false;
@@ -172,10 +177,10 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnApply;
-            this.layoutControlItem2.Location = new System.Drawing.Point(472, 193);
+            this.layoutControlItem2.Location = new System.Drawing.Point(386, 193);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(165, 34);
+            this.layoutControlItem2.Size = new System.Drawing.Size(118, 34);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -184,8 +189,30 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 193);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(472, 34);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(386, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // btnApplyAndSearch
+            // 
+            this.btnApplyAndSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnApplyAndSearch.ImageOptions.Image")));
+            this.btnApplyAndSearch.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnApplyAndSearch.Location = new System.Drawing.Point(520, 209);
+            this.btnApplyAndSearch.Name = "btnApplyAndSearch";
+            this.btnApplyAndSearch.Size = new System.Drawing.Size(121, 22);
+            this.btnApplyAndSearch.StyleController = this.layoutControl1;
+            this.btnApplyAndSearch.TabIndex = 6;
+            this.btnApplyAndSearch.Text = "Apply and Search";
+            this.btnApplyAndSearch.Click += new System.EventHandler(this.btnApplyAndSearch_Click);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.btnApplyAndSearch;
+            this.layoutControlItem3.Location = new System.Drawing.Point(504, 193);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem3.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
             // 
             // frmIncludeExclude
             // 
@@ -205,6 +232,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -224,5 +252,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraEditors.SimpleButton btnApplyAndSearch;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
     }
 }

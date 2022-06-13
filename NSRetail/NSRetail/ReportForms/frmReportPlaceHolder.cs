@@ -247,7 +247,11 @@ namespace NSRetail.ReportForms
             }
             else if(e.KeyCode == Keys.F3 && selectedReportHolder.SearchCriteriaControl.ShowIncludeSetting)
             {
-                new frmIncludeExclude(selectedReportHolder.SearchCriteriaControl.IncludeSettingsCollection).ShowDialog();
+                if(new frmIncludeExclude(selectedReportHolder.SearchCriteriaControl.IncludeSettingsCollection).ShowDialog()
+                    == DialogResult.OK)
+                {
+                    btnSearch_Click(null, null);
+                }
             }
         }
     }
