@@ -350,7 +350,9 @@ namespace NSRetailPOS.Data
         public int SaveDayClosure(object BranchCounterID,DataTable dtDenomination
             ,DataTable dtMOP,object UserID,object RefundAmount,int DaySequenceID)
         {
-            int DayClosureID =0;
+            int DayClosureID = 0;
+            SqlTransaction transaction = null;
+
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -361,6 +363,8 @@ namespace NSRetailPOS.Data
                     dtMOP.Columns.Remove("MOPNAME");
 
                     cmd.Connection = SQLCon.Sqlconn();
+                    transaction = SQLCon.Sqlconn().BeginTransaction();
+                    cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_CU_DAYCLOSURE]";
                     cmd.Parameters.AddWithValue("@BRANCHCOUNTERID", BranchCounterID);
@@ -372,10 +376,12 @@ namespace NSRetailPOS.Data
                     object objReturn = cmd.ExecuteScalar();
                     if (!int.TryParse(Convert.ToString(objReturn),out DayClosureID))
                         throw new Exception("Error while saving day cllosure");
+                    transaction.Commit();
                 }
             }
             catch (Exception ex)
             {
+                transaction?.Rollback();
                 throw new Exception("Error While saving Day Closure", ex);
             }
             finally
