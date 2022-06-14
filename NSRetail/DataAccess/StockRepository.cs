@@ -688,5 +688,30 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
+
+        public void ProcessWarehouseDispatch(object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_WHDISPATCH]";
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object objreturn = cmd.ExecuteScalar();
+                    if (!string.IsNullOrEmpty(Convert.ToString(objreturn)))
+                        throw new Exception(Convert.ToString(objreturn));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while processing warehouse dispatch");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 }

@@ -39,7 +39,7 @@ namespace NSRetail.ReportForms.POS
                 , { "CLOSEDBY", "User" }
             };
 
-            buttonColumns = new List<string>() { "Summary", "Bills", "Items", "Refunds" };
+            buttonColumns = new List<string>() { "Summary", "Bills", "Items", "Refunds","Void Items" };
             summaryColumns = new List<string>() { "OPENINGBALANCE", "REFUNDAMOUNT", "CLOSINGBALANCE", "CLOSINGDIFFERENCE" };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
@@ -83,10 +83,10 @@ namespace NSRetail.ReportForms.POS
                     DataSet dsRefunds = new POSRepository().GetDayClosureRefund(drFocusedRow["BRANCHCOUNTERID"], drFocusedRow["DAYCLOSUREID"]);
                     frmObj = new frmViewDCItems(dsRefunds, false, true);
                     break;
-                //case "Void Items":
-                //    DataSet dsVoidItems = new POSRepository().GetDayClosureVoidItems(drFocusedRow["BRANCHCOUNTERID"], drFocusedRow["DAYCLOSUREID"]);
-                //    frmObj = new frmViewDCItems(dsVoidItems, false);
-                //    break;
+                case "Void Items":
+                    DataSet dsVoidItems = new POSRepository().GetDayClosureVoidItems(drFocusedRow["BRANCHCOUNTERID"], drFocusedRow["DAYCLOSUREID"]);
+                    frmObj = new frmViewDCItems(dsVoidItems, false);
+                    break;
             }
 
             frmObj.ShowInTaskbar = false;

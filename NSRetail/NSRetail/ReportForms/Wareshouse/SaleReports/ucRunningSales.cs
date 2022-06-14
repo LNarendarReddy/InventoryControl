@@ -9,7 +9,7 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
     public partial class ucRunningSales : SearchCriteriaBase
     {
         public override Control FirstControl => cmbBranch;
-        public override Control LastControl => chkIncludeItem;
+        public override Control LastControl => chkIncludeCategory;
         public ucRunningSales()
         {
             InitializeComponent();

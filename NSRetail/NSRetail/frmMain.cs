@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraBars;
+﻿using DataAccess;
+using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
@@ -567,6 +568,24 @@ namespace NSRetail
             obj.IconOptions.ShowIcon = false;
             obj.MdiParent = this;
             obj.Show();
+        }
+
+        private void btnProcessWHDispatch_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                if (XtraMessageBox.Show("Are sure want to process WH dispatch?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
+                SplashScreenManager.ShowForm(typeof(frmProgress), true, true);
+                new StockRepository().ProcessWarehouseDispatch(Utility.UserID);
+                XtraMessageBox.Show("Dispatch processed succefully!");
+                SplashScreenManager.CloseForm();
+            }
+            catch (Exception ex)
+            {
+                SplashScreenManager.CloseForm();
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
         }
     }
 }

@@ -41,6 +41,12 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
             cmbBranch.EditValue = 0;
 
+            cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
+            cmbCategory.Properties.ValueMember = "CATEGORYID";
+            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+            cmbCategory.EditValue = 13;
+
+
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
         }
@@ -57,6 +63,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "BranchID", cmbBranch.EditValue }
+                , { "CategoryID", cmbCategory.EditValue }
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
             };
