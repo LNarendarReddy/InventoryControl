@@ -32,31 +32,39 @@
             this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.cmbCategory = new DevExpress.XtraEditors.LookUpEdit();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtThresholdValue = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtThresholdValue.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.txtThresholdValue);
+            this.layoutControl1.Controls.Add(this.cmbCategory);
             this.layoutControl1.Controls.Add(this.cmbBranch);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1008, 0, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(705, 45);
+            this.layoutControl1.Size = new System.Drawing.Size(746, 45);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // cmbBranch
             // 
             this.cmbBranch.EnterMoveNextControl = true;
-            this.cmbBranch.Location = new System.Drawing.Point(61, 10);
+            this.cmbBranch.Location = new System.Drawing.Point(112, 10);
             this.cmbBranch.Name = "cmbBranch";
             this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -64,7 +72,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHID", "BRANCHID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHNAME", "Branch")});
             this.cmbBranch.Properties.NullText = "";
-            this.cmbBranch.Size = new System.Drawing.Size(213, 22);
+            this.cmbBranch.Size = new System.Drawing.Size(162, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 0;
             // 
@@ -74,10 +82,11 @@
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem4,
-            this.emptySpaceItem1});
+            this.layoutControlItem1,
+            this.layoutControlItem2});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.Root.Size = new System.Drawing.Size(705, 45);
+            this.Root.Size = new System.Drawing.Size(746, 45);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem4
@@ -93,15 +102,52 @@
             this.layoutControlItem4.Size = new System.Drawing.Size(274, 35);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.Text = "Branch";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(39, 15);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(90, 15);
             // 
-            // emptySpaceItem1
+            // cmbCategory
             // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(274, 0);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(421, 35);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.cmbCategory.Location = new System.Drawing.Point(386, 10);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbCategory.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYID", "Category ID"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYNAME", "Category Name")});
+            this.cmbCategory.Properties.NullText = "";
+            this.cmbCategory.Size = new System.Drawing.Size(160, 22);
+            this.cmbCategory.StyleController = this.layoutControl1;
+            this.cmbCategory.TabIndex = 4;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.cmbCategory;
+            this.layoutControlItem1.Location = new System.Drawing.Point(274, 0);
+            this.layoutControlItem1.MaxSize = new System.Drawing.Size(272, 32);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(272, 32);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem1.Size = new System.Drawing.Size(272, 35);
+            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem1.Text = "Category";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(90, 15);
+            // 
+            // txtThresholdValue
+            // 
+            this.txtThresholdValue.Location = new System.Drawing.Point(658, 10);
+            this.txtThresholdValue.Name = "txtThresholdValue";
+            this.txtThresholdValue.Size = new System.Drawing.Size(78, 22);
+            this.txtThresholdValue.StyleController = this.layoutControl1;
+            this.txtThresholdValue.TabIndex = 5;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.txtThresholdValue;
+            this.layoutControlItem2.Location = new System.Drawing.Point(546, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem2.Size = new System.Drawing.Size(190, 35);
+            this.layoutControlItem2.Text = "Threshold Value";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(90, 15);
             // 
             // ucZeroStock
             // 
@@ -110,13 +156,16 @@
             this.Controls.Add(this.layoutControl1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucZeroStock";
-            this.Size = new System.Drawing.Size(705, 45);
+            this.Size = new System.Drawing.Size(746, 45);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtThresholdValue.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -127,6 +176,9 @@
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraEditors.LookUpEdit cmbBranch;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraEditors.LookUpEdit cmbCategory;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraEditors.TextEdit txtThresholdValue;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
     }
 }

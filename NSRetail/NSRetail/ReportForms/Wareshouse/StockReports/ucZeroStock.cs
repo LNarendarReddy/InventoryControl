@@ -24,10 +24,13 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
                 , { "SUBCATEGORYNAME", "Sub Category" }
             };
 
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
+            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
+
+            cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
+            cmbCategory.Properties.ValueMember = "CATEGORYID";
+            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
         }
         public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
 
@@ -39,7 +42,9 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                { "BranchID", cmbBranch .EditValue }
+                { "BranchID", cmbBranch.EditValue },
+                { "CategoryID", cmbCategory.EditValue },
+                { "ThresholdValue", txtThresholdValue.EditValue }
             };
             return GetReportData("USP_RPT_ZEROSTOCK", parameters);
         }
