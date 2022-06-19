@@ -73,7 +73,7 @@ namespace NSRetail.ReportForms
 
             foreach (GridColumn column in gvResults.Columns)
             {
-                column.Visible = !column.FieldName.EndsWith("ID") 
+                column.Visible = !column.FieldName.EndsWith("ID")
                     && (searchCriteria.HiddenColumns == null || !searchCriteria.HiddenColumns.Contains(column.FieldName));
 
                 if (!column.Visible) continue;
@@ -87,8 +87,8 @@ namespace NSRetail.ReportForms
                     column.Caption = searchCriteria.SpecificColumnHeaders[column.FieldName];
 
                 //if(searchCriteria.TotalSummaryFields != null && column.Summary.Count == 0 && searchCriteria.TotalSummaryFields.Contains(column.FieldName))
-                if(column.Summary.Count == 0 && summableTypes.Contains(column.ColumnType))
-                {                    
+                if (column.Summary.Count == 0 && summableTypes.Contains(column.ColumnType))
+                {
                     GridColumnSummaryItem siTotal = new GridColumnSummaryItem
                     {
                         SummaryType = DevExpress.Data.SummaryItemType.Sum,
@@ -99,9 +99,12 @@ namespace NSRetail.ReportForms
                     column.Summary.Add(siTotal);
                     gvResults.OptionsView.ShowFooter = true;
                     column.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Far;
-                }                             
+                }
 
-                column.OptionsColumn.AllowEdit = searchCriteria.EditableColumns != null && searchCriteria.EditableColumns.Contains(column.FieldName);
+                if (column.FieldName == "ITEMCODE" || column.FieldName == "SKUCODE")
+                    column.OptionsColumn.ReadOnly = true;
+                else
+                    column.OptionsColumn.AllowEdit = searchCriteria.EditableColumns != null && searchCriteria.EditableColumns.Contains(column.FieldName);
             }
 
             foreach (string buttonColumn in searchCriteria.ButtonColumns)

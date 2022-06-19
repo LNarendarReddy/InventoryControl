@@ -314,7 +314,7 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (13-06-2022)";
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (18-06-2022)";
 
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,
@@ -541,19 +541,19 @@ namespace NSRetail
             saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
             reportList.Add(saleReports);
 
-            //ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
-            //profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new ucProfitabilityPeriodicity() });
-            //profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new ucProfitabilityItemWise() });
-            //reportList.Add(profitabilityReports);
+            ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
+            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new ucProfitabilityPeriodicity() });
+            profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise", SearchCriteriaControl = new ucProfitabilityItemWise() });
+            reportList.Add(profitabilityReports);
 
             ReportHolder taxReports = new ReportHolder() { ReportName = "Tax Reports" };
             taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax break-up day wise", SearchCriteriaControl = new ucTaxBreakUpDayWise() });
             reportList.Add(taxReports);
 
-            ReportHolder whSaleReports = new ReportHolder() { ReportName = "Sale Reports" };
-            whSaleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sale Periodicity Item wise", SearchCriteriaControl = new ucSalePeriodicity() });
-            whSaleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sale Hour wise", SearchCriteriaControl = new ucSalehourWise() });
-            reportList.Add(whSaleReports);
+            //ReportHolder whSaleReports = new ReportHolder() { ReportName = "Sale Reports" };
+            //whSaleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sale Periodicity Item wise", SearchCriteriaControl = new ucSalePeriodicity() });
+            //whSaleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sale Hour wise", SearchCriteriaControl = new ucSalehourWise() });
+            //reportList.Add(whSaleReports);
 
             reportList.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
 
