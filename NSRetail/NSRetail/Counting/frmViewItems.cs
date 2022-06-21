@@ -26,6 +26,7 @@ namespace NSRetail
             gcDiffStockCP.Visible = caller == "differences" || caller == "not enetered";
             gcPhysicalStockCP.Visible = caller == "differences";
             gcSystemStockCP.Visible = caller == "differences";
+            gcCreatedDate.Visible = caller != "not enetered";
             actionType = caller;
             BranchID = _BranchID;
         }

@@ -49,6 +49,7 @@
             this.gcPhysicalStockCP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSystemStockCP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcDiffStockCP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcCreatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -117,7 +118,8 @@
             this.gcCostPriceWT,
             this.gcPhysicalStockCP,
             this.gcSystemStockCP,
-            this.gcDiffStockCP});
+            this.gcDiffStockCP,
+            this.gcCreatedDate});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -277,6 +279,12 @@
             this.gcDiffStockCP.Visible = true;
             this.gcDiffStockCP.VisibleIndex = 13;
             // 
+            // gcCreatedDate
+            // 
+            this.gcCreatedDate.Caption = "Counting Date";
+            this.gcCreatedDate.FieldName = "CREATEDDATE";
+            this.gcCreatedDate.Name = "gcCreatedDate";
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -369,5 +377,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcPhysicalStockCP;
         private DevExpress.XtraGrid.Columns.GridColumn gcSystemStockCP;
         private DevExpress.XtraGrid.Columns.GridColumn gcDiffStockCP;
+        private DevExpress.XtraGrid.Columns.GridColumn gcCreatedDate;
     }
 }

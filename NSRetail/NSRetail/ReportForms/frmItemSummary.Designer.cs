@@ -377,8 +377,8 @@
             // 
             // gridColumn28
             // 
-            this.gridColumn28.Caption = "Bill Number";
-            this.gridColumn28.FieldName = "BILLNUMBER";
+            this.gridColumn28.Caption = "Bill Date";
+            this.gridColumn28.FieldName = "BILLDATE";
             this.gridColumn28.Name = "gridColumn28";
             this.gridColumn28.Visible = true;
             this.gridColumn28.VisibleIndex = 0;
