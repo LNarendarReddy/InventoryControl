@@ -1,29 +1,20 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse
 {
     public partial class ucSupplierReturnsList : SearchCriteriaBase
     {
-        Dictionary<string, string> columnHeaders;
         List<string> buttonColumns;
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
         public override IEnumerable<string> ButtonColumns => buttonColumns;
-        public override Control FirstControl => cmbSupplier;
-        public override Control LastControl => dtpToDate;
+        
         public ucSupplierReturnsList()
         {
             InitializeComponent();
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "SUPPLIERRETURNSID", "Supplier ReturnsID" }
                 , { "SUPPLIERID", "Supplier ID" }
@@ -42,6 +33,8 @@ namespace NSRetail.ReportForms.Wareshouse
             cmbSupplier.EditValue = 0;
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
+
+            SetFocusControls(cmbSupplier, dtpToDate, columnHeaders);
         }
         public override DataTable GetData()
         {

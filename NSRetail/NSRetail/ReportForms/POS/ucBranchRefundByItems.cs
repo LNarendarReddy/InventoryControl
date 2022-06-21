@@ -2,17 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms
 {
     public partial class ucBranchRefundByItems : SearchCriteriaBase
     {
-        Dictionary<string, string> columnHeaders;
         public ucBranchRefundByItems()
         {
             InitializeComponent();
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "BREFUNDNUMBER", "Branch Refund number" }
             };
@@ -24,6 +22,8 @@ namespace NSRetail.ReportForms
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;
+
+            SetFocusControls(cmbBranch, dtToDate, columnHeaders);
         }
 
         public override DataTable GetData()
@@ -36,11 +36,5 @@ namespace NSRetail.ReportForms
             };
             return GetReportData("USP_RPT_ITEMWISEBRANCHREFUND", parameters);
         }
-
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
-
-        public override Control FirstControl => cmbBranch;
-
-        public override Control LastControl => dtToDate;
     }
 }

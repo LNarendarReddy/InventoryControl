@@ -3,20 +3,18 @@ using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms
 {
     public partial class ucBranchIndent : SearchCriteriaBase
     {
-        Dictionary<string, string> columnHeaders;
         List<BaseEdit> mandatoryFields;
 
         public ucBranchIndent()
         {
             InitializeComponent();
 
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "WAREHOUSEQUANTITY", "Warehouse Quantity" }
                 , { "BRANCHSTOCK", "Branch Stock" }
@@ -38,6 +36,8 @@ namespace NSRetail.ReportForms
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;
+
+            SetFocusControls(cmbBranch, dtToDate, columnHeaders);
         }
 
         public override DataTable GetData()
@@ -53,12 +53,6 @@ namespace NSRetail.ReportForms
             return GetReportData("USP_R_BRANCHINDENT", parameters);
         }
 
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
-
         public override IEnumerable<BaseEdit> MandatoryFields => mandatoryFields;
-
-        public override Control FirstControl => cmbBranch;
-
-        public override Control LastControl => dtToDate;
     }
 }

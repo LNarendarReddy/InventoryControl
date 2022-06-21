@@ -2,12 +2,7 @@
 using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse
@@ -15,17 +10,14 @@ namespace NSRetail.ReportForms.Wareshouse
     public partial class ucStockCountingList : SearchCriteriaBase
     {
         CountingRepository countingRepository = new CountingRepository();
-        Dictionary<string, string> columnHeaders;
         List<string> buttonColumns;
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
         public override IEnumerable<string> ButtonColumns => buttonColumns;
-        public override Control FirstControl => cmbBranch;
-        public override Control LastControl => cmbBranch;
+       
         public ucStockCountingList()
         {
             InitializeComponent();
 
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "STOCKCOUNTINGID", "Stock Counting ID" }
                 , { "UPDATEDBY", "Updated User" }
@@ -38,6 +30,8 @@ namespace NSRetail.ReportForms.Wareshouse
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
+
+            SetFocusControls(cmbBranch, cmbBranch,columnHeaders);
         }
         private void ShowItemsForm(frmViewItems obj)
         {

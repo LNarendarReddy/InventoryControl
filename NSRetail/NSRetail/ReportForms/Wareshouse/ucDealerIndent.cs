@@ -5,13 +5,11 @@ using Entity;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms
 {
     public partial class ucDealerIndent : SearchCriteriaBase
     {
-        Dictionary<string, string> columnHeaders;
         List<string> editableColumns;
         MasterRepository masterRepository = new MasterRepository();
         List<BaseEdit> mandatoryFields;
@@ -20,7 +18,7 @@ namespace NSRetail.ReportForms
         {
             InitializeComponent();
 
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "WAREHOUSEQUANTITY", "Warehouse Quantity" }
                 , { "ALLBRANCHSTOCK", "All Branch Stock" }
@@ -44,6 +42,8 @@ namespace NSRetail.ReportForms
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;
+
+            SetFocusControls(cmbDealer, dtToDate, columnHeaders);
         }
 
         public override DataTable GetData()
@@ -62,15 +62,9 @@ namespace NSRetail.ReportForms
             return dtTemp;
         }
 
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
-
         public override IEnumerable<BaseEdit> MandatoryFields => mandatoryFields;
 
         public override IEnumerable<string> EditableColumns => editableColumns;
-
-        public override Control FirstControl => cmbDealer;
-
-        public override Control LastControl => dtToDate;
 
         private void btnSave_Click(object sender, EventArgs e)
         {

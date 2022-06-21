@@ -1,27 +1,19 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.StockReports
 {
     public partial class ucDispatchList : SearchCriteriaBase
-    {
-        Dictionary<string, string> columnHeaders;
+    {       
         List<string> buttonColumns;
         public ucDispatchList()
         {
             InitializeComponent();
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "STOCKDISPATCHID", "Stock DispatchID" }
                 , { "DISPATCHNUMBER", "Dispatch Number" }
@@ -47,14 +39,12 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
+
+            SetFocusControls(cmbBranch, dtpToDate, columnHeaders);
+
         }
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
 
         public override IEnumerable<string> ButtonColumns => buttonColumns;
-
-        public override Control FirstControl => cmbBranch;
-
-        public override Control LastControl => dtpToDate;
 
         public override DataTable GetData()
         {

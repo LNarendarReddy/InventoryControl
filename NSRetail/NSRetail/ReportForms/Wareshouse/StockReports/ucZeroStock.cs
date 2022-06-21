@@ -1,18 +1,16 @@
 ﻿using DataAccess;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.StockReports
 {
     public partial class ucZeroStock : SearchCriteriaBase
     {
-        Dictionary<string, string> columnHeaders;
         public ucZeroStock()
         {
             InitializeComponent();
 
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "BRANCHNAME", "Branch Name" }
                 , { "SKUCODE", "SKU Code" }
@@ -31,12 +29,9 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+
+            SetFocusControls(cmbBranch, cmbBranch, columnHeaders);
         }
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
-
-        public override Control FirstControl => cmbBranch;
-
-        public override Control LastControl => cmbBranch;
 
         public override DataTable GetData()
         {

@@ -86,7 +86,6 @@ namespace NSRetail.ReportForms
                 if (searchCriteria.SpecificColumnHeaders != null && searchCriteria.SpecificColumnHeaders.ContainsKey(column.FieldName))
                     column.Caption = searchCriteria.SpecificColumnHeaders[column.FieldName];
 
-                //if(searchCriteria.TotalSummaryFields != null && column.Summary.Count == 0 && searchCriteria.TotalSummaryFields.Contains(column.FieldName))
                 if (column.Summary.Count == 0 && summableTypes.Contains(column.ColumnType))
                 {
                     GridColumnSummaryItem siTotal = new GridColumnSummaryItem

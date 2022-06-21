@@ -9,24 +9,14 @@ namespace NSRetail.ReportForms.POS
 {
     public partial class ucDayClosureList : SearchCriteriaBase
     {
-        Dictionary<string, string> columnHeaders;
         List<string> buttonColumns;
-        List<string> summaryColumns;
-
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
 
         public override IEnumerable<string> ButtonColumns => buttonColumns;
-
-        public override IEnumerable<string> TotalSummaryFields => summaryColumns;
-
-        public override Control FirstControl => cmbBranch;
-
-        public override Control LastControl => dtToDate;
 
         public ucDayClosureList()
         {
             InitializeComponent();
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "BRANCHNAME", "Branch" }
                 , { "COUNTERNAME", "Counter" }
@@ -40,7 +30,6 @@ namespace NSRetail.ReportForms.POS
             };
 
             buttonColumns = new List<string>() { "Summary", "Bills", "Items", "Refunds","Void Items" };
-            summaryColumns = new List<string>() { "OPENINGBALANCE", "REFUNDAMOUNT", "CLOSINGBALANCE", "CLOSINGDIFFERENCE" };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -49,6 +38,8 @@ namespace NSRetail.ReportForms.POS
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;
+
+            SetFocusControls(cmbBranch, dtToDate, columnHeaders);
         }
 
         public override DataTable GetData()

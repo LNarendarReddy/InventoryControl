@@ -1,28 +1,16 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.SaleReports
 {
     public partial class ucTaxWiseSales : SearchCriteriaBase
     {
-        Dictionary<string, string> columnHeaders;
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
-        public override Control FirstControl => cmbBranch;
-        public override Control LastControl => cmbBranch;
         public ucTaxWiseSales()
         {
             InitializeComponent();
 
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "CLOSUREDATE", "Closure Date" }
                 , { "GSTCODE", "GST Code" }
@@ -33,6 +21,8 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
             cmbBranch.EditValue = 0;
+
+            SetFocusControls(cmbBranch, cmbBranch, columnHeaders);
         }
         public override DataTable GetData()
         {

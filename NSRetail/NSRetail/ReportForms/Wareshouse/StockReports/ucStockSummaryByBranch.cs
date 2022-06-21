@@ -1,18 +1,16 @@
 ﻿using DataAccess;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.StockReports
 {
     public partial class ucStockSummaryByBranch : SearchCriteriaBase
     {
-        Dictionary<string, string> columnHeaders;
         public ucStockSummaryByBranch()
         {
             InitializeComponent();
 
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "STOCKSUMMARYID", "Stock SummaryID" }
                 , { "BRANCHNAME", "Branch Name" }
@@ -40,14 +38,10 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             sluItem.Properties.DataSource = Utility.GetItemSKUList();
             sluItem.Properties.ValueMember = "ITEMID";
             sluItem.Properties.DisplayMember = "ITEMNAME";
+
+            SetFocusControls(luBranch, sluItem, columnHeaders);
         }
-        
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
-
-        public override Control FirstControl => luBranch;
-
-        public override Control LastControl => sluItem;
-
+                
         public override DataTable GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>

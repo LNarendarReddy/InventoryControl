@@ -16,7 +16,10 @@ namespace NSRetail
     {
         List<string> buttonColumns;
         LookUpEdit cmbPeriodicity;
-        
+        Control firstControl;
+        Control lastControl;
+        Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>();
+
         public List<IncludeSettings> IncludeSettingsCollection { get; set; }
 
         public LookUpEdit Periodicity => cmbPeriodicity;
@@ -57,11 +60,9 @@ namespace NSRetail
 
         public virtual DataTable GetData() => throw new NotImplementedException();
 
-        public virtual Dictionary<string, string> SpecificColumnHeaders { get; }
+        public Dictionary<string, string> SpecificColumnHeaders => specificColumnHeaders;
 
         public virtual IEnumerable<string> ForceShowColumns { get; }
-
-        public virtual IEnumerable<string> TotalSummaryFields { get; }
 
         public Dictionary<string, string> GenericColumnHeaders { get; }
 
@@ -103,9 +104,9 @@ namespace NSRetail
 
         public virtual IEnumerable<string> ButtonColumns => buttonColumns;
 
-        public virtual Control FirstControl { get; }
+        public Control FirstControl => firstControl;
 
-        public virtual Control LastControl { get; }
+        public Control LastControl => lastControl;
 
         public virtual void ActionExecute(string buttonText, DataRow drFocusedRow) { }
 
@@ -141,6 +142,13 @@ namespace NSRetail
             }
 
             return true;
-        }        
+        }
+
+        protected void SetFocusControls(Control first, Control last, Dictionary<string, string> columnHeaders)
+        {
+            firstControl = first;
+            lastControl = last;
+            specificColumnHeaders = columnHeaders;
+        }
     }
 }

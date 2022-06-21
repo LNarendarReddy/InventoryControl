@@ -1,31 +1,23 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using Entity;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse
 {
     public partial class ucSupplierIndentList : SearchCriteriaBase
     {
-        Dictionary<string, string> columnHeaders;
         List<string> buttonColumns;
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
+
         public override IEnumerable<string> ButtonColumns => buttonColumns;
-        public override Control FirstControl => cmbCategory;
-        public override Control LastControl => dtpToDate;
+       
         public ucSupplierIndentList()
         {
             InitializeComponent();
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "SUPPLIERINDENTID", "Supplier Indent ID" }
                 , { "SUPPLIERID", "Supplier ID" }
@@ -47,6 +39,9 @@ namespace NSRetail.ReportForms.Wareshouse
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
+            
+            SetFocusControls(cmbCategory, dtpToDate, columnHeaders);
+
         }
         public override DataTable GetData()
         {

@@ -2,23 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.SaleReports
 {
     public partial class ucItemWiseSales : SearchCriteriaBase
     {
-        Dictionary<string, string> columnHeaders;
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
-
-        public override Control FirstControl => cmbBranch;
-        public override Control LastControl => chkIncludeBranch;
-
         public ucItemWiseSales()
         {
             InitializeComponent();
 
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "SALEQUANTITY", "Sale Quantity" }
                 , { "WEIGHTINKGS", "Weight In Kgs" }
@@ -33,6 +26,8 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
             cmbBranch.EditValue = 0;
+
+            SetFocusControls(cmbBranch, chkIncludeBranch, columnHeaders);
         }
 
         public override DataTable GetData()

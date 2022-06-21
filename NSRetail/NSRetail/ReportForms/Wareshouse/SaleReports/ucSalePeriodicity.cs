@@ -2,24 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.SaleReports
 {
     public partial class ucSalePeriodicity : SearchCriteriaBase
     {
-        private Dictionary<string, string> specificColumnHeaders;
-        public override Dictionary<string, string> SpecificColumnHeaders => specificColumnHeaders;
-
-        public override Control FirstControl => cmbPeriodicity;
-
-        public override Control LastControl => dtpToDate;
-
         public ucSalePeriodicity()
         {
             InitializeComponent();
 
-            specificColumnHeaders = new Dictionary<string, string>()
+            Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>()
             {
                 { "TOTALSALEPRICEWOT", "Total Sale Price WOT" },
                 { "TOTALSALETAX", "Total Sale Price Tax" },
@@ -28,6 +20,8 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 { "SALEPRICETAX", "Sale Price Tax" },
                 { "SALEQUANTITY", "Sale Quantity" }
             };
+
+            SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
         }
 
         private void ucSalePeriodicity_Load(object sender, EventArgs e)

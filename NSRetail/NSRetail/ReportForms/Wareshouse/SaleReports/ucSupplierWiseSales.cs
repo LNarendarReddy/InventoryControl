@@ -2,29 +2,18 @@
 using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.SaleReports
 {
     public partial class ucSupplierWiseSales : SearchCriteriaBase
-    {
-        Dictionary<string, string> columnHeaders;
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
-
+    {        
         public override IEnumerable<BaseEdit> MandatoryFields => new List<BaseEdit> { cmbSupplier };
 
-        public override Control FirstControl => cmbSupplier;
-        public override Control LastControl => dtpToDate;
         public ucSupplierWiseSales()
         {
             InitializeComponent();
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "DEALERNAME", "Supplier" }
                 , { "BILLDATE", "Bill Date" }
@@ -46,6 +35,8 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
+
+            SetFocusControls(cmbSupplier, dtpToDate, columnHeaders);
         }
         public override DataTable GetData()
         {

@@ -3,25 +3,16 @@ using DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.Profitability
 {
     public partial class ucProfitabilityItemWise : SearchCriteriaBase
     {
-        private Dictionary<string, string> specificColumnHeaders;
-
-        public override Dictionary<string, string> SpecificColumnHeaders => specificColumnHeaders;
-
-        public override Control FirstControl => cmbBranch;
-
-        public override Control LastControl => dtpToDate;
-
         public ucProfitabilityItemWise()
         {
             InitializeComponent();
 
-            specificColumnHeaders = new Dictionary<string, string>() 
+            Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>() 
             {
                 { "SALEPRICEWOT", "Sale Price WOT" },
                 { "SALEPRICETAX", "Sale Price Tax" },
@@ -41,6 +32,9 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "PROFITMARGINWT", "Profit Margin WT" },
                 { "PROFITMARGINPERWT", "Profit Margin % WT" }
             };
+
+            SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);
+
         }
 
         private void ucItemWise_Load(object sender, EventArgs e)

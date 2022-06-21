@@ -1,28 +1,16 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.POS
 {
     public partial class ucCustomerReturns : SearchCriteriaBase
     {
-        Dictionary<string, string> columnHeaders;
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
-
-        public override Control FirstControl => cmbBranch;
-        public override Control LastControl => chkIncludeBranch;
         public ucCustomerReturns()
         {
             InitializeComponent();
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "REFUNDDATE", "Refund Date" }
                 , { "BILLNUMBER", "Bill Number" }
@@ -37,6 +25,8 @@ namespace NSRetail.ReportForms.POS
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
             cmbBranch.EditValue = 0;
+
+            SetFocusControls(cmbBranch, chkIncludeBranch, columnHeaders);
         }
         public override DataTable GetData()
         {

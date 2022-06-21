@@ -2,24 +2,17 @@
 using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail
 {
     public partial class ucDispatchDifferences : SearchCriteriaBase
-    {
-        Dictionary<string, string> columnHeaders;
+    {        
         List<BaseEdit> mandatoryFields;
         public ucDispatchDifferences()
         {
             InitializeComponent();
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "DISPATCHQUANTITY", "Dispatch Quantity" }
                 , { "RECEIVEDQUANTITY", "Recieved Quantity" }
@@ -39,6 +32,7 @@ namespace NSRetail
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;
 
+            SetFocusControls(cmbBranch, dtToDate, columnHeaders);
         }
 
         public override DataTable GetData()
@@ -54,12 +48,6 @@ namespace NSRetail
             return GetReportData("USP_RPT_DISPATCHDIFF", parameters);
         }
 
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
-
         public override IEnumerable<BaseEdit> MandatoryFields => mandatoryFields;
-
-        public override Control FirstControl => cmbBranch;
-
-        public override Control LastControl => dtToDate;
     }
 }

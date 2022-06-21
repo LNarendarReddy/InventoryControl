@@ -4,21 +4,18 @@ using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.StockReports
 {
     public partial class ucInvoiceList : SearchCriteriaBase
-    {
-        Dictionary<string, string> columnHeaders;
-        List<string> buttonColumns;
-        List<string> summaryColumns;
+    {        
+        List<string> buttonColumns;        
         List<string> hiddenColumns;
 
         public ucInvoiceList()
         {
             InitializeComponent();
-            columnHeaders = new Dictionary<string, string>
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "SNO", "S No" }
                 , { "STOCKENTRYID", "Stock Entry ID" }
@@ -33,7 +30,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             };
 
             buttonColumns = new List<string>() { "View" };
-            summaryColumns = new List<string>() { "FINALPRICE"};
+            //summaryColumns = new List<string>() { "FINALPRICE"};
             hiddenColumns = new List<string>() { "TAXINCLUSIVE", "TCS", "DISCOUNTPER", "DISCOUNT", "EXPENSES", "TRANSPORT" };
 
             cmbDealer.Properties.DataSource = new MasterRepository().GetDealer();
@@ -42,19 +39,13 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             cmbDealer.EditValue = 0;
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
-        }
 
-        public override Dictionary<string, string> SpecificColumnHeaders => columnHeaders;
+            SetFocusControls(cmbDealer, dtpToDate,columnHeaders);
+        }
 
         public override IEnumerable<string> ButtonColumns => buttonColumns;
 
-        public override IEnumerable<string> TotalSummaryFields => summaryColumns;
-
         public override IEnumerable<string> HiddenColumns => hiddenColumns;
-
-        public override Control FirstControl => cmbDealer;
-
-        public override Control LastControl => dtpToDate;
 
         public override DataTable GetData()
         {

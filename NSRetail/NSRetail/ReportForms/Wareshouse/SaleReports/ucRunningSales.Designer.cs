@@ -226,7 +226,6 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucRunningSales";
             this.Size = new System.Drawing.Size(875, 45);
-            this.Load += new System.EventHandler(this.ucRunningSales_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeItem.Properties)).EndInit();

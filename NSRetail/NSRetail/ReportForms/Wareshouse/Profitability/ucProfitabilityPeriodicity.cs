@@ -2,24 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.Profitability
 {
     public partial class ucProfitabilityPeriodicity : SearchCriteriaBase
     {
-        private Dictionary<string, string> specificColumnHeaders;
-        public override Dictionary<string, string> SpecificColumnHeaders => specificColumnHeaders;
-
-        public override Control FirstControl => cmbPeriodicity;
-
-        public override Control LastControl => dtpToDate;
-
         public ucProfitabilityPeriodicity()
         {
             InitializeComponent();
 
-            specificColumnHeaders = new Dictionary<string, string>()
+            Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>()
             {               
                 { "TOTALCOSTPRICEWOT", "Total Cost Price WOT" },
                 { "TOTALCOSTPRICETAX", "Total Cost Price Tax" },
@@ -33,10 +25,7 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "PROFITMARGINPERWT", "Profit Margin % WT" },
                 { "PERIODOCITY", "Periodocity" }
             };
-        }
 
-        private void ucPeriodicity_Load(object sender, EventArgs e)
-        {
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
 
@@ -52,6 +41,7 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 
             SetPeriodicty(cmbPeriodicity);
+            SetFocusControls(cmbPeriodicity, dtpToDate,specificColumnHeaders);
         }
 
         public override DataTable GetData()
