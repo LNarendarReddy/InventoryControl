@@ -23,7 +23,6 @@ namespace NSRetail.ReportForms.Wareshouse
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
@@ -39,6 +38,10 @@ namespace NSRetail.ReportForms.Wareshouse
 
             SetFocusControls(sluItemCode, dtpToDate, columnHeaders);
             mandatoryFields = new List<BaseEdit>() { sluItemCode, cmbBranch };
+            IncludeSettingsCollection = new List<IncludeSettings>()
+            {
+                new IncludeSettings("Branch", "IncludeBranch", new List<string>() { "BRANCHNAME" })
+            };
         }
 
         public override DataTable GetData()
