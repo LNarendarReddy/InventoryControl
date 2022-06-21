@@ -149,6 +149,12 @@
     <Compile Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.Designer.cs">
       <DependentUpon>ucTaxBreakUpDayWise.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\ucItemLedger.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\ucItemLedger.Designer.cs">
+      <DependentUpon>ucItemLedger.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnUsed\frmStockCounting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -708,6 +714,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.resx">
       <DependentUpon>ucTaxBreakUpDayWise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\ucItemLedger.resx">
+      <DependentUpon>ucItemLedger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UnUsed\frmStockCounting.resx">
       <DependentUpon>frmStockCounting.cs</DependentUpon>
