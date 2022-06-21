@@ -556,6 +556,7 @@ namespace NSRetail
             //reportList.Add(whSaleReports);
 
             reportList.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
+            reportList.Add(new ReportHolder() { ReportName = "Item Ledger", SearchCriteriaControl = new ucItemLedger() });
 
             ShowReportForm(reportList);
         }
