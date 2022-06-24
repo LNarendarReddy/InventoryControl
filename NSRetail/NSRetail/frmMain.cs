@@ -535,8 +535,9 @@ namespace NSRetail
             List<ReportHolder> reportList = new List<ReportHolder>();
 
             ReportHolder saleReports = new ReportHolder() { ReportName = "Sale Reports" };
-            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Running sales", SearchCriteriaControl = new ucRunningSales() });
-            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales", SearchCriteriaControl = new ucItemWiseSales() });
+            //saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Running sales", SearchCriteriaControl = new ucRunningSales() });
+            //saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales", SearchCriteriaControl = new ucItemWiseSales() });
+            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
             saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise sales", SearchCriteriaControl = new ucSupplierWiseSales() });
             saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
             reportList.Add(saleReports);
@@ -550,12 +551,6 @@ namespace NSRetail
             taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax break-up day wise", SearchCriteriaControl = new ucTaxBreakUpDayWise() });
             reportList.Add(taxReports);
 
-            //ReportHolder whSaleReports = new ReportHolder() { ReportName = "Sale Reports" };
-            //whSaleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sale Periodicity Item wise", SearchCriteriaControl = new ucSalePeriodicity() });
-            //whSaleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sale Hour wise", SearchCriteriaControl = new ucSalehourWise() });
-            //reportList.Add(whSaleReports);
-
-            reportList.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
             reportList.Add(new ReportHolder() { ReportName = "Item Ledger", SearchCriteriaControl = new ucItemLedger() });
 
             ShowReportForm(reportList);
