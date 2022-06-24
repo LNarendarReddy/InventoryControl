@@ -118,8 +118,8 @@ namespace NSRetail
 
             if(includeHourly) dtPeriodicity.Rows.Add(new []{ "Hourly" });
             dtPeriodicity.Rows.Add(new []{ "Daily" });
-            dtPeriodicity.Rows.Add(new []{ "Monthly" });
-            dtPeriodicity.Rows.Add(new []{ "Yearly" });
+            dtPeriodicity.Rows.Add(new []{ "Monthly"});
+            dtPeriodicity.Rows.Add(new []{ "Yearly"});
 
             cmbPeriodicity.Properties.DataSource = dtPeriodicity;
             cmbPeriodicity.Properties.ValueMember = "Periodicityvalue";

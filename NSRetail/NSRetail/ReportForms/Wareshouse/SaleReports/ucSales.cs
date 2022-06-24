@@ -23,9 +23,11 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
 
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
-                new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "SALEPRICE", "SALEPRICEWOT", "SALEPRICETAX", "SALEQUANTITY" })
+                new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODOCITY" })
+                , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "SALEPRICE", "SALEPRICEWOT", "SALEPRICETAX", "SALEQUANTITY" })
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" })
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
+                , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
             };
 
             SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);

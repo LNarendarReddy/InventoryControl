@@ -8,6 +8,8 @@ namespace NSRetail.ReportForms
         {
             InitializeComponent();
             gcIncExc.DataSource = includeSettings;
+            gvIncExc.FocusedRowHandle = 0;
+            gvIncExc.FocusedColumn = gcInclude;
         }
 
         private void gvIncExc_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
@@ -16,11 +18,6 @@ namespace NSRetail.ReportForms
             {
                 gvIncExc.MoveNext();
             }
-        }
-
-        private void btnApply_Click(object sender, System.EventArgs e)
-        {
-            Close();
         }
 
         private void btnApplyAndSearch_Click(object sender, System.EventArgs e)

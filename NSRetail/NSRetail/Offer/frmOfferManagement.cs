@@ -61,6 +61,8 @@ namespace NSRetail
         {
             try
             {
+                if (txtOfferValue.Enabled == false)
+                    dxValidationProvider1.SetValidationRule(txtOfferValue, null);
                 if (!dxValidationProvider1.Validate()) return;
                 offer.OfferCode = txtOfferCode.EditValue;
                 offer.OfferName = txtOfferName.EditValue;
