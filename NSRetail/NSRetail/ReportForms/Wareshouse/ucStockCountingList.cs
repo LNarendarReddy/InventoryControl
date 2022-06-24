@@ -10,9 +10,7 @@ namespace NSRetail.ReportForms.Wareshouse
     public partial class ucStockCountingList : SearchCriteriaBase
     {
         CountingRepository countingRepository = new CountingRepository();
-        List<string> buttonColumns;
-        public override IEnumerable<string> ButtonColumns => buttonColumns;
-       
+               
         public ucStockCountingList()
         {
             InitializeComponent();
@@ -25,7 +23,7 @@ namespace NSRetail.ReportForms.Wareshouse
                 , { "STATUS", "Status" }
             };
 
-            buttonColumns = new List<string>() { "View" };
+            ButtonColumns = new List<string>() { "View" };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -33,6 +31,7 @@ namespace NSRetail.ReportForms.Wareshouse
 
             SetFocusControls(cmbBranch, cmbBranch,columnHeaders);
         }
+
         private void ShowItemsForm(frmViewItems obj)
         {
             obj.ShowInTaskbar = false;

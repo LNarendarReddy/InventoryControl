@@ -7,9 +7,7 @@ using System.Data;
 namespace NSRetail.ReportForms.Wareshouse.SaleReports
 {
     public partial class ucSupplierWiseSales : SearchCriteriaBase
-    {        
-        public override IEnumerable<BaseEdit> MandatoryFields => new List<BaseEdit> { cmbSupplier };
-
+    {   
         public ucSupplierWiseSales()
         {
             InitializeComponent();
@@ -37,6 +35,7 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             dtpToDate.EditValue = DateTime.Now;
 
             SetFocusControls(cmbSupplier, dtpToDate, columnHeaders);
+            MandatoryFields = new List<BaseEdit> { cmbSupplier };
         }
         public override DataTable GetData()
         {

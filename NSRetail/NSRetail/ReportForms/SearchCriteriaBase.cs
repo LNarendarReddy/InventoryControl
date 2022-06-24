@@ -14,13 +14,12 @@ namespace NSRetail
 {
     public partial class SearchCriteriaBase : XtraUserControl
     {
-        List<string> buttonColumns;
         LookUpEdit cmbPeriodicity;
         Control firstControl;
         Control lastControl;
         Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>();
 
-        public List<IncludeSettings> IncludeSettingsCollection { get; set; }
+        public List<IncludeSettings> IncludeSettingsCollection { get; protected set; }
 
         public LookUpEdit Periodicity => cmbPeriodicity;
 
@@ -55,7 +54,7 @@ namespace NSRetail
                 , {"TIME", "Time"}
             };
 
-            buttonColumns = new List<string>();
+            ButtonColumns = new List<string>();
         }
 
         public virtual DataTable GetData() => throw new NotImplementedException();
@@ -96,13 +95,13 @@ namespace NSRetail
             return reportdata;
         }
 
-        public virtual IEnumerable<BaseEdit> MandatoryFields { get; }
+        public IEnumerable<BaseEdit> MandatoryFields { get; protected set; }
 
-        public virtual IEnumerable<string> EditableColumns { get; }
+        public IEnumerable<string> EditableColumns { get; protected set; }
 
-        public virtual IEnumerable<string> HiddenColumns { get; }
+        public IEnumerable<string> HiddenColumns { get; protected set; }
 
-        public virtual IEnumerable<string> ButtonColumns => buttonColumns;
+        public IEnumerable<string> ButtonColumns { get; protected set; }
 
         public Control FirstControl => firstControl;
 

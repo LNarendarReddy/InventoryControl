@@ -9,10 +9,8 @@ using System.Data;
 namespace NSRetail.ReportForms
 {
     public partial class ucDealerIndent : SearchCriteriaBase
-    {
-        List<string> editableColumns;
+    {       
         MasterRepository masterRepository = new MasterRepository();
-        List<BaseEdit> mandatoryFields;
 
         public ucDealerIndent()
         {
@@ -29,8 +27,8 @@ namespace NSRetail.ReportForms
                 , { "DESIREDINDENT", "Desired Indent" }
             };
 
-            editableColumns = new List<string>() { "DESIREDINDENT" };
-            mandatoryFields = new List<BaseEdit>() { cmbDealer, cmbCategory, dtFromDate, dtToDate };
+            EditableColumns = new List<string>() { "DESIREDINDENT" };
+            MandatoryFields = new List<BaseEdit>() { cmbDealer, cmbCategory, dtFromDate, dtToDate };
 
             cmbDealer.Properties.DataSource = masterRepository.GetDealer();
             cmbDealer.Properties.ValueMember = "DEALERID";
@@ -61,10 +59,6 @@ namespace NSRetail.ReportForms
             dtTemp.Columns["SUPPLIERINDENTDETAILID"].SetOrdinal(0);
             return dtTemp;
         }
-
-        public override IEnumerable<BaseEdit> MandatoryFields => mandatoryFields;
-
-        public override IEnumerable<string> EditableColumns => editableColumns;
 
         private void btnSave_Click(object sender, EventArgs e)
         {

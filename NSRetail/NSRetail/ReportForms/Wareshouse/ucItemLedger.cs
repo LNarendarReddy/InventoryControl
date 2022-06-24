@@ -8,10 +8,6 @@ namespace NSRetail.ReportForms.Wareshouse
 {
     public partial class ucItemLedger : SearchCriteriaBase
     {
-        List<BaseEdit> mandatoryFields = null;
-
-        public override IEnumerable<BaseEdit> MandatoryFields => mandatoryFields;
-
         public ucItemLedger()
         {
             InitializeComponent();
@@ -37,7 +33,7 @@ namespace NSRetail.ReportForms.Wareshouse
             };
 
             SetFocusControls(sluItemCode, dtpToDate, columnHeaders);
-            mandatoryFields = new List<BaseEdit>() { sluItemCode, cmbBranch };
+            MandatoryFields = new List<BaseEdit>() { sluItemCode, cmbBranch };
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
                 new IncludeSettings("Branch", "IncludeBranch", new List<string>() { "BRANCHNAME" })

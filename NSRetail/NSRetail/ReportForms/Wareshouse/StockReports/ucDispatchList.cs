@@ -8,8 +8,7 @@ using System.Data;
 namespace NSRetail.ReportForms.Wareshouse.StockReports
 {
     public partial class ucDispatchList : SearchCriteriaBase
-    {       
-        List<string> buttonColumns;
+    {    
         public ucDispatchList()
         {
             InitializeComponent();
@@ -25,7 +24,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
                 , { "STATUS", "Status" }
             };
 
-            buttonColumns = new List<string>() { "View" };
+            ButtonColumns = new List<string>() { "View" };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -43,8 +42,6 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             SetFocusControls(cmbBranch, dtpToDate, columnHeaders);
 
         }
-
-        public override IEnumerable<string> ButtonColumns => buttonColumns;
 
         public override DataTable GetData()
         {

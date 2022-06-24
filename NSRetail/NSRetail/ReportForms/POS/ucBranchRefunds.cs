@@ -8,10 +8,6 @@ namespace NSRetail.ReportForms.POS
 {
     public partial class ucBranchRefunds : SearchCriteriaBase
     {
-        private List<string> buttonColumns;
-
-        public override IEnumerable<string> ButtonColumns => buttonColumns;
-
         public ucBranchRefunds()
         {
             InitializeComponent();
@@ -24,7 +20,7 @@ namespace NSRetail.ReportForms.POS
                     , { "STATUS", "Status" }
                 };
 
-            buttonColumns = new List<string>() { "View" };
+            ButtonColumns = new List<string>() { "View" };
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;

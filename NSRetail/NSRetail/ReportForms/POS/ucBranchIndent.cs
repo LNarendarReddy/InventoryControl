@@ -8,8 +8,6 @@ namespace NSRetail.ReportForms
 {
     public partial class ucBranchIndent : SearchCriteriaBase
     {
-        List<BaseEdit> mandatoryFields;
-
         public ucBranchIndent()
         {
             InitializeComponent();
@@ -24,7 +22,7 @@ namespace NSRetail.ReportForms
                 , { "SUBCATEGORYNAME", "Sub Category" }
             };
 
-            mandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
+            MandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -52,7 +50,5 @@ namespace NSRetail.ReportForms
 
             return GetReportData("USP_R_BRANCHINDENT", parameters);
         }
-
-        public override IEnumerable<BaseEdit> MandatoryFields => mandatoryFields;
     }
 }

@@ -9,10 +9,6 @@ namespace NSRetail.ReportForms.POS
 {
     public partial class ucDayClosureList : SearchCriteriaBase
     {
-        List<string> buttonColumns;
-
-        public override IEnumerable<string> ButtonColumns => buttonColumns;
-
         public ucDayClosureList()
         {
             InitializeComponent();
@@ -29,7 +25,7 @@ namespace NSRetail.ReportForms.POS
                 , { "CLOSEDBY", "User" }
             };
 
-            buttonColumns = new List<string>() { "Summary", "Bills", "Items", "Refunds","Void Items" };
+            ButtonColumns = new List<string>() { "Summary", "Bills", "Items", "Refunds","Void Items" };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
             cmbBranch.Properties.ValueMember = "BRANCHID";

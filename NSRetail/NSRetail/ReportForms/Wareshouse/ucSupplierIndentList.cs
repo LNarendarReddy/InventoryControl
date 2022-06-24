@@ -9,11 +9,7 @@ using System.Windows.Forms;
 namespace NSRetail.ReportForms.Wareshouse
 {
     public partial class ucSupplierIndentList : SearchCriteriaBase
-    {
-        List<string> buttonColumns;
-
-        public override IEnumerable<string> ButtonColumns => buttonColumns;
-       
+    {       
         public ucSupplierIndentList()
         {
             InitializeComponent();
@@ -31,7 +27,7 @@ namespace NSRetail.ReportForms.Wareshouse
                 , { "STATUS", "Status" }
             };
 
-            buttonColumns = new List<string>() { "View", "Print&Export" };
+            ButtonColumns = new List<string>() { "View", "Print&Export" };
 
             cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
@@ -43,6 +39,7 @@ namespace NSRetail.ReportForms.Wareshouse
             SetFocusControls(cmbCategory, dtpToDate, columnHeaders);
 
         }
+
         public override DataTable GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
@@ -53,6 +50,7 @@ namespace NSRetail.ReportForms.Wareshouse
             };
             return GetReportData("USP_R_SUPPLIERINDENT", parameters);
         }
+
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
             switch (buttonText)

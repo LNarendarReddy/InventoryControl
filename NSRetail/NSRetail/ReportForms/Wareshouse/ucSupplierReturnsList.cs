@@ -7,10 +7,7 @@ using System.Windows.Forms;
 namespace NSRetail.ReportForms.Wareshouse
 {
     public partial class ucSupplierReturnsList : SearchCriteriaBase
-    {
-        List<string> buttonColumns;
-        public override IEnumerable<string> ButtonColumns => buttonColumns;
-        
+    {   
         public ucSupplierReturnsList()
         {
             InitializeComponent();
@@ -25,7 +22,7 @@ namespace NSRetail.ReportForms.Wareshouse
                 , { "STATUS", "Status" }
             };
 
-            buttonColumns = new List<string>() { "View" };
+            ButtonColumns = new List<string>() { "View" };
 
             cmbSupplier.Properties.DataSource = new MasterRepository().GetDealer(true);
             cmbSupplier.Properties.ValueMember = "DEALERID";

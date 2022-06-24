@@ -8,7 +8,6 @@ namespace NSRetail
 {
     public partial class ucDispatchDifferences : SearchCriteriaBase
     {        
-        List<BaseEdit> mandatoryFields;
         public ucDispatchDifferences()
         {
             InitializeComponent();
@@ -19,7 +18,7 @@ namespace NSRetail
                 , { "STOCKDIFF", "Stock Difference" }
             };
 
-            mandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
+            MandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -47,7 +46,5 @@ namespace NSRetail
 
             return GetReportData("USP_RPT_DISPATCHDIFF", parameters);
         }
-
-        public override IEnumerable<BaseEdit> MandatoryFields => mandatoryFields;
     }
 }

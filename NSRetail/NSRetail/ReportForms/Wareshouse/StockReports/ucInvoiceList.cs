@@ -8,10 +8,7 @@ using System.Data;
 namespace NSRetail.ReportForms.Wareshouse.StockReports
 {
     public partial class ucInvoiceList : SearchCriteriaBase
-    {        
-        List<string> buttonColumns;        
-        List<string> hiddenColumns;
-
+    {       
         public ucInvoiceList()
         {
             InitializeComponent();
@@ -29,9 +26,8 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
                 , { "STATUS", "Status" }
             };
 
-            buttonColumns = new List<string>() { "View" };
-            //summaryColumns = new List<string>() { "FINALPRICE"};
-            hiddenColumns = new List<string>() { "TAXINCLUSIVE", "TCS", "DISCOUNTPER", "DISCOUNT", "EXPENSES", "TRANSPORT" };
+            ButtonColumns = new List<string>() { "View" };
+            HiddenColumns = new List<string>() { "TAXINCLUSIVE", "TCS", "DISCOUNTPER", "DISCOUNT", "EXPENSES", "TRANSPORT" };
 
             cmbDealer.Properties.DataSource = new MasterRepository().GetDealer();
             cmbDealer.Properties.DisplayMember = "DEALERNAME";
@@ -42,10 +38,6 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
 
             SetFocusControls(cmbDealer, dtpToDate,columnHeaders);
         }
-
-        public override IEnumerable<string> ButtonColumns => buttonColumns;
-
-        public override IEnumerable<string> HiddenColumns => hiddenColumns;
 
         public override DataTable GetData()
         {
