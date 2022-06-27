@@ -30,21 +30,29 @@ namespace WarehouseCloudSync.Data
             {
                 return;
             }
+            SqlTransaction transaction = null;
 
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SqlCon.SqlWHconn();
+                    if (entityName == "POS_DAYCLOSURE")
+                    {
+                        transaction = cmd.Connection.BeginTransaction();
+                        cmd.Transaction = transaction;
+                    }
                     cmd.CommandType = CommandType.StoredProcedure;
                     EntityMapping map = entityMapping[entityName];
                     cmd.CommandText = map.ProcedureName;
                     cmd.Parameters.AddWithValue(map.ParameterName, dtEntityWiseData);
                     cmd.ExecuteNonQuery();
+                    transaction?.Commit();
                 }
             }
             catch (Exception ex)
             {
+                transaction?.Rollback();
                 throw new Exception("Error While saving Entity wise data List", ex);
             }
             finally
