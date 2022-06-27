@@ -40,9 +40,7 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -162,9 +160,7 @@
             this.gridColumn4,
             this.gridColumn5,
             this.gridColumn8,
-            this.gridColumn9,
             this.gridColumn10,
-            this.gridColumn11,
             this.gridColumn7,
             this.gridColumn19,
             this.gridColumn20,
@@ -245,17 +241,6 @@
             this.gridColumn8.VisibleIndex = 6;
             this.gridColumn8.Width = 87;
             // 
-            // gridColumn9
-            // 
-            this.gridColumn9.Caption = "In transit quantity";
-            this.gridColumn9.FieldName = "INTRANSITQUANTITY";
-            this.gridColumn9.MinWidth = 23;
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.OptionsColumn.AllowEdit = false;
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 7;
-            this.gridColumn9.Width = 87;
-            // 
             // gridColumn10
             // 
             this.gridColumn10.Caption = "Weight in Kgs";
@@ -264,19 +249,8 @@
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 8;
+            this.gridColumn10.VisibleIndex = 7;
             this.gridColumn10.Width = 87;
-            // 
-            // gridColumn11
-            // 
-            this.gridColumn11.Caption = "In transit weight in Kgs";
-            this.gridColumn11.FieldName = "INTRANSITWEIGHTINKGS";
-            this.gridColumn11.MinWidth = 23;
-            this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.OptionsColumn.AllowEdit = false;
-            this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 9;
-            this.gridColumn11.Width = 87;
             // 
             // gridColumn7
             // 
@@ -303,7 +277,7 @@
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.OptionsColumn.AllowEdit = false;
             this.gridColumn20.Visible = true;
-            this.gridColumn20.VisibleIndex = 10;
+            this.gridColumn20.VisibleIndex = 8;
             // 
             // gridColumn18
             // 
@@ -312,7 +286,7 @@
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.OptionsColumn.AllowEdit = false;
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 11;
+            this.gridColumn18.VisibleIndex = 9;
             // 
             // gridColumn21
             // 
@@ -322,7 +296,7 @@
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.OptionsColumn.AllowEdit = false;
             this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 12;
+            this.gridColumn21.VisibleIndex = 10;
             // 
             // txtMAsk
             // 
@@ -344,7 +318,7 @@
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.OptionsColumn.AllowEdit = false;
             this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 13;
+            this.gridColumn22.VisibleIndex = 11;
             // 
             // gridColumn23
             // 
@@ -354,7 +328,7 @@
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.OptionsColumn.AllowEdit = false;
             this.gridColumn23.Visible = true;
-            this.gridColumn23.VisibleIndex = 14;
+            this.gridColumn23.VisibleIndex = 12;
             // 
             // btnCancel
             // 
@@ -560,7 +534,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(276, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(463, 68);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(463, 64);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
@@ -645,9 +619,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;

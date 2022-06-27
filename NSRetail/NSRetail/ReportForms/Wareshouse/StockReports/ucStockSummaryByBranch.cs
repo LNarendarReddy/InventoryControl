@@ -18,9 +18,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
                 , { "ITEMCODE", "Item Code" }
                 , { "ITEMNAME", "Item Name" }
                 , { "QUANTITY", "Quantity" }
-                , { "INTRANSITQUANTITY", "In-transit Quantity" }
                 , { "WEIGHTINKGS", "Weight In Kgs" }
-                , { "INTRANSITWEIGHTINKGS", "In-Transit Weight In Kgs" }
                 , { "CATEGORYNAME", "Category" }
                 , { "SUBCATEGORYNAME", "Sub Category" }
                 , { "MRP", "MRP" }

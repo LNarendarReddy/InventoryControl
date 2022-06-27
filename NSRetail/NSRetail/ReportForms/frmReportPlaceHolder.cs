@@ -220,7 +220,6 @@ namespace NSRetail.ReportForms
             selectedReportHolder.SearchCriteriaControl.ActionExecute(gvResults.FocusedColumn.Caption, gvResults.GetFocusedDataRow());
         }
                 
-
         private void SubscribeLastControl(ReportHolder rptHolder)
         {
             rptHolder.SubCategory?.ForEach(x => SubscribeLastControl(x));
