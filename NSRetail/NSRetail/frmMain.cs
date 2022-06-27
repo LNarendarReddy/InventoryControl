@@ -534,13 +534,15 @@ namespace NSRetail
         {
             List<ReportHolder> reportList = new List<ReportHolder>();
 
-            ReportHolder saleReports = new ReportHolder() { ReportName = "Sale Reports" };
+            ReportHolder reports = new ReportHolder() { ReportName = "Reports" };
             //saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Running sales", SearchCriteriaControl = new ucRunningSales() });
             //saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Wise sales", SearchCriteriaControl = new ucItemWiseSales() });
-            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
-            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise sales", SearchCriteriaControl = new ucSupplierWiseSales() });
-            saleReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
-            reportList.Add(saleReports);
+            reports.SubCategory.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
+            reports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise sales", SearchCriteriaControl = new ucSupplierWiseSales() });
+            reports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
+            reports.SubCategory.Add(new ReportHolder() { ReportName = "Purchases", SearchCriteriaControl = new ucPurchases() });
+            reports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatches", SearchCriteriaControl = new ucDispatches() });
+            reportList.Add(reports);
 
             ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
             profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new ucProfitabilityPeriodicity() });

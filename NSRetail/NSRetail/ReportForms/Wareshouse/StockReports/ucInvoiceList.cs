@@ -29,7 +29,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             ButtonColumns = new List<string>() { "View" };
             HiddenColumns = new List<string>() { "TAXINCLUSIVE", "TCS", "DISCOUNTPER", "DISCOUNT", "EXPENSES", "TRANSPORT" };
 
-            cmbDealer.Properties.DataSource = new MasterRepository().GetDealer();
+            cmbDealer.Properties.DataSource = new MasterRepository().GetDealer(true);
             cmbDealer.Properties.DisplayMember = "DEALERNAME";
             cmbDealer.Properties.ValueMember = "DEALERID";
             cmbDealer.EditValue = 0;

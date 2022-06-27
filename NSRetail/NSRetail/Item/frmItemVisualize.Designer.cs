@@ -44,9 +44,7 @@
             this.gridColumn29 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcItemPriceList = new DevExpress.XtraGrid.GridControl();
             this.gvItemPrice = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -220,9 +218,7 @@
             this.gridColumn29,
             this.gridColumn22,
             this.gridColumn23,
-            this.gridColumn24,
-            this.gridColumn26,
-            this.gridColumn27});
+            this.gridColumn26});
             this.gvStockSummary.DetailHeight = 404;
             this.gvStockSummary.GridControl = this.gcStockSummary;
             this.gvStockSummary.Name = "gvStockSummary";
@@ -270,17 +266,6 @@
             this.gridColumn23.VisibleIndex = 2;
             this.gridColumn23.Width = 187;
             // 
-            // gridColumn24
-            // 
-            this.gridColumn24.Caption = "In Transit Qnty";
-            this.gridColumn24.FieldName = "INTRANSITQUANTITY";
-            this.gridColumn24.MinWidth = 23;
-            this.gridColumn24.Name = "gridColumn24";
-            this.gridColumn24.OptionsColumn.AllowEdit = false;
-            this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 3;
-            this.gridColumn24.Width = 187;
-            // 
             // gridColumn26
             // 
             this.gridColumn26.Caption = "weight (in KGs)";
@@ -288,18 +273,8 @@
             this.gridColumn26.MinWidth = 23;
             this.gridColumn26.Name = "gridColumn26";
             this.gridColumn26.Visible = true;
-            this.gridColumn26.VisibleIndex = 4;
+            this.gridColumn26.VisibleIndex = 3;
             this.gridColumn26.Width = 187;
-            // 
-            // gridColumn27
-            // 
-            this.gridColumn27.Caption = "In transit weight (in KGs)";
-            this.gridColumn27.FieldName = "INTRANSITWEIGHTINKGS";
-            this.gridColumn27.MinWidth = 23;
-            this.gridColumn27.Name = "gridColumn27";
-            this.gridColumn27.Visible = true;
-            this.gridColumn27.VisibleIndex = 5;
-            this.gridColumn27.Width = 196;
             // 
             // gcItemPriceList
             // 
@@ -647,10 +622,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn27;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn29;
         private DevExpress.XtraGrid.GridControl gcOffer;

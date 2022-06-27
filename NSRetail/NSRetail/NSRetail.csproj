@@ -143,6 +143,18 @@
     <Compile Include="ReportForms\Wareshouse\SaleReports\ucSupplierWiseSales.Designer.cs">
       <DependentUpon>ucSupplierWiseSales.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucDispatches.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucDispatches.Designer.cs">
+      <DependentUpon>ucDispatches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucPurchases.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucPurchases.Designer.cs">
+      <DependentUpon>ucPurchases.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -711,6 +723,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucSupplierWiseSales.resx">
       <DependentUpon>ucSupplierWiseSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucDispatches.resx">
+      <DependentUpon>ucDispatches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucPurchases.resx">
+      <DependentUpon>ucPurchases.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.resx">
       <DependentUpon>ucTaxBreakUpDayWise.cs</DependentUpon>
