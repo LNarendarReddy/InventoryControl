@@ -40,6 +40,8 @@ namespace NSRetail.ReportForms
             }
 
             IOverlaySplashScreenHandle handle = SplashScreenManager.ShowOverlayForm(this);
+                        
+            gvItemSale.Columns["BILLNUMBER"].Visible = (bool)chkIncludeBillNumber.EditValue;
 
             Dictionary<string, object> searchCriteria = new Dictionary<string, object>()
             {
@@ -47,6 +49,7 @@ namespace NSRetail.ReportForms
                 , { "FromDate", dtFromDate.EditValue }
                 , { "ToDate", dtToDate.EditValue }
                 , { "ItemCodeID", sluItemCode.EditValue }
+                , { "IncludeBillNumber", chkIncludeBillNumber.EditValue }
             };
 
             DataSet dsResult = new ReportRepository().GetReportDataset("USP_RPT_ITEMSUMMARY", searchCriteria);
@@ -65,7 +68,7 @@ namespace NSRetail.ReportForms
                 dsResult.Relations.Add("Stock Dispacth", dcParentBranchID, dsResult.Tables["DISPATCH"].Columns["BRANCHID"]);
                 dsResult.Relations.Add("Branch Refunds", dcParentBranchID, dsResult.Tables["BREFUND"].Columns["BRANCHID"]);
                 dsResult.Relations.Add("Item Sales", dcParentBranchID, dsResult.Tables["ITEMSALE"].Columns["BRANCHID"]);
-                dsResult.Relations.Add("Customer Refunds", dcParentBranchID, dsResult.Tables["CREFUND"].Columns["BRANCHID"]);
+                dsResult.Relations.Add("Customer Refunds", dcParentBranchID, dsResult.Tables["CREFUND"].Columns["BRANCHID"]);                
             }
 
             gcItemSummary.DataSource = dsResult.Tables[0];
