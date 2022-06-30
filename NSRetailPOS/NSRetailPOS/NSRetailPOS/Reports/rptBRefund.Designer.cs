@@ -55,6 +55,7 @@
             this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow6 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -64,6 +65,7 @@
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow5 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -81,8 +83,6 @@
             this.Phone = new DevExpress.XtraReports.Parameters.Parameter();
             this.UserName = new DevExpress.XtraReports.Parameters.Parameter();
             this.CounterName = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -109,7 +109,6 @@
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2,
             this.xrPictureBox1});
-            this.ReportHeader.Expanded = false;
             this.ReportHeader.HeightF = 252.3077F;
             this.ReportHeader.Name = "ReportHeader";
             // 
@@ -145,7 +144,7 @@
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.StylePriority.UseBorders = false;
             this.xrTableCell2.StylePriority.UseFont = false;
-            this.xrTableCell2.Text = "VICTORY BAZARS SUPER MARKET";
+            this.xrTableCell2.Text = "VICTORY BAZARS Pvt Ltd";
             this.xrTableCell2.Weight = 1D;
             // 
             // xrTableRow3
@@ -327,6 +326,14 @@
             this.xrTableCell21.Weight = 2.290909090909091D;
             this.xrTableCell21.WordWrap = false;
             // 
+            // xrTableCell13
+            // 
+            this.xrTableCell13.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[REASONNAME]")});
+            this.xrTableCell13.Multiline = true;
+            this.xrTableCell13.Name = "xrTableCell13";
+            this.xrTableCell13.Weight = 0.709090909090909D;
+            // 
             // xrTableRow7
             // 
             this.xrTableRow7.Borders = DevExpress.XtraPrinting.BorderSide.None;
@@ -413,6 +420,13 @@
             this.xrTableCell20.Name = "xrTableCell20";
             this.xrTableCell20.Text = "Item Name / Description";
             this.xrTableCell20.Weight = 2.2909090909090866D;
+            // 
+            // xrTableCell16
+            // 
+            this.xrTableCell16.Multiline = true;
+            this.xrTableCell16.Name = "xrTableCell16";
+            this.xrTableCell16.Text = "Reason";
+            this.xrTableCell16.Weight = 0.70909090909090788D;
             // 
             // xrTableRow5
             // 
@@ -574,21 +588,6 @@
             this.CounterName.Description = "CounterName";
             this.CounterName.Name = "CounterName";
             this.CounterName.Visible = false;
-            // 
-            // xrTableCell13
-            // 
-            this.xrTableCell13.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[REASONNAME]")});
-            this.xrTableCell13.Multiline = true;
-            this.xrTableCell13.Name = "xrTableCell13";
-            this.xrTableCell13.Weight = 0.709090909090909D;
-            // 
-            // xrTableCell16
-            // 
-            this.xrTableCell16.Multiline = true;
-            this.xrTableCell16.Name = "xrTableCell16";
-            this.xrTableCell16.Text = "Reason";
-            this.xrTableCell16.Weight = 0.70909090909090788D;
             // 
             // rptBRefund
             // 

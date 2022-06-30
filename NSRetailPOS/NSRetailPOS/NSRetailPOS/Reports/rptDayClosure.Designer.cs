@@ -160,7 +160,6 @@
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2,
             this.xrPictureBox1});
-            this.ReportHeader.Expanded = false;
             this.ReportHeader.HeightF = 378.3078F;
             this.ReportHeader.Name = "ReportHeader";
             // 
@@ -204,7 +203,7 @@
             this.xrTableCell2.StylePriority.UseBorders = false;
             this.xrTableCell2.StylePriority.UseBorderWidth = false;
             this.xrTableCell2.StylePriority.UseFont = false;
-            this.xrTableCell2.Text = "VICTORY BAZARS SUPER MARKET";
+            this.xrTableCell2.Text = "VICTORY BAZARS Pvt Ltd";
             this.xrTableCell2.Weight = 2D;
             // 
             // xrTableRow8

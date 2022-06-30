@@ -201,6 +201,8 @@
             this.TenderedCash = new DevExpress.XtraReports.Parameters.Parameter();
             this.TenderedChange = new DevExpress.XtraReports.Parameters.Parameter();
             this.IsDoorDelivery = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrTableRow30 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell61 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
@@ -222,7 +224,7 @@
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 10F;
+            this.BottomMargin.HeightF = 6.634649F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // DetailReport
@@ -236,7 +238,7 @@
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2,
             this.xrPictureBox1});
-            this.ReportHeader.HeightF = 272.3077F;
+            this.ReportHeader.HeightF = 292.3077F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // xrTable2
@@ -247,13 +249,14 @@
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow2,
             this.xrTableRow3,
+            this.xrTableRow30,
             this.xrTableRow5,
             this.xrTableRow10,
             this.xrTableRow11,
             this.xrTableRow29,
             this.xrTableRow12,
             this.xrTableRow13});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(275F, 172.3077F);
+            this.xrTable2.SizeF = new System.Drawing.SizeF(275F, 192.3077F);
             this.xrTable2.StylePriority.UseTextAlignment = false;
             this.xrTable2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
@@ -267,12 +270,12 @@
             // xrTableCell2
             // 
             this.xrTableCell2.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
-            this.xrTableCell2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell2.Multiline = true;
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.StylePriority.UseBorders = false;
             this.xrTableCell2.StylePriority.UseFont = false;
-            this.xrTableCell2.Text = "VICTORY BAZARS SUPER MARKET";
+            this.xrTableCell2.Text = "VICTORY BAZARS Pvt Ltd";
             this.xrTableCell2.Weight = 1D;
             // 
             // xrTableRow3
@@ -1691,6 +1694,23 @@
             this.IsDoorDelivery.ValueInfo = "False";
             this.IsDoorDelivery.Visible = false;
             // 
+            // xrTableRow30
+            // 
+            this.xrTableRow30.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell61});
+            this.xrTableRow30.Name = "xrTableRow30";
+            this.xrTableRow30.Weight = 0.94642860623495739D;
+            // 
+            // xrTableCell61
+            // 
+            this.xrTableCell61.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'CIN :\' + ?CIN")});
+            this.xrTableCell61.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell61.Multiline = true;
+            this.xrTableCell61.Name = "xrTableCell61";
+            this.xrTableCell61.StylePriority.UseFont = false;
+            this.xrTableCell61.Weight = 1D;
+            // 
             // rptBill
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1704,7 +1724,7 @@
             this.drFooter});
             this.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Dash;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(15, 10, 10, 10);
+            this.Margins = new System.Drawing.Printing.Margins(15, 10, 10, 7);
             this.PageWidth = 300;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
@@ -1901,5 +1921,7 @@
         private DevExpress.XtraReports.Parameters.Parameter IsDoorDelivery;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow29;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell60;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow30;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell61;
     }
 }

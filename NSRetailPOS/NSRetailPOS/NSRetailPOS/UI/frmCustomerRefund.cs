@@ -273,7 +273,8 @@ namespace NSRetailPOS.UI
                 txtCustomerMobile.EditValue);
 
             rptCRefund rpt = new rptCRefund(dtRefund);
-            rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
+            rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
+            rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
             rpt.Parameters["FSSAI"].Value = "10114004000548";
             rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
             rpt.Parameters["BillDate"].Value = DateTime.Now;

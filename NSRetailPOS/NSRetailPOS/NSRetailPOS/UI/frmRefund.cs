@@ -70,7 +70,8 @@ namespace NSRetailPOS.UI
                     throw new Exception("Refund quantity should be greater than '0'");
                 new RefundRepository().InsertCRefund(dtFiltered, Utility.loginInfo.UserID, billID, txtCustomerName.EditValue, txtCustomerPhone.EditValue);
                 rptCRefund rpt = new rptCRefund(dtFiltered);
-                rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
+                rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
+                rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
                 rpt.Parameters["FSSAI"].Value = "10114004000548";
                 rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
                 rpt.Parameters["BillDate"].Value = DateTime.Now;

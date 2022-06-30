@@ -207,7 +207,8 @@ namespace NSRetailPOS
             DataView dv = oldBillObj.dtMopValues.DefaultView;
             dv.RowFilter = "MOPVALUE > 0";
             rptBill rpt = new rptBill(oldBillObj.dtBillDetails, dv.ToTable());
-            rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
+            rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
+            rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
             rpt.Parameters["FSSAI"].Value = "10114004000548";
             rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
             rpt.Parameters["BillDate"].Value = DateTime.Now;
@@ -388,7 +389,8 @@ namespace NSRetailPOS
                 DataSet dsLastBillDetails = new BillingRepository().GetLastBill(daySequenceID, billObj.LastBillID);
                 Bill LastBillObj = Utility.GetBill(dsLastBillDetails);
                 rptBill rpt = new rptBill(LastBillObj.dtBillDetails, LastBillObj.dtMopValues);
-                rpt.Parameters["GSTIN"].Value = "37AADFV6514H1Z2";
+                rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
+                rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
                 rpt.Parameters["FSSAI"].Value = "10114004000548";
                 rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
                 rpt.Parameters["BillDate"].Value = DateTime.Now;
