@@ -543,10 +543,10 @@ namespace NSRetail
             reportList.Add(reports);
 
             ReportHolder supplierwisereports = new ReportHolder() { ReportName = "Supplier Wise Reports" };
-            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise sales", SearchCriteriaControl = new ucSupplierWiseSales() });
-            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Dispatches", SearchCriteriaControl = new ucSupplierWiseSales() });
-            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Branch Refunds", SearchCriteriaControl = new ucSupplierWiseSales() });
-            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Customer Refunds", SearchCriteriaControl = new ucSupplierWiseSales() });
+            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise sales", SearchCriteriaControl = new ucSupplierWiseSales("S") });
+            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Dispatches", SearchCriteriaControl = new ucSupplierWiseSales("D") });
+            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Branch Refunds", SearchCriteriaControl = new ucSupplierWiseSales("B") });
+            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Customer Refunds", SearchCriteriaControl = new ucSupplierWiseSales("C") });
             reportList.Add(supplierwisereports);
 
             ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
@@ -593,4 +593,3 @@ namespace NSRetail
         }
     }
 }
-

@@ -33,7 +33,6 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
 
             SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
         }
-
         private void ucSales_Load(object sender, EventArgs e)
         {
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
@@ -48,7 +47,6 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
 
             SetPeriodicty(cmbPeriodicity, true);
         }
-
         public override DataTable GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
