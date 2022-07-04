@@ -25,13 +25,14 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
                 { "COSTPRICEWOT", "Cost Price WOT" },
                 { "COSTPRICETAX", "Tax" },
                 { "COSTPRICEWT", "Cost Price WT" },
+                { "FINALPRICE", "Final Price" },
                 { "PURCHASEQUANTITY", "Purchase Quantity" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
                 new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODOCITY" },true)
-                , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "COSTPRICEWOT", "COSTPRICE", "COSTPRICETAX", "PURCHASEQUANTITY" })
+                , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "COSTPRICEWOT", "COSTPRICEWT", "COSTPRICETAX", "PURCHASEQUANTITY" })
                 , new IncludeSettings("Supplier", "IncludeSupplier", new List<string>{ "DEALERNAME" },true)
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })

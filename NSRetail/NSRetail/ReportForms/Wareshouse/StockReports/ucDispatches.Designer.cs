@@ -193,6 +193,7 @@
             this.Controls.Add(this.layoutControl1);
             this.Name = "ucDispatches";
             this.Size = new System.Drawing.Size(923, 45);
+            this.Load += new System.EventHandler(this.ucDispatches_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();

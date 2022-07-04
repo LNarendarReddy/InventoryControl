@@ -55,7 +55,7 @@ namespace NSRetail.ReportForms.POS
             if (obj.IsSave)
             {
                 drFocusedRow["STATUS"] = "Accepted";
-                drFocusedRow["IsAccepted"] = true;                
+                drFocusedRow["IsAcceptedID"] = true;                
             }
         }
     }
