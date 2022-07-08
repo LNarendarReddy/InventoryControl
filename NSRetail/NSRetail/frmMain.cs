@@ -432,6 +432,7 @@ namespace NSRetail
 
             ReportHolder reports = new ReportHolder() { ReportName = "Reports" };
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
+            reports.SubCategory.Add(new ReportHolder() { ReportName = "Sales by Amount", SearchCriteriaControl = new ucBillSearchByAmount() });
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Purchases", SearchCriteriaControl = new ucPurchases() });
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatches", SearchCriteriaControl = new ucDispatches("D") });
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucDispatches("B") });

@@ -36,6 +36,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lblRecordCount = new DevExpress.XtraEditors.LabelControl();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
@@ -53,6 +54,7 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lcIncludeColumns = new DevExpress.XtraLayout.LayoutControlItem();
             this.tlReport = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
@@ -61,8 +63,6 @@
             this.dpTop = new DevExpress.XtraBars.Docking.DockPanel();
             this.controlContainer1 = new DevExpress.XtraBars.Docking.ControlContainer();
             this.pcSearchCriteria = new DevExpress.XtraEditors.PanelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.lcIncludeColumns = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcResults)).BeginInit();
@@ -78,6 +78,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcIncludeColumns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dpLeft.SuspendLayout();
@@ -85,7 +86,6 @@
             this.dpTop.SuspendLayout();
             this.controlContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcSearchCriteria)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcIncludeColumns)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -104,6 +104,20 @@
             this.layoutControl1.Size = new System.Drawing.Size(840, 566);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Options.UseTextOptions = true;
+            this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.labelControl2.Location = new System.Drawing.Point(349, 8);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Padding = new System.Windows.Forms.Padding(2);
+            this.labelControl2.Size = new System.Drawing.Size(121, 19);
+            this.labelControl2.StyleController = this.layoutControl1;
+            this.labelControl2.TabIndex = 12;
+            this.labelControl2.Text = "F3 : Include Columns";
             // 
             // labelControl1
             // 
@@ -191,6 +205,7 @@
             this.gvResults.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
             this.gvResults.OptionsView.ShowFooter = true;
             this.gvResults.OptionsView.ShowGroupPanel = false;
+            this.gvResults.ColumnFilterChanged += new System.EventHandler(this.gvResults_ColumnFilterChanged);
             this.gvResults.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gvResults_KeyPress);
             // 
             // btnAction
@@ -304,6 +319,16 @@
             this.layoutControlItem6.Size = new System.Drawing.Size(164, 34);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
+            // 
+            // lcIncludeColumns
+            // 
+            this.lcIncludeColumns.Control = this.labelControl2;
+            this.lcIncludeColumns.Location = new System.Drawing.Point(341, 0);
+            this.lcIncludeColumns.Name = "lcIncludeColumns";
+            this.lcIncludeColumns.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.lcIncludeColumns.Size = new System.Drawing.Size(133, 34);
+            this.lcIncludeColumns.TextSize = new System.Drawing.Size(0, 0);
+            this.lcIncludeColumns.TextVisible = false;
             // 
             // tlReport
             // 
@@ -421,30 +446,6 @@
             this.pcSearchCriteria.Size = new System.Drawing.Size(834, 47);
             this.pcSearchCriteria.TabIndex = 0;
             // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Options.UseTextOptions = true;
-            this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.labelControl2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
-            this.labelControl2.Location = new System.Drawing.Point(349, 8);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Padding = new System.Windows.Forms.Padding(2);
-            this.labelControl2.Size = new System.Drawing.Size(121, 19);
-            this.labelControl2.StyleController = this.layoutControl1;
-            this.labelControl2.TabIndex = 12;
-            this.labelControl2.Text = "F3 : Include Columns";
-            // 
-            // lcIncludeColumns
-            // 
-            this.lcIncludeColumns.Control = this.labelControl2;
-            this.lcIncludeColumns.Location = new System.Drawing.Point(341, 0);
-            this.lcIncludeColumns.Name = "lcIncludeColumns";
-            this.lcIncludeColumns.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.lcIncludeColumns.Size = new System.Drawing.Size(133, 34);
-            this.lcIncludeColumns.TextSize = new System.Drawing.Size(0, 0);
-            this.lcIncludeColumns.TextVisible = false;
-            // 
             // frmReportPlaceHolder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -474,6 +475,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcIncludeColumns)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.dpLeft.ResumeLayout(false);
@@ -482,7 +484,6 @@
             this.controlContainer1.ResumeLayout(false);
             this.controlContainer1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcSearchCriteria)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcIncludeColumns)).EndInit();
             this.ResumeLayout(false);
 
         }
