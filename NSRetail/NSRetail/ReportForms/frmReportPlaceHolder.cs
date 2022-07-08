@@ -255,6 +255,11 @@ namespace NSRetail.ReportForms
                 }
             }
         }
+
+        private void gvResults_ColumnFilterChanged(object sender, EventArgs e)
+        {
+            lblRecordCount.Text = $"Record count : {gvResults.RowCount}";
+        }
     }
 
     public class ReportHolder

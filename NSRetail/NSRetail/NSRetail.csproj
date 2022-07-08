@@ -119,6 +119,12 @@
     <Compile Include="ReportForms\POS\ucCustomerReturns.Designer.cs">
       <DependentUpon>ucCustomerReturns.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucBillSearchByAmount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucBillSearchByAmount.Designer.cs">
+      <DependentUpon>ucBillSearchByAmount.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\SaleReports\ucSalehourWise.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -711,6 +717,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucCustomerReturns.resx">
       <DependentUpon>ucCustomerReturns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucBillSearchByAmount.resx">
+      <DependentUpon>ucBillSearchByAmount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucSalehourWise.resx">
       <DependentUpon>ucSalehourWise.cs</DependentUpon>
