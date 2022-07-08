@@ -110,4 +110,13 @@ namespace Entity
         public object Quantity { get; set; }
         public object WeightInKgs { get; set; }
     }
+    public class StockAdjustment : EntityBase
+    {
+        public object BranchID { get; set; }
+        public object StockAdjustmentID { get; set; }
+        public object ItemPriceID { get; set; }
+        public object Quantity { get; set; }
+        public object WeightInKgs { get; set; }
+
+    }
 }
