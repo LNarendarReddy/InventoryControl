@@ -17,10 +17,19 @@ namespace NSRetail.ReportForms.POS
                     { "BREFUNDNUMBER", "Refund Number" }
                     , { "CREATEDBY", "Created By" }
                     , { "CREATEDATE", "Created Date" }
+                    , { "QUANTITYORWEIGHTINKGS", "Qty or Weight in KGs" }
                     , { "STATUS", "Status" }
+                    , { "COSTPRICEWOT", "Cost Price WOT" }
+                    , { "COSTPRICETAX", "Cost Price Tax" }
+                    , { "COSTPRICEWT", "Cost Price WT" }
                 };
 
             ButtonColumns = new List<string>() { "View" };
+
+            //IncludeSettingsCollection = new List<IncludeSettings>()
+            //{
+            //    new IncludeSettings("Include Item", "IncludeItem", new List<string> { "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "SALEPRICE", "QUANTITYORWEIGHTINKGS" })
+            //};
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
@@ -40,7 +49,7 @@ namespace NSRetail.ReportForms.POS
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
             };
-            return GetReportData("USP_R_BREFUND", parameters);
+            return GetReportData("USP_RPT_BREFUNDSHEET", parameters);
         }
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)

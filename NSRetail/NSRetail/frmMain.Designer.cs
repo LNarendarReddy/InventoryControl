@@ -76,6 +76,7 @@
             this.bbiStockReports = new DevExpress.XtraBars.BarButtonItem();
             this.bbiWarehouseReports = new DevExpress.XtraBars.BarButtonItem();
             this.btnProcessWHDispatch = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStockAdjustment = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -103,7 +104,6 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.btnStockAdjustment = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -593,9 +593,11 @@
             // bbiBranchReports
             // 
             resources.ApplyResources(this.bbiBranchReports, "bbiBranchReports");
+            this.bbiBranchReports.Enabled = false;
             this.bbiBranchReports.Id = 52;
             this.bbiBranchReports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiBranchReports.ImageOptions.SvgImage")));
             this.bbiBranchReports.Name = "bbiBranchReports";
+            this.bbiBranchReports.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.bbiBranchReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBranchReports_ItemClick);
             // 
             // bbiStockReports
@@ -621,6 +623,14 @@
             this.btnProcessWHDispatch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnProcessWHDispatch.ImageOptions.SvgImage")));
             this.btnProcessWHDispatch.Name = "btnProcessWHDispatch";
             this.btnProcessWHDispatch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProcessWHDispatch_ItemClick);
+            // 
+            // btnStockAdjustment
+            // 
+            resources.ApplyResources(this.btnStockAdjustment, "btnStockAdjustment");
+            this.btnStockAdjustment.Id = 56;
+            this.btnStockAdjustment.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockAdjustment.ImageOptions.SvgImage")));
+            this.btnStockAdjustment.Name = "btnStockAdjustment";
+            this.btnStockAdjustment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockAdjustment_ItemClick);
             // 
             // ribbonPage3
             // 
@@ -696,6 +706,7 @@
             this.ribbonPageGroup18.ItemLinks.Add(this.bbiBranchReports);
             this.ribbonPageGroup18.Name = "ribbonPageGroup18";
             resources.ApplyResources(this.ribbonPageGroup18, "ribbonPageGroup18");
+            this.ribbonPageGroup18.Visible = false;
             // 
             // ribbonPageGroup19
             // 
@@ -840,14 +851,6 @@
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
-            // 
-            // btnStockAdjustment
-            // 
-            resources.ApplyResources(this.btnStockAdjustment, "btnStockAdjustment");
-            this.btnStockAdjustment.Id = 56;
-            this.btnStockAdjustment.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.btnStockAdjustment.Name = "btnStockAdjustment";
-            this.btnStockAdjustment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockAdjustment_ItemClick);
             // 
             // frmMain
             // 
