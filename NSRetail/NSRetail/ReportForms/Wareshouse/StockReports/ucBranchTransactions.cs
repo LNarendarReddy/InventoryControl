@@ -32,6 +32,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
                 { "TOTALSPWOT", "Total SP WOT" },
                 { "TOTALSPWT", "Total SP WT" },
                 { "TOTALSPTAX", "Total SP TAX" }
+                , { "BREFUNDNUMBER", "Branch Refund #" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -42,8 +43,13 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
-                , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
             };
+
+            if (ReportType == "B")
+            {
+                IncludeSettingsCollection.Add(new IncludeSettings("Reason", "IncludeReason", new List<string> { "Reason" }));
+                IncludeSettingsCollection.Add(new IncludeSettings("Refund Number", "IncludeRefundNumber", new List<string> { "BREFUNDNUMBER" }));
+            }
 
             SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
         }

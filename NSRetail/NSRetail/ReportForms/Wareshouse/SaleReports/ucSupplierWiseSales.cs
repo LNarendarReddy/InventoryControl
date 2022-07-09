@@ -28,6 +28,7 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 { "DEALERNAME", "Supplier" }
                 , { "BILLDATE", "Bill Date" }
                 , { "WEIGHTINKGS", "Weight In Kgs" }
+                , { "BREFUNDNUMBER", "Branch Refund #" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -40,8 +41,11 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 , new IncludeSettings("Sub Category", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
             };
 
-            if (reporttype == "B") IncludeSettingsCollection.Add(new IncludeSettings("Reason", "IncludeReason", 
-                new List<string> { "Reason" }));
+            if (reporttype == "B")
+            {
+                IncludeSettingsCollection.Add(new IncludeSettings("Reason", "IncludeReason", new List<string> { "Reason" }));
+                IncludeSettingsCollection.Add(new IncludeSettings("Refund Number", "IncludeRefundNumber", new List<string> { "BREFUNDNUMBER" }));
+            }
 
             cmbSupplier.Properties.DataSource = masterRepo.GetDealer(true);
             cmbSupplier.Properties.ValueMember = "DEALERID";
