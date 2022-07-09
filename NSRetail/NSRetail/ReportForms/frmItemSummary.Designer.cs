@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode3 = new DevExpress.XtraGrid.GridLevelNode();
@@ -114,12 +115,13 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.virtualServerModeSource1 = new DevExpress.Data.VirtualServerModeSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gvDispatch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemSummary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBranchReunds)).BeginInit();
@@ -143,12 +145,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // gvDispatch
@@ -253,7 +256,7 @@
             this.gcItemSummary.MainView = this.gvItemSummary;
             this.gcItemSummary.Name = "gcItemSummary";
             this.gcItemSummary.Size = new System.Drawing.Size(1296, 437);
-            this.gcItemSummary.TabIndex = 6;
+            this.gcItemSummary.TabIndex = 7;
             this.gcItemSummary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvBranchReunds,
             this.gvItemSale,
@@ -635,12 +638,13 @@
             // 
             // chkIncludeBillNumber
             // 
+            this.chkIncludeBillNumber.EnterMoveNextControl = true;
             this.chkIncludeBillNumber.Location = new System.Drawing.Point(899, 16);
             this.chkIncludeBillNumber.Name = "chkIncludeBillNumber";
             this.chkIncludeBillNumber.Properties.Caption = "Include Bill Number";
             this.chkIncludeBillNumber.Size = new System.Drawing.Size(138, 19);
             this.chkIncludeBillNumber.StyleController = this.layoutControl1;
-            this.chkIncludeBillNumber.TabIndex = 8;
+            this.chkIncludeBillNumber.TabIndex = 4;
             // 
             // gcPurchase
             // 
@@ -648,7 +652,7 @@
             this.gcPurchase.MainView = this.gvPurchase;
             this.gcPurchase.Name = "gcPurchase";
             this.gcPurchase.Size = new System.Drawing.Size(1296, 178);
-            this.gcPurchase.TabIndex = 7;
+            this.gcPurchase.TabIndex = 8;
             this.gcPurchase.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvPurchase});
             // 
@@ -745,7 +749,7 @@
             this.btnViewReport.Name = "btnViewReport";
             this.btnViewReport.Size = new System.Drawing.Size(115, 22);
             this.btnViewReport.StyleController = this.layoutControl1;
-            this.btnViewReport.TabIndex = 5;
+            this.btnViewReport.TabIndex = 6;
             this.btnViewReport.Text = "View Report";
             this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
             // 
@@ -763,7 +767,7 @@
             this.cmbBranch.Properties.NullText = "";
             this.cmbBranch.Size = new System.Drawing.Size(159, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
-            this.cmbBranch.TabIndex = 3;
+            this.cmbBranch.TabIndex = 1;
             // 
             // dtToDate
             // 
@@ -777,7 +781,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtToDate.Size = new System.Drawing.Size(105, 22);
             this.dtToDate.StyleController = this.layoutControl1;
-            this.dtToDate.TabIndex = 2;
+            this.dtToDate.TabIndex = 3;
             // 
             // dtFromDate
             // 
@@ -791,7 +795,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtFromDate.Size = new System.Drawing.Size(101, 22);
             this.dtFromDate.StyleController = this.layoutControl1;
-            this.dtFromDate.TabIndex = 1;
+            this.dtFromDate.TabIndex = 2;
             // 
             // btnShow
             // 
@@ -801,7 +805,7 @@
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(104, 22);
             this.btnShow.StyleController = this.layoutControl1;
-            this.btnShow.TabIndex = 4;
+            this.btnShow.TabIndex = 5;
             this.btnShow.Text = "Show";
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
@@ -930,16 +934,6 @@
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.chkIncludeBillNumber;
-            this.layoutControlItem3.Location = new System.Drawing.Point(883, 0);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem3.Size = new System.Drawing.Size(150, 34);
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
-            // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.dtFromDate;
@@ -1000,6 +994,16 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(24, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.chkIncludeBillNumber;
+            this.layoutControlItem3.Location = new System.Drawing.Point(883, 0);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem3.Size = new System.Drawing.Size(150, 34);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
             // frmItemSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1032,12 +1036,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1131,5 +1136,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn46;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.Data.VirtualServerModeSource virtualServerModeSource1;
     }
 }

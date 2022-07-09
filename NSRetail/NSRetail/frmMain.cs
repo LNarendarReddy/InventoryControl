@@ -216,45 +216,10 @@ namespace NSRetail
             obj.ShowDialog();
         }
 
-        private void btnInvoiceList_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            frmInvoiceList obj = new frmInvoiceList();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
-        }
-
-        private void btnDispatchList_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            frmDispatchList obj = new frmDispatchList();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
-        }
-
-        private void bbiStockSummary_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            new frmStockSummary() { MdiParent = this }.Show();
-        }
-
         private void btnPrintDC_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmDispatchDCPrint obj = new frmDispatchDCPrint();
             obj.ShowDialog();
-        }
-
-        private void btnDCList_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            frmDispatchDCList obj = new frmDispatchDCList();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
         }
 
         private void bbiSyncStatus_ItemClick(object sender, ItemClickEventArgs e)
@@ -282,39 +247,9 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnStockCounting_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            frmStockCounting obj = new frmStockCounting();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
-        }
-
-        private void btnBranchRefund_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            frmBRefundList obj = new frmBRefundList();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
-        }
-
-        private void btnDayClosure_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            frmDayClosureList obj = new frmDayClosureList();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
-        }
-
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (30-06-2022)";
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (04-07-2022)";
 
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,
@@ -386,29 +321,9 @@ namespace NSRetail
             bbiClearProcedureCache.Enabled = Utility.Role == "Admin";
         }
 
-        private void btnRunningSale_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            frmRunningSales obj = new frmRunningSales();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
-        }
-
         private void btnTaxWiseSales_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmTaxwisesale obj = new frmTaxwisesale();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
-        }
-
-        private void btnZeroStock_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            frmZeroStock obj = new frmZeroStock();
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;
             obj.IconOptions.ShowIcon = false;
@@ -456,29 +371,9 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void btnDealerIndent_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            frmDealerIndentList obj = new frmDealerIndentList();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
-        }
-
         private void btnSupplierReturns_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmSupplierReturns obj = new frmSupplierReturns();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
-        }
-
-        private void btnSupplierReturnsList_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            frmSupplierReturnsList obj = new frmSupplierReturnsList();
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;
             obj.IconOptions.ShowIcon = false;
@@ -520,6 +415,7 @@ namespace NSRetail
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch DC List", SearchCriteriaControl = new ucDispatchDCList() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Summary By Branch", SearchCriteriaControl = new ucStockSummaryByBranch() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Zero Stock", SearchCriteriaControl = new ucZeroStock() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Adjustment Report", SearchCriteriaControl = new ucStockAdjustment() });
             stockReportList.Add(StockReports);
 
             stockReportList.Add(new ReportHolder() { ReportName = "Supplier Indent", SearchCriteriaControl = new ucDealerIndent() });
@@ -591,6 +487,16 @@ namespace NSRetail
                 SplashScreenManager.CloseForm();
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
+        }
+
+        private void btnStockAdjustment_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmStockAdjustment frm = new frmStockAdjustment();
+            frm.ShowInTaskbar = false;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.ControlBox = false;
+            frm.IconOptions.ShowIcon = false;
+            frm.ShowDialog();
         }
     }
 }

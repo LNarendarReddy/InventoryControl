@@ -103,6 +103,7 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.btnStockAdjustment = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -159,9 +160,10 @@
             this.bbiBranchReports,
             this.bbiStockReports,
             this.bbiWarehouseReports,
-            this.btnProcessWHDispatch});
+            this.btnProcessWHDispatch,
+            this.btnStockAdjustment});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 56;
+            this.ribbonControl1.MaxItemId = 57;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -349,7 +351,6 @@
             this.btnInvoiceList.ItemAppearance.Pressed.Font = ((System.Drawing.Font)(resources.GetObject("btnInvoiceList.ItemAppearance.Pressed.Font")));
             this.btnInvoiceList.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnInvoiceList.Name = "btnInvoiceList";
-            this.btnInvoiceList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnInvoiceList_ItemClick);
             // 
             // btnDispatchList
             // 
@@ -366,7 +367,6 @@
             this.btnDispatchList.ItemAppearance.Pressed.Font = ((System.Drawing.Font)(resources.GetObject("btnDispatchList.ItemAppearance.Pressed.Font")));
             this.btnDispatchList.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnDispatchList.Name = "btnDispatchList";
-            this.btnDispatchList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDispatchList_ItemClick);
             // 
             // bbiStockSummary
             // 
@@ -384,7 +384,6 @@
             this.bbiStockSummary.ItemAppearance.Pressed.Font = ((System.Drawing.Font)(resources.GetObject("bbiStockSummary.ItemAppearance.Pressed.Font")));
             this.bbiStockSummary.ItemAppearance.Pressed.Options.UseFont = true;
             this.bbiStockSummary.Name = "bbiStockSummary";
-            this.bbiStockSummary.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiStockSummary_ItemClick);
             // 
             // btnPrintDC
             // 
@@ -409,7 +408,6 @@
             this.btnDCList.ItemAppearance.Pressed.Font = ((System.Drawing.Font)(resources.GetObject("btnDCList.ItemAppearance.Pressed.Font")));
             this.btnDCList.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnDCList.Name = "btnDCList";
-            this.btnDCList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDCList_ItemClick);
             // 
             // skinDropDownButtonItem1
             // 
@@ -447,7 +445,6 @@
             this.btnStockCounting.Id = 31;
             this.btnStockCounting.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockCounting.ImageOptions.SvgImage")));
             this.btnStockCounting.Name = "btnStockCounting";
-            this.btnStockCounting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockCounting_ItemClick);
             // 
             // btnBranchRefund
             // 
@@ -464,7 +461,6 @@
             this.btnBranchRefund.ItemAppearance.Pressed.Font = ((System.Drawing.Font)(resources.GetObject("btnBranchRefund.ItemAppearance.Pressed.Font")));
             this.btnBranchRefund.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnBranchRefund.Name = "btnBranchRefund";
-            this.btnBranchRefund.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBranchRefund_ItemClick);
             // 
             // btnDayClosure
             // 
@@ -481,7 +477,6 @@
             this.btnDayClosure.ItemAppearance.Pressed.Font = ((System.Drawing.Font)(resources.GetObject("btnDayClosure.ItemAppearance.Pressed.Font")));
             this.btnDayClosure.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnDayClosure.Name = "btnDayClosure";
-            this.btnDayClosure.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDayClosure_ItemClick);
             // 
             // btnRunningSale
             // 
@@ -498,7 +493,6 @@
             this.btnRunningSale.ItemAppearance.Pressed.Font = ((System.Drawing.Font)(resources.GetObject("btnRunningSale.ItemAppearance.Pressed.Font")));
             this.btnRunningSale.ItemAppearance.Pressed.Options.UseFont = true;
             this.btnRunningSale.Name = "btnRunningSale";
-            this.btnRunningSale.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRunningSale_ItemClick);
             // 
             // lblUserName
             // 
@@ -530,7 +524,6 @@
             this.btnZeroStock.Id = 43;
             this.btnZeroStock.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnZeroStock.ImageOptions.SvgImage")));
             this.btnZeroStock.Name = "btnZeroStock";
-            this.btnZeroStock.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnZeroStock_ItemClick);
             // 
             // btnItemWiseSales
             // 
@@ -573,7 +566,6 @@
             this.btnDealerIndent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDealerIndent.ImageOptions.SvgImage")));
             this.btnDealerIndent.Name = "btnDealerIndent";
             this.btnDealerIndent.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.btnDealerIndent.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDealerIndent_ItemClick);
             // 
             // btnSupplierReturns
             // 
@@ -589,7 +581,6 @@
             this.btnSupplierReturnsList.Id = 50;
             this.btnSupplierReturnsList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSupplierReturnsList.ImageOptions.SvgImage")));
             this.btnSupplierReturnsList.Name = "btnSupplierReturnsList";
-            this.btnSupplierReturnsList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSupplierReturnsList_ItemClick);
             // 
             // bbiClearProcedureCache
             // 
@@ -666,6 +657,7 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.btnStockDispatch);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnPrintDC);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnCounting);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnStockAdjustment);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             resources.ApplyResources(this.ribbonPageGroup3, "ribbonPageGroup3");
             // 
@@ -849,6 +841,14 @@
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
             // 
+            // btnStockAdjustment
+            // 
+            resources.ApplyResources(this.btnStockAdjustment, "btnStockAdjustment");
+            this.btnStockAdjustment.Id = 56;
+            this.btnStockAdjustment.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnStockAdjustment.Name = "btnStockAdjustment";
+            this.btnStockAdjustment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockAdjustment_ItemClick);
+            // 
             // frmMain
             // 
             resources.ApplyResources(this, "$this");
@@ -946,6 +946,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup19;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup20;
         private DevExpress.XtraBars.BarButtonItem btnProcessWHDispatch;
+        private DevExpress.XtraBars.BarButtonItem btnStockAdjustment;
     }
 }
 
