@@ -245,7 +245,7 @@
             // txtHSNCode
             // 
             this.txtHSNCode.EnterMoveNextControl = true;
-            this.txtHSNCode.Location = new System.Drawing.Point(628, 436);
+            this.txtHSNCode.Location = new System.Drawing.Point(628, 432);
             this.txtHSNCode.Name = "txtHSNCode";
             this.txtHSNCode.Size = new System.Drawing.Size(132, 20);
             this.txtHSNCode.StyleController = this.layoutControl1;
@@ -255,7 +255,7 @@
             // 
             this.txtCESS.Enabled = false;
             this.txtCESS.EnterMoveNextControl = true;
-            this.txtCESS.Location = new System.Drawing.Point(628, 327);
+            this.txtCESS.Location = new System.Drawing.Point(628, 323);
             this.txtCESS.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtCESS.Name = "txtCESS";
             this.txtCESS.Properties.DisplayFormat.FormatString = "n2";
@@ -273,7 +273,7 @@
             // 
             this.txtIGST.Enabled = false;
             this.txtIGST.EnterMoveNextControl = true;
-            this.txtIGST.Location = new System.Drawing.Point(127, 359);
+            this.txtIGST.Location = new System.Drawing.Point(127, 355);
             this.txtIGST.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtIGST.Name = "txtIGST";
             this.txtIGST.Properties.DisplayFormat.FormatString = "n2";
@@ -291,7 +291,7 @@
             // 
             this.txtSGST.Enabled = false;
             this.txtSGST.EnterMoveNextControl = true;
-            this.txtSGST.Location = new System.Drawing.Point(378, 359);
+            this.txtSGST.Location = new System.Drawing.Point(378, 355);
             this.txtSGST.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSGST.Name = "txtSGST";
             this.txtSGST.Properties.DisplayFormat.FormatString = "n2";
@@ -309,7 +309,7 @@
             // 
             this.txtCGST.Enabled = false;
             this.txtCGST.EnterMoveNextControl = true;
-            this.txtCGST.Location = new System.Drawing.Point(378, 327);
+            this.txtCGST.Location = new System.Drawing.Point(378, 323);
             this.txtCGST.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtCGST.Name = "txtCGST";
             this.txtCGST.Properties.DisplayFormat.FormatString = "n2";
@@ -327,7 +327,7 @@
             // 
             this.txtAppliedScheme.Enabled = false;
             this.txtAppliedScheme.EnterMoveNextControl = true;
-            this.txtAppliedScheme.Location = new System.Drawing.Point(378, 436);
+            this.txtAppliedScheme.Location = new System.Drawing.Point(378, 432);
             this.txtAppliedScheme.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtAppliedScheme.Name = "txtAppliedScheme";
             this.txtAppliedScheme.Size = new System.Drawing.Size(131, 20);
@@ -338,7 +338,7 @@
             // 
             this.txtAppliedDiscount.Enabled = false;
             this.txtAppliedDiscount.EnterMoveNextControl = true;
-            this.txtAppliedDiscount.Location = new System.Drawing.Point(127, 436);
+            this.txtAppliedDiscount.Location = new System.Drawing.Point(127, 432);
             this.txtAppliedDiscount.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtAppliedDiscount.Name = "txtAppliedDiscount";
             this.txtAppliedDiscount.Size = new System.Drawing.Size(132, 20);
@@ -348,7 +348,7 @@
             // txtSchemeFlat
             // 
             this.txtSchemeFlat.EnterMoveNextControl = true;
-            this.txtSchemeFlat.Location = new System.Drawing.Point(628, 250);
+            this.txtSchemeFlat.Location = new System.Drawing.Point(628, 246);
             this.txtSchemeFlat.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSchemeFlat.Name = "txtSchemeFlat";
             this.txtSchemeFlat.Properties.DisplayFormat.FormatString = "n2";
@@ -366,7 +366,7 @@
             // txtSchemePer
             // 
             this.txtSchemePer.EnterMoveNextControl = true;
-            this.txtSchemePer.Location = new System.Drawing.Point(628, 218);
+            this.txtSchemePer.Location = new System.Drawing.Point(628, 214);
             this.txtSchemePer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSchemePer.Name = "txtSchemePer";
             this.txtSchemePer.Properties.DisplayFormat.FormatString = "n2";
@@ -384,7 +384,7 @@
             // txtDiscountFlat
             // 
             this.txtDiscountFlat.EnterMoveNextControl = true;
-            this.txtDiscountFlat.Location = new System.Drawing.Point(378, 250);
+            this.txtDiscountFlat.Location = new System.Drawing.Point(378, 246);
             this.txtDiscountFlat.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtDiscountFlat.Name = "txtDiscountFlat";
             this.txtDiscountFlat.Properties.DisplayFormat.FormatString = "n2";
@@ -402,7 +402,7 @@
             // txtDiscountPer
             // 
             this.txtDiscountPer.EnterMoveNextControl = true;
-            this.txtDiscountPer.Location = new System.Drawing.Point(378, 218);
+            this.txtDiscountPer.Location = new System.Drawing.Point(378, 214);
             this.txtDiscountPer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtDiscountPer.Name = "txtDiscountPer";
             this.txtDiscountPer.Properties.DisplayFormat.FormatString = "n2";
@@ -421,7 +421,7 @@
             // 
             this.txtFinalPrice.Enabled = false;
             this.txtFinalPrice.EnterMoveNextControl = true;
-            this.txtFinalPrice.Location = new System.Drawing.Point(628, 468);
+            this.txtFinalPrice.Location = new System.Drawing.Point(628, 464);
             this.txtFinalPrice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtFinalPrice.Name = "txtFinalPrice";
             this.txtFinalPrice.Size = new System.Drawing.Size(132, 20);
@@ -432,7 +432,7 @@
             // 
             this.txtAppliedGST.Enabled = false;
             this.txtAppliedGST.EnterMoveNextControl = true;
-            this.txtAppliedGST.Location = new System.Drawing.Point(628, 359);
+            this.txtAppliedGST.Location = new System.Drawing.Point(628, 355);
             this.txtAppliedGST.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtAppliedGST.Name = "txtAppliedGST";
             this.txtAppliedGST.Properties.DisplayFormat.FormatString = "n2";
@@ -449,7 +449,7 @@
             // sluFreeItem
             // 
             this.sluFreeItem.EnterMoveNextControl = true;
-            this.sluFreeItem.Location = new System.Drawing.Point(127, 218);
+            this.sluFreeItem.Location = new System.Drawing.Point(127, 214);
             this.sluFreeItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.sluFreeItem.Name = "sluFreeItem";
             this.sluFreeItem.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -516,7 +516,7 @@
             // 
             this.txtFreeQuantity.Enabled = false;
             this.txtFreeQuantity.EnterMoveNextControl = true;
-            this.txtFreeQuantity.Location = new System.Drawing.Point(127, 250);
+            this.txtFreeQuantity.Location = new System.Drawing.Point(127, 246);
             this.txtFreeQuantity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtFreeQuantity.Name = "txtFreeQuantity";
             this.txtFreeQuantity.Properties.DisplayFormat.FormatString = "n0";
@@ -535,7 +535,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(658, 500);
+            this.btnCancel.Location = new System.Drawing.Point(658, 496);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(102, 22);
@@ -548,7 +548,7 @@
             // 
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSave.Location = new System.Drawing.Point(542, 500);
+            this.btnSave.Location = new System.Drawing.Point(542, 496);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(104, 22);
@@ -561,7 +561,7 @@
             // 
             this.txtTotalPriceWT.Enabled = false;
             this.txtTotalPriceWT.EnterMoveNextControl = true;
-            this.txtTotalPriceWT.Location = new System.Drawing.Point(378, 468);
+            this.txtTotalPriceWT.Location = new System.Drawing.Point(378, 464);
             this.txtTotalPriceWT.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtTotalPriceWT.Name = "txtTotalPriceWT";
             this.txtTotalPriceWT.Size = new System.Drawing.Size(131, 20);
@@ -576,7 +576,7 @@
             // 
             this.txtTotalPriceWOT.Enabled = false;
             this.txtTotalPriceWOT.EnterMoveNextControl = true;
-            this.txtTotalPriceWOT.Location = new System.Drawing.Point(127, 468);
+            this.txtTotalPriceWOT.Location = new System.Drawing.Point(127, 464);
             this.txtTotalPriceWOT.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtTotalPriceWOT.Name = "txtTotalPriceWOT";
             this.txtTotalPriceWOT.Properties.DisplayFormat.FormatString = "n2";
@@ -597,7 +597,7 @@
             // txtCostPriceWOT
             // 
             this.txtCostPriceWOT.EnterMoveNextControl = true;
-            this.txtCostPriceWOT.Location = new System.Drawing.Point(628, 139);
+            this.txtCostPriceWOT.Location = new System.Drawing.Point(628, 137);
             this.txtCostPriceWOT.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtCostPriceWOT.Name = "txtCostPriceWOT";
             this.txtCostPriceWOT.Properties.DisplayFormat.FormatString = "n4";
@@ -641,7 +641,7 @@
             // txtWeightInKGs
             // 
             this.txtWeightInKGs.EnterMoveNextControl = true;
-            this.txtWeightInKGs.Location = new System.Drawing.Point(127, 139);
+            this.txtWeightInKGs.Location = new System.Drawing.Point(127, 137);
             this.txtWeightInKGs.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtWeightInKGs.Name = "txtWeightInKGs";
             this.txtWeightInKGs.Properties.DisplayFormat.FormatString = "n2";
@@ -651,7 +651,8 @@
             this.txtWeightInKGs.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtWeightInKGs.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtWeightInKGs.Properties.MaskSettings.Set("mask", "n2");
-            this.txtWeightInKGs.Size = new System.Drawing.Size(132, 22);
+            this.txtWeightInKGs.Size = new System.Drawing.Size(132, 20);
+            this.txtWeightInKGs.StyleController = this.layoutControl1;
             this.txtWeightInKGs.TabIndex = 3;
             conditionValidationRule5.ErrorText = "";
             conditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.None;
@@ -671,7 +672,8 @@
             this.txtQuantity.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtQuantity.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtQuantity.Properties.MaskSettings.Set("mask", "n2");
-            this.txtQuantity.Size = new System.Drawing.Size(132, 22);
+            this.txtQuantity.Size = new System.Drawing.Size(132, 20);
+            this.txtQuantity.StyleController = this.layoutControl1;
             this.txtQuantity.TabIndex = 2;
             conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule6.ErrorText = "Mandatory";
@@ -682,7 +684,7 @@
             // txtSalePrice
             // 
             this.txtSalePrice.EnterMoveNextControl = true;
-            this.txtSalePrice.Location = new System.Drawing.Point(378, 139);
+            this.txtSalePrice.Location = new System.Drawing.Point(378, 137);
             this.txtSalePrice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSalePrice.Name = "txtSalePrice";
             this.txtSalePrice.Properties.DisplayFormat.FormatString = "n2";
@@ -692,7 +694,8 @@
             this.txtSalePrice.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtSalePrice.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtSalePrice.Properties.MaskSettings.Set("mask", "n2");
-            this.txtSalePrice.Size = new System.Drawing.Size(131, 22);
+            this.txtSalePrice.Size = new System.Drawing.Size(131, 20);
+            this.txtSalePrice.StyleController = this.layoutControl1;
             this.txtSalePrice.TabIndex = 5;
             conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule7.ErrorText = "Mandatory";
@@ -712,7 +715,8 @@
             this.txtMRP.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtMRP.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtMRP.Properties.MaskSettings.Set("mask", "n2");
-            this.txtMRP.Size = new System.Drawing.Size(131, 22);
+            this.txtMRP.Size = new System.Drawing.Size(131, 20);
+            this.txtMRP.StyleController = this.layoutControl1;
             this.txtMRP.TabIndex = 4;
             conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule8.ErrorText = "Mandatory";
@@ -879,7 +883,7 @@
             // cmbGST
             // 
             this.cmbGST.EnterMoveNextControl = true;
-            this.cmbGST.Location = new System.Drawing.Point(127, 327);
+            this.cmbGST.Location = new System.Drawing.Point(127, 323);
             this.cmbGST.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbGST.Name = "cmbGST";
             this.cmbGST.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -951,9 +955,9 @@
             this.layoutControlItem18,
             this.layoutControlItem28,
             this.emptySpaceItem1});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 395);
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 391);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(776, 183);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(776, 187);
             this.layoutControlGroup1.Text = "Stock purchase summary";
             // 
             // layoutControlItem11
@@ -984,7 +988,7 @@
             this.layoutControlItem13.MinSize = new System.Drawing.Size(116, 34);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem13.Size = new System.Drawing.Size(116, 74);
+            this.layoutControlItem13.Size = new System.Drawing.Size(116, 78);
             this.layoutControlItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
@@ -997,7 +1001,7 @@
             this.layoutControlItem14.MinSize = new System.Drawing.Size(114, 34);
             this.layoutControlItem14.Name = "layoutControlItem14";
             this.layoutControlItem14.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem14.Size = new System.Drawing.Size(114, 74);
+            this.layoutControlItem14.Size = new System.Drawing.Size(114, 78);
             this.layoutControlItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
@@ -1047,7 +1051,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 64);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(522, 74);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(522, 78);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup2
@@ -1059,7 +1063,7 @@
             this.layoutControlItem16,
             this.layoutControlItem21,
             this.layoutControlItem19});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 177);
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 173);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(776, 109);
             this.layoutControlGroup2.Text = "Discount options";
@@ -1135,7 +1139,7 @@
             this.layoutControlItem7});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 64);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(776, 113);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(776, 109);
             this.layoutControlGroup3.Text = "Price Details";
             // 
             // layoutControlItem9
@@ -1144,7 +1148,7 @@
             this.layoutControlItem9.Location = new System.Drawing.Point(501, 0);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem9.Size = new System.Drawing.Size(251, 34);
+            this.layoutControlItem9.Size = new System.Drawing.Size(251, 32);
             this.layoutControlItem9.Text = "CP With Tax";
             this.layoutControlItem9.TextSize = new System.Drawing.Size(95, 14);
             // 
@@ -1154,17 +1158,17 @@
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem6.Size = new System.Drawing.Size(251, 34);
+            this.layoutControlItem6.Size = new System.Drawing.Size(251, 32);
             this.layoutControlItem6.Text = "Quantity";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(95, 14);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.txtSalePrice;
-            this.layoutControlItem5.Location = new System.Drawing.Point(251, 34);
+            this.layoutControlItem5.Location = new System.Drawing.Point(251, 32);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem5.Size = new System.Drawing.Size(250, 34);
+            this.layoutControlItem5.Size = new System.Drawing.Size(250, 32);
             this.layoutControlItem5.Text = "Sale Price";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(95, 14);
             // 
@@ -1174,27 +1178,27 @@
             this.layoutControlItem4.Location = new System.Drawing.Point(251, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem4.Size = new System.Drawing.Size(250, 34);
+            this.layoutControlItem4.Size = new System.Drawing.Size(250, 32);
             this.layoutControlItem4.Text = "MRP";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(95, 14);
             // 
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.txtCostPriceWOT;
-            this.layoutControlItem10.Location = new System.Drawing.Point(501, 34);
+            this.layoutControlItem10.Location = new System.Drawing.Point(501, 32);
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem10.Size = new System.Drawing.Size(251, 34);
+            this.layoutControlItem10.Size = new System.Drawing.Size(251, 32);
             this.layoutControlItem10.Text = "CP W/O Tax";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(95, 14);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.txtWeightInKGs;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 34);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem7.Size = new System.Drawing.Size(251, 34);
+            this.layoutControlItem7.Size = new System.Drawing.Size(251, 32);
             this.layoutControlItem7.Text = "Weight In KGs";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(95, 14);
             // 
@@ -1207,7 +1211,7 @@
             this.layoutControlItem8,
             this.layoutControlItem25,
             this.layoutControlItem3});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 286);
+            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 282);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
             this.layoutControlGroup4.Size = new System.Drawing.Size(776, 109);
             this.layoutControlGroup4.Text = "GST/Tax Summary";
@@ -1280,8 +1284,11 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(780, 582);
             this.Controls.Add(this.layoutControl1);
+            this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmAddStockRecord";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Stock Record";
             this.Load += new System.EventHandler(this.frmAddStockRecord_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

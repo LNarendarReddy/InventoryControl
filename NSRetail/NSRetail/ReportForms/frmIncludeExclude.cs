@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms
 {
@@ -14,15 +15,19 @@ namespace NSRetail.ReportForms
 
         private void gvIncExc_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)System.Windows.Forms.Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 gvIncExc.MoveNext();
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Close();
             }
         }
 
         private void btnApplyAndSearch_Click(object sender, System.EventArgs e)
         {
-            DialogResult = System.Windows.Forms.DialogResult.OK;
+            DialogResult = DialogResult.OK;
             Close();
         }
     }

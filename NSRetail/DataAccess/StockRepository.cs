@@ -377,6 +377,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_R_STOCKENTRYDTAFT]";
                     cmd.Parameters.AddWithValue("@CATEGORYID", objStockEntry.CATEGORYID);
                     cmd.Parameters.AddWithValue("@USERID", objStockEntry.UserID);
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", objStockEntry.STOCKENTRYID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);
