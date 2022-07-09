@@ -28,7 +28,7 @@ namespace DataAccess
                     
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        da.Fill(dtReportData);
+                        da.Fill(dtReportData); 
                     }
                 }
             }

@@ -15,6 +15,12 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
     public partial class ucDispatches : SearchCriteriaBase
     {
         private string ReportType = string.Empty;
+        private Dictionary<string, string> procedures = new Dictionary<string, string>()
+        {
+            { "D","USP_RPT_DISPATCH"}
+            ,{ "B","USP_RPT_BREFUND"}
+            ,{ "C","USP_RPT_CREFUND"}
+        };
         public ucDispatches(string _ReportType)
         {
             ReportType = _ReportType;
@@ -72,7 +78,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
                 , { "Periodicity", cmbPeriodicity.EditValue }
             };
 
-            return GetReportData(ReportType == "D" ? "USP_RPT_DISPATCH" : ReportType == "D" ? "USP_RPT_BREFUND" : "USP_RPT_CREFUND", parameters);
+            return GetReportData(procedures[ReportType], parameters);
         }
     }
 }

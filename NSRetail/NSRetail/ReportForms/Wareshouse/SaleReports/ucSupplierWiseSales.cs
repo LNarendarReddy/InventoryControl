@@ -38,11 +38,12 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 , new IncludeSettings("Date", "IncludeDate", new List<string>{ "BILLDATE" })
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("Sub Category", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
-            };    
+            };
 
-            //if(reporttype == "B") IncludeSettingsCollection.Add(new IncludeSettings("Reason", ""))
+            if (reporttype == "B") IncludeSettingsCollection.Add(new IncludeSettings("Reason", "IncludeReason", 
+                new List<string> { "Reason" }));
 
-            cmbSupplier.Properties.DataSource = masterRepo.GetDealer();
+            cmbSupplier.Properties.DataSource = masterRepo.GetDealer(true);
             cmbSupplier.Properties.ValueMember = "DEALERID";
             cmbSupplier.Properties.DisplayMember = "DEALERNAME";
 
