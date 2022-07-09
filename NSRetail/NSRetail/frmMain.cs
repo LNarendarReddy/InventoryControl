@@ -259,8 +259,7 @@ namespace NSRetail
 
             List<RibbonPageGroup> ribbonPageGroups = new List<RibbonPageGroup>()
             { ribbonPageGroup1, ribbonPageGroup2, ribbonPageGroup3, ribbonPageGroup4, ribbonPageGroup5, ribbonPageGroup6,
-            ribbonPageGroup7, ribbonPageGroup8, ribbonPageGroup9, ribbonPageGroup10, ribbonPageGroup11, ribbonPageGroup12
-            , ribbonPageGroup13};
+            ribbonPageGroup8,  ribbonPageGroup10, ribbonPageGroup11, ribbonPageGroup12};
 
             List<RibbonPage> ribbonPages = new List<RibbonPage>()
             {
@@ -466,8 +465,6 @@ namespace NSRetail
             taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
             reportList.Add(taxReports);
 
-            reportList.Add(new ReportHolder() { ReportName = "Item Ledger", SearchCriteriaControl = new ucItemLedger() });
-
             ShowReportForm(reportList);
         }
 
@@ -483,20 +480,20 @@ namespace NSRetail
 
         private void btnProcessWHDispatch_ItemClick(object sender, ItemClickEventArgs e)
         {
-            try
-            {
-                if (XtraMessageBox.Show("Are sure want to process WH dispatch?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                    return;
-                SplashScreenManager.ShowForm(typeof(frmProgress), true, true);
-                new StockRepository().ProcessWarehouseDispatch(Utility.UserID);
-                XtraMessageBox.Show("Dispatch processed succefully!");
-                SplashScreenManager.CloseForm();
-            }
-            catch (Exception ex)
-            {
-                SplashScreenManager.CloseForm();
-                ErrorManagement.ErrorMgmt.ShowError(ex);
-            }
+            //try
+            //{
+            //    if (XtraMessageBox.Show("Are sure want to process WH dispatch?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            //        return;
+            //    SplashScreenManager.ShowForm(typeof(frmProgress), true, true);
+            //    new StockRepository().ProcessWarehouseDispatch(Utility.UserID);
+            //    XtraMessageBox.Show("Dispatch processed succefully!");
+            //    SplashScreenManager.CloseForm();
+            //}
+            //catch (Exception ex)
+            //{
+            //    SplashScreenManager.CloseForm();
+            //    ErrorManagement.ErrorMgmt.ShowError(ex);
+            //}
         }
 
         private void btnStockAdjustment_ItemClick(object sender, ItemClickEventArgs e)
@@ -507,6 +504,16 @@ namespace NSRetail
             frm.ControlBox = false;
             frm.IconOptions.ShowIcon = false;
             frm.ShowDialog();
+        }
+
+        private void btnItemLedger_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmItemLedger obj = new frmItemLedger();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
         }
     }
 }

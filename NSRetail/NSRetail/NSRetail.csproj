@@ -113,6 +113,12 @@
     <Compile Include="ReportForms\frmIncludeExclude.Designer.cs">
       <DependentUpon>frmIncludeExclude.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\frmItemLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\frmItemLedger.Designer.cs">
+      <DependentUpon>frmItemLedger.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\POS\ucCustomerReturns.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -726,6 +732,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\frmIncludeExclude.resx">
       <DependentUpon>frmIncludeExclude.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\frmItemLedger.resx">
+      <DependentUpon>frmItemLedger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucCustomerReturns.resx">
       <DependentUpon>ucCustomerReturns.cs</DependentUpon>

@@ -53,7 +53,6 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
 
             SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
         }
-
         private void ucDispatches_Load(object sender, EventArgs e)
         {
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);

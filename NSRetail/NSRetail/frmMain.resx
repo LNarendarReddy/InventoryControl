@@ -1506,12 +1506,100 @@
         MywzLDNIOHoiIGNsYXNzPSJCbHVlIiAvPg0KPC9zdmc+Cw==
 </value>
   </data>
+  <data name="btnItemLedger.Caption" xml:space="preserve">
+    <value>Item Ledger</value>
+  </data>
+  <data name="barButtonItem1.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi42
+        LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YQUBAAAAHURl
+        dkV4cHJlc3MuVXRpbHMuU3ZnLlN2Z0ltYWdlAQAAAAREYXRhBwICAAAACQMAAAAPAwAAAIkDAAAC77u/
+        PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz4NCjxzdmcgeD0iMHB4IiB5PSIwcHgi
+        IHZpZXdCb3g9IjAgMCAzMiAzMiIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+        MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3Bh
+        Y2U9InByZXNlcnZlIiBpZD0iTGF5ZXJfMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAg
+        MzIgMzIiPg0KICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLkdyZWVue2ZpbGw6IzAzOUMyMzt9Cgku
+        QmxhY2t7ZmlsbDojNzI3MjcyO30KCS5SZWR7ZmlsbDojRDExQzFDO30KCS5ZZWxsb3d7ZmlsbDojRkZC
+        MTE1O30KCS5CbHVle2ZpbGw6IzExNzdENzt9CgkuV2hpdGV7ZmlsbDojRkZGRkZGO30KCS5zdDB7b3Bh
+        Y2l0eTowLjU7fQoJLnN0MXtvcGFjaXR5OjAuNzU7fQo8L3N0eWxlPg0KICA8ZyBpZD0iSW5zZXJ0VHJl
+        ZVZpZXciPg0KICAgIDxwYXRoIGQ9Ik0xMyw4SDVDNC40LDgsNCw3LjYsNCw3VjNjMC0wLjUsMC40LTEs
+        MS0xaDhjMC42LDAsMSwwLjUsMSwxdjRDMTQsNy42LDEzLjYsOCwxMyw4eiBNMjYsMTd2LTQgICBjMC0w
+        LjYtMC41LTEtMS0xaC04Yy0wLjUsMC0xLDAuNC0xLDF2NGMwLDAuNSwwLjUsMSwxLDFoOEMyNS41LDE4
+        LDI2LDE3LjUsMjYsMTd6IE0yNiwyN3YtNGMwLTAuNS0wLjUtMS0xLTFoLThjLTAuNSwwLTEsMC41LTEs
+        MSAgIHY0YzAsMC41LDAuNSwxLDEsMWg4QzI1LjUsMjgsMjYsMjcuNSwyNiwyN3oiIGNsYXNzPSJZZWxs
+        b3ciIC8+DQogICAgPHBvbHlnb24gcG9pbnRzPSIxNCwxNiAxNCwxNCAxMCwxNCAxMCwxMCA4LDEwIDgs
+        MjYgMTQsMjYgMTQsMjQgMTAsMjQgMTAsMTYgICIgY2xhc3M9IkJsYWNrIiAvPg0KICA8L2c+DQo8L3N2
+        Zz4L
+</value>
+  </data>
   <data name="ribbonControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ribbonControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
+  </data>
+  <data name="ribbonPage3.Text" xml:space="preserve">
+    <value>Operations</value>
+  </data>
+  <data name="ribbonPageGroup20.Text" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="ribbonPageGroup19.Text" xml:space="preserve">
+    <value>Warehouse Reports</value>
+  </data>
+  <data name="ribbonPage4.Text" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="ribbonPage6.Text" xml:space="preserve">
+    <value>Offer &amp; Deals</value>
+  </data>
+  <data name="ribbonPage1.Text" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="repositoryItemButtonEdit1.AutoHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <assembly alias="DevExpress.Utils.v21.2" name="DevExpress.Utils.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="repositoryItemButtonEdit1.Buttons" type="DevExpress.XtraEditors.Controls.ButtonPredefines, DevExpress.Utils.v21.2">
+    <value>Glyph</value>
+  </data>
+  <data name="ribbonControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1374, 163</value>
+  </data>
+  <data name="ribbonStatusBar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 765</value>
+  </data>
+  <data name="ribbonStatusBar1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="ribbonStatusBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1374, 22</value>
+  </data>
+  <data name="&gt;&gt;ribbonStatusBar1.Name" xml:space="preserve">
+    <value>ribbonStatusBar1</value>
+  </data>
+  <data name="&gt;&gt;ribbonStatusBar1.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.Ribbon.RibbonStatusBar, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;ribbonStatusBar1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ribbonStatusBar1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ribbonControl1.Name" xml:space="preserve">
+    <value>ribbonControl1</value>
+  </data>
+  <data name="&gt;&gt;ribbonControl1.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.Ribbon.RibbonControl, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;ribbonControl1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ribbonControl1.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="ribbonPageGroup2.Text" xml:space="preserve">
     <value>Item</value>
@@ -1560,38 +1648,11 @@
   <data name="ribbonPageGroup16.Text" xml:space="preserve">
     <value>Reports</value>
   </data>
-  <data name="ribbonPage3.Text" xml:space="preserve">
-    <value>Operations</value>
-  </data>
-  <data name="ribbonPageGroup20.Text" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="ribbonPageGroup18.Text" xml:space="preserve">
-    <value>Branch Reports</value>
-  </data>
-  <data name="ribbonPageGroup19.Text" xml:space="preserve">
-    <value>Warehouse Reports</value>
-  </data>
-  <data name="ribbonPage4.Text" xml:space="preserve">
-    <value>Reports</value>
-  </data>
   <data name="ribbonPageGroup8.Text" xml:space="preserve">
     <value>Offer &amp;&amp; Deals</value>
   </data>
-  <data name="ribbonPageGroup7.Text" xml:space="preserve">
-    <value>Stock Reports</value>
-  </data>
-  <data name="ribbonPageGroup9.Text" xml:space="preserve">
-    <value>POS Reports</value>
-  </data>
-  <data name="ribbonPageGroup13.Text" xml:space="preserve">
-    <value>Sale Reports</value>
-  </data>
   <data name="ribbonPageGroup14.Text" xml:space="preserve">
     <value>List</value>
-  </data>
-  <data name="ribbonPage6.Text" xml:space="preserve">
-    <value>Offer &amp; Deals</value>
   </data>
   <data name="ribbonPageGroup1.Text" xml:space="preserve">
     <value>Branch</value>
@@ -1613,53 +1674,6 @@
   </data>
   <data name="ribbonPageGroup17.Text" xml:space="preserve">
     <value>Database Cache</value>
-  </data>
-  <data name="ribbonPage1.Text" xml:space="preserve">
-    <value>Admin</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="repositoryItemButtonEdit1.AutoHeight" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <assembly alias="DevExpress.Utils.v21.2" name="DevExpress.Utils.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="repositoryItemButtonEdit1.Buttons" type="DevExpress.XtraEditors.Controls.ButtonPredefines, DevExpress.Utils.v21.2">
-    <value>Glyph</value>
-  </data>
-  <data name="ribbonControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1374, 163</value>
-  </data>
-  <data name="ribbonStatusBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 765</value>
-  </data>
-  <data name="ribbonStatusBar1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
-  </data>
-  <data name="ribbonStatusBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1374, 22</value>
-  </data>
-  <data name="&gt;&gt;ribbonStatusBar1.Name" xml:space="preserve">
-    <value>ribbonStatusBar1</value>
-  </data>
-  <data name="&gt;&gt;ribbonStatusBar1.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonStatusBar, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;ribbonStatusBar1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ribbonStatusBar1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;ribbonControl1.Name" xml:space="preserve">
-    <value>ribbonControl1</value>
-  </data>
-  <data name="&gt;&gt;ribbonControl1.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonControl, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;ribbonControl1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ribbonControl1.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="ribbonPage2.Text" xml:space="preserve">
     <value>ribbonPage2</value>
@@ -2547,12 +2561,6 @@
   <data name="&gt;&gt;ribbonPageGroup20.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="&gt;&gt;ribbonPageGroup18.Name" xml:space="preserve">
-    <value>ribbonPageGroup18</value>
-  </data>
-  <data name="&gt;&gt;ribbonPageGroup18.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
   <data name="&gt;&gt;ribbonPageGroup19.Name" xml:space="preserve">
     <value>ribbonPageGroup19</value>
   </data>
@@ -2569,24 +2577,6 @@
     <value>ribbonPageGroup8</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup8.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;ribbonPageGroup7.Name" xml:space="preserve">
-    <value>ribbonPageGroup7</value>
-  </data>
-  <data name="&gt;&gt;ribbonPageGroup7.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;ribbonPageGroup9.Name" xml:space="preserve">
-    <value>ribbonPageGroup9</value>
-  </data>
-  <data name="&gt;&gt;ribbonPageGroup9.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;ribbonPageGroup13.Name" xml:space="preserve">
-    <value>ribbonPageGroup13</value>
-  </data>
-  <data name="&gt;&gt;ribbonPageGroup13.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup14.Name" xml:space="preserve">
@@ -2654,6 +2644,12 @@
   </data>
   <data name="&gt;&gt;ribbonPage2.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;btnItemLedger.Name" xml:space="preserve">
+    <value>btnItemLedger</value>
+  </data>
+  <data name="&gt;&gt;btnItemLedger.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmMain</value>
