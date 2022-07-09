@@ -9,6 +9,13 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
     public partial class ucSupplierWiseSales : SearchCriteriaBase
     {
         MasterRepository masterRepo = new MasterRepository();
+        Dictionary<string, string> procedures = new Dictionary<string, string>()
+        {
+            {"S", "USP_RPT_SUPPLIERWISESALES" },
+            {"D", "USP_RPT_SUPPLIERWISEDISPATCHES" },
+            {"B", "USP_RPT_SUPPLIERWISEBREFUNDS" },
+            {"C", "USP_RPT_SUPPLIERWISECREFUNDS" }
+        };
 
         string reporttype = string.Empty;
 
@@ -32,6 +39,8 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("Sub Category", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
             };    
+
+            //if(reporttype == "B") IncludeSettingsCollection.Add(new IncludeSettings("Reason", ""))
 
             cmbSupplier.Properties.DataSource = masterRepo.GetDealer();
             cmbSupplier.Properties.ValueMember = "DEALERID";
@@ -58,9 +67,8 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
             };
-            DataTable dt = GetReportData(reporttype == "S" ? "USP_RPT_SUPPLIERWISESALES"
-                 : reporttype == "D" ? "USP_RPT_SUPPLIERWISEDISPATCHES" : reporttype == "B" ? 
-                 "USP_RPT_SUPPLIERWISEBREFUNDS" : "USP_RPT_SUPPLIERWISECREFUNDS", parameters);
+           
+            DataTable dt = GetReportData(procedures[reporttype], parameters);
             return dt;
             
         }
