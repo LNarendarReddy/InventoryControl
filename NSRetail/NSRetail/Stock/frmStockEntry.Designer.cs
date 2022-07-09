@@ -178,7 +178,7 @@
             this.btnLoadDraft.Name = "btnLoadDraft";
             this.btnLoadDraft.Size = new System.Drawing.Size(88, 26);
             this.btnLoadDraft.StyleController = this.layoutControl1;
-            this.btnLoadDraft.TabIndex = 16;
+            this.btnLoadDraft.TabIndex = 9;
             this.btnLoadDraft.Text = "Load Draft";
             this.btnLoadDraft.Click += new System.EventHandler(this.btnLoadDraft_Click);
             // 
@@ -191,7 +191,7 @@
             this.btnDraftInvoice.Name = "btnDraftInvoice";
             this.btnDraftInvoice.Size = new System.Drawing.Size(93, 26);
             this.btnDraftInvoice.StyleController = this.layoutControl1;
-            this.btnDraftInvoice.TabIndex = 15;
+            this.btnDraftInvoice.TabIndex = 8;
             this.btnDraftInvoice.Text = "Draft Invoice";
             this.btnDraftInvoice.Click += new System.EventHandler(this.btnDraftInvoice_Click);
             // 
@@ -204,7 +204,7 @@
             this.btnDiscardInvoice.Name = "btnDiscardInvoice";
             this.btnDiscardInvoice.Size = new System.Drawing.Size(111, 26);
             this.btnDiscardInvoice.StyleController = this.layoutControl1;
-            this.btnDiscardInvoice.TabIndex = 14;
+            this.btnDiscardInvoice.TabIndex = 7;
             this.btnDiscardInvoice.Text = "Discard Invoice";
             this.btnDiscardInvoice.Click += new System.EventHandler(this.btnDiscardInvoice_Click);
             // 
@@ -216,7 +216,7 @@
             this.txtGSTIN.Name = "txtGSTIN";
             this.txtGSTIN.Size = new System.Drawing.Size(464, 20);
             this.txtGSTIN.StyleController = this.layoutControl1;
-            this.txtGSTIN.TabIndex = 4;
+            this.txtGSTIN.TabIndex = 1;
             // 
             // btnAddItem
             // 
@@ -227,7 +227,7 @@
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(110, 26);
             this.btnAddItem.StyleController = this.layoutControl1;
-            this.btnAddItem.TabIndex = 10;
+            this.btnAddItem.TabIndex = 5;
             this.btnAddItem.Text = "Add New";
             this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
             // 
@@ -244,7 +244,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpInvoice.Size = new System.Drawing.Size(464, 20);
             this.dtpInvoice.StyleController = this.layoutControl1;
-            this.dtpInvoice.TabIndex = 2;
+            this.dtpInvoice.TabIndex = 3;
             // 
             // chkTaxInclusive
             // 
@@ -255,7 +255,7 @@
             this.chkTaxInclusive.Properties.Caption = "Tax Inclusive";
             this.chkTaxInclusive.Size = new System.Drawing.Size(436, 18);
             this.chkTaxInclusive.StyleController = this.layoutControl1;
-            this.chkTaxInclusive.TabIndex = 3;
+            this.chkTaxInclusive.TabIndex = 4;
             // 
             // txtInvoiceNumber
             // 
@@ -266,7 +266,7 @@
             this.txtInvoiceNumber.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtInvoiceNumber.Size = new System.Drawing.Size(463, 20);
             this.txtInvoiceNumber.StyleController = this.layoutControl1;
-            this.txtInvoiceNumber.TabIndex = 1;
+            this.txtInvoiceNumber.TabIndex = 2;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule1.ErrorText = "Mandatory";
             conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
@@ -283,7 +283,7 @@
             this.btnDelete,
             this.btnEdit});
             this.gcStockEntry.Size = new System.Drawing.Size(1121, 453);
-            this.gcStockEntry.TabIndex = 13;
+            this.gcStockEntry.TabIndex = 11;
             this.gcStockEntry.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvStockEntry});
             // 
@@ -696,7 +696,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(129, 26);
             this.btnCancel.StyleController = this.layoutControl1;
-            this.btnCancel.TabIndex = 12;
+            this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -709,7 +709,7 @@
             this.btnSaveInvoice.Name = "btnSaveInvoice";
             this.btnSaveInvoice.Size = new System.Drawing.Size(122, 26);
             this.btnSaveInvoice.StyleController = this.layoutControl1;
-            this.btnSaveInvoice.TabIndex = 11;
+            this.btnSaveInvoice.TabIndex = 6;
             this.btnSaveInvoice.Text = "Preview Invoice";
             this.btnSaveInvoice.Click += new System.EventHandler(this.btnSaveInvoice_Click);
             // 

@@ -111,6 +111,7 @@
             this.gridColumn4});
             this.gvDraftEntries.GridControl = this.gcDraftEntries;
             this.gvDraftEntries.Name = "gvDraftEntries";
+            this.gvDraftEntries.OptionsBehavior.Editable = false;
             this.gvDraftEntries.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn1
