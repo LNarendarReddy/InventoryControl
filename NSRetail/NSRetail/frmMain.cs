@@ -441,12 +441,12 @@ namespace NSRetail
             List<ReportHolder> reportList = new List<ReportHolder>();
 
             ReportHolder reports = new ReportHolder() { ReportName = "Reports" };
-            reports.SubCategory.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
-            reports.SubCategory.Add(new ReportHolder() { ReportName = "Sales by Amount", SearchCriteriaControl = new ucBillSearchByAmount() });
+            reports.SubCategory.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });            
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Purchases", SearchCriteriaControl = new ucPurchases() });
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatches", SearchCriteriaControl = new ucBranchTransactions("D") });
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucBranchTransactions("B") });
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Refunds", SearchCriteriaControl = new ucBranchTransactions("C") });
+            reports.SubCategory.Add(new ReportHolder() { ReportName = "Bills by Amount", SearchCriteriaControl = new ucBillSearchByAmount() });
             reportList.Add(reports);
 
             ReportHolder supplierwisereports = new ReportHolder() { ReportName = "Supplier Wise Reports" };

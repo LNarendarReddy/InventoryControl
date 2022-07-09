@@ -253,6 +253,8 @@ namespace NSRetail.ReportForms
                 {
                     btnSearch_Click(null, null);
                 }
+
+                e.Handled = true;
             }
         }
 
