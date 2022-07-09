@@ -1,18 +1,11 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.StockReports
 {
-    public partial class ucDispatches : SearchCriteriaBase
+    public partial class ucBranchTransactions : SearchCriteriaBase
     {
         private string ReportType = string.Empty;
         private Dictionary<string, string> procedures = new Dictionary<string, string>()
@@ -21,7 +14,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             ,{ "B","USP_RPT_BREFUND"}
             ,{ "C","USP_RPT_CREFUND"}
         };
-        public ucDispatches(string _ReportType)
+        public ucBranchTransactions(string _ReportType)
         {
             ReportType = _ReportType;
             InitializeComponent();
@@ -48,6 +41,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
                     "COSTPRICEWOT", "COSTPRICEWT", "COSTPRICETAX", "SALEPRICEWOT", "SALEPRICEWT", "SALEPRICETAX", "QUANTITY" })
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
+                , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
             };
 

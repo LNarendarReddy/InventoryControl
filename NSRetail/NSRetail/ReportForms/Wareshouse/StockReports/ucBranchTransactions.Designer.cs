@@ -1,6 +1,6 @@
 ﻿namespace NSRetail.ReportForms.Wareshouse.StockReports
 {
-    partial class ucDispatches
+    partial class ucBranchTransactions
     {
         /// <summary> 
         /// Required designer variable.
