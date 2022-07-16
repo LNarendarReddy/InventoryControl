@@ -31,6 +31,9 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 
             SetFocusControls(cmbBranch, cmbBranch, columnHeaders);
+
+            txtThresholdValue.EditValue = 0;
+            txtThresholdValue.Enabled = false;
         }
 
         public override DataTable GetData()

@@ -16,7 +16,8 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
             {
                 { "SALEPRICEWOT", "Sale Price WOT" },
                 { "SALEPRICETAX", "Sale Price Tax" },
-                { "SALEPRICE", "Sale Price WT" },
+                { "ACTUALSALEPRICE", "Actual Sale Price WT" },
+                { "SALEPRICE", "Sale Price" },
                 { "COSTPRICEWOT", "Cost Price WOT" },
                 { "COSTPRICETAX", "Cost Price Tax" },
                 { "COSTPRICEWT", "Cost Price WT" },
