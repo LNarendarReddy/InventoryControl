@@ -36,6 +36,7 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
 
             SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);
 
+            IncludeSettingsCollection = new List<IncludeSettings> { new IncludeSettings("Include Branch Name", "IncludeBranch", new List<string> { }) };
         }
 
         private void ucItemWise_Load(object sender, EventArgs e)

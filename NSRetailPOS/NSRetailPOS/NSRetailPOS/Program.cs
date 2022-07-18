@@ -8,18 +8,28 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace NSRetailPOS
 {
     static class Program
     {
+
+        static Mutex singleton = new Mutex(true, "NSRetailPOS");
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+
+            if (!singleton.WaitOne(TimeSpan.Zero, true))
+            {
+                DevExpress.XtraEditors.XtraMessageBox.Show("Instance already running!!");
+                return;
+            }
 
             //Assembly asm = typeof(NSRetailPOSSkinDARK).Assembly;
             //SkinManager.Default.RegisterAssembly(asm);
