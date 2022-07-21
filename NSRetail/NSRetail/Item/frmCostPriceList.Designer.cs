@@ -45,6 +45,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcCPList)).BeginInit();
@@ -123,6 +124,7 @@
             this.gridColumn3,
             this.gridColumn1,
             this.gridColumn2,
+            this.gridColumn7,
             this.gridColumn5,
             this.gridColumn6});
             this.gvCPList.DetailHeight = 404;
@@ -179,7 +181,7 @@
             this.gridColumn5.MinWidth = 23;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.VisibleIndex = 5;
             this.gridColumn5.Width = 310;
             // 
             // gridColumn6
@@ -189,7 +191,7 @@
             this.gridColumn6.MinWidth = 23;
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.VisibleIndex = 6;
             this.gridColumn6.Width = 117;
             // 
             // Root
@@ -249,6 +251,14 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(686, 30);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "GST Code";
+            this.gridColumn7.FieldName = "GSTCODE";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 4;
+            // 
             // frmCostPriceList
             // 
             this.AcceptButton = this.btnOk;
@@ -291,5 +301,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
     }
 }
