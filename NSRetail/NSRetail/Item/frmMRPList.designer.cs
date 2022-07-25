@@ -51,6 +51,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcMRPList)).BeginInit();
@@ -133,7 +134,8 @@
             this.gridColumn3,
             this.gcDelete,
             this.gcCostPriceWT,
-            this.gcCostPriceWOT});
+            this.gcCostPriceWOT,
+            this.gridColumn1});
             this.gvMRPList.DetailHeight = 404;
             this.gvMRPList.FixedLineWidth = 3;
             this.gvMRPList.GridControl = this.gcMRPList;
@@ -178,7 +180,7 @@
             this.gcDelete.ColumnEdit = this.btnDelete;
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 4;
+            this.gcDelete.VisibleIndex = 5;
             this.gcDelete.Width = 104;
             // 
             // btnDelete
@@ -198,7 +200,7 @@
             this.gcCostPriceWT.Name = "gcCostPriceWT";
             this.gcCostPriceWT.OptionsColumn.AllowEdit = false;
             this.gcCostPriceWT.Visible = true;
-            this.gcCostPriceWT.VisibleIndex = 2;
+            this.gcCostPriceWT.VisibleIndex = 3;
             this.gcCostPriceWT.Width = 122;
             // 
             // gcCostPriceWOT
@@ -208,7 +210,7 @@
             this.gcCostPriceWOT.Name = "gcCostPriceWOT";
             this.gcCostPriceWOT.OptionsColumn.AllowEdit = false;
             this.gcCostPriceWOT.Visible = true;
-            this.gcCostPriceWOT.VisibleIndex = 3;
+            this.gcCostPriceWOT.VisibleIndex = 4;
             this.gcCostPriceWOT.Width = 138;
             // 
             // Root
@@ -262,6 +264,14 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(333, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "GST Code";
+            this.gridColumn1.FieldName = "GSTCODE";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 2;
+            // 
             // frmMRPList
             // 
             this.AcceptButton = this.btnOk;
@@ -310,5 +320,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraGrid.Columns.GridColumn gcCostPriceWT;
         private DevExpress.XtraGrid.Columns.GridColumn gcCostPriceWOT;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }
 }
