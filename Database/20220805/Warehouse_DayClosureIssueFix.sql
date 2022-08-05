@@ -224,3 +224,44 @@ END
 GO
 
 
+/****** Object:  StoredProcedure [dbo].[USP_R_DAYCLOSURE]    Script Date: 05-08-2022 23:50:25 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[USP_R_DAYCLOSURE]                  
+@BRANCHID INT = 0,      
+@FromDate Date = NULL,      
+@ToDate Date = NULL      
+                  
+AS                  
+BEGIN                  
+                  
+	SELECT                 
+		DC.DAYCLOSUREID,  
+		B.BRANCHNAME,                
+		BC.COUNTERNAME,
+		DC.CLOSUREDATE,                
+		DC.BRANCHCOUNTERID,                
+		DC.OPENINGBALANCE,     
+		DC.REFUNDAMOUNT,
+		DC.OPENINGBALANCE - DC.REFUNDAMOUNT AS DAYTURNOVER,                
+		DC.CLOSINGBALANCE,                
+		DC.CLOSINGDIFFERENCE,                
+		CU.FULLNAME AS CLOSEDBY   
+		, CASE WHEN DC.ISPROCESSED = 1 THEN 'Processed' ELSE 'Yet to process' END AS IsProcessed
+	FROM POS_DAYCLOSURE DC                  
+		INNER JOIN BRANCHCOUNTER BC ON DC.BRANCHCOUNTERID = BC.COUNTERID                  
+		INNER JOIN BRANCH B ON BC.BRANCHID = B.BRANCHID              
+		INNER JOIN TBLUSER CU ON DC.CLOSEDBY = CU.USERID                
+	WHERE (B.BRANCHID = @BRANCHID OR @BRANCHID = 0)      
+		AND DC.CREATEDDATE >= @FromDate     
+		AND DC.CREATEDDATE <= DATEADD(day,1,@ToDate)
+	ORDER BY B.BRANCHCODE ASC,BC.COUNTERNAME ASC,DC.CLOSUREDATE DESC  
+  
+                  
+END
+GO
+
