@@ -188,7 +188,7 @@ namespace NSRetail.ReportForms
             (selectedReportHolder.SearchCriteriaControl.FirstControl ?? selectedReportHolder.SearchCriteriaControl).Focus();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        public void btnSearch_Click(object sender, EventArgs e)
         {
             if (selectedReportHolder == null
                 || selectedReportHolder.SearchCriteriaControl == null

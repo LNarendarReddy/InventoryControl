@@ -81,5 +81,20 @@ namespace NSRetail.ReportForms.POS
             frmObj.IconOptions.ShowIcon = false;
             frmObj.ShowDialog();
         }
+
+        private void btnProcessDayClosures_Click(object sender, EventArgs e)
+        {
+            DataTable dtProcessedCount = GetReportData("USP_P_DAYCLOSURES", new Dictionary<string, object>());
+            if(dtProcessedCount != null && dtProcessedCount.Rows.Count == 1 &&
+                int.TryParse(dtProcessedCount.Rows[0][0]?.ToString(), out int count)
+                && XtraMessageBox.Show($"No. of day closures processed : {count}" 
+                    + (count > 0 ? "Do you want to refresh data?" : string.Empty)
+                    , "Process day closure result"
+                    , count == 0 ? MessageBoxButtons.OK : MessageBoxButtons.YesNo
+                    , count == 0 ? MessageBoxIcon.Information : MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
+            }
+        }
     }
 }

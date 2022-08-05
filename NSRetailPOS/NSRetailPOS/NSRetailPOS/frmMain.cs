@@ -178,6 +178,8 @@ namespace NSRetailPOS
 
         private void btnCloseBill_Click(object sender, EventArgs e)
         {
+            if (!btnCloseBill.Enabled) return;
+
             if (billObj.dtBillDetails.Rows.Count == 0)
             {
                 XtraMessageBox.Show("No items to bill", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -339,6 +341,8 @@ namespace NSRetailPOS
 
         private void btnSaveBill_Click(object sender, EventArgs e)
         {
+            if (!btnSaveBill.Enabled) return;
+
             if (billObj.dtBillDetails.Rows.Count == 0)
             {
                 XtraMessageBox.Show("No items to draft", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -351,6 +355,8 @@ namespace NSRetailPOS
 
         private void btnLoadDraftBill_Click(object sender, EventArgs e)
         {
+            if (!btnLoadDraftBill.Enabled) return;
+
             if (billObj.dtBillDetails.Rows.Count > 0)
             {
                 DialogResult dialogResult = XtraMessageBox.Show("Pending items in the bill, Do you want to draft bill?", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -515,11 +521,15 @@ namespace NSRetailPOS
 
         private void btnStockIn_Click(object sender, EventArgs e)
         {
+            if (!btnStockIn.Enabled) return;
+
             new frmStockInList().ShowDialog();
         }
 
         private void btnRefund_Click(object sender, EventArgs e)
         {
+            if (!btnRefund.Enabled) return;
+
             frmRefund obj = new frmRefund();
             obj.ShowInTaskbar = false;
             obj.IconOptions.ShowIcon = false;
@@ -529,6 +539,8 @@ namespace NSRetailPOS
 
         private void btnBranchRefund_Click(object sender, EventArgs e)
         {
+            if (!btnBranchRefund.Enabled) return;
+
             frmBranchRefund obj = new frmBranchRefund()
             { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
             obj.ShowDialog();
@@ -536,6 +548,8 @@ namespace NSRetailPOS
 
         private void btnDayClosure_Click(object sender, EventArgs e)
         {
+            if (!btnDayClosure.Enabled) return;
+
             if (XtraMessageBox.Show("Are you sure want to day close?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
 
@@ -641,6 +655,8 @@ namespace NSRetailPOS
 
         private void btnSyncData_Click(object sender, EventArgs e)
         {
+            if (!btnSyncData.Enabled) return;
+
             SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
             Utility.StartSync(null);
             SplashScreenManager.CloseForm();
