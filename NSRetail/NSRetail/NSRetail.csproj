@@ -119,6 +119,12 @@
     <Compile Include="ReportForms\frmItemLedger.Designer.cs">
       <DependentUpon>frmItemLedger.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\POS\ucCustomerDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\POS\ucCustomerDetails.Designer.cs">
+      <DependentUpon>ucCustomerDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\POS\ucCustomerReturns.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -130,6 +136,12 @@
     </Compile>
     <Compile Include="ReportForms\Wareshouse\SaleReports\ucBillSearchByAmount.Designer.cs">
       <DependentUpon>ucBillSearchByAmount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucItemMargin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucItemMargin.Designer.cs">
+      <DependentUpon>ucItemMargin.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Wareshouse\SaleReports\ucSaleByMOP.cs">
       <SubType>UserControl</SubType>
@@ -748,11 +760,17 @@
     <EmbeddedResource Include="ReportForms\frmItemLedger.resx">
       <DependentUpon>frmItemLedger.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\POS\ucCustomerDetails.resx">
+      <DependentUpon>ucCustomerDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucCustomerReturns.resx">
       <DependentUpon>ucCustomerReturns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucBillSearchByAmount.resx">
       <DependentUpon>ucBillSearchByAmount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucItemMargin.resx">
+      <DependentUpon>ucItemMargin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucSaleByMOP.resx">
       <DependentUpon>ucSaleByMOP.cs</DependentUpon>

@@ -87,6 +87,8 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).BeginInit();
@@ -121,10 +123,11 @@
             this.layoutControl1.Controls.Add(this.gcOffer);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1270, 398, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1057, 659);
+            this.layoutControl1.Size = new System.Drawing.Size(1233, 760);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -133,9 +136,10 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(956, 7);
+            this.btnCancel.Location = new System.Drawing.Point(1115, 8);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(94, 36);
+            this.btnCancel.Size = new System.Drawing.Size(110, 36);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
@@ -145,9 +149,10 @@
             // 
             this.btnNew.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnNew.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNew.ImageOptions.SvgImage")));
-            this.btnNew.Location = new System.Drawing.Point(848, 7);
+            this.btnNew.Location = new System.Drawing.Point(989, 8);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(104, 36);
+            this.btnNew.Size = new System.Drawing.Size(122, 36);
             this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 5;
             this.btnNew.Text = "New";
@@ -155,15 +160,17 @@
             // 
             // gcOffer
             // 
-            this.gcOffer.Location = new System.Drawing.Point(7, 47);
+            this.gcOffer.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.gcOffer.Location = new System.Drawing.Point(8, 48);
             this.gcOffer.MainView = this.gvOffer;
+            this.gcOffer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcOffer.Name = "gcOffer";
             this.gcOffer.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEdit,
             this.btnDelete,
             this.btnViewBranches,
             this.btnViewItems});
-            this.gcOffer.Size = new System.Drawing.Size(1043, 605);
+            this.gcOffer.Size = new System.Drawing.Size(1217, 704);
             this.gcOffer.TabIndex = 4;
             this.gcOffer.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvOffer});
@@ -198,51 +205,65 @@
             this.gridColumn25,
             this.gridColumn24,
             this.gridColumn20,
-            this.gridColumn21});
+            this.gridColumn21,
+            this.gridColumn6,
+            this.gridColumn7});
+            this.gvOffer.DetailHeight = 404;
             this.gvOffer.GridControl = this.gcOffer;
             this.gvOffer.Name = "gvOffer";
+            this.gvOffer.OptionsView.ShowGroupPanel = false;
             this.gvOffer.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvOffer_InitNewRow);
             // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "Offer ID";
             this.gridColumn1.FieldName = "OFFERID";
+            this.gridColumn1.MinWidth = 23;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.Width = 87;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Offer Code";
             this.gridColumn2.FieldName = "OFFERCODE";
+            this.gridColumn2.MinWidth = 23;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.Width = 87;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Offer Name";
             this.gridColumn3.FieldName = "OFFERNAME";
+            this.gridColumn3.MinWidth = 23;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 0;
+            this.gridColumn3.Width = 87;
             // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Start Date";
             this.gridColumn4.FieldName = "STARTDATE";
+            this.gridColumn4.MinWidth = 23;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 1;
+            this.gridColumn4.Width = 87;
             // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "End Date";
             this.gridColumn5.FieldName = "ENDDATE";
+            this.gridColumn5.MinWidth = 23;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 2;
+            this.gridColumn5.Width = 87;
             // 
             // gridColumn26
             // 
@@ -250,126 +271,158 @@
             this.gridColumn26.DisplayFormat.FormatString = "n2";
             this.gridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn26.FieldName = "OFFERVALUE";
+            this.gridColumn26.MinWidth = 23;
             this.gridColumn26.Name = "gridColumn26";
             this.gridColumn26.OptionsColumn.AllowEdit = false;
             this.gridColumn26.Visible = true;
             this.gridColumn26.VisibleIndex = 4;
+            this.gridColumn26.Width = 87;
             // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "Offer TypeID";
             this.gridColumn8.FieldName = "OFFERTYPEID";
+            this.gridColumn8.MinWidth = 23;
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
+            this.gridColumn8.Width = 87;
             // 
             // gridColumn9
             // 
             this.gridColumn9.Caption = "Offer Type Code";
             this.gridColumn9.FieldName = "OFFERTYPECODE";
+            this.gridColumn9.MinWidth = 23;
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
+            this.gridColumn9.Width = 87;
             // 
             // gridColumn10
             // 
             this.gridColumn10.Caption = "Offer Type";
             this.gridColumn10.FieldName = "OFFERTYPENAME";
+            this.gridColumn10.MinWidth = 23;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 3;
+            this.gridColumn10.Width = 87;
             // 
             // gridColumn23
             // 
             this.gridColumn23.Caption = "Applies to ID";
             this.gridColumn23.FieldName = "AppliesToID";
+            this.gridColumn23.MinWidth = 23;
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.OptionsColumn.AllowEdit = false;
+            this.gridColumn23.Width = 87;
             // 
             // gridColumn22
             // 
             this.gridColumn22.Caption = "Applies To";
             this.gridColumn22.FieldName = "AppliesToName";
+            this.gridColumn22.MinWidth = 23;
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.OptionsColumn.AllowEdit = false;
             this.gridColumn22.Visible = true;
             this.gridColumn22.VisibleIndex = 5;
+            this.gridColumn22.Width = 87;
             // 
             // gridColumn11
             // 
             this.gridColumn11.Caption = "Category ID";
             this.gridColumn11.FieldName = "CATEGORYID";
+            this.gridColumn11.MinWidth = 23;
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
+            this.gridColumn11.Width = 87;
             // 
             // gridColumn12
             // 
             this.gridColumn12.Caption = "Category";
             this.gridColumn12.FieldName = "CATEGORYNAME";
+            this.gridColumn12.MinWidth = 23;
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 6;
+            this.gridColumn12.Width = 87;
             // 
             // gridColumn13
             // 
             this.gridColumn13.Caption = "Item Group ID";
             this.gridColumn13.FieldName = "ITEMGROUPID";
+            this.gridColumn13.MinWidth = 23;
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.OptionsColumn.AllowEdit = false;
+            this.gridColumn13.Width = 87;
             // 
             // gridColumn14
             // 
             this.gridColumn14.Caption = "Item Group";
             this.gridColumn14.FieldName = "GROUPNAME";
+            this.gridColumn14.MinWidth = 23;
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 7;
+            this.gridColumn14.Width = 87;
             // 
             // gridColumn15
             // 
             this.gridColumn15.Caption = "Created By";
             this.gridColumn15.FieldName = "CREATEDBY";
+            this.gridColumn15.MinWidth = 23;
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.OptionsColumn.AllowEdit = false;
+            this.gridColumn15.Width = 87;
             // 
             // gridColumn16
             // 
             this.gridColumn16.Caption = "Created Date";
             this.gridColumn16.FieldName = "CREATEDDATE";
+            this.gridColumn16.MinWidth = 23;
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.OptionsColumn.AllowEdit = false;
+            this.gridColumn16.Width = 87;
             // 
             // gridColumn17
             // 
             this.gridColumn17.Caption = "Updated By";
             this.gridColumn17.FieldName = "UPDATEDBY";
+            this.gridColumn17.MinWidth = 23;
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.OptionsColumn.AllowEdit = false;
+            this.gridColumn17.Width = 87;
             // 
             // gridColumn18
             // 
             this.gridColumn18.Caption = "Updated Date";
             this.gridColumn18.FieldName = "UPDATEDDATE";
+            this.gridColumn18.MinWidth = 23;
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.OptionsColumn.AllowEdit = false;
+            this.gridColumn18.Width = 87;
             // 
             // gridColumn19
             // 
             this.gridColumn19.Caption = "Is Active";
             this.gridColumn19.FieldName = "ISACTIVE";
+            this.gridColumn19.MinWidth = 23;
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.Visible = true;
             this.gridColumn19.VisibleIndex = 8;
+            this.gridColumn19.Width = 87;
             // 
             // gridColumn25
             // 
             this.gridColumn25.Caption = "View Branches";
             this.gridColumn25.ColumnEdit = this.btnViewBranches;
+            this.gridColumn25.MinWidth = 23;
             this.gridColumn25.Name = "gridColumn25";
             this.gridColumn25.Visible = true;
-            this.gridColumn25.VisibleIndex = 12;
+            this.gridColumn25.VisibleIndex = 14;
+            this.gridColumn25.Width = 87;
             // 
             // btnViewBranches
             // 
@@ -385,9 +438,11 @@
             // 
             this.gridColumn24.Caption = "View Items";
             this.gridColumn24.ColumnEdit = this.btnViewItems;
+            this.gridColumn24.MinWidth = 23;
             this.gridColumn24.Name = "gridColumn24";
             this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 11;
+            this.gridColumn24.VisibleIndex = 13;
+            this.gridColumn24.Width = 87;
             // 
             // btnViewItems
             // 
@@ -405,9 +460,11 @@
             this.gridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn20.Caption = "Edit";
             this.gridColumn20.ColumnEdit = this.btnEdit;
+            this.gridColumn20.MinWidth = 23;
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.Visible = true;
-            this.gridColumn20.VisibleIndex = 9;
+            this.gridColumn20.VisibleIndex = 11;
+            this.gridColumn20.Width = 87;
             // 
             // btnEdit
             // 
@@ -425,9 +482,11 @@
             this.gridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn21.Caption = "Delete";
             this.gridColumn21.ColumnEdit = this.btnDelete;
+            this.gridColumn21.MinWidth = 23;
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 10;
+            this.gridColumn21.VisibleIndex = 12;
+            this.gridColumn21.Width = 87;
             // 
             // btnDelete
             // 
@@ -451,8 +510,8 @@
             this.layoutControlItem3,
             this.emptySpaceItem1});
             this.Root.Name = "Root";
-            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.Root.Size = new System.Drawing.Size(1057, 659);
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.Root.Size = new System.Drawing.Size(1233, 760);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -460,25 +519,25 @@
             this.layoutControlItem1.Control = this.gcOffer;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 40);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1047, 609);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1221, 708);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnNew;
-            this.layoutControlItem2.Location = new System.Drawing.Point(841, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(981, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(108, 40);
+            this.layoutControlItem2.Size = new System.Drawing.Size(126, 40);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnCancel;
-            this.layoutControlItem3.Location = new System.Drawing.Point(949, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(1107, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(98, 40);
+            this.layoutControlItem3.Size = new System.Drawing.Size(114, 40);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -487,17 +546,36 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(841, 40);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(981, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Created By";
+            this.gridColumn6.FieldName = "CREATEDBY";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 9;
+            this.gridColumn6.Width = 87;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Created Date";
+            this.gridColumn7.FieldName = "CREATEDDATE";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 10;
+            this.gridColumn7.Width = 87;
             // 
             // frmOfferList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1057, 659);
+            this.ClientSize = new System.Drawing.Size(1233, 760);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmOfferList";
             this.Text = "Offer List";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -557,5 +635,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnViewItems;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
     }
 }

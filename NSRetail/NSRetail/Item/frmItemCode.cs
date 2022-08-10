@@ -65,8 +65,6 @@ namespace NSRetail
                     }
                 }
 
-               
-
                 itemObj.ItemCode = txtItemCode.Text;                
                 itemObj.HSNCode = txtHSNCode.EditValue;
                 itemObj.IsEAN = chkIsEAN.EditValue;
@@ -436,6 +434,13 @@ namespace NSRetail
             decimal costPriceWithTax = Convert.ToDecimal(txtCostPriceWT.EditValue);
             txtCostPriceWOT.EditValue = costPriceWithTax - costPriceWithTax * (luGST.GetSelectedDataRow() as GSTInfo).TAXPercent;
             isLoading = false;
+        }
+
+        private void sluParentItem_EditValueChanged(object sender, EventArgs e)
+        {
+            bool cpEnabled = sluParentItem.EditValue == null || sluParentItem.EditValue.Equals(itemObj.ItemID);
+
+
         }
 
         private void txtCostPriceWOT_EditValueChanged(object sender, EventArgs e)

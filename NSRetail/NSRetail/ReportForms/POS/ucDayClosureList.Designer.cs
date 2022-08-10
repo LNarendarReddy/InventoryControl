@@ -30,23 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucDayClosureList));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.btnProcessDayClosures = new DevExpress.XtraEditors.SimpleButton();
             this.dtToDate = new DevExpress.XtraEditors.DateEdit();
             this.dtFromDate = new DevExpress.XtraEditors.DateEdit();
             this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
-            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnProcessDayClosures = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
@@ -66,6 +66,32 @@
             this.layoutControl1.Size = new System.Drawing.Size(911, 45);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // Root
+            // 
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem1,
+            this.layoutControlItem2,
+            this.layoutControlItem3,
+            this.layoutControlItem4});
+            this.Root.Name = "Root";
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.Root.Size = new System.Drawing.Size(911, 45);
+            this.Root.TextVisible = false;
+            // 
+            // btnProcessDayClosures
+            // 
+            this.btnProcessDayClosures.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnProcessDayClosures.ImageOptions.Image")));
+            this.btnProcessDayClosures.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnProcessDayClosures.Location = new System.Drawing.Point(702, 11);
+            this.btnProcessDayClosures.Name = "btnProcessDayClosures";
+            this.btnProcessDayClosures.Size = new System.Drawing.Size(198, 22);
+            this.btnProcessDayClosures.StyleController = this.layoutControl1;
+            this.btnProcessDayClosures.TabIndex = 7;
+            this.btnProcessDayClosures.Text = "Process pending Day Closures";
+            this.btnProcessDayClosures.Click += new System.EventHandler(this.btnProcessDayClosures_Click);
             // 
             // dtToDate
             // 
@@ -112,20 +138,6 @@
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 4;
             // 
-            // Root
-            // 
-            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.Root.GroupBordersVisible = false;
-            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem2,
-            this.layoutControlItem3,
-            this.layoutControlItem4});
-            this.Root.Name = "Root";
-            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.Root.Size = new System.Drawing.Size(911, 45);
-            this.Root.TextVisible = false;
-            // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.cmbBranch;
@@ -156,18 +168,6 @@
             this.layoutControlItem3.Text = "From Date";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(58, 15);
             // 
-            // btnProcessDayClosures
-            // 
-            this.btnProcessDayClosures.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnProcessDayClosures.ImageOptions.Image")));
-            this.btnProcessDayClosures.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnProcessDayClosures.Location = new System.Drawing.Point(702, 11);
-            this.btnProcessDayClosures.Name = "btnProcessDayClosures";
-            this.btnProcessDayClosures.Size = new System.Drawing.Size(198, 22);
-            this.btnProcessDayClosures.StyleController = this.layoutControl1;
-            this.btnProcessDayClosures.TabIndex = 7;
-            this.btnProcessDayClosures.Text = "Process pending Day Closures";
-            this.btnProcessDayClosures.Click += new System.EventHandler(this.btnProcessDayClosures_Click);
-            // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnProcessDayClosures;
@@ -188,12 +188,12 @@
             this.Size = new System.Drawing.Size(911, 45);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();

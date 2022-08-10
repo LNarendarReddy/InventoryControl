@@ -249,7 +249,7 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (04-08-2022)";
+            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (07-08-2022)";
 
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,
@@ -428,6 +428,7 @@ namespace NSRetail
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure", SearchCriteriaControl = new ucDayClosureList() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Details", SearchCriteriaControl = new ucCustomerDetails() });
             stockReportList.Add(branchReports);
 
             stockReportList.Add(new ReportHolder() { ReportName = "Stock Counting Sheets", SearchCriteriaControl = new ucStockCountingList() });
@@ -447,6 +448,7 @@ namespace NSRetail
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Refunds", SearchCriteriaControl = new ucBranchTransactions("C") });
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Bills by Amount", SearchCriteriaControl = new ucBillSearchByAmount() });
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Day sale by Payment Method", SearchCriteriaControl = new ucSaleByMOP() });
+            reports.SubCategory.Add(new ReportHolder() { ReportName = "Item Margin", SearchCriteriaControl = new ucItemMargin() });
             reportList.Add(reports);
 
             ReportHolder supplierwisereports = new ReportHolder() { ReportName = "Supplier Wise Reports" };
