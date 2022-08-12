@@ -193,6 +193,16 @@ namespace NSRetailPOS
             paymentForm.ShowDialog();
             if (!paymentForm.IsPaid) { return; }
 
+            DataTable dtBillOffers = billingRepository.GetBillOffers(billObj.BillID);
+            if(dtBillOffers != null && dtBillOffers.Rows.Count == 1)
+            {
+                if(XtraMessageBox.Show($"Add free item {dtBillOffers.Rows[0]["ITEMNAME"]} ({dtBillOffers.Rows[0]["SKUCODE"]}) to the bill?", 
+                    "Add free item", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    SaveBillDetail(dtBillOffers.Rows[0]["ITEMPRICEID"], 1, 0, -1, true);
+                }
+            }
+
             DataSet nextBillDetails = null;
             try
             {
@@ -231,12 +241,12 @@ namespace NSRetailPOS
             LoadBillData(nextBillDetails);
         }
 
-        private void SaveBillDetail(object itemPriceID, object quantity, object weightInKgs, object billDetailID)
+        private void SaveBillDetail(object itemPriceID, object quantity, object weightInKgs, object billDetailID, bool isBillOfferItem = false)
         {
             try
             {
                 DataTable dtBillDetails = billingRepository.SaveBillDetail(billObj.BillID
-                    , itemPriceID, quantity, weightInKgs, Utility.loginInfo.UserID, billDetailID);
+                    , itemPriceID, quantity, weightInKgs, Utility.loginInfo.UserID, billDetailID, isBillOfferItem);
 
                 UpdateBillDetails(dtBillDetails, itemPriceID);
             }

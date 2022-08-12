@@ -99,13 +99,20 @@ namespace NSRetail
         private void cmbOfferType_EditValueChanged(object sender, EventArgs e)
         {
             bool filterCategory = false;
-            if (cmbOfferType.EditValue.Equals(1) || 
-                cmbOfferType.EditValue.Equals(2) || 
+            txtOfferValue.Enabled = true;
+            layoutControlItem14.Text = "Offer Value";
+
+            if (cmbOfferType.EditValue.Equals(1) ||
+                cmbOfferType.EditValue.Equals(2) ||
                 cmbOfferType.EditValue.Equals(3))
             {
-                txtOfferValue.Enabled = true;
                 if (cmbOfferType.EditValue.Equals(3))
                     filterCategory = true;
+            }
+            else if (cmbOfferType.EditValue.Equals(1004))
+            {
+                layoutControlItem14.Text = "Bill Value";
+                filterCategory = true;
             }
             else
             {

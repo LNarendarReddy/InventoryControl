@@ -7,7 +7,8 @@ namespace NSRetailPOS.Data
 {
     public class BillingRepository
     {
-        public DataTable SaveBillDetail(object billID, object ItemPriceID, object quantity, object weightInKGS, object userID, object billDetailID)
+        public DataTable SaveBillDetail(object billID, object ItemPriceID, object quantity, object weightInKGS
+               , object userID, object billDetailID, bool isBillOfferItem = false)
         {
             DataTable dtBillDetails = new DataTable();
             SqlTransaction transaction = null;
@@ -26,6 +27,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@WeightInKgs", weightInKGS);
                     cmd.Parameters.AddWithValue("@UserID", userID);
                     cmd.Parameters.AddWithValue("@BillDetailID", billDetailID);
+                    cmd.Parameters.AddWithValue("@IsBillOfferItem", isBillOfferItem);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtBillDetails);
@@ -459,6 +461,34 @@ namespace NSRetailPOS.Data
                 SQLCon.Sqlconn().Close();
             }
             return dtBillDetails;
+        }
+
+        public DataTable GetBillOffers(object billID)
+        {
+            DataTable dtBillOffers = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_R_GETBILLOFFERS]";
+                    cmd.Parameters.AddWithValue("@BillID", billID);                    
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtBillOffers);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtBillOffers;
         }
     }
 }
