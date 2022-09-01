@@ -3,6 +3,7 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using NSRetailPOS.Data;
+using NSRetailPOS.Entity;
 using NSRetailPOS.Reports;
 using System;
 using System.Data;
@@ -158,6 +159,39 @@ namespace NSRetailPOS.UI
         {
             txtBillNumber.Text = data;
             txtBillNumber_Leave(txtBillNumber, new EventArgs());
+        }
+
+        private void btnRePrint_Click(object sender, EventArgs e)
+        {
+            if (billID == null) return;
+            try
+            {
+                DataSet dsLastBillDetails = new BillingRepository().GetLastBill(0, billID);
+                Bill LastBillObj = Utility.GetBill(dsLastBillDetails);
+                rptBill rpt = new rptBill(LastBillObj.dtBillDetails, LastBillObj.dtMopValues);
+                rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
+                rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
+                rpt.Parameters["FSSAI"].Value = "10114004000548";
+                rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
+                rpt.Parameters["BillDate"].Value = DateTime.Now;
+                rpt.Parameters["BillNumber"].Value = LastBillObj.BillNumber;
+                rpt.Parameters["CustomerName"].Value = LastBillObj.CustomerName;
+                rpt.Parameters["CustomerNumber"].Value = LastBillObj.CustomerNumber;
+                rpt.Parameters["TenderedCash"].Value = LastBillObj.TenderedCash;
+                rpt.Parameters["TenderedChange"].Value = LastBillObj.TenderedChange;
+                rpt.Parameters["IsDoorDelivery"].Value = LastBillObj.IsDoorDelivery;
+                rpt.Parameters["BranchName"].Value = Utility.branchInfo.BranchName;
+                rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
+                rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
+                rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
+                rpt.Parameters["RoundingFactor"].Value = LastBillObj.Rounding;
+                rpt.Parameters["IsDuplicate"].Value = true;
+                rpt.Print();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message);
+            }
         }
     }
 }
