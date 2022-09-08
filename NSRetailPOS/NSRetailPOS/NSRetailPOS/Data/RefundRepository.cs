@@ -8,7 +8,7 @@ namespace NSRetailPOS.Data
 {
     public class RefundRepository
     {
-        public DataSet GetBillByNumber(object BillNumber)
+        public DataSet GetBillByNumber(object BillNumber, bool isAdminRole)
         {
             DataSet dsBillDetails = new DataSet();
             try
@@ -19,6 +19,7 @@ namespace NSRetailPOS.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_R_BILLBYNUMBER]";
                     cmd.Parameters.AddWithValue("@BILLNUMBER", BillNumber);
+                    cmd.Parameters.AddWithValue("@IsAdminRole", isAdminRole);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dsBillDetails);

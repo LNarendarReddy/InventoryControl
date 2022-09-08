@@ -29,7 +29,7 @@ namespace NSRetailPOS.UI
                 return;
             try
             {
-                DataSet ds = new RefundRepository().GetBillByNumber(txtBillNumber.EditValue);
+                DataSet ds = new RefundRepository().GetBillByNumber(txtBillNumber.EditValue, Utility.loginInfo.RoleName.Equals("Store Admin"));
                 if (ds.Tables["BILL"].Rows.Count == 0)
                     return;
                 Text = "Customer Refund - " + txtBillNumber.EditValue;
