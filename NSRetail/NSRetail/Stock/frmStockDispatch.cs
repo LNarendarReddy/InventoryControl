@@ -5,13 +5,14 @@ using DevExpress.XtraReports.UI;
 using Entity;
 using ErrorManagement;
 using NSRetail.Reports;
+using NSRetail.Utilities;
 using System;
 using System.Data;
 using System.Windows.Forms;
 
 namespace NSRetail.Stock
 {
-    public partial class frmStockDispatch : XtraForm
+    public partial class frmStockDispatch : XtraForm, IBarcodeReceiver
     {
         MasterRepository ObjMasterRep = new MasterRepository();
         ItemCodeRepository ObjItemRep = new ItemCodeRepository();
@@ -404,6 +405,11 @@ namespace NSRetail.Stock
             ObjStockDispatch.dtDispatch = ObjStockDispatch.dtDispatch.Clone();
             gcDispatch.DataSource = ObjStockDispatch.dtDispatch;
             cmbFromBranch.Focus();
+        }
+
+        public void ReceiveBarCode(string data)
+        {
+            cmbItemCode.Text = data;
         }
     }
 }
