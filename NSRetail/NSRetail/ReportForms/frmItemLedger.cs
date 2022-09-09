@@ -1,15 +1,8 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms
 {
@@ -22,9 +15,9 @@ namespace NSRetail.ReportForms
 
         private void frmItemLedger_Load(object sender, EventArgs e)
         {
-            sluItemCode.Properties.DataSource = Utility.GetItemCodeList();
-            sluItemCode.Properties.ValueMember = "ITEMCODEID";
-            sluItemCode.Properties.DisplayMember = "ITEMNAME";
+            sluSKUCode.Properties.DataSource = Utility.GetItemSKUList();
+            sluSKUCode.Properties.ValueMember = "ITEMID";
+            sluSKUCode.Properties.DisplayMember = "ITEMNAME";
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -48,10 +41,10 @@ namespace NSRetail.ReportForms
                 { "BranchID",  cmbBranch.EditValue }
                 , { "FromDate", dtFromDate.EditValue }
                 , { "ToDate", dtToDate.EditValue }
-                , { "ItemCodeID", sluItemCode.EditValue }
+                , { "ItemID", sluSKUCode.EditValue }
                 , { "IncludeBranch", chkIncludeBranch.EditValue }
             };
-            DataSet dsResult = new ReportRepository().GetReportDataset("USP_RPT_ITEMLEDGER", searchCriteria);
+            DataSet dsResult = new ReportRepository().GetReportDataset("USP_RPT_ITEMLEDGER1", searchCriteria);
             gcItems.DataSource = dsResult.Tables[0];
             SplashScreenManager.CloseOverlayForm(handle);
         }

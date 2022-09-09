@@ -38,8 +38,12 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             sluItem.Properties.DisplayMember = "ITEMNAME";
 
             SetFocusControls(luBranch, sluItem, columnHeaders);
+
+            IncludeSettingsCollection = new List<IncludeSettings> { new IncludeSettings("Include EAN Code", "IncludeEAN", new List<string> { "ITEMCODE" }) };
+
         }
-                
+
+
         public override DataTable GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
