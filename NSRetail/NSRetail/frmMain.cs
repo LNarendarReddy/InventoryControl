@@ -412,7 +412,7 @@ namespace NSRetail
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Invoice List", SearchCriteriaControl = new ucInvoiceList() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch List", SearchCriteriaControl = new ucDispatchList() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch DC List", SearchCriteriaControl = new ucDispatchDCList() });
-            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Summary By Branch", SearchCriteriaControl = new ucStockSummaryByBranch() });
+            //StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Summary By Branch", SearchCriteriaControl = new ucStockSummaryByBranch() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Zero Stock", SearchCriteriaControl = new ucZeroStock() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Adjustment Report", SearchCriteriaControl = new ucStockAdjustment() });
             stockReportList.Add(StockReports);
@@ -512,6 +512,16 @@ namespace NSRetail
         private void btnItemLedger_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmItemLedger obj = new frmItemLedger();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void btnStockSummary_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmStockSummary obj = new frmStockSummary();
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;
             obj.IconOptions.ShowIcon = false;

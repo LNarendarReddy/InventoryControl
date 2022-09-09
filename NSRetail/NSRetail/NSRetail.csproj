@@ -715,10 +715,10 @@
     <Compile Include="Stock\frmStockEntryPreview.Designer.cs">
       <DependentUpon>frmStockEntryPreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="UnUsed\frmStockSummary.cs">
+    <Compile Include="ReportForms\frmStockSummary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UnUsed\frmStockSummary.Designer.cs">
+    <Compile Include="ReportForms\frmStockSummary.Designer.cs">
       <DependentUpon>frmStockSummary.cs</DependentUpon>
     </Compile>
     <Compile Include="Supplier\frmSupplierReturns.cs">
@@ -1065,7 +1065,7 @@
     <EmbeddedResource Include="Stock\frmStockEntryPreview.resx">
       <DependentUpon>frmStockEntryPreview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UnUsed\frmStockSummary.resx">
+    <EmbeddedResource Include="ReportForms\frmStockSummary.resx">
       <DependentUpon>frmStockSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmSupplierReturns.resx">

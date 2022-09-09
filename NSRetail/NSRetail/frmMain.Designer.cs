@@ -77,6 +77,7 @@
             this.bbiWarehouseReports = new DevExpress.XtraBars.BarButtonItem();
             this.btnProcessWHDispatch = new DevExpress.XtraBars.BarButtonItem();
             this.btnStockAdjustment = new DevExpress.XtraBars.BarButtonItem();
+            this.btnItemLedger = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -100,7 +101,7 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.btnItemLedger = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStockSummary = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -159,9 +160,10 @@
             this.bbiWarehouseReports,
             this.btnProcessWHDispatch,
             this.btnStockAdjustment,
-            this.btnItemLedger});
+            this.btnItemLedger,
+            this.btnStockSummary});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 58;
+            this.ribbonControl1.MaxItemId = 59;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -630,6 +632,14 @@
             this.btnStockAdjustment.Name = "btnStockAdjustment";
             this.btnStockAdjustment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockAdjustment_ItemClick);
             // 
+            // btnItemLedger
+            // 
+            resources.ApplyResources(this.btnItemLedger, "btnItemLedger");
+            this.btnItemLedger.Id = 57;
+            this.btnItemLedger.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnItemLedger.ImageOptions.SvgImage")));
+            this.btnItemLedger.Name = "btnItemLedger";
+            this.btnItemLedger.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItemLedger_ItemClick);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -696,6 +706,7 @@
             // 
             this.ribbonPageGroup20.ItemLinks.Add(this.bbiItemSummary);
             this.ribbonPageGroup20.ItemLinks.Add(this.btnItemLedger);
+            this.ribbonPageGroup20.ItemLinks.Add(this.btnStockSummary);
             this.ribbonPageGroup20.Name = "ribbonPageGroup20";
             resources.ApplyResources(this.ribbonPageGroup20, "ribbonPageGroup20");
             // 
@@ -812,13 +823,13 @@
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
             // 
-            // btnItemLedger
+            // btnStockSummary
             // 
-            resources.ApplyResources(this.btnItemLedger, "btnItemLedger");
-            this.btnItemLedger.Id = 57;
-            this.btnItemLedger.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.btnItemLedger.Name = "btnItemLedger";
-            this.btnItemLedger.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItemLedger_ItemClick);
+            resources.ApplyResources(this.btnStockSummary, "btnStockSummary");
+            this.btnStockSummary.Id = 58;
+            this.btnStockSummary.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnStockSummary.Name = "btnStockSummary";
+            this.btnStockSummary.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockSummary_ItemClick);
             // 
             // frmMain
             // 
@@ -915,6 +926,7 @@
         private DevExpress.XtraBars.BarButtonItem btnProcessWHDispatch;
         private DevExpress.XtraBars.BarButtonItem btnStockAdjustment;
         private DevExpress.XtraBars.BarButtonItem btnItemLedger;
+        private DevExpress.XtraBars.BarButtonItem btnStockSummary;
     }
 }
 

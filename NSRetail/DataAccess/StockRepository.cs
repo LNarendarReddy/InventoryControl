@@ -552,6 +552,35 @@ namespace DataAccess
             }
             return dt;
         }
+
+        public DataSet GetStockSummary1(object branchID, object itemID)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_STOCKSUMMARY1]";
+                    cmd.Parameters.AddWithValue("@BranchID", branchID);
+                    cmd.Parameters.AddWithValue("@ItemID", itemID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(ds);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving stock summary", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return ds;
+        }
         public DataSet SaveDispatchDC(object BranchID,object CategoryID,object UserID)
         {
             DataSet ds = new DataSet();

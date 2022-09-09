@@ -5,7 +5,12 @@
       "ProjectGuid": "909d4bab-ba1d-4f8d-bd5a-a177ecc00542",
       "DisplayName": "CategisSecurity",
       "ColorIndex": 0
+    },
+    "bd5fa0d5-8bd2-4278-aa07-8055a3532a07": {
+      "ProjectGuid": "bd5fa0d5-8bd2-4278-aa07-8055a3532a07",
+      "DisplayName": "SecurityApp",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }
