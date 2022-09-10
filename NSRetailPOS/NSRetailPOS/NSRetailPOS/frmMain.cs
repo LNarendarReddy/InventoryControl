@@ -758,5 +758,11 @@ namespace NSRetailPOS
             txtItemCode.Text = data;
             txtItemCode_Leave(txtItemCode, new EventArgs());
         }
+
+        private void gvBilling_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            if (Utility.branchInfo.MultiEditThreshold == 0) return;
+            e.Cancel = Utility.branchInfo.MultiEditThreshold < decimal.Parse(gvBilling.GetFocusedRowCellValue("MRP").ToString());
+        }
     }
 }
