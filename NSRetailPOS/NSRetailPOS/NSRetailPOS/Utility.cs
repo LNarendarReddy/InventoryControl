@@ -314,5 +314,7 @@ namespace NSRetailPOS
         public object GSTIN { get; set; }
         public object BranchCounterID { get; set; }
         public object BranchCounterName { get; set; }
+
+        public int MultiEditThreshold { get; set; }
     }
 }
