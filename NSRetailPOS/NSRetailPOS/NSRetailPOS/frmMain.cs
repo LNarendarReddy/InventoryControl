@@ -761,8 +761,9 @@ namespace NSRetailPOS
 
         private void gvBilling_ShowingEditor(object sender, CancelEventArgs e)
         {
-            if (Utility.branchInfo.MultiEditThreshold == 0) return;
+            if (Utility.branchInfo.MultiEditThreshold == 0 || gvBilling.FocusedColumn != gcQuantity) return;
             e.Cancel = Utility.branchInfo.MultiEditThreshold < decimal.Parse(gvBilling.GetFocusedRowCellValue("MRP").ToString());
         }
+
     }
 }
