@@ -201,7 +201,7 @@ namespace NSRetail.Stock
             double wareHouseStock = Convert.ToDouble(txtWarehouseStock.EditValue);
             double branchStock = Convert.ToDouble(((TextEdit)sender).EditValue);
             if (wareHouseStock < branchStock && !cmbCategory.EditValue.Equals(2)
-                   && !cmbCategory.EditValue.Equals(12) && !cmbCategory.EditValue.Equals(7))
+                   && !cmbCategory.EditValue.Equals(12) && !cmbCategory.EditValue.Equals(7) && !cmbCategory.EditValue.Equals(9))
             {
                 XtraMessageBox.Show("Warehouse stock is less than desired dispatch quantity. The operation has been cancelled"
                     , "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
