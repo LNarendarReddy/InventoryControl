@@ -427,6 +427,7 @@ namespace NSRetail
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refund sheets", SearchCriteriaControl = new ucBranchRefunds() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure", SearchCriteriaControl = new ucDayClosureList() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent (AVG)", SearchCriteriaControl = new ucBranchIndentByAVG() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Details", SearchCriteriaControl = new ucCustomerDetails() });
             stockReportList.Add(branchReports);
