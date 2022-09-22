@@ -341,6 +341,8 @@
             this.gridColumn5.Caption = "Item Code";
             this.gridColumn5.FieldName = "ITEMCODE";
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 2;
             // 
             // chkIncludeBranch
             // 

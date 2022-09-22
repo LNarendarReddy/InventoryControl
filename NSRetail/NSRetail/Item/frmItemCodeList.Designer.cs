@@ -70,6 +70,10 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btnExportSKU = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportItemCode = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportItemPrice = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportItemCostPrice = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemList)).BeginInit();
@@ -491,7 +495,11 @@
             this.pmItemList.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnExportSKU),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCode),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemPrice),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCostPrice)});
             this.pmItemList.Manager = this.barManager1;
             this.pmItemList.Name = "pmItemList";
             // 
@@ -532,8 +540,12 @@
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barButtonItem1,
             this.barButtonItem2,
-            this.barButtonItem3});
-            this.barManager1.MaxItemId = 3;
+            this.barButtonItem3,
+            this.btnExportSKU,
+            this.btnExportItemCode,
+            this.btnExportItemPrice,
+            this.btnExportItemCostPrice});
+            this.barManager1.MaxItemId = 7;
             // 
             // barDockControlTop
             // 
@@ -570,6 +582,42 @@
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 685);
+            // 
+            // btnExportSKU
+            // 
+            this.btnExportSKU.Caption = "Export SKU";
+            this.btnExportSKU.Id = 3;
+            this.btnExportSKU.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportSKU.ImageOptions.Image")));
+            this.btnExportSKU.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportSKU.ImageOptions.LargeImage")));
+            this.btnExportSKU.Name = "btnExportSKU";
+            this.btnExportSKU.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportSKU_ItemClick);
+            // 
+            // btnExportItemCode
+            // 
+            this.btnExportItemCode.Caption = "Export Item Code";
+            this.btnExportItemCode.Id = 4;
+            this.btnExportItemCode.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportItemCode.ImageOptions.Image")));
+            this.btnExportItemCode.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportItemCode.ImageOptions.LargeImage")));
+            this.btnExportItemCode.Name = "btnExportItemCode";
+            this.btnExportItemCode.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportItemCode_ItemClick);
+            // 
+            // btnExportItemPrice
+            // 
+            this.btnExportItemPrice.Caption = "Export Item Price";
+            this.btnExportItemPrice.Id = 5;
+            this.btnExportItemPrice.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportItemPrice.ImageOptions.Image")));
+            this.btnExportItemPrice.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportItemPrice.ImageOptions.LargeImage")));
+            this.btnExportItemPrice.Name = "btnExportItemPrice";
+            this.btnExportItemPrice.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportItemPrice_ItemClick);
+            // 
+            // btnExportItemCostPrice
+            // 
+            this.btnExportItemCostPrice.Caption = "Export Item Cost Price";
+            this.btnExportItemCostPrice.Id = 6;
+            this.btnExportItemCostPrice.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportItemCostPrice.ImageOptions.Image")));
+            this.btnExportItemCostPrice.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportItemCostPrice.ImageOptions.LargeImage")));
+            this.btnExportItemCostPrice.Name = "btnExportItemCostPrice";
+            this.btnExportItemCostPrice.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportItemCostPrice_ItemClick);
             // 
             // frmItemCodeList
             // 
@@ -650,5 +698,9 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraBars.BarButtonItem btnExportSKU;
+        private DevExpress.XtraBars.BarButtonItem btnExportItemCode;
+        private DevExpress.XtraBars.BarButtonItem btnExportItemPrice;
+        private DevExpress.XtraBars.BarButtonItem btnExportItemCostPrice;
     }
 }

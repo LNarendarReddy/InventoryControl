@@ -47,6 +47,7 @@ namespace Entity
         public object UOMID { get; set; }
 
         public object FreeItemCodeID { get; set; }
+        public object ClassificationID { get; set; }
 
     }
 

@@ -85,7 +85,8 @@ namespace NSRetail
                 itemObj.ParentItemID = sluParentItem.EditValue;
                 itemObj.UOMID = luUOM.EditValue;
                 itemObj.FreeItemCodeID = sluFreeItem.EditValue;
-                
+                itemObj.ClassificationID = cmbClassification.EditValue;
+
                 new ItemCodeRepository().SaveItemCode(itemObj);
 
                 // refresh values back in data tables

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ using System.Windows.Forms;
 using DataAccess;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraPrinting;
+using DevExpress.XtraReports.UI;
 using Entity;
 using ErrorManagement;
 
@@ -215,5 +218,142 @@ namespace NSRetail
         {
             btnMRPList_Click(sender, e);
         }
+
+        private void btnExportSKU_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ExportItemList("ITEM");
+        }
+
+        private void btnExportItemCode_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ExportItemList("ITEMCODE");
+        }
+
+        private void btnExportItemPrice_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ExportItemList("ITEMPRICE");
+        }
+
+        private void btnExportItemCostPrice_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ExportItemList("ITEMCOSTPRICE");
+        }
+
+        private void ExportItemList(string ExportType)
+        {
+            DataTable dt = new ItemCodeRepository().ExportItemList(ExportType);
+            XtraReport report = null;
+            try
+            {
+                report = new XtraReport()
+                {
+                    StyleSheet = {
+            new XRControlStyle() { Name = "ReportHeader", Font = new System.Drawing.Font("Helvetica", 10F, System.Drawing.FontStyle.Italic) },
+            new XRControlStyle() { Name = "ColumnHeader", Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Bold) },
+            new XRControlStyle() { Name = "Title", Font = new System.Drawing.Font("Helvetica", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))))},
+            new XRControlStyle() { Name = "Normal", Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Regular)},
+            new XRControlStyle() { Name = "Footer", Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Bold)},
+                    },
+                    DisplayName = "Result file",
+                    PaperKind = PaperKind.A4,
+                    Margins = new Margins(50, 50, 80, 50)
+                };
+                report.Bands.Add(CreateReportHeader(dt));
+                report.Bands.Add(CreateDetail(dt));
+                report.DataSource = dt;
+                report.ShowRibbonPreview();
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+        public ReportHeaderBand CreateReportHeader(DataTable dtColumns)
+        {
+            ReportHeaderBand reportHeader = null;
+            try
+            {
+                reportHeader = new ReportHeaderBand()
+                {
+                    Name = "reportHeader",
+                    HeightF = 40F
+                };
+                XRTable tablePageHeader = new XRTable()
+                {
+                    LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F),
+                    Name = "tablePageHeader",
+                    Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 10, 10, 96F),
+                    SizeF = new System.Drawing.SizeF(720F, 40F),
+                    StyleName = "ColumnHeader"
+                };
+
+                XRTableRow pageHeaderRow = new XRTableRow() { Weight = 1D };
+                XRTableCell cellPageHeader = null;
+                foreach (DataColumn dc in dtColumns.Columns)
+                {
+                    cellPageHeader = new XRTableCell();
+                    if (dc.ColumnName.EndsWith("ID"))
+                        cellPageHeader.WidthF = 20F;
+                    cellPageHeader.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "")});
+                    cellPageHeader.Multiline = true;
+                    cellPageHeader.TextAlignment = TextAlignment.MiddleLeft;
+                    cellPageHeader.Text = Convert.ToString(dc.ColumnName);
+                    pageHeaderRow.Cells.Add(cellPageHeader);
+                }
+                tablePageHeader.Rows.Add(pageHeaderRow);
+                reportHeader.Controls.Add(tablePageHeader);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return reportHeader;
+        }
+        public DetailBand CreateDetail(DataTable dtColumns)
+        {
+            DetailBand stddetail = null;
+            try
+            {
+                stddetail = new DetailBand()
+                {
+                    HeightF = 25F,
+                    Name = "stddetail"
+                };
+                XRTable tableStdDetail = new XRTable()
+                {
+                    LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F),
+                    Name = "tableDetail",
+                    Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 96F),
+                    SizeF = new System.Drawing.SizeF(720F, 25F),
+                    StyleName = "Normal",
+                };
+
+                XRTableRow detailRow = new XRTableRow() { Weight = 1D };
+                XRTableCell cell = null;
+                foreach (DataColumn dc in dtColumns.Columns)
+                {
+                    cell = new XRTableCell();
+                    if (dc.ColumnName.EndsWith("ID"))
+                        cell.WidthF = 20F;
+                    if (dc.DataType == typeof(System.Decimal))
+                        cell.TextFormatString = "{0:N2}";
+                    cell.ExpressionBindings.Add(new ExpressionBinding("BeforePrint", "Text", dc.ColumnName));
+                    cell.TextAlignment = TextAlignment.MiddleLeft;
+                    cell.Multiline = true;
+                    detailRow.Cells.Add(cell);
+                }
+
+                tableStdDetail.Rows.Add(detailRow);
+                stddetail.Controls.Add(tableStdDetail);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return stddetail;
+        }
+
     }
 }

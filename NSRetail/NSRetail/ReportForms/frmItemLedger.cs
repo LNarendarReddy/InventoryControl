@@ -15,7 +15,7 @@ namespace NSRetail.ReportForms
 
         private void frmItemLedger_Load(object sender, EventArgs e)
         {
-            sluSKUCode.Properties.DataSource = Utility.GetItemSKUList();
+            sluSKUCode.Properties.DataSource = Utility.GetItemCodeList();
             sluSKUCode.Properties.ValueMember = "ITEMID";
             sluSKUCode.Properties.DisplayMember = "ITEMNAME";
 

@@ -62,7 +62,7 @@ namespace NSRetail.Stock
             luBranch.Properties.DisplayMember = "BRANCHNAME";
             luBranch.EditValue = 0;
 
-            sluItem.Properties.DataSource = Utility.GetItemSKUList();
+            sluItem.Properties.DataSource = Utility.GetItemCodeList();
             sluItem.Properties.ValueMember = "ITEMID";
             sluItem.Properties.DisplayMember = "ITEMNAME";
         }

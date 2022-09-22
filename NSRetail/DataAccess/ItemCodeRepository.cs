@@ -101,6 +101,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ParentItemID", itemObj.ParentItemID);
                     cmd.Parameters.AddWithValue("@UOMID", itemObj.UOMID);
                     cmd.Parameters.AddWithValue("@FreeItemCodeID", itemObj.FreeItemCodeID);
+                    cmd.Parameters.AddWithValue("@ClassificationID", itemObj.ClassificationID);
                     object objReturn = cmd.ExecuteScalar();
 
                     string str = Convert.ToString(objReturn.ToString().Split(',')[0]);
@@ -399,6 +400,34 @@ namespace DataAccess
             {
                 SQLCon.Sqlconn().Close();
             }
+        }
+
+        public DataTable ExportItemList(object ExportType)
+        {
+            DataTable dtItems = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_EXPORTITEMS]";
+                    cmd.Parameters.AddWithValue("@EXPORTTYPE", ExportType);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtItems);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Items", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtItems;
         }
     }
 }
