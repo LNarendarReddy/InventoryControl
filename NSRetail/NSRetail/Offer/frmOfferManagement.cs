@@ -114,6 +114,11 @@ namespace NSRetail
                 layoutControlItem14.Text = "Bill Value";
                 filterCategory = true;
             }
+            else if (cmbOfferType.EditValue.Equals(1005))
+            {
+                layoutControlItem14.Text = "Bill Value of sub items";
+                filterCategory = true;
+            }
             else
             {
                 txtOfferValue.Enabled = false;
