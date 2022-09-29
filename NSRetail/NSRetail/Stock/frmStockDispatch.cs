@@ -7,7 +7,9 @@ using ErrorManagement;
 using NSRetail.Reports;
 using NSRetail.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace NSRetail.Stock
@@ -200,8 +202,8 @@ namespace NSRetail.Stock
             if (e.KeyChar != (char)Keys.Enter || !dxValidationProvider2.Validate()) return;
             double wareHouseStock = Convert.ToDouble(txtWarehouseStock.EditValue);
             double branchStock = Convert.ToDouble(((TextEdit)sender).EditValue);
-            if (wareHouseStock < branchStock && !cmbCategory.EditValue.Equals(2)
-                   && !cmbCategory.EditValue.Equals(12) && !cmbCategory.EditValue.Equals(7) && !cmbCategory.EditValue.Equals(9))
+            List<int> allowNegativeCategories = new List<int>() { 1, 2, 7, 9, 12 };
+            if (wareHouseStock < branchStock && !allowNegativeCategories.Any(x => cmbCategory.EditValue.Equals(x)))
             {
                 XtraMessageBox.Show("Warehouse stock is less than desired dispatch quantity. The operation has been cancelled"
                     , "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
