@@ -69,6 +69,14 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn28 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn30 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn31 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn32 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn33 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).BeginInit();
@@ -307,7 +315,15 @@
             this.gridColumn17,
             this.gridColumn18,
             this.gridColumn19,
-            this.gridColumn20});
+            this.gridColumn20,
+            this.gridColumn1,
+            this.gridColumn24,
+            this.gridColumn27,
+            this.gridColumn28,
+            this.gridColumn30,
+            this.gridColumn31,
+            this.gridColumn32,
+            this.gridColumn33});
             this.gvItemPrice.DetailHeight = 404;
             this.gvItemPrice.GridControl = this.gcItemPriceList;
             this.gvItemPrice.Name = "gvItemPrice";
@@ -352,7 +368,7 @@
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 3;
+            this.gridColumn12.VisibleIndex = 8;
             this.gridColumn12.Width = 87;
             // 
             // gridColumn25
@@ -362,7 +378,7 @@
             this.gridColumn25.MinWidth = 23;
             this.gridColumn25.Name = "gridColumn25";
             this.gridColumn25.Visible = true;
-            this.gridColumn25.VisibleIndex = 4;
+            this.gridColumn25.VisibleIndex = 9;
             this.gridColumn25.Width = 87;
             // 
             // gridColumn13
@@ -404,7 +420,7 @@
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.OptionsColumn.AllowEdit = false;
             this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 5;
+            this.gridColumn16.VisibleIndex = 3;
             this.gridColumn16.Width = 87;
             // 
             // gridColumn17
@@ -414,8 +430,6 @@
             this.gridColumn17.MinWidth = 23;
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.OptionsColumn.AllowEdit = false;
-            this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 6;
             this.gridColumn17.Width = 87;
             // 
             // gridColumn18
@@ -425,8 +439,6 @@
             this.gridColumn18.MinWidth = 23;
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.OptionsColumn.AllowEdit = false;
-            this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 7;
             this.gridColumn18.Width = 87;
             // 
             // gridColumn19
@@ -558,6 +570,70 @@
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(112, 14);
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "SP Created By";
+            this.gridColumn1.FieldName = "IPCREATEDBY";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 4;
+            // 
+            // gridColumn24
+            // 
+            this.gridColumn24.Caption = "SP Created Date";
+            this.gridColumn24.FieldName = "IPCREATEDDATE";
+            this.gridColumn24.Name = "gridColumn24";
+            this.gridColumn24.Visible = true;
+            this.gridColumn24.VisibleIndex = 5;
+            // 
+            // gridColumn27
+            // 
+            this.gridColumn27.Caption = "SP Deleted By";
+            this.gridColumn27.FieldName = "IPDELETEDBY";
+            this.gridColumn27.Name = "gridColumn27";
+            this.gridColumn27.Visible = true;
+            this.gridColumn27.VisibleIndex = 6;
+            // 
+            // gridColumn28
+            // 
+            this.gridColumn28.Caption = "SP Deleted Date";
+            this.gridColumn28.FieldName = "IPDELETEDDATE";
+            this.gridColumn28.Name = "gridColumn28";
+            this.gridColumn28.Visible = true;
+            this.gridColumn28.VisibleIndex = 7;
+            // 
+            // gridColumn30
+            // 
+            this.gridColumn30.Caption = "CP Created By";
+            this.gridColumn30.FieldName = "ICPCREATEDBY";
+            this.gridColumn30.Name = "gridColumn30";
+            this.gridColumn30.Visible = true;
+            this.gridColumn30.VisibleIndex = 10;
+            // 
+            // gridColumn31
+            // 
+            this.gridColumn31.Caption = "CP Created Date";
+            this.gridColumn31.FieldName = "ICPCREATEDDATE";
+            this.gridColumn31.Name = "gridColumn31";
+            this.gridColumn31.Visible = true;
+            this.gridColumn31.VisibleIndex = 11;
+            // 
+            // gridColumn32
+            // 
+            this.gridColumn32.Caption = "CP Deleted By";
+            this.gridColumn32.FieldName = "ICPDELETEDBY";
+            this.gridColumn32.Name = "gridColumn32";
+            this.gridColumn32.Visible = true;
+            this.gridColumn32.VisibleIndex = 12;
+            // 
+            // gridColumn33
+            // 
+            this.gridColumn33.Caption = "CP Deleted Date";
+            this.gridColumn33.FieldName = "ICPDELETEDDATE";
+            this.gridColumn33.Name = "gridColumn33";
+            this.gridColumn33.Visible = true;
+            this.gridColumn33.VisibleIndex = 13;
+            // 
             // frmItemVisualize
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -636,5 +712,13 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn27;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn28;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn30;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn31;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn32;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn33;
     }
 }
