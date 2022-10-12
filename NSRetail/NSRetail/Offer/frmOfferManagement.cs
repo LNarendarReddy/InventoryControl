@@ -42,6 +42,10 @@ namespace NSRetail
             cmbItemGroup.Properties.ValueMember = "ITEMGROUPID";
             cmbItemGroup.Properties.DisplayMember = "GROUPNAME";
 
+            cmbFreeItemCode.Properties.DataSource = new ItemCodeRepository().GetItemPriceList();
+            cmbFreeItemCode.Properties.ValueMember = "ITEMPRICEID";
+            cmbFreeItemCode.Properties.DisplayMember = "ITEMNAME";
+
             if (Convert.ToInt32(offer.OfferID) > 0)
             {
                 txtOfferCode.EditValue = offer.OfferCode;
