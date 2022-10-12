@@ -80,6 +80,8 @@ namespace NSRetail
                 offer.ItemGroupID = cmbItemGroup.EditValue;
                 offer.GroupName = cmbItemGroup.Text;
                 offer.IsActive = chkIsActive.EditValue;
+                offer.FreeItemPriceID = cmbFreeItemCode.EditValue;
+                offer.NumberOfItems = txtNumberOfItems.EditValue;
                 offer.UserID = Utility.UserID;
                 offer.OfferID = new OfferRepository().SaveOffer(offer);
                 this.IsSave = true;

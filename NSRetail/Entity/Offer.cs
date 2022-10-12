@@ -25,6 +25,8 @@ namespace Entity
         public object ItemGroupID { get; set; }
         public object GroupName { get; set; }
         public object IsActive { get; set; }
+        public object FreeItemPriceID { get; set; }
+        public object NumberOfItems { get; set; }
     }
 }
 
