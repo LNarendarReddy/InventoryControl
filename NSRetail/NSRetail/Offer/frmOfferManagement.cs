@@ -26,6 +26,13 @@ namespace NSRetail
 
         private void frmOfferManagement_Load(object sender, EventArgs e)
         {
+            cmbFreeItemCode.Enabled = false;
+            cmbFreeItemCode.EditValue = null;
+            txtNumberOfItems.Enabled = false;
+            txtNumberOfItems.EditValue = null;
+            txtOfferValue.Enabled = false;
+            txtOfferValue.EditValue = null;
+
             cmbAppliesto.Properties.DataSource = dtAppliesTo = Utility.AppliesTo().Copy();
             cmbAppliesto.Properties.ValueMember = "AppliesToID";
             cmbAppliesto.Properties.DisplayMember = "AppliesToName";
@@ -50,7 +57,7 @@ namespace NSRetail
             {
                 txtOfferCode.EditValue = offer.OfferCode;
                 txtOfferName.EditValue = offer.OfferName;
-               dtpStartDate.EditValue = offer.StartDate;
+                dtpStartDate.EditValue = offer.StartDate;
                 dtpEndDate.EditValue = offer.EndDate;
                 cmbOfferType.EditValue = offer.OfferTypeID;
                 chkIsActive.EditValue = offer.IsActive;
@@ -58,6 +65,8 @@ namespace NSRetail
                 cmbCategory.EditValue = offer.CategoryID;
                 cmbItemGroup.EditValue = offer.ItemGroupID;
                 cmbAppliesto.EditValue = offer.AppliesToID;
+                cmbFreeItemCode.EditValue = offer.FreeItemPriceID;
+                txtNumberOfItems.EditValue = offer.NumberOfItems;
             }
         }
 
@@ -107,6 +116,12 @@ namespace NSRetail
             bool filterCategory = false;
             txtOfferValue.Enabled = true;
             layoutControlItem14.Text = "Offer Value";
+            cmbFreeItemCode.Enabled = false;
+            cmbFreeItemCode.EditValue = null;
+            txtNumberOfItems.Enabled = false;
+            txtNumberOfItems.EditValue = null;
+            txtOfferValue.Enabled = false;
+            txtOfferValue.EditValue = null;
 
             if (cmbOfferType.EditValue.Equals(1) ||
                 cmbOfferType.EditValue.Equals(2) ||
@@ -119,16 +134,24 @@ namespace NSRetail
             {
                 layoutControlItem14.Text = "Bill Value";
                 filterCategory = true;
+                txtOfferValue.Enabled = true;
+                cmbFreeItemCode.Enabled = true;
             }
             else if (cmbOfferType.EditValue.Equals(1005))
             {
                 layoutControlItem14.Text = "Bill Value of sub items";
                 filterCategory = true;
+                txtOfferValue.Enabled = true;
+                cmbFreeItemCode.Enabled = true;
+            }
+            else if (cmbOfferType.EditValue.Equals(1006))
+            {
+                filterCategory = true;                
+                cmbFreeItemCode.Enabled = true;
+                txtNumberOfItems.Enabled = true;
             }
             else
-            {
-                txtOfferValue.Enabled = false;
-                txtOfferValue.EditValue = null;
+            {                
                 filterCategory = true;
             }
 
