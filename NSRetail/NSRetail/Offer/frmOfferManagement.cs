@@ -127,6 +127,7 @@ namespace NSRetail
                 cmbOfferType.EditValue.Equals(2) ||
                 cmbOfferType.EditValue.Equals(3))
             {
+                txtOfferValue.Enabled = true;
                 if (cmbOfferType.EditValue.Equals(3))
                     filterCategory = true;
             }
@@ -136,6 +137,7 @@ namespace NSRetail
                 filterCategory = true;
                 txtOfferValue.Enabled = true;
                 cmbFreeItemCode.Enabled = true;
+                txtNumberOfItems.Enabled = false;
             }
             else if (cmbOfferType.EditValue.Equals(1005))
             {
@@ -143,15 +145,17 @@ namespace NSRetail
                 filterCategory = true;
                 txtOfferValue.Enabled = true;
                 cmbFreeItemCode.Enabled = true;
+                txtNumberOfItems.Enabled = true;
             }
             else if (cmbOfferType.EditValue.Equals(1006))
             {
-                filterCategory = true;                
+                filterCategory = true;
+                txtOfferValue.Enabled = false;
                 cmbFreeItemCode.Enabled = true;
                 txtNumberOfItems.Enabled = true;
             }
             else
-            {                
+            {
                 filterCategory = true;
             }
 

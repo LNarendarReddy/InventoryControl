@@ -511,6 +511,7 @@
             this.gridColumn6.Caption = "Created By";
             this.gridColumn6.FieldName = "CREATEDBY";
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 13;
             this.gridColumn6.Width = 87;
@@ -520,6 +521,7 @@
             this.gridColumn7.Caption = "Created Date";
             this.gridColumn7.FieldName = "CREATEDDATE";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 14;
             this.gridColumn7.Width = 87;
