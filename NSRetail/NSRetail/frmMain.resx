@@ -120,7 +120,7 @@
   <data name="btnBranch.Caption" xml:space="preserve">
     <value>Branch</value>
   </data>
-  <assembly alias="DevExpress.Data.v21.2" name="DevExpress.Data.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <assembly alias="DevExpress.Data.v21.2" name="DevExpress.Data.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="btnBranch.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi42
@@ -1581,7 +1581,7 @@
   <data name="repositoryItemButtonEdit1.AutoHeight" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <assembly alias="DevExpress.Utils.v21.2" name="DevExpress.Utils.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <assembly alias="DevExpress.Utils.v21.2" name="DevExpress.Utils.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="repositoryItemButtonEdit1.Buttons" type="DevExpress.XtraEditors.Controls.ButtonPredefines, DevExpress.Utils.v21.2">
     <value>Glyph</value>
   </data>
@@ -1601,7 +1601,7 @@
     <value>ribbonStatusBar1</value>
   </data>
   <data name="&gt;&gt;ribbonStatusBar1.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonStatusBar, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonStatusBar, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonStatusBar1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1613,7 +1613,7 @@
     <value>ribbonControl1</value>
   </data>
   <data name="&gt;&gt;ribbonControl1.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonControl, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonControl, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonControl1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2255,432 +2255,432 @@
     <value>btnBranch</value>
   </data>
   <data name="&gt;&gt;btnBranch.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnBranchCouter.Name" xml:space="preserve">
     <value>btnBranchCouter</value>
   </data>
   <data name="&gt;&gt;btnBranchCouter.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnUser.Name" xml:space="preserve">
     <value>btnUser</value>
   </data>
   <data name="&gt;&gt;btnUser.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnCategory.Name" xml:space="preserve">
     <value>btnCategory</value>
   </data>
   <data name="&gt;&gt;btnCategory.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnDealer.Name" xml:space="preserve">
     <value>btnDealer</value>
   </data>
   <data name="&gt;&gt;btnDealer.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnTaxMaster.Name" xml:space="preserve">
     <value>btnTaxMaster</value>
   </data>
   <data name="&gt;&gt;btnTaxMaster.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnModeOfPayment.Name" xml:space="preserve">
     <value>btnModeOfPayment</value>
   </data>
   <data name="&gt;&gt;btnModeOfPayment.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnUnitsofMeasure.Name" xml:space="preserve">
     <value>btnUnitsofMeasure</value>
   </data>
   <data name="&gt;&gt;btnUnitsofMeasure.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnItem.Name" xml:space="preserve">
     <value>btnItem</value>
   </data>
   <data name="&gt;&gt;btnItem.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnLogout.Name" xml:space="preserve">
     <value>btnLogout</value>
   </data>
   <data name="&gt;&gt;btnLogout.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnChangePassword.Name" xml:space="preserve">
     <value>btnChangePassword</value>
   </data>
   <data name="&gt;&gt;btnChangePassword.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnBarCodePrint.Name" xml:space="preserve">
     <value>btnBarCodePrint</value>
   </data>
   <data name="&gt;&gt;btnBarCodePrint.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnPrinterMaster.Name" xml:space="preserve">
     <value>btnPrinterMaster</value>
   </data>
   <data name="&gt;&gt;btnPrinterMaster.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnStockEntry.Name" xml:space="preserve">
     <value>btnStockEntry</value>
   </data>
   <data name="&gt;&gt;btnStockEntry.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnStockDispatch.Name" xml:space="preserve">
     <value>btnStockDispatch</value>
   </data>
   <data name="&gt;&gt;btnStockDispatch.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;bbiRefreshData.Name" xml:space="preserve">
     <value>bbiRefreshData</value>
   </data>
   <data name="&gt;&gt;bbiRefreshData.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnSubCategory.Name" xml:space="preserve">
     <value>btnSubCategory</value>
   </data>
   <data name="&gt;&gt;btnSubCategory.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnInvoiceList.Name" xml:space="preserve">
     <value>btnInvoiceList</value>
   </data>
   <data name="&gt;&gt;btnInvoiceList.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnDispatchList.Name" xml:space="preserve">
     <value>btnDispatchList</value>
   </data>
   <data name="&gt;&gt;btnDispatchList.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;bbiStockSummary.Name" xml:space="preserve">
     <value>bbiStockSummary</value>
   </data>
   <data name="&gt;&gt;bbiStockSummary.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnPrintDC.Name" xml:space="preserve">
     <value>btnPrintDC</value>
   </data>
   <data name="&gt;&gt;btnPrintDC.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnDCList.Name" xml:space="preserve">
     <value>btnDCList</value>
   </data>
   <data name="&gt;&gt;btnDCList.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;skinDropDownButtonItem1.Name" xml:space="preserve">
     <value>skinDropDownButtonItem1</value>
   </data>
   <data name="&gt;&gt;skinDropDownButtonItem1.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.SkinDropDownButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.SkinDropDownButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;bbiSyncStatus.Name" xml:space="preserve">
     <value>bbiSyncStatus</value>
   </data>
   <data name="&gt;&gt;bbiSyncStatus.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnItemGroup.Name" xml:space="preserve">
     <value>btnItemGroup</value>
   </data>
   <data name="&gt;&gt;btnItemGroup.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnOfferList.Name" xml:space="preserve">
     <value>btnOfferList</value>
   </data>
   <data name="&gt;&gt;btnOfferList.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnStockCounting.Name" xml:space="preserve">
     <value>btnStockCounting</value>
   </data>
   <data name="&gt;&gt;btnStockCounting.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnBranchRefund.Name" xml:space="preserve">
     <value>btnBranchRefund</value>
   </data>
   <data name="&gt;&gt;btnBranchRefund.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnDayClosure.Name" xml:space="preserve">
     <value>btnDayClosure</value>
   </data>
   <data name="&gt;&gt;btnDayClosure.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnRunningSale.Name" xml:space="preserve">
     <value>btnRunningSale</value>
   </data>
   <data name="&gt;&gt;btnRunningSale.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;lblUserName.Name" xml:space="preserve">
     <value>lblUserName</value>
   </data>
   <data name="&gt;&gt;lblUserName.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarStaticItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarStaticItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;lblVersion.Name" xml:space="preserve">
     <value>lblVersion</value>
   </data>
   <data name="&gt;&gt;lblVersion.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarStaticItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarStaticItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnTaxWiseSales.Name" xml:space="preserve">
     <value>btnTaxWiseSales</value>
   </data>
   <data name="&gt;&gt;btnTaxWiseSales.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnZeroStock.Name" xml:space="preserve">
     <value>btnZeroStock</value>
   </data>
   <data name="&gt;&gt;btnZeroStock.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnItemWiseSales.Name" xml:space="preserve">
     <value>btnItemWiseSales</value>
   </data>
   <data name="&gt;&gt;btnItemWiseSales.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;bbiReport.Name" xml:space="preserve">
     <value>bbiReport</value>
   </data>
   <data name="&gt;&gt;bbiReport.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;bbiItemSummary.Name" xml:space="preserve">
     <value>bbiItemSummary</value>
   </data>
   <data name="&gt;&gt;bbiItemSummary.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnCounting.Name" xml:space="preserve">
     <value>btnCounting</value>
   </data>
   <data name="&gt;&gt;btnCounting.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnDealerIndent.Name" xml:space="preserve">
     <value>btnDealerIndent</value>
   </data>
   <data name="&gt;&gt;btnDealerIndent.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnSupplierReturns.Name" xml:space="preserve">
     <value>btnSupplierReturns</value>
   </data>
   <data name="&gt;&gt;btnSupplierReturns.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnSupplierReturnsList.Name" xml:space="preserve">
     <value>btnSupplierReturnsList</value>
   </data>
   <data name="&gt;&gt;btnSupplierReturnsList.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;bbiClearProcedureCache.Name" xml:space="preserve">
     <value>bbiClearProcedureCache</value>
   </data>
   <data name="&gt;&gt;bbiClearProcedureCache.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;bbiBranchReports.Name" xml:space="preserve">
     <value>bbiBranchReports</value>
   </data>
   <data name="&gt;&gt;bbiBranchReports.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;bbiStockReports.Name" xml:space="preserve">
     <value>bbiStockReports</value>
   </data>
   <data name="&gt;&gt;bbiStockReports.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;bbiWarehouseReports.Name" xml:space="preserve">
     <value>bbiWarehouseReports</value>
   </data>
   <data name="&gt;&gt;bbiWarehouseReports.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnProcessWHDispatch.Name" xml:space="preserve">
     <value>btnProcessWHDispatch</value>
   </data>
   <data name="&gt;&gt;btnProcessWHDispatch.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnStockAdjustment.Name" xml:space="preserve">
     <value>btnStockAdjustment</value>
   </data>
   <data name="&gt;&gt;btnStockAdjustment.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnItemLedger.Name" xml:space="preserve">
     <value>btnItemLedger</value>
   </data>
   <data name="&gt;&gt;btnItemLedger.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPage3.Name" xml:space="preserve">
     <value>ribbonPage3</value>
   </data>
   <data name="&gt;&gt;ribbonPage3.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup2.Name" xml:space="preserve">
     <value>ribbonPageGroup2</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup2.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup5.Name" xml:space="preserve">
     <value>ribbonPageGroup5</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup5.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup3.Name" xml:space="preserve">
     <value>ribbonPageGroup3</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup3.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup15.Name" xml:space="preserve">
     <value>ribbonPageGroup15</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup15.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup16.Name" xml:space="preserve">
     <value>ribbonPageGroup16</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup16.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPage4.Name" xml:space="preserve">
     <value>ribbonPage4</value>
   </data>
   <data name="&gt;&gt;ribbonPage4.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup20.Name" xml:space="preserve">
     <value>ribbonPageGroup20</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup20.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup19.Name" xml:space="preserve">
     <value>ribbonPageGroup19</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup19.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPage6.Name" xml:space="preserve">
     <value>ribbonPage6</value>
   </data>
   <data name="&gt;&gt;ribbonPage6.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup8.Name" xml:space="preserve">
     <value>ribbonPageGroup8</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup8.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup14.Name" xml:space="preserve">
     <value>ribbonPageGroup14</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup14.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPage1.Name" xml:space="preserve">
     <value>ribbonPage1</value>
   </data>
   <data name="&gt;&gt;ribbonPage1.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup1.Name" xml:space="preserve">
     <value>ribbonPageGroup1</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup1.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup4.Name" xml:space="preserve">
     <value>ribbonPageGroup4</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup4.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup10.Name" xml:space="preserve">
     <value>ribbonPageGroup10</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup10.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup11.Name" xml:space="preserve">
     <value>ribbonPageGroup11</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup11.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup12.Name" xml:space="preserve">
     <value>ribbonPageGroup12</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup12.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup6.Name" xml:space="preserve">
     <value>ribbonPageGroup6</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup6.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup17.Name" xml:space="preserve">
     <value>ribbonPageGroup17</value>
   </data>
   <data name="&gt;&gt;ribbonPageGroup17.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;repositoryItemButtonEdit1.Name" xml:space="preserve">
     <value>repositoryItemButtonEdit1</value>
   </data>
   <data name="&gt;&gt;repositoryItemButtonEdit1.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit, DevExpress.XtraEditors.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit, DevExpress.XtraEditors.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ribbonPage2.Name" xml:space="preserve">
     <value>ribbonPage2</value>
   </data>
   <data name="&gt;&gt;ribbonPage2.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnStockSummary.Name" xml:space="preserve">
     <value>btnStockSummary</value>
   </data>
   <data name="&gt;&gt;btnStockSummary.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmMain</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonForm, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraBars.Ribbon.RibbonForm, DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
 </root>
