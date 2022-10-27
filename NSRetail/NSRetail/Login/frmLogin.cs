@@ -116,7 +116,7 @@ namespace NSRetail
 
                         SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
                         SplashScreenManager.Default.SetWaitFormDescription("Downloading installer...");
-                        string InstallerPath = GoogleDriveRepository.DownloadGoogleFile("1p5Se7hSEiMDtnl6MMKgHD214qpx6weN-");
+                        string InstallerPath = GoogleDriveRepository.DownloadFile("1p5Se7hSEiMDtnl6MMKgHD214qpx6weN-");
                         SplashScreenManager.CloseForm();
                         Process p = new Process();
                         p.StartInfo.FileName = InstallerPath;

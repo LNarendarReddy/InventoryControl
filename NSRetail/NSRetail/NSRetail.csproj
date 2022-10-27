@@ -85,6 +85,9 @@
     <Reference Include="Google.Apis.PlatformServices, Version=1.57.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.57.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Apis.Vision.v1, Version=1.57.0.2814, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Vision.v1.1.57.0.2814\lib\net45\Google.Apis.Vision.v1.dll</HintPath>
+    </Reference>
     <Reference Include="IITSkin">
       <HintPath>..\..\..\IIT\Skin\IITSkin\IITSkin.dll</HintPath>
     </Reference>
