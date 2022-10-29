@@ -13,6 +13,7 @@ namespace NSRetailPOS.Data
         private static SqlConnection connection = null;
         private static SqlConnection syncConnection = null;
         private static SqlConnection ObjCloudCon = null;
+        static string BuildType = Convert.ToString(ConfigurationManager.AppSettings["BuildType"]);
 
         public static SqlConnection Sqlconn()
         {
@@ -58,14 +59,13 @@ namespace NSRetailPOS.Data
             }
 
             ObjCloudCon = new SqlConnection();
-            string ServerName = Decrypt(ConfigurationManager.AppSettings["CloudServerName"].ToString());
-            string DBName = Decrypt(ConfigurationManager.AppSettings["CloudDBName"].ToString());
-            string UserName = Decrypt(ConfigurationManager.AppSettings["Cloudusername"].ToString());
-            string Password = Decrypt(ConfigurationManager.AppSettings["Cloudpwd"].ToString());
+            string ServerName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}CloudServerName"].ToString());
+            string DBName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}CloudDBName"].ToString());
+            string UserName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}Cloudusername"].ToString());
+            string Password = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}Cloudpwd"].ToString());
             try
             {
                 string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 200";
-                //string str = @"Data Source = DESKTOP-KL6T12T\SQLDEVSERVER; Initial Catalog = NSRetail_Cloud; Integrated security=True; Pooling = True; Connect Timeout = 1024; Max Pool Size = 200";
                 ObjCloudCon.ConnectionString = str;
                 ObjCloudCon.Open();
             }

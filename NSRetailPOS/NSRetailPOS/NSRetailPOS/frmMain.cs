@@ -7,6 +7,7 @@ using NSRetailPOS.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO.Ports;
@@ -51,7 +52,7 @@ namespace NSRetailPOS
         {
             Utility.ListenSerialPort();
             lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    Role : {Utility.loginInfo.RoleName}    ";
-            lblVersionInfo.Text = $"Application Version 1.2.4 (23-10-2022)";
+            lblVersionInfo.Text = $"Application Version 1.2.4 (29-10-2022) {ConfigurationManager.AppSettings["BuildType"]}";
             btnCRWithoutBill.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             txtSplDiscPer.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             btnApplyDiscount.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
