@@ -10,6 +10,8 @@ using DevExpress.XtraSplashScreen;
 using System.Windows.Forms;
 using static Google.Apis.Drive.v3.DriveService;
 using System.Web;
+using System.Configuration;
+using System.Linq;
 
 namespace NSRetail
 {
@@ -17,7 +19,7 @@ namespace NSRetail
     {
         public string[] Scopes = { DriveService.Scope.Drive };
 
-        public DriveService GetService()
+        public static DriveService GetService()
         {
             //UserCredential credential;
             //using (var stream = new FileStream("silent_bolt.json", FileMode.Open, FileAccess.Read))
@@ -45,24 +47,30 @@ namespace NSRetail
             return service;
         }
 
-        public static string DownloadFile(string fileId)
+        public static string DownloadFile()
         {
             string FilePath = string.Empty;
             try
             {
                 DriveService service = GetService();
 
+                var folderRequest = service.Files.List();
+                folderRequest.Q = Convert.ToString(ConfigurationManager.AppSettings["BuildType"]).ToLower().Equals("prod") ?
+                    "mimeType = 'application/vnd.google-apps.folder' and name = 'prodbuilds'" :
+                    "mimeType = 'application/vnd.google-apps.folder' and name = 'leftbuilds'";
+                var folderResponse = folderRequest.Execute();
+                string folderID = folderResponse.Files.Any() ? folderResponse.Files.FirstOrDefault().Id : string.Empty;
 
-                //var requestlist = service.Files.List();
-                //var response = requestlist.Execute();
+                if (string.IsNullOrEmpty(folderID)) return string.Empty;
 
-                //foreach(var file in response.Files)
-                //{
-                //    Console.WriteLine(file);
-                //}
+                var fileRequest = service.Files.List();
+                fileRequest.Q = $"parents in '{folderID}' and mimeType = 'application/x-msdownload' and name = 'NSRetail.exe'";
+                var fileResponse = fileRequest.Execute();
+                string fileID = fileResponse.Files.Any() ? fileResponse.Files.FirstOrDefault().Id : string.Empty;
 
+                if (string.IsNullOrEmpty(fileID)) return string.Empty;
 
-                FilesResource.GetRequest request = service.Files.Get(fileId);
+                FilesResource.GetRequest request = service.Files.Get(fileID);
                 string FileName = request.Execute().Name;
                 FilePath = System.IO.Path.Combine(Application.UserAppDataPath, FileName);
 
@@ -73,7 +81,7 @@ namespace NSRetail
                     {
                         case DownloadStatus.Downloading:
                             {
-                                SplashScreenManager.Default.SetWaitFormDescription($"Downloading {progress.BytesDownloaded}");
+                                SplashScreenManager.Default.SetWaitFormDescription($"Downloading {progress.BytesDownloaded} Bytes");
                                 break;
                             }
                         case DownloadStatus.Completed:
@@ -98,7 +106,7 @@ namespace NSRetail
             return FilePath;
         }
 
-        private void SaveStream(MemoryStream stream, string FilePath)
+        private static void SaveStream(MemoryStream stream, string FilePath)
         {
             using (System.IO.FileStream file = new FileStream(FilePath, FileMode.Create, FileAccess.ReadWrite))
             {

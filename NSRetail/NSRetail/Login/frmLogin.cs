@@ -116,22 +116,22 @@ namespace NSRetail
 
                         SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
                         SplashScreenManager.Default.SetWaitFormDescription("Downloading installer...");
-                        string InstallerPath = GoogleDriveRepository.DownloadFile("1p5Se7hSEiMDtnl6MMKgHD214qpx6weN-");
+                        string InstallerPath = GoogleDriveRepository.DownloadFile();
                         SplashScreenManager.CloseForm();
-                        Process p = new Process();
-                        p.StartInfo.FileName = InstallerPath;
-                        p.StartInfo.Arguments = "/i \"C:\\Application.msi\"/qn";
-                        p.Start();
-                        Application.Exit();
+                        if(File.Exists(InstallerPath))
+                        {
+                            Process p = new Process();
+                            p.StartInfo.FileName = InstallerPath;
+                            p.StartInfo.Arguments = "/i /qn";
+                            p.Start();
+                            Application.Exit();
+                        }
                     }
-                    catch (Exception downloadex)
+                    catch
                     {
                         SplashScreenManager.CloseForm();
-                        ErrorMgmt.ShowError(downloadex);
-                        ErrorMgmt.Errorlog.Error(downloadex);
                     }
                 }
-
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
             }

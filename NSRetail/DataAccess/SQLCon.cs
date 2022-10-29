@@ -11,7 +11,7 @@ namespace DataAccess
     public static class SQLCon
     {
         static SqlConnection ObjCon = new SqlConnection();
-
+        static string BuildType = Convert.ToString(ConfigurationManager.AppSettings["BuildType"]);
         public static SqlConnection Sqlconn()
         {            
             try
@@ -22,10 +22,10 @@ namespace DataAccess
                 }
                 else
                 {
-                    string ServerName = Decrypt(ConfigurationManager.AppSettings["ServerName"].ToString());
-                    string DBName = Decrypt(ConfigurationManager.AppSettings["DBName"].ToString());
-                    string UserName = Decrypt(ConfigurationManager.AppSettings["username"].ToString());
-                    string Password = Decrypt(ConfigurationManager.AppSettings["pwd"].ToString());
+                    string ServerName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}ServerName"].ToString());
+                    string DBName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}DBName"].ToString());
+                    string UserName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}username"].ToString());
+                    string Password = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}pwd"].ToString());
 
                     ObjCon = new SqlConnection();
                     string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 2000";
@@ -40,10 +40,10 @@ namespace DataAccess
         public static SqlConnection SqlCloudConn()
         {
             SqlConnection ObjCloudCon = new SqlConnection();
-            string ServerName = Decrypt(ConfigurationManager.AppSettings["CloudServerName"].ToString());
-            string DBName = Decrypt(ConfigurationManager.AppSettings["CloudDBName"].ToString());
-            string UserName = Decrypt(ConfigurationManager.AppSettings["Cloudusername"].ToString());
-            string Password = Decrypt(ConfigurationManager.AppSettings["Cloudpwd"].ToString());
+            string ServerName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}CloudServerName"].ToString());
+            string DBName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}CloudDBName"].ToString());
+            string UserName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}Cloudusername"].ToString());
+            string Password = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}Cloudpwd"].ToString());
             try
             {
                 if (ObjCloudCon.State == ConnectionState.Open)
