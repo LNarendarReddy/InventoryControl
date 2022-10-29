@@ -143,7 +143,6 @@ namespace NSRetailPOS
         {
             return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(input)));
         }
-
         private static void ReportText(BackgroundWorker bgwSyncWorker, string text)
         {
             string displayText = DateTime.Now.ToString() + " : " + text;
@@ -153,7 +152,6 @@ namespace NSRetailPOS
                 SplashScreenManager.Default.SetWaitFormDescription(displayText);
             }
         }
-
         public static string GetHDDSerialNumber()
         {
             ManagementObjectSearcher moSearcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
@@ -166,7 +164,6 @@ namespace NSRetailPOS
 
             return string.Empty;
         }
-
         public static void PrintBarCode(object ItemCode, object ItemName,
             string SalePrice, object oQuantity, object MRP, object BatchNumber,
             object PackedDate, object CategoryID,object IsOpenCategory)

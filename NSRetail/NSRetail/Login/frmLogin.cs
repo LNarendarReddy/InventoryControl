@@ -4,6 +4,11 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using DataAccess;
 using ErrorManagement;
+using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
+using NSRetail.Login;
+using System.Diagnostics;
+using System.IO;
 
 namespace NSRetail
 {
@@ -95,6 +100,38 @@ namespace NSRetail
                 }
             }
             catch (Exception ex) {
+
+                if (ex.Message.Contains("Application version mismatch"))
+                {
+                    try
+                    {
+                        XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+                        args.AutoCloseOptions.Delay = 5000;
+                        args.Caption = "Application Update";
+                        args.Text = "New update available! Please wait till the application is updated.";
+                        args.DefaultButtonIndex = 0;
+                        args.AutoCloseOptions.ShowTimerOnDefaultButton = true;
+                        args.Buttons = new DialogResult[] { DialogResult.OK };
+                        XtraMessageBox.Show(args);
+
+                        SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
+                        SplashScreenManager.Default.SetWaitFormDescription("Downloading installer...");
+                        string InstallerPath = GoogleDriveRepository.DownloadFile();
+                        SplashScreenManager.CloseForm();
+                        if(File.Exists(InstallerPath))
+                        {
+                            Process p = new Process();
+                            p.StartInfo.FileName = InstallerPath;
+                            p.StartInfo.Arguments = "/i /qn";
+                            p.Start();
+                            Application.Exit();
+                        }
+                    }
+                    catch
+                    {
+                        SplashScreenManager.CloseForm();
+                    }
+                }
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
             }

@@ -217,6 +217,8 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ItemGroupID", offer.ItemGroupID);
                     cmd.Parameters.AddWithValue("@IsActive", offer.IsActive);
                     cmd.Parameters.AddWithValue("@UserID", offer.UserID);
+                    cmd.Parameters.AddWithValue("@FreeItemPriceID", offer.FreeItemPriceID);
+                    cmd.Parameters.AddWithValue("@NumberOfItems", offer.NumberOfItems);
                     object objreturn = cmd.ExecuteScalar();
                     if (!int.TryParse(objreturn.ToString(), out OfferID))
                         throw new Exception("Error while saivng offer");

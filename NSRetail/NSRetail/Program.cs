@@ -19,10 +19,6 @@ namespace NSRetail
         [STAThread]
         static void Main()
         {
-            //Assembly asm = typeof(DevExpress.UserSkins.IITSkin).Assembly;
-            //DevExpress.Skins.SkinManager.Default.RegisterAssembly(asm);
-            //BonusSkins.Register();
-            //UserLookAndFeel.Default.SetSkinStyle("IITSkin");
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
             SkinManager.EnableMdiFormSkins();
@@ -31,11 +27,4 @@ namespace NSRetail
             Application.Run(new frmLogin());
         }
     }
-    //public class SkinRegistration : Component
-    //{
-    //    public SkinRegistration()
-    //    {
-    //        DevExpress.Skins.SkinManager.Default.RegisterAssembly(typeof(DevExpress.UserSkins.IITSkin).Assembly);
-    //    }
-    //}
 }

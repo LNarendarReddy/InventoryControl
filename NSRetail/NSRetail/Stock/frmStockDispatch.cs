@@ -200,15 +200,16 @@ namespace NSRetail.Stock
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != (char)Keys.Enter || !dxValidationProvider2.Validate()) return;
-            double wareHouseStock = Convert.ToDouble(txtWarehouseStock.EditValue);
-            double branchStock = Convert.ToDouble(((TextEdit)sender).EditValue);
-            List<int> allowNegativeCategories = new List<int>() { 1, 2, 7, 9, 12 };
-            if (wareHouseStock < branchStock && !allowNegativeCategories.Any(x => cmbCategory.EditValue.Equals(x)))
-            {
-                XtraMessageBox.Show("Warehouse stock is less than desired dispatch quantity. The operation has been cancelled"
-                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                return;
-            }
+
+            //double wareHouseStock = Convert.ToDouble(txtWarehouseStock.EditValue);
+            //double branchStock = Convert.ToDouble(((TextEdit)sender).EditValue);
+            //List<int> allowNegativeCategories = new List<int>() { 1, 2, 7, 9, 12 };
+            //if (wareHouseStock < branchStock && !allowNegativeCategories.Any(x => cmbCategory.EditValue.Equals(x)))
+            //{
+            //    XtraMessageBox.Show("Warehouse stock is less than desired dispatch quantity. The operation has been cancelled"
+            //        , "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //    return;
+            //}
 
             try
             {

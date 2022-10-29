@@ -83,6 +83,8 @@ namespace NSRetail
             offer.CategoryName = gvOffer.GetFocusedRowCellValue("CATEGORYNAME");
             offer.ItemGroupID = gvOffer.GetFocusedRowCellValue("ITEMGROUPID");
             offer.GroupName = gvOffer.GetFocusedRowCellValue("GROUPNAME");
+            offer.NumberOfItems = gvOffer.GetFocusedRowCellValue("NUMBEROFITEMS");
+            offer.FreeItemPriceID = gvOffer.GetFocusedRowCellValue("FREEITEMPRICEID");
             if (Convert.ToString(gvOffer.GetFocusedRowCellValue("ISACTIVE")) == "YES")
                 offer.IsActive = true;
             else
