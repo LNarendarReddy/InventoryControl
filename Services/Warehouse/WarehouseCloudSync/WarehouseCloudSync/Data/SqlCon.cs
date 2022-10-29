@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace WarehouseCloudSync.Data
-{    
+{
     public static class SqlCon
     {
         private static SqlConnection ObjWHCon = null;
         private static SqlConnection ObjCloudCon = null;
+        static string BuildType = Convert.ToString(ConfigurationManager.AppSettings["BuildType"]);
 
         public static SqlConnection SqlWHconn()
         {
@@ -24,10 +22,10 @@ namespace WarehouseCloudSync.Data
             } 
 
             ObjWHCon = new SqlConnection();
-            string ServerName = Decrypt(ConfigurationManager.AppSettings["WHServerName"].ToString());
-            string DBName = Decrypt(ConfigurationManager.AppSettings["WHDBName"].ToString());
-            string UserName = Decrypt(ConfigurationManager.AppSettings["WHusername"].ToString());
-            string Password = Decrypt(ConfigurationManager.AppSettings["WHpwd"].ToString());
+            string ServerName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}WHServerName"].ToString());
+            string DBName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}WHDBName"].ToString());
+            string UserName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}WHusername"].ToString());
+            string Password = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}WHpwd"].ToString());
             try
             {
                 string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 200";
@@ -46,14 +44,13 @@ namespace WarehouseCloudSync.Data
             }
 
             ObjCloudCon = new SqlConnection();
-            string ServerName = Decrypt(ConfigurationManager.AppSettings["CloudServerName"].ToString());
-            string DBName = Decrypt(ConfigurationManager.AppSettings["CloudDBName"].ToString());
-            string UserName = Decrypt(ConfigurationManager.AppSettings["Cloudusername"].ToString());
-            string Password = Decrypt(ConfigurationManager.AppSettings["Cloudpwd"].ToString());
+            string ServerName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}CloudServerName"].ToString());
+            string DBName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}CloudDBName"].ToString());
+            string UserName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}Cloudusername"].ToString());
+            string Password = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}Cloudpwd"].ToString());
             try
             {
                 string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 200";
-                //string str = @"Data Source = DESKTOP-KL6T12T\SQLDEVSERVER; Initial Catalog = NSRetail_Cloud; Integrated security=True; Pooling = True; Connect Timeout = 1024; Max Pool Size = 200";
                 ObjCloudCon.ConnectionString = str;
                 ObjCloudCon.Open();
             }
