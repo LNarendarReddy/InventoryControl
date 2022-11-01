@@ -53,11 +53,8 @@ namespace NSRetail
             try
             {
                 DriveService service = GetService();
-
                 var folderRequest = service.Files.List();
-                folderRequest.Q = Convert.ToString(ConfigurationManager.AppSettings["BuildType"]).ToLower().Equals("prod") ?
-                    "mimeType = 'application/vnd.google-apps.folder' and name = 'prodbuilds'" :
-                    "mimeType = 'application/vnd.google-apps.folder' and name = 'leftbuilds'";
+                folderRequest.Q = $"mimeType = 'application/vnd.google-apps.folder' and name = '{Convert.ToString(ConfigurationManager.AppSettings["BuildType"])}builds'";
                 var folderResponse = folderRequest.Execute();
                 string folderID = folderResponse.Files.Any() ? folderResponse.Files.FirstOrDefault().Id : string.Empty;
 

@@ -26,6 +26,11 @@ namespace NSRetailPOS.UI
             cmbCounter.Properties.DisplayMember = "COUNTERNAME";
             cmbCounter.CascadingOwner = cmbBranch;
             cmbCounter.Properties.CascadingMember = "BRANCHID";
+
+            if (!System.IO.Directory.Exists(System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles")))
+                System.IO.Directory.CreateDirectory(System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles"));
+            if (!System.IO.Directory.Exists(System.IO.Path.Combine(Application.UserAppDataPath, "AppFiles")))
+                System.IO.Directory.CreateDirectory(System.IO.Path.Combine(Application.UserAppDataPath, "AppFiles"));
         }
 
         private void frmConfiguration_Load(object sender, EventArgs e)

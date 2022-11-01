@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Utils.UI.Localization;
+using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
@@ -51,7 +52,7 @@ namespace NSRetailPOS
         {
             Utility.ListenSerialPort();
             lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    Role : {Utility.loginInfo.RoleName}    ";
-            lblVersionInfo.Text = $"Application Version 1.2.4 (23-10-2022)";
+            lblVersionInfo.Text = $"App Version {Utility.AppVersion} || DB Version {Utility.DBVersion} (01-11-2022)";
             btnCRWithoutBill.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             txtSplDiscPer.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             btnApplyDiscount.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");

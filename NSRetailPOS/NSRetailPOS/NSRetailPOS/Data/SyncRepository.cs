@@ -165,6 +165,29 @@ namespace NSRetailPOS.Data
                 SQLCon.Sqlconn().Close();
             }
         }
+        public string GetDBVersion()
+        {
+            string dbVersion = string.Empty;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "USP_R_DBVersion";
+                    dbVersion = Convert.ToString(cmd.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error While saving machine identifier", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dbVersion;
+        }
     }
 
     class EntityMapping

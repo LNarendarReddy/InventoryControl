@@ -2,14 +2,18 @@
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraRichEdit.Model;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.Reports;
+using NSRetailPOS.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Ports;
@@ -59,11 +63,15 @@ namespace NSRetailPOS
                 backgroundWorker?.ReportProgress(0, $"POS sync started at {syncStartTime.ToLongTimeString()}");
                 SyncRepository syncRepository = new SyncRepository();
                 CloudRepository cloudRepository = new CloudRepository();
+
+                DBVersionCheck(backgroundWorker, cloudRepository, syncRepository);
+
                 DataTable dtEntity = cloudRepository.GetEntityData(branchInfo.BranchCounterID, "FromCloud");
                 foreach (DataRow entityRow in dtEntity.Rows)
                 {
                     string entityName = entityRow["ENTITYNAME"].ToString();
                     //LoggerUtility.Logger.Info($"{entityName} down sync started");
+
                     ReportText(backgroundWorker, $"{entityName} down sync started");
                     DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(
                         entityName, 
@@ -102,6 +110,10 @@ namespace NSRetailPOS
                 // clear old data
                 ReportText(backgroundWorker, $"clearing one month old data");
                 syncRepository.ClearOldData();
+
+                AppVersionCheck(backgroundWorker, cloudRepository, syncRepository);
+
+                //Convert.ToString(ConfigurationManager.AppSettings["BuildType"])
 
                 //LoggerUtility.Logger.Info($"POS sync completed");
                 backgroundWorker?.ReportProgress(0, $"POS sync completed at {DateTime.Now.ToLongTimeString()}");
@@ -143,7 +155,7 @@ namespace NSRetailPOS
         {
             return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(input)));
         }
-        private static void ReportText(BackgroundWorker bgwSyncWorker, string text)
+        public static void ReportText(BackgroundWorker bgwSyncWorker, string text)
         {
             string displayText = DateTime.Now.ToString() + " : " + text;
             bgwSyncWorker?.ReportProgress(0, displayText);
@@ -290,6 +302,94 @@ namespace NSRetailPOS
             data = data.EndsWith(Environment.NewLine) ? data.Replace(Environment.NewLine, string.Empty) : data;
             Form.ActiveForm.BeginInvoke((Action)(() => (Form.ActiveForm as IBarcodeReceiver).ReceiveBarCode(data)));
         }
+
+        public static string AppVersion = "1.2.5";
+        public static string DBVersion = string.Empty;
+
+        private static void DBVersionCheck(BackgroundWorker backgroundWorker,CloudRepository cloudRepository,SyncRepository syncRepository)
+        {
+            Tuple<string, string> posVersion = cloudRepository.GetPOSVersion();
+            Utility.DBVersion = Utility.DBVersion == string.Empty ? syncRepository.GetDBVersion() : Utility.DBVersion;
+            if (!posVersion.Item2.Equals(Utility.DBVersion))
+            {
+                if (backgroundWorker == null)
+                    SplashScreenManager.CloseForm();
+                XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+                args.AutoCloseOptions.Delay = 5000;
+                args.Caption = "Application Update";
+                args.Text = $"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}{Environment.NewLine}New DB update available! Please wait till the DB is updated.";
+                args.DefaultButtonIndex = 0;
+                args.AutoCloseOptions.ShowTimerOnDefaultButton = true;
+                args.Buttons = new DialogResult[] { DialogResult.OK };
+                XtraMessageBox.Show(args);
+                if (backgroundWorker == null)
+                    SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
+                ReportText(backgroundWorker, $"Update download started");
+                bool _updateAvailable = GoogleDriveRepository.DownloadFile("DBFiles",backgroundWorker);
+                ReportText(backgroundWorker, $"Update download completed");
+                if (_updateAvailable)
+                {
+                    string stpath = System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles", "RunSQL.bat");
+                    ProcessStartInfo processInfo;
+                    Process process;
+
+                    processInfo = new ProcessStartInfo(stpath);
+                    processInfo.UseShellExecute = false;
+                    processInfo.WorkingDirectory = System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles");
+                    process = Process.Start(processInfo);
+                    process.WaitForExit();
+                    if (backgroundWorker == null)
+                    {
+                        SplashScreenManager.CloseForm();
+                        SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
+                    }
+                }
+                else
+                {
+                    XtraMessageBox.Show($"Error occured while updating application.{Environment.NewLine}Please contact your administrator", 
+                        "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
+                }
+                    
+            }
+        }
+        private static void AppVersionCheck(BackgroundWorker backgroundWorker, CloudRepository cloudRepository, SyncRepository syncRepository)
+        {
+            Tuple<string, string> posVersion = cloudRepository.GetPOSVersion();
+            if (!posVersion.Item1.Equals(Utility.AppVersion))
+            {
+                if (backgroundWorker == null)
+                    SplashScreenManager.CloseForm();
+                XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+                args.AutoCloseOptions.Delay = 5000;
+                args.Caption = "Application Update";
+                args.Text = $"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}{Environment.NewLine}New Application update available! Please wait till the application is updated.{Environment.NewLine}Application will be re-launched automatically";
+                args.DefaultButtonIndex = 0;
+                args.AutoCloseOptions.ShowTimerOnDefaultButton = true;
+                args.Buttons = new DialogResult[] { DialogResult.OK };
+                XtraMessageBox.Show(args);
+                if (backgroundWorker == null)
+                    SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
+                ReportText(backgroundWorker, $"Update download started");
+                bool _updateAvailable = GoogleDriveRepository.DownloadFile("AppFiles", backgroundWorker);
+                ReportText(backgroundWorker, $"Update download completed");
+                if (_updateAvailable)
+                {
+
+                    string stpath = System.IO.Path.Combine(Application.UserAppDataPath, "AppFiles", "UpdateEXEScript.bat");
+                    ProcessStartInfo processInfo;
+                    Process process;
+                    processInfo = new ProcessStartInfo(stpath);
+                    process = Process.Start(processInfo);
+                }
+                else
+                {
+                    XtraMessageBox.Show($"Error occured while updating application.{Environment.NewLine}Please contact your administrator",
+                        "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
+                }
+            }
+        }
     }
     
     public class LoginInfo
@@ -311,7 +411,6 @@ namespace NSRetailPOS
         public object GSTIN { get; set; }
         public object BranchCounterID { get; set; }
         public object BranchCounterName { get; set; }
-
         public int MultiEditThreshold { get; set; }
     }
 }

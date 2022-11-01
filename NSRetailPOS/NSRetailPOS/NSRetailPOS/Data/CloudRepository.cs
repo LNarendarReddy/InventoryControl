@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -192,6 +193,31 @@ namespace NSRetailPOS.Data
             {
                 SQLCon.SqlCloudconn().Close();
             }
+        }
+
+        public Tuple<string,string> GetPOSVersion ()
+        {
+            Tuple<string, string> posversion = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlCloudconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_POSVersion]";
+                    object POSVersion = cmd.ExecuteScalar();
+                    posversion = Tuple.Create(Convert.ToString(POSVersion).Split(',')[0], Convert.ToString(POSVersion).Split(',')[1]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving POS Version", ex);
+            }
+            finally
+            {
+                SQLCon.SqlCloudconn().Close();
+            }
+            return posversion;
         }
     }
 }
