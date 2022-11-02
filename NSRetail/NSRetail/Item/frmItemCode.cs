@@ -34,6 +34,13 @@ namespace NSRetail
             txtItemCode.EditValue = itemObj.ItemCode;
             luSubCategory.CascadingOwner = gluCategory;
             luSubCategory.Properties.CascadingMember = "CATEGORYID";
+
+            cmbClassification.CascadingOwner = gluCategory;
+            cmbClassification.Properties.CascadingMember = "CATEGORYID";
+
+            cmbSubClassification.CascadingOwner = cmbClassification;
+            cmbSubClassification.Properties.CascadingMember = "CLASSIFICATIONID";
+
             txtItemCode_Properties_Leave(null, null);
 
             btnSave.Enabled = Utility.Role != "Division Manager" && Utility.Role != "Division User";
@@ -86,6 +93,7 @@ namespace NSRetail
                 itemObj.UOMID = luUOM.EditValue;
                 itemObj.FreeItemCodeID = sluFreeItem.EditValue;
                 itemObj.ClassificationID = cmbClassification.EditValue;
+                itemObj.SubClassificationID = cmbSubClassification.EditValue;
 
                 new ItemCodeRepository().SaveItemCode(itemObj);
 
@@ -199,7 +207,9 @@ namespace NSRetail
         private void BindDataSource(bool refresh)
         {
             object selectedSKU = null, selectedGST = null, selectedItemCode = null, selectedParentItemID = null;
-            if(refresh)
+            MasterRepository masterRepository = new MasterRepository();
+
+            if (refresh)
             {
                 selectedSKU = sluSKUCode.EditValue;
                 selectedItemCode = txtItemCode.EditValue;
@@ -215,7 +225,7 @@ namespace NSRetail
             luGST.Properties.DisplayMember = "GSTCODE";
             luGST.Properties.ValueMember = "GSTID";
 
-            DataView dvCategory = new MasterRepository().GetCategory().DefaultView;
+            DataView dvCategory = masterRepository.GetCategory().DefaultView;
             dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
             gluCategory.Properties.DataSource = dvCategory;
             gluCategory.Properties.DisplayMember = "CATEGORYNAME";
@@ -229,13 +239,21 @@ namespace NSRetail
             sluParentItem.Properties.DisplayMember = "ITEMNAME";
             sluParentItem.Properties.ValueMember = "ITEMID";
 
-            luUOM.Properties.DataSource = new MasterRepository().GetUOM().DefaultView;
+            luUOM.Properties.DataSource = masterRepository.GetUOM().DefaultView;
             luUOM.Properties.DisplayMember = "DISPLAYVALUE";
             luUOM.Properties.ValueMember = "UOMID";
 
-            luSubCategory.Properties.DataSource = new MasterRepository().GetSubCategory();
+            luSubCategory.Properties.DataSource = masterRepository.GetSubCategory();
             luSubCategory.Properties.DisplayMember = "SUBCATEGORYNAME";
             luSubCategory.Properties.ValueMember = "SUBCATEGORYID";
+
+            cmbClassification.Properties.DataSource = masterRepository.GetItemClassification();
+            cmbClassification.Properties.DisplayMember = "CLASSIFICATIONNAME";
+            cmbClassification.Properties.ValueMember = "CLASSIFICATIONID";
+
+            cmbSubClassification.Properties.DataSource = masterRepository.GetItemSubClassification();
+            cmbSubClassification.Properties.DisplayMember = "SUBCLASSIFICATIONNAME";
+            cmbSubClassification.Properties.ValueMember = "SUBCLASSIFICATIONID";
 
             sluFreeItem.Properties.DataSource = Utility.GetItemCodeListFiltered();
             sluFreeItem.Properties.DisplayMember = "ITEMNAME";
@@ -313,6 +331,8 @@ namespace NSRetail
             txtCostPriceWOT.EditValue = null;
             luUOM.EditValue = null;
             sluFreeItem.EditValue = null;
+            cmbClassification.EditValue = null;
+            cmbSubClassification.EditValue = null;
             isEditMode = false;
         }
 
@@ -366,6 +386,8 @@ namespace NSRetail
             luSubCategory.EditValue = dtItemDetails.Rows[0]["SUBCATEGORYID"];
             luUOM.EditValue = dtItemDetails.Rows[0]["UOMID"];
             sluFreeItem.EditValue = dtItemDetails.Rows[0]["FREEITEMCODEID"];
+            cmbClassification.EditValue = dtItemDetails.Rows[0]["CLASSIFICATIONID"];
+            cmbSubClassification.EditValue = dtItemDetails.Rows[0]["SUBCLASSIFICATIONID"];
 
             DataTable dtItemCodePrices = dsItemDetails.Tables["ITEMCODEPRICES"];
             DataRow selectedPrice = dtItemCodePrices.Rows[0];
@@ -414,7 +436,8 @@ namespace NSRetail
 
             if (isLoading) return;
 
-            luSubCategory.EditValue = null;                        
+            luSubCategory.EditValue = null;
+            cmbClassification.EditValue = null;
         }
 
         private void luGST_EditValueChanged(object sender, EventArgs e)
@@ -442,6 +465,13 @@ namespace NSRetail
             bool cpEnabled = sluParentItem.EditValue == null || sluParentItem.EditValue.Equals(itemObj.ItemID);
 
 
+        }
+
+        private void cmbClassification_EditValueChanged(object sender, EventArgs e)
+        {
+            if (isLoading) return;
+
+            cmbSubClassification.EditValue = null;
         }
 
         private void txtCostPriceWOT_EditValueChanged(object sender, EventArgs e)
