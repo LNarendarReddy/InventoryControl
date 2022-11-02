@@ -21,25 +21,7 @@ namespace NSRetail
 
         public static DriveService GetService()
         {
-            //UserCredential credential;
-            //using (var stream = new FileStream("silent_bolt.json", FileMode.Open, FileAccess.Read))
-            //{
-            //    //String FilePath = "client_secretUpdated.json";
-
-            //    credential = GoogleWebAuthorizationBroker.AuthorizeAsync( 
-            //        GoogleClientSecrets.FromStream(stream).Secrets,
-            //        Scopes,
-            //        "user",
-            //        CancellationToken.None
-            //        //, new FileDataStore(FilePath, true)
-            //        ).Result;
-            //}
-
-
             var credential = GoogleCredential.FromFile("silver-pen-366817-97cb2d7ccef2.json").CreateScoped(new[] { DriveService.ScopeConstants.Drive });
-
-
-            //create Drive API service.
             DriveService service = new DriveService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential
