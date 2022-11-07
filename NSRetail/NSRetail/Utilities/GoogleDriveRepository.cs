@@ -92,37 +92,5 @@ namespace NSRetail
                 stream.WriteTo(file);
             }
         }
-
-        public static void FileUpload(string path)
-        {
-            if (string.IsNullOrEmpty(path))
-                return;
-            DriveService service = GetService();
-            var FileMetaData = new Google.Apis.Drive.v3.Data.File();
-            FileMetaData.Name = Path.GetFileName(path);
-            FileMetaData.MimeType = MimeMapping.GetMimeMapping(path);
-
-            FilesResource.CreateMediaUpload request;
-
-            using (var stream = new System.IO.FileStream(path, System.IO.FileMode.Open))
-            {
-                request = service.Files.Create(FileMetaData, stream, FileMetaData.MimeType);
-                request.Fields = "id";
-                request.Upload();
-            }
-        }
-
-        public static void DeleteFile(string fileID)
-        {
-            DriveService service = GetService();
-            try
-            {
-                service.Files.Delete(fileID).Execute();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Request Files.Delete failed.", ex);
-            }
-        }
     }
 }

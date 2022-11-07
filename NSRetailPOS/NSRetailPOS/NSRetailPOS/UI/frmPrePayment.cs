@@ -56,6 +56,7 @@ namespace NSRetailPOS.UI
             billObj.IsDoorDelivery = rgSaleType.EditValue;
             billObj.CustomerName = txtCustomerName.EditValue;
             billObj.CustomerNumber = txtCustomerPhone.EditValue;
+            billObj.CustomerGST = txtCustomerGST.EditValue;
             billObj.PaymentMode = rgPaymentModes.EditValue;
 
             frmPayment payment = new frmPayment(billObj);

@@ -54,7 +54,7 @@ namespace NSRetailPOS.UI
                 rpt.Print();
                 rpt.Print();
                 SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
-                Utility.StartSync(null);
+                if(!Utility.StartSync(null))Application.Exit();
                 SplashScreenManager.CloseForm();
                 this.Close();
             }

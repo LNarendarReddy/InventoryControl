@@ -81,7 +81,7 @@ namespace NSRetailPOS.UI
         private void btnFullSync_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
-            Utility.StartSync(null, true);
+            if(!Utility.StartSync(null,true))Application.Exit();
             SplashScreenManager.CloseForm();
         }
 

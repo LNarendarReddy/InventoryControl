@@ -9,6 +9,7 @@ using DevExpress.XtraSplashScreen;
 using NSRetail.Login;
 using System.Diagnostics;
 using System.IO;
+using DevExpress.XtraRichEdit.Model;
 
 namespace NSRetail
 {
@@ -127,9 +128,10 @@ namespace NSRetail
                             Application.Exit();
                         }
                     }
-                    catch
+                    catch (Exception exx)
                     {
                         SplashScreenManager.CloseForm();
+                        ErrorMgmt.ShowError(exx);
                     }
                 }
                 ErrorMgmt.ShowError(ex);

@@ -24,6 +24,8 @@ namespace NSRetailPOS.Entity
 
         public object CustomerName { get; set; }
 
+        public object CustomerGST { get; set; }
+
         public object Rounding { get; set; }
 
         public object TenderedCash { get; set; }
@@ -43,6 +45,7 @@ namespace NSRetailPOS.Entity
             clonedBillObj.Rounding = Rounding;
             clonedBillObj.CustomerName  = CustomerName;
             clonedBillObj.CustomerNumber = CustomerNumber;
+            clonedBillObj.CustomerGST = CustomerGST;
             clonedBillObj.TenderedCash = TenderedCash;
             clonedBillObj.TenderedChange = TenderedChange;
             clonedBillObj.IsDoorDelivery = IsDoorDelivery;

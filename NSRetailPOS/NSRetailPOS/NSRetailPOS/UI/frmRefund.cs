@@ -177,6 +177,7 @@ namespace NSRetailPOS.UI
                 rpt.Parameters["BillNumber"].Value = LastBillObj.BillNumber;
                 rpt.Parameters["CustomerName"].Value = LastBillObj.CustomerName;
                 rpt.Parameters["CustomerNumber"].Value = LastBillObj.CustomerNumber;
+                rpt.Parameters["CustomerGST"].Value = LastBillObj.CustomerGST;
                 rpt.Parameters["TenderedCash"].Value = LastBillObj.TenderedCash;
                 rpt.Parameters["TenderedChange"].Value = LastBillObj.TenderedChange;
                 rpt.Parameters["IsDoorDelivery"].Value = LastBillObj.IsDoorDelivery;

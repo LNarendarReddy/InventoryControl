@@ -1,4 +1,5 @@
-﻿using DevExpress.Utils;
+﻿using DevExpress.CodeParser;
+using DevExpress.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -67,6 +68,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@LocationID", locationID);
                     cmd.Parameters.AddWithValue("@LocationType", "BranchCounter");
                     cmd.Parameters.AddWithValue("@SyncDirection", syncDirection);
+                    cmd.Parameters.AddWithValue("@NewBuild", true);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtEntity);
@@ -218,6 +220,30 @@ namespace NSRetailPOS.Data
                 SQLCon.SqlCloudconn().Close();
             }
             return posversion;
+        }
+
+        public object GetTimeZone()
+        {
+            object timezone = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlCloudconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_GetTimeZone]";
+                    timezone = cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retreiving timezone", ex);
+            }
+            finally
+            {
+                SQLCon.SqlCloudconn().Close();
+            }
+            return timezone;
         }
     }
 }

@@ -5,11 +5,13 @@ using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.UI;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace NSRetailPOS
 {
@@ -31,11 +33,6 @@ namespace NSRetailPOS
                 return;
             }
 
-            //Assembly asm = typeof(NSRetailPOSSkinDARK).Assembly;
-            //SkinManager.Default.RegisterAssembly(asm);
-            //SplashScreenManager.RegisterUserSkins(typeof(NSRetailPOSSkinDARK).Assembly);
-            //UserLookAndFeel.Default.SetSkinStyle("NSRetailPOSSkinDARK");
-
             Assembly asm = typeof(NSRetailPOSBlack).Assembly;
             SkinManager.Default.RegisterAssembly(asm);
             SplashScreenManager.RegisterUserSkins(typeof(NSRetailPOSBlack).Assembly);
@@ -45,6 +42,7 @@ namespace NSRetailPOS
             Application.SetCompatibleTextRenderingDefault(false);
             SkinManager.EnableFormSkins();
             SkinManager.EnableMdiFormSkins();
+
             DataTable dt = new POSRepository().GetPOSConfiguration();
             if (dt != null && dt.Rows.Count > 0)
             {

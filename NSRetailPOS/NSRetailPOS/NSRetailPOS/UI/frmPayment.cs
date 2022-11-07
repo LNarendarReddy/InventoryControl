@@ -59,6 +59,7 @@ namespace NSRetailPOS.UI
 
             billObj.CustomerName = txtCustomerName.EditValue;
             billObj.CustomerNumber = txtMobileNo.EditValue;
+            billObj.CustomerGST = txtCustomerGST.EditValue;
             billObj.IsDoorDelivery = chkIsDoorDelivery.EditValue;
 
             if (decimal.TryParse(gvMOP.GetRowCellValue(cashRowHandle, "MOPVALUE").ToString(), out decimal cashValue) && cashValue > 0)
@@ -115,6 +116,7 @@ namespace NSRetailPOS.UI
 
             txtCustomerName.EditValue = billObj.CustomerName;
             txtMobileNo.EditValue = billObj.CustomerNumber;
+            txtCustomerGST.EditValue = billObj.CustomerGST;
             chkIsDoorDelivery.EditValue = billObj.IsDoorDelivery;
             rgPaymentOptions.EditValue = billObj.PaymentMode;
             txtItemQuantity.EditValue = billObj.Quantity;

@@ -96,7 +96,11 @@ namespace NSRetailPOS
 
         private void BgSyncWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Utility.StartSync(bgSyncWorker);
+            if (!Utility.StartSync(bgSyncWorker))
+            {
+                Application.Exit();
+                return;
+            }
             Thread.Sleep(30 * 60 * 1000);
             BgSyncWorker_DoWork(sender, e);
         }
@@ -186,10 +190,7 @@ namespace NSRetailPOS
                 XtraMessageBox.Show("No items to bill", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            //frmPayment paymentForm = new frmPayment(billObj);
-            //paymentForm.ShowDialog();
-            //if (!paymentForm.IsPaid) { return; }
-
+            
             frmPrePayment paymentForm = new frmPrePayment(billObj);
             paymentForm.ShowDialog();
             if (!paymentForm.IsPaid) { return; }
@@ -228,6 +229,7 @@ namespace NSRetailPOS
             rpt.Parameters["BillNumber"].Value = oldBillObj.BillNumber;
             rpt.Parameters["CustomerName"].Value = oldBillObj.CustomerName;
             rpt.Parameters["CustomerNumber"].Value = oldBillObj.CustomerNumber;
+            rpt.Parameters["CustomerGST"].Value = oldBillObj.CustomerGST;
             rpt.Parameters["TenderedCash"].Value = oldBillObj.TenderedCash;
             rpt.Parameters["TenderedChange"].Value = oldBillObj.TenderedChange;
             rpt.Parameters["IsDoorDelivery"].Value = oldBillObj.IsDoorDelivery;
@@ -414,6 +416,7 @@ namespace NSRetailPOS
                 rpt.Parameters["BillNumber"].Value = LastBillObj.BillNumber;
                 rpt.Parameters["CustomerName"].Value = LastBillObj.CustomerName;
                 rpt.Parameters["CustomerNumber"].Value = LastBillObj.CustomerNumber;
+                rpt.Parameters["CustomerGST"].Value = LastBillObj.CustomerGST;
                 rpt.Parameters["TenderedCash"].Value = LastBillObj.TenderedCash;
                 rpt.Parameters["TenderedChange"].Value = LastBillObj.TenderedChange;
                 rpt.Parameters["IsDoorDelivery"].Value = LastBillObj.IsDoorDelivery;
@@ -669,7 +672,7 @@ namespace NSRetailPOS
             if (!btnSyncData.Enabled) return;
 
             SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
-            Utility.StartSync(null);
+            if(!Utility.StartSync(null)) Application.Exit();
             SplashScreenManager.CloseForm();
         }
 

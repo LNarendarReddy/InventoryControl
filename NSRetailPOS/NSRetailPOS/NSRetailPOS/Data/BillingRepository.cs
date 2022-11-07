@@ -98,6 +98,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
                     cmd.Parameters.AddWithValue("@CustomerName", billObj.CustomerName);
                     cmd.Parameters.AddWithValue("@CustomerNumber", billObj.CustomerNumber);
+                    cmd.Parameters.AddWithValue("@CustomerGST", billObj.CustomerGST);
                     cmd.Parameters.AddWithValue("@Rounding", billObj.Rounding);
                     cmd.Parameters.AddWithValue("@IsDoorDelivery", billObj.IsDoorDelivery);
                     cmd.Parameters.AddWithValue("@TenderedCash", billObj.TenderedCash);

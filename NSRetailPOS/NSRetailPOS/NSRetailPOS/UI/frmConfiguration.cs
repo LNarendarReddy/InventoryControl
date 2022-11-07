@@ -27,6 +27,13 @@ namespace NSRetailPOS.UI
             cmbCounter.CascadingOwner = cmbBranch;
             cmbCounter.Properties.CascadingMember = "BRANCHID";
 
+            if (!Utility.ValidateTimeZone())
+            {
+                XtraMessageBox.Show($"This system installed in different time zone!" +
+                    $"{Environment.NewLine}Please correct the timezone to continue or contact your administrator.");
+                Application.Exit();
+            }
+
             if (!System.IO.Directory.Exists(System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles")))
                 System.IO.Directory.CreateDirectory(System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles"));
             if (!System.IO.Directory.Exists(System.IO.Path.Combine(Application.UserAppDataPath, "AppFiles")))
@@ -53,7 +60,10 @@ namespace NSRetailPOS.UI
                 Utility.branchInfo.BranchID = cmbBranch.EditValue;
                 string HDDSno = Utility.GetHDDSerialNumber();
                 objCloudRepository.CheckOrAddHDDSerialNumber(Utility.branchInfo.BranchCounterID, HDDSno);
-                Utility.StartSync(null, true);
+                if(!Utility.StartSync(null,true))
+                {
+                    Application.Exit();return;
+                }
                 objSyncRepository.SaveHDDSNo(HDDSno);
                 DataSet dsRestoreData = objCloudRepository.GetDaySequence(cmbCounter.EditValue);
                 objSyncRepository.ImportDaySequence(dsRestoreData);

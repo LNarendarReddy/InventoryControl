@@ -37,7 +37,6 @@ namespace NSRetail.Stock
                 ((frmMain)MdiParent).RefreshBaseLineData += FrmStockDispatch_RefreshBaseLineData;
                 DataTable dtBranch = ObjMasterRep.GetBranch();
                 DataView dvBranch = dtBranch.Copy().DefaultView;
-                dvBranch.RowFilter = "ISWAREHOUSE = 0";
                 cmbToBranch.Properties.DataSource = dvBranch;
                 cmbToBranch.Properties.ValueMember = "BRANCHID";
                 cmbToBranch.Properties.DisplayMember = "BRANCHNAME";

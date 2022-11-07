@@ -1,4 +1,6 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.CodeParser;
+using DevExpress.DataAccess.Sql;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
@@ -10,6 +12,7 @@ using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
@@ -22,6 +25,8 @@ using System.Printing;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
+using System.Windows.Threading;
 
 namespace NSRetailPOS
 {
@@ -44,6 +49,7 @@ namespace NSRetailPOS
             billObj.LastBillID = dsBillDetails.Tables["BILL"].Rows[0]["LASTBILLID"];
             billObj.CustomerName = dsBillDetails.Tables["BILL"].Rows[0]["CUSTOMERNAME"];
             billObj.CustomerNumber = dsBillDetails.Tables["BILL"].Rows[0]["CUSTOMERNUMBER"];
+            billObj.CustomerGST = dsBillDetails.Tables["BILL"].Rows[0]["CUSTOMERGST"];
             billObj.TenderedCash = dsBillDetails.Tables["BILL"].Rows[0]["TENDEREDCASH"];
             billObj.TenderedChange = dsBillDetails.Tables["BILL"].Rows[0]["TENDEREDCHANGE"];
             billObj.IsDoorDelivery = dsBillDetails.Tables["BILL"].Rows[0]["ISDOORDELIVERY"];
@@ -53,7 +59,8 @@ namespace NSRetailPOS
             return billObj;
         }
 
-        public static void StartSync(BackgroundWorker backgroundWorker, bool forceFullSync = false)
+        public delegate void NextPrimeDelegate();
+        public static bool StartSync(BackgroundWorker backgroundWorker, bool forceFullSync = false)
         {
             try
             {
@@ -64,7 +71,15 @@ namespace NSRetailPOS
                 SyncRepository syncRepository = new SyncRepository();
                 CloudRepository cloudRepository = new CloudRepository();
 
-                DBVersionCheck(backgroundWorker, cloudRepository, syncRepository);
+                if (!Utility.ValidateTimeZone())
+                {
+                    XtraMessageBox.Show($"This system installed in different time zone!" +
+                        $"{Environment.NewLine}Please correct the timezone to continue or contact your administrator.");
+                    return false;
+                 }
+
+                if (!DBVersionCheck(backgroundWorker, cloudRepository, syncRepository))
+                    return false;
 
                 DataTable dtEntity = cloudRepository.GetEntityData(branchInfo.BranchCounterID, "FromCloud");
                 foreach (DataRow entityRow in dtEntity.Rows)
@@ -74,7 +89,7 @@ namespace NSRetailPOS
 
                     ReportText(backgroundWorker, $"{entityName} down sync started");
                     DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(
-                        entityName, 
+                        entityName,
                         forceFullSync ? "01-01-1900" : entityRow["SYNCDATE"]
                         , branchInfo.BranchID);
                     ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
@@ -111,9 +126,8 @@ namespace NSRetailPOS
                 ReportText(backgroundWorker, $"clearing one month old data");
                 syncRepository.ClearOldData();
 
-                AppVersionCheck(backgroundWorker, cloudRepository, syncRepository);
-
-                //Convert.ToString(ConfigurationManager.AppSettings["BuildType"])
+                if(!AppVersionCheck(backgroundWorker, cloudRepository, syncRepository))
+                    return false;
 
                 //LoggerUtility.Logger.Info($"POS sync completed");
                 backgroundWorker?.ReportProgress(0, $"POS sync completed at {DateTime.Now.ToLongTimeString()}");
@@ -122,6 +136,7 @@ namespace NSRetailPOS
             {
                 XtraMessageBox.Show($"Error while running sync : {ex.Message} {Environment.NewLine} {ex.StackTrace}");
             }
+            return true;
         }
         private static byte[] Encrypt(byte[] input)
         {
@@ -159,7 +174,7 @@ namespace NSRetailPOS
         {
             string displayText = DateTime.Now.ToString() + " : " + text;
             bgwSyncWorker?.ReportProgress(0, displayText);
-            if(bgwSyncWorker == null)
+            if (bgwSyncWorker == null)
             {
                 SplashScreenManager.Default.SetWaitFormDescription(displayText);
             }
@@ -178,7 +193,7 @@ namespace NSRetailPOS
         }
         public static void PrintBarCode(object ItemCode, object ItemName,
             string SalePrice, object oQuantity, object MRP, object BatchNumber,
-            object PackedDate, object CategoryID,object IsOpenCategory)
+            object PackedDate, object CategoryID, object IsOpenCategory)
         {
             try
             {
@@ -279,7 +294,7 @@ namespace NSRetailPOS
                 e.Appearance.ForeColor = Color.Black;
                 e.Appearance.Options.UseForeColor = true;
                 e.Appearance.Options.UseFont = true;
-                e.HighPriority = true;                
+                e.HighPriority = true;
             }
         }
 
@@ -303,11 +318,12 @@ namespace NSRetailPOS
             Form.ActiveForm.BeginInvoke((Action)(() => (Form.ActiveForm as IBarcodeReceiver).ReceiveBarCode(data)));
         }
 
-        public static string AppVersion = "1.2.5";
+        public static string AppVersion = "1.2.6";
         public static string DBVersion = string.Empty;
 
-        private static void DBVersionCheck(BackgroundWorker backgroundWorker,CloudRepository cloudRepository,SyncRepository syncRepository)
+        private static bool DBVersionCheck(BackgroundWorker backgroundWorker, CloudRepository cloudRepository, SyncRepository syncRepository)
         {
+            bool _isContinue = true;
             Tuple<string, string> posVersion = cloudRepository.GetPOSVersion();
             Utility.DBVersion = Utility.DBVersion == string.Empty ? syncRepository.GetDBVersion() : Utility.DBVersion;
             if (!posVersion.Item2.Equals(Utility.DBVersion))
@@ -316,8 +332,8 @@ namespace NSRetailPOS
                     SplashScreenManager.CloseForm();
                 XtraMessageBoxArgs args = new XtraMessageBoxArgs();
                 args.AutoCloseOptions.Delay = 5000;
-                args.Caption = "Application Update";
-                args.Text = $"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}{Environment.NewLine}New DB update available! Please wait till the DB is updated.";
+                args.Caption = "Database Update";
+                args.Text = $"New DB update available!{Environment.NewLine}Please wait till the DB is updated.";
                 args.DefaultButtonIndex = 0;
                 args.AutoCloseOptions.ShowTimerOnDefaultButton = true;
                 args.Buttons = new DialogResult[] { DialogResult.OK };
@@ -325,7 +341,7 @@ namespace NSRetailPOS
                 if (backgroundWorker == null)
                     SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
                 ReportText(backgroundWorker, $"Update download started");
-                bool _updateAvailable = GoogleDriveRepository.DownloadFile("DBFiles",backgroundWorker);
+                bool _updateAvailable = GoogleDriveRepository.DownloadFile("DBFiles", backgroundWorker);
                 ReportText(backgroundWorker, $"Update download completed");
                 if (_updateAvailable)
                 {
@@ -338,6 +354,15 @@ namespace NSRetailPOS
                     processInfo.WorkingDirectory = System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles");
                     process = Process.Start(processInfo);
                     process.WaitForExit();
+
+                    Utility.DBVersion = syncRepository.GetDBVersion();
+                    if (!posVersion.Item2.Equals(Utility.DBVersion))
+                    {
+                        XtraMessageBox.Show($"Database version mismatch!{Environment.NewLine}Please contact your administrator.",
+                        "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _isContinue = false;
+                    }
+
                     if (backgroundWorker == null)
                     {
                         SplashScreenManager.CloseForm();
@@ -346,14 +371,15 @@ namespace NSRetailPOS
                 }
                 else
                 {
-                    XtraMessageBox.Show($"Error occured while updating application.{Environment.NewLine}Please contact your administrator", 
-                        "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Application.Exit();
+                    XtraMessageBox.Show($"Error occured while updating database!{Environment.NewLine}Please contact your administrator.",
+                        "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _isContinue = false;
                 }
-                    
             }
+            return _isContinue;
         }
-        private static void AppVersionCheck(BackgroundWorker backgroundWorker, CloudRepository cloudRepository, SyncRepository syncRepository)
+        private static bool AppVersionCheck(BackgroundWorker backgroundWorker, CloudRepository 
+            cloudRepository, SyncRepository syncRepository)
         {
             Tuple<string, string> posVersion = cloudRepository.GetPOSVersion();
             if (!posVersion.Item1.Equals(Utility.AppVersion))
@@ -363,7 +389,8 @@ namespace NSRetailPOS
                 XtraMessageBoxArgs args = new XtraMessageBoxArgs();
                 args.AutoCloseOptions.Delay = 5000;
                 args.Caption = "Application Update";
-                args.Text = $"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}{Environment.NewLine}New Application update available! Please wait till the application is updated.{Environment.NewLine}Application will be re-launched automatically";
+                args.Text = $"New Application update available!{Environment.NewLine}Please wait till the application is updated." +
+                    $"{Environment.NewLine}Application will be re-launched automatically";
                 args.DefaultButtonIndex = 0;
                 args.AutoCloseOptions.ShowTimerOnDefaultButton = true;
                 args.Buttons = new DialogResult[] { DialogResult.OK };
@@ -386,9 +413,25 @@ namespace NSRetailPOS
                 {
                     XtraMessageBox.Show($"Error occured while updating application.{Environment.NewLine}Please contact your administrator",
                         "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Application.Exit();
+                    return false;
                 }
             }
+            return true;
+        }
+
+        public static bool ValidateTimeZone()
+        {
+            bool _return = false;
+            TimeZone localZone = TimeZone.CurrentTimeZone;
+            _return = localZone.StandardName == "India Standard Time";
+            object obj = new CloudRepository().GetTimeZone();
+            DateTime localdt = DateTime.Now;
+            if (_return && DateTime.TryParse(Convert.ToString(obj), out DateTime clouddt) &&
+                clouddt.Date == localdt.Date && clouddt.Hour == localdt.Hour)
+            {
+                _return = true;
+            }
+            return _return;
         }
     }
     
@@ -414,3 +457,4 @@ namespace NSRetailPOS
         public int MultiEditThreshold { get; set; }
     }
 }
+

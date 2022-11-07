@@ -61,6 +61,8 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtCustomerGST = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsDoorDelivery.Properties)).BeginInit();
@@ -89,6 +91,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCustomerGST.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -118,6 +122,7 @@
             this.layoutControl1.Controls.Add(this.gcMOP);
             this.layoutControl1.Controls.Add(this.txtCustomerName);
             this.layoutControl1.Controls.Add(this.txtMobileNo);
+            this.layoutControl1.Controls.Add(this.txtCustomerGST);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -131,67 +136,67 @@
             // 
             this.chkIsDoorDelivery.Enabled = false;
             this.chkIsDoorDelivery.EnterMoveNextControl = true;
-            this.chkIsDoorDelivery.Location = new System.Drawing.Point(142, 33);
+            this.chkIsDoorDelivery.Location = new System.Drawing.Point(662, 69);
             this.chkIsDoorDelivery.Name = "chkIsDoorDelivery";
             this.chkIsDoorDelivery.Properties.Caption = "";
-            this.chkIsDoorDelivery.Size = new System.Drawing.Size(30, 18);
+            this.chkIsDoorDelivery.Size = new System.Drawing.Size(397, 18);
             this.chkIsDoorDelivery.StyleController = this.layoutControl1;
-            this.chkIsDoorDelivery.TabIndex = 0;
+            this.chkIsDoorDelivery.TabIndex = 3;
             // 
             // rgPaymentOptions
             // 
             this.rgPaymentOptions.Enabled = false;
             this.rgPaymentOptions.EnterMoveNextControl = true;
-            this.rgPaymentOptions.Location = new System.Drawing.Point(137, 185);
+            this.rgPaymentOptions.Location = new System.Drawing.Point(129, 221);
             this.rgPaymentOptions.MaximumSize = new System.Drawing.Size(0, 35);
             this.rgPaymentOptions.Name = "rgPaymentOptions";
-            this.rgPaymentOptions.Size = new System.Drawing.Size(761, 35);
+            this.rgPaymentOptions.Size = new System.Drawing.Size(769, 35);
             this.rgPaymentOptions.StyleController = this.layoutControl1;
-            this.rgPaymentOptions.TabIndex = 7;
+            this.rgPaymentOptions.TabIndex = 8;
             // 
             // txtRemainingAmount
             // 
             this.txtRemainingAmount.Enabled = false;
-            this.txtRemainingAmount.Location = new System.Drawing.Point(670, 140);
+            this.txtRemainingAmount.Location = new System.Drawing.Point(662, 176);
             this.txtRemainingAmount.Name = "txtRemainingAmount";
             this.txtRemainingAmount.Properties.Appearance.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRemainingAmount.Properties.Appearance.Options.UseFont = true;
-            this.txtRemainingAmount.Size = new System.Drawing.Size(389, 30);
+            this.txtRemainingAmount.Size = new System.Drawing.Size(397, 30);
             this.txtRemainingAmount.StyleController = this.layoutControl1;
-            this.txtRemainingAmount.TabIndex = 6;
+            this.txtRemainingAmount.TabIndex = 7;
             // 
             // txtPaidAmount
             // 
             this.txtPaidAmount.Enabled = false;
-            this.txtPaidAmount.Location = new System.Drawing.Point(142, 140);
+            this.txtPaidAmount.Location = new System.Drawing.Point(134, 176);
             this.txtPaidAmount.Name = "txtPaidAmount";
             this.txtPaidAmount.Properties.Appearance.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaidAmount.Properties.Appearance.Options.UseFont = true;
-            this.txtPaidAmount.Size = new System.Drawing.Size(388, 30);
+            this.txtPaidAmount.Size = new System.Drawing.Size(396, 30);
             this.txtPaidAmount.StyleController = this.layoutControl1;
-            this.txtPaidAmount.TabIndex = 5;
+            this.txtPaidAmount.TabIndex = 6;
             // 
             // txtBilledAmount
             // 
             this.txtBilledAmount.Enabled = false;
-            this.txtBilledAmount.Location = new System.Drawing.Point(670, 100);
+            this.txtBilledAmount.Location = new System.Drawing.Point(662, 136);
             this.txtBilledAmount.Name = "txtBilledAmount";
             this.txtBilledAmount.Properties.Appearance.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBilledAmount.Properties.Appearance.Options.UseFont = true;
-            this.txtBilledAmount.Size = new System.Drawing.Size(389, 30);
+            this.txtBilledAmount.Size = new System.Drawing.Size(397, 30);
             this.txtBilledAmount.StyleController = this.layoutControl1;
-            this.txtBilledAmount.TabIndex = 4;
+            this.txtBilledAmount.TabIndex = 5;
             // 
             // txtItemQuantity
             // 
             this.txtItemQuantity.Enabled = false;
-            this.txtItemQuantity.Location = new System.Drawing.Point(142, 100);
+            this.txtItemQuantity.Location = new System.Drawing.Point(134, 136);
             this.txtItemQuantity.Name = "txtItemQuantity";
             this.txtItemQuantity.Properties.Appearance.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtItemQuantity.Properties.Appearance.Options.UseFont = true;
-            this.txtItemQuantity.Size = new System.Drawing.Size(388, 30);
+            this.txtItemQuantity.Size = new System.Drawing.Size(396, 30);
             this.txtItemQuantity.StyleController = this.layoutControl1;
-            this.txtItemQuantity.TabIndex = 3;
+            this.txtItemQuantity.TabIndex = 4;
             // 
             // btnCancel
             // 
@@ -204,7 +209,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 22);
             this.btnCancel.StyleController = this.layoutControl1;
-            this.btnCancel.TabIndex = 10;
+            this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel";
             // 
             // btnOk
@@ -217,19 +222,19 @@
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(94, 22);
             this.btnOk.StyleController = this.layoutControl1;
-            this.btnOk.TabIndex = 9;
+            this.btnOk.TabIndex = 10;
             this.btnOk.Text = "Ok";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // gcMOP
             // 
-            this.gcMOP.Location = new System.Drawing.Point(4, 227);
+            this.gcMOP.Location = new System.Drawing.Point(4, 263);
             this.gcMOP.MainView = this.gvMOP;
             this.gcMOP.Name = "gcMOP";
             this.gcMOP.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.txtPaymentValue});
-            this.gcMOP.Size = new System.Drawing.Size(1063, 350);
-            this.gcMOP.TabIndex = 8;
+            this.gcMOP.Size = new System.Drawing.Size(1063, 314);
+            this.gcMOP.TabIndex = 9;
             this.gcMOP.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvMOP});
             // 
@@ -293,21 +298,21 @@
             // 
             this.txtCustomerName.Enabled = false;
             this.txtCustomerName.EnterMoveNextControl = true;
-            this.txtCustomerName.Location = new System.Drawing.Point(669, 33);
+            this.txtCustomerName.Location = new System.Drawing.Point(662, 33);
             this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.Size = new System.Drawing.Size(390, 26);
+            this.txtCustomerName.Size = new System.Drawing.Size(397, 26);
             this.txtCustomerName.StyleController = this.layoutControl1;
-            this.txtCustomerName.TabIndex = 2;
+            this.txtCustomerName.TabIndex = 1;
             // 
             // txtMobileNo
             // 
             this.txtMobileNo.Enabled = false;
             this.txtMobileNo.EnterMoveNextControl = true;
-            this.txtMobileNo.Location = new System.Drawing.Point(312, 33);
+            this.txtMobileNo.Location = new System.Drawing.Point(134, 33);
             this.txtMobileNo.Name = "txtMobileNo";
-            this.txtMobileNo.Size = new System.Drawing.Size(217, 26);
+            this.txtMobileNo.Size = new System.Drawing.Size(396, 26);
             this.txtMobileNo.StyleController = this.layoutControl1;
-            this.txtMobileNo.TabIndex = 1;
+            this.txtMobileNo.TabIndex = 0;
             // 
             // Root
             // 
@@ -333,9 +338,9 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.gcMOP;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 223);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 259);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(1067, 354);
+            this.layoutControlItem6.Size = new System.Drawing.Size(1067, 318);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
@@ -380,7 +385,7 @@
             this.layoutControlItem13,
             this.layoutControlItem3,
             this.layoutControlItem4});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 67);
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 103);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.layoutControlGroup1.Size = new System.Drawing.Size(1067, 111);
@@ -394,7 +399,7 @@
             this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem12.Size = new System.Drawing.Size(528, 40);
             this.layoutControlItem12.Text = "Item Quantity";
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(118, 16);
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(110, 16);
             // 
             // layoutControlItem13
             // 
@@ -404,7 +409,7 @@
             this.layoutControlItem13.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem13.Size = new System.Drawing.Size(529, 40);
             this.layoutControlItem13.Text = "Bill Amount";
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(118, 16);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(110, 16);
             // 
             // layoutControlItem3
             // 
@@ -414,7 +419,7 @@
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem3.Size = new System.Drawing.Size(528, 40);
             this.layoutControlItem3.Text = "Paid Amount";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(118, 16);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(110, 16);
             // 
             // layoutControlItem4
             // 
@@ -424,54 +429,55 @@
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem4.Size = new System.Drawing.Size(529, 40);
             this.layoutControlItem4.Text = "Remaining Amount";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(118, 16);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(110, 16);
             // 
             // layoutControlGroup2
             // 
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
+            this.layoutControlItem11,
             this.layoutControlItem2,
-            this.layoutControlItem11});
+            this.layoutControlItem9});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutControlGroup2.Size = new System.Drawing.Size(1067, 67);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(1067, 103);
             this.layoutControlGroup2.Text = "Customer Details";
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.txtMobileNo;
-            this.layoutControlItem1.Location = new System.Drawing.Point(170, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem1.Size = new System.Drawing.Size(357, 36);
-            this.layoutControlItem1.Text = "Customer Mobile No";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(118, 16);
+            this.layoutControlItem1.Size = new System.Drawing.Size(528, 36);
+            this.layoutControlItem1.Text = "Customer Mobile #";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(110, 16);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtCustomerName;
-            this.layoutControlItem2.Location = new System.Drawing.Point(527, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(528, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem2.Size = new System.Drawing.Size(530, 36);
+            this.layoutControlItem2.Size = new System.Drawing.Size(529, 36);
             this.layoutControlItem2.Text = "Customer Name";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(118, 16);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(110, 16);
             // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.chkIsDoorDelivery;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem11.Location = new System.Drawing.Point(528, 36);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem11.Size = new System.Drawing.Size(170, 36);
+            this.layoutControlItem11.Size = new System.Drawing.Size(529, 36);
             this.layoutControlItem11.Text = "Door Delivery";
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(118, 16);
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(110, 16);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.rgPaymentOptions;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 178);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 214);
             this.layoutControlItem5.MaxSize = new System.Drawing.Size(901, 45);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(901, 45);
             this.layoutControlItem5.Name = "layoutControlItem5";
@@ -479,7 +485,29 @@
             this.layoutControlItem5.Size = new System.Drawing.Size(1067, 45);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.Text = "Payment selection";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(118, 16);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(110, 16);
+            // 
+            // txtCustomerGST
+            // 
+            this.txtCustomerGST.Enabled = false;
+            this.txtCustomerGST.EnterMoveNextControl = true;
+            this.txtCustomerGST.Location = new System.Drawing.Point(134, 69);
+            this.txtCustomerGST.Name = "txtCustomerGST";
+            this.txtCustomerGST.Size = new System.Drawing.Size(396, 26);
+            this.txtCustomerGST.StyleController = this.layoutControl1;
+            this.txtCustomerGST.TabIndex = 2;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.txtCustomerGST;
+            this.layoutControlItem9.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.layoutControlItem9.CustomizationFormText = "Customer Mobile No";
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 36);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem9.Size = new System.Drawing.Size(528, 36);
+            this.layoutControlItem9.Text = "Customer GST #";
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(110, 16);
             // 
             // frmPayment
             // 
@@ -523,6 +551,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCustomerGST.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -561,5 +591,7 @@
         private DevExpress.XtraEditors.CheckEdit chkIsDoorDelivery;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtPaymentValue;
+        private DevExpress.XtraEditors.TextEdit txtCustomerGST;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
     }
 }
