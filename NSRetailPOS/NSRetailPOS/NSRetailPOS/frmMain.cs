@@ -52,7 +52,7 @@ namespace NSRetailPOS
         {
             Utility.ListenSerialPort();
             lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    Role : {Utility.loginInfo.RoleName}    ";
-            lblVersionInfo.Text = $"App Version {Utility.AppVersion} || DB Version {Utility.DBVersion} (01-11-2022)";
+            lblVersionInfo.Text = $"App Version {Utility.AppVersion} || DB Version {Utility.DBVersion} (15-11-2022)";
             btnCRWithoutBill.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             txtSplDiscPer.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             btnApplyDiscount.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");

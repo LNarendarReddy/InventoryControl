@@ -73,6 +73,7 @@ namespace WarehouseCloudSync.Data
                     cmd.Parameters.AddWithValue("@LocationID", locationID);
                     cmd.Parameters.AddWithValue("@LocationType", "Warehouse");
                     cmd.Parameters.AddWithValue("@SyncDirection", syncDirection);
+                    cmd.Parameters.AddWithValue("@NewBuild", true);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtEntity);
