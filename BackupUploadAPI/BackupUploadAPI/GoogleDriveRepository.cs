@@ -44,7 +44,7 @@ namespace BackupUploadAPI
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Folder request failed", ex);
+                Console.WriteLine("Folder request failed", ex.Message);
             }
             return folderID;
         }
