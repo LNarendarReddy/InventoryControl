@@ -4,8 +4,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>G:\Projects\InventoryControl\NSRetail API\Publish</_PublishTargetUrl>
-    <History>True|2022-09-08T10:30:07.5709338Z;True|2022-01-23T15:40:14.8834708+05:30;True|2022-01-23T12:24:38.0995775+05:30;True|2022-01-21T21:56:36.3695741+05:30;True|2022-01-21T18:17:25.4008399+05:30;True|2022-01-18T15:25:14.2852311+05:30;True|2022-01-17T06:27:53.6983333+05:30;True|2022-01-17T05:45:34.4499666+05:30;True|2022-01-17T05:34:09.9375072+05:30;True|2022-01-13T22:46:54.8964477+05:30;True|2022-01-13T21:29:49.3108499+05:30;True|2022-01-11T13:54:39.3525722+05:30;</History>
+    <_PublishTargetUrl>E:\Projects\InventoryControl\NSRetail API\Publish</_PublishTargetUrl>
+    <History>True|2022-11-28T07:29:13.9379388Z;True|2022-11-28T12:45:40.4385898+05:30;True|2022-11-28T12:06:54.5926612+05:30;True|2022-11-21T16:28:13.3638944+05:30;False|2022-11-21T16:27:25.8669161+05:30;False|2022-11-21T16:26:30.2517303+05:30;True|2022-09-08T16:00:07.5709338+05:30;True|2022-01-23T15:40:14.8834708+05:30;True|2022-01-23T12:24:38.0995775+05:30;True|2022-01-21T21:56:36.3695741+05:30;True|2022-01-21T18:17:25.4008399+05:30;True|2022-01-18T15:25:14.2852311+05:30;True|2022-01-17T06:27:53.6983333+05:30;True|2022-01-17T05:45:34.4499666+05:30;True|2022-01-17T05:34:09.9375072+05:30;True|2022-01-13T22:46:54.8964477+05:30;True|2022-01-13T21:29:49.3108499+05:30;True|2022-01-11T13:54:39.3525722+05:30;</History>
+    <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -69,10 +70,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/24/2018 23:14:14</publishTime>
     </File>
     <File Include="bin/NSRetail.dll">
-      <publishTime>09/08/2022 16:00:05</publishTime>
+      <publishTime>11/28/2022 12:59:13</publishTime>
     </File>
     <File Include="bin/NSRetail.pdb">
-      <publishTime>09/08/2022 16:00:05</publishTime>
+      <publishTime>11/28/2022 12:59:13</publishTime>
     </File>
     <File Include="bin/OMSDbAccess.dll">
       <publishTime>04/08/2021 18:26:23</publishTime>
@@ -270,118 +271,118 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/23/2014 19:27:34</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Models/AdoEntityModel.edmx.diagram">
       <publishTime>05/08/2018 15:45:40</publishTime>
     </File>
     <File Include="Models/NSRetail.edmx.diagram">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/jquery-3.3.1.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/jquery-3.3.1.min.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/jquery-3.3.1.min.map">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/jquery-3.3.1.slim.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/jquery-3.3.1.slim.min.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/jquery-3.3.1.slim.min.map">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.min.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.8.3.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/respond.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/respond.matchmedia.addListener.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/respond.matchmedia.addListener.min.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/respond.min.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Views/Shared/Lockout.cshtml">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>01/24/2022 09:42:06</publishTime>
+      <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/08/2022 16:00:06</publishTime>
+      <publishTime>11/28/2022 12:06:54</publishTime>
     </File>
   </ItemGroup>
 </Project>

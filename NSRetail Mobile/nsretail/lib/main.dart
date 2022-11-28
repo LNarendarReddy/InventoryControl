@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
       print(stUserID);
       final response = await http.get(
           Uri.parse(
-              'http://103.195.186.197/nsretailapi/api/users?Id= + ' + stUserID),
+              'http://122.175.62.71/api/users?Id= + ' + stUserID),
           headers: {"Authorization": "Bearer $value"});
       users = loadUsers(response.body);
       prefs.setString('userName', users[0].fullName);
@@ -123,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
       print(stUserID);
       final response = await http.get(
           Uri.parse(
-              'http://103.195.186.197/nsretailapi/api/StockCounting/GetStockCount/' +
+              'http://122.175.62.71/api/StockCounting/GetStockCount/' +
                   stUserID),
           headers: {"Authorization": "Bearer $value"});
       _branches = loadStockCount(response.body);

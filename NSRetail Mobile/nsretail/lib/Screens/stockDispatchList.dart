@@ -37,7 +37,7 @@ class _stockDispatchListState extends State<stockDispatchList> {
   int nStockDispatchID = 0;
   int categoryId=0;
   final String url =
-      'http://103.195.186.197/nsretailapi/api/stockdispatch?stockcountdetailid=';
+      'http://122.175.62.71/api/stockdispatch?stockcountdetailid=';
 
   void getStockData(int Id) async {
     try {
@@ -111,7 +111,7 @@ class _stockDispatchListState extends State<stockDispatchList> {
       print('userid');
       print(stUserID);
       final response = await http.get(
-          Uri.parse('http://103.195.186.197/nsretailapi/api/categories'),
+          Uri.parse('http://122.175.62.71/api/categories'),
           headers: {"Authorization": "Bearer $value"});
       _categoryList = loadCategories(response.body);
       if (_categoryList.length == 0) {
@@ -145,10 +145,10 @@ class _stockDispatchListState extends State<stockDispatchList> {
       print(stockCountingId);
       final response = await http.post(
           Uri.parse(
-              "http://103.195.186.197/nsretailapi/api/stockdispatch/UpdateStatus/" +
+              "http://122.175.62.71/api/stockdispatch/UpdateStatus/" +
                   stockCountingId),
           headers: {"Authorization": "Bearer $value"});
-      print("http://103.195.186.197/nsretailapi/api/StockCounting/UpdateStatus/" +
+      print("http://122.175.62.71/api/StockCounting/UpdateStatus/" +
           stockCountingId);
       if (response.statusCode == 200) {
         setState(() {
@@ -158,10 +158,10 @@ class _stockDispatchListState extends State<stockDispatchList> {
     } catch (e) {
       final response = await http.post(
           Uri.parse(
-              "http://103.195.186.197/nsretailapi/api/stockdispatch/UpdateStatus/" +
+              "http://122.175.62.71/api/stockdispatch/UpdateStatus/" +
                   stockCountingId),
           headers: {"Authorization": "Bearer $value"});
-      print("http://103.195.186.197/nsretailapi/api/stockdispatch/UpdateStatus/" +
+      print("http://122.175.62.71/api/stockdispatch/UpdateStatus/" +
           stockCountingId);
       if (response.statusCode == 200) {
         setState(() {
@@ -252,7 +252,7 @@ class _stockDispatchListState extends State<stockDispatchList> {
                 print(stockDetailId);
                 final response = await http.post(
                     Uri.parse(
-                        "http://103.195.186.197/nsretailapi/api/StockCounting/InsertStockCounting/" +
+                        "http://122.175.62.71/api/StockCounting/InsertStockCounting/" +
                             stockId.toString() +
                             "/" +
                             stockDetailId.toString() +
@@ -316,14 +316,14 @@ class _stockDispatchListState extends State<stockDispatchList> {
         title: Text('Stock Dispatch'),
         actions: [
 
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               updateStatus();
             },
-            color: Colors.lightBlue,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0),
-            ),
+             style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                      primary: Colors.lightBlue),
             child: Text(
               'Submit',
               style: TextStyle(color: Colors.white, fontSize: 16),
@@ -432,7 +432,7 @@ class _stockDispatchListState extends State<stockDispatchList> {
                               print(item.stockCountDetailid);
                               final response = await http.post(
                                   Uri.parse(
-                                      "http://103.195.186.197/nsretailapi/api/stockdispatch/DeleteStockCounting/" +
+                                      "http://122.175.62.71/api/stockdispatch/DeleteStockCounting/" +
                                           item.stockCountDetailid.toString()),
                                   headers: {"Authorization": "Bearer $value"});
                               print(response.body);

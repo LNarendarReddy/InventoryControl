@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7e4dc0-c46e-4d2c-a0b4-5de50b715422" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/nsretail/lib/Screens/addStockItem.dart" beforeDir="false" afterPath="$PROJECT_DIR$/nsretail/lib/Screens/addStockItem.dart" afterDir="false" />
-    </list>
+    <list default="true" id="be7e4dc0-c46e-4d2c-a0b4-5de50b715422" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,6 +12,17 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="25Ln9Rislma6blRLX8ytaNTeGqw" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -22,11 +34,17 @@
     <property name="AnalyzeApkAction.lastApkPath" value="$PROJECT_DIR$/nsretail" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/nsretail" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -39,11 +57,5 @@
       <updated>1645315082646</updated>
     </task>
     <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="634" y="202" key="FileChooserDialogImpl" timestamp="1645316335917">
-      <screen x="0" y="0" width="1707" height="920" />
-    </state>
-    <state x="634" y="202" key="FileChooserDialogImpl/0.0.1707.920@0.0.1707.920" timestamp="1645316335917" />
   </component>
 </project>

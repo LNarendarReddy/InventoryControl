@@ -241,7 +241,7 @@ class _stockDispatchListState extends State<stockDispatchList> {
       appBar: AppBar(
         title: Text('Stock Couting'),
         actions: [
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               updateStatus();
             },

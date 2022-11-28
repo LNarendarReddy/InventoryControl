@@ -21,17 +21,6 @@ namespace NSRetail.Controllers
             NSRetail_CloudEntities entities = new NSRetail_CloudEntities();
             try
             {
-                //var itemList = (from code in entities.ITEMCODEs
-                //                join item in entities.ITEMs on code.ITEMID equals item.ITEMID
-                //                where code.ITEMCODE1 == itemCode && code.DELETEDDATE == null && item.DELETEDDATE == null
-                //                select new
-                //                {
-                //                    code.ITEMCODEID,
-                //                    code.ITEMCODE1,
-                //                    item.ITEMID,
-                //                    item.ITEMNAME
-
-                //                }).ToList();
                 var itemList = (from price in entities.ITEMPRICEs
                                 join code in entities.ITEMCODEs on price.ITEMCODEID equals code.ITEMCODEID
                                 join item in entities.ITEMs on code.ITEMID equals item.ITEMID

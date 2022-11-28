@@ -123,7 +123,7 @@ class _StockItemState extends State<StockItem> {
     print(_scanBarcode);
     final response = await http.get(
         Uri.parse(
-            "http://103.195.186.197/nsretailapi/api/stockitems?itemcode=" +
+            "http://122.175.62.71/api/stockitems?itemcode=" +
                 _scanBarcode),
         headers: {"Authorization": "Bearer $value"});
     _itemsList = loadItems(response.body);
@@ -203,7 +203,7 @@ class _StockItemState extends State<StockItem> {
       print(_scanBarcode);
       final response = await http.get(
           Uri.parse(
-              "http://103.195.186.197/nsretailapi/api/stockitems?itemcode=" +
+              "http://122.175.62.71/api/stockitems?itemcode=" +
                   _scanBarcode),
           headers: {"Authorization": "Bearer $value"});
       setState(() {
@@ -428,15 +428,16 @@ class _StockItemState extends State<StockItem> {
       // height: 40.0,
       // margin: EdgeInsets.only(top: 30.0),
       // padding: EdgeInsets.symmetric(horizontal: 20.0),
-      child: RaisedButton(
+      child: ElevatedButton(
         focusNode: _submitfocus,
         onPressed: () {
           saveStockCount();
         },
-        color: Colors.lightBlue,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
+
+         style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                  primary: Colors.lightBlue),
         child: Text(
           'Save',
           style: TextStyle(color: Colors.white, fontSize: 16),
@@ -457,7 +458,7 @@ class _StockItemState extends State<StockItem> {
       String value = prefs.getString('token') ?? "";
       String _userId = prefs.getString('userID') ?? "0";
       String insertUrl =
-          "http://103.195.186.197/nsretailapi/api/StockCounting/InsertStockCounting/" +
+          "http://122.175.62.71/api/StockCounting/InsertStockCounting/" +
               widget.nStockcountingID.toString() +
               "/0/" +
               widget.branchId.toString() +

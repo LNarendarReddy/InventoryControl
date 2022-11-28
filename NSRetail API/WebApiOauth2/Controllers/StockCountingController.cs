@@ -35,6 +35,7 @@ namespace NSRetail.Controllers
                                          where stockdetail.DELETEDDATE == null && price.DELETEDDATE == null && code.DELETEDDATE == null && item.DELETEDDATE == null
                                          && stockdetail.STOCKCOUNTINGDETAILID == stockCountDetailId && stockcount.BRANCHID == branchId && stockcount.CREATEDBY == userId
                                          && stockcount.STATUS != true
+                                         orderby stockdetail.STOCKCOUNTINGDETAILID descending
                                          select new
                                          {
                                              stockdetail.STOCKCOUNTINGDETAILID,
@@ -100,8 +101,8 @@ namespace NSRetail.Controllers
             return message;
         }
         [HttpPost]
-        [Route("api/StockCounting/UpdateStatus/{nStockCounting}")]
-        public HttpResponseMessage UpdateStatus([FromUri] int nStockCounting)
+        [Route("api/StockCounting/UpdateStatus/{nStockCounting}/{UserID}")]
+        public HttpResponseMessage UpdateStatus([FromUri] int nStockCounting , [FromUri] int UserID)
         {
             HttpResponseMessage message = new HttpResponseMessage();
             ApiError apiError = null;
@@ -119,6 +120,7 @@ namespace NSRetail.Controllers
 
                             // SECOND set the ID
                             sc.STOCKCOUNTINGID = nStockCounting;
+                            sc.UPDATEDBY = UserID;
 
                             // THIRD attach the thing (id is not marked as modified)
                             entities.CLOUD_STOCKCOUNTING.Attach(sc);
@@ -165,8 +167,8 @@ namespace NSRetail.Controllers
         }
         [HttpPost]
         [Route("api/StockCounting/InsertStockCounting/{stockCountingID}/{stockCountDetailId}/{branchId}/{userId}/{itemPriceId}/{quantity}")]
-        public HttpResponseMessage InsertStockCounting([FromUri] int stockCountingID, [FromUri] int stockCountDetailId, [FromUri] int branchId, [FromUri] int userId,
-            [FromUri] int itemPriceId, [FromUri] int quantity)
+        public HttpResponseMessage InsertStockCounting([FromUri] int stockCountingID, [FromUri] int stockCountDetailId, [FromUri] int branchId, 
+            [FromUri] int userId, [FromUri] int itemPriceId, [FromUri] int quantity)
         {
             HttpResponseMessage message = new HttpResponseMessage();
             ApiError apiError = null;
@@ -181,23 +183,20 @@ namespace NSRetail.Controllers
                     {
                         try
                         {
-                            //string paramValue = Newtonsoft.Json.JsonConvert.SerializeObject(entity);
-                            //DataTable dt = (DataTable)JsonConvert.DeserializeObject(paramValue, (typeof(DataTable)));
                             if (stockCountingID == 0)
                             {
                                 nStockCountOutput = entities.CLOUD_USP_CU_STOCKCOUNTING(stockCountingID, branchId, userId, dtCreatedDate).FirstOrDefault();
-
                                 if (nStockCountOutput != 0)
                                 {
-                                    nStockCountDetailOutput = entities.CLOUD_USP_CU_STOCKCOUNTINGDETAIL(stockCountDetailId, nStockCountOutput, itemPriceId, quantity, dtCreatedDate).FirstOrDefault();
+                                    nStockCountDetailOutput = entities.CLOUD_USP_CU_STOCKCOUNTINGDETAIL(stockCountDetailId, nStockCountOutput, 
+                                        itemPriceId, quantity, dtCreatedDate).FirstOrDefault();
                                 }
                             }
                             else
                             {
-                                nStockCountDetailOutput = entities.CLOUD_USP_CU_STOCKCOUNTINGDETAIL(stockCountDetailId, stockCountingID, itemPriceId, quantity, dtCreatedDate).FirstOrDefault();
+                                nStockCountDetailOutput = entities.CLOUD_USP_CU_STOCKCOUNTINGDETAIL(stockCountDetailId, stockCountingID, 
+                                    itemPriceId, quantity, dtCreatedDate).FirstOrDefault();
                             }
-
-
 
                             if (nStockCountDetailOutput != 0)
                             {

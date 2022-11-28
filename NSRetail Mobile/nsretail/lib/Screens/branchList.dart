@@ -28,7 +28,7 @@ class _BranchListState extends State<BranchList> {
   bool loading = true;
   SharedPreferences sharedPreferences;
   String stUserID;
-  final String url = 'http://103.195.186.197/nsretailapi/api/branch';
+  final String url = 'http://122.175.62.71/api/branch';
 
   void getData() async {
     try {

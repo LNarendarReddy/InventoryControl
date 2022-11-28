@@ -37,7 +37,7 @@ class _stockCountingListState extends State<stockCountingList> {
   String stUserID;
   int nStockcountingID = 0;
   final String url =
-      'http://103.195.186.197/nsretailapi/api/stockcounting?stockcountdetailid=';
+      'http://122.175.62.71/api/stockcounting?stockcountdetailid=';
 
   void getStockData(int Id) async {
     try {
@@ -121,13 +121,13 @@ class _stockCountingListState extends State<stockCountingList> {
       print(stockCountingId);
       final response = await http.post(
           Uri.parse(
-              "http://103.195.186.197/nsretailapi/api/StockCounting/UpdateStatus/" +
+              "http://122.175.62.71/api/StockCounting/UpdateStatus/" +
                   stockCountingId +
                   "/" +
                   stUserID),
           headers: {"Authorization": "Bearer $value"});
       print(
-          "http://103.195.186.197/nsretailapi/api/StockCounting/UpdateStatus/" +
+          "http://122.175.62.71/api/StockCounting/UpdateStatus/" +
               stockCountingId +
               "/" +
               stUserID);
@@ -148,13 +148,13 @@ class _stockCountingListState extends State<stockCountingList> {
     } catch (e) {
       final response = await http.post(
           Uri.parse(
-              "http://103.195.186.197/nsretailapi/api/StockCounting/UpdateStatus/" +
+              "http://122.175.62.71/api/StockCounting/UpdateStatus/" +
                   stockCountingId +
                   "/" +
                   stUserID),
           headers: {"Authorization": "Bearer $value"});
       print(
-          "http://103.195.186.197/nsretailapi/api/StockCounting/UpdateStatus/" +
+          "http://122.175.62.71/api/StockCounting/UpdateStatus/" +
               stockCountingId +
               "/" +
               stUserID);
@@ -241,7 +241,7 @@ class _stockCountingListState extends State<stockCountingList> {
                 print(stockDetailId);
                 final response = await http.post(
                     Uri.parse(
-                        "http://103.195.186.197/nsretailapi/api/StockCounting/InsertStockCounting/" +
+                        "http://122.175.62.71/api/StockCounting/InsertStockCounting/" +
                             stockId.toString() +
                             "/" +
                             stockDetailId.toString() +
@@ -357,8 +357,9 @@ class _stockCountingListState extends State<stockCountingList> {
               title:
                   widget.branchName == '' ? Text('') : Text(widget.branchName),
               actions: [
-                RaisedButton(
-                  color: Colors.blue,
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                            primary: Colors.lightBlue),
                   child: Text('Submit',style: TextStyle(color: Colors.white),),
                   onPressed: () {
                     updateStatus();
@@ -411,7 +412,7 @@ class _stockCountingListState extends State<stockCountingList> {
                             print(_filtereditemsList[index].stockCountDetailid);
                             final response = await http.post(
                                 Uri.parse(
-                                    "http://103.195.186.197/nsretailapi/api/StockCounting/DeleteStockCounting/" +
+                                    "http://122.175.62.71/api/StockCounting/DeleteStockCounting/" +
                                         _filtereditemsList[index].stockCountDetailid.toString()),
                                 headers: {"Authorization": "Bearer $value"});
                             print(response.body);
@@ -477,7 +478,7 @@ class _stockCountingListState extends State<stockCountingList> {
               //               print(item.stockCountDetailid);
               //               final response = await http.post(
               //                   Uri.parse(
-              //                       "http://103.195.186.197/nsretailapi/api/StockCounting/DeleteStockCounting/" +
+              //                       "http://122.175.62.71/api/StockCounting/DeleteStockCounting/" +
               //                           item.stockCountDetailid.toString()),
               //                   headers: {"Authorization": "Bearer $value"});
               //               print(response.body);

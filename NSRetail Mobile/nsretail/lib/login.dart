@@ -79,7 +79,7 @@ class _LoginState extends State<Login> {
       height: 40.0,
       margin: EdgeInsets.only(top: 30.0),
       padding: EdgeInsets.symmetric(horizontal: 20.0),
-      child: RaisedButton(
+      child: ElevatedButton(
         focusNode: _submitfocus,
         onPressed: () {
           setState(() {
@@ -95,10 +95,10 @@ class _LoginState extends State<Login> {
           }
           signIn(emailcontroller.text, pwdcontroller.text);
         },
-        color: Colors.lightBlue,
+        style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
+            borderRadius: BorderRadius.circular(10.0)),
+          primary: Colors.lightBlue),
         child: Text(
           'SignIn',
           style: TextStyle(color: Colors.white, fontSize: 16),
@@ -134,7 +134,7 @@ class _LoginState extends State<Login> {
     String userID;
     String userName;
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    var url = 'http://103.195.186.197/nsretailapi/token';
+    var url = 'http://122.175.62.71/token';
 
     var response = await http.post(Uri.parse(url), body: data);
     if (response.statusCode == 200) {

@@ -127,7 +127,7 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
       String value = prefs.getString('token') ?? "";
       print(itemCodeController.text);
       final response = await http.get(
-          Uri.parse("http://103.195.186.197/nsretailapi/api/stockitems?itemcode=" +
+          Uri.parse("http://122.175.62.71/api/stockitems?itemcode=" +
               itemCodeController.text),
           headers: {"Authorization": "Bearer $value"});
       _itemsList = loadItems(response.body);
@@ -360,15 +360,15 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
       height: 40.0,
       margin: EdgeInsets.only(top: 30.0),
       padding: EdgeInsets.symmetric(horizontal: 20.0),
-      child: RaisedButton(
+      child: ElevatedButton(
         focusNode: _submitfocus,
         onPressed: () {
           saveStockDispatch();
         },
-        color: Colors.lightBlue,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
+        style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                  primary: Colors.lightBlue),
         child: Text(
           'Save',
           style: TextStyle(color: Colors.white, fontSize: 16),
@@ -384,7 +384,7 @@ class _StockDispatchItemState extends State<StockDispatchItem> {
       String value = prefs.getString('token') ?? "";
       String _userId = prefs.getString('userID') ?? "0";
       String insertUrl =
-          "http://103.195.186.197/nsretailapi/api/stockdispatch/InsertStockdispatch/" +
+          "http://122.175.62.71/api/stockdispatch/InsertStockdispatch/" +
               widget.nStockDispatchID.toString() +
               "/0/" +
               widget.branchId.toString() +
