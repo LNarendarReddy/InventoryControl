@@ -23,7 +23,7 @@ namespace BackupUploadAPI
 
         public static DriveService GetService()
         {
-            var credential = GoogleCredential.FromFile("silver-pen-366817-97cb2d7ccef2.json").CreateScoped(new[] { DriveService.ScopeConstants.Drive });
+            var credential = GoogleCredential.FromFile("silent-bolt-232805-c18a3e7b0d0a.json").CreateScoped(new[] { DriveService.ScopeConstants.Drive });
             DriveService service = new DriveService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential
