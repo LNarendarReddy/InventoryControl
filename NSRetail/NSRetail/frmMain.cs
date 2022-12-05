@@ -255,7 +255,8 @@ namespace NSRetail
             { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,
              btnStockDispatch, btnDispatchList, btnDCList, btnPrintDC, btnStockCounting, bbiStockSummary, bbiSyncStatus
             , btnBranch, btnBranchCouter, btnSubCategory, btnUser, btnDealer , btnModeOfPayment, btnUnitsofMeasure
-            , btnTaxMaster, btnPrinterMaster, btnBranchRefund, btnDayClosure, btnRunningSale, btnCategory};
+            , btnTaxMaster, btnPrinterMaster, btnBranchRefund, btnDayClosure, btnRunningSale, btnCategory, btnStockAdjustment, btnSupplierReturns
+            , bbiItemSummary, btnItemLedger, btnStockSummary, bbiWarehouseReports};
 
             List<RibbonPageGroup> ribbonPageGroups = new List<RibbonPageGroup>()
             { ribbonPageGroup1, ribbonPageGroup2, ribbonPageGroup3, ribbonPageGroup4, ribbonPageGroup5, ribbonPageGroup6,
@@ -308,6 +309,18 @@ namespace NSRetail
                 bbiStockSummary.Visibility = BarItemVisibility.Always;
                 bbiSyncStatus.Visibility = BarItemVisibility.Always;
                 btnDealer.Visibility = BarItemVisibility.Always;
+            }
+            else if(Utility.Role == "Stock counting user")
+            {
+                availableItems.ForEach(x => x.Visibility = BarItemVisibility.Never);
+                revisitMenuItems = true;
+
+                btnStockCounting.Visibility = 
+                bbiStockReports.Visibility =
+                bbiItemSummary.Visibility = 
+                btnItemLedger.Visibility = 
+                bbiWarehouseReports.Visibility =
+                btnStockSummary.Visibility = BarItemVisibility.Always;
             }
 
             if (revisitMenuItems)
