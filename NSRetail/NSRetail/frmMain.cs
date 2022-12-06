@@ -309,6 +309,12 @@ namespace NSRetail
                 bbiStockSummary.Visibility = BarItemVisibility.Always;
                 bbiSyncStatus.Visibility = BarItemVisibility.Always;
                 btnDealer.Visibility = BarItemVisibility.Always;
+                btnStockAdjustment.Visibility = BarItemVisibility.Always;
+                btnSupplierReturns.Visibility = BarItemVisibility.Always;
+                bbiItemSummary.Visibility = BarItemVisibility.Always;
+                btnItemLedger.Visibility = BarItemVisibility.Always;
+                btnStockSummary.Visibility = BarItemVisibility.Always;
+                bbiWarehouseReports.Visibility = BarItemVisibility.Always;
             }
             else if(Utility.Role == "Stock counting user")
             {
