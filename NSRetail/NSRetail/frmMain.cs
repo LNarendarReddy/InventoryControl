@@ -39,9 +39,6 @@ namespace NSRetail
             Utility.FillBaseLine();
             SplashScreenManager.CloseForm();
 
-            //DevExpress.LookAndFeel.UserLookAndFeel.Default.SetDefaultStyle();
-            //DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2019 Black";
-            //DevExpress.LookAndFeel.UserLookAndFeel.Default.UpdateStyleSettings();
         }
 
         private void btnBranch_ItemClick(object sender, ItemClickEventArgs e)
@@ -249,7 +246,7 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : { Utility.FullName}   Version : { Utility.AppVersion } (29-09-2022)";
+            lblUserName.Caption = $"Logged In User : {Utility.FullName}   Version : {Utility.AppVersion} {Utility.VersionDate}";
 
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,
@@ -337,26 +334,6 @@ namespace NSRetail
             }
             btnStockCounting.Visibility = BarItemVisibility.Always;
             bbiClearProcedureCache.Enabled = Utility.Role == "Admin";
-        }
-
-        private void btnTaxWiseSales_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            frmTaxwisesale obj = new frmTaxwisesale();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
-        }
-
-        private void btnItemWiseSales_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            frmItemwiseSales obj = new frmItemwiseSales();
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
         }
 
         private void bbiReport_ItemClick(object sender, ItemClickEventArgs e)

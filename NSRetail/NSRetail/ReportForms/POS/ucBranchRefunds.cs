@@ -26,10 +26,6 @@ namespace NSRetail.ReportForms.POS
 
             ButtonColumns = new List<string>() { "View" };
 
-            //IncludeSettingsCollection = new List<IncludeSettings>()
-            //{
-            //    new IncludeSettings("Include Item", "IncludeItem", new List<string> { "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "SALEPRICE", "QUANTITYORWEIGHTINKGS" })
-            //};
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;

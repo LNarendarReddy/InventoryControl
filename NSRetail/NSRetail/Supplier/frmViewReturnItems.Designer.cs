@@ -44,20 +44,31 @@
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnGenerateCreditNote = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcSupplierReturns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSupplierReturns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnPrint);
+            this.layoutControl1.Controls.Add(this.btnGenerateCreditNote);
             this.layoutControl1.Controls.Add(this.gcSupplierReturns);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1151, 374, 650, 400);
             this.layoutControl1.Root = this.Root;
             this.layoutControl1.Size = new System.Drawing.Size(1103, 635);
             this.layoutControl1.TabIndex = 0;
@@ -65,10 +76,10 @@
             // 
             // gcSupplierReturns
             // 
-            this.gcSupplierReturns.Location = new System.Drawing.Point(12, 12);
+            this.gcSupplierReturns.Location = new System.Drawing.Point(12, 38);
             this.gcSupplierReturns.MainView = this.gvSupplierReturns;
             this.gcSupplierReturns.Name = "gcSupplierReturns";
-            this.gcSupplierReturns.Size = new System.Drawing.Size(1079, 611);
+            this.gcSupplierReturns.Size = new System.Drawing.Size(1079, 585);
             this.gcSupplierReturns.TabIndex = 10;
             this.gcSupplierReturns.TabStop = false;
             this.gcSupplierReturns.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -98,6 +109,7 @@
             this.gvSupplierReturns.OptionsMenu.EnableGroupPanelMenu = false;
             this.gvSupplierReturns.OptionsView.ShowFooter = true;
             this.gvSupplierReturns.OptionsView.ShowGroupPanel = false;
+            this.gvSupplierReturns.OptionsView.ShowViewCaption = true;
             // 
             // gridColumn4
             // 
@@ -214,7 +226,10 @@
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1});
+            this.layoutControlItem1,
+            this.layoutControlItem2,
+            this.emptySpaceItem1,
+            this.layoutControlItem3});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1103, 635);
             this.Root.TextVisible = false;
@@ -222,11 +237,57 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gcSupplierReturns;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 26);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1083, 615);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1083, 589);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
+            // 
+            // btnGenerateCreditNote
+            // 
+            this.btnGenerateCreditNote.Location = new System.Drawing.Point(803, 12);
+            this.btnGenerateCreditNote.Name = "btnGenerateCreditNote";
+            this.btnGenerateCreditNote.Size = new System.Drawing.Size(155, 22);
+            this.btnGenerateCreditNote.StyleController = this.layoutControl1;
+            this.btnGenerateCreditNote.TabIndex = 11;
+            this.btnGenerateCreditNote.Text = "Generate Credit Note";
+            this.btnGenerateCreditNote.Click += new System.EventHandler(this.btnGenerateCreditNote_Click);
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.btnGenerateCreditNote;
+            this.layoutControlItem2.Location = new System.Drawing.Point(791, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(159, 26);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(791, 26);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(962, 12);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(129, 22);
+            this.btnPrint.StyleController = this.layoutControl1;
+            this.btnPrint.TabIndex = 12;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.btnPrint;
+            this.layoutControlItem3.Location = new System.Drawing.Point(950, 0);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(133, 26);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
             // 
             // frmViewReturnItems
             // 
@@ -244,6 +305,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvSupplierReturns)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -266,5 +330,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraEditors.SimpleButton btnGenerateCreditNote;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraEditors.SimpleButton btnPrint;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
     }
 }

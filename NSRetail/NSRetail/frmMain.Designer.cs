@@ -515,7 +515,6 @@
             this.btnTaxWiseSales.Id = 42;
             this.btnTaxWiseSales.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTaxWiseSales.ImageOptions.SvgImage")));
             this.btnTaxWiseSales.Name = "btnTaxWiseSales";
-            this.btnTaxWiseSales.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaxWiseSales_ItemClick);
             // 
             // btnZeroStock
             // 
@@ -531,7 +530,6 @@
             this.btnItemWiseSales.Id = 44;
             this.btnItemWiseSales.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnItemWiseSales.ImageOptions.SvgImage")));
             this.btnItemWiseSales.Name = "btnItemWiseSales";
-            this.btnItemWiseSales.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItemWiseSales_ItemClick);
             // 
             // bbiReport
             // 

@@ -21,7 +21,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_INITIALSR]";
-                    cmd.Parameters.AddWithValue("@UserID", supplierReturns.UserID);
+                    cmd.Parameters.AddWithValue("@SupplierID", supplierReturns.SupplierID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);
@@ -72,7 +72,7 @@ namespace DataAccess
             return supplierReturns;
         }
 
-        public object SaveSupplierReturnsDetail(DataRow drNew,object UserID)
+        public object SaveSupplierReturnsDetail(DataRow drNew,object UserID, object BranchID)
         {
             object SupplierReturnsDetailID = null;
             try
@@ -87,8 +87,8 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ItemCostPriceID", drNew["ITEMCOSTPRICEID"]);
                     cmd.Parameters.AddWithValue("@Quantity", drNew["QUANTITY"]);
                     cmd.Parameters.AddWithValue("@WeightInKGS", drNew["WEIGHTINKGS"]);
-                    cmd.Parameters.AddWithValue("@TotalCostPrice", drNew["TOTALCOSTPRICE"]);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
                     SupplierReturnsDetailID = cmd.ExecuteScalar();
                 }
             }
@@ -208,5 +208,139 @@ namespace DataAccess
             }
             return dt;
         }
+
+        public DataTable GetSupplierReturnsforCN(object SupplierReturnsID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_SUPPLIERRETURNDETAILFORCN]";
+                    cmd.Parameters.AddWithValue("@SupplierReturnsID", SupplierReturnsID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving Supplier Returns");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
+
+        public void UpdateSupplierCostPrice(object BRDID, object SupplierID, object ItemCostPriceID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_SUPPLIERCOSTPRICE]";
+                    cmd.Parameters.AddWithValue("@BRDID", BRDID);
+                    cmd.Parameters.AddWithValue("@SupplierID", SupplierID);
+                    cmd.Parameters.AddWithValue("@ItemCostPriceID", ItemCostPriceID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while updating supplier cost price");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+
+        public void UpdateBRReason(object BRDID, object ReasonID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_BRREASON]";
+                    cmd.Parameters.AddWithValue("@BRDID", BRDID);
+                    cmd.Parameters.AddWithValue("@REASONID", ReasonID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while updating BR Reason");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+
+        public DataTable GetReason()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_REASON]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving reason list");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
+
+        public DataTable GetSupplier()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_SUPPLIERFORBR]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving reason list");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
+
     }
 }

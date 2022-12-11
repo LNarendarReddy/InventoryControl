@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -276,12 +277,17 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@COUNTERID", CounterID);
                     cmd.Parameters.AddWithValue("@BREFUNDID", BRefundID);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
-                    cmd.ExecuteNonQuery();
+                    object objReturn = cmd.ExecuteScalar();
+                    if(objReturn != null)
+                        throw new Exception(Convert.ToString(objReturn));
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Accepting Branch Refund", ex);
+                if (ex.Message.Contains("Few items"))
+                    throw ex;
+                else
+                    throw new Exception("Error While Accepting Branch Refund", ex);
             }
             finally
             {

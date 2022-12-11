@@ -48,12 +48,16 @@ namespace NSRetail.ReportForms.Wareshouse
             switch (buttonText)
             {
                 case "View":
-                    DataTable dt = new SupplierRepository().GetSupllierReturnsDetail(drFocusedRow["SUPPLIERRETURNSID"]);
-                    frmViewReturnItems obj = new frmViewReturnItems(dt, drFocusedRow["DEALERNAME"], drFocusedRow["SUPPLIERRETURNSID"]);
+                    DataTable dt = new SupplierRepository().GetSupplierReturnsforCN(drFocusedRow["SUPPLIERRETURNSID"]);
+                        frmViewReturnItems obj = new frmViewReturnItems(dt, 
+                            drFocusedRow["DEALERNAME"], drFocusedRow["SUPPLIERRETURNSID"],
+                            Convert.ToString(drFocusedRow["STATUS"]) != "Draft");
                     obj.ShowInTaskbar = false;
                     obj.StartPosition = FormStartPosition.CenterScreen;
                     obj.IconOptions.ShowIcon = false;
                     obj.ShowDialog();
+                    if (obj.cNGenerated)
+                        drFocusedRow["STATUS"] = "CN Generated";
                     break;
             }
         }

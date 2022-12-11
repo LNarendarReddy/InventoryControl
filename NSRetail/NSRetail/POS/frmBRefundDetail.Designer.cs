@@ -44,8 +44,15 @@
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcReason = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbReason = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcSupplier = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbSupplier = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.BRDID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -55,6 +62,8 @@
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbReason)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbSupplier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -111,6 +120,9 @@
             this.gcItems.MainView = this.gvItems;
             this.gcItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcItems.Name = "gcItems";
+            this.gcItems.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.cmbReason,
+            this.cmbSupplier});
             this.gcItems.Size = new System.Drawing.Size(1144, 565);
             this.gcItems.TabIndex = 4;
             this.gcItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -133,12 +145,19 @@
             this.gridColumn8,
             this.gridColumn9,
             this.gridColumn10,
-            this.gridColumn11,
-            this.gridColumn12});
+            this.gcReason,
+            this.gridColumn13,
+            this.gridColumn14,
+            this.gcSupplier,
+            this.gridColumn16,
+            this.gridColumn17,
+            this.BRDID});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
             this.gvItems.OptionsView.ShowGroupPanel = false;
+            this.gvItems.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvItems_CellValueChanged);
+            this.gvItems.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gvItems_KeyPress);
             // 
             // gridColumn1
             // 
@@ -158,7 +177,7 @@
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
-            this.gridColumn2.Width = 58;
+            this.gridColumn2.Width = 36;
             // 
             // gridColumn3
             // 
@@ -169,7 +188,7 @@
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
-            this.gridColumn3.Width = 134;
+            this.gridColumn3.Width = 84;
             // 
             // gridColumn4
             // 
@@ -180,7 +199,7 @@
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 2;
-            this.gridColumn4.Width = 384;
+            this.gridColumn4.Width = 261;
             // 
             // gridColumn5
             // 
@@ -191,7 +210,7 @@
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 3;
-            this.gridColumn5.Width = 87;
+            this.gridColumn5.Width = 42;
             // 
             // gridColumn6
             // 
@@ -202,7 +221,7 @@
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 4;
-            this.gridColumn6.Width = 87;
+            this.gridColumn6.Width = 57;
             // 
             // gridColumn7
             // 
@@ -213,7 +232,7 @@
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 5;
-            this.gridColumn7.Width = 87;
+            this.gridColumn7.Width = 50;
             // 
             // gridColumn8
             // 
@@ -224,7 +243,7 @@
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 6;
-            this.gridColumn8.Width = 87;
+            this.gridColumn8.Width = 56;
             // 
             // gridColumn9
             // 
@@ -233,8 +252,8 @@
             this.gridColumn9.MinWidth = 23;
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 8;
-            this.gridColumn9.Width = 87;
+            this.gridColumn9.VisibleIndex = 7;
+            this.gridColumn9.Width = 47;
             // 
             // gridColumn10
             // 
@@ -243,24 +262,91 @@
             this.gridColumn10.MinWidth = 23;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 9;
-            this.gridColumn10.Width = 87;
+            this.gridColumn10.VisibleIndex = 8;
+            this.gridColumn10.Width = 52;
             // 
-            // gridColumn11
+            // gcReason
             // 
-            this.gridColumn11.Caption = "REASONID";
-            this.gridColumn11.FieldName = "REASONID";
-            this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.OptionsColumn.AllowEdit = false;
+            this.gcReason.Caption = "REASONID";
+            this.gcReason.ColumnEdit = this.cmbReason;
+            this.gcReason.FieldName = "REASONID";
+            this.gcReason.Name = "gcReason";
+            this.gcReason.Visible = true;
+            this.gcReason.VisibleIndex = 9;
+            this.gcReason.Width = 54;
             // 
-            // gridColumn12
+            // cmbReason
             // 
-            this.gridColumn12.Caption = "Reason";
-            this.gridColumn12.FieldName = "REASONNAME";
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.OptionsColumn.AllowEdit = false;
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 7;
+            this.cmbReason.AutoHeight = false;
+            this.cmbReason.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbReason.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("REASONID", "REASONID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("REASONNAME", "REASONNAME")});
+            this.cmbReason.Name = "cmbReason";
+            this.cmbReason.NullText = "";
+            this.cmbReason.ShowHeader = false;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "DEALERID";
+            this.gridColumn13.FieldName = "DEALERID";
+            this.gridColumn13.Name = "gridColumn13";
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "ITEMCOSTPRICEID";
+            this.gridColumn14.FieldName = "ITEMCOSTPRICEID";
+            this.gridColumn14.Name = "gridColumn14";
+            // 
+            // gcSupplier
+            // 
+            this.gcSupplier.Caption = "Supplier";
+            this.gcSupplier.ColumnEdit = this.cmbSupplier;
+            this.gcSupplier.FieldName = "DEALERID";
+            this.gcSupplier.Name = "gcSupplier";
+            this.gcSupplier.Visible = true;
+            this.gcSupplier.VisibleIndex = 10;
+            this.gcSupplier.Width = 239;
+            // 
+            // cmbSupplier
+            // 
+            this.cmbSupplier.AutoHeight = false;
+            this.cmbSupplier.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbSupplier.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERID", "DEALERID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERNAME", "DEALERNAME")});
+            this.cmbSupplier.Name = "cmbSupplier";
+            this.cmbSupplier.NullText = "";
+            this.cmbSupplier.ShowHeader = false;
+            this.cmbSupplier.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "Cost Price WOT";
+            this.gridColumn16.FieldName = "COSTPRICEWOT";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.OptionsColumn.AllowEdit = false;
+            this.gridColumn16.Visible = true;
+            this.gridColumn16.VisibleIndex = 11;
+            this.gridColumn16.Width = 69;
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "Cost Price WT";
+            this.gridColumn17.FieldName = "COSTPRICEWT";
+            this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.OptionsColumn.AllowEdit = false;
+            this.gridColumn17.Visible = true;
+            this.gridColumn17.VisibleIndex = 12;
+            this.gridColumn17.Width = 72;
+            // 
+            // BRDID
+            // 
+            this.BRDID.Caption = "BRDID";
+            this.BRDID.FieldName = "BRDID";
+            this.BRDID.Name = "BRDID";
             // 
             // Root
             // 
@@ -333,6 +419,8 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbReason)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbSupplier)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -364,7 +452,14 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gcReason;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn gcSupplier;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbReason;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbSupplier;
+        private DevExpress.XtraGrid.Columns.GridColumn BRDID;
     }
 }
