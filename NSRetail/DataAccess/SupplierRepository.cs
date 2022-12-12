@@ -138,12 +138,19 @@ namespace DataAccess
                     cmd.CommandText = "[USP_U_SUPPLIERRETURNS]";
                     cmd.Parameters.AddWithValue("@SupplierReturnsID", SupplierReturnsID);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
-                    cmd.ExecuteNonQuery();
+                    object objreturn = cmd.ExecuteScalar();
+                    if (objreturn != null)
+                    {
+                        throw new Exception(Convert.ToString(objreturn));
+                    }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while updating supplier returns detail");
+                if (ex.Message.Contains("Few items are not freezed"))
+                    throw ex;
+                else
+                    throw new Exception("Error while updating supplier returns detail");
             }
             finally
             {
@@ -342,5 +349,56 @@ namespace DataAccess
             return dt;
         }
 
+        public void FreezeSupplierReturns(object SupplierReturnsID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_FREEZESUPPLIERRETURNS]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERRETURNSID", SupplierReturnsID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while freezing supplier returns");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+
+        public DataTable ViewSupplierReturnItems(object SupplierReturnsID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_SUPPLIERRETURNSITEMS]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERRETURNSID", SupplierReturnsID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving supplier returns items");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
     }
 }

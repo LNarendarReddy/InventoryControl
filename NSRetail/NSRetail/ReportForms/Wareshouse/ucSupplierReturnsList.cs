@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using NSRetail.Supplier;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,7 +23,7 @@ namespace NSRetail.ReportForms.Wareshouse
                 , { "STATUS", "Status" }
             };
 
-            ButtonColumns = new List<string>() { "View" };
+            ButtonColumns = new List<string>() { "View","Generate CN" };
 
             cmbSupplier.Properties.DataSource = new MasterRepository().GetDealer(true);
             cmbSupplier.Properties.ValueMember = "DEALERID";
@@ -47,17 +48,30 @@ namespace NSRetail.ReportForms.Wareshouse
         {
             switch (buttonText)
             {
-                case "View":
+                case "Generate CN":
                     DataTable dt = new SupplierRepository().GetSupplierReturnsforCN(drFocusedRow["SUPPLIERRETURNSID"]);
-                        frmViewReturnItems obj = new frmViewReturnItems(dt, 
+                        
+                    frmViewReturnItems obj = new frmViewReturnItems(dt, 
                             drFocusedRow["DEALERNAME"], drFocusedRow["SUPPLIERRETURNSID"],
                             Convert.ToString(drFocusedRow["STATUS"]) != "Draft");
+
                     obj.ShowInTaskbar = false;
                     obj.StartPosition = FormStartPosition.CenterScreen;
                     obj.IconOptions.ShowIcon = false;
                     obj.ShowDialog();
                     if (obj.cNGenerated)
                         drFocusedRow["STATUS"] = "CN Generated";
+                    break;
+                case "View":
+                    DataTable dti = new SupplierRepository().ViewSupplierReturnItems(drFocusedRow["SUPPLIERRETURNSID"]);
+                    
+                    frmViewReturnDetail obji = new frmViewReturnDetail(dti,
+                        drFocusedRow["DEALERNAME"], drFocusedRow["SUPPLIERRETURNSID"]);
+
+                    obji.ShowInTaskbar = false;
+                    obji.StartPosition = FormStartPosition.CenterScreen;
+                    obji.IconOptions.ShowIcon = false;
+                    obji.ShowDialog();
                     break;
             }
         }

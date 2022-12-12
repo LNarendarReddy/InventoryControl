@@ -299,5 +299,24 @@ namespace NSRetail.Stock
             SaveSupplierReturnsDetail(e.RowHandle);
         }
 
+        private void btnFreeze_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvSupplierReturns.RowCount == 0)
+                    return;
+                supplierRepository.FreezeSupplierReturns(supplierReturns.SupplierReturnsID, Utility.UserID);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

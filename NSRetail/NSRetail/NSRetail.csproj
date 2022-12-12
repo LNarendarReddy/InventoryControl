@@ -698,6 +698,12 @@
     <Compile Include="Supplier\frmSupplierReturns.Designer.cs">
       <DependentUpon>frmSupplierReturns.cs</DependentUpon>
     </Compile>
+    <Compile Include="Supplier\frmViewReturnDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Supplier\frmViewReturnDetail.Designer.cs">
+      <DependentUpon>frmViewReturnDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Supplier\frmViewReturnItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1009,6 +1015,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmSupplierReturns.resx">
       <DependentUpon>frmSupplierReturns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Supplier\frmViewReturnDetail.resx">
+      <DependentUpon>frmViewReturnDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmViewReturnItems.resx">
       <DependentUpon>frmViewReturnItems.cs</DependentUpon>
