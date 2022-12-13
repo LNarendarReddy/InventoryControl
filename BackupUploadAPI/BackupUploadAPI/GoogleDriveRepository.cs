@@ -44,7 +44,13 @@ namespace BackupUploadAPI
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Folder request failed", ex.Message);
+                Console.WriteLine("Upload request failed Message : " + ex.Message);
+                Console.WriteLine("Upload request failed Stack :" + ex.StackTrace);
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine("Inner exception Message : " + ex.InnerException.Message);
+                    Console.WriteLine("Inner exception Stack :" + ex.InnerException.StackTrace);
+                }
             }
             return folderID;
         }
@@ -63,7 +69,13 @@ namespace BackupUploadAPI
             }
             catch (Exception ex)
             {
-                Console.WriteLine("File request failed", ex);
+                Console.WriteLine("Upload request failed Message : " + ex.Message);
+                Console.WriteLine("Upload request failed Stack :" + ex.StackTrace);
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine("Inner exception Message : " + ex.InnerException.Message);
+                    Console.WriteLine("Inner exception Stack :" + ex.InnerException.StackTrace);
+                }
             }
             return tuple;
         }
@@ -80,7 +92,13 @@ namespace BackupUploadAPI
             }
             catch (Exception ex)
             {
-                Console.WriteLine("File request failed", ex);
+                Console.WriteLine("Upload request failed Message : " + ex.Message);
+                Console.WriteLine("Upload request failed Stack :" + ex.StackTrace);
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine("Inner exception Message : " + ex.InnerException.Message);
+                    Console.WriteLine("Inner exception Stack :" + ex.InnerException.StackTrace);
+                }
             }
             return fileID;
         }
@@ -130,7 +148,13 @@ namespace BackupUploadAPI
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Upload request failed", ex);
+                Console.WriteLine("Upload request failed Message : " + ex.Message);
+                Console.WriteLine("Upload request failed Stack :" + ex.StackTrace);
+                if(ex.InnerException != null)
+                {
+                    Console.WriteLine("Inner exception Message : " + ex.InnerException.Message);
+                    Console.WriteLine("Inner exception Stack :" + ex.InnerException.StackTrace);
+                }
             }
             return fileid;
         }
@@ -144,7 +168,13 @@ namespace BackupUploadAPI
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Delete failed.", ex);
+                Console.WriteLine("Upload request failed Message : " + ex.Message);
+                Console.WriteLine("Upload request failed Stack :" + ex.StackTrace);
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine("Inner exception Message : " + ex.InnerException.Message);
+                    Console.WriteLine("Inner exception Stack :" + ex.InnerException.StackTrace);
+                }
             }
         }
     }
