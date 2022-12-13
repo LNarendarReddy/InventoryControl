@@ -40,6 +40,7 @@
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.luBranch = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -53,7 +54,6 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcSKU)).BeginInit();
@@ -116,6 +116,7 @@
             // 
             this.gvSKU.GridControl = this.gcSKU;
             this.gvSKU.Name = "gvSKU";
+            this.gvSKU.OptionsView.ShowFooter = true;
             this.gvSKU.OptionsView.ShowGroupPanel = false;
             this.gvSKU.DoubleClick += new System.EventHandler(this.gvSKU_DoubleClick);
             // 
@@ -212,6 +213,14 @@
             this.gridColumn17.Visible = true;
             this.gridColumn17.VisibleIndex = 1;
             this.gridColumn17.Width = 87;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Item Code";
+            this.gridColumn1.FieldName = "ITEMCODE";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 2;
             // 
             // luBranch
             // 
@@ -362,14 +371,6 @@
             this.layoutControlItem5.Size = new System.Drawing.Size(1209, 649);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Item Code";
-            this.gridColumn1.FieldName = "ITEMCODE";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 2;
             // 
             // frmStockSummary
             // 

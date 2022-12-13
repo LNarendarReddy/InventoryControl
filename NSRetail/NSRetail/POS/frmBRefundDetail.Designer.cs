@@ -185,7 +185,7 @@
             this.gridColumn3.FieldName = "ITEMCODE";
             this.gridColumn3.MinWidth = 23;
             this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.OptionsColumn.AllowEdit = false;
+            this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
             this.gridColumn3.Width = 84;

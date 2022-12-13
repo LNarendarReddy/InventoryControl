@@ -169,8 +169,8 @@
             this.gridColumn8.Caption = "Item Code";
             this.gridColumn8.FieldName = "ITEMCODE";
             this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn8.OptionsColumn.ReadOnly = true;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 0;
             this.gridColumn8.Width = 120;

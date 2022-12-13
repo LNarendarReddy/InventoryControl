@@ -35,17 +35,20 @@ namespace NSRetail.Stock
             try
             {
                 ((frmMain)MdiParent).RefreshBaseLineData += FrmStockDispatch_RefreshBaseLineData;
+
                 DataTable dtBranch = ObjMasterRep.GetBranch();
-                DataView dvBranch = dtBranch.Copy().DefaultView;
-                cmbToBranch.Properties.DataSource = dvBranch;
-                cmbToBranch.Properties.ValueMember = "BRANCHID";
-                cmbToBranch.Properties.DisplayMember = "BRANCHNAME";
 
                 DataView gvWarehouse = dtBranch.Copy().DefaultView;
-                gvWarehouse.RowFilter = "ISWAREHOUSE = 1";
+                gvWarehouse.RowFilter = $"BRANCHID = {Utility.BranchID}";
                 cmbFromBranch.Properties.DataSource = gvWarehouse;
                 cmbFromBranch.Properties.ValueMember = "BRANCHID";
                 cmbFromBranch.Properties.DisplayMember = "BRANCHNAME";
+
+                DataView dvBranch = dtBranch.Copy().DefaultView;
+                dvBranch.RowFilter = Utility.BranchID != 45 ? $"BRANCHID <> {Utility.BranchID} AND ISWAREHOUSE = 1" : $"ISWAREHOUSE = 0";
+                cmbToBranch.Properties.DataSource = dvBranch;
+                cmbToBranch.Properties.ValueMember = "BRANCHID";
+                cmbToBranch.Properties.DisplayMember = "BRANCHNAME";
 
                 cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
                 cmbCategory.Properties.ValueMember = "CATEGORYID";
