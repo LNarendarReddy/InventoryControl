@@ -258,7 +258,7 @@ namespace NSRetail
             List<RibbonPageGroup> ribbonPageGroups = new List<RibbonPageGroup>()
             { ribbonPageGroup1, ribbonPageGroup2, ribbonPageGroup3, ribbonPageGroup4, ribbonPageGroup5, ribbonPageGroup6,
             ribbonPageGroup8,  ribbonPageGroup10, ribbonPageGroup11, ribbonPageGroup12, ribbonPageGroup14, ribbonPageGroup15
-            , ribbonPageGroup16, ribbonPageGroup17, , ribbonPageGroup19 };
+            , ribbonPageGroup16, ribbonPageGroup17, ribbonPageGroup19 };
 
             List<RibbonPage> ribbonPages = new List<RibbonPage>()
             {
