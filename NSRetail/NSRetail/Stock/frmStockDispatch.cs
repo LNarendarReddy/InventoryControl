@@ -43,12 +43,16 @@ namespace NSRetail.Stock
                 cmbFromBranch.Properties.DataSource = gvWarehouse;
                 cmbFromBranch.Properties.ValueMember = "BRANCHID";
                 cmbFromBranch.Properties.DisplayMember = "BRANCHNAME";
+                cmbFromBranch.EditValue = gvWarehouse.ToTable().Rows[0]["BRANCHID"];
+
 
                 DataView dvBranch = dtBranch.Copy().DefaultView;
                 dvBranch.RowFilter = Utility.BranchID != 45 ? $"BRANCHID <> {Utility.BranchID} AND ISWAREHOUSE = 1" : $"ISWAREHOUSE = 0";
                 cmbToBranch.Properties.DataSource = dvBranch;
                 cmbToBranch.Properties.ValueMember = "BRANCHID";
                 cmbToBranch.Properties.DisplayMember = "BRANCHNAME";
+                cmbToBranch.EditValue = dvBranch.ToTable().Rows.Count == 1 ? dvBranch.ToTable().Rows[0]["BRANCHID"] : null;
+
 
                 cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
                 cmbCategory.Properties.ValueMember = "CATEGORYID";
