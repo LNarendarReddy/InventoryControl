@@ -257,11 +257,12 @@ namespace NSRetail
 
             List<RibbonPageGroup> ribbonPageGroups = new List<RibbonPageGroup>()
             { ribbonPageGroup1, ribbonPageGroup2, ribbonPageGroup3, ribbonPageGroup4, ribbonPageGroup5, ribbonPageGroup6,
-            ribbonPageGroup8,  ribbonPageGroup10, ribbonPageGroup11, ribbonPageGroup12};
+            ribbonPageGroup8,  ribbonPageGroup10, ribbonPageGroup11, ribbonPageGroup12, ribbonPageGroup14, ribbonPageGroup15
+            , ribbonPageGroup16, ribbonPageGroup17, , ribbonPageGroup19 };
 
             List<RibbonPage> ribbonPages = new List<RibbonPage>()
             {
-                ribbonPage1, ribbonPage3
+                ribbonPage1, ribbonPage3, ribbonPage2, ribbonPage4, ribbonPage6
             };
 
             bool revisitMenuItems = false;
@@ -278,6 +279,11 @@ namespace NSRetail
                 bbiStockSummary.Visibility = BarItemVisibility.Always;
                 btnPrintDC.Visibility = BarItemVisibility.Always;
                 btnDCList.Visibility = BarItemVisibility.Always;
+                bbiItemSummary.Visibility = BarItemVisibility.Always;
+                btnItemLedger.Visibility = BarItemVisibility.Always;
+                btnStockSummary.Visibility = BarItemVisibility.Always;
+                bbiWarehouseReports.Visibility = BarItemVisibility.Always;
+                btnSupplierReturns.Visibility = BarItemVisibility.Always;
             }
             else if (Utility.Role == "Division User")
             {

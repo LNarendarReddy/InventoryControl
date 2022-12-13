@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using DataAccess;
 using DevExpress.XtraGrid.Columns;
@@ -19,10 +20,13 @@ namespace NSRetail.Stock
             if (luBranch.EditValue == null)
                 return;
 
-            DataSet ds = new StockRepository().GetStockSummary1(luBranch.EditValue, sluItem.EditValue);
-            
-            DataColumn keyColumn = ds.Tables[0].Columns["ITEMID"];
-            DataColumn foreignKeyColumn = ds.Tables[1].Columns["ITEMID"];
+            DataSet ds = new ReportRepository().GetReportDataset("USP_R_STOCKSUMMARY1"
+                , new Dictionary<string, object> 
+                {
+                    {"BranchID", luBranch.EditValue },
+                    {"ItemID", sluItem.EditValue }
+                });
+                        
             ds.Relations.Add("drItemID"
                 , new[] { ds.Tables[0].Columns["ITEMID"], ds.Tables[0].Columns["BRANCHID"] }
                 , new[] { ds.Tables[1].Columns["ITEMID"], ds.Tables[1].Columns["BRANCHID"] });
