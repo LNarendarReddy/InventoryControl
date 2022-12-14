@@ -138,11 +138,12 @@ namespace BackupUploadAPI
                 {
                     FilesResource.CreateMediaUpload request;
                     using (var stream = new System.IO.FileStream(path, System.IO.FileMode.Open))
-                    {
+                    {                        
                         request = service.Files.Create(FileMetaData, stream, FileMetaData.MimeType);
                         request.Fields = "id";
-                        request.Upload();
-                        fileid = request.ResponseBody.Id;
+                        var uploadProgress = request.Upload();
+                        if (uploadProgress.Exception != null) throw uploadProgress.Exception;
+                        fileid = request.ResponseBody?.Id;
                     }
                 }
             }
