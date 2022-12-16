@@ -52,6 +52,8 @@ namespace NSRetail
                 , {"CREATEDBY", "User Name"}
                 , {"CREATEDDATE", "Created Date"}
                 , {"TIME", "Time"}
+                , {"CLASSIFICATIONNAME", "Classification"}
+                , {"SUBCLASSIFICATIONNAME", "Sub Classification"}
             };
 
             ButtonColumns = new List<string>();

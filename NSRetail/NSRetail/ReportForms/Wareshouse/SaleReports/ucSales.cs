@@ -29,6 +29,8 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 , new IncludeSettings("Counter", "IncludeCounter", new List<string>{ "COUNTERNAME" })
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
+                , new IncludeSettings("Classification", "IncludeClassification", new List<string>{ "CLASSIFICATIONNAME" })
+                , new IncludeSettings("Sub Classification", "IncludeSubClassification", new List<string>{ "SUBCLASSIFICATIONNAME" })
             };
 
             SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
