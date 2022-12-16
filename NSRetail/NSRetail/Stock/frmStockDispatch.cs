@@ -154,6 +154,7 @@ namespace NSRetail.Stock
             {
                 if (cmbItemCode.EditValue != null)
                 {
+                    
                     int rowhandle = cmbLookupView.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
                     txtItemName.EditValue = cmbLookupView.GetRowCellValue(rowhandle,"ITEMNAME");
                     DataTable dtMRPList = ObjItemRep.GetMRPList(cmbItemCode.EditValue);
@@ -163,6 +164,7 @@ namespace NSRetail.Stock
                         obj.ShowDialog();
                         if (obj._IsSave)
                         {
+
                             txtMRP.EditValue = ((DataRowView)obj.drSelected)["MRP"];
                             txtSalePrice.EditValue = ((DataRowView)obj.drSelected)["SALEPRICE"];
                             ItemPriceID = ((DataRowView)obj.drSelected)["ITEMPRICEID"];
@@ -185,12 +187,12 @@ namespace NSRetail.Stock
                     txtWeightInKgs.Enabled = IsOpenItem;
 
                     DataTable dt = ObjStockRep.GetCurrentStock(cmbFromBranch.EditValue, cmbToBranch.EditValue,
-                            cmbItemCode.EditValue, ParentID);
+                            cmbItemCode.EditValue, ParentID);   
                     DataRow drStockValue = dt?.Rows[0];
                     txtWarehouseStock.EditValue = drStockValue?[0];
                     txtBranchStock.EditValue = drStockValue?[1];
 
-                    txtWeightInKgs.EditValue = 0.00;
+                    txtWeightInKgs.EditValue = 0.00;    
                     txtQuantity.EditValue = 1;
 
                     SendKeys.Send("{ENTER}");

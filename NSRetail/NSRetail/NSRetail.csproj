@@ -132,6 +132,12 @@
     <Compile Include="Counting\frmCounting.Designer.cs">
       <DependentUpon>frmCounting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Item\frmAddBranchPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\frmAddBranchPrice.Designer.cs">
+      <DependentUpon>frmAddBranchPrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\frmIncludeExclude.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -725,6 +731,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.aa.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Item\frmAddBranchPrice.resx">
+      <DependentUpon>frmAddBranchPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\frmIncludeExclude.resx">
       <DependentUpon>frmIncludeExclude.cs</DependentUpon>

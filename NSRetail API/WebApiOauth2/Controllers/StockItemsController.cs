@@ -24,7 +24,11 @@ namespace NSRetail.Controllers
                 var itemList = (from price in entities.ITEMPRICEs
                                 join code in entities.ITEMCODEs on price.ITEMCODEID equals code.ITEMCODEID
                                 join item in entities.ITEMs on code.ITEMID equals item.ITEMID
-                                where code.ITEMCODE1 == itemCode && code.DELETEDDATE == null && item.DELETEDDATE == null && price.DELETEDDATE == null
+                                where code.ITEMCODE1 == itemCode 
+                                            && code.DELETEDDATE == null 
+                                            && item.DELETEDDATE == null 
+                                            && price.DELETEDDATE == null
+                                            && price.BRANCHID != null
                                 select new
                                 {
                                     code.ITEMCODEID,
@@ -65,7 +69,10 @@ namespace NSRetail.Controllers
             {
                 var itemList = (from price in entities.ITEMPRICEs
                                 join code in entities.ITEMCODEs on price.ITEMCODEID equals code.ITEMCODEID
-                                where price.ITEMCODEID == itemCodeid && price.DELETEDDATE == null && code.DELETEDDATE == null
+                                where price.ITEMCODEID == itemCodeid 
+                                            && price.DELETEDDATE == null 
+                                            && code.DELETEDDATE == null 
+                                            && price.BRANCHID != null
                                 select new
                                 {
                                     price.ITEMCODEID,

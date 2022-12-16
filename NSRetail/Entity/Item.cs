@@ -61,5 +61,14 @@ namespace Entity
 
         public bool isSKUorItem { get; set; }
     }
+    public class BranchItemPrice : EntityBase 
+    { 
+        public object ITEMPRICEID { get; set;}
+        public object PARENTITEMPRICEID { get; set; }
+        public object BRANCHNAME { get; set; }
+        public object SALEPRICE { get; set; }
+        public object BRANCHID { get; set; }
+
+    }
 }
 
