@@ -65,7 +65,7 @@ namespace NSRetailPOS.UI
             {
                 DataTable dt = (gcBillDetails.DataSource as DataTable).Copy();
                 DataView dv = dt.DefaultView;
-                dv.RowFilter = "REFUNDQUANTITY > 0";
+                dv.RowFilter = "REFUNDQUANTITY > 0 AND REFUNDAMOUNT <> 0";
                 DataTable dtFiltered = dv.ToTable();
                 if (dtFiltered.Rows.Count == 0)
                     throw new Exception("Refund quantity should be greater than '0'");
