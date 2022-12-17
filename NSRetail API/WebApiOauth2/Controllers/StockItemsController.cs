@@ -28,7 +28,7 @@ namespace NSRetail.Controllers
                                             && code.DELETEDDATE == null 
                                             && item.DELETEDDATE == null 
                                             && price.DELETEDDATE == null
-                                            && price.BRANCHID != null
+                                            && price.BRANCHID == null
                                 select new
                                 {
                                     code.ITEMCODEID,
@@ -72,7 +72,7 @@ namespace NSRetail.Controllers
                                 where price.ITEMCODEID == itemCodeid 
                                             && price.DELETEDDATE == null 
                                             && code.DELETEDDATE == null 
-                                            && price.BRANCHID != null
+                                            && price.BRANCHID == null
                                 select new
                                 {
                                     price.ITEMCODEID,

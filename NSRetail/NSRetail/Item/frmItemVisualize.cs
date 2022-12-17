@@ -55,7 +55,7 @@ namespace NSRetail
                 gvBranchPrices.Columns["PARENTITEMPRICEID"].FilterInfo =
                     new ColumnFilterInfo($"[PARENTITEMPRICEID] = '{gvItemPrice.GetFocusedRowCellValue("ITEMPRICEID")}'");
                 gcOffer.DataSource =
-                    new ItemCodeRepository().GetOffers(gvItemPrice.GetFocusedRowCellValue("ITEMPRICEID"));
+                    itemCodeRepository.GetOffers(gvItemPrice.GetFocusedRowCellValue("ITEMPRICEID"));
             }
             catch (Exception ex) { }
         }
@@ -66,7 +66,7 @@ namespace NSRetail
             {
                 if (gvBranchPrices.FocusedRowHandle < 0)
                     return;
-                new ItemCodeRepository().DeleteItemPrice(gvBranchPrices.GetFocusedRowCellValue("ITEMPRICEID"), Utility.UserID);
+                itemCodeRepository.DeleteItemPrice(gvBranchPrices.GetFocusedRowCellValue("ITEMPRICEID"), Utility.UserID);
                 gvBranchPrices.DeleteRow(gvBranchPrices.FocusedRowHandle);
             }
             catch (Exception ex)
@@ -87,7 +87,7 @@ namespace NSRetail
                 branchItemPrice.SALEPRICE = gvBranchPrices.GetFocusedRowCellValue("SALEPRICE");
                 branchItemPrice.BRANCHID = gvBranchPrices.GetFocusedRowCellValue("BRANCHID");
                 branchItemPrice.UserID = Utility.UserID;
-                new ItemCodeRepository().SaveBranchItemPrice(branchItemPrice);
+                itemCodeRepository.SaveBranchItemPrice(branchItemPrice);
             }
             catch (Exception ex)
             {
@@ -111,7 +111,7 @@ namespace NSRetail
                 obj.ShowDialog();
                 if (branchItemPrice.IsSave)
                 {
-                    new ItemCodeRepository().SaveBranchItemPrice(branchItemPrice);
+                    itemCodeRepository.SaveBranchItemPrice(branchItemPrice);
                     gvBranchPrices.AddNewRow();
                 }
             }

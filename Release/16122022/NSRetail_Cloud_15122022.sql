@@ -84,7 +84,7 @@ BEGIN
   SELECT ITEMPRICEID, ITEMCODEID, SALEPRICE, MRP, GSTID, CREATEDDATE, UPDATEDATE, DELETEDDATE                                     
   FROM ITEMPRICE IP                                    
   WHERE IP.SYNCDATE > @SyncDate
-	AND (BRANCHID = NULL OR BRANCHID = @BranchID)
+	AND (BRANCHID IS NULL OR BRANCHID = @BranchID)
   RETURN                                    
  END                                    
                                     
