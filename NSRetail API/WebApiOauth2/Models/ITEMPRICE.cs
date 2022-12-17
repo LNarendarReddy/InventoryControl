@@ -22,5 +22,7 @@ namespace NSRetail.Models
         public Nullable<System.DateTime> CREATEDDATE { get; set; }
         public Nullable<System.DateTime> UPDATEDATE { get; set; }
         public Nullable<System.DateTime> DELETEDDATE { get; set; }
+        public Nullable<System.DateTime> BRANCHID { get; set; }
+        public Nullable<System.DateTime> PARENTITEMPRICEID { get; set; }
     }
 }

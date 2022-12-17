@@ -144,6 +144,7 @@ namespace DataAccess
                 dsItemVisualizer.Tables[0].TableName = "ITEM";
                 dsItemVisualizer.Tables[1].TableName = "ITEMPRICES";
                 dsItemVisualizer.Tables[2].TableName = "ITEMSTOCKSUMMARY";
+                dsItemVisualizer.Tables[3].TableName = "BRANCHPRICES";
 
             }
             catch (Exception ex)
@@ -456,6 +457,65 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
             return dtItems;
+        }
+
+        public void SaveBranchItemPrice(BranchItemPrice branchItemPrice)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_BRANCHITEMPRICE]";
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", branchItemPrice.ITEMPRICEID);
+                    cmd.Parameters.AddWithValue("@PARENTITEMPRICEID", branchItemPrice.PARENTITEMPRICEID);
+                    cmd.Parameters.AddWithValue("@SALEPRICE", branchItemPrice.SALEPRICE);
+                    cmd.Parameters.AddWithValue("@BRANCHID", branchItemPrice.BRANCHID);
+                    cmd.Parameters.AddWithValue("@USERID", branchItemPrice.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    if (int.TryParse(Convert.ToString(objReturn), out int ItemPriceID))
+                        branchItemPrice.ITEMPRICEID = ItemPriceID;
+                    else
+                        throw new Exception(Convert.ToString(objReturn));
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+
+        public void DeleteBranchItemPrice(object ItemPriceID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_BRANCHITEMPRICE]";
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    int rowsafftected = cmd.ExecuteNonQuery();
+                    if (rowsafftected <= 0)
+                        throw new Exception("Error while deleting branch itemprice");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while deleting itemprice", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
         }
     }
 }
