@@ -240,6 +240,12 @@
     <Compile Include="ReportForms\Wareshouse\ucItemLedger.Designer.cs">
       <DependentUpon>ucItemLedger.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\ucSupplierItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\ucSupplierItems.Designer.cs">
+      <DependentUpon>ucSupplierItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stock\frmDraftStockEntries.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -785,6 +791,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\ucItemLedger.resx">
       <DependentUpon>ucItemLedger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\ucSupplierItems.resx">
+      <DependentUpon>ucSupplierItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmDraftStockEntries.resx">
       <DependentUpon>frmDraftStockEntries.cs</DependentUpon>

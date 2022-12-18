@@ -459,6 +459,7 @@ namespace NSRetail
             supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Dispatches", SearchCriteriaControl = new ucSupplierWiseSales("D") });
             supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Branch Refunds", SearchCriteriaControl = new ucSupplierWiseSales("B") });
             supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Customer Refunds", SearchCriteriaControl = new ucSupplierWiseSales("C") });
+            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Items", SearchCriteriaControl = new ucSupplierItems() });
             reportList.Add(supplierwisereports);
 
             ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
