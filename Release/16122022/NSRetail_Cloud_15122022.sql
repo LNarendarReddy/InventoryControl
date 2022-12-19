@@ -81,7 +81,7 @@ BEGIN
                                     
  IF @EntityName = 'ITEMPRICE'                                    
  BEGIN                                    
-  SELECT ITEMPRICEID, ITEMCODEID, SALEPRICE, MRP, GSTID, CREATEDDATE, UPDATEDATE, DELETEDDATE                                     
+  SELECT ITEMPRICEID, ITEMCODEID, SALEPRICE, MRP, GSTID, CREATEDDATE, UPDATEDATE, DELETEDDATE , BRANCHID, PARENTITEMPRICEID
   FROM ITEMPRICE IP                                    
   WHERE IP.SYNCDATE > @SyncDate
 	AND (BRANCHID IS NULL OR BRANCHID = @BranchID)
