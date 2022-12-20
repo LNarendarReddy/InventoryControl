@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace NSRetail.ReportForms.Wareshouse
 {
@@ -53,10 +54,20 @@ namespace NSRetail.ReportForms.Wareshouse
         {
             try
             {
-                if (cmbBranch.EditValue == null ||
-                XtraMessageBox.Show("Are you sure want to accept sheets?", "Confirm",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                if (cmbBranch.EditValue == null)
                     return;
+
+                DataTable dtCountedCategories = new ReportRepository().GetReportData(
+                        "USP_R_SC_GetCountedCategories"
+                        , new Dictionary<string, object> { { "BRANCHID", cmbBranch.EditValue } });
+
+                string message = $"Are you sure want to accept the below categories? {Environment.NewLine}{Environment.NewLine}";
+                message += string.Join(string.Empty, dtCountedCategories.Rows.Cast<DataRow>()
+                    .Select(x => $"{Environment.NewLine} \t\t\t\t * {x["CATEGORYNAME"]}"));
+                message += $"{Environment.NewLine}{Environment.NewLine} The system cannot be reverted beyond this point!!";
+                if (XtraMessageBox.Show(message, "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
+
                 new CountingRepository().AcceptStockCounting(cmbBranch.EditValue);
                 XtraMessageBox.Show("Counting accepted succefully");
             }

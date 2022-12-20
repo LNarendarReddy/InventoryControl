@@ -18,7 +18,10 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 { "TOTALSALEPRICEWT", "Total Sale Price WT" },
                 { "SALEPRICEWOT", "Sale Price WOT" },
                 { "SALEPRICETAX", "Sale Price Tax" },
-                { "SALEQUANTITY", "Sale Quantity" }
+                { "SALEQUANTITY", "Sale Quantity" },
+                { "ISOFFER", "Item Offer applied" },
+                { "WHSTOCK", "Warehouse Stock" },
+                { "BRANCHSTOCK", "Branch Stock" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -31,6 +34,7 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
                 , new IncludeSettings("Classification", "IncludeClassification", new List<string>{ "CLASSIFICATIONNAME" })
                 , new IncludeSettings("Sub Classification", "IncludeSubClassification", new List<string>{ "SUBCLASSIFICATIONNAME" })
+                , new IncludeSettings("Stock & Is offer", "IncludeStock", new List<string>{ "ISOFFER", "WHSTOCK", "BRANCHSTOCK" })
             };
 
             SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
