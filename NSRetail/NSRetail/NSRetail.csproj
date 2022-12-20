@@ -138,6 +138,12 @@
     <Compile Include="Item\frmAddBranchPrice.Designer.cs">
       <DependentUpon>frmAddBranchPrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Offer\frmAddOffer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Offer\frmAddOffer.Designer.cs">
+      <DependentUpon>frmAddOffer.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\frmIncludeExclude.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -740,6 +746,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Item\frmAddBranchPrice.resx">
       <DependentUpon>frmAddBranchPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Offer\frmAddOffer.resx">
+      <DependentUpon>frmAddOffer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\frmIncludeExclude.resx">
       <DependentUpon>frmIncludeExclude.cs</DependentUpon>

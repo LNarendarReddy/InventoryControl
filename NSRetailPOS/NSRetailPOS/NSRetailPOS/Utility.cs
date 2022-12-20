@@ -320,6 +320,7 @@ namespace NSRetailPOS
 
         public static string AppVersion = "1.2.7";
         public static string DBVersion = string.Empty;
+        public static string VersionDate = "(19-12-2022)";
 
         private static bool DBVersionCheck(BackgroundWorker backgroundWorker, CloudRepository cloudRepository, SyncRepository syncRepository)
         {
