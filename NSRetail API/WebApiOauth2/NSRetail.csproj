@@ -223,31 +223,13 @@
     <Compile Include="Models\BRANCH.cs">
       <DependentUpon>NSRetail.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BRANCHCOUNTER.cs">
-      <DependentUpon>NSRetail.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CLOUD_STOCKCOUNTING.cs">
       <DependentUpon>NSRetail.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CLOUD_STOCKCOUNTINGDETAIL.cs">
       <DependentUpon>NSRetail.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CLOUD_STOCKDISPATCH.cs">
-      <DependentUpon>NSRetail.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CLOUD_STOCKDISPATCHDETAIL.cs">
-      <DependentUpon>NSRetail.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENTITY.cs">
-      <DependentUpon>NSRetail.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENTITYSYNCORDER.cs">
-      <DependentUpon>NSRetail.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENTITYSYNCSTATU.cs">
-      <DependentUpon>NSRetail.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GSTDETAIL.cs">
+    <Compile Include="Models\CLOUD_USP_R_STOCKCOUNTING_Result.cs">
       <DependentUpon>NSRetail.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ITEM.cs">
@@ -274,28 +256,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NSRetail.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\POS_BILL.cs">
-      <DependentUpon>NSRetail.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\POS_BILLDETAIL.cs">
-      <DependentUpon>NSRetail.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\STOCKDISPATCH.cs">
-      <DependentUpon>NSRetail.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\STOCKDISPATCHDETAIL.cs">
-      <DependentUpon>NSRetail.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TBLMOP.cs">
-      <DependentUpon>NSRetail.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TBLROLE.cs">
-      <DependentUpon>NSRetail.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TBLUSER.cs">
       <DependentUpon>NSRetail.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UOM.cs">
+    <Compile Include="Models\USP_R_BRANCHCOUNTER_Result.cs">
+      <DependentUpon>NSRetail.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USP_R_BRANCH_Result.cs">
+      <DependentUpon>NSRetail.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USP_R_GETSYNCDATA_Result.cs">
+      <DependentUpon>NSRetail.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USP_R_GETSYNC_Result.cs">
+      <DependentUpon>NSRetail.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USP_R_POS_IMPORTDATA_Result.cs">
+      <DependentUpon>NSRetail.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USP_R_SHOWSYNC_Result.cs">
       <DependentUpon>NSRetail.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

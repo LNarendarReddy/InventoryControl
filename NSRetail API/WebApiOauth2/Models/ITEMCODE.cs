@@ -22,5 +22,6 @@ namespace NSRetail.Models
         public Nullable<System.DateTime> DELETEDDATE { get; set; }
         public Nullable<int> FREEITEMCODEID { get; set; }
         public string HSNCODE { get; set; }
+        public Nullable<System.DateTime> SYNCDATE { get; set; }
     }
 }

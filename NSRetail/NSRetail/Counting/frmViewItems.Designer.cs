@@ -50,10 +50,12 @@
             this.gcSystemStockCP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcDiffStockCP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcCreatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcSKUCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
@@ -119,7 +121,9 @@
             this.gcPhysicalStockCP,
             this.gcSystemStockCP,
             this.gcDiffStockCP,
-            this.gcCreatedDate});
+            this.gcCreatedDate,
+            this.gcSKUCode,
+            this.gridColumn1});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -150,23 +154,23 @@
             // 
             // gcItemCode
             // 
-            this.gcItemCode.Caption = "ITEMCODE";
+            this.gcItemCode.Caption = "Item Code";
             this.gcItemCode.FieldName = "ITEMCODE";
             this.gcItemCode.Name = "gcItemCode";
             this.gcItemCode.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "ITEMCODE", "{0}")});
             this.gcItemCode.Visible = true;
-            this.gcItemCode.VisibleIndex = 0;
+            this.gcItemCode.VisibleIndex = 1;
             this.gcItemCode.Width = 122;
             // 
             // gcItemName
             // 
-            this.gcItemName.Caption = "ITEMNAME";
+            this.gcItemName.Caption = "Item Name";
             this.gcItemName.FieldName = "ITEMNAME";
             this.gcItemName.Name = "gcItemName";
             this.gcItemName.Visible = true;
-            this.gcItemName.VisibleIndex = 1;
-            this.gcItemName.Width = 385;
+            this.gcItemName.VisibleIndex = 2;
+            this.gcItemName.Width = 383;
             // 
             // gcCategory
             // 
@@ -174,7 +178,7 @@
             this.gcCategory.FieldName = "CATEGORYNAME";
             this.gcCategory.Name = "gcCategory";
             this.gcCategory.Visible = true;
-            this.gcCategory.VisibleIndex = 4;
+            this.gcCategory.VisibleIndex = 3;
             // 
             // gcSubCategory
             // 
@@ -182,66 +186,54 @@
             this.gcSubCategory.FieldName = "SUBCATEGORYNAME";
             this.gcSubCategory.Name = "gcSubCategory";
             this.gcSubCategory.Visible = true;
-            this.gcSubCategory.VisibleIndex = 5;
+            this.gcSubCategory.VisibleIndex = 4;
             // 
             // gcMRP
             // 
             this.gcMRP.Caption = "MRP";
             this.gcMRP.FieldName = "MRP";
             this.gcMRP.Name = "gcMRP";
-            this.gcMRP.Visible = true;
-            this.gcMRP.VisibleIndex = 2;
             this.gcMRP.Width = 87;
             // 
             // gcSalePrice
             // 
-            this.gcSalePrice.Caption = "SALEPRICE";
+            this.gcSalePrice.Caption = "Sale Price";
             this.gcSalePrice.FieldName = "SALEPRICE";
             this.gcSalePrice.Name = "gcSalePrice";
-            this.gcSalePrice.Visible = true;
-            this.gcSalePrice.VisibleIndex = 3;
             this.gcSalePrice.Width = 87;
             // 
             // gcQuantity
             // 
-            this.gcQuantity.Caption = "QUANTITY";
+            this.gcQuantity.Caption = "Quantity";
             this.gcQuantity.FieldName = "QUANTITY";
             this.gcQuantity.Name = "gcQuantity";
-            this.gcQuantity.Visible = true;
-            this.gcQuantity.VisibleIndex = 6;
-            this.gcQuantity.Width = 87;
+            this.gcQuantity.Width = 60;
             // 
             // gcPhysicalStock
             // 
             this.gcPhysicalStock.Caption = "Physical stock";
             this.gcPhysicalStock.FieldName = "PHYSICALSTOCK";
             this.gcPhysicalStock.Name = "gcPhysicalStock";
-            this.gcPhysicalStock.Visible = true;
-            this.gcPhysicalStock.VisibleIndex = 7;
+            this.gcPhysicalStock.Width = 106;
             // 
             // gcSystemStock
             // 
             this.gcSystemStock.Caption = "System Stock";
             this.gcSystemStock.FieldName = "SYSTEMSTOCK";
             this.gcSystemStock.Name = "gcSystemStock";
-            this.gcSystemStock.Visible = true;
-            this.gcSystemStock.VisibleIndex = 8;
+            this.gcSystemStock.Width = 109;
             // 
             // gcStockDiff
             // 
             this.gcStockDiff.Caption = "Stock Diff";
             this.gcStockDiff.FieldName = "STOCKDIFF";
             this.gcStockDiff.Name = "gcStockDiff";
-            this.gcStockDiff.Visible = true;
-            this.gcStockDiff.VisibleIndex = 9;
             // 
             // gcCostPriceWT
             // 
             this.gcCostPriceWT.Caption = "Cost Price WT";
             this.gcCostPriceWT.FieldName = "COSTPRICEWT";
             this.gcCostPriceWT.Name = "gcCostPriceWT";
-            this.gcCostPriceWT.Visible = true;
-            this.gcCostPriceWT.VisibleIndex = 10;
             // 
             // gcPhysicalStockCP
             // 
@@ -252,8 +244,6 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcPhysical", "SUM={0:0.##}")});
             this.gcPhysicalStockCP.UnboundDataType = typeof(decimal);
             this.gcPhysicalStockCP.UnboundExpression = "Round([PHYSICALSTOCK] * [COSTPRICEWT], 2)";
-            this.gcPhysicalStockCP.Visible = true;
-            this.gcPhysicalStockCP.VisibleIndex = 11;
             // 
             // gcSystemStockCP
             // 
@@ -264,8 +254,6 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcSystemStockCP", "SUM={0:0.##}")});
             this.gcSystemStockCP.UnboundDataType = typeof(decimal);
             this.gcSystemStockCP.UnboundExpression = "Round([SYSTEMSTOCK] * [COSTPRICEWT], 2)";
-            this.gcSystemStockCP.Visible = true;
-            this.gcSystemStockCP.VisibleIndex = 12;
             // 
             // gcDiffStockCP
             // 
@@ -276,14 +264,20 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gridColumn3", "SUM={0:0.##}")});
             this.gcDiffStockCP.UnboundDataType = typeof(decimal);
             this.gcDiffStockCP.UnboundExpression = "Round([STOCKDIFF] * [COSTPRICEWT], 2)";
-            this.gcDiffStockCP.Visible = true;
-            this.gcDiffStockCP.VisibleIndex = 13;
             // 
             // gcCreatedDate
             // 
             this.gcCreatedDate.Caption = "Counting Date";
             this.gcCreatedDate.FieldName = "CREATEDDATE";
             this.gcCreatedDate.Name = "gcCreatedDate";
+            // 
+            // gcSKUCode
+            // 
+            this.gcSKUCode.Caption = "SKU Code";
+            this.gcSKUCode.FieldName = "SKUCODE";
+            this.gcSKUCode.Name = "gcSKUCode";
+            this.gcSKUCode.Visible = true;
+            this.gcSKUCode.VisibleIndex = 0;
             // 
             // Root
             // 
@@ -324,6 +318,12 @@
             this.layoutControlItem2.Size = new System.Drawing.Size(141, 34);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "ITEMID";
+            this.gridColumn1.FieldName = "ITEMID";
+            this.gridColumn1.Name = "gridColumn1";
             // 
             // frmViewItems
             // 
@@ -378,5 +378,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcSystemStockCP;
         private DevExpress.XtraGrid.Columns.GridColumn gcDiffStockCP;
         private DevExpress.XtraGrid.Columns.GridColumn gcCreatedDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gcSKUCode;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }
 }

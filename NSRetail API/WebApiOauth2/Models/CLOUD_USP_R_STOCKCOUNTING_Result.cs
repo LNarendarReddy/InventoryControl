@@ -10,15 +10,10 @@
 namespace NSRetail.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ENTITYSYNCSTATU
+    public partial class CLOUD_USP_R_STOCKCOUNTING_Result
     {
-        public int ENTITYSYNCSTATUSID { get; set; }
-        public int ENTITYID { get; set; }
-        public int LOCATIONID { get; set; }
-        public string LOCATIONTYPE { get; set; }
-        public string SYNCDIRECTION { get; set; }
-        public Nullable<System.DateTime> SYNCDATE { get; set; }
+        public Nullable<int> Column1 { get; set; }
+        public Nullable<int> Column2 { get; set; }
     }
 }

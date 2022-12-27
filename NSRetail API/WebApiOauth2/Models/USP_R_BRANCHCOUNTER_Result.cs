@@ -10,17 +10,13 @@
 namespace NSRetail.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class BRANCHCOUNTER
+    public partial class USP_R_BRANCHCOUNTER_Result
     {
         public int COUNTERID { get; set; }
         public string COUNTERNAME { get; set; }
         public Nullable<int> BRANCHID { get; set; }
-        public Nullable<System.DateTime> CREATEDDATE { get; set; }
-        public Nullable<System.DateTime> UPDATEDDATE { get; set; }
-        public Nullable<System.DateTime> DELETEDDATE { get; set; }
-    
-        public virtual BRANCH BRANCH { get; set; }
+        public Nullable<int> DAYCLOSUREID { get; set; }
+        public Nullable<int> BRANCHREFUNDID { get; set; }
     }
 }

@@ -360,12 +360,14 @@ namespace DataAccess
                     cmd.CommandText = "[USP_U_FREEZESUPPLIERRETURNS]";
                     cmd.Parameters.AddWithValue("@SUPPLIERRETURNSID", SupplierReturnsID);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
-                    cmd.ExecuteNonQuery();
+                    object obj = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(obj), out int id))
+                        throw new Exception(Convert.ToString(obj));
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while freezing supplier returns");
+                throw new Exception("Error while freezing supplier returns", ex);
             }
             finally
             {

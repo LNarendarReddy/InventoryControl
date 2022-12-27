@@ -28,26 +28,12 @@ namespace NSRetail.Models
         }
     
         public virtual DbSet<BRANCH> BRANCHes { get; set; }
-        public virtual DbSet<BRANCHCOUNTER> BRANCHCOUNTERs { get; set; }
-        public virtual DbSet<ENTITY> ENTITies { get; set; }
-        public virtual DbSet<ENTITYSYNCORDER> ENTITYSYNCORDERs { get; set; }
-        public virtual DbSet<ENTITYSYNCSTATU> ENTITYSYNCSTATUS { get; set; }
-        public virtual DbSet<GSTDETAIL> GSTDETAILs { get; set; }
         public virtual DbSet<ITEM> ITEMs { get; set; }
         public virtual DbSet<ITEMCODE> ITEMCODEs { get; set; }
         public virtual DbSet<ITEMPRICE> ITEMPRICEs { get; set; }
-        public virtual DbSet<STOCKDISPATCH> STOCKDISPATCHes { get; set; }
-        public virtual DbSet<STOCKDISPATCHDETAIL> STOCKDISPATCHDETAILs { get; set; }
-        public virtual DbSet<TBLMOP> TBLMOPs { get; set; }
-        public virtual DbSet<TBLROLE> TBLROLEs { get; set; }
         public virtual DbSet<TBLUSER> TBLUSERs { get; set; }
-        public virtual DbSet<UOM> UOMs { get; set; }
-        public virtual DbSet<POS_BILL> POS_BILL { get; set; }
-        public virtual DbSet<POS_BILLDETAIL> POS_BILLDETAIL { get; set; }
         public virtual DbSet<CLOUD_STOCKCOUNTING> CLOUD_STOCKCOUNTING { get; set; }
         public virtual DbSet<CLOUD_STOCKCOUNTINGDETAIL> CLOUD_STOCKCOUNTINGDETAIL { get; set; }
-        public virtual DbSet<CLOUD_STOCKDISPATCH> CLOUD_STOCKDISPATCH { get; set; }
-        public virtual DbSet<CLOUD_STOCKDISPATCHDETAIL> CLOUD_STOCKDISPATCHDETAIL { get; set; }
     
         public virtual int USP_CU_STOCKCOUNTING()
         {
@@ -84,7 +70,7 @@ namespace NSRetail.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CLOUD_USP_CU_STOCKCOUNTING", sTOCKCOUNTINGIDParameter, bRANCHIDParameter, uSERIDParameter, cREATEDDATEParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> CLOUD_USP_CU_STOCKCOUNTINGDETAIL(Nullable<int> sTOCKCOUNTINGDETAILID, Nullable<int> sTOCKCOUNTINGID, Nullable<int> iTEMPRICEID, Nullable<int> qUANTITY, Nullable<System.DateTime> cREATEDDATE)
+        public virtual ObjectResult<Nullable<int>> CLOUD_USP_CU_STOCKCOUNTINGDETAIL(Nullable<int> sTOCKCOUNTINGDETAILID, Nullable<int> sTOCKCOUNTINGID, Nullable<int> iTEMPRICEID, Nullable<int> qUANTITY, Nullable<decimal> wEIGHTINKGS, Nullable<System.DateTime> cREATEDDATE)
         {
             var sTOCKCOUNTINGDETAILIDParameter = sTOCKCOUNTINGDETAILID.HasValue ?
                 new ObjectParameter("STOCKCOUNTINGDETAILID", sTOCKCOUNTINGDETAILID) :
@@ -102,14 +88,18 @@ namespace NSRetail.Models
                 new ObjectParameter("QUANTITY", qUANTITY) :
                 new ObjectParameter("QUANTITY", typeof(int));
     
+            var wEIGHTINKGSParameter = wEIGHTINKGS.HasValue ?
+                new ObjectParameter("WEIGHTINKGS", wEIGHTINKGS) :
+                new ObjectParameter("WEIGHTINKGS", typeof(decimal));
+    
             var cREATEDDATEParameter = cREATEDDATE.HasValue ?
                 new ObjectParameter("CREATEDDATE", cREATEDDATE) :
                 new ObjectParameter("CREATEDDATE", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CLOUD_USP_CU_STOCKCOUNTINGDETAIL", sTOCKCOUNTINGDETAILIDParameter, sTOCKCOUNTINGIDParameter, iTEMPRICEIDParameter, qUANTITYParameter, cREATEDDATEParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CLOUD_USP_CU_STOCKCOUNTINGDETAIL", sTOCKCOUNTINGDETAILIDParameter, sTOCKCOUNTINGIDParameter, iTEMPRICEIDParameter, qUANTITYParameter, wEIGHTINKGSParameter, cREATEDDATEParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> CLOUD_USP_CU_STOCKDISPATCH(Nullable<int> sTOCKDISPATCHID, Nullable<int> fROMBRANCHID, Nullable<int> tOBRANCHID, Nullable<int> cATEGORYID, Nullable<int> uSERID)
+        public virtual ObjectResult<Nullable<int>> CLOUD_USP_CU_STOCKDISPATCH(Nullable<int> sTOCKDISPATCHID, Nullable<int> fROMBRANCHID, Nullable<int> tOBRANCHID, Nullable<int> cATEGORYID, Nullable<int> uSERID, Nullable<System.DateTime> cREATEDDATE)
         {
             var sTOCKDISPATCHIDParameter = sTOCKDISPATCHID.HasValue ?
                 new ObjectParameter("STOCKDISPATCHID", sTOCKDISPATCHID) :
@@ -131,10 +121,14 @@ namespace NSRetail.Models
                 new ObjectParameter("USERID", uSERID) :
                 new ObjectParameter("USERID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CLOUD_USP_CU_STOCKDISPATCH", sTOCKDISPATCHIDParameter, fROMBRANCHIDParameter, tOBRANCHIDParameter, cATEGORYIDParameter, uSERIDParameter);
+            var cREATEDDATEParameter = cREATEDDATE.HasValue ?
+                new ObjectParameter("CREATEDDATE", cREATEDDATE) :
+                new ObjectParameter("CREATEDDATE", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CLOUD_USP_CU_STOCKDISPATCH", sTOCKDISPATCHIDParameter, fROMBRANCHIDParameter, tOBRANCHIDParameter, cATEGORYIDParameter, uSERIDParameter, cREATEDDATEParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> CLOUD_USP_CU_STOCKDISPATCHDETAIL(Nullable<int> sTOCKDISPATCHDETAILID, Nullable<int> sTOCKDISPATCHID, Nullable<int> iTEMPRICEID, Nullable<int> tRAYNUMBER, Nullable<int> dISPATCHQUANTITY, Nullable<decimal> wEIGHTINKGS, Nullable<int> uSERID)
+        public virtual ObjectResult<Nullable<int>> CLOUD_USP_CU_STOCKDISPATCHDETAIL(Nullable<int> sTOCKDISPATCHDETAILID, Nullable<int> sTOCKDISPATCHID, Nullable<int> iTEMPRICEID, Nullable<int> tRAYNUMBER, Nullable<int> dISPATCHQUANTITY, Nullable<decimal> wEIGHTINKGS, Nullable<int> uSERID, Nullable<System.DateTime> cREATEDDATE)
         {
             var sTOCKDISPATCHDETAILIDParameter = sTOCKDISPATCHDETAILID.HasValue ?
                 new ObjectParameter("STOCKDISPATCHDETAILID", sTOCKDISPATCHDETAILID) :
@@ -164,16 +158,362 @@ namespace NSRetail.Models
                 new ObjectParameter("USERID", uSERID) :
                 new ObjectParameter("USERID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CLOUD_USP_CU_STOCKDISPATCHDETAIL", sTOCKDISPATCHDETAILIDParameter, sTOCKDISPATCHIDParameter, iTEMPRICEIDParameter, tRAYNUMBERParameter, dISPATCHQUANTITYParameter, wEIGHTINKGSParameter, uSERIDParameter);
+            var cREATEDDATEParameter = cREATEDDATE.HasValue ?
+                new ObjectParameter("CREATEDDATE", cREATEDDATE) :
+                new ObjectParameter("CREATEDDATE", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CLOUD_USP_CU_STOCKDISPATCHDETAIL", sTOCKDISPATCHDETAILIDParameter, sTOCKDISPATCHIDParameter, iTEMPRICEIDParameter, tRAYNUMBERParameter, dISPATCHQUANTITYParameter, wEIGHTINKGSParameter, uSERIDParameter, cREATEDDATEParameter);
         }
     
-        public virtual int CLOUD_USP_D_STOCKCOUNTINGDETAIL(Nullable<int> sTOCKCOUNTINGDETAILID)
+        public virtual int CLOUD_USP_D_STOCKCOUNTINGDETAIL(Nullable<int> branchID, Nullable<int> itemCodeID)
+        {
+            var branchIDParameter = branchID.HasValue ?
+                new ObjectParameter("BranchID", branchID) :
+                new ObjectParameter("BranchID", typeof(int));
+    
+            var itemCodeIDParameter = itemCodeID.HasValue ?
+                new ObjectParameter("ItemCodeID", itemCodeID) :
+                new ObjectParameter("ItemCodeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CLOUD_USP_D_STOCKCOUNTINGDETAIL", branchIDParameter, itemCodeIDParameter);
+        }
+    
+        public virtual int CLOUD_USP_D_STOCKCOUNTINGDETAIL1(Nullable<int> sTOCKCOUNTINGDETAILID)
         {
             var sTOCKCOUNTINGDETAILIDParameter = sTOCKCOUNTINGDETAILID.HasValue ?
                 new ObjectParameter("STOCKCOUNTINGDETAILID", sTOCKCOUNTINGDETAILID) :
                 new ObjectParameter("STOCKCOUNTINGDETAILID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CLOUD_USP_D_STOCKCOUNTINGDETAIL", sTOCKCOUNTINGDETAILIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CLOUD_USP_D_STOCKCOUNTINGDETAIL1", sTOCKCOUNTINGDETAILIDParameter);
+        }
+    
+        public virtual int CLOUD_USP_D_STOCKDISPATCHDETAIL(Nullable<int> sTOCKDISPATCHDETAILID)
+        {
+            var sTOCKDISPATCHDETAILIDParameter = sTOCKDISPATCHDETAILID.HasValue ?
+                new ObjectParameter("STOCKDISPATCHDETAILID", sTOCKDISPATCHDETAILID) :
+                new ObjectParameter("STOCKDISPATCHDETAILID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CLOUD_USP_D_STOCKDISPATCHDETAIL", sTOCKDISPATCHDETAILIDParameter);
+        }
+    
+        public virtual ObjectResult<CLOUD_USP_R_STOCKCOUNTING_Result> CLOUD_USP_R_STOCKCOUNTING(Nullable<int> uSERID)
+        {
+            var uSERIDParameter = uSERID.HasValue ?
+                new ObjectParameter("USERID", uSERID) :
+                new ObjectParameter("USERID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CLOUD_USP_R_STOCKCOUNTING_Result>("CLOUD_USP_R_STOCKCOUNTING", uSERIDParameter);
+        }
+    
+        public virtual int CLOUD_USP_U_STOCKCOUNTING(Nullable<int> sTOCKCOUNTINGID, Nullable<int> uSERID, Nullable<System.DateTime> uPDATEDDATE)
+        {
+            var sTOCKCOUNTINGIDParameter = sTOCKCOUNTINGID.HasValue ?
+                new ObjectParameter("STOCKCOUNTINGID", sTOCKCOUNTINGID) :
+                new ObjectParameter("STOCKCOUNTINGID", typeof(int));
+    
+            var uSERIDParameter = uSERID.HasValue ?
+                new ObjectParameter("USERID", uSERID) :
+                new ObjectParameter("USERID", typeof(int));
+    
+            var uPDATEDDATEParameter = uPDATEDDATE.HasValue ?
+                new ObjectParameter("UPDATEDDATE", uPDATEDDATE) :
+                new ObjectParameter("UPDATEDDATE", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CLOUD_USP_U_STOCKCOUNTING", sTOCKCOUNTINGIDParameter, uSERIDParameter, uPDATEDDATEParameter);
+        }
+    
+        public virtual int USP_CU_BRANCH()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_BRANCH");
+        }
+    
+        public virtual int USP_CU_BRANCHCOUNTER()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_BRANCHCOUNTER");
+        }
+    
+        public virtual int USP_CU_DENOMINATION()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_DENOMINATION");
+        }
+    
+        public virtual int USP_CU_GSTDETAIL()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_GSTDETAIL");
+        }
+    
+        public virtual int USP_CU_ITEM()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_ITEM");
+        }
+    
+        public virtual int USP_CU_ITEMCODE()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_ITEMCODE");
+        }
+    
+        public virtual int USP_CU_ITEMGROUP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_ITEMGROUP");
+        }
+    
+        public virtual int USP_CU_ITEMGROUPDETAIL()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_ITEMGROUPDETAIL");
+        }
+    
+        public virtual int USP_CU_ITEMPRICE()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_ITEMPRICE");
+        }
+    
+        public virtual int USP_CU_MOP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_MOP");
+        }
+    
+        public virtual int USP_CU_OFFER()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_OFFER");
+        }
+    
+        public virtual int USP_CU_OFFERBRANCH()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_OFFERBRANCH");
+        }
+    
+        public virtual int USP_CU_OFFERITEMMAP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_OFFERITEMMAP");
+        }
+    
+        public virtual int USP_CU_OFFERTYPE()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_OFFERTYPE");
+        }
+    
+        public virtual int USP_CU_POS_BILL(Nullable<int> branchCounterID)
+        {
+            var branchCounterIDParameter = branchCounterID.HasValue ?
+                new ObjectParameter("BranchCounterID", branchCounterID) :
+                new ObjectParameter("BranchCounterID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_POS_BILL", branchCounterIDParameter);
+        }
+    
+        public virtual int USP_CU_POS_BILLDETAIL(Nullable<int> branchCounterID)
+        {
+            var branchCounterIDParameter = branchCounterID.HasValue ?
+                new ObjectParameter("BranchCounterID", branchCounterID) :
+                new ObjectParameter("BranchCounterID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_POS_BILLDETAIL", branchCounterIDParameter);
+        }
+    
+        public virtual int USP_CU_POS_BILLMOPDETAIL(Nullable<int> branchCounterID)
+        {
+            var branchCounterIDParameter = branchCounterID.HasValue ?
+                new ObjectParameter("BranchCounterID", branchCounterID) :
+                new ObjectParameter("BranchCounterID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_POS_BILLMOPDETAIL", branchCounterIDParameter);
+        }
+    
+        public virtual int USP_CU_POS_BREFUND(Nullable<int> branchCounterID)
+        {
+            var branchCounterIDParameter = branchCounterID.HasValue ?
+                new ObjectParameter("BranchCounterID", branchCounterID) :
+                new ObjectParameter("BranchCounterID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_POS_BREFUND", branchCounterIDParameter);
+        }
+    
+        public virtual int USP_CU_POS_BREFUNDDETAL(Nullable<int> branchCounterID)
+        {
+            var branchCounterIDParameter = branchCounterID.HasValue ?
+                new ObjectParameter("BranchCounterID", branchCounterID) :
+                new ObjectParameter("BranchCounterID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_POS_BREFUNDDETAL", branchCounterIDParameter);
+        }
+    
+        public virtual int USP_CU_POS_CREFUND(Nullable<int> branchCounterID)
+        {
+            var branchCounterIDParameter = branchCounterID.HasValue ?
+                new ObjectParameter("BranchCounterID", branchCounterID) :
+                new ObjectParameter("BranchCounterID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_POS_CREFUND", branchCounterIDParameter);
+        }
+    
+        public virtual int USP_CU_POS_DAYCLOSURE(Nullable<int> branchCounterID)
+        {
+            var branchCounterIDParameter = branchCounterID.HasValue ?
+                new ObjectParameter("BranchCounterID", branchCounterID) :
+                new ObjectParameter("BranchCounterID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_POS_DAYCLOSURE", branchCounterIDParameter);
+        }
+    
+        public virtual int USP_CU_POS_DAYCLOSUREDETAIL(Nullable<int> branchCounterID)
+        {
+            var branchCounterIDParameter = branchCounterID.HasValue ?
+                new ObjectParameter("BranchCounterID", branchCounterID) :
+                new ObjectParameter("BranchCounterID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_POS_DAYCLOSUREDETAIL", branchCounterIDParameter);
+        }
+    
+        public virtual int USP_CU_POS_DAYSEQUENCE()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_POS_DAYSEQUENCE");
+        }
+    
+        public virtual int USP_CU_REASONFORREFUND()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_REASONFORREFUND");
+        }
+    
+        public virtual int USP_CU_ROLE()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_ROLE");
+        }
+    
+        public virtual int USP_CU_STOCKDISPATCH()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_STOCKDISPATCH");
+        }
+    
+        public virtual int USP_CU_STOCKDISPATCHDETAIL()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_STOCKDISPATCHDETAIL");
+        }
+    
+        public virtual int USP_CU_TBLCATEGORY()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_TBLCATEGORY");
+        }
+    
+        public virtual int USP_CU_UOM()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_UOM");
+        }
+    
+        public virtual int USP_CU_USER()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_CU_USER");
+        }
+    
+        public virtual int USP_D_OLD_DATA()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_D_OLD_DATA");
+        }
+    
+        public virtual int USP_D_SYNCSTATUS(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_D_SYNCSTATUS", locationIDParameter);
+        }
+    
+        public virtual ObjectResult<USP_R_BRANCH_Result> USP_R_BRANCH()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_R_BRANCH_Result>("USP_R_BRANCH");
+        }
+    
+        public virtual ObjectResult<USP_R_BRANCHCOUNTER_Result> USP_R_BRANCHCOUNTER()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_R_BRANCHCOUNTER_Result>("USP_R_BRANCHCOUNTER");
+        }
+    
+        public virtual ObjectResult<USP_R_GETSYNC_Result> USP_R_GETSYNC(Nullable<int> locationID, string locationType, string syncDirection, Nullable<bool> newBuild)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            var locationTypeParameter = locationType != null ?
+                new ObjectParameter("LocationType", locationType) :
+                new ObjectParameter("LocationType", typeof(string));
+    
+            var syncDirectionParameter = syncDirection != null ?
+                new ObjectParameter("SyncDirection", syncDirection) :
+                new ObjectParameter("SyncDirection", typeof(string));
+    
+            var newBuildParameter = newBuild.HasValue ?
+                new ObjectParameter("NewBuild", newBuild) :
+                new ObjectParameter("NewBuild", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_R_GETSYNC_Result>("USP_R_GETSYNC", locationIDParameter, locationTypeParameter, syncDirectionParameter, newBuildParameter);
+        }
+    
+        public virtual ObjectResult<USP_R_GETSYNCDATA_Result> USP_R_GETSYNCDATA(string entityName, Nullable<System.DateTime> syncDate, Nullable<int> branchID)
+        {
+            var entityNameParameter = entityName != null ?
+                new ObjectParameter("EntityName", entityName) :
+                new ObjectParameter("EntityName", typeof(string));
+    
+            var syncDateParameter = syncDate.HasValue ?
+                new ObjectParameter("SyncDate", syncDate) :
+                new ObjectParameter("SyncDate", typeof(System.DateTime));
+    
+            var branchIDParameter = branchID.HasValue ?
+                new ObjectParameter("BranchID", branchID) :
+                new ObjectParameter("BranchID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_R_GETSYNCDATA_Result>("USP_R_GETSYNCDATA", entityNameParameter, syncDateParameter, branchIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.DateTime>> USP_R_GetTimeZone()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.DateTime>>("USP_R_GetTimeZone");
+        }
+    
+        public virtual ObjectResult<USP_R_POS_IMPORTDATA_Result> USP_R_POS_IMPORTDATA(Nullable<int> branchCounterID)
+        {
+            var branchCounterIDParameter = branchCounterID.HasValue ?
+                new ObjectParameter("BranchCounterID", branchCounterID) :
+                new ObjectParameter("BranchCounterID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_R_POS_IMPORTDATA_Result>("USP_R_POS_IMPORTDATA", branchCounterIDParameter);
+        }
+    
+        public virtual ObjectResult<string> USP_R_POSVersion()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("USP_R_POSVersion");
+        }
+    
+        public virtual ObjectResult<USP_R_SHOWSYNC_Result> USP_R_SHOWSYNC()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_R_SHOWSYNC_Result>("USP_R_SHOWSYNC");
+        }
+    
+        public virtual int USP_U_BRANCHCOUNTER_HDDNO(Nullable<int> branchCounterID, string hDDSNO)
+        {
+            var branchCounterIDParameter = branchCounterID.HasValue ?
+                new ObjectParameter("BranchCounterID", branchCounterID) :
+                new ObjectParameter("BranchCounterID", typeof(int));
+    
+            var hDDSNOParameter = hDDSNO != null ?
+                new ObjectParameter("HDDSNO", hDDSNO) :
+                new ObjectParameter("HDDSNO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_U_BRANCHCOUNTER_HDDNO", branchCounterIDParameter, hDDSNOParameter);
+        }
+    
+        public virtual int USP_U_ENTITYSYNCTIME(Nullable<int> entitySyncStatusID, Nullable<System.DateTime> syncTime)
+        {
+            var entitySyncStatusIDParameter = entitySyncStatusID.HasValue ?
+                new ObjectParameter("EntitySyncStatusID", entitySyncStatusID) :
+                new ObjectParameter("EntitySyncStatusID", typeof(int));
+    
+            var syncTimeParameter = syncTime.HasValue ?
+                new ObjectParameter("SyncTime", syncTime) :
+                new ObjectParameter("SyncTime", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_U_ENTITYSYNCTIME", entitySyncStatusIDParameter, syncTimeParameter);
         }
     }
 }

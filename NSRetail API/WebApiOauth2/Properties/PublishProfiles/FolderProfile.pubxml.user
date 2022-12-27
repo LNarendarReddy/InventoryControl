@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>E:\Projects\InventoryControl\NSRetail API\Publish</_PublishTargetUrl>
-    <History>True|2022-11-28T07:29:13.9379388Z;True|2022-11-28T12:45:40.4385898+05:30;True|2022-11-28T12:06:54.5926612+05:30;True|2022-11-21T16:28:13.3638944+05:30;False|2022-11-21T16:27:25.8669161+05:30;False|2022-11-21T16:26:30.2517303+05:30;True|2022-09-08T16:00:07.5709338+05:30;True|2022-01-23T15:40:14.8834708+05:30;True|2022-01-23T12:24:38.0995775+05:30;True|2022-01-21T21:56:36.3695741+05:30;True|2022-01-21T18:17:25.4008399+05:30;True|2022-01-18T15:25:14.2852311+05:30;True|2022-01-17T06:27:53.6983333+05:30;True|2022-01-17T05:45:34.4499666+05:30;True|2022-01-17T05:34:09.9375072+05:30;True|2022-01-13T22:46:54.8964477+05:30;True|2022-01-13T21:29:49.3108499+05:30;True|2022-01-11T13:54:39.3525722+05:30;</History>
+    <History>True|2022-12-21T17:43:59.9483544Z;True|2022-12-21T23:13:49.7864382+05:30;True|2022-12-21T23:01:26.1800167+05:30;True|2022-12-21T22:26:47.3966500+05:30;True|2022-12-21T22:23:20.6314893+05:30;True|2022-12-21T11:07:11.6466448+05:30;True|2022-11-28T12:59:13.9379388+05:30;True|2022-11-28T12:45:40.4385898+05:30;True|2022-11-28T12:06:54.5926612+05:30;True|2022-11-21T16:28:13.3638944+05:30;False|2022-11-21T16:27:25.8669161+05:30;False|2022-11-21T16:26:30.2517303+05:30;True|2022-09-08T16:00:07.5709338+05:30;True|2022-01-23T15:40:14.8834708+05:30;True|2022-01-23T12:24:38.0995775+05:30;True|2022-01-21T21:56:36.3695741+05:30;True|2022-01-21T18:17:25.4008399+05:30;True|2022-01-18T15:25:14.2852311+05:30;True|2022-01-17T06:27:53.6983333+05:30;True|2022-01-17T05:45:34.4499666+05:30;True|2022-01-17T05:34:09.9375072+05:30;True|2022-01-13T22:46:54.8964477+05:30;True|2022-01-13T21:29:49.3108499+05:30;True|2022-01-11T13:54:39.3525722+05:30;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -70,10 +70,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/24/2018 23:14:14</publishTime>
     </File>
     <File Include="bin/NSRetail.dll">
-      <publishTime>11/28/2022 12:59:13</publishTime>
+      <publishTime>12/21/2022 23:13:38</publishTime>
     </File>
     <File Include="bin/NSRetail.pdb">
-      <publishTime>11/28/2022 12:59:13</publishTime>
+      <publishTime>12/21/2022 23:13:38</publishTime>
     </File>
     <File Include="bin/OMSDbAccess.dll">
       <publishTime>04/08/2021 18:26:23</publishTime>
@@ -301,7 +301,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/08/2018 15:45:40</publishTime>
     </File>
     <File Include="Models/NSRetail.edmx.diagram">
-      <publishTime>10/23/2022 13:59:18</publishTime>
+      <publishTime>12/21/2022 23:12:46</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>10/23/2022 13:59:18</publishTime>
@@ -382,7 +382,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/23/2022 13:59:18</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/28/2022 12:06:54</publishTime>
+      <publishTime>12/21/2022 23:13:49</publishTime>
     </File>
   </ItemGroup>
 </Project>

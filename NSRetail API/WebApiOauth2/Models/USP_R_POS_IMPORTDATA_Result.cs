@@ -10,22 +10,26 @@
 namespace NSRetail.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class STOCKDISPATCHDETAIL
+    public partial class USP_R_POS_IMPORTDATA_Result
     {
-        public int STOCKDISPATCHDETAILID { get; set; }
-        public int STOCKDISPATCHID { get; set; }
-        public int ITEMPRICEID { get; set; }
-        public Nullable<int> TRAYNUMBER { get; set; }
-        public int DISPATCHQUANTITY { get; set; }
-        public int RECEIVEDQUANTITY { get; set; }
+        public int BILLID { get; set; }
+        public string BILLNUMBER { get; set; }
         public Nullable<int> CREATEDBY { get; set; }
         public Nullable<System.DateTime> CREATEDDATE { get; set; }
         public Nullable<int> UPDATEDBY { get; set; }
-        public Nullable<System.DateTime> UPDATEDATE { get; set; }
+        public Nullable<System.DateTime> UPDATEDDATE { get; set; }
         public Nullable<int> DELETEDBY { get; set; }
         public Nullable<System.DateTime> DELETEDDATE { get; set; }
-        public Nullable<decimal> WEIGHTINKGS { get; set; }
+        public Nullable<int> BILLSTATUS { get; set; }
+        public string CUSTOMERNUMBER { get; set; }
+        public string CUSTOMERNAME { get; set; }
+        public Nullable<int> DAYCLOSUREID { get; set; }
+        public Nullable<decimal> ROUNDING { get; set; }
+        public Nullable<decimal> SPLDISCPER { get; set; }
+        public Nullable<bool> ISDOORDELIVERY { get; set; }
+        public Nullable<decimal> TENDEREDCASH { get; set; }
+        public Nullable<decimal> TENDEREDCHANGE { get; set; }
+        public string CUSTOMERGST { get; set; }
     }
 }

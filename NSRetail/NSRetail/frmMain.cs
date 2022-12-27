@@ -17,6 +17,7 @@ using NSRetail.ReportForms.Wareshouse.TaxBreakUp;
 using NSRetail.Stock;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -246,7 +247,9 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            lblUserName.Caption = $"Logged In User : {Utility.FullName}   Version : {Utility.AppVersion} {Utility.VersionDate}";
+            
+            lblUserName.Caption = $"Logged In User : {Utility.FullName}   " +
+                $"Version : {Utility.AppVersion} {Utility.VersionDate} - {ConfigurationManager.AppSettings["BuildType"]}";
 
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,

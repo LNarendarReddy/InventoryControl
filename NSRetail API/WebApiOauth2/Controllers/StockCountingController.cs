@@ -111,7 +111,7 @@ namespace NSRetail.Controllers
             {
                 try
                 {
-                    if (nStockCounting != null || nStockCounting != 0)
+                    if (nStockCounting != 0)
                     {
                         try
                         {
@@ -120,12 +120,12 @@ namespace NSRetail.Controllers
 
                             // SECOND set the ID
                             sc.STOCKCOUNTINGID = nStockCounting;
-                            sc.UPDATEDBY = UserID;
-
                             // THIRD attach the thing (id is not marked as modified)
                             entities.CLOUD_STOCKCOUNTING.Attach(sc);
 
                             // FOURTH set the fields you want updated.
+                            sc.UPDATEDDATE = DateTime.Now;
+                            sc.UPDATEDBY = UserID;
                             sc.STATUS = true;
 
                             // FIFTH save that thing
@@ -188,14 +188,14 @@ namespace NSRetail.Controllers
                                 nStockCountOutput = entities.CLOUD_USP_CU_STOCKCOUNTING(stockCountingID, branchId, userId, dtCreatedDate).FirstOrDefault();
                                 if (nStockCountOutput != 0)
                                 {
-                                    nStockCountDetailOutput = entities.CLOUD_USP_CU_STOCKCOUNTINGDETAIL(stockCountDetailId, nStockCountOutput, 
-                                        itemPriceId, quantity, dtCreatedDate).FirstOrDefault();
+                                    nStockCountDetailOutput = 
+                                        entities.CLOUD_USP_CU_STOCKCOUNTINGDETAIL(stockCountDetailId, nStockCountOutput,itemPriceId, quantity,0, dtCreatedDate).FirstOrDefault();
                                 }
                             }
                             else
                             {
-                                nStockCountDetailOutput = entities.CLOUD_USP_CU_STOCKCOUNTINGDETAIL(stockCountDetailId, stockCountingID, 
-                                    itemPriceId, quantity, dtCreatedDate).FirstOrDefault();
+                                nStockCountDetailOutput = 
+                                    entities.CLOUD_USP_CU_STOCKCOUNTINGDETAIL(stockCountDetailId, stockCountingID, itemPriceId, quantity,0, dtCreatedDate).FirstOrDefault();
                             }
 
                             if (nStockCountDetailOutput != 0)
@@ -244,12 +244,12 @@ namespace NSRetail.Controllers
             {
                 try
                 {
-                    if (nStockCounting != null || nStockCounting != 0)
+                    if (nStockCounting != 0)
                     {
                         try
                         {
                             {
-                                Nullable<int> output = entities.CLOUD_USP_D_STOCKCOUNTINGDETAIL(nStockCounting);
+                                Nullable<int> output = entities.CLOUD_USP_D_STOCKCOUNTINGDETAIL1(nStockCounting);
                                 if (output == 1)
                                 {
                                     apiResponse = new APIResponse(null);

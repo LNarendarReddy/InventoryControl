@@ -24,5 +24,6 @@ namespace NSRetail.Models
         public Nullable<int> PARENTITEMID { get; set; }
         public Nullable<int> UOMID { get; set; }
         public Nullable<int> CATEGORYID { get; set; }
+        public Nullable<System.DateTime> SYNCDATE { get; set; }
     }
 }

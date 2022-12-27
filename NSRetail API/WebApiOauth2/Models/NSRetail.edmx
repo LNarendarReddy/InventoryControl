@@ -22,17 +22,8 @@
           <Property Name="UPDATEDATE" Type="datetime" />
           <Property Name="DELETEDDATE" Type="datetime" />
           <Property Name="STATEID" Type="int" />
-        </EntityType>
-        <EntityType Name="BRANCHCOUNTER">
-          <Key>
-            <PropertyRef Name="COUNTERID" />
-          </Key>
-          <Property Name="COUNTERID" Type="int" Nullable="false" />
-          <Property Name="COUNTERNAME" Type="nvarchar" MaxLength="50" />
-          <Property Name="BRANCHID" Type="int" />
-          <Property Name="CREATEDDATE" Type="datetime" />
-          <Property Name="UPDATEDDATE" Type="datetime" />
-          <Property Name="DELETEDDATE" Type="datetime" />
+          <Property Name="SYNCDATE" Type="datetime" />
+          <Property Name="MULTIEDITTHRESHOLD" Type="int" />
         </EntityType>
         <EntityType Name="CLOUD_STOCKCOUNTING">
           <Key>
@@ -59,86 +50,10 @@
           <Property Name="CREATEDDATE" Type="datetime" />
           <Property Name="UPDATEDDATE" Type="datetime" />
           <Property Name="DELETEDDATE" Type="datetime" />
+          <Property Name="WEIGHTINKGS" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
-        <EntityType Name="CLOUD_STOCKDISPATCH">
-          <Key>
-            <PropertyRef Name="STOCKDISPATCHID" />
-          </Key>
-          <Property Name="STOCKDISPATCHID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FROMBRANCHID" Type="int" Nullable="false" />
-          <Property Name="TOBRANCHID" Type="int" Nullable="false" />
-          <Property Name="CATEGORYID" Type="int" Nullable="false" />
-          <Property Name="STATUS" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="STATUSAPPROVEDBY" Type="varchar" MaxLength="100" />
-          <Property Name="STATUSAPPROVEDDATE" Type="datetime" />
-          <Property Name="CREATEDBY" Type="int" />
-          <Property Name="CREATEDDATE" Type="datetime" />
-          <Property Name="UPDATEDBY" Type="int" />
-          <Property Name="UPDATEDATE" Type="datetime" />
-          <Property Name="DELETEDDATE" Type="datetime" />
-          <Property Name="DELETEDBY" Type="int" />
-          <Property Name="DISPATCHNUMBER" Type="varchar" MaxLength="40" />
-        </EntityType>
-        <EntityType Name="CLOUD_STOCKDISPATCHDETAIL">
-          <Key>
-            <PropertyRef Name="STOCKDISPATCHDETAILID" />
-          </Key>
-          <Property Name="STOCKDISPATCHDETAILID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="STOCKDISPATCHID" Type="int" Nullable="false" />
-          <Property Name="ITEMPRICEID" Type="int" Nullable="false" />
-          <Property Name="TRAYNUMBER" Type="int" />
-          <Property Name="DISPATCHQUANTITY" Type="int" Nullable="false" />
-          <Property Name="RECEIVEDQUANTITY" Type="int" Nullable="false" />
-          <Property Name="WEIGHTINKGS" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="CREATEDBY" Type="int" />
-          <Property Name="CREATEDDATE" Type="datetime" />
-          <Property Name="UPDATEDBY" Type="int" />
-          <Property Name="UPDATEDATE" Type="datetime" />
-          <Property Name="DELETEDBY" Type="int" />
-          <Property Name="DELETEDDATE" Type="datetime" />
-        </EntityType>
-        <EntityType Name="ENTITY">
-          <Key>
-            <PropertyRef Name="ENTITYID" />
-          </Key>
-          <Property Name="ENTITYID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ENTITYNAME" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ENTITYSYNCORDER">
-          <Key>
-            <PropertyRef Name="ENTITYSYNCORDERID" />
-          </Key>
-          <Property Name="ENTITYSYNCORDERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ENTITYID" Type="int" Nullable="false" />
-          <Property Name="SYNCORDER" Type="int" Nullable="false" />
-          <Property Name="LOCATIONTYPE" Type="varchar" MaxLength="15" />
-          <Property Name="SYNCDIRECTION" Type="varchar" MaxLength="10" />
-        </EntityType>
-        <EntityType Name="ENTITYSYNCSTATUS">
-          <Key>
-            <PropertyRef Name="ENTITYSYNCSTATUSID" />
-          </Key>
-          <Property Name="ENTITYSYNCSTATUSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ENTITYID" Type="int" Nullable="false" />
-          <Property Name="LOCATIONID" Type="int" Nullable="false" />
-          <Property Name="LOCATIONTYPE" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="SYNCDIRECTION" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="SYNCDATE" Type="datetime" />
-        </EntityType>
-        <EntityType Name="GSTDETAIL">
-          <Key>
-            <PropertyRef Name="GSTID" />
-          </Key>
-          <Property Name="GSTID" Type="int" Nullable="false" />
-          <Property Name="GSTCODE" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="CGST" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="SGST" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="IGST" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="CESS" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="CREATEDDATE" Type="datetime" />
-          <Property Name="UPDATEDATE" Type="datetime" />
-          <Property Name="DELETEDDATE" Type="datetime" />
-        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.DUMP_POS_BILLTYPE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ITEM">
           <Key>
             <PropertyRef Name="ITEMID" />
@@ -153,6 +68,7 @@
           <Property Name="PARENTITEMID" Type="int" />
           <Property Name="UOMID" Type="int" />
           <Property Name="CATEGORYID" Type="int" />
+          <Property Name="SYNCDATE" Type="datetime" />
         </EntityType>
         <EntityType Name="ITEMCODE">
           <Key>
@@ -166,7 +82,12 @@
           <Property Name="DELETEDDATE" Type="datetime" />
           <Property Name="FREEITEMCODEID" Type="int" />
           <Property Name="HSNCODE" Type="varchar" MaxLength="10" />
+          <Property Name="SYNCDATE" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.ITEMGROUP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.ITEMGROUPDETAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ITEMPRICE">
           <Key>
             <PropertyRef Name="ITEMPRICEID" />
@@ -179,112 +100,36 @@
           <Property Name="CREATEDDATE" Type="datetime" />
           <Property Name="UPDATEDATE" Type="datetime" />
           <Property Name="DELETEDDATE" Type="datetime" />
+          <Property Name="SYNCDATE" Type="datetime" />
+          <Property Name="BRANCHID" Type="int" />
+          <Property Name="PARENTITEMPRICEID" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.OFFER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.OFFERBRANCH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.OFFERITEMMAP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.OFFERTYPE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="POS_BILL">
-          <Key>
-            <PropertyRef Name="BILLID" />
-            <PropertyRef Name="BRANCHCOUNTERID" />
-          </Key>
-          <Property Name="BILLID" Type="int" Nullable="false" />
-          <Property Name="BRANCHCOUNTERID" Type="int" Nullable="false" />
-          <Property Name="BILLNUMBER" Type="varchar" MaxLength="20" />
-          <Property Name="CREATEDBY" Type="int" />
-          <Property Name="CREATEDDATE" Type="datetime" />
-          <Property Name="UPDATEDBY" Type="int" />
-          <Property Name="UPDATEDDATE" Type="datetime" />
-          <Property Name="DELETEDBY" Type="int" />
-          <Property Name="DELETEDDATE" Type="datetime" />
-          <Property Name="BILLSTATUS" Type="int" />
-          <Property Name="CUSTOMERNUMBER" Type="varchar" MaxLength="10" />
-          <Property Name="CUSTOMERNAME" Type="varchar" MaxLength="100" />
-        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="POS_BILLDETAIL">
-          <Key>
-            <PropertyRef Name="BILLDETAILID" />
-            <PropertyRef Name="BILLID" />
-            <PropertyRef Name="BRANCHCOUNTERID" />
-            <PropertyRef Name="ITEMPRICEID" />
-            <PropertyRef Name="QUANTITY" />
-          </Key>
-          <Property Name="BILLDETAILID" Type="int" Nullable="false" />
-          <Property Name="BILLID" Type="int" Nullable="false" />
-          <Property Name="BRANCHCOUNTERID" Type="int" Nullable="false" />
-          <Property Name="ITEMPRICEID" Type="int" Nullable="false" />
-          <Property Name="QUANTITY" Type="int" Nullable="false" />
-          <Property Name="WEIGHTINKGS" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="BILLEDAMOUNT" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="CREATEDBY" Type="int" />
-          <Property Name="CREATEDDATE" Type="datetime" />
-          <Property Name="UPDATEDBY" Type="int" />
-          <Property Name="UPDATEDDATE" Type="datetime" />
-          <Property Name="DELETEDBY" Type="int" />
-          <Property Name="DELETEDDATE" Type="datetime" />
-          <Property Name="CGST" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="SGST" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="IGST" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="CESS" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="GSTVALUE" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="GSTID" Type="int" />
-          <Property Name="SNO" Type="int" />
-          <Property Name="DISCOUNT" Type="decimal" Precision="18" Scale="2" />
-        </EntityType>
-        <EntityType Name="STOCKDISPATCH">
-          <Key>
-            <PropertyRef Name="STOCKDISPATCHID" />
-          </Key>
-          <Property Name="STOCKDISPATCHID" Type="int" Nullable="false" />
-          <Property Name="FROMBRANCHID" Type="int" Nullable="false" />
-          <Property Name="TOBRANCHID" Type="int" Nullable="false" />
-          <Property Name="STATUS" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="STATUSAPPROVEDBY" Type="varchar" MaxLength="100" />
-          <Property Name="STATUSAPPROVEDDATE" Type="datetime" />
-          <Property Name="CREATEDDATE" Type="datetime" />
-          <Property Name="UPDATEDATE" Type="datetime" />
-          <Property Name="DELETEDDATE" Type="datetime" />
-          <Property Name="DISPATCHNUMBER" Type="varchar" MaxLength="40" />
-          <Property Name="CREATEDBY" Type="int" />
-          <Property Name="UPDATEDBY" Type="int" />
-          <Property Name="DELETEDBY" Type="int" />
-        </EntityType>
-        <EntityType Name="STOCKDISPATCHDETAIL">
-          <Key>
-            <PropertyRef Name="STOCKDISPATCHDETAILID" />
-          </Key>
-          <Property Name="STOCKDISPATCHDETAILID" Type="int" Nullable="false" />
-          <Property Name="STOCKDISPATCHID" Type="int" Nullable="false" />
-          <Property Name="ITEMPRICEID" Type="int" Nullable="false" />
-          <Property Name="TRAYNUMBER" Type="int" />
-          <Property Name="DISPATCHQUANTITY" Type="int" Nullable="false" />
-          <Property Name="RECEIVEDQUANTITY" Type="int" Nullable="false" />
-          <Property Name="CREATEDBY" Type="int" />
-          <Property Name="CREATEDDATE" Type="datetime" />
-          <Property Name="UPDATEDBY" Type="int" />
-          <Property Name="UPDATEDATE" Type="datetime" />
-          <Property Name="DELETEDBY" Type="int" />
-          <Property Name="DELETEDDATE" Type="datetime" />
-          <Property Name="WEIGHTINKGS" Type="decimal" Precision="10" Scale="2" />
-        </EntityType>
-        <EntityType Name="TBLMOP">
-          <Key>
-            <PropertyRef Name="MOPID" />
-          </Key>
-          <Property Name="MOPID" Type="int" Nullable="false" />
-          <Property Name="MOPNAME" Type="nvarchar" MaxLength="50" />
-          <Property Name="CREATEDDATE" Type="datetime" />
-          <Property Name="UPDATEDDATE" Type="datetime" />
-          <Property Name="DELETEDDATE" Type="datetime" />
-        </EntityType>
-        <EntityType Name="TBLROLE">
-          <Key>
-            <PropertyRef Name="ROLEID" />
-          </Key>
-          <Property Name="ROLEID" Type="int" Nullable="false" />
-          <Property Name="ROLENAME" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLMOPDETAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BREFUND' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BREFUNDDETAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_CREFUND' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_DAYCLOSURE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_DAYCLOSUREDETAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_DAYSEQUENCE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TBLUSER">
           <Key>
             <PropertyRef Name="USERID" />
@@ -305,43 +150,8 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <Property Name="CREATEDDATE" Type="datetime" />
           <Property Name="UPDATEDDATE" Type="datetime" />
           <Property Name="DELETEDDATE" Type="datetime" />
+          <Property Name="SYNCDATE" Type="datetime" />
         </EntityType>
-        <EntityType Name="UOM">
-          <Key>
-            <PropertyRef Name="UOMID" />
-          </Key>
-          <Property Name="UOMID" Type="int" Nullable="false" />
-          <Property Name="DISPLAYVALUE" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="BASEUOMID" Type="int" />
-          <Property Name="MULTIPLIER" Type="decimal" Precision="5" Scale="2" Nullable="false" />
-          <Property Name="CREATEDDATE" Type="datetime" />
-          <Property Name="UPDATEDDATE" Type="datetime" />
-          <Property Name="DELETEDDATE" Type="datetime" />
-        </EntityType>
-        <Association Name="FK__BRANCHCOU__BRANC__12FDD1B2">
-          <End Role="BRANCH" Type="Self.BRANCH" Multiplicity="0..1" />
-          <End Role="BRANCHCOUNTER" Type="Self.BRANCHCOUNTER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BRANCH">
-              <PropertyRef Name="BRANCHID" />
-            </Principal>
-            <Dependent Role="BRANCHCOUNTER">
-              <PropertyRef Name="BRANCHID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ENTITYSYN__ENTIT__4A4E069C">
-          <End Role="ENTITY" Type="Self.ENTITY" Multiplicity="1" />
-          <End Role="ENTITYSYNCORDER" Type="Self.ENTITYSYNCORDER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ENTITY">
-              <PropertyRef Name="ENTITYID" />
-            </Principal>
-            <Dependent Role="ENTITYSYNCORDER">
-              <PropertyRef Name="ENTITYID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="CLOUD_USP_CU_STOCKCOUNTING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="STOCKCOUNTINGID" Type="int" Mode="In" />
           <Parameter Name="BRANCHID" Type="int" Mode="In" />
@@ -353,6 +163,7 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <Parameter Name="STOCKCOUNTINGID" Type="int" Mode="In" />
           <Parameter Name="ITEMPRICEID" Type="int" Mode="In" />
           <Parameter Name="QUANTITY" Type="int" Mode="In" />
+          <Parameter Name="WEIGHTINKGS" Type="decimal" Mode="In" />
           <Parameter Name="CREATEDDATE" Type="datetime" Mode="In" />
         </Function>
         <Function Name="CLOUD_USP_CU_STOCKDISPATCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -361,6 +172,7 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <Parameter Name="TOBRANCHID" Type="int" Mode="In" />
           <Parameter Name="CATEGORYID" Type="int" Mode="In" />
           <Parameter Name="USERID" Type="int" Mode="In" />
+          <Parameter Name="CREATEDDATE" Type="datetime" Mode="In" />
         </Function>
         <Function Name="CLOUD_USP_CU_STOCKDISPATCHDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="STOCKDISPATCHDETAILID" Type="int" Mode="In" />
@@ -370,79 +182,116 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <Parameter Name="DISPATCHQUANTITY" Type="int" Mode="In" />
           <Parameter Name="WEIGHTINKGS" Type="decimal" Mode="In" />
           <Parameter Name="USERID" Type="int" Mode="In" />
+          <Parameter Name="CREATEDDATE" Type="datetime" Mode="In" />
         </Function>
         <Function Name="CLOUD_USP_D_STOCKCOUNTINGDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BranchID" Type="int" Mode="In" />
+          <Parameter Name="ItemCodeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CLOUD_USP_D_STOCKCOUNTINGDETAIL1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="STOCKCOUNTINGDETAILID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CLOUD_USP_D_STOCKDISPATCHDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="STOCKDISPATCHDETAILID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CLOUD_USP_R_STOCKCOUNTING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USERID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CLOUD_USP_U_STOCKCOUNTING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="STOCKCOUNTINGID" Type="int" Mode="In" />
+          <Parameter Name="USERID" Type="int" Mode="In" />
+          <Parameter Name="UPDATEDDATE" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDF_GET_LAST_MODIFIED_DATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="datetime">
+          <Parameter Name="CreatedDate" Type="datetime" Mode="In" />
+          <Parameter Name="UpdatedDate" Type="datetime" Mode="In" />
+          <Parameter Name="DeletedDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="USP_CU_BRANCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_BRANCHCOUNTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_DENOMINATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_GSTDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_ITEMCODE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_ITEMGROUP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_ITEMGROUPDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_ITEMPRICE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_MOP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_OFFER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_OFFERBRANCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_OFFERITEMMAP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_OFFERTYPE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_POS_BILL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BranchCounterID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_CU_POS_BILLDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BranchCounterID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_CU_POS_BILLMOPDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BranchCounterID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_CU_POS_BREFUND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BranchCounterID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_CU_POS_BREFUNDDETAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BranchCounterID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_CU_POS_CREFUND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BranchCounterID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_CU_POS_DAYCLOSURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BranchCounterID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_CU_POS_DAYCLOSUREDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BranchCounterID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_CU_POS_DAYSEQUENCE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_REASONFORREFUND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_ROLE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_STOCKDISPATCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_STOCKDISPATCHDETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_TBLCATEGORY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_UOM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CU_USER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_D_OLD_DATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_D_SYNCSTATUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_R_BRANCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_R_BRANCHCOUNTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_R_GETSYNC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+          <Parameter Name="LocationType" Type="varchar" Mode="In" />
+          <Parameter Name="SyncDirection" Type="varchar" Mode="In" />
+          <Parameter Name="NewBuild" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="USP_R_GETSYNCDATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityName" Type="varchar" Mode="In" />
+          <Parameter Name="SyncDate" Type="datetime" Mode="In" />
+          <Parameter Name="BranchID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_R_GetTimeZone" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_R_POS_IMPORTDATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BranchCounterID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_R_POSVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_R_SHOWSYNC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_U_BRANCHCOUNTER_HDDNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BranchCounterID" Type="int" Mode="In" />
+          <Parameter Name="HDDSNO" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_U_ENTITYSYNCTIME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntitySyncStatusID" Type="int" Mode="In" />
+          <Parameter Name="SyncTime" Type="datetime" Mode="In" />
         </Function>
         <EntityContainer Name="NSRetail_CloudModelStoreContainer">
           <EntitySet Name="BRANCH" EntityType="Self.BRANCH" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BRANCHCOUNTER" EntityType="Self.BRANCHCOUNTER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLOUD_STOCKCOUNTING" EntityType="Self.CLOUD_STOCKCOUNTING" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLOUD_STOCKCOUNTINGDETAIL" EntityType="Self.CLOUD_STOCKCOUNTINGDETAIL" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CLOUD_STOCKDISPATCH" EntityType="Self.CLOUD_STOCKDISPATCH" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CLOUD_STOCKDISPATCHDETAIL" EntityType="Self.CLOUD_STOCKDISPATCHDETAIL" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ENTITY" EntityType="Self.ENTITY" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ENTITYSYNCORDER" EntityType="Self.ENTITYSYNCORDER" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ENTITYSYNCSTATUS" EntityType="Self.ENTITYSYNCSTATUS" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GSTDETAIL" EntityType="Self.GSTDETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ITEM" EntityType="Self.ITEM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ITEMCODE" EntityType="Self.ITEMCODE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ITEMPRICE" EntityType="Self.ITEMPRICE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="STOCKDISPATCH" EntityType="Self.STOCKDISPATCH" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="STOCKDISPATCHDETAIL" EntityType="Self.STOCKDISPATCHDETAIL" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLMOP" EntityType="Self.TBLMOP" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLROLE" EntityType="Self.TBLROLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLUSER" EntityType="Self.TBLUSER" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UOM" EntityType="Self.UOM" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="POS_BILL" EntityType="Self.POS_BILL" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [POS_BILL].[BILLID] AS [BILLID], 
-    [POS_BILL].[BRANCHCOUNTERID] AS [BRANCHCOUNTERID], 
-    [POS_BILL].[BILLNUMBER] AS [BILLNUMBER], 
-    [POS_BILL].[CREATEDBY] AS [CREATEDBY], 
-    [POS_BILL].[CREATEDDATE] AS [CREATEDDATE], 
-    [POS_BILL].[UPDATEDBY] AS [UPDATEDBY], 
-    [POS_BILL].[UPDATEDDATE] AS [UPDATEDDATE], 
-    [POS_BILL].[DELETEDBY] AS [DELETEDBY], 
-    [POS_BILL].[DELETEDDATE] AS [DELETEDDATE], 
-    [POS_BILL].[BILLSTATUS] AS [BILLSTATUS], 
-    [POS_BILL].[CUSTOMERNUMBER] AS [CUSTOMERNUMBER], 
-    [POS_BILL].[CUSTOMERNAME] AS [CUSTOMERNAME]
-    FROM [dbo].[POS_BILL] AS [POS_BILL]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="POS_BILLDETAIL" EntityType="Self.POS_BILLDETAIL" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [POS_BILLDETAIL].[BILLDETAILID] AS [BILLDETAILID], 
-    [POS_BILLDETAIL].[BILLID] AS [BILLID], 
-    [POS_BILLDETAIL].[BRANCHCOUNTERID] AS [BRANCHCOUNTERID], 
-    [POS_BILLDETAIL].[ITEMPRICEID] AS [ITEMPRICEID], 
-    [POS_BILLDETAIL].[QUANTITY] AS [QUANTITY], 
-    [POS_BILLDETAIL].[WEIGHTINKGS] AS [WEIGHTINKGS], 
-    [POS_BILLDETAIL].[BILLEDAMOUNT] AS [BILLEDAMOUNT], 
-    [POS_BILLDETAIL].[CREATEDBY] AS [CREATEDBY], 
-    [POS_BILLDETAIL].[CREATEDDATE] AS [CREATEDDATE], 
-    [POS_BILLDETAIL].[UPDATEDBY] AS [UPDATEDBY], 
-    [POS_BILLDETAIL].[UPDATEDDATE] AS [UPDATEDDATE], 
-    [POS_BILLDETAIL].[DELETEDBY] AS [DELETEDBY], 
-    [POS_BILLDETAIL].[DELETEDDATE] AS [DELETEDDATE], 
-    [POS_BILLDETAIL].[CGST] AS [CGST], 
-    [POS_BILLDETAIL].[SGST] AS [SGST], 
-    [POS_BILLDETAIL].[IGST] AS [IGST], 
-    [POS_BILLDETAIL].[CESS] AS [CESS], 
-    [POS_BILLDETAIL].[GSTVALUE] AS [GSTVALUE], 
-    [POS_BILLDETAIL].[GSTID] AS [GSTID], 
-    [POS_BILLDETAIL].[SNO] AS [SNO], 
-    [POS_BILLDETAIL].[DISCOUNT] AS [DISCOUNT]
-    FROM [dbo].[POS_BILLDETAIL] AS [POS_BILLDETAIL]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK__BRANCHCOU__BRANC__12FDD1B2" Association="Self.FK__BRANCHCOU__BRANC__12FDD1B2">
-            <End Role="BRANCH" EntitySet="BRANCH" />
-            <End Role="BRANCHCOUNTER" EntitySet="BRANCHCOUNTER" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ENTITYSYN__ENTIT__4A4E069C" Association="Self.FK__ENTITYSYN__ENTIT__4A4E069C">
-            <End Role="ENTITY" EntitySet="ENTITY" />
-            <End Role="ENTITYSYNCORDER" EntitySet="ENTITYSYNCORDER" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -465,63 +314,8 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
           <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
           <Property Name="STATEID" Type="Int32" />
-          <NavigationProperty Name="BRANCHCOUNTERs" Relationship="Self.FK__BRANCHCOU__BRANC__12FDD1B2" FromRole="BRANCH" ToRole="BRANCHCOUNTER" />
-        </EntityType>
-        <EntityType Name="BRANCHCOUNTER">
-          <Key>
-            <PropertyRef Name="COUNTERID" />
-          </Key>
-          <Property Name="COUNTERID" Type="Int32" Nullable="false" />
-          <Property Name="COUNTERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BRANCHID" Type="Int32" />
-          <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="UPDATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="BRANCH" Relationship="Self.FK__BRANCHCOU__BRANC__12FDD1B2" FromRole="BRANCHCOUNTER" ToRole="BRANCH" />
-        </EntityType>
-        <EntityType Name="ENTITY">
-          <Key>
-            <PropertyRef Name="ENTITYID" />
-          </Key>
-          <Property Name="ENTITYID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ENTITYNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ENTITYSYNCORDERs" Relationship="Self.FK__ENTITYSYN__ENTIT__4A4E069C" FromRole="ENTITY" ToRole="ENTITYSYNCORDER" />
-        </EntityType>
-        <EntityType Name="ENTITYSYNCORDER">
-          <Key>
-            <PropertyRef Name="ENTITYSYNCORDERID" />
-          </Key>
-          <Property Name="ENTITYSYNCORDERID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ENTITYID" Type="Int32" Nullable="false" />
-          <Property Name="SYNCORDER" Type="Int32" Nullable="false" />
-          <Property Name="LOCATIONTYPE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="SYNCDIRECTION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ENTITY" Relationship="Self.FK__ENTITYSYN__ENTIT__4A4E069C" FromRole="ENTITYSYNCORDER" ToRole="ENTITY" />
-        </EntityType>
-        <EntityType Name="ENTITYSYNCSTATU">
-          <Key>
-            <PropertyRef Name="ENTITYSYNCSTATUSID" />
-          </Key>
-          <Property Name="ENTITYSYNCSTATUSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ENTITYID" Type="Int32" Nullable="false" />
-          <Property Name="LOCATIONID" Type="Int32" Nullable="false" />
-          <Property Name="LOCATIONTYPE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SYNCDIRECTION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SYNCDATE" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="GSTDETAIL">
-          <Key>
-            <PropertyRef Name="GSTID" />
-          </Key>
-          <Property Name="GSTID" Type="Int32" Nullable="false" />
-          <Property Name="GSTCODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CGST" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="SGST" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="IGST" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="CESS" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
-          <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
+          <Property Name="MULTIEDITTHRESHOLD" Type="Int32" />
         </EntityType>
         <EntityType Name="ITEM">
           <Key>
@@ -537,6 +331,7 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <Property Name="PARENTITEMID" Type="Int32" />
           <Property Name="UOMID" Type="Int32" />
           <Property Name="CATEGORYID" Type="Int32" />
+          <Property Name="SYNCDATE" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="ITEMCODE">
           <Key>
@@ -550,6 +345,7 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
           <Property Name="FREEITEMCODEID" Type="Int32" />
           <Property Name="HSNCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SYNCDATE" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="ITEMPRICE">
           <Key>
@@ -563,59 +359,9 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
           <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
           <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="STOCKDISPATCH">
-          <Key>
-            <PropertyRef Name="STOCKDISPATCHID" />
-          </Key>
-          <Property Name="STOCKDISPATCHID" Type="Int32" Nullable="false" />
-          <Property Name="FROMBRANCHID" Type="Int32" Nullable="false" />
-          <Property Name="TOBRANCHID" Type="Int32" Nullable="false" />
-          <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="STATUSAPPROVEDBY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="STATUSAPPROVEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
-          <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="DISPATCHNUMBER" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="CREATEDBY" Type="Int32" />
-          <Property Name="UPDATEDBY" Type="Int32" />
-          <Property Name="DELETEDBY" Type="Int32" />
-        </EntityType>
-        <EntityType Name="STOCKDISPATCHDETAIL">
-          <Key>
-            <PropertyRef Name="STOCKDISPATCHDETAILID" />
-          </Key>
-          <Property Name="STOCKDISPATCHDETAILID" Type="Int32" Nullable="false" />
-          <Property Name="STOCKDISPATCHID" Type="Int32" Nullable="false" />
-          <Property Name="ITEMPRICEID" Type="Int32" Nullable="false" />
-          <Property Name="TRAYNUMBER" Type="Int32" />
-          <Property Name="DISPATCHQUANTITY" Type="Int32" Nullable="false" />
-          <Property Name="RECEIVEDQUANTITY" Type="Int32" Nullable="false" />
-          <Property Name="CREATEDBY" Type="Int32" />
-          <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="UPDATEDBY" Type="Int32" />
-          <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
-          <Property Name="DELETEDBY" Type="Int32" />
-          <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="WEIGHTINKGS" Type="Decimal" Precision="10" Scale="2" />
-        </EntityType>
-        <EntityType Name="TBLMOP">
-          <Key>
-            <PropertyRef Name="MOPID" />
-          </Key>
-          <Property Name="MOPID" Type="Int32" Nullable="false" />
-          <Property Name="MOPNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="UPDATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="TBLROLE">
-          <Key>
-            <PropertyRef Name="ROLEID" />
-          </Key>
-          <Property Name="ROLEID" Type="Int32" Nullable="false" />
-          <Property Name="ROLENAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SYNCDATE" Type="DateTime" Precision="3" />
+          <Property Name="BRANCHID" Type="Int32" />
+          <Property Name="PARENTITEMPRICEID" Type="Int32" />
         </EntityType>
         <EntityType Name="TBLUSER">
           <Key>
@@ -637,117 +383,14 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
           <Property Name="UPDATEDDATE" Type="DateTime" Precision="3" />
           <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
+          <Property Name="SYNCDATE" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="UOM">
-          <Key>
-            <PropertyRef Name="UOMID" />
-          </Key>
-          <Property Name="UOMID" Type="Int32" Nullable="false" />
-          <Property Name="DISPLAYVALUE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="BASEUOMID" Type="Int32" />
-          <Property Name="MULTIPLIER" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
-          <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="UPDATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="POS_BILL">
-          <Key>
-            <PropertyRef Name="BILLID" />
-            <PropertyRef Name="BRANCHCOUNTERID" />
-          </Key>
-          <Property Name="BILLID" Type="Int32" Nullable="false" />
-          <Property Name="BRANCHCOUNTERID" Type="Int32" Nullable="false" />
-          <Property Name="BILLNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="CREATEDBY" Type="Int32" />
-          <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="UPDATEDBY" Type="Int32" />
-          <Property Name="UPDATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="DELETEDBY" Type="Int32" />
-          <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="BILLSTATUS" Type="Int32" />
-          <Property Name="CUSTOMERNUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="CUSTOMERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="POS_BILLDETAIL">
-          <Key>
-            <PropertyRef Name="BILLDETAILID" />
-            <PropertyRef Name="BILLID" />
-            <PropertyRef Name="BRANCHCOUNTERID" />
-            <PropertyRef Name="ITEMPRICEID" />
-            <PropertyRef Name="QUANTITY" />
-          </Key>
-          <Property Name="BILLDETAILID" Type="Int32" Nullable="false" />
-          <Property Name="BILLID" Type="Int32" Nullable="false" />
-          <Property Name="BRANCHCOUNTERID" Type="Int32" Nullable="false" />
-          <Property Name="ITEMPRICEID" Type="Int32" Nullable="false" />
-          <Property Name="QUANTITY" Type="Int32" Nullable="false" />
-          <Property Name="WEIGHTINKGS" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="BILLEDAMOUNT" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="CREATEDBY" Type="Int32" />
-          <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="UPDATEDBY" Type="Int32" />
-          <Property Name="UPDATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="DELETEDBY" Type="Int32" />
-          <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="CGST" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SGST" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="IGST" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="CESS" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="GSTVALUE" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="GSTID" Type="Int32" />
-          <Property Name="SNO" Type="Int32" />
-          <Property Name="DISCOUNT" Type="Decimal" Precision="18" Scale="2" />
-        </EntityType>
-        <Association Name="FK__BRANCHCOU__BRANC__12FDD1B2">
-          <End Role="BRANCH" Type="Self.BRANCH" Multiplicity="0..1" />
-          <End Role="BRANCHCOUNTER" Type="Self.BRANCHCOUNTER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BRANCH">
-              <PropertyRef Name="BRANCHID" />
-            </Principal>
-            <Dependent Role="BRANCHCOUNTER">
-              <PropertyRef Name="BRANCHID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ENTITYSYN__ENTIT__4A4E069C">
-          <End Role="ENTITY" Type="Self.ENTITY" Multiplicity="1" />
-          <End Role="ENTITYSYNCORDER" Type="Self.ENTITYSYNCORDER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ENTITY">
-              <PropertyRef Name="ENTITYID" />
-            </Principal>
-            <Dependent Role="ENTITYSYNCORDER">
-              <PropertyRef Name="ENTITYID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="NSRetail_CloudEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BRANCHes" EntityType="Self.BRANCH" />
-          <EntitySet Name="BRANCHCOUNTERs" EntityType="Self.BRANCHCOUNTER" />
-          <EntitySet Name="ENTITies" EntityType="Self.ENTITY" />
-          <EntitySet Name="ENTITYSYNCORDERs" EntityType="Self.ENTITYSYNCORDER" />
-          <EntitySet Name="ENTITYSYNCSTATUS" EntityType="Self.ENTITYSYNCSTATU" />
-          <EntitySet Name="GSTDETAILs" EntityType="Self.GSTDETAIL" />
           <EntitySet Name="ITEMs" EntityType="Self.ITEM" />
           <EntitySet Name="ITEMCODEs" EntityType="Self.ITEMCODE" />
           <EntitySet Name="ITEMPRICEs" EntityType="Self.ITEMPRICE" />
-          <EntitySet Name="STOCKDISPATCHes" EntityType="Self.STOCKDISPATCH" />
-          <EntitySet Name="STOCKDISPATCHDETAILs" EntityType="Self.STOCKDISPATCHDETAIL" />
-          <EntitySet Name="TBLMOPs" EntityType="Self.TBLMOP" />
-          <EntitySet Name="TBLROLEs" EntityType="Self.TBLROLE" />
           <EntitySet Name="TBLUSERs" EntityType="Self.TBLUSER" />
-          <EntitySet Name="UOMs" EntityType="Self.UOM" />
-          <EntitySet Name="POS_BILL" EntityType="Self.POS_BILL" />
-          <EntitySet Name="POS_BILLDETAIL" EntityType="Self.POS_BILLDETAIL" />
-          <AssociationSet Name="FK__BRANCHCOU__BRANC__12FDD1B2" Association="Self.FK__BRANCHCOU__BRANC__12FDD1B2">
-            <End Role="BRANCH" EntitySet="BRANCHes" />
-            <End Role="BRANCHCOUNTER" EntitySet="BRANCHCOUNTERs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ENTITYSYN__ENTIT__4A4E069C" Association="Self.FK__ENTITYSYN__ENTIT__4A4E069C">
-            <End Role="ENTITY" EntitySet="ENTITies" />
-            <End Role="ENTITYSYNCORDER" EntitySet="ENTITYSYNCORDERs" />
-          </AssociationSet>
           <FunctionImport Name="USP_CU_STOCKCOUNTING" />
           <FunctionImport Name="USP_D_STOCKCOUNTING">
             <Parameter Name="STOCKCOUNTINGID" Mode="In" Type="Int32" />
@@ -763,6 +406,7 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
             <Parameter Name="STOCKCOUNTINGID" Mode="In" Type="Int32" />
             <Parameter Name="ITEMPRICEID" Mode="In" Type="Int32" />
             <Parameter Name="QUANTITY" Mode="In" Type="Int32" />
+            <Parameter Name="WEIGHTINKGS" Mode="In" Type="Decimal" />
             <Parameter Name="CREATEDDATE" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="CLOUD_USP_CU_STOCKDISPATCH" ReturnType="Collection(Int32)">
@@ -771,6 +415,7 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
             <Parameter Name="TOBRANCHID" Mode="In" Type="Int32" />
             <Parameter Name="CATEGORYID" Mode="In" Type="Int32" />
             <Parameter Name="USERID" Mode="In" Type="Int32" />
+            <Parameter Name="CREATEDDATE" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="CLOUD_USP_CU_STOCKDISPATCHDETAIL" ReturnType="Collection(Int32)">
             <Parameter Name="STOCKDISPATCHDETAILID" Mode="In" Type="Int32" />
@@ -780,14 +425,105 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
             <Parameter Name="DISPATCHQUANTITY" Mode="In" Type="Int32" />
             <Parameter Name="WEIGHTINKGS" Mode="In" Type="Decimal" />
             <Parameter Name="USERID" Mode="In" Type="Int32" />
+            <Parameter Name="CREATEDDATE" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="CLOUD_USP_D_STOCKCOUNTINGDETAIL">
-          <Parameter Name="STOCKCOUNTINGDETAILID" Mode="In" Type="Int32" />
+            <Parameter Name="BranchID" Mode="In" Type="Int32" />
+            <Parameter Name="ItemCodeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="CLOUD_STOCKCOUNTING" EntityType="NSRetail_CloudModel.CLOUD_STOCKCOUNTING" />
           <EntitySet Name="CLOUD_STOCKCOUNTINGDETAIL" EntityType="NSRetail_CloudModel.CLOUD_STOCKCOUNTINGDETAIL" />
-          <EntitySet Name="CLOUD_STOCKDISPATCH" EntityType="NSRetail_CloudModel.CLOUD_STOCKDISPATCH" />
-          <EntitySet Name="CLOUD_STOCKDISPATCHDETAIL" EntityType="NSRetail_CloudModel.CLOUD_STOCKDISPATCHDETAIL" />
+          <FunctionImport Name="CLOUD_USP_D_STOCKCOUNTINGDETAIL1">
+          <Parameter Name="STOCKCOUNTINGDETAILID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CLOUD_USP_D_STOCKDISPATCHDETAIL">
+          <Parameter Name="STOCKDISPATCHDETAILID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CLOUD_USP_R_STOCKCOUNTING" ReturnType="Collection(NSRetail_CloudModel.CLOUD_USP_R_STOCKCOUNTING_Result)">
+          <Parameter Name="USERID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CLOUD_USP_U_STOCKCOUNTING">
+            <Parameter Name="STOCKCOUNTINGID" Mode="In" Type="Int32" />
+            <Parameter Name="USERID" Mode="In" Type="Int32" />
+            <Parameter Name="UPDATEDDATE" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="USP_CU_BRANCH" />
+          <FunctionImport Name="USP_CU_BRANCHCOUNTER" />
+          <FunctionImport Name="USP_CU_DENOMINATION" />
+          <FunctionImport Name="USP_CU_GSTDETAIL" />
+          <FunctionImport Name="USP_CU_ITEM" />
+          <FunctionImport Name="USP_CU_ITEMCODE" />
+          <FunctionImport Name="USP_CU_ITEMGROUP" />
+          <FunctionImport Name="USP_CU_ITEMGROUPDETAIL" />
+          <FunctionImport Name="USP_CU_ITEMPRICE" />
+          <FunctionImport Name="USP_CU_MOP" />
+          <FunctionImport Name="USP_CU_OFFER" />
+          <FunctionImport Name="USP_CU_OFFERBRANCH" />
+          <FunctionImport Name="USP_CU_OFFERITEMMAP" />
+          <FunctionImport Name="USP_CU_OFFERTYPE" />
+          <FunctionImport Name="USP_CU_POS_BILL">
+          <Parameter Name="BranchCounterID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_CU_POS_BILLDETAIL">
+          <Parameter Name="BranchCounterID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_CU_POS_BILLMOPDETAIL">
+          <Parameter Name="BranchCounterID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_CU_POS_BREFUND">
+          <Parameter Name="BranchCounterID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_CU_POS_BREFUNDDETAL">
+          <Parameter Name="BranchCounterID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_CU_POS_CREFUND">
+          <Parameter Name="BranchCounterID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_CU_POS_DAYCLOSURE">
+          <Parameter Name="BranchCounterID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_CU_POS_DAYCLOSUREDETAIL">
+          <Parameter Name="BranchCounterID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_CU_POS_DAYSEQUENCE" />
+          <FunctionImport Name="USP_CU_REASONFORREFUND" />
+          <FunctionImport Name="USP_CU_ROLE" />
+          <FunctionImport Name="USP_CU_STOCKDISPATCH" />
+          <FunctionImport Name="USP_CU_STOCKDISPATCHDETAIL" />
+          <FunctionImport Name="USP_CU_TBLCATEGORY" />
+          <FunctionImport Name="USP_CU_UOM" />
+          <FunctionImport Name="USP_CU_USER" />
+          <FunctionImport Name="USP_D_OLD_DATA" />
+          <FunctionImport Name="USP_D_SYNCSTATUS">
+          <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_R_BRANCH" ReturnType="Collection(NSRetail_CloudModel.USP_R_BRANCH_Result)" />
+          <FunctionImport Name="USP_R_BRANCHCOUNTER" ReturnType="Collection(NSRetail_CloudModel.USP_R_BRANCHCOUNTER_Result)" />
+          <FunctionImport Name="USP_R_GETSYNC" ReturnType="Collection(NSRetail_CloudModel.USP_R_GETSYNC_Result)">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+            <Parameter Name="LocationType" Mode="In" Type="String" />
+            <Parameter Name="SyncDirection" Mode="In" Type="String" />
+            <Parameter Name="NewBuild" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="USP_R_GETSYNCDATA" ReturnType="Collection(NSRetail_CloudModel.USP_R_GETSYNCDATA_Result)">
+            <Parameter Name="EntityName" Mode="In" Type="String" />
+            <Parameter Name="SyncDate" Mode="In" Type="DateTime" />
+            <Parameter Name="BranchID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_R_GetTimeZone" ReturnType="Collection(DateTime)" />
+          <FunctionImport Name="USP_R_POS_IMPORTDATA" ReturnType="Collection(NSRetail_CloudModel.USP_R_POS_IMPORTDATA_Result)">
+          <Parameter Name="BranchCounterID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_R_POSVersion" ReturnType="Collection(String)" />
+          <FunctionImport Name="USP_R_SHOWSYNC" ReturnType="Collection(NSRetail_CloudModel.USP_R_SHOWSYNC_Result)" />
+          <FunctionImport Name="USP_U_BRANCHCOUNTER_HDDNO">
+            <Parameter Name="BranchCounterID" Mode="In" Type="Int32" />
+            <Parameter Name="HDDSNO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_U_ENTITYSYNCTIME">
+            <Parameter Name="EntitySyncStatusID" Mode="In" Type="Int32" />
+            <Parameter Name="SyncTime" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CLOUD_STOCKCOUNTING">
           <Key>
@@ -814,44 +550,78 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
           <Property Name="UPDATEDDATE" Type="DateTime" Precision="3" />
           <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
+          <Property Name="WEIGHTINKGS" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
-        <EntityType Name="CLOUD_STOCKDISPATCH">
-          <Key>
-            <PropertyRef Name="STOCKDISPATCHID" />
-          </Key>
-          <Property Name="STOCKDISPATCHID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FROMBRANCHID" Type="Int32" Nullable="false" />
-          <Property Name="TOBRANCHID" Type="Int32" Nullable="false" />
-          <Property Name="CATEGORYID" Type="Int32" Nullable="false" />
-          <Property Name="STATUS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="STATUSAPPROVEDBY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="STATUSAPPROVEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="CREATEDBY" Type="Int32" />
-          <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="UPDATEDBY" Type="Int32" />
-          <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
-          <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="DELETEDBY" Type="Int32" />
-          <Property Name="DISPATCHNUMBER" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="CLOUD_STOCKDISPATCHDETAIL">
-          <Key>
-            <PropertyRef Name="STOCKDISPATCHDETAILID" />
-          </Key>
-          <Property Name="STOCKDISPATCHDETAILID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="STOCKDISPATCHID" Type="Int32" Nullable="false" />
-          <Property Name="ITEMPRICEID" Type="Int32" Nullable="false" />
-          <Property Name="TRAYNUMBER" Type="Int32" />
-          <Property Name="DISPATCHQUANTITY" Type="Int32" Nullable="false" />
-          <Property Name="RECEIVEDQUANTITY" Type="Int32" Nullable="false" />
-          <Property Name="WEIGHTINKGS" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="CREATEDBY" Type="Int32" />
-          <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
-          <Property Name="UPDATEDBY" Type="Int32" />
-          <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
-          <Property Name="DELETEDBY" Type="Int32" />
-          <Property Name="DELETEDDATE" Type="DateTime" Precision="3" />
-        </EntityType>
+        <ComplexType Name="CLOUD_USP_R_STOCKCOUNTING_Result">
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+          <Property Type="Int32" Name="Column2" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_R_BRANCH_Result">
+          <Property Type="Int32" Name="BRANCHID" Nullable="false" />
+          <Property Type="String" Name="BRANCHNAME" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="BRANCHCODE" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PHONENO" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="LANDLINE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="EMAILID" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="MULTIEDITTHRESHOLD" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_R_BRANCHCOUNTER_Result">
+          <Property Type="Int32" Name="COUNTERID" Nullable="false" />
+          <Property Type="String" Name="COUNTERNAME" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="BRANCHID" Nullable="true" />
+          <Property Type="Int32" Name="DAYCLOSUREID" Nullable="true" />
+          <Property Type="Int32" Name="BRANCHREFUNDID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_R_GETSYNC_Result">
+          <Property Type="Int32" Name="ENTITYSYNCSTATUSID" Nullable="false" />
+          <Property Type="Int32" Name="ENTITYID" Nullable="false" />
+          <Property Type="String" Name="ENTITYNAME" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="LOCATIONID" Nullable="false" />
+          <Property Type="String" Name="LOCATIONTYPE" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="SYNCDIRECTION" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="SYNCDATE" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="USP_R_GETSYNCDATA_Result">
+          <Property Type="Int32" Name="ITEMID" Nullable="false" />
+          <Property Type="String" Name="SKUCODE" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="ITEMNAME" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UPDATEDATE" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DELETEDDATE" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="ISOPENITEM" Nullable="true" />
+          <Property Type="Int32" Name="PARENTITEMID" Nullable="true" />
+          <Property Type="Int32" Name="UOMID" Nullable="true" />
+          <Property Type="Int32" Name="CATEGORYID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_R_POS_IMPORTDATA_Result">
+          <Property Type="Int32" Name="BILLID" Nullable="false" />
+          <Property Type="String" Name="BILLNUMBER" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="CREATEDBY" Nullable="true" />
+          <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UPDATEDBY" Nullable="true" />
+          <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="DELETEDBY" Nullable="true" />
+          <Property Type="DateTime" Name="DELETEDDATE" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="BILLSTATUS" Nullable="true" />
+          <Property Type="String" Name="CUSTOMERNUMBER" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="CUSTOMERNAME" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="DAYCLOSUREID" Nullable="true" />
+          <Property Type="Decimal" Name="ROUNDING" Nullable="true" Precision="3" Scale="2" />
+          <Property Type="Decimal" Name="SPLDISCPER" Nullable="true" Precision="5" Scale="2" />
+          <Property Type="Boolean" Name="ISDOORDELIVERY" Nullable="true" />
+          <Property Type="Decimal" Name="TENDEREDCASH" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="TENDEREDCHANGE" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="String" Name="CUSTOMERGST" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="USP_R_SHOWSYNC_Result">
+          <Property Type="Int32" Name="ENTITYSYNCSTATUSID" Nullable="false" />
+          <Property Type="Int32" Name="LOCATIONID" Nullable="false" />
+          <Property Type="String" Name="LOCATIONNAME" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ENTITYNAME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SYNCDIRECTION" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="SYNCDATE" Nullable="true" Precision="23" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -861,6 +631,8 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <EntitySetMapping Name="BRANCHes">
             <EntityTypeMapping TypeName="NSRetail_CloudModel.BRANCH">
               <MappingFragment StoreEntitySet="BRANCH">
+                <ScalarProperty Name="MULTIEDITTHRESHOLD" ColumnName="MULTIEDITTHRESHOLD" />
+                <ScalarProperty Name="SYNCDATE" ColumnName="SYNCDATE" />
                 <ScalarProperty Name="BRANCHID" ColumnName="BRANCHID" />
                 <ScalarProperty Name="BRANCHNAME" ColumnName="BRANCHNAME" />
                 <ScalarProperty Name="BRANCHCODE" ColumnName="BRANCHCODE" />
@@ -877,67 +649,10 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BRANCHCOUNTERs">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.BRANCHCOUNTER">
-              <MappingFragment StoreEntitySet="BRANCHCOUNTER">
-                <ScalarProperty Name="COUNTERID" ColumnName="COUNTERID" />
-                <ScalarProperty Name="COUNTERNAME" ColumnName="COUNTERNAME" />
-                <ScalarProperty Name="BRANCHID" ColumnName="BRANCHID" />
-                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
-                <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
-                <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ENTITies">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.ENTITY">
-              <MappingFragment StoreEntitySet="ENTITY">
-                <ScalarProperty Name="ENTITYID" ColumnName="ENTITYID" />
-                <ScalarProperty Name="ENTITYNAME" ColumnName="ENTITYNAME" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ENTITYSYNCORDERs">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.ENTITYSYNCORDER">
-              <MappingFragment StoreEntitySet="ENTITYSYNCORDER">
-                <ScalarProperty Name="ENTITYSYNCORDERID" ColumnName="ENTITYSYNCORDERID" />
-                <ScalarProperty Name="ENTITYID" ColumnName="ENTITYID" />
-                <ScalarProperty Name="SYNCORDER" ColumnName="SYNCORDER" />
-                <ScalarProperty Name="LOCATIONTYPE" ColumnName="LOCATIONTYPE" />
-                <ScalarProperty Name="SYNCDIRECTION" ColumnName="SYNCDIRECTION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ENTITYSYNCSTATUS">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.ENTITYSYNCSTATU">
-              <MappingFragment StoreEntitySet="ENTITYSYNCSTATUS">
-                <ScalarProperty Name="ENTITYSYNCSTATUSID" ColumnName="ENTITYSYNCSTATUSID" />
-                <ScalarProperty Name="ENTITYID" ColumnName="ENTITYID" />
-                <ScalarProperty Name="LOCATIONID" ColumnName="LOCATIONID" />
-                <ScalarProperty Name="LOCATIONTYPE" ColumnName="LOCATIONTYPE" />
-                <ScalarProperty Name="SYNCDIRECTION" ColumnName="SYNCDIRECTION" />
-                <ScalarProperty Name="SYNCDATE" ColumnName="SYNCDATE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GSTDETAILs">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.GSTDETAIL">
-              <MappingFragment StoreEntitySet="GSTDETAIL">
-                <ScalarProperty Name="GSTID" ColumnName="GSTID" />
-                <ScalarProperty Name="GSTCODE" ColumnName="GSTCODE" />
-                <ScalarProperty Name="CGST" ColumnName="CGST" />
-                <ScalarProperty Name="SGST" ColumnName="SGST" />
-                <ScalarProperty Name="IGST" ColumnName="IGST" />
-                <ScalarProperty Name="CESS" ColumnName="CESS" />
-                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
-                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
-                <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ITEMs">
             <EntityTypeMapping TypeName="NSRetail_CloudModel.ITEM">
               <MappingFragment StoreEntitySet="ITEM">
+                <ScalarProperty Name="SYNCDATE" ColumnName="SYNCDATE" />
                 <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
                 <ScalarProperty Name="ITEMID" ColumnName="ITEMID" />
                 <ScalarProperty Name="SKUCODE" ColumnName="SKUCODE" />
@@ -954,6 +669,7 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <EntitySetMapping Name="ITEMCODEs">
             <EntityTypeMapping TypeName="NSRetail_CloudModel.ITEMCODE">
               <MappingFragment StoreEntitySet="ITEMCODE">
+                <ScalarProperty Name="SYNCDATE" ColumnName="SYNCDATE" />
                 <ScalarProperty Name="HSNCODE" ColumnName="HSNCODE" />
                 <ScalarProperty Name="ITEMCODEID" ColumnName="ITEMCODEID" />
                 <ScalarProperty Name="ITEMID" ColumnName="ITEMID" />
@@ -968,6 +684,9 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <EntitySetMapping Name="ITEMPRICEs">
             <EntityTypeMapping TypeName="NSRetail_CloudModel.ITEMPRICE">
               <MappingFragment StoreEntitySet="ITEMPRICE">
+                <ScalarProperty Name="PARENTITEMPRICEID" ColumnName="PARENTITEMPRICEID" />
+                <ScalarProperty Name="BRANCHID" ColumnName="BRANCHID" />
+                <ScalarProperty Name="SYNCDATE" ColumnName="SYNCDATE" />
                 <ScalarProperty Name="ITEMPRICEID" ColumnName="ITEMPRICEID" />
                 <ScalarProperty Name="ITEMCODEID" ColumnName="ITEMCODEID" />
                 <ScalarProperty Name="SALEPRICE" ColumnName="SALEPRICE" />
@@ -979,66 +698,10 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="STOCKDISPATCHes">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.STOCKDISPATCH">
-              <MappingFragment StoreEntitySet="STOCKDISPATCH">
-                <ScalarProperty Name="STOCKDISPATCHID" ColumnName="STOCKDISPATCHID" />
-                <ScalarProperty Name="FROMBRANCHID" ColumnName="FROMBRANCHID" />
-                <ScalarProperty Name="TOBRANCHID" ColumnName="TOBRANCHID" />
-                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-                <ScalarProperty Name="STATUSAPPROVEDBY" ColumnName="STATUSAPPROVEDBY" />
-                <ScalarProperty Name="STATUSAPPROVEDDATE" ColumnName="STATUSAPPROVEDDATE" />
-                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
-                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
-                <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
-                <ScalarProperty Name="DISPATCHNUMBER" ColumnName="DISPATCHNUMBER" />
-                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
-                <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
-                <ScalarProperty Name="DELETEDBY" ColumnName="DELETEDBY" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="STOCKDISPATCHDETAILs">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.STOCKDISPATCHDETAIL">
-              <MappingFragment StoreEntitySet="STOCKDISPATCHDETAIL">
-                <ScalarProperty Name="STOCKDISPATCHDETAILID" ColumnName="STOCKDISPATCHDETAILID" />
-                <ScalarProperty Name="STOCKDISPATCHID" ColumnName="STOCKDISPATCHID" />
-                <ScalarProperty Name="ITEMPRICEID" ColumnName="ITEMPRICEID" />
-                <ScalarProperty Name="TRAYNUMBER" ColumnName="TRAYNUMBER" />
-                <ScalarProperty Name="DISPATCHQUANTITY" ColumnName="DISPATCHQUANTITY" />
-                <ScalarProperty Name="RECEIVEDQUANTITY" ColumnName="RECEIVEDQUANTITY" />
-                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
-                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
-                <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
-                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
-                <ScalarProperty Name="DELETEDBY" ColumnName="DELETEDBY" />
-                <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
-                <ScalarProperty Name="WEIGHTINKGS" ColumnName="WEIGHTINKGS" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLMOPs">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.TBLMOP">
-              <MappingFragment StoreEntitySet="TBLMOP">
-                <ScalarProperty Name="MOPID" ColumnName="MOPID" />
-                <ScalarProperty Name="MOPNAME" ColumnName="MOPNAME" />
-                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
-                <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
-                <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLROLEs">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.TBLROLE">
-              <MappingFragment StoreEntitySet="TBLROLE">
-                <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
-                <ScalarProperty Name="ROLENAME" ColumnName="ROLENAME" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TBLUSERs">
             <EntityTypeMapping TypeName="NSRetail_CloudModel.TBLUSER">
               <MappingFragment StoreEntitySet="TBLUSER">
+                <ScalarProperty Name="SYNCDATE" ColumnName="SYNCDATE" />
                 <ScalarProperty Name="USERID" ColumnName="USERID" />
                 <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
                 <ScalarProperty Name="REPORTINGLEADID" ColumnName="REPORTINGLEADID" />
@@ -1055,64 +718,6 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
                 <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
                 <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
                 <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UOMs">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.UOM">
-              <MappingFragment StoreEntitySet="UOM">
-                <ScalarProperty Name="UOMID" ColumnName="UOMID" />
-                <ScalarProperty Name="DISPLAYVALUE" ColumnName="DISPLAYVALUE" />
-                <ScalarProperty Name="BASEUOMID" ColumnName="BASEUOMID" />
-                <ScalarProperty Name="MULTIPLIER" ColumnName="MULTIPLIER" />
-                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
-                <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
-                <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="POS_BILL">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.POS_BILL">
-              <MappingFragment StoreEntitySet="POS_BILL">
-                <ScalarProperty Name="BILLID" ColumnName="BILLID" />
-                <ScalarProperty Name="BRANCHCOUNTERID" ColumnName="BRANCHCOUNTERID" />
-                <ScalarProperty Name="BILLNUMBER" ColumnName="BILLNUMBER" />
-                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
-                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
-                <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
-                <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
-                <ScalarProperty Name="DELETEDBY" ColumnName="DELETEDBY" />
-                <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
-                <ScalarProperty Name="BILLSTATUS" ColumnName="BILLSTATUS" />
-                <ScalarProperty Name="CUSTOMERNUMBER" ColumnName="CUSTOMERNUMBER" />
-                <ScalarProperty Name="CUSTOMERNAME" ColumnName="CUSTOMERNAME" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="POS_BILLDETAIL">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.POS_BILLDETAIL">
-              <MappingFragment StoreEntitySet="POS_BILLDETAIL">
-                <ScalarProperty Name="BILLDETAILID" ColumnName="BILLDETAILID" />
-                <ScalarProperty Name="BILLID" ColumnName="BILLID" />
-                <ScalarProperty Name="BRANCHCOUNTERID" ColumnName="BRANCHCOUNTERID" />
-                <ScalarProperty Name="ITEMPRICEID" ColumnName="ITEMPRICEID" />
-                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
-                <ScalarProperty Name="WEIGHTINKGS" ColumnName="WEIGHTINKGS" />
-                <ScalarProperty Name="BILLEDAMOUNT" ColumnName="BILLEDAMOUNT" />
-                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
-                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
-                <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
-                <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
-                <ScalarProperty Name="DELETEDBY" ColumnName="DELETEDBY" />
-                <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
-                <ScalarProperty Name="CGST" ColumnName="CGST" />
-                <ScalarProperty Name="SGST" ColumnName="SGST" />
-                <ScalarProperty Name="IGST" ColumnName="IGST" />
-                <ScalarProperty Name="CESS" ColumnName="CESS" />
-                <ScalarProperty Name="GSTVALUE" ColumnName="GSTVALUE" />
-                <ScalarProperty Name="GSTID" ColumnName="GSTID" />
-                <ScalarProperty Name="SNO" ColumnName="SNO" />
-                <ScalarProperty Name="DISCOUNT" ColumnName="DISCOUNT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1139,6 +744,7 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
           <EntitySetMapping Name="CLOUD_STOCKCOUNTINGDETAIL">
             <EntityTypeMapping TypeName="NSRetail_CloudModel.CLOUD_STOCKCOUNTINGDETAIL">
               <MappingFragment StoreEntitySet="CLOUD_STOCKCOUNTINGDETAIL">
+                <ScalarProperty Name="WEIGHTINKGS" ColumnName="WEIGHTINKGS" />
                 <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
                 <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
                 <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
@@ -1149,45 +755,143 @@ warning 6002: The table/view 'NSRetail_Cloud.dbo.POS_BILLDETAIL' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CLOUD_STOCKDISPATCH">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.CLOUD_STOCKDISPATCH">
-              <MappingFragment StoreEntitySet="CLOUD_STOCKDISPATCH">
-                <ScalarProperty Name="DISPATCHNUMBER" ColumnName="DISPATCHNUMBER" />
-                <ScalarProperty Name="DELETEDBY" ColumnName="DELETEDBY" />
-                <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
-                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
-                <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
+          <FunctionImportMapping FunctionImportName="CLOUD_USP_D_STOCKCOUNTINGDETAIL1" FunctionName="NSRetail_CloudModel.Store.CLOUD_USP_D_STOCKCOUNTINGDETAIL1" />
+          <FunctionImportMapping FunctionImportName="CLOUD_USP_D_STOCKDISPATCHDETAIL" FunctionName="NSRetail_CloudModel.Store.CLOUD_USP_D_STOCKDISPATCHDETAIL" />
+          <FunctionImportMapping FunctionImportName="CLOUD_USP_R_STOCKCOUNTING" FunctionName="NSRetail_CloudModel.Store.CLOUD_USP_R_STOCKCOUNTING">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NSRetail_CloudModel.CLOUD_USP_R_STOCKCOUNTING_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CLOUD_USP_U_STOCKCOUNTING" FunctionName="NSRetail_CloudModel.Store.CLOUD_USP_U_STOCKCOUNTING" />
+          <FunctionImportMapping FunctionImportName="USP_CU_BRANCH" FunctionName="NSRetail_CloudModel.Store.USP_CU_BRANCH" />
+          <FunctionImportMapping FunctionImportName="USP_CU_BRANCHCOUNTER" FunctionName="NSRetail_CloudModel.Store.USP_CU_BRANCHCOUNTER" />
+          <FunctionImportMapping FunctionImportName="USP_CU_DENOMINATION" FunctionName="NSRetail_CloudModel.Store.USP_CU_DENOMINATION" />
+          <FunctionImportMapping FunctionImportName="USP_CU_GSTDETAIL" FunctionName="NSRetail_CloudModel.Store.USP_CU_GSTDETAIL" />
+          <FunctionImportMapping FunctionImportName="USP_CU_ITEM" FunctionName="NSRetail_CloudModel.Store.USP_CU_ITEM" />
+          <FunctionImportMapping FunctionImportName="USP_CU_ITEMCODE" FunctionName="NSRetail_CloudModel.Store.USP_CU_ITEMCODE" />
+          <FunctionImportMapping FunctionImportName="USP_CU_ITEMGROUP" FunctionName="NSRetail_CloudModel.Store.USP_CU_ITEMGROUP" />
+          <FunctionImportMapping FunctionImportName="USP_CU_ITEMGROUPDETAIL" FunctionName="NSRetail_CloudModel.Store.USP_CU_ITEMGROUPDETAIL" />
+          <FunctionImportMapping FunctionImportName="USP_CU_ITEMPRICE" FunctionName="NSRetail_CloudModel.Store.USP_CU_ITEMPRICE" />
+          <FunctionImportMapping FunctionImportName="USP_CU_MOP" FunctionName="NSRetail_CloudModel.Store.USP_CU_MOP" />
+          <FunctionImportMapping FunctionImportName="USP_CU_OFFER" FunctionName="NSRetail_CloudModel.Store.USP_CU_OFFER" />
+          <FunctionImportMapping FunctionImportName="USP_CU_OFFERBRANCH" FunctionName="NSRetail_CloudModel.Store.USP_CU_OFFERBRANCH" />
+          <FunctionImportMapping FunctionImportName="USP_CU_OFFERITEMMAP" FunctionName="NSRetail_CloudModel.Store.USP_CU_OFFERITEMMAP" />
+          <FunctionImportMapping FunctionImportName="USP_CU_OFFERTYPE" FunctionName="NSRetail_CloudModel.Store.USP_CU_OFFERTYPE" />
+          <FunctionImportMapping FunctionImportName="USP_CU_POS_BILL" FunctionName="NSRetail_CloudModel.Store.USP_CU_POS_BILL" />
+          <FunctionImportMapping FunctionImportName="USP_CU_POS_BILLDETAIL" FunctionName="NSRetail_CloudModel.Store.USP_CU_POS_BILLDETAIL" />
+          <FunctionImportMapping FunctionImportName="USP_CU_POS_BILLMOPDETAIL" FunctionName="NSRetail_CloudModel.Store.USP_CU_POS_BILLMOPDETAIL" />
+          <FunctionImportMapping FunctionImportName="USP_CU_POS_BREFUND" FunctionName="NSRetail_CloudModel.Store.USP_CU_POS_BREFUND" />
+          <FunctionImportMapping FunctionImportName="USP_CU_POS_BREFUNDDETAL" FunctionName="NSRetail_CloudModel.Store.USP_CU_POS_BREFUNDDETAL" />
+          <FunctionImportMapping FunctionImportName="USP_CU_POS_CREFUND" FunctionName="NSRetail_CloudModel.Store.USP_CU_POS_CREFUND" />
+          <FunctionImportMapping FunctionImportName="USP_CU_POS_DAYCLOSURE" FunctionName="NSRetail_CloudModel.Store.USP_CU_POS_DAYCLOSURE" />
+          <FunctionImportMapping FunctionImportName="USP_CU_POS_DAYCLOSUREDETAIL" FunctionName="NSRetail_CloudModel.Store.USP_CU_POS_DAYCLOSUREDETAIL" />
+          <FunctionImportMapping FunctionImportName="USP_CU_POS_DAYSEQUENCE" FunctionName="NSRetail_CloudModel.Store.USP_CU_POS_DAYSEQUENCE" />
+          <FunctionImportMapping FunctionImportName="USP_CU_REASONFORREFUND" FunctionName="NSRetail_CloudModel.Store.USP_CU_REASONFORREFUND" />
+          <FunctionImportMapping FunctionImportName="USP_CU_ROLE" FunctionName="NSRetail_CloudModel.Store.USP_CU_ROLE" />
+          <FunctionImportMapping FunctionImportName="USP_CU_STOCKDISPATCH" FunctionName="NSRetail_CloudModel.Store.USP_CU_STOCKDISPATCH" />
+          <FunctionImportMapping FunctionImportName="USP_CU_STOCKDISPATCHDETAIL" FunctionName="NSRetail_CloudModel.Store.USP_CU_STOCKDISPATCHDETAIL" />
+          <FunctionImportMapping FunctionImportName="USP_CU_TBLCATEGORY" FunctionName="NSRetail_CloudModel.Store.USP_CU_TBLCATEGORY" />
+          <FunctionImportMapping FunctionImportName="USP_CU_UOM" FunctionName="NSRetail_CloudModel.Store.USP_CU_UOM" />
+          <FunctionImportMapping FunctionImportName="USP_CU_USER" FunctionName="NSRetail_CloudModel.Store.USP_CU_USER" />
+          <FunctionImportMapping FunctionImportName="USP_D_OLD_DATA" FunctionName="NSRetail_CloudModel.Store.USP_D_OLD_DATA" />
+          <FunctionImportMapping FunctionImportName="USP_D_SYNCSTATUS" FunctionName="NSRetail_CloudModel.Store.USP_D_SYNCSTATUS" />
+          <FunctionImportMapping FunctionImportName="USP_R_BRANCH" FunctionName="NSRetail_CloudModel.Store.USP_R_BRANCH">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NSRetail_CloudModel.USP_R_BRANCH_Result">
+                <ScalarProperty Name="BRANCHID" ColumnName="BRANCHID" />
+                <ScalarProperty Name="BRANCHNAME" ColumnName="BRANCHNAME" />
+                <ScalarProperty Name="BRANCHCODE" ColumnName="BRANCHCODE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="PHONENO" ColumnName="PHONENO" />
+                <ScalarProperty Name="LANDLINE" ColumnName="LANDLINE" />
+                <ScalarProperty Name="EMAILID" ColumnName="EMAILID" />
+                <ScalarProperty Name="MULTIEDITTHRESHOLD" ColumnName="MULTIEDITTHRESHOLD" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_R_BRANCHCOUNTER" FunctionName="NSRetail_CloudModel.Store.USP_R_BRANCHCOUNTER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NSRetail_CloudModel.USP_R_BRANCHCOUNTER_Result">
+                <ScalarProperty Name="COUNTERID" ColumnName="COUNTERID" />
+                <ScalarProperty Name="COUNTERNAME" ColumnName="COUNTERNAME" />
+                <ScalarProperty Name="BRANCHID" ColumnName="BRANCHID" />
+                <ScalarProperty Name="DAYCLOSUREID" ColumnName="DAYCLOSUREID" />
+                <ScalarProperty Name="BRANCHREFUNDID" ColumnName="BRANCHREFUNDID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_R_GETSYNC" FunctionName="NSRetail_CloudModel.Store.USP_R_GETSYNC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NSRetail_CloudModel.USP_R_GETSYNC_Result">
+                <ScalarProperty Name="ENTITYSYNCSTATUSID" ColumnName="ENTITYSYNCSTATUSID" />
+                <ScalarProperty Name="ENTITYID" ColumnName="ENTITYID" />
+                <ScalarProperty Name="ENTITYNAME" ColumnName="ENTITYNAME" />
+                <ScalarProperty Name="LOCATIONID" ColumnName="LOCATIONID" />
+                <ScalarProperty Name="LOCATIONTYPE" ColumnName="LOCATIONTYPE" />
+                <ScalarProperty Name="SYNCDIRECTION" ColumnName="SYNCDIRECTION" />
+                <ScalarProperty Name="SYNCDATE" ColumnName="SYNCDATE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_R_GETSYNCDATA" FunctionName="NSRetail_CloudModel.Store.USP_R_GETSYNCDATA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NSRetail_CloudModel.USP_R_GETSYNCDATA_Result">
+                <ScalarProperty Name="ITEMID" ColumnName="ITEMID" />
+                <ScalarProperty Name="SKUCODE" ColumnName="SKUCODE" />
+                <ScalarProperty Name="ITEMNAME" ColumnName="ITEMNAME" />
                 <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
-                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
-                <ScalarProperty Name="STATUSAPPROVEDDATE" ColumnName="STATUSAPPROVEDDATE" />
-                <ScalarProperty Name="STATUSAPPROVEDBY" ColumnName="STATUSAPPROVEDBY" />
-                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
+                <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
+                <ScalarProperty Name="ISOPENITEM" ColumnName="ISOPENITEM" />
+                <ScalarProperty Name="PARENTITEMID" ColumnName="PARENTITEMID" />
+                <ScalarProperty Name="UOMID" ColumnName="UOMID" />
                 <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
-                <ScalarProperty Name="TOBRANCHID" ColumnName="TOBRANCHID" />
-                <ScalarProperty Name="FROMBRANCHID" ColumnName="FROMBRANCHID" />
-                <ScalarProperty Name="STOCKDISPATCHID" ColumnName="STOCKDISPATCHID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CLOUD_STOCKDISPATCHDETAIL">
-            <EntityTypeMapping TypeName="NSRetail_CloudModel.CLOUD_STOCKDISPATCHDETAIL">
-              <MappingFragment StoreEntitySet="CLOUD_STOCKDISPATCHDETAIL">
-                <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
-                <ScalarProperty Name="DELETEDBY" ColumnName="DELETEDBY" />
-                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
-                <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
-                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_R_GetTimeZone" FunctionName="NSRetail_CloudModel.Store.USP_R_GetTimeZone" />
+          <FunctionImportMapping FunctionImportName="USP_R_POS_IMPORTDATA" FunctionName="NSRetail_CloudModel.Store.USP_R_POS_IMPORTDATA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NSRetail_CloudModel.USP_R_POS_IMPORTDATA_Result">
+                <ScalarProperty Name="BILLID" ColumnName="BILLID" />
+                <ScalarProperty Name="BILLNUMBER" ColumnName="BILLNUMBER" />
                 <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
-                <ScalarProperty Name="WEIGHTINKGS" ColumnName="WEIGHTINKGS" />
-                <ScalarProperty Name="RECEIVEDQUANTITY" ColumnName="RECEIVEDQUANTITY" />
-                <ScalarProperty Name="DISPATCHQUANTITY" ColumnName="DISPATCHQUANTITY" />
-                <ScalarProperty Name="TRAYNUMBER" ColumnName="TRAYNUMBER" />
-                <ScalarProperty Name="ITEMPRICEID" ColumnName="ITEMPRICEID" />
-                <ScalarProperty Name="STOCKDISPATCHID" ColumnName="STOCKDISPATCHID" />
-                <ScalarProperty Name="STOCKDISPATCHDETAILID" ColumnName="STOCKDISPATCHDETAILID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+                <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
+                <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+                <ScalarProperty Name="DELETEDBY" ColumnName="DELETEDBY" />
+                <ScalarProperty Name="DELETEDDATE" ColumnName="DELETEDDATE" />
+                <ScalarProperty Name="BILLSTATUS" ColumnName="BILLSTATUS" />
+                <ScalarProperty Name="CUSTOMERNUMBER" ColumnName="CUSTOMERNUMBER" />
+                <ScalarProperty Name="CUSTOMERNAME" ColumnName="CUSTOMERNAME" />
+                <ScalarProperty Name="DAYCLOSUREID" ColumnName="DAYCLOSUREID" />
+                <ScalarProperty Name="ROUNDING" ColumnName="ROUNDING" />
+                <ScalarProperty Name="SPLDISCPER" ColumnName="SPLDISCPER" />
+                <ScalarProperty Name="ISDOORDELIVERY" ColumnName="ISDOORDELIVERY" />
+                <ScalarProperty Name="TENDEREDCASH" ColumnName="TENDEREDCASH" />
+                <ScalarProperty Name="TENDEREDCHANGE" ColumnName="TENDEREDCHANGE" />
+                <ScalarProperty Name="CUSTOMERGST" ColumnName="CUSTOMERGST" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_R_POSVersion" FunctionName="NSRetail_CloudModel.Store.USP_R_POSVersion" />
+          <FunctionImportMapping FunctionImportName="USP_R_SHOWSYNC" FunctionName="NSRetail_CloudModel.Store.USP_R_SHOWSYNC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NSRetail_CloudModel.USP_R_SHOWSYNC_Result">
+                <ScalarProperty Name="ENTITYSYNCSTATUSID" ColumnName="ENTITYSYNCSTATUSID" />
+                <ScalarProperty Name="LOCATIONID" ColumnName="LOCATIONID" />
+                <ScalarProperty Name="LOCATIONNAME" ColumnName="LOCATIONNAME" />
+                <ScalarProperty Name="ENTITYNAME" ColumnName="ENTITYNAME" />
+                <ScalarProperty Name="SYNCDIRECTION" ColumnName="SYNCDIRECTION" />
+                <ScalarProperty Name="SYNCDATE" ColumnName="SYNCDATE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_U_BRANCHCOUNTER_HDDNO" FunctionName="NSRetail_CloudModel.Store.USP_U_BRANCHCOUNTER_HDDNO" />
+          <FunctionImportMapping FunctionImportName="USP_U_ENTITYSYNCTIME" FunctionName="NSRetail_CloudModel.Store.USP_U_ENTITYSYNCTIME" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

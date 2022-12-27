@@ -197,5 +197,34 @@ namespace DataAccess
                 SQLCon.SqlCloudConn().Close();
             }
         }
+
+        public DataTable GetStockSummaryByID(object ItemID , object BranchID)
+        {
+            DataTable dtReportData = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_STOCKSUMMARYITEMID]";
+                    cmd.Parameters.AddWithValue("@ITEMID", ItemID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtReportData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error While Retrieving Stock Summary By ItemID", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtReportData;
+        }
     }
 }

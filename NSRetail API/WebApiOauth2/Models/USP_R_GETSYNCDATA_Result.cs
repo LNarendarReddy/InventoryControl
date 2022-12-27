@@ -10,23 +10,18 @@
 namespace NSRetail.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class CLOUD_STOCKDISPATCH
+    public partial class USP_R_GETSYNCDATA_Result
     {
-        public int STOCKDISPATCHID { get; set; }
-        public int FROMBRANCHID { get; set; }
-        public int TOBRANCHID { get; set; }
-        public int CATEGORYID { get; set; }
-        public string STATUS { get; set; }
-        public string STATUSAPPROVEDBY { get; set; }
-        public Nullable<System.DateTime> STATUSAPPROVEDDATE { get; set; }
-        public Nullable<int> CREATEDBY { get; set; }
+        public int ITEMID { get; set; }
+        public string SKUCODE { get; set; }
+        public string ITEMNAME { get; set; }
         public Nullable<System.DateTime> CREATEDDATE { get; set; }
-        public Nullable<int> UPDATEDBY { get; set; }
         public Nullable<System.DateTime> UPDATEDATE { get; set; }
         public Nullable<System.DateTime> DELETEDDATE { get; set; }
-        public Nullable<int> DELETEDBY { get; set; }
-        public string DISPATCHNUMBER { get; set; }
+        public Nullable<bool> ISOPENITEM { get; set; }
+        public Nullable<int> PARENTITEMID { get; set; }
+        public Nullable<int> UOMID { get; set; }
+        public Nullable<int> CATEGORYID { get; set; }
     }
 }

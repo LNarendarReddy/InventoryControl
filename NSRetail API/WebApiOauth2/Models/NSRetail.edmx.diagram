@@ -6,28 +6,12 @@
     <edmx:Diagrams>
       <Diagram DiagramId="940c45820cdd46d090460a6e7190fee9" Name="Diagram1">
         <EntityTypeShape EntityType="NSRetail_CloudModel.BRANCH" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.BRANCHCOUNTER" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.ENTITY" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.ENTITYSYNCORDER" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.ENTITYSYNCSTATU" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.GSTDETAIL" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NSRetail_CloudModel.ITEM" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NSRetail_CloudModel.ITEMCODE" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.ITEMPRICE" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.STOCKDISPATCH" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.STOCKDISPATCHDETAIL" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.TBLMOP" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.TBLROLE" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NSRetail_CloudModel.ITEMPRICE" Width="1.5" PointX="5.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NSRetail_CloudModel.TBLUSER" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.UOM" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.POS_BILL" Width="1.5" PointX="11.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.POS_BILLDETAIL" Width="1.5" PointX="11.75" PointY="9.75" IsExpanded="true" />
-        <AssociationConnector Association="NSRetail_CloudModel.FK__BRANCHCOU__BRANC__12FDD1B2" ManuallyRouted="false" />
-        <AssociationConnector Association="NSRetail_CloudModel.FK__ENTITYSYN__ENTIT__4A4E069C" ManuallyRouted="false" />
         <EntityTypeShape EntityType="NSRetail_CloudModel.CLOUD_STOCKCOUNTING" Width="1.5" PointX="3.375" PointY="12.75" />
         <EntityTypeShape EntityType="NSRetail_CloudModel.CLOUD_STOCKCOUNTINGDETAIL" Width="1.5" PointX="5.375" PointY="13.75" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.CLOUD_STOCKDISPATCH" Width="1.5" PointX="7.375" PointY="13.75" />
-        <EntityTypeShape EntityType="NSRetail_CloudModel.CLOUD_STOCKDISPATCHDETAIL" Width="1.5" PointX="14.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

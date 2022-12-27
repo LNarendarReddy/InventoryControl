@@ -1,4 +1,5 @@
-﻿using DevExpress.Utils.UI.Localization;
+﻿using DevExpress.Accessibility;
+using DevExpress.Utils.UI.Localization;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
@@ -8,6 +9,7 @@ using NSRetailPOS.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO.Ports;
@@ -51,7 +53,8 @@ namespace NSRetailPOS
         private void Form1_Load(object sender, EventArgs e)
         {
             Utility.ListenSerialPort();
-            lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    Role : {Utility.loginInfo.RoleName}    ";
+            lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    " +
+                $"Role : {Utility.loginInfo.RoleName} - {ConfigurationManager.AppSettings["BuildType"]}    ";
             lblVersionInfo.Text = $"App Version {Utility.AppVersion} || DB Version {Utility.DBVersion} ";
             btnCRWithoutBill.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             txtSplDiscPer.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");

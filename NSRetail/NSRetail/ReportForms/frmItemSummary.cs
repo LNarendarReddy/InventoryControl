@@ -18,7 +18,7 @@ namespace NSRetail.ReportForms
         private void frmItemSummary_Load(object sender, EventArgs e)
         {
             sluItemCode.Properties.DataSource = Utility.GetItemCodeList();
-            sluItemCode.Properties.ValueMember = "ITEMCODEID";
+            sluItemCode.Properties.ValueMember = "ITEMID";
             sluItemCode.Properties.DisplayMember = "ITEMNAME";
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
@@ -48,7 +48,7 @@ namespace NSRetail.ReportForms
                 { "BranchID",  cmbBranch.EditValue }
                 , { "FromDate", dtFromDate.EditValue }
                 , { "ToDate", dtToDate.EditValue }
-                , { "ItemCodeID", sluItemCode.EditValue }
+                , { "ItemID", sluItemCode.EditValue }
                 , { "IncludeBillNumber", chkIncludeBillNumber.EditValue }
             };
 

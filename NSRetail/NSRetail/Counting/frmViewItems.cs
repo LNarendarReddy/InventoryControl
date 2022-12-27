@@ -1,6 +1,8 @@
 ﻿using DataAccess;
+using DevExpress.Utils.Extensions;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
+using NSRetail.Counting;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -12,21 +14,24 @@ namespace NSRetail
         private string actionType;
         private object BranchID = null;
 
-        public frmViewItems(DataTable dtItems, string caller, bool Diff = false, object _BranchID = null)
+        public frmViewItems(DataTable dtItems, string caller ,object _BranchID = null)
         {
             InitializeComponent();
             gcItems.DataSource = dtItems;
-            gcMRP.Visible = !Diff;
-            gcSalePrice.Visible = !Diff;
-            gcQuantity.Visible = !Diff;
-            gcPhysicalStock.Visible = Diff;
-            gcSystemStock.Visible = Diff;
-            gcStockDiff.Visible = Diff;
-            gcCostPriceWT.Visible = caller == "differences" || caller == "not enetered";
-            gcDiffStockCP.Visible = caller == "differences" || caller == "not enetered";
-            gcPhysicalStockCP.Visible = caller == "differences";
-            gcSystemStockCP.Visible = caller == "differences";
-            gcCreatedDate.Visible = caller != "not enetered";
+            gcMRP.Visible = gcSalePrice.Visible = caller == "items";
+
+            gcStockDiff.Visible =
+                gcSystemStock.Visible =
+                gcPhysicalStock.Visible = 
+                caller == "differences" || caller == "not enetered";
+
+            gcQuantity.Visible = caller == "consolidated" || caller == "items";
+            gcCreatedDate.Visible = caller == "consolidated" || caller == "differences";
+
+            //gcCostPriceWT.Visible = caller == "differences" || caller == "not enetered";
+            //gcDiffStockCP.Visible = caller == "differences" || caller == "not enetered";
+            //gcPhysicalStockCP.Visible = caller == "differences";
+            //gcSystemStockCP.Visible = caller == "differences";
             actionType = caller;
             BranchID = _BranchID;
         }
@@ -49,9 +54,12 @@ namespace NSRetail
         
         private void gvItems_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
-            if (gvItems.FocusedRowHandle < 0 || actionType != "differences")
+            if (gvItems.FocusedRowHandle < 0)
                 return;
-            e.Menu.Items.Add(new DXMenuItem("Delete Item", new EventHandler(DeleteItem_Click)));
+            if (actionType == "differences")
+                e.Menu.Items.Add(new DXMenuItem("Delete Item", new EventHandler(DeleteItem_Click)));
+            if (actionType == "consolidated")
+                e.Menu.Items.Add(new DXMenuItem("View detail", new EventHandler(ViewDetail_Click)));
         }
 
         private void DeleteItem_Click(object sender, EventArgs e)
@@ -62,6 +70,20 @@ namespace NSRetail
 
             new CloudRepository().DeleteStockCounting(BranchID,gvItems.GetFocusedRowCellValue("ITEMCODEID"));
             gvItems.DeleteRow(gvItems.FocusedRowHandle);
+        }
+
+        private void ViewDetail_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new CountingRepository().ViewCountingDetails(BranchID,
+                gvItems.GetFocusedRowCellValue("ITEMID"));
+                if (dt == null || dt.Rows.Count == 0)
+                return;
+            frmCountingDetails obj = new frmCountingDetails(dt);
+            obj.ShowInTaskbar = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.MinimizeBox= false;
+            obj.MaximizeBox= false;
+            obj.ShowDialog();
         }
     }
 }

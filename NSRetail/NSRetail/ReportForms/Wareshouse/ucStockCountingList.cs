@@ -46,7 +46,7 @@ namespace NSRetail.ReportForms.Wareshouse
                 return;
             frmViewItems obj =
                 new frmViewItems(countingRepository.GetConsolidatedItems(
-                    cmbBranch.EditValue), "consolidated");
+                    cmbBranch.EditValue), "consolidated", cmbBranch.EditValue);
             ShowItemsForm(obj);
         }
 
@@ -73,7 +73,8 @@ namespace NSRetail.ReportForms.Wareshouse
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+                ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
             }
         }
 
@@ -83,7 +84,7 @@ namespace NSRetail.ReportForms.Wareshouse
                 return;
             frmViewItems obj =
                 new frmViewItems(countingRepository.GetStockCountingDiff(
-                    cmbBranch.EditValue), "differences", true, cmbBranch.EditValue);
+                    cmbBranch.EditValue), "differences", cmbBranch.EditValue);
             ShowItemsForm(obj);
         }
 
@@ -93,7 +94,7 @@ namespace NSRetail.ReportForms.Wareshouse
                 return;
             frmViewItems obj =
                 new frmViewItems(countingRepository.GetStockCountingNoteEntered(
-                    cmbBranch.EditValue), "not enetered", true);
+                    cmbBranch.EditValue), "not enetered", cmbBranch.EditValue);
             ShowItemsForm(obj);
 
         }

@@ -10,11 +10,14 @@
 namespace NSRetail.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TBLROLE
+    public partial class USP_R_SHOWSYNC_Result
     {
-        public int ROLEID { get; set; }
-        public string ROLENAME { get; set; }
+        public int ENTITYSYNCSTATUSID { get; set; }
+        public int LOCATIONID { get; set; }
+        public string LOCATIONNAME { get; set; }
+        public string ENTITYNAME { get; set; }
+        public string SYNCDIRECTION { get; set; }
+        public Nullable<System.DateTime> SYNCDATE { get; set; }
     }
 }

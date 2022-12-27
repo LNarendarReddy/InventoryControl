@@ -55,6 +55,10 @@ namespace WarehouseCloudSync
                     //LoggerUtility.Logger.Info($"{entityName} down sync completed");
                     //Console.WriteLine($"{entityName} down sync completed");
                 }
+                
+                Console.WriteLine("Proccesing Dayclosures started");
+                warehouseRepository.ProccessDayClosures();
+                Console.WriteLine("Proccesing Dayclosures completed");
 
                 //LoggerUtility.Logger.Info($"Warehouse sync completed");
                 Console.WriteLine($"Warehouse sync completed");

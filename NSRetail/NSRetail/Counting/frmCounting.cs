@@ -296,7 +296,8 @@ namespace NSRetail
                 XtraMessageBox.Show("Are you sure want to delete item", "Confirm",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
-            new CloudRepository().DeleteStockCounting(gvCounting.GetFocusedRowCellValue("STOCKCOUNTINGDETAILID"));
+            new CloudRepository().DeleteStockCounting(gvCounting.GetFocusedRowCellValue("STOCKCOUNTINGDETAILID")
+                , Utility.UserID);
             gvCounting.DeleteRow(gvCounting.FocusedRowHandle);
         }
 

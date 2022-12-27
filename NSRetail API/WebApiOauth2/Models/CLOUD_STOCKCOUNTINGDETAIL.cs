@@ -21,5 +21,6 @@ namespace NSRetail.Models
         public Nullable<System.DateTime> CREATEDDATE { get; set; }
         public Nullable<System.DateTime> UPDATEDDATE { get; set; }
         public Nullable<System.DateTime> DELETEDDATE { get; set; }
+        public Nullable<decimal> WEIGHTINKGS { get; set; }
     }
 }

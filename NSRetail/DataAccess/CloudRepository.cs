@@ -2,6 +2,8 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
+using System.Runtime.InteropServices;
 
 namespace DataAccess
 {

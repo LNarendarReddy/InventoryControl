@@ -98,7 +98,11 @@ namespace NSRetail
                 IsSave = true;
                 this.Close();
             }
-            catch (Exception ex){XtraMessageBox.Show(ex.Message);}
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+                ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
+            }
         }
     }
 }

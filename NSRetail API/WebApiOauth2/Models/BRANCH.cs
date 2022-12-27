@@ -14,12 +14,6 @@ namespace NSRetail.Models
     
     public partial class BRANCH
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BRANCH()
-        {
-            this.BRANCHCOUNTERs = new HashSet<BRANCHCOUNTER>();
-        }
-    
         public int BRANCHID { get; set; }
         public string BRANCHNAME { get; set; }
         public string BRANCHCODE { get; set; }
@@ -33,8 +27,7 @@ namespace NSRetail.Models
         public Nullable<System.DateTime> UPDATEDATE { get; set; }
         public Nullable<System.DateTime> DELETEDDATE { get; set; }
         public Nullable<int> STATEID { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BRANCHCOUNTER> BRANCHCOUNTERs { get; set; }
+        public Nullable<System.DateTime> SYNCDATE { get; set; }
+        public Nullable<int> MULTIEDITTHRESHOLD { get; set; }
     }
 }

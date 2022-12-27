@@ -157,12 +157,14 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_STOCKDISPATCH]";
                     cmd.Parameters.AddWithValue("@STOCKDISPATCHID", ObjStockDispatch.STOCKDISPATCHID);
-                    cmd.ExecuteNonQuery();
+                    object obj = cmd.ExecuteScalar();
+                    if(!int.TryParse(Convert.ToString(obj), out int id))
+                        throw new Exception(Convert.ToString(obj));
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Updating Dispatch");
+                throw new Exception("Error While Updating Dispatch", ex);
             }
             finally
             {
@@ -455,12 +457,14 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@DISCOUNTFLAT", ObjStockEntry.DISCOUNTFLAT);
                     cmd.Parameters.AddWithValue("@EXPENSES", ObjStockEntry.EXPENSES);
                     cmd.Parameters.AddWithValue("@TRANSPORT", ObjStockEntry.TRANSPORT);
-                    cmd.ExecuteNonQuery();
+                    object obj = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(obj), out int id))
+                        throw new Exception(Convert.ToString(obj));
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Updating Invoice");
+                throw new Exception("Error While Updating Invoice", ex);
             }
             finally
             {

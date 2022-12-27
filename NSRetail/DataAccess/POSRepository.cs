@@ -278,7 +278,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@BREFUNDID", BRefundID);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
                     object objReturn = cmd.ExecuteScalar();
-                    if(objReturn != null)
+                    if(!int.TryParse(Convert.ToString(objReturn), out int id))
                         throw new Exception(Convert.ToString(objReturn));
                 }
             }

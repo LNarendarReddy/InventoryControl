@@ -8,6 +8,7 @@ namespace NSRetail.ReportForms
 {
     public partial class frmItemLedger : DevExpress.XtraEditors.XtraForm
     {
+        ReportRepository reportRepository = new ReportRepository();
         public frmItemLedger()
         {
             InitializeComponent();
@@ -44,8 +45,19 @@ namespace NSRetail.ReportForms
                 , { "ItemID", sluSKUCode.EditValue }
                 , { "IncludeBranch", chkIncludeBranch.EditValue }
             };
-            DataSet dsResult = new ReportRepository().GetReportDataset("USP_RPT_ITEMLEDGER1", searchCriteria);
+            DataSet dsResult = reportRepository.GetReportDataset("USP_RPT_ITEMLEDGER1", searchCriteria);
             gcItems.DataSource = dsResult.Tables[0];
+            DataTable dt = reportRepository.GetStockSummaryByID(sluSKUCode.EditValue, cmbBranch.EditValue);
+            if(dt != null && dt.Rows.Count > 0)
+            {
+                txtQuantity.EditValue = dt.Rows[0][0];
+                txtWeightinKGs.EditValue = dt.Rows[0][1];
+            }
+            else
+            {
+                txtQuantity.EditValue = null;
+                txtWeightinKGs.EditValue = null;
+            }
             SplashScreenManager.CloseOverlayForm(handle);
         }
 

@@ -10,14 +10,16 @@
 namespace NSRetail.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TBLMOP
+    public partial class USP_R_BRANCH_Result
     {
-        public int MOPID { get; set; }
-        public string MOPNAME { get; set; }
-        public Nullable<System.DateTime> CREATEDDATE { get; set; }
-        public Nullable<System.DateTime> UPDATEDDATE { get; set; }
-        public Nullable<System.DateTime> DELETEDDATE { get; set; }
+        public int BRANCHID { get; set; }
+        public string BRANCHNAME { get; set; }
+        public string BRANCHCODE { get; set; }
+        public string ADDRESS { get; set; }
+        public string PHONENO { get; set; }
+        public string LANDLINE { get; set; }
+        public string EMAILID { get; set; }
+        public Nullable<int> MULTIEDITTHRESHOLD { get; set; }
     }
 }

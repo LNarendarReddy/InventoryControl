@@ -54,7 +54,38 @@ namespace WarehouseCloudSync.Data
             catch (Exception ex)
             {
                 transaction?.Rollback();
+                Console.WriteLine(ex.ToString());
                 throw new Exception("Error While saving Entity wise data List", ex);
+            }
+            finally
+            {
+                SqlCon.SqlWHconn().Close();
+            }
+        }
+
+        public void ProccessDayClosures()
+        {
+            SqlTransaction transaction = null;
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SqlCon.SqlWHconn();
+                    transaction = cmd.Connection.BeginTransaction();
+                    cmd.Transaction = transaction;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 600;
+                    cmd.CommandText = "USP_P_DAYCLOSURES";
+                    cmd.ExecuteNonQuery();
+                    transaction?.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                transaction?.Rollback();
+                Console.WriteLine(ex.ToString());
+                throw new Exception("Error While proccesing day closures", ex);
             }
             finally
             {

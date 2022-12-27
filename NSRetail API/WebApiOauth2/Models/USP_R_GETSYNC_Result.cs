@@ -10,20 +10,15 @@
 namespace NSRetail.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ENTITY
+    public partial class USP_R_GETSYNC_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ENTITY()
-        {
-            this.ENTITYSYNCORDERs = new HashSet<ENTITYSYNCORDER>();
-        }
-    
+        public int ENTITYSYNCSTATUSID { get; set; }
         public int ENTITYID { get; set; }
         public string ENTITYNAME { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ENTITYSYNCORDER> ENTITYSYNCORDERs { get; set; }
+        public int LOCATIONID { get; set; }
+        public string LOCATIONTYPE { get; set; }
+        public string SYNCDIRECTION { get; set; }
+        public Nullable<System.DateTime> SYNCDATE { get; set; }
     }
 }
