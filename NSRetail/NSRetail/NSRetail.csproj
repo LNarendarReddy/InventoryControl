@@ -162,6 +162,12 @@
     <Compile Include="ReportForms\frmItemLedger.Designer.cs">
       <DependentUpon>frmItemLedger.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\frmItemSummaryDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\frmItemSummaryDetail.Designer.cs">
+      <DependentUpon>frmItemSummaryDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\POS\ucBranchIndentByAVG.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -764,6 +770,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\frmItemLedger.resx">
       <DependentUpon>frmItemLedger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\frmItemSummaryDetail.resx">
+      <DependentUpon>frmItemSummaryDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucBranchIndentByAVG.resx">
       <DependentUpon>ucBranchIndentByAVG.cs</DependentUpon>

@@ -28,35 +28,48 @@ namespace NSRetail.ReportForms
             dtToDate.EditValue = DateTime.Now;
 
             chkIncludeBranch.Checked = false;
+            chkIncludeItem.Checked = false;
         }
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            if (!dxValidationProvider1.Validate()) return;
             IOverlaySplashScreenHandle handle = SplashScreenManager.ShowOverlayForm(this);
+            try
+            {
+                if (!dxValidationProvider1.Validate()) return;
 
-            gcBrance.Visible = (bool)chkIncludeBranch.EditValue;
+                gcBrance.Visible = (bool)chkIncludeBranch.EditValue;
 
-            Dictionary<string, object> searchCriteria = new Dictionary<string, object>()
+                Dictionary<string, object> searchCriteria = new Dictionary<string, object>()
             {
                 { "BranchID",  cmbBranch.EditValue }
                 , { "FromDate", dtFromDate.EditValue }
                 , { "ToDate", dtToDate.EditValue }
                 , { "ItemID", sluSKUCode.EditValue }
                 , { "IncludeBranch", chkIncludeBranch.EditValue }
+                , { "IncludeItem", chkIncludeItem.EditValue }
             };
-            DataSet dsResult = reportRepository.GetReportDataset("USP_RPT_ITEMLEDGER1", searchCriteria);
-            gcItems.DataSource = dsResult.Tables[0];
-            DataTable dt = reportRepository.GetStockSummaryByID(sluSKUCode.EditValue, cmbBranch.EditValue);
-            if(dt != null && dt.Rows.Count > 0)
-            {
-                txtQuantity.EditValue = dt.Rows[0][0];
-                txtWeightinKGs.EditValue = dt.Rows[0][1];
+                DataSet dsResult = reportRepository.GetReportDataset("USP_RPT_ITEMLEDGER1", searchCriteria);
+                gcItems.DataSource = dsResult.Tables[0];
+                DataTable dt = reportRepository.GetStockSummaryByID(sluSKUCode.EditValue, cmbBranch.EditValue);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    txtQuantity.EditValue = dt.Rows[0][0];
+                    txtWeightinKGs.EditValue = dt.Rows[0][1];
+                }
+                else
+                {
+                    txtQuantity.EditValue = null;
+                    txtWeightinKGs.EditValue = null;
+                }
+                gcSKUCode.Visible = Convert.ToBoolean(chkIncludeItem.CheckState);
+                gcItemName.Visible = Convert.ToBoolean(chkIncludeItem.CheckState);
             }
-            else
+            catch (Exception ex)
             {
-                txtQuantity.EditValue = null;
-                txtWeightinKGs.EditValue = null;
+                SplashScreenManager.CloseOverlayForm(handle);
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+                ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
             }
             SplashScreenManager.CloseOverlayForm(handle);
         }
@@ -64,6 +77,19 @@ namespace NSRetail.ReportForms
         private void btnViewReport_Click(object sender, EventArgs e)
         {
             gcItems.ShowRibbonPrintPreview();
+        }
+
+        private void cmbBranch_EditValueChanged(object sender, EventArgs e)
+        {
+            if(cmbBranch.EditValue.Equals(97))
+            {
+                chkIncludeItem.Enabled = true;
+            }
+            else
+            {
+                chkIncludeItem.Checked = false;
+                chkIncludeItem.Enabled = false;
+            }
         }
     }
 }

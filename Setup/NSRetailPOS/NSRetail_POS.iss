@@ -3,7 +3,7 @@
 
 #define MyAppName "NSRetailPOS"
 #define MyAppVersion "1.2.7 || 1.2.9 (27-12-2022)"
-#define MyAppPublisher "NSRetail Solutions"
+#define MyAppPublisher "N SOFT SOLUTIONS"
 #define MyAppURL "http://www.nsretailsolutions.com/"
 #define MyAppExeName "NSRetailPOS.exe"
 

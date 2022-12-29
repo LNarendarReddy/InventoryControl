@@ -543,6 +543,7 @@
             this.gvItemSummary.OptionsDetail.AllowOnlyOneMasterRowExpanded = true;
             this.gvItemSummary.OptionsView.ShowFooter = true;
             this.gvItemSummary.OptionsView.ShowGroupPanel = false;
+            this.gvItemSummary.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvItemSummary_PopupMenuShowing);
             // 
             // gridColumn61
             // 
