@@ -10,7 +10,7 @@ namespace NSRetail.ReportForms.Wareshouse.TaxBreakUp
         {
             InitializeComponent();
 
-            dtFromDate.EditValue = new DateTime(DateTime.Now.Year, DateTime.Now.Month - 1, 1);
+            dtFromDate.EditValue = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(-1);
             dtToDate.EditValue = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddDays(-1);
 
             Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>() 
