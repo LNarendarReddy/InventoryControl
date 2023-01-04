@@ -27,6 +27,11 @@ namespace Entity
         public object IsActive { get; set; }
         public object FreeItemPriceID { get; set; }
         public object NumberOfItems { get; set; }
+        public object BaseOfferID { get; set; }
+        public object ItemID { get; set; }
+        public object SKUcode { get; set; }
+        public object ItemCode { get; set; }
+        public object ItemName { get; set; }
     }
 }
 

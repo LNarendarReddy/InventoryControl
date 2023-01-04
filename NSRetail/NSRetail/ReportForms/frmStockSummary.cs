@@ -32,13 +32,10 @@ namespace NSRetail.Stock
                     {"ItemID", sluItem.EditValue }
                 });
 
-                ds.Relations.Add("drItemID"
-                    , new[] { ds.Tables[0].Columns["ITEMID"], ds.Tables[0].Columns["BRANCHID"] }
-                    , new[] { ds.Tables[1].Columns["ITEMID"], ds.Tables[1].Columns["BRANCHID"] });
+                ds.Relations.Add("drItemID", new[] { ds.Tables[0].Columns["ITEMID"]}, new[] { ds.Tables[1].Columns["ITEMID"]});
                 gcSKU.DataSource = ds.Tables[0];
                 gcSKU.ForceInitialize();
                 gvSKU.Columns["ITEMID"].VisibleIndex = -1;
-                gvSKU.Columns["BRANCHID"].VisibleIndex = -1;
                 foreach (GridColumn gc in gvSKU.Columns)
                 {
                     if (gc.FieldName != "SKUCODE")
@@ -58,7 +55,6 @@ namespace NSRetail.Stock
                 gvEAN.OptionsView.ShowIndicator = false;
                 gvEAN.Columns["ITEMID"].VisibleIndex = -1;
                 gvEAN.Columns["ITEMCODEID"].VisibleIndex = -1;
-                gvEAN.Columns["BRANCHID"].VisibleIndex = -1;
                 foreach (GridColumn gc in gvEAN.Columns)
                 {
                     if (gc.FieldName != "ITEMCODE")
@@ -79,7 +75,6 @@ namespace NSRetail.Stock
             luBranch.Properties.DataSource = new MasterRepository().GetBranch(false);
             luBranch.Properties.ValueMember = "BRANCHID";
             luBranch.Properties.DisplayMember = "BRANCHNAME";
-            luBranch.EditValue = 0;
 
             sluItem.Properties.DataSource = Utility.GetItemCodeList();
             sluItem.Properties.ValueMember = "ITEMID";

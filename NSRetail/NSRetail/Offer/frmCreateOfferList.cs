@@ -11,21 +11,11 @@ using System.Windows.Forms;
 
 namespace NSRetail
 {
-    public partial class frmAddOffer : DevExpress.XtraEditors.XtraForm
+    public partial class frmCreateOfferList : DevExpress.XtraEditors.XtraForm
     {
-        public frmAddOffer()
+        public frmCreateOfferList()
         {
             InitializeComponent();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

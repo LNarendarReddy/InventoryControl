@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using Entity;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -10,14 +11,15 @@ namespace NSRetail
     {
         object OfferID = null;
         OfferRepository offerRepository = new OfferRepository();
+        bool IsbaseOffer = false;
 
-        public frmOfferBranch(object OfferName, object _OfferID)
+        public frmOfferBranch(object OfferName, object _OfferID, bool _IsbaseOffer = false)
         {
             InitializeComponent();
             this.Text = "Offer Branches - " + OfferName;
             OfferID = _OfferID;
-            gcBranch.DataSource = offerRepository.GetOfferBranch(OfferID);
-
+            IsbaseOffer = _IsbaseOffer;
+            gcBranch.DataSource = offerRepository.GetOfferBranch(OfferID, _IsbaseOffer);
             cmBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmBranch.Properties.ValueMember = "BRANCHID";
             cmBranch.Properties.DisplayMember = "BRANCHNAME";
@@ -26,7 +28,7 @@ namespace NSRetail
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (gvBranch.FocusedRowHandle < 0) return;
-            new OfferRepository().DeleteOfferBranch(gvBranch.GetFocusedRowCellValue("OFFERBRANCHID"), Utility.UserID);
+            new OfferRepository().DeleteOfferBranch(gvBranch.GetFocusedRowCellValue("OFFERBRANCHID"), Utility.UserID, IsbaseOffer);
             gvBranch.DeleteRow(gvBranch.FocusedRowHandle);
         }
 
@@ -49,13 +51,8 @@ namespace NSRetail
             }
 
             offerRepository.SaveOfferBranch(OfferID,
-                cmBranch.EditValue, Utility.UserID);
-            gcBranch.DataSource = offerRepository.GetOfferBranch(OfferID);
-        }
-
-        private void gcBranch_Click(object sender, EventArgs e)
-        {
-
+                cmBranch.EditValue, Utility.UserID, IsbaseOffer);
+            gcBranch.DataSource = offerRepository.GetOfferBranch(OfferID, IsbaseOffer);
         }
 
         private void btnAddAllBranches_Click(object sender, EventArgs e)
@@ -66,8 +63,8 @@ namespace NSRetail
                 return;
             }
 
-            offerRepository.SaveOfferBranch(OfferID, -1, Utility.UserID);
-            gcBranch.DataSource = offerRepository.GetOfferBranch(OfferID);
+            offerRepository.SaveOfferBranch(OfferID, -1, Utility.UserID, IsbaseOffer);
+            gcBranch.DataSource = offerRepository.GetOfferBranch(OfferID, IsbaseOffer);
         }
     }
 }

@@ -202,7 +202,6 @@
             this.gcBranch.TabIndex = 2;
             this.gcBranch.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvBranch});
-            this.gcBranch.Click += new System.EventHandler(this.gcBranch_Click);
             // 
             // gvBranch
             // 

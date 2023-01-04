@@ -1,5 +1,8 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Design;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraRichEdit.API.Layout;
 using Entity;
 using System;
 using System.Windows.Forms;
@@ -9,20 +12,49 @@ namespace NSRetail
     public partial class frmOfferList : XtraForm
     {
         Offer offer = null;
-        public frmOfferList()
+        bool _IsDeal = false;
+        public frmOfferList(bool IsDeal = false)
         {
             InitializeComponent();
-            gcOffer.DataSource = new OfferRepository().GetOffer();
+            _IsDeal = IsDeal;
+            gcOffer.DataSource = new OfferRepository().GetOffer(IsDeal);
+            gvOffer.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
+            gcSKUCode.Visible = IsDeal;
+            gcItemCode.Visible = IsDeal;
+            gcItemName.Visible = IsDeal;
+            gcNoOfItems.Visible = IsDeal;
+            gcAppliesto.Visible = !IsDeal;
+            gcCategory.Visible = !IsDeal;
+            gcDelete.VisibleIndex = gvOffer.VisibleColumns.Count;
+            gcViewBranches.VisibleIndex = gvOffer.VisibleColumns.Count - 1;
+            gcViewItems.VisibleIndex = gvOffer.VisibleColumns.Count-2;
+            gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count-3;
+
         }
         private void btnNew_Click(object sender, EventArgs e)
         {
             offer = new Offer();
             offer.OfferID = -1;
-            frmOfferManagement obj = new frmOfferManagement() 
-            { ShowInTaskbar = false,StartPosition = FormStartPosition.CenterScreen,offer = offer };
-            obj.ShowDialog();
-            if (obj.IsSave)
-                gvOffer.AddNewRow();
+            if (_IsDeal)
+            {
+                frmCreateDeal obj = new frmCreateDeal();
+                obj.ShowInTaskbar = false;
+                obj.StartPosition = FormStartPosition.CenterScreen;
+                obj.offer = offer;
+                obj.ShowDialog();
+                if (obj.IsSave)
+                    gvOffer.AddNewRow();
+            }
+            else
+            {
+                frmCreateOffer obj = new frmCreateOffer();
+                obj.ShowInTaskbar = false;
+                obj.StartPosition = FormStartPosition.CenterScreen;
+                obj.offer = offer;
+                obj.ShowDialog();
+                if (obj.IsSave)
+                    gvOffer.AddNewRow();
+            }
         }
         private void gvOffer_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
@@ -39,16 +71,16 @@ namespace NSRetail
             gvOffer.SetRowCellValue(rowhandle, "OFFERTYPEID", offer.OfferTypeID);
             gvOffer.SetRowCellValue(rowhandle, "OFFERTYPECODE", offer.OfferTypeCode);
             gvOffer.SetRowCellValue(rowhandle, "OFFERTYPENAME", offer.OfferTypeName);
-            gvOffer.SetRowCellValue(rowhandle, "AppliesToID", offer.AppliesToID);
-            gvOffer.SetRowCellValue(rowhandle, "AppliesToName", offer.AppliesToName);
             gvOffer.SetRowCellValue(rowhandle, "CATEGORYID", offer.CategoryID);
             gvOffer.SetRowCellValue(rowhandle, "CATEGORYNAME", offer.CategoryName);
-            gvOffer.SetRowCellValue(rowhandle, "ITEMGROUPID", offer.ItemGroupID);
-            gvOffer.SetRowCellValue(rowhandle, "GROUPNAME", offer.GroupName);
-            if (Convert.ToBoolean(offer.IsActive))
-                gvOffer.SetRowCellValue(rowhandle, "ISACTIVE", "YES");
-            else
-                gvOffer.SetRowCellValue(rowhandle, "ISACTIVE", "NO");
+            gvOffer.SetRowCellValue(rowhandle, "AppliesToID", offer.AppliesToID);
+            gvOffer.SetRowCellValue(rowhandle, "AppliesToName", offer.AppliesToName);
+            gvOffer.SetRowCellValue(rowhandle, "NUMBEROFITEMS", offer.NumberOfItems);
+            gvOffer.SetRowCellValue(rowhandle, "FREEITEMPRICEID", offer.FreeItemPriceID);
+            gvOffer.SetRowCellValue(rowhandle, "SKUCODE", offer.SKUcode);
+            gvOffer.SetRowCellValue(rowhandle, "ITEMCODE", offer.ItemCode);
+            gvOffer.SetRowCellValue(rowhandle, "ITEMNAME", offer.ItemName);
+            gvOffer.SetRowCellValue(rowhandle, "ISACTIVE", "YES");
             if (!IsEdit)
             {
                 gvOffer.SetRowCellValue(rowhandle, "CREATEDBY", Utility.FullName);
@@ -103,7 +135,7 @@ namespace NSRetail
 
             new OfferRepository().DeleteOffer(gvOffer.GetFocusedRowCellValue("OFFERID"),
                 Utility.UserID);
-            gvOffer.DeleteRow(gvOffer.FocusedRowHandle);
+            gvOffer.SetFocusedRowCellValue("ISACTIVE", "NO");
         }
         private void btnViewBranches_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
@@ -120,6 +152,18 @@ namespace NSRetail
                 gvOffer.GetFocusedRowCellValue("OFFERID"),false)
             { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
             obj.ShowDialog();
+        }
+        private void frmOfferList_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gvOffer_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = (gvOffer.FocusedColumn == gcEdit ||
+                gvOffer.FocusedColumn == gcViewBranches ||
+                gvOffer.FocusedColumn == gcViewItems) &&
+                !string.IsNullOrEmpty(Convert.ToString(gvOffer.GetFocusedRowCellValue("BASEOFFERID")));
         }
     }
 }

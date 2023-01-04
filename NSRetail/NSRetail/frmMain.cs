@@ -244,6 +244,24 @@ namespace NSRetail
             obj.MdiParent = this;
             obj.Show();
         }
+        private void btnDealList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmOfferList obj = new frmOfferList(true);
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+        private void btnBaseOfferList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmBaseOfferList obj = new frmBaseOfferList();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -252,7 +270,7 @@ namespace NSRetail
                 $"Version : {Utility.AppVersion} {Utility.VersionDate} - {ConfigurationManager.AppSettings["BuildType"]}";
 
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
-            { btnItem, btnBarCodePrint, btnItemGroup, btnOfferList, btnStockEntry, btnInvoiceList,
+            { btnItem, btnBarCodePrint, btnOfferList, btnStockEntry, btnInvoiceList,
              btnStockDispatch, btnDispatchList, btnDCList, btnPrintDC, btnStockCounting, bbiStockSummary, bbiSyncStatus
             , btnBranch, btnBranchCouter, btnSubCategory, btnUser, btnDealer , btnModeOfPayment, btnUnitsofMeasure
             , btnTaxMaster, btnPrinterMaster, btnBranchRefund, btnDayClosure, btnRunningSale, btnCategory, btnStockAdjustment, btnSupplierReturns
@@ -260,7 +278,7 @@ namespace NSRetail
 
             List<RibbonPageGroup> ribbonPageGroups = new List<RibbonPageGroup>()
             { ribbonPageGroup1, ribbonPageGroup2, ribbonPageGroup3, ribbonPageGroup4, ribbonPageGroup5, ribbonPageGroup6,
-            ribbonPageGroup8,  ribbonPageGroup10, ribbonPageGroup11, ribbonPageGroup12, ribbonPageGroup14, ribbonPageGroup15
+            ribbonPageGroup8,  ribbonPageGroup10, ribbonPageGroup11, ribbonPageGroup12, ribbonPageGroup15
             , ribbonPageGroup16, ribbonPageGroup17, ribbonPageGroup19 };
 
             List<RibbonPage> ribbonPages = new List<RibbonPage>()
@@ -534,6 +552,11 @@ namespace NSRetail
             obj.IconOptions.ShowIcon = false;
             obj.MdiParent = this;
             obj.Show();
+        }
+
+        private void btnNewDeal_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
         }
     }
 }

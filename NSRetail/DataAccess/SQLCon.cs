@@ -61,7 +61,6 @@ namespace DataAccess
             return ObjCloudCon;
         }
 
-
         public static string Decrypt(string input)
         {
             return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(input)));

@@ -144,11 +144,35 @@
     <Compile Include="Item\frmAddBranchPrice.Designer.cs">
       <DependentUpon>frmAddBranchPrice.cs</DependentUpon>
     </Compile>
-    <Compile Include="Offer\frmAddOffer.cs">
+    <Compile Include="Offer\frmCreateDeal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Offer\frmAddOffer.Designer.cs">
-      <DependentUpon>frmAddOffer.cs</DependentUpon>
+    <Compile Include="Offer\frmCreateDeal.Designer.cs">
+      <DependentUpon>frmCreateDeal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Offer\frmCreateBaseOffer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Offer\frmCreateBaseOffer.Designer.cs">
+      <DependentUpon>frmCreateBaseOffer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Offer\frmBaseOfferList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Offer\frmBaseOfferList.Designer.cs">
+      <DependentUpon>frmBaseOfferList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Offer\frmCreateOffer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Offer\frmCreateOffer.Designer.cs">
+      <DependentUpon>frmCreateOffer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Offer\frmCreateOfferList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Offer\frmCreateOfferList.Designer.cs">
+      <DependentUpon>frmCreateOfferList.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\frmIncludeExclude.cs">
       <SubType>Form</SubType>
@@ -762,8 +786,20 @@
     <EmbeddedResource Include="Item\frmAddBranchPrice.resx">
       <DependentUpon>frmAddBranchPrice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Offer\frmAddOffer.resx">
-      <DependentUpon>frmAddOffer.cs</DependentUpon>
+    <EmbeddedResource Include="Offer\frmCreateDeal.resx">
+      <DependentUpon>frmCreateDeal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Offer\frmCreateBaseOffer.resx">
+      <DependentUpon>frmCreateBaseOffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Offer\frmBaseOfferList.resx">
+      <DependentUpon>frmBaseOfferList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Offer\frmCreateOffer.resx">
+      <DependentUpon>frmCreateOffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Offer\frmCreateOfferList.resx">
+      <DependentUpon>frmCreateOfferList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\frmIncludeExclude.resx">
       <DependentUpon>frmIncludeExclude.cs</DependentUpon>

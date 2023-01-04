@@ -58,7 +58,7 @@ namespace NSRetail.Stock
             txtSalePrice.EditValue = null;
             txtQuantity.EditValue = null;
             txtWeightInKGs.EditValue = null;
-            cmbItemCode.Focus();
+            cmbBranch.Focus();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

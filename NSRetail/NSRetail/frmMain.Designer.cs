@@ -54,7 +54,6 @@
             this.btnDCList = new DevExpress.XtraBars.BarButtonItem();
             this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             this.bbiSyncStatus = new DevExpress.XtraBars.BarButtonItem();
-            this.btnItemGroup = new DevExpress.XtraBars.BarButtonItem();
             this.btnOfferList = new DevExpress.XtraBars.BarButtonItem();
             this.btnStockCounting = new DevExpress.XtraBars.BarButtonItem();
             this.btnBranchRefund = new DevExpress.XtraBars.BarButtonItem();
@@ -78,6 +77,9 @@
             this.btnProcessWHDispatch = new DevExpress.XtraBars.BarButtonItem();
             this.btnStockAdjustment = new DevExpress.XtraBars.BarButtonItem();
             this.btnItemLedger = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStockSummary = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDealList = new DevExpress.XtraBars.BarButtonItem();
+            this.btnNewDeal = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -89,7 +91,7 @@
             this.ribbonPageGroup19 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -101,7 +103,7 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.btnStockSummary = new DevExpress.XtraBars.BarButtonItem();
+            this.btnBaseOfferList = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -137,7 +139,6 @@
             this.btnDCList,
             this.skinDropDownButtonItem1,
             this.bbiSyncStatus,
-            this.btnItemGroup,
             this.btnOfferList,
             this.btnStockCounting,
             this.btnBranchRefund,
@@ -161,9 +162,12 @@
             this.btnProcessWHDispatch,
             this.btnStockAdjustment,
             this.btnItemLedger,
-            this.btnStockSummary});
+            this.btnStockSummary,
+            this.btnDealList,
+            this.btnNewDeal,
+            this.btnBaseOfferList});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 59;
+            this.ribbonControl1.MaxItemId = 63;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -423,14 +427,6 @@
             this.bbiSyncStatus.Name = "bbiSyncStatus";
             this.bbiSyncStatus.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSyncStatus_ItemClick);
             // 
-            // btnItemGroup
-            // 
-            resources.ApplyResources(this.btnItemGroup, "btnItemGroup");
-            this.btnItemGroup.Id = 29;
-            this.btnItemGroup.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnItemGroup.ImageOptions.SvgImage")));
-            this.btnItemGroup.Name = "btnItemGroup";
-            this.btnItemGroup.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItemGroup_ItemClick);
-            // 
             // btnOfferList
             // 
             resources.ApplyResources(this.btnOfferList, "btnOfferList");
@@ -638,6 +634,30 @@
             this.btnItemLedger.Name = "btnItemLedger";
             this.btnItemLedger.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItemLedger_ItemClick);
             // 
+            // btnStockSummary
+            // 
+            resources.ApplyResources(this.btnStockSummary, "btnStockSummary");
+            this.btnStockSummary.Id = 58;
+            this.btnStockSummary.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockSummary.ImageOptions.SvgImage")));
+            this.btnStockSummary.Name = "btnStockSummary";
+            this.btnStockSummary.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockSummary_ItemClick);
+            // 
+            // btnDealList
+            // 
+            resources.ApplyResources(this.btnDealList, "btnDealList");
+            this.btnDealList.Id = 60;
+            this.btnDealList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDealList.ImageOptions.SvgImage")));
+            this.btnDealList.Name = "btnDealList";
+            this.btnDealList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDealList_ItemClick);
+            // 
+            // btnNewDeal
+            // 
+            resources.ApplyResources(this.btnNewDeal, "btnNewDeal");
+            this.btnNewDeal.Id = 61;
+            this.btnNewDeal.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNewDeal.ImageOptions.SvgImage")));
+            this.btnNewDeal.Name = "btnNewDeal";
+            this.btnNewDeal.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNewDeal_ItemClick);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -719,24 +739,22 @@
             // 
             this.ribbonPage6.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup8,
-            this.ribbonPageGroup14});
+            this.ribbonPageGroup7});
             this.ribbonPage6.Name = "ribbonPage6";
             resources.ApplyResources(this.ribbonPage6, "ribbonPage6");
             // 
             // ribbonPageGroup8
             // 
-            this.ribbonPageGroup8.ItemLinks.Add(this.btnItemGroup);
+            this.ribbonPageGroup8.ItemLinks.Add(this.btnBaseOfferList);
             this.ribbonPageGroup8.ItemLinks.Add(this.btnOfferList);
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
             resources.ApplyResources(this.ribbonPageGroup8, "ribbonPageGroup8");
             // 
-            // ribbonPageGroup14
+            // ribbonPageGroup7
             // 
-            this.ribbonPageGroup14.ItemLinks.Add(this.btnStockCounting);
-            this.ribbonPageGroup14.ItemLinks.Add(this.btnSupplierReturnsList);
-            this.ribbonPageGroup14.Name = "ribbonPageGroup14";
-            resources.ApplyResources(this.ribbonPageGroup14, "ribbonPageGroup14");
-            this.ribbonPageGroup14.Visible = false;
+            this.ribbonPageGroup7.ItemLinks.Add(this.btnDealList);
+            this.ribbonPageGroup7.Name = "ribbonPageGroup7";
+            resources.ApplyResources(this.ribbonPageGroup7, "ribbonPageGroup7");
             // 
             // ribbonPage1
             // 
@@ -821,13 +839,13 @@
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
             // 
-            // btnStockSummary
+            // btnBaseOfferList
             // 
-            resources.ApplyResources(this.btnStockSummary, "btnStockSummary");
-            this.btnStockSummary.Id = 58;
-            this.btnStockSummary.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.btnStockSummary.Name = "btnStockSummary";
-            this.btnStockSummary.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockSummary_ItemClick);
+            resources.ApplyResources(this.btnBaseOfferList, "btnBaseOfferList");
+            this.btnBaseOfferList.Id = 62;
+            this.btnBaseOfferList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnBaseOfferList.Name = "btnBaseOfferList";
+            this.btnBaseOfferList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBaseOfferList_ItemClick);
             // 
             // frmMain
             // 
@@ -888,7 +906,6 @@
         private DevExpress.XtraBars.BarButtonItem btnDCList;
         private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
         private DevExpress.XtraBars.BarButtonItem bbiSyncStatus;
-        private DevExpress.XtraBars.BarButtonItem btnItemGroup;
         private DevExpress.XtraBars.BarButtonItem btnOfferList;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
         private DevExpress.XtraBars.BarButtonItem btnStockCounting;
@@ -910,7 +927,6 @@
         private DevExpress.XtraBars.BarButtonItem btnSupplierReturns;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage6;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup16;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
         private DevExpress.XtraBars.BarButtonItem btnSupplierReturnsList;
         private DevExpress.XtraBars.BarButtonItem btnBranchRefund;
         private DevExpress.XtraBars.BarButtonItem bbiClearProcedureCache;
@@ -925,6 +941,10 @@
         private DevExpress.XtraBars.BarButtonItem btnStockAdjustment;
         private DevExpress.XtraBars.BarButtonItem btnItemLedger;
         private DevExpress.XtraBars.BarButtonItem btnStockSummary;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
+        private DevExpress.XtraBars.BarButtonItem btnDealList;
+        private DevExpress.XtraBars.BarButtonItem btnNewDeal;
+        private DevExpress.XtraBars.BarButtonItem btnBaseOfferList;
     }
 }
 

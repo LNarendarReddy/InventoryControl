@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace DataAccess
 {
     public class OfferRepository
     {
-        public DataTable GetOfferType()
+        public DataTable GetOfferType(object BaseType = null)
         {
             DataTable dtOfferType = new DataTable();
             try
@@ -21,6 +22,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_OFFERTYPE]";
+                    cmd.Parameters.AddWithValue("@BASETYPEID", BaseType);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtOfferType);
@@ -169,7 +171,7 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
-        public DataTable GetOffer()
+        public DataTable GetOffer(bool IsDeal = false)
         {
             DataTable dtOffer = new DataTable();
             try
@@ -179,6 +181,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_OFFER]";
+                    cmd.Parameters.AddWithValue("@BASETYPEID", IsDeal ? 2 : 1);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtOffer);
@@ -214,8 +217,6 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@AppliesToID", offer.AppliesToID);
                     cmd.Parameters.AddWithValue("@OfferTypeID", offer.OfferTypeID);
                     cmd.Parameters.AddWithValue("@CategoryID", offer.CategoryID);
-                    cmd.Parameters.AddWithValue("@ItemGroupID", offer.ItemGroupID);
-                    cmd.Parameters.AddWithValue("@IsActive", offer.IsActive);
                     cmd.Parameters.AddWithValue("@UserID", offer.UserID);
                     cmd.Parameters.AddWithValue("@FreeItemPriceID", offer.FreeItemPriceID);
                     cmd.Parameters.AddWithValue("@NumberOfItems", offer.NumberOfItems);
@@ -259,7 +260,7 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
-        public DataTable GetOfferBranch(object OfferID)
+        public DataTable GetOfferBranch(object OfferID, bool IsBaseOffer = false)
         {
             DataTable dtOfferBranch = new DataTable();
             try
@@ -270,6 +271,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_OFFERBRANCH]";
                     cmd.Parameters.AddWithValue("@OfferID", OfferID);
+                    cmd.Parameters.AddWithValue("@IsBaseOffer", IsBaseOffer);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtOfferBranch);
@@ -286,7 +288,7 @@ namespace DataAccess
             }
             return dtOfferBranch;
         }
-        public int SaveOfferBranch(object OfferID,object BranchID,object UserID)
+        public int SaveOfferBranch(object OfferID,object BranchID,object UserID, bool IsBaseOffer = false)
         {
             int OfferBranchID = 0;
             try
@@ -299,6 +301,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@OfferID", OfferID);
                     cmd.Parameters.AddWithValue("@BranchID", BranchID);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@IsBaseoffer", IsBaseOffer);
                     object objreturn = cmd.ExecuteScalar();
                     if (!int.TryParse(objreturn.ToString(), out OfferBranchID))
                         throw new Exception("Error while saivng offer branch");
@@ -314,7 +317,7 @@ namespace DataAccess
             }
             return OfferBranchID;
         }
-        public void DeleteOfferBranch(object OfferBranchID, object UserID)
+        public void DeleteOfferBranch(object OfferBranchID, object UserID, bool isBaseOffer = false)
         {
             try
             {
@@ -325,6 +328,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_D_OFFERBRANCH]";
                     cmd.Parameters.AddWithValue("@OfferBranchID", OfferBranchID);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@IsBaseOffer", isBaseOffer);
                     int rowsaffected = cmd.ExecuteNonQuery();
                     if (rowsaffected <= 0)
                         throw new Exception("Error while deleting offer branch");
@@ -444,6 +448,169 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
             return dtAppliesTo;
+        }
+        public BaseOffer SaveBaseOffer(BaseOffer baseOffer)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_BASEOFFER]";
+                    cmd.Parameters.AddWithValue("@BASEOFFERID", baseOffer.BASEOFFERID);
+                    cmd.Parameters.AddWithValue("@OFFERCODE", baseOffer.OFFERCODE);
+                    cmd.Parameters.AddWithValue("@OFFERNAME", baseOffer.OFFERNAME);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", baseOffer.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@STARTDATE", baseOffer.STARTDATE);
+                    cmd.Parameters.AddWithValue("@ENDDATE", baseOffer.ENDDATE);
+                    cmd.Parameters.AddWithValue("@UserID", baseOffer.UserID);
+                    baseOffer.BASEOFFERID = cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While saving base offer", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return baseOffer;
+        }
+        public object SaveBaseOfferBranch(object BaseOfferID, object BranchID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_BASEOFFERBRANCH]";
+                    cmd.Parameters.AddWithValue("@BASEOFFERID", BaseOfferID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    return cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While saving base offer branch", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+        public void DeleteBaseOfferBranch(object BaseOfferID, object BranchID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_BASEOFFERBRANCH]";
+                    cmd.Parameters.AddWithValue("@BASEOFFERID", BaseOfferID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    int rowsaffected = cmd.ExecuteNonQuery();
+                    if (rowsaffected <= 0)
+                        throw new Exception("Error while deleting base offer branch");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+        public Offer SaveOfferFromBaseOffer(Offer offer)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_OFFERFROMBASE]";
+                    cmd.Parameters.AddWithValue("@OFFERID", offer.OfferID);
+                    cmd.Parameters.AddWithValue("@OFFERNAME", offer.OfferName);
+                    cmd.Parameters.AddWithValue("@OFFERCODE", offer.OfferCode);
+                    cmd.Parameters.AddWithValue("@OFFERVALUE", offer.StartDate);
+                    cmd.Parameters.AddWithValue("@OFFERTYPEID", offer.EndDate);
+                    cmd.Parameters.AddWithValue("@ITEMCODEID", offer.OfferValue);
+                    cmd.Parameters.AddWithValue("@ISACTIVE", offer.AppliesToID);
+                    cmd.Parameters.AddWithValue("@APPLIESTOID", offer.OfferTypeID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", offer.CategoryID);
+                    cmd.Parameters.AddWithValue("@BASEOFFERID", offer.ItemGroupID);
+                    cmd.Parameters.AddWithValue("@UserID", offer.UserID);
+                    offer.OfferID = cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While saving offer", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return offer;
+        }
+        public void DeleteBaseOffer(object BaseOfferID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_BASEOFFER]";
+                    cmd.Parameters.AddWithValue("@BASEOFFERID", BaseOfferID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    int rowsaffected = cmd.ExecuteNonQuery();
+                    if (rowsaffected <= 0)
+                        throw new Exception("Error while deleting base offer");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+        public DataTable GetBaseOffer()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_BASEOFFER]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving base offer", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
         }
     }
 }
