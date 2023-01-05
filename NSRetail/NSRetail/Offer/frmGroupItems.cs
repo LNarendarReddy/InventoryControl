@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace NSRetail
             IsGroupItem = _IsGroupItem;
             if (IsGroupItem)
             {
+                lcbtnimport.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 this.Text = "Group Items - " + GroupName;
                 ItemGroupID = _ItemGroupID;
                 gcItems.DataSource = dtItems = new OfferRepository().GetItemGroupDetail(ItemGroupID);
@@ -109,6 +111,38 @@ namespace NSRetail
             cmbItemCode.EditValue = null;
             cmbItemCode.Focus();
             gvItems.FocusedRowHandle = rowHandle;
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                XtraOpenFileDialog xtraOpenFileDialog1 = new XtraOpenFileDialog();
+                xtraOpenFileDialog1.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
+                xtraOpenFileDialog1.Filter = "excel files (*.xls,*.xlsx)|*.xls,*.xlsx";
+
+                if (xtraOpenFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = xtraOpenFileDialog1.FileName;
+                    DataTable dt = Utility.ImportExcelXLS(filePath);
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        DataTable dtTemp = dt.Clone();
+                        foreach(DataColumn dc in dtTemp.Columns)
+                        {
+                            if(dc.ColumnName != "ITEMCODEID")
+                                dt.Columns.Remove(dc.ColumnName);
+                        }
+                        new OfferRepository().ImportOfferItems(OfferID, dt, Utility.UserID);
+                        gcItems.DataSource = dtItems = new OfferRepository().GetOfferItem(OfferID);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+                ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
+            }
         }
     }
 }

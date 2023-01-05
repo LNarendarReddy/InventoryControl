@@ -7,6 +7,8 @@ using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
+using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -41,8 +43,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "1.5.5";
-        public static string VersionDate = "(04-01-2023)";
+        public static string AppVersion = "1.5.6";
+        public static string VersionDate = "(05-01-2023)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -244,5 +246,55 @@ namespace NSRetail
             return list;
         }
 
+        public static DataTable ImportExcelXLS(string FilePath, bool hasHeaders = true)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                string HDR = hasHeaders ? "Yes" : "No";
+                string strConn;
+                if (FilePath.Substring(FilePath.LastIndexOf('.')).ToLower() == ".xlsx")
+                    strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + FilePath + ";Extended Properties=\"Excel 12.0;HDR=" + HDR + ";IMEX=0\"";
+                else
+                    strConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + FilePath + ";Extended Properties=\"Excel 8.0;HDR=" + HDR + ";IMEX=0\"";
+
+                DataSet output = new DataSet();
+                using (OleDbConnection conn = new OleDbConnection(strConn))
+                {
+                    conn.Open();
+                    DataTable schemaTable = conn.GetOleDbSchemaTable(
+                        OleDbSchemaGuid.Tables, new object[] { null, null, null, "TABLE" });
+
+                    foreach (DataRow schemaRow in schemaTable.Rows)
+                    {
+                        string sheet = schemaRow["TABLE_NAME"].ToString();
+
+                        if (!sheet.EndsWith("_"))
+                        {
+                            try
+                            {
+                                OleDbCommand cmd = new OleDbCommand("SELECT * FROM [" + sheet + "]", conn);
+                                cmd.CommandType = CommandType.Text;
+
+                                DataTable outputTable = new DataTable(sheet);
+                                output.Tables.Add(outputTable);
+                                new OleDbDataAdapter(cmd).Fill(outputTable);
+                            }
+                            catch (Exception ex)
+                            {
+                                throw new Exception(ex.Message + string.Format("Sheet:{0}.File:F{1}", sheet, FilePath), ex);
+                            }
+                        }
+                    }
+                }
+                if (output != null && output.Tables.Count > 0)
+                    dt = output.Tables[0].Copy();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
     }
 }

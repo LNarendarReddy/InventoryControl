@@ -1,5 +1,6 @@
 ﻿using Entity;
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -70,6 +71,34 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
             return dsItemCode;
+        }
+
+        public DataTable GetItemCodeByCategory(object CategoryID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_ITEMCODEBYCATEGORY]";
+                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Item code list", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
         }
 
         public Item SaveItemCode(Item itemObj)

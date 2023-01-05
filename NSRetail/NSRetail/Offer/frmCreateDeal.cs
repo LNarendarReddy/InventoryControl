@@ -74,11 +74,14 @@ namespace NSRetail
                 offer.AppliesToName = "ITEM";
                 offer.OfferValue = txtOfferValue.EditValue;
                 offer.IsActive = true;
-                offer.FreeItemPriceID = cmbFreeItemCode.EditValue;
-                DataRowView idataRow = cmbFreeItemCode.GetSelectedDataRow() as DataRowView;
-                offer.SKUcode = idataRow["SKUCODE"];
-                offer.ItemCode = idataRow["ITEMCODE"];
-                offer.ItemName = idataRow["ITEMNAME"];
+                if (cmbFreeItemCode.Enabled)
+                {
+                    offer.FreeItemPriceID = cmbFreeItemCode.EditValue;
+                    DataRowView idataRow = cmbFreeItemCode.GetSelectedDataRow() as DataRowView;
+                    offer.SKUcode = idataRow["SKUCODE"];
+                    offer.ItemCode = idataRow["ITEMCODE"];
+                    offer.ItemName = idataRow["ITEMNAME"];
+                }
                 offer.NumberOfItems = txtNumberOfItems.EditValue;
                 offer.UserID = Utility.UserID;
                 offer.OfferID = new OfferRepository().SaveOffer(offer);

@@ -612,5 +612,59 @@ namespace DataAccess
             }
             return dt;
         }
+        public void ImportOfferItems(object OfferID, DataTable dtItems, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_IMP_OFFERITEMS]";
+                    cmd.Parameters.AddWithValue("@OFFERID", OfferID);
+                    cmd.Parameters.AddWithValue("@dtitems", dtItems);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    int ivalue = cmd.ExecuteNonQuery();
+                    if (ivalue == 0)
+                        throw new Exception("Error while importing Items");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While saving offer", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+
+        public DataTable GetOfferByBaseOffer(object BaseOfferID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_OFFERBYBASEOFFER]";
+                    cmd.Parameters.AddWithValue("@BASEOFFERID", BaseOfferID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving offer list", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
     }
 }

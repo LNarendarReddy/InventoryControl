@@ -101,7 +101,10 @@ namespace NSRetail
 
         private void btnOfferList_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-
+            frmCreateOfferList obj = new frmCreateOfferList(gvOffer.GetFocusedRowCellValue("BASEOFFERID"),
+                gvOffer.GetFocusedRowCellValue("CATEGORYID"))
+            { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
+            obj.ShowDialog();
         }
 
     }
