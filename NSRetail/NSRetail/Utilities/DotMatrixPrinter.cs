@@ -83,6 +83,10 @@ namespace NSRetail
             {
                 XtraMessageBox.Show($"Unable to open dot matrix printer {printerName}");
             }
+            else
+            {
+                isPrinterOpened = XtraMessageBox.Show("Are you sure to print?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+            }
 
             return isPrinterOpened;
         }

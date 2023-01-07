@@ -26,19 +26,27 @@ namespace NSRetail.Utilities
             MyPrinter.Print("------------------------------------------------------------------------------------------------", 2);
             MyPrinter.Print($"<b>SNo  ItemCode     ItemName                          HSNCode      Quantity   Weight      GST Code</b>", 1);
             MyPrinter.Print("------------------------------------------------------------------------------------------------", 1);
-            DataTable dtItems = ds.Tables[1];
-            for (int i = 0; i < dtItems.Rows.Count; i++)
+            DataView dvItems = ds.Tables[1].DefaultView;
+            foreach (DataRow drTaxSlab in ds.Tables[2].Rows)
             {
-                MyPrinter.Print(FormatString(Convert.ToString(i + 1), 4)
-                    + FormatString(dtItems.Rows[i], "ITEMCODE", 14)
-                    + FormatString(dtItems.Rows[i], "ITEMNAME", 34)
-                    + FormatString(dtItems.Rows[i], "HSNCODE", 12)
-                    + FormatString(dtItems.Rows[i], "DISPATCHQUANTITY", 5, true)
-                    + FormatString(dtItems.Rows[i], "WEIGHTINKGS", 11, true)
-                    + FormatString(dtItems.Rows[i], "GSTCODE", 15, true)
-                    , 1);
+                MyPrinter.Print("", 1);
+                dvItems.RowFilter = $"GSTCODE = '{drTaxSlab["GSTCODE"]}'";
+                MyPrinter.Print($"<b> Tax : {drTaxSlab["GSTCODE"]} :: CGST : {dvItems[0]["CGST"]} SGST : {dvItems[0]["SGST"]} CESS : {dvItems[0]["CESS"]} </b>", 1, Alignment.Center);
+
+                foreach (DataRowView drvItem in dvItems)
+                {
+                    MyPrinter.Print(FormatString(drvItem.Row, "Sno", 4)
+                        + FormatString(drvItem.Row, "ITEMCODE", 14)
+                        + FormatString(drvItem.Row, "ITEMNAME", 34)
+                        + FormatString(drvItem.Row, "HSNCODE", 12)
+                        + FormatString(drvItem.Row, "DISPATCHQUANTITY", 5, true)
+                        + FormatString(drvItem.Row, "WEIGHTINKGS", 11, true)
+                        + FormatString(drvItem.Row, "GSTCODE", 15, true)
+                        , 1);
+                }
             }
-            MyPrinter.Print("------------------------------------------------------------------------------------------------", 1);
+            
+            MyPrinter.Print("------------------------------------------------------------------------------------------------", 2);
             MyPrinter.Print($"<b>Tax break-up</b>", 1, Alignment.Far);
 
             foreach(DataRow drTaxSlab in ds.Tables[2].Rows)
