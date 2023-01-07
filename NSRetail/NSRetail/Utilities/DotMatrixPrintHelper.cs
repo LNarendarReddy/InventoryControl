@@ -51,7 +51,7 @@ namespace NSRetail.Utilities
 
             foreach(DataRow drTaxSlab in ds.Tables[2].Rows)
             {
-                MyPrinter.Print($"{drTaxSlab["GSTCODE"]} :: {drTaxSlab["TAXAMOUNT"]}", 1, Alignment.Far);
+                MyPrinter.Print($"{drTaxSlab["GSTCODE"]} :: {drTaxSlab["TAXAMOUNT"],9}", 1, Alignment.Far);
             }
             MyPrinter.Print("************************************************************************************************");
             MyPrinter.Print("\x0C");
