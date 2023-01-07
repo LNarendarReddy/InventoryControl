@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCreateOfferList));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gcOffer = new DevExpress.XtraGrid.GridControl();
             this.gvOffer = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcItemCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbItemCode = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
-            this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.cmbItemCodeView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,7 +58,7 @@
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -66,7 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbItemCodeView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbOffertype)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -94,7 +94,7 @@
             this.gvOffer.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
-            this.gridColumn3,
+            this.gcItemCode,
             this.gridColumn4,
             this.gridColumn5,
             this.gridColumn6,
@@ -106,12 +106,15 @@
             this.gridColumn11,
             this.gridColumn12,
             this.gridColumn13,
-            this.gridColumn15});
+            this.gcDelete});
             this.gvOffer.GridControl = this.gcOffer;
             this.gvOffer.Name = "gvOffer";
             this.gvOffer.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.gvOffer.OptionsView.ShowFooter = true;
             this.gvOffer.OptionsView.ShowGroupPanel = false;
+            this.gvOffer.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gvOffer_ShowingEditor);
+            this.gvOffer.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvOffer_InitNewRow);
+            this.gvOffer.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gvOffer_RowUpdated);
             // 
             // gridColumn1
             // 
@@ -127,15 +130,15 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             // 
-            // gridColumn3
+            // gcItemCode
             // 
-            this.gridColumn3.Caption = "Item Code";
-            this.gridColumn3.ColumnEdit = this.cmbItemCode;
-            this.gridColumn3.FieldName = "ITEMCODEID";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 0;
-            this.gridColumn3.Width = 174;
+            this.gcItemCode.Caption = "Item Code";
+            this.gcItemCode.ColumnEdit = this.cmbItemCode;
+            this.gcItemCode.FieldName = "ITEMCODEID";
+            this.gcItemCode.Name = "gcItemCode";
+            this.gcItemCode.Visible = true;
+            this.gcItemCode.VisibleIndex = 0;
+            this.gcItemCode.Width = 174;
             // 
             // cmbItemCode
             // 
@@ -143,20 +146,21 @@
             this.cmbItemCode.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbItemCode.Name = "cmbItemCode";
-            this.cmbItemCode.PopupView = this.repositoryItemSearchLookUpEdit1View;
+            this.cmbItemCode.PopupView = this.cmbItemCodeView;
+            this.cmbItemCode.EditValueChanged += new System.EventHandler(this.cmbItemCode_EditValueChanged);
             // 
-            // repositoryItemSearchLookUpEdit1View
+            // cmbItemCodeView
             // 
-            this.repositoryItemSearchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.cmbItemCodeView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn16,
             this.gridColumn17,
             this.gridColumn18,
             this.gridColumn19,
             this.gridColumn20});
-            this.repositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.repositoryItemSearchLookUpEdit1View.Name = "repositoryItemSearchLookUpEdit1View";
-            this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.cmbItemCodeView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.cmbItemCodeView.Name = "cmbItemCodeView";
+            this.cmbItemCodeView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.cmbItemCodeView.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn16
             // 
@@ -292,23 +296,23 @@
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.OptionsColumn.AllowEdit = false;
             // 
-            // gridColumn15
+            // gcDelete
             // 
-            this.gridColumn15.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn15.Caption = "Delete";
-            this.gridColumn15.ColumnEdit = this.btnDelete;
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 4;
-            this.gridColumn15.Width = 55;
+            this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcDelete.Caption = "Delete";
+            this.gcDelete.ColumnEdit = this.btnDelete;
+            this.gcDelete.Name = "gcDelete";
+            this.gcDelete.Visible = true;
+            this.gcDelete.VisibleIndex = 4;
+            this.gcDelete.Width = 55;
             // 
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -361,7 +365,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOffer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbItemCodeView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbOffertype)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -381,7 +385,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gcItemCode;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
@@ -394,9 +398,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit cmbItemCode;
-        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
+        private DevExpress.XtraGrid.Views.Grid.GridView cmbItemCodeView;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbOffertype;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;

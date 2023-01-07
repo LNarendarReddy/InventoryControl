@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Design;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraRichEdit.API.Layout;
+using DevExpress.XtraRichEdit.Import.WordML;
 using Entity;
 using System;
 using System.Windows.Forms;
@@ -29,12 +30,24 @@ namespace NSRetail
             gcViewBranches.VisibleIndex = gvOffer.VisibleColumns.Count - 1;
             gcViewItems.VisibleIndex = gvOffer.VisibleColumns.Count-2;
             gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count-3;
+            if(IsDeal)
+            {
+                gcOfferName.Caption = "Deal Name";
+                gcOfferType.Caption = "Deal Type";
+                gcOfferValue.Caption = "Deal Value";
+            }
 
         }
         private void btnNew_Click(object sender, EventArgs e)
         {
             offer = new Offer();
             offer.OfferID = -1;
+            if (ShowCreateForm())
+                gvOffer.AddNewRow();
+            
+        }
+        private bool ShowCreateForm(bool _IsEdit = false)
+        {
             if (_IsDeal)
             {
                 frmCreateDeal obj = new frmCreateDeal();
@@ -42,8 +55,7 @@ namespace NSRetail
                 obj.StartPosition = FormStartPosition.CenterScreen;
                 obj.offer = offer;
                 obj.ShowDialog();
-                if (obj.IsSave)
-                    gvOffer.AddNewRow();
+                return obj.IsSave;
             }
             else
             {
@@ -52,8 +64,7 @@ namespace NSRetail
                 obj.StartPosition = FormStartPosition.CenterScreen;
                 obj.offer = offer;
                 obj.ShowDialog();
-                if (obj.IsSave)
-                    gvOffer.AddNewRow();
+                return obj.IsSave;
             }
         }
         private void gvOffer_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
@@ -113,24 +124,17 @@ namespace NSRetail
             offer.OfferTypeName = gvOffer.GetFocusedRowCellValue("OFFERTYPENAME");
             offer.CategoryID = gvOffer.GetFocusedRowCellValue("CATEGORYID");
             offer.CategoryName = gvOffer.GetFocusedRowCellValue("CATEGORYNAME");
-            offer.ItemGroupID = gvOffer.GetFocusedRowCellValue("ITEMGROUPID");
-            offer.GroupName = gvOffer.GetFocusedRowCellValue("GROUPNAME");
             offer.NumberOfItems = gvOffer.GetFocusedRowCellValue("NUMBEROFITEMS");
             offer.FreeItemPriceID = gvOffer.GetFocusedRowCellValue("FREEITEMPRICEID");
-            if (Convert.ToString(gvOffer.GetFocusedRowCellValue("ISACTIVE")) == "YES")
-                offer.IsActive = true;
-            else
-                offer.IsActive = false;
-            frmOfferManagement obj = new frmOfferManagement()
-            { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen, offer = offer };
-            obj.ShowDialog();
-            if (obj.IsSave)
-                UpdateGridRow(gvOffer.FocusedRowHandle, false);
+            if (ShowCreateForm())
+                UpdateGridRow(gvOffer.FocusedRowHandle, true);
         }
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (gvOffer.FocusedRowHandle < 0 ||
-                XtraMessageBox.Show("Are you sure to delete the offer?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.Yes) 
+                Convert.ToString(gvOffer.GetFocusedRowCellValue("ISACTIVE")) == "NO" ||
+                XtraMessageBox.Show("Are you sure to delete the offer?", "Delete Confirmation", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.Yes) 
                 return;
 
             new OfferRepository().DeleteOffer(gvOffer.GetFocusedRowCellValue("OFFERID"),
@@ -157,13 +161,16 @@ namespace NSRetail
         {
 
         }
-
         private void gvOffer_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = (gvOffer.FocusedColumn == gcEdit ||
                 gvOffer.FocusedColumn == gcViewBranches ||
                 gvOffer.FocusedColumn == gcViewItems) &&
                 !string.IsNullOrEmpty(Convert.ToString(gvOffer.GetFocusedRowCellValue("BASEOFFERID")));
+        }
+        private void gcOffer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

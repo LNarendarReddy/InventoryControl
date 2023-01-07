@@ -27,8 +27,12 @@ namespace NSRetail
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            if (gvBranch.FocusedRowHandle < 0) return;
-            new OfferRepository().DeleteOfferBranch(gvBranch.GetFocusedRowCellValue("OFFERBRANCHID"), Utility.UserID, IsbaseOffer);
+            if (gvBranch.FocusedRowHandle < 0 ||
+                XtraMessageBox.Show("Are you sure to delete the offer?", "Delete Confirmation",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.Yes)
+                return;
+            new OfferRepository().DeleteOfferBranch(gvBranch.GetFocusedRowCellValue("OFFERBRANCHID"), 
+                Utility.UserID, IsbaseOffer);
             gvBranch.DeleteRow(gvBranch.FocusedRowHandle);
         }
 

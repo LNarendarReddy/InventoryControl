@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,6 +46,11 @@ namespace NSRetail
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
+            if (gvItems.FocusedRowHandle < 0 ||
+                XtraMessageBox.Show("Are you sure to delete the offer?", "Delete Confirmation",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.Yes)
+                return;
+
             if (IsGroupItem)
             {
                 if (gvItems.FocusedRowHandle < 0) return;

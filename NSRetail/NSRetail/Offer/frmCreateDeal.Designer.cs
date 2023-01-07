@@ -461,8 +461,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(736, 196);
             this.Controls.Add(this.layoutControl1);
+            this.IconOptions.ShowIcon = false;
             this.Name = "frmCreateDeal";
             this.Text = "Create Deal";
             this.Load += new System.EventHandler(this.frmAddDeal_Load);

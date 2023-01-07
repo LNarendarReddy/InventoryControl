@@ -52,6 +52,13 @@ namespace NSRetail
                 txtOfferValue.EditValue = offer.OfferValue;
                 cmbCategory.EditValue = offer.CategoryID;
                 cmbAppliesto.EditValue = offer.AppliesToID;
+
+                txtOfferCode.Enabled = false;
+                txtOfferName.Enabled = false;
+                cmbOfferType.Enabled = false;
+                txtOfferValue.Enabled = false;
+                cmbAppliesto.Enabled = false;
+                cmbCategory.Enabled = false;
             }
         }
 
@@ -93,7 +100,9 @@ namespace NSRetail
 
         private void cmbOfferType_EditValueChanged(object sender, EventArgs e)
         {
-            txtOfferValue.Enabled = true;
+            if (Convert.ToInt32(offer.OfferID) > 0)
+                return;
+                txtOfferValue.Enabled = true;
             layoutControlItem14.Text = "Offer Value";
             txtOfferValue.Enabled = false;
             txtOfferValue.EditValue = null;
@@ -119,6 +128,8 @@ namespace NSRetail
 
         private void cmbAppliesto_EditValueChanged(object sender, EventArgs e)
         {
+            if (Convert.ToInt32(offer.OfferID) > 0)
+                return;
             if (cmbAppliesto.EditValue.Equals(3))
                 cmbCategory.Enabled = true;
             else

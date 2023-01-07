@@ -35,6 +35,8 @@ namespace NSRetail
                 dtpEndDate.EditValue = baseOffer.ENDDATE;
                 cmbCategory.EditValue = baseOffer.CATEGORYID;
                 cmbCategory.Enabled = false;
+                txtOfferCode.Enabled = false;
+                txtOfferName.Enabled = false;
             }
             else
             {

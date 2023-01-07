@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using Entity;
 using System;
@@ -26,6 +27,7 @@ namespace NSRetail
         private void frmBaseOfferList_Load(object sender, EventArgs e)
         {
             gcOffer.DataSource = offerRepository.GetBaseOffer();
+            gvOffer.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
         }
 
         private void btnNewOffer_Click(object sender, EventArgs e)
@@ -107,5 +109,17 @@ namespace NSRetail
             obj.ShowDialog();
         }
 
+        private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (gvOffer.FocusedRowHandle < 0 ||
+                Convert.ToString(gvOffer.GetFocusedRowCellValue("ISACTIVE")) == "NO" ||
+                XtraMessageBox.Show("Are you sure to delete the offer?", "Delete Confirmation",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.Yes)
+                return;
+
+            new OfferRepository().DeleteBaseOffer(gvOffer.GetFocusedRowCellValue("BASEOFFERID"),
+                Utility.UserID);
+            gvOffer.SetFocusedRowCellValue("ISACTIVE", "NO");
+        }
     }
 }

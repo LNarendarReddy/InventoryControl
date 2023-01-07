@@ -52,6 +52,13 @@ namespace NSRetail
                 txtOfferValue.EditValue = offer.OfferValue;
                 cmbFreeItemCode.EditValue = offer.FreeItemPriceID;
                 txtNumberOfItems.EditValue = offer.NumberOfItems;
+
+                txtOfferCode.Enabled = false;
+                txtOfferName.Enabled = false;
+                cmbOfferType.Enabled = false;
+                txtOfferValue.Enabled = false;
+                cmbFreeItemCode.Enabled = false;
+                txtNumberOfItems.Enabled = false;
             }
         }
 
@@ -101,7 +108,9 @@ namespace NSRetail
 
         private void cmbOfferType_EditValueChanged(object sender, EventArgs e)
         {
-            txtOfferValue.Enabled = true;
+            if (Convert.ToInt32(offer.OfferID) > 0)
+                return;
+                txtOfferValue.Enabled = true;
             layoutControlItem14.Text = "Offer Value";
             cmbFreeItemCode.Enabled = false;
             cmbFreeItemCode.EditValue = null;
