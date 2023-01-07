@@ -47,6 +47,43 @@ namespace NSRetail.Utilities
             MyPrinter.Close();
         }
 
+        public static void PrintDispatch(DataSet ds)
+        {
+            DotMatrixPrinter MyPrinter = new DotMatrixPrinter();
+            if (!MyPrinter.OpenPrinter(DotMatrixPrinterName)) return;
+            MyPrinter.Print($"                                    <b>Victory Bazars PVT LTD</b>                                         \r\n");
+            MyPrinter.Print("                                        Dispatch details                                           \r\n");
+            MyPrinter.Print("************************************************************************************************\r\n");
+            MyPrinter.Print($" To Branch : <b>{ds.Tables[0].Rows[0]["TOBRANCHNAME"]}</b>  Dispatch # : <b>{ds.Tables[0].Rows[0]["DISPATCHNUMBER"]}</b> Category : {ds.Tables[0].Rows[0]["CATEGORYNAME"]}\r\n");
+            MyPrinter.Print($" From Branch : <b>{ds.Tables[0].Rows[0]["FROMBRANCHNAME"]}</b>  Dispatched By {ds.Tables[0].Rows[0]["CREATEDBY"]}");
+            MyPrinter.Print($" Dispatched Date : {DateTime.Parse(ds.Tables[0].Rows[0]["CREATEDDATE"].ToString()).ToString("dd/MM/yyyy hh:mm:ss tt")}\r\n\r\n");
+            MyPrinter.Print("------------------------------------------------------------------------------------------------\r\n\r\n");
+            MyPrinter.Print($"<b> EANCode     ItemName                               MRP    SalePrice     Quantity   Weight(KGs) </b>\r\n");
+            MyPrinter.Print("------------------------------------------------------------------------------------------------\r\n");
+            DataTable dtTrays = ds.Tables[2];
+            foreach(DataRow drTray in dtTrays.Rows)
+            {
+                MyPrinter.Print("\r\n");
+                MyPrinter.Print($"     <b> Tray Number : {drTray["TRAYNUMBER"]}               No of Items in tray : {drTray["TRAYCOUNT"]} </b>\r\n");
+                DataView dvItems = ds.Tables[1].DefaultView;
+                dvItems.RowFilter = $"TRAYNUMBER = {drTray["TRAYNUMBER"]}";
+                foreach(DataRowView drItem in dvItems)
+                {
+                    MyPrinter.Print(FormatString(drItem.Row, "ITEMCODE", 14)
+                    + FormatString(drItem.Row, "ITEMNAME", 40)
+                    + FormatString(drItem.Row, "MRP", 12, true)
+                    + FormatString(drItem.Row, "SALEPRICE", 12, true)
+                    + FormatString(drItem.Row, "DISPATCHQUANTITY", 5, true)
+                    + FormatString(drItem.Row, "WEIGHTINKGS", 11, true)
+                    + "\r\n");
+                }
+            }
+           
+            MyPrinter.Print("************************************************************************************************");
+            MyPrinter.Print("\x0C");
+            MyPrinter.Close();
+        }
+
         private static string FormatString(DataRow dataRow, string columnName, int maxLen, bool isNumeric = false)
         {
             return FormatString(dataRow[columnName].ToString(), maxLen, isNumeric);

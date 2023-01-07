@@ -24,7 +24,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
                 , { "STATUS", "Status" }
             };
 
-            ButtonColumns = new List<string>() { "View" };
+            ButtonColumns = new List<string>() { "View", "Print to DM" };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -57,17 +57,23 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
+            DataSet ds = new StockRepository().GetDispatch(drFocusedRow["STOCKDISPATCHID"]);
+            if (ds == null && ds.Tables.Count < 2)
+            {
+                return;
+            }
+
             switch (buttonText)
             {
                 case "View":
-                    DataSet ds = new StockRepository().GetDispatch(drFocusedRow["STOCKDISPATCHID"]);
-                    if (ds != null && ds.Tables.Count > 1)
-                    {
-                        rptDispatch rpt = new rptDispatch(ds.Tables[0], ds.Tables[1]);
-                        rpt.ShowPrintMarginsWarning = false;
-                        rpt.ShowRibbonPreview();
-                    }
+                    rptDispatch rpt = new rptDispatch(ds.Tables[0], ds.Tables[1]);
+                    rpt.ShowPrintMarginsWarning = false;
+                    rpt.ShowRibbonPreview();
                     break;
+                case "Print to DM":
+                    Utilities.DotMatrixPrintHelper.PrintDispatch(ds);
+                    break;
+
             }
         }
     }
