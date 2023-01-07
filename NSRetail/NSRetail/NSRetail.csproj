@@ -766,8 +766,8 @@
     <Compile Include="Supplier\frmViewReturnItems.Designer.cs">
       <DependentUpon>frmViewReturnItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Class1.cs" />
-    <Compile Include="Utilities\LPrinter.cs" />
+    <Compile Include="Utilities\DotMatrixPrintHelper.cs" />
+    <Compile Include="Utilities\DotMatrixPrinter.cs" />
     <Compile Include="Utilities\GoogleDriveRepository.cs" />
     <Compile Include="Utilities\DeleteMessageUtility.cs" />
     <Compile Include="Utilities\frmSyncStatus.cs">

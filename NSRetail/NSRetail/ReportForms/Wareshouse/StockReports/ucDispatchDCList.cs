@@ -8,7 +8,7 @@ using System.Data;
 namespace NSRetail.ReportForms.Wareshouse.StockReports
 {
     public partial class ucDispatchDCList : SearchCriteriaBase
-    {        
+    {
         public ucDispatchDCList()
         {
             InitializeComponent();
@@ -25,7 +25,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
                 , { "STATUS", "Status" }
             };
 
-            ButtonColumns = new List<string>() { "View" };
+            ButtonColumns = new List<string>() { "View", "Print to DM" };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -43,7 +43,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
 
             SetFocusControls(cmbBranch, dtpToDate, columnHeaders);
         }
-       
+
         public override DataTable GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
@@ -58,17 +58,23 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
+            DataSet ds = new StockRepository().GetDispatchDC(drFocusedRow["DISPATCHDCID"]);
+            if (ds == null || ds.Tables.Count < 2)
+            {
+                return;
+            }
+
             switch (buttonText)
             {
                 case "View":
-                    DataSet ds = new StockRepository().GetDispatchDC(drFocusedRow["DISPATCHDCID"]);
-                    if (ds != null && ds.Tables.Count > 1)
-                    {
-                        rptDispatchDC rpt = new rptDispatchDC(ds.Tables[0], ds.Tables[1]);
-                        rpt.ShowPrintMarginsWarning = false;
-                        rpt.ShowRibbonPreview();
-                    }
+                    rptDispatchDC rpt = new rptDispatchDC(ds.Tables[0], ds.Tables[1]);
+                    rpt.ShowPrintMarginsWarning = false;
+                    rpt.ShowRibbonPreview();
                     break;
+                case "Print to DM":
+                    Utilities.DotMatrixPrintHelper.PrintDC(ds);
+                    break;
+
             }
         }
     }

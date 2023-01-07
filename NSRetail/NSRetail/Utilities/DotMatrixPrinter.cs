@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing.Printing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
 namespace NSRetail
 {
-    class LPrinter
+    class DotMatrixPrinter
     {
         // Structure and API declarions:
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
@@ -47,7 +44,7 @@ namespace NSRetail
         private IntPtr HandlePrinter;
         private PrinterSettings ps;
 
-        public LPrinter()
+        public DotMatrixPrinter()
         {
             HandlePrinter = IntPtr.Zero;
             ps = new PrinterSettings();
@@ -114,8 +111,8 @@ namespace NSRetail
         {
             if (HandlePrinter == IntPtr.Zero) return false;
 
+            outputstring = outputstring.Replace("-", "_");
             IntPtr buf = Marshal.StringToCoTaskMemAnsi(outputstring);
-
             Int32 done = 0;
             bool ok = WritePrinter(HandlePrinter, buf, outputstring.Length, out done);
 
