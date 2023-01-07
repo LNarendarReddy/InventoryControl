@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBranchIndent));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.dtToDate = new DevExpress.XtraEditors.DateEdit();
             this.dtFromDate = new DevExpress.XtraEditors.DateEdit();
@@ -38,6 +39,8 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnPrintToDM = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -51,10 +54,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnPrintToDM);
             this.layoutControl1.Controls.Add(this.dtToDate);
             this.layoutControl1.Controls.Add(this.dtFromDate);
             this.layoutControl1.Controls.Add(this.cmbCategory);
@@ -71,7 +76,7 @@
             // 
             this.dtToDate.EditValue = null;
             this.dtToDate.EnterMoveNextControl = true;
-            this.dtToDate.Location = new System.Drawing.Point(888, 11);
+            this.dtToDate.Location = new System.Drawing.Point(746, 11);
             this.dtToDate.Name = "dtToDate";
             this.dtToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -85,7 +90,7 @@
             // 
             this.dtFromDate.EditValue = null;
             this.dtFromDate.EnterMoveNextControl = true;
-            this.dtFromDate.Location = new System.Drawing.Point(688, 11);
+            this.dtFromDate.Location = new System.Drawing.Point(546, 11);
             this.dtFromDate.Name = "dtFromDate";
             this.dtFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -98,7 +103,7 @@
             // cmbCategory
             // 
             this.cmbCategory.EnterMoveNextControl = true;
-            this.cmbCategory.Location = new System.Drawing.Point(379, 11);
+            this.cmbCategory.Location = new System.Drawing.Point(324, 11);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -106,7 +111,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYID", "CATEGORYID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYNAME", "Category Name")});
             this.cmbCategory.Properties.NullText = "";
-            this.cmbCategory.Size = new System.Drawing.Size(227, 22);
+            this.cmbCategory.Size = new System.Drawing.Size(140, 22);
             this.cmbCategory.StyleController = this.layoutControl1;
             this.cmbCategory.TabIndex = 1;
             // 
@@ -122,7 +127,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHNAME", "Branch Name"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHCODE", "Branch Code", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbBranch.Properties.NullText = "";
-            this.cmbBranch.Size = new System.Drawing.Size(216, 22);
+            this.cmbBranch.Size = new System.Drawing.Size(161, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 0;
             // 
@@ -134,7 +139,8 @@
             this.layoutControlItem1,
             this.layoutControlItem2,
             this.layoutControlItem3,
-            this.layoutControlItem4});
+            this.layoutControlItem4,
+            this.layoutControlItem5});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.Root.Size = new System.Drawing.Size(1017, 45);
@@ -146,24 +152,24 @@
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem1.Size = new System.Drawing.Size(298, 35);
+            this.layoutControlItem1.Size = new System.Drawing.Size(243, 35);
             this.layoutControlItem1.Text = "Branch";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(58, 15);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.cmbCategory;
-            this.layoutControlItem2.Location = new System.Drawing.Point(298, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(243, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(309, 35);
+            this.layoutControlItem2.Size = new System.Drawing.Size(222, 35);
             this.layoutControlItem2.Text = "Category";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(58, 15);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.dtFromDate;
-            this.layoutControlItem3.Location = new System.Drawing.Point(607, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(465, 0);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(200, 35);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(200, 35);
             this.layoutControlItem3.Name = "layoutControlItem3";
@@ -176,7 +182,7 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.dtToDate;
-            this.layoutControlItem4.Location = new System.Drawing.Point(807, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(665, 0);
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(200, 35);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(200, 35);
             this.layoutControlItem4.Name = "layoutControlItem4";
@@ -185,6 +191,28 @@
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.Text = "To Date";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(58, 15);
+            // 
+            // btnPrintToDM
+            // 
+            this.btnPrintToDM.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintToDM.ImageOptions.Image")));
+            this.btnPrintToDM.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnPrintToDM.Location = new System.Drawing.Point(876, 11);
+            this.btnPrintToDM.Name = "btnPrintToDM";
+            this.btnPrintToDM.Size = new System.Drawing.Size(130, 22);
+            this.btnPrintToDM.StyleController = this.layoutControl1;
+            this.btnPrintToDM.TabIndex = 4;
+            this.btnPrintToDM.Text = "Print to DM";
+            this.btnPrintToDM.Click += new System.EventHandler(this.btnPrintToDM_Click);
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.btnPrintToDM;
+            this.layoutControlItem5.Location = new System.Drawing.Point(865, 0);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem5.Size = new System.Drawing.Size(142, 35);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
             // 
             // ucBranchIndent
             // 
@@ -207,6 +235,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -223,5 +252,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraEditors.SimpleButton btnPrintToDM;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
     }
 }

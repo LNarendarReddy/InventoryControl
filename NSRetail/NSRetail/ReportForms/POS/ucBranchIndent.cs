@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -49,6 +50,16 @@ namespace NSRetail.ReportForms
             };
 
             return GetReportData("USP_R_BRANCHINDENT", parameters);
+        }
+
+        private void btnPrintToDM_Click(object sender, EventArgs e)
+        {
+            DotMatrixPrintHelper.PrintBranchIndent(
+                cmbBranch.Text
+                , cmbCategory.Text
+                , dtFromDate.Text
+                , dtToDate.Text
+                , DotMatrixPrintHelper.GetDataTableWYSIWYG(ResultGridView));
         }
     }
 }

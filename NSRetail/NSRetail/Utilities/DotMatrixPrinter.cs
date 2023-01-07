@@ -3,6 +3,7 @@ using System.Drawing.Printing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using DevExpress.XtraEditors;
+using System.Linq;
 
 namespace NSRetail
 {
@@ -120,11 +121,27 @@ namespace NSRetail
             return true;
         }
 
-        public bool Print(string outputstring)
+        public bool Print(string outputstring, int newLines = 0, Alignment alignment = Alignment.Near)
         {
             if (HandlePrinter == IntPtr.Zero) return false;
 
+            string plainOutPut = outputstring.Replace("<b>", string.Empty).Replace("</b>", string.Empty);
+
+            if (plainOutPut.Length < 96)
+            {
+                if (alignment == Alignment.Center)
+                {                    
+                    outputstring = outputstring.PadLeft(((96 - plainOutPut.Length) / 2) + outputstring.Length).PadRight(96 + (outputstring.Length - plainOutPut.Length));
+                }
+                else if (alignment == Alignment.Far)
+                {                    
+                    outputstring = outputstring.PadLeft(96 + (outputstring.Length - plainOutPut.Length));
+                }
+            }
+
             outputstring = outputstring.Replace("-", "_").Replace("<b>", $"{(char)27}E").Replace("</b>", $"{(char)20}{(char)27}F");
+            outputstring += string.Concat(Enumerable.Repeat("\r\n", newLines));
+
             IntPtr buf = Marshal.StringToCoTaskMemAnsi(outputstring);
             Int32 done = 0;
             bool ok = WritePrinter(HandlePrinter, buf, outputstring.Length, out done);
