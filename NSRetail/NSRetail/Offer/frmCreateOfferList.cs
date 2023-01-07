@@ -2,6 +2,7 @@
 using DevExpress.Office.UI.Internal;
 using DevExpress.Utils.Serializing.Helpers;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using Entity;
 using ErrorManagement;
@@ -113,6 +114,27 @@ namespace NSRetail
                 int.TryParse(Convert.ToString(gvOffer.GetFocusedRowCellValue("OFFERID")), out int offerid) &&
                 offerid > 0)
                 e.Cancel = true;
+        }
+        private void gvOffer_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if(view.GetRowCellValue(e.RowHandle, gcItemCode) == DBNull.Value)
+            {
+                e.Valid = false;
+                view.SetColumnError(gcItemCode, "Itemcode is mandatory");
+            }
+
+            if (view.GetRowCellValue(e.RowHandle, gcOfferType) == DBNull.Value)
+            {
+                e.Valid = false;
+                view.SetColumnError(gcOfferType, "Offertype is mandatory");
+            }
+            if (e.Valid)
+                view.ClearColumnErrors();
+        }
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

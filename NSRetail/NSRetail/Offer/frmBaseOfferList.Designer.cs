@@ -78,7 +78,6 @@
             this.btnBranches = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnOfferList = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -177,7 +176,6 @@
             this.gridColumn13,
             this.gridColumn14,
             this.gridColumn15,
-            this.gridColumn18,
             this.gridColumn16,
             this.gridColumn17,
             this.gridColumn19});
@@ -358,16 +356,6 @@
             this.btnOfferList.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnOfferList.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnOfferList_ButtonClick);
             // 
-            // gridColumn18
-            // 
-            this.gridColumn18.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn18.Caption = "Import";
-            this.gridColumn18.ColumnEdit = this.btnImport;
-            this.gridColumn18.Name = "gridColumn18";
-            this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 9;
-            // 
             // gridColumn16
             // 
             this.gridColumn16.Caption = "Is Acitve";
@@ -393,7 +381,7 @@
             this.gridColumn19.ColumnEdit = this.btnDelete;
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 10;
+            this.gridColumn19.VisibleIndex = 9;
             // 
             // btnDelete
             // 
@@ -522,7 +510,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnOfferList;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnImport;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
     }
