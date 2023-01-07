@@ -2,6 +2,7 @@
 using System.Drawing.Printing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using DevExpress.XtraEditors;
 
 namespace NSRetail
 {
@@ -74,7 +75,18 @@ namespace NSRetail
             else return false;
         }
 
-        public bool Open(string DocName)
+        public bool OpenPrinter(string printerName)
+        {
+            bool isPrinterOpened = Open(printerName);
+            if(!isPrinterOpened)
+            {
+                XtraMessageBox.Show($"Unable to open dot matrix printer {printerName}");
+            }
+
+            return isPrinterOpened;
+        }
+
+        private bool Open(string printerName)
         {
             // see if printer is already open
             if (HandlePrinter != IntPtr.Zero) return false;
@@ -85,7 +97,7 @@ namespace NSRetail
 
             // starts a print job
             DOCINFOA MyDocInfo = new DOCINFOA();
-            MyDocInfo.pDocName = DocName;
+            MyDocInfo.pDocName = printerName;
             MyDocInfo.pOutputFile = null;
             MyDocInfo.pDataType = "RAW";
 
@@ -94,7 +106,8 @@ namespace NSRetail
                 StartPagePrinter(HandlePrinter); //starts a page       
                 return true;
             }
-            else return false;
+            
+            return false;
         }
 
         public bool Close()
@@ -111,7 +124,7 @@ namespace NSRetail
         {
             if (HandlePrinter == IntPtr.Zero) return false;
 
-            outputstring = outputstring.Replace("-", "_");
+            outputstring = outputstring.Replace("-", "_").Replace("<b>", $"{(char)27}E").Replace("</b>", $"{(char)20}{(char)27}F");
             IntPtr buf = Marshal.StringToCoTaskMemAnsi(outputstring);
             Int32 done = 0;
             bool ok = WritePrinter(HandlePrinter, buf, outputstring.Length, out done);

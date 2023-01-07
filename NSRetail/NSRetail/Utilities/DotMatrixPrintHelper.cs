@@ -11,17 +11,17 @@ namespace NSRetail.Utilities
         public static void PrintDC(DataSet ds)
         {
             DotMatrixPrinter MyPrinter = new DotMatrixPrinter();
-            if (!MyPrinter.Open(DotMatrixPrinterName)) return;
-            MyPrinter.Print("                                    Victory Bazars PVT LTD                                         \r\n");
+            if (!MyPrinter.OpenPrinter(DotMatrixPrinterName)) return;            
+            MyPrinter.Print($"                                    <b>Victory Bazars PVT LTD</b>                                         \r\n");
             MyPrinter.Print("                                 Dispatch Delivery challan list                                    \r\n");
             MyPrinter.Print("************************************************************************************************\r\n");
-            MyPrinter.Print($" Way bill no : {ds.Tables[0].Rows[0]["DISPATCHDCNUMBER"]}");
+            MyPrinter.Print($" Way bill no : <b>{ds.Tables[0].Rows[0]["DISPATCHDCNUMBER"]}</b>");
             MyPrinter.Print($"  Date : {DateTime.Parse(ds.Tables[0].Rows[0]["CREATEDDATE"].ToString()).ToString("dd/MM/yyyy hh:mm:ss tt")}\r\n\r\n");
             MyPrinter.Print(" GSTIN : 37AAICV7240C1ZC          FSSAI : 10114004000548           CIN : U51390AP2022PTC121579\r\n\r\n");
             MyPrinter.Print($" Shipping From : {ds.Tables[0].Rows[0]["FROMBRANCHNAME"]}, {ds.Tables[0].Rows[0]["FROMADDRESS"]}, {ds.Tables[0].Rows[0]["FROMSTATENAME"]}, Phone #: {ds.Tables[0].Rows[0]["FROMPHONENO"]} \r\n\r\n");
-            MyPrinter.Print($" Shipping To : {ds.Tables[0].Rows[0]["TOBRANCHNAME"]}, {ds.Tables[0].Rows[0]["TOADDRESS"]}, {ds.Tables[0].Rows[0]["TOSTATENAME"]}, Phone # : {ds.Tables[0].Rows[0]["TOPHONENO"]}\r\n");
+            MyPrinter.Print($" Shipping To : <b>{ds.Tables[0].Rows[0]["TOBRANCHNAME"]}</b>, {ds.Tables[0].Rows[0]["TOADDRESS"]}, {ds.Tables[0].Rows[0]["TOSTATENAME"]}, Phone # : {ds.Tables[0].Rows[0]["TOPHONENO"]}\r\n");
             MyPrinter.Print("------------------------------------------------------------------------------------------------\r\n\r\n");
-            MyPrinter.Print("SNo  ItemCode     ItemName                          HSNCode      Quantity   Weight      GST Code\r\n");
+            MyPrinter.Print($"<b>SNo  ItemCode     ItemName                          HSNCode      Quantity   Weight      GST Code</b>\r\n");
             MyPrinter.Print("------------------------------------------------------------------------------------------------\r\n");
             DataTable dtItems = ds.Tables[1];
             for (int i = 0; i < dtItems.Rows.Count; i++)
@@ -36,7 +36,7 @@ namespace NSRetail.Utilities
                     + "\r\n");
             }
             MyPrinter.Print("------------------------------------------------------------------------------------------------\r\n");
-            MyPrinter.Print($"{FormatString("Tax break-up    ", 96, true)}\r\n");
+            MyPrinter.Print($"{FormatString($"<b>Tax break-up</b>    ", 96, true)}\r\n");
 
             foreach(DataRow drTaxSlab in ds.Tables[2].Rows)
             {
