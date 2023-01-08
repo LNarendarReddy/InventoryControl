@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using DevExpress.XtraEditors;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace NSRetail
 {
@@ -88,6 +89,17 @@ namespace NSRetail
                 isPrinterOpened = XtraMessageBox.Show("Are you sure to print?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
             }
 
+            if(isPrinterOpened)
+            {
+                // 27 120 48 = select draft mode 
+                // 27 54     = allow printing of special characters
+                // 27 77     = select 10 cpi
+                // 15        = condensed mode    18 = cancel condensed mode
+                // 27 87 48  = cancel double width mode
+                List<int> printArray = new List<int> { 27, 120, 48, 27, 54, 27, 77, 27, 87, 48, 18 };
+                Print($"{string.Concat(printArray.Select(x => (char)x))}");
+            }
+
             return isPrinterOpened;
         }
 
@@ -129,7 +141,8 @@ namespace NSRetail
         {
             if (HandlePrinter == IntPtr.Zero) return false;
 
-            string plainOutPut = outputstring.Replace("<b>", string.Empty).Replace("</b>", string.Empty);
+            string plainOutPut = outputstring.Replace("<b>", string.Empty).Replace("</b>", string.Empty)
+                .Replace("<i>", string.Empty).Replace("</i>", string.Empty);                
 
             if (plainOutPut.Length < 96)
             {
@@ -143,7 +156,9 @@ namespace NSRetail
                 }
             }
 
-            outputstring = outputstring.Replace("-", "_").Replace("<b>", $"{(char)27}E").Replace("</b>", $"{(char)20}{(char)27}F");
+            outputstring = outputstring.Replace("-", "_")
+                .Replace("<b>", $"{(char)27}E").Replace("</b>", $"{(char)27}F")
+                .Replace("<i>", $"{(char)27}4").Replace("</i>", $"{(char)27}5");
             outputstring += string.Concat(Enumerable.Repeat("\r\n", newLines));
 
             IntPtr buf = Marshal.StringToCoTaskMemAnsi(outputstring);

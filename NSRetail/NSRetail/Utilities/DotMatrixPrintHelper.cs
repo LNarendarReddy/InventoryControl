@@ -19,10 +19,12 @@ namespace NSRetail.Utilities
             MyPrinter.Print("Dispatch Delivery challan list", 1, Alignment.Center);
             MyPrinter.Print("************************************************************************************************", 1);
             MyPrinter.Print($" Way bill no : <b>{ds.Tables[0].Rows[0]["DISPATCHDCNUMBER"]}</b>");
-            MyPrinter.Print($"  Date : {DateTime.Parse(ds.Tables[0].Rows[0]["CREATEDDATE"].ToString()).ToString("dd/MM/yyyy hh:mm:ss tt")}", 2);
+            MyPrinter.Print($"  Date : {DateTime.Parse($"{ds.Tables[0].Rows[0]["CREATEDDATE"]}"):dd/MM/yyyy hh:mm:ss tt}", 2);
             MyPrinter.Print(" GSTIN : 37AAICV7240C1ZC          FSSAI : 10114004000548           CIN : U51390AP2022PTC121579", 2);
-            MyPrinter.Print($" Shipping From : {ds.Tables[0].Rows[0]["FROMBRANCHNAME"]}, {ds.Tables[0].Rows[0]["FROMADDRESS"]}, {ds.Tables[0].Rows[0]["FROMSTATENAME"]}, Phone #: {ds.Tables[0].Rows[0]["FROMPHONENO"]}", 2);
-            MyPrinter.Print($" Shipping To : <b>{ds.Tables[0].Rows[0]["TOBRANCHNAME"]}</b>, {ds.Tables[0].Rows[0]["TOADDRESS"]}, {ds.Tables[0].Rows[0]["TOSTATENAME"]}, Phone # : {ds.Tables[0].Rows[0]["TOPHONENO"]}", 1);
+            MyPrinter.Print($" Shipping From : {ds.Tables[0].Rows[0]["FROMBRANCHNAME"]}, {ds.Tables[0].Rows[0]["FROMADDRESS"]},");
+            MyPrinter.Print($"{ds.Tables[0].Rows[0]["FROMSTATENAME"]}, Phone #: {ds.Tables[0].Rows[0]["FROMPHONENO"]}", 2);
+            MyPrinter.Print($" Shipping To : <b>{ds.Tables[0].Rows[0]["TOBRANCHNAME"]}</b>, {ds.Tables[0].Rows[0]["TOADDRESS"]}, ");
+            MyPrinter.Print($"{ds.Tables[0].Rows[0]["TOSTATENAME"]}, Phone # : {ds.Tables[0].Rows[0]["TOPHONENO"]}", 1);
             MyPrinter.Print("------------------------------------------------------------------------------------------------", 2);
             MyPrinter.Print($"<b>SNo  ItemCode     ItemName                          HSNCode      Quantity   Weight      GST Code</b>", 1);
             MyPrinter.Print("------------------------------------------------------------------------------------------------", 1);
@@ -65,7 +67,8 @@ namespace NSRetail.Utilities
             MyPrinter.Print("<b>Victory Bazars PVT LTD</b>", 1, Alignment.Center);
             MyPrinter.Print("Dispatch details", 1, Alignment.Center);
             MyPrinter.Print("************************************************************************************************", 1);
-            MyPrinter.Print($" To Branch : <b>{ds.Tables[0].Rows[0]["TOBRANCHNAME"]}</b>  Dispatch # : <b>{ds.Tables[0].Rows[0]["DISPATCHNUMBER"]}</b> Category : {ds.Tables[0].Rows[0]["CATEGORYNAME"]}", 1);
+            MyPrinter.Print($" To Branch : <b>{ds.Tables[0].Rows[0]["TOBRANCHNAME"]}</b>  Dispatch # : <b>{ds.Tables[0].Rows[0]["DISPATCHNUMBER"]}</b>");
+            MyPrinter.Print($"Category : {ds.Tables[0].Rows[0]["CATEGORYNAME"]}", 1);
             MyPrinter.Print($" From Branch : <b>{ds.Tables[0].Rows[0]["FROMBRANCHNAME"]}</b>  Dispatched By {ds.Tables[0].Rows[0]["CREATEDBY"]}");
             MyPrinter.Print($" Dispatched Date : {DateTime.Parse(ds.Tables[0].Rows[0]["CREATEDDATE"].ToString()).ToString("dd/MM/yyyy hh:mm:ss tt")}", 2);
             MyPrinter.Print("------------------------------------------------------------------------------------------------", 2);
