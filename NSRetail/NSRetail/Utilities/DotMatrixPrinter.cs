@@ -96,6 +96,7 @@ namespace NSRetail
                 // 27 77     = select 10 cpi
                 // 15        = condensed mode    18 = cancel condensed mode
                 // 27 87 48  = cancel double width mode
+                // http://www.lprng.com/RESOURCES/EPSON/epson.htm
                 List<int> printArray = new List<int> { 27, 120, 48, 27, 54, 27, 77, 27, 87, 48, 18 };
                 Print($"{string.Concat(printArray.Select(x => (char)x))}");
             }
