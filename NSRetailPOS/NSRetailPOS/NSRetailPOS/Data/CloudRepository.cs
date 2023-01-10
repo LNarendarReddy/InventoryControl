@@ -1,6 +1,4 @@
-﻿using DevExpress.CodeParser;
-using DevExpress.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -197,7 +195,7 @@ namespace NSRetailPOS.Data
             }
         }
 
-        public Tuple<string,string> GetPOSVersion ()
+        public Tuple<string,string> GetPOSVersion()
         {
             Tuple<string, string> posversion = null;
             try
@@ -207,6 +205,9 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.SqlCloudconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_POSVersion]";
+                    cmd.Parameters.AddWithValue("@BranchCounterID", Utility.branchInfo.BranchCounterID);
+                    cmd.Parameters.AddWithValue("@CurAppVersion", Utility.AppVersion);
+                    cmd.Parameters.AddWithValue("@CurDBVersion", Utility.DBVersion);
                     object POSVersion = cmd.ExecuteScalar();
                     posversion = Tuple.Create(Convert.ToString(POSVersion).Split(',')[0], Convert.ToString(POSVersion).Split(',')[1]);
                 }

@@ -1,10 +1,7 @@
-﻿using DevExpress.CodeParser;
-using DevExpress.DataAccess.Sql;
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
-using DevExpress.XtraRichEdit.Model;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
@@ -12,9 +9,7 @@ using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -25,8 +20,6 @@ using System.Printing;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Windows.Threading;
 
 namespace NSRetailPOS
 {
@@ -318,9 +311,9 @@ namespace NSRetailPOS
             Form.ActiveForm.BeginInvoke((Action)(() => (Form.ActiveForm as IBarcodeReceiver).ReceiveBarCode(data)));
         }
 
-        public static string AppVersion = "1.2.7";
+        public static string AppVersion = "1.2.8";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(27-12-2022)";
+        public static string VersionDate = "(10-01-2023)";
 
         private static bool DBVersionCheck(BackgroundWorker backgroundWorker, CloudRepository cloudRepository, SyncRepository syncRepository)
         {
