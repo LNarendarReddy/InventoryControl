@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "NSRetailPOS"
-#define MyAppVersion "1.2.8 || 1.3.1 (10-01-2023)"
+#define MyAppVersion "1.2.9 || 1.3.2 (11-01-2023)"
 #define MyAppPublisher "N SOFT SOLUTIONS"
 #define MyAppURL "http://www.nsretailsolutions.com/"
 #define MyAppExeName "NSRetailPOS.exe"
@@ -24,7 +24,7 @@ DefaultDirName={win}\NSRetailPOS
 AlwaysShowDirOnReadyPage=yes
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-OutputBaseFilename=NSRetailPOS
+OutputBaseFilename=NSRetailPOSInstaller
 Compression=lzma
 SolidCompression=yes
 DisableProgramGroupPage=yes

@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DevExpress.XtraEditors.Filtering.DataItemsExtension;
 
 namespace NSRetail
 {
@@ -135,6 +136,38 @@ namespace NSRetail
         private void btnImport_Click(object sender, EventArgs e)
         {
 
+            //try
+            //{
+            //    XtraOpenFileDialog xtraOpenFileDialog1 = new XtraOpenFileDialog();
+            //    xtraOpenFileDialog1.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
+            //    xtraOpenFileDialog1.Filter = "excel files (*.xls,*.xlsx)|*.xls,*.xlsx";
+
+            //    if (xtraOpenFileDialog1.ShowDialog() == DialogResult.OK)
+            //    {
+            //        string filePath = xtraOpenFileDialog1.FileName;
+            //        DataTable dt = Utility.ImportExcelXLS(filePath);
+            //        if (dt != null && dt.Rows.Count > 0)
+            //        {
+            //            DataTable dtTemp = dt.Clone();
+            //            foreach (DataColumn dc in dtTemp.Columns)
+            //            {
+            //                if (dc.ColumnName == "ITEMCODEID" || dc.ColumnName == "OFFERTYPE" || dc.ColumnName == "OFFERVALUE")
+            //                {
+
+            //                }
+            //                else
+            //                    dt.Columns.Remove(dc.ColumnName);
+            //            }
+            //            new OfferRepository().ImportOffer(BaseOfferID, CategoryID, dt, Utility.UserID);
+            //            gcOffer.DataSource = offerRepository.GetOfferByBaseOffer(BaseOfferID);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ErrorManagement.ErrorMgmt.ShowError(ex);
+            //    ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
+            //}
         }
     }
 }

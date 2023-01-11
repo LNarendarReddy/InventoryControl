@@ -643,5 +643,32 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
+        public void ImportOffer(object BaseOfferID,object CategoryID,  DataTable dtOffers, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_IMP_OFFER]";
+                    cmd.Parameters.AddWithValue("@BASEOFFERID", BaseOfferID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
+                    cmd.Parameters.AddWithValue("@dtOffer", dtOffers);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    int ivalue = cmd.ExecuteNonQuery();
+                    if (ivalue == 0)
+                        throw new Exception("Error while importing offers");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While importing offer list", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 }

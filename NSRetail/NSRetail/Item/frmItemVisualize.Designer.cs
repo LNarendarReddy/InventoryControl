@@ -42,6 +42,7 @@
             this.gridColumn35 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn36 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcsaleprice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtPrice = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gridColumn38 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDeleteBranchPrice = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gcOffer = new DevExpress.XtraGrid.GridControl();
@@ -95,11 +96,11 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtPrice = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcBranchPrices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBranchPrices)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteBranchPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOffer)).BeginInit();
@@ -119,7 +120,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -225,6 +225,18 @@
             this.gcsaleprice.Visible = true;
             this.gcsaleprice.VisibleIndex = 1;
             this.gcsaleprice.Width = 123;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.AutoHeight = false;
+            this.txtPrice.DisplayFormat.FormatString = "n2";
+            this.txtPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtPrice.EditFormat.FormatString = "n2";
+            this.txtPrice.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtPrice.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtPrice.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.txtPrice.MaskSettings.Set("mask", "n2");
+            this.txtPrice.Name = "txtPrice";
             // 
             // gridColumn38
             // 
@@ -785,18 +797,6 @@
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(112, 14);
             // 
-            // txtPrice
-            // 
-            this.txtPrice.AutoHeight = false;
-            this.txtPrice.DisplayFormat.FormatString = "n2";
-            this.txtPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtPrice.EditFormat.FormatString = "n2";
-            this.txtPrice.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtPrice.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtPrice.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.txtPrice.MaskSettings.Set("mask", "n2");
-            this.txtPrice.Name = "txtPrice";
-            // 
             // frmItemVisualize
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -807,6 +807,7 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmItemVisualize";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Item Visualiser";
             this.Load += new System.EventHandler(this.frmItemDrillDown_Load);
@@ -815,6 +816,7 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcBranchPrices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBranchPrices)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteBranchPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOffer)).EndInit();
@@ -834,7 +836,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -56,6 +56,7 @@ namespace NSRetail
                     new ColumnFilterInfo($"[PARENTITEMPRICEID] = '{gvItemPrice.GetFocusedRowCellValue("ITEMPRICEID")}'");
                 gcOffer.DataSource =
                     itemCodeRepository.GetOffers(gvItemPrice.GetFocusedRowCellValue("ITEMPRICEID"));
+                btnAddNewPrice.Enabled = string.IsNullOrEmpty(Convert.ToString(gvItemPrice.GetFocusedRowCellValue("IPDELETEDBY")));
             }
             catch (Exception ex) { }
         }
