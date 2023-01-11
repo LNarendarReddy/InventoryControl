@@ -86,7 +86,7 @@ namespace NSRetail
             }
             else
             {
-                isPrinterOpened = XtraMessageBox.Show("Are you sure to print?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+                isPrinterOpened = XtraMessageBox.Show("Are you sure to print?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
             }
 
             if(isPrinterOpened)

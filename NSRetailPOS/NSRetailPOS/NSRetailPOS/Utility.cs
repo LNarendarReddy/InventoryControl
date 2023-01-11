@@ -30,7 +30,7 @@ namespace NSRetailPOS
         static SerialPort _serialPort = new SerialPort();
 
         public static event EventHandler ItemOrCodeChanged;
-
+        public static Form ActiveForm;
         public static Bill GetBill(DataSet dsBillDetails)
         {
             Bill billObj = new Bill();
@@ -66,8 +66,8 @@ namespace NSRetailPOS
 
                 if (!Utility.ValidateTimeZone())
                 {
-                    XtraMessageBox.Show($"This system installed in different time zone!" +
-                        $"{Environment.NewLine}Please correct the timezone to continue or contact your administrator.");
+                    ShowUIMessage($"This system installed in different time zone!" +
+                        $"{Environment.NewLine}Please correct the timezone to continue or contact your administrator.", "Time error");
                     return false;
                  }
 
@@ -127,7 +127,7 @@ namespace NSRetailPOS
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Error while running sync : {ex.Message} {Environment.NewLine} {ex.StackTrace}");
+                ShowUIMessage($"Error while running sync : {ex.Message} {Environment.NewLine} {ex.StackTrace}", "Error");
             }
             return true;
         }
@@ -311,7 +311,7 @@ namespace NSRetailPOS
             Form.ActiveForm.BeginInvoke((Action)(() => (Form.ActiveForm as IBarcodeReceiver).ReceiveBarCode(data)));
         }
 
-        public static string AppVersion = "1.2.8";
+        public static string AppVersion = "1.2.7";
         public static string DBVersion = string.Empty;
         public static string VersionDate = "(10-01-2023)";
 
@@ -331,7 +331,7 @@ namespace NSRetailPOS
                 args.DefaultButtonIndex = 0;
                 args.AutoCloseOptions.ShowTimerOnDefaultButton = true;
                 args.Buttons = new DialogResult[] { DialogResult.OK };
-                XtraMessageBox.Show(args);
+                ShowUIMessage(args);
                 if (backgroundWorker == null)
                     SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
                 ReportText(backgroundWorker, $"Update download started");
@@ -339,21 +339,21 @@ namespace NSRetailPOS
                 ReportText(backgroundWorker, $"Update download completed");
                 if (_updateAvailable)
                 {
-                    string stpath = System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles", "RunSQL.bat");
+                    string stpath = Path.Combine(Application.UserAppDataPath, "DBFiles", "RunSQL.bat");
                     ProcessStartInfo processInfo;
                     Process process;
 
                     processInfo = new ProcessStartInfo(stpath);
                     processInfo.UseShellExecute = false;
-                    processInfo.WorkingDirectory = System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles");
+                    processInfo.WorkingDirectory = Path.Combine(Application.UserAppDataPath, "DBFiles");
                     process = Process.Start(processInfo);
                     process.WaitForExit();
 
                     Utility.DBVersion = syncRepository.GetDBVersion();
                     if (!posVersion.Item2.Equals(Utility.DBVersion))
                     {
-                        XtraMessageBox.Show($"Database version mismatch!{Environment.NewLine}Please contact your administrator.",
-                        "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        ShowUIMessage($"Database version mismatch!{Environment.NewLine}Please contact your administrator.",
+                        "Database Error");
                         _isContinue = false;
                     }
 
@@ -365,8 +365,9 @@ namespace NSRetailPOS
                 }
                 else
                 {
-                    XtraMessageBox.Show($"Error occured while updating database!{Environment.NewLine}Please contact your administrator.",
-                        "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ShowUIMessage(
+                        $"Error occured while updating database!{Environment.NewLine}Please contact your administrator.",
+                        "Database Error");
                     _isContinue = false;
                 }
             }
@@ -388,7 +389,8 @@ namespace NSRetailPOS
                 args.DefaultButtonIndex = 0;
                 args.AutoCloseOptions.ShowTimerOnDefaultButton = true;
                 args.Buttons = new DialogResult[] { DialogResult.OK };
-                XtraMessageBox.Show(args);
+                ShowUIMessage(args);
+
                 if (backgroundWorker == null)
                     SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
                 ReportText(backgroundWorker, $"Update download started");
@@ -397,7 +399,7 @@ namespace NSRetailPOS
                 if (_updateAvailable)
                 {
 
-                    string stpath = System.IO.Path.Combine(Application.UserAppDataPath, "AppFiles", "UpdateEXEScript.bat");
+                    string stpath = Path.Combine(Application.UserAppDataPath, "AppFiles", "UpdateEXEScript.bat");
                     ProcessStartInfo processInfo;
                     Process process;
                     processInfo = new ProcessStartInfo(stpath);
@@ -405,12 +407,33 @@ namespace NSRetailPOS
                 }
                 else
                 {
-                    XtraMessageBox.Show($"Error occured while updating application.{Environment.NewLine}Please contact your administrator",
-                        "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ShowUIMessage($"Error occured while updating application.{Environment.NewLine}Please contact your administrator", "Application Error");
                     return false;
                 }
             }
             return true;
+        }
+
+        private static void ShowUIMessage(XtraMessageBoxArgs args)
+        {
+            if (ActiveForm.InvokeRequired)
+            {
+                ActiveForm.BeginInvoke((Action<XtraMessageBoxArgs>)ShowUIMessage, args);
+                return;
+            }
+
+            XtraMessageBox.Show(args);
+        }
+
+        private static void ShowUIMessage(string text, string caption)
+        {
+            if (ActiveForm.InvokeRequired)
+            {
+                ActiveForm.BeginInvoke((Action<string, string>)ShowUIMessage, text, caption);
+                return;
+            }
+
+            XtraMessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public static bool ValidateTimeZone()

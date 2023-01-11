@@ -36,6 +36,7 @@ namespace NSRetailPOS.UI
 
         private void frmConfiguration_Load(object sender, EventArgs e)
         {
+            Utility.ActiveForm = this;
             if (!Utility.ValidateTimeZone())
             {
                 XtraMessageBox.Show($"This system installed in different time zone!" +

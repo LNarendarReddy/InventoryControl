@@ -87,6 +87,7 @@ namespace NSRetailPOS.UI
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            Utility.ActiveForm = this;
             lblBranch.Text = Convert.ToString(Utility.branchInfo.BranchName);
             lblCounter.Text = $"Counter : {Convert.ToString(Utility.branchInfo.BranchCounterName)}";
         }

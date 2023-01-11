@@ -67,7 +67,7 @@ namespace NSRetail
 
         public Dictionary<string, string> GenericColumnHeaders { get; }
 
-        public DataTable GetReportData(string procName, Dictionary<string, object> parameters)
+        public DataTable GetReportData(string procName, Dictionary<string, object> parameters, bool useCloudConn = false)
         {
             DataTable reportdata = null;
             try
@@ -77,7 +77,7 @@ namespace NSRetail
                     IncludeSettingsCollection.ForEach(x => parameters[x.ParameterName] = x.Included);
                 }
 
-                reportdata = new ReportRepository().GetReportData(procName, parameters);
+                reportdata = new ReportRepository().GetReportData(procName, parameters, useCloudConn);
 
                 if (!ShowIncludeSetting || reportdata == null)
                 {
@@ -151,5 +151,7 @@ namespace NSRetail
             lastControl = last;
             specificColumnHeaders = columnHeaders;
         }
+
+        public virtual void DataBoundCompleted() { }
     }
 }

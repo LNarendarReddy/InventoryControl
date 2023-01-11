@@ -161,6 +161,8 @@ namespace NSRetail.ReportForms
                 gcStatus.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
             }
 
+            searchCriteria.DataBoundCompleted();
+
             (searchCriteria.FirstControl ?? searchCriteria).Focus();
         }
 

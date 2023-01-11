@@ -200,6 +200,12 @@
     <Compile Include="ReportForms\POS\ucBranchIndentByAVG.Designer.cs">
       <DependentUpon>ucBranchIndentByAVG.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\POS\ucInstalledVersions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\POS\ucInstalledVersions.Designer.cs">
+      <DependentUpon>ucInstalledVersions.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\POS\ucCustomerDetails.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -816,6 +822,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucBranchIndentByAVG.resx">
       <DependentUpon>ucBranchIndentByAVG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\POS\ucInstalledVersions.resx">
+      <DependentUpon>ucInstalledVersions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucCustomerDetails.resx">
       <DependentUpon>ucCustomerDetails.cs</DependentUpon>

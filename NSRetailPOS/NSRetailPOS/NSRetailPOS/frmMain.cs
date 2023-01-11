@@ -52,6 +52,7 @@ namespace NSRetailPOS
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Utility.ActiveForm = this;
             Utility.ListenSerialPort();
             lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    " +
                 $"Role : {Utility.loginInfo.RoleName} - {ConfigurationManager.AppSettings["BuildType"]}    ";

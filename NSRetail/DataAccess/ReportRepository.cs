@@ -8,14 +8,14 @@ namespace DataAccess
 {
     public class ReportRepository
     {
-        public DataTable GetReportData(string procedureName, Dictionary<string, object> parameters)
+        public DataTable GetReportData(string procedureName, Dictionary<string, object> parameters, bool useCloudConn = false)
         {
             DataTable dtReportData = new DataTable();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Connection = useCloudConn ? SQLCon.SqlCloudConn() : SQLCon.Sqlconn();
                     cmd.CommandTimeout = 1800;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = procedureName;
