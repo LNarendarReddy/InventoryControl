@@ -558,7 +558,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_U_CHANGEPASSWORD]";
                     cmd.Parameters.AddWithValue("@USERID", UserID);
                     cmd.Parameters.AddWithValue("@PASSWORDSTRING", PasswordString);
-                    if (cmd.ExecuteNonQuery() == 0)
+                    if (cmd.ExecuteNonQuery() <= 0)
                         throw new Exception("Error while resetting the password");
                         
                 }

@@ -40,7 +40,7 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 
-            SetPeriodicty(cmbPeriodicity);
+            SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate);
             SetFocusControls(cmbPeriodicity, dtpToDate,specificColumnHeaders);
         }
 

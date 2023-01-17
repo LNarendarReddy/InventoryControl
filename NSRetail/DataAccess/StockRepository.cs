@@ -135,7 +135,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_STOCKDISPATCHDETAILS]";
                     cmd.Parameters.AddWithValue("@STOCKDISPATCHDETAILID", StockDispatchDetailID);
-                    object objReturn = cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
@@ -353,7 +353,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@WEIGHTINKGS", stockAdjustment.WeightInKgs);
                     cmd.Parameters.AddWithValue("@USERID", stockAdjustment.UserID);
                     int rowsaffected = cmd.ExecuteNonQuery();
-                    if(rowsaffected == 0)
+                    if(rowsaffected <= 0)
                         throw new Exception("Error while saving stock adjustment");
                 }
 
@@ -429,7 +429,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_D_STOCKENTRYDETAIL]";
                     cmd.Parameters.AddWithValue("@STOCKENTRYDETAILID", StockEntryDetailID);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
-                    object objReturn = cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)

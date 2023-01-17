@@ -4,6 +4,7 @@ using DevExpress.Utils.Serializing.Helpers;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraSplashScreen;
 using Entity;
 using ErrorManagement;
 using System;
@@ -15,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DevExpress.Utils.Diagnostics.GUIResources;
 using static DevExpress.XtraEditors.Filtering.DataItemsExtension;
 
 namespace NSRetail
@@ -50,7 +52,7 @@ namespace NSRetail
                 if (gvOffer.FocusedRowHandle < 0 ||
                     !int.TryParse(Convert.ToString(gvOffer.GetFocusedRowCellValue("OFFERID")), out int ivalue) ||
                     ivalue <= 0 ||
-                XtraMessageBox.Show("Are you sure to delete the offer?", "Delete Confirmation", 
+                XtraMessageBox.Show("Are you sure to delete the offer?", "Delete Confirmation",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.Yes)
                     return;
 
@@ -119,7 +121,7 @@ namespace NSRetail
         private void gvOffer_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
         {
             GridView view = sender as GridView;
-            if(view.GetRowCellValue(e.RowHandle, gcItemCode) == DBNull.Value)
+            if (view.GetRowCellValue(e.RowHandle, gcItemCode) == DBNull.Value)
             {
                 e.Valid = false;
                 view.SetColumnError(gcItemCode, "Itemcode is mandatory");
@@ -135,39 +137,40 @@ namespace NSRetail
         }
         private void btnImport_Click(object sender, EventArgs e)
         {
+            XtraOpenFileDialog xtraOpenFileDialog1 = new XtraOpenFileDialog();
+            xtraOpenFileDialog1.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
+            xtraOpenFileDialog1.Filter = "excel files (*.xls,*.xlsx)|*.xls,*.xlsx";
+            if (xtraOpenFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                IOverlaySplashScreenHandle handle = SplashScreenManager.ShowOverlayForm(this);
+                try
+                {
+                    string filePath = xtraOpenFileDialog1.FileName;
+                    DataTable dt = Utility.ImportExcelXLS(filePath);
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        DataTable dtTemp = dt.Clone();
+                        foreach (DataColumn dc in dtTemp.Columns)
+                        {
+                            if (dc.ColumnName == "ITEMCODEID" || dc.ColumnName == "OFFERTYPE" || dc.ColumnName == "OFFERVALUE")
+                            {
 
-            //try
-            //{
-            //    XtraOpenFileDialog xtraOpenFileDialog1 = new XtraOpenFileDialog();
-            //    xtraOpenFileDialog1.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
-            //    xtraOpenFileDialog1.Filter = "excel files (*.xls,*.xlsx)|*.xls,*.xlsx";
-
-            //    if (xtraOpenFileDialog1.ShowDialog() == DialogResult.OK)
-            //    {
-            //        string filePath = xtraOpenFileDialog1.FileName;
-            //        DataTable dt = Utility.ImportExcelXLS(filePath);
-            //        if (dt != null && dt.Rows.Count > 0)
-            //        {
-            //            DataTable dtTemp = dt.Clone();
-            //            foreach (DataColumn dc in dtTemp.Columns)
-            //            {
-            //                if (dc.ColumnName == "ITEMCODEID" || dc.ColumnName == "OFFERTYPE" || dc.ColumnName == "OFFERVALUE")
-            //                {
-
-            //                }
-            //                else
-            //                    dt.Columns.Remove(dc.ColumnName);
-            //            }
-            //            new OfferRepository().ImportOffer(BaseOfferID, CategoryID, dt, Utility.UserID);
-            //            gcOffer.DataSource = offerRepository.GetOfferByBaseOffer(BaseOfferID);
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    ErrorManagement.ErrorMgmt.ShowError(ex);
-            //    ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
-            //}
+                            }
+                            else
+                                dt.Columns.Remove(dc.ColumnName);
+                        }
+                        new OfferRepository().ImportOffer(BaseOfferID, CategoryID, dt, Utility.UserID);
+                        gcOffer.DataSource = offerRepository.GetOfferByBaseOffer(BaseOfferID);
+                        SplashScreenManager.CloseOverlayForm(handle);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    SplashScreenManager.CloseOverlayForm(handle);
+                    ErrorManagement.ErrorMgmt.ShowError(ex);
+                    ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
+                }
+            }
         }
     }
 }

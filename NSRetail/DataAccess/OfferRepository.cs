@@ -411,7 +411,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@dtitems", dtItems);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     int ivalue = cmd.ExecuteNonQuery();
-                    if (ivalue == 0)
+                    if (ivalue <= 0)
                         throw new Exception("Error while importing Items");
                 }
             }
@@ -656,14 +656,19 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
                     cmd.Parameters.AddWithValue("@dtOffer", dtOffers);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
-                    int ivalue = cmd.ExecuteNonQuery();
-                    if (ivalue == 0)
-                        throw new Exception("Error while importing offers");
+                    object objreturn = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(objreturn), out int ivalue))
+                    {
+                        throw new Exception(Convert.ToString(objreturn));
+                    }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While importing offer list", ex);
+                if (ex.Message.Contains("recognized") || ex.Message.Contains("category"))
+                    throw ex;
+                else
+                    throw new Exception("Error While importing offer list", ex);
             }
             finally
             {

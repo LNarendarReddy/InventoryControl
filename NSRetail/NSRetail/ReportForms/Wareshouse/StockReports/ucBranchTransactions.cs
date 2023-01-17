@@ -65,7 +65,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
             cmbBranch.EditValue = 0;
 
-            SetPeriodicty(cmbPeriodicity, true);
+            SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, true);
         }
         public override DataTable GetData()
         {

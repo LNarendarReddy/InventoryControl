@@ -17,6 +17,8 @@ namespace NSRetail
         LookUpEdit cmbPeriodicity;
         Control firstControl;
         Control lastControl;
+        DateEdit fromdate;
+        DateEdit todate;
         Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>();
 
         public List<IncludeSettings> IncludeSettingsCollection { get; protected set; }
@@ -111,8 +113,10 @@ namespace NSRetail
 
         public virtual void ActionExecute(string buttonText, DataRow drFocusedRow) { }
 
-        protected void SetPeriodicty(LookUpEdit cmb, bool includeHourly = false)
+        protected void SetPeriodicty(LookUpEdit cmb,DateEdit _fromdate, DateEdit _todate, bool includeHourly = false)
         {
+            fromdate= _fromdate;
+            todate= _todate;
             cmbPeriodicity = cmb;
             DataTable dtPeriodicity = new DataTable();
             dtPeriodicity.Columns.Add("Periodicityvalue", typeof(string));
@@ -125,7 +129,36 @@ namespace NSRetail
             cmbPeriodicity.Properties.DataSource = dtPeriodicity;
             cmbPeriodicity.Properties.ValueMember = "Periodicityvalue";
             cmbPeriodicity.Properties.DisplayMember = "Periodicityvalue";
+            cmbPeriodicity.EditValueChanged += cmbPeriodicity_EditValueChanged;
             cmbPeriodicity.EditValue = "Daily";
+        }
+
+        private void cmbPeriodicity_EditValueChanged(object sender, EventArgs e)
+        {
+            LookUpEdit lookUpEdit = sender as LookUpEdit;
+            if (lookUpEdit.EditValue.Equals("Monthly"))
+                SetDateFormats("MMMM");
+            else if (lookUpEdit.EditValue.Equals("Yearly"))
+                SetDateFormats("yyyy");
+            else
+                SetDateFormats("d");
+        }
+
+        protected void SetDateFormats(string formatstring)
+        {
+            fromdate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            fromdate.Properties.DisplayFormat.FormatString = formatstring;
+            fromdate.Properties.EditMask = formatstring;
+
+            todate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            todate.Properties.DisplayFormat.FormatString = formatstring;
+            todate.Properties.EditMask = formatstring;
+            
+            fromdate.Properties.VistaCalendarViewStyle =
+                todate.Properties.VistaCalendarViewStyle =
+                formatstring =="MMMM" ? DevExpress.XtraEditors.VistaCalendarViewStyle.YearView : 
+                formatstring == "yyyy" ? VistaCalendarViewStyle.YearsGroupView : 
+                VistaCalendarViewStyle.Default;
         }
 
         public virtual bool ValidateMandatoryFields()

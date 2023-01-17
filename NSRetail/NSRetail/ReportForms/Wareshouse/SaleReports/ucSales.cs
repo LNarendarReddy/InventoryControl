@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.XtraRichEdit.Import.Doc;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -51,7 +52,7 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
             cmbBranch.EditValue = 0;
 
-            SetPeriodicty(cmbPeriodicity, true);
+            SetPeriodicty(cmbPeriodicity,dtpFromDate, dtpToDate, true);
         }
         public override DataTable GetData()
         {
@@ -65,5 +66,6 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
 
             return GetReportData("USP_RPT_SALES", parameters);
         }
+
     }
 }

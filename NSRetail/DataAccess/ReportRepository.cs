@@ -101,7 +101,7 @@ namespace DataAccess
                     dealerIndent.dtSupplierIndent.Columns.Remove("SUBCATEGORYNAME");
                     int RowsAfftected = cmd.ExecuteNonQuery();
 
-                    if (RowsAfftected == 0)
+                    if (RowsAfftected <= 0)
                         throw new Exception("Error");
 
                 }
