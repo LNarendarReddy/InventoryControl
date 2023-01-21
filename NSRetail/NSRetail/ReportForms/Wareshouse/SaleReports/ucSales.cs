@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.Import.Doc;
 using System;
 using System.Collections.Generic;
@@ -47,10 +48,9 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
 
             MasterRepository masterRepo = new MasterRepository();
 
-            cmbBranch.Properties.DataSource = masterRepo.GetBranch(true);
+            cmbBranch.Properties.DataSource = masterRepo.GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
 
             SetPeriodicty(cmbPeriodicity,dtpFromDate, dtpToDate, true);
         }
@@ -67,5 +67,11 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             return GetReportData("USP_RPT_SALES", parameters);
         }
 
+        private void cmbBranch_Enter(object sender, EventArgs e)
+        {
+            BeginInvoke(new Action(() => {
+                cmbBranch.ShowPopup();
+            }));
+        }
     }
 }
