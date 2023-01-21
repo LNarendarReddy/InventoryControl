@@ -51,8 +51,9 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             cmbBranch.Properties.DataSource = masterRepo.GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
+            cmbBranch.CheckAll();
 
-            SetPeriodicty(cmbPeriodicity,dtpFromDate, dtpToDate, true);
+            SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, true);
         }
         public override DataTable GetData()
         {
