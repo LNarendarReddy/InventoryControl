@@ -56,6 +56,12 @@ namespace NSRetail
                 , {"TIME", "Time"}
                 , {"CLASSIFICATIONNAME", "Classification"}
                 , {"SUBCLASSIFICATIONNAME", "Sub Classification"}
+                , {"BRANCHCODE", "Branch Code"}
+                , {"COSTPRICEWOT", "Cost Price w/o Tax"}
+                , {"COSTPRICETAX", "Cost Price Tax"}
+                , {"COSTPRICEWT", "Cost Price with Tax"}
+                , {"TOTALCOSTPRICEWOT", "Total Cost Price w/o Tax"}
+                , {"TOTALCOSTPRICEWT", "Total Cost Price with Tax"}
             };
 
             ButtonColumns = new List<string>();

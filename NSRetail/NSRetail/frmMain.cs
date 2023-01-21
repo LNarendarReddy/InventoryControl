@@ -438,6 +438,7 @@ namespace NSRetail
             //StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Summary By Branch", SearchCriteriaControl = new ucStockSummaryByBranch() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Zero Stock", SearchCriteriaControl = new ucZeroStock() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Adjustment Report", SearchCriteriaControl = new ucStockAdjustment() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock As on date", SearchCriteriaControl = new ucStockAsOnDate() });
             stockReportList.Add(StockReports);
 
             ReportHolder supplierReports = new ReportHolder() { ReportName = "Supplier Reports" };
