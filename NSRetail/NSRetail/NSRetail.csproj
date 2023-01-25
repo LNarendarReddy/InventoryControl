@@ -176,6 +176,18 @@
     <Compile Include="Offer\frmCreateOfferList.Designer.cs">
       <DependentUpon>frmCreateOfferList.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Audit\ucCostPriceAudit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Audit\ucCostPriceAudit.Designer.cs">
+      <DependentUpon>ucCostPriceAudit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Audit\ucSalePriceAudit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Audit\ucSalePriceAudit.Designer.cs">
+      <DependentUpon>ucSalePriceAudit.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\frmIncludeExclude.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -816,6 +828,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Offer\frmCreateOfferList.resx">
       <DependentUpon>frmCreateOfferList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Audit\ucCostPriceAudit.resx">
+      <DependentUpon>ucCostPriceAudit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Audit\ucSalePriceAudit.resx">
+      <DependentUpon>ucSalePriceAudit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\frmIncludeExclude.resx">
       <DependentUpon>frmIncludeExclude.cs</DependentUpon>

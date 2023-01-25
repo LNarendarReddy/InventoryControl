@@ -62,6 +62,7 @@ namespace NSRetail
                 , {"COSTPRICEWT", "Cost Price with Tax"}
                 , {"TOTALCOSTPRICEWOT", "Total Cost Price w/o Tax"}
                 , {"TOTALCOSTPRICEWT", "Total Cost Price with Tax"}
+                , {"DEALERNAME", "Supplier"}
             };
 
             ButtonColumns = new List<string>();

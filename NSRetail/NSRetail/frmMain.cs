@@ -8,6 +8,7 @@ using Microsoft.Win32;
 using NSRetail.Login;
 using NSRetail.Master;
 using NSRetail.ReportForms;
+using NSRetail.ReportForms.Audit;
 using NSRetail.ReportForms.POS;
 using NSRetail.ReportForms.Wareshouse;
 using NSRetail.ReportForms.Wareshouse.Profitability;
@@ -494,6 +495,11 @@ namespace NSRetail
             taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax break-up day wise", SearchCriteriaControl = new ucTaxBreakUpDayWise() });
             taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
             reportList.Add(taxReports);
+
+            ReportHolder auditReports = new ReportHolder() { ReportName = "Audit Reports" };
+            auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Sale Price", SearchCriteriaControl = new ucSalePriceAudit() });
+            auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Cost Price", SearchCriteriaControl = new ucCostPriceAudit() });
+            reportList.Add(auditReports);
 
             ShowReportForm(reportList);
         }

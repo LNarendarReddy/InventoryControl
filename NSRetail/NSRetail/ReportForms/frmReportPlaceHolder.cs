@@ -104,6 +104,12 @@ namespace NSRetail.ReportForms
                     column.OptionsColumn.ReadOnly = true;
                 else
                     column.OptionsColumn.AllowEdit = searchCriteria.EditableColumns != null && searchCriteria.EditableColumns.Contains(column.FieldName);
+
+                if (column.ColumnType == typeof(TimeSpan))
+                {
+                    column.DisplayFormat.FormatType = FormatType.DateTime;
+                    column.DisplayFormat.FormatString = "t";
+                }
             }
 
             foreach (string buttonColumn in searchCriteria.ButtonColumns)
