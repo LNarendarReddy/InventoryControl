@@ -86,7 +86,7 @@ namespace NSRetail
         {
             try
             {
-                GridView view = sender as GridView;
+                GridView view = sender as GridView;     
                 DataRow row = (e.Row as DataRowView).Row;
                 Offer offer = new Offer();
                 offer.OfferID = 0;

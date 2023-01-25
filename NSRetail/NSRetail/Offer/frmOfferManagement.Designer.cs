@@ -330,6 +330,7 @@
             this.txtOfferName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtOfferName.Name = "txtOfferName";
             this.txtOfferName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtOfferName.Properties.MaxLength = 100;
             this.txtOfferName.Size = new System.Drawing.Size(259, 20);
             this.txtOfferName.StyleController = this.layoutControl1;
             this.txtOfferName.TabIndex = 1;
@@ -345,6 +346,7 @@
             this.txtOfferCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtOfferCode.Name = "txtOfferCode";
             this.txtOfferCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtOfferCode.Properties.MaxLength = 10;
             this.txtOfferCode.Size = new System.Drawing.Size(257, 20);
             this.txtOfferCode.StyleController = this.layoutControl1;
             this.txtOfferCode.TabIndex = 0;

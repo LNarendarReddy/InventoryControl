@@ -178,6 +178,7 @@
             this.txtOfferName.Location = new System.Drawing.Point(360, 16);
             this.txtOfferName.Name = "txtOfferName";
             this.txtOfferName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtOfferName.Properties.MaxLength = 100;
             this.txtOfferName.Size = new System.Drawing.Size(219, 22);
             this.txtOfferName.StyleController = this.layoutControl1;
             this.txtOfferName.TabIndex = 1;
@@ -192,6 +193,7 @@
             this.txtOfferCode.Location = new System.Drawing.Point(91, 16);
             this.txtOfferCode.Name = "txtOfferCode";
             this.txtOfferCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtOfferCode.Properties.MaxLength = 5;
             this.txtOfferCode.Size = new System.Drawing.Size(182, 22);
             this.txtOfferCode.StyleController = this.layoutControl1;
             this.txtOfferCode.TabIndex = 0;
