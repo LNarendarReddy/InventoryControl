@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -43,8 +42,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "1.6.1";
-        public static string VersionDate = "(23-01-2023)";
+        public static string AppVersion = "1.6.2";
+        public static string VersionDate = "(26-01-2023)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {

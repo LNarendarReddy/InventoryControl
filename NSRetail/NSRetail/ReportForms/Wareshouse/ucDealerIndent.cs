@@ -79,7 +79,7 @@ namespace NSRetail.ReportForms
                 dealerIndent.ToDate = dtToDate.EditValue;
                 dealerIndent.CategoryID = cmbCategory.EditValue;
                 dealerIndent.UserID = Utility.UserID;
-                dealerIndent.dtSupplierIndent = ((DataTable)resultsGrid.DataSource).Copy();
+                dealerIndent.dtSupplierIndent = ((DataSet)resultsGrid.DataSource).Tables[0].Copy();
                 new ReportRepository().SaveSupplierIndent(dealerIndent);
                 resultsGrid.DataSource = null;
             }
