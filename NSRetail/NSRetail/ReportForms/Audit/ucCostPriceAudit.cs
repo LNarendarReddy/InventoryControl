@@ -17,6 +17,7 @@ namespace NSRetail.ReportForms.Audit
                 , { "DELETEDDATE", "Deleted Date" }
                 , { "CREATEDTIME", "Created Time" }
                 , { "DELETEDTIME", "Deleted Time" }
+                , { "SUPPLIERINVOICENO", "Invoice #" }
             };
 
             cmbSupplier.Properties.DataSource = new MasterRepository().GetDealer();

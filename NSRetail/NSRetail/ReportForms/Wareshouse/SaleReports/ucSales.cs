@@ -1,9 +1,6 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
-using DevExpress.XtraRichEdit.Import.Doc;
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace NSRetail.ReportForms.Wareshouse.SaleReports
 {

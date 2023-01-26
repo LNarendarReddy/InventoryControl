@@ -177,7 +177,7 @@ namespace NSRetail
             
             fromdate.Properties.VistaCalendarViewStyle =
                 todate.Properties.VistaCalendarViewStyle =
-                formatstring =="MMMM" ? DevExpress.XtraEditors.VistaCalendarViewStyle.YearView : 
+                formatstring =="MMMM" ? VistaCalendarViewStyle.YearView : 
                 formatstring == "yyyy" ? VistaCalendarViewStyle.YearsGroupView : 
                 VistaCalendarViewStyle.Default;
         }
@@ -185,14 +185,14 @@ namespace NSRetail
         public virtual bool ValidateMandatoryFields()
         {
             var layoutControlOfSearch = Controls.OfType<LayoutControl>().First();
-            var missingValues = MandatoryFields?.Where(x => x.EditValue == null)
+            var missingValues = MandatoryFields?.Where(x => string.IsNullOrEmpty(x.EditValue?.ToString()))
                                     .Select(x => $"{Environment.NewLine}\t* " + layoutControlOfSearch.GetItemByControl(x).Text);
 
             if (missingValues != null && missingValues.Any())
             {
                 XtraMessageBox.Show("Please select the values for : " + Environment.NewLine + string.Join(string.Empty, missingValues)
                     , "Mandatoy", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MandatoryFields.First(x => x.EditValue == null).Focus();
+                MandatoryFields.First(x => string.IsNullOrEmpty(x.EditValue?.ToString())).Focus();
                 return false;
             }
 

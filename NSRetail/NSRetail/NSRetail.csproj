@@ -278,6 +278,18 @@
     <Compile Include="ReportForms\Wareshouse\StockReports\ucBranchTransactions.Designer.cs">
       <DependentUpon>ucBranchTransactions.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucCurrentStock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucCurrentStock.Designer.cs">
+      <DependentUpon>ucCurrentStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucNonMovingStock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucNonMovingStock.Designer.cs">
+      <DependentUpon>ucNonMovingStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\StockReports\ucPurchases.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -879,6 +891,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucBranchTransactions.resx">
       <DependentUpon>ucBranchTransactions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucCurrentStock.resx">
+      <DependentUpon>ucCurrentStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucNonMovingStock.resx">
+      <DependentUpon>ucNonMovingStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucPurchases.resx">
       <DependentUpon>ucPurchases.cs</DependentUpon>
