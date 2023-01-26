@@ -1,8 +1,5 @@
 ﻿using DataAccess;
-using DevExpress.Office.UI.Internal;
-using DevExpress.Utils.Serializing.Helpers;
 using DevExpress.XtraEditors;
-using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using Entity;
@@ -11,17 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DevExpress.Utils.Diagnostics.GUIResources;
-using static DevExpress.XtraEditors.Filtering.DataItemsExtension;
 
 namespace NSRetail
 {
-    public partial class frmCreateOfferList : DevExpress.XtraEditors.XtraForm
+    public partial class frmCreateOfferList : XtraForm
     {
         object BaseOfferID = null;
         object CategoryID = null;
@@ -64,8 +56,8 @@ namespace NSRetail
             }
             catch (Exception ex)
             {
-                ErrorManagement.ErrorMgmt.ShowError(ex);
-                ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
             }
         }
         private void frmCreateOfferList_KeyDown(object sender, KeyEventArgs e)
@@ -73,7 +65,7 @@ namespace NSRetail
             if (e.KeyData == Keys.Escape)
                 this.Close();
         }
-        private void gvOffer_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        private void gvOffer_InitNewRow(object sender, InitNewRowEventArgs e)
         {
             try
             {
@@ -150,15 +142,11 @@ namespace NSRetail
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         DataTable dtTemp = dt.Clone();
-                        foreach (DataColumn dc in dtTemp.Columns)
-                        {
-                            if (dc.ColumnName == "ITEMCODEID" || dc.ColumnName == "OFFERTYPE" || dc.ColumnName == "OFFERVALUE")
-                            {
+                        List<string> allowedColumns = new List<string> { "ITEMCODE", "OFFERTYPE", "OFFERTYPE" };
 
-                            }
-                            else
-                                dt.Columns.Remove(dc.ColumnName);
-                        }
+                        dtTemp.Columns.Cast<DataColumn>().Where(x => !allowedColumns.Contains(x.ColumnName))
+                            .ToList().ForEach(x => dtTemp.Columns.Remove(x));
+                                                
                         new OfferRepository().ImportOffer(BaseOfferID, CategoryID, dt, Utility.UserID);
                         gcOffer.DataSource = offerRepository.GetOfferByBaseOffer(BaseOfferID);
                         SplashScreenManager.CloseOverlayForm(handle);
@@ -167,8 +155,8 @@ namespace NSRetail
                 catch (Exception ex)
                 {
                     SplashScreenManager.CloseOverlayForm(handle);
-                    ErrorManagement.ErrorMgmt.ShowError(ex);
-                    ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
+                    ErrorMgmt.ShowError(ex);
+                    ErrorMgmt.Errorlog.Error(ex);
                 }
             }
         }
