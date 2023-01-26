@@ -36,7 +36,7 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             SetFocusControls(cmbCategory, cmbCategory, specificColumnHeaders);
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

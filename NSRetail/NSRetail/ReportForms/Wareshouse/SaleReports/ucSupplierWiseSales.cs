@@ -63,7 +63,7 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             MandatoryFields = new List<BaseEdit> { cmbSupplier };
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
@@ -73,7 +73,7 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 , { "ToDate", dtpToDate.EditValue }
             };
            
-            DataTable dt = GetReportData(procedures[reporttype], parameters);
+            DataTable dt = (DataTable)GetReportData(procedures[reporttype], parameters);
             return dt;
             
         }

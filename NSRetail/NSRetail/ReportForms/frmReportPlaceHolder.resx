@@ -168,18 +168,17 @@
   </data>
   <data name="editorButtonImageOptions1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAHnRFWHRUaXRsZQBEYXRhYmFy
-        O1ZpZXc7Rm9ybWF0dGluZzvpvKjBAAAB8UlEQVQ4T23Sa1PTUBAG4PM3vYyKMyJeSlqoXLUVqYyg2Aso
-        8kEQ9YMzaHVGByiCdKp4o4B/QxRLr2nStK+7e5q2ET88OUnm7Ls7yVGJpWx69vk+Zp6xvZbEU9cu4ku7
-        iD1hWUQXs7i/sCMm57czamLuMxqARhfPvUejCaiLBsYSH6EiD7bl5dDij6Z9Mbiglas14shaMtvqlBKO
-        ZaDGZz9JgFsw8Ni1J8pcULFRrNQIr5asDgWEomkoHoPHcZPLpi3kmTbqYhsFVrY0CnGcOkant6BC0QxG
-        7n7A8BShdWhqs22SnsUGBsWmdmcDA4Rr1I3ptIxTKHd0km428qxk4YgVLeSKVcH3dq0uQWrk3hZqTgP+
-        +Sz8j9oMsQNjTuslXPyHFSxYtoNrE++hgnSp2vXWpk6+h67v4vdRlZg4IPydjJur7YDDPCe3HbK82Syq
-        4peg4tx/Avpvk8i66IukjhtPIeCxhsCtlA7gDabl6E40BY/IuFurK6POP5sOchX54L7wClRgbE1O2aWZ
-        b+hJfD3mIot7dce/oFCyceX6OygjvCqH5t9N7sbumNeFJv61l0cp4GpohcapyX/vpM+AJufAcxYs+dA9
-        w2+huoLJ1PngG3QFX+McOduf1PqSOBN4JU77X4pThmsZJ3uXccL3Yv0vYEdAmrrXqOgAAAAASUVORK5C
-        YII=
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAedEVYdFRpdGxlAERhdGFiYXI7VmlldztGb3JtYXR0
+        aW5nO+m8qMEAAAHxSURBVDhPbdJrU9NQEAbg8ze9jIozIl5KWqhctRWpjKDYCyjyQRD1gzNodUYHKIJ0
+        qnijgH9DFEuvadK0r7t7mrYRPzw5SebsuzvJUYmlbHr2+T5mnrG9lsRT1y7iS7uIPWFZRBezuL+wIybn
+        tzNqYu4zGoBGF8+9R6MJqIsGxhIfoSIPtuXl0OKPpn0xuKCVqzXiyFoy2+qUEo5loMZnP0mAWzDw2LUn
+        ylxQsVGs1AivlqwOBYSiaSgeg8dxk8umLeSZNupiGwVWtjQKcZw6Rqe3oELRDEbufsDwFKF1aGqzbZKe
+        xQYGxaZ2ZwMDhGvUjem0jFMod3SSbjbyrGThiBUt5IpVwfd2rS5BauTeFmpOA/75LPyP2gyxA2NO6yVc
+        /IcVLFi2g2sT76GCdKna9damTr6Hru/i91GVmDgg/J2Mm6vtgMM8J7cdsrzZLKril6Di3H8C+m+TyLro
+        i6SOG08h4LGGwK2UDuANpuXoTjQFj8i4W6sro84/mw5yFfngvvAKVGBsTU7ZpZlv6El8PeYii3t1x7+g
+        ULJx5fo7KCO8Kofm303uxu6Y14Um/rWXRyngamiFxqnJf++kz4Am58BzFiz50D3Db6G6gsnU+eAbdAVf
+        4xw525/U+pI4E3glTvtfilOGaxkne5dxwvdi/S9gR0Cauteo6AAAAABJRU5ErkJggg==
 </value>
   </data>
   <metadata name="dockManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

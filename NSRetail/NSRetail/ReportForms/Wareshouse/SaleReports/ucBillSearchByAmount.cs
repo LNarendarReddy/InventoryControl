@@ -35,7 +35,7 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             cmbBranch.EditValue = 0;
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

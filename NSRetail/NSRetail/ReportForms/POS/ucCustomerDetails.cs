@@ -31,7 +31,7 @@ namespace NSRetail.ReportForms.POS
             SetFocusControls(cmbBranch, dtToDate, columnHeaders);
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

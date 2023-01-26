@@ -55,7 +55,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
 
             SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, true);
         }
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

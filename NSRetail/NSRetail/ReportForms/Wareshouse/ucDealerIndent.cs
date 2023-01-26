@@ -19,11 +19,12 @@ namespace NSRetail.ReportForms
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "WAREHOUSEQUANTITY", "Warehouse Quantity" }
-                , { "ALLBRANCHSTOCK", "All Branch Stock" }
+                , { "REQUIREDBRANCHSTOCK", "Required Branch Dispatch" }
+                , { "BRANCHSTOCK", "Available Branch Stock" }
                 , { "SALEQUANTITY", "Sale Quantity" }
-                , { "DISPATCHQUANTITY", "Dispatch Quantity" }
+                , { "BRANCHINDENTQUANTITY", "Branch Indent Needed" }
                 , { "SUBCATEGORYNAME", "Sub Category" }
-                , { "INDENTQUANTITY", "Calculated Indent" }
+                , { "REQUIREDITEMINDENT", "Calculated Indent" }
                 , { "DESIREDINDENT", "Desired Indent" }
             };
 
@@ -42,9 +43,11 @@ namespace NSRetail.ReportForms
             dtToDate.EditValue = DateTime.Now;
 
             SetFocusControls(cmbDealer, dtToDate, columnHeaders);
+
+            IsDataSet = true;
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
@@ -54,10 +57,12 @@ namespace NSRetail.ReportForms
                 , { "CategoryID", cmbCategory.EditValue}
             };
 
-            DataTable dtTemp = GetReportData("USP_R_DEALERINDENT", parameters);
+            DataSet dsData = (DataSet)GetReportData("USP_R_DEALERINDENT", parameters);
+            dsData.Relations.Add("Branch wise break-up", dsData.Tables[0].Columns["ITEMID"], dsData.Tables[1].Columns["ITEMID"]);
+            DataTable dtTemp = dsData.Tables[0];
             dtTemp.Columns.Add("SUPPLIERINDENTDETAILID", typeof(int));
             dtTemp.Columns["SUPPLIERINDENTDETAILID"].SetOrdinal(0);
-            return dtTemp;
+            return dsData;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

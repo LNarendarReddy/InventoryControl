@@ -61,7 +61,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
             cmbBranch.EditValue = 0;
         }
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

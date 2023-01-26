@@ -38,7 +38,7 @@ namespace NSRetail.ReportForms.POS
             SetFocusControls(cmbBranch, dtToDate, columnHeaders);
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
@@ -84,7 +84,7 @@ namespace NSRetail.ReportForms.POS
 
         private void btnProcessDayClosures_Click(object sender, EventArgs e)
         {
-            DataTable dtProcessedCount = GetReportData("USP_P_DAYCLOSURES", new Dictionary<string, object>());
+            DataTable dtProcessedCount = (DataTable)GetReportData("USP_P_DAYCLOSURES", new Dictionary<string, object>());
             if(dtProcessedCount != null && dtProcessedCount.Rows.Count == 1 &&
                 int.TryParse(dtProcessedCount.Rows[0][0]?.ToString(), out int count)
                 && XtraMessageBox.Show($"No. of day closures processed : {count}" 

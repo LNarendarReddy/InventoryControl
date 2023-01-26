@@ -205,6 +205,7 @@
             this.gvResults.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
             this.gvResults.OptionsView.ShowFooter = true;
             this.gvResults.OptionsView.ShowGroupPanel = false;
+            this.gvResults.MasterRowExpanded += new DevExpress.XtraGrid.Views.Grid.CustomMasterRowEventHandler(this.gvResults_MasterRowExpanded);
             this.gvResults.ColumnFilterChanged += new System.EventHandler(this.gvResults_ColumnFilterChanged);
             this.gvResults.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gvResults_KeyPress);
             // 

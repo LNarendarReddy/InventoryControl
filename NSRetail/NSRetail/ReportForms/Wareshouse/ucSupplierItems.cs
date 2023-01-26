@@ -19,7 +19,7 @@ namespace NSRetail.ReportForms.Wareshouse
 
             MandatoryFields = new List<BaseEdit>() { cmbSupplier };
         }
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

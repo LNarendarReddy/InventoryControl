@@ -30,7 +30,7 @@ namespace NSRetail.ReportForms.Audit
             SetFocusControls(cmbCategory, sluSKUCode, columnHeaders);
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

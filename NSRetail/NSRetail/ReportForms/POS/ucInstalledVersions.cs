@@ -23,7 +23,7 @@ namespace NSRetail.ReportForms.POS
             SetFocusControls(null, null, specificColumnHeaders);
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {            
             return GetReportData("USP_RPT_INSTALLEDVERSION", new Dictionary<string, object>(), true);
         }

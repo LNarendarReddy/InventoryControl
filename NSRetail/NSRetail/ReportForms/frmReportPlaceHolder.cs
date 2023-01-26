@@ -55,7 +55,7 @@ namespace NSRetail.ReportForms
             InvokeUIOperation(selectedReportHolder.SearchCriteriaControl.GetData());
         }
 
-        private void InvokeUIOperation(DataTable dtReportData)
+        private void InvokeUIOperation(object dtReportData)
         {
             if (InvokeRequired) 
             {
@@ -65,52 +65,20 @@ namespace NSRetail.ReportForms
 
             gvResults.Columns.Clear();
             gcResults.DataSource = dtReportData;
+
+            if(selectedReportHolder.SearchCriteriaControl.IsDataSet)
+            {
+                gcResults.DataMember = ((DataSet)dtReportData).Tables[0].TableName;
+            }
             
             if (dtReportData == null) return;
-            
-            lblRecordCount.Text = $"Record count : {dtReportData.Rows.Count}";
+            int recCount = (selectedReportHolder.SearchCriteriaControl.IsDataSet 
+                ? ((DataSet)dtReportData).Tables[0]
+                : ((DataTable)dtReportData)).Rows.Count;
+
+            lblRecordCount.Text = $"Record count : {recCount}";
             SearchCriteriaBase searchCriteria = selectedReportHolder.SearchCriteriaControl;
-
-            foreach (GridColumn column in gvResults.Columns)
-            {
-                column.Visible = !column.FieldName.EndsWith("ID")
-                    && (searchCriteria.HiddenColumns == null || !searchCriteria.HiddenColumns.Contains(column.FieldName));
-
-                if (!column.Visible) continue;
-
-                // first set the generic headers if available
-                if (searchCriteria.GenericColumnHeaders != null && searchCriteria.GenericColumnHeaders.ContainsKey(column.FieldName))
-                    column.Caption = searchCriteria.GenericColumnHeaders[column.FieldName];
-
-                // override generic header if a specific header is available
-                if (searchCriteria.SpecificColumnHeaders != null && searchCriteria.SpecificColumnHeaders.ContainsKey(column.FieldName))
-                    column.Caption = searchCriteria.SpecificColumnHeaders[column.FieldName];
-
-                if (column.Summary.Count == 0 && summableTypes.Contains(column.ColumnType))
-                {
-                    GridColumnSummaryItem siTotal = new GridColumnSummaryItem
-                    {
-                        SummaryType = DevExpress.Data.SummaryItemType.Sum,
-                        FieldName = column.FieldName,
-                        DisplayFormat = "{0:#.##}"
-                    };
-
-                    column.Summary.Add(siTotal);
-                    gvResults.OptionsView.ShowFooter = true;
-                    column.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Far;
-                }
-
-                if (column.FieldName == "ITEMCODE" || column.FieldName == "SKUCODE")
-                    column.OptionsColumn.ReadOnly = true;
-                else
-                    column.OptionsColumn.AllowEdit = searchCriteria.EditableColumns != null && searchCriteria.EditableColumns.Contains(column.FieldName);
-
-                if (column.ColumnType == typeof(TimeSpan))
-                {
-                    column.DisplayFormat.FormatType = FormatType.DateTime;
-                    column.DisplayFormat.FormatString = "t";
-                }
-            }
+            FormatGridViewColumns(gvResults);
 
             foreach (string buttonColumn in searchCriteria.ButtonColumns)
             {
@@ -269,6 +237,58 @@ namespace NSRetail.ReportForms
         private void gvResults_ColumnFilterChanged(object sender, EventArgs e)
         {
             lblRecordCount.Text = $"Record count : {gvResults.RowCount}";
+        }
+
+        private void gvResults_MasterRowExpanded(object sender, CustomMasterRowEventArgs e)
+        {
+            var childDetail = gvResults.GetDetailView(e.RowHandle, e.RelationIndex);
+            FormatGridViewColumns(childDetail as GridView);
+        }
+
+        private void FormatGridViewColumns(GridView gridView)
+        {
+            SearchCriteriaBase searchCriteria = selectedReportHolder.SearchCriteriaControl;
+
+            foreach (GridColumn column in gridView.Columns)
+            {
+                column.Visible = !column.FieldName.EndsWith("ID")
+                    && (searchCriteria.HiddenColumns == null || !searchCriteria.HiddenColumns.Contains(column.FieldName));
+
+                if (!column.Visible) continue;
+
+                // first set the generic headers if available
+                if (searchCriteria.GenericColumnHeaders != null && searchCriteria.GenericColumnHeaders.ContainsKey(column.FieldName))
+                    column.Caption = searchCriteria.GenericColumnHeaders[column.FieldName];
+
+                // override generic header if a specific header is available
+                if (searchCriteria.SpecificColumnHeaders != null && searchCriteria.SpecificColumnHeaders.ContainsKey(column.FieldName))
+                    column.Caption = searchCriteria.SpecificColumnHeaders[column.FieldName];
+
+                if (column.Summary.Count == 0 && summableTypes.Contains(column.ColumnType))
+                {
+                    GridColumnSummaryItem siTotal = new GridColumnSummaryItem
+                    {
+                        SummaryType = DevExpress.Data.SummaryItemType.Sum,
+                        FieldName = column.FieldName,
+                        DisplayFormat = "{0:#.##}"
+                    };
+
+                    column.Summary.Add(siTotal);
+                    gridView.OptionsView.ShowFooter = true;
+                    column.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Far;
+                }
+
+                if (column.FieldName == "ITEMCODE" || column.FieldName == "SKUCODE")
+                    column.OptionsColumn.ReadOnly = true;
+                else
+                    column.OptionsColumn.AllowEdit = searchCriteria.EditableColumns != null && searchCriteria.EditableColumns.Contains(column.FieldName);
+
+                if (column.ColumnType == typeof(TimeSpan))
+                {
+                    column.DisplayFormat.FormatType = FormatType.DateTime;
+                    column.DisplayFormat.FormatString = "t";
+                }
+            }
         }
     }
 

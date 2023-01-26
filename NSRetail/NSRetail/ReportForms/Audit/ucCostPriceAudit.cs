@@ -34,7 +34,7 @@ namespace NSRetail.ReportForms.Audit
             SetFocusControls(cmbCategory, cmbSupplier, columnHeaders);
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

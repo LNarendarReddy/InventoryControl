@@ -36,7 +36,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             txtThresholdValue.Enabled = false;
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

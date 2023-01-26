@@ -43,7 +43,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
 
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

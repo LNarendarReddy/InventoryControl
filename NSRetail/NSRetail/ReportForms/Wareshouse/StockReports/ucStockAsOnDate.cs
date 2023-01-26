@@ -27,7 +27,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             MandatoryFields = new List<BaseEdit> { dtAsOnDate };
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

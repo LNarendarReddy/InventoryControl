@@ -24,7 +24,7 @@ namespace NSRetail.ReportForms.Wareshouse.TaxBreakUp
             SetFocusControls(dtFromDate, dtToDate, specificColumnHeaders);
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

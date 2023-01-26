@@ -3,7 +3,6 @@ using DevExpress.XtraEditors;
 using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace NSRetail.ReportForms
 {
@@ -39,7 +38,7 @@ namespace NSRetail.ReportForms
             SetFocusControls(cmbBranch, dtToDate, columnHeaders);
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

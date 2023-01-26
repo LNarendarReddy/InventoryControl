@@ -44,7 +44,7 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
             SetFocusControls(cmbPeriodicity, dtpToDate,specificColumnHeaders);
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {

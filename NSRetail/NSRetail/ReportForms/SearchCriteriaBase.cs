@@ -23,6 +23,8 @@ namespace NSRetail
 
         public List<IncludeSettings> IncludeSettingsCollection { get; protected set; }
 
+        public bool IsDataSet { get; protected set; }
+
         public LookUpEdit Periodicity => cmbPeriodicity;
 
         protected GridView ResultGridView => (ParentForm as frmReportPlaceHolder)?.ResultsGridView;
@@ -66,9 +68,10 @@ namespace NSRetail
             };
 
             ButtonColumns = new List<string>();
+            IsDataSet = false;
         }
 
-        public virtual DataTable GetData() => throw new NotImplementedException();
+        public virtual object GetData() => throw new NotImplementedException();
 
         public Dictionary<string, string> SpecificColumnHeaders => specificColumnHeaders;
 
@@ -76,9 +79,9 @@ namespace NSRetail
 
         public Dictionary<string, string> GenericColumnHeaders { get; }
 
-        public DataTable GetReportData(string procName, Dictionary<string, object> parameters, bool useCloudConn = false)
+        public object GetReportData(string procName, Dictionary<string, object> parameters, bool useCloudConn = false)
         {
-            DataTable reportdata = null;
+            object reportData = null;
             try
             {
                 if (ShowIncludeSetting)
@@ -86,24 +89,35 @@ namespace NSRetail
                     IncludeSettingsCollection.ForEach(x => parameters[x.ParameterName] = x.Included);
                 }
 
-                reportdata = new ReportRepository().GetReportData(procName, parameters, useCloudConn);
+                ReportRepository reportRepository = new ReportRepository();
+                reportData = IsDataSet ? 
+                    (object)reportRepository.GetReportDataset(procName, parameters) 
+                    : reportRepository.GetReportData(procName, parameters, useCloudConn);
 
-                if (!ShowIncludeSetting || reportdata == null)
+                if (!ShowIncludeSetting || reportData == null)
                 {
-                    return reportdata;
+                    return reportData;
                 }
 
-                List<string> columnsToRemove = IncludeSettingsCollection.Where(x => !x.Included).SelectMany(x => x.RelatedColumns)
-                                                    .Distinct().Where(reportdata.Columns.Contains).ToList();
-                columnsToRemove.ForEach(x => reportdata.Columns.Remove(x));
-                return reportdata;
+                List<DataTable> dataTables = IsDataSet ?
+                    ((DataSet)reportData).Tables.Cast<DataTable>().ToList()
+                    : new List<DataTable> { (DataTable)reportData };
+
+                foreach (DataTable dtTable in dataTables)
+                {
+                    List<string> columnsToRemove = IncludeSettingsCollection.Where(x => !x.Included).SelectMany(x => x.RelatedColumns)
+                                                        .Distinct().Where(dtTable.Columns.Contains).ToList();
+                    columnsToRemove.ForEach(x => dtTable.Columns.Remove(x));
+                }
+
+                return reportData;
             }
             catch (Exception ex)
             {
                 XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return reportdata;
+            return reportData;
         }
 
         public IEnumerable<BaseEdit> MandatoryFields { get; protected set; }

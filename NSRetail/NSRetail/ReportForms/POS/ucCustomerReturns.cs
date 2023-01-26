@@ -28,7 +28,7 @@ namespace NSRetail.ReportForms.POS
 
             SetFocusControls(cmbBranch, chkIncludeBranch, columnHeaders);
         }
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
@@ -39,7 +39,7 @@ namespace NSRetail.ReportForms.POS
                 , { "IncludeBranch", chkIncludeBranch.EditValue }
                 , { "IncludeRefundDate", chkIncludeDate.EditValue }
             };
-            DataTable dt = GetReportData("USP_RPT_CUSTOMERRETURNS", parameters);
+            DataTable dt = (DataTable)GetReportData("USP_RPT_CUSTOMERRETURNS", parameters);
 
             if (chkIncludeBillNumber.EditValue.Equals(false)) dt.Columns.Remove("BILLNUMBER");
             if (chkIncludeBranch.EditValue.Equals(false)) dt.Columns.Remove("BRANCHNAME");

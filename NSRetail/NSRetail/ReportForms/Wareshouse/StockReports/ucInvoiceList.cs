@@ -39,7 +39,7 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             SetFocusControls(cmbDealer, dtpToDate,columnHeaders);
         }
 
-        public override DataTable GetData()
+        public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
