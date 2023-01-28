@@ -150,11 +150,16 @@ namespace NSRetail
         }
         private void btnViewItems_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            if(!gvOffer.GetFocusedRowCellValue("AppliesToID").Equals(1))
+            if(gvOffer.GetFocusedRowCellValue("AppliesToID").Equals(2))
                 return;
-            frmGroupItems obj = new frmGroupItems(null,null,gvOffer.GetFocusedRowCellValue("OFFERNAME"),
-                gvOffer.GetFocusedRowCellValue("OFFERID"),false)
-            { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
+
+            frmGroupItems obj = new frmGroupItems(null, null, gvOffer.GetFocusedRowCellValue("OFFERNAME"),
+                gvOffer.GetFocusedRowCellValue("OFFERID"), false, gvOffer.GetFocusedRowCellValue("AppliesToID").Equals(3))
+            { 
+                ShowInTaskbar = false,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+
             obj.ShowDialog();
         }
         private void frmOfferList_Load(object sender, EventArgs e)

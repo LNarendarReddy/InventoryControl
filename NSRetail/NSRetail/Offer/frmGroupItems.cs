@@ -1,27 +1,23 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
-using Entity;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail
 {
-    public partial class frmGroupItems : DevExpress.XtraEditors.XtraForm
+    public partial class frmGroupItems : XtraForm
     {
         object ItemGroupID = null;
         object OfferID = null;
         bool IsGroupItem = false;
         DataTable dtItems = new DataTable();
-        public frmGroupItems(object GroupName, object _ItemGroupID, 
-            object OfferName = null, object _OfferID = null, bool _IsGroupItem = true)
+        bool isExcludeList;
+
+        public frmGroupItems(object GroupName, object _ItemGroupID,
+            object OfferName = null, object _OfferID = null, bool _IsGroupItem = true, bool isExclude = false)
         {
             InitializeComponent();
             IsGroupItem = _IsGroupItem;
@@ -34,8 +30,9 @@ namespace NSRetail
             }
             else
             {
-                this.Text = "Offer Items - " + OfferName;
+                this.Text = (isExclude ? "Offer Exclude Items - " : "Offer Items - ") + OfferName;
                 OfferID = _OfferID;
+                isExcludeList = isExclude;
                 gcItems.DataSource = dtItems = new OfferRepository().GetOfferItem(OfferID);
             }
 
@@ -134,11 +131,14 @@ namespace NSRetail
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         DataTable dtTemp = dt.Clone();
-                        foreach(DataColumn dc in dtTemp.Columns)
-                        {
-                            if(dc.ColumnName != "ITEMCODEID")
-                                dt.Columns.Remove(dc.ColumnName);
-                        }
+                        List<string> allowedColumns = new List<string> { "ITEMCODE", "OFFERTYPE", "OFFERVALUE" };
+
+                        dtTemp.Columns.Cast<DataColumn>().Where(x => !allowedColumns.Contains(x.ColumnName))
+                            .ToList().ForEach(x => dtTemp.Columns.Remove(x));
+
+                        if (!dtTemp.Columns.Contains("OFFERTYPE")) dtTemp.Columns.Add("OFFERTYPE", typeof(string));
+                        if (!dtTemp.Columns.Contains("OFFERVALUE")) dtTemp.Columns.Add("OFFERVALUE", typeof(string));
+
                         new OfferRepository().ImportOfferItems(OfferID, dt, Utility.UserID);
                         gcItems.DataSource = dtItems = new OfferRepository().GetOfferItem(OfferID);
                     }
