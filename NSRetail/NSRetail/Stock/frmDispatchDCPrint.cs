@@ -4,18 +4,12 @@ using DevExpress.XtraReports.UI;
 using ErrorManagement;
 using NSRetail.Reports;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.Stock
 {
-    public partial class frmDispatchDCPrint : DevExpress.XtraEditors.XtraForm
+    public partial class frmDispatchDCPrint : XtraForm
     {
         MasterRepository objMasterRep = new MasterRepository();
         public frmDispatchDCPrint()
@@ -32,6 +26,8 @@ namespace NSRetail.Stock
             cmbCategory.Properties.DataSource = objMasterRep.GetCategory();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+            cmbCategory.EditValue = 13;
+            cmbCategory.Enabled = false;
 
         }
 
@@ -39,10 +35,10 @@ namespace NSRetail.Stock
         {
             try
             {
-                if (!dxValidationProvider1.Validate() &&
+                if (!dxValidationProvider1.Validate() ||
                     XtraMessageBox.Show("Are you sure want to print Dispatch DC?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                     return;
-                DataSet ds = new StockRepository().SaveDispatchDC(cmbBranch.EditValue, cmbCategory.EditValue,Utility.UserID);
+                DataSet ds = new StockRepository().SaveDispatchDC(cmbBranch.EditValue, cmbCategory.EditValue, Utility.UserID);
                 if (ds == null || ds.Tables.Count == 0) throw new Exception("No Dispatch Exists");
                 rptDispatchDC rpt = new rptDispatchDC(ds.Tables[0], ds.Tables[1]);
                 rpt.ShowPrintMarginsWarning = false;

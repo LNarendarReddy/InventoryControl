@@ -1,9 +1,7 @@
-﻿using DataAccess;
-using DevExpress.XtraBars;
+﻿using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
-using Entity;
 using Microsoft.Win32;
 using NSRetail.Login;
 using NSRetail.Master;
@@ -270,6 +268,8 @@ namespace NSRetail
             lblUserName.Caption = $"Logged In User : {Utility.FullName}   " +
                 $"Version : {Utility.AppVersion} {Utility.VersionDate} - {ConfigurationManager.AppSettings["BuildType"]}";
 
+            bbiStockSlippage.Visibility = Utility.BranchID == 97 ? BarItemVisibility.Always : BarItemVisibility.Never;
+
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnOfferList, btnStockEntry, btnInvoiceList,
              btnStockDispatch, btnDispatchList, btnDCList, btnPrintDC, btnStockCounting, bbiStockSummary, bbiSyncStatus
@@ -442,6 +442,7 @@ namespace NSRetail
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock As on date", SearchCriteriaControl = new ucStockAsOnDate() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Current stock (with open sale)", SearchCriteriaControl = new ucCurrentStock() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Non-Moving stock", SearchCriteriaControl = new ucNonMovingStock() });
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Processing slippages", SearchCriteriaControl = new ucStockSlippage() });
             stockReportList.Add(StockReports);
 
             ReportHolder supplierReports = new ReportHolder() { ReportName = "Supplier Reports" };
@@ -567,6 +568,15 @@ namespace NSRetail
         private void btnNewDeal_ItemClick(object sender, ItemClickEventArgs e)
         {
 
+        }
+
+        private void bbiStockSlippage_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmStockSlippage obj = new frmStockSlippage();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterParent;
+            obj.ShowDialog();
         }
     }
 }

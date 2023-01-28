@@ -748,5 +748,31 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
+
+        public void AddProcessingSlippage(object itemPriceID, object weightInKgs, object description, object userID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_STOCKSLIPPAGE]";
+                    cmd.Parameters.AddWithValue("@ItemPriceID", itemPriceID);
+                    cmd.Parameters.AddWithValue("@WeightInKGs", weightInKgs);
+                    cmd.Parameters.AddWithValue("@Description", description);
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while adding processing slippage", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 }
