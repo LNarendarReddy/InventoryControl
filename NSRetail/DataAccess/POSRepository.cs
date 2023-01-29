@@ -407,5 +407,32 @@ namespace DataAccess
             }
             return dtItemwiseSale;
         }
+
+        public void SaveCreditBillPayment(CreditBillPayment creditBillPayment)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_CREDITBILLPAYMENT]";
+                    cmd.Parameters.AddWithValue("@CreditBillPaymentID", creditBillPayment.CreditBillPaymentID);
+                    cmd.Parameters.AddWithValue("@Status", creditBillPayment.Status);
+                    cmd.Parameters.AddWithValue("@Description", creditBillPayment.Description);
+                    cmd.Parameters.AddWithValue("@UserID", creditBillPayment.UserID);
+                    cmd.ExecuteNonQuery();
+                    creditBillPayment.IsSave = true;                    
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 }

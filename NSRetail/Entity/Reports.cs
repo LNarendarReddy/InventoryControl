@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 
 namespace Entity
 {
@@ -11,7 +6,8 @@ namespace Entity
     {
         
     }
-    public class DealerIndent:EntityBase
+
+    public class DealerIndent : EntityBase
     {
         public object SupplierIndentID { get; set; }
         public object supplierID { get; set; }
@@ -20,5 +16,23 @@ namespace Entity
         public object ToDate { get; set; }
         public bool IsApproved { get; set; }
         public DataTable dtSupplierIndent { get; set; }
+    }
+
+    public class CreditBillPayment : EntityBase
+    {
+        public object CreditBillPaymentID { get; set; }
+
+        public object BillNumber { get; set; }
+
+        public object CustomerName { get; set; }
+
+        public object CustomerNumber { get; set; }
+
+        public object CustomerGST { get; set; }
+
+        public object MOPValue { get; set; }
+
+        public object Status { get; set; }
+        
     }
 }

@@ -176,6 +176,12 @@
     <Compile Include="Offer\frmCreateOfferList.Designer.cs">
       <DependentUpon>frmCreateOfferList.cs</DependentUpon>
     </Compile>
+    <Compile Include="POS\frmCreditBillPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="POS\frmCreditBillPayment.Designer.cs">
+      <DependentUpon>frmCreditBillPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Audit\ucCostPriceAudit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -211,6 +217,12 @@
     </Compile>
     <Compile Include="ReportForms\POS\ucBranchIndentByAVG.Designer.cs">
       <DependentUpon>ucBranchIndentByAVG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\POS\ucCreditBillPayments.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\POS\ucCreditBillPayments.Designer.cs">
+      <DependentUpon>ucCreditBillPayments.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\POS\ucInstalledVersions.cs">
       <SubType>UserControl</SubType>
@@ -853,6 +865,9 @@
     <EmbeddedResource Include="Offer\frmCreateOfferList.resx">
       <DependentUpon>frmCreateOfferList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="POS\frmCreditBillPayment.resx">
+      <DependentUpon>frmCreditBillPayment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Audit\ucCostPriceAudit.resx">
       <DependentUpon>ucCostPriceAudit.cs</DependentUpon>
     </EmbeddedResource>
@@ -870,6 +885,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucBranchIndentByAVG.resx">
       <DependentUpon>ucBranchIndentByAVG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\POS\ucCreditBillPayments.resx">
+      <DependentUpon>ucCreditBillPayments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucInstalledVersions.resx">
       <DependentUpon>ucInstalledVersions.cs</DependentUpon>
@@ -1227,6 +1245,8 @@
     <None Include="Resources\Victory_Resized1.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\save_16x16.png" />
+    <None Include="Resources\cancel_16x16.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />
