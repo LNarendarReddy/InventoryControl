@@ -20,7 +20,7 @@ namespace NSRetailPOS.UI
 
         decimal paidAmount = 0.00M, payableAmount = 0.00M, remainingAmount = 0.00M, billedAmount = 0.00M;
 
-        int cashRowHandle = -1;
+        int cashRowHandle = -1, b2bCreditRowHandle = -1;
 
         public frmPayment(Bill bill)
         {
@@ -71,6 +71,16 @@ namespace NSRetailPOS.UI
                 gvMOP.SetRowCellValue(cashRowHandle, "MOPVALUE", cashValue + Math.Round(remainingAmount));
                 gvMOP.CloseEditor();
                 gvMOP.UpdateCurrentRow();
+            }
+
+            if(decimal.TryParse(gvMOP.GetRowCellValue(b2bCreditRowHandle, "MOPVALUE").ToString(), out decimal b2bCreditValue) && b2bCreditValue > 0
+                && (txtCustomerName.EditValue == null || txtMobileNo.EditValue == null || txtCustomerGST.EditValue == null))
+            {
+                XtraMessageBox.Show("Customer Name, number & GST are required for B2B billing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                (txtCustomerGST.EditValue == null ? txtCustomerGST : null)?.Focus();
+                (txtMobileNo.EditValue == null ? txtMobileNo : null)?.Focus();
+                (txtCustomerName.EditValue == null ? txtCustomerName : null)?.Focus();
+                return;
             }
 
             billObj.dtMopValues = gcMOP.DataSource as DataTable;
@@ -125,7 +135,9 @@ namespace NSRetailPOS.UI
             payableAmount = billedAmount;
             remainingAmount = billedAmount;
             cashRowHandle = gvMOP.LocateByValue("MOPNAME", "Cash");
-            cashRowHandle = cashRowHandle < 0 ? gvMOP.LocateByValue("MOPNAME", "CASH") : cashRowHandle; 
+            cashRowHandle = cashRowHandle < 0 ? gvMOP.LocateByValue("MOPNAME", "CASH") : cashRowHandle;
+            b2bCreditRowHandle = gvMOP.LocateByValue("MOPNAME", "B2B Credit");
+
             UpdateLabels();
 
             if (!billObj.PaymentMode.Equals("Multiple") && !billObj.PaymentMode.Equals("CASH"))

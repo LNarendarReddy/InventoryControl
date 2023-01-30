@@ -1,6 +1,4 @@
-﻿using DevExpress.Accessibility;
-using DevExpress.Utils.UI.Localization;
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;

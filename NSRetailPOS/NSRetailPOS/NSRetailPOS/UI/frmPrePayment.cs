@@ -51,6 +51,16 @@ namespace NSRetailPOS.UI
                 return;
             }
 
+            if(rgPaymentModes.EditValue.Equals("B2B Credit")
+                && (txtCustomerName.EditValue == null || txtCustomerPhone.EditValue == null || txtCustomerGST.EditValue == null))
+            {
+                XtraMessageBox.Show("Customer Name, number & GST are required for B2B billing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                (txtCustomerGST.EditValue == null ? txtCustomerGST : null)?.Focus();
+                (txtCustomerPhone.EditValue == null ? txtCustomerPhone : null)?.Focus();
+                (txtCustomerName.EditValue == null ? txtCustomerName : null)?.Focus();
+                return;
+            }
+
             if (!dxValidationProvider1.Validate()) return;
 
             billObj.IsDoorDelivery = rgSaleType.EditValue;
