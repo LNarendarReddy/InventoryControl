@@ -1,25 +1,20 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.DXErrorProvider;
 using Entity;
 using ErrorManagement;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail
 {
-    public partial class frmCreateDeal : DevExpress.XtraEditors.XtraForm
+    public partial class frmCreateDeal : XtraForm
     {
         public Offer offer { get; set; }
         public bool IsSave = false;
-        private DataTable dtAppliesTo = null;
+        
         public frmCreateDeal()
         {
             InitializeComponent();
@@ -66,9 +61,29 @@ namespace NSRetail
         {
             try
             {
-                if (txtOfferValue.Enabled == false)
-                    dxValidationProvider1.SetValidationRule(txtOfferValue, null);
                 if (!dxValidationProvider1.Validate()) return;
+
+                if(txtOfferValue.Enabled && txtOfferValue.EditValue == null)
+                {
+                    XtraMessageBox.Show("Deal value is required", "Mandatory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtOfferValue.Focus();
+                    return;
+                }
+
+                if (cmbFreeItemCode.Enabled && cmbFreeItemCode.EditValue == null)
+                {
+                    XtraMessageBox.Show("Free item is required", "Mandatory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbFreeItemCode.Focus();
+                    return;
+                }
+
+                if (txtNumberOfItems.Enabled && txtNumberOfItems.EditValue == null)
+                {
+                    XtraMessageBox.Show("Number of items is required", "Mandatory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNumberOfItems.Focus();
+                    return;
+                }
+
                 offer.OfferCode = txtOfferCode.EditValue;
                 offer.OfferName = txtOfferName.EditValue;
                 offer.StartDate = dtpStartDate.EditValue;
