@@ -579,5 +579,10 @@ namespace NSRetail
             obj.StartPosition = FormStartPosition.CenterParent;
             obj.ShowDialog();
         }
+
+        private void bbiClassification_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new frmItemClassificationList() { MdiParent = this }.Show();
+        }
     }
 }

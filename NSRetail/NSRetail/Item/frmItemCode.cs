@@ -208,6 +208,7 @@ namespace NSRetail
         {
             object selectedSKU = null, selectedGST = null, selectedItemCode = null, selectedParentItemID = null;
             MasterRepository masterRepository = new MasterRepository();
+            ReportRepository reportRepository = new ReportRepository();
 
             if (refresh)
             {
@@ -247,11 +248,11 @@ namespace NSRetail
             luSubCategory.Properties.DisplayMember = "SUBCATEGORYNAME";
             luSubCategory.Properties.ValueMember = "SUBCATEGORYID";
 
-            cmbClassification.Properties.DataSource = masterRepository.GetItemClassification();
+            cmbClassification.Properties.DataSource = reportRepository.GetReportData("USP_R_ITEMCLASSIFICATION");
             cmbClassification.Properties.DisplayMember = "CLASSIFICATIONNAME";
             cmbClassification.Properties.ValueMember = "CLASSIFICATIONID";
 
-            cmbSubClassification.Properties.DataSource = masterRepository.GetItemSubClassification();
+            cmbSubClassification.Properties.DataSource = reportRepository.GetReportData("USP_R_ITEMSUBCLASSIFICATION");
             cmbSubClassification.Properties.DisplayMember = "SUBCLASSIFICATIONNAME";
             cmbSubClassification.Properties.ValueMember = "SUBCLASSIFICATIONID";
 

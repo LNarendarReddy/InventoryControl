@@ -105,6 +105,7 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.bbiClassification = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -167,9 +168,10 @@
             this.btnDealList,
             this.btnNewDeal,
             this.btnBaseOfferList,
-            this.bbiStockSlippage});
+            this.bbiStockSlippage,
+            this.bbiClassification});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 64;
+            this.ribbonControl1.MaxItemId = 65;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -805,6 +807,7 @@
             // 
             this.ribbonPageGroup10.ItemLinks.Add(this.btnSubCategory);
             this.ribbonPageGroup10.ItemLinks.Add(this.btnCategory);
+            this.ribbonPageGroup10.ItemLinks.Add(this.bbiClassification);
             this.ribbonPageGroup10.Name = "ribbonPageGroup10";
             resources.ApplyResources(this.ribbonPageGroup10, "ribbonPageGroup10");
             // 
@@ -857,6 +860,14 @@
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
+            // 
+            // bbiClassification
+            // 
+            resources.ApplyResources(this.bbiClassification, "bbiClassification");
+            this.bbiClassification.Id = 64;
+            this.bbiClassification.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.bbiClassification.Name = "bbiClassification";
+            this.bbiClassification.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClassification_ItemClick);
             // 
             // frmMain
             // 
@@ -957,6 +968,7 @@
         private DevExpress.XtraBars.BarButtonItem btnNewDeal;
         private DevExpress.XtraBars.BarButtonItem btnBaseOfferList;
         private DevExpress.XtraBars.BarButtonItem bbiStockSlippage;
+        private DevExpress.XtraBars.BarButtonItem bbiClassification;
     }
 }
 

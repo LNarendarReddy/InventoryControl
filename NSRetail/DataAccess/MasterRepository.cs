@@ -1,5 +1,6 @@
 ﻿using Entity;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -52,35 +53,16 @@ namespace DataAccess
         }
         public DataTable GetBranch(bool UsedInReport = false)
         {
-            DataTable dtBranch = new DataTable();
-            try
+            DataTable dtBranch = new ReportRepository().GetReportData("USP_R_BRANCH");
+
+            if (UsedInReport)
             {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_BRANCH]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtBranch);
-                    }
-                    if(UsedInReport)
-                    {
-                        DataRow dr = dtBranch.NewRow();
-                        dr["BRANCHID"] = 0;
-                        dr["BRANCHNAME"] = "ALL";
-                        dtBranch.Rows.InsertAt(dr, 0);
-                    }
-                }
+                DataRow dr = dtBranch.NewRow();
+                dr["BRANCHID"] = 0;
+                dr["BRANCHNAME"] = "ALL";
+                dtBranch.Rows.InsertAt(dr, 0);
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving Branch List", ex);
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
+
             return dtBranch;
         }
         public Branch DeleteBranch(Branch ObjBranch)
@@ -151,83 +133,7 @@ namespace DataAccess
         }
         public DataTable GetCategory()
         {
-            DataTable dtCategory = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_CATEGORY]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtCategory);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving Category List", ex);
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtCategory;
-        }
-
-        public DataTable GetItemClassification()
-        {
-            DataTable dtItemClassification = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_ITEMCLASSIFICATION]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtItemClassification);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving Classification List", ex);
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtItemClassification;
-        }
-
-        public DataTable GetItemSubClassification()
-        {
-            DataTable dtItemSubClassification = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_ITEMSUBCLASSIFICATION]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtItemSubClassification);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving Sub-Classification List", ex);
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtItemSubClassification;
+            return new ReportRepository().GetReportData("USP_R_CATEGORY");
         }
 
         public Category DeleteCategory(Category ObjCategory)
@@ -299,30 +205,9 @@ namespace DataAccess
         }
         public DataTable GetSubCategory()
         {
-            DataTable dtSubCategory = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_SUBCATEGORY]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtSubCategory);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving Sub Category List");
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtSubCategory;
+            return new ReportRepository().GetReportData("USP_R_SUBCATEGORY");
         }
+
         public SubCategory DeleteSubCategory(SubCategory ObjSubCategory)
         {
             int SubCategoryID = 0;
@@ -399,29 +284,7 @@ namespace DataAccess
         }
         public DataTable GetUser()
         {
-            DataTable dtUser = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_USER]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtUser);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving User List");
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtUser;
+            return new ReportRepository().GetReportData("USP_R_USER");
         }
         public User DeleteUser(User ObjUser)
         {
@@ -456,95 +319,47 @@ namespace DataAccess
         }
         public DataTable GetRole()
         {
-            DataTable dtRole = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_ROLE]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtRole);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving Role List");
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtRole;
+            return new ReportRepository().GetReportData("USP_R_ROLE");
         }
         public DataSet GetUserCredentials(string UserName, string Password, string AppVersion)
         {
-            DataSet dSUser = new DataSet();
-            try
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_USERLOGIN]";
-                    cmd.Parameters.AddWithValue("@USERNAME", UserName);
-                    cmd.Parameters.AddWithValue("@PASSWORD", Password);
-                    cmd.Parameters.AddWithValue("@APPVERSION", AppVersion);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dSUser);
-                    }
-                    if (dSUser != null && dSUser.Tables[0].Rows.Count > 0)
-                    {
-                        int Ivalue = 0;
-                        string str = Convert.ToString(dSUser.Tables[0].Rows[0][0]);
-                        if (!int.TryParse(str, out Ivalue))
-                            throw new Exception(str);
-                    }
-                    else
-                        throw new Exception("Error in login");
-                }
-            }
-            catch (Exception ex)
+                { "USERNAME", UserName }
+                , { "PASSWORD", Password }
+                , { "APPVERSION", AppVersion }
+            };
+            DataSet dSUser = new ReportRepository().GetReportDataset("USP_R_USERLOGIN", parameters);
+
+            if (dSUser != null && dSUser.Tables[0].Rows.Count > 0)
             {
-                throw ex;
+                int Ivalue = 0;
+                string str = Convert.ToString(dSUser.Tables[0].Rows[0][0]);
+                if (!int.TryParse(str, out Ivalue))
+                    throw new Exception(str);
             }
-            finally { SQLCon.Sqlconn().Close(); }
+            else
+                throw new Exception("Error in login");
+
             return dSUser;
         }
         public DataTable ChangePassword(User ObjUser)
         {
-            DataTable dtUser = new DataTable();
-            try
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_U_PASSWORD]";
-                    cmd.Parameters.AddWithValue("@USERID", ObjUser.USERID);
-                    cmd.Parameters.AddWithValue("@PASSWORDSTRING", ObjUser.PASSWORDSTRING);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtUser);
-                    }
-                    if (dtUser != null && dtUser.Rows.Count > 0)
-                    {
-                        int Ivalue = 0;
-                        string str = Convert.ToString(dtUser.Rows[0][0]);
-                        if (!int.TryParse(str, out Ivalue))
-                            throw new Exception(str);
-                    }
-                }
-            }
-            catch (Exception ex)
+                { "USERID", ObjUser.USERID }
+                , { "PASSWORDSTRING", ObjUser.PASSWORDSTRING }
+            };
+
+            DataTable dtUser = new ReportRepository().GetReportData("USP_U_PASSWORD", parameters);
+            if (dtUser != null && dtUser.Rows.Count > 0)
             {
-                throw ex;
+                int Ivalue = 0;
+                string str = Convert.ToString(dtUser.Rows[0][0]);
+                if (!int.TryParse(str, out Ivalue))
+                    throw new Exception(str);
             }
-            finally { SQLCon.Sqlconn().Close(); }
+
             return dtUser;
         }
         public void ResetPassword(object UserID, string PasswordString)
@@ -612,35 +427,15 @@ namespace DataAccess
         }
         public DataTable GetDealer(bool UsedInReport = false)
         {
-            DataTable dtDealer = new DataTable();
-            try
+            DataTable dtDealer = new ReportRepository().GetReportData("USP_R_DEALER");
+            if (UsedInReport)
             {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_DEALER]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtDealer);
-                    }
-                    if (UsedInReport)
-                    {
-                        DataRow dr = dtDealer.NewRow();
-                        dr["DEALERID"] = 0;
-                        dr["DEALERNAME"] = "ALL";
-                        dtDealer.Rows.InsertAt(dr, 0);
-                    }
-                }
+                DataRow dr = dtDealer.NewRow();
+                dr["DEALERID"] = 0;
+                dr["DEALERNAME"] = "ALL";
+                dtDealer.Rows.InsertAt(dr, 0);
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving Dealer List");
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
+
             return dtDealer;
         }
         public Dealer DeleteDealer (Dealer ObjDealer)
@@ -712,29 +507,7 @@ namespace DataAccess
         }
         public DataTable GetCounter()
         {
-            DataTable dtCounter = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_BRANCHCOUNTER]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtCounter);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving Counter List");
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtCounter;
+            return new ReportRepository().GetReportData("USP_R_BRANCHCOUNTER");
         }
         public Counter DeleteCounter(Counter ObjCounter)
         {
@@ -803,29 +576,7 @@ namespace DataAccess
         }
         public DataTable GetMOP()
         {
-            DataTable dtMOP = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_MOP]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtMOP);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving MOP List");
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtMOP;
+            return new ReportRepository().GetReportData("USP_R_MOP");
         }
         public MOP DeleteMOP(MOP ObjMOP)
         {
@@ -895,29 +646,7 @@ namespace DataAccess
         }
         public DataTable GetUOM()
         {
-            DataTable dtUOM = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_UOM]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtUOM);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving UOM List");
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtUOM;
+            return new ReportRepository().GetReportData("USP_R_UOM");
         }
         public UOM DeleteUOM(UOM ObjUOM)
         {
@@ -992,29 +721,7 @@ namespace DataAccess
 
         public DataTable GetGST()
         {
-            DataTable dtGST = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_GST]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtGST);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving GST List");
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtGST;
+            return new ReportRepository().GetReportData("USP_R_GST");
         }
 
         public GST DeleteGST(GST ObjGST)
@@ -1051,29 +758,7 @@ namespace DataAccess
 
         public DataTable GetPrinterType()
         {
-            DataTable dtPrinterType = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_PRINTERTYPE]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtPrinterType);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving Printer Type");
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtPrinterType;
+            return new ReportRepository().GetReportData("USP_R_PRINTERTYPE");
         }
 
         public PrinterSettings SavePrinterSettings(PrinterSettings ObjPrinterSettings)
@@ -1114,57 +799,12 @@ namespace DataAccess
 
         public DataTable GetPrinterSettings(object UserID)
         {
-            DataTable dtPrinterSettings = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_PRINTERSETTINGS]";
-                    cmd.Parameters.AddWithValue("@USERID", UserID);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtPrinterSettings);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving Printer Settings");
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtPrinterSettings;
+            return new ReportRepository().GetReportData("USP_R_PRINTERSETTINGS", new Dictionary<string, object> { { "USERID", UserID } });
         }
 
         public DataTable GetStates()
         {
-            DataTable dtStates = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_STATE]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtStates);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving State List");
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dtStates;
+            return new ReportRepository().GetReportData("USP_R_STATE");
         }
 
         public void ClearProcedureCache()
@@ -1182,6 +822,60 @@ namespace DataAccess
             catch (Exception ex)
             {
                  throw new Exception("Error While Clearing cache", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+
+        public void SaveItemClassification(ItemClassification itemClassification)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_ITEMCLASSIFICATION]";
+                    cmd.Parameters.AddWithValue("@ItemClassificationID", itemClassification.ItemClassificationID);
+                    cmd.Parameters.AddWithValue("@ClassificationName", itemClassification.ItemClassificationName);
+                    cmd.Parameters.AddWithValue("@CategoryID", itemClassification.CategoryID);
+                    cmd.Parameters.AddWithValue("@UserID", itemClassification.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out int ItemClassificationID))
+                        throw new Exception(str);
+                    itemClassification.ItemClassificationID = ItemClassificationID;
+                    itemClassification.IsSave = true;
+                }
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+
+        public void SaveItemSubClassification(ItemSubClassification itemSubClassification)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_ITEMSUBCLASSIFICATION]";
+                    cmd.Parameters.AddWithValue("@ItemSubClassificationID", itemSubClassification.ItemSubClassificationID);
+                    cmd.Parameters.AddWithValue("@SubClassificationName", itemSubClassification.ItemSubClassificationName);
+                    cmd.Parameters.AddWithValue("@ItemClassificationID", itemSubClassification.ItemClassificationID);
+                    cmd.Parameters.AddWithValue("@UserID", itemSubClassification.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out int ItemSubClassificationID))
+                        throw new Exception(str);
+                    itemSubClassification.ItemSubClassificationID = ItemSubClassificationID;
+                    itemSubClassification.IsSave = true;
+                }
             }
             finally
             {

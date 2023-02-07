@@ -136,4 +136,24 @@ namespace Entity
             UpdateGST(dr.Row);
         }
     }
+
+    public class ItemClassification : EntityBase
+    {
+        public object ItemClassificationID { get; set; }
+
+        public object CategoryID { get; set; }
+
+        public object ItemClassificationName { get; set; }
+
+        public object CategoryName { get; set; }
+    }
+
+    public class ItemSubClassification : EntityBase
+    {
+        public object ItemSubClassificationID { get; set; }
+
+        public object ItemClassificationID { get; set; }
+
+        public object ItemSubClassificationName { get; set; }
+    }
 }

@@ -8,7 +8,7 @@ namespace DataAccess
 {
     public class ReportRepository
     {
-        public DataTable GetReportData(string procedureName, Dictionary<string, object> parameters, bool useCloudConn = false)
+        public DataTable GetReportData(string procedureName, Dictionary<string, object> parameters = null, bool useCloudConn = false)
         {
             DataTable dtReportData = new DataTable();
             try
@@ -19,12 +19,7 @@ namespace DataAccess
                     cmd.CommandTimeout = 1800;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = procedureName;
-                    foreach (var param in parameters)
-                    {
-                        string paramName = param.Key;
-                        paramName = paramName.StartsWith("@") ? paramName : $"@{paramName}";
-                        cmd.Parameters.AddWithValue(paramName, param.Value);
-                    }
+                    ProcessParameters(cmd, parameters);
                     
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
@@ -43,7 +38,7 @@ namespace DataAccess
             return dtReportData;
         }
 
-        public DataSet GetReportDataset(string procedureName, Dictionary<string, object> parameters)
+        public DataSet GetReportDataset(string procedureName, Dictionary<string, object> parameters = null)
         {
             DataSet dsReportData = new DataSet();
             try
@@ -54,12 +49,7 @@ namespace DataAccess
                     cmd.CommandTimeout = 1800;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = procedureName;
-                    foreach (var param in parameters)
-                    {
-                        string paramName = param.Key;
-                        paramName = paramName.StartsWith("@") ? paramName : $"@{paramName}";
-                        cmd.Parameters.AddWithValue(paramName, param.Value);
-                    }
+                    ProcessParameters(cmd, parameters);
 
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
@@ -225,6 +215,18 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
             return dtReportData;
+        }
+
+        private void ProcessParameters(SqlCommand sqlCommand, Dictionary<string, object> parameters)
+        {
+            if (parameters == null) return;
+
+            foreach (var param in parameters)
+            {
+                string paramName = param.Key;
+                paramName = paramName.StartsWith("@") ? paramName : $"@{paramName}";
+                sqlCommand.Parameters.AddWithValue(paramName, param.Value);
+            }
         }
     }
 }
