@@ -51,11 +51,6 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             cmbSupplier.Properties.ValueMember = "DEALERID";
             cmbSupplier.Properties.DisplayMember = "DEALERNAME";
 
-            cmbBranch.Properties.DataSource = masterRepo.GetBranch(true);
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
-
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
 

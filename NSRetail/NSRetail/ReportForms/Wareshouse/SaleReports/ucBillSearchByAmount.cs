@@ -20,7 +20,6 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
 
             ButtonColumns = new List<string>() { "Items" };
             SetFocusControls(cmbBranch, txtCutOffAmt, specificColumnHeaders);
-            BindBranch(cmbBranch);
         }
 
         private void ucBillSearchByAmount_Load(object sender, EventArgs e)

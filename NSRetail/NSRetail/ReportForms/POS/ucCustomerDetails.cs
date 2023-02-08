@@ -20,11 +20,6 @@ namespace NSRetail.ReportForms.POS
                 , { "NOOFBILLS", "No. of Bills" }                
             };
 
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
-
             dtFromDate.EditValue = DateTime.Now.AddDays(-30);
             dtToDate.EditValue = DateTime.Now;
 

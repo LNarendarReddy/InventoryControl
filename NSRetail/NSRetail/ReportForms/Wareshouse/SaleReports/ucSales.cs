@@ -44,7 +44,6 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
             SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, true);
-            BindBranch(cmbBranch);
         }
         public override object GetData()
         {

@@ -23,7 +23,6 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
             SetFocusControls(cmbBranch, chkIncludeBranch, columnHeaders);
-            BindBranch(cmbBranch);
         }
 
         public override object GetData()

@@ -27,11 +27,6 @@ namespace NSRetail.ReportForms.POS
 
             ButtonColumns = new List<string>() { "Summary", "Bills", "Items", "Refunds","Void Items" };
 
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
-
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;
 

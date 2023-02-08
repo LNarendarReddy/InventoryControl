@@ -29,10 +29,6 @@ namespace NSRetail.ReportForms.POS
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
 
             SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);
         }

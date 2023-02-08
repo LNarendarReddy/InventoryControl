@@ -42,8 +42,6 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             IncludeSettingsCollection = new List<IncludeSettings> { new IncludeSettings("Include EAN Code", "IncludeEAN", new List<string> { "ITEMCODE" }) };
 
         }
-
-
         public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>

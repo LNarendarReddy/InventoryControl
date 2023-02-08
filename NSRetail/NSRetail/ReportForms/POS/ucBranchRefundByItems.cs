@@ -19,8 +19,6 @@ namespace NSRetail.ReportForms
             dtToDate.EditValue = DateTime.Now;
 
             SetFocusControls(cmbBranch, dtToDate, columnHeaders);
-
-            BindBranch(cmbBranch);
         }
 
         public override object GetData()

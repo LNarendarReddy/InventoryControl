@@ -38,7 +38,19 @@ namespace NSRetail
         {
             foreach(Control cntrl in this.Controls)
             {
-                
+                if(cntrl.GetType() == typeof(LayoutControl))
+                {
+                    foreach(Control child in cntrl.Controls)
+                    {
+                        if (child.GetType() == typeof(CheckedComboBoxEdit) 
+                            && child.Name.ToLower().Contains("branch"))
+                        {
+                            BindBranch(child);
+                            break;
+                        }
+                    }
+                    break;
+                }
             }
             base.OnLoad(e);
         }
@@ -216,9 +228,11 @@ namespace NSRetail
             specificColumnHeaders = columnHeaders;
         }
         
-        public void BindBranch( CheckedComboBoxEdit cmb)
+        public void BindBranch(Control cntrl)
         {
+            
             MasterRepository masterRepo = new MasterRepository();
+            CheckedComboBoxEdit cmb = (CheckedComboBoxEdit)cntrl;
             cmb.Properties.DataSource = masterRepo.GetBranch();
             cmb.Properties.ValueMember = "BRANCHID";
             cmb.Properties.DisplayMember = "BRANCHNAME";

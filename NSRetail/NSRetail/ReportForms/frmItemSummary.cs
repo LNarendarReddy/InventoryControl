@@ -63,25 +63,10 @@ namespace NSRetail.ReportForms
                 if (dsResult.Tables.Count > 2)
                 {
                     dsResult.Tables[1].TableName = "STOCKIN";
-                    //dsResult.Tables[2].TableName = "DISPATCH";
-                    //dsResult.Tables[3].TableName = "BREFUND";
-                    //dsResult.Tables[4].TableName = "ITEMSALE";
-                    //dsResult.Tables[5].TableName = "CREFUND";
-
-                    //DataColumn dcParentBranchID = dsResult.Tables["ITEMSUMMARY"].Columns["BRANCHID"];
-                    //dsResult.Relations.Add("Stock Dispacth", dcParentBranchID, dsResult.Tables["DISPATCH"].Columns["BRANCHID"]);
-                    //dsResult.Relations.Add("Branch Refunds", dcParentBranchID, dsResult.Tables["BREFUND"].Columns["BRANCHID"]);
-                    //dsResult.Relations.Add("Item Sales", dcParentBranchID, dsResult.Tables["ITEMSALE"].Columns["BRANCHID"]);
-                    //dsResult.Relations.Add("Customer Refunds", dcParentBranchID, dsResult.Tables["CREFUND"].Columns["BRANCHID"]);                
                 }
 
                 gcItemSummary.DataSource = dsResult.Tables[0];
                 gcPurchase.DataSource = dsResult.Tables[1];
-
-                //if(gvItemSummary.RowCount == 1)
-                //{
-                //    gvItemSummary.ExpandMasterRow(0);
-                //}
             }
             catch (Exception ex)
             {

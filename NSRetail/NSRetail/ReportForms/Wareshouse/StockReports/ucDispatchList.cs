@@ -26,11 +26,6 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
 
             ButtonColumns = new List<string>() { "View", "Print to DM" };
 
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
-
             cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";

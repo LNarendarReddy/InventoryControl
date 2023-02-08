@@ -16,13 +16,7 @@ namespace NSRetail.ReportForms.POS
             InitializeComponent();
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
-
             MasterRepository masterRepo = new MasterRepository();
-
-            cmbBranch.Properties.DataSource = masterRepo.GetBranch();
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.CheckAll();
 
             Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>()
             {

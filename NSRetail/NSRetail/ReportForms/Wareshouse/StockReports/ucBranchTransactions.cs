@@ -58,13 +58,6 @@ namespace NSRetail.ReportForms.Wareshouse.StockReports
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
 
-            MasterRepository masterRepo = new MasterRepository();
-
-            cmbBranch.Properties.DataSource = masterRepo.GetBranch(true);
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
-
             SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, true);
         }
         public override object GetData()

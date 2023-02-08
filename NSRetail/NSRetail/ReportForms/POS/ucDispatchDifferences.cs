@@ -20,10 +20,6 @@ namespace NSRetail
 
             MandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
 
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-
             cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";

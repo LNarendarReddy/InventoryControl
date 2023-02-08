@@ -10,7 +10,6 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
         {
             InitializeComponent();
             SetFocusControls(cmbBranch, chkIncludeCategory, new Dictionary<string, string>());
-            BindBranch(cmbBranch);
         }
 
         public override object GetData()
