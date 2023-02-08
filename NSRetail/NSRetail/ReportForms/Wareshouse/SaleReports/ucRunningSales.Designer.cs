@@ -29,34 +29,34 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.chkIncludeCategory = new DevExpress.XtraEditors.CheckEdit();
             this.chkIncludeItem = new DevExpress.XtraEditors.CheckEdit();
             this.chkIncludeBillNo = new DevExpress.XtraEditors.CheckEdit();
             this.chkIncludeBranch = new DevExpress.XtraEditors.CheckEdit();
             this.chkIncludeCounter = new DevExpress.XtraEditors.CheckEdit();
-            this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.chkIncludeCategory = new DevExpress.XtraEditors.CheckEdit();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.cmbBranch = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIncludeCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeItem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeBillNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeCounter.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIncludeCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -74,6 +74,16 @@
             this.layoutControl1.Size = new System.Drawing.Size(875, 45);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // chkIncludeCategory
+            // 
+            this.chkIncludeCategory.EnterMoveNextControl = true;
+            this.chkIncludeCategory.Location = new System.Drawing.Point(735, 10);
+            this.chkIncludeCategory.Name = "chkIncludeCategory";
+            this.chkIncludeCategory.Properties.Caption = "Include Category";
+            this.chkIncludeCategory.Size = new System.Drawing.Size(130, 19);
+            this.chkIncludeCategory.StyleController = this.layoutControl1;
+            this.chkIncludeCategory.TabIndex = 8;
             // 
             // chkIncludeItem
             // 
@@ -114,21 +124,6 @@
             this.chkIncludeCounter.Size = new System.Drawing.Size(114, 19);
             this.chkIncludeCounter.StyleController = this.layoutControl1;
             this.chkIncludeCounter.TabIndex = 4;
-            // 
-            // cmbBranch
-            // 
-            this.cmbBranch.EnterMoveNextControl = true;
-            this.cmbBranch.Location = new System.Drawing.Point(61, 10);
-            this.cmbBranch.Name = "cmbBranch";
-            this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHID", "BRANCHID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHNAME", "Branch")});
-            this.cmbBranch.Properties.NullText = "";
-            this.cmbBranch.Size = new System.Drawing.Size(200, 22);
-            this.cmbBranch.StyleController = this.layoutControl1;
-            this.cmbBranch.TabIndex = 0;
             // 
             // Root
             // 
@@ -198,16 +193,6 @@
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
-            // chkIncludeCategory
-            // 
-            this.chkIncludeCategory.EnterMoveNextControl = true;
-            this.chkIncludeCategory.Location = new System.Drawing.Point(735, 10);
-            this.chkIncludeCategory.Name = "chkIncludeCategory";
-            this.chkIncludeCategory.Properties.Caption = "Include Category";
-            this.chkIncludeCategory.Size = new System.Drawing.Size(130, 19);
-            this.chkIncludeCategory.StyleController = this.layoutControl1;
-            this.chkIncludeCategory.TabIndex = 8;
-            // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.chkIncludeCategory;
@@ -217,6 +202,16 @@
             this.layoutControlItem6.Size = new System.Drawing.Size(140, 35);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
+            // 
+            // cmbBranch
+            // 
+            this.cmbBranch.Location = new System.Drawing.Point(61, 10);
+            this.cmbBranch.Name = "cmbBranch";
+            this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbBranch.Size = new System.Drawing.Size(200, 22);
+            this.cmbBranch.StyleController = this.layoutControl1;
+            this.cmbBranch.TabIndex = 0;
             // 
             // ucRunningSales
             // 
@@ -228,19 +223,19 @@
             this.Size = new System.Drawing.Size(875, 45);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chkIncludeCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeItem.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeBillNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeCounter.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIncludeCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -249,7 +244,6 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraEditors.LookUpEdit cmbBranch;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraEditors.CheckEdit chkIncludeBillNo;
         private DevExpress.XtraEditors.CheckEdit chkIncludeBranch;
@@ -261,5 +255,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.CheckEdit chkIncludeCategory;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit cmbBranch;
     }
 }

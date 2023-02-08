@@ -1,6 +1,6 @@
 ﻿namespace NSRetail.ReportForms.Wareshouse.SaleReports
 {
-    partial class ucSales
+    partial class ucSales : SearchCriteriaBase
     {
         /// <summary> 
         /// Required designer variable.
@@ -118,7 +118,6 @@
             this.cmbBranch.Size = new System.Drawing.Size(214, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 1;
-            this.cmbBranch.Enter += new System.EventHandler(this.cmbBranch_Enter);
             // 
             // Root
             // 

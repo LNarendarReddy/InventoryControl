@@ -9,13 +9,8 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
         public ucRunningSales()
         {
             InitializeComponent();
-
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
-
             SetFocusControls(cmbBranch, chkIncludeCategory, new Dictionary<string, string>());
+            BindBranch(cmbBranch);
         }
 
         public override object GetData()

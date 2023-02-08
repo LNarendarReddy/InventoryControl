@@ -20,19 +20,13 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
 
             ButtonColumns = new List<string>() { "Items" };
             SetFocusControls(cmbBranch, txtCutOffAmt, specificColumnHeaders);
+            BindBranch(cmbBranch);
         }
 
         private void ucBillSearchByAmount_Load(object sender, EventArgs e)
         {
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
-
-            MasterRepository masterRepo = new MasterRepository();
-
-            cmbBranch.Properties.DataSource = masterRepo.GetBranch(true);
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
         }
 
         public override object GetData()

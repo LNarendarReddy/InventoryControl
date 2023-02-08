@@ -15,15 +15,12 @@ namespace NSRetail.ReportForms
                 { "BREFUNDNUMBER", "Branch Refund number" }
             };
 
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
-
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;
 
             SetFocusControls(cmbBranch, dtToDate, columnHeaders);
+
+            BindBranch(cmbBranch);
         }
 
         public override object GetData()

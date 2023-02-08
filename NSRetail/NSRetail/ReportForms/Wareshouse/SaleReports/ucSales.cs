@@ -37,20 +37,14 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             };
 
             SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
+            
         }
         private void ucSales_Load(object sender, EventArgs e)
         {
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
-
-            MasterRepository masterRepo = new MasterRepository();
-
-            cmbBranch.Properties.DataSource = masterRepo.GetBranch();
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.CheckAll();
-
             SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, true);
+            BindBranch(cmbBranch);
         }
         public override object GetData()
         {
@@ -65,11 +59,5 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
             return GetReportData("USP_RPT_SALES", parameters);
         }
 
-        private void cmbBranch_Enter(object sender, EventArgs e)
-        {
-            BeginInvoke(new Action(() => {
-                cmbBranch.ShowPopup();
-            }));
-        }
     }
 }

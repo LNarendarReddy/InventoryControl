@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.PivotGrid.PivotTable;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Windows.Forms;
 
 namespace NSRetail
@@ -32,6 +34,14 @@ namespace NSRetail
         protected GridControl ResultGrid => (ParentForm as frmReportPlaceHolder)?.ResultsGrid;
 
         public bool ShowIncludeSetting => IncludeSettingsCollection != null && IncludeSettingsCollection.Any();
+        protected override void OnLoad(EventArgs e)
+        {
+            foreach(Control cntrl in this.Controls)
+            {
+                
+            }
+            base.OnLoad(e);
+        }
 
         public SearchCriteriaBase()
         {
@@ -205,7 +215,25 @@ namespace NSRetail
             lastControl = last;
             specificColumnHeaders = columnHeaders;
         }
+        
+        public void BindBranch( CheckedComboBoxEdit cmb)
+        {
+            MasterRepository masterRepo = new MasterRepository();
+            cmb.Properties.DataSource = masterRepo.GetBranch();
+            cmb.Properties.ValueMember = "BRANCHID";
+            cmb.Properties.DisplayMember = "BRANCHNAME";
+            cmb.CheckAll();
+            cmb.Enter += cmbBranch_Enter;
+            cmb.EnterMoveNextControl = true;
+        }
 
         public virtual void DataBoundCompleted() { }
+        public void cmbBranch_Enter(object sender, EventArgs e)
+        {
+            CheckedComboBoxEdit cmb = sender as CheckedComboBoxEdit;
+            BeginInvoke(new Action(() => {
+                cmb.ShowPopup();
+            }));
+        }
     }
 }
