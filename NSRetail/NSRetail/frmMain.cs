@@ -410,24 +410,6 @@ namespace NSRetail
             XtraMessageBox.Show("Database procedure cache cleared", "Operation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void bbiBranchReports_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            //List<ReportHolder> reportList = new List<ReportHolder>();
-            //ReportHolder branchReports = new ReportHolder() { ReportName = "Branch Reports" };
-            //branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucBranchRefunds() });
-            //branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds by Item", SearchCriteriaControl = new ucBranchRefundByItems() });
-            //branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
-            //branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
-            //reportList.Add(branchReports);
-
-            //ReportHolder posReports = new ReportHolder() { ReportName = "POS Reports" };
-            //posReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure", SearchCriteriaControl = new ucDayClosureList() });
-            //posReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Returns", SearchCriteriaControl = new ucCustomerReturns() });
-            //reportList.Add(posReports);
-
-            //ShowReportForm(reportList);
-        }
-
         private void bbiStockReports_ItemClick(object sender, ItemClickEventArgs e)
         {
             List<ReportHolder> stockReportList = new List<ReportHolder>();
@@ -445,23 +427,6 @@ namespace NSRetail
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Processing slippages", SearchCriteriaControl = new ucStockSlippage() });
             stockReportList.Add(StockReports);
 
-            ReportHolder supplierReports = new ReportHolder() { ReportName = "Supplier Reports" };
-            supplierReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Indent", SearchCriteriaControl = new ucDealerIndent() });
-            supplierReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Returns Sheets", SearchCriteriaControl = new ucSupplierReturnsList() });
-            supplierReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Indent List", SearchCriteriaControl = new ucSupplierIndentList() });
-            stockReportList.Add(supplierReports);
-
-            ReportHolder branchReports = new ReportHolder() { ReportName = "Branch Reports" };
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refund sheets", SearchCriteriaControl = new ucBranchRefunds() });
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure", SearchCriteriaControl = new ucDayClosureList() });
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent (AVG)", SearchCriteriaControl = new ucBranchIndentByAVG() });
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Details", SearchCriteriaControl = new ucCustomerDetails() });
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "B2B Credit Bill Payments", SearchCriteriaControl = new ucCreditBillPayments() });
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Installed versions", SearchCriteriaControl = new ucInstalledVersions() });
-            stockReportList.Add(branchReports);
-
             stockReportList.Add(new ReportHolder() { ReportName = "Stock Counting Sheets", SearchCriteriaControl = new ucStockCountingList() });
 
             ShowReportForm(stockReportList);
@@ -476,19 +441,9 @@ namespace NSRetail
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Purchases", SearchCriteriaControl = new ucPurchases() });
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatches", SearchCriteriaControl = new ucBranchTransactions("D") });
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucBranchTransactions("B") });
-            reports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Refunds", SearchCriteriaControl = new ucBranchTransactions("C") });
-            reports.SubCategory.Add(new ReportHolder() { ReportName = "Bills by Amount", SearchCriteriaControl = new ucBillSearchByAmount() });
-            reports.SubCategory.Add(new ReportHolder() { ReportName = "Day sale by Payment Method", SearchCriteriaControl = new ucSaleByMOP() });
+            
             reports.SubCategory.Add(new ReportHolder() { ReportName = "Item Margin", SearchCriteriaControl = new ucItemMargin() });
             reportList.Add(reports);
-
-            ReportHolder supplierwisereports = new ReportHolder() { ReportName = "Supplier Wise Reports" };
-            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise sales", SearchCriteriaControl = new ucSupplierWiseSales("S") });
-            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Dispatches", SearchCriteriaControl = new ucSupplierWiseSales("D") });
-            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Branch Refunds", SearchCriteriaControl = new ucSupplierWiseSales("B") });
-            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Customer Refunds", SearchCriteriaControl = new ucSupplierWiseSales("C") });
-            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Items", SearchCriteriaControl = new ucSupplierItems() });
-            reportList.Add(supplierwisereports);
 
             ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };
             profitabilityReports.SubCategory.Add(new ReportHolder() { ReportName = "Periodicity", SearchCriteriaControl = new ucProfitabilityPeriodicity() });
@@ -583,6 +538,49 @@ namespace NSRetail
         private void bbiClassification_ItemClick(object sender, ItemClickEventArgs e)
         {
             new frmItemClassificationList() { MdiParent = this }.Show();
+        }
+
+        private void bbiSupplierReports_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            List<ReportHolder> reportList = new List<ReportHolder>();
+
+            ReportHolder supplierwisereports = new ReportHolder() { ReportName = "Supplier Wise Reports" };
+            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise sales", SearchCriteriaControl = new ucSupplierWiseSales("S") });
+            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Dispatches", SearchCriteriaControl = new ucSupplierWiseSales("D") });
+            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Branch Refunds", SearchCriteriaControl = new ucSupplierWiseSales("B") });
+            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Wise Customer Refunds", SearchCriteriaControl = new ucSupplierWiseSales("C") });
+            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Items", SearchCriteriaControl = new ucSupplierItems() });
+            reportList.Add(supplierwisereports);
+
+            ReportHolder supplierReports = new ReportHolder() { ReportName = "Supplier Reports" };
+            supplierReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Indent", SearchCriteriaControl = new ucDealerIndent() });
+            supplierReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Indent List", SearchCriteriaControl = new ucSupplierIndentList() });
+            supplierReports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Returns Sheets", SearchCriteriaControl = new ucSupplierReturnsList() });
+            reportList.Add(supplierReports);
+
+            ShowReportForm(reportList);
+        }
+
+        private void bbiBranchReports_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            List<ReportHolder> reportList = new List<ReportHolder>();
+
+            ReportHolder branchReports = new ReportHolder() { ReportName = "Branch Reports" };
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Bills by Amount", SearchCriteriaControl = new ucBillSearchByAmount() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refund sheets", SearchCriteriaControl = new ucBranchRefunds() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Details", SearchCriteriaControl = new ucCustomerDetails() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Refunds", SearchCriteriaControl = new ucBranchTransactions("C") });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure", SearchCriteriaControl = new ucDayClosureList() });            
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Day sale by Payment Method", SearchCriteriaControl = new ucSaleByMOP() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
+            reportList.Add(branchReports);
+                        
+            reportList.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
+            reportList.Add(new ReportHolder() { ReportName = "Branch Indent (AVG)", SearchCriteriaControl = new ucBranchIndentByAVG() });
+            reportList.Add(new ReportHolder() { ReportName = "B2B Credit Bill Payments", SearchCriteriaControl = new ucCreditBillPayments() });
+            reportList.Add(new ReportHolder() { ReportName = "Installed versions", SearchCriteriaControl = new ucInstalledVersions() });
+
+            ShowReportForm(reportList);
         }
     }
 }

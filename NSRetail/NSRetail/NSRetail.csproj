@@ -1272,16 +1272,6 @@
     <None Include="Resources\Victory_Resized1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\save_16x16.png" />
-    <None Include="Resources\cancel_16x16.png" />
-    <None Include="Resources\edit_16x16.png" />
-    <None Include="Resources\solidorangedatabar_16x16.png" />
-    <None Include="Resources\cancel_16x161.png" />
-    <None Include="Resources\save_16x161.png" />
-    <None Include="Resources\cancel_16x162.png" />
-    <None Include="Resources\cancel_16x163.png" />
-    <None Include="Resources\save_16x162.png" />
-    <None Include="Resources\solidreddatabar_16x16.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

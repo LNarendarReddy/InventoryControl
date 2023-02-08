@@ -71,7 +71,6 @@
             this.btnSupplierReturns = new DevExpress.XtraBars.BarButtonItem();
             this.btnSupplierReturnsList = new DevExpress.XtraBars.BarButtonItem();
             this.bbiClearProcedureCache = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiBranchReports = new DevExpress.XtraBars.BarButtonItem();
             this.bbiStockReports = new DevExpress.XtraBars.BarButtonItem();
             this.bbiWarehouseReports = new DevExpress.XtraBars.BarButtonItem();
             this.btnProcessWHDispatch = new DevExpress.XtraBars.BarButtonItem();
@@ -82,6 +81,9 @@
             this.btnNewDeal = new DevExpress.XtraBars.BarButtonItem();
             this.btnBaseOfferList = new DevExpress.XtraBars.BarButtonItem();
             this.bbiStockSlippage = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiClassification = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiSupplierReports = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiBranchReports = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -105,7 +107,6 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.bbiClassification = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
@@ -158,7 +159,6 @@
             this.btnSupplierReturns,
             this.btnSupplierReturnsList,
             this.bbiClearProcedureCache,
-            this.bbiBranchReports,
             this.bbiStockReports,
             this.bbiWarehouseReports,
             this.btnProcessWHDispatch,
@@ -169,9 +169,11 @@
             this.btnNewDeal,
             this.btnBaseOfferList,
             this.bbiStockSlippage,
-            this.bbiClassification});
+            this.bbiClassification,
+            this.bbiSupplierReports,
+            this.bbiBranchReports});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 65;
+            this.ribbonControl1.MaxItemId = 67;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -588,16 +590,6 @@
             this.bbiClearProcedureCache.Name = "bbiClearProcedureCache";
             this.bbiClearProcedureCache.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClearProcedureCache_ItemClick);
             // 
-            // bbiBranchReports
-            // 
-            resources.ApplyResources(this.bbiBranchReports, "bbiBranchReports");
-            this.bbiBranchReports.Enabled = false;
-            this.bbiBranchReports.Id = 52;
-            this.bbiBranchReports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiBranchReports.ImageOptions.SvgImage")));
-            this.bbiBranchReports.Name = "bbiBranchReports";
-            this.bbiBranchReports.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.bbiBranchReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBranchReports_ItemClick);
-            // 
             // bbiStockReports
             // 
             resources.ApplyResources(this.bbiStockReports, "bbiStockReports");
@@ -678,6 +670,30 @@
             this.bbiStockSlippage.Name = "bbiStockSlippage";
             this.bbiStockSlippage.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiStockSlippage_ItemClick);
             // 
+            // bbiClassification
+            // 
+            resources.ApplyResources(this.bbiClassification, "bbiClassification");
+            this.bbiClassification.Id = 64;
+            this.bbiClassification.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiClassification.ImageOptions.SvgImage")));
+            this.bbiClassification.Name = "bbiClassification";
+            this.bbiClassification.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClassification_ItemClick);
+            // 
+            // bbiSupplierReports
+            // 
+            resources.ApplyResources(this.bbiSupplierReports, "bbiSupplierReports");
+            this.bbiSupplierReports.Id = 65;
+            this.bbiSupplierReports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiSupplierReports.ImageOptions.SvgImage")));
+            this.bbiSupplierReports.Name = "bbiSupplierReports";
+            this.bbiSupplierReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSupplierReports_ItemClick);
+            // 
+            // bbiBranchReports
+            // 
+            resources.ApplyResources(this.bbiBranchReports, "bbiBranchReports");
+            this.bbiBranchReports.Id = 66;
+            this.bbiBranchReports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
+            this.bbiBranchReports.Name = "bbiBranchReports";
+            this.bbiBranchReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBranchReports_ItemClick_1);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -753,6 +769,8 @@
             // 
             this.ribbonPageGroup19.ItemLinks.Add(this.bbiStockReports);
             this.ribbonPageGroup19.ItemLinks.Add(this.bbiWarehouseReports);
+            this.ribbonPageGroup19.ItemLinks.Add(this.bbiSupplierReports);
+            this.ribbonPageGroup19.ItemLinks.Add(this.bbiBranchReports);
             this.ribbonPageGroup19.Name = "ribbonPageGroup19";
             resources.ApplyResources(this.ribbonPageGroup19, "ribbonPageGroup19");
             // 
@@ -861,14 +879,6 @@
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
             // 
-            // bbiClassification
-            // 
-            resources.ApplyResources(this.bbiClassification, "bbiClassification");
-            this.bbiClassification.Id = 64;
-            this.bbiClassification.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.bbiClassification.Name = "bbiClassification";
-            this.bbiClassification.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClassification_ItemClick);
-            // 
             // frmMain
             // 
             resources.ApplyResources(this, "$this");
@@ -954,7 +964,6 @@
         private DevExpress.XtraBars.BarButtonItem bbiClearProcedureCache;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup17;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage4;
-        private DevExpress.XtraBars.BarButtonItem bbiBranchReports;
         private DevExpress.XtraBars.BarButtonItem bbiStockReports;
         private DevExpress.XtraBars.BarButtonItem bbiWarehouseReports;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup19;
@@ -969,6 +978,8 @@
         private DevExpress.XtraBars.BarButtonItem btnBaseOfferList;
         private DevExpress.XtraBars.BarButtonItem bbiStockSlippage;
         private DevExpress.XtraBars.BarButtonItem bbiClassification;
+        private DevExpress.XtraBars.BarButtonItem bbiSupplierReports;
+        private DevExpress.XtraBars.BarButtonItem bbiBranchReports;
     }
 }
 
