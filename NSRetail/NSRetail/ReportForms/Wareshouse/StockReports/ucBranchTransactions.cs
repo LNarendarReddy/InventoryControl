@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DataAccess;
+using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace NSRetail.ReportForms.Wareshouse.StockReports
 {

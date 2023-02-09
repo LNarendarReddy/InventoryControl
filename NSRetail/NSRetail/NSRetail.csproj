@@ -200,16 +200,16 @@
     <Compile Include="POS\frmCreditBillPayment.Designer.cs">
       <DependentUpon>frmCreditBillPayment.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Audit\ucCostPriceAudit.cs">
+    <Compile Include="ReportForms\Audit\ucCostPriceAudit.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Audit\ucCostPriceAudit.Designer.cs">
+    <Compile Include="ReportForms\Audit\ucCostPriceAudit.Designer.cs">
       <DependentUpon>ucCostPriceAudit.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Audit\ucSalePriceAudit.cs">
+    <Compile Include="ReportForms\Audit\ucSalePriceAudit.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Audit\ucSalePriceAudit.Designer.cs">
+    <Compile Include="ReportForms\Audit\ucSalePriceAudit.Designer.cs">
       <DependentUpon>ucSalePriceAudit.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\frmIncludeExclude.cs">
@@ -230,28 +230,28 @@
     <Compile Include="ReportForms\frmItemSummaryDetail.Designer.cs">
       <DependentUpon>frmItemSummaryDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Branch\ucBranchIndentByAVG.cs">
+    <Compile Include="ReportForms\POS\ucBranchIndentByAVG.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Branch\ucBranchIndentByAVG.Designer.cs">
+    <Compile Include="ReportForms\POS\ucBranchIndentByAVG.Designer.cs">
       <DependentUpon>ucBranchIndentByAVG.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Branch\ucCreditBillPayments.cs">
+    <Compile Include="ReportForms\POS\ucCreditBillPayments.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Branch\ucCreditBillPayments.Designer.cs">
+    <Compile Include="ReportForms\POS\ucCreditBillPayments.Designer.cs">
       <DependentUpon>ucCreditBillPayments.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Branch\ucInstalledVersions.cs">
+    <Compile Include="ReportForms\POS\ucInstalledVersions.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Branch\ucInstalledVersions.Designer.cs">
+    <Compile Include="ReportForms\POS\ucInstalledVersions.Designer.cs">
       <DependentUpon>ucInstalledVersions.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Branch\BranchReports\ucCustomerDetails.cs">
+    <Compile Include="ReportForms\POS\ucCustomerDetails.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Branch\BranchReports\ucCustomerDetails.Designer.cs">
+    <Compile Include="ReportForms\POS\ucCustomerDetails.Designer.cs">
       <DependentUpon>ucCustomerDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\POS\ucCustomerReturns.cs">
@@ -260,22 +260,22 @@
     <Compile Include="ReportForms\POS\ucCustomerReturns.Designer.cs">
       <DependentUpon>ucCustomerReturns.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Branch\BranchReports\ucBillSearchByAmount.cs">
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucBillSearchByAmount.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Branch\BranchReports\ucBillSearchByAmount.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucBillSearchByAmount.Designer.cs">
       <DependentUpon>ucBillSearchByAmount.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Reports\ucItemMargin.cs">
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucItemMargin.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Reports\ucItemMargin.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucItemMargin.Designer.cs">
       <DependentUpon>ucItemMargin.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Branch\BranchReports\ucSaleByMOP.cs">
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucSaleByMOP.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Branch\BranchReports\ucSaleByMOP.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucSaleByMOP.Designer.cs">
       <DependentUpon>ucSaleByMOP.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Wareshouse\SaleReports\ucSalehourWise.cs">
@@ -290,64 +290,64 @@
     <Compile Include="ReportForms\Wareshouse\SaleReports\ucSalePeriodicity.Designer.cs">
       <DependentUpon>ucSalePeriodicity.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Reports\ucSales.cs">
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucSales.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Reports\ucSales.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucSales.Designer.cs">
       <DependentUpon>ucSales.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Supplier\SupplierWiseReports\ucSupplierWiseSales.cs">
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucSupplierWiseSales.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Supplier\SupplierWiseReports\ucSupplierWiseSales.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucSupplierWiseSales.Designer.cs">
       <DependentUpon>ucSupplierWiseSales.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Common\ucBranchTransactions.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucBranchTransactions.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Common\ucBranchTransactions.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucBranchTransactions.Designer.cs">
       <DependentUpon>ucBranchTransactions.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockAggregateReports\ucCurrentStock.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucCurrentStock.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockAggregateReports\ucCurrentStock.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucCurrentStock.Designer.cs">
       <DependentUpon>ucCurrentStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockAggregateReports\ucNonMovingStock.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucNonMovingStock.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockAggregateReports\ucNonMovingStock.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucNonMovingStock.Designer.cs">
       <DependentUpon>ucNonMovingStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Reports\ucPurchases.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucPurchases.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Reports\ucPurchases.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucPurchases.Designer.cs">
       <DependentUpon>ucPurchases.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockAdjustmentReports\ucStockAdjustment.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucStockAdjustment.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockAdjustmentReports\ucStockAdjustment.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucStockAdjustment.Designer.cs">
       <DependentUpon>ucStockAdjustment.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockAggregateReports\ucStockAsOnDate.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucStockAsOnDate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockAggregateReports\ucStockAsOnDate.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucStockAsOnDate.Designer.cs">
       <DependentUpon>ucStockAsOnDate.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockAdjustmentReports\ucStockSlippage.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucStockSlippage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockAdjustmentReports\ucStockSlippage.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucStockSlippage.Designer.cs">
       <DependentUpon>ucStockSlippage.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Tax Reports\ucTaxBreakUpDayWise.cs">
+    <Compile Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Tax Reports\ucTaxBreakUpDayWise.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.Designer.cs">
       <DependentUpon>ucTaxBreakUpDayWise.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Wareshouse\ucItemLedger.cs">
@@ -356,10 +356,10 @@
     <Compile Include="ReportForms\Wareshouse\ucItemLedger.Designer.cs">
       <DependentUpon>ucItemLedger.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Supplier\SupplierWiseReports\ucSupplierItems.cs">
+    <Compile Include="ReportForms\Wareshouse\ucSupplierItems.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Supplier\SupplierWiseReports\ucSupplierItems.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\ucSupplierItems.Designer.cs">
       <DependentUpon>ucSupplierItems.cs</DependentUpon>
     </Compile>
     <Compile Include="Stock\frmDraftStockEntries.cs">
@@ -628,22 +628,22 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReportControls\Branch\BranchReports\ucBranchRefunds.cs">
+    <Compile Include="ReportForms\POS\ucBranchRefunds.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Branch\BranchReports\ucBranchRefunds.Designer.cs">
+    <Compile Include="ReportForms\POS\ucBranchRefunds.Designer.cs">
       <DependentUpon>ucBranchRefunds.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Branch\BranchReports\ucDayClosureList.cs">
+    <Compile Include="ReportForms\POS\ucDayClosureList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Branch\BranchReports\ucDayClosureList.Designer.cs">
+    <Compile Include="ReportForms\POS\ucDayClosureList.Designer.cs">
       <DependentUpon>ucDayClosureList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Branch\BranchReports\ucDispatchDifferences.cs">
+    <Compile Include="ReportForms\POS\ucDispatchDifferences.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Branch\BranchReports\ucDispatchDifferences.Designer.cs">
+    <Compile Include="ReportForms\POS\ucDispatchDifferences.Designer.cs">
       <DependentUpon>ucDispatchDifferences.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Wareshouse\SaleReports\ucItemWiseSales.cs">
@@ -658,16 +658,16 @@
     <Compile Include="ReportForms\Wareshouse\SaleReports\ucRunningSales.Designer.cs">
       <DependentUpon>ucRunningSales.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Common\SearchCriteriaBase.cs">
+    <Compile Include="ReportForms\SearchCriteriaBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Common\SearchCriteriaBase.Designer.cs">
+    <Compile Include="ReportForms\SearchCriteriaBase.Designer.cs">
       <DependentUpon>SearchCriteriaBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Branch\ucBranchIndent.cs">
+    <Compile Include="ReportForms\POS\ucBranchIndent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Branch\ucBranchIndent.Designer.cs">
+    <Compile Include="ReportForms\POS\ucBranchIndent.Designer.cs">
       <DependentUpon>ucBranchIndent.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\POS\ucBranchRefundByItems.cs">
@@ -676,34 +676,34 @@
     <Compile Include="ReportForms\POS\ucBranchRefundByItems.Designer.cs">
       <DependentUpon>ucBranchRefundByItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Profitability\ucProfitabilityItemWise.cs">
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityItemWise.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Profitability\ucProfitabilityItemWise.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityItemWise.Designer.cs">
       <DependentUpon>ucProfitabilityItemWise.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Profitability\ucProfitabilityPeriodicity.cs">
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityPeriodicity.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Profitability\ucProfitabilityPeriodicity.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityPeriodicity.Designer.cs">
       <DependentUpon>ucProfitabilityPeriodicity.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Tax Reports\ucTaxWiseSales.cs">
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucTaxWiseSales.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Warehouse\Tax Reports\ucTaxWiseSales.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\SaleReports\ucTaxWiseSales.Designer.cs">
       <DependentUpon>ucTaxWiseSales.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockReports\ucDispatchDCList.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucDispatchDCList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockReports\ucDispatchDCList.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucDispatchDCList.Designer.cs">
       <DependentUpon>ucDispatchDCList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockReports\ucDispatchList.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucDispatchList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockReports\ucDispatchList.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucDispatchList.Designer.cs">
       <DependentUpon>ucDispatchList.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Wareshouse\StockReports\ucStockSummaryByBranch.cs">
@@ -712,40 +712,40 @@
     <Compile Include="ReportForms\Wareshouse\StockReports\ucStockSummaryByBranch.Designer.cs">
       <DependentUpon>ucStockSummaryByBranch.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Stock\ucZeroStock.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucZeroStock.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Stock\ucZeroStock.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucZeroStock.Designer.cs">
       <DependentUpon>ucZeroStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Supplier\SupplierReports\ucDealerIndent.cs">
+    <Compile Include="ReportForms\Wareshouse\ucDealerIndent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Supplier\SupplierReports\ucDealerIndent.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\ucDealerIndent.Designer.cs">
       <DependentUpon>ucDealerIndent.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockReports\ucInvoiceList.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucInvoiceList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Stock\StockReports\ucInvoiceList.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\StockReports\ucInvoiceList.Designer.cs">
       <DependentUpon>ucInvoiceList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Stock\ucStockCountingList.cs">
+    <Compile Include="ReportForms\Wareshouse\ucStockCountingList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Stock\ucStockCountingList.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\ucStockCountingList.Designer.cs">
       <DependentUpon>ucStockCountingList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Supplier\SupplierReports\ucSupplierIndentList.cs">
+    <Compile Include="ReportForms\Wareshouse\ucSupplierIndentList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Supplier\SupplierReports\ucSupplierIndentList.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\ucSupplierIndentList.Designer.cs">
       <DependentUpon>ucSupplierIndentList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportControls\Supplier\SupplierReports\ucSupplierReturnsList.cs">
+    <Compile Include="ReportForms\Wareshouse\ucSupplierReturnsList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportControls\Supplier\SupplierReports\ucSupplierReturnsList.Designer.cs">
+    <Compile Include="ReportForms\Wareshouse\ucSupplierReturnsList.Designer.cs">
       <DependentUpon>ucSupplierReturnsList.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\rptBarcode.cs">
@@ -895,10 +895,10 @@
     <EmbeddedResource Include="POS\frmCreditBillPayment.resx">
       <DependentUpon>frmCreditBillPayment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Warehouse\Audit\ucCostPriceAudit.resx">
+    <EmbeddedResource Include="ReportForms\Audit\ucCostPriceAudit.resx">
       <DependentUpon>ucCostPriceAudit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Warehouse\Audit\ucSalePriceAudit.resx">
+    <EmbeddedResource Include="ReportForms\Audit\ucSalePriceAudit.resx">
       <DependentUpon>ucSalePriceAudit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\frmIncludeExclude.resx">
@@ -910,28 +910,28 @@
     <EmbeddedResource Include="ReportForms\frmItemSummaryDetail.resx">
       <DependentUpon>frmItemSummaryDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Branch\ucBranchIndentByAVG.resx">
+    <EmbeddedResource Include="ReportForms\POS\ucBranchIndentByAVG.resx">
       <DependentUpon>ucBranchIndentByAVG.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Branch\ucCreditBillPayments.resx">
+    <EmbeddedResource Include="ReportForms\POS\ucCreditBillPayments.resx">
       <DependentUpon>ucCreditBillPayments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Branch\ucInstalledVersions.resx">
+    <EmbeddedResource Include="ReportForms\POS\ucInstalledVersions.resx">
       <DependentUpon>ucInstalledVersions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Branch\BranchReports\ucCustomerDetails.resx">
+    <EmbeddedResource Include="ReportForms\POS\ucCustomerDetails.resx">
       <DependentUpon>ucCustomerDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucCustomerReturns.resx">
       <DependentUpon>ucCustomerReturns.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Branch\BranchReports\ucBillSearchByAmount.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucBillSearchByAmount.resx">
       <DependentUpon>ucBillSearchByAmount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Warehouse\Reports\ucItemMargin.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucItemMargin.resx">
       <DependentUpon>ucItemMargin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Branch\BranchReports\ucSaleByMOP.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucSaleByMOP.resx">
       <DependentUpon>ucSaleByMOP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucSalehourWise.resx">
@@ -940,40 +940,40 @@
     <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucSalePeriodicity.resx">
       <DependentUpon>ucSalePeriodicity.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Warehouse\Reports\ucSales.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucSales.resx">
       <DependentUpon>ucSales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Supplier\SupplierWiseReports\ucSupplierWiseSales.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucSupplierWiseSales.resx">
       <DependentUpon>ucSupplierWiseSales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Common\ucBranchTransactions.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucBranchTransactions.resx">
       <DependentUpon>ucBranchTransactions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Stock\StockAggregateReports\ucCurrentStock.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucCurrentStock.resx">
       <DependentUpon>ucCurrentStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Stock\StockAggregateReports\ucNonMovingStock.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucNonMovingStock.resx">
       <DependentUpon>ucNonMovingStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Warehouse\Reports\ucPurchases.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucPurchases.resx">
       <DependentUpon>ucPurchases.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Stock\StockAdjustmentReports\ucStockAdjustment.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucStockAdjustment.resx">
       <DependentUpon>ucStockAdjustment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Stock\StockAggregateReports\ucStockAsOnDate.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucStockAsOnDate.resx">
       <DependentUpon>ucStockAsOnDate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Stock\StockAdjustmentReports\ucStockSlippage.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucStockSlippage.resx">
       <DependentUpon>ucStockSlippage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Warehouse\Tax Reports\ucTaxBreakUpDayWise.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.resx">
       <DependentUpon>ucTaxBreakUpDayWise.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\ucItemLedger.resx">
       <DependentUpon>ucItemLedger.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Supplier\SupplierWiseReports\ucSupplierItems.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\ucSupplierItems.resx">
       <DependentUpon>ucSupplierItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmDraftStockEntries.resx">
@@ -1119,19 +1119,19 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ReportControls\Branch\ucBranchIndent.resx">
+    <EmbeddedResource Include="ReportForms\POS\ucBranchIndent.resx">
       <DependentUpon>ucBranchIndent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\POS\ucBranchRefundByItems.resx">
       <DependentUpon>ucBranchRefundByItems.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Branch\BranchReports\ucBranchRefunds.resx">
+    <EmbeddedResource Include="ReportForms\POS\ucBranchRefunds.resx">
       <DependentUpon>ucBranchRefunds.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Branch\BranchReports\ucDayClosureList.resx">
+    <EmbeddedResource Include="ReportForms\POS\ucDayClosureList.resx">
       <DependentUpon>ucDayClosureList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Branch\BranchReports\ucDispatchDifferences.resx">
+    <EmbeddedResource Include="ReportForms\POS\ucDispatchDifferences.resx">
       <DependentUpon>ucDispatchDifferences.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucItemWiseSales.resx">
@@ -1140,40 +1140,40 @@
     <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucRunningSales.resx">
       <DependentUpon>ucRunningSales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Warehouse\Profitability\ucProfitabilityItemWise.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\ucProfitabilityItemWise.resx">
       <DependentUpon>ucProfitabilityItemWise.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Warehouse\Profitability\ucProfitabilityPeriodicity.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\ucProfitabilityPeriodicity.resx">
       <DependentUpon>ucProfitabilityPeriodicity.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Warehouse\Tax Reports\ucTaxWiseSales.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\SaleReports\ucTaxWiseSales.resx">
       <DependentUpon>ucTaxWiseSales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Stock\StockReports\ucDispatchDCList.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucDispatchDCList.resx">
       <DependentUpon>ucDispatchDCList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Stock\StockReports\ucDispatchList.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucDispatchList.resx">
       <DependentUpon>ucDispatchList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucStockSummaryByBranch.resx">
       <DependentUpon>ucStockSummaryByBranch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Stock\ucZeroStock.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucZeroStock.resx">
       <DependentUpon>ucZeroStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Supplier\SupplierReports\ucDealerIndent.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\ucDealerIndent.resx">
       <DependentUpon>ucDealerIndent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Stock\StockReports\ucInvoiceList.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockReports\ucInvoiceList.resx">
       <DependentUpon>ucInvoiceList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Stock\ucStockCountingList.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\ucStockCountingList.resx">
       <DependentUpon>ucStockCountingList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Supplier\SupplierReports\ucSupplierIndentList.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\ucSupplierIndentList.resx">
       <DependentUpon>ucSupplierIndentList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportControls\Supplier\SupplierReports\ucSupplierReturnsList.resx">
+    <EmbeddedResource Include="ReportForms\Wareshouse\ucSupplierReturnsList.resx">
       <DependentUpon>ucSupplierReturnsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptBarcode.resx">
