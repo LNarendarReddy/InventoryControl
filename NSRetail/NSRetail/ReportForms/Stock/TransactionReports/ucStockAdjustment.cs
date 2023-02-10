@@ -29,6 +29,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
                 new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODOCITY" },true)
+                , new IncludeSettings("Time", "IncludeTime", new List<string>{ "CREATETIME" })
                 , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP",
                     "COSTPRICEWOT", "COSTPRICEWT", "COSTPRICETAX", "SALEPRICEWOT", "SALEPRICEWT", "SALEPRICETAX", "QUANTITY" })
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)

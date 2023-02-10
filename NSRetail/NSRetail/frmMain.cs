@@ -469,7 +469,7 @@ namespace NSRetail
             List<ReportHolder> reportList = new List<ReportHolder>();
 
             ReportHolder supplierwisereports = new ReportHolder() { ReportName = "Supplier Wise Reports" };
-            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Purchases", SearchCriteriaControl = new ucSupplierPurchases() });
+            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Purchases", SearchCriteriaControl = new ucPurchases() });
             supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "sales", SearchCriteriaControl = new ucSupplierWiseSales("S") });
             supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatches", SearchCriteriaControl = new ucSupplierWiseSales("D") });
             supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucSupplierWiseSales("B") });
