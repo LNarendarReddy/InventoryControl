@@ -22,6 +22,7 @@ namespace NSRetail
         DateEdit fromdate;
         DateEdit todate;
         Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>();
+        IEnumerable<string> allowedRoles;
 
         public List<IncludeSettings> IncludeSettingsCollection { get; protected set; }
 
@@ -34,6 +35,19 @@ namespace NSRetail
         protected GridControl ResultGrid => (ParentForm as frmReportPlaceHolder)?.ResultsGrid;
 
         public bool ShowIncludeSetting => IncludeSettingsCollection != null && IncludeSettingsCollection.Any();
+
+        public bool HasAccess { get; private set; }
+
+        protected IEnumerable<string> AllowedRoles 
+        {
+            get => allowedRoles;
+            set
+            {
+                allowedRoles = value;
+                HasAccess = Utility.Role == "admin" || Utility.Role == "IT Manager" || (AllowedRoles != null && AllowedRoles.Contains(Utility.Role));
+            }
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             foreach(Control cntrl in this.Controls)
@@ -91,6 +105,7 @@ namespace NSRetail
 
             ButtonColumns = new List<string>();
             IsDataSet = false;
+            AllowedRoles = null;
         }
 
         public virtual object GetData() => throw new NotImplementedException();
@@ -242,6 +257,7 @@ namespace NSRetail
         }
 
         public virtual void DataBoundCompleted() { }
+
         public void cmbBranch_Enter(object sender, EventArgs e)
         {
             CheckedComboBoxEdit cmb = sender as CheckedComboBoxEdit;

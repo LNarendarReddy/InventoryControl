@@ -31,6 +31,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
 
             SetFocusControls(cmbBranch, cmbBranch,columnHeaders);
+            AllowedRoles = new List<string> { "Stock counting user" };
         }
 
         private void ShowItemsForm(frmViewItems obj)

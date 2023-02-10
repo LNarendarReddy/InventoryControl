@@ -290,6 +290,15 @@ namespace NSRetail.ReportForms
                 }
             }
         }
+
+        private void tlReport_CustomRowFilter(object sender, DevExpress.XtraTreeList.CustomRowFilterEventArgs e)
+        {
+            if (e.Row is ReportHolder)
+            {
+                e.Visible = (e.Row as ReportHolder).HasAccess;
+                e.Handled = true;
+            }
+        }
     }
 
     public class ReportHolder
@@ -304,6 +313,8 @@ namespace NSRetail.ReportForms
         public SearchCriteriaBase SearchCriteriaControl { get; set; }
 
         public List<ReportHolder> SubCategory { get; set; }
+
+        public bool HasAccess => (SearchCriteriaControl != null && SearchCriteriaControl.HasAccess) || SubCategory.Any(x => x.HasAccess);
     }
 
 }

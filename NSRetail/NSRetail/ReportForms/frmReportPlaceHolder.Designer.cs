@@ -366,6 +366,7 @@
             this.tlReport.Size = new System.Drawing.Size(262, 614);
             this.tlReport.TabIndex = 0;
             this.tlReport.SelectionChanged += new System.EventHandler(this.tlReport_SelectionChanged);
+            this.tlReport.CustomRowFilter += new DevExpress.XtraTreeList.CustomRowFilterEventHandler(this.tlReport_CustomRowFilter);
             // 
             // treeListColumn1
             // 

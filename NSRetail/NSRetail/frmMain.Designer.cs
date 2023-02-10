@@ -89,7 +89,6 @@
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup15 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup16 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup20 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup19 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -540,7 +539,6 @@
             this.bbiReport.Id = 45;
             this.bbiReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiReport.ImageOptions.SvgImage")));
             this.bbiReport.Name = "bbiReport";
-            this.bbiReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiReport_ItemClick);
             // 
             // bbiItemSummary
             // 
@@ -690,7 +688,7 @@
             // 
             resources.ApplyResources(this.bbiBranchReports, "bbiBranchReports");
             this.bbiBranchReports.Id = 66;
-            this.bbiBranchReports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
+            this.bbiBranchReports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiBranchReports.ImageOptions.SvgImage")));
             this.bbiBranchReports.Name = "bbiBranchReports";
             this.bbiBranchReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBranchReports_ItemClick_1);
             // 
@@ -700,8 +698,7 @@
             this.ribbonPageGroup2,
             this.ribbonPageGroup5,
             this.ribbonPageGroup3,
-            this.ribbonPageGroup15,
-            this.ribbonPageGroup16});
+            this.ribbonPageGroup15});
             this.ribbonPage3.Name = "ribbonPage3";
             resources.ApplyResources(this.ribbonPage3, "ribbonPage3");
             // 
@@ -740,14 +737,6 @@
             this.ribbonPageGroup15.ItemLinks.Add(this.btnSupplierReturns);
             this.ribbonPageGroup15.Name = "ribbonPageGroup15";
             resources.ApplyResources(this.ribbonPageGroup15, "ribbonPageGroup15");
-            // 
-            // ribbonPageGroup16
-            // 
-            this.ribbonPageGroup16.Enabled = false;
-            this.ribbonPageGroup16.ItemLinks.Add(this.bbiReport);
-            this.ribbonPageGroup16.Name = "ribbonPageGroup16";
-            resources.ApplyResources(this.ribbonPageGroup16, "ribbonPageGroup16");
-            this.ribbonPageGroup16.Visible = false;
             // 
             // ribbonPage4
             // 
@@ -958,7 +947,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup15;
         private DevExpress.XtraBars.BarButtonItem btnSupplierReturns;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage6;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup16;
         private DevExpress.XtraBars.BarButtonItem btnSupplierReturnsList;
         private DevExpress.XtraBars.BarButtonItem btnBranchRefund;
         private DevExpress.XtraBars.BarButtonItem bbiClearProcedureCache;

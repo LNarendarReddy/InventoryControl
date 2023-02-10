@@ -11,13 +11,10 @@ using NSRetail.ReportForms.Branch.BranchReports;
 using NSRetail.ReportForms.Branch.POSReports;
 using NSRetail.ReportForms.Stock.StockReports;
 using NSRetail.ReportForms.Stock.TransactionReports;
-using NSRetail.ReportForms.Supplier;
 using NSRetail.ReportForms.Supplier.SupplierReports;
 using NSRetail.ReportForms.Supplier.SupplierWiseReports;
-using NSRetail.ReportForms.Wareshouse;
 using NSRetail.ReportForms.Wareshouse.Audit;
 using NSRetail.ReportForms.Wareshouse.Profitability;
-using NSRetail.ReportForms.Wareshouse.SaleReports;
 using NSRetail.ReportForms.Wareshouse.StockAndSale;
 using NSRetail.ReportForms.Wareshouse.TaxBreakUp;
 using NSRetail.Stock;
@@ -275,19 +272,18 @@ namespace NSRetail
             lblUserName.Caption = $"Logged In User : {Utility.FullName}   " +
                 $"Version : {Utility.AppVersion} {Utility.VersionDate} - {ConfigurationManager.AppSettings["BuildType"]}";
 
-            bbiStockSlippage.Visibility = Utility.BranchID == 97 ? BarItemVisibility.Always : BarItemVisibility.Never;
-
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnOfferList, btnStockEntry, btnInvoiceList,
              btnStockDispatch, btnDispatchList, btnDCList, btnPrintDC, btnStockCounting, bbiStockSummary, bbiSyncStatus
             , btnBranch, btnBranchCouter, btnSubCategory, btnUser, btnDealer , btnModeOfPayment, btnUnitsofMeasure
             , btnTaxMaster, btnPrinterMaster, btnBranchRefund, btnDayClosure, btnRunningSale, btnCategory, btnStockAdjustment, btnSupplierReturns
-            , bbiItemSummary, btnItemLedger, btnStockSummary, bbiWarehouseReports};
+            , bbiItemSummary, btnItemLedger, btnStockSummary, bbiWarehouseReports, bbiStockReports, bbiSupplierReports, bbiBranchReports
+            , btnBaseOfferList, btnDealList, bbiClassification, btnProcessWHDispatch, bbiClearProcedureCache, btnCounting };
 
             List<RibbonPageGroup> ribbonPageGroups = new List<RibbonPageGroup>()
             { ribbonPageGroup1, ribbonPageGroup2, ribbonPageGroup3, ribbonPageGroup4, ribbonPageGroup5, ribbonPageGroup6,
-            ribbonPageGroup8,  ribbonPageGroup10, ribbonPageGroup11, ribbonPageGroup12, ribbonPageGroup15
-            , ribbonPageGroup16, ribbonPageGroup17, ribbonPageGroup19 };
+             ribbonPageGroup7, ribbonPageGroup8,  ribbonPageGroup10, ribbonPageGroup11, ribbonPageGroup12, ribbonPageGroup15
+            , ribbonPageGroup17, ribbonPageGroup19, ribbonPageGroup20 };
 
             List<RibbonPage> ribbonPages = new List<RibbonPage>()
             {
@@ -313,6 +309,8 @@ namespace NSRetail
                 btnStockSummary.Visibility = BarItemVisibility.Always;
                 bbiWarehouseReports.Visibility = BarItemVisibility.Always;
                 btnSupplierReturns.Visibility = BarItemVisibility.Always;
+                bbiStockReports.Visibility = BarItemVisibility.Always;
+                bbiSupplierReports.Visibility = BarItemVisibility.Always;
             }
             else if (Utility.Role == "Division User")
             {
@@ -324,6 +322,7 @@ namespace NSRetail
                 btnStockDispatch.Visibility = BarItemVisibility.Always;
                 btnDispatchList.Visibility = BarItemVisibility.Always;
                 bbiStockSummary.Visibility = BarItemVisibility.Always;
+                bbiStockReports.Visibility = BarItemVisibility.Always;
             }
             else if (Utility.Role == "IT User")
             {
@@ -346,18 +345,19 @@ namespace NSRetail
                 bbiItemSummary.Visibility = BarItemVisibility.Always;
                 btnItemLedger.Visibility = BarItemVisibility.Always;
                 btnStockSummary.Visibility = BarItemVisibility.Always;
-                bbiWarehouseReports.Visibility = BarItemVisibility.Always;
+                bbiSupplierReports.Visibility = BarItemVisibility.Always;
+                bbiStockReports.Visibility = BarItemVisibility.Always;
             }
             else if(Utility.Role == "Stock counting user")
             {
                 availableItems.ForEach(x => x.Visibility = BarItemVisibility.Never);
                 revisitMenuItems = true;
 
-                btnStockCounting.Visibility = 
-                bbiStockReports.Visibility =
-                bbiItemSummary.Visibility = 
-                btnItemLedger.Visibility = 
-                bbiWarehouseReports.Visibility =
+                btnStockCounting.Visibility = BarItemVisibility.Always;
+                btnCounting.Visibility = BarItemVisibility.Always;
+                bbiWarehouseReports.Visibility = BarItemVisibility.Always;
+                bbiItemSummary.Visibility = BarItemVisibility.Always;
+                btnItemLedger.Visibility = BarItemVisibility.Always;
                 btnStockSummary.Visibility = BarItemVisibility.Always;
             }
 
@@ -367,18 +367,9 @@ namespace NSRetail
                     .Any(y => x.ItemLinks[y].Item.Visibility == BarItemVisibility.Always));
                 ribbonPages.ForEach(x => x.Visible = Enumerable.Range(0, x.Groups.Count).Any(y => x.Groups[y].Visible));
             }
-            btnStockCounting.Visibility = BarItemVisibility.Always;
-            bbiClearProcedureCache.Enabled = Utility.Role == "Admin";
-        }
-
-        private void bbiReport_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            //frmReportPlaceHolder obj = new frmReportPlaceHolder();
-            //obj.ShowInTaskbar = false;
-            //obj.WindowState = FormWindowState.Maximized;
-            //obj.IconOptions.ShowIcon = false;
-            //obj.MdiParent = this;
-            //obj.Show();
+            
+            bbiClearProcedureCache.Enabled = Utility.Role == "Admin" || Utility.Role == "IT Manager";
+            bbiStockSlippage.Visibility = Utility.BranchID == 97 ? BarItemVisibility.Always : BarItemVisibility.Never;
         }
 
         private void bbiItemSummary_ItemClick(object sender, ItemClickEventArgs e)
@@ -469,7 +460,7 @@ namespace NSRetail
             List<ReportHolder> reportList = new List<ReportHolder>();
 
             ReportHolder supplierwisereports = new ReportHolder() { ReportName = "Supplier Wise Reports" };
-            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Purchases", SearchCriteriaControl = new ucPurchases() });
+            supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Purchases", SearchCriteriaControl = new ucPurchases() }); 
             supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "sales", SearchCriteriaControl = new ucSupplierWiseSales("S") });
             supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatches", SearchCriteriaControl = new ucSupplierWiseSales("D") });
             supplierwisereports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucSupplierWiseSales("B") });

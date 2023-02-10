@@ -45,6 +45,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             SetFocusControls(cmbDealer, dtToDate, columnHeaders);
 
             IsDataSet = true;
+            AllowedRoles = new List<string> { "Division Manager", "IT User" };
         }
 
         public override object GetData()

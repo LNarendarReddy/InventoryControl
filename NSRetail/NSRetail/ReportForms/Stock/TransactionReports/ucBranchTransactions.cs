@@ -52,6 +52,14 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             }
 
             SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
+
+            switch(_ReportType)
+            {
+                case "D":
+                case "B":
+                    AllowedRoles = new List<string> { "Division Manager", "IT User", "Division User" };
+                    break;
+            }
         }
         private void ucDispatches_Load(object sender, EventArgs e)
         {

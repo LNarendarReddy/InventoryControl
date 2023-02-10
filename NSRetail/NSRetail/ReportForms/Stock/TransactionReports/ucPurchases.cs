@@ -1,14 +1,6 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Stock.TransactionReports
 {
@@ -39,6 +31,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             };
 
             SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
+            AllowedRoles = new List<string> { "IT User" };
         }
 
         private void ucPurchases_Load(object sender, EventArgs e)

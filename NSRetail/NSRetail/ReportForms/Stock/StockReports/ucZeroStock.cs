@@ -34,6 +34,7 @@ namespace NSRetail.ReportForms.Stock.StockReports
 
             txtThresholdValue.EditValue = 0;
             txtThresholdValue.Enabled = false;
+            AllowedRoles = new List<string> { "Division Manager", "IT User", "Division User" };
         }
 
         public override object GetData()

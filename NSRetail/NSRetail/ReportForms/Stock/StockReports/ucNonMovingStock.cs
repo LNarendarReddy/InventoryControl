@@ -15,7 +15,6 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 { "STOCKQTYORWGHT", "Stock Qty or Weight in KGs" }
             };
 
-
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(false);
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
@@ -25,6 +24,7 @@ namespace NSRetail.ReportForms.Stock.StockReports
 
             SetFocusControls(cmbBranch, dtpToDate, columnHeaders);
             MandatoryFields = new List<BaseEdit> { cmbBranch, dtpFromDate, dtpToDate };
+            AllowedRoles = new List<string> { "Division Manager", "IT User", "Division User" };
         }
 
         public override object GetData()

@@ -56,6 +56,15 @@ namespace NSRetail.ReportForms.Supplier.SupplierWiseReports
 
             SetFocusControls(cmbSupplier, dtpToDate, columnHeaders);
             MandatoryFields = new List<BaseEdit> { cmbSupplier };
+            switch(_reporttype)
+            {
+                case "S":
+                    AllowedRoles = new List<string> { "Division Manager", "IT User" };
+                    break;
+                default:
+                    AllowedRoles = new List<string> { "IT User" };
+                    break;
+            }
         }
 
         public override object GetData()

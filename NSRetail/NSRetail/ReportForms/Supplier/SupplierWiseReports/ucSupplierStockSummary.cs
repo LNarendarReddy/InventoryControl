@@ -1,16 +1,6 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
-using DevExpress.XtraReports.Wizards;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static DevExpress.Utils.Design.DXCollectionEditorBase;
 
 namespace NSRetail.ReportForms.Supplier.SupplierWiseReports
 {
@@ -29,6 +19,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierWiseReports
             cmbSupplier.Properties.ValueMember = "DEALERID";
             cmbSupplier.Properties.DisplayMember = "DEALERNAME";
             SetFocusControls(cmbSupplier, cmbBranch, columnHeaders);
+            AllowedRoles = new List<string> { "Division Manager", "IT User" };
         }
         public override object GetData()
         {

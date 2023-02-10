@@ -28,6 +28,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 
             SetFocusControls(cmbCategory, sluSKUCode, columnHeaders);
+            AllowedRoles = new List<string> { "Division Manager" };
         }
 
         public override object GetData()

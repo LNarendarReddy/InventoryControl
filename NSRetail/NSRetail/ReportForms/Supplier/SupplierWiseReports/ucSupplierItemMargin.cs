@@ -32,6 +32,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierWiseReports
             };
 
             SetFocusControls(cmbsupplier, cmbsupplier, specificColumnHeaders);
+            AllowedRoles = new List<string> { "Division Manager" };
         }
         public override object GetData()
         {
