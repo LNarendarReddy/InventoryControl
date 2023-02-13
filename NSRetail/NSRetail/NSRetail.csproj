@@ -146,6 +146,12 @@
     <Compile Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierStockSummary.Designer.cs">
       <DependentUpon>ucSupplierStockSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\frmAcceptCounting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\frmAcceptCounting.Designer.cs">
+      <DependentUpon>frmAcceptCounting.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\Audit\frmCountingDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -882,6 +888,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierStockSummary.resx">
       <DependentUpon>ucSupplierStockSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Audit\frmAcceptCounting.resx">
+      <DependentUpon>frmAcceptCounting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\frmCountingDetails.resx">
       <DependentUpon>frmCountingDetails.cs</DependentUpon>

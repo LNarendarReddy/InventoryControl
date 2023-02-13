@@ -122,7 +122,7 @@ namespace DataAccess
             return dtStockCountingDiff;
         }
 
-        public void AcceptStockCounting(object BranchID)
+        public void AcceptStockCounting(object BranchID, string selectedCategories)
         {
             try
             {
@@ -132,6 +132,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_STOCKCOUNTING]";
                     cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@SelectedCategories", selectedCategories);
                     object objReturn = cmd.ExecuteScalar();
 
                     if (!int.TryParse(Convert.ToString(objReturn), out int ivalue))

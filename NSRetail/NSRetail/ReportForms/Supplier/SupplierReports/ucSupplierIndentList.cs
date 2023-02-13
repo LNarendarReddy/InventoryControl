@@ -37,7 +37,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             dtpToDate.EditValue = DateTime.Now;
             
             SetFocusControls(cmbCategory, dtpToDate, columnHeaders);
-            AllowedRoles = new List<string> { "Division Manager", "IT User" };
+            AllowedRoles = new List<string> { "Division Manager", "IT User", "Division User" };
         }
 
         public override object GetData()

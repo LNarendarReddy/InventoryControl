@@ -44,7 +44,7 @@ namespace NSRetail
             set
             {
                 allowedRoles = value;
-                HasAccess = Utility.Role == "admin" || Utility.Role == "IT Manager" || (AllowedRoles != null && AllowedRoles.Contains(Utility.Role));
+                HasAccess = Utility.Role == "Admin" || Utility.Role == "IT Manager" || (AllowedRoles != null && AllowedRoles.Contains(Utility.Role));
             }
         }
 

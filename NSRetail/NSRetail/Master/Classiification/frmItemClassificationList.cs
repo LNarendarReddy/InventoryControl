@@ -1,8 +1,10 @@
 ﻿using DataAccess;
+using DevExpress.XtraEditors;
 using Entity;
 using NSRetail.Master.Classiification;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace NSRetail.Master
 {
@@ -67,7 +69,8 @@ namespace NSRetail.Master
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            if (XtraMessageBox.Show($"Are you sure you want to delete classification - {gvItemClassification.GetFocusedRowCellValue("CLASSIFICATIONNAME")}"
+                , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
         }
     }
 }

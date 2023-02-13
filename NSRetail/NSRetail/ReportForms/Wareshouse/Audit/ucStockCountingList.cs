@@ -53,30 +53,10 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (cmbBranch.EditValue == null)
-                    return;
+            if (cmbBranch.EditValue == null)
+                return;
 
-                DataTable dtCountedCategories = new ReportRepository().GetReportData(
-                        "USP_R_SC_GetCountedCategories"
-                        , new Dictionary<string, object> { { "BRANCHID", cmbBranch.EditValue } });
-
-                string message = $"Are you sure want to accept the below categories? {Environment.NewLine}{Environment.NewLine}";
-                message += string.Join(string.Empty, dtCountedCategories.Rows.Cast<DataRow>()
-                    .Select(x => $"{Environment.NewLine} \t\t\t\t * {x["CATEGORYNAME"]}"));
-                message += $"{Environment.NewLine}{Environment.NewLine} The system cannot be reverted beyond this point!!";
-                if (XtraMessageBox.Show(message, "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                    return;
-
-                new CountingRepository().AcceptStockCounting(cmbBranch.EditValue);
-                XtraMessageBox.Show("Counting accepted succefully");
-            }
-            catch (Exception ex)
-            {
-                ErrorManagement.ErrorMgmt.ShowError(ex);
-                ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
-            }
+            new frmAcceptCounting(cmbBranch.Text, cmbBranch.EditValue).ShowDialog();
         }
 
         private void btnViewDifferences_Click(object sender, EventArgs e)
