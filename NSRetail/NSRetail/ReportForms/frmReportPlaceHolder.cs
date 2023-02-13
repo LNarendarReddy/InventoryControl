@@ -52,7 +52,15 @@ namespace NSRetail.ReportForms
 
         private void BgwGetData_DoWork(object sender, DoWorkEventArgs e)
         {
-            InvokeUIOperation(selectedReportHolder.SearchCriteriaControl.GetData());
+            try
+            {
+                object datasource = selectedReportHolder.SearchCriteriaControl.GetData();
+                InvokeUIOperation(datasource);
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
         }
 
         private void InvokeUIOperation(object dtReportData)

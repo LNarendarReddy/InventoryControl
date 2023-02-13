@@ -882,5 +882,31 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
+
+        public void ClearCounterHDDSNo(Counter ObjCounter)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlCloudConn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CLR_HDDSNO]";
+                    cmd.Parameters.AddWithValue("@COUNTERID", ObjCounter.COUNTERID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjCounter.UserID);
+                    cmd.Parameters.AddWithValue("@Reason", ObjCounter.Description);
+                    cmd.ExecuteNonQuery();                    
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 }

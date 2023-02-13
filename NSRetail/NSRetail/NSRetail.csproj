@@ -134,6 +134,12 @@
     <Compile Include="Countning\frmCounting.Designer.cs">
       <DependentUpon>frmCounting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\frmClearHDDSNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmClearHDDSNo.Designer.cs">
+      <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -223,6 +229,12 @@
     </Compile>
     <Compile Include="ReportForms\Wareshouse\Audit\ucCostPriceAudit.Designer.cs">
       <DependentUpon>ucCostPriceAudit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucHDDClearhistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucHDDClearhistory.Designer.cs">
+      <DependentUpon>ucHDDClearhistory.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Wareshouse\Audit\ucSalePriceAudit.cs">
       <SubType>UserControl</SubType>
@@ -883,6 +895,9 @@
     <EmbeddedResource Include="Countning\frmCounting.resx">
       <DependentUpon>frmCounting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmClearHDDSNo.resx">
+      <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.resx">
       <DependentUpon>ucSupplierItemMargin.cs</DependentUpon>
     </EmbeddedResource>
@@ -930,6 +945,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucCostPriceAudit.resx">
       <DependentUpon>ucCostPriceAudit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucHDDClearhistory.resx">
+      <DependentUpon>ucHDDClearhistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucSalePriceAudit.resx">
       <DependentUpon>ucSalePriceAudit.cs</DependentUpon>

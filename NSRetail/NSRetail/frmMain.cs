@@ -427,6 +427,7 @@ namespace NSRetail
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Details", SearchCriteriaControl = new ucCustomerDetails() });
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "B2B Credit Bill Payments", SearchCriteriaControl = new ucCreditBillPayments() });
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Installed versions", SearchCriteriaControl = new ucInstalledVersions() });
+            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "HDD SNo history", SearchCriteriaControl = new ucHDDClearhistory() });
             reportList.Add(POSReports);
 
             ShowReportForm(reportList);
@@ -486,7 +487,7 @@ namespace NSRetail
             ReportHolder auditReports = new ReportHolder() { ReportName = "Audit Reports" };
             auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Counting Sheets", SearchCriteriaControl = new ucStockCountingList() });
             auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Sale Price", SearchCriteriaControl = new ucSalePriceAudit() });
-            auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Cost Price", SearchCriteriaControl = new ucCostPriceAudit() });
+            auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Cost Price", SearchCriteriaControl = new ucCostPriceAudit() });            
             reportList.Add(auditReports);
 
             ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };

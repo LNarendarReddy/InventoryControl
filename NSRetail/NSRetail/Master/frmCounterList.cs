@@ -3,18 +3,11 @@ using DevExpress.XtraEditors;
 using Entity;
 using ErrorManagement;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.Master
 {
-    public partial class frmCounterList : DevExpress.XtraEditors.XtraForm
+    public partial class frmCounterList : XtraForm
     {
         MasterRepository objMasterRep = new MasterRepository();
         Counter ObjCounter = null;
@@ -115,6 +108,12 @@ namespace NSRetail.Master
         private void gcCounter_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnClearHDDSNo_Click(object sender, EventArgs e)
+        {            
+            new frmClearHDDSNo(gvCounter.GetFocusedRowCellValue("BRANCHNAME")
+                , gvCounter.GetFocusedRowCellValue("COUNTERNAME"), gvCounter.GetFocusedRowCellValue("COUNTERID")).ShowDialog();
         }
     }
 }
