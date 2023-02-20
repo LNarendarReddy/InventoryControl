@@ -323,6 +323,7 @@ namespace NSRetail
                 btnDispatchList.Visibility = BarItemVisibility.Always;
                 bbiStockSummary.Visibility = BarItemVisibility.Always;
                 bbiStockReports.Visibility = BarItemVisibility.Always;
+                bbiBranchReports.Visibility = BarItemVisibility.Always;
             }
             else if (Utility.Role == "IT User")
             {
@@ -347,6 +348,7 @@ namespace NSRetail
                 btnStockSummary.Visibility = BarItemVisibility.Always;
                 bbiSupplierReports.Visibility = BarItemVisibility.Always;
                 bbiStockReports.Visibility = BarItemVisibility.Always;
+                bbiBranchReports.Visibility = BarItemVisibility.Always;
             }
             else if(Utility.Role == "Stock counting user")
             {

@@ -36,7 +36,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             dtpToDate.EditValue = DateTime.Now;
 
             SetFocusControls(cmbBranch, dtpToDate, columnHeaders);
-            AllowedRoles = new List<string> { "Division User" };
+            AllowedRoles = new List<string> { "Division User", "IT User" };
         }
 
         public override object GetData()
