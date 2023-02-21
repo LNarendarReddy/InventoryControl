@@ -266,23 +266,11 @@
     <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityTaxWise.Designer.cs">
       <DependentUpon>ucProfitabilityTaxWise.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\StockAndSale\ucBranchWise.cs">
+    <Compile Include="ReportForms\Wareshouse\StockAndSale\ucStockAndSales.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\StockAndSale\ucBranchWise.Designer.cs">
-      <DependentUpon>ucBranchWise.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReportForms\Wareshouse\StockAndSale\ucItemWise.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ReportForms\Wareshouse\StockAndSale\ucItemWise.Designer.cs">
-      <DependentUpon>ucItemWise.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReportForms\Wareshouse\StockAndSale\ucSupplierWise.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ReportForms\Wareshouse\StockAndSale\ucSupplierWise.Designer.cs">
-      <DependentUpon>ucSupplierWise.cs</DependentUpon>
+    <Compile Include="ReportForms\Wareshouse\StockAndSale\ucStockAndSales.Designer.cs">
+      <DependentUpon>ucStockAndSales.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxwiseReturns.cs">
       <SubType>UserControl</SubType>
@@ -1017,6 +1005,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\TransactionReports\ucStockSlippage.resx">
       <DependentUpon>ucStockSlippage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\StockAndSale\ucStockAndSales.resx">
+      <DependentUpon>ucStockAndSales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.resx">
       <DependentUpon>ucTaxBreakUpDayWise.cs</DependentUpon>
