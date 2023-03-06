@@ -3,17 +3,13 @@ using DevExpress.XtraEditors;
 using Entity;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.Countning
 {
-    public partial class frmCounting : DevExpress.XtraEditors.XtraForm
+    public partial class frmCounting : XtraForm
     {
         DataRow drSelectedPrice;
         bool isItemScanned;
@@ -29,6 +25,10 @@ namespace NSRetail.Countning
         private void frmCounting_Load(object sender, EventArgs e)
         {
             ((frmMain)MdiParent).RefreshBaseLineData += FrmStockDispatch_RefreshBaseLineData;
+
+            txtQuantity.ConfirmBarCodeScan();
+            txtWeightInKgs.ConfirmBarCodeScan();
+
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";

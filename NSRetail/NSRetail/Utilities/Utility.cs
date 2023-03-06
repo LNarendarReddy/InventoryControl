@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
@@ -11,6 +12,7 @@ using System.Data.OleDb;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Forms;
 
 namespace NSRetail
 {
@@ -42,8 +44,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "1.7.2";
-        public static string VersionDate = "(21-02-2023)";
+        public static string AppVersion = "1.7.3";
+        public static string VersionDate = "(06-03-2023)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -294,6 +296,24 @@ namespace NSRetail
                 throw ex;
             }
             return dt;
+        }
+
+        public static void ConfirmBarCodeScan(this BaseEdit baseEdit)
+        {
+            baseEdit.PreviewKeyDown += BaseEdit_PreviewKeyDown;
+        }
+
+        private static void BaseEdit_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+                return;
+            BaseEdit baseEdit = sender as BaseEdit;
+            string textValue = baseEdit.EditValue != null ? baseEdit.EditValue.ToString() : string.Empty;
+            if (textValue.Length > 4 && XtraMessageBox.Show($"Barcode scan detected, Do you want to accept the value {textValue}"
+                    , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                baseEdit.EditValue = null;
+            }
         }
     }
 }

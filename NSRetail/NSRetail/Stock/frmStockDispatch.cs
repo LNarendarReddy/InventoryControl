@@ -7,9 +7,7 @@ using ErrorManagement;
 using NSRetail.Reports;
 using NSRetail.Utilities;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace NSRetail.Stock
@@ -36,6 +34,9 @@ namespace NSRetail.Stock
             {
                 ((frmMain)MdiParent).RefreshBaseLineData += FrmStockDispatch_RefreshBaseLineData;
 
+                txtQuantity.ConfirmBarCodeScan();
+                txtWeightInKgs.ConfirmBarCodeScan();
+
                 DataTable dtBranch = ObjMasterRep.GetBranch();
 
                 DataView gvWarehouse = dtBranch.Copy().DefaultView;
@@ -52,7 +53,6 @@ namespace NSRetail.Stock
                 cmbToBranch.Properties.ValueMember = "BRANCHID";
                 cmbToBranch.Properties.DisplayMember = "BRANCHNAME";
                 cmbToBranch.EditValue = dvBranch.ToTable().Rows.Count == 1 ? dvBranch.ToTable().Rows[0]["BRANCHID"] : null;
-
 
                 cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
                 cmbCategory.Properties.ValueMember = "CATEGORYID";

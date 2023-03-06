@@ -33,7 +33,10 @@ namespace NSRetail.Stock
             try
             {
                 ((frmMain)frmparent.MdiParent).RefreshBaseLineData += FrmStockDispatch_RefreshBaseLineData;
-                
+
+                txtQuantity.ConfirmBarCodeScan();
+                txtMRP.ConfirmBarCodeScan();
+
                 cmbItemCode.Properties.DataSource = !Utility.IsOpenCategory ?
                     Utility.GetItemCodeListFiltered() : ObjItemRep.GetParentItems(Utility.CategoryID);
                 cmbItemCode.Properties.ValueMember = "ITEMCODEID";
