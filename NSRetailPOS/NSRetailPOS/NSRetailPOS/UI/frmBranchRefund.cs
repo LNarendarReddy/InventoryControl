@@ -51,6 +51,9 @@ namespace NSRetailPOS.UI
             cmbRFR.Properties.DisplayMember = "REASONNAME";
             cmbRFR.Properties.ValueMember = "REASONID";
 
+            txtQuantity.ConfirmLargeNumber();
+            txtWeightInKgs.ConfirmLargeNumber();
+
             InitialLoad();
         }
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)

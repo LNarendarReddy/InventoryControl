@@ -311,9 +311,9 @@ namespace NSRetailPOS
             Form.ActiveForm.BeginInvoke((Action)(() => (Form.ActiveForm as IBarcodeReceiver).ReceiveBarCode(data)));
         }
 
-        public static string AppVersion = "1.3.0";
+        public static string AppVersion = "1.3.1";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(30-01-2023)";
+        public static string VersionDate = "(11-03-2023)";
 
         private static bool DBVersionCheck(BackgroundWorker backgroundWorker, CloudRepository cloudRepository, SyncRepository syncRepository)
         {
@@ -449,6 +449,24 @@ namespace NSRetailPOS
                 _return = true;
             }
             return _return;
+        }
+
+        public static void ConfirmLargeNumber(this BaseEdit baseEdit)
+        {
+            baseEdit.PreviewKeyDown += BaseEdit_PreviewKeyDown;
+        }
+
+        private static void BaseEdit_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+                return;
+            BaseEdit baseEdit = sender as BaseEdit;
+            string textValue = baseEdit.EditValue != null ? baseEdit.EditValue.ToString() : string.Empty;
+            if (textValue.Length > 4 && XtraMessageBox.Show($"Large number detected, possible barcode scan detected, Do you want to accept the value {textValue}"
+                    , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+            {
+                baseEdit.EditValue = null;
+            }
         }
     }
     

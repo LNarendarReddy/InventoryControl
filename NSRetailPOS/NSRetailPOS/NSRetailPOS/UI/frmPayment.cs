@@ -95,7 +95,6 @@ namespace NSRetailPOS.UI
             {
                 return;
             }
-            gvMOP.MoveNext();
         }
 
         private void gvMOP_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
@@ -115,6 +114,9 @@ namespace NSRetailPOS.UI
             gcMOP.DataSource = dtMOPs;
 
             gcMOP.Refresh();
+
+            txtPaymentValue.ValidateOnEnterKey = true;
+            txtPaymentValue.Validating += TxtPaymentValue_Validating;
 
             foreach (DataRow drMOP in dtMOPs.Rows)
             {
@@ -155,6 +157,17 @@ namespace NSRetailPOS.UI
                 gvMOP.ShowEditor();
             }
 
+        }
+
+        private void TxtPaymentValue_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            BaseEdit baseEdit = sender as BaseEdit;
+            string textValue = baseEdit?.EditValue != null ? baseEdit.EditValue.ToString() : string.Empty;
+            if (textValue.Length > 4 && XtraMessageBox.Show($"Large number detected, possible barcode scan detected, Do you want to accept the value {textValue}"
+                    , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+            {
+                baseEdit.EditValue = null;
+            }
         }
 
         private void GvMOP_RowStyle(object sender, RowStyleEventArgs e)

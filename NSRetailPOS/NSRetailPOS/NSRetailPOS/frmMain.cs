@@ -46,6 +46,8 @@ namespace NSRetailPOS
 
             gvBilling.Columns["OFFERTYPECODE"].AppearanceCell.ForeColor = Color.YellowGreen;
 
+            txtQuantity.ConfirmLargeNumber();
+            txtWeightInKgs.ConfirmLargeNumber();
         }
 
         private void Form1_Load(object sender, EventArgs e)

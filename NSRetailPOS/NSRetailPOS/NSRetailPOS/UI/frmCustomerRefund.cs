@@ -34,6 +34,8 @@ namespace NSRetailPOS.UI
             sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
 
             BindDataTable();
+            txtQuantity.ConfirmLargeNumber();
+            txtWeightInKgs.ConfirmLargeNumber();
         }
 
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)
