@@ -1,14 +1,8 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Branch.BranchReports
 {
@@ -52,6 +46,16 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             };
 
             return GetReportData("USP_RPT_BRANCHINDENT_AVG", parameters);
+        }
+
+        private void btnPrintToDM_Click(object sender, EventArgs e)
+        {
+            DotMatrixPrintHelper.PrintBranchIndent(
+                cmbBranch.Text
+                , cmbCategory.Text
+                , "Average Indent"
+                , txtIndentDays.Text
+                , DotMatrixPrintHelper.GetDataTableWYSIWYG(ResultGridView));
         }
     }
 }

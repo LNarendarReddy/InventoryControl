@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBranchIndent));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnPrintToDM = new DevExpress.XtraEditors.SimpleButton();
             this.dtToDate = new DevExpress.XtraEditors.DateEdit();
             this.dtFromDate = new DevExpress.XtraEditors.DateEdit();
             this.cmbCategory = new DevExpress.XtraEditors.LookUpEdit();
@@ -39,7 +40,6 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnPrintToDM = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -71,6 +71,17 @@
             this.layoutControl1.Size = new System.Drawing.Size(1017, 45);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnPrintToDM
+            // 
+            this.btnPrintToDM.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintToDM.ImageOptions.Image")));
+            this.btnPrintToDM.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnPrintToDM.Location = new System.Drawing.Point(876, 11);
+            this.btnPrintToDM.Name = "btnPrintToDM";
+            this.btnPrintToDM.Size = new System.Drawing.Size(130, 22);
+            this.btnPrintToDM.TabIndex = 4;
+            this.btnPrintToDM.Text = "Print to DM";
+            this.btnPrintToDM.Click += new System.EventHandler(this.btnPrintToDM_Click);
             // 
             // dtToDate
             // 
@@ -191,18 +202,6 @@
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.Text = "To Date";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(58, 15);
-            // 
-            // btnPrintToDM
-            // 
-            this.btnPrintToDM.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintToDM.ImageOptions.Image")));
-            this.btnPrintToDM.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnPrintToDM.Location = new System.Drawing.Point(876, 11);
-            this.btnPrintToDM.Name = "btnPrintToDM";
-            this.btnPrintToDM.Size = new System.Drawing.Size(130, 22);
-            this.btnPrintToDM.StyleController = this.layoutControl1;
-            this.btnPrintToDM.TabIndex = 4;
-            this.btnPrintToDM.Text = "Print to DM";
-            this.btnPrintToDM.Click += new System.EventHandler(this.btnPrintToDM_Click);
             // 
             // layoutControlItem5
             // 

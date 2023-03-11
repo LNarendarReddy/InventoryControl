@@ -9,6 +9,7 @@ using NSRetail.Master;
 using NSRetail.ReportForms;
 using NSRetail.ReportForms.Branch.BranchReports;
 using NSRetail.ReportForms.Branch.POSReports;
+using NSRetail.ReportForms.Stock.StockCounting;
 using NSRetail.ReportForms.Stock.StockReports;
 using NSRetail.ReportForms.Stock.TransactionReports;
 using NSRetail.ReportForms.Supplier.SupplierReports;
@@ -456,6 +457,11 @@ namespace NSRetail
             transactionreports.SubCategory.Add(new ReportHolder() { ReportName = "Processing slippages", SearchCriteriaControl = new ucStockSlippage() });
             stockReportList.Add(transactionreports);
 
+            ReportHolder StockCountingReports = new ReportHolder() { ReportName = "Stock Counting Reports" };
+            StockCountingReports.SubCategory.Add(new ReportHolder() { ReportName = "Sheets", SearchCriteriaControl = new ucStockCountingList() });
+            StockCountingReports.SubCategory.Add(new ReportHolder() { ReportName = "Consolidated", SearchCriteriaControl = new ucConsolidatedCounting() });
+            stockReportList.Add(StockCountingReports);
+
             ShowReportForm(stockReportList);
         }
         private void bbiSupplierReports_ItemClick(object sender, ItemClickEventArgs e)
@@ -487,7 +493,7 @@ namespace NSRetail
             List<ReportHolder> reportList = new List<ReportHolder>();
 
             ReportHolder auditReports = new ReportHolder() { ReportName = "Audit Reports" };
-            auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Counting Sheets", SearchCriteriaControl = new ucStockCountingList() });
+            //auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Counting Sheets", SearchCriteriaControl = new ucStockCountingList() });
             auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Sale Price", SearchCriteriaControl = new ucSalePriceAudit() });
             auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Cost Price", SearchCriteriaControl = new ucCostPriceAudit() });            
             reportList.Add(auditReports);

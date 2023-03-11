@@ -140,6 +140,12 @@
     <Compile Include="Master\frmClearHDDSNo.Designer.cs">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.Designer.cs">
+      <DependentUpon>ucConsolidatedCounting.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -754,10 +760,10 @@
     <Compile Include="ReportForms\Supplier\SupplierReports\ucInvoiceList.Designer.cs">
       <DependentUpon>ucInvoiceList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\Audit\ucStockCountingList.cs">
+    <Compile Include="ReportForms\Stock\StockCounting\ucStockCountingList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\Audit\ucStockCountingList.Designer.cs">
+    <Compile Include="ReportForms\Stock\StockCounting\ucStockCountingList.Designer.cs">
       <DependentUpon>ucStockCountingList.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Supplier\SupplierReports\ucSupplierIndentList.cs">
@@ -885,6 +891,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmClearHDDSNo.resx">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.resx">
+      <DependentUpon>ucConsolidatedCounting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.resx">
       <DependentUpon>ucSupplierItemMargin.cs</DependentUpon>
@@ -1197,7 +1206,7 @@
     <EmbeddedResource Include="ReportForms\Supplier\SupplierReports\ucInvoiceList.resx">
       <DependentUpon>ucInvoiceList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucStockCountingList.resx">
+    <EmbeddedResource Include="ReportForms\Stock\StockCounting\ucStockCountingList.resx">
       <DependentUpon>ucStockCountingList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierReports\ucSupplierIndentList.resx">
