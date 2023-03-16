@@ -14,18 +14,22 @@ namespace NSRetail.ReportForms.Branch.POSReports
 {
     public partial class frmViewDCItems : DevExpress.XtraEditors.XtraForm
     {
-        public frmViewDCItems(DataSet dsItems, bool IsBilldetail = false, bool IsCustomerRefund = false)
+        public frmViewDCItems(DataSet dsItems, bool IsBilldetail = false, bool IsCustomerRefund = false, bool IsVoidIems = false)
         {
             InitializeComponent();
             gcGSTCode.Visible = IsBilldetail;
             gcGSTValue.Visible = IsBilldetail;
             gcDiscount.Visible = IsCustomerRefund;
-            if (!IsBilldetail)
+                     if (!IsBilldetail)
                 lciMOP.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             gcItems.DataSource = dsItems.Tables[0];
             if(dsItems.Tables.Count > 1)
                 gcMOP.DataSource = dsItems.Tables[1];
-
+            gcBillNumber.Visible = IsVoidIems;
+            gcCreatedBy.Visible = IsVoidIems;
+            gcCreatedDate.Visible = IsVoidIems;
+            gcDeletedBy.Visible = IsVoidIems;
+            gcDeletedDate.Visible = IsVoidIems;
         }
         private void gvItems_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {

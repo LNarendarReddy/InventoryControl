@@ -47,9 +47,15 @@
             this.gcDiscount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcGSTCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcGSTValue = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcBillNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcCreatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcCreatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDeletedBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDeletedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciMOP = new DevExpress.XtraLayout.LayoutControlItem();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcMOP)).BeginInit();
@@ -59,6 +65,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciMOP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -137,6 +145,8 @@
             this.gcItems.MainView = this.gvItems;
             this.gcItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcItems.Name = "gcItems";
+            this.gcItems.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemDateEdit1});
             this.gcItems.Size = new System.Drawing.Size(1020, 476);
             this.gcItems.TabIndex = 4;
             this.gcItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -158,7 +168,12 @@
             this.gridColumn7,
             this.gcDiscount,
             this.gcGSTCode,
-            this.gcGSTValue});
+            this.gcGSTValue,
+            this.gcBillNumber,
+            this.gcCreatedBy,
+            this.gcCreatedDate,
+            this.gcDeletedBy,
+            this.gcDeletedDate});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -255,8 +270,6 @@
             this.gcDiscount.OptionsColumn.AllowEdit = false;
             this.gcDiscount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DISCOUNT", "{0:0.##}")});
-            this.gcDiscount.Visible = true;
-            this.gcDiscount.VisibleIndex = 7;
             this.gcDiscount.Width = 87;
             // 
             // gcGSTCode
@@ -265,8 +278,6 @@
             this.gcGSTCode.FieldName = "GSTCODE";
             this.gcGSTCode.MinWidth = 23;
             this.gcGSTCode.Name = "gcGSTCode";
-            this.gcGSTCode.Visible = true;
-            this.gcGSTCode.VisibleIndex = 8;
             this.gcGSTCode.Width = 87;
             // 
             // gcGSTValue
@@ -277,9 +288,39 @@
             this.gcGSTValue.Name = "gcGSTValue";
             this.gcGSTValue.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GSTVALUE", "{0:0.##}")});
-            this.gcGSTValue.Visible = true;
-            this.gcGSTValue.VisibleIndex = 9;
             this.gcGSTValue.Width = 87;
+            // 
+            // gcBillNumber
+            // 
+            this.gcBillNumber.Caption = "Bill Number";
+            this.gcBillNumber.FieldName = "BILLNUMBER";
+            this.gcBillNumber.Name = "gcBillNumber";
+            // 
+            // gcCreatedBy
+            // 
+            this.gcCreatedBy.Caption = "Created By";
+            this.gcCreatedBy.FieldName = "CREATEDBY";
+            this.gcCreatedBy.Name = "gcCreatedBy";
+            // 
+            // gcCreatedDate
+            // 
+            this.gcCreatedDate.Caption = "Created Date";
+            this.gcCreatedDate.ColumnEdit = this.repositoryItemDateEdit1;
+            this.gcCreatedDate.FieldName = "CREATEDDATE";
+            this.gcCreatedDate.Name = "gcCreatedDate";
+            // 
+            // gcDeletedBy
+            // 
+            this.gcDeletedBy.Caption = "Delete By";
+            this.gcDeletedBy.FieldName = "DELETEDBY";
+            this.gcDeletedBy.Name = "gcDeletedBy";
+            // 
+            // gcDeletedDate
+            // 
+            this.gcDeletedDate.Caption = "Deleted Date";
+            this.gcDeletedDate.ColumnEdit = this.repositoryItemDateEdit1;
+            this.gcDeletedDate.FieldName = "DELETEDDATE";
+            this.gcDeletedDate.Name = "gcDeletedDate";
             // 
             // Root
             // 
@@ -311,6 +352,20 @@
             this.lciMOP.TextSize = new System.Drawing.Size(0, 0);
             this.lciMOP.TextVisible = false;
             // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.DisplayFormat.FormatString = "G";
+            this.repositoryItemDateEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemDateEdit1.EditFormat.FormatString = "G";
+            this.repositoryItemDateEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemDateEdit1.MaskSettings.Set("mask", "G");
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
+            // 
             // frmViewDCItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -332,6 +387,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciMOP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -360,5 +417,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gcBillNumber;
+        private DevExpress.XtraGrid.Columns.GridColumn gcCreatedBy;
+        private DevExpress.XtraGrid.Columns.GridColumn gcCreatedDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDeletedBy;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDeletedDate;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
     }
 }

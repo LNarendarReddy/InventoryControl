@@ -59,7 +59,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                     break;
                 case "Items":
                     DataSet dsItems = new POSRepository().GetDayClosureItems(drFocusedRow["BRANCHCOUNTERID"], drFocusedRow["DAYCLOSUREID"]);
-                    frmObj = new frmViewDCItems(dsItems, false);
+                    frmObj = new frmViewDCItems(dsItems, false, false);
                     break;
                 case "Refunds":
                     DataSet dsRefunds = new POSRepository().GetDayClosureRefund(drFocusedRow["BRANCHCOUNTERID"], drFocusedRow["DAYCLOSUREID"]);
@@ -67,7 +67,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                     break;
                 case "Void Items":
                     DataSet dsVoidItems = new POSRepository().GetDayClosureVoidItems(drFocusedRow["BRANCHCOUNTERID"], drFocusedRow["DAYCLOSUREID"]);
-                    frmObj = new frmViewDCItems(dsVoidItems, false);
+                    frmObj = new frmViewDCItems(dsVoidItems, false, false, true);
                     break;
             }
 
