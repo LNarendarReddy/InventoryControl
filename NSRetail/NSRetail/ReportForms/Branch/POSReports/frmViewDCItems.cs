@@ -27,7 +27,8 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 gcMOP.DataSource = dsItems.Tables[1];
             gcBillNumber.Visible = IsVoidIems;
             gcCreatedBy.Visible = IsVoidIems;
-            gcCreatedDate.Visible = IsVoidIems;
+            if (IsVoidIems || IsBilldetail)
+            gcCreatedDate.Visible = true;
             gcDeletedBy.Visible = IsVoidIems;
             gcDeletedDate.Visible = IsVoidIems;
         }

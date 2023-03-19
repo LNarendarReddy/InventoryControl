@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmViewDCBills));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gcBills = new DevExpress.XtraGrid.GridControl();
             this.gvBills = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -45,6 +45,8 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnViewItems = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -54,13 +56,15 @@
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcBills)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBills)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnViewItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -86,7 +90,8 @@
             this.gcBills.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcBills.Name = "gcBills";
             this.gcBills.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.btnViewItems});
+            this.btnViewItems,
+            this.repositoryItemDateEdit1});
             this.gcBills.Size = new System.Drawing.Size(1128, 652);
             this.gcBills.TabIndex = 4;
             this.gcBills.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -103,6 +108,7 @@
             this.gridColumn6,
             this.gridColumn7,
             this.gridColumn8,
+            this.gridColumn16,
             this.gridColumn9,
             this.gridColumn10,
             this.gcItemValue,
@@ -193,14 +199,37 @@
             // 
             // gridColumn8
             // 
-            this.gridColumn8.Caption = "Bill Date";
+            this.gridColumn8.Caption = "Created Date";
+            this.gridColumn8.ColumnEdit = this.repositoryItemDateEdit1;
             this.gridColumn8.FieldName = "CREATEDDATE";
             this.gridColumn8.MinWidth = 23;
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 5;
-            this.gridColumn8.Width = 105;
+            this.gridColumn8.Width = 107;
+            // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.DisplayFormat.FormatString = "G";
+            this.repositoryItemDateEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemDateEdit1.EditFormat.FormatString = "G";
+            this.repositoryItemDateEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemDateEdit1.MaskSettings.Set("mask", "G");
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "Closure Date";
+            this.gridColumn16.ColumnEdit = this.repositoryItemDateEdit1;
+            this.gridColumn16.FieldName = "UPDATEDDATE";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.Width = 107;
             // 
             // gridColumn9
             // 
@@ -223,14 +252,14 @@
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 7;
-            this.gridColumn10.Width = 125;
+            this.gridColumn10.Width = 100;
             // 
             // btnViewItems
             // 
             this.btnViewItems.AutoHeight = false;
-            editorButtonImageOptions3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions3.SvgImage")));
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
             this.btnViewItems.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnViewItems.Name = "btnViewItems";
             this.btnViewItems.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnViewItems.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnViewItems_ButtonClick);
@@ -290,6 +319,12 @@
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.OptionsColumn.AllowEdit = false;
             // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "Bill Status ID";
+            this.gridColumn15.FieldName = "BILLSTATUSID";
+            this.gridColumn15.Name = "gridColumn15";
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -310,12 +345,6 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // gridColumn15
-            // 
-            this.gridColumn15.Caption = "Bill Status ID";
-            this.gridColumn15.FieldName = "BILLSTATUSID";
-            this.gridColumn15.Name = "gridColumn15";
-            // 
             // frmViewDCBills
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -332,6 +361,8 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcBills)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBills)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnViewItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -364,5 +395,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
     }
 }
