@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
@@ -109,7 +110,7 @@ namespace NSRetailPOS
             BgSyncWorker_DoWork(sender, e);
         }
 
-        private void txtQuantity_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter)
                 return;
@@ -449,7 +450,7 @@ namespace NSRetailPOS
             txtItemCode.SelectAll();
         }
 
-        private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void btnDelete_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             if (gvBilling.FocusedRowHandle < 0)
                 return;
@@ -479,7 +480,7 @@ namespace NSRetailPOS
             txtItemCode.Focus();
         }
 
-        private void syncProgressBar_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e)
+        private void syncProgressBar_CustomDisplayText(object sender, CustomDisplayTextEventArgs e)
         {
             //e.DisplayText = bgSyncReportText;
         }
@@ -773,5 +774,14 @@ namespace NSRetailPOS
             e.Cancel = Utility.branchInfo.MultiEditThreshold < decimal.Parse(gvBilling.GetFocusedRowCellValue("MRP").ToString());
         }
 
+        private void gvBilling_ValidatingEditor(object sender, BaseContainerValidateEditorEventArgs e)
+        {
+            if (gvBilling.FocusedColumn.FieldName != "QUANTITY" || (e.Value != null && !e.Value.Equals("0"))) return;
+
+            string msg = $"0 or empty quantity is not allowed. Delete the item - {gvBilling.GetRowCellValue(gvBilling.FocusedRowHandle, "ITEMNAME")} instead";
+            XtraMessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            e.Valid = false;
+            e.ErrorText = msg;
+        }
     }
 }
