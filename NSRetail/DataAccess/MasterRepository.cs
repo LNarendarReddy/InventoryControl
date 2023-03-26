@@ -908,5 +908,67 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
+
+        public ItemClassification DeleteItemClassification(ItemClassification itemClassification)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_ITEMCLASSIFICATION]";
+                    cmd.Parameters.AddWithValue("@ItemClassificationID", itemClassification.ItemClassificationID);
+                    cmd.Parameters.AddWithValue("@UserID", itemClassification.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out int itemClassificationID))
+                        throw new Exception(str);
+                    else
+                        itemClassification.IsSave = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Deleteing Item Classification " + ex.Message);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return itemClassification;
+        }
+
+        public ItemSubClassification DeleteItemSubClassification(ItemSubClassification itemSubClassification)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_ITEMSUBCLASSIFICATION]";
+                    cmd.Parameters.AddWithValue("@ItemSubClassificationID", itemSubClassification.ItemSubClassificationID);
+                    cmd.Parameters.AddWithValue("@UserID", itemSubClassification.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out int itemSubClassificationID))
+                        throw new Exception(str);
+                    else
+                        itemSubClassification.IsSave = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Deleteing Item Sub Classification " + ex.Message);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return itemSubClassification;
+        }
     }
 }

@@ -23,6 +23,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 , { "CLOSINGBALANCE", "Physical Amount" }
                 , { "CLOSINGDIFFERENCE", "Difference" }
                 , { "CLOSEDBY", "User" }
+                , { "VOIDAMOUNT", "Void Amount"}
             };
 
             ButtonColumns = new List<string>() { "Summary", "Bills", "Items", "Refunds","Void Items" };

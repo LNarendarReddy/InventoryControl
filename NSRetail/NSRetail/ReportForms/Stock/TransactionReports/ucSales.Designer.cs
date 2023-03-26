@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.dtpFromDate = new DevExpress.XtraEditors.DateEdit();
             this.dtpToDate = new DevExpress.XtraEditors.DateEdit();
             this.cmbPeriodicity = new DevExpress.XtraEditors.LookUpEdit();
             this.cmbBranch = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPeriodicity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
@@ -67,20 +67,6 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // Root
-            // 
-            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.Root.GroupBordersVisible = false;
-            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem2,
-            this.layoutControlItem1,
-            this.layoutControlItem5,
-            this.layoutControlItem3});
-            this.Root.Name = "Root";
-            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.Root.Size = new System.Drawing.Size(923, 45);
-            this.Root.TextVisible = false;
-            // 
             // dtpFromDate
             // 
             this.dtpFromDate.EditValue = null;
@@ -92,6 +78,7 @@
             this.dtpFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFromDate.Size = new System.Drawing.Size(114, 22);
+            this.dtpFromDate.StyleController = this.layoutControl1;
             this.dtpFromDate.TabIndex = 2;
             // 
             // dtpToDate
@@ -105,6 +92,7 @@
             this.dtpToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpToDate.Size = new System.Drawing.Size(111, 22);
+            this.dtpToDate.StyleController = this.layoutControl1;
             this.dtpToDate.TabIndex = 3;
             // 
             // cmbPeriodicity
@@ -130,6 +118,20 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbBranch.Size = new System.Drawing.Size(214, 22);
             this.cmbBranch.TabIndex = 1;
+            // 
+            // Root
+            // 
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem2,
+            this.layoutControlItem1,
+            this.layoutControlItem5,
+            this.layoutControlItem3});
+            this.Root.Name = "Root";
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.Root.Size = new System.Drawing.Size(923, 45);
+            this.Root.TextVisible = false;
             // 
             // layoutControlItem2
             // 
@@ -189,13 +191,13 @@
             this.Load += new System.EventHandler(this.ucSales_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPeriodicity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();

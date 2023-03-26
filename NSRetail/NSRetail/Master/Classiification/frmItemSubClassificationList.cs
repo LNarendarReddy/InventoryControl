@@ -75,7 +75,29 @@ namespace NSRetail.Master.Classiification
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (XtraMessageBox.Show($"Are you sure you want to delete sub classification - \"{gvSubClassifications.GetFocusedRowCellValue("SUBCLASSIFICATIONNAME")}\""
+                , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
 
+            ItemSubClassification itemSubClassification = new ItemSubClassification()
+            {
+                ItemSubClassificationID = gvSubClassifications.GetFocusedRowCellValue("SUBCLASSIFICATIONID")
+                , ItemSubClassificationName = gvSubClassifications.GetFocusedRowCellValue("SUBCLASSIFICATIONNAME")
+                , UserID = Utility.UserID
+            };
+            try
+            {
+                new MasterRepository().DeleteItemSubClassification(itemSubClassification);
+                if (itemSubClassification.IsSave)
+                {
+                    XtraMessageBox.Show($"Item sub-classification - \"{itemSubClassification.ItemSubClassificationName}\" deleted successfully"
+                        , "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                BindDatasource();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Fail", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void gvSubClassifications_ShownEditor(object sender, EventArgs e)

@@ -96,6 +96,8 @@
             this.gridColumn47 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn48 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn49 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn53 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn52 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn50 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn51 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
@@ -667,6 +669,8 @@
             this.gridColumn47,
             this.gridColumn48,
             this.gridColumn49,
+            this.gridColumn53,
+            this.gridColumn52,
             this.gridColumn50,
             this.gridColumn51});
             this.gvPurchase.GridControl = this.gcPurchase;
@@ -726,13 +730,29 @@
             this.gridColumn49.Visible = true;
             this.gridColumn49.VisibleIndex = 4;
             // 
+            // gridColumn53
+            // 
+            this.gridColumn53.Caption = "Cost Price w\\o Tax";
+            this.gridColumn53.FieldName = "COSTPRICEWOT";
+            this.gridColumn53.Name = "gridColumn53";
+            this.gridColumn53.Visible = true;
+            this.gridColumn53.VisibleIndex = 5;
+            // 
+            // gridColumn52
+            // 
+            this.gridColumn52.Caption = "Cost Price with Tax";
+            this.gridColumn52.FieldName = "COSTPRICEWT";
+            this.gridColumn52.Name = "gridColumn52";
+            this.gridColumn52.Visible = true;
+            this.gridColumn52.VisibleIndex = 6;
+            // 
             // gridColumn50
             // 
             this.gridColumn50.Caption = "Quantity";
             this.gridColumn50.FieldName = "QUANTITY";
             this.gridColumn50.Name = "gridColumn50";
             this.gridColumn50.Visible = true;
-            this.gridColumn50.VisibleIndex = 5;
+            this.gridColumn50.VisibleIndex = 7;
             // 
             // gridColumn51
             // 
@@ -740,7 +760,7 @@
             this.gridColumn51.FieldName = "WEIGHTINKGS";
             this.gridColumn51.Name = "gridColumn51";
             this.gridColumn51.Visible = true;
-            this.gridColumn51.VisibleIndex = 6;
+            this.gridColumn51.VisibleIndex = 8;
             // 
             // btnViewReport
             // 
@@ -1138,5 +1158,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn46;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.Data.VirtualServerModeSource virtualServerModeSource1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn53;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn52;
     }
 }

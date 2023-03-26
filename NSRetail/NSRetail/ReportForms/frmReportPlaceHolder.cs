@@ -22,13 +22,14 @@ namespace NSRetail.ReportForms
 
         public GridView ResultsGridView => gvResults;
 
-        public frmReportPlaceHolder(List<ReportHolder> reportHolders)
+        public frmReportPlaceHolder(List<ReportHolder> reportHolders, string header)
         {
             InitializeComponent();
 
             reportHolders.ForEach(x => SubscribeLastControl(x));
             tlReport.DataSource = reportHolders;
             tlReport.ChildListFieldName = "SubCategory";
+            dpLeft.Text = header + " Reports";
         }
 
         ReportHolder selectedReportHolder;

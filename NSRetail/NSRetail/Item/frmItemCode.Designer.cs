@@ -39,6 +39,7 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule9 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule10 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.cmbSubClassification = new DevExpress.XtraEditors.LookUpEdit();
             this.cmbClassification = new DevExpress.XtraEditors.LookUpEdit();
@@ -639,6 +640,9 @@
             this.txtHSNCode.Size = new System.Drawing.Size(283, 20);
             this.txtHSNCode.StyleController = this.layoutControl1;
             this.txtHSNCode.TabIndex = 6;
+            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule7.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtHSNCode, conditionValidationRule7);
             // 
             // txtItemName
             // 
@@ -649,10 +653,10 @@
             this.txtItemName.Size = new System.Drawing.Size(684, 20);
             this.txtItemName.StyleController = this.layoutControl1;
             this.txtItemName.TabIndex = 2;
-            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule7.ErrorText = "Value cannot be empty";
-            conditionValidationRule7.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.txtItemName, conditionValidationRule7);
+            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule8.ErrorText = "Value cannot be empty";
+            conditionValidationRule8.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.User1;
+            this.dxItemValidationProvider.SetValidationRule(this.txtItemName, conditionValidationRule8);
             // 
             // txtItemCode
             // 
@@ -668,9 +672,9 @@
             this.txtItemCode.Size = new System.Drawing.Size(619, 20);
             this.txtItemCode.StyleController = this.layoutControl1;
             this.txtItemCode.TabIndex = 0;
-            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule8.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtItemCode, conditionValidationRule8);
+            conditionValidationRule9.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule9.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtItemCode, conditionValidationRule9);
             // 
             // gluCategory
             // 
@@ -688,10 +692,10 @@
             this.gluCategory.Size = new System.Drawing.Size(283, 20);
             this.gluCategory.StyleController = this.layoutControl1;
             this.gluCategory.TabIndex = 3;
-            conditionValidationRule9.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule9.ErrorText = "Mandatory";
-            conditionValidationRule9.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.gluCategory, conditionValidationRule9);
+            conditionValidationRule10.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule10.ErrorText = "Mandatory";
+            conditionValidationRule10.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.gluCategory, conditionValidationRule10);
             this.gluCategory.EditValueChanged += new System.EventHandler(this.gluCategory_EditValueChanged);
             // 
             // Root

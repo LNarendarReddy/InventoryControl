@@ -211,12 +211,41 @@ namespace NSRetail
             todate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             todate.Properties.DisplayFormat.FormatString = formatstring;
             todate.Properties.EditMask = formatstring;
-            
+
             fromdate.Properties.VistaCalendarViewStyle =
                 todate.Properties.VistaCalendarViewStyle =
-                formatstring =="MMMM" ? VistaCalendarViewStyle.YearView : 
-                formatstring == "yyyy" ? VistaCalendarViewStyle.YearsGroupView : 
+                formatstring == "MMMM" ? VistaCalendarViewStyle.YearView :
+                formatstring == "yyyy" ? VistaCalendarViewStyle.YearsGroupView :
                 VistaCalendarViewStyle.Default;
+
+            if (formatstring == "MMMM")
+            {
+                if (fromdate.EditValue != null)
+                {
+                    DateTime fromDateValue = (DateTime)fromdate.EditValue;
+                    fromdate.EditValue = fromDateValue.AddDays(-fromDateValue.Day + 1);
+                }
+
+                if (todate.EditValue != null)
+                {
+                    DateTime toDateValue = (DateTime)todate.EditValue;
+                    todate.EditValue = toDateValue.AddMonths(1).AddDays(-toDateValue.Day);
+                }
+            }
+            else if(formatstring == "yyyy")
+            {
+                if (fromdate.EditValue != null)
+                {
+                    DateTime fromDateValue = (DateTime)fromdate.EditValue;
+                    fromdate.EditValue = DateTime.Parse($"{fromDateValue.Year}-01-01");
+                }
+
+                if (todate.EditValue != null)
+                {
+                    DateTime toDateValue = (DateTime)todate.EditValue;
+                    todate.EditValue = DateTime.Parse($"{toDateValue.Year}-12-31");                    
+                }
+            }
         }
 
         public virtual bool ValidateMandatoryFields()

@@ -19,7 +19,8 @@ namespace NSRetail.Master
 
         private void btnClearHDDSNo_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show("Are you sure you want to clear HDD Serial #?", "Confirm"
+            if (!dxValidationProvider1.Validate() || 
+                XtraMessageBox.Show("Are you sure you want to clear HDD Serial #?", "Confirm"
                 , MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
 

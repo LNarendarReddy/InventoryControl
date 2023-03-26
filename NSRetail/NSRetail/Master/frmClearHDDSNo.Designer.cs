@@ -28,32 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClearHDDSNo));
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnClearHDDSNo = new DevExpress.XtraEditors.SimpleButton();
+            this.txtReason = new DevExpress.XtraEditors.MemoEdit();
+            this.txtCounterName = new DevExpress.XtraEditors.TextEdit();
             this.txtBranchName = new DevExpress.XtraEditors.TextEdit();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.txtCounterName = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtReason = new DevExpress.XtraEditors.MemoEdit();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnClearHDDSNo = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCounterName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBranchName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCounterName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -71,6 +75,62 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
+            this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnCancel.Location = new System.Drawing.Point(249, 233);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(65, 22);
+            this.btnCancel.StyleController = this.layoutControl1;
+            this.btnCancel.TabIndex = 8;
+            this.btnCancel.Text = "Cancel";
+            // 
+            // btnClearHDDSNo
+            // 
+            this.btnClearHDDSNo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClearHDDSNo.ImageOptions.Image")));
+            this.btnClearHDDSNo.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnClearHDDSNo.Location = new System.Drawing.Point(141, 233);
+            this.btnClearHDDSNo.Name = "btnClearHDDSNo";
+            this.btnClearHDDSNo.Size = new System.Drawing.Size(96, 22);
+            this.btnClearHDDSNo.StyleController = this.layoutControl1;
+            this.btnClearHDDSNo.TabIndex = 7;
+            this.btnClearHDDSNo.Text = "Clear HDD #";
+            this.btnClearHDDSNo.Click += new System.EventHandler(this.btnClearHDDSNo_Click);
+            // 
+            // txtReason
+            // 
+            this.txtReason.EnterMoveNextControl = true;
+            this.txtReason.Location = new System.Drawing.Point(104, 84);
+            this.txtReason.Name = "txtReason";
+            this.txtReason.Size = new System.Drawing.Size(210, 137);
+            this.txtReason.StyleController = this.layoutControl1;
+            this.txtReason.TabIndex = 6;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Value cannot be empty";
+            this.dxValidationProvider1.SetValidationRule(this.txtReason, conditionValidationRule1);
+            // 
+            // txtCounterName
+            // 
+            this.txtCounterName.EnterMoveNextControl = true;
+            this.txtCounterName.Location = new System.Drawing.Point(104, 50);
+            this.txtCounterName.Name = "txtCounterName";
+            this.txtCounterName.Properties.ReadOnly = true;
+            this.txtCounterName.Size = new System.Drawing.Size(210, 22);
+            this.txtCounterName.StyleController = this.layoutControl1;
+            this.txtCounterName.TabIndex = 5;
+            // 
+            // txtBranchName
+            // 
+            this.txtBranchName.EnterMoveNextControl = true;
+            this.txtBranchName.Location = new System.Drawing.Point(104, 16);
+            this.txtBranchName.Name = "txtBranchName";
+            this.txtBranchName.Properties.ReadOnly = true;
+            this.txtBranchName.Size = new System.Drawing.Size(210, 22);
+            this.txtBranchName.StyleController = this.layoutControl1;
+            this.txtBranchName.TabIndex = 4;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -85,16 +145,6 @@
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(330, 271);
             this.Root.TextVisible = false;
-            // 
-            // txtBranchName
-            // 
-            this.txtBranchName.EnterMoveNextControl = true;
-            this.txtBranchName.Location = new System.Drawing.Point(104, 16);
-            this.txtBranchName.Name = "txtBranchName";
-            this.txtBranchName.Properties.ReadOnly = true;
-            this.txtBranchName.Size = new System.Drawing.Size(210, 22);
-            this.txtBranchName.StyleController = this.layoutControl1;
-            this.txtBranchName.TabIndex = 4;
             // 
             // layoutControlItem1
             // 
@@ -114,16 +164,6 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(125, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // txtCounterName
-            // 
-            this.txtCounterName.EnterMoveNextControl = true;
-            this.txtCounterName.Location = new System.Drawing.Point(104, 50);
-            this.txtCounterName.Name = "txtCounterName";
-            this.txtCounterName.Properties.ReadOnly = true;
-            this.txtCounterName.Size = new System.Drawing.Size(210, 22);
-            this.txtCounterName.StyleController = this.layoutControl1;
-            this.txtCounterName.TabIndex = 5;
-            // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtCounterName;
@@ -133,15 +173,6 @@
             this.layoutControlItem2.Size = new System.Drawing.Size(310, 34);
             this.layoutControlItem2.Text = "Counter";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(76, 15);
-            // 
-            // txtReason
-            // 
-            this.txtReason.EnterMoveNextControl = true;
-            this.txtReason.Location = new System.Drawing.Point(104, 84);
-            this.txtReason.Name = "txtReason";
-            this.txtReason.Size = new System.Drawing.Size(210, 137);
-            this.txtReason.StyleController = this.layoutControl1;
-            this.txtReason.TabIndex = 6;
             // 
             // layoutControlItem3
             // 
@@ -153,18 +184,6 @@
             this.layoutControlItem3.Text = "Reason";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(76, 15);
             // 
-            // btnClearHDDSNo
-            // 
-            this.btnClearHDDSNo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClearHDDSNo.ImageOptions.Image")));
-            this.btnClearHDDSNo.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnClearHDDSNo.Location = new System.Drawing.Point(141, 233);
-            this.btnClearHDDSNo.Name = "btnClearHDDSNo";
-            this.btnClearHDDSNo.Size = new System.Drawing.Size(96, 22);
-            this.btnClearHDDSNo.StyleController = this.layoutControl1;
-            this.btnClearHDDSNo.TabIndex = 7;
-            this.btnClearHDDSNo.Text = "Clear HDD #";
-            this.btnClearHDDSNo.Click += new System.EventHandler(this.btnClearHDDSNo_Click);
-            // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnClearHDDSNo;
@@ -174,18 +193,6 @@
             this.layoutControlItem4.Size = new System.Drawing.Size(108, 34);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
-            this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(249, 233);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(65, 22);
-            this.btnCancel.StyleController = this.layoutControl1;
-            this.btnCancel.TabIndex = 8;
-            this.btnCancel.Text = "Cancel";
             // 
             // layoutControlItem5
             // 
@@ -212,16 +219,17 @@
             this.Text = "Clear HDD SNo";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCounterName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBranchName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCounterName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -241,5 +249,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
     }
 }

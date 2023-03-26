@@ -433,7 +433,7 @@ namespace NSRetail
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "HDD SNo history", SearchCriteriaControl = new ucHDDClearhistory() });
             reportList.Add(POSReports);
 
-            ShowReportForm(reportList);
+            ShowReportForm(reportList, "Branch");
         }
         private void bbiStockReports_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -462,7 +462,7 @@ namespace NSRetail
             StockCountingReports.SubCategory.Add(new ReportHolder() { ReportName = "Consolidated", SearchCriteriaControl = new ucConsolidatedCounting() });
             stockReportList.Add(StockCountingReports);
 
-            ShowReportForm(stockReportList);
+            ShowReportForm(stockReportList, "Stock");
         }
         private void bbiSupplierReports_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -486,7 +486,7 @@ namespace NSRetail
             supplierReports.SubCategory.Add(new ReportHolder() { ReportName = "Returns Sheets", SearchCriteriaControl = new ucSupplierReturnsList() });
             reportList.Add(supplierReports);
 
-            ShowReportForm(reportList);
+            ShowReportForm(reportList, "Supplier");
         }
         private void bbiWarehouseReports_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -514,12 +514,12 @@ namespace NSRetail
             taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise Returns", SearchCriteriaControl = new ucTaxwiseReturns() });
             reportList.Add(taxReports);
 
-            ShowReportForm(reportList);
+            ShowReportForm(reportList, "Warehouse");
         }
 
-        private void ShowReportForm(List<ReportHolder> reportHolders)
+        private void ShowReportForm(List<ReportHolder> reportHolders, string header)
         {
-            frmReportPlaceHolder obj = new frmReportPlaceHolder(reportHolders);
+            frmReportPlaceHolder obj = new frmReportPlaceHolder(reportHolders, header);
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;
             obj.IconOptions.ShowIcon = false;

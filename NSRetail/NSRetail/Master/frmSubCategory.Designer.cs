@@ -77,11 +77,12 @@
             this.layoutControl1.Controls.Add(this.cmbCategory);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(680, 34, 650, 400);
             this.layoutControl1.OptionsFocus.EnableAutoTabOrder = false;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(407, 99);
+            this.layoutControl1.Size = new System.Drawing.Size(475, 114);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -90,9 +91,10 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(313, 67);
+            this.btnCancel.Location = new System.Drawing.Point(366, 72);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(87, 25);
+            this.btnCancel.Size = new System.Drawing.Size(101, 28);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
@@ -102,9 +104,10 @@
             // 
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSave.Location = new System.Drawing.Point(210, 67);
+            this.btnSave.Location = new System.Drawing.Point(246, 72);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(93, 25);
+            this.btnSave.Size = new System.Drawing.Size(108, 28);
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
@@ -113,9 +116,10 @@
             // txtsubCategoryName
             // 
             this.txtsubCategoryName.EnterMoveNextControl = true;
-            this.txtsubCategoryName.Location = new System.Drawing.Point(87, 7);
+            this.txtsubCategoryName.Location = new System.Drawing.Point(118, 8);
+            this.txtsubCategoryName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtsubCategoryName.Name = "txtsubCategoryName";
-            this.txtsubCategoryName.Size = new System.Drawing.Size(313, 20);
+            this.txtsubCategoryName.Size = new System.Drawing.Size(349, 20);
             this.txtsubCategoryName.StyleController = this.layoutControl1;
             this.txtsubCategoryName.TabIndex = 1;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -126,16 +130,16 @@
             // cmbCategory
             // 
             this.cmbCategory.EnterMoveNextControl = true;
-            this.cmbCategory.Location = new System.Drawing.Point(87, 37);
+            this.cmbCategory.Location = new System.Drawing.Point(118, 40);
+            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbCategory.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHID", "BRANCHID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHNAME", "BRANCHNAME"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHCODE", "BRANCHCODE")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYID", "CategoryID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYNAME", "Category")});
             this.cmbCategory.Properties.NullText = "";
-            this.cmbCategory.Size = new System.Drawing.Size(313, 20);
+            this.cmbCategory.Size = new System.Drawing.Size(349, 20);
             this.cmbCategory.StyleController = this.layoutControl1;
             this.cmbCategory.TabIndex = 2;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -157,7 +161,7 @@
             this.emptySpaceItem2});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(407, 99);
+            this.Root.Size = new System.Drawing.Size(475, 114);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -165,30 +169,30 @@
             this.layoutControlItem1.Control = this.txtsubCategoryName;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem1.Size = new System.Drawing.Size(403, 30);
-            this.layoutControlItem1.Text = "Counter Name";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(68, 14);
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem1.Size = new System.Drawing.Size(471, 32);
+            this.layoutControlItem1.Text = "Sub Category Name";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(96, 14);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.cmbCategory;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 30);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem2.Size = new System.Drawing.Size(403, 30);
-            this.layoutControlItem2.Text = "Branch";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(68, 14);
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem2.Size = new System.Drawing.Size(471, 32);
+            this.layoutControlItem2.Text = "Category";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(96, 14);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnSave;
-            this.layoutControlItem7.Location = new System.Drawing.Point(203, 60);
-            this.layoutControlItem7.MaxSize = new System.Drawing.Size(103, 35);
-            this.layoutControlItem7.MinSize = new System.Drawing.Size(103, 35);
+            this.layoutControlItem7.Location = new System.Drawing.Point(238, 64);
+            this.layoutControlItem7.MaxSize = new System.Drawing.Size(120, 40);
+            this.layoutControlItem7.MinSize = new System.Drawing.Size(120, 40);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem7.Size = new System.Drawing.Size(103, 35);
+            this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem7.Size = new System.Drawing.Size(120, 46);
             this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
@@ -196,12 +200,12 @@
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnCancel;
-            this.layoutControlItem8.Location = new System.Drawing.Point(306, 60);
-            this.layoutControlItem8.MaxSize = new System.Drawing.Size(97, 35);
-            this.layoutControlItem8.MinSize = new System.Drawing.Size(97, 35);
+            this.layoutControlItem8.Location = new System.Drawing.Point(358, 64);
+            this.layoutControlItem8.MaxSize = new System.Drawing.Size(113, 40);
+            this.layoutControlItem8.MinSize = new System.Drawing.Size(113, 40);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem8.Size = new System.Drawing.Size(97, 35);
+            this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem8.Size = new System.Drawing.Size(113, 46);
             this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
@@ -209,18 +213,19 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 60);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 64);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(203, 35);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(238, 46);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmSubCategory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(407, 99);
+            this.ClientSize = new System.Drawing.Size(475, 114);
             this.Controls.Add(this.layoutControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmSubCategory";
             this.Text = "Sub Category";
             this.Load += new System.EventHandler(this.frmSubCategory_Load);

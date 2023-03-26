@@ -1,13 +1,6 @@
 ﻿using DevExpress.Utils.Menu;
-using DevExpress.XtraEditors;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Branch.POSReports
@@ -20,28 +13,31 @@ namespace NSRetail.ReportForms.Branch.POSReports
             gcGSTCode.Visible = IsBilldetail;
             gcGSTValue.Visible = IsBilldetail;
             gcDiscount.Visible = IsCustomerRefund;
-                     if (!IsBilldetail)
+            if (!IsBilldetail)
                 lciMOP.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             gcItems.DataSource = dsItems.Tables[0];
-            if(dsItems.Tables.Count > 1)
+            if (dsItems.Tables.Count > 1)
                 gcMOP.DataSource = dsItems.Tables[1];
-            gcBillNumber.Visible = IsVoidIems;
+            gcBillNumber.Visible = IsVoidIems || IsCustomerRefund;
             gcCreatedBy.Visible = IsVoidIems;
             if (IsVoidIems || IsBilldetail)
-            gcCreatedDate.Visible = true;
+                gcCreatedDate.Visible = true;
             gcDeletedBy.Visible = IsVoidIems;
             gcDeletedDate.Visible = IsVoidIems;
         }
+
         private void gvItems_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
             if (gvItems.FocusedRowHandle < 0)
                 return;
             e.Menu.Items.Add(new DXMenuItem("View Report", new EventHandler(ViewReport_Click)));
         }
+
         private void ViewReport_Click(object sender, EventArgs e)
         {
             gcItems.ShowRibbonPrintPreview();
         }
+
         private void frmViewDCItems_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)

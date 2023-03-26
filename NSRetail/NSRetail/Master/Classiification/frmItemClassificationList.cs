@@ -69,8 +69,29 @@ namespace NSRetail.Master
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show($"Are you sure you want to delete classification - {gvItemClassification.GetFocusedRowCellValue("CLASSIFICATIONNAME")}"
+            if (XtraMessageBox.Show($"Are you sure you want to delete classification - \"{gvItemClassification.GetFocusedRowCellValue("CLASSIFICATIONNAME")}\""
                 , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+
+            ItemClassification itemClassification = new ItemClassification()
+            {
+                ItemClassificationID = gvItemClassification.GetFocusedRowCellValue("CLASSIFICATIONID")
+                , ItemClassificationName = gvItemClassification.GetFocusedRowCellValue("CLASSIFICATIONNAME")
+                , UserID = Utility.UserID
+            };
+            try
+            {
+                new MasterRepository().DeleteItemClassification(itemClassification);
+                if (itemClassification.IsSave)
+                {
+                    XtraMessageBox.Show($"Item classification - \"{itemClassification.ItemClassificationName}\" deleted successfully"
+                        , "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                BindDataSource();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Fail", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
