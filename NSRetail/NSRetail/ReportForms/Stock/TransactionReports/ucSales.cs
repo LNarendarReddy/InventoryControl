@@ -1,5 +1,4 @@
-﻿using DataAccess;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace NSRetail.ReportForms.Stock.TransactionReports
@@ -20,7 +19,8 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "SALEQUANTITY", "Sale Quantity" },
                 { "ISOFFER", "Item Offer applied" },
                 { "WHSTOCK", "Warehouse Stock" },
-                { "BRANCHSTOCK", "Branch Stock" }
+                { "BRANCHSTOCK", "Branch Stock" },
+                { "GSTCODE", "GST Code" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -34,6 +34,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("Classification", "IncludeClassification", new List<string>{ "CLASSIFICATIONNAME" })
                 , new IncludeSettings("Sub Classification", "IncludeSubClassification", new List<string>{ "SUBCLASSIFICATIONNAME" })
                 , new IncludeSettings("Stock & Is offer", "IncludeStock", new List<string>{ "ISOFFER", "WHSTOCK", "BRANCHSTOCK" })
+                , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })
             };
 
             SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
