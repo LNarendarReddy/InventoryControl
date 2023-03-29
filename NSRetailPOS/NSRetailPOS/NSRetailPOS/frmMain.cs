@@ -408,36 +408,37 @@ namespace NSRetailPOS
 
         private void btnLastBillPrint_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DataSet dsLastBillDetails = new BillingRepository().GetLastBill(daySequenceID, billObj.LastBillID);
-                Bill LastBillObj = Utility.GetBill(dsLastBillDetails);
-                rptBill rpt = new rptBill(LastBillObj.dtBillDetails, LastBillObj.dtMopValues);
-                rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
-                rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
-                rpt.Parameters["FSSAI"].Value = "10114004000548";
-                rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
-                rpt.Parameters["BillDate"].Value = DateTime.Now;
-                rpt.Parameters["BillNumber"].Value = LastBillObj.BillNumber;
-                rpt.Parameters["CustomerName"].Value = LastBillObj.CustomerName;
-                rpt.Parameters["CustomerNumber"].Value = LastBillObj.CustomerNumber;
-                rpt.Parameters["CustomerGST"].Value = LastBillObj.CustomerGST;
-                rpt.Parameters["TenderedCash"].Value = LastBillObj.TenderedCash;
-                rpt.Parameters["TenderedChange"].Value = LastBillObj.TenderedChange;
-                rpt.Parameters["IsDoorDelivery"].Value = LastBillObj.IsDoorDelivery;
-                rpt.Parameters["BranchName"].Value = Utility.branchInfo.BranchName;
-                rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
-                rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
-                rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
-                rpt.Parameters["RoundingFactor"].Value = LastBillObj.Rounding;
-                rpt.Parameters["IsDuplicate"].Value = true;
-                rpt.Print();
-                txtItemCode.Focus();
-            }
-            catch (Exception ex)
-            {
-                XtraMessageBox.Show(ex.Message);
-            }
+            XtraMessageBox.Show("Cannot re-print last bill, contact administrator", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            //try
+            //{
+            //    DataSet dsLastBillDetails = new BillingRepository().GetLastBill(daySequenceID, billObj.LastBillID);
+            //    Bill LastBillObj = Utility.GetBill(dsLastBillDetails);
+            //    rptBill rpt = new rptBill(LastBillObj.dtBillDetails, LastBillObj.dtMopValues);
+            //    rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
+            //    rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
+            //    rpt.Parameters["FSSAI"].Value = "10114004000548";
+            //    rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
+            //    rpt.Parameters["BillDate"].Value = DateTime.Now;
+            //    rpt.Parameters["BillNumber"].Value = LastBillObj.BillNumber;
+            //    rpt.Parameters["CustomerName"].Value = LastBillObj.CustomerName;
+            //    rpt.Parameters["CustomerNumber"].Value = LastBillObj.CustomerNumber;
+            //    rpt.Parameters["CustomerGST"].Value = LastBillObj.CustomerGST;
+            //    rpt.Parameters["TenderedCash"].Value = LastBillObj.TenderedCash;
+            //    rpt.Parameters["TenderedChange"].Value = LastBillObj.TenderedChange;
+            //    rpt.Parameters["IsDoorDelivery"].Value = LastBillObj.IsDoorDelivery;
+            //    rpt.Parameters["BranchName"].Value = Utility.branchInfo.BranchName;
+            //    rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
+            //    rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
+            //    rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
+            //    rpt.Parameters["RoundingFactor"].Value = LastBillObj.Rounding;
+            //    rpt.Parameters["IsDuplicate"].Value = true;
+            //    rpt.Print();
+            //    txtItemCode.Focus();
+            //}
+            //catch (Exception ex)
+            //{
+            //    XtraMessageBox.Show(ex.Message);
+            //}
         }
 
         private void txtItemCode_Enter(object sender, EventArgs e)

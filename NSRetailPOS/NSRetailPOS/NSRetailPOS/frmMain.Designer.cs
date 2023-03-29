@@ -402,6 +402,7 @@
             this.btnLastBillPrint.TabIndex = 24;
             this.btnLastBillPrint.TabStop = false;
             this.btnLastBillPrint.Text = "Print &Last Bill (F8)";
+            this.btnLastBillPrint.Visible = false;
             this.btnLastBillPrint.Click += new System.EventHandler(this.btnLastBillPrint_Click);
             // 
             // chkSingleQuantity
@@ -1117,6 +1118,7 @@
             this.layoutControlItem25.Size = new System.Drawing.Size(159, 38);
             this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem25.TextVisible = false;
+            this.layoutControlItem25.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItem19
             // 

@@ -51,6 +51,13 @@ namespace NSRetailPOS.UI
                 return;
             }
 
+            if(txtCustomerPhone.EditValue != null && txtCustomerPhone.EditValue.ToString().Length != 10)
+            {
+                XtraMessageBox.Show("Customer number should be 10 digits", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtCustomerPhone.Focus();
+                return;
+            }
+
             if(rgPaymentModes.EditValue.Equals("B2B Credit")
                 && (txtCustomerName.EditValue == null || txtCustomerPhone.EditValue == null || txtCustomerGST.EditValue == null))
             {
