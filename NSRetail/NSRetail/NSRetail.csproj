@@ -410,6 +410,12 @@
     <Compile Include="ReportForms\Supplier\SupplierReports\ucSupplierItems.Designer.cs">
       <DependentUpon>ucSupplierItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptBill.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptBill.Designer.cs">
+      <DependentUpon>rptBill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stock\frmDraftStockEntries.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1023,6 +1029,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierReports\ucSupplierItems.resx">
       <DependentUpon>ucSupplierItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptBill.resx">
+      <DependentUpon>rptBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmDraftStockEntries.resx">
       <DependentUpon>frmDraftStockEntries.cs</DependentUpon>
