@@ -173,8 +173,8 @@ namespace NSRetail
 
         protected void SetPeriodicty(LookUpEdit cmb,DateEdit _fromdate, DateEdit _todate, bool includeHourly = false)
         {
-            fromdate= _fromdate;
-            todate= _todate;
+            fromdate = _fromdate;
+            todate = _todate;
             cmbPeriodicity = cmb;
             DataTable dtPeriodicity = new DataTable();
             dtPeriodicity.Columns.Add("Periodicityvalue", typeof(string));
@@ -189,6 +189,14 @@ namespace NSRetail
             cmbPeriodicity.Properties.DisplayMember = "Periodicityvalue";
             cmbPeriodicity.EditValueChanged += cmbPeriodicity_EditValueChanged;
             cmbPeriodicity.EditValue = "Daily";
+
+            //fromdate.EditValueChanged += date_EditValueChanged;
+            //todate.EditValueChanged += date_EditValueChanged;
+        }
+
+        private void date_EditValueChanged(object sender, EventArgs e)
+        {
+            cmbPeriodicity_EditValueChanged(cmbPeriodicity, e);
         }
 
         private void cmbPeriodicity_EditValueChanged(object sender, EventArgs e)
@@ -218,6 +226,9 @@ namespace NSRetail
                 formatstring == "yyyy" ? VistaCalendarViewStyle.YearsGroupView :
                 VistaCalendarViewStyle.Default;
 
+            fromdate.EditValueChanged -= date_EditValueChanged;
+            todate.EditValueChanged -= date_EditValueChanged;
+
             if (formatstring == "MMMM")
             {
                 if (fromdate.EditValue != null)
@@ -246,6 +257,9 @@ namespace NSRetail
                     todate.EditValue = DateTime.Parse($"{toDateValue.Year}-12-31");                    
                 }
             }
+
+            fromdate.EditValueChanged += date_EditValueChanged;
+            todate.EditValueChanged += date_EditValueChanged;
         }
 
         public virtual bool ValidateMandatoryFields()
