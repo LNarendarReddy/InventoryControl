@@ -66,7 +66,7 @@ namespace WarehouseCloudSync.Data
         public void ProccessDayClosures()
         {
             SqlTransaction transaction = null;
-
+            object count = null;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -77,7 +77,7 @@ namespace WarehouseCloudSync.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 600;
                     cmd.CommandText = "USP_P_DAYCLOSURES";
-                    cmd.ExecuteNonQuery();
+                    count = cmd.ExecuteScalar();
                     transaction?.Commit();
                 }
             }
@@ -90,6 +90,17 @@ namespace WarehouseCloudSync.Data
             finally
             {
                 SqlCon.SqlWHconn().Close();
+            }
+
+            TimeSpan.TryParse(DateTime.Now.ToLongTimeString(), out TimeSpan curTime);
+
+            if (curTime >= TimeSpan.Parse("20:00:00") || curTime <= TimeSpan.Parse("06:00:00"))
+            {
+                if (count != null && int.TryParse(count.ToString(), out int countValue) && countValue > 0)
+                {
+                    Console.WriteLine($"Continuing next day closure process");
+                    ProccessDayClosures();
+                }
             }
         }
 
