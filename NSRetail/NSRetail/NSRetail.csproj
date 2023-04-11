@@ -146,6 +146,12 @@
     <Compile Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.Designer.cs">
       <DependentUpon>ucConsolidatedCounting.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Stock\StockReports\ucLeftOverPrices.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Stock\StockReports\ucLeftOverPrices.Designer.cs">
+      <DependentUpon>ucLeftOverPrices.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -900,6 +906,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.resx">
       <DependentUpon>ucConsolidatedCounting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Stock\StockReports\ucLeftOverPrices.resx">
+      <DependentUpon>ucLeftOverPrices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.resx">
       <DependentUpon>ucSupplierItemMargin.cs</DependentUpon>
