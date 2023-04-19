@@ -92,7 +92,7 @@ namespace WarehouseCloudSync.Data
                 SqlCon.SqlWHconn().Close();
             }
 
-            TimeSpan.TryParse(DateTime.Now.ToLongTimeString(), out TimeSpan curTime);
+            TimeSpan.TryParse(DateTime.Now.ToString("HH:mm:ss"), out TimeSpan curTime);
 
             if (curTime >= TimeSpan.Parse("20:00:00") || curTime <= TimeSpan.Parse("06:00:00"))
             {

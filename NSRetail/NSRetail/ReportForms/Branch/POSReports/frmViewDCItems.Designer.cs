@@ -176,6 +176,7 @@
             this.gcDeletedDate});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
+            this.gvItems.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.gvItems.Name = "gvItems";
             this.gvItems.OptionsBehavior.Editable = false;
             this.gvItems.OptionsView.ShowFooter = true;
