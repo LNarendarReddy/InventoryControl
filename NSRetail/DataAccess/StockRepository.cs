@@ -346,21 +346,21 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_STOCKADJUSTMENT]";
-                    cmd.Parameters.AddWithValue("@STOCKADJUSTMENTID", stockAdjustment.StockAdjustmentID);
-                    cmd.Parameters.AddWithValue("@ITEMPRICEID", stockAdjustment.ItemPriceID);
+                    cmd.Parameters.AddWithValue("@ItemID", stockAdjustment.ItemID);
                     cmd.Parameters.AddWithValue("@BRANCHID", stockAdjustment.BranchID);
-                    cmd.Parameters.AddWithValue("@QUANTITY", stockAdjustment.Quantity);
-                    cmd.Parameters.AddWithValue("@WEIGHTINKGS", stockAdjustment.WeightInKgs);
+                    cmd.Parameters.AddWithValue("@StockSummary", stockAdjustment.dtStockSummary);
                     cmd.Parameters.AddWithValue("@USERID", stockAdjustment.UserID);
-                    int rowsaffected = cmd.ExecuteNonQuery();
-                    if(rowsaffected <= 0)
-                        throw new Exception("Error while saving stock adjustment");
+
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out int stockAdjustmentID))
+                        throw new Exception(str);                    
                 }
 
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while saving stock adjustment",ex);
+                throw new Exception($"Error while saving stock adjustment - {ex.Message}", ex);
             }
             finally
             {

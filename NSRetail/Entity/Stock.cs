@@ -113,10 +113,7 @@ namespace Entity
     public class StockAdjustment : EntityBase
     {
         public object BranchID { get; set; }
-        public object StockAdjustmentID { get; set; }
-        public object ItemPriceID { get; set; }
-        public object Quantity { get; set; }
-        public object WeightInKgs { get; set; }
-
+        public object ItemID { get; set; }
+        public DataTable dtStockSummary { get; set; }
     }
 }
