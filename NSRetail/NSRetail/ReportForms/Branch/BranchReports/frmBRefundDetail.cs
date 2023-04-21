@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using System;
@@ -26,6 +27,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             gcItems.DataSource = dtItems;
             CounterID = _CounterID;
             BRefundID = _BRefundID;
+            gvItems.PopupMenuShowing += gvItems_PopupMenuShowing;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -103,6 +105,17 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 ErrorManagement.ErrorMgmt.ShowError(ex);
                 ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
             }
+        }
+        private void gvItems_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
+        {
+            if (gvItems.FocusedRowHandle < 0)
+                return;
+            e.Menu.Items.Add(new DXMenuItem("View Report", new EventHandler(ViewReport_Click)));
+        }
+
+        private void ViewReport_Click(object sender, EventArgs e)
+        {
+            gcItems.ShowRibbonPrintPreview();
         }
     }
 }
