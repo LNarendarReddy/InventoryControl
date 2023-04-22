@@ -1,9 +1,11 @@
 ﻿using DataAccess;
+using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Branch.BranchReports
 {
@@ -52,6 +54,12 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
+            if(drFocusedRow["STATUS"].ToString() == "Draft")
+            {
+                XtraMessageBox.Show("Draft bills cannot be viewed or printed. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             DataSet ds = new StockRepository().GetDispatch(drFocusedRow["STOCKDISPATCHID"]);
             if (ds == null && ds.Tables.Count < 2)
             {

@@ -550,8 +550,7 @@ namespace NSRetail
         {
             frmStockAdjustment frm = new frmStockAdjustment();
             frm.ShowInTaskbar = false;
-            frm.StartPosition = FormStartPosition.CenterScreen;
-            frm.ControlBox = false;
+            frm.StartPosition = FormStartPosition.CenterScreen;            
             frm.IconOptions.ShowIcon = false;
             frm.ShowDialog();
         }
