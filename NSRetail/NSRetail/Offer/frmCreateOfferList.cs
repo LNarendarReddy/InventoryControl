@@ -147,7 +147,7 @@ namespace NSRetail
                         dtTemp.Columns.Cast<DataColumn>().Where(x => !allowedColumns.Contains(x.ColumnName))
                             .ToList().ForEach(x => dtTemp.Columns.Remove(x));
                                                 
-                        new OfferRepository().ImportOffer(BaseOfferID, CategoryID, dt, Utility.UserID);
+                        new OfferRepository().ImportOffer(BaseOfferID, CategoryID, dtTemp, Utility.UserID);
                         gcOffer.DataSource = offerRepository.GetOfferByBaseOffer(BaseOfferID);
                         SplashScreenManager.CloseOverlayForm(handle);
                     }

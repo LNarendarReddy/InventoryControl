@@ -139,7 +139,7 @@ namespace NSRetail
                         if (!dtTemp.Columns.Contains("OFFERTYPE")) dtTemp.Columns.Add("OFFERTYPE", typeof(string));
                         if (!dtTemp.Columns.Contains("OFFERVALUE")) dtTemp.Columns.Add("OFFERVALUE", typeof(string));
 
-                        new OfferRepository().ImportOfferItems(OfferID, dt, Utility.UserID);
+                        new OfferRepository().ImportOfferItems(OfferID, dtTemp, Utility.UserID);
                         gcItems.DataSource = dtItems = new OfferRepository().GetOfferItem(OfferID);
                     }
                 }
