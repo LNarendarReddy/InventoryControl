@@ -23,6 +23,7 @@ namespace NSRetail
         DateEdit todate;
         Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>();
         IEnumerable<string> allowedRoles;
+        List<int> excludedBranches = new List<int> { 91, 92, 97, 100 };
 
         public List<IncludeSettings> IncludeSettingsCollection { get; protected set; }
 
@@ -287,21 +288,37 @@ namespace NSRetail
         }
         
         public void BindBranch(Control cntrl)
-        {
-            
+        {            
             MasterRepository masterRepo = new MasterRepository();
             CheckedComboBoxEdit cmb = (CheckedComboBoxEdit)cntrl;
             cmb.Properties.DataSource = masterRepo.GetBranch();
             cmb.Properties.ValueMember = "BRANCHID";
             cmb.Properties.DisplayMember = "BRANCHNAME";
             cmb.CheckAll();
-            cmb.Enter += cmbBranch_Enter;
+            List<int> branchIDs = cmb.EditValue.ToString().Split(',').Select(x => int.Parse(x)).ToList();
+            excludedBranches.Where(x => branchIDs.Contains(x)).ToList().ForEach(x => branchIDs.Remove(x));
+            cmb.EditValue = string.Join(",", branchIDs);
+            AddCheckedComboBoxEnter(cmb);
             cmb.EnterMoveNextControl = true;
         }
 
         public virtual void DataBoundCompleted() { }
 
-        public void cmbBranch_Enter(object sender, EventArgs e)
+        public void AddCheckedComboBoxEnter(CheckedComboBoxEdit cmb)
+        {
+            if (cmb == null) return;
+
+            cmb.Enter += cmbBranch_Enter;
+        }
+
+        public void RemoveCheckedComboBoxEnter(CheckedComboBoxEdit cmb)
+        {
+            if (cmb == null) return;
+
+            cmb.Enter -= cmbBranch_Enter;
+        }
+
+        private void cmbBranch_Enter(object sender, EventArgs e)
         {
             CheckedComboBoxEdit cmb = sender as CheckedComboBoxEdit;
             BeginInvoke(new Action(() => {

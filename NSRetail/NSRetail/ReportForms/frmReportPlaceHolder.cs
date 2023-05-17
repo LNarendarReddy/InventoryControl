@@ -146,7 +146,12 @@ namespace NSRetail.ReportForms
 
             searchCriteria.DataBoundCompleted();
 
-            (searchCriteria.FirstControl ?? searchCriteria).Focus();
+            Control ctrlToFocus = searchCriteria.FirstControl ?? searchCriteria;
+            CheckedComboBoxEdit branchComboBox = ctrlToFocus as CheckedComboBoxEdit;
+            searchCriteria.RemoveCheckedComboBoxEnter(branchComboBox);
+            searchCriteria.Focus();
+            ctrlToFocus.Focus();
+            searchCriteria.AddCheckedComboBoxEnter(branchComboBox);
         }
 
         private void tlReport_SelectionChanged(object sender, EventArgs e)

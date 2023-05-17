@@ -15,8 +15,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             {
                 { "WAREHOUSEQUANTITY", "Warehouse Quantity" }
                 , { "BRANCHSTOCK", "Branch Stock" }
-                , { "AVGSALEQUANTITY", "Average Sale Quantity" }
-                , { "DISPATCHQUANTITY", "Dispatch Quantity" }
+                , { "SALEQUANTITY", "90 Days sale qty" }
+                , { "AVGSALEQUANTITY", "Average Sale Quantity" }                
                 , { "INDENTQUANTITY", "Indent Quantity" }
                 , { "SUBCATEGORYNAME", "Sub Category" }
             };
