@@ -1,0 +1,15 @@
+select SSL.*, SSL.OLDQTY - SSL.QUANTITY AS DIFF from STOCKSUMMARYLOG SSL 
+INNER JOIN STOCKSUMMARY SS ON SS.STOCKSUMMARYID = SSL.STOCKSUMMARYID
+INNER JOIN ITEMPRICE IP ON SS.ITEMPRICEID = IP.ITEMPRICEID AND IP.ITEMCODEID = 39353
+WHERE SS.BRANCHID = 46
+ORDER BY SSL.CREATEDDATE
+
+select cast(updateddate as date), count(*) from pos_brefund group by cast(updateddate as date) order by 1
+
+select STOCKSUMMARYID, CAST(CREATEDDATE as date), OLDQTY - QUANTITY , COUNT(*) from stocksummarylog 
+where ttype = 'br'
+group by  STOCKSUMMARYID, CAST(CREATEDDATE as date), OLDQTY - QUANTITY
+having COUNT(*) > 1
+order by 2
+
+
