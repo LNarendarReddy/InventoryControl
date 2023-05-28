@@ -411,4 +411,8 @@
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>icacls "$(TargetDir)\NSRetailPOS.mdf" /grant Everyone:(f)
+icacls "$(TargetDir)\NSRetailPOS_log.ldf" /grant Everyone:(f)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

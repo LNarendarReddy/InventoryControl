@@ -415,6 +415,7 @@ namespace NSRetailPOS.Data
                         dsDayClosure.Tables[1].TableName = "DENOMINATION";
                         dsDayClosure.Tables[2].TableName = "MOP";
                         dsDayClosure.Tables[3].TableName = "BILLS";
+                        dsDayClosure.Tables[4].TableName = "USERWISEMOP";
                     }
                 }
             }

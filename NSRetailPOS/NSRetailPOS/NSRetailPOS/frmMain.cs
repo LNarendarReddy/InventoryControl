@@ -87,7 +87,6 @@ namespace NSRetailPOS
             bgSyncWorker.ProgressChanged += BgSyncWorker_ProgressChanged;
             bgSyncWorker.RunWorkerAsync();
         }
-               
 
         private void Utility_ItemOrCodeChanged(object sender, EventArgs e)
         {
@@ -245,6 +244,12 @@ namespace NSRetailPOS
             rpt.Parameters["RoundingFactor"].Value = oldBillObj.Rounding;
             rpt.Parameters["IsDuplicate"].Value = false;
             rpt.Print();
+
+            string error = Utility.WriteToPort($"Bill {oldBillObj.BillNumber} completed");
+            if(!string.IsNullOrEmpty(error))
+            {
+                lblProgressText.Text = error;
+            }
 
             LoadBillData(nextBillDetails);
         }

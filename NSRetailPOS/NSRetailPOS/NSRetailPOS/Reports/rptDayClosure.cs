@@ -16,6 +16,7 @@ namespace NSRetailPOS.Reports
             drDenominations.DataSource = ds.Tables[1];
             drMOP.DataSource = ds.Tables[2];
             drFooter.DataSource = ds.Tables[3];
+            drUserBreakDown.DataSource = ds.Tables[4];
         }
     }
 }

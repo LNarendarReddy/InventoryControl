@@ -5,13 +5,11 @@ using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.UI;
 using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace NSRetailPOS
 {
@@ -26,7 +24,6 @@ namespace NSRetailPOS
         [STAThread]
         static void Main()
         {
-
             if (!singleton.WaitOne(TimeSpan.Zero, true))
             {
                 DevExpress.XtraEditors.XtraMessageBox.Show("Instance already running!!");
