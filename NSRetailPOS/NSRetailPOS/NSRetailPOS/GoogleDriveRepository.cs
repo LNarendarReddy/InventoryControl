@@ -15,6 +15,7 @@ using System.Linq;
 using Google.Apis.Drive.v3.Data;
 using DevExpress.XtraRichEdit.Layout;
 using System.ComponentModel;
+using DevExpress.XtraEditors;
 
 namespace NSRetailPOS
 {
@@ -78,6 +79,7 @@ namespace NSRetailPOS
                             case DownloadStatus.Failed:
                                 {
                                     Utility.ReportText(backgroundWorker, "Download failed.");
+                                    XtraMessageBox.Show(progress.Exception.Message);
                                     _rtn = false;
                                     break;
                                 }

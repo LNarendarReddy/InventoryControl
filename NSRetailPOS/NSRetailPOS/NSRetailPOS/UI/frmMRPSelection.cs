@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
 namespace NSRetailPOS.UI
 {
-    public partial class frmMRPSelection : DevExpress.XtraEditors.XtraForm
+    public partial class frmMRPSelection : XtraForm
     {
         public object drSelected = null;
         public bool _IsSave = false;
@@ -30,16 +23,25 @@ namespace NSRetailPOS.UI
         {
             try
             {
-                _IsSave = true;
-                drSelected = gvMRPList.GetFocusedRow();
-                this.Close();
+                int rowHandle = gvMRPList.LocateByValue("MRP", txtMRP.EditValue);
+                if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+                {
+                    _IsSave = true;
+                    gvMRPList.FocusedRowHandle = rowHandle;
+                    drSelected = gvMRPList.GetFocusedRow();
+                    this.Close();
+                }
+                else
+                {
+                    XtraMessageBox.Show("MRP not found, please contact warehouse admin", "Error");
+                }
             }
             catch (Exception) { }
         }
 
-        private void frmMRPSelection_Load(object sender, EventArgs e)
+        private void txtMRP_Enter(object sender, EventArgs e)
         {
-
+            txtMRP.SelectAll();
         }
     }
 }

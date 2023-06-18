@@ -14,6 +14,7 @@ using System.Web;
 using System.Configuration;
 using static System.Net.Mime.MediaTypeNames;
 using System.Runtime.InteropServices.ComTypes;
+using Google.Apis.Drive.v3.Data;
 
 namespace BackupUploadAPI
 {
@@ -23,7 +24,8 @@ namespace BackupUploadAPI
 
         public static DriveService GetService()
         {
-            var credential = GoogleCredential.FromFile("silent-bolt-232805-c18a3e7b0d0a.json").CreateScoped(new[] { DriveService.ScopeConstants.Drive });
+            var credential = GoogleCredential.FromFile("silent-bolt-232805-c18a3e7b0d0a.json")
+                .CreateScoped(new[] { DriveService.ScopeConstants.Drive });
             DriveService service = new DriveService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential
@@ -40,6 +42,9 @@ namespace BackupUploadAPI
                 var folderRequest = service.Files.List();
                 folderRequest.Q = $"mimeType = 'application/vnd.google-apps.folder' and name = '{folderName}'";
                 var folderResponse = folderRequest.Execute();
+                var names = folderResponse.Files.Where(x => x.Name.StartsWith("NSRetail_backup")).Select(x => new Tuple<string, string>(x.Name, x.Id)).ToList();
+                var file = folderResponse.Files.FirstOrDefault(x => x.Name == "NSRetail_backup_2022_12_13_230057_5161037.bak");
+
                 folderID = folderResponse.Files.Any() ? folderResponse.Files.FirstOrDefault().Id : string.Empty;
             }
             catch (Exception ex)
@@ -140,10 +145,22 @@ namespace BackupUploadAPI
                     using (var stream = new System.IO.FileStream(path, System.IO.FileMode.Open))
                     {                        
                         request = service.Files.Create(FileMetaData, stream, FileMetaData.MimeType);
+                        request.QuotaUser = "victorybazars.nssretail@gmail.com";
                         request.Fields = "id";
                         var uploadProgress = request.Upload();
                         if (uploadProgress.Exception != null) throw uploadProgress.Exception;
                         fileid = request.ResponseBody?.Id;
+
+                        Permission newPermission = new Permission
+                        {
+                            EmailAddress = "victorybazars.nssretail@gmail.com",
+                            Type = "user",
+                            Role = "owner"
+                        };
+
+                        var ownerTransferRequest = service.Permissions.Create(newPermission, fileid);
+                        ownerTransferRequest.TransferOwnership = true;
+                        ownerTransferRequest.Execute();
                     }
                 }
             }
@@ -164,7 +181,7 @@ namespace BackupUploadAPI
         {
             try
             {
-                DriveService service = GetService();
+                DriveService service = GetService();                
                 service.Files.Delete(fileID).Execute();
             }
             catch (Exception ex)

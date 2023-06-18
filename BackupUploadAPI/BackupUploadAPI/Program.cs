@@ -32,6 +32,12 @@ namespace BackupUploadAPI
             {
                 Console.WriteLine($"File to delete filename : {fileinfo.Item2} fileid : {fileinfo.Item1}");
                 GoogleDriveRepository.DeleteFile(fileinfo.Item1);
+                GoogleDriveRepository.DeleteFile("1UUgmtyWDpQTuEbkT2JY6kj0__siJKGje");
+                GoogleDriveRepository.DeleteFile("1EYcjjZom6I6XyrD9b21STEq_rzO1qG5w");
+                GoogleDriveRepository.DeleteFile("1ohmGtfZaZ177v-6dQnIr5s_UsG9NJtLp");
+                GoogleDriveRepository.DeleteFile("1wEbYXYrRg11dNQV6ZL_plEYmeWFpFTnv");
+                GoogleDriveRepository.DeleteFile("1h7HjYkn4ba18lgc4EKVmO3yCOLY8u-Cq");
+                GoogleDriveRepository.DeleteFile("1I9CZ7yD5Nw2Isko1R7N9eQYhqPhQzsIL");
                 Console.WriteLine($"Deletion success");
             }
             else

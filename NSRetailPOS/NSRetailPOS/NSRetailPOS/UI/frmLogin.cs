@@ -47,6 +47,10 @@ namespace NSRetailPOS.UI
                             dSUserInfo.Tables[0].Rows[0]["MULTIEDITTHRESHOLD"] != null && 
                             int.TryParse(dSUserInfo.Tables[0].Rows[0]["MULTIEDITTHRESHOLD"].ToString(), out int multiEditThreshold) 
                             ? multiEditThreshold : 0;
+
+                        // for now force to 10 rs
+                        Utility.branchInfo.MultiEditThreshold = 10;
+
                         bool ISOTP = Convert.ToBoolean(dSUserInfo.Tables[0].Rows[0]["ISOTP"]);
                         Utility.DBVersion = Convert.ToString(dSUserInfo.Tables[0].Rows[0]["DBVersion"]);
                         if (ISOTP)

@@ -28,7 +28,7 @@ namespace WarehouseCloudSync.Data
             string Password = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}WHpwd"].ToString());
             try
             {
-                string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 200";
+                string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 30; Max Pool Size = 200";
                 ObjWHCon.ConnectionString = str;
                 ObjWHCon.Open();
             }
