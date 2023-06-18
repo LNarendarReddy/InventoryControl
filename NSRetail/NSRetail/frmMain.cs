@@ -201,7 +201,7 @@ namespace NSRetail
             obj.Show();
         }
 
-        private void bbiRefreshData_ItemClick(object sender, ItemClickEventArgs e)
+        public void bbiRefreshData_ItemClick(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmProgress), true, true);
             Utility.FillBaseLine();
@@ -496,7 +496,8 @@ namespace NSRetail
             ReportHolder auditReports = new ReportHolder() { ReportName = "Audit Reports" };
             //auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Counting Sheets", SearchCriteriaControl = new ucStockCountingList() });
             auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Sale Price", SearchCriteriaControl = new ucSalePriceAudit() });
-            auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Cost Price", SearchCriteriaControl = new ucCostPriceAudit() });            
+            auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Cost Price", SearchCriteriaControl = new ucCostPriceAudit() });      
+            auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Deleted Item codes", SearchCriteriaControl = new ucDeletedItemCodes() });      
             reportList.Add(auditReports);
 
             ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };

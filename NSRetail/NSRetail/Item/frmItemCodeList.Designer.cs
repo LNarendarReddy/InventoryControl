@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemCodeList));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnMRPList = new DevExpress.XtraEditors.SimpleButton();
             this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
             this.btnVisualize = new DevExpress.XtraEditors.SimpleButton();
@@ -61,19 +62,20 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.pmItemList = new DevExpress.XtraBars.PopupMenu(this.components);
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportSKU = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportItemCode = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportItemPrice = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportItemCostPrice = new DevExpress.XtraBars.BarButtonItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.btnExportSKU = new DevExpress.XtraBars.BarButtonItem();
-            this.btnExportItemCode = new DevExpress.XtraBars.BarButtonItem();
-            this.btnExportItemPrice = new DevExpress.XtraBars.BarButtonItem();
-            this.btnExportItemCostPrice = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemList)).BeginInit();
@@ -87,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pmItemList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
@@ -105,6 +108,7 @@
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
             this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
+            this.layoutControl1.Controls.Add(this.btnDelete);
             this.layoutControl1.Controls.Add(this.btnMRPList);
             this.layoutControl1.Controls.Add(this.btnViewReport);
             this.layoutControl1.Controls.Add(this.btnVisualize);
@@ -122,11 +126,23 @@
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnDelete
+            // 
+            this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
+            this.btnDelete.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnDelete.Location = new System.Drawing.Point(1037, 7);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(74, 22);
+            this.btnDelete.StyleController = this.layoutControl1;
+            this.btnDelete.TabIndex = 11;
+            this.btnDelete.Text = "&Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // btnMRPList
             // 
             this.btnMRPList.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnMRPList.ImageOptions.Image")));
             this.btnMRPList.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnMRPList.Location = new System.Drawing.Point(525, 7);
+            this.btnMRPList.Location = new System.Drawing.Point(441, 7);
             this.btnMRPList.Name = "btnMRPList";
             this.btnMRPList.Size = new System.Drawing.Size(115, 22);
             this.btnMRPList.StyleController = this.layoutControl1;
@@ -138,7 +154,7 @@
             // 
             this.btnViewReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnViewReport.ImageOptions.Image")));
             this.btnViewReport.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnViewReport.Location = new System.Drawing.Point(650, 7);
+            this.btnViewReport.Location = new System.Drawing.Point(566, 7);
             this.btnViewReport.Margin = new System.Windows.Forms.Padding(2);
             this.btnViewReport.Name = "btnViewReport";
             this.btnViewReport.Size = new System.Drawing.Size(112, 22);
@@ -151,7 +167,7 @@
             // 
             this.btnVisualize.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualize.ImageOptions.Image")));
             this.btnVisualize.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnVisualize.Location = new System.Drawing.Point(899, 7);
+            this.btnVisualize.Location = new System.Drawing.Point(815, 7);
             this.btnVisualize.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnVisualize.Name = "btnVisualize";
             this.btnVisualize.Size = new System.Drawing.Size(95, 22);
@@ -164,7 +180,7 @@
             // 
             this.btnEdit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.ImageOptions.Image")));
             this.btnEdit.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnEdit.Location = new System.Drawing.Point(1004, 7);
+            this.btnEdit.Location = new System.Drawing.Point(920, 7);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(1);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(107, 22);
@@ -191,7 +207,7 @@
             // 
             this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
             this.btnNew.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnNew.Location = new System.Drawing.Point(772, 7);
+            this.btnNew.Location = new System.Drawing.Point(688, 7);
             this.btnNew.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(117, 22);
@@ -389,7 +405,8 @@
             this.layoutControlItem4,
             this.layoutControlItem5,
             this.layoutControlItem6,
-            this.layoutControlItem7});
+            this.layoutControlItem7,
+            this.layoutControlItem8});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(1232, 685);
@@ -407,7 +424,7 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnNew;
-            this.layoutControlItem2.Location = new System.Drawing.Point(765, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(681, 0);
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(127, 32);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(127, 32);
             this.layoutControlItem2.Name = "layoutControlItem2";
@@ -435,13 +452,13 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(518, 32);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(434, 32);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnEdit;
-            this.layoutControlItem4.Location = new System.Drawing.Point(997, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(913, 0);
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(117, 32);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(117, 32);
             this.layoutControlItem4.Name = "layoutControlItem4";
@@ -454,7 +471,7 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnVisualize;
-            this.layoutControlItem5.Location = new System.Drawing.Point(892, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(808, 0);
             this.layoutControlItem5.MaxSize = new System.Drawing.Size(105, 32);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(105, 32);
             this.layoutControlItem5.Name = "layoutControlItem5";
@@ -467,7 +484,7 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.btnViewReport;
-            this.layoutControlItem6.Location = new System.Drawing.Point(643, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(559, 0);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(122, 32);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(122, 32);
             this.layoutControlItem6.Name = "layoutControlItem6";
@@ -480,7 +497,7 @@
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnMRPList;
-            this.layoutControlItem7.Location = new System.Drawing.Point(518, 0);
+            this.layoutControlItem7.Location = new System.Drawing.Point(434, 0);
             this.layoutControlItem7.MaxSize = new System.Drawing.Size(125, 32);
             this.layoutControlItem7.MinSize = new System.Drawing.Size(125, 32);
             this.layoutControlItem7.Name = "layoutControlItem7";
@@ -489,6 +506,19 @@
             this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.btnDelete;
+            this.layoutControlItem8.Location = new System.Drawing.Point(1030, 0);
+            this.layoutControlItem8.MaxSize = new System.Drawing.Size(84, 32);
+            this.layoutControlItem8.MinSize = new System.Drawing.Size(84, 32);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem8.Size = new System.Drawing.Size(84, 32);
+            this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
             // 
             // pmItemList
             // 
@@ -529,6 +559,42 @@
             this.barButtonItem3.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
             this.barButtonItem3.Name = "barButtonItem3";
             this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+            // 
+            // btnExportSKU
+            // 
+            this.btnExportSKU.Caption = "Export SKU";
+            this.btnExportSKU.Id = 3;
+            this.btnExportSKU.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportSKU.ImageOptions.Image")));
+            this.btnExportSKU.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportSKU.ImageOptions.LargeImage")));
+            this.btnExportSKU.Name = "btnExportSKU";
+            this.btnExportSKU.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportSKU_ItemClick);
+            // 
+            // btnExportItemCode
+            // 
+            this.btnExportItemCode.Caption = "Export Item Code";
+            this.btnExportItemCode.Id = 4;
+            this.btnExportItemCode.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportItemCode.ImageOptions.Image")));
+            this.btnExportItemCode.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportItemCode.ImageOptions.LargeImage")));
+            this.btnExportItemCode.Name = "btnExportItemCode";
+            this.btnExportItemCode.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportItemCode_ItemClick);
+            // 
+            // btnExportItemPrice
+            // 
+            this.btnExportItemPrice.Caption = "Export Item Price";
+            this.btnExportItemPrice.Id = 5;
+            this.btnExportItemPrice.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportItemPrice.ImageOptions.Image")));
+            this.btnExportItemPrice.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportItemPrice.ImageOptions.LargeImage")));
+            this.btnExportItemPrice.Name = "btnExportItemPrice";
+            this.btnExportItemPrice.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportItemPrice_ItemClick);
+            // 
+            // btnExportItemCostPrice
+            // 
+            this.btnExportItemCostPrice.Caption = "Export Item Cost Price";
+            this.btnExportItemCostPrice.Id = 6;
+            this.btnExportItemCostPrice.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportItemCostPrice.ImageOptions.Image")));
+            this.btnExportItemCostPrice.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportItemCostPrice.ImageOptions.LargeImage")));
+            this.btnExportItemCostPrice.Name = "btnExportItemCostPrice";
+            this.btnExportItemCostPrice.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportItemCostPrice_ItemClick);
             // 
             // barManager1
             // 
@@ -583,42 +649,6 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 685);
             // 
-            // btnExportSKU
-            // 
-            this.btnExportSKU.Caption = "Export SKU";
-            this.btnExportSKU.Id = 3;
-            this.btnExportSKU.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportSKU.ImageOptions.Image")));
-            this.btnExportSKU.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportSKU.ImageOptions.LargeImage")));
-            this.btnExportSKU.Name = "btnExportSKU";
-            this.btnExportSKU.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportSKU_ItemClick);
-            // 
-            // btnExportItemCode
-            // 
-            this.btnExportItemCode.Caption = "Export Item Code";
-            this.btnExportItemCode.Id = 4;
-            this.btnExportItemCode.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportItemCode.ImageOptions.Image")));
-            this.btnExportItemCode.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportItemCode.ImageOptions.LargeImage")));
-            this.btnExportItemCode.Name = "btnExportItemCode";
-            this.btnExportItemCode.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportItemCode_ItemClick);
-            // 
-            // btnExportItemPrice
-            // 
-            this.btnExportItemPrice.Caption = "Export Item Price";
-            this.btnExportItemPrice.Id = 5;
-            this.btnExportItemPrice.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportItemPrice.ImageOptions.Image")));
-            this.btnExportItemPrice.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportItemPrice.ImageOptions.LargeImage")));
-            this.btnExportItemPrice.Name = "btnExportItemPrice";
-            this.btnExportItemPrice.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportItemPrice_ItemClick);
-            // 
-            // btnExportItemCostPrice
-            // 
-            this.btnExportItemCostPrice.Caption = "Export Item Cost Price";
-            this.btnExportItemCostPrice.Id = 6;
-            this.btnExportItemCostPrice.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportItemCostPrice.ImageOptions.Image")));
-            this.btnExportItemCostPrice.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportItemCostPrice.ImageOptions.LargeImage")));
-            this.btnExportItemCostPrice.Name = "btnExportItemCostPrice";
-            this.btnExportItemCostPrice.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportItemCostPrice_ItemClick);
-            // 
             // frmItemCodeList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -649,6 +679,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pmItemList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
@@ -702,5 +733,7 @@
         private DevExpress.XtraBars.BarButtonItem btnExportItemCode;
         private DevExpress.XtraBars.BarButtonItem btnExportItemPrice;
         private DevExpress.XtraBars.BarButtonItem btnExportItemCostPrice;
+        private DevExpress.XtraEditors.SimpleButton btnDelete;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
     }
 }

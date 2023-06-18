@@ -546,5 +546,33 @@ namespace DataAccess
                 SQLCon.Sqlconn().Close();
             }
         }
+
+        public void DeleteItemCode(object ItemCodeID, object UserID, bool isDeleteOrUndelete = true)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_ITEMCODE]";
+                    cmd.Parameters.AddWithValue("@ITEMCODEID", ItemCodeID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@isDelete", isDeleteOrUndelete);
+                    int rowsafftected = cmd.ExecuteNonQuery();
+                    if (rowsafftected <= 0)
+                        throw new Exception("Error while deleting item code");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while deleting item code", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
     }
 }

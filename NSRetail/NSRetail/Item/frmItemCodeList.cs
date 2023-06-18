@@ -13,8 +13,10 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraSplashScreen;
 using Entity;
 using ErrorManagement;
+using NSRetail.Login;
 
 namespace NSRetail
 {
@@ -83,7 +85,22 @@ namespace NSRetail
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (gvItemList.FocusedRowHandle >= 0 &&
+                    XtraMessageBox.Show($"Are you sure you want to delete the Item Code : {gvItemList.GetFocusedRowCellValue("ITEMCODE")}?"
+                    , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    new ItemCodeRepository().DeleteItemCode(gvItemList.GetFocusedRowCellValue("ITEMCODEID"), Utility.UserID);
+                    XtraMessageBox.Show($"Delete completed successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ((frmMain)MdiParent).bbiRefreshData_ItemClick(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
         }
 
         private void btnVisualize_Click(object sender, EventArgs e)
@@ -165,6 +182,7 @@ namespace NSRetail
         {
             btnEdit.Enabled = enabled;
             btnVisualize.Enabled = enabled;
+            btnDelete.Enabled = enabled;
         }
 
         private void gvItemList_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
@@ -354,6 +372,5 @@ namespace NSRetail
             }
             return stddetail;
         }
-
     }
 }

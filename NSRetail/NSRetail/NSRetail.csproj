@@ -242,6 +242,12 @@
     <Compile Include="ReportForms\Wareshouse\Audit\ucCostPriceAudit.Designer.cs">
       <DependentUpon>ucCostPriceAudit.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucDeletedItemCodes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucDeletedItemCodes.Designer.cs">
+      <DependentUpon>ucDeletedItemCodes.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\Audit\ucHDDClearhistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -957,6 +963,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucCostPriceAudit.resx">
       <DependentUpon>ucCostPriceAudit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucDeletedItemCodes.resx">
+      <DependentUpon>ucDeletedItemCodes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucHDDClearhistory.resx">
       <DependentUpon>ucHDDClearhistory.cs</DependentUpon>
