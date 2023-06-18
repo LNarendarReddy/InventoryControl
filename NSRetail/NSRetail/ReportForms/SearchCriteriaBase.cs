@@ -265,7 +265,9 @@ namespace NSRetail
 
         public virtual bool ValidateMandatoryFields()
         {
-            var layoutControlOfSearch = Controls.OfType<LayoutControl>().First();
+            var layoutControlOfSearch = Controls.OfType<LayoutControl>().FirstOrDefault();
+            if (layoutControlOfSearch == null) return true;
+
             var missingValues = MandatoryFields?.Where(x => string.IsNullOrEmpty(x.EditValue?.ToString()))
                                     .Select(x => $"{Environment.NewLine}\t* " + layoutControlOfSearch.GetItemByControl(x).Text);
 
