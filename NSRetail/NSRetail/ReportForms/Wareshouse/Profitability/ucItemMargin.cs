@@ -30,10 +30,18 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "ICPDELETEDBY", "Cost Price Deleted By" },
                 { "ICPDELETEDDATE", "Cost Price Deleted Date" },
                 { "MARGINWOT", "Margin WOT" },
-                { "MARGINWT", "Margin WT" }
+                { "MARGINWT", "Margin WT" },
+                { "MARGINWOTPER", "Margin % WOT" },
+                { "MARGINWTPER", "Margin % WT" }
             };
 
             SetFocusControls(cmbCategory, cmbCategory, specificColumnHeaders);
+            IncludeSettingsCollection = new List<IncludeSettings>()
+            {
+                new IncludeSettings("Classification", "IncludeClassification", new List<string>() { "CLASSIFICATIONNAME" }),
+                new IncludeSettings("Sub-Classification", "IncludeSubClassification", new List<string>() { "SUBCLASSIFICATIONNAME" }),
+                new IncludeSettings("Calculate margin on MRP", "CalculateOnMRP", new List<string>() {  })
+            };
         }
 
         public override object GetData()
