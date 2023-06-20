@@ -29,6 +29,9 @@ namespace NSRetail.Stock
             cmbCategory.EditValue = 13;
             cmbCategory.Enabled = false;
 
+            luLocation.Properties.DataSource = objMasterRep.GetAvailableLocations();
+            luLocation.Properties.ValueMember = "LOCATIONNAME";
+            luLocation.Properties.DisplayMember = "LOCATIONNAME";
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -38,7 +41,7 @@ namespace NSRetail.Stock
                 if (!dxValidationProvider1.Validate() ||
                     XtraMessageBox.Show("Are you sure want to print Dispatch DC?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                     return;
-                DataSet ds = new StockRepository().SaveDispatchDC(cmbBranch.EditValue, cmbCategory.EditValue, Utility.UserID);
+                DataSet ds = new StockRepository().SaveDispatchDC(cmbBranch.EditValue, cmbCategory.EditValue, luLocation.EditValue, Utility.UserID);
                 if (ds == null || ds.Tables.Count == 0) throw new Exception("No Dispatch Exists");
                 rptDispatchDC rpt = new rptDispatchDC(ds.Tables[0], ds.Tables[1]);
                 rpt.ShowPrintMarginsWarning = false;

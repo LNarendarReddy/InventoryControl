@@ -135,6 +135,10 @@ namespace DataAccess
         {
             return new ReportRepository().GetReportData("USP_R_CATEGORY");
         }
+        public DataTable GetAvailableLocations()
+        {
+            return new ReportRepository().GetReportData("USP_R_LOCATIONLIST");
+        }
 
         public Category DeleteCategory(Category ObjCategory)
         {

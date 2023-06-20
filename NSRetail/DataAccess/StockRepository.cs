@@ -529,7 +529,7 @@ namespace DataAccess
             return ds;
         }
                
-        public DataSet SaveDispatchDC(object BranchID,object CategoryID,object UserID)
+        public DataSet SaveDispatchDC(object BranchID, object CategoryID, object LocationName, object UserID)
         {
             DataSet ds = new DataSet();
             try
@@ -542,6 +542,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
                     cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@LocationName", LocationName);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);
