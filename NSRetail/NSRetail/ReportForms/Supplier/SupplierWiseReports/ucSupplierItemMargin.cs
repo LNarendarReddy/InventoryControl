@@ -28,11 +28,19 @@ namespace NSRetail.ReportForms.Supplier.SupplierWiseReports
                 { "ICPDELETEDBY", "Cost Price Deleted By" },
                 { "ICPDELETEDDATE", "Cost Price Deleted Date" },
                 { "MARGINWOT", "Margin WOT" },
-                { "MARGINWT", "Margin WT" }
+                { "MARGINWT", "Margin WT" },
+                { "MARGINWOTPER", "Margin % WOT" },
+                { "MARGINWTPER", "Margin % WT" }
             };
 
             SetFocusControls(cmbsupplier, cmbsupplier, specificColumnHeaders);
             AllowedRoles = new List<string> { "Division Manager" };
+            IncludeSettingsCollection = new List<IncludeSettings>()
+            {
+                new IncludeSettings("Classification", "IncludeClassification", new List<string>() { "CLASSIFICATIONNAME" }),
+                new IncludeSettings("Sub-Classification", "IncludeSubClassification", new List<string>() { "SUBCLASSIFICATIONNAME" }),
+                new IncludeSettings("Calculate margin on MRP", "CalculateOnMRP", new List<string>() {  })
+            };
         }
         public override object GetData()
         {
