@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.XtraEditors;
 using System.Collections.Generic;
 using System.Data;
 
@@ -22,10 +23,6 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 , { "SUBCATEGORYNAME", "Sub Category" }
             };
 
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-
             cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
@@ -35,13 +32,14 @@ namespace NSRetail.ReportForms.Stock.StockReports
             txtThresholdValue.EditValue = 0;
             txtThresholdValue.Enabled = false;
             AllowedRoles = new List<string> { "Division Manager", "IT User", "Division User" };
+            MandatoryFields = new List<BaseEdit> { cmbBranch, cmbCategory };
         }
 
         public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                { "BranchID", cmbBranch.EditValue },
+                { "BranchIDs", cmbBranch.EditValue },
                 { "CategoryID", cmbCategory.EditValue },
                 { "ThresholdValue", txtThresholdValue.EditValue }
             };
