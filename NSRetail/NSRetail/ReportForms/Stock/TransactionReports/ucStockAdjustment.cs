@@ -23,18 +23,27 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "TOTALCPTAX", "Total CP TAX" },
                 { "TOTALSPWOT", "Total SP WOT" },
                 { "TOTALSPWT", "Total SP WT" },
-                { "TOTALSPTAX", "Total SP TAX" }
+                { "TOTALSPTAX", "Total SP TAX" },
+                { "CREATEDBY", "Created By" },
+                { "PREVQUANTITY", "Prev. Qty" },
+                { "ADJQUANTITY", "Adjusted Qty" },
+                { "AFTERQUANTITY", "After Adjustment Qty" },
+                { "CURQUANTITY", "Current Qty" },
+                { "CREATETIME", "Created Time" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
                 new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODOCITY" },true)
                 , new IncludeSettings("Time", "IncludeTime", new List<string>{ "CREATETIME" })
-                , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP",
-                    "COSTPRICEWOT", "COSTPRICEWT", "COSTPRICETAX", "SALEPRICEWOT", "SALEPRICEWT", "SALEPRICETAX", "QUANTITY" })
+                , new IncludeSettings("Item details", "IncludeItem", new List<string>{ 
+                    "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP",
+                    "COSTPRICEWOT", "COSTPRICEWT", "COSTPRICETAX", "SALEPRICEWOT", "SALEPRICEWT", "SALEPRICETAX"
+                    , "PREVQUANTITY", "ADJQUANTITY", "AFTERQUANTITY", "CURQUANTITY" })
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
+                , new IncludeSettings("Created-By", "IncludeCreatedBy", new List<string>{ "CREATEDBY" })
             };
 
             SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);
