@@ -29,10 +29,17 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "ICPCREATEDDATE", "Cost Price Created Date" },
                 { "ICPDELETEDBY", "Cost Price Deleted By" },
                 { "ICPDELETEDDATE", "Cost Price Deleted Date" },
-                { "MARGINWOT", "Margin WOT" },
-                { "MARGINWT", "Margin WT" },
-                { "MARGINWOTPER", "Margin % WOT" },
-                { "MARGINWTPER", "Margin % WT" }
+                { "MRPMARGINWOT", "MRP Margin WOT" },
+                { "MRPMARGINWT", "MRP Margin WT" },
+                { "MRPMARGINWOTPER", "MRP Margin % WOT" },
+                { "MRPMARGINWTPER", "MRP Margin % WT" },
+                { "ACTUALMARGINWOT", "Actual Margin WOT" },
+                { "ACTUALMARGINWT", "Actual Margin WT" },
+                { "ACTUALMARGINWOTPER", "Actual Margin % WOT" },
+                { "ACTUALMARGINWTPER", "Actual Margin % WT" },
+                { "ACTUALPRICEWT", "Actual Price WT" },
+                { "ACTUALPRICEWOT", "Actual Price WOT" },
+                { "OFFERNAME", "Applied Offer Name" }
             };
 
             SetFocusControls(cmbCategory, cmbCategory, specificColumnHeaders);
@@ -40,7 +47,6 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
             {
                 new IncludeSettings("Classification", "IncludeClassification", new List<string>() { "CLASSIFICATIONNAME" }),
                 new IncludeSettings("Sub-Classification", "IncludeSubClassification", new List<string>() { "SUBCLASSIFICATIONNAME" }),
-                new IncludeSettings("Calculate margin on MRP", "CalculateOnMRP", new List<string>() {  })
             };
         }
 
