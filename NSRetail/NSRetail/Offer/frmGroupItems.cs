@@ -73,7 +73,7 @@ namespace NSRetail
             else
             {
                 int OfferItemID = new OfferRepository().SaveOfferItem(OfferID,
-                    cmbItemCode.EditValue, Utility.UserID);
+                    cmbItemCode.EditValue, Utility.UserID, txtNoOfPieces.EditValue);
                 gvItems.SetRowCellValue(e.RowHandle, "OFFERITEMMAPID", OfferItemID);
             }
             int rowhandle = cmbItemCodeView.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
@@ -85,6 +85,7 @@ namespace NSRetail
             gvItems.SetRowCellValue(e.RowHandle, "SUBCATEGORYID", cmbItemCodeView.GetRowCellValue(rowhandle, "SUBCATEGORYID"));
             gvItems.SetRowCellValue(e.RowHandle, "CATEGORYNAME", cmbItemCodeView.GetRowCellValue(rowhandle, "CATEGORYNAME"));
             gvItems.SetRowCellValue(e.RowHandle, "SUBCATEGORYNAME", cmbItemCodeView.GetRowCellValue(rowhandle, "SUBCATEGORYNAME"));
+            gvItems.SetRowCellValue(e.RowHandle, "NUMBEROFPIECES", txtNoOfPieces.EditValue);
         }
 
         private void frmGroupItems_KeyPress(object sender, KeyPressEventArgs e)
@@ -95,7 +96,7 @@ namespace NSRetail
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (cmbItemCode.EditValue == null) return;
+            if (!dxValidationProvider1.Validate()) return;
             gvItems.GridControl.BindingContext = new BindingContext();
             gvItems.GridControl.DataSource = dtItems;
             if (gvItems.LocateByValue("ITEMCODEID", cmbItemCode.EditValue) >= 0)
@@ -149,6 +150,11 @@ namespace NSRetail
                 ErrorManagement.ErrorMgmt.ShowError(ex);
                 ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
             }
+        }
+
+        private void frmGroupItems_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -52,12 +52,18 @@
             this.gcOfferType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbOffertype = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcPieces = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -66,11 +72,6 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode)).BeginInit();
@@ -110,6 +111,7 @@
             this.gridColumn6,
             this.gcOfferType,
             this.gridColumn14,
+            this.gcPieces,
             this.gridColumn8,
             this.gridColumn9,
             this.gridColumn10,
@@ -270,6 +272,14 @@
             this.gridColumn14.VisibleIndex = 3;
             this.gridColumn14.Width = 112;
             // 
+            // gcPieces
+            // 
+            this.gcPieces.Caption = "Offer Threshold";
+            this.gcPieces.FieldName = "NUMBEROFPIECES";
+            this.gcPieces.Name = "gcPieces";
+            this.gcPieces.Visible = true;
+            this.gcPieces.VisibleIndex = 4;
+            // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "Created By";
@@ -312,6 +322,51 @@
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.OptionsColumn.AllowEdit = false;
             // 
+            // gridColumn21
+            // 
+            this.gridColumn21.Caption = "MRP";
+            this.gridColumn21.FieldName = "MRP";
+            this.gridColumn21.Name = "gridColumn21";
+            this.gridColumn21.Visible = true;
+            this.gridColumn21.VisibleIndex = 5;
+            this.gridColumn21.Width = 65;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "Sale Price";
+            this.gridColumn15.FieldName = "SALEPRICE";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 6;
+            this.gridColumn15.Width = 70;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Cost price WOT";
+            this.gridColumn7.FieldName = "COSTPRICEWOT";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 7;
+            this.gridColumn7.Width = 112;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Cost Price WT";
+            this.gridColumn3.FieldName = "COSTPRICEWT";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 8;
+            this.gridColumn3.Width = 88;
+            // 
+            // gridColumn22
+            // 
+            this.gridColumn22.Caption = "Final Price";
+            this.gridColumn22.FieldName = "FINALPRICE";
+            this.gridColumn22.Name = "gridColumn22";
+            this.gridColumn22.Visible = true;
+            this.gridColumn22.VisibleIndex = 9;
+            this.gridColumn22.Width = 82;
+            // 
             // gcDelete
             // 
             this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
@@ -320,7 +375,7 @@
             this.gcDelete.ColumnEdit = this.btnDelete;
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 9;
+            this.gcDelete.VisibleIndex = 10;
             this.gcDelete.Width = 107;
             // 
             // btnDelete
@@ -400,51 +455,6 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(1116, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Cost Price WT";
-            this.gridColumn3.FieldName = "COSTPRICEWT";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 7;
-            this.gridColumn3.Width = 88;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Cost price WOT";
-            this.gridColumn7.FieldName = "COSTPRICEWOT";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
-            this.gridColumn7.Width = 112;
-            // 
-            // gridColumn15
-            // 
-            this.gridColumn15.Caption = "Sale Price";
-            this.gridColumn15.FieldName = "SALEPRICE";
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 5;
-            this.gridColumn15.Width = 70;
-            // 
-            // gridColumn21
-            // 
-            this.gridColumn21.Caption = "MRP";
-            this.gridColumn21.FieldName = "MRP";
-            this.gridColumn21.Name = "gridColumn21";
-            this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 4;
-            this.gridColumn21.Width = 65;
-            // 
-            // gridColumn22
-            // 
-            this.gridColumn22.Caption = "Final Price";
-            this.gridColumn22.FieldName = "FINALPRICE";
-            this.gridColumn22.Name = "gridColumn22";
-            this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 8;
-            this.gridColumn22.Width = 82;
-            // 
             // frmCreateOfferList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -514,5 +524,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
+        private DevExpress.XtraGrid.Columns.GridColumn gcPieces;
     }
 }

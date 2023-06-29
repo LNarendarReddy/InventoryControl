@@ -13,7 +13,7 @@ namespace DataAccess
         static SqlConnection ObjCon = new SqlConnection();
         static string BuildType = Convert.ToString(ConfigurationManager.AppSettings["BuildType"]);
         public static SqlConnection Sqlconn()
-        {            
+        {             
             try
             {
                 if (ObjCon?.State == ConnectionState.Open)
@@ -21,6 +21,7 @@ namespace DataAccess
                     return ObjCon;
                 }
                 else
+           
                 {
                     string ServerName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}ServerName"].ToString());
                     string DBName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}DBName"].ToString());

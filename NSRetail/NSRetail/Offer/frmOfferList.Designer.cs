@@ -88,6 +88,7 @@
             this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.GCBASEOFFERID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcnewbutton = new DevExpress.XtraLayout.LayoutControlItem();
@@ -216,7 +217,8 @@
             this.gcViewItems,
             this.gcEdit,
             this.gcDelete,
-            this.GCBASEOFFERID});
+            this.GCBASEOFFERID,
+            this.gridColumn3});
             this.gvOffer.DetailHeight = 404;
             this.gvOffer.GridControl = this.gcOffer;
             this.gvOffer.Name = "gvOffer";
@@ -449,7 +451,7 @@
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 7;
+            this.gridColumn19.VisibleIndex = 8;
             this.gridColumn19.Width = 82;
             // 
             // gcViewBranches
@@ -459,7 +461,7 @@
             this.gcViewBranches.MinWidth = 23;
             this.gcViewBranches.Name = "gcViewBranches";
             this.gcViewBranches.Visible = true;
-            this.gcViewBranches.VisibleIndex = 9;
+            this.gcViewBranches.VisibleIndex = 10;
             this.gcViewBranches.Width = 99;
             // 
             // btnViewBranches
@@ -479,7 +481,7 @@
             this.gcViewItems.MinWidth = 23;
             this.gcViewItems.Name = "gcViewItems";
             this.gcViewItems.Visible = true;
-            this.gcViewItems.VisibleIndex = 10;
+            this.gcViewItems.VisibleIndex = 11;
             this.gcViewItems.Width = 78;
             // 
             // btnViewItems
@@ -501,7 +503,7 @@
             this.gcEdit.MinWidth = 23;
             this.gcEdit.Name = "gcEdit";
             this.gcEdit.Visible = true;
-            this.gcEdit.VisibleIndex = 8;
+            this.gcEdit.VisibleIndex = 9;
             this.gcEdit.Width = 78;
             // 
             // btnEdit
@@ -523,7 +525,7 @@
             this.gcDelete.MinWidth = 23;
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 11;
+            this.gcDelete.VisibleIndex = 12;
             this.gcDelete.Width = 78;
             // 
             // btnDelete
@@ -541,6 +543,15 @@
             this.GCBASEOFFERID.Caption = "BASEOFFERID";
             this.GCBASEOFFERID.FieldName = "BASEOFFERID";
             this.GCBASEOFFERID.Name = "GCBASEOFFERID";
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Base Offer";
+            this.gridColumn3.FieldName = "BONAME";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 7;
             // 
             // Root
             // 
@@ -674,5 +685,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcNoOfItems;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn29;
         private DevExpress.XtraGrid.Columns.GridColumn GCBASEOFFERID;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
     }
 }

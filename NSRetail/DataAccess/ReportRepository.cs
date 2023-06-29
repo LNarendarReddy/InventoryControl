@@ -29,6 +29,8 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
+                if(ex.Message.Contains("Warehouse and outlets"))
+                    throw new Exception(ex.Message);
                 throw new Exception($"Error While Retrieving {procedureName}", ex);
             }
             finally

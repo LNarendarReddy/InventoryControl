@@ -57,7 +57,15 @@ namespace NSRetail.Stock
         }
         private void cmbSupplier_EditValueChanged(object sender, EventArgs e)
         {
-            InitialLoad();
+            try
+            {
+                InitialLoad();
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+                ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
+            }
         }
         private void InitialLoad()
         {

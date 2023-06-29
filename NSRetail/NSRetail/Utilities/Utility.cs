@@ -24,6 +24,7 @@ namespace NSRetail
         private static DataTable dtItemCodeFiltered;
         private static DataTable dtNonEAN;
         private static DataTable dtParentItemList;
+        private static DataTable dtReturnStatus;
         private static List<GSTInfo> gstInfoList;
 
         public static int UserID = 4;
@@ -314,6 +315,27 @@ namespace NSRetail
             {
                 baseEdit.EditValue = null;
             }
+        }
+
+        public static DataTable Returnstatus()
+        {
+            if(dtReturnStatus == null)
+            {
+                dtReturnStatus = new DataTable();
+                dtReturnStatus.Columns.Add("RETURNSTATUSID", typeof(int));
+                dtReturnStatus.Columns.Add("RETURNSTATUSNAME", typeof(string));
+
+                DataRow drid = dtReturnStatus.NewRow();
+                drid["RETURNSTATUSID"] = 1;
+                drid["RETURNSTATUSNAME"] = "Accepted";
+                dtReturnStatus.Rows.Add(drid);
+
+                DataRow drname = dtReturnStatus.NewRow();
+                drname["RETURNSTATUSID"] = 2;
+                drname["RETURNSTATUSNAME"] = "Rejected";
+                dtReturnStatus.Rows.Add(drname);
+            }
+            return dtReturnStatus;
         }
     }
 }

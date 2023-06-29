@@ -35,7 +35,6 @@ namespace Entity
     {
         public object CATEGORYID { get; set; }
         public object CATEGORYNAME { get; set; }
-
         public object AllowOpenItems { get; set; }
     }
     public class SubCategory : EntityBase

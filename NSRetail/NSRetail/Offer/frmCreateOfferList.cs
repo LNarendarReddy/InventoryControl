@@ -85,6 +85,7 @@ namespace NSRetail
                 offer.OfferTypeID = Convert.ToInt32(row["OFFERTYPEID"]);
                 offer.OfferValue = Convert.ToInt32(row["OFFERVALUE"]);
                 offer.ItemCodeID = Convert.ToInt32(row["ITEMCODEID"]);
+                offer.OfferThreshold = Convert.ToInt32(row["NUMBEROFPIECES"]);
                 offer.BaseOfferID = BaseOfferID;
                 offer.UserID = Utility.UserID;
                 new OfferRepository().SaveOfferFromBaseOffer(offer);
@@ -123,6 +124,12 @@ namespace NSRetail
             {
                 e.Valid = false;
                 view.SetColumnError(gcOfferType, "Offertype is mandatory");
+            }
+            
+            if (view.GetRowCellValue(e.RowHandle, gcPieces) == DBNull.Value)
+            {
+                e.Valid = false;
+                view.SetColumnError(gcOfferType, "No of Pieces is mandatory");
             }
             if (e.Valid)
                 view.ClearColumnErrors();

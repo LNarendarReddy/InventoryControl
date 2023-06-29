@@ -370,7 +370,7 @@ namespace DataAccess
             }
             return dtOfferItem;
         }
-        public int SaveOfferItem(object OfferID, object BranchID, object UserID)
+        public int SaveOfferItem(object OfferID, object BranchID, object UserID, object NUMBEROFPIECES)
         {
             int OfferBranchID = 0;
             try
@@ -383,6 +383,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@OfferID", OfferID);
                     cmd.Parameters.AddWithValue("@ItemCodeID", BranchID);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@NUMBEROFPIECES", NUMBEROFPIECES);
                     object objreturn = cmd.ExecuteScalar();
                     if (!int.TryParse(objreturn.ToString(), out OfferBranchID))
                         throw new Exception("Error while saivng offer item");
@@ -577,6 +578,8 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ITEMCODEID", offer.ItemCodeID);
                     cmd.Parameters.AddWithValue("@BASEOFFERID", offer.BaseOfferID);
                     cmd.Parameters.AddWithValue("@UserID", offer.UserID);
+                    cmd.Parameters.AddWithValue("@NUMBEROFPIECES", offer.OfferThreshold);
+
                     offer.OfferID = cmd.ExecuteScalar();
                 }
             }

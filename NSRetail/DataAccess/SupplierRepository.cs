@@ -127,10 +127,26 @@ namespace DataAccess
             }
         }
 
-        public void UpdateSupplierReturns(object SupplierReturnsID, object UserID)
+        public void UpdateSupplierReturns(object SupplierReturnsID, object UserID, DataTable dt)
         {
             try
             {
+
+                if (dt.Rows.Count == 0)
+                    return;
+                dt.Columns.Remove("SNO");
+                dt.Columns.Remove("SUPPLIERRETURNSID");
+                dt.Columns.Remove("ITEMCOSTPRICEID");
+                dt.Columns.Remove("ITEMCODE");
+                dt.Columns.Remove("ITEMNAME");
+                dt.Columns.Remove("MRP");
+                dt.Columns.Remove("SALEPRICE");
+                dt.Columns.Remove("QUANTITY");
+                dt.Columns.Remove("COSTPRICE");
+                dt.Columns.Remove("WEIGHTINKGS");
+                dt.Columns.Remove("TOTALCOSTPRICE");
+                dt.Columns.Remove("SELECTED");
+
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.Sqlconn();
@@ -138,6 +154,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_U_SUPPLIERRETURNS]";
                     cmd.Parameters.AddWithValue("@SupplierReturnsID", SupplierReturnsID);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@dt", dt);
                     object objreturn = cmd.ExecuteScalar();
                     if (objreturn != null)
                     {
@@ -148,6 +165,55 @@ namespace DataAccess
             catch (Exception ex)
             {
                 if (ex.Message.Contains("Few items are not freezed"))
+                    throw ex;
+                else
+                    throw new Exception("Error while updating supplier returns detail");
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+        }
+
+        public void InitiateCreditNote(object SupplierReturnsID, object UserID, DataTable dt)
+        {
+            try
+            {
+                if (dt.Rows.Count == 0)
+                    return;
+
+                dt.Columns.Remove("SNO");
+                dt.Columns.Remove("SUPPLIERRETURNSID");
+                dt.Columns.Remove("ITEMCOSTPRICEID");
+                dt.Columns.Remove("ITEMCODE");
+                dt.Columns.Remove("ITEMNAME");
+                dt.Columns.Remove("MRP");
+                dt.Columns.Remove("SALEPRICE");
+                dt.Columns.Remove("QUANTITY");
+                dt.Columns.Remove("COSTPRICE");
+                dt.Columns.Remove("WEIGHTINKGS");
+                dt.Columns.Remove("TOTALCOSTPRICE");
+                dt.Columns.Remove("SELECTED");
+                dt.Columns.Remove("RETURNSTATUS");
+
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_INITIATECN]";
+                    cmd.Parameters.AddWithValue("@SupplierReturnsID", SupplierReturnsID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@dtids", dt);
+                    object objreturn = cmd.ExecuteScalar();
+                    if (objreturn != null)
+                    {
+                        throw new Exception(Convert.ToString(objreturn));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("initiating credit note"))
                     throw ex;
                 else
                     throw new Exception("Error while updating supplier returns detail");
@@ -180,34 +246,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error while retrieving supplier returns");
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
-            }
-            return dt;
-        }
-
-        public DataTable GetSupllierReturnsDetail(object SupplierReturnsID)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_SUPPLIERRETURNSDETAIL]";
-                    cmd.Parameters.AddWithValue("@SUPPLIERRETURNSID", SupplierReturnsID);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error while retrieving Supplier Returns");
             }
             finally
             {

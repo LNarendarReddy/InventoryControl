@@ -44,6 +44,9 @@
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcSelect = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcReturnstatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbReturnStatus = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -53,6 +56,7 @@
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcSupplierReturns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSupplierReturns)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbReturnStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -99,6 +103,8 @@
             this.gcSupplierReturns.Location = new System.Drawing.Point(12, 38);
             this.gcSupplierReturns.MainView = this.gvSupplierReturns;
             this.gcSupplierReturns.Name = "gcSupplierReturns";
+            this.gcSupplierReturns.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.cmbReturnStatus});
             this.gcSupplierReturns.Size = new System.Drawing.Size(1079, 585);
             this.gcSupplierReturns.TabIndex = 10;
             this.gcSupplierReturns.TabStop = false;
@@ -123,13 +129,16 @@
             this.gridColumn12,
             this.gridColumn14,
             this.gridColumn13,
-            this.gridColumn15});
+            this.gridColumn15,
+            this.gcSelect,
+            this.gcReturnstatus});
             this.gvSupplierReturns.GridControl = this.gcSupplierReturns;
             this.gvSupplierReturns.Name = "gvSupplierReturns";
             this.gvSupplierReturns.OptionsMenu.EnableGroupPanelMenu = false;
             this.gvSupplierReturns.OptionsView.ShowFooter = true;
             this.gvSupplierReturns.OptionsView.ShowGroupPanel = false;
             this.gvSupplierReturns.OptionsView.ShowViewCaption = true;
+            this.gvSupplierReturns.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView_CustomSummaryCalculate);
             // 
             // gridColumn4
             // 
@@ -162,7 +171,7 @@
             this.gridColumn7.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 1;
-            this.gridColumn7.Width = 323;
+            this.gridColumn7.Width = 259;
             // 
             // gridColumn8
             // 
@@ -184,7 +193,7 @@
             this.gridColumn9.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 3;
-            this.gridColumn9.Width = 85;
+            this.gridColumn9.Width = 65;
             // 
             // gridColumn10
             // 
@@ -195,7 +204,7 @@
             this.gridColumn10.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 4;
-            this.gridColumn10.Width = 85;
+            this.gridColumn10.Width = 76;
             // 
             // gridColumn12
             // 
@@ -207,7 +216,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QUANTITY", "{0:0.##}")});
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 5;
-            this.gridColumn12.Width = 85;
+            this.gridColumn12.Width = 64;
             // 
             // gridColumn14
             // 
@@ -217,6 +226,7 @@
             this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 2;
+            this.gridColumn14.Width = 78;
             // 
             // gridColumn13
             // 
@@ -227,7 +237,7 @@
             this.gridColumn13.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 6;
-            this.gridColumn13.Width = 85;
+            this.gridColumn13.Width = 90;
             // 
             // gridColumn15
             // 
@@ -239,7 +249,41 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTALCOSTPRICE", "{0:0.##}")});
             this.gridColumn15.Visible = true;
             this.gridColumn15.VisibleIndex = 7;
-            this.gridColumn15.Width = 113;
+            this.gridColumn15.Width = 106;
+            // 
+            // gcSelect
+            // 
+            this.gcSelect.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcSelect.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcSelect.Caption = "Select";
+            this.gcSelect.FieldName = "SELECTED";
+            this.gcSelect.Name = "gcSelect";
+            this.gcSelect.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "SELECTED", "", ((short)(1)))});
+            this.gcSelect.Visible = true;
+            this.gcSelect.VisibleIndex = 8;
+            this.gcSelect.Width = 124;
+            // 
+            // gcReturnstatus
+            // 
+            this.gcReturnstatus.Caption = "Return Status";
+            this.gcReturnstatus.ColumnEdit = this.cmbReturnStatus;
+            this.gcReturnstatus.FieldName = "RETURNSTATUS";
+            this.gcReturnstatus.Name = "gcReturnstatus";
+            this.gcReturnstatus.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "RETURNSTATUS", "", ((short)(2)))});
+            this.gcReturnstatus.Width = 149;
+            // 
+            // cmbReturnStatus
+            // 
+            this.cmbReturnStatus.AutoHeight = false;
+            this.cmbReturnStatus.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbReturnStatus.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RETURNSTATUSID", "RETURNSTATUSID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RETURNSTATUSNAME", "RETURNSTATUSNAME")});
+            this.cmbReturnStatus.Name = "cmbReturnStatus";
+            this.cmbReturnStatus.ShowHeader = false;
             // 
             // Root
             // 
@@ -303,6 +347,7 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcSupplierReturns)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSupplierReturns)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbReturnStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -335,5 +380,8 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraGrid.Columns.GridColumn gcSelect;
+        private DevExpress.XtraGrid.Columns.GridColumn gcReturnstatus;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbReturnStatus;
     }
 }

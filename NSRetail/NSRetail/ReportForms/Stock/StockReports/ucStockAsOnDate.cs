@@ -17,10 +17,6 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 { "QTYORWGHT", "Quantity or Weight in KG(s)" }
             };
 
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-
             SetFocusControls(dtAsOnDate, cmbBranch, columnHeaders);
 
             dtAsOnDate.EditValue = DateTime.Today.AddDays(-DateTime.Today.Day);

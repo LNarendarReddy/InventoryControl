@@ -106,6 +106,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
             }
         }
+
         private void gvItems_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
             if (gvItems.FocusedRowHandle < 0)
