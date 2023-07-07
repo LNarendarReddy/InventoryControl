@@ -33,7 +33,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtBRefund;
         }
@@ -61,7 +61,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtBRefundDetail;
         }
@@ -92,7 +92,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtDayClosure;
         }
@@ -120,7 +120,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtDayClosureDetail;
         }
@@ -148,7 +148,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtDayClosureBill;
         }
@@ -176,7 +176,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dsDayClosureItems;
         }
@@ -204,7 +204,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dsDayClosureRefund;
         }
@@ -232,7 +232,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dsDayClosureVoidItems;
         }
@@ -260,7 +260,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dsbillDetail;
         }
@@ -291,7 +291,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
 
@@ -319,7 +319,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtRunningSale;
         }
@@ -346,7 +346,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtTaxWiseSale;
         }
@@ -373,7 +373,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtTaxWiseSale;
         }
@@ -403,7 +403,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtItemwiseSale;
         }
@@ -431,7 +431,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
     }

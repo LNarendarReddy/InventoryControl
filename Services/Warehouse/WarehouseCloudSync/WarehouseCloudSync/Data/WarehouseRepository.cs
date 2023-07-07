@@ -94,11 +94,11 @@ namespace WarehouseCloudSync.Data
 
             TimeSpan.TryParse(DateTime.Now.ToString("HH:mm:ss"), out TimeSpan curTime);
 
-            if (curTime >= TimeSpan.Parse("20:00:00") || curTime <= TimeSpan.Parse("06:00:00"))
+            if (curTime >= TimeSpan.Parse("20:00:00") || curTime <= TimeSpan.Parse("09:00:00"))
             {
                 if (count != null && int.TryParse(count.ToString(), out int countValue) && countValue > 0)
                 {
-                    Console.WriteLine($"Continuing next day closure process");
+                    Console.WriteLine($"Continuing previous day closure process");
                     ProccessDayClosures();
                 }
             }

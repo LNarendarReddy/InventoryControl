@@ -47,7 +47,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjBranch;
         }
@@ -92,7 +92,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjBranch;
         }
@@ -127,7 +127,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjCategory;
         }
@@ -167,7 +167,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjCategory;
         }
@@ -203,7 +203,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjSubCategory;
         }
@@ -239,7 +239,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjSubCategory;
         }
@@ -282,7 +282,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjUser;
         }
@@ -317,7 +317,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjUser;
         }
@@ -386,7 +386,7 @@ namespace DataAccess
             {
                 throw ex;
             }
-            finally { SQLCon.Sqlconn().Close(); }
+            finally {  }
         }
         public Dealer SaveDealer(Dealer ObjDealer)
         {
@@ -425,7 +425,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjDealer;
         }
@@ -469,7 +469,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjDealer;
         }
@@ -505,7 +505,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjCounter;
         }
@@ -540,7 +540,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjCounter;
         }
@@ -574,7 +574,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjMOP;
         }
@@ -608,7 +608,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjMOP;
         }
@@ -644,7 +644,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjUOM;
         }
@@ -679,7 +679,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjUOM;
         }
@@ -718,7 +718,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjGST;
         }
@@ -755,7 +755,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjGST;
         }
@@ -796,7 +796,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ObjPrinterSettings;
         }
@@ -829,7 +829,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
 
@@ -856,7 +856,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
 
@@ -883,7 +883,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
 
@@ -909,7 +909,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
 
@@ -939,7 +939,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return itemClassification;
         }
@@ -970,7 +970,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return itemSubClassification;
         }

@@ -36,7 +36,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dsItemCodes;
         }
@@ -68,7 +68,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dsItemCode;
         }
@@ -96,7 +96,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dt;
         }
@@ -148,7 +148,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return itemObj;
         }
@@ -182,7 +182,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dsItemVisualizer;
         }
@@ -209,7 +209,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtItemCodes;
         }
@@ -237,7 +237,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtItemCodes;
         }
@@ -264,7 +264,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtItem;
         }
@@ -288,7 +288,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return nextSKUCode;
         }
@@ -317,7 +317,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtParentItems;
         }
@@ -345,7 +345,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtItemCodes;
         }
@@ -373,7 +373,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtOffers;
         }
@@ -401,7 +401,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
 
@@ -429,7 +429,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
 
@@ -456,7 +456,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtItems;
         }
@@ -483,7 +483,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtItems;
         }
@@ -516,7 +516,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
 
@@ -543,7 +543,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
 
@@ -571,7 +571,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
     }

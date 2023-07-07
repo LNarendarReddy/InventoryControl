@@ -33,7 +33,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtStockCounting;
         }
@@ -61,7 +61,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtStockCountingDetail;
         }
@@ -89,7 +89,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtStockCountingDiff;
         }
@@ -117,7 +117,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtStockCountingDiff;
         }
@@ -150,7 +150,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
 
@@ -177,7 +177,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtStockCounting;
         }
@@ -206,7 +206,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtStockCounting;
         }

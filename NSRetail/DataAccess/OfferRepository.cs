@@ -35,7 +35,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtOfferType;
         }
@@ -61,7 +61,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtItemGroup;
         }
@@ -87,7 +87,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ItemGroupID;
         }
@@ -114,7 +114,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtItemGroupDetail;
         }
@@ -142,7 +142,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return ItemGroupDetailID;
         }
@@ -168,7 +168,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
         public DataTable GetOffer(bool IsDeal = false)
@@ -194,7 +194,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtOffer;
         }
@@ -231,7 +231,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return OfferID;
         }
@@ -257,7 +257,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
         public DataTable GetOfferBranch(object OfferID, bool IsBaseOffer = false)
@@ -284,7 +284,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtOfferBranch;
         }
@@ -313,7 +313,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return OfferBranchID;
         }
@@ -340,7 +340,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
         public DataTable GetOfferItem(object OfferID)
@@ -366,7 +366,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtOfferItem;
         }
@@ -395,7 +395,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return OfferBranchID;
         }
@@ -422,7 +422,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
         public void DeleteOfferitem(object OfferItemMapID, object UserID)
@@ -447,7 +447,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
         public DataTable GetApliesTo()
@@ -472,7 +472,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dtAppliesTo;
         }
@@ -508,7 +508,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return baseOffer;
         }
@@ -534,7 +534,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dt;
         }
@@ -560,7 +560,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
         public Offer SaveOfferFromBaseOffer(Offer offer)
@@ -589,7 +589,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return offer;
         }
@@ -616,7 +616,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
             return dt;
         }
@@ -643,7 +643,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
         public void ImportOffer(object BaseOfferID,object CategoryID,  DataTable dtOffers, object UserID)
@@ -675,7 +675,7 @@ namespace DataAccess
             }
             finally
             {
-                SQLCon.Sqlconn().Close();
+                
             }
         }
     }

@@ -67,7 +67,6 @@ namespace WarehouseCloudSync
             {
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
-                Console.ReadLine();
             }
             Thread.Sleep(5 * 60 * 1000);
             StartSync();
