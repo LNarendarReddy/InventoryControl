@@ -22,8 +22,9 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "PROFITMARGINWT", "Profit Margin WT" },
                 { "PROFITMARGINPERWT", "Profit Margin % WT" },
                 { "PERIODICITY", "Periodicity" },
-                { "SALEPRICEWOT", "Sale Price WOT" },
-                { "SALEPRICETAX", "Sale Price Tax" },
+                { "ACTUALSALEPRICEWOT", "Actual Sale Price WOT" },
+                { "ACTUALSALEPRICETAX", "Actual Sale Price Tax" },
+                { "ACTUALSALEPRICE", "Actual Sale Price" },
                 { "GSTCODE", "GST Code" },
                 { "SALEQUANTITY", "Sale Qty" },
                 { "DEALERNAME", "Supplier Name" }
@@ -35,7 +36,10 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
                 new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODICITY" }, true)
-                , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "SALEPRICE", "SALEPRICEWOT", "SALEPRICETAX", "SALEQUANTITY" })
+                , new IncludeSettings("Item details", "IncludeItem", new List<string>{ 
+                        "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "SALEPRICE"
+                        , "ACTUALSALEPRICE", "ACTUALSALEPRICEWOT", "ACTUALSALEPRICETAX", "SALEQUANTITY" 
+                        , "COSTPRICEWOT", "COSTPRICETAX", "COSTPRICEWT"})
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" }, true)
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })

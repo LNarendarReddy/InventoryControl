@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -55,8 +56,10 @@ namespace NSRetail.ReportForms
         {
             try
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
                 object datasource = selectedReportHolder.SearchCriteriaControl.GetData();
-                InvokeUIOperation(datasource);
+                InvokeUIOperation(datasource, sw);
             }
             catch (Exception ex)
             {
@@ -64,13 +67,19 @@ namespace NSRetail.ReportForms
             }
         }
 
-        private void InvokeUIOperation(object dtReportData)
+        private void InvokeUIOperation(object dtReportData, Stopwatch sw)
         {
             if (InvokeRequired) 
             {
-                BeginInvoke((Action)(() => InvokeUIOperation(dtReportData))); 
+                BeginInvoke((Action)(() => InvokeUIOperation(dtReportData, sw))); 
                 return; 
             }
+
+            sw.Stop();
+            
+            #if DEBUG
+            XtraMessageBox.Show($"Time taken : {sw.Elapsed}");
+            #endif
 
             gvResults.Columns.Clear();
             gcResults.DataSource = dtReportData;
