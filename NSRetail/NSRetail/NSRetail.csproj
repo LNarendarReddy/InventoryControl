@@ -290,6 +290,12 @@
     <Compile Include="ReportForms\Wareshouse\StockAndSale\ucStockAndSales.Designer.cs">
       <DependentUpon>ucStockAndSales.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpPaymentWise.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpPaymentWise.Designer.cs">
+      <DependentUpon>ucTaxBreakUpPaymentWise.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxwiseReturns.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1047,6 +1053,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierReports\ucSupplierItems.resx">
       <DependentUpon>ucSupplierItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpPaymentWise.resx">
+      <DependentUpon>ucTaxBreakUpPaymentWise.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptBill.resx">
       <DependentUpon>rptBill.cs</DependentUpon>

@@ -81,6 +81,7 @@ namespace NSRetail
                 , {"ITEMNAME", "Item Name"}
                 , {"SKUCODE", "SKU Code"}
                 , {"ITEMCODE", "Item Code"}
+                , {"ISOPENITEM", "Is open item"}
                 , {"CATEGORYNAME", "Category"}
                 , {"SUBCATEGORYNAME", "Sub Category"}
                 , {"SNO", "SNo"}
@@ -100,6 +101,7 @@ namespace NSRetail
                 , {"COSTPRICETAX", "Cost Price Tax"}
                 , {"COSTPRICEWT", "Cost Price with Tax"}
                 , {"TOTALCOSTPRICEWOT", "Total Cost Price w/o Tax"}
+                , {"TOTALCOSTPRICEtax", "Total Cost Price Tax"}
                 , {"TOTALCOSTPRICEWT", "Total Cost Price with Tax"}
                 , {"DEALERNAME", "Supplier"}
             };

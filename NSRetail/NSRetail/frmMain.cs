@@ -514,6 +514,7 @@ namespace NSRetail
             taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax break-up day wise", SearchCriteriaControl = new ucTaxBreakUpDayWise() });
             taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
             taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax Wise Returns", SearchCriteriaControl = new ucTaxwiseReturns() });
+            taxReports.SubCategory.Add(new ReportHolder() { ReportName = "Tax break-up payment mode wise", SearchCriteriaControl = new ucTaxBreakUpPaymentWise() });
             reportList.Add(taxReports);
 
             ShowReportForm(reportList, "Warehouse");
