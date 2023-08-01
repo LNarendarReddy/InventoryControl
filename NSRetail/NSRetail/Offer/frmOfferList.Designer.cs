@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOfferList));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -49,6 +48,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOfferList));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
@@ -94,6 +94,8 @@
             this.lcnewbutton = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).BeginInit();
@@ -107,6 +109,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcnewbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -123,6 +126,7 @@
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
             this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
+            this.layoutControl1.Controls.Add(this.btnViewReport);
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.btnNew);
             this.layoutControl1.Controls.Add(this.gcOffer);
@@ -563,7 +567,8 @@
             this.layoutControlItem1,
             this.lcnewbutton,
             this.layoutControlItem3,
-            this.emptySpaceItem1});
+            this.emptySpaceItem1,
+            this.layoutControlItem2});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.Root.Size = new System.Drawing.Size(1233, 760);
@@ -607,8 +612,31 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(981, 40);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(862, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // btnViewReport
+            // 
+            this.btnViewReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
+            this.btnViewReport.Location = new System.Drawing.Point(870, 8);
+            this.btnViewReport.Name = "btnViewReport";
+            this.btnViewReport.Size = new System.Drawing.Size(115, 36);
+            this.btnViewReport.StyleController = this.layoutControl1;
+            this.btnViewReport.TabIndex = 7;
+            this.btnViewReport.Text = "View Report";
+            this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.btnViewReport;
+            this.layoutControlItem2.Location = new System.Drawing.Point(862, 0);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(119, 40);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(119, 40);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(119, 40);
+            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
             // 
             // frmOfferList
             // 
@@ -635,6 +663,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcnewbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -686,5 +715,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn29;
         private DevExpress.XtraGrid.Columns.GridColumn GCBASEOFFERID;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.SimpleButton btnViewReport;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
     }
 }

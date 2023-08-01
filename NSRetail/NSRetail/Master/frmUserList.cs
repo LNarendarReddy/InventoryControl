@@ -12,6 +12,7 @@ using DataAccess;
 using Entity;
 using ErrorManagement;
 using DevExpress.Utils.Menu;
+using DevExpress.XtraGrid.Columns;
 
 namespace NSRetail
 {
@@ -28,6 +29,7 @@ namespace NSRetail
             try
             {
                 gcUser.DataSource = objMasterRep.GetUser();
+                gvUser.Columns["USERSTATUS"].FilterInfo = new ColumnFilterInfo("USERSTATUS = 'ACTIVE'");
             }
             catch (Exception ex)
             {

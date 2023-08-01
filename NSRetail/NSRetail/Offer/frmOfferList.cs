@@ -177,5 +177,10 @@ namespace NSRetail
         {
 
         }
+
+        private void btnViewReport_Click(object sender, EventArgs e)
+        {
+            gcOffer.ShowRibbonPrintPreview();
+        }
     }
 }

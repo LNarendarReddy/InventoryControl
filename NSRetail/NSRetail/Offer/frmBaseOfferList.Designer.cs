@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBaseOfferList));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -54,6 +53,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBaseOfferList));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnNewOffer = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -87,6 +87,8 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).BeginInit();
@@ -101,10 +103,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnViewReport);
             this.layoutControl1.Controls.Add(this.btnNewOffer);
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.gcOffer);
@@ -401,7 +405,8 @@
             this.layoutControlItem1,
             this.layoutControlItem2,
             this.layoutControlItem3,
-            this.emptySpaceItem1});
+            this.emptySpaceItem1,
+            this.layoutControlItem4});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1059, 682);
             this.Root.TextVisible = false;
@@ -444,8 +449,31 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(770, 40);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(657, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // btnViewReport
+            // 
+            this.btnViewReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnViewReport.ImageOptions.SvgImage")));
+            this.btnViewReport.Location = new System.Drawing.Point(669, 12);
+            this.btnViewReport.Name = "btnViewReport";
+            this.btnViewReport.Size = new System.Drawing.Size(109, 36);
+            this.btnViewReport.StyleController = this.layoutControl1;
+            this.btnViewReport.TabIndex = 7;
+            this.btnViewReport.Text = "View Report";
+            this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.btnViewReport;
+            this.layoutControlItem4.Location = new System.Drawing.Point(657, 0);
+            this.layoutControlItem4.MaxSize = new System.Drawing.Size(113, 40);
+            this.layoutControlItem4.MinSize = new System.Drawing.Size(113, 40);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(113, 40);
+            this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
             // 
             // frmBaseOfferList
             // 
@@ -473,6 +501,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -512,5 +541,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnImport;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
+        private DevExpress.XtraEditors.SimpleButton btnViewReport;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
     }
 }

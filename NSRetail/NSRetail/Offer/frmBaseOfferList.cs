@@ -121,5 +121,10 @@ namespace NSRetail
                 Utility.UserID);
             gvOffer.SetFocusedRowCellValue("ISACTIVE", "NO");
         }
+
+        private void btnViewReport_Click(object sender, EventArgs e)
+        {
+            gcOffer.ShowRibbonPrintPreview();
+        }
     }
 }
