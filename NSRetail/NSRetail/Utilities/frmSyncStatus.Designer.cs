@@ -61,18 +61,21 @@
             this.layoutControl1.Controls.Add(this.btnRefresh);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1270, 534);
+            this.layoutControl1.Size = new System.Drawing.Size(1482, 616);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // gcSyncStatus
             // 
-            this.gcSyncStatus.Location = new System.Drawing.Point(12, 44);
+            this.gcSyncStatus.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.gcSyncStatus.Location = new System.Drawing.Point(12, 46);
             this.gcSyncStatus.MainView = this.gvSyncStatus;
+            this.gcSyncStatus.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcSyncStatus.Name = "gcSyncStatus";
-            this.gcSyncStatus.Size = new System.Drawing.Size(1246, 478);
+            this.gcSyncStatus.Size = new System.Drawing.Size(1458, 558);
             this.gcSyncStatus.TabIndex = 6;
             this.gcSyncStatus.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvSyncStatus});
@@ -85,6 +88,7 @@
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5});
+            this.gvSyncStatus.DetailHeight = 404;
             this.gvSyncStatus.GridControl = this.gcSyncStatus;
             this.gvSyncStatus.GroupCount = 2;
             this.gvSyncStatus.Name = "gvSyncStatus";
@@ -98,48 +102,59 @@
             // 
             this.gridColumn1.Caption = "ENTITYSYNCSTATUSID";
             this.gridColumn1.FieldName = "ENTITYSYNCSTATUSID";
+            this.gridColumn1.MinWidth = 23;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Width = 87;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Location";
             this.gridColumn2.FieldName = "LOCATIONNAME";
+            this.gridColumn2.MinWidth = 23;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
+            this.gridColumn2.Width = 87;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Entity";
             this.gridColumn3.FieldName = "ENTITYNAME";
+            this.gridColumn3.MinWidth = 23;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 0;
+            this.gridColumn3.Width = 87;
             // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Sync Direction";
             this.gridColumn4.FieldName = "SYNCDIRECTION";
+            this.gridColumn4.MinWidth = 23;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 1;
+            this.gridColumn4.Width = 87;
             // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "Last Synced";
-            this.gridColumn5.DisplayFormat.FormatString = "dd/MM/yyyy hh:mm:ss";
+            this.gridColumn5.DisplayFormat.FormatString = "dd/MM/yyyy hh:mm:ss tt";
             this.gridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn5.FieldName = "SYNCDATE";
+            this.gridColumn5.MinWidth = 23;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 1;
+            this.gridColumn5.Width = 87;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(1159, 15);
+            this.btnDelete.Location = new System.Drawing.Point(1354, 16);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(96, 22);
+            this.btnDelete.Size = new System.Drawing.Size(112, 22);
             this.btnDelete.StyleController = this.layoutControl1;
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
@@ -147,9 +162,10 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(1052, 15);
+            this.btnRefresh.Location = new System.Drawing.Point(1229, 16);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(97, 22);
+            this.btnRefresh.Size = new System.Drawing.Size(113, 22);
             this.btnRefresh.StyleController = this.layoutControl1;
             this.btnRefresh.TabIndex = 4;
             this.btnRefresh.Text = "Refresh";
@@ -165,26 +181,26 @@
             this.emptySpaceItem2,
             this.layoutControlItem3});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1270, 534);
+            this.Root.Size = new System.Drawing.Size(1482, 616);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.btnRefresh;
-            this.layoutControlItem1.Location = new System.Drawing.Point(1037, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(1213, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem1.Size = new System.Drawing.Size(107, 32);
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem1.Size = new System.Drawing.Size(125, 34);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnDelete;
-            this.layoutControlItem2.Location = new System.Drawing.Point(1144, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(1338, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem2.Size = new System.Drawing.Size(106, 32);
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem2.Size = new System.Drawing.Size(124, 34);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -193,25 +209,26 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(1037, 32);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(1213, 34);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.gcSyncStatus;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 32);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 34);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(1250, 482);
+            this.layoutControlItem3.Size = new System.Drawing.Size(1462, 562);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // frmSyncStatus
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1270, 534);
+            this.ClientSize = new System.Drawing.Size(1482, 616);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmSyncStatus";
             this.ShowInTaskbar = false;
             this.Text = "Sync Status";
