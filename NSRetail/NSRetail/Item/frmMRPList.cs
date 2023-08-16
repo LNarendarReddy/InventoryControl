@@ -46,7 +46,7 @@ namespace NSRetail
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            if (gvMRPList.FocusedRowHandle < 0 || gvMRPList.RowCount == 1)
+            if (gvMRPList.FocusedRowHandle < 0)
                 return;
             try
             {

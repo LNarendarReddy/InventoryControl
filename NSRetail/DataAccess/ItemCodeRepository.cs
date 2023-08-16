@@ -378,30 +378,31 @@ namespace DataAccess
             return dtOffers;
         }
 
-        public void DeleteItemPrice(object ItemPriceID,object UserID)
+        public void DeleteItemPrice(object ItemPriceID, object UserID)
         {
+            SqlTransaction transaction = null;
+
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.Sqlconn();
+                    transaction = cmd.Connection.BeginTransaction();
+                    cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_ITEMPRICE]";
                     cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
-                    int rowsafftected = cmd.ExecuteNonQuery();
-                    if (rowsafftected <= 0)
-                        throw new Exception("Error while deleting itemprice");
-
+                    object returnValue = cmd.ExecuteScalar();
+                    if (!int.TryParse(returnValue?.ToString(), out int rowsafftected))
+                        throw new Exception(returnValue.ToString());
+                    transaction?.Commit();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while deleting itemprice", ex);
-            }
-            finally
-            {
-                
+                transaction?.Rollback();
+                throw new Exception($"Error while deleting itemprice : {ex.Message}", ex);
             }
         }
 
