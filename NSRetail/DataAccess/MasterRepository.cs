@@ -278,7 +278,7 @@ namespace DataAccess
                 if (ex.Message.Contains("UC_USERNAME"))
                     throw new Exception("User Already Exists!!");
                 else
-                    throw new Exception("Error While Saving User");
+                    throw new Exception($"Error While Saving User : {ex.Message}");
             }
             finally
             {
