@@ -30,6 +30,7 @@ namespace WarehouseCloudSync.Data
             , { "POS_DENOMINATION",  new EntityMapping("USP_CU_DENOMINATION", "@Denomination") }
             , { "TBLCATEGORY",  new EntityMapping("USP_CU_TBLCATEGORY", "@Category") }
             , { "REASONFORREFUND",  new EntityMapping("USP_CU_REASONFORREFUND", "@RFR") }
+            , { "STOCKSUMMARY",  new EntityMapping("USP_CU_STOCKSUMMARY", "@Stock") }
         };
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)
