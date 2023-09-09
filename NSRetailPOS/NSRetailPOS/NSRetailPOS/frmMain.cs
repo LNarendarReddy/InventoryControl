@@ -157,6 +157,7 @@ namespace NSRetailPOS
 
             if (drSelectedPrice == null)
             {
+                XtraMessageBox.Show("Item code or stock not found for the scan. please contact administrator");
                 return;
             }
 

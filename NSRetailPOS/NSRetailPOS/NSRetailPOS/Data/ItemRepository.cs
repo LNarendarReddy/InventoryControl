@@ -133,6 +133,7 @@ namespace NSRetailPOS.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_R_ITEMMRPLIST]";
                     cmd.Parameters.AddWithValue("@ITEMCODEID", ITEMCODEID);
+                    cmd.Parameters.AddWithValue("@FilterMRPByStock", Utility.branchInfo.FilterMRPByStock);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtItemCodes);
