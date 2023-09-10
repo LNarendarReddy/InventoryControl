@@ -51,7 +51,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 IncludeSettingsCollection.Add(new IncludeSettings("Refund Number", "IncludeRefundNumber", new List<string> { "BREFUNDNUMBER" }));
             }
 
-            SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
+            SetFocusControls(cmbPeriodicity,  cmbItemCode, specificColumnHeaders);
 
             switch(_ReportType)
             {
@@ -70,12 +70,15 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
         }
         public override object GetData()
         {
+            int rowhandle = searchLookUpEdit1View.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "BranchID", cmbBranch.EditValue }
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
                 , { "Periodicity", cmbPeriodicity.EditValue }
+                , { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")}
+                , { "CategoryID", cmbCategory.EditValue }
             };
 
             return GetReportData(procedures[ReportType], parameters);

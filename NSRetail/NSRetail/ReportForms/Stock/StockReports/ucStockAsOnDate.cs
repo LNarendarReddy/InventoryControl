@@ -17,7 +17,7 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 { "QTYORWGHT", "Quantity or Weight in KG(s)" }
             };
 
-            SetFocusControls(dtAsOnDate, cmbBranch, columnHeaders);
+            SetFocusControls(dtAsOnDate, cmbItemCode, columnHeaders);
 
             dtAsOnDate.EditValue = DateTime.Today.AddDays(-DateTime.Today.Day);
             MandatoryFields = new List<BaseEdit> { dtAsOnDate };
@@ -25,10 +25,13 @@ namespace NSRetail.ReportForms.Stock.StockReports
 
         public override object GetData()
         {
+            int rowhandle = searchLookUpEdit1View.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "BranchID", cmbBranch.EditValue },
                 { "AsOnDate", dtAsOnDate.EditValue },
+                { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")},
+                { "CategoryID", cmbCategory.EditValue },
             };
             return GetReportData("USP_RPT_STOCK_ASOFDATE", parameters);
         }

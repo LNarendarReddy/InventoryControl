@@ -54,15 +54,16 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
-            if(drFocusedRow["STATUS"].ToString() == "Draft")
+            if (drFocusedRow["STATUS"].ToString() == "Draft")
             {
                 XtraMessageBox.Show("Draft bills cannot be viewed or printed. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
             DataSet ds = new StockRepository().GetDispatch(drFocusedRow["STOCKDISPATCHID"]);
-            if (ds == null && ds.Tables.Count < 2)
+            if (ds == null || ds.Tables.Count < 2 || ds.Tables[0].Rows.Count <= 0)
             {
+                XtraMessageBox.Show("No data returned from database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 

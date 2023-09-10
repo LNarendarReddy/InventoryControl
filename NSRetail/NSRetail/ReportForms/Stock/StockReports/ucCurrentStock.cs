@@ -12,16 +12,6 @@ namespace NSRetail.ReportForms.Stock.StockReports
 
             MasterRepository masterRepo = new MasterRepository();
 
-            cmbBranch.Properties.DataSource = masterRepo.GetBranch();
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.CheckAll();
-
-            cmbCategory.Properties.DataSource = masterRepo.GetCategory();
-            cmbCategory.Properties.ValueMember = "CATEGORYID";
-            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
-            cmbCategory.EditValue = 13;
-
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "STOCKQTYORWGHT", "Stock Qty or Weight in KGs" }
@@ -31,15 +21,17 @@ namespace NSRetail.ReportForms.Stock.StockReports
 
             MandatoryFields = new List<BaseEdit> { cmbBranch, cmbCategory };
 
-            SetFocusControls(cmbBranch, cmbCategory, columnHeaders);
+            SetFocusControls(cmbBranch, cmbItemCode, columnHeaders);
         }
 
         public override object GetData()
         {
+            int rowhandle = searchLookUpEdit1View.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "BranchIDs", cmbBranch.EditValue }
                 , { "CategoryID", cmbCategory.EditValue }
+                , { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")}
             };
 
             return GetReportData("USP_RPT_CURRENTSTOCK", parameters);

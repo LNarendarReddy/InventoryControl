@@ -50,15 +50,24 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             cmbSupplier.EditValue = 0;
 
             SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, true);
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
+            {
+
+            };
+
+            SetFocusControls(cmbPeriodicity, cmbItemCode, columnHeaders);
         }
         public override object GetData()
         {
+            int rowhandle = searchLookUpEdit1View.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "DealerID", cmbSupplier.EditValue }
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
                 , { "Periodicity", cmbPeriodicity.EditValue }
+                , { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")}
+                , { "CategoryID", cmbCategory.EditValue }
             };
 
             return GetReportData("USP_RPT_PURCHASES", parameters);

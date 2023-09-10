@@ -121,6 +121,12 @@ namespace NSRetail.Stock
                         return;
                     ObjStockRep.UpdateDispatch(ObjStockDispatch);
                     DataSet ds = ObjStockRep.GetDispatch(ObjStockDispatch.STOCKDISPATCHID);
+
+                    if (ds == null || ds.Tables.Count < 2 || ds.Tables[0].Rows.Count <= 0)
+                    {
+                        XtraMessageBox.Show("No data returned from database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        return;
+                    }
                     rptDispatch rpt = new rptDispatch(ds.Tables[0], ds.Tables[1]);
                     rpt.ShowPrintMarginsWarning = false;
                     rpt.ShowRibbonPreview();

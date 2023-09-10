@@ -4,6 +4,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraLayout;
+using Entity;
 using NSRetail.ReportForms;
 using System;
 using System.Collections.Generic;
@@ -61,7 +62,16 @@ namespace NSRetail
                             && child.Name.ToLower().Contains("branch"))
                         {
                             BindBranch(child);
-                            break;
+                        }
+                        else if (child.GetType() == typeof(SearchLookUpEdit)
+                            && child.Name.ToLower().Contains("itemcode"))
+                        {
+                            BindItemCode(child);
+                        }
+                        else if (child.GetType() == typeof(LookUpEdit)
+                            && child.Name.ToLower().Contains("category"))
+                        {
+                            BindCategory(child);
                         }
                     }
                     break;
@@ -304,6 +314,25 @@ namespace NSRetail
             excludedBranches.Where(x => branchIDs.Contains(x)).ToList().ForEach(x => branchIDs.Remove(x));
             cmb.EditValue = string.Join(",", branchIDs);
             AddCheckedComboBoxEnter(cmb);
+            cmb.EnterMoveNextControl = true;
+        }
+
+        public void BindItemCode(Control cntrl)
+        {
+            SearchLookUpEdit cmb = (SearchLookUpEdit)cntrl;
+            cmb.Properties.DataSource = Utility.GetItemCodeListFiltered();
+            cmb.Properties.ValueMember = "ITEMCODEID";
+            cmb.Properties.DisplayMember = "ITEMCODE";
+            cmb.EnterMoveNextControl = true;
+        }
+
+        public void BindCategory(Control cntrl)
+        {
+            LookUpEdit cmb = (LookUpEdit)cntrl;
+            cmb.Properties.DataSource = new MasterRepository().GetCategory();
+            cmb.Properties.ValueMember = "CATEGORYID";
+            cmb.Properties.DisplayMember = "CATEGORYNAME";
+            cmb.EditValue = 13;
             cmb.EnterMoveNextControl = true;
         }
 

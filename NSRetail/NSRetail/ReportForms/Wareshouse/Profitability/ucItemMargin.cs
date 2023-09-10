@@ -10,11 +10,6 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
         {
             InitializeComponent();
 
-            cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
-            cmbCategory.Properties.ValueMember = "CATEGORYID";
-            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
-            cmbCategory.EditValue = 13;
-
             Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>()
             {
                 { "IPGSTCODE", "Sale Price GST %" },
@@ -42,7 +37,7 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "OFFERNAME", "Applied Offer Name" }
             };
 
-            SetFocusControls(cmbCategory, cmbCategory, specificColumnHeaders);
+            SetFocusControls(cmbCategory, cmbItemCode, specificColumnHeaders);
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
                 new IncludeSettings("Classification", "IncludeClassification", new List<string>() { "CLASSIFICATIONNAME" }),
@@ -52,9 +47,11 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
 
         public override object GetData()
         {
+            int rowhandle = searchLookUpEdit1View.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "CategoryID", cmbCategory.EditValue }
+                , { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")}
             };
 
             return GetReportData("USP_RPT_ITEM_MARGIN", parameters);

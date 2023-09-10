@@ -1,9 +1,11 @@
 ﻿using DataAccess;
+using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Supplier.SupplierReports
 {
@@ -53,10 +55,23 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
+
+            if (drFocusedRow["STATUS"].ToString() == "Draft")
+            {
+                XtraMessageBox.Show("Draft bills cannot be viewed or printed. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            DataSet ds = new StockRepository().GetInvoice(drFocusedRow["STOCKENTRYID"]);
+            if (ds == null || ds.Tables.Count < 2 || ds.Tables[0].Rows.Count <= 0)
+            {
+                XtraMessageBox.Show("No data returned from database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             switch (buttonText)
             {
                 case "View":
-                    DataSet ds = new StockRepository().GetInvoice(drFocusedRow["STOCKENTRYID"]);
                     if (ds != null && ds.Tables.Count > 1)
                     {
                         rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);

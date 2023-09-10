@@ -19,17 +19,20 @@ namespace NSRetail.ReportForms.Stock.StockCounting
                 { "QTYORWGHT", "Quantity or Weight in KG(s)" }
             };
 
-            SetFocusControls(cmbBranch, cmbBranch, columnHeaders);
+            SetFocusControls(cmbBranch, cmbItemCode, columnHeaders);
             AllowedRoles = new List<string> { "Stock counting user" };
             MandatoryFields = new List<BaseEdit> { cmbBranch, dtpCountingDate };
         }
 
         public override object GetData()
         {
+            int rowhandle = searchLookUpEdit1View.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "BRANCHID", cmbBranch.EditValue },
                 { "COUNTINGDATE", dtpCountingDate.EditValue }
+                , { "CategoryID", cmbCategory.EditValue }
+                , { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")}
             };
             return GetReportData("USP_RPT_STOCKCOUNTING_CONSOLIDATED", parameters);
         }
