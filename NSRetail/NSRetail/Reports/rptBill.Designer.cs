@@ -535,7 +535,6 @@
             this.ReportFooter1,
             this.ReportHeader1,
             this.GroupHeader2});
-            this.drItems.Expanded = false;
             this.drItems.Level = 0;
             this.drItems.Name = "drItems";
             // 
@@ -543,7 +542,6 @@
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable3});
-            this.Detail.Expanded = false;
             this.Detail.HeightF = 30F;
             this.Detail.Name = "Detail";
             // 
@@ -600,7 +598,7 @@
             // xrTableCell10
             // 
             this.xrTableCell10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SALEPRICE]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[BILLEDAMOUNT] / (Iif([ISOPENITEM] = True,[WEIGHTINKGS] , [QUANTITY]))")});
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.StylePriority.UseTextAlignment = false;
             this.xrTableCell10.Text = "Qnty";
@@ -634,7 +632,6 @@
             this.xrLine2,
             this.xrLine1,
             this.xrTable4});
-            this.ReportFooter1.Expanded = false;
             this.ReportFooter1.HeightF = 45F;
             this.ReportFooter1.Name = "ReportFooter1";
             // 
