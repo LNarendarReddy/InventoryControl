@@ -137,6 +137,7 @@ namespace NSRetailPOS
             if (!isOpenItem)
                 txtWeightInKgs.EditValue = 0.00;
             DataTable dtPrices = itemRepository.GetMRPList(sluItemCode.EditValue);
+            drSelectedPrice = null;
             if (dtPrices.Rows.Count > 1)
             {
                 frmMRPSelection mRPSelection = new frmMRPSelection(dtPrices, txtItemCode.EditValue, sluItemCode.Text)
@@ -154,8 +155,7 @@ namespace NSRetailPOS
             {
                 drSelectedPrice = dtPrices.Rows[0];
             }
-
-            if (drSelectedPrice == null)
+            else if (dtPrices.Rows.Count == 0)
             {
                 XtraMessageBox.Show("Item code or stock not found for the scan. please contact administrator");
                 return;
