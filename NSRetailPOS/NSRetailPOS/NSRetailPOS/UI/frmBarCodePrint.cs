@@ -71,7 +71,7 @@ namespace NSRetailPOS.UI
                 txtItemName.EditValue = cmbLookupView.GetRowCellValue(rowhandle ,"ITEMNAME");
                 cmbCategory.EditValue = cmbLookupView.GetRowCellValue(rowhandle,"CATEGORYID");
 
-                DataTable dtMRPList = new ItemRepository().GetMRPList(cmbItemCode.EditValue);
+                DataTable dtMRPList = new ItemRepository().GetMRPList(cmbItemCode.EditValue, true);
                 if (dtMRPList.Rows.Count > 1)
                 {
                     frmMRPSelection obj = new frmMRPSelection(dtMRPList,cmbItemCode.Text,txtItemName.EditValue);

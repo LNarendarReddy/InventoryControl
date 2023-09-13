@@ -122,7 +122,7 @@ namespace NSRetailPOS.Data
             return dtItemCodes;
         }
 
-        public DataTable GetMRPList(object ITEMCODEID)
+        public DataTable GetMRPList(object ITEMCODEID, bool showAllMRP = false)
         {
             DataTable dtItemCodes = new DataTable();
             try
@@ -133,7 +133,7 @@ namespace NSRetailPOS.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_R_ITEMMRPLIST]";
                     cmd.Parameters.AddWithValue("@ITEMCODEID", ITEMCODEID);
-                    cmd.Parameters.AddWithValue("@FilterMRPByStock", Utility.branchInfo.FilterMRPByStock);
+                    cmd.Parameters.AddWithValue("@FilterMRPByStock", showAllMRP ? true : Utility.branchInfo.FilterMRPByStock);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtItemCodes);

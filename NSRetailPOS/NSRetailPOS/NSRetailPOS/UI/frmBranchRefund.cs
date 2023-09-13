@@ -62,7 +62,7 @@ namespace NSRetailPOS.UI
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODEID", sluItemCode.EditValue);
             txtItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODE");
             isOpenItem = Convert.ToBoolean(sluItemCodeView.GetRowCellValue(rowHandle, "ISOPENITEM"));
-            DataTable dtPrices = new ItemRepository().GetMRPList(sluItemCode.EditValue);
+            DataTable dtPrices = new ItemRepository().GetMRPList(sluItemCode.EditValue, true);
             if (dtPrices.Rows.Count > 1)
             {
                 frmMRPSelection mRPSelection = new frmMRPSelection(dtPrices, txtItemCode.EditValue, sluItemCode.Text)
