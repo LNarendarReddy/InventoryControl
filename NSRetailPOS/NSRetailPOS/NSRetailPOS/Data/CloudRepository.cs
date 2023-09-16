@@ -144,12 +144,16 @@ namespace NSRetailPOS.Data
         public DataSet GetDaySequence(object branchCounterID)
         {
             DataSet dsRestoreData = new DataSet();
+            SqlTransaction sqlTransaction = null;
 
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.SqlCloudconn();
+                    sqlTransaction = cmd.Connection.BeginTransaction();
+
+                    cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_POS_IMPORTDATA]";
                     cmd.Parameters.AddWithValue("@BranchCounterID", branchCounterID);
@@ -161,10 +165,12 @@ namespace NSRetailPOS.Data
             }
             catch (Exception ex)
             {
+                sqlTransaction?.Rollback();
                 throw new Exception("Error While getting restore data", ex);
             }
             finally
             {
+                sqlTransaction?.Commit();
                 SQLCon.SqlCloudconn().Close();
             }
 
