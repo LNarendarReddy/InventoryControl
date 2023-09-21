@@ -309,7 +309,7 @@ namespace NSRetail
         {
             if(isLoading) return;
 
-            sluParentItem.Enabled = !Convert.ToBoolean(chkIsOpenItem.EditValue);
+            //sluParentItem.Enabled = !Convert.ToBoolean(chkIsOpenItem.EditValue);
             sluParentItem.EditValue = null;
         }
 
