@@ -145,6 +145,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\BillDetail.cs" />
     <Compile Include="GoogleDriveRepository.cs" />
     <Compile Include="Data\BillingRepository.cs" />
     <Compile Include="Data\CloudRepository.cs" />
@@ -236,6 +237,12 @@
     </Compile>
     <Compile Include="UI\frmDraftList.Designer.cs">
       <DependentUpon>frmDraftList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmExtraDiscount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmExtraDiscount.Designer.cs">
+      <DependentUpon>frmExtraDiscount.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\frmLogin.cs">
       <SubType>Form</SubType>
@@ -341,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmDraftList.resx">
       <DependentUpon>frmDraftList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmExtraDiscount.resx">
+      <DependentUpon>frmExtraDiscount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

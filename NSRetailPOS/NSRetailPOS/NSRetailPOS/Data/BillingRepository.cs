@@ -492,5 +492,39 @@ namespace NSRetailPOS.Data
             }
             return dtBillOffers;
         }
+
+        public DataTable AddExtraDiscount(object billDetailID, object billedAmount, object userID)
+        {
+            DataTable dtBillDetails = new DataTable();
+            SqlTransaction transaction = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    transaction = SQLCon.Sqlconn().BeginTransaction();
+                    cmd.Transaction = transaction;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_U_BILLDETAIL]";
+                    cmd.Parameters.AddWithValue("@BillDetailID", billDetailID);
+                    cmd.Parameters.AddWithValue("@BilledAmount", billedAmount);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtBillDetails);
+                        transaction.Commit();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                transaction?.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dtBillDetails;
+        }
     }
 }

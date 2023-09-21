@@ -64,6 +64,7 @@ namespace NSRetailPOS
             btnDayClosure.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
             btnStockIn.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
             btnBranchRefund.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
+            gcDiscount.Visible = Utility.branchInfo.BranchID.Equals(45);
 
             DataSet dsInitialData = billingRepository.GetInitialLoad(Utility.loginInfo.UserID, Utility.branchInfo.BranchCounterID);
 
@@ -789,6 +790,33 @@ namespace NSRetailPOS
             XtraMessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             e.Valid = false;
             e.ErrorText = msg;
+        }
+
+        private void btnDiscount_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            if (gvBilling.FocusedRowHandle < 0)
+                return;
+
+            BillDetail billDetailObj = new BillDetail()
+            {
+                BillDetailID = gvBilling.GetFocusedRowCellValue("BILLDETAILID"),
+                ItemCode = gvBilling.GetFocusedRowCellValue("ITEMCODE"),
+                ItemName = gvBilling.GetFocusedRowCellValue("ITEMNAME"),
+                MRP = gvBilling.GetFocusedRowCellValue("MRP"),
+                SalePrice = gvBilling.GetFocusedRowCellValue("SALEPRICE"),
+                Quantity = gvBilling.GetFocusedRowCellValue("QUANTITY"),
+                WeightInKGs = gvBilling.GetFocusedRowCellValue("WEIGHTINKGS"),
+                BilledAmount = gvBilling.GetFocusedRowCellValue("BILLEDAMOUNT"),
+                IsOpenItem = gvBilling.GetFocusedRowCellValue("ISOPENITEM"),
+                ItemPriceID = gvBilling.GetFocusedRowCellValue("ITEMPRICEID")
+            };
+
+          
+            if (new frmExtraDiscount(billDetailObj).ShowDialog() == DialogResult.OK)
+            {
+                UpdateBillDetails(billDetailObj.dtBillDetails, billDetailObj.ItemPriceID);
+                txtItemCode.Focus();
+            }
         }
     }
 }

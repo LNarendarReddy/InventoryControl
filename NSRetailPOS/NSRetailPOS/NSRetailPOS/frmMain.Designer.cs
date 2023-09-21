@@ -34,6 +34,11 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.lblVersionInfo = new DevExpress.XtraEditors.LabelControl();
             this.btnCRWithoutBill = new DevExpress.XtraEditors.SimpleButton();
@@ -81,6 +86,8 @@
             this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gcDiscount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnDiscount = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.txtQuantity = new DevExpress.XtraEditors.TextEdit();
             this.txtSalePrice = new DevExpress.XtraEditors.TextEdit();
             this.txtMRP = new DevExpress.XtraEditors.TextEdit();
@@ -136,6 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcBilling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBilling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDiscount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSalePrice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).BeginInit();
@@ -526,7 +534,8 @@
             this.gcBilling.MainView = this.gvBilling;
             this.gcBilling.Name = "gcBilling";
             this.gcBilling.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.btnDelete});
+            this.btnDelete,
+            this.btnDiscount});
             this.gcBilling.Size = new System.Drawing.Size(1290, 503);
             this.gcBilling.TabIndex = 22;
             this.gcBilling.TabStop = false;
@@ -570,7 +579,8 @@
             this.gridColumn19,
             this.gridColumn24,
             this.gridColumn25,
-            this.gridColumn22});
+            this.gridColumn22,
+            this.gcDiscount});
             this.gvBilling.GridControl = this.gcBilling;
             this.gvBilling.Name = "gvBilling";
             this.gvBilling.OptionsFind.AllowFindPanel = false;
@@ -718,7 +728,7 @@
             this.gridColumn14.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BILLEDAMOUNT", "{0:0.00}")});
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 9;
+            this.gridColumn14.VisibleIndex = 10;
             this.gridColumn14.Width = 65;
             // 
             // gridColumn15
@@ -788,7 +798,7 @@
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 10;
+            this.gridColumn22.VisibleIndex = 11;
             this.gridColumn22.Width = 67;
             // 
             // btnDelete
@@ -800,6 +810,27 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
+            // 
+            // gcDiscount
+            // 
+            this.gcDiscount.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcDiscount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcDiscount.Caption = "Add Discount";
+            this.gcDiscount.ColumnEdit = this.btnDiscount;
+            this.gcDiscount.Name = "gcDiscount";
+            this.gcDiscount.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+            this.gcDiscount.Visible = true;
+            this.gcDiscount.VisibleIndex = 9;
+            // 
+            // btnDiscount
+            // 
+            this.btnDiscount.AutoHeight = false;
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            this.btnDiscount.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnDiscount.Name = "btnDiscount";
+            this.btnDiscount.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnDiscount.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDiscount_ButtonClick);
             // 
             // txtQuantity
             // 
@@ -1327,6 +1358,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcBilling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBilling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDiscount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSalePrice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).EndInit();
@@ -1467,6 +1499,8 @@
         private DevExpress.XtraEditors.LabelControl lblVersionInfo;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDiscount;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDiscount;
     }
 }
 
