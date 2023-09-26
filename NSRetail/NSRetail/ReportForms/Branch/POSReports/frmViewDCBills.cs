@@ -73,7 +73,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                             sum = 0;
                             break;
                         case CustomSummaryProcess.Calculate:
-                            if (view.GetRowCellValue(e.RowHandle, "BILLSTATUSID").Equals(1))
+                            if (view.GetRowCellValue(e.RowHandle, "BILLSTATUSID").Equals(1) && e.FieldValue != null)
                             {
                                 sum += (decimal)e.FieldValue;
                             }

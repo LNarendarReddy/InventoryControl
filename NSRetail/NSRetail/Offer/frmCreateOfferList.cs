@@ -149,7 +149,7 @@ namespace NSRetail
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         DataTable dtTemp = dt.Copy();
-                        List<string> allowedColumns = new List<string> { "ITEMCODE", "OFFERTYPE", "OFFERVALUE" };
+                        List<string> allowedColumns = new List<string> { "ITEMCODE", "OFFERTYPE", "OFFERVALUE", "OFFERTHRESHOLD" };
 
                         dtTemp.Columns.Cast<DataColumn>().Where(x => !allowedColumns.Contains(x.ColumnName))
                             .ToList().ForEach(x => dtTemp.Columns.Remove(x));

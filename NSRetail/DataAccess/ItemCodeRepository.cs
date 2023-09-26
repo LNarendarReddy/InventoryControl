@@ -25,9 +25,9 @@ namespace DataAccess
                     }
                     dsItemCodes.Tables[0].TableName = "ITEMS";
                     dsItemCodes.Tables[1].TableName = "ITEMCODES";
-                    dsItemCodes.Tables[2].TableName = "NONEAN";
-                    if (dsItemCodes.Tables.Count > 3)
-                        dsItemCodes.Tables[3].TableName = "ITEMCODESFILTERED";
+                    //dsItemCodes.Tables[2].TableName = "NONEAN";
+                    //if (dsItemCodes.Tables.Count > 3)
+                    //    dsItemCodes.Tables[3].TableName = "ITEMCODESFILTERED";
                 }
             }
             catch (Exception ex)
