@@ -184,6 +184,8 @@ namespace NSRetail.ReportForms
             btnReport.Enabled = true;            
             dpTop.Text = $"{dpTop.Text} for {selectedReportHolder.ReportName}";
             lcIncludeColumns.Visibility = selectedReportHolder.SearchCriteriaControl.ShowIncludeSetting ? LayoutVisibility.Always : LayoutVisibility.Never;
+            dpLeft.Visibility = DevExpress.XtraBars.Docking.DockVisibility.AutoHide;
+            dpLeft.HideSliding();
             (selectedReportHolder.SearchCriteriaControl.FirstControl ?? selectedReportHolder.SearchCriteriaControl).Focus();
         }
 
