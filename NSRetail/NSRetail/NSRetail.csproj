@@ -254,6 +254,12 @@
     <Compile Include="ReportForms\Wareshouse\Audit\ucHDDClearhistory.Designer.cs">
       <DependentUpon>ucHDDClearhistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucOfferThreshold.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucOfferThreshold.Designer.cs">
+      <DependentUpon>ucOfferThreshold.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\Audit\ucSalePriceAudit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -975,6 +981,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucHDDClearhistory.resx">
       <DependentUpon>ucHDDClearhistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucOfferThreshold.resx">
+      <DependentUpon>ucOfferThreshold.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucSalePriceAudit.resx">
       <DependentUpon>ucSalePriceAudit.cs</DependentUpon>

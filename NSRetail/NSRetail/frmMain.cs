@@ -498,6 +498,7 @@ namespace NSRetail
             auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Sale Price", SearchCriteriaControl = new ucSalePriceAudit() });
             auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Cost Price", SearchCriteriaControl = new ucCostPriceAudit() });      
             auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Deleted Item codes", SearchCriteriaControl = new ucDeletedItemCodes() });      
+            auditReports.SubCategory.Add(new ReportHolder() { ReportName = "Offer threshold", SearchCriteriaControl = new ucOfferThreshold() });
             reportList.Add(auditReports);
 
             ReportHolder profitabilityReports = new ReportHolder() { ReportName = "Profitability Reports" };

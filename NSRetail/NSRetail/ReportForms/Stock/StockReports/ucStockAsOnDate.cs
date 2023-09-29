@@ -19,7 +19,7 @@ namespace NSRetail.ReportForms.Stock.StockReports
 
             SetFocusControls(dtAsOnDate, cmbItemCode, columnHeaders);
 
-            dtAsOnDate.EditValue = DateTime.Today.AddDays(-DateTime.Today.Day);
+            dtAsOnDate.EditValue = DateTime.Today;
             MandatoryFields = new List<BaseEdit> { dtAsOnDate };
         }
 
