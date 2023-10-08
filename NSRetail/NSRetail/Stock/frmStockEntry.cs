@@ -74,6 +74,9 @@ namespace NSRetail.Stock
                     decimal IGST = Convert.ToDecimal(gvStockEntry.Columns["IGST"].SummaryItem.SummaryValue);
                     decimal CESS = Convert.ToDecimal(gvStockEntry.Columns["CESS"].SummaryItem.SummaryValue);
 
+                    ObjStockEntry.SumTaxValue = CGST + SGST + IGST;
+                    ObjStockEntry.SumCessValue = CESS;
+
                     ObjStockEntry.SumGSTValue = CGST + SGST + IGST + CESS;
                     ObjStockEntry.SumFinalPrice = gvStockEntry.Columns["FINALPRICE"].SummaryItem.SummaryValue;
 

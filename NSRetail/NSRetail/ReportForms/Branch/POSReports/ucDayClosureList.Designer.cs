@@ -172,6 +172,7 @@
             this.layoutControlItem4.Size = new System.Drawing.Size(210, 35);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
+            this.layoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // ucDayClosureList
             // 

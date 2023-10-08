@@ -39,6 +39,8 @@ namespace NSRetail.Stock
             txtTotalPriceWT.EditValue = ObjStockEntry.SumTotalPriceWT;
             txtTotalPriceWOT.EditValue = ObjStockEntry.SumTotalPriceWOT;
             txtGSTValue.EditValue = ObjStockEntry.SumGSTValue;
+            txtTaxValue.EditValue = ObjStockEntry.SumTaxValue;
+            txtCessValue.EditValue = ObjStockEntry.SumCessValue;
             txtNetPrice.EditValue = ObjStockEntry.SumFinalPrice;
             txtExpenses.EditValue = 0.00;
             txtDiscountFlat.EditValue = 0.00;

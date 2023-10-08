@@ -592,7 +592,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_MOP]";
-                    cmd.Parameters.AddWithValue("@CATEGORYID", ObjMOP.MOPID);
+                    cmd.Parameters.AddWithValue("@MOPID", ObjMOP.MOPID);
                     cmd.Parameters.AddWithValue("@USERID", ObjMOP.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);

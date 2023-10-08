@@ -43,6 +43,8 @@ namespace Entity
         public object SumTotalPriceWT { get; set; }
         public object SumTotalPriceWOT { get; set; }
         public object SumGSTValue { get; set; }
+        public object SumTaxValue { get; set; }
+        public object SumCessValue { get; set; }
         public object SumFinalPrice { get; set; }
 
         public bool CalculateIGST = false;
