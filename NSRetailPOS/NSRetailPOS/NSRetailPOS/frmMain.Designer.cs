@@ -98,6 +98,7 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -131,7 +132,6 @@
             this.lcgStoreManagerOptions = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -149,6 +149,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCodeView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
@@ -182,7 +183,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcgStoreManagerOptions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
             this.SuspendLayout();
@@ -232,6 +232,8 @@
             this.layoutControl1.Controls.Add(this.txtMRP);
             this.layoutControl1.Controls.Add(this.sluItemCode);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem27});
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(348, 324, 650, 400);
@@ -261,9 +263,9 @@
             // 
             this.btnCRWithoutBill.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCRWithoutBill.ImageOptions.Image")));
             this.btnCRWithoutBill.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCRWithoutBill.Location = new System.Drawing.Point(662, 667);
+            this.btnCRWithoutBill.Location = new System.Drawing.Point(784, 667);
             this.btnCRWithoutBill.Name = "btnCRWithoutBill";
-            this.btnCRWithoutBill.Size = new System.Drawing.Size(297, 22);
+            this.btnCRWithoutBill.Size = new System.Drawing.Size(175, 22);
             this.btnCRWithoutBill.StyleController = this.layoutControl1;
             this.btnCRWithoutBill.TabIndex = 43;
             this.btnCRWithoutBill.Text = "Customer Refund W/O Bill";
@@ -273,9 +275,9 @@
             // 
             this.btnApplyDiscount.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnApplyDiscount.ImageOptions.Image")));
             this.btnApplyDiscount.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnApplyDiscount.Location = new System.Drawing.Point(825, 635);
+            this.btnApplyDiscount.Location = new System.Drawing.Point(771, 667);
             this.btnApplyDiscount.Name = "btnApplyDiscount";
-            this.btnApplyDiscount.Size = new System.Drawing.Size(134, 22);
+            this.btnApplyDiscount.Size = new System.Drawing.Size(188, 22);
             this.btnApplyDiscount.StyleController = this.layoutControl1;
             this.btnApplyDiscount.TabIndex = 42;
             this.btnApplyDiscount.Text = "Apply";
@@ -283,13 +285,13 @@
             // 
             // txtSplDiscPer
             // 
-            this.txtSplDiscPer.Location = new System.Drawing.Point(765, 635);
+            this.txtSplDiscPer.Location = new System.Drawing.Point(874, 635);
             this.txtSplDiscPer.Name = "txtSplDiscPer";
             this.txtSplDiscPer.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtSplDiscPer.Properties.MaskSettings.Set("mask", "P");
             this.txtSplDiscPer.Properties.MaxLength = 5;
             this.txtSplDiscPer.Properties.UseMaskAsDisplayFormat = true;
-            this.txtSplDiscPer.Size = new System.Drawing.Size(50, 22);
+            this.txtSplDiscPer.Size = new System.Drawing.Size(85, 22);
             this.txtSplDiscPer.StyleController = this.layoutControl1;
             this.txtSplDiscPer.TabIndex = 41;
             // 
@@ -324,9 +326,9 @@
             // 
             this.btnSyncData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSyncData.ImageOptions.Image")));
             this.btnSyncData.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSyncData.Location = new System.Drawing.Point(171, 632);
+            this.btnSyncData.Location = new System.Drawing.Point(196, 632);
             this.btnSyncData.Name = "btnSyncData";
-            this.btnSyncData.Size = new System.Drawing.Size(149, 22);
+            this.btnSyncData.Size = new System.Drawing.Size(177, 22);
             this.btnSyncData.StyleController = this.layoutControl1;
             this.btnSyncData.TabIndex = 34;
             this.btnSyncData.Text = "Sync Data(F4)";
@@ -402,10 +404,10 @@
             // 
             this.btnLastBillPrint.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLastBillPrint.ImageOptions.Image")));
             this.btnLastBillPrint.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnLastBillPrint.Location = new System.Drawing.Point(489, 664);
+            this.btnLastBillPrint.Location = new System.Drawing.Point(563, 664);
             this.btnLastBillPrint.Margin = new System.Windows.Forms.Padding(2);
             this.btnLastBillPrint.Name = "btnLastBillPrint";
-            this.btnLastBillPrint.Size = new System.Drawing.Size(150, 22);
+            this.btnLastBillPrint.Size = new System.Drawing.Size(185, 22);
             this.btnLastBillPrint.StyleController = this.layoutControl1;
             this.btnLastBillPrint.TabIndex = 24;
             this.btnLastBillPrint.TabStop = false;
@@ -417,17 +419,16 @@
             // 
             this.chkSingleQuantity.EditValue = true;
             this.chkSingleQuantity.Enabled = false;
-            this.chkSingleQuantity.Location = new System.Drawing.Point(330, 664);
+            this.chkSingleQuantity.Location = new System.Drawing.Point(383, 664);
             this.chkSingleQuantity.Name = "chkSingleQuantity";
             this.chkSingleQuantity.Properties.Caption = "Add item per scan";
-            this.chkSingleQuantity.Size = new System.Drawing.Size(149, 19);
+            this.chkSingleQuantity.Size = new System.Drawing.Size(170, 19);
             this.chkSingleQuantity.StyleController = this.layoutControl1;
             this.chkSingleQuantity.TabIndex = 13;
             this.chkSingleQuantity.TabStop = false;
             // 
             // txtItemCode
             // 
-            this.txtItemCode.EnterMoveNextControl = true;
             this.txtItemCode.Location = new System.Drawing.Point(122, 19);
             this.txtItemCode.Name = "txtItemCode";
             this.txtItemCode.Size = new System.Drawing.Size(68, 22);
@@ -435,15 +436,16 @@
             this.txtItemCode.TabIndex = 0;
             this.txtItemCode.Click += new System.EventHandler(this.txtItemCode_Click);
             this.txtItemCode.Enter += new System.EventHandler(this.txtItemCode_Enter);
+            this.txtItemCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtItemCode_KeyDown);
             this.txtItemCode.Leave += new System.EventHandler(this.txtItemCode_Leave);
             // 
             // btnDayClosure
             // 
             this.btnDayClosure.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDayClosure.ImageOptions.Image")));
             this.btnDayClosure.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnDayClosure.Location = new System.Drawing.Point(171, 664);
+            this.btnDayClosure.Location = new System.Drawing.Point(196, 664);
             this.btnDayClosure.Name = "btnDayClosure";
-            this.btnDayClosure.Size = new System.Drawing.Size(149, 22);
+            this.btnDayClosure.Size = new System.Drawing.Size(177, 22);
             this.btnDayClosure.StyleController = this.layoutControl1;
             this.btnDayClosure.TabIndex = 19;
             this.btnDayClosure.TabStop = false;
@@ -454,9 +456,9 @@
             // 
             this.btnLoadDraftBill.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadDraftBill.ImageOptions.Image")));
             this.btnLoadDraftBill.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnLoadDraftBill.Location = new System.Drawing.Point(489, 632);
+            this.btnLoadDraftBill.Location = new System.Drawing.Point(563, 632);
             this.btnLoadDraftBill.Name = "btnLoadDraftBill";
-            this.btnLoadDraftBill.Size = new System.Drawing.Size(150, 22);
+            this.btnLoadDraftBill.Size = new System.Drawing.Size(185, 22);
             this.btnLoadDraftBill.StyleController = this.layoutControl1;
             this.btnLoadDraftBill.TabIndex = 17;
             this.btnLoadDraftBill.TabStop = false;
@@ -482,7 +484,7 @@
             this.btnCloseBill.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCloseBill.Location = new System.Drawing.Point(12, 632);
             this.btnCloseBill.Name = "btnCloseBill";
-            this.btnCloseBill.Size = new System.Drawing.Size(149, 22);
+            this.btnCloseBill.Size = new System.Drawing.Size(174, 22);
             this.btnCloseBill.StyleController = this.layoutControl1;
             this.btnCloseBill.TabIndex = 15;
             this.btnCloseBill.TabStop = false;
@@ -493,9 +495,9 @@
             // 
             this.btnSaveBill.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveBill.ImageOptions.Image")));
             this.btnSaveBill.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSaveBill.Location = new System.Drawing.Point(330, 632);
+            this.btnSaveBill.Location = new System.Drawing.Point(383, 632);
             this.btnSaveBill.Name = "btnSaveBill";
-            this.btnSaveBill.Size = new System.Drawing.Size(149, 22);
+            this.btnSaveBill.Size = new System.Drawing.Size(170, 22);
             this.btnSaveBill.StyleController = this.layoutControl1;
             this.btnSaveBill.TabIndex = 16;
             this.btnSaveBill.TabStop = false;
@@ -508,7 +510,7 @@
             this.btnRefund.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnRefund.Location = new System.Drawing.Point(12, 664);
             this.btnRefund.Name = "btnRefund";
-            this.btnRefund.Size = new System.Drawing.Size(149, 22);
+            this.btnRefund.Size = new System.Drawing.Size(174, 22);
             this.btnRefund.StyleController = this.layoutControl1;
             this.btnRefund.TabIndex = 18;
             this.btnRefund.TabStop = false;
@@ -945,6 +947,15 @@
             this.gridColumn26.Visible = true;
             this.gridColumn26.VisibleIndex = 2;
             // 
+            // layoutControlItem27
+            // 
+            this.layoutControlItem27.Control = this.btnCRWithoutBill;
+            this.layoutControlItem27.Location = new System.Drawing.Point(0, 32);
+            this.layoutControlItem27.Name = "layoutControlItem27";
+            this.layoutControlItem27.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem27.Size = new System.Drawing.Size(307, 32);
+            this.layoutControlItem27.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // Root
             // 
             this.Root.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
@@ -1127,7 +1138,7 @@
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 599);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
             this.layoutControlGroup4.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutControlGroup4.Size = new System.Drawing.Size(647, 101);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(756, 101);
             this.layoutControlGroup4.Text = "Billing options";
             // 
             // layoutControlItem14
@@ -1136,29 +1147,29 @@
             this.layoutControlItem14.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem14.Name = "layoutControlItem14";
             this.layoutControlItem14.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem14.Size = new System.Drawing.Size(159, 32);
+            this.layoutControlItem14.Size = new System.Drawing.Size(184, 32);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
             // layoutControlItem19
             // 
             this.layoutControlItem19.Control = this.btnLoadDraftBill;
-            this.layoutControlItem19.Location = new System.Drawing.Point(477, 0);
+            this.layoutControlItem19.Location = new System.Drawing.Point(551, 0);
             this.layoutControlItem19.Name = "layoutControlItem19";
             this.layoutControlItem19.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem19.Size = new System.Drawing.Size(160, 32);
+            this.layoutControlItem19.Size = new System.Drawing.Size(195, 32);
             this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem19.TextVisible = false;
             // 
             // layoutControlItem23
             // 
             this.layoutControlItem23.Control = this.chkSingleQuantity;
-            this.layoutControlItem23.Location = new System.Drawing.Point(318, 32);
+            this.layoutControlItem23.Location = new System.Drawing.Point(371, 32);
             this.layoutControlItem23.MaxSize = new System.Drawing.Size(278, 30);
             this.layoutControlItem23.MinSize = new System.Drawing.Size(1, 1);
             this.layoutControlItem23.Name = "layoutControlItem23";
             this.layoutControlItem23.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem23.Size = new System.Drawing.Size(159, 38);
+            this.layoutControlItem23.Size = new System.Drawing.Size(180, 38);
             this.layoutControlItem23.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem23.TextVisible = false;
@@ -1169,47 +1180,47 @@
             this.layoutControlItem12.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem12.Name = "layoutControlItem12";
             this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem12.Size = new System.Drawing.Size(159, 38);
+            this.layoutControlItem12.Size = new System.Drawing.Size(184, 38);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
             // layoutControlItem20
             // 
             this.layoutControlItem20.Control = this.btnSyncData;
-            this.layoutControlItem20.Location = new System.Drawing.Point(159, 0);
+            this.layoutControlItem20.Location = new System.Drawing.Point(184, 0);
             this.layoutControlItem20.Name = "layoutControlItem20";
             this.layoutControlItem20.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem20.Size = new System.Drawing.Size(159, 32);
+            this.layoutControlItem20.Size = new System.Drawing.Size(187, 32);
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
             // 
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.btnDayClosure;
-            this.layoutControlItem21.Location = new System.Drawing.Point(159, 32);
+            this.layoutControlItem21.Location = new System.Drawing.Point(184, 32);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem21.Size = new System.Drawing.Size(159, 38);
+            this.layoutControlItem21.Size = new System.Drawing.Size(187, 38);
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
             // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.btnSaveBill;
-            this.layoutControlItem13.Location = new System.Drawing.Point(318, 0);
+            this.layoutControlItem13.Location = new System.Drawing.Point(371, 0);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem13.Size = new System.Drawing.Size(159, 32);
+            this.layoutControlItem13.Size = new System.Drawing.Size(180, 32);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
             // layoutControlItem25
             // 
             this.layoutControlItem25.Control = this.btnLastBillPrint;
-            this.layoutControlItem25.Location = new System.Drawing.Point(477, 32);
+            this.layoutControlItem25.Location = new System.Drawing.Point(551, 32);
             this.layoutControlItem25.Name = "layoutControlItem25";
             this.layoutControlItem25.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem25.Size = new System.Drawing.Size(160, 38);
+            this.layoutControlItem25.Size = new System.Drawing.Size(195, 38);
             this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem25.TextVisible = false;
             this.layoutControlItem25.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -1282,12 +1293,11 @@
             this.lcgStoreManagerOptions.GroupStyle = DevExpress.Utils.GroupStyle.Card;
             this.lcgStoreManagerOptions.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem17,
-            this.layoutControlItem26,
-            this.layoutControlItem27});
-            this.lcgStoreManagerOptions.Location = new System.Drawing.Point(647, 599);
+            this.layoutControlItem26});
+            this.lcgStoreManagerOptions.Location = new System.Drawing.Point(756, 599);
             this.lcgStoreManagerOptions.Name = "lcgStoreManagerOptions";
             this.lcgStoreManagerOptions.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.lcgStoreManagerOptions.Size = new System.Drawing.Size(323, 101);
+            this.lcgStoreManagerOptions.Size = new System.Drawing.Size(214, 101);
             this.lcgStoreManagerOptions.Text = "Special Access Options";
             // 
             // layoutControlItem17
@@ -1296,29 +1306,19 @@
             this.layoutControlItem17.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem17.Size = new System.Drawing.Size(163, 32);
+            this.layoutControlItem17.Size = new System.Drawing.Size(198, 32);
             this.layoutControlItem17.Text = "Dicount %";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(91, 15);
             // 
             // layoutControlItem26
             // 
             this.layoutControlItem26.Control = this.btnApplyDiscount;
-            this.layoutControlItem26.Location = new System.Drawing.Point(163, 0);
+            this.layoutControlItem26.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem26.Name = "layoutControlItem26";
             this.layoutControlItem26.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem26.Size = new System.Drawing.Size(144, 32);
+            this.layoutControlItem26.Size = new System.Drawing.Size(198, 32);
             this.layoutControlItem26.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem26.TextVisible = false;
-            // 
-            // layoutControlItem27
-            // 
-            this.layoutControlItem27.Control = this.btnCRWithoutBill;
-            this.layoutControlItem27.Location = new System.Drawing.Point(0, 32);
-            this.layoutControlItem27.Name = "layoutControlItem27";
-            this.layoutControlItem27.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem27.Size = new System.Drawing.Size(307, 32);
-            this.layoutControlItem27.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem27.TextVisible = false;
             // 
             // tabbedControlGroup1
             // 
@@ -1364,6 +1364,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCodeView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
@@ -1397,7 +1398,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcgStoreManagerOptions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
             this.ResumeLayout(false);

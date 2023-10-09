@@ -86,11 +86,14 @@ namespace NSRetailPOS.Data
         public DataSet FinishBill(object userID, int daySequenceID, Bill billObj)
         {
             DataSet dsNextBill = new DataSet();
+            SqlTransaction transaction = null;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.Sqlconn();
+                    transaction = SQLCon.Sqlconn().BeginTransaction();
+                    cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_FINISH_BILL]";
                     cmd.Parameters.AddWithValue("@UserID", userID);
@@ -112,6 +115,7 @@ namespace NSRetailPOS.Data
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dsNextBill);
+                        transaction.Commit();
                     }
 
                     dsNextBill.Tables[0].TableName = "BILL";
@@ -120,6 +124,7 @@ namespace NSRetailPOS.Data
             }
             catch (Exception ex)
             {
+                transaction?.Rollback();
                 throw new Exception("Error While finishing and getting next bill", ex);
             }
             finally
