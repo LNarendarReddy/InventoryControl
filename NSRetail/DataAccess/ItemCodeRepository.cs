@@ -406,32 +406,37 @@ namespace DataAccess
             }
         }
 
-        public void UpdateItemPrice(object ItemPriceID, object UserID,object SalePrice)
+        public object SaveItemPrice(object itemCodeID,object ItemPriceID, object MRP, object SalePrice, object GSTID, object UserID)
         {
+            SqlTransaction sqlTransaction = null;
+            object objReturn =  null;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.Sqlconn();
+                    sqlTransaction = cmd.Connection.BeginTransaction();
+                    cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_U_ITEMPRICE]";
+                    cmd.CommandText = "[USP_CU_ITEMPRICE]";
+                    cmd.Parameters.AddWithValue("@ITEMCODEID", itemCodeID);
                     cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
-                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@MRP", MRP);
                     cmd.Parameters.AddWithValue("@SALEPRICE", SalePrice);
-                    int rowsafftected = cmd.ExecuteNonQuery();
-                    if (rowsafftected <= 0)
-                        throw new Exception("Error while updating itemprice");
-
+                    cmd.Parameters.AddWithValue("@GSTID", GSTID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    objReturn = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(objReturn), out int ival))
+                        throw new Exception(Convert.ToString(objReturn));
+                    sqlTransaction?.Commit();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while updating itemprice", ex);
+                sqlTransaction.Rollback();
+                throw new Exception($"Error while updating itemprice: {ex.Message}", ex);
             }
-            finally
-            {
-                
-            }
+            return objReturn;
         }
 
         public DataTable ExportItemList(object ExportType)

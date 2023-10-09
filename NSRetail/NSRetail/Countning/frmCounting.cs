@@ -148,7 +148,7 @@ namespace NSRetail.Countning
             DataTable dtPrices = new ItemCodeRepository().GetMRPList(sluItemCode.EditValue);
             if (dtPrices.Rows.Count > 1)
             {
-                frmMRPList mRPSelection = new frmMRPList(dtPrices)
+                frmMRPList mRPSelection = new frmMRPList(dtPrices, sluItemCode.EditValue)
                 { StartPosition = FormStartPosition.CenterScreen };
                 mRPSelection.ShowDialog();
                 if (!mRPSelection._IsSave)

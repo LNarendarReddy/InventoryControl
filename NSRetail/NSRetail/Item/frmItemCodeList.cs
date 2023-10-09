@@ -222,7 +222,10 @@ namespace NSRetail
                 {
                     DataTable dtMRPList = 
                         new ItemCodeRepository().GetMRPList(gvItemList.GetFocusedRowCellValue("ITEMCODEID"));
-                    new frmMRPList(dtMRPList,true).ShowDialog();
+                    new frmMRPList(dtMRPList, 
+                        gvItemList.GetFocusedRowCellValue("ITEMCODEID"),
+                        true, 
+                        parentID : Convert.ToInt32(gvItemList.GetFocusedRowCellValue("PARENTITEMID"))).ShowDialog();
                 }
             }
             catch (Exception ex)

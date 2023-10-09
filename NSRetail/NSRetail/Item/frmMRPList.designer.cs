@@ -40,23 +40,28 @@
             this.gcMRPList = new DevExpress.XtraGrid.GridControl();
             this.gvMRPList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcMRP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtdecimal = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gcSalePrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gcCostPriceWT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcCostPriceWOT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcGSTCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbGST = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcMRPList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMRPList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtdecimal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbGST)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -86,10 +91,10 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(481, 346);
+            this.btnCancel.Location = new System.Drawing.Point(531, 346);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(136, 22);
+            this.btnCancel.Size = new System.Drawing.Size(86, 22);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
@@ -99,10 +104,10 @@
             // 
             this.btnOk.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnOk.ImageOptions.Image")));
             this.btnOk.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnOk.Location = new System.Drawing.Point(335, 346);
+            this.btnOk.Location = new System.Drawing.Point(437, 346);
             this.btnOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(142, 22);
+            this.btnOk.Size = new System.Drawing.Size(90, 22);
             this.btnOk.StyleController = this.layoutControl1;
             this.btnOk.TabIndex = 5;
             this.btnOk.Text = "Ok";
@@ -116,7 +121,9 @@
             this.gcMRPList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcMRPList.Name = "gcMRPList";
             this.gcMRPList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.btnDelete});
+            this.btnDelete,
+            this.cmbGST,
+            this.txtdecimal});
             this.gcMRPList.Size = new System.Drawing.Size(615, 340);
             this.gcMRPList.TabIndex = 4;
             this.gcMRPList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -135,32 +142,47 @@
             this.gcDelete,
             this.gcCostPriceWT,
             this.gcCostPriceWOT,
-            this.gridColumn1});
+            this.gridColumn1,
+            this.gcGSTCode});
             this.gvMRPList.DetailHeight = 404;
             this.gvMRPList.FixedLineWidth = 3;
             this.gvMRPList.GridControl = this.gcMRPList;
             this.gvMRPList.Name = "gvMRPList";
             this.gvMRPList.OptionsView.ShowGroupPanel = false;
-            this.gvMRPList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvMRPList_CellValueChanged);
+            this.gvMRPList.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gvMRPList_ShowingEditor);
+            this.gvMRPList.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvMRPList_InitNewRow);
+            this.gvMRPList.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gvMRPList_ValidateRow);
+            this.gvMRPList.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gvMRPList_RowUpdated);
             // 
             // gcMRP
             // 
             this.gcMRP.Caption = "MRP";
+            this.gcMRP.ColumnEdit = this.txtdecimal;
             this.gcMRP.FieldName = "MRP";
             this.gcMRP.MinWidth = 23;
             this.gcMRP.Name = "gcMRP";
-            this.gcMRP.OptionsColumn.AllowEdit = false;
             this.gcMRP.Visible = true;
             this.gcMRP.VisibleIndex = 0;
             this.gcMRP.Width = 112;
             // 
+            // txtdecimal
+            // 
+            this.txtdecimal.AutoHeight = false;
+            this.txtdecimal.DisplayFormat.FormatString = "n2";
+            this.txtdecimal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtdecimal.EditFormat.FormatString = "n2";
+            this.txtdecimal.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtdecimal.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtdecimal.MaskSettings.Set("mask", "n2");
+            this.txtdecimal.Name = "txtdecimal";
+            // 
             // gcSalePrice
             // 
             this.gcSalePrice.Caption = "Sale Price";
+            this.gcSalePrice.ColumnEdit = this.txtdecimal;
             this.gcSalePrice.FieldName = "SALEPRICE";
             this.gcSalePrice.MinWidth = 23;
             this.gcSalePrice.Name = "gcSalePrice";
-            this.gcSalePrice.OptionsColumn.AllowEdit = false;
             this.gcSalePrice.Visible = true;
             this.gcSalePrice.VisibleIndex = 1;
             this.gcSalePrice.Width = 114;
@@ -198,7 +220,6 @@
             this.gcCostPriceWT.Caption = "Cost Price WT";
             this.gcCostPriceWT.FieldName = "COSTPRICEWT";
             this.gcCostPriceWT.Name = "gcCostPriceWT";
-            this.gcCostPriceWT.OptionsColumn.AllowEdit = false;
             this.gcCostPriceWT.Visible = true;
             this.gcCostPriceWT.VisibleIndex = 3;
             this.gcCostPriceWT.Width = 122;
@@ -208,10 +229,36 @@
             this.gcCostPriceWOT.Caption = "Cost Price WOT";
             this.gcCostPriceWOT.FieldName = "COSTPRICEWOT";
             this.gcCostPriceWOT.Name = "gcCostPriceWOT";
-            this.gcCostPriceWOT.OptionsColumn.AllowEdit = false;
             this.gcCostPriceWOT.Visible = true;
             this.gcCostPriceWOT.VisibleIndex = 4;
             this.gcCostPriceWOT.Width = 138;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "GST Code";
+            this.gridColumn1.FieldName = "GSTCODE";
+            this.gridColumn1.Name = "gridColumn1";
+            // 
+            // gcGSTCode
+            // 
+            this.gcGSTCode.Caption = "GST Code";
+            this.gcGSTCode.ColumnEdit = this.cmbGST;
+            this.gcGSTCode.FieldName = "GSTID";
+            this.gcGSTCode.Name = "gcGSTCode";
+            this.gcGSTCode.Visible = true;
+            this.gcGSTCode.VisibleIndex = 2;
+            // 
+            // cmbGST
+            // 
+            this.cmbGST.AutoHeight = false;
+            this.cmbGST.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbGST.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTID", "GSTID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTCODE", "GSTCODE")});
+            this.cmbGST.Name = "cmbGST";
+            this.cmbGST.NullText = "";
+            this.cmbGST.ShowHeader = false;
             // 
             // Root
             // 
@@ -241,18 +288,18 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnOk;
-            this.layoutControlItem2.Location = new System.Drawing.Point(333, 344);
+            this.layoutControlItem2.Location = new System.Drawing.Point(435, 344);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(146, 26);
+            this.layoutControlItem2.Size = new System.Drawing.Size(94, 26);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnCancel;
-            this.layoutControlItem3.Location = new System.Drawing.Point(479, 344);
+            this.layoutControlItem3.Location = new System.Drawing.Point(529, 344);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(140, 26);
+            this.layoutControlItem3.Size = new System.Drawing.Size(90, 26);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -261,16 +308,8 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 344);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(333, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(435, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "GST Code";
-            this.gridColumn1.FieldName = "GSTCODE";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 2;
             // 
             // frmMRPList
             // 
@@ -286,12 +325,13 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MRP List";
-            this.Load += new System.EventHandler(this.frmMRPList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcMRPList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMRPList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtdecimal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbGST)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -321,5 +361,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcCostPriceWT;
         private DevExpress.XtraGrid.Columns.GridColumn gcCostPriceWOT;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gcGSTCode;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbGST;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtdecimal;
     }
 }

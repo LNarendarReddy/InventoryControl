@@ -44,6 +44,13 @@ namespace NSRetail
             txtItemCode_Properties_Leave(null, null);
 
             btnSave.Enabled = Utility.Role != "Division Manager" && Utility.Role != "Division User";
+            if (!string.IsNullOrEmpty(Convert.ToString(itemObj.ItemCode)))
+            {
+                txtMRP.Enabled = false;
+                txtSalePrice.Enabled = false; 
+                txtCostPriceWOT.Enabled = false;
+                txtCostPriceWT.Enabled = false;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -395,7 +402,7 @@ namespace NSRetail
 
             if (dtItemCodePrices.Rows.Count > 1)
             {
-                frmMRPList frmMRPList = new frmMRPList(dtItemCodePrices, showCostPrice: true);
+                frmMRPList frmMRPList = new frmMRPList(dtItemCodePrices, itemObj.ItemCodeID, showCostPrice: true);
                 frmMRPList.ShowDialog();
                 if (!frmMRPList._IsSave)
                 {

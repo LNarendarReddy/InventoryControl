@@ -168,7 +168,7 @@ namespace NSRetail.Stock
                     DataTable dtMRPList = ObjItemRep.GetMRPList(cmbItemCode.EditValue);
                     if (dtMRPList.Rows.Count > 1)
                     {
-                        frmMRPList obj = new frmMRPList(dtMRPList);
+                        frmMRPList obj = new frmMRPList(dtMRPList, cmbItemCode.EditValue);
                         obj.ShowDialog();
                         if (obj._IsSave)
                         {

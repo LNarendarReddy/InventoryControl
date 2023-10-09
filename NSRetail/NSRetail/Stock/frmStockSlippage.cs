@@ -54,7 +54,7 @@ namespace NSRetail.Stock
                 DataTable dtMRPList = new ItemCodeRepository().GetMRPList(sluItemCode.EditValue);
                 if (dtMRPList.Rows.Count > 1)
                 {
-                    frmMRPList obj = new frmMRPList(dtMRPList);
+                    frmMRPList obj = new frmMRPList(dtMRPList, sluItemCode.EditValue);
                     obj.ShowDialog();
                     if (obj._IsSave)
                     {
