@@ -5,6 +5,8 @@ using ErrorManagement;
 using DataAccess;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraSplashScreen;
+using static DevExpress.Utils.Diagnostics.GUIResources;
 
 namespace NSRetail
 {
@@ -27,14 +29,11 @@ namespace NSRetail
             cmbGST.ValueMember = "GSTID";
             cmbGST.DisplayMember = "GSTCODE";
 
-
-            gcDelete.Visible = IsItemListCall && Utility.Role != "Division Manager" && Utility.Role != "Division User"; ;
-            //gcSalePrice.OptionsColumn.AllowEdit = IsItemListCall;
+            //gcDelete.Visible = IsItemListCall && Utility.Role != "Division Manager" && Utility.Role != "Division User"; ;
             gcMRPList.DataSource = _dtMRP;
 
             gcCostPriceWT.Visible = showCostPrice;
             gcCostPriceWOT.Visible = showCostPrice;
-            gcSalePrice.OptionsColumn.AllowEdit = IsItemListCall;
             if (IsItemListCall && parentID > 0)
                 gvMRPList.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
         }
@@ -81,15 +80,22 @@ namespace NSRetail
             }
         }
 
+        bool triggerRowupdated = true;
         private void gvMRPList_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
             if (gvMRPList.FocusedRowHandle < 0 || !_IsItemListCall)
                 return;
+            if(!triggerRowupdated)
+            {
+                triggerRowupdated = true;
+                return;
+            }    
+            IOverlaySplashScreenHandle handle = SplashScreenManager.ShowOverlayForm(this);
             try
             {
                 decimal.TryParse(Convert.ToString(gvMRPList.GetFocusedRowCellValue("MRP")), out decimal MRP);
                 decimal.TryParse(Convert.ToString(gvMRPList.GetFocusedRowCellValue("SALEPRICE")), out decimal SALEPRICE);
-                int.TryParse(Convert.ToString(gvMRPList.GetFocusedRowCellValue("MRP")), out int GSTID);
+                int.TryParse(Convert.ToString(gvMRPList.GetFocusedRowCellValue("GSTID")), out int GSTID);
 
                 if (MRP < SALEPRICE)
                     throw new Exception("Saleprice cannot be greater than MRP");
@@ -101,10 +107,13 @@ namespace NSRetail
                     gvMRPList.GetFocusedRowCellValue("SALEPRICE"),
                     gvMRPList.GetFocusedRowCellValue("GSTID"),
                     Utility.UserID);
+                triggerRowupdated = false;
                 gvMRPList.SetFocusedRowCellValue("ITEMPRICEID", Newitempriceid);
+                SplashScreenManager.CloseOverlayForm(handle);
             }
             catch (Exception ex)
             {
+                SplashScreenManager.CloseOverlayForm(handle);
                 ErrorMgmt.ShowError(ex);
                 if (int.TryParse(Convert.ToString(gvMRPList.GetFocusedRowCellValue("ITEMPRICEID")), out int val) && val <= 0)
                 {

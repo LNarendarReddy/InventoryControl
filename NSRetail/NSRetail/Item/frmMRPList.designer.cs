@@ -201,8 +201,6 @@
             this.gcDelete.Caption = "Delete";
             this.gcDelete.ColumnEdit = this.btnDelete;
             this.gcDelete.Name = "gcDelete";
-            this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 5;
             this.gcDelete.Width = 104;
             // 
             // btnDelete
