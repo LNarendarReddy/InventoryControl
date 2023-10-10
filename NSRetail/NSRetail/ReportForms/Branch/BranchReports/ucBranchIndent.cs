@@ -22,7 +22,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "SUBCATEGORYNAME", "Sub Category" }
             };
 
-            MandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
+            MandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, txtIndentDays };
 
             cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -32,10 +32,10 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 
-            dtFromDate.EditValue = DateTime.Now.AddDays(-7);
-            dtToDate.EditValue = DateTime.Now;
+            txtIndentDays.EditValue = 7;
+            txtSafetyDays.EditValue = 0;
 
-            SetFocusControls(cmbBranch, dtToDate, columnHeaders);
+            SetFocusControls(cmbBranch, txtSafetyDays, columnHeaders);
         }
 
         public override object GetData()
@@ -43,8 +43,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "BranchID", cmbBranch.EditValue }
-                , { "FromDate", dtFromDate.EditValue }
-                , { "ToDate", dtToDate.EditValue }
+                , { "IndentDays", txtIndentDays.EditValue }
+                , { "SafetyStockDays", txtSafetyDays.EditValue }
                 , { "CategoryID", cmbCategory.EditValue}
             };
 
@@ -56,8 +56,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             DotMatrixPrintHelper.PrintBranchIndent(
                 cmbBranch.Text
                 , cmbCategory.Text
-                , dtFromDate.Text
-                , dtToDate.Text
+                , txtIndentDays.Text
+                , txtSafetyDays.Text
                 , DotMatrixPrintHelper.GetDataTableWYSIWYG(ResultGridView));
         }
     }
