@@ -34,7 +34,10 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcStockAvailable = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtItemName = new DevExpress.XtraEditors.TextEdit();
+            this.txtItemCode = new DevExpress.XtraEditors.TextEdit();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -42,22 +45,20 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtItemCode = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtItemName = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcMRPList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMRPList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,6 +74,7 @@
             // 
             // gvMRPList
             // 
+            this.gvMRPList.ActiveFilterString = "[ISSTOCKAVAILABLE] = \'Yes\'";
             this.gvMRPList.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.gvMRPList.Appearance.HeaderPanel.Options.UseFont = true;
             this.gvMRPList.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F);
@@ -80,7 +82,8 @@
             this.gvMRPList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
-            this.gridColumn3});
+            this.gridColumn3,
+            this.gcStockAvailable});
             this.gvMRPList.GridControl = this.gcMRPList;
             this.gvMRPList.Name = "gvMRPList";
             this.gvMRPList.OptionsBehavior.Editable = false;
@@ -107,11 +110,18 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
             // 
+            // gcStockAvailable
+            // 
+            this.gcStockAvailable.Caption = "Stock Available?";
+            this.gcStockAvailable.FieldName = "ISSTOCKAVAILABLE";
+            this.gcStockAvailable.Name = "gcStockAvailable";
+            this.gcStockAvailable.Visible = true;
+            this.gcStockAvailable.VisibleIndex = 2;
+            // 
             // layoutControl1
             // 
             this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 9F);
             this.layoutControl1.Appearance.Control.Options.UseFont = true;
-            //this.layoutControl1.Appearance.ControlDisabled.BackColor = System.Drawing.Color.White;
             this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9F);
             this.layoutControl1.Appearance.ControlDisabled.Options.UseBackColor = true;
             this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
@@ -136,6 +146,24 @@
             this.layoutControl1.Size = new System.Drawing.Size(507, 303);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtItemName
+            // 
+            this.txtItemName.Enabled = false;
+            this.txtItemName.Location = new System.Drawing.Point(77, 30);
+            this.txtItemName.Name = "txtItemName";
+            this.txtItemName.Size = new System.Drawing.Size(426, 22);
+            this.txtItemName.StyleController = this.layoutControl1;
+            this.txtItemName.TabIndex = 7;
+            // 
+            // txtItemCode
+            // 
+            this.txtItemCode.Enabled = false;
+            this.txtItemCode.Location = new System.Drawing.Point(77, 4);
+            this.txtItemCode.Name = "txtItemCode";
+            this.txtItemCode.Size = new System.Drawing.Size(426, 22);
+            this.txtItemCode.StyleController = this.layoutControl1;
+            this.txtItemCode.TabIndex = 6;
             // 
             // btnOk
             // 
@@ -218,15 +246,6 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // txtItemCode
-            // 
-            this.txtItemCode.Enabled = false;
-            this.txtItemCode.Location = new System.Drawing.Point(77, 4);
-            this.txtItemCode.Name = "txtItemCode";
-            this.txtItemCode.Size = new System.Drawing.Size(426, 22);
-            this.txtItemCode.StyleController = this.layoutControl1;
-            this.txtItemCode.TabIndex = 6;
-            // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtItemCode;
@@ -235,15 +254,6 @@
             this.layoutControlItem4.Size = new System.Drawing.Size(503, 26);
             this.layoutControlItem4.Text = "Item Code";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(61, 15);
-            // 
-            // txtItemName
-            // 
-            this.txtItemName.Enabled = false;
-            this.txtItemName.Location = new System.Drawing.Point(77, 30);
-            this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(426, 22);
-            this.txtItemName.StyleController = this.layoutControl1;
-            this.txtItemName.TabIndex = 7;
             // 
             // layoutControlItem5
             // 
@@ -270,14 +280,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvMRPList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             this.ResumeLayout(false);
 
@@ -302,5 +312,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraEditors.TextEdit txtItemName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraGrid.Columns.GridColumn gcStockAvailable;
     }
 }

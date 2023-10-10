@@ -39,7 +39,11 @@ namespace NSRetailPOS.UI
 
         private void frmMRPSelection_Load(object sender, EventArgs e)
         {
-
+            bool filterByStock = Convert.ToBoolean(Utility.branchInfo.FilterMRPByStock);
+            
+            gvMRPList.ActiveFilterString = filterByStock ? "[Stock Available?] = 'Yes'" : string.Empty;
+            gvMRPList.ActiveFilterEnabled = filterByStock;
+            gcStockAvailable.Visible = filterByStock;
         }
     }
 }
