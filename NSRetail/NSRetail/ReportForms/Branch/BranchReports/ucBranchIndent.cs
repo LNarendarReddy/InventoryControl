@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
 using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 
+            EditableColumns = new List<string>() { "INDENTQUANTITY" };
+
             txtIndentDays.EditValue = 7;
             txtSafetyDays.EditValue = 0;
 
@@ -49,6 +52,15 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             };
 
             return GetReportData("USP_R_BRANCHINDENT", parameters);
+        }
+
+        public override void DataBoundCompleted()
+        {
+            GridColumn gcIndentDaysSaleQuantity = ResultGridView.Columns.ColumnByFieldName("INDENTDAYSSALEQUANTITY");
+            if (gcIndentDaysSaleQuantity != null)
+            {
+                gcIndentDaysSaleQuantity.Caption = $"Last {txtIndentDays.EditValue} days sale";
+            }
         }
 
         private void btnPrintToDM_Click(object sender, EventArgs e)
