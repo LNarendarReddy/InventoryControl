@@ -139,7 +139,18 @@ namespace NSRetail
 
                         if (!dtTemp.Columns.Contains("OFFERTYPE")) dtTemp.Columns.Add("OFFERTYPE", typeof(string));
                         if (!dtTemp.Columns.Contains("OFFERVALUE")) dtTemp.Columns.Add("OFFERVALUE", typeof(string));
-                        
+
+                        int i = 0;
+                        foreach (string s in allowedColumns)
+                        {
+                            if (!dtTemp.Columns.Contains(s))
+                                throw new Exception($"{s} column is missed in import file");
+                            else
+                            {
+                                dtTemp.Columns[s].SetOrdinal(i);
+                                i++;
+                            }
+                        }
 
                         new OfferRepository().ImportOfferItems(OfferID, dtTemp, Utility.UserID);
                         gcItems.DataSource = dtItems = new OfferRepository().GetOfferItem(OfferID);

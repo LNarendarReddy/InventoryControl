@@ -4,6 +4,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using Entity;
 using ErrorManagement;
+using log4net.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -153,7 +154,18 @@ namespace NSRetail
 
                         dtTemp.Columns.Cast<DataColumn>().Where(x => !allowedColumns.Contains(x.ColumnName))
                             .ToList().ForEach(x => dtTemp.Columns.Remove(x));
-                                                
+                        int i = 0;
+                        foreach(string s in allowedColumns)
+                        {
+                            if (!dtTemp.Columns.Contains(s))
+                                throw new Exception($"{s} column is missed in import file");
+                            else
+                            {
+                                dtTemp.Columns[s].SetOrdinal(i);
+                                i++;
+                            }
+                        }
+
                         new OfferRepository().ImportOffer(BaseOfferID, CategoryID, dtTemp, Utility.UserID);
                         gcOffer.DataSource = offerRepository.GetOfferByBaseOffer(BaseOfferID);
                         SplashScreenManager.CloseOverlayForm(handle);
