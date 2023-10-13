@@ -34,7 +34,7 @@ namespace NSRetail
 
             gcCostPriceWT.Visible = showCostPrice;
             gcCostPriceWOT.Visible = showCostPrice;
-            if (IsItemListCall && parentID > 0)
+            if (IsItemListCall && (Utility.Role == "Admin" || Utility.Role == "IT Manager"))
                 gvMRPList.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
         }
 
