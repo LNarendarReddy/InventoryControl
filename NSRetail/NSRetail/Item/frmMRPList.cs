@@ -29,7 +29,7 @@ namespace NSRetail
             cmbGST.ValueMember = "GSTID";
             cmbGST.DisplayMember = "GSTCODE";
 
-            //gcDelete.Visible = IsItemListCall && Utility.Role != "Division Manager" && Utility.Role != "Division User"; ;
+            gcDelete.Visible = IsItemListCall && Utility.Role == "Admin";
             gcMRPList.DataSource = _dtMRP;
 
             gcCostPriceWT.Visible = showCostPrice;

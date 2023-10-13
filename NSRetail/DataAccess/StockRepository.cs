@@ -313,7 +313,7 @@ namespace DataAccess
                     {
                         da.Fill(dt);
                     }
-                    if(dt != null && dt.Rows.Count > 0)
+                    if (dt != null && dt.Rows.Count > 0)
                     {
                         string str = Convert.ToString(dt.Rows[0][0]);
                         if (!int.TryParse(str, out StockEntryDetailID))
@@ -329,11 +329,13 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
+                if (ex.Message.Contains("MRP already exists"))
+                    throw ex;
                 throw new Exception("Error While Saving Invoice Detail");
             }
             finally
             {
-                
+
             }
             return ObjStockEntryDetail;
         }
