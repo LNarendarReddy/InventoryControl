@@ -440,6 +440,7 @@ namespace NSRetail
             List<ReportHolder> stockReportList = new List<ReportHolder>();
 
             ReportHolder StockReports = new ReportHolder() { ReportName = "Stock Reports" };
+            StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock summary by Price", SearchCriteriaControl = new ucStockSummaryByPrice() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Current stock (with open sale)", SearchCriteriaControl = new ucCurrentStock() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Non-Moving stock", SearchCriteriaControl = new ucNonMovingStock() });
             StockReports.SubCategory.Add(new ReportHolder() { ReportName = "Stock As on date", SearchCriteriaControl = new ucStockAsOnDate() });
