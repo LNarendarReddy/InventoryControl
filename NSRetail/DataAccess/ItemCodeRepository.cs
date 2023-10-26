@@ -406,10 +406,10 @@ namespace DataAccess
             }
         }
 
-        public object SaveItemPrice(object itemCodeID,object ItemPriceID, object MRP, object SalePrice, object GSTID, object UserID)
+        public int SaveItemPrice(object itemCodeID,object ItemPriceID, object MRP, object SalePrice, object GSTID, object UserID)
         {
             SqlTransaction sqlTransaction = null;
-            object objReturn =  null;
+            int retVal =  0;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -425,8 +425,8 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SALEPRICE", SalePrice);
                     cmd.Parameters.AddWithValue("@GSTID", GSTID);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
-                    objReturn = cmd.ExecuteScalar();
-                    if (!int.TryParse(Convert.ToString(objReturn), out int ival))
+                    object objReturn = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(objReturn), out retVal))
                         throw new Exception(Convert.ToString(objReturn));
                     sqlTransaction?.Commit();
                 }
@@ -436,7 +436,7 @@ namespace DataAccess
                 sqlTransaction.Rollback();
                 throw new Exception($"Error while updating itemprice: {ex.Message}", ex);
             }
-            return objReturn;
+            return retVal;
         }
 
         public DataTable ExportItemList(object ExportType)
