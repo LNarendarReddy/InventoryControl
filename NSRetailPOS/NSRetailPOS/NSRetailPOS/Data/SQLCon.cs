@@ -13,6 +13,7 @@ namespace NSRetailPOS.Data
         private static SqlConnection connection = null;
         private static SqlConnection syncConnection = null;
         private static SqlConnection ObjCloudCon = null;
+        private static SqlConnection ObjWHCon = null;
 
         public static SqlConnection Sqlconn()
         {
@@ -71,6 +72,29 @@ namespace NSRetailPOS.Data
             }
             catch (Exception ex) { throw ex; }
             return ObjCloudCon;
+        }
+
+        public static SqlConnection SqlWHconn()
+        {
+            if (ObjWHCon?.State == ConnectionState.Open)
+            {
+                return ObjWHCon;
+            }
+
+            ObjWHCon = new SqlConnection();
+            string BuildType = Convert.ToString(ConfigurationManager.AppSettings["BuildType"]);
+            string ServerName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}WHServerName"].ToString());
+            string DBName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}WHDBName"].ToString());
+            string UserName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}WHusername"].ToString());
+            string Password = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}WHpwd"].ToString());
+            try
+            {
+                string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 200";
+                ObjWHCon.ConnectionString = str;
+                ObjWHCon.Open();
+            }
+            catch (Exception ex) { throw ex; }
+            return ObjWHCon;
         }
 
         public static string Decrypt(string input)
