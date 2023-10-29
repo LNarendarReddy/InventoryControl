@@ -51,11 +51,14 @@
             this.gcDiffStockCP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcCreatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSKUCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcPhysicalStockCPWT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcSystemStockCPWT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcStockDiffValue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
@@ -123,7 +126,10 @@
             this.gcDiffStockCP,
             this.gcCreatedDate,
             this.gcSKUCode,
-            this.gridColumn1});
+            this.gridColumn1,
+            this.gcPhysicalStockCPWT,
+            this.gcSystemStockCPWT,
+            this.gcStockDiffValue});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -279,6 +285,30 @@
             this.gcSKUCode.Visible = true;
             this.gcSKUCode.VisibleIndex = 0;
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "ITEMID";
+            this.gridColumn1.FieldName = "ITEMID";
+            this.gridColumn1.Name = "gridColumn1";
+            // 
+            // gcPhysicalStockCPWT
+            // 
+            this.gcPhysicalStockCPWT.Caption = "Physical Stock CP WT";
+            this.gcPhysicalStockCPWT.FieldName = "PHYSICALSTOCKCPWT";
+            this.gcPhysicalStockCPWT.Name = "gcPhysicalStockCPWT";
+            // 
+            // gcSystemStockCPWT
+            // 
+            this.gcSystemStockCPWT.Caption = "System Stock CP WT";
+            this.gcSystemStockCPWT.FieldName = "SYSTEMSTOCKCPWT";
+            this.gcSystemStockCPWT.Name = "gcSystemStockCPWT";
+            // 
+            // gcStockDiffValue
+            // 
+            this.gcStockDiffValue.Caption = "Stock Diff value";
+            this.gcStockDiffValue.FieldName = "STOCKDIFFVALUE";
+            this.gcStockDiffValue.Name = "gcStockDiffValue";
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -318,12 +348,6 @@
             this.layoutControlItem2.Size = new System.Drawing.Size(141, 34);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "ITEMID";
-            this.gridColumn1.FieldName = "ITEMID";
-            this.gridColumn1.Name = "gridColumn1";
             // 
             // frmViewItems
             // 
@@ -380,5 +404,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcCreatedDate;
         private DevExpress.XtraGrid.Columns.GridColumn gcSKUCode;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gcPhysicalStockCPWT;
+        private DevExpress.XtraGrid.Columns.GridColumn gcSystemStockCPWT;
+        private DevExpress.XtraGrid.Columns.GridColumn gcStockDiffValue;
     }
 }

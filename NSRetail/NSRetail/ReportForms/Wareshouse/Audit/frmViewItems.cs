@@ -25,12 +25,17 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 caller == "differences" || caller == "not enetered";
 
             gcQuantity.Visible = caller == "consolidated" || caller == "items";
-            gcCreatedDate.Visible = caller == "consolidated" || caller == "differences";
+            gcCreatedDate.Visible = caller == "consolidated";
 
             //gcCostPriceWT.Visible = caller == "differences" || caller == "not enetered";
             //gcDiffStockCP.Visible = caller == "differences" || caller == "not enetered";
             //gcPhysicalStockCP.Visible = caller == "differences";
             //gcSystemStockCP.Visible = caller == "differences";
+
+            gcPhysicalStockCPWT.Visible = caller == "differences";
+            gcSystemStockCPWT.Visible = caller == "differences";
+            gcStockDiffValue.Visible = caller == "differences";
+
             actionType = caller;
             BranchID = _BranchID;
         }
