@@ -24,7 +24,7 @@ namespace NSRetail
         DateEdit todate;
         Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>();
         IEnumerable<string> allowedRoles;
-        List<int> excludedBranches = new List<int> { 91, 92, 97, 100 };
+        List<int> excludedBranches = new List<int>(); // { 91, 92, 97, 100 };
 
         public List<IncludeSettings> IncludeSettingsCollection { get; protected set; }
 

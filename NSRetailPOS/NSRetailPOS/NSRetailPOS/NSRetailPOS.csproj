@@ -72,10 +72,10 @@
     <Reference Include="DevExpress.RichEdit.v21.2.Core, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v21.2.Export, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v21.2.Core, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-	<Reference Include="DevExpress.Utils.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v21.2.UI, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpo.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-	<Reference Include="DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v21.2, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGauges.v21.2.Core, Version=21.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -161,6 +161,18 @@
     </Compile>
     <Compile Include="IBarcodeReceiver.cs" />
     <Compile Include="LoggerUtility.cs" />
+    <Compile Include="Operations\frmOpetations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\frmOpetations.Designer.cs">
+      <DependentUpon>frmOpetations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\Reports\ucSales.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operations\Reports\ucSales.Designer.cs">
+      <DependentUpon>ucSales.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportControls\ReportBase\frmIncludeExclude.cs">
@@ -316,6 +328,12 @@
     <Compile Include="Utility.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\frmOpetations.resx">
+      <DependentUpon>frmOpetations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Reports\ucSales.resx">
+      <DependentUpon>ucSales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

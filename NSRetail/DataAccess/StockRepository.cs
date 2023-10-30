@@ -73,7 +73,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Saving Dispatch Detail");
+                throw new Exception($"Error While Saving Dispatch Detail - {ex.Message}");
             }
             finally
             {

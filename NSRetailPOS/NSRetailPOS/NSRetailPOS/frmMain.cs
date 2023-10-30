@@ -3,6 +3,7 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
+using NSRetailPOS.Operations;
 using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
 using System;
@@ -831,5 +832,10 @@ namespace NSRetailPOS
             }
         }
 
+        private void btnOperations_Click(object sender, EventArgs e)
+        {
+            frmOpetations frmOpetations = new frmOpetations();
+            frmOpetations.ShowDialog();
+        }
     }
 }
