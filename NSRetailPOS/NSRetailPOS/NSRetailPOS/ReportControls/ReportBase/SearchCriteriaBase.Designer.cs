@@ -1,4 +1,4 @@
-﻿namespace NSRetail
+﻿namespace NSRetailPOS.ReportControls.ReportBase
 {
     partial class SearchCriteriaBase
     {

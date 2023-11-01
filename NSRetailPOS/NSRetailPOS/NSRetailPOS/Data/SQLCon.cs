@@ -76,7 +76,7 @@ namespace NSRetailPOS.Data
 
         public static SqlConnection SqlWHconn()
         {
-            if (ObjWHCon?.State == ConnectionState.Open)
+            if (ObjWHCon?.State == ConnectionState.Open) 
             {
                 return ObjWHCon;
             }

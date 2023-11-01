@@ -1,6 +1,9 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit.Layout;
 using NSRetail;
 using NSRetail.ReportForms;
+using NSRetailPOS.Data;
+using NSRetailPOS.ReportControls.ReportBase;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +21,11 @@ namespace NSRetailPOS.Operations.Reports
         public ucSales()
         {
             InitializeComponent();
+
+            cmbCategory.Properties.DataSource = new ItemRepository().GetCategory();
+            cmbCategory.Properties.ValueMember = "CATEGORYID";
+            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+            cmbCategory.EnterMoveNextControl = true;
 
             Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>()
             {

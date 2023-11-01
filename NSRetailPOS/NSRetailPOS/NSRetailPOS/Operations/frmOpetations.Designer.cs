@@ -31,9 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOpetations));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.bbiReports = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStockEntry = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnRefreshData = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,9 +47,11 @@
             this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbon.ExpandCollapseItem,
             this.ribbon.SearchEditItem,
-            this.bbiReports});
+            this.bbiReports,
+            this.btnStockEntry,
+            this.btnRefreshData});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 2;
+            this.ribbon.MaxItemId = 5;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -60,12 +66,28 @@
             this.bbiReports.Name = "bbiReports";
             this.bbiReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiReports_ItemClick);
             // 
+            // btnStockEntry
+            // 
+            this.btnStockEntry.Caption = "Stock Entry";
+            this.btnStockEntry.Id = 2;
+            this.btnStockEntry.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockEntry.ImageOptions.SvgImage")));
+            this.btnStockEntry.Name = "btnStockEntry";
+            this.btnStockEntry.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockEntry_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
+            this.ribbonPageGroup2,
+            this.ribbonPageGroup1,
+            this.ribbonPageGroup3});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Operations";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnStockEntry);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "Stock";
             // 
             // ribbonPageGroup1
             // 
@@ -79,6 +101,20 @@
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(1295, 22);
+            // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.Alignment = DevExpress.XtraBars.Ribbon.RibbonPageGroupAlignment.Far;
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnRefreshData);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            // 
+            // btnRefreshData
+            // 
+            this.btnRefreshData.Caption = "Refresh Data";
+            this.btnRefreshData.Id = 4;
+            this.btnRefreshData.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRefreshData.ImageOptions.SvgImage")));
+            this.btnRefreshData.Name = "btnRefreshData";
+            this.btnRefreshData.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefreshData_ItemClick);
             // 
             // frmOpetations
             // 
@@ -108,5 +144,9 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
         private DevExpress.XtraBars.BarButtonItem bbiReports;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.BarButtonItem btnStockEntry;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
+        private DevExpress.XtraBars.BarButtonItem btnRefreshData;
     }
 }

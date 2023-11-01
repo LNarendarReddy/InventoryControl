@@ -22,6 +22,7 @@ using System.Printing;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using static DevExpress.Utils.HashCodeHelper.Blob;
 
 namespace NSRetailPOS
 {
@@ -30,6 +31,15 @@ namespace NSRetailPOS
         public static LoginInfo loginInfo = new LoginInfo();
         public static BranchInfo branchInfo = new BranchInfo();
         static SerialPort _serialPort = new SerialPort();
+
+        private static DataTable dtGST;
+        private static DataTable dtItemSKUList;
+        private static DataTable dtItemCodeList;
+        private static DataTable dtItemCodeFiltered;
+        private static DataTable dtNonEAN;
+        private static DataTable dtParentItemList;
+        private static List<GSTInfo> gstInfoList;
+        public static string Category = string.Empty;
 
         public static event EventHandler ItemOrCodeChanged;
         public static Form ActiveForm;
@@ -499,6 +509,77 @@ namespace NSRetailPOS
 
             return string.Empty;
         }
+
+        public static void FillBaseLine()
+        {
+            FillItemBaseline();
+            GetGSTBaseline();
+            FillParentItemBaseline();
+        }
+
+        private static void FillItemBaseline()
+        {
+            DataSet dsItemBaseline = new ItemCodeRepository().GetItemCodes(Utility.loginInfo.CategoryID);
+            dtItemSKUList = dsItemBaseline.Tables["ITEMS"];
+            DataView dv = dsItemBaseline.Tables["ITEMCODES"].DefaultView;
+            dv.RowFilter = "CATEGORYID = 16 OR CATEGORYID = 17";
+            dtItemCodeList = dv.ToTable();
+            dtNonEAN = dsItemBaseline.Tables["ITEMCODES"];
+            dtItemCodeFiltered = dsItemBaseline.Tables["ITEMCODES"];
+        }
+
+        private static void FillParentItemBaseline()
+        {
+            dtParentItemList = new ItemCodeRepository().GetParentItems(Utility.loginInfo.CategoryID);
+        }
+
+        private static void FillGSTBaseLine()
+        {
+            dtGST = new MasterRepository().GetGST();
+            gstInfoList = new List<GSTInfo>();
+            foreach (DataRow dr in dtGST.Rows)
+            {
+                GSTInfo gstInfo = new GSTInfo();
+                gstInfo.UpdateGST(dr);
+                gstInfoList.Add(gstInfo);
+            }
+        }
+
+        public static DataTable GetGSTBaseline()
+        {
+            if (dtGST == null)
+            {
+                FillGSTBaseLine();
+            }
+
+            return dtGST;
+        }
+
+        public static DataTable GetItemCodeListFiltered()
+        {
+            if (dtItemCodeList == null)
+            {
+                FillItemBaseline();
+            }
+            return Category == "All" ? dtItemCodeList : dtItemCodeFiltered;
+        }
+        public static DataTable GetItemCodeList()
+        {
+            if (dtItemCodeList == null)
+            {
+                FillItemBaseline();
+            }
+            return dtItemCodeList;
+        }
+        public static IEnumerable<GSTInfo> GetGSTInfoList()
+        {
+            if (dtGST == null)
+            {
+                FillGSTBaseLine();
+            }
+
+            return gstInfoList;
+        }
     }
     
     public class LoginInfo
@@ -508,6 +589,7 @@ namespace NSRetailPOS
         public object Password { get; set; }
         public object UserFullName { get; set; }
         public object RoleName { get; set; }
+        public object CategoryID { get; set; }
     }
     public class BranchInfo
     {

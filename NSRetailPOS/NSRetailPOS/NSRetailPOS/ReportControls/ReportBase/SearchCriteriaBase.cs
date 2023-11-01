@@ -13,7 +13,7 @@ using System.Linq;
 using System.Security.RightsManagement;
 using System.Windows.Forms;
 
-namespace NSRetail
+namespace NSRetailPOS.ReportControls.ReportBase
 {
     public partial class SearchCriteriaBase : XtraUserControl
     {
@@ -68,11 +68,11 @@ namespace NSRetail
                         {
                             BindItemCode(child);
                         }
-                        else if (child.GetType() == typeof(LookUpEdit)
-                            && child.Name.ToLower().Contains("category"))
-                        {
-                            BindCategory(child);
-                        }
+                        //else if (child.GetType() == typeof(LookUpEdit)
+                        //    && child.Name.ToLower().Contains("category"))
+                        //{
+                        //    BindCategory(child);
+                        //}
                     }
                     break;
                 }
@@ -336,7 +336,6 @@ namespace NSRetail
             cmb.Properties.DataSource = new ItemRepository().GetCategory();
             cmb.Properties.ValueMember = "CATEGORYID";
             cmb.Properties.DisplayMember = "CATEGORYNAME";
-            cmb.EditValue = 13;
             cmb.EnterMoveNextControl = true;
         }
 

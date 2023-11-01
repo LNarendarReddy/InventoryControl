@@ -32,10 +32,6 @@ namespace NSRetailPOS.Data
                     throw new Exception(ex.Message);
                 throw new Exception($"Error While Retrieving {procedureName}", ex);
             }
-            finally
-            {
-                
-            }
             return dtReportData;
         }
 
@@ -61,10 +57,6 @@ namespace NSRetailPOS.Data
             catch (Exception ex)
             {
                 throw new Exception($"Error While Retrieving {procedureName}", ex);
-            }
-            finally
-            {
-                
             }
             return dsReportData;
         }

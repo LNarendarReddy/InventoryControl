@@ -904,6 +904,7 @@
             this.Name = "frmStockEntry";
             this.Text = "Stock Entry";
             this.Load += new System.EventHandler(this.frmStockEntry_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmStockEntry_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTIN.Properties)).EndInit();
