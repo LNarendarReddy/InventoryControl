@@ -21,6 +21,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "DISPATCHQUANTITY", "Dispatch Quantity" }
                 , { "INDENTQUANTITY", "Indent Quantity" }
                 , { "SUBCATEGORYNAME", "Sub Category" }
+                , { "LASTDISPATCHDATE", "Last dispatch date" }
             };
 
             MandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, txtIndentDays };
