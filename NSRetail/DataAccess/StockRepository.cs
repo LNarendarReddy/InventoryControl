@@ -149,21 +149,26 @@ namespace DataAccess
         }
         public void UpdateDispatch(StockDispatch ObjStockDispatch)
         {
+            SqlTransaction sqlTransaction = null;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    sqlTransaction = SQLCon.Sqlconn().BeginTransaction();
                     cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_STOCKDISPATCH]";
                     cmd.Parameters.AddWithValue("@STOCKDISPATCHID", ObjStockDispatch.STOCKDISPATCHID);
                     object obj = cmd.ExecuteScalar();
                     if(!int.TryParse(Convert.ToString(obj), out int id))
                         throw new Exception(Convert.ToString(obj));
+                    sqlTransaction.Commit();
                 }
             }
             catch (Exception ex)
             {
+                sqlTransaction.Rollback();
                 throw new Exception("Error While Updating Dispatch", ex);
             }
             finally

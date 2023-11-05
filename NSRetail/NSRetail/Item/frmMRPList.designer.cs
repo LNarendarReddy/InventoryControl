@@ -43,7 +43,6 @@
             this.txtdecimal = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gcSalePrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gcCostPriceWT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcCostPriceWOT = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -139,7 +138,6 @@
             this.gcMRP,
             this.gcSalePrice,
             this.gridColumn3,
-            this.gcDelete,
             this.gcCostPriceWT,
             this.gcCostPriceWOT,
             this.gridColumn1,
@@ -193,15 +191,6 @@
             this.gridColumn3.FieldName = "ITEMPRICEID";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Width = 87;
-            // 
-            // gcDelete
-            // 
-            this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
-            this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gcDelete.Caption = "Delete";
-            this.gcDelete.ColumnEdit = this.btnDelete;
-            this.gcDelete.Name = "gcDelete";
-            this.gcDelete.Width = 104;
             // 
             // btnDelete
             // 
@@ -354,7 +343,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gcDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraGrid.Columns.GridColumn gcCostPriceWT;
         private DevExpress.XtraGrid.Columns.GridColumn gcCostPriceWOT;
