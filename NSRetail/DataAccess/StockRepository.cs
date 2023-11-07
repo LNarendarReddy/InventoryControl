@@ -448,14 +448,16 @@ namespace DataAccess
                 
             }
         }
-        public DataTable UpdateInvoice(StockEntry ObjStockEntry)
+        public void UpdateInvoice(StockEntry ObjStockEntry)
         {
-            DataTable dt = new DataTable();
+            SqlTransaction sqlTransaction = null;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    sqlTransaction = SQLCon.Sqlconn().BeginTransaction();
                     cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_STOCKENTRY]";
                     cmd.Parameters.AddWithValue("@STOCKENTRYID", ObjStockEntry.STOCKENTRYID);
@@ -467,17 +469,14 @@ namespace DataAccess
                     object obj = cmd.ExecuteScalar();
                     if (!int.TryParse(Convert.ToString(obj), out int id))
                         throw new Exception(Convert.ToString(obj));
+                    sqlTransaction.Commit();
                 }
             }
             catch (Exception ex)
             {
+                sqlTransaction.Rollback();
                 throw new Exception("Error While Updating Invoice", ex);
             }
-            finally
-            {
-                
-            }
-            return dt;
         }
         public DataTable GetInvoiceList(object DealerID, object  FromDate,object ToDate)
         {
