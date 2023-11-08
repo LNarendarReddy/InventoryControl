@@ -16,12 +16,12 @@ namespace NSRetailPOS.Operations.Items
         private object _ItemCodeID = null;
         private bool _IsItemListCall = false;
 
-        public frmMRPList(DataTable _dtMRP,object ItemCodeID,
-            bool IsItemListCall = false, bool showCostPrice = false,int parentID = 0)
+        public frmMRPList(DataTable _dtMRP, object ItemCodeID,
+            bool IsItemListCall = false, bool showCostPrice = false, int parentID = 0)
         {
             InitializeComponent();
 
-            _IsItemListCall= IsItemListCall;
+            _IsItemListCall = IsItemListCall;
             _ItemCodeID = ItemCodeID;
 
             cmbGST.DataSource = Utility.GetGSTInfoList();
@@ -31,10 +31,10 @@ namespace NSRetailPOS.Operations.Items
 
             gcCostPriceWT.Visible = showCostPrice;
             gcCostPriceWOT.Visible = showCostPrice;
-            if (IsItemListCall && 
-                (Utility.loginInfo.RoleName == "Admin" || 
-                Utility.loginInfo.RoleName == "IT Manager" || 
-                Utility.loginInfo.RoleName == "Store Manager"))
+            if (IsItemListCall &&
+                (Utility.loginInfo.RoleName.Equals("Admin") ||
+                Utility.loginInfo.RoleName.Equals("IT Manager") ||
+                Utility.loginInfo.RoleName.Equals("Store Manager")))
                 gvMRPList.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
         }
 
