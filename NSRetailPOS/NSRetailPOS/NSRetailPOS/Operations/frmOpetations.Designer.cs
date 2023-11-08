@@ -32,12 +32,16 @@
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.bbiReports = new DevExpress.XtraBars.BarButtonItem();
             this.btnStockEntry = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRefreshData = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnRefreshData = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.btnStockIn = new DevExpress.XtraBars.BarButtonItem();
+            this.btnBranchRefund = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,9 +53,12 @@
             this.ribbon.SearchEditItem,
             this.bbiReports,
             this.btnStockEntry,
-            this.btnRefreshData});
+            this.btnRefreshData,
+            this.btnStockIn,
+            this.btnBranchRefund,
+            this.btnItem});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 5;
+            this.ribbon.MaxItemId = 8;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -74,9 +81,18 @@
             this.btnStockEntry.Name = "btnStockEntry";
             this.btnStockEntry.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockEntry_ItemClick);
             // 
+            // btnRefreshData
+            // 
+            this.btnRefreshData.Caption = "Refresh Data";
+            this.btnRefreshData.Id = 4;
+            this.btnRefreshData.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRefreshData.ImageOptions.SvgImage")));
+            this.btnRefreshData.Name = "btnRefreshData";
+            this.btnRefreshData.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefreshData_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup4,
             this.ribbonPageGroup2,
             this.ribbonPageGroup1,
             this.ribbonPageGroup3});
@@ -86,6 +102,8 @@
             // ribbonPageGroup2
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.btnStockEntry);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnStockIn);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnBranchRefund);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Stock";
             // 
@@ -95,6 +113,12 @@
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Reports";
             // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.Alignment = DevExpress.XtraBars.Ribbon.RibbonPageGroupAlignment.Far;
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnRefreshData);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            // 
             // ribbonStatusBar
             // 
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 626);
@@ -102,19 +126,35 @@
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(1295, 22);
             // 
-            // ribbonPageGroup3
+            // btnStockIn
             // 
-            this.ribbonPageGroup3.Alignment = DevExpress.XtraBars.Ribbon.RibbonPageGroupAlignment.Far;
-            this.ribbonPageGroup3.ItemLinks.Add(this.btnRefreshData);
-            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            this.btnStockIn.Caption = "Stock In";
+            this.btnStockIn.Id = 5;
+            this.btnStockIn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnStockIn.Name = "btnStockIn";
+            this.btnStockIn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockIn_ItemClick);
             // 
-            // btnRefreshData
+            // btnBranchRefund
             // 
-            this.btnRefreshData.Caption = "Refresh Data";
-            this.btnRefreshData.Id = 4;
-            this.btnRefreshData.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRefreshData.ImageOptions.SvgImage")));
-            this.btnRefreshData.Name = "btnRefreshData";
-            this.btnRefreshData.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefreshData_ItemClick);
+            this.btnBranchRefund.Caption = "Branch Refund";
+            this.btnBranchRefund.Id = 6;
+            this.btnBranchRefund.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBranchRefund.ImageOptions.SvgImage")));
+            this.btnBranchRefund.Name = "btnBranchRefund";
+            this.btnBranchRefund.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBranchRefund_ItemClick);
+            // 
+            // ribbonPageGroup4
+            // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnItem);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "Item";
+            // 
+            // btnItem
+            // 
+            this.btnItem.Caption = "Item List";
+            this.btnItem.Id = 7;
+            this.btnItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnItem.ImageOptions.SvgImage")));
+            this.btnItem.Name = "btnItem";
+            this.btnItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItem_ItemClick);
             // 
             // frmOpetations
             // 
@@ -148,5 +188,9 @@
         private DevExpress.XtraBars.BarButtonItem btnStockEntry;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem btnRefreshData;
+        private DevExpress.XtraBars.BarButtonItem btnStockIn;
+        private DevExpress.XtraBars.BarButtonItem btnBranchRefund;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.BarButtonItem btnItem;
     }
 }

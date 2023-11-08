@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraSplashScreen;
 using NSRetail.ReportForms;
+using NSRetailPOS.Operations.Items;
 using NSRetailPOS.Operations.Reports;
 using NSRetailPOS.Operations.Stock;
 using System;
@@ -58,6 +59,27 @@ namespace NSRetailPOS.Operations
             Utility.FillBaseLine();
             RefreshBaseLineData?.Invoke(null, null);
             SplashScreenManager.CloseForm();
+        }
+
+        private void btnStockIn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnBranchRefund_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new frmItemCodeList()
+            {
+                ShowInTaskbar = false,
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterParent,
+                WindowState = FormWindowState.Maximized
+            }.Show();
         }
     }
 }

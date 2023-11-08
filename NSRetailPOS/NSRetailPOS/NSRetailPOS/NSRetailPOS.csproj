@@ -180,6 +180,48 @@
     <Compile Include="Operations\frmProgress.Designer.cs">
       <DependentUpon>frmProgress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\Item\frmAddBranchPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Item\frmAddBranchPrice.Designer.cs">
+      <DependentUpon>frmAddBranchPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\Item\frmAddCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Item\frmAddCode.Designer.cs">
+      <DependentUpon>frmAddCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\Item\frmCostPriceList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Item\frmCostPriceList.Designer.cs">
+      <DependentUpon>frmCostPriceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\Item\frmItemCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Item\frmItemCode.Designer.cs">
+      <DependentUpon>frmItemCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\Item\frmItemCodeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Item\frmItemCodeList.Designer.cs">
+      <DependentUpon>frmItemCodeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\Item\frmItemVisualize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Item\frmItemVisualize.Designer.cs">
+      <DependentUpon>frmItemVisualize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\Item\frmMRPList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Item\frmMRPList.designer.cs">
+      <DependentUpon>frmMRPList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\Reports\ucDispatchList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -408,6 +450,27 @@
     <EmbeddedResource Include="Operations\frmProgress.resx">
       <DependentUpon>frmProgress.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Item\frmAddBranchPrice.resx">
+      <DependentUpon>frmAddBranchPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Item\frmAddCode.resx">
+      <DependentUpon>frmAddCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Item\frmCostPriceList.resx">
+      <DependentUpon>frmCostPriceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Item\frmItemCode.resx">
+      <DependentUpon>frmItemCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Item\frmItemCodeList.resx">
+      <DependentUpon>frmItemCodeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Item\frmItemVisualize.resx">
+      <DependentUpon>frmItemVisualize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Item\frmMRPList.resx">
+      <DependentUpon>frmMRPList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operations\Reports\ucDispatchList.resx">
       <DependentUpon>ucDispatchList.cs</DependentUpon>
     </EmbeddedResource>
@@ -570,6 +633,7 @@
     </Content>
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>icacls "$(TargetDir)\NSRetailPOS.mdf" /grant Everyone:(f)

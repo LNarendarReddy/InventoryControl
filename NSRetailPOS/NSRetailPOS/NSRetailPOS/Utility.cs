@@ -580,6 +580,36 @@ namespace NSRetailPOS
 
             return gstInfoList;
         }
+
+        public static DataTable GetItemSKUList()
+        {
+            if (dtItemSKUList == null)
+            {
+                FillItemBaseline();
+            }
+
+            return dtItemSKUList;
+        }
+        public static DataTable GetParentItemList()
+        {
+            if (dtParentItemList == null)
+            {
+                FillParentItemBaseline();
+            }
+
+            return dtParentItemList;
+        }
+
+        public static void Setfocus(GridView view, string ColumnName, object Value)
+        {
+            try
+            {
+                int rowHandle = view.LocateByValue(ColumnName, Value);
+                if (rowHandle != GridControl.InvalidRowHandle)
+                    view.FocusedRowHandle = rowHandle;
+            }
+            catch (Exception ex) { }
+        }
     }
     
     public class LoginInfo

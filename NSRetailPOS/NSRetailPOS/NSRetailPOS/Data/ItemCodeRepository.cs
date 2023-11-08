@@ -240,7 +240,7 @@ namespace NSRetailPOS.Data
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = SQLCon.SqlWHconn();
+                    cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_NEXTSKUCODE]";
                     nextSKUCode = Convert.ToString(cmd.ExecuteScalar());
@@ -252,7 +252,7 @@ namespace NSRetailPOS.Data
             }
             finally
             {
-                
+
             }
             return nextSKUCode;
         }
@@ -304,30 +304,6 @@ namespace NSRetailPOS.Data
                 throw new Exception("Error While Retrieving Cost Price List", ex);
             }
             return dtItemCodes;
-        }
-
-        public DataTable GetOffers(object ItemPriceID)
-        {
-            DataTable dtOffers = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.SqlWHconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_GETOFFERS]";
-                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtOffers);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving Offers", ex);
-            }
-            return dtOffers;
         }
 
         public void DeleteItemPrice(object ItemPriceID, object UserID)
@@ -511,6 +487,34 @@ namespace NSRetailPOS.Data
             {
                 throw new Exception("Error while deleting item code", ex);
             }
+        }
+
+        public DataTable GetOffers(object ItemPriceID)
+        {
+            DataTable dtOffers = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_GETOFFERS]";
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtOffers);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Offers", ex);
+            }
+            finally
+            {
+
+            }
+            return dtOffers;
         }
     }
 }

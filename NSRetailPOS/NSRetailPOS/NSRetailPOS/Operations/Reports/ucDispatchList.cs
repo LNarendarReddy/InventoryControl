@@ -19,6 +19,7 @@ namespace NSRetailPOS.Operations.Reports
             cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+            cmbCategory.EditValue = 16;
             cmbCategory.EnterMoveNextControl = true;
 
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
