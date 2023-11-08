@@ -401,7 +401,8 @@ namespace NSRetail.Stock
         private void bntDiscardDispatch_Click(object sender, EventArgs e)
         {
             if (XtraMessageBox.Show("Are you sure want to discard dispatch?", "Confirm", 
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes 
+                || Convert.ToInt32(ObjStockDispatch.STOCKDISPATCHID) == 0)
                 return;
             ObjStockRep.DiscardStockDispatch(ObjStockDispatch.STOCKDISPATCHID, Utility.UserID);
             cmbFromBranch.EditValue = null;
