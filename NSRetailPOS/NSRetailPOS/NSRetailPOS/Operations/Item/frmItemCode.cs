@@ -395,7 +395,8 @@ namespace NSRetailPOS.Operations.Items
             cmbClassification.EditValue = dtItemDetails.Rows[0]["CLASSIFICATIONID"];
             cmbSubClassification.EditValue = dtItemDetails.Rows[0]["SUBCLASSIFICATIONID"];
 
-            DataTable dtItemCodePrices = dsItemDetails.Tables["ITEMCODEPRICES"];
+            DataTable dtItemCodePrices = 
+                new ItemCodeRepository().GetMRPList_Branch(itemObj.ItemCodeID, Utility.branchInfo.BranchID);
             DataRow selectedPrice = dtItemCodePrices.Rows[0];
 
             if (dtItemCodePrices.Rows.Count > 1)

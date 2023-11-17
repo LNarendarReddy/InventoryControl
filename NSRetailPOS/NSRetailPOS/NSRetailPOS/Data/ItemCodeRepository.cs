@@ -414,7 +414,7 @@ namespace NSRetailPOS.Data
             return dtItems;
         }
 
-        public void SaveBranchItemPrice(BranchItemPrice branchItemPrice)
+        public BranchItemPrice SaveBranchItemPrice(BranchItemPrice branchItemPrice)
         {
             try
             {
@@ -440,6 +440,7 @@ namespace NSRetailPOS.Data
             {
                 throw ex;
             }
+            return branchItemPrice;
         }
 
         public void DeleteBranchItemPrice(object ItemPriceID, object UserID)
@@ -515,6 +516,31 @@ namespace NSRetailPOS.Data
 
             }
             return dtOffers;
+        }
+
+        public DataTable GetMRPList_Branch(object ITEMCODEID, object BranchID)
+        {
+            DataTable dtItemCodes = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlWHconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_ITEMPRICE_BRANCH]";
+                    cmd.Parameters.AddWithValue("@ITEMCODEID", ITEMCODEID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtItemCodes);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving MRP List", ex);
+            }
+            return dtItemCodes;
         }
     }
 }

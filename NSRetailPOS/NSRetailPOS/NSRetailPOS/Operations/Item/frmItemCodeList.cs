@@ -207,7 +207,8 @@ namespace NSRetailPOS.Operations.Items
                 if (gvItemList.FocusedRowHandle >= 0)
                 {
                     DataTable dtMRPList = 
-                        new ItemCodeRepository().GetMRPList(gvItemList.GetFocusedRowCellValue("ITEMCODEID"));
+                        new ItemCodeRepository().GetMRPList_Branch(gvItemList.GetFocusedRowCellValue("ITEMCODEID"), 
+                        Utility.branchInfo.BranchID);
                     new frmMRPList(dtMRPList, 
                         gvItemList.GetFocusedRowCellValue("ITEMCODEID"),
                         true, 

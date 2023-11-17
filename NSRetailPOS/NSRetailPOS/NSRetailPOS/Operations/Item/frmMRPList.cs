@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using DevExpress.Utils.UI.Localization;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
+using NSRetailPOS.Entity;
 using static DevExpress.Utils.Diagnostics.GUIResources;
 
 namespace NSRetailPOS.Operations.Items
@@ -33,8 +35,7 @@ namespace NSRetailPOS.Operations.Items
             gcCostPriceWOT.Visible = showCostPrice;
             if (IsItemListCall &&
                 (Utility.loginInfo.RoleName.Equals("Admin") ||
-                Utility.loginInfo.RoleName.Equals("IT Manager") ||
-                Utility.loginInfo.RoleName.Equals("Store Manager")))
+                Utility.loginInfo.RoleName.Equals("IT Manager")))
                 gvMRPList.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
         }
 
@@ -100,29 +101,24 @@ namespace NSRetailPOS.Operations.Items
                 if (MRP < SALEPRICE)
                     throw new Exception("Saleprice cannot be greater than MRP");
 
-                int NewItempriceID = new ItemCodeRepository().SaveItemPrice(
-                    _ItemCodeID,
-                    gvMRPList.GetFocusedRowCellValue("ITEMPRICEID"),
-                    MRP,
-                    SALEPRICE,
-                    GSTID,
-                    Utility.loginInfo.UserID);
+               BranchItemPrice branchItemPrice = new BranchItemPrice();
+                branchItemPrice.PARENTITEMPRICEID = gvMRPList.GetFocusedRowCellValue("PIPID");
+                branchItemPrice.ITEMPRICEID = gvMRPList.GetFocusedRowCellValue("CIPID");
+                branchItemPrice.SALEPRICE = SALEPRICE;
+                branchItemPrice.BRANCHID = Utility.branchInfo.BranchID;
+                branchItemPrice.UserID = Utility.loginInfo.UserID;
+                new ItemCodeRepository().SaveBranchItemPrice(branchItemPrice);
 
                 OldMRP = MRP;
                 OldSP = SALEPRICE;
                 OldGSTID  = GSTID;
 
-                gvMRPList.SetFocusedRowCellValue("ITEMPRICEID", NewItempriceID);
+                gvMRPList.SetFocusedRowCellValue("CIPID", branchItemPrice.ITEMPRICEID);
                 SplashScreenManager.CloseOverlayForm(handle);
             }
             catch (Exception ex)
             {
                 SplashScreenManager.CloseOverlayForm(handle);
-                XtraMessageBox.Show(ex.Message);
-                if (int.TryParse(Convert.ToString(gvMRPList.GetFocusedRowCellValue("ITEMPRICEID")), out int val) && val <= 0)
-                {
-                    gvMRPList.DeleteRow(gvMRPList.FocusedRowHandle);
-                }
                 XtraMessageBox.Show(ex.Message);
             }
         }
@@ -141,11 +137,8 @@ namespace NSRetailPOS.Operations.Items
         {
             if (!_IsItemListCall)
                 e.Cancel = true;
-            else if (int.TryParse(Convert.ToString(gvMRPList.GetFocusedRowCellValue("ITEMPRICEID")), out int val) && val > 0)
-            {
-                if (gvMRPList.FocusedColumn == gcMRP)
-                    e.Cancel = true;
-            }
+            if (gvMRPList.FocusedColumn == gcMRP || gvMRPList.FocusedColumn == gcGSTCode)
+                e.Cancel = true;
         }
 
         private void gvMRPList_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
