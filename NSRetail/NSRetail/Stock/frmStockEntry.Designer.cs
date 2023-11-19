@@ -900,10 +900,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1129, 555);
             this.Controls.Add(this.layoutControl1);
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmStockEntry";
             this.Text = "Stock Entry";
             this.Load += new System.EventHandler(this.frmStockEntry_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmStockEntry_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTIN.Properties)).EndInit();

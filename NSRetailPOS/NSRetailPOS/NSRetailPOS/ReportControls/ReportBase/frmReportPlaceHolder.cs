@@ -5,6 +5,7 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraSplashScreen;
+using NSRetailPOS.ReportControls.ReportBase;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

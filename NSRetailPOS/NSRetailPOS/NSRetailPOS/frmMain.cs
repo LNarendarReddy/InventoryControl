@@ -65,6 +65,7 @@ namespace NSRetailPOS
             btnDayClosure.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
             btnStockIn.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
             btnBranchRefund.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
+            btnOperations.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
             gcDiscount.Visible = Utility.branchInfo.BranchID.Equals(45);
 
             DataSet dsInitialData = billingRepository.GetInitialLoad(Utility.loginInfo.UserID, Utility.branchInfo.BranchCounterID);

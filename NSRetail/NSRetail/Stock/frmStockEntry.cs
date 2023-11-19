@@ -437,5 +437,11 @@ namespace NSRetail.Stock
             chkTaxInclusive.Enabled = false;
             dtpInvoice.Enabled = false;
         }
+
+        private void frmStockEntry_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyData == Keys.Escape)
+                this.Close();
+        }
     }
 }

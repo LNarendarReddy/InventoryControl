@@ -1,6 +1,9 @@
 ﻿using DevExpress.XtraBars;
+using DevExpress.XtraSplashScreen;
 using NSRetail.ReportForms;
+using NSRetailPOS.Operations.Items;
 using NSRetailPOS.Operations.Reports;
+using NSRetailPOS.Operations.Stock;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +18,7 @@ namespace NSRetailPOS.Operations
 {
     public partial class frmOpetations : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        public event EventHandler RefreshBaseLineData;
         public frmOpetations()
         {
             InitializeComponent();
@@ -25,7 +29,10 @@ namespace NSRetailPOS.Operations
             List<ReportHolder> reportList = new List<ReportHolder>();
 
             ReportHolder POSReports = new ReportHolder() { ReportName = "POS Reports" };
+            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Invoice List", SearchCriteriaControl = new ucInvoiceList() });
+            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch List", SearchCriteriaControl = new ucDispatchList() });
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
+            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Non Moving Stock", SearchCriteriaControl = new ucNonMovingStock() });
             reportList.Add(POSReports);
 
             frmReportPlaceHolder obj = new frmReportPlaceHolder(reportList, "Branch");
@@ -34,6 +41,45 @@ namespace NSRetailPOS.Operations
             obj.IconOptions.ShowIcon = false;
             obj.MdiParent = this;
             obj.Show();
+        }
+
+        private void btnStockEntry_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmStockEntry obj = new frmStockEntry();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void btnRefreshData_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(frmProgress), true, true);
+            Utility.FillBaseLine();
+            RefreshBaseLineData?.Invoke(null, null);
+            SplashScreenManager.CloseForm();
+        }
+
+        private void btnStockIn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnBranchRefund_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new frmItemCodeList()
+            {
+                ShowInTaskbar = false,
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterParent,
+                WindowState = FormWindowState.Maximized
+            }.Show();
         }
     }
 }

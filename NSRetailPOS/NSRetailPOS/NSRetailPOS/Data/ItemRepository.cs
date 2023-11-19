@@ -94,34 +94,6 @@ namespace NSRetailPOS.Data
             return dtCategory;
         }
 
-        public DataTable GetMOPs()
-        {
-            DataTable dtItemCodes = new DataTable();
-            SqlConnection conn = SQLCon.Sqlconn();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = conn;
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[POS_USP_R_MOP]";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dtItemCodes);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retrieving Mode of payments List", ex);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return dtItemCodes;
-        }
-
         public DataTable GetMRPList(object ITEMCODEID, bool showAllMRP = false)
         {
             DataTable dtItemCodes = new DataTable();

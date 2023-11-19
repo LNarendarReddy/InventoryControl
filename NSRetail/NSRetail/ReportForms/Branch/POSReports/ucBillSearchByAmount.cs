@@ -17,7 +17,8 @@ namespace NSRetail.ReportForms.Branch.POSReports
             Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>()
             {
                 { "MOPNAME", "Payment Method" },
-                { "CREATEDTIME", "Created Time" }
+                { "CREATEDTIME", "Created Time" },
+                { "BILLMODE", "Bill Mode" }
             };
 
             ButtonColumns = new List<string>() { "Items", "Print" };
