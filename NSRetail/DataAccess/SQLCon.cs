@@ -12,6 +12,8 @@ namespace DataAccess
     {
         static SqlConnection ObjCon = new SqlConnection();
         static string BuildType = Convert.ToString(ConfigurationManager.AppSettings["BuildType"]);
+        private static string SelectedDBName = null;
+
         public static SqlConnection Sqlconn()
         {             
             try
@@ -24,7 +26,7 @@ namespace DataAccess
            
                 {
                     string ServerName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}ServerName"].ToString());
-                    string DBName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}DBName"].ToString());
+                    string DBName = SelectedDBName ?? Decrypt(ConfigurationManager.AppSettings[$"{BuildType}DBName"].ToString());
                     string UserName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}username"].ToString());
                     string Password = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}pwd"].ToString());
 
@@ -60,6 +62,14 @@ namespace DataAccess
             }
             catch (Exception ex) { throw ex; }
             return ObjCloudCon;
+        }
+
+        public static void ChangeConnection(string dbName)
+        {
+            SelectedDBName = dbName;
+            ObjCon?.Close();
+            ObjCon?.Dispose();
+            ObjCon = null;
         }
 
         public static string Decrypt(string input)

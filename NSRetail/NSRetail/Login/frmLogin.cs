@@ -55,6 +55,7 @@ namespace NSRetail
                             Utility.ReportingLeadID = Convert.ToInt32(ds.Tables[0].Rows[0]["REPORTINGLEADID"]);
                             Utility.Email = Convert.ToString(ds.Tables[0].Rows[0]["EMAIL"]);
                             Utility.IsOpenCategory = Convert.ToBoolean(ds.Tables[0].Rows[0]["ALLOWOPENITEMS"]);
+                            Utility.dtConnectionInfo = ds.Tables[2];
                             bool IsOTP = Convert.ToBoolean(ds.Tables[0].Rows[0]["ISOTP"]);
 
                             if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count != 0)

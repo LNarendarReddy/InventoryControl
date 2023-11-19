@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraBars;
+﻿using DataAccess;
+using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
@@ -22,6 +23,7 @@ using NSRetail.Stock;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -373,6 +375,8 @@ namespace NSRetail
             
             bbiClearProcedureCache.Enabled = Utility.Role == "Admin" || Utility.Role == "IT Manager";
             bbiStockSlippage.Visibility = Utility.BranchID == 97 ? BarItemVisibility.Always : BarItemVisibility.Never;
+
+            FillFinYears();
         }
 
         private void bbiItemSummary_ItemClick(object sender, ItemClickEventArgs e)
@@ -598,5 +602,22 @@ namespace NSRetail
             new frmItemClassificationList() { MdiParent = this }.Show();
         }
 
+        private void FY_Select(object sender, ItemClickEventArgs e)
+        {
+            SQLCon.ChangeConnection(e.Item.Name);
+            lblUserName.Caption = $"Logged In User : {Utility.FullName}   " +
+                $"Version : {Utility.AppVersion} {Utility.VersionDate} - {ConfigurationManager.AppSettings["BuildType"]} - {e.Item.Caption}";
+            bbiRefreshData_ItemClick(sender, e);
+        }
+
+        private void FillFinYears()
+        {
+            foreach (DataRow drFY in Utility.dtConnectionInfo.Rows)
+            {
+                BarButtonItem barButtonItem = new BarButtonItem() { Name = drFY["DATABASENAME"].ToString(), Caption = drFY["DISPLAYNAME"].ToString() };
+                barButtonItem.ItemClick += FY_Select;
+                puFinYear.ItemLinks.Add(barButtonItem);
+            }
+        }
     }
 }

@@ -26,6 +26,7 @@ namespace NSRetail
         private static DataTable dtParentItemList;
         private static DataTable dtReturnStatus;
         private static List<GSTInfo> gstInfoList;
+        public static DataTable dtConnectionInfo;
 
         public static int UserID = 4;
         public static string UserName = string.Empty;
@@ -189,6 +190,7 @@ namespace NSRetail
 
         public static void FillBaseLine()
         {
+            dtGST = null;
             FillItemBaseline();
             GetGSTBaseline();
             FillParentItemBaseline();
