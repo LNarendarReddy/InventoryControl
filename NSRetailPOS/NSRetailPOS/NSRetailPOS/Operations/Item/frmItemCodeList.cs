@@ -69,7 +69,7 @@ namespace NSRetailPOS.Operations.Items
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

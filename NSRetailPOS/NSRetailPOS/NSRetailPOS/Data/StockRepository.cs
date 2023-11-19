@@ -116,7 +116,7 @@ namespace NSRetailPOS.Data
             {
                 if (ex.Message.Contains("MRP already exists"))
                     throw ex;
-                throw new Exception("Error While Saving Invoice Detail");
+                throw new Exception($"Error While Saving Invoice Detail - {ex.Message}");
             }
             return ObjStockEntryDetail;
         }
@@ -163,7 +163,7 @@ namespace NSRetailPOS.Data
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Reading Stock Entry");
+                throw new Exception($"Error While Reading Stock Entry - {ex.Message}");
             }
             return objStockEntry;
         }
@@ -183,7 +183,7 @@ namespace NSRetailPOS.Data
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Deleting Invoice Detail");
+                throw new Exception($"Error While Deleting Invoice Detail - {ex.Message}");
             }
             finally
             {
@@ -230,7 +230,7 @@ namespace NSRetailPOS.Data
             catch (Exception ex)
             {
                 sqlTransaction.Rollback();
-                throw new Exception("Error While Updating Invoice", ex);
+                throw new Exception($"Error While Updating Invoice - {ex.Message}");
             }
         }
         public DataSet GetInvoice(object StockEntryID)
@@ -252,7 +252,7 @@ namespace NSRetailPOS.Data
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Retreiving Invoice");
+                throw new Exception($"Error While Retreiving Invoice - {ex.Message}");
             }
             return ds;
         }
