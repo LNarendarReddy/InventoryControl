@@ -271,10 +271,6 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            
-            lblUserName.Caption = $"Logged In User : {Utility.FullName}   " +
-                $"Version : {Utility.AppVersion} {Utility.VersionDate} - {ConfigurationManager.AppSettings["BuildType"]}";
-
             List<BarButtonItem> availableItems = new List<BarButtonItem>()
             { btnItem, btnBarCodePrint, btnOfferList, btnStockEntry, btnInvoiceList,
              btnStockDispatch, btnDispatchList, btnDCList, btnPrintDC, btnStockCounting, bbiStockSummary, bbiSyncStatus
@@ -618,6 +614,9 @@ namespace NSRetail
                 barButtonItem.ItemClick += FY_Select;
                 puFinYear.ItemLinks.Add(barButtonItem);
             }
+
+            lblUserName.Caption = $"Logged In User : {Utility.FullName}   " +
+               $"Version : {Utility.AppVersion} {Utility.VersionDate} - {ConfigurationManager.AppSettings["BuildType"]} - {Utility.dtConnectionInfo.Rows[0]["DISPLAYNAME"]}";
         }
     }
 }
