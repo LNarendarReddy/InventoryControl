@@ -17,7 +17,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
         {
             InitializeComponent();
             gcItems.DataSource = dtItems;
-            gcMRP.Visible = gcSalePrice.Visible = caller == "items" || caller == "consolidated";
+            gcMRP.Visible = gcSalePrice.Visible = caller == "items" || caller == "consolidated" || caller == "not enetered";
 
             gcStockDiff.Visible =
                 gcSystemStock.Visible =

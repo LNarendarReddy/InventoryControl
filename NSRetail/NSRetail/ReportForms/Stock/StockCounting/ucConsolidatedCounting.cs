@@ -16,12 +16,17 @@ namespace NSRetail.ReportForms.Stock.StockCounting
 
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
-                { "QTYORWGHT", "Quantity or Weight in KG(s)" }
+                { "QTYORWGHT", "Quantity or Weight in KG(s)" },
+                { "USERNAME", "User name" },
             };
 
             SetFocusControls(cmbBranch, cmbItemCode, columnHeaders);
             AllowedRoles = new List<string> { "Stock counting user" };
             MandatoryFields = new List<BaseEdit> { cmbBranch, dtpCountingDate };
+            IncludeSettingsCollection = new List<IncludeSettings>
+            {
+                new IncludeSettings("User name", "IncludeUser", new List<string> { "User name" })
+            };
         }
 
         public override object GetData()

@@ -220,6 +220,8 @@
             this.gcPhysicalStock.Caption = "Physical stock";
             this.gcPhysicalStock.FieldName = "PHYSICALSTOCK";
             this.gcPhysicalStock.Name = "gcPhysicalStock";
+            this.gcPhysicalStock.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PHYSICALSTOCK", "{0:0.##}")});
             this.gcPhysicalStock.Width = 106;
             // 
             // gcSystemStock
@@ -227,6 +229,8 @@
             this.gcSystemStock.Caption = "System Stock";
             this.gcSystemStock.FieldName = "SYSTEMSTOCK";
             this.gcSystemStock.Name = "gcSystemStock";
+            this.gcSystemStock.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SYSTEMSTOCK", "{0:0.##}")});
             this.gcSystemStock.Width = 109;
             // 
             // gcStockDiff
@@ -234,6 +238,8 @@
             this.gcStockDiff.Caption = "Stock Diff";
             this.gcStockDiff.FieldName = "STOCKDIFF";
             this.gcStockDiff.Name = "gcStockDiff";
+            this.gcStockDiff.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "STOCKDIFF", "{0:0.##}")});
             // 
             // gcCostPriceWT
             // 
@@ -247,7 +253,7 @@
             this.gcPhysicalStockCP.FieldName = "gcPhysical";
             this.gcPhysicalStockCP.Name = "gcPhysicalStockCP";
             this.gcPhysicalStockCP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcPhysical", "SUM={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcPhysical", "{0:0.##}")});
             this.gcPhysicalStockCP.UnboundDataType = typeof(decimal);
             this.gcPhysicalStockCP.UnboundExpression = "Round([PHYSICALSTOCK] * [COSTPRICEWT], 2)";
             // 
@@ -257,7 +263,7 @@
             this.gcSystemStockCP.FieldName = "gcSystemStockCP";
             this.gcSystemStockCP.Name = "gcSystemStockCP";
             this.gcSystemStockCP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcSystemStockCP", "SUM={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcSystemStockCP", "{0:0.##}")});
             this.gcSystemStockCP.UnboundDataType = typeof(decimal);
             this.gcSystemStockCP.UnboundExpression = "Round([SYSTEMSTOCK] * [COSTPRICEWT], 2)";
             // 
@@ -267,7 +273,7 @@
             this.gcDiffStockCP.FieldName = "gridColumn3";
             this.gcDiffStockCP.Name = "gcDiffStockCP";
             this.gcDiffStockCP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gridColumn3", "SUM={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gridColumn3", "{0:0.##}")});
             this.gcDiffStockCP.UnboundDataType = typeof(decimal);
             this.gcDiffStockCP.UnboundExpression = "Round([STOCKDIFF] * [COSTPRICEWT], 2)";
             // 
@@ -296,18 +302,24 @@
             this.gcPhysicalStockCPWT.Caption = "Physical Stock CP WT";
             this.gcPhysicalStockCPWT.FieldName = "PHYSICALSTOCKCPWT";
             this.gcPhysicalStockCPWT.Name = "gcPhysicalStockCPWT";
+            this.gcPhysicalStockCPWT.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PHYSICALSTOCKCPWT", "{0:0.##}")});
             // 
             // gcSystemStockCPWT
             // 
             this.gcSystemStockCPWT.Caption = "System Stock CP WT";
             this.gcSystemStockCPWT.FieldName = "SYSTEMSTOCKCPWT";
             this.gcSystemStockCPWT.Name = "gcSystemStockCPWT";
+            this.gcSystemStockCPWT.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SYSTEMSTOCKCPWT", "{0:0.##}")});
             // 
             // gcStockDiffValue
             // 
             this.gcStockDiffValue.Caption = "Stock Diff value";
             this.gcStockDiffValue.FieldName = "STOCKDIFFVALUE";
             this.gcStockDiffValue.Name = "gcStockDiffValue";
+            this.gcStockDiffValue.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "STOCKDIFFVALUE", "{0:0.##}")});
             // 
             // Root
             // 
