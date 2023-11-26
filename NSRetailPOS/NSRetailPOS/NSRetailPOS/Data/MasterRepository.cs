@@ -24,10 +24,10 @@ namespace NSRetailPOS.Data
             return new ReportRepository().GetReportData("USP_R_GST");
         }
 
-        public DataTable GetCategory()
+        public DataTable GetCategory(bool isBranchCategoryOnly = true)
         {
             return new ReportRepository().GetReportData("USP_R_CATEGORY", 
-                new Dictionary<string, object>() { { "IsBranchCategory", true } });
+                new Dictionary<string, object>() { { "IsBranchCategory", isBranchCategoryOnly } });
         }
 
         public DataTable GetBranch(bool UsedInReport = false)

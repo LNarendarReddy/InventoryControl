@@ -43,7 +43,7 @@ namespace WarehouseCloudSync.Data
                         cmd.Transaction = transaction;
                     }
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandTimeout = 600;
+                    cmd.CommandTimeout = 3600;
                     EntityMapping map = entityMapping[entityName];
                     cmd.CommandText = map.ProcedureName;
                     cmd.Parameters.AddWithValue(map.ParameterName, dtEntityWiseData);
