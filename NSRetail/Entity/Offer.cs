@@ -34,6 +34,7 @@ namespace Entity
         public object ItemName { get; set; }
         public object ItemCodeID { get; set; }
         public object OfferThreshold { get; set; }
+        public object OfferThresholdPrice { get; set; }
     }
 }
 

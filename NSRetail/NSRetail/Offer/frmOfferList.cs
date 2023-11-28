@@ -23,9 +23,10 @@ namespace NSRetail
             gcSKUCode.Visible = IsDeal;
             gcItemCode.Visible = IsDeal;
             gcItemName.Visible = IsDeal;
-            gcNoOfItems.Visible = IsDeal;
+            gcNoOfItems.Visible = true;
             gcAppliesto.Visible = !IsDeal;
             gcCategory.Visible = !IsDeal;
+            gcOfferThresholdPrice.Visible = !IsDeal;
             gcDelete.VisibleIndex = gvOffer.VisibleColumns.Count;
             gcViewBranches.VisibleIndex = gvOffer.VisibleColumns.Count - 1;
             gcViewItems.VisibleIndex = gvOffer.VisibleColumns.Count-2;
@@ -87,6 +88,7 @@ namespace NSRetail
             gvOffer.SetRowCellValue(rowhandle, "AppliesToID", offer.AppliesToID);
             gvOffer.SetRowCellValue(rowhandle, "AppliesToName", offer.AppliesToName);
             gvOffer.SetRowCellValue(rowhandle, "NUMBEROFITEMS", offer.NumberOfItems);
+            gvOffer.SetRowCellValue(rowhandle, "OFFERTHRESHOLDPRICE", offer.OfferThresholdPrice);
             gvOffer.SetRowCellValue(rowhandle, "FREEITEMPRICEID", offer.FreeItemPriceID);
             gvOffer.SetRowCellValue(rowhandle, "SKUCODE", offer.SKUcode);
             gvOffer.SetRowCellValue(rowhandle, "ITEMCODE", offer.ItemCode);

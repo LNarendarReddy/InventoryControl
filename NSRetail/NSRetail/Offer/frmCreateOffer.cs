@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.XtraCharts;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.DXErrorProvider;
 using Entity;
@@ -52,6 +53,8 @@ namespace NSRetail
                 txtOfferValue.EditValue = offer.OfferValue;
                 cmbCategory.EditValue = offer.CategoryID;
                 cmbAppliesto.EditValue = offer.AppliesToID;
+                txtOfferThreshold.EditValue = offer.NumberOfItems;
+                txtOfferThresholdPrice.EditValue = offer.OfferThresholdPrice;
 
                 txtOfferCode.Enabled = false;
                 txtOfferName.Enabled = false;
@@ -74,6 +77,8 @@ namespace NSRetail
                 offer.StartDate = dtpStartDate.EditValue;
                 offer.EndDate = dtpEndDate.EditValue;
                 offer.OfferTypeID = cmbOfferType.EditValue;
+                offer. NumberOfItems = txtOfferThreshold.EditValue;
+                offer.OfferThresholdPrice = txtOfferThresholdPrice.EditValue;
                 DataRowView dataRow = cmbOfferType.GetSelectedDataRow() as DataRowView;
                 offer.OfferTypeCode = dataRow["OFFERTYPECODE"];
                 offer.OfferTypeName = cmbOfferType.Text;
@@ -131,11 +136,19 @@ namespace NSRetail
             if (Convert.ToInt32(offer.OfferID) > 0)
                 return;
             if (cmbAppliesto.EditValue.Equals(3))
+            {
                 cmbCategory.Enabled = true;
+                txtOfferThresholdPrice.Enabled = true;
+                txtOfferThreshold.Enabled = true;
+            }
             else
             {
                 cmbCategory.EditValue = null;
                 cmbCategory.Enabled = false;
+                txtOfferThresholdPrice.EditValue = null;
+                txtOfferThresholdPrice.Enabled = false;
+                txtOfferThreshold.EditValue = null;
+                txtOfferThreshold.Enabled = false;
             }
         }
     }

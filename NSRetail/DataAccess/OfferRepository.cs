@@ -220,6 +220,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@UserID", offer.UserID);
                     cmd.Parameters.AddWithValue("@FreeItemPriceID", offer.FreeItemPriceID);
                     cmd.Parameters.AddWithValue("@NumberOfItems", offer.NumberOfItems);
+                    cmd.Parameters.AddWithValue("@OFFERTHRESHOLDPRICE", offer.OfferThresholdPrice);
                     object objreturn = cmd.ExecuteScalar();
                     if (!int.TryParse(objreturn.ToString(), out OfferID))
                         throw new Exception("Error while saivng offer");
