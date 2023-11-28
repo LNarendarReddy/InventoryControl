@@ -93,14 +93,14 @@ namespace NSRetailPOS
                     //LoggerUtility.Logger.Info($"{entityName} down sync started");
 
                     ReportText(backgroundWorker, $"{entityName} down sync started");
-                    DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(
+                     DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(
                         entityName,
                         forceFullSync ? "01-01-1900" : entityRow["SYNCDATE"]
                         , branchInfo.BranchID);
                     ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
                     if (dtEntityWiseData?.Rows.Count > 0)
                     {
-                        syncRepository.SaveData(entityName, dtEntityWiseData);
+                     syncRepository.SaveData(entityName, dtEntityWiseData);
                         cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
 
                         if (entityName == "ITEM" || entityName == "ITEMCODE")
@@ -323,9 +323,9 @@ namespace NSRetailPOS
             Form.ActiveForm.BeginInvoke((Action)(() => (Form.ActiveForm as IBarcodeReceiver).ReceiveBarCode(data)));
         }
 
-        public static string AppVersion = "1.4.2";
+        public static string AppVersion = "1.4.3";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(26-11-2023)";
+        public static string VersionDate = "(28-11-2023)";
 
         private static bool DBVersionCheck(BackgroundWorker backgroundWorker, CloudRepository cloudRepository, SyncRepository syncRepository)
         {

@@ -32,6 +32,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.SqlCloudconn();
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 1800;
                     cmd.CommandText = "[USP_R_GETSYNCDATA]";
                     cmd.Parameters.AddWithValue("@EntityName", EntityName);
                     cmd.Parameters.AddWithValue("@SyncDate", SyncDate);
@@ -121,6 +122,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.SqlCloudconn();
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 1800;
                     EntityMapping map = entityMapping[entityName];
                     cmd.CommandText = map.ProcedureName;
                     cmd.Parameters.AddWithValue(map.ParameterName, dtEntityWiseData);
@@ -152,9 +154,9 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.SqlCloudconn();
                     sqlTransaction = cmd.Connection.BeginTransaction();
-
                     cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 1800;
                     cmd.CommandText = "[USP_R_POS_IMPORTDATA]";
                     cmd.Parameters.AddWithValue("@BranchCounterID", branchCounterID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))

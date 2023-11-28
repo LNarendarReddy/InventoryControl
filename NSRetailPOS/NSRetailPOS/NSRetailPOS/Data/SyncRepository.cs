@@ -45,6 +45,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.SqlSyncConn();
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 1800;
                     cmd.CommandText = entityMapping[entityName].ProcedureName;
                     cmd.Parameters.AddWithValue(entityMapping[entityName].ParameterName, dtEntityWiseData);
                     cmd.ExecuteNonQuery();
@@ -68,6 +69,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.SqlSyncConn();
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 1800;
                     cmd.CommandText = "POS_USP_D_OLD_DATA";                    
                     cmd.ExecuteNonQuery();
                 }
@@ -91,6 +93,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.SqlSyncConn();
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 1800;
                     cmd.CommandText = "[USP_R_GETSYNCDATA]";
                     cmd.Parameters.AddWithValue("@EntityName", EntityName);
                     cmd.Parameters.AddWithValue("@SyncDate", SyncDate);
@@ -119,6 +122,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 1800;
                     cmd.CommandText = "USP_CU_POS_IMPORTDATA";
                     cmd.Parameters.AddWithValue("@Bill", dsRestoreData.Tables[0]);
                     cmd.Parameters.AddWithValue("@BillDetail", dsRestoreData.Tables[1]);

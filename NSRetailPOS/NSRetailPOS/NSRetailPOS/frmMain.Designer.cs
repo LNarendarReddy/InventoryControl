@@ -1368,7 +1368,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1298, 724);
             this.Controls.Add(this.layoutControl1);
-            this.IconOptions.LargeImage = global::NSRetailPOS.Properties.Resources.Victory_Resized;
+            this.IconOptions.LargeImage = global::NSRetailPOS.Properties.Resources.vLogo_Small_1;
             this.KeyPreview = true;
             this.Name = "frmMain";
             this.Text = "NSRetail POS";
