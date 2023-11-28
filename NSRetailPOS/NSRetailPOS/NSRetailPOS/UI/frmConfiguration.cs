@@ -51,10 +51,6 @@ namespace NSRetailPOS.UI
             {
                 if (!dxValidationProvider1.Validate())
                     return;
-                DataRowView drSelectedCounter = cmbCounter.GetSelectedDataRow() as DataRowView;
-                ObjPOSRep.SavePOSConfiguration(cmbBranch.EditValue, cmbCounter.EditValue
-                    , drSelectedCounter["DAYCLOSUREID"], drSelectedCounter["BRANCHREFUNDID"]);
-
                 SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
                 Utility.branchInfo.BranchCounterID = cmbCounter.EditValue;
                 Utility.branchInfo.BranchID = cmbBranch.EditValue;
@@ -68,6 +64,10 @@ namespace NSRetailPOS.UI
                 objSyncRepository.SaveHDDSNo(HDDSno);
                 DataSet dsRestoreData = objCloudRepository.GetDaySequence(cmbCounter.EditValue);
                 objSyncRepository.ImportDaySequence(dsRestoreData);
+
+                DataRowView drSelectedCounter = cmbCounter.GetSelectedDataRow() as DataRowView;
+                ObjPOSRep.SavePOSConfiguration(cmbBranch.EditValue, cmbCounter.EditValue
+                    , drSelectedCounter["DAYCLOSUREID"], drSelectedCounter["BRANCHREFUNDID"]);
 
                 SplashScreenManager.CloseForm();
                 Application.Restart();
