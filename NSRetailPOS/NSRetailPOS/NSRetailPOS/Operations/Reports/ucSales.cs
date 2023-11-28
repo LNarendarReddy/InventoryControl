@@ -55,6 +55,7 @@ namespace NSRetailPOS.Operations.Reports
                 , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })
             };
 
+            HiddenColumns = new List<string> { "WHSTOCK", "BRANCHSTOCK" };
 
             SetFocusControls(cmbPeriodicity, cmbItemCode, specificColumnHeaders);
         }
