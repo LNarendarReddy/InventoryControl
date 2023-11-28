@@ -118,31 +118,40 @@ namespace NSRetailPOS.Data
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmd = new SqlCommand()) 
+                using (SqlConnection sqlConnection = SQLCon.Sqlconn())
+                using(SqlTransaction sqlTransaction = sqlConnection.BeginTransaction())
                 {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandTimeout = 1800;
-                    cmd.CommandText = "USP_CU_POS_IMPORTDATA";
-                    cmd.Parameters.AddWithValue("@Bill", dsRestoreData.Tables[0]);
-                    cmd.Parameters.AddWithValue("@BillDetail", dsRestoreData.Tables[1]);
-                    cmd.Parameters.AddWithValue("@BillMOPDetail", dsRestoreData.Tables[2]);
-                    cmd.Parameters.AddWithValue("@DaySequence", dsRestoreData.Tables[3]);
-                    cmd.Parameters.AddWithValue("@CRefund", dsRestoreData.Tables[4]);
-                    cmd.Parameters.AddWithValue("@BRefund", dsRestoreData.Tables[5]);
-                    cmd.Parameters.AddWithValue("@BRefundDetail", dsRestoreData.Tables[6]);
-                    cmd.Parameters.AddWithValue("@DayClosure", dsRestoreData.Tables[7]);
-                    cmd.Parameters.AddWithValue("@DayClosureDetail", dsRestoreData.Tables[8]);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.Connection = sqlConnection;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 1800;
+                        cmd.Transaction = sqlTransaction;
+                        cmd.CommandText = "USP_CU_POS_IMPORTDATA";
+                        cmd.Parameters.AddWithValue("@Bill", dsRestoreData.Tables[0]);
+                        cmd.Parameters.AddWithValue("@BillDetail", dsRestoreData.Tables[1]);
+                        cmd.Parameters.AddWithValue("@BillMOPDetail", dsRestoreData.Tables[2]);
+                        cmd.Parameters.AddWithValue("@DaySequence", dsRestoreData.Tables[3]);
+                        cmd.Parameters.AddWithValue("@CRefund", dsRestoreData.Tables[4]);
+                        cmd.Parameters.AddWithValue("@BRefund", dsRestoreData.Tables[5]);
+                        cmd.Parameters.AddWithValue("@BRefundDetail", dsRestoreData.Tables[6]);
+                        cmd.Parameters.AddWithValue("@DayClosure", dsRestoreData.Tables[7]);
+                        cmd.Parameters.AddWithValue("@DayClosureDetail", dsRestoreData.Tables[8]);
+                        cmd.ExecuteNonQuery();
+                        sqlTransaction?.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        sqlTransaction?.Rollback();
+                        throw ex;
+                    }
+                    
                 }
             }
             catch (Exception ex)
             {
                 throw new Exception($"Error While importing day sequence", ex);
-            }
-            finally
-            {
-                SQLCon.Sqlconn().Close();
             }
         }
 
