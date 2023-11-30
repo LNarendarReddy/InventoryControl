@@ -18,7 +18,7 @@ namespace NSRetail.ReportForms.Stock.StockReports
             dtpFromDate.EditValue = DateTime.Now.AddDays(-30);
             dtpToDate.EditValue = DateTime.Now;
 
-            SetFocusControls(cmbBranch,cmbItemCode , columnHeaders);
+            SetFocusControls(cmbBranch, txtCutOff , columnHeaders);
             MandatoryFields = new List<BaseEdit> { cmbBranch, dtpFromDate, dtpToDate };
             AllowedRoles = new List<string> { "Division Manager", "IT User", "Division User" };
         }
@@ -32,7 +32,8 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
                 , { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")}
-                , { "CategoryID", cmbCategory.EditValue }}; 
+                , { "CategoryID", cmbCategory.EditValue }
+                , { "CutOff", txtCutOff.EditValue } }; 
             return GetReportData("USP_RPT_NONMOVINGSTOCK", parameters);
         }
     }
