@@ -315,6 +315,9 @@ namespace NSRetail.ReportForms
                     column.DisplayFormat.FormatString = "t";
                 }
             }
+
+            if (searchCriteria.HiddenColumns != null && searchCriteria.HiddenColumns.Any())
+                gridView.Columns.Where(x => searchCriteria.HiddenColumns.Contains(x.FieldName)).ToList().ForEach(column => { gridView.Columns.Remove(column); });
         }
 
         private void tlReport_CustomRowFilter(object sender, DevExpress.XtraTreeList.CustomRowFilterEventArgs e)

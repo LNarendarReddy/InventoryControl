@@ -39,7 +39,8 @@ namespace NSRetailPOS.Operations.Reports
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
                 , { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")}
-                , { "CategoryID", cmbCategory.EditValue }}; 
+                , { "CategoryID", cmbCategory.EditValue }
+                , { "CutOff", txtCutOff.EditValue } }; 
             return GetReportData("USP_RPT_NONMOVINGSTOCK", parameters);
         }
     }
