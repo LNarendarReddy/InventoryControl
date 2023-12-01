@@ -127,7 +127,7 @@ namespace DataAccess
             }
         }
 
-        public void UpdateSupplierReturns(object SupplierReturnsID, object UserID, DataTable dt)
+        public void UpdateSupplierReturns(object SupplierReturnsID, object UserID, DataTable dt,object ReturnValue)
         {
             try
             {
@@ -146,6 +146,15 @@ namespace DataAccess
                 dt.Columns.Remove("WEIGHTINKGS");
                 dt.Columns.Remove("TOTALCOSTPRICE");
                 dt.Columns.Remove("SELECTED");
+                dt.Columns.Remove("BRANCHNAME");
+                dt.Columns.Remove("CREATEDBY");
+                dt.Columns.Remove("BRAPPOVEDDATE");
+                dt.Columns.Remove("UPDATEDBY");
+                dt.Columns.Remove("UPDATEDDATE");
+                dt.Columns.Remove("REFUNDTYPE");
+                dt.Columns.Remove("BRCREATEDDATE");
+                dt.Columns.Remove("REASONID");
+                dt.Columns.Remove("BREFUNDNUMBER");
 
                 using (SqlCommand cmd = new SqlCommand())
                 {
@@ -155,6 +164,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SupplierReturnsID", SupplierReturnsID);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     cmd.Parameters.AddWithValue("@dt", dt);
+                    cmd.Parameters.AddWithValue("@RETURNVALUE", ReturnValue);
                     object objreturn = cmd.ExecuteScalar();
                     if (objreturn != null)
                     {
@@ -195,6 +205,15 @@ namespace DataAccess
                 dt.Columns.Remove("TOTALCOSTPRICE");
                 dt.Columns.Remove("SELECTED");
                 dt.Columns.Remove("RETURNSTATUS");
+                dt.Columns.Remove("BRANCHNAME");
+                dt.Columns.Remove("CREATEDBY");
+                dt.Columns.Remove("BRAPPOVEDDATE");
+                dt.Columns.Remove("UPDATEDBY");
+                dt.Columns.Remove("UPDATEDDATE");
+                dt.Columns.Remove("REFUNDTYPE");
+                dt.Columns.Remove("BRCREATEDDATE");
+                dt.Columns.Remove("REASONID");
+                dt.Columns.Remove("BREFUNDNUMBER");
 
                 using (SqlCommand cmd = new SqlCommand())
                 {

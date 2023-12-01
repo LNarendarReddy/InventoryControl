@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DataAccess;
+using DevExpress.XtraEditors;
 using Entity;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,13 @@ namespace NSRetail.Supplier
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmViewReturnDetail_Load(object sender, EventArgs e)
+        {
+            cmbReason.DataSource = new SupplierRepository().GetReason();
+            cmbReason.ValueMember = "REASONID";
+            cmbReason.DisplayMember = "REASONNAME";
         }
     }
 }

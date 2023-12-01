@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using DevExpress.CodeParser;
 using DevExpress.Data;
+using DevExpress.Pdf.Native.BouncyCastle.Asn1.X509;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
@@ -43,17 +44,21 @@ namespace NSRetail
                 gcReturnstatus.Visible = true;
             }
             if (!_cNInitiated)
+            {
                 btnGenerateCreditNote.Text = "Initiate Credit Note";
+                txtReturnValue.Enabled = false;
+            }
 
             if (_cnGenerated)
             {
                 btnGenerateCreditNote.Text = "Generate Credit Note";
                 btnGenerateCreditNote.Enabled = false;
-                gcReturnstatus.OptionsColumn.AllowEdit = false;
+                txtReturnValue.Enabled = false;
             }
+            gcReturnstatus.OptionsColumn.AllowEdit = false;
         }
 
-        private void btnGenerateCreditNote_Click(object sender, EventArgs e)
+        private void btnGenerateCreditNote_Click(object sender, EventArgs e) 
         {
             if (gvSupplierReturns.RowCount == 0 ||
                 XtraMessageBox.Show("Are you sure want to continue?", "Confirm",
@@ -70,7 +75,13 @@ namespace NSRetail
                 }
                 else
                 {
-                    new SupplierRepository().UpdateSupplierReturns(SupplierReturnsID, Utility.UserID, gcSupplierReturns.DataSource as DataTable);
+                    if (txtReturnValue.EditValue == null)
+                    {
+                        XtraMessageBox.Show("Return value is mandatory");
+                        return;
+                    }
+                    new SupplierRepository().UpdateSupplierReturns(SupplierReturnsID, Utility.UserID, 
+                        gcSupplierReturns.DataSource as DataTable, txtReturnValue.EditValue);
                     cNGenerated = true;
                 }
                 Close();
@@ -135,6 +146,18 @@ namespace NSRetail
                         break;
                 }
             }
+        }
+
+        private void frmViewReturnItems_Load(object sender, EventArgs e)
+        {
+            cmbReason.DataSource = new SupplierRepository().GetReason();
+            cmbReason.ValueMember = "REASONID";
+            cmbReason.DisplayMember = "REASONNAME";
+        }
+
+        private void gcSupplierReturns_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
