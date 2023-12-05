@@ -222,6 +222,12 @@
     <Compile Include="Operations\Item\frmMRPList.designer.cs">
       <DependentUpon>frmMRPList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\Reports\ucBranchIndent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operations\Reports\ucBranchIndent.Designer.cs">
+      <DependentUpon>ucBranchIndent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\Reports\ucBranchIndentByAVG.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -476,6 +482,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Item\frmMRPList.resx">
       <DependentUpon>frmMRPList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Reports\ucBranchIndent.resx">
+      <DependentUpon>ucBranchIndent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Reports\ucBranchIndentByAVG.resx">
       <DependentUpon>ucBranchIndentByAVG.cs</DependentUpon>
