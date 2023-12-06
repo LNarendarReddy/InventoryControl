@@ -69,11 +69,17 @@ namespace NSRetailPOS.Operations.Reports
         public override object GetData()
         {
             int rowhandle = searchLookUpEdit1View.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
+            DateTime toDateValue = dtpToDate.DateTime;
+            if(toDateValue > DateTime.Now.Date)
+            {
+                toDateValue = DateTime.Now.Date.AddDays(-1);
+            }
+
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "BranchID", cmbBranch.EditValue }
                 , { "FromDate", dtpFromDate.EditValue }
-                , { "ToDate", dtpToDate.EditValue }
+                , { "ToDate", toDateValue }
                 , { "Periodicity", cmbPeriodicity.EditValue }
                 , { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")}
                 , { "CategoryID", cmbCategory.EditValue }

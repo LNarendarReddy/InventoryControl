@@ -166,6 +166,7 @@ namespace NSRetail.ReportForms
 
         private void tlReport_SelectionChanged(object sender, EventArgs e)
         {
+            dpTop.SuspendLayout();
             pcSearchCriteria.Controls.Clear();
             btnSearch.Enabled = false;
             btnReport.Enabled = false;
@@ -180,7 +181,9 @@ namespace NSRetail.ReportForms
 
             pcSearchCriteria.Controls.Add(selectedReportHolder.SearchCriteriaControl);
             selectedReportHolder.SearchCriteriaControl.Location = new System.Drawing.Point(2, 2);
-
+            dpTop.ClientSize = new System.Drawing.Size(dpTop.Size.Width, selectedReportHolder.SearchCriteriaControl.Height + 45);
+            //pcSearchCriteria.Size = new System.Drawing.Size(pcSearchCriteria.Size.Width, selectedReportHolder.SearchCriteriaControl.Height + 40);
+            dpTop.ResumeLayout();
             btnSearch.Enabled = true;
             btnReport.Enabled = true;            
             dpTop.Text = $"{dpTop.Text} for {selectedReportHolder.ReportName}";
