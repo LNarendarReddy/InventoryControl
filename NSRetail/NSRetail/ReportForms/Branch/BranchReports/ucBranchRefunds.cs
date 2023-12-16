@@ -41,6 +41,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 { "BRANCHID", cmbBranch.EditValue }
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
+                , { "SerialNumber", txtSerialNumber.EditValue }
             };
             return GetReportData("USP_RPT_BREFUNDSHEET", parameters);
         }
