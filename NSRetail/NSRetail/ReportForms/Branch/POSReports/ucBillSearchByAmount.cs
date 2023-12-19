@@ -18,7 +18,9 @@ namespace NSRetail.ReportForms.Branch.POSReports
             {
                 { "MOPNAME", "Payment Method" },
                 { "CREATEDTIME", "Created Time" },
-                { "BILLMODE", "Bill Mode" }
+                { "BILLMODE", "Bill Mode" },
+                { "CUSTOMERNAME", "Customer Name" },
+                { "CUSTOMERNUMBER", "Customer #" }
             };
 
             ButtonColumns = new List<string>() { "Items", "Print" };
