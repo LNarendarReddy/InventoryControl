@@ -77,7 +77,7 @@ namespace NSRetail
                 offer.StartDate = dtpStartDate.EditValue;
                 offer.EndDate = dtpEndDate.EditValue;
                 offer.OfferTypeID = cmbOfferType.EditValue;
-                offer. NumberOfItems = txtOfferThreshold.EditValue;
+                offer.NumberOfItems = txtOfferThreshold.EditValue;
                 offer.OfferThresholdPrice = txtOfferThresholdPrice.EditValue;
                 DataRowView dataRow = cmbOfferType.GetSelectedDataRow() as DataRowView;
                 offer.OfferTypeCode = dataRow["OFFERTYPECODE"];

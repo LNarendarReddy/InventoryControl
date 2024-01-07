@@ -446,7 +446,7 @@
             // 
             // gridColumn21
             // 
-            this.gridColumn21.Caption = "No Of Pieces";
+            this.gridColumn21.Caption = "Offer Threshold";
             this.gridColumn21.FieldName = "NUMBEROFPIECES";
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.OptionsColumn.AllowEdit = false;

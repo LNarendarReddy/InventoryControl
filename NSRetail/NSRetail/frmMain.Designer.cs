@@ -85,6 +85,8 @@
             this.bbiClassification = new DevExpress.XtraBars.BarButtonItem();
             this.bbiSupplierReports = new DevExpress.XtraBars.BarButtonItem();
             this.bbiBranchReports = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiChangeFY = new DevExpress.XtraBars.BarButtonItem();
+            this.puFinYear = new DevExpress.XtraBars.PopupMenu(this.components);
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -105,15 +107,13 @@
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup17 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.bbiChangeFY = new DevExpress.XtraBars.BarButtonItem();
-            this.puFinYear = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -700,6 +700,20 @@
             this.bbiBranchReports.Name = "bbiBranchReports";
             this.bbiBranchReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBranchReports_ItemClick_1);
             // 
+            // bbiChangeFY
+            // 
+            this.bbiChangeFY.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
+            resources.ApplyResources(this.bbiChangeFY, "bbiChangeFY");
+            this.bbiChangeFY.DropDownControl = this.puFinYear;
+            this.bbiChangeFY.Id = 68;
+            this.bbiChangeFY.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiChangeFY.ImageOptions.SvgImage")));
+            this.bbiChangeFY.Name = "bbiChangeFY";
+            // 
+            // puFinYear
+            // 
+            this.puFinYear.Name = "puFinYear";
+            this.puFinYear.Ribbon = this.ribbonControl1;
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -864,6 +878,13 @@
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
+            // repositoryItemLookUpEdit1
+            // 
+            resources.ApplyResources(this.repositoryItemLookUpEdit1, "repositoryItemLookUpEdit1");
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("repositoryItemLookUpEdit1.Buttons"))))});
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            // 
             // ribbonStatusBar1
             // 
             this.ribbonStatusBar1.ItemLinks.Add(this.lblUserName);
@@ -876,28 +897,6 @@
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
-            // 
-            // repositoryItemLookUpEdit1
-            // 
-            resources.ApplyResources(this.repositoryItemLookUpEdit1, "repositoryItemLookUpEdit1");
-            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("repositoryItemLookUpEdit1.Buttons"))))});
-            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
-            // 
-            // bbiChangeFY
-            // 
-            this.bbiChangeFY.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
-            resources.ApplyResources(this.bbiChangeFY, "bbiChangeFY");
-            this.bbiChangeFY.DropDownControl = this.puFinYear;
-            this.bbiChangeFY.Id = 68;
-            this.bbiChangeFY.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.bbiChangeFY.Name = "bbiChangeFY";
-            // 
-            // puFinYear
-            // 
-            this.puFinYear.Name = "puFinYear";
-            this.puFinYear.Ribbon = this.ribbonControl1;
-            
             // 
             // frmMain
             // 
@@ -914,9 +913,9 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.CodeParser;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Design;
 using DevExpress.XtraGrid.Columns;
@@ -23,21 +24,30 @@ namespace NSRetail
             gcSKUCode.Visible = IsDeal;
             gcItemCode.Visible = IsDeal;
             gcItemName.Visible = IsDeal;
-            gcNoOfItems.Visible = true;
             gcAppliesto.Visible = !IsDeal;
             gcCategory.Visible = !IsDeal;
             gcOfferThresholdPrice.Visible = !IsDeal;
+            gcNoOfItems.Visible = true;
+            if (IsDeal)
+                gcNoOfItems.Caption = "No of Items to Buy";
             gcDelete.VisibleIndex = gvOffer.VisibleColumns.Count;
             gcViewBranches.VisibleIndex = gvOffer.VisibleColumns.Count - 1;
-            gcViewItems.VisibleIndex = gvOffer.VisibleColumns.Count-2;
-            gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count-3;
-            if(IsDeal)
+            if (IsDeal)
+            {
+                gcViewItems.Visible = true;
+                gcViewItems.VisibleIndex = gvOffer.VisibleColumns.Count - 2;
+                gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count - 3;
+            }
+            else
+            {
+                gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count - 2;
+            }
+            if (IsDeal)
             {
                 gcOfferName.Caption = "Deal Name";
                 gcOfferType.Caption = "Deal Type";
                 gcOfferValue.Caption = "Deal Value";
             }
-
         }
         private void btnNew_Click(object sender, EventArgs e)
         {
@@ -128,6 +138,7 @@ namespace NSRetail
             offer.CategoryName = gvOffer.GetFocusedRowCellValue("CATEGORYNAME");
             offer.NumberOfItems = gvOffer.GetFocusedRowCellValue("NUMBEROFITEMS");
             offer.FreeItemPriceID = gvOffer.GetFocusedRowCellValue("FREEITEMPRICEID");
+            offer.OfferThresholdPrice = gvOffer.GetFocusedRowCellValue("OFFERTHRESHOLDPRICE");
             if (ShowCreateForm())
                 UpdateGridRow(gvOffer.FocusedRowHandle, true);
         }

@@ -132,16 +132,16 @@
             // txtNumberOfItems
             // 
             this.txtNumberOfItems.EnterMoveNextControl = true;
-            this.txtNumberOfItems.Location = new System.Drawing.Point(457, 108);
+            this.txtNumberOfItems.Location = new System.Drawing.Point(467, 108);
             this.txtNumberOfItems.Name = "txtNumberOfItems";
-            this.txtNumberOfItems.Size = new System.Drawing.Size(267, 20);
+            this.txtNumberOfItems.Size = new System.Drawing.Size(257, 20);
             this.txtNumberOfItems.StyleController = this.layoutControl1;
             this.txtNumberOfItems.TabIndex = 7;
             // 
             // txtOfferValue
             // 
             this.txtOfferValue.EnterMoveNextControl = true;
-            this.txtOfferValue.Location = new System.Drawing.Point(457, 76);
+            this.txtOfferValue.Location = new System.Drawing.Point(467, 76);
             this.txtOfferValue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtOfferValue.Name = "txtOfferValue";
             this.txtOfferValue.Properties.DisplayFormat.FormatString = "n2";
@@ -151,7 +151,7 @@
             this.txtOfferValue.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtOfferValue.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtOfferValue.Properties.MaskSettings.Set("mask", "n2");
-            this.txtOfferValue.Size = new System.Drawing.Size(267, 20);
+            this.txtOfferValue.Size = new System.Drawing.Size(257, 20);
             this.txtOfferValue.StyleController = this.layoutControl1;
             this.txtOfferValue.TabIndex = 5;
             // 
@@ -185,7 +185,7 @@
             // cmbOfferType
             // 
             this.cmbOfferType.EnterMoveNextControl = true;
-            this.cmbOfferType.Location = new System.Drawing.Point(104, 76);
+            this.cmbOfferType.Location = new System.Drawing.Point(114, 76);
             this.cmbOfferType.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbOfferType.Name = "cmbOfferType";
             this.cmbOfferType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -195,7 +195,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OFFERTYPECODE", "Offer Type Code", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OFFERTYPENAME", "Offer Type", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbOfferType.Properties.NullText = "";
-            this.cmbOfferType.Size = new System.Drawing.Size(249, 20);
+            this.cmbOfferType.Size = new System.Drawing.Size(239, 20);
             this.cmbOfferType.StyleController = this.layoutControl1;
             this.cmbOfferType.TabIndex = 4;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -207,14 +207,14 @@
             // 
             this.dtpEndDate.EditValue = null;
             this.dtpEndDate.EnterMoveNextControl = true;
-            this.dtpEndDate.Location = new System.Drawing.Point(457, 44);
+            this.dtpEndDate.Location = new System.Drawing.Point(467, 44);
             this.dtpEndDate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpEndDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpEndDate.Size = new System.Drawing.Size(267, 20);
+            this.dtpEndDate.Size = new System.Drawing.Size(257, 20);
             this.dtpEndDate.StyleController = this.layoutControl1;
             this.dtpEndDate.TabIndex = 3;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -225,14 +225,14 @@
             // 
             this.dtpStartDate.EditValue = null;
             this.dtpStartDate.EnterMoveNextControl = true;
-            this.dtpStartDate.Location = new System.Drawing.Point(104, 44);
+            this.dtpStartDate.Location = new System.Drawing.Point(114, 44);
             this.dtpStartDate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpStartDate.Size = new System.Drawing.Size(249, 20);
+            this.dtpStartDate.Size = new System.Drawing.Size(239, 20);
             this.dtpStartDate.StyleController = this.layoutControl1;
             this.dtpStartDate.TabIndex = 2;
             conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -242,12 +242,12 @@
             // txtOfferName
             // 
             this.txtOfferName.EnterMoveNextControl = true;
-            this.txtOfferName.Location = new System.Drawing.Point(457, 12);
+            this.txtOfferName.Location = new System.Drawing.Point(467, 12);
             this.txtOfferName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtOfferName.Name = "txtOfferName";
             this.txtOfferName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtOfferName.Properties.MaxLength = 100;
-            this.txtOfferName.Size = new System.Drawing.Size(267, 20);
+            this.txtOfferName.Size = new System.Drawing.Size(257, 20);
             this.txtOfferName.StyleController = this.layoutControl1;
             this.txtOfferName.TabIndex = 1;
             conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -257,12 +257,12 @@
             // txtOfferCode
             // 
             this.txtOfferCode.EnterMoveNextControl = true;
-            this.txtOfferCode.Location = new System.Drawing.Point(104, 12);
+            this.txtOfferCode.Location = new System.Drawing.Point(114, 12);
             this.txtOfferCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtOfferCode.Name = "txtOfferCode";
             this.txtOfferCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtOfferCode.Properties.MaxLength = 10;
-            this.txtOfferCode.Size = new System.Drawing.Size(249, 20);
+            this.txtOfferCode.Size = new System.Drawing.Size(239, 20);
             this.txtOfferCode.StyleController = this.layoutControl1;
             this.txtOfferCode.TabIndex = 0;
             conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -272,13 +272,13 @@
             // cmbFreeItemCode
             // 
             this.cmbFreeItemCode.EnterMoveNextControl = true;
-            this.cmbFreeItemCode.Location = new System.Drawing.Point(104, 108);
+            this.cmbFreeItemCode.Location = new System.Drawing.Point(114, 108);
             this.cmbFreeItemCode.Name = "cmbFreeItemCode";
             this.cmbFreeItemCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbFreeItemCode.Properties.NullText = "";
             this.cmbFreeItemCode.Properties.PopupView = this.searchLookUpEdit1View;
-            this.cmbFreeItemCode.Size = new System.Drawing.Size(249, 20);
+            this.cmbFreeItemCode.Size = new System.Drawing.Size(239, 20);
             this.cmbFreeItemCode.StyleController = this.layoutControl1;
             this.cmbFreeItemCode.TabIndex = 6;
             // 
@@ -373,7 +373,7 @@
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem1.Size = new System.Drawing.Size(353, 32);
             this.layoutControlItem1.Text = "Deal Code";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(80, 14);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(90, 14);
             // 
             // layoutControlItem5
             // 
@@ -383,7 +383,7 @@
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem5.Size = new System.Drawing.Size(353, 32);
             this.layoutControlItem5.Text = "Start Date";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(80, 14);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(90, 14);
             // 
             // layoutControlItem2
             // 
@@ -393,7 +393,7 @@
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem2.Size = new System.Drawing.Size(371, 32);
             this.layoutControlItem2.Text = "Deal Name";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(80, 14);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(90, 14);
             // 
             // layoutControlItem6
             // 
@@ -403,7 +403,7 @@
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem6.Size = new System.Drawing.Size(371, 32);
             this.layoutControlItem6.Text = "End Date";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(80, 14);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(90, 14);
             // 
             // layoutControlItem12
             // 
@@ -439,7 +439,7 @@
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem3.Size = new System.Drawing.Size(353, 32);
             this.layoutControlItem3.Text = "Free Item";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(80, 14);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(90, 14);
             // 
             // layoutControlItem4
             // 
@@ -448,8 +448,8 @@
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem4.Size = new System.Drawing.Size(371, 32);
-            this.layoutControlItem4.Text = "Number Of Items";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(80, 14);
+            this.layoutControlItem4.Text = "No Of Items to Buy";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(90, 14);
             // 
             // layoutControlItem9
             // 
@@ -459,7 +459,7 @@
             this.layoutControlItem9.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem9.Size = new System.Drawing.Size(353, 32);
             this.layoutControlItem9.Text = "Deal Type";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(80, 14);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(90, 14);
             // 
             // layoutControlItem14
             // 
@@ -469,7 +469,7 @@
             this.layoutControlItem14.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem14.Size = new System.Drawing.Size(371, 32);
             this.layoutControlItem14.Text = "Deal Value";
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(80, 14);
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(90, 14);
             // 
             // emptySpaceItem1
             // 

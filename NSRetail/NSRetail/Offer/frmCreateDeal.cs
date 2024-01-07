@@ -152,7 +152,7 @@ namespace NSRetail
                 layoutControlItem14.Text = "Bill Value of sub items";
                 txtOfferValue.Enabled = true;
                 cmbFreeItemCode.Enabled = true;
-                txtNumberOfItems.Enabled = true;
+                txtNumberOfItems.Enabled = false;
             }
             else if (cmbOfferType.EditValue.Equals(1006))
             {
