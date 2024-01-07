@@ -20,7 +20,9 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "ISOFFER", "Item Offer applied" },
                 { "WHSTOCK", "Warehouse Stock" },
                 { "BRANCHSTOCK", "Branch Stock" },
-                { "GSTCODE", "GST Code" }
+                { "GSTCODE", "GST Code" },
+                { "OFFERCODE", "Offer Code" },
+                { "BASEOFFERCODE", "Base Offer Code" },
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -33,7 +35,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
                 , new IncludeSettings("Classification", "IncludeClassification", new List<string>{ "CLASSIFICATIONNAME" })
                 , new IncludeSettings("Sub Classification", "IncludeSubClassification", new List<string>{ "SUBCLASSIFICATIONNAME" })
-                , new IncludeSettings("Stock & Is offer", "IncludeStock", new List<string>{ "ISOFFER", "WHSTOCK", "BRANCHSTOCK" })
+                , new IncludeSettings("Stock & Is offer", "IncludeStock", new List<string>{ "ISOFFER", "WHSTOCK", "BRANCHSTOCK", "OFFERCODE", "BASEOFFERCODE" })
                 , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })
             };
 
