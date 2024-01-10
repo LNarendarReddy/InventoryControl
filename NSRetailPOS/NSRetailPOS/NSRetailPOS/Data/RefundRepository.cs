@@ -150,6 +150,36 @@ namespace NSRetailPOS.Data
             return dSInitialLoad;
         }
 
+        public DataTable SaveBRefund(object userId, object branchId, object categoryID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_CU_BREFUND]";
+                    cmd.Parameters.AddWithValue("@USERID", userId);
+                    cmd.Parameters.AddWithValue("@BRANCHID", branchId);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", categoryID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dt;
+        }
+
         public int SaveBRefundDetail(DataRow drDetail)
         {
             int BRefundDetailID = 0;

@@ -1,8 +1,13 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Pdf.Drawing;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
+using DevExpress.XtraRichEdit.Export.Html;
 using NSRetailPOS.Data;
 using NSRetailPOS.Reports;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -30,9 +35,16 @@ namespace NSRetailPOS.UI
             DataSet dSInitialData = new RefundRepository().GetInitialLoad(Utility.loginInfo.UserID, Utility.branchInfo.BranchID);
             if (dSInitialData != null && dSInitialData.Tables.Count > 0)
             {
-                BRefundID = dSInitialData.Tables[0].Rows[0]["BREFUNDID"];
-                BRefundNumber = dSInitialData.Tables[0].Rows[0]["BREFUNDNUMBER"];
-                this.Text = "Branch Refund" + "-" + BRefundNumber;
+                if (dSInitialData.Tables[0].Rows.Count > 0)
+                {
+                    BRefundID = dSInitialData.Tables[0].Rows[0]["BREFUNDID"];
+                    BRefundNumber = dSInitialData.Tables[0].Rows[0]["BREFUNDNUMBER"];
+                    cmbCategory.EditValue = dSInitialData.Tables[0].Rows[0]["CATEGORYID"];
+                    this.Text = "Branch Refund" + "-" + BRefundNumber;
+                    cmbCategory.Enabled = false;
+                }
+                else
+                    cmbCategory.Enabled = true;
                 dtRefund = dSInitialData.Tables[1].Copy();
                 gcRefund.DataSource = dtRefund;
                 SNo = dtRefund.Rows.Count + 1;
@@ -40,16 +52,13 @@ namespace NSRetailPOS.UI
         }
         private void frmBranchRefund_Load(object sender, EventArgs e)
         {
-            sluItemCode.Properties.DataSource = new ItemRepository().GetItemCodes();
-            sluItemCode.Properties.DisplayMember = "ITEMNAME";
-            sluItemCode.Properties.ValueMember = "ITEMCODEID";
-
-            sluItemCodeView.GridControl.BindingContext = new BindingContext();
-            sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
-
             cmbRFR.Properties.DataSource = new RefundRepository().GETRFR();
             cmbRFR.Properties.DisplayMember = "REASONNAME";
             cmbRFR.Properties.ValueMember = "REASONID";
+
+            cmbCategory.Properties.DataSource = new ItemRepository().GetCategory();
+            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+            cmbCategory.Properties.ValueMember = "CATEGORYID";
 
             txtQuantity.ConfirmLargeNumber();
             txtWeightInKgs.ConfirmLargeNumber();
@@ -87,7 +96,6 @@ namespace NSRetailPOS.UI
             }
 
             txtMRP.EditValue = drSelectedPrice["MRP"];
-            txtSalePrice.EditValue = drSelectedPrice["SALEPRICE"];
             txtQuantity.EditValue = 1;
             if (isOpenItem)
             {
@@ -114,7 +122,6 @@ namespace NSRetailPOS.UI
             txtItemCode.EditValue = null;
             sluItemCode.EditValue = null;
             txtMRP.EditValue = null;
-            txtSalePrice.EditValue = null;
             txtQuantity.EditValue = 1;
             txtWeightInKgs.EditValue = 0.00;
 
@@ -198,7 +205,23 @@ namespace NSRetailPOS.UI
             gvRefund.GridControl.BindingContext = new BindingContext();
             gvRefund.GridControl.DataSource = dtRefund;
             isEventCall = true;
-            int rowHandle = gvRefund.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
+
+            int rowHandle = -1;
+
+            IList source = (IList)ListBindingHelper.GetList(gcRefund.DataSource, gcRefund.DataMember);
+            PropertyDescriptorCollection coll = ListBindingHelper.GetListItemProperties(gcRefund.DataSource);
+            PropertyDescriptor desc1 = coll["ITEMPRICEID"];
+            PropertyDescriptor desc2 = coll["REASONID"];
+            foreach (object row in source)
+            {
+                object val1 = desc1.GetValue(row);
+                object val2 = desc2.GetValue(row);
+                if (val1.Equals(drSelectedPrice["ITEMPRICEID"]) && val2.Equals(cmbRFR.EditValue))
+                {
+                    rowHandle = gvRefund.GetRowHandle(source.IndexOf(row));
+                    break;
+                }
+            }
             if (rowHandle < 0)
             {
                 gvRefund.AddNewRow();
@@ -219,16 +242,12 @@ namespace NSRetailPOS.UI
             rowHandle = gvRefund.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
             if (rowHandle >= 0)
             {
+                if (!int.TryParse(Convert.ToString(BRefundID), out int id) || id <= 0)
+                    SaveBRefund();
                 SaveRefundDetail(rowHandle);
             }
             ClearItemData();
             gvRefund.FocusedRowHandle = rowHandle;
-        }
-        private void SaveRefundDetail(int rowHandle)
-        {
-            DataRow drDetail = (gvRefund.GetRow(rowHandle) as DataRowView).Row;
-            int BRefundDetailID = new RefundRepository().SaveBRefundDetail(drDetail);
-            drDetail["BREFUNDDETAILID"] = BRefundDetailID;
         }
         private void gvRefund_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
@@ -283,17 +302,48 @@ namespace NSRetailPOS.UI
             rpt.Print();
             rpt.Print();
             rpt.Print();
-            InitialLoad();
+            this.Close();
         }
         private void txtQuantity_Enter(object sender, EventArgs e)
         {
             TextEdit textedit = sender as TextEdit;
             textedit.SelectAll();
         }
-
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
             
+        }
+        private void cmbCategory_EditValueChanged(object sender, EventArgs e)
+        {
+            if (cmbCategory.EditValue != null)
+            {
+                sluItemCode.Properties.DataSource = new ItemRepository().GetItemCodes(cmbCategory.EditValue);
+                sluItemCode.Properties.DisplayMember = "ITEMNAME";
+                sluItemCode.Properties.ValueMember = "ITEMCODEID";
+
+                sluItemCodeView.GridControl.BindingContext = new BindingContext();
+                sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
+            }
+        }
+        private void SaveBRefund()
+        {
+            DataTable dt = new RefundRepository().SaveBRefund(Utility.loginInfo.UserID, Utility.branchInfo.BranchID, cmbCategory.EditValue);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                BRefundID = dt.Rows[0]["BREFUNDID"];
+                BRefundNumber = dt.Rows[0]["BREFUNDNUMBER"];
+                cmbCategory.EditValue = dt.Rows[0]["CATEGORYID"];
+                this.Text = "Branch Refund" + "-" + BRefundNumber;
+                cmbCategory.Enabled = false;
+            }
+            else
+                throw new Exception("Error while saving BRefund");
+        }
+        private void SaveRefundDetail(int rowHandle)
+        {
+            DataRow drDetail = (gvRefund.GetRow(rowHandle) as DataRowView).Row;
+            int BRefundDetailID = new RefundRepository().SaveBRefundDetail(drDetail);
+            drDetail["BREFUNDDETAILID"] = BRefundDetailID;
         }
     }
 }

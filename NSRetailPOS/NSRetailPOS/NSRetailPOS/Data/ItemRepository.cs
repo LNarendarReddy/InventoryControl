@@ -10,7 +10,7 @@ namespace NSRetailPOS.Data
 {
     public class ItemRepository
     {
-        public DataTable GetItemCodes()
+        public DataTable GetItemCodes(object categoryID = null)
         {
             DataTable dtItemCodes = new DataTable();
             SqlConnection conn = SQLCon.Sqlconn();
@@ -21,6 +21,7 @@ namespace NSRetailPOS.Data
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_R_ITEMCODES]";
+                    cmd.Parameters.AddWithValue("@CATEGORYID", categoryID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtItemCodes);
