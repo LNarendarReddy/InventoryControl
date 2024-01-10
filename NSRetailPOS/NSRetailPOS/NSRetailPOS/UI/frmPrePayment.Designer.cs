@@ -186,12 +186,6 @@
             this.txtCustomerGST.EnterMoveNextControl = true;
             this.txtCustomerGST.Location = new System.Drawing.Point(136, 133);
             this.txtCustomerGST.Name = "txtCustomerGST";
-            this.txtCustomerGST.Properties.DisplayFormat.FormatString = "d";
-            this.txtCustomerGST.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtCustomerGST.Properties.EditFormat.FormatString = "d";
-            this.txtCustomerGST.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtCustomerGST.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtCustomerGST.Properties.MaskSettings.Set("mask", "d");
             this.txtCustomerGST.Properties.MaxLength = 10;
             this.txtCustomerGST.Size = new System.Drawing.Size(552, 24);
             this.txtCustomerGST.StyleController = this.layoutControl1;
