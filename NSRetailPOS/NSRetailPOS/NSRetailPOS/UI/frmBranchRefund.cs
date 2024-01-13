@@ -342,6 +342,11 @@ namespace NSRetailPOS.UI
         private void SaveRefundDetail(int rowHandle)
         {
             DataRow drDetail = (gvRefund.GetRow(rowHandle) as DataRowView).Row;
+
+            // refresh BREFUNDID just before going for save so that in case of first create,
+            // BRefundID will be null, in quantity leave SaveRefund() will be called but the 
+            // already initialized row will still have BRefundID as old value null
+            drDetail["BREFUNDID"] = BRefundID;
             int BRefundDetailID = new RefundRepository().SaveBRefundDetail(drDetail);
             drDetail["BREFUNDDETAILID"] = BRefundDetailID;
         }
