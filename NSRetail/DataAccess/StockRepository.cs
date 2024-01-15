@@ -355,6 +355,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_CU_STOCKADJUSTMENT]";
                     cmd.Parameters.AddWithValue("@ItemID", stockAdjustment.ItemID);
                     cmd.Parameters.AddWithValue("@BRANCHID", stockAdjustment.BranchID);
+                    cmd.Parameters.AddWithValue("@Description", stockAdjustment.Description);
                     cmd.Parameters.AddWithValue("@StockSummary", stockAdjustment.dtStockSummary);
                     cmd.Parameters.AddWithValue("@USERID", stockAdjustment.UserID);
 

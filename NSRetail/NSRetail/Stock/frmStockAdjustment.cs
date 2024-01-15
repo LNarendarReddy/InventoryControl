@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace NSRetail.Stock
 {
@@ -70,7 +71,8 @@ namespace NSRetail.Stock
                 BranchID = cmbBranch.EditValue,
                 UserID = Utility.UserID,
                 ItemID = cmbSKUCode.EditValue,
-                dtStockSummary = dtStockToSave
+                dtStockSummary = dtStockToSave,
+                Description = txtComment.EditValue
             };
             try
             {
@@ -89,6 +91,7 @@ namespace NSRetail.Stock
             cmbSKUCode.EditValue = null;
             txtItemName.EditValue = null;
             gcItemStockByMRP.DataSource = null;
+            txtComment.EditValue = null;
             cmbBranch.Focus();
         }
 
