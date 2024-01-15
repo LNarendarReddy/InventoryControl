@@ -39,7 +39,7 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 , new IncludeSettings("Item details", "IncludeItem", new List<string>{ 
                         "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "SALEPRICE"
                         , "ACTUALSALEPRICE", "ACTUALSALEPRICEWOT", "ACTUALSALEPRICETAX", "SALEQUANTITY" 
-                        , "COSTPRICEWOT", "COSTPRICETAX", "COSTPRICEWT"})
+                        , "AVGCOSTPRICEWOT", "AVGCOSTPRICETAX", "AVGCOSTPRICEWT"})
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" }, true)
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })

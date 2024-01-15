@@ -114,6 +114,9 @@ namespace NSRetail
                 , {"TOTALCOSTPRICEtax", "Total Cost Price Tax"}
                 , {"TOTALCOSTPRICEWT", "Total Cost Price with Tax"}
                 , {"DEALERNAME", "Supplier"}
+                , {"AVGCOSTPRICEWOT", "Avg Cost Price w/o Tax"}
+                , {"AVGCOSTPRICETAX", "Avg Cost Price Tax"}
+                , {"AVGCOSTPRICEWT", "Avg Cost Price with Tax"}
             };
 
             ButtonColumns = new List<string>();
