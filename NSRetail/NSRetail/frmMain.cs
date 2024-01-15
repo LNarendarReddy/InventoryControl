@@ -370,7 +370,7 @@ namespace NSRetail
             }
             
             bbiClearProcedureCache.Enabled = Utility.Role == "Admin" || Utility.Role == "IT Manager";
-            bbiStockSlippage.Visibility = Utility.BranchID == 97 ? BarItemVisibility.Always : BarItemVisibility.Never;
+            bbiStockSlippage.Visibility = Utility.BranchID == 97 || Utility.BranchID == 45 ? BarItemVisibility.Always : BarItemVisibility.Never;
 
             FillFinYears();
         }
