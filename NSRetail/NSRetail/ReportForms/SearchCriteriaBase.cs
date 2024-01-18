@@ -117,6 +117,9 @@ namespace NSRetail
                 , {"AVGCOSTPRICEWOT", "Avg Cost Price w/o Tax"}
                 , {"AVGCOSTPRICETAX", "Avg Cost Price Tax"}
                 , {"AVGCOSTPRICEWT", "Avg Cost Price with Tax"}
+                , {"QTYORWGHTINKGS", "Qty or Weight in KG(s)"}
+                , {"PARENTITEMNAME", "Parent Item Name"}
+                , {"PARENTSKUCODE", "Parent SKU Code"}
             };
 
             ButtonColumns = new List<string>();

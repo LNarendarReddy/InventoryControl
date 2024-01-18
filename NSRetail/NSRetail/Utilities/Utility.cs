@@ -46,8 +46,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "2.1.8";
-        public static string VersionDate = "(15-01-2024)";
+        public static string AppVersion = "2.1.9";
+        public static string VersionDate = "(19-01-2024)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -316,7 +316,7 @@ namespace NSRetail
             BaseEdit baseEdit = sender as BaseEdit;
             string textValue = baseEdit.EditValue != null ? baseEdit.EditValue.ToString() : string.Empty;
             if (textValue.Length > 4 && XtraMessageBox.Show($"Barcode scan detected, Do you want to accept the value {textValue}"
-                    , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, defaultButton: MessageBoxDefaultButton.Button2) != DialogResult.Yes)
             {
                 baseEdit.EditValue = null;
             }

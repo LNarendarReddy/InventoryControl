@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockAdjustment));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockAdjustment));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtComment = new DevExpress.XtraEditors.MemoEdit();
             this.gcItemStockByMRP = new DevExpress.XtraGrid.GridControl();
             this.gvItemStockByMRP = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -65,11 +67,11 @@
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.txtComment = new DevExpress.XtraEditors.MemoEdit();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComment.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemStockByMRP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemStockByMRP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbSKUCode.Properties)).BeginInit();
@@ -84,9 +86,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtComment.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -106,6 +107,19 @@
             this.layoutControl1.Size = new System.Drawing.Size(854, 538);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtComment
+            // 
+            this.txtComment.EnterMoveNextControl = true;
+            this.txtComment.Location = new System.Drawing.Point(89, 434);
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(749, 48);
+            this.txtComment.StyleController = this.layoutControl1;
+            this.txtComment.TabIndex = 4;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "This value cannot be empty";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtComment, conditionValidationRule1);
             // 
             // gcItemStockByMRP
             // 
@@ -271,10 +285,10 @@
             this.cmbSKUCode.Size = new System.Drawing.Size(332, 22);
             this.cmbSKUCode.StyleController = this.layoutControl1;
             this.cmbSKUCode.TabIndex = 1;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbSKUCode, conditionValidationRule1);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Mandatory";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbSKUCode, conditionValidationRule2);
             this.cmbSKUCode.EditValueChanged += new System.EventHandler(this.cmbItemCode_EditValueChanged);
             // 
             // cmbLookupView
@@ -342,10 +356,10 @@
             this.txtItemName.Size = new System.Drawing.Size(749, 22);
             this.txtItemName.StyleController = this.layoutControl1;
             this.txtItemName.TabIndex = 2;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtItemName, conditionValidationRule2);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Mandatory";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtItemName, conditionValidationRule3);
             // 
             // cmbBranch
             // 
@@ -363,10 +377,10 @@
             this.cmbBranch.Size = new System.Drawing.Size(332, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 0;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "Mandatory";
-            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbBranch, conditionValidationRule3);
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "Mandatory";
+            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbBranch, conditionValidationRule4);
             this.cmbBranch.EditValueChanged += new System.EventHandler(this.cmbBranch_EditValueChanged);
             // 
             // Root
@@ -457,15 +471,6 @@
             this.layoutControlItem1.Text = "SKU Code";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(61, 15);
             // 
-            // txtComment
-            // 
-            this.txtComment.EnterMoveNextControl = true;
-            this.txtComment.Location = new System.Drawing.Point(89, 434);
-            this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(749, 48);
-            this.txtComment.StyleController = this.layoutControl1;
-            this.txtComment.TabIndex = 4;
-            // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtComment;
@@ -488,6 +493,7 @@
             this.Load += new System.EventHandler(this.frmStockAdjustment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtComment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemStockByMRP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemStockByMRP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbSKUCode.Properties)).EndInit();
@@ -502,9 +508,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtComment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }

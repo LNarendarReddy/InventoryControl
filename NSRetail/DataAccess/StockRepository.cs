@@ -754,5 +754,34 @@ namespace DataAccess
                 
             }
         }
+
+        public void AddBulkProcessing(object ItemPriceID, object quantity, object UserID)
+        {
+            SqlTransaction transaction = null;
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    transaction = cmd.Connection.BeginTransaction();
+                    cmd.Transaction = transaction;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_C_BULKPROCESSING]";
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
+                    cmd.Parameters.AddWithValue("@Quantity", quantity);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object returnValue = cmd.ExecuteScalar();
+                    if (!int.TryParse(returnValue?.ToString(), out int rowsafftected))
+                        throw new Exception(returnValue.ToString());
+                    transaction?.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                transaction?.Rollback();
+                throw new Exception($"Error while adding bulk processing : {ex.Message}", ex);
+            }
+        }
     }
 }
