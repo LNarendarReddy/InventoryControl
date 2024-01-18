@@ -22,6 +22,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                     , { "COSTPRICEWOT", "Cost Price WOT" }
                     , { "COSTPRICETAX", "Cost Price Tax" }
                     , { "COSTPRICEWT", "Cost Price WT" }
+                    , { "CATEGORYNAME", "Category" }
                 };
 
             ButtonColumns = new List<string>() { "View" };
@@ -42,6 +43,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
                 , { "SerialNumber", txtSerialNumber.EditValue }
+                , { "CategoryID", Utility.CategoryID }
             };
             return GetReportData("USP_RPT_BREFUNDSHEET", parameters);
         }

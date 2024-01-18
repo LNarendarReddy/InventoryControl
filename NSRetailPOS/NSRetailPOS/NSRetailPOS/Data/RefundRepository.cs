@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.CodeParser;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -290,6 +291,32 @@ namespace NSRetailPOS.Data
                 SQLCon.Sqlconn().Close();
             }
             return dtRFR;
+        }
+
+        public void DiscardBRefund(object BrefundID, object userId)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_D_BREFUND]";
+                    cmd.Parameters.AddWithValue("@BREFUNDID", BrefundID);
+                    cmd.Parameters.AddWithValue("@USERID", userId);
+                    int rowaffected = cmd.ExecuteNonQuery();
+                    if (rowaffected <= 0)
+                        throw new Exception("Error while discarding branch return sheet");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
         }
     }
 }

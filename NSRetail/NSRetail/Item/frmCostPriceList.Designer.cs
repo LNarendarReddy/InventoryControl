@@ -38,14 +38,14 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcSupplier = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcInvoiceDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcCPList)).BeginInit();
@@ -125,8 +125,8 @@
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn7,
-            this.gridColumn5,
-            this.gridColumn6});
+            this.gcSupplier,
+            this.gcInvoiceDate});
             this.gvCPList.DetailHeight = 404;
             this.gvCPList.FixedLineWidth = 3;
             this.gvCPList.GridControl = this.gcCPList;
@@ -174,25 +174,33 @@
             this.gridColumn2.VisibleIndex = 3;
             this.gridColumn2.Width = 117;
             // 
-            // gridColumn5
+            // gridColumn7
             // 
-            this.gridColumn5.Caption = "Supplier";
-            this.gridColumn5.FieldName = "DEALERNAME";
-            this.gridColumn5.MinWidth = 23;
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 5;
-            this.gridColumn5.Width = 310;
+            this.gridColumn7.Caption = "GST Code";
+            this.gridColumn7.FieldName = "GSTCODE";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 4;
             // 
-            // gridColumn6
+            // gcSupplier
             // 
-            this.gridColumn6.Caption = "Invoice Date";
-            this.gridColumn6.FieldName = "INVOICEDATE";
-            this.gridColumn6.MinWidth = 23;
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 6;
-            this.gridColumn6.Width = 117;
+            this.gcSupplier.Caption = "Supplier";
+            this.gcSupplier.FieldName = "DEALERNAME";
+            this.gcSupplier.MinWidth = 23;
+            this.gcSupplier.Name = "gcSupplier";
+            this.gcSupplier.Visible = true;
+            this.gcSupplier.VisibleIndex = 5;
+            this.gcSupplier.Width = 310;
+            // 
+            // gcInvoiceDate
+            // 
+            this.gcInvoiceDate.Caption = "Invoice Date";
+            this.gcInvoiceDate.FieldName = "INVOICEDATE";
+            this.gcInvoiceDate.MinWidth = 23;
+            this.gcInvoiceDate.Name = "gcInvoiceDate";
+            this.gcInvoiceDate.Visible = true;
+            this.gcInvoiceDate.VisibleIndex = 6;
+            this.gcInvoiceDate.Width = 117;
             // 
             // Root
             // 
@@ -251,14 +259,6 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(686, 30);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "GST Code";
-            this.gridColumn7.FieldName = "GSTCODE";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 4;
-            // 
             // frmCostPriceList
             // 
             this.AcceptButton = this.btnOk;
@@ -299,8 +299,8 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gcSupplier;
+        private DevExpress.XtraGrid.Columns.GridColumn gcInvoiceDate;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
     }
 }

@@ -35,12 +35,12 @@ namespace NSRetail.Stock
                 cmbSupplier.Properties.ValueMember = "DEALERID";
                 cmbSupplier.Properties.DisplayMember = "DEALERNAME";
 
-                sluItemCode.Properties.DataSource = Utility.GetItemCodeListFiltered().Copy();
-                sluItemCode.Properties.ValueMember = "ITEMCODEID";
-                sluItemCode.Properties.DisplayMember = "ITEMNAME";
+                cmbCategory.Properties.DataSource = new MasterRepository().GetCategory(true);
+                cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+                cmbCategory.Properties.ValueMember = "CATEGORYID";
 
-                sluItemCodeView.GridControl.BindingContext = new BindingContext();
-                sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
+                cmbCategory.EditValue = Utility.CategoryID;
+                cmbCategory.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -85,7 +85,6 @@ namespace NSRetail.Stock
             txtItemCode.EditValue = null;
             sluItemCode.EditValue = null;
             txtMRP.EditValue = null;
-            txtSalePrice.EditValue = null;
             txtCostPrice.EditValue = null;
             txtQuantity.EditValue = 1;
             txtWeightInKgs.EditValue = 0.00;
@@ -153,7 +152,6 @@ namespace NSRetail.Stock
             }
             txtCostPrice.EditValue = drSelectedPrice["COSTPRICEWT"];
             txtMRP.EditValue = drSelectedPrice["MRP"];
-            txtSalePrice.EditValue = drSelectedPrice["SALEPRICE"];
             txtQuantity.EditValue = 1;
             if (isOpenItem)
             {
@@ -326,6 +324,16 @@ namespace NSRetail.Stock
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cmbCategory_EditValueChanged(object sender, EventArgs e)
+        {
+            sluItemCode.Properties.DataSource = new ItemCodeRepository().GetItemCodeByCategory(Utility.CategoryID);
+            sluItemCode.Properties.ValueMember = "ITEMCODEID";
+            sluItemCode.Properties.DisplayMember = "ITEMNAME";
+
+            sluItemCodeView.GridControl.BindingContext = new BindingContext();
+            sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
         }
     }
 }

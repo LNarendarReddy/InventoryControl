@@ -131,9 +131,16 @@ namespace DataAccess
             }
             return ObjCategory;
         }
-        public DataTable GetCategory()
+        public DataTable GetCategory(bool ignoreAllCategory = false)
         {
-            return new ReportRepository().GetReportData("USP_R_CATEGORY");
+            DataTable dt = new ReportRepository().GetReportData("USP_R_CATEGORY");
+            if(ignoreAllCategory)
+            {
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = "CATEGORYID <> 13";
+                return dv.ToTable();
+            }
+            return dt;
         }
         public DataTable GetAvailableLocations()
         {

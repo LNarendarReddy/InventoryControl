@@ -212,11 +212,13 @@ namespace NSRetailPOS.UI
             PropertyDescriptorCollection coll = ListBindingHelper.GetListItemProperties(gcRefund.DataSource);
             PropertyDescriptor desc1 = coll["ITEMPRICEID"];
             PropertyDescriptor desc2 = coll["REASONID"];
+            PropertyDescriptor desc3 = coll["TRAYNUMBER"];
             foreach (object row in source)
             {
                 object val1 = desc1.GetValue(row);
                 object val2 = desc2.GetValue(row);
-                if (val1.Equals(drSelectedPrice["ITEMPRICEID"]) && val2.Equals(cmbRFR.EditValue))
+                object val3 = desc3.GetValue(row);
+                if (val1.Equals(drSelectedPrice["ITEMPRICEID"]) && val2.Equals(cmbRFR.EditValue) && val3.Equals(Convert.ToInt32(txtTrayNumber.EditValue)))
                 {
                     rowHandle = gvRefund.GetRowHandle(source.IndexOf(row));
                     break;
@@ -302,6 +304,7 @@ namespace NSRetailPOS.UI
             rpt.Print();
             rpt.Print();
             rpt.Print();
+            XtraMessageBox.Show("Branch return sheet submitted successfully, re-open sheet for new return");
             this.Close();
         }
         private void txtQuantity_Enter(object sender, EventArgs e)
@@ -323,6 +326,19 @@ namespace NSRetailPOS.UI
 
                 sluItemCodeView.GridControl.BindingContext = new BindingContext();
                 sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
+            }
+        }
+        private void btnDiscard_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new RefundRepository().DiscardBRefund(BRefundID, Utility.loginInfo.UserID);
+                XtraMessageBox.Show("Branch return sheet discarded successfully, re-open sheet for new return");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message);
             }
         }
         private void SaveBRefund()
