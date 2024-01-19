@@ -30,5 +30,10 @@ namespace NSRetailPOS.UI
                 gcStockInList.DataSource = new StockInRepository().GetStockDispatches(Utility.branchInfo.BranchID);
             }
         }
+
+        private void gcStockInList_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
