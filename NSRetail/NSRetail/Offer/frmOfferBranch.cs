@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
 using Entity;
 using System;
 using System.Data;
@@ -20,6 +21,7 @@ namespace NSRetail
             OfferID = _OfferID;
             IsbaseOffer = _IsbaseOffer;
             gcBranch.DataSource = offerRepository.GetOfferBranch(OfferID, _IsbaseOffer);
+            gvBranch.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
             cmBranch.Properties.DataSource = new MasterRepository().GetBranch();
             cmBranch.Properties.ValueMember = "BRANCHID";
             cmBranch.Properties.DisplayMember = "BRANCHNAME";
@@ -57,6 +59,7 @@ namespace NSRetail
             offerRepository.SaveOfferBranch(OfferID,
                 cmBranch.EditValue, Utility.UserID, IsbaseOffer);
             gcBranch.DataSource = offerRepository.GetOfferBranch(OfferID, IsbaseOffer);
+            gvBranch.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
         }
 
         private void btnAddAllBranches_Click(object sender, EventArgs e)
@@ -69,6 +72,7 @@ namespace NSRetail
 
             offerRepository.SaveOfferBranch(OfferID, -1, Utility.UserID, IsbaseOffer);
             gcBranch.DataSource = offerRepository.GetOfferBranch(OfferID, IsbaseOffer);
+            gvBranch.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
         }
     }
 }

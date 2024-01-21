@@ -64,6 +64,7 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -74,7 +75,6 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode)).BeginInit();
@@ -372,6 +372,14 @@
             this.gridColumn22.VisibleIndex = 9;
             this.gridColumn22.Width = 82;
             // 
+            // gridColumn23
+            // 
+            this.gridColumn23.Caption = "Is Active";
+            this.gridColumn23.FieldName = "ISACTIVE";
+            this.gridColumn23.Name = "gridColumn23";
+            this.gridColumn23.Visible = true;
+            this.gridColumn23.VisibleIndex = 10;
+            // 
             // gcDelete
             // 
             this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
@@ -380,7 +388,7 @@
             this.gcDelete.ColumnEdit = this.btnDelete;
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 10;
+            this.gcDelete.VisibleIndex = 11;
             this.gcDelete.Width = 107;
             // 
             // btnDelete
@@ -484,14 +492,6 @@
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
-            // 
-            // gridColumn23
-            // 
-            this.gridColumn23.Caption = "Is Active";
-            this.gridColumn23.FieldName = "ISACTIVE";
-            this.gridColumn23.Name = "gridColumn23";
-            this.gridColumn23.Visible = true;
-            this.gridColumn23.VisibleIndex = 11;
             // 
             // frmCreateOfferList
             // 
