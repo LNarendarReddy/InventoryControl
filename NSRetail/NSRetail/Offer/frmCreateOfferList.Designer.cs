@@ -74,6 +74,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode)).BeginInit();
@@ -126,6 +127,7 @@
             this.gridColumn7,
             this.gridColumn3,
             this.gridColumn22,
+            this.gridColumn23,
             this.gcDelete});
             this.gvOffer.GridControl = this.gcOffer;
             this.gvOffer.Name = "gvOffer";
@@ -483,6 +485,14 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
+            // gridColumn23
+            // 
+            this.gridColumn23.Caption = "Is Active";
+            this.gridColumn23.FieldName = "ISACTIVE";
+            this.gridColumn23.Name = "gridColumn23";
+            this.gridColumn23.Visible = true;
+            this.gridColumn23.VisibleIndex = 11;
+            // 
             // frmCreateOfferList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -556,5 +566,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcPieces;
         private DevExpress.XtraEditors.SimpleButton btnViewReport;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
     }
 }

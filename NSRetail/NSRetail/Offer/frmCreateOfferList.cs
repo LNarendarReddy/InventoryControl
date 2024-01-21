@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using Entity;
@@ -37,6 +38,7 @@ namespace NSRetail
             cmbItemCode.DisplayMember = "ITEMCODE";
 
             gcOffer.DataSource = offerRepository.GetOfferByBaseOffer(BaseOfferID);
+            gvOffer.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
         }
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
@@ -168,6 +170,7 @@ namespace NSRetail
 
                         new OfferRepository().ImportOffer(BaseOfferID, CategoryID, dtTemp, Utility.UserID);
                         gcOffer.DataSource = offerRepository.GetOfferByBaseOffer(BaseOfferID);
+                        gvOffer.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
                         SplashScreenManager.CloseOverlayForm(handle);
                     }
                 }
