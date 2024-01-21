@@ -13,7 +13,7 @@ namespace NSRetailPOS.Data
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Connection = SQLCon.SqlWHconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_R_STOCKDISPATCH]";
                     cmd.Parameters.AddWithValue("@BranchID", branchID);
@@ -41,7 +41,7 @@ namespace NSRetailPOS.Data
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Connection = SQLCon.SqlWHconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_R_STOCKDISPATCHDETAIL]";
                     cmd.Parameters.AddWithValue("@StockDispatchID", stockDispatchID);
@@ -68,7 +68,7 @@ namespace NSRetailPOS.Data
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Connection = SQLCon.SqlWHconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_FINISH_STOCKIN]";
                     cmd.Parameters.AddWithValue("@UserID", Utility.loginInfo.UserID);
