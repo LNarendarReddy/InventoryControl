@@ -23,7 +23,12 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "GSTCODE", "GST Code" },
                 { "OFFERCODE", "Offer Code" },
                 { "BASEOFFERCODE", "Base Offer Code" },
-                { "BILLCREATEDBY", "Bill Created By" }
+                { "BILLCREATEDBY", "Bill Created By" },
+                { "CREATEDTIME", "Created Time" },
+                { "ISDOORDELIVERY", "Is Door Delivery?" },
+                { "CUSTOMERNAME", "Customer Name" },
+                { "CUSTOMERNUMBER", "Customer #" },
+                { "CUSTOMERGST", "Customer GST" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -37,9 +42,9 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("Classification", "IncludeClassification", new List<string>{ "CLASSIFICATIONNAME" })
                 , new IncludeSettings("Sub Classification", "IncludeSubClassification", new List<string>{ "SUBCLASSIFICATIONNAME" })
                 , new IncludeSettings("Stock & Is offer", "IncludeStock", new List<string>{ "ISOFFER", "WHSTOCK", "BRANCHSTOCK", "OFFERCODE", "BASEOFFERCODE" })
-                , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })
-                , new IncludeSettings("Bill Created By", "IncludeUser", new List<string>{ "BILLCREATEDBY" })
-                , new IncludeSettings("Bill number", "IncludeBillNumber", new List<string>{ "BILLNUMBER" })
+                , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })                
+                , new IncludeSettings("Bill details", "IncludeBillDetails", new List<string>
+                    { "BILLCREATEDBY", "BILLNUMBER", "CREATEDTIME", "ISDOORDELIVERY", "CUSTOMERNAME", "CUSTOMERNUMBER", "CUSTOMERGST" })
             };
 
             SetFocusControls(cmbPeriodicity, cmbItemCode, specificColumnHeaders);

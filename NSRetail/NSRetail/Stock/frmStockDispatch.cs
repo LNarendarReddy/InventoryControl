@@ -50,7 +50,7 @@ namespace NSRetail.Stock
 
 
                 DataView dvBranch = dtBranch.Copy().DefaultView;
-                dvBranch.RowFilter = Utility.BranchID != 45 ? $"BRANCHID <> {Utility.BranchID} AND ISWAREHOUSE = 1" : $"ISWAREHOUSE = 0";
+                dvBranch.RowFilter = "ISWAREHOUSE = 0";
                 cmbToBranch.Properties.DataSource = dvBranch;
                 cmbToBranch.Properties.ValueMember = "BRANCHID";
                 cmbToBranch.Properties.DisplayMember = "BRANCHNAME";

@@ -8,6 +8,7 @@ using DevExpress.LookAndFeel;
 using DevExpress.XtraSplashScreen;
 using System.Reflection;
 using System.ComponentModel;
+using ErrorManagement;
 
 namespace NSRetail
 {
@@ -24,7 +25,13 @@ namespace NSRetail
             SkinManager.EnableMdiFormSkins();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.ThreadException += Application_ThreadException;
             Application.Run(new frmLogin());
+        }
+
+        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            ErrorMgmt.ShowError(e.Exception);
         }
     }
 }

@@ -34,6 +34,8 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "ACTUALMARGINWTPER", "Actual Margin % WT" },
                 { "ACTUALPRICEWT", "Actual Price WT" },
                 { "ACTUALPRICEWOT", "Actual Price WOT" },
+                { "MRPWOT", "MRP WOT" },
+                { "SALEPRICEWOT", "Sale Price WOT" },
                 { "OFFERNAME", "Applied Offer Name" }
             };
 

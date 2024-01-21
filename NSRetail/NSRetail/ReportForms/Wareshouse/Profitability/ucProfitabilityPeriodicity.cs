@@ -61,6 +61,7 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
                 , { "Periodicity", cmbPeriodicity.EditValue }
+                , { "CategoryID", cmbCategory.EditValue }
             };
 
             return GetReportData("USP_RPT_PROFITABILITY_PERIODICITY", parameters);

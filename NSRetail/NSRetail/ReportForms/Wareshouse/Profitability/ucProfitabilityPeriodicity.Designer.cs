@@ -32,12 +32,14 @@
             this.cmbPeriodicity = new DevExpress.XtraEditors.LookUpEdit();
             this.dtpFromDate = new DevExpress.XtraEditors.DateEdit();
             this.dtpToDate = new DevExpress.XtraEditors.DateEdit();
+            this.cmbBranch = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cmbBranch = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.cmbCategory = new DevExpress.XtraEditors.LookUpEdit();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPeriodicity.Properties)).BeginInit();
@@ -45,12 +47,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -59,6 +63,7 @@
             this.layoutControl1.Controls.Add(this.dtpFromDate);
             this.layoutControl1.Controls.Add(this.dtpToDate);
             this.layoutControl1.Controls.Add(this.cmbBranch);
+            this.layoutControl1.Controls.Add(this.cmbCategory);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -74,7 +79,7 @@
             this.cmbPeriodicity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbPeriodicity.Properties.NullText = "";
-            this.cmbPeriodicity.Size = new System.Drawing.Size(201, 22);
+            this.cmbPeriodicity.Size = new System.Drawing.Size(109, 22);
             this.cmbPeriodicity.StyleController = this.layoutControl1;
             this.cmbPeriodicity.TabIndex = 4;
             // 
@@ -106,6 +111,19 @@
             this.dtpToDate.StyleController = this.layoutControl1;
             this.dtpToDate.TabIndex = 2;
             // 
+            // cmbBranch
+            // 
+            this.cmbBranch.EditValue = "";
+            this.cmbBranch.EnterMoveNextControl = true;
+            this.cmbBranch.Location = new System.Drawing.Point(272, 11);
+            this.cmbBranch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cmbBranch.Name = "cmbBranch";
+            this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbBranch.Size = new System.Drawing.Size(207, 22);
+            this.cmbBranch.StyleController = this.layoutControl1;
+            this.cmbBranch.TabIndex = 1;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -114,7 +132,8 @@
             this.layoutControlItem1,
             this.layoutControlItem5,
             this.layoutControlItem3,
-            this.layoutControlItem4});
+            this.layoutControlItem4,
+            this.layoutControlItem2});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.Root.Size = new System.Drawing.Size(1128, 45);
@@ -156,34 +175,49 @@
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem3.Size = new System.Drawing.Size(283, 35);
+            this.layoutControlItem3.Size = new System.Drawing.Size(191, 35);
             this.layoutControlItem3.Text = "Periodicity";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(58, 15);
-            // 
-            // cmbBranch
-            // 
-            this.cmbBranch.EditValue = "";
-            this.cmbBranch.EnterMoveNextControl = true;
-            this.cmbBranch.Location = new System.Drawing.Point(364, 11);
-            this.cmbBranch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbBranch.Name = "cmbBranch";
-            this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbBranch.Size = new System.Drawing.Size(362, 22);
-            this.cmbBranch.StyleController = this.layoutControl1;
-            this.cmbBranch.TabIndex = 1;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.cmbBranch;
             this.layoutControlItem4.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.layoutControlItem4.CustomizationFormText = "Branch";
-            this.layoutControlItem4.Location = new System.Drawing.Point(283, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(191, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem4.Size = new System.Drawing.Size(444, 35);
+            this.layoutControlItem4.Size = new System.Drawing.Size(289, 35);
             this.layoutControlItem4.Text = "Branch";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(58, 15);
+            // 
+            // cmbCategory
+            // 
+            this.cmbCategory.EnterMoveNextControl = true;
+            this.cmbCategory.Location = new System.Drawing.Point(560, 10);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbCategory.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYID", "CATEGORYID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYNAME", "CATEGORYNAME")});
+            this.cmbCategory.Properties.NullText = "";
+            this.cmbCategory.Properties.ShowHeader = false;
+            this.cmbCategory.Size = new System.Drawing.Size(167, 22);
+            this.cmbCategory.StyleController = this.layoutControl1;
+            this.cmbCategory.TabIndex = 1;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.cmbCategory;
+            this.layoutControlItem2.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.layoutControlItem2.CustomizationFormText = "Category";
+            this.layoutControlItem2.Location = new System.Drawing.Point(480, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem2.Size = new System.Drawing.Size(247, 35);
+            this.layoutControlItem2.Text = "Category";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(58, 15);
             // 
             // ucProfitabilityPeriodicity
             // 
@@ -200,12 +234,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -222,5 +258,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraEditors.CheckedComboBoxEdit cmbBranch;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraEditors.LookUpEdit cmbCategory;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
     }
 }
