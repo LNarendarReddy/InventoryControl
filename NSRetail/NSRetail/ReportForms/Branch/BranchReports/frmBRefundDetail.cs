@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
+using DevExpress.XtraReports.Design;
 using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
@@ -112,11 +113,34 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             if (gvItems.FocusedRowHandle < 0)
                 return;
             e.Menu.Items.Add(new DXMenuItem("View Report", new EventHandler(ViewReport_Click)));
+
+            if (!btnSave.Enabled || gvItems.GetFocusedRowCellValue("QUANTITY").Equals(1))
+                return;
+            e.Menu.Items.Add(new DXMenuItem("Split Quantity", new EventHandler(SplitQuantity_Click)));
         }
 
         private void ViewReport_Click(object sender, EventArgs e)
         {
             gcItems.ShowRibbonPrintPreview();
+        }
+
+        private void SplitQuantity_Click(object sender, EventArgs e)
+        {
+            SplitQuantity splitQuantity = new SplitQuantity();
+            splitQuantity.BaseQuantity = gvItems.GetFocusedRowCellValue("QUANTITY");
+            splitQuantity.BaseReason = gvItems.GetFocusedRowCellValue("REASONID");
+            frmSplitQuantity obj = new frmSplitQuantity(splitQuantity);
+            obj.ShowDialog();
+            if(splitQuantity._IsSave)
+            {
+                SupplierRepository.SplitBRQuantity(
+                        gvItems.GetFocusedRowCellValue("BRDID"),
+                        splitQuantity.BaseQuantity,splitQuantity.BaseReason,
+                        splitQuantity.DevidedQuantity, splitQuantity.DevidedReason,
+                        Utility.UserID, gvItems.RowCount + 1);
+
+                gcItems.DataSource = new POSRepository().GetBRefundDetail(BRefundID, CounterID);
+            }
         }
     }
 }

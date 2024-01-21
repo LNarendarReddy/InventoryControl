@@ -459,5 +459,31 @@ namespace DataAccess
             }
             return dt;
         }
+
+        public void SplitBRQuantity(object BRDID, object BASEQUANTITY, 
+            object BASEREASON, object DEVIDEDQUANTITY, object DEVIDEDREASON, object UserID, object SNO)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_SPLIT_BRQUANTITY]";
+                    cmd.Parameters.AddWithValue("@BRDID", BRDID);
+                    cmd.Parameters.AddWithValue("@BASEQUANTITY", BASEQUANTITY);
+                    cmd.Parameters.AddWithValue("@BASEREASON", BASEREASON);
+                    cmd.Parameters.AddWithValue("@DEVIDEDQUANTITY", DEVIDEDQUANTITY);
+                    cmd.Parameters.AddWithValue("@DEVIDEDREASON", DEVIDEDREASON);
+                    cmd.Parameters.AddWithValue("@SNO", SNO);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while splitting quantity");
+            }
+        }
     }
 }

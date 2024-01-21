@@ -140,6 +140,12 @@
     <Compile Include="Master\frmClearHDDSNo.Designer.cs">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Branch\BranchReports\frmSplitQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Branch\BranchReports\frmSplitQuantity.Designer.cs">
+      <DependentUpon>frmSplitQuantity.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -939,6 +945,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmClearHDDSNo.resx">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmSplitQuantity.resx">
+      <DependentUpon>frmSplitQuantity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.resx">
       <DependentUpon>ucConsolidatedCounting.cs</DependentUpon>

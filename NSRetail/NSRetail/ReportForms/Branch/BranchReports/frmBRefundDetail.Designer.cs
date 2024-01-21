@@ -53,6 +53,7 @@
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BRDID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -151,7 +152,8 @@
             this.gcSupplier,
             this.gridColumn16,
             this.gridColumn17,
-            this.BRDID});
+            this.BRDID,
+            this.gridColumn11});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -348,6 +350,12 @@
             this.BRDID.FieldName = "BRDID";
             this.BRDID.Name = "BRDID";
             // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "ITEMPRICEID";
+            this.gridColumn11.FieldName = "ITEMPRICEID";
+            this.gridColumn11.Name = "gridColumn11";
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -461,5 +469,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbReason;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbSupplier;
         private DevExpress.XtraGrid.Columns.GridColumn BRDID;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
     }
 }
