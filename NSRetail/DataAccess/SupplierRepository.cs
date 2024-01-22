@@ -91,6 +91,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@WeightInKGS", drNew["WEIGHTINKGS"]);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    cmd.Parameters.AddWithValue("@ReasonID", drNew["REASONID"]);
                     SupplierReturnsDetailID = cmd.ExecuteScalar();
                 }
             }

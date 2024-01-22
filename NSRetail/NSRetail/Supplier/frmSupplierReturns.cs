@@ -1,7 +1,9 @@
 ﻿using DataAccess;
+using DevExpress.Pdf.Native.BouncyCastle.Asn1.X509;
 using DevExpress.XtraEditors;
 using Entity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,6 +32,9 @@ namespace NSRetail.Stock
         {
             try
             {
+                txtQuantity.ConfirmBarCodeScan();
+                txtWeightInKgs.ConfirmBarCodeScan();
+
                 ((frmMain)MdiParent).RefreshBaseLineData += FrmStockDispatch_RefreshBaseLineData;
                 cmbSupplier.Properties.DataSource = new MasterRepository().GetDealer();
                 cmbSupplier.Properties.ValueMember = "DEALERID";
@@ -38,6 +43,14 @@ namespace NSRetail.Stock
                 cmbCategory.Properties.DataSource = new MasterRepository().GetCategory(true);
                 cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
                 cmbCategory.Properties.ValueMember = "CATEGORYID";
+
+                cmbReasongrid.DataSource = new SupplierRepository().GetReason();
+                cmbReasongrid.ValueMember = "REASONID";
+                cmbReasongrid.DisplayMember = "REASONNAME";
+
+                cmbReason.Properties.DataSource = new SupplierRepository().GetReason();
+                cmbReason.Properties.ValueMember = "REASONID";
+                cmbReason.Properties.DisplayMember = "REASONNAME";
 
                 cmbCategory.EditValue = Utility.CategoryID;
                 cmbCategory.Enabled = false;
@@ -208,7 +221,8 @@ namespace NSRetail.Stock
                 gvSupplierReturns.GridControl.BindingContext = new BindingContext();
                 gvSupplierReturns.GridControl.DataSource = supplierReturns.dtSupplierReturns;
                 isEventCall = true;
-                int rowHandle = gvSupplierReturns.LocateByValue("ITEMCOSTPRICEID", drSelectedPrice["ITEMCOSTPRICEID"]);
+
+                int rowHandle = Getrowhandle();
                 if (rowHandle < 0)
                 {
                     gvSupplierReturns.AddNewRow();
@@ -235,7 +249,7 @@ namespace NSRetail.Stock
                 gvSupplierReturns.GridControl.BindingContext = new BindingContext();
                 gvSupplierReturns.GridControl.DataSource = supplierReturns.dtSupplierReturns;
 
-                rowHandle = gvSupplierReturns.LocateByValue("ITEMCOSTPRICEID", drSelectedPrice["ITEMCOSTPRICEID"]);
+                rowHandle = Getrowhandle();
                 if (rowHandle >= 0)
                 {
                     SaveSupplierReturnsDetail(rowHandle);
@@ -247,6 +261,25 @@ namespace NSRetail.Stock
             {
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
+        }
+        private int Getrowhandle()
+        {
+            int rowHandle = -1;
+            IList source = (IList)ListBindingHelper.GetList(gcSupplierReturns.DataSource, gcSupplierReturns.DataMember);
+            PropertyDescriptorCollection coll = ListBindingHelper.GetListItemProperties(gcSupplierReturns.DataSource);
+            PropertyDescriptor desc1 = coll["ITEMCOSTPRICEID"];
+            PropertyDescriptor desc2 = coll["REASONID"];
+            foreach (object row in source)
+            {
+                object val1 = desc1.GetValue(row);
+                object val2 = desc2.GetValue(row);
+                if (val1.Equals(drSelectedPrice["ITEMCOSTPRICEID"]) && val2.Equals(cmbReason.EditValue))
+                {
+                    rowHandle = gvSupplierReturns.GetRowHandle(source.IndexOf(row));
+                    break;
+                }
+            }
+            return rowHandle;
         }
         private void SaveSupplierReturns()
         {
@@ -281,6 +314,7 @@ namespace NSRetail.Stock
             gvSupplierReturns.SetRowCellValue(e.RowHandle, "COSTPRICE", drSelectedPrice["COSTPRICEWT"]);
             gvSupplierReturns.SetRowCellValue(e.RowHandle, "QUANTITY", txtQuantity.EditValue);
             gvSupplierReturns.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
+            gvSupplierReturns.SetRowCellValue(e.RowHandle, "REASONID", cmbReason.EditValue);
         }
         private void txtQuantity_Enter(object sender, EventArgs e)
         {

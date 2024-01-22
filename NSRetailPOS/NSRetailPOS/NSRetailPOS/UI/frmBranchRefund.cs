@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraRichEdit.Export.Html;
+using DevExpress.XtraRichEdit.Layout;
 using NSRetailPOS.Data;
 using NSRetailPOS.Reports;
 using System;
@@ -23,7 +24,7 @@ namespace NSRetailPOS.UI
         bool isOpenItem;
         bool isEventCall;
         private int SNo = 1;
-        DataTable dtRefund = null;  
+        DataTable dtRefund = null;
         public frmBranchRefund()
         {
             InitializeComponent();
@@ -67,7 +68,7 @@ namespace NSRetailPOS.UI
         }
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)
         {
-            if (sluItemCode.EditValue == null){return;}
+            if (sluItemCode.EditValue == null) { return; }
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODEID", sluItemCode.EditValue);
             txtItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODE");
             isOpenItem = Convert.ToBoolean(sluItemCodeView.GetRowCellValue(rowHandle, "ISOPENITEM"));
@@ -108,7 +109,7 @@ namespace NSRetailPOS.UI
                 txtWeightInKgs.EditValue = "0.00";
                 txtWeightInKgs.Enabled = false;
                 txtQuantity.Enabled = true;
-             }
+            }
             if (!isItemScanned)
             {
                 if (isOpenItem)
@@ -192,7 +193,7 @@ namespace NSRetailPOS.UI
             if (e.KeyCode != Keys.Enter)
                 return;
 
-            if (sluItemCode.EditValue == null || drSelectedPrice == null || txtQuantity.EditValue == null 
+            if (sluItemCode.EditValue == null || drSelectedPrice == null || txtQuantity.EditValue == null
                 || txtQuantity.EditValue.Equals(0))
             {
                 txtItemCode.Focus();
@@ -206,8 +207,37 @@ namespace NSRetailPOS.UI
             gvRefund.GridControl.DataSource = dtRefund;
             isEventCall = true;
 
-            int rowHandle = -1;
+            int rowHandle = Getrowhandle();
+            if (rowHandle < 0)
+            {
+                gvRefund.AddNewRow();
+            }
+            else
+            {
+                int newQuantity = Convert.ToInt32(txtQuantity.EditValue) +
+                    Convert.ToInt32(gvRefund.GetRowCellValue(rowHandle, "QUANTITY"));
+                if (newQuantity > 0)
+                {
+                    gvRefund.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
+                }
+            }
+            isEventCall = false;
+            gvRefund.GridControl.BindingContext = new BindingContext();
+            gvRefund.GridControl.DataSource = dtRefund;
 
+            rowHandle = Getrowhandle();
+            if (rowHandle >= 0)
+            {
+                if (!int.TryParse(Convert.ToString(BRefundID), out int id) || id <= 0)
+                    SaveBRefund();
+                SaveRefundDetail(rowHandle);
+            }
+            ClearItemData();
+            gvRefund.FocusedRowHandle = rowHandle;
+        }
+        private int Getrowhandle()
+        {
+            int rowHandle = -1;  
             IList source = (IList)ListBindingHelper.GetList(gcRefund.DataSource, gcRefund.DataMember);
             PropertyDescriptorCollection coll = ListBindingHelper.GetListItemProperties(gcRefund.DataSource);
             PropertyDescriptor desc1 = coll["ITEMPRICEID"];
@@ -224,32 +254,7 @@ namespace NSRetailPOS.UI
                     break;
                 }
             }
-            if (rowHandle < 0)
-            {
-                gvRefund.AddNewRow();
-            }
-            else
-            {
-                int newQuantity = Convert.ToInt32(txtQuantity.EditValue) + 
-                    Convert.ToInt32(gvRefund.GetRowCellValue(rowHandle, "QUANTITY"));
-                if (newQuantity > 0)
-                {
-                    gvRefund.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
-                }
-            }
-            isEventCall = false;
-            gvRefund.GridControl.BindingContext = new BindingContext();
-            gvRefund.GridControl.DataSource = dtRefund;
-
-            rowHandle = gvRefund.LocateByValue("ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
-            if (rowHandle >= 0)
-            {
-                if (!int.TryParse(Convert.ToString(BRefundID), out int id) || id <= 0)
-                    SaveBRefund();
-                SaveRefundDetail(rowHandle);
-            }
-            ClearItemData();
-            gvRefund.FocusedRowHandle = rowHandle;
+            return rowHandle;
         }
         private void gvRefund_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
@@ -314,7 +319,7 @@ namespace NSRetailPOS.UI
         }
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
         }
         private void cmbCategory_EditValueChanged(object sender, EventArgs e)
         {

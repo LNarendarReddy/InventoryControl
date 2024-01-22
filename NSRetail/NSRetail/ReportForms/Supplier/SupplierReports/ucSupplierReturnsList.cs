@@ -47,6 +47,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 { "SupplierID",  cmbSupplier.EditValue }
                 ,{ "FromDate",  dtpFromDate.EditValue }
                 ,{ "ToDate", dtpToDate.EditValue }
+                ,{ "CategoryID", Utility.CategoryID}
             };
             return GetReportData("USP_R_SUPPLIERRETURNS", parameters);
         }
