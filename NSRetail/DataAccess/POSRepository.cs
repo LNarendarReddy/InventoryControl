@@ -266,11 +266,14 @@ namespace DataAccess
         }
         public void AcceptBRefund(object CounterID, object BRefundID,object UserID ,DataTable dtBRefundDetail)
         {
+            SqlTransaction sqlTransaction = null;
             try
              {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    sqlTransaction = SQLCon.Sqlconn().BeginTransaction();
                     cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_BREFUND]";
                     cmd.Parameters.AddWithValue("@dtbrd", dtBRefundDetail);
@@ -280,18 +283,16 @@ namespace DataAccess
                     object objReturn = cmd.ExecuteScalar();
                     if(!int.TryParse(Convert.ToString(objReturn), out int id))
                         throw new Exception(Convert.ToString(objReturn));
+                    sqlTransaction.Commit();
                 }
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("Few items"))
+                sqlTransaction.Rollback();
+                if (ex.Message.Contains("Few items") || ex.Message.Contains("already accepted"))
                     throw ex;
                 else
                     throw new Exception("Error While Accepting Branch Refund", ex);
-            }
-            finally
-            {
-                
             }
         }
 

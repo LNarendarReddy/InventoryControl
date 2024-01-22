@@ -51,7 +51,9 @@ namespace NSRetail.ReportForms.Branch.BranchReports
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
             DataTable dtItems = new POSRepository().GetBRefundDetail(drFocusedRow["BREFUNDID"], drFocusedRow["COUNTERID"]);
-            frmBRefundDetail obj = new frmBRefundDetail(dtItems, drFocusedRow["COUNTERID"], drFocusedRow["BREFUNDID"], Convert.ToBoolean(drFocusedRow["IsAcceptedID"]))
+            frmBRefundDetail obj = new frmBRefundDetail(dtItems, 
+                drFocusedRow["COUNTERID"], drFocusedRow["BREFUNDID"], drFocusedRow["CATEGORYID"],
+                Convert.ToBoolean(drFocusedRow["IsAcceptedID"]))
             {
                 ShowInTaskbar = false,
                 StartPosition = FormStartPosition.CenterScreen

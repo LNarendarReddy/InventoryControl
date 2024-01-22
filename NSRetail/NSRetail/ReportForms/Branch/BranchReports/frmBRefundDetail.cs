@@ -17,10 +17,10 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 {
     public partial class frmBRefundDetail : DevExpress.XtraEditors.XtraForm
     {
-        object CounterID = null,BRefundID = null;
+        object CounterID = null, BRefundID = null;
         public bool IsSave = false;
         SupplierRepository SupplierRepository = new SupplierRepository();
-        public frmBRefundDetail(DataTable dtItems,object _CounterID,object _BRefundID, bool IsAccepted = false)
+        public frmBRefundDetail(DataTable dtItems,object _CounterID,object _BRefundID, object CategoryID, bool IsAccepted = false)
         {
             InitializeComponent();
             btnSave.Enabled = !IsAccepted;
@@ -28,6 +28,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             gcItems.DataSource = dtItems;
             CounterID = _CounterID;
             BRefundID = _BRefundID;
+            gcSupplier.Visible = gcCPWOT.Visible = gcCPWT.Visible = 
+                CategoryID.Equals(3) || CategoryID.Equals(4) || CategoryID.Equals(13);
             gvItems.PopupMenuShowing += gvItems_PopupMenuShowing;
         }
 

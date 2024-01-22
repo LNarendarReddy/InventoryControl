@@ -21,10 +21,10 @@ namespace NSRetail.Stock
         bool isEventCall;
         SupplierReturns supplierReturns = null;
         SupplierRepository supplierRepository = new SupplierRepository();
-        public frmSupplierReturns(SupplierReturns _supplierReturns = null)
+        public frmSupplierReturns()
         {
             InitializeComponent();
-            supplierReturns = _supplierReturns == null ? new SupplierReturns() : _supplierReturns;
+            supplierReturns = new SupplierReturns();
         }
         private void frmSupplierReturns_Load(object sender, EventArgs e)
         {
@@ -71,9 +71,13 @@ namespace NSRetail.Stock
         {
             try
             {
+                if (cmbSupplier.EditValue == null || cmbCategory.EditValue == null)
+                    return;
                 supplierReturns.SupplierID = cmbSupplier.EditValue;
-                supplierReturns = supplierRepository.GetInitialLoad(supplierReturns);
+                supplierReturns.CategoryID = cmbCategory.EditValue;
+                supplierRepository.GetInitialLoad(supplierReturns);
                 gcSupplierReturns.DataSource = supplierReturns.dtSupplierReturns;
+               
             }
             catch (Exception ex)
             {
@@ -249,6 +253,7 @@ namespace NSRetail.Stock
             try
             {
                 supplierReturns.SupplierID = cmbSupplier.EditValue;
+                supplierReturns.CategoryID = cmbCategory.EditValue;
                 supplierReturns.UserID = Utility.UserID;
                 supplierRepository.SaveSupplierReturns(supplierReturns);
             }

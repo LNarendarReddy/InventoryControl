@@ -22,6 +22,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_INITIALSR]";
                     cmd.Parameters.AddWithValue("@SupplierID", supplierReturns.SupplierID);
+                    cmd.Parameters.AddWithValue("@CategoryID", supplierReturns.CategoryID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);
@@ -57,6 +58,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_CU_SUPPLIERRETURNS]";
                     cmd.Parameters.AddWithValue("@SupplierReturnsID", supplierReturns.SupplierReturnsID);
                     cmd.Parameters.AddWithValue("@SupplierID", supplierReturns.SupplierID);
+                    cmd.Parameters.AddWithValue("@CategoryID", supplierReturns.CategoryID);
                     cmd.Parameters.AddWithValue("@UserID", supplierReturns.UserID);
                     supplierReturns.SupplierReturnsID = cmd.ExecuteScalar();
                 }

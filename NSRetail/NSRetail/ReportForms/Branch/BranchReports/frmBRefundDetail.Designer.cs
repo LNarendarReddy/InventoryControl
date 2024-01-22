@@ -50,8 +50,8 @@
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSupplier = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbSupplier = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcCPWOT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcCPWT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BRDID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -150,8 +150,8 @@
             this.gridColumn13,
             this.gridColumn14,
             this.gcSupplier,
-            this.gridColumn16,
-            this.gridColumn17,
+            this.gcCPWOT,
+            this.gcCPWT,
             this.BRDID,
             this.gridColumn11});
             this.gvItems.DetailHeight = 404;
@@ -324,25 +324,25 @@
             this.cmbSupplier.ShowHeader = false;
             this.cmbSupplier.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             // 
-            // gridColumn16
+            // gcCPWOT
             // 
-            this.gridColumn16.Caption = "Cost Price WOT";
-            this.gridColumn16.FieldName = "COSTPRICEWOT";
-            this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.OptionsColumn.AllowEdit = false;
-            this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 11;
-            this.gridColumn16.Width = 69;
+            this.gcCPWOT.Caption = "Cost Price WOT";
+            this.gcCPWOT.FieldName = "COSTPRICEWOT";
+            this.gcCPWOT.Name = "gcCPWOT";
+            this.gcCPWOT.OptionsColumn.AllowEdit = false;
+            this.gcCPWOT.Visible = true;
+            this.gcCPWOT.VisibleIndex = 11;
+            this.gcCPWOT.Width = 69;
             // 
-            // gridColumn17
+            // gcCPWT
             // 
-            this.gridColumn17.Caption = "Cost Price WT";
-            this.gridColumn17.FieldName = "COSTPRICEWT";
-            this.gridColumn17.Name = "gridColumn17";
-            this.gridColumn17.OptionsColumn.AllowEdit = false;
-            this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 12;
-            this.gridColumn17.Width = 72;
+            this.gcCPWT.Caption = "Cost Price WT";
+            this.gcCPWT.FieldName = "COSTPRICEWT";
+            this.gcCPWT.Name = "gcCPWT";
+            this.gcCPWT.OptionsColumn.AllowEdit = false;
+            this.gcCPWT.Visible = true;
+            this.gcCPWT.VisibleIndex = 12;
+            this.gcCPWT.Width = 72;
             // 
             // BRDID
             // 
@@ -464,8 +464,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gcSupplier;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
+        private DevExpress.XtraGrid.Columns.GridColumn gcCPWOT;
+        private DevExpress.XtraGrid.Columns.GridColumn gcCPWT;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbReason;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbSupplier;
         private DevExpress.XtraGrid.Columns.GridColumn BRDID;

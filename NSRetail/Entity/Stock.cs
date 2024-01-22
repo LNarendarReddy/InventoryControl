@@ -102,6 +102,7 @@ namespace Entity
     {
         public object SupplierReturnsID { get; set; }
         public object SupplierID { get; set; }
+        public object CategoryID { get; set; }
         public DataTable dtSupplierReturns { get; set; }
     }
     public class SupplierReturnsDetail : EntityBase
