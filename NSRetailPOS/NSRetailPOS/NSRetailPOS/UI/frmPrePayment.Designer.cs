@@ -186,7 +186,7 @@
             this.txtCustomerGST.EnterMoveNextControl = true;
             this.txtCustomerGST.Location = new System.Drawing.Point(136, 133);
             this.txtCustomerGST.Name = "txtCustomerGST";
-            this.txtCustomerGST.Properties.MaxLength = 10;
+            this.txtCustomerGST.Properties.MaxLength = 15;
             this.txtCustomerGST.Size = new System.Drawing.Size(552, 24);
             this.txtCustomerGST.StyleController = this.layoutControl1;
             this.txtCustomerGST.TabIndex = 3;
