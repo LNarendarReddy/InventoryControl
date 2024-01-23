@@ -134,6 +134,12 @@
     <Compile Include="Countning\frmCounting.Designer.cs">
       <DependentUpon>frmCounting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Countning\frmSliceCounting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Countning\frmSliceCounting.Designer.cs">
+      <DependentUpon>frmSliceCounting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\frmClearHDDSNo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -943,6 +949,9 @@
     <EmbeddedResource Include="Countning\frmCounting.resx">
       <DependentUpon>frmCounting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Countning\frmSliceCounting.resx">
+      <DependentUpon>frmSliceCounting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Master\frmClearHDDSNo.resx">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
     </EmbeddedResource>
@@ -1399,6 +1408,13 @@
     <None Include="Resources\export_16x16.png" />
     <None Include="Resources\refreshallpivottable_16x16.png" />
     <None Include="Resources\cancel_16x161.png" />
+    <None Include="Resources\add_16x16.png" />
+    <None Include="Resources\article_16x16.png" />
+    <None Include="Resources\save_16x16.png" />
+    <None Include="Resources\removepivotfield_16x16.png" />
+    <None Include="Resources\article_16x161.png" />
+    <None Include="Resources\article_16x162.png" />
+    <None Include="Resources\play_16x16.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

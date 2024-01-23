@@ -87,6 +87,7 @@
             this.bbiBranchReports = new DevExpress.XtraBars.BarButtonItem();
             this.bbiChangeFY = new DevExpress.XtraBars.BarButtonItem();
             this.puFinYear = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.bbiAddProcessing = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -111,7 +112,7 @@
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.bbiAddProcessing = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiSliceCounting = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
@@ -180,9 +181,10 @@
             this.bbiSupplierReports,
             this.bbiBranchReports,
             this.bbiChangeFY,
-            this.bbiAddProcessing});
+            this.bbiAddProcessing,
+            this.bbiSliceCounting});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 71;
+            this.ribbonControl1.MaxItemId = 72;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -717,6 +719,14 @@
             this.puFinYear.Name = "puFinYear";
             this.puFinYear.Ribbon = this.ribbonControl1;
             // 
+            // bbiAddProcessing
+            // 
+            resources.ApplyResources(this.bbiAddProcessing, "bbiAddProcessing");
+            this.bbiAddProcessing.Id = 70;
+            this.bbiAddProcessing.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiAddProcessing.ImageOptions.SvgImage")));
+            this.bbiAddProcessing.Name = "bbiAddProcessing";
+            this.bbiAddProcessing.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiAddProcessing_ItemClick);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -754,6 +764,7 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.btnPrintDC);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnCounting);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnStockAdjustment);
+            this.ribbonPageGroup3.ItemLinks.Add(this.bbiSliceCounting);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             resources.ApplyResources(this.ribbonPageGroup3, "ribbonPageGroup3");
             // 
@@ -908,13 +919,13 @@
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
             // 
-            // bbiAddProcessing
+            // bbiSliceCounting
             // 
-            resources.ApplyResources(this.bbiAddProcessing, "bbiAddProcessing");
-            this.bbiAddProcessing.Id = 70;
-            this.bbiAddProcessing.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.bbiAddProcessing.Name = "bbiAddProcessing";
-            this.bbiAddProcessing.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiAddProcessing_ItemClick);
+            resources.ApplyResources(this.bbiSliceCounting, "bbiSliceCounting");
+            this.bbiSliceCounting.Id = 71;
+            this.bbiSliceCounting.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.bbiSliceCounting.Name = "bbiSliceCounting";
+            this.bbiSliceCounting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSliceCounting_ItemClick);
             // 
             // frmMain
             // 
@@ -1023,6 +1034,7 @@
         private DevExpress.XtraBars.PopupMenu puFinYear;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
         private DevExpress.XtraBars.BarButtonItem bbiAddProcessing;
+        private DevExpress.XtraBars.BarButtonItem bbiSliceCounting;
     }
 }
 

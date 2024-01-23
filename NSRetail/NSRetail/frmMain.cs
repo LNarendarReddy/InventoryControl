@@ -624,5 +624,10 @@ namespace NSRetail
         {
             new frmAddProcessing() { MdiParent = this }.Show();
         }
+
+        private void bbiSliceCounting_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new frmSliceCounting() { MdiParent = this }.Show();
+        }
     }
 }
