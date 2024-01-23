@@ -22,7 +22,7 @@ namespace NSRetail
             IsbaseOffer = _IsbaseOffer;
             gcBranch.DataSource = offerRepository.GetOfferBranch(OfferID, _IsbaseOffer);
             gvBranch.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
-            cmBranch.Properties.DataSource = new MasterRepository().GetBranch();
+            cmBranch.Properties.DataSource = Utility.GetBranchList();
             cmBranch.Properties.ValueMember = "BRANCHID";
             cmBranch.Properties.DisplayMember = "BRANCHNAME";
         }

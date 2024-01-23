@@ -233,7 +233,7 @@ namespace NSRetail
             luGST.Properties.DisplayMember = "GSTCODE";
             luGST.Properties.ValueMember = "GSTID";
 
-            DataView dvCategory = masterRepository.GetCategory().DefaultView;
+            DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
             dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
             gluCategory.Properties.DataSource = dvCategory;
             gluCategory.Properties.DisplayMember = "CATEGORYNAME";

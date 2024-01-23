@@ -28,7 +28,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             sluSKUCode.Properties.DisplayMember = "ITEMNAME";
             sluSKUCode.Properties.ValueMember = "ITEMID";
 
-            cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
+            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 

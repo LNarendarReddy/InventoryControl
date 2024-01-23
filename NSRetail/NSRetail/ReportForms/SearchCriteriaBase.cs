@@ -312,7 +312,7 @@ namespace NSRetail
         {            
             MasterRepository masterRepo = new MasterRepository();
             CheckedComboBoxEdit cmb = (CheckedComboBoxEdit)cntrl;
-            cmb.Properties.DataSource = masterRepo.GetBranch();
+            cmb.Properties.DataSource = Utility.GetBranchList();
             cmb.Properties.ValueMember = "BRANCHID";
             cmb.Properties.DisplayMember = "BRANCHNAME";
             cmb.CheckAll();
@@ -335,7 +335,7 @@ namespace NSRetail
         public void BindCategory(Control cntrl)
         {
             LookUpEdit cmb = (LookUpEdit)cntrl;
-            cmb.Properties.DataSource = new MasterRepository().GetCategory();
+            cmb.Properties.DataSource = Utility.GetCategoryList();
             cmb.Properties.ValueMember = "CATEGORYID";
             cmb.Properties.DisplayMember = "CATEGORYNAME";
             cmb.EditValue = 13;

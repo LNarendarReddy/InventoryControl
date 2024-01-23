@@ -72,7 +72,7 @@ namespace NSRetail.ReportForms.Stock.StockReports
 
         private void frmStockSummary_Load(object sender, EventArgs e)
         {
-            luBranch.Properties.DataSource = new MasterRepository().GetBranch(false);
+            luBranch.Properties.DataSource = Utility.GetBranchList();
             luBranch.Properties.ValueMember = "BRANCHID";
             luBranch.Properties.DisplayMember = "BRANCHNAME";
 

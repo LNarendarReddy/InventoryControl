@@ -39,7 +39,7 @@ namespace NSRetail.Stock
                 txtQuantity.ConfirmBarCodeScan();
                 txtWeightInKgs.ConfirmBarCodeScan();
 
-                DataTable dtBranch = ObjMasterRep.GetBranch();
+                DataTable dtBranch = Utility.GetBranchList();
 
                 DataView gvWarehouse = dtBranch.Copy().DefaultView;
                 gvWarehouse.RowFilter = $"BRANCHID = {Utility.BranchID}";
@@ -56,7 +56,7 @@ namespace NSRetail.Stock
                 cmbToBranch.Properties.DisplayMember = "BRANCHNAME";
                 cmbToBranch.EditValue = dvBranch.ToTable().Rows.Count == 1 ? dvBranch.ToTable().Rows[0]["BRANCHID"] : null;
 
-                cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
+                cmbCategory.Properties.DataSource = Utility.GetCategoryList();
                 cmbCategory.Properties.ValueMember = "CATEGORYID";
                 cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 

@@ -29,7 +29,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
 
             ButtonColumns = new List<string>() { "View", "Print&Export" };
 
-            cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
+            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 

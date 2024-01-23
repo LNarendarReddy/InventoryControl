@@ -26,7 +26,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
 
             ButtonColumns = new List<string>() { "View" };
 
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
+            cmbBranch.Properties.DataSource = Utility.GetBranchList();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
 

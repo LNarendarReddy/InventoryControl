@@ -24,7 +24,10 @@ namespace NSRetail
 
         private void frmAddOffer_Load(object sender, EventArgs e)
         {
-            cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
+            DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
+            dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
+
+            cmbCategory.Properties.DataSource = dvCategory;
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             if(!baseOffer.BASEOFFERID.Equals(0))

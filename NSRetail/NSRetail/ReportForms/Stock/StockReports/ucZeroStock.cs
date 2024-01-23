@@ -23,7 +23,7 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 , { "SUBCATEGORYNAME", "Sub Category" }
             };
 
-            cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
+            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 

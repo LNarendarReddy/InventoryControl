@@ -21,7 +21,7 @@ namespace NSRetail.ReportForms.Stock.StockReports
             sluSKUCode.Properties.ValueMember = "ITEMID";
             sluSKUCode.Properties.DisplayMember = "ITEMNAME";
 
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
+            cmbBranch.Properties.DataSource = Utility.GetBranchList();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
 

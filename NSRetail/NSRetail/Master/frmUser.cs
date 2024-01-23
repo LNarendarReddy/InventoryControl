@@ -32,11 +32,11 @@ namespace NSRetail
                 cmbRole.Properties.DisplayMember = "ROLENAME";
                 cmbRole.Properties.ValueMember = "ROLEID";
 
-                cmbBranch.Properties.DataSource = objMasterRep.GetBranch();
+                cmbBranch.Properties.DataSource = Utility.GetBranchList();
                 cmbBranch.Properties.DisplayMember = "BRANCHNAME";
                 cmbBranch.Properties.ValueMember = "BRANCHID";
 
-                cmbCategory.Properties.DataSource = objMasterRep.GetCategory();
+                cmbCategory.Properties.DataSource = Utility.GetCategoryList();
                 cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
                 cmbCategory.Properties.ValueMember = "CATEGORYID";
 

@@ -23,12 +23,12 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
 
             MasterRepository masterRepo = new MasterRepository();
 
-            cmbBranch.Properties.DataSource = masterRepo.GetBranch(true);
+            cmbBranch.Properties.DataSource = Utility.GetBranchList();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
             cmbBranch.EditValue = 0;
 
-            cmbCategory.Properties.DataSource = masterRepo.GetCategory();
+            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 

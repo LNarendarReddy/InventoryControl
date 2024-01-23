@@ -25,6 +25,10 @@ namespace NSRetail
         private static DataTable dtNonEAN;
         private static DataTable dtParentItemList;
         private static DataTable dtReturnStatus;
+        private static DataTable dtBranchList;
+        private static DataTable dtCatgeory;
+        private static DataTable dtSubCatgeory;
+
         private static List<GSTInfo> gstInfoList;
         public static DataTable dtConnectionInfo;
 
@@ -150,6 +154,7 @@ namespace NSRetail
             }
             return Category ==  "All" ? dtItemCodeList : dtItemCodeFiltered;
         }
+
         public static DataTable GetItemCodeList()
         {
             if (dtItemCodeList == null)
@@ -158,6 +163,7 @@ namespace NSRetail
             }
             return dtItemCodeList;
         }
+
         public static DataTable GetParentItemList()
         {
             if(dtParentItemList == null)
@@ -178,6 +184,16 @@ namespace NSRetail
             return dtNonEAN;
         }
 
+        public static DataTable GetBranchList()
+        {
+            return dtBranchList = dtBranchList ?? new MasterRepository().GetBranch();
+        }
+
+        public static DataTable GetCategoryList()
+        {
+            return dtCatgeory = dtCatgeory ?? new MasterRepository().GetCategory();
+        }
+
         public static IEnumerable<GSTInfo> GetGSTInfoList()
         {
             if(dtGST == null)
@@ -191,6 +207,10 @@ namespace NSRetail
         public static void FillBaseLine()
         {
             dtGST = null;
+            dtBranchList = null;
+            dtCatgeory = null;
+            dtSubCatgeory = null;
+
             FillItemBaseline();
             GetGSTBaseline();
             FillParentItemBaseline();
@@ -324,22 +344,18 @@ namespace NSRetail
 
         public static DataTable Returnstatus()
         {
-            if(dtReturnStatus == null)
+            if (dtReturnStatus != null)
             {
-                dtReturnStatus = new DataTable();
-                dtReturnStatus.Columns.Add("RETURNSTATUSID", typeof(int));
-                dtReturnStatus.Columns.Add("RETURNSTATUSNAME", typeof(string));
-
-                DataRow drid = dtReturnStatus.NewRow();
-                drid["RETURNSTATUSID"] = 1;
-                drid["RETURNSTATUSNAME"] = "Accepted";
-                dtReturnStatus.Rows.Add(drid);
-
-                DataRow drname = dtReturnStatus.NewRow();
-                drname["RETURNSTATUSID"] = 2;
-                drname["RETURNSTATUSNAME"] = "Rejected";
-                dtReturnStatus.Rows.Add(drname);
+                return dtReturnStatus;
             }
+
+            dtReturnStatus = new DataTable();
+            dtReturnStatus.Columns.Add("RETURNSTATUSID", typeof(int));
+            dtReturnStatus.Columns.Add("RETURNSTATUSNAME", typeof(string));
+
+            dtReturnStatus.Rows.Add(1, "Accepted");
+            dtReturnStatus.Rows.Add(2, "Rejected");
+        
             return dtReturnStatus;
         }
     }

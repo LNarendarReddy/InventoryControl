@@ -19,11 +19,11 @@ namespace NSRetail.Stock
 
         private void frmDispatchDCPrint_Load(object sender, EventArgs e)
         {
-            cmbBranch.Properties.DataSource = objMasterRep.GetBranch();
+            cmbBranch.Properties.DataSource = Utility.GetBranchList();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
 
-            cmbCategory.Properties.DataSource = objMasterRep.GetCategory();
+            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
             cmbCategory.EditValue = 13;

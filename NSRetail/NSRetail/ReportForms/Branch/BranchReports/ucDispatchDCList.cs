@@ -26,7 +26,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             };
 
             ButtonColumns = new List<string>() { "View", "Print to DM" };
-            cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
+            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
             cmbCategory.EditValue = 13;

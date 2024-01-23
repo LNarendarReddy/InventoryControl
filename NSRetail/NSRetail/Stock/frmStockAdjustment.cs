@@ -21,7 +21,7 @@ namespace NSRetail.Stock
 
         private void frmStockAdjustment_Load(object sender, EventArgs e)
         {
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
+            cmbBranch.Properties.DataSource = Utility.GetBranchList();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
 

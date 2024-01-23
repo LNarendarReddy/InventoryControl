@@ -23,11 +23,11 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
             MandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, txtIndentDays };
 
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch();
+            cmbBranch.Properties.DataSource = Utility.GetBranchList();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
 
-            cmbCategory.Properties.DataSource = new MasterRepository().GetCategory();
+            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 

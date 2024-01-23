@@ -35,7 +35,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             cmbDealer.Properties.ValueMember = "DEALERID";
             cmbDealer.Properties.DisplayMember = "DEALERNAME";
 
-            cmbCategory.Properties.DataSource = masterRepository.GetCategory();
+            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 

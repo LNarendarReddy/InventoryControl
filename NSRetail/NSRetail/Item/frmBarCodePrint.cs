@@ -1,15 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using NSRetail.Reports;
-using DevExpress.XtraReports.UI;
 using ErrorManagement;
 using DataAccess;
 
@@ -18,7 +8,7 @@ namespace NSRetail
     public partial class frmBarCodePrint : DevExpress.XtraEditors.XtraForm
     {
         ItemCodeRepository objItemRep = new ItemCodeRepository();
-        MasterRepository objMasterRep = new MasterRepository();
+        
         public frmBarCodePrint()
         {
             InitializeComponent();
@@ -66,7 +56,9 @@ namespace NSRetail
                 cmbItemCode.Properties.DisplayMember = "ITEMCODE";
                 cmbItemCode.Properties.ValueMember = "ITEMCODEID";
 
-                cmbCategory.Properties.DataSource = objMasterRep.GetCategory();
+                DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
+                dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
+                cmbCategory.Properties.DataSource = dvCategory;
                 cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
                 cmbCategory.Properties.ValueMember = "CATEGORYID";
 
