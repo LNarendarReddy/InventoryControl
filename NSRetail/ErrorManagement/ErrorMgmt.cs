@@ -17,7 +17,8 @@ namespace ErrorManagement
         {
             try
             {
-                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(ex.Message + (ex.InnerException != null ? $" - {ex.InnerException.Message}" : string.Empty)
+                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception) { throw ex; }
         }

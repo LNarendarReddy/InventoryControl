@@ -17,7 +17,7 @@ namespace NSRetail.ReportForms
 {
     public partial class frmReportPlaceHolder : XtraForm
     {
-        List<Type> summableTypes = new List<Type>() { typeof(int), typeof(double), typeof(decimal), typeof(float) };
+        public static List<Type> SummableTypes = new List<Type>() { typeof(int), typeof(double), typeof(decimal), typeof(float) };
 
         public GridControl ResultsGrid => gcResults;
 
@@ -289,7 +289,7 @@ namespace NSRetail.ReportForms
                 if (searchCriteria.SpecificColumnHeaders != null && searchCriteria.SpecificColumnHeaders.ContainsKey(column.FieldName))
                     column.Caption = searchCriteria.SpecificColumnHeaders[column.FieldName];
 
-                if (column.Summary.Count == 0 && summableTypes.Contains(column.ColumnType))
+                if (column.Summary.Count == 0 && SummableTypes.Contains(column.ColumnType))
                 {
                     GridColumnSummaryItem siTotal = new GridColumnSummaryItem
                     {
