@@ -6,6 +6,7 @@ using Entity;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Supplier.SupplierReports
 {
@@ -27,6 +28,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "SUBCATEGORYNAME", "Sub Category" }
                 , { "REQUIREDITEMINDENT", "Calculated Indent" }
                 , { "DESIREDINDENT", "Desired Indent" }
+                , { "INDENTDAYSSALEQUANTITY", "Indent days Sale qty" }
             };
 
             EditableColumns = new List<string>() { "DESIREDINDENT" };
@@ -81,19 +83,27 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
-            {              
-                if (ResultGridView?.RowCount == 0 || !ValidateMandatoryFields())
-                    return;
+            {
+                if (!ValidateMandatoryFields()) return;
+
+                if (ResultGridView?.RowCount == 0)
+                { 
+                    XtraMessageBox.Show("No records to save", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; 
+                }
 
                 GridControl resultsGrid = ResultGrid;
-                DealerIndent dealerIndent = new DealerIndent();
-                dealerIndent.supplierID = cmbDealer.EditValue;
-                //dealerIndent.FromDate = dtFromDate.EditValue;
-                //dealerIndent.ToDate = dtToDate.EditValue;
-                dealerIndent.CategoryID = cmbCategory.EditValue;
-                dealerIndent.UserID = Utility.UserID;
-                dealerIndent.dtSupplierIndent = ((DataSet)resultsGrid.DataSource).Tables[0].Copy();
+                DealerIndent dealerIndent = new DealerIndent
+                {
+                    supplierID = cmbDealer.EditValue,
+                    CategoryID = cmbCategory.EditValue,
+                    IndentDays = txtIndentDays.EditValue,
+                    SafetyDays = txtSafetyDays.EditValue,
+                    UserID = Utility.UserID,
+                    dtSupplierIndent = ((DataSet)resultsGrid.DataSource).Tables[0].Copy()
+                };
                 new ReportRepository().SaveSupplierIndent(dealerIndent);
+                XtraMessageBox.Show("Indent saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 resultsGrid.DataSource = null;
             }
             catch (Exception ex)

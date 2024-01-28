@@ -30,28 +30,28 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucDealerIndent));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.txtSafetyDays = new DevExpress.XtraEditors.TextEdit();
+            this.txtIndentDays = new DevExpress.XtraEditors.TextEdit();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.cmbCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.cmbDealer = new DevExpress.XtraEditors.LookUpEdit();
-            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtIndentDays = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtSafetyDays = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSafetyDays.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIndentDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDealer.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIndentDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSafetyDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,6 +69,45 @@
             this.layoutControl1.Size = new System.Drawing.Size(959, 45);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // Root
+            // 
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem1,
+            this.layoutControlItem2,
+            this.layoutControlItem5,
+            this.layoutControlItem6,
+            this.layoutControlItem3});
+            this.Root.Name = "Root";
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.Root.Size = new System.Drawing.Size(959, 45);
+            this.Root.TextVisible = false;
+            // 
+            // txtSafetyDays
+            // 
+            this.txtSafetyDays.Location = new System.Drawing.Point(756, 11);
+            this.txtSafetyDays.Name = "txtSafetyDays";
+            this.txtSafetyDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtSafetyDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.txtSafetyDays.Properties.MaskSettings.Set("mask", "d");
+            this.txtSafetyDays.Properties.UseMaskAsDisplayFormat = true;
+            this.txtSafetyDays.Size = new System.Drawing.Size(73, 22);
+            this.txtSafetyDays.StyleController = this.layoutControl1;
+            this.txtSafetyDays.TabIndex = 6;
+            // 
+            // txtIndentDays
+            // 
+            this.txtIndentDays.Location = new System.Drawing.Point(589, 11);
+            this.txtIndentDays.Name = "txtIndentDays";
+            this.txtIndentDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtIndentDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.txtIndentDays.Properties.MaskSettings.Set("mask", "d");
+            this.txtIndentDays.Properties.UseMaskAsDisplayFormat = true;
+            this.txtIndentDays.Size = new System.Drawing.Size(78, 22);
+            this.txtIndentDays.StyleController = this.layoutControl1;
+            this.txtIndentDays.TabIndex = 5;
             // 
             // btnSave
             // 
@@ -112,21 +151,6 @@
             this.cmbDealer.StyleController = this.layoutControl1;
             this.cmbDealer.TabIndex = 0;
             // 
-            // Root
-            // 
-            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.Root.GroupBordersVisible = false;
-            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem2,
-            this.layoutControlItem5,
-            this.layoutControlItem6,
-            this.layoutControlItem3});
-            this.Root.Name = "Root";
-            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.Root.Size = new System.Drawing.Size(959, 45);
-            this.Root.TextVisible = false;
-            // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.cmbDealer;
@@ -163,18 +187,6 @@
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
-            // txtIndentDays
-            // 
-            this.txtIndentDays.Location = new System.Drawing.Point(589, 11);
-            this.txtIndentDays.Name = "txtIndentDays";
-            this.txtIndentDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtIndentDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.txtIndentDays.Properties.MaskSettings.Set("mask", "d");
-            this.txtIndentDays.Properties.UseMaskAsDisplayFormat = true;
-            this.txtIndentDays.Size = new System.Drawing.Size(78, 22);
-            this.txtIndentDays.StyleController = this.layoutControl1;
-            this.txtIndentDays.TabIndex = 5;
-            // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.txtIndentDays;
@@ -187,18 +199,6 @@
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.Text = "Indent Days";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(65, 15);
-            // 
-            // txtSafetyDays
-            // 
-            this.txtSafetyDays.Location = new System.Drawing.Point(756, 11);
-            this.txtSafetyDays.Name = "txtSafetyDays";
-            this.txtSafetyDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtSafetyDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.txtSafetyDays.Properties.MaskSettings.Set("mask", "d");
-            this.txtSafetyDays.Properties.UseMaskAsDisplayFormat = true;
-            this.txtSafetyDays.Size = new System.Drawing.Size(73, 22);
-            this.txtSafetyDays.StyleController = this.layoutControl1;
-            this.txtSafetyDays.TabIndex = 6;
             // 
             // layoutControlItem3
             // 
@@ -220,15 +220,15 @@
             this.Size = new System.Drawing.Size(959, 45);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSafetyDays.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIndentDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDealer.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIndentDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSafetyDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.ResumeLayout(false);
 

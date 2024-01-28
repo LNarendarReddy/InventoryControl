@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using Entity;
 using System;
@@ -18,8 +19,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 { "SUPPLIERINDENTID", "Supplier Indent ID" }
                 , { "SUPPLIERID", "Supplier ID" }
                 , { "DEALERNAME", "Supplier" }
-                , { "FROMDATE", "From Date" }
-                , { "TODATE", "To Date" }
+                , { "INDENTDAYS", "Indent days" }
+                , { "SAFETYDAYS", "Safety days" }
                 , { "UPDATEDBY", "Updated User" }
                 , { "UPDATEDDATE", "Updated User" }
                 , { "APPROVEDBY", "Approved User" }
@@ -59,9 +60,10 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     DealerIndent dealerIndent = new DealerIndent();
                     dealerIndent.SupplierIndentID = drFocusedRow["SUPPLIERINDENTID"];
                     dealerIndent.supplierID = drFocusedRow["SUPPLIERID"];
-                    dealerIndent.FromDate = drFocusedRow["FROMDATE"];
-                    dealerIndent.ToDate = drFocusedRow["TODATE"];
+                    dealerIndent.IndentDays = drFocusedRow["INDENTDAYS"];
+                    dealerIndent.SafetyDays = drFocusedRow["SAFETYDAYS"];
                     dealerIndent.CategoryID = drFocusedRow["CATEGORYID"];
+                    dealerIndent.Status = drFocusedRow["STATUS"];
                     dealerIndent.UserID = Utility.UserID;
                     dealerIndent.dtSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
                     frmDealerIndent frmDealerIndentobj = new frmDealerIndent(dealerIndent,
@@ -81,12 +83,17 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     break;
                 case "Print&Export":
                     if (Convert.ToString(drFocusedRow["STATUS"]) != "APPROVED")
-                        return;
+                    {
+                        XtraMessageBox.Show("Cannot print or view Draft indents");
+                        return; 
+                    }
+
                     rptDealerIndent rpt = new rptDealerIndent(new ReportRepository().GetSupplierIndentDetail(
                                     drFocusedRow["SUPPLIERINDENTID"]));
                     rpt.Parameters["IndentID"].Value = drFocusedRow["SUPPLIERINDENTID"];
                     rpt.Parameters["SupplierName"].Value = drFocusedRow["DEALERNAME"];
                     rpt.Parameters["ApprovedUser"].Value = drFocusedRow["APPROVEDBY"];
+                    rpt.Parameters["CreatedDate"].Value = drFocusedRow["CREATEDDATE"];
                     rpt.Parameters["UserName"].Value = Utility.FullName;
                     rpt.ShowRibbonPreview();
                     break;

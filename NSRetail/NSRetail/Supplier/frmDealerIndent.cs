@@ -25,9 +25,10 @@ namespace NSRetail
 
         private void frmDealerIndent_Load(object sender, EventArgs e)
         {
+            btnSave.Enabled = !dealerIndent.Status.Equals("APPROVED");
             btnSave.Text = Utility.Role == "Admin" ? "Approve" : "Save";
-            dtpFromDate.EditValue = dealerIndent.FromDate;
-            dtpToDate.EditValue = dealerIndent.ToDate;
+            txtIndentDays.EditValue = dealerIndent.IndentDays;
+            txtSafetyDays.EditValue = dealerIndent.SafetyDays;
             gcSupplierIndent.DataSource = dealerIndent.dtSupplierIndent;
         }
 
@@ -35,9 +36,10 @@ namespace NSRetail
         {
             try
             {
-                dealerIndent.IsApproved = Utility.Role == "Admin" ? true : false;
+                dealerIndent.IsApproved = Utility.Role == "Admin";
                 new ReportRepository().SaveSupplierIndent(dealerIndent);
                 dealerIndent.IsSave = true;
+                XtraMessageBox.Show("Saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)

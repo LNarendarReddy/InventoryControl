@@ -120,7 +120,7 @@
             // xrTableCell11
             // 
             this.xrTableCell11.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?SupplierName + \' - Indent\'")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?SupplierName + \' - Purchase order\'")});
             this.xrTableCell11.Multiline = true;
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.Text = "xrTableCell11";

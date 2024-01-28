@@ -12,8 +12,9 @@ namespace Entity
         public object SupplierIndentID { get; set; }
         public object supplierID { get; set; }
         public object CategoryID { get; set; }
-        public object FromDate { get; set; }
-        public object ToDate { get; set; }
+        public object IndentDays { get; set; }
+        public object SafetyDays { get; set; }
+        public object Status { get; set; }
         public bool IsApproved { get; set; }
         public DataTable dtSupplierIndent { get; set; }
     }
