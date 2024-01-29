@@ -1,15 +1,5 @@
-﻿using DataAccess;
-using DevExpress.XtraEditors;
-using Entity;
+﻿using Entity;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail
 {
@@ -21,10 +11,7 @@ namespace NSRetail
             InitializeComponent();
             branchItemPrice = _branchItemPrice;
 
-            DataTable dtBranch = Utility.GetBranchList();
-            DataView dvBranch = dtBranch.Copy().DefaultView;
-            dvBranch.RowFilter = $"ISWAREHOUSE = 0";
-            cmbBranch.Properties.DataSource = dvBranch;
+            cmbBranch.Properties.DataSource = Utility.GetBranchList();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
         }
