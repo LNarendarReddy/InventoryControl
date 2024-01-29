@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace DataAccess
 {
@@ -72,6 +73,19 @@ namespace DataAccess
 
         public void SaveSupplierIndent(DealerIndent dealerIndent)
         {
+            List<string> allowedColumns = new List<string>()
+            {
+                "SUPPLIERINDENTDETAILID"
+                , "SUPPLIERINDENTID"
+                , "ITEMID"
+                , "WAREHOUSEQUANTITY"
+                , "REQUIREDBRANCHSTOCK"
+                , "REQUIREDITEMINDENT"
+                , "DESIREDINDENT"
+                , "MRP"
+                , "COSTPRICEWT"
+            };
+
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -82,15 +96,14 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SUPPLIERINDENTID", dealerIndent.SupplierIndentID);
                     cmd.Parameters.AddWithValue("@SUPPLIERID", dealerIndent.supplierID);
                     cmd.Parameters.AddWithValue("@CATEGORYID", dealerIndent.CategoryID);
-                    cmd.Parameters.AddWithValue("@FROMDATE", dealerIndent.FromDate);
-                    cmd.Parameters.AddWithValue("@TODATE", dealerIndent.ToDate);
+                    cmd.Parameters.AddWithValue("@INDENTDAYS", dealerIndent.IndentDays);
+                    cmd.Parameters.AddWithValue("@SAFETYDAYS", dealerIndent.SafetyDays);
                     cmd.Parameters.AddWithValue("@USERID", dealerIndent.UserID);
                     cmd.Parameters.AddWithValue("@dtDetail", dealerIndent.dtSupplierIndent);
                     cmd.Parameters.AddWithValue("@ISAPPROVED", dealerIndent.IsApproved);
-                    dealerIndent.dtSupplierIndent.Columns.Remove("SNO");
-                    dealerIndent.dtSupplierIndent.Columns.Remove("SKUCODE");
-                    dealerIndent.dtSupplierIndent.Columns.Remove("ITEMNAME");
-                    dealerIndent.dtSupplierIndent.Columns.Remove("SUBCATEGORYNAME");
+
+                    var columnsToRemove = dealerIndent.dtSupplierIndent.Columns.Cast<DataColumn>().Select(x => x.ColumnName).Where(x => !allowedColumns.Contains(x)).ToList();
+                    columnsToRemove.ForEach(x => dealerIndent.dtSupplierIndent.Columns.Remove(x));
                     int RowsAfftected = cmd.ExecuteNonQuery();
 
                     if (RowsAfftected <= 0)

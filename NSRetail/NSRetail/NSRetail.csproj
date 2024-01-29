@@ -140,6 +140,12 @@
     <Compile Include="Countning\frmSliceCounting.Designer.cs">
       <DependentUpon>frmSliceCounting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Countning\frmSliceCountingAddItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Countning\frmSliceCountingAddItems.Designer.cs">
+      <DependentUpon>frmSliceCountingAddItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\frmClearHDDSNo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -950,6 +956,9 @@
     <EmbeddedResource Include="Countning\frmSliceCounting.resx">
       <DependentUpon>frmSliceCounting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Countning\frmSliceCountingAddItems.resx">
+      <DependentUpon>frmSliceCountingAddItems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Master\frmClearHDDSNo.resx">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
     </EmbeddedResource>
@@ -1413,6 +1422,14 @@
     <None Include="Resources\article_16x161.png" />
     <None Include="Resources\article_16x162.png" />
     <None Include="Resources\play_16x16.png" />
+    <None Include="Resources\add_16x161.png" />
+    <None Include="Resources\delete_16x16.png" />
+    <None Include="Resources\number_16x16.png" />
+    <None Include="Resources\zoom_16x16.png" />
+    <None Include="Resources\zoomin_16x16.png" />
+    <None Include="Resources\publish_16x16.png" />
+    <None Include="Resources\previous_16x16.png" />
+    <None Include="Resources\delete_16x161.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

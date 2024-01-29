@@ -7,7 +7,7 @@ namespace WarehouseCloudSync
 {
     static class Program
     {
-        static Mutex singleton = new Mutex(true, "WarehouseCloudSync");
+        static Mutex singleton = new Mutex(true, "Global\\WarehouseCloudSync");
 
         /// <summary>
         /// The main entry point for the application.

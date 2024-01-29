@@ -36,8 +36,6 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.dtpToDate = new DevExpress.XtraEditors.DateEdit();
-            this.dtpFromDate = new DevExpress.XtraEditors.DateEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.gcSupplierIndent = new DevExpress.XtraGrid.GridControl();
             this.gvSupplierIndent = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -46,12 +44,16 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnView = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.txtDealerName = new DevExpress.XtraEditors.TextEdit();
+            this.txtIndentDays = new DevExpress.XtraEditors.TextEdit();
+            this.txtSafetyDays = new DevExpress.XtraEditors.TextEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -62,14 +64,12 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSupplierIndent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSupplierIndent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDealerName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIndentDays.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSafetyDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
@@ -83,11 +83,11 @@
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.btnSave);
-            this.layoutControl1.Controls.Add(this.dtpToDate);
-            this.layoutControl1.Controls.Add(this.dtpFromDate);
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.gcSupplierIndent);
             this.layoutControl1.Controls.Add(this.txtDealerName);
+            this.layoutControl1.Controls.Add(this.txtIndentDays);
+            this.layoutControl1.Controls.Add(this.txtSafetyDays);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -109,36 +109,6 @@
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // dtpToDate
-            // 
-            this.dtpToDate.EditValue = null;
-            this.dtpToDate.Enabled = false;
-            this.dtpToDate.EnterMoveNextControl = true;
-            this.dtpToDate.Location = new System.Drawing.Point(620, 8);
-            this.dtpToDate.Name = "dtpToDate";
-            this.dtpToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpToDate.Size = new System.Drawing.Size(128, 22);
-            this.dtpToDate.StyleController = this.layoutControl1;
-            this.dtpToDate.TabIndex = 2;
-            // 
-            // dtpFromDate
-            // 
-            this.dtpFromDate.EditValue = null;
-            this.dtpFromDate.Enabled = false;
-            this.dtpFromDate.EnterMoveNextControl = true;
-            this.dtpFromDate.Location = new System.Drawing.Point(408, 8);
-            this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFromDate.Size = new System.Drawing.Size(130, 22);
-            this.dtpFromDate.StyleController = this.layoutControl1;
-            this.dtpFromDate.TabIndex = 1;
             // 
             // btnCancel
             // 
@@ -180,6 +150,8 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn6,
+            this.gridColumn11,
+            this.gridColumn8,
             this.gridColumn4,
             this.gridColumn5,
             this.gridColumn9,
@@ -187,6 +159,7 @@
             this.gvSupplierIndent.DetailHeight = 404;
             this.gvSupplierIndent.GridControl = this.gcSupplierIndent;
             this.gvSupplierIndent.Name = "gvSupplierIndent";
+            this.gvSupplierIndent.OptionsView.ShowGroupPanel = false;
             this.gvSupplierIndent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gvSupplierIndent_KeyPress);
             // 
             // gridColumn1
@@ -214,6 +187,7 @@
             this.gridColumn2.MinWidth = 23;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
             this.gridColumn2.Width = 92;
@@ -234,8 +208,27 @@
             this.gridColumn6.Caption = "Sub Category";
             this.gridColumn6.FieldName = "SUBCATEGORYNAME";
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 2;
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "MRP";
+            this.gridColumn11.FieldName = "MRP";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.OptionsColumn.AllowEdit = false;
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 3;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "Cost Price with Tax";
+            this.gridColumn8.FieldName = "COSTPRICEWT";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 4;
             // 
             // gridColumn4
             // 
@@ -245,7 +238,7 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.VisibleIndex = 5;
             this.gridColumn4.Width = 103;
             // 
             // gridColumn5
@@ -256,7 +249,7 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.VisibleIndex = 6;
             this.gridColumn5.Width = 83;
             // 
             // gridColumn9
@@ -266,7 +259,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 5;
+            this.gridColumn9.VisibleIndex = 7;
             // 
             // gridColumn10
             // 
@@ -274,7 +267,7 @@
             this.gridColumn10.FieldName = "DESIREDINDENT";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 6;
+            this.gridColumn10.VisibleIndex = 8;
             // 
             // btnView
             // 
@@ -288,11 +281,41 @@
             // txtDealerName
             // 
             this.txtDealerName.Enabled = false;
-            this.txtDealerName.Location = new System.Drawing.Point(78, 8);
+            this.txtDealerName.Location = new System.Drawing.Point(83, 8);
             this.txtDealerName.Name = "txtDealerName";
-            this.txtDealerName.Size = new System.Drawing.Size(248, 22);
+            this.txtDealerName.Size = new System.Drawing.Size(243, 22);
             this.txtDealerName.StyleController = this.layoutControl1;
             this.txtDealerName.TabIndex = 0;
+            // 
+            // txtIndentDays
+            // 
+            this.txtIndentDays.Location = new System.Drawing.Point(413, 8);
+            this.txtIndentDays.Name = "txtIndentDays";
+            this.txtIndentDays.Properties.DisplayFormat.FormatString = "d";
+            this.txtIndentDays.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.txtIndentDays.Properties.EditFormat.FormatString = "d";
+            this.txtIndentDays.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.txtIndentDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtIndentDays.Properties.MaskSettings.Set("mask", "d");
+            this.txtIndentDays.Properties.ReadOnly = true;
+            this.txtIndentDays.Size = new System.Drawing.Size(125, 22);
+            this.txtIndentDays.StyleController = this.layoutControl1;
+            this.txtIndentDays.TabIndex = 1;
+            // 
+            // txtSafetyDays
+            // 
+            this.txtSafetyDays.Location = new System.Drawing.Point(625, 8);
+            this.txtSafetyDays.Name = "txtSafetyDays";
+            this.txtSafetyDays.Properties.DisplayFormat.FormatString = "d";
+            this.txtSafetyDays.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.txtSafetyDays.Properties.EditFormat.FormatString = "d";
+            this.txtSafetyDays.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.txtSafetyDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtSafetyDays.Properties.MaskSettings.Set("mask", "d");
+            this.txtSafetyDays.Properties.ReadOnly = true;
+            this.txtSafetyDays.Size = new System.Drawing.Size(123, 22);
+            this.txtSafetyDays.StyleController = this.layoutControl1;
+            this.txtSafetyDays.TabIndex = 2;
             // 
             // Root
             // 
@@ -330,29 +353,27 @@
             // 
             // layoutControlItem4
             // 
-            this.layoutControlItem4.Control = this.dtpFromDate;
+            this.layoutControlItem4.Control = this.txtIndentDays;
             this.layoutControlItem4.Location = new System.Drawing.Point(330, 0);
-            this.layoutControlItem4.MaxSize = new System.Drawing.Size(212, 34);
-            this.layoutControlItem4.MinSize = new System.Drawing.Size(212, 34);
+            this.layoutControlItem4.MinSize = new System.Drawing.Size(50, 25);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem4.Size = new System.Drawing.Size(212, 34);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem4.Text = "From Date";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(58, 15);
+            this.layoutControlItem4.Text = "Indent days";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(63, 15);
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.dtpToDate;
+            this.layoutControlItem5.Control = this.txtSafetyDays;
             this.layoutControlItem5.Location = new System.Drawing.Point(542, 0);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(210, 34);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(210, 34);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(50, 25);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem5.Size = new System.Drawing.Size(210, 34);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem5.Text = "To Date";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(58, 15);
+            this.layoutControlItem5.Text = "Safety days";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(63, 15);
             // 
             // layoutControlItem6
             // 
@@ -390,7 +411,7 @@
             this.layoutControlItem7.Size = new System.Drawing.Size(330, 34);
             this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem7.Text = "Supplier";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(58, 15);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(63, 15);
             // 
             // frmDealerIndent
             // 
@@ -404,14 +425,12 @@
             this.Load += new System.EventHandler(this.frmDealerIndent_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpToDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSupplierIndent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSupplierIndent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDealerName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIndentDays.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSafetyDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
@@ -428,8 +447,6 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.DateEdit dtpToDate;
-        private DevExpress.XtraEditors.DateEdit dtpFromDate;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraGrid.GridControl gcSupplierIndent;
         private DevExpress.XtraGrid.Views.Grid.GridView gvSupplierIndent;
@@ -452,5 +469,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraEditors.TextEdit txtIndentDays;
+        private DevExpress.XtraEditors.TextEdit txtSafetyDays;
     }
 }
