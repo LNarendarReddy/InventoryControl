@@ -289,6 +289,12 @@
     <Compile Include="Operations\Stock\frmStockEntryPreview.Designer.cs">
       <DependentUpon>frmStockEntryPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\Stock\frmSupplierReturns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Stock\frmSupplierReturns.Designer.cs">
+      <DependentUpon>frmSupplierReturns.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportControls\ReportBase\frmIncludeExclude.cs">
@@ -516,6 +522,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Stock\frmStockEntryPreview.resx">
       <DependentUpon>frmStockEntryPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Stock\frmSupplierReturns.resx">
+      <DependentUpon>frmSupplierReturns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
