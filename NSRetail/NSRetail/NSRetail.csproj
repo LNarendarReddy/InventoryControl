@@ -820,7 +820,9 @@
     <Compile Include="ReportForms\Supplier\SupplierReports\ucDealerIndent.Designer.cs">
       <DependentUpon>ucDealerIndent.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\Supplier\SupplierReports\ucInvoiceList.cs" />
+    <Compile Include="ReportForms\Supplier\SupplierReports\ucInvoiceList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ReportForms\Supplier\SupplierReports\ucInvoiceList.Designer.cs">
       <DependentUpon>ucInvoiceList.cs</DependentUpon>
     </Compile>

@@ -142,11 +142,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\SupplierRepository.cs" />
     <Compile Include="Data\ItemCodeRepository.cs" />
     <Compile Include="Data\MasterRepository.cs" />
     <Compile Include="Data\ReportRepository.cs" />
     <Compile Include="Data\StockRepository.cs" />
     <Compile Include="Entity\BillDetail.cs" />
+    <Compile Include="Entity\SupplierReturns.cs" />
     <Compile Include="Entity\Item.cs" />
     <Compile Include="Entity\Master.cs" />
     <Compile Include="Entity\StockDispatch.cs" />

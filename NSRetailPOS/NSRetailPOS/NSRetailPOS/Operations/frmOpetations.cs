@@ -82,5 +82,15 @@ namespace NSRetailPOS.Operations
                 WindowState = FormWindowState.Maximized
             }.Show();
         }
+
+        private void btnSupplierReturns_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmSupplierReturns obj = new frmSupplierReturns();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
     }
 }

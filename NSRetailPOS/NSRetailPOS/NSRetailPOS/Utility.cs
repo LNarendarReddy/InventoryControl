@@ -23,6 +23,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using static DevExpress.Utils.HashCodeHelper.Blob;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace NSRetailPOS
 {
@@ -447,6 +448,12 @@ namespace NSRetailPOS
 
             XtraMessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        public static void ShowError(Exception ex)
+        {
+            XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
 
         public static bool ValidateTimeZone()
         {

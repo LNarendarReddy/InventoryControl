@@ -1,16 +1,12 @@
-﻿using DataAccess;
-using DevExpress.Pdf.Native.BouncyCastle.Asn1.X509;
-using DevExpress.XtraEditors;
-using Entity;
+﻿using DevExpress.XtraEditors;
+using NSRetailPOS.Data;
+using NSRetailPOS.Entity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.Operations.Stock
@@ -32,15 +28,14 @@ namespace NSRetailPOS.Operations.Stock
         {
             try
             {
-                txtQuantity.ConfirmBarCodeScan();
-                txtWeightInKgs.ConfirmBarCodeScan();
+                txtQuantity.ConfirmLargeNumber();
+                txtWeightInKgs.ConfirmLargeNumber();
 
-                ((frmMain)MdiParent).RefreshBaseLineData += FrmStockDispatch_RefreshBaseLineData;
                 cmbSupplier.Properties.DataSource = new MasterRepository().GetDealer();
                 cmbSupplier.Properties.ValueMember = "DEALERID";
                 cmbSupplier.Properties.DisplayMember = "DEALERNAME";
 
-                DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
+                DataView dvCategory = new MasterRepository().GetCategory().Copy().DefaultView;
                 dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
                 cmbCategory.Properties.DataSource = dvCategory;
                 cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
@@ -53,13 +48,10 @@ namespace NSRetailPOS.Operations.Stock
                 cmbReason.Properties.DataSource = new SupplierRepository().GetReason();
                 cmbReason.Properties.ValueMember = "REASONID";
                 cmbReason.Properties.DisplayMember = "REASONNAME";
-
-                cmbCategory.EditValue = Utility.CategoryID;
-                cmbCategory.Enabled = false;
             }
             catch (Exception ex)
             {
-                ErrorManagement.ErrorMgmt.ShowError(ex);
+                Utility.ShowError(ex);
             }
         }
         private void FrmStockDispatch_RefreshBaseLineData(object sender, EventArgs e)
@@ -78,8 +70,7 @@ namespace NSRetailPOS.Operations.Stock
             }
             catch (Exception ex)
             {
-                ErrorManagement.ErrorMgmt.ShowError(ex);
-                ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
+                Utility.ShowError(ex);
             }
         }
         private void InitialLoad()
@@ -261,7 +252,7 @@ namespace NSRetailPOS.Operations.Stock
             }
             catch (Exception ex)
             {
-                ErrorManagement.ErrorMgmt.ShowError(ex);
+                Utility.ShowError(ex);
             }
         }
         private int Getrowhandle()
@@ -289,7 +280,7 @@ namespace NSRetailPOS.Operations.Stock
             {
                 supplierReturns.SupplierID = cmbSupplier.EditValue;
                 supplierReturns.CategoryID = cmbCategory.EditValue;
-                supplierReturns.UserID = Utility.UserID;
+                supplierReturns.UserID = Utility.loginInfo.UserID;
                 supplierRepository.SaveSupplierReturns(supplierReturns);
             }
             catch (Exception ex)
@@ -300,7 +291,8 @@ namespace NSRetailPOS.Operations.Stock
         private void SaveSupplierReturnsDetail(int rowHandle)
         {
             DataRow drDetail = (gvSupplierReturns.GetRow(rowHandle) as DataRowView).Row;
-            object SupplierReturnsDetailID = supplierRepository.SaveSupplierReturnsDetail(drDetail,Utility.UserID, Utility.BranchID);
+            object SupplierReturnsDetailID = 
+                supplierRepository.SaveSupplierReturnsDetail(drDetail,Utility.loginInfo.UserID, Utility.branchInfo.BranchID);
             drDetail["SUPPLIERRETURNSDETAILID"] = SupplierReturnsDetailID;
         }
         private void gvSupplierReturns_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
@@ -330,7 +322,7 @@ namespace NSRetailPOS.Operations.Stock
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             supplierRepository.DeleteSupplierReturnsDetail(
-                gvSupplierReturns.GetFocusedRowCellValue("SUPPLIERRETURNSDETAILID"), Utility.UserID);
+                gvSupplierReturns.GetFocusedRowCellValue("SUPPLIERRETURNSDETAILID"), Utility.loginInfo.UserID);
             gvSupplierReturns.DeleteRow(gvSupplierReturns.FocusedRowHandle);
         }
         private void frmSupplierReturns_KeyDown(object sender, KeyEventArgs e)
@@ -352,13 +344,13 @@ namespace NSRetailPOS.Operations.Stock
             {
                 if (gvSupplierReturns.RowCount == 0)
                     return;
-                supplierRepository.FreezeSupplierReturns(supplierReturns.SupplierReturnsID, Utility.UserID);
+                supplierRepository.FreezeSupplierReturns(supplierReturns.SupplierReturnsID, 
+                    Utility.loginInfo.UserID);
                 this.Close();
             }
             catch (Exception ex)
             {
-                ErrorManagement.ErrorMgmt.ShowError(ex);
-                ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
+                Utility.ShowError(ex);
             }
         }
 
@@ -369,7 +361,10 @@ namespace NSRetailPOS.Operations.Stock
 
         private void cmbCategory_EditValueChanged(object sender, EventArgs e)
         {
-            sluItemCode.Properties.DataSource = new ItemCodeRepository().GetItemCodeByCategory(Utility.CategoryID);
+            InitialLoad();
+
+            sluItemCode.Properties.DataSource = 
+                new ItemCodeRepository().GetItemCodeByCategory(cmbCategory.EditValue);
             sluItemCode.Properties.ValueMember = "ITEMCODEID";
             sluItemCode.Properties.DisplayMember = "ITEMNAME";
 
