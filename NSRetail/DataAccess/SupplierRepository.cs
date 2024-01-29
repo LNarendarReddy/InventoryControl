@@ -488,5 +488,34 @@ namespace DataAccess
                 throw new Exception("Error while splitting quantity");
             }
         }
+
+        public void MoveSupplierReturnsItems(object SupplierID,DataTable detailids, object UserID)
+        {
+            SqlTransaction sqlTransaction = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+
+                    sqlTransaction = SQLCon.Sqlconn().BeginTransaction();
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Transaction = sqlTransaction;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_MOVESUPPLIERRETURNS]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERID", SupplierID);
+                    cmd.Parameters.AddWithValue("@dt", detailids);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object obj = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(obj), out int id))
+                        throw new Exception(Convert.ToString(obj));
+                    sqlTransaction.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                sqlTransaction.Rollback();
+                throw new Exception("Error while moving items", ex);
+            }
+        }
     }
 }
