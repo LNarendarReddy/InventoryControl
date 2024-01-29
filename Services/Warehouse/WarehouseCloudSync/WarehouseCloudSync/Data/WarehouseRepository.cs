@@ -54,7 +54,7 @@ namespace WarehouseCloudSync.Data
             catch (Exception ex)
             {
                 transaction?.Rollback();
-                Console.WriteLine(ex.ToString());
+                SyncData.WriteLine(ex.ToString());
                 throw new Exception("Error While saving Entity wise data List", ex);
             }
             finally
@@ -84,7 +84,7 @@ namespace WarehouseCloudSync.Data
             catch (Exception ex)
             {
                 transaction?.Rollback();
-                Console.WriteLine(ex.ToString());
+                SyncData.WriteLine(ex.ToString());
                 throw new Exception("Error While proccesing day closures", ex);
             }
             finally
@@ -98,7 +98,7 @@ namespace WarehouseCloudSync.Data
             {
                 if (count != null && int.TryParse(count.ToString(), out int countValue) && countValue > 0)
                 {
-                    Console.WriteLine($"Continuing previous day closure process");
+                    SyncData.WriteLine($"Continuing previous day closure process");
                     ProccessDayClosures();
                 }
             }

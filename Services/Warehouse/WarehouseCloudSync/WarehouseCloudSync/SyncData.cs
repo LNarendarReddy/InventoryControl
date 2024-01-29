@@ -10,7 +10,8 @@ namespace WarehouseCloudSync
 {
     public class SyncData
     {
-        string logPath = null;
+        static string logPath = null;
+
         public SyncData() 
         {
             logPath = ConfigurationManager.AppSettings.Keys.Cast<string>().Any(x => x == "TelemetryLogFile")
@@ -73,7 +74,7 @@ namespace WarehouseCloudSync
             StartSync();
         }
 
-        public void WriteLine(string line)
+        public static void WriteLine(string line)
         {
             Console.WriteLine(line);
 
