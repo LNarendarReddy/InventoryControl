@@ -21,10 +21,7 @@ namespace NSRetail
             InitializeComponent();
             branchItemPrice = _branchItemPrice;
 
-            DataTable dtBranch = Utility.GetBranchList();
-            DataView dvBranch = dtBranch.Copy().DefaultView;
-            dvBranch.RowFilter = $"ISWAREHOUSE = 0";
-            cmbBranch.Properties.DataSource = dvBranch;
+            cmbBranch.Properties.DataSource = Utility.GetBranchList();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
         }
