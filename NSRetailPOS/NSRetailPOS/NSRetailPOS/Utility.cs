@@ -324,7 +324,7 @@ namespace NSRetailPOS
             Form.ActiveForm.BeginInvoke((Action)(() => (Form.ActiveForm as IBarcodeReceiver).ReceiveBarCode(data)));
         }
 
-        public static string AppVersion = "1.5.0";
+        public static string AppVersion = "1.5.1";
         public static string DBVersion = string.Empty;
         public static string VersionDate = "(22-01-2024)";
 
