@@ -318,5 +318,24 @@ namespace NSRetail.Countning
             if (e.Column.FieldName != "QUANTITY" || isEventCall) return;
             SaveStockCountingDetail(e.RowHandle);
         }
+
+        private void btnDiscard_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvCounting.RowCount == 0 ||
+              XtraMessageBox.Show("Are you sure want to discard sheet", "Confirm",
+              MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
+                stockCounting.UserID = Utility.UserID;
+                new CloudRepository().DiscardCounting(stockCounting);
+                stockCounting = new StockCounting();
+                InitialLoad();
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
+        }
     }
 }

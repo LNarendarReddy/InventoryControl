@@ -1,5 +1,7 @@
 ﻿using Entity;
 using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net;
@@ -215,7 +217,33 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while deleting stock counting detail");
+                throw new Exception("Error while submitting stock counting");
+            }
+            finally
+            {
+                SQLCon.SqlCloudConn().Close();
+            }
+        }
+
+        public void DiscardCounting(StockCounting stockCounting)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlCloudConn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[CLOUD_USP_D_STOCKCOUNTING]";
+                    cmd.Parameters.AddWithValue("@STOCKCOUNTINGID", stockCounting.STOCKCOUNTINGID);
+                    cmd.Parameters.AddWithValue("@USERID", stockCounting.UserID);
+                    int rowsaffetced = cmd.ExecuteNonQuery();
+                    if(rowsaffetced <= 0)
+                        throw new Exception("Error while discarding counting");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while discarding counting");
             }
             finally
             {
