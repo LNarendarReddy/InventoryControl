@@ -41,7 +41,7 @@ namespace NSRetailPOS.UI
                     BRefundID = dSInitialData.Tables[0].Rows[0]["BREFUNDID"];
                     BRefundNumber = dSInitialData.Tables[0].Rows[0]["BREFUNDNUMBER"];
                     cmbCategory.EditValue = dSInitialData.Tables[0].Rows[0]["CATEGORYID"];
-                    this.Text = "Branch Refund" + "-" + BRefundNumber;
+                    this.Text = $"Branch Refund-{BRefundID}";
                     cmbCategory.Enabled = false;
                 }
                 else
@@ -298,11 +298,11 @@ namespace NSRetailPOS.UI
                 XtraMessageBox.Show("Are you sure to continue?", "Confirm!",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
-            new RefundRepository().FinishBRefund(BRefundID);
+            object NewBRefundNumber = new RefundRepository().FinishBRefund(BRefundID);
             rptBRefund rpt = new rptBRefund(dtRefund);
             rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
             rpt.Parameters["BillDate"].Value = DateTime.Now;
-            rpt.Parameters["BillNumber"].Value = BRefundNumber;
+            rpt.Parameters["BillNumber"].Value = NewBRefundNumber;
             rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
             rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
             rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
@@ -354,7 +354,7 @@ namespace NSRetailPOS.UI
                 BRefundID = dt.Rows[0]["BREFUNDID"];
                 BRefundNumber = dt.Rows[0]["BREFUNDNUMBER"];
                 cmbCategory.EditValue = dt.Rows[0]["CATEGORYID"];
-                this.Text = "Branch Refund" + "-" + BRefundNumber;
+                this.Text = $"Branch Refund-{BRefundID}";
                 cmbCategory.Enabled = false;
             }
             else

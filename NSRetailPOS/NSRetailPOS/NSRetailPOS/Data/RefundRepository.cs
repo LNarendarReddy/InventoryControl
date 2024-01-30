@@ -1,4 +1,5 @@
 ﻿using DevExpress.CodeParser;
+using DevExpress.Office.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -241,8 +242,9 @@ namespace NSRetailPOS.Data
             }
         }
 
-        public void FinishBRefund(object BRefundID)
+        public string FinishBRefund(object BRefundID)
         {
+            string BRefundNumber = string.Empty;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -251,9 +253,8 @@ namespace NSRetailPOS.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_FINISHBREFUND]";
                     cmd.Parameters.AddWithValue("@BREFUNDID", BRefundID);
-                    int rowsaffected = cmd.ExecuteNonQuery();
-                    if (rowsaffected == 0)
-                        throw new Exception("Error while saving Branch Refund");
+                    object objReturn = cmd.ExecuteScalar();
+                    BRefundNumber = Convert.ToString(objReturn);
                 }
             }
             catch (Exception ex)
@@ -264,6 +265,7 @@ namespace NSRetailPOS.Data
             {
                 SQLCon.Sqlconn().Close();
             }
+            return BRefundNumber;
         }
 
         public DataTable GETRFR()
