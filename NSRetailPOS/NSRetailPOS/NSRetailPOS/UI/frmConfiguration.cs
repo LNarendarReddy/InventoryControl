@@ -17,21 +17,6 @@ namespace NSRetailPOS.UI
         public frmConfiguration()
         {
             InitializeComponent();
-            cmbBranch.Properties.DataSource = ObjPOSRep.GetBranchList();
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-
-            cmbCounter.Properties.DataSource = ObjPOSRep.GetCounterList();
-            cmbCounter.Properties.ValueMember = "COUNTERID";
-            cmbCounter.Properties.DisplayMember = "COUNTERNAME";
-            cmbCounter.CascadingOwner = cmbBranch;
-            cmbCounter.Properties.CascadingMember = "BRANCHID";
-                        
-
-            if (!System.IO.Directory.Exists(System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles")))
-                System.IO.Directory.CreateDirectory(System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles"));
-            if (!System.IO.Directory.Exists(System.IO.Path.Combine(Application.UserAppDataPath, "AppFiles")))
-                System.IO.Directory.CreateDirectory(System.IO.Path.Combine(Application.UserAppDataPath, "AppFiles"));
         }
 
         private void frmConfiguration_Load(object sender, EventArgs e)
@@ -42,6 +27,27 @@ namespace NSRetailPOS.UI
                 XtraMessageBox.Show($"This system installed in different time zone!" +
                     $"{Environment.NewLine}Please correct the timezone to continue or contact your administrator.");
                 this.Close();
+            }
+            else
+            {
+                try
+                {
+                    DataTable dt = ObjPOSRep.GetBranchList(Utility.AppVersion, objSyncRepository.GetDBVersion());
+                    cmbBranch.Properties.DataSource = dt;
+                    cmbBranch.Properties.ValueMember = "BRANCHID";
+                    cmbBranch.Properties.DisplayMember = "BRANCHNAME";
+
+
+                    if (!System.IO.Directory.Exists(System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles")))
+                        System.IO.Directory.CreateDirectory(System.IO.Path.Combine(Application.UserAppDataPath, "DBFiles"));
+                    if (!System.IO.Directory.Exists(System.IO.Path.Combine(Application.UserAppDataPath, "AppFiles")))
+                        System.IO.Directory.CreateDirectory(System.IO.Path.Combine(Application.UserAppDataPath, "AppFiles"));
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
+                }
             }
         }
 
@@ -92,6 +98,14 @@ namespace NSRetailPOS.UI
         {
 
         }
-                
+
+        private void cmbBranch_EditValueChanged(object sender, EventArgs e)
+        {
+            if (cmbBranch.EditValue == null)
+                return;
+            cmbCounter.Properties.DataSource = ObjPOSRep.GetCounterList(cmbBranch.EditValue);
+            cmbCounter.Properties.ValueMember = "COUNTERID";
+            cmbCounter.Properties.DisplayMember = "COUNTERNAME";
+        }
     }
 }

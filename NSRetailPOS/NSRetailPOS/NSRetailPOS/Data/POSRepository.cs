@@ -1,8 +1,11 @@
-﻿using System;
+﻿using DevExpress.Utils.Text.Internal;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +13,7 @@ namespace NSRetailPOS.Data
 {
     public class POSRepository
     {
-        public DataTable GetBranchList()
+        public DataTable GetBranchList(string Appversion, string DBVersion)
         {
             DataTable dtBranch = new DataTable();
             try
@@ -20,15 +23,22 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.SqlCloudconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_BRANCH]";
+                    cmd.Parameters.Add("@AppVersion", Appversion);
+                    cmd.Parameters.Add("@DBVersion", DBVersion);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtBranch);
+                    }
+                    if(dtBranch != null && dtBranch.Rows.Count > 0)
+                    {
+                        if (!int.TryParse(Convert.ToString(dtBranch.Rows[0][0]), out int ivalue))
+                            throw new Exception(Convert.ToString(dtBranch.Rows[0][0]));
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Retrieving Branch List", ex);
+                throw ex;
             }
             finally
             {
@@ -36,7 +46,7 @@ namespace NSRetailPOS.Data
             }
             return dtBranch;
         }
-        public DataTable GetCounterList()
+        public DataTable GetCounterList(object BranchID)
         {
             DataTable dtBranch = new DataTable();
             try
@@ -46,6 +56,7 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.SqlCloudconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_BRANCHCOUNTER]";
+                    cmd.Parameters.Add("@BranchID", BranchID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtBranch);

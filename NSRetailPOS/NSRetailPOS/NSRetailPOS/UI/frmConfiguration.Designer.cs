@@ -203,6 +203,7 @@
             conditionValidationRule2.ErrorText = "Mandatory";
             conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
             this.dxValidationProvider1.SetValidationRule(this.cmbBranch, conditionValidationRule2);
+            this.cmbBranch.EditValueChanged += new System.EventHandler(this.cmbBranch_EditValueChanged);
             // 
             // Root
             // 
