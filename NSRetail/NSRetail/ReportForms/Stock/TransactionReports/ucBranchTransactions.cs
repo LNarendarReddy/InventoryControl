@@ -31,15 +31,19 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "TOTALCPTAX", "Total CP TAX" },
                 { "TOTALSPWOT", "Total SP WOT" },
                 { "TOTALSPWT", "Total SP WT" },
-                { "TOTALSPTAX", "Total SP TAX" }
-                , { "BREFUNDNUMBER", "Branch Refund #" }
+                { "TOTALSPTAX", "Total SP TAX" }, 
+                { "BREFUNDNUMBER", "Branch Refund #" },
+                { "REFUNDSTATUS", "Refund Status" },
+                { "APPROVEDBY", "Approved by" },
+                { "APPROVEDDATE", "Approved Date" },
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
                 new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODOCITY" },true)
                 , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP",
-                    "COSTPRICEWOT", "COSTPRICEWT", "COSTPRICETAX", "SALEPRICEWOT", "SALEPRICEWT", "SALEPRICETAX", "QUANTITY" })
+                    "COSTPRICEWOT", "COSTPRICEWT", "COSTPRICETAX", "SALEPRICEWOT", "SALEPRICEWT", "SALEPRICETAX", "QUANTITY",
+                "REFUNDSTATUS", "APPROVEDBY", "APPROVEDDATE" })
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })

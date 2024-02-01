@@ -57,6 +57,8 @@
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -117,7 +119,9 @@
             this.gridColumn12,
             this.gridColumn13,
             this.gridColumn14,
-            this.gridColumn15});
+            this.gridColumn15,
+            this.gridColumn17,
+            this.gridColumn18});
             this.gvBills.DetailHeight = 404;
             this.gvBills.GridControl = this.gcBills;
             this.gvBills.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -166,7 +170,7 @@
             this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 0;
-            this.gridColumn4.Width = 177;
+            this.gridColumn4.Width = 175;
             // 
             // gridColumn5
             // 
@@ -195,11 +199,11 @@
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 4;
-            this.gridColumn7.Width = 151;
+            this.gridColumn7.Width = 122;
             // 
             // gridColumn8
             // 
-            this.gridColumn8.Caption = "Created Date";
+            this.gridColumn8.Caption = "Created Time";
             this.gridColumn8.ColumnEdit = this.repositoryItemDateEdit1;
             this.gridColumn8.FieldName = "CREATEDDATE";
             this.gridColumn8.MinWidth = 23;
@@ -207,7 +211,7 @@
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 5;
-            this.gridColumn8.Width = 107;
+            this.gridColumn8.Width = 84;
             // 
             // repositoryItemDateEdit1
             // 
@@ -240,7 +244,7 @@
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 6;
-            this.gridColumn9.Width = 140;
+            this.gridColumn9.Width = 98;
             // 
             // gridColumn10
             // 
@@ -251,7 +255,7 @@
             this.gridColumn10.MinWidth = 23;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 7;
+            this.gridColumn10.VisibleIndex = 9;
             this.gridColumn10.Width = 100;
             // 
             // btnViewItems
@@ -274,7 +278,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "ITEMAMOUNT", "{0:0.##}")});
             this.gcItemValue.Visible = true;
             this.gcItemValue.VisibleIndex = 1;
-            this.gcItemValue.Width = 136;
+            this.gcItemValue.Width = 99;
             // 
             // gcMOPValue
             // 
@@ -286,7 +290,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MOPAMOUNT", "{0:0.##}")});
             this.gcMOPValue.Visible = true;
             this.gcMOPValue.VisibleIndex = 2;
-            this.gcMOPValue.Width = 146;
+            this.gcMOPValue.Width = 100;
             // 
             // gridColumn11
             // 
@@ -296,7 +300,7 @@
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 3;
-            this.gridColumn11.Width = 123;
+            this.gridColumn11.Width = 94;
             // 
             // gridColumn12
             // 
@@ -324,6 +328,26 @@
             this.gridColumn15.Caption = "Bill Status ID";
             this.gridColumn15.FieldName = "BILLSTATUSID";
             this.gridColumn15.Name = "gridColumn15";
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "Finished User";
+            this.gridColumn17.FieldName = "BILLCLOSEDBY";
+            this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.OptionsColumn.AllowEdit = false;
+            this.gridColumn17.Visible = true;
+            this.gridColumn17.VisibleIndex = 7;
+            this.gridColumn17.Width = 138;
+            // 
+            // gridColumn18
+            // 
+            this.gridColumn18.Caption = "Finished time";
+            this.gridColumn18.FieldName = "BILLCLOSEDDATE";
+            this.gridColumn18.Name = "gridColumn18";
+            this.gridColumn18.OptionsColumn.AllowEdit = false;
+            this.gridColumn18.Visible = true;
+            this.gridColumn18.VisibleIndex = 8;
+            this.gridColumn18.Width = 93;
             // 
             // Root
             // 
@@ -397,5 +421,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
     }
 }
