@@ -101,7 +101,6 @@
             this.gridColumn50 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn51 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
-            this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
             this.dtToDate = new DevExpress.XtraEditors.DateEdit();
             this.dtFromDate = new DevExpress.XtraEditors.DateEdit();
             this.btnShow = new DevExpress.XtraEditors.SimpleButton();
@@ -124,6 +123,7 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.virtualServerModeSource1 = new DevExpress.Data.VirtualServerModeSource(this.components);
+            this.cmbBranch = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDispatch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemSummary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBranchReunds)).BeginInit();
@@ -135,7 +135,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeBillNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcPurchase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPurchase)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -154,6 +153,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // gvDispatch
@@ -625,11 +625,11 @@
             this.layoutControl1.Controls.Add(this.gcPurchase);
             this.layoutControl1.Controls.Add(this.gcItemSummary);
             this.layoutControl1.Controls.Add(this.btnViewReport);
-            this.layoutControl1.Controls.Add(this.cmbBranch);
             this.layoutControl1.Controls.Add(this.dtToDate);
             this.layoutControl1.Controls.Add(this.dtFromDate);
             this.layoutControl1.Controls.Add(this.btnShow);
             this.layoutControl1.Controls.Add(this.sluItemCode);
+            this.layoutControl1.Controls.Add(this.cmbBranch);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -774,22 +774,6 @@
             this.btnViewReport.Text = "View Report";
             this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
             // 
-            // cmbBranch
-            // 
-            this.cmbBranch.EnterMoveNextControl = true;
-            this.cmbBranch.Location = new System.Drawing.Point(358, 16);
-            this.cmbBranch.Name = "cmbBranch";
-            this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHNAME", "Branch Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHCODE", "Branch Code"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHID", "BRANCHID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.cmbBranch.Properties.NullText = "";
-            this.cmbBranch.Size = new System.Drawing.Size(159, 22);
-            this.cmbBranch.StyleController = this.layoutControl1;
-            this.cmbBranch.TabIndex = 1;
-            // 
             // dtToDate
             // 
             this.dtToDate.EditValue = null;
@@ -928,8 +912,7 @@
             // 
             this.layoutControlItem6.Control = this.cmbBranch;
             this.layoutControlItem6.Location = new System.Drawing.Point(272, 0);
-            this.layoutControlItem6.MaxSize = new System.Drawing.Size(241, 34);
-            this.layoutControlItem6.MinSize = new System.Drawing.Size(241, 34);
+            this.layoutControlItem6.MinSize = new System.Drawing.Size(50, 25);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem6.Size = new System.Drawing.Size(241, 34);
@@ -1025,6 +1008,16 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
+            // cmbBranch
+            // 
+            this.cmbBranch.Location = new System.Drawing.Point(358, 16);
+            this.cmbBranch.Name = "cmbBranch";
+            this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbBranch.Size = new System.Drawing.Size(159, 22);
+            this.cmbBranch.StyleController = this.layoutControl1;
+            this.cmbBranch.TabIndex = 1;
+            // 
             // frmItemSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1045,7 +1038,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeBillNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcPurchase)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPurchase)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).EndInit();
@@ -1064,6 +1056,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1081,7 +1074,6 @@
         private DevExpress.XtraEditors.DateEdit dtFromDate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraEditors.LookUpEdit cmbBranch;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraEditors.SimpleButton btnViewReport;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
@@ -1160,5 +1152,6 @@
         private DevExpress.Data.VirtualServerModeSource virtualServerModeSource1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn53;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn52;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit cmbBranch;
     }
 }

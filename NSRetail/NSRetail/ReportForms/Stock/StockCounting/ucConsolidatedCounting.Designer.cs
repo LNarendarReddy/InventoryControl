@@ -31,15 +31,15 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.dtpCountingDate = new DevExpress.XtraEditors.DateEdit();
             this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
-            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cmbCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.cmbItemCode = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbCategory = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -47,12 +47,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpCountingDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpCountingDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
@@ -61,8 +61,8 @@
             // 
             this.layoutControl1.Controls.Add(this.dtpCountingDate);
             this.layoutControl1.Controls.Add(this.cmbBranch);
-            this.layoutControl1.Controls.Add(this.cmbCategory);
             this.layoutControl1.Controls.Add(this.cmbItemCode);
+            this.layoutControl1.Controls.Add(this.cmbCategory);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -75,6 +75,7 @@
             // dtpCountingDate
             // 
             this.dtpCountingDate.EditValue = null;
+            this.dtpCountingDate.EnterMoveNextControl = true;
             this.dtpCountingDate.Location = new System.Drawing.Point(341, 11);
             this.dtpCountingDate.Name = "dtpCountingDate";
             this.dtpCountingDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -101,58 +102,6 @@
             this.cmbBranch.Size = new System.Drawing.Size(136, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 5;
-            // 
-            // Root
-            // 
-            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.Root.GroupBordersVisible = false;
-            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem2,
-            this.layoutControlItem1,
-            this.layoutControlItem3,
-            this.layoutControlItem4});
-            this.Root.Name = "Root";
-            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.Root.Size = new System.Drawing.Size(1002, 46);
-            this.Root.TextVisible = false;
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.cmbBranch;
-            this.layoutControlItem2.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.layoutControlItem2.CustomizationFormText = "Select Branch";
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(239, 36);
-            this.layoutControlItem2.Text = "Select Branch";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(79, 15);
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.dtpCountingDate;
-            this.layoutControlItem1.Location = new System.Drawing.Point(239, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem1.Size = new System.Drawing.Size(227, 36);
-            this.layoutControlItem1.Text = "Counting Date";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(79, 15);
-            // 
-            // cmbCategory
-            // 
-            this.cmbCategory.EnterMoveNextControl = true;
-            this.cmbCategory.Location = new System.Drawing.Point(567, 10);
-            this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbCategory.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYID", "CATEGORYID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYNAME", "CATEGORYNAME")});
-            this.cmbCategory.Properties.NullText = "";
-            this.cmbCategory.Properties.ShowHeader = false;
-            this.cmbCategory.Size = new System.Drawing.Size(129, 22);
-            this.cmbCategory.StyleController = this.layoutControl1;
-            this.cmbCategory.TabIndex = 1;
             // 
             // cmbItemCode
             // 
@@ -202,6 +151,52 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             // 
+            // cmbCategory
+            // 
+            this.cmbCategory.Location = new System.Drawing.Point(567, 10);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbCategory.Size = new System.Drawing.Size(129, 22);
+            this.cmbCategory.StyleController = this.layoutControl1;
+            this.cmbCategory.TabIndex = 1;
+            // 
+            // Root
+            // 
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem2,
+            this.layoutControlItem1,
+            this.layoutControlItem3,
+            this.layoutControlItem4});
+            this.Root.Name = "Root";
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.Root.Size = new System.Drawing.Size(1002, 46);
+            this.Root.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.cmbBranch;
+            this.layoutControlItem2.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.layoutControlItem2.CustomizationFormText = "Select Branch";
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem2.Size = new System.Drawing.Size(239, 36);
+            this.layoutControlItem2.Text = "Select Branch";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(79, 15);
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.dtpCountingDate;
+            this.layoutControlItem1.Location = new System.Drawing.Point(239, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem1.Size = new System.Drawing.Size(227, 36);
+            this.layoutControlItem1.Text = "Counting Date";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(79, 15);
+            // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.cmbCategory;
@@ -238,12 +233,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpCountingDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpCountingDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
@@ -258,7 +253,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.DateEdit dtpCountingDate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.LookUpEdit cmbCategory;
         private DevExpress.XtraEditors.SearchLookUpEdit cmbItemCode;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
@@ -266,5 +260,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit cmbCategory;
     }
 }

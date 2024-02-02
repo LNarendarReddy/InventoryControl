@@ -6,6 +6,8 @@ using ErrorManagement;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Web.UI;
 using System.Windows.Forms;
 using static DevExpress.Utils.Diagnostics.GUIResources;
 
@@ -23,11 +25,8 @@ namespace NSRetail.ReportForms.Stock.StockReports
             sluItemCode.Properties.DataSource = Utility.GetItemCodeList();
             sluItemCode.Properties.ValueMember = "ITEMID";
             sluItemCode.Properties.DisplayMember = "ITEMNAME";
-
-            cmbBranch.Properties.DataSource = new MasterRepository().GetBranch(true);
-            cmbBranch.Properties.ValueMember = "BRANCHID";
-            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-            cmbBranch.EditValue = 0;
+            
+            new SearchCriteriaBase().BindBranch(cmbBranch);
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;

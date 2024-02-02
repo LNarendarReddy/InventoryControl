@@ -25,7 +25,7 @@ namespace NSRetail.ReportForms.Stock.StockCounting
             MandatoryFields = new List<BaseEdit> { cmbBranch, dtpCountingDate };
             IncludeSettingsCollection = new List<IncludeSettings>
             {
-                new IncludeSettings("User name", "IncludeUser", new List<string> { "User name" })
+                new IncludeSettings("User name", "IncludeUser", new List<string> { "USERNAME" })
             };
         }
 

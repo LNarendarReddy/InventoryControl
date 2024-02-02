@@ -58,10 +58,12 @@ namespace NSRetail
                 {
                     foreach(Control child in cntrl.Controls)
                     {
-                        if (child.GetType() == typeof(CheckedComboBoxEdit) 
-                            && child.Name.ToLower().Contains("branch"))
+                        if (child.GetType() == typeof(CheckedComboBoxEdit))
                         {
-                            BindBranch(child);
+                            if (child.Name.ToLower().Contains("branch"))
+                                BindBranch(child);
+                            else if(child.Name.ToLower().Contains("category"))
+                                BindCategoryCheckedComboboxEdit(child);
                         }
                         else if (child.GetType() == typeof(SearchLookUpEdit)
                             && child.Name.ToLower().Contains("itemcode"))
@@ -71,7 +73,7 @@ namespace NSRetail
                         else if (child.GetType() == typeof(LookUpEdit)
                             && child.Name.ToLower().Contains("category"))
                         {
-                            BindCategory(child);
+                            BindCategoryLookupedit(child);
                         }
                     }
                     break;
@@ -332,13 +334,24 @@ namespace NSRetail
             cmb.EnterMoveNextControl = true;
         }
 
-        public void BindCategory(Control cntrl)
+        public void BindCategoryLookupedit(Control cntrl)
         {
             LookUpEdit cmb = (LookUpEdit)cntrl;
             cmb.Properties.DataSource = Utility.GetCategoryList();
             cmb.Properties.ValueMember = "CATEGORYID";
             cmb.Properties.DisplayMember = "CATEGORYNAME";
             cmb.EditValue = 13;
+            cmb.EnterMoveNextControl = true;
+        }
+
+        public void BindCategoryCheckedComboboxEdit(Control cntrl)
+        {
+            CheckedComboBoxEdit cmb = (CheckedComboBoxEdit)cntrl;
+            cmb.Properties.DataSource = Utility.GetCategoryList();
+            cmb.Properties.ValueMember = "CATEGORYID";
+            cmb.Properties.DisplayMember = "CATEGORYNAME";
+            cmb.CheckAll();
+            AddCheckedComboBoxEnter(cmb);
             cmb.EnterMoveNextControl = true;
         }
 
@@ -360,10 +373,14 @@ namespace NSRetail
 
         private void cmbBranch_Enter(object sender, EventArgs e)
         {
-            CheckedComboBoxEdit cmb = sender as CheckedComboBoxEdit;
-            BeginInvoke(new Action(() => {
-                cmb.ShowPopup();
-            }));
+            try
+            {
+                CheckedComboBoxEdit cmb = sender as CheckedComboBoxEdit;
+                BeginInvoke(new Action(() => {
+                    cmb.ShowPopup();
+                }));
+            }
+            catch (Exception ex){}
         }
     }
 }
