@@ -284,6 +284,12 @@
     <Compile Include="ReportForms\Wareshouse\Audit\ucHDDClearhistory.Designer.cs">
       <DependentUpon>ucHDDClearhistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucOfferReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucOfferReport.Designer.cs">
+      <DependentUpon>ucOfferReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\Audit\ucOfferThreshold.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -314,9 +320,7 @@
     <Compile Include="ReportForms\Stock\StockReports\frmItemSummaryDetail.Designer.cs">
       <DependentUpon>frmItemSummaryDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityTaxWise.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityTaxWise.cs" />
     <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityTaxWise.Designer.cs">
       <DependentUpon>ucProfitabilityTaxWise.cs</DependentUpon>
     </Compile>
@@ -1032,6 +1036,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucHDDClearhistory.resx">
       <DependentUpon>ucHDDClearhistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucOfferReport.resx">
+      <DependentUpon>ucOfferReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucOfferThreshold.resx">
       <DependentUpon>ucOfferThreshold.cs</DependentUpon>

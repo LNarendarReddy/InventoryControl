@@ -135,7 +135,7 @@ namespace NSRetail.Stock
                     txtTrayNumber.EditValue = null;
                     cmbFromBranch.Enabled = true;
                     cmbToBranch.Enabled = true;
-                    if (Utility.Category != "ALL")
+                    if (Utility.Category == "ALL")
                         cmbCategory.Enabled = true;
                     cmbCategory.EditValue = Utility.CategoryID;
                     ObjStockDispatch.STOCKDISPATCHID = 0;

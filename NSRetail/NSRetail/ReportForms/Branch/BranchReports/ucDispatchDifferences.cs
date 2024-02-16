@@ -42,5 +42,10 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
             return GetReportData("USP_RPT_DISPATCHDIFF", parameters);
         }
+
+        private void cmbCategory_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

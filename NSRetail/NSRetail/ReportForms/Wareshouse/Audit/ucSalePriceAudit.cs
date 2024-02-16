@@ -23,11 +23,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             sluSKUCode.Properties.DisplayMember = "ITEMNAME";
             sluSKUCode.Properties.ValueMember = "ITEMID";
 
-            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
-            cmbCategory.Properties.ValueMember = "CATEGORYID";
-            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
-
-            SetFocusControls(cmbCategory, sluSKUCode, columnHeaders);
+            SetFocusControls(sluSKUCode,sluSKUCode, columnHeaders);
             AllowedRoles = new List<string> { "Division Manager" };
         }
 
@@ -36,7 +32,6 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "ItemID", sluSKUCode.EditValue }
-                , { "CategoryID", cmbCategory.EditValue}
             };
 
             return GetReportData("USP_RPT_AUDIT_SALEPRICE", parameters);

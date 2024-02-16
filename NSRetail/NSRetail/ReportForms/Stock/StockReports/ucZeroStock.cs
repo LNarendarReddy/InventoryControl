@@ -27,7 +27,7 @@ namespace NSRetail.ReportForms.Stock.StockReports
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 
-            SetFocusControls(cmbBranch, cmbBranch, columnHeaders);
+            SetFocusControls(cmbBranch, cmbCategory, columnHeaders);
 
             txtThresholdValue.EditValue = 0;
             txtThresholdValue.Enabled = false;
