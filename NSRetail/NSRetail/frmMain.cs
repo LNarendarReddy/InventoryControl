@@ -371,6 +371,7 @@ namespace NSRetail
             
             bbiClearProcedureCache.Enabled = Utility.Role == "Admin" || Utility.Role == "IT Manager";
             bbiStockSlippage.Visibility = bbiAddProcessing.Visibility = Utility.BranchID == 97 || Utility.BranchID == 45 ? BarItemVisibility.Always : BarItemVisibility.Never;
+            bbiClearLeftSales.Visibility = Utility.Role == "Admin" || Utility.Role == "IT Manager" ? BarItemVisibility.Always : BarItemVisibility.Never;
 
             FillFinYears();
         }
@@ -628,6 +629,15 @@ namespace NSRetail
         private void bbiSliceCounting_ItemClick(object sender, ItemClickEventArgs e)
         {
             new frmSliceCounting() { MdiParent = this }.Show();
+        }
+
+        private void bbiClearLeftSales_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (XtraMessageBox.Show("Are you sure you want to clear test data?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                != DialogResult.Yes)
+                return;
+
+            new frmClearLeftSales() {  MdiParent = this }.Show();
         }
     }
 }

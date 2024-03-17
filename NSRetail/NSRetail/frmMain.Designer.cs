@@ -113,6 +113,7 @@
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.bbiClearLeftSales = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
@@ -182,9 +183,10 @@
             this.bbiBranchReports,
             this.bbiChangeFY,
             this.bbiAddProcessing,
-            this.bbiSliceCounting});
+            this.bbiSliceCounting,
+            this.bbiClearLeftSales});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 72;
+            this.ribbonControl1.MaxItemId = 73;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -890,6 +892,7 @@
             // 
             this.ribbonPageGroup6.ItemLinks.Add(this.bbiSyncStatus, true);
             this.ribbonPageGroup6.ItemLinks.Add(this.btnProcessWHDispatch);
+            this.ribbonPageGroup6.ItemLinks.Add(this.bbiClearLeftSales);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             resources.ApplyResources(this.ribbonPageGroup6, "ribbonPageGroup6");
             // 
@@ -926,6 +929,14 @@
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
+            // 
+            // bbiClearLeftSales
+            // 
+            resources.ApplyResources(this.bbiClearLeftSales, "bbiClearLeftSales");
+            this.bbiClearLeftSales.Id = 72;
+            this.bbiClearLeftSales.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.bbiClearLeftSales.Name = "bbiClearLeftSales";
+            this.bbiClearLeftSales.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClearLeftSales_ItemClick);
             // 
             // frmMain
             // 
@@ -1035,6 +1046,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
         private DevExpress.XtraBars.BarButtonItem bbiAddProcessing;
         private DevExpress.XtraBars.BarButtonItem bbiSliceCounting;
+        private DevExpress.XtraBars.BarButtonItem bbiClearLeftSales;
     }
 }
 

@@ -147,6 +147,7 @@ namespace NSRetail.Stock
             txtCalculatedWeight.EditValue = null;
 
             itemPriceID = multiplier = null;
+            sluItemCode.Focus();
         }
 
         private void RefreshProcessings()

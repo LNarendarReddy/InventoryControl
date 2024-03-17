@@ -143,6 +143,16 @@ namespace NSRetail.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap copy_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("copy_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete_16x16 {
             get {
                 object obj = ResourceManager.GetObject("delete_16x16", resourceCulture);
@@ -156,6 +166,16 @@ namespace NSRetail.Properties {
         internal static System.Drawing.Bitmap delete_16x161 {
             get {
                 object obj = ResourceManager.GetObject("delete_16x161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap delete_16x162 {
+            get {
+                object obj = ResourceManager.GetObject("delete_16x162", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
