@@ -47,6 +47,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
+                , new IncludeSettings("Tray Number", "IncludeTrayNumber", new List<string>{ "TRAYNUMBER" })
             };
 
             if (ReportType == "B")
