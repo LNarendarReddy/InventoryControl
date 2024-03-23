@@ -1,5 +1,7 @@
 ﻿using DataAccess;
+using DevExpress.Utils.About;
 using DevExpress.XtraEditors;
+using Entity;
 using ErrorManagement;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,9 @@ namespace NSRetail.Stock
     {
         object itemPriceID;
         double? multiplier;
+        object addBulkProcessingID;
+        ReportRepository reportRepository = new ReportRepository();
+        StockRepository stockRepository = new StockRepository();
 
         public frmAddProcessing()
         {
@@ -31,7 +36,7 @@ namespace NSRetail.Stock
 
             txtQuantity.ConfirmBarCodeScan();
 
-            RefreshProcessings();
+            BindData();
         }
 
         private void sluItemCode_Popup(object sender, EventArgs e)
@@ -102,7 +107,7 @@ namespace NSRetail.Stock
             this.Close();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             if(!dxValidationProvider11.Validate())
             {
@@ -118,7 +123,14 @@ namespace NSRetail.Stock
 
             try
             {
-                new StockRepository().AddBulkProcessing(itemPriceID, txtQuantity.EditValue, Utility.UserID);
+                if (string.IsNullOrEmpty(addBulkProcessingID?.ToString())) 
+                {
+                    BindData(true);
+                }
+
+                stockRepository.AddBulkProcessingDetail(addBulkProcessingID, 0, itemPriceID, txtQuantity.EditValue);
+
+                BindData();
             }
             catch (Exception ex)
             {
@@ -127,7 +139,6 @@ namespace NSRetail.Stock
             }
 
             ClearObjects();
-            RefreshProcessings();
         }
 
         private void txtQuantity_EditValueChanged(object sender, EventArgs e)
@@ -150,20 +161,69 @@ namespace NSRetail.Stock
             sluItemCode.Focus();
         }
 
-        private void RefreshProcessings()
+        private void btnDeleteDetail_Click(object sender, EventArgs e)
         {
-            DataTable dtProcessing = new ReportRepository().GetReportData("USP_RPT_PROCESSING", new Dictionary<string, object>()
-            {
-                { "FromDate", DateTime.Now },
-                { "ToDate", DateTime.Now }
-            });
+            if (XtraMessageBox.Show("Are you sure want to delete?", "Confirm",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
 
-            gcBulkProcessing.DataSource = dtProcessing;
+            try
+            {
+                stockRepository.DeleteBulkProcessingDetail(gvBulkProcessing.GetFocusedRowCellValue("ADDBULKPROCESSINGDETAILID"), addBulkProcessingID);
+                gvBulkProcessing.DeleteRow(gvBulkProcessing.FocusedRowHandle);
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void gvBulkProcessing_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            RefreshProcessings();
+            if (e.Column.FieldName != "QUANTITY") return;
+
+            stockRepository.AddBulkProcessingDetail(addBulkProcessingID
+                , gvBulkProcessing.GetRowCellValue(e.RowHandle, "ADDBULKPROCESSINGDETAILID")
+                , gvBulkProcessing.GetRowCellValue(e.RowHandle, "ITEMPRICEID")
+                , gvBulkProcessing.GetRowCellValue(e.RowHandle, "QUANTITY"));            
+        }
+
+        private void BindData(bool createBulk = false)
+        {
+            DataSet dsAddBulkProcessing = reportRepository.GetReportDataset("USP_CR_ADDBULKPROCESSING"
+                , new Dictionary<string, object>
+                {
+                    { "UserID", Utility.UserID }
+                    , { "CreateBulk", createBulk }
+                });
+
+            addBulkProcessingID = dsAddBulkProcessing.Tables[0].Rows[0][0];
+
+            if (dsAddBulkProcessing.Tables.Count > 1)
+            {
+                gcBulkProcessing.DataSource = dsAddBulkProcessing.Tables[1];
+            }
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (XtraMessageBox.Show("Are you sure want to submit bulk processing? The operation cannot be reversed", "Confirm",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                stockRepository.SubmitBulkProcessing(addBulkProcessingID);
+                XtraMessageBox.Show("Submit completed successfully", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                addBulkProcessingID = null;
+                ClearObjects();
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
         }
     }
 }

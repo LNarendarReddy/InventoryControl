@@ -755,7 +755,7 @@ namespace DataAccess
             }
         }
 
-        public void AddBulkProcessing(object ItemPriceID, object quantity, object UserID)
+        public void AddBulkProcessingDetail(object addBulkProcessingID, object addBulkProcessingDetailID, object ItemPriceID, object quantity)
         {
             SqlTransaction transaction = null;
 
@@ -767,12 +767,13 @@ namespace DataAccess
                     transaction = cmd.Connection.BeginTransaction();
                     cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_C_BULKPROCESSING]";
+                    cmd.CommandText = "[USP_CU_ADDBULKPROCESSINGDETAIL]";
+                    cmd.Parameters.AddWithValue("@ADDBULKPROCESSINGID", addBulkProcessingID);
+                    cmd.Parameters.AddWithValue("@ADDBULKPROCESSINGDETAILID", addBulkProcessingDetailID);
                     cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
                     cmd.Parameters.AddWithValue("@Quantity", quantity);
-                    cmd.Parameters.AddWithValue("@USERID", UserID);
                     object returnValue = cmd.ExecuteScalar();
-                    if (!int.TryParse(returnValue?.ToString(), out int rowsafftected))
+                    if (!int.TryParse(returnValue?.ToString(), out int retVal))
                         throw new Exception(returnValue.ToString());
                     transaction?.Commit();
                 }
@@ -781,6 +782,52 @@ namespace DataAccess
             {
                 transaction?.Rollback();
                 throw new Exception($"Error while adding bulk processing : {ex.Message}", ex);
+            }
+        }
+
+        public void DeleteBulkProcessingDetail(object addBulkProcessingDetailID, object addBulkProcessingID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_ADDBULKPROCESSINGDETAIL]";
+                    cmd.Parameters.AddWithValue("@ADDBULKPROCESSINGDETAILID", addBulkProcessingDetailID);
+                    cmd.Parameters.AddWithValue("@ADDBULKPROCESSINGID", addBulkProcessingID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error While Deleting Dispatch Detail - {ex.Message}", ex);
+            }
+        }
+
+        public void SubmitBulkProcessing(object addBulkProcessingID)
+        {
+            SqlTransaction sqlTransaction = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    sqlTransaction = SQLCon.Sqlconn().BeginTransaction();
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Transaction = sqlTransaction;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_ADDBULKPROCESSSING]";
+                    cmd.Parameters.AddWithValue("@ADDBULKPROCESSINGID", addBulkProcessingID);
+                    object obj = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(obj), out int id))
+                        throw new Exception(Convert.ToString(obj));
+                    sqlTransaction.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                sqlTransaction.Rollback();
+                throw new Exception($"Error While Updating Dispatch - {ex.Message}", ex);
             }
         }
     }

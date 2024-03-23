@@ -29,28 +29,35 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddProcessing));
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.txtParentSKU = new DevExpress.XtraEditors.TextEdit();
             this.gcBulkProcessing = new DevExpress.XtraGrid.GridControl();
             this.gvBulkProcessing = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnDeleteDetail = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.txtCalculatedWeight = new DevExpress.XtraEditors.TextEdit();
             this.txtQuantity = new DevExpress.XtraEditors.TextEdit();
             this.sluItemCode = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -76,13 +83,14 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider11 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtParentSKU.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcBulkProcessing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBulkProcessing)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCalculatedWeight.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCode.Properties)).BeginInit();
@@ -103,16 +111,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider11)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.btnClose);
-            this.layoutControl1.Controls.Add(this.btnRefresh);
-            this.layoutControl1.Controls.Add(this.btnSave);
+            this.layoutControl1.Controls.Add(this.btnSubmit);
+            this.layoutControl1.Controls.Add(this.btnAdd);
             this.layoutControl1.Controls.Add(this.txtParentSKU);
             this.layoutControl1.Controls.Add(this.gcBulkProcessing);
             this.layoutControl1.Controls.Add(this.txtCalculatedWeight);
@@ -129,17 +135,6 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(12, 153);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(297, 19);
-            this.labelControl1.StyleController = this.layoutControl1;
-            this.labelControl1.TabIndex = 11;
-            this.labelControl1.Text = "Added bulk processings (current day) :";
-            // 
             // btnClose
             // 
             this.btnClose.ImageOptions.Image = global::NSRetail.Properties.Resources.cancel_16x161;
@@ -152,29 +147,29 @@
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // btnRefresh
+            // btnSubmit
             // 
-            this.btnRefresh.ImageOptions.Image = global::NSRetail.Properties.Resources.refreshallpivottable_16x16;
-            this.btnRefresh.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnRefresh.Location = new System.Drawing.Point(614, 152);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(98, 22);
-            this.btnRefresh.StyleController = this.layoutControl1;
-            this.btnRefresh.TabIndex = 8;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.btnSubmit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSubmit.ImageOptions.Image")));
+            this.btnSubmit.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnSubmit.Location = new System.Drawing.Point(614, 152);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(98, 22);
+            this.btnSubmit.StyleController = this.layoutControl1;
+            this.btnSubmit.TabIndex = 8;
+            this.btnSubmit.Text = "&Submit";
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // btnSave
+            // btnAdd
             // 
-            this.btnSave.ImageOptions.Image = global::NSRetail.Properties.Resources.export_16x16;
-            this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSave.Location = new System.Drawing.Point(475, 152);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(127, 22);
-            this.btnSave.StyleController = this.layoutControl1;
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "&Save";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnAdd.ImageOptions.Image = global::NSRetail.Properties.Resources.add_16x162;
+            this.btnAdd.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnAdd.Location = new System.Drawing.Point(475, 152);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(127, 22);
+            this.btnAdd.StyleController = this.layoutControl1;
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Text = "&Add";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtParentSKU
             // 
@@ -192,6 +187,8 @@
             this.gcBulkProcessing.Location = new System.Drawing.Point(12, 182);
             this.gcBulkProcessing.MainView = this.gvBulkProcessing;
             this.gcBulkProcessing.Name = "gcBulkProcessing";
+            this.gcBulkProcessing.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.btnDeleteDetail});
             this.gcBulkProcessing.Size = new System.Drawing.Size(815, 270);
             this.gcBulkProcessing.TabIndex = 10;
             this.gcBulkProcessing.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -200,46 +197,32 @@
             // gvBulkProcessing
             // 
             this.gvBulkProcessing.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn6,
             this.gridColumn7,
             this.gridColumn8,
             this.gridColumn9,
+            this.gridColumn1,
+            this.gridColumn6,
             this.gridColumn10,
             this.gridColumn12,
             this.gridColumn13,
             this.gridColumn14,
             this.gridColumn15,
-            this.gridColumn16});
+            this.gridColumn16,
+            this.gridColumn17,
+            this.gridColumn18});
             this.gvBulkProcessing.GridControl = this.gcBulkProcessing;
             this.gvBulkProcessing.Name = "gvBulkProcessing";
             this.gvBulkProcessing.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Created Date";
-            this.gridColumn1.FieldName = "CREATEDDATE";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Created Time";
-            this.gridColumn6.FieldName = "CREATEDTIME";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.OptionsColumn.AllowEdit = false;
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 1;
+            this.gvBulkProcessing.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvBulkProcessing_CellValueChanged);
             // 
             // gridColumn7
             // 
             this.gridColumn7.Caption = "SKU Code";
             this.gridColumn7.FieldName = "SKUCODE";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.ReadOnly = true;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 2;
+            this.gridColumn7.VisibleIndex = 0;
             // 
             // gridColumn8
             // 
@@ -247,69 +230,107 @@
             this.gridColumn8.FieldName = "ITEMNAME";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
+            this.gridColumn8.OptionsColumn.ReadOnly = true;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 3;
+            this.gridColumn8.VisibleIndex = 1;
             // 
             // gridColumn9
             // 
             this.gridColumn9.Caption = "Item Code";
             this.gridColumn9.FieldName = "ITEMCODE";
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.ReadOnly = true;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 4;
+            this.gridColumn9.VisibleIndex = 2;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "MRP";
+            this.gridColumn1.FieldName = "MRP";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.ReadOnly = true;
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 3;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Sale Price";
+            this.gridColumn6.FieldName = "SALEPRICE";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.ReadOnly = true;
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 4;
             // 
             // gridColumn10
             // 
-            this.gridColumn10.Caption = "MRP";
-            this.gridColumn10.FieldName = "MRP";
+            this.gridColumn10.Caption = "# of packets";
+            this.gridColumn10.FieldName = "QUANTITY";
             this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 5;
             // 
             // gridColumn12
             // 
-            this.gridColumn12.Caption = "Sale Price";
-            this.gridColumn12.FieldName = "SALEPRICE";
+            this.gridColumn12.Caption = "Wght of packets (In KGs)";
+            this.gridColumn12.FieldName = "WEIGHTTODEDUCT";
             this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.OptionsColumn.AllowEdit = false;
+            this.gridColumn12.OptionsColumn.ReadOnly = true;
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 6;
             // 
             // gridColumn13
             // 
-            this.gridColumn13.Caption = "Parent Item Name";
-            this.gridColumn13.FieldName = "PARENTITEMNAME";
+            this.gridColumn13.Caption = "Parent SKU Code";
+            this.gridColumn13.FieldName = "PARENTSKUCODE";
             this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.OptionsColumn.AllowEdit = false;
+            this.gridColumn13.OptionsColumn.ReadOnly = true;
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 7;
             // 
             // gridColumn14
             // 
-            this.gridColumn14.Caption = "Parent SKU Code";
-            this.gridColumn14.FieldName = "PARENTSKUCODE";
+            this.gridColumn14.Caption = "Parent Item Name";
+            this.gridColumn14.FieldName = "PARENTITEMNAME";
             this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.OptionsColumn.ReadOnly = true;
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 8;
             // 
             // gridColumn15
             // 
-            this.gridColumn15.Caption = "Qty or Wght in KG(s)";
-            this.gridColumn15.FieldName = "QTYORWGHTINKGS";
+            this.gridColumn15.Caption = "Parent Stock in KGs";
+            this.gridColumn15.FieldName = "PARENTWEIGHINKGS";
             this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.OptionsColumn.AllowEdit = false;
+            this.gridColumn15.OptionsColumn.ReadOnly = true;
             this.gridColumn15.Visible = true;
             this.gridColumn15.VisibleIndex = 9;
             // 
             // gridColumn16
             // 
-            this.gridColumn16.Caption = "Created By";
-            this.gridColumn16.FieldName = "CREATEDBY";
+            this.gridColumn16.Caption = "ADDBULKPROCESSINGDETAILID";
+            this.gridColumn16.FieldName = "ADDBULKPROCESSINGDETAILID";
             this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.OptionsColumn.AllowEdit = false;
-            this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 10;
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn17.Caption = "Delete";
+            this.gridColumn17.ColumnEdit = this.btnDeleteDetail;
+            this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.Visible = true;
+            this.gridColumn17.VisibleIndex = 10;
+            // 
+            // btnDeleteDetail
+            // 
+            this.btnDeleteDetail.AutoHeight = false;
+            editorButtonImageOptions1.Image = global::NSRetail.Properties.Resources.delete_16x163;
+            editorButtonImageOptions1.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnDeleteDetail.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnDeleteDetail.Name = "btnDeleteDetail";
+            this.btnDeleteDetail.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnDeleteDetail.Click += new System.EventHandler(this.btnDeleteDetail_Click);
             // 
             // txtCalculatedWeight
             // 
@@ -470,8 +491,7 @@
             this.layoutControlItem2,
             this.layoutControlItem3,
             this.layoutControlItem11,
-            this.layoutControlItem12,
-            this.layoutControlItem4});
+            this.layoutControlItem12});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(839, 464);
             this.Root.TextVisible = false;
@@ -546,14 +566,14 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(301, 136);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 136);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(158, 34);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(459, 34);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem10
             // 
-            this.layoutControlItem10.Control = this.btnSave;
+            this.layoutControlItem10.Control = this.btnAdd;
             this.layoutControlItem10.Location = new System.Drawing.Point(459, 136);
             this.layoutControlItem10.MaxSize = new System.Drawing.Size(139, 34);
             this.layoutControlItem10.MinSize = new System.Drawing.Size(139, 34);
@@ -586,7 +606,7 @@
             // 
             // layoutControlItem11
             // 
-            this.layoutControlItem11.Control = this.btnRefresh;
+            this.layoutControlItem11.Control = this.btnSubmit;
             this.layoutControlItem11.Location = new System.Drawing.Point(598, 136);
             this.layoutControlItem11.MaxSize = new System.Drawing.Size(110, 34);
             this.layoutControlItem11.MinSize = new System.Drawing.Size(110, 34);
@@ -610,17 +630,11 @@
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
-            // layoutControlItem4
+            // gridColumn18
             // 
-            this.layoutControlItem4.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem4.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.layoutControlItem4.Control = this.labelControl1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 136);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(301, 34);
-            this.layoutControlItem4.Text = "Added bulk processings (current day)";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
+            this.gridColumn18.Caption = "ITEMPRICEID";
+            this.gridColumn18.FieldName = "ITEMPRICEID";
+            this.gridColumn18.Name = "gridColumn18";
             // 
             // frmAddProcessing
             // 
@@ -637,6 +651,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtParentSKU.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcBulkProcessing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBulkProcessing)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCalculatedWeight.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCode.Properties)).EndInit();
@@ -657,7 +672,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider11)).EndInit();
             this.ResumeLayout(false);
 
@@ -691,25 +705,26 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.TextEdit txtParentSKU;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
-        private DevExpress.XtraEditors.SimpleButton btnSave;
+        private DevExpress.XtraEditors.SimpleButton btnAdd;
         private DevExpress.XtraEditors.SimpleButton btnClose;
-        private DevExpress.XtraEditors.SimpleButton btnRefresh;
+        private DevExpress.XtraEditors.SimpleButton btnSubmit;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDeleteDetail;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
     }
 }
