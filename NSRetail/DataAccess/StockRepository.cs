@@ -805,7 +805,7 @@ namespace DataAccess
             }
         }
 
-        public void SubmitBulkProcessing(object addBulkProcessingID)
+        public void SubmitBulkProcessing(object addBulkProcessingID, object userID)
         {
             SqlTransaction sqlTransaction = null;
             try
@@ -818,6 +818,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_ADDBULKPROCESSSING]";
                     cmd.Parameters.AddWithValue("@ADDBULKPROCESSINGID", addBulkProcessingID);
+                    cmd.Parameters.AddWithValue("@UserID", userID);
                     object obj = cmd.ExecuteScalar();
                     if (!int.TryParse(Convert.ToString(obj), out int id))
                         throw new Exception(Convert.ToString(obj));

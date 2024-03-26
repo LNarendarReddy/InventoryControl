@@ -214,7 +214,7 @@ namespace NSRetail.Stock
 
             try
             {
-                stockRepository.SubmitBulkProcessing(addBulkProcessingID);
+                stockRepository.SubmitBulkProcessing(addBulkProcessingID, Utility.UserID);
                 XtraMessageBox.Show("Submit completed successfully", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 addBulkProcessingID = null;
                 ClearObjects();
