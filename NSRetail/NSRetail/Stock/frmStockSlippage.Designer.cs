@@ -29,18 +29,26 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockSlippage));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtSalePrice = new DevExpress.XtraEditors.TextEdit();
+            this.txtMRP = new DevExpress.XtraEditors.TextEdit();
+            this.txtItemName = new DevExpress.XtraEditors.TextEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtReason = new DevExpress.XtraEditors.MemoEdit();
             this.txtSlippageWeight = new DevExpress.XtraEditors.TextEdit();
             this.sluItemCode = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -48,20 +56,15 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.txtItemName = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtMRP = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtSalePrice = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSalePrice.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSlippageWeight.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCode.Properties)).BeginInit();
@@ -73,13 +76,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSalePrice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -101,6 +101,44 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // txtSalePrice
+            // 
+            this.txtSalePrice.Location = new System.Drawing.Point(358, 84);
+            this.txtSalePrice.Name = "txtSalePrice";
+            this.txtSalePrice.Properties.DisplayFormat.FormatString = "n2";
+            this.txtSalePrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtSalePrice.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtSalePrice.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.txtSalePrice.Properties.ReadOnly = true;
+            this.txtSalePrice.Size = new System.Drawing.Size(161, 22);
+            this.txtSalePrice.StyleController = this.layoutControl1;
+            this.txtSalePrice.TabIndex = 3;
+            // 
+            // txtMRP
+            // 
+            this.txtMRP.Location = new System.Drawing.Point(101, 84);
+            this.txtMRP.Name = "txtMRP";
+            this.txtMRP.Properties.DisplayFormat.FormatString = "n2";
+            this.txtMRP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtMRP.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtMRP.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.txtMRP.Properties.ReadOnly = true;
+            this.txtMRP.Size = new System.Drawing.Size(160, 22);
+            this.txtMRP.StyleController = this.layoutControl1;
+            this.txtMRP.TabIndex = 2;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "value cannot be empty";
+            this.dxValidationProvider1.SetValidationRule(this.txtMRP, conditionValidationRule1);
+            // 
+            // txtItemName
+            // 
+            this.txtItemName.Location = new System.Drawing.Point(101, 50);
+            this.txtItemName.Name = "txtItemName";
+            this.txtItemName.Properties.ReadOnly = true;
+            this.txtItemName.Size = new System.Drawing.Size(418, 22);
+            this.txtItemName.StyleController = this.layoutControl1;
+            this.txtItemName.TabIndex = 1;
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -110,7 +148,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(132, 22);
             this.btnCancel.StyleController = this.layoutControl1;
-            this.btnCancel.TabIndex = 8;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "&Close";
             // 
             // btnSave
@@ -121,7 +159,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(129, 22);
             this.btnSave.StyleController = this.layoutControl1;
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -131,7 +169,7 @@
             this.txtReason.Name = "txtReason";
             this.txtReason.Size = new System.Drawing.Size(418, 147);
             this.txtReason.StyleController = this.layoutControl1;
-            this.txtReason.TabIndex = 6;
+            this.txtReason.TabIndex = 5;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule2.ErrorText = "Value cannot be empty";
             this.dxValidationProvider1.SetValidationRule(this.txtReason, conditionValidationRule2);
@@ -149,7 +187,7 @@
             this.txtSlippageWeight.Properties.MaskSettings.Set("mask", "n2");
             this.txtSlippageWeight.Size = new System.Drawing.Size(418, 22);
             this.txtSlippageWeight.StyleController = this.layoutControl1;
-            this.txtSlippageWeight.TabIndex = 5;
+            this.txtSlippageWeight.TabIndex = 4;
             conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule3.ErrorText = "value cannot be empty";
             this.dxValidationProvider1.SetValidationRule(this.txtSlippageWeight, conditionValidationRule3);
@@ -164,7 +202,7 @@
             this.sluItemCode.Properties.PopupView = this.searchLookUpEdit1View;
             this.sluItemCode.Size = new System.Drawing.Size(418, 22);
             this.sluItemCode.StyleController = this.layoutControl1;
-            this.sluItemCode.TabIndex = 4;
+            this.sluItemCode.TabIndex = 0;
             conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule4.ErrorText = "Value cannot be empty";
             this.dxValidationProvider1.SetValidationRule(this.sluItemCode, conditionValidationRule4);
@@ -184,6 +222,42 @@
             this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "ITEMCODEID";
+            this.gridColumn1.FieldName = "ITEMCODEID";
+            this.gridColumn1.Name = "gridColumn1";
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "SKU Code";
+            this.gridColumn2.FieldName = "SKUCODE";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Item Name";
+            this.gridColumn3.FieldName = "ITEMNAME";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 1;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Item Code";
+            this.gridColumn4.FieldName = "ITEMCODE";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 2;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "ISOPENITEM";
+            this.gridColumn5.FieldName = "ISOPENITEM";
+            this.gridColumn5.Name = "gridColumn5";
             // 
             // Root
             // 
@@ -261,15 +335,6 @@
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
-            // txtItemName
-            // 
-            this.txtItemName.Location = new System.Drawing.Point(101, 50);
-            this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Properties.ReadOnly = true;
-            this.txtItemName.Size = new System.Drawing.Size(418, 22);
-            this.txtItemName.StyleController = this.layoutControl1;
-            this.txtItemName.TabIndex = 9;
-            // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.txtItemName;
@@ -279,22 +344,6 @@
             this.layoutControlItem6.Size = new System.Drawing.Size(515, 34);
             this.layoutControlItem6.Text = "Item Name";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(73, 15);
-            // 
-            // txtMRP
-            // 
-            this.txtMRP.Location = new System.Drawing.Point(101, 84);
-            this.txtMRP.Name = "txtMRP";
-            this.txtMRP.Properties.DisplayFormat.FormatString = "n2";
-            this.txtMRP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtMRP.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtMRP.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.txtMRP.Properties.ReadOnly = true;
-            this.txtMRP.Size = new System.Drawing.Size(160, 22);
-            this.txtMRP.StyleController = this.layoutControl1;
-            this.txtMRP.TabIndex = 10;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "value cannot be empty";
-            this.dxValidationProvider1.SetValidationRule(this.txtMRP, conditionValidationRule1);
             // 
             // layoutControlItem7
             // 
@@ -306,19 +355,6 @@
             this.layoutControlItem7.Text = "MRP";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(73, 15);
             // 
-            // txtSalePrice
-            // 
-            this.txtSalePrice.Location = new System.Drawing.Point(358, 84);
-            this.txtSalePrice.Name = "txtSalePrice";
-            this.txtSalePrice.Properties.DisplayFormat.FormatString = "n2";
-            this.txtSalePrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtSalePrice.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtSalePrice.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.txtSalePrice.Properties.ReadOnly = true;
-            this.txtSalePrice.Size = new System.Drawing.Size(161, 22);
-            this.txtSalePrice.StyleController = this.layoutControl1;
-            this.txtSalePrice.TabIndex = 11;
-            // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.txtSalePrice;
@@ -328,42 +364,6 @@
             this.layoutControlItem8.Size = new System.Drawing.Size(258, 34);
             this.layoutControlItem8.Text = "Sale price";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(73, 15);
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "ITEMCODEID";
-            this.gridColumn1.FieldName = "ITEMCODEID";
-            this.gridColumn1.Name = "gridColumn1";
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "SKU Code";
-            this.gridColumn2.FieldName = "SKUCODE";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Item Name";
-            this.gridColumn3.FieldName = "ITEMNAME";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "Item Code";
-            this.gridColumn4.FieldName = "ITEMCODE";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 2;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "ISOPENITEM";
-            this.gridColumn5.FieldName = "ISOPENITEM";
-            this.gridColumn5.Name = "gridColumn5";
             // 
             // frmStockSlippage
             // 
@@ -378,6 +378,9 @@
             this.Load += new System.EventHandler(this.frmStockSlippage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtSalePrice.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSlippageWeight.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCode.Properties)).EndInit();
@@ -389,13 +392,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSalePrice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }

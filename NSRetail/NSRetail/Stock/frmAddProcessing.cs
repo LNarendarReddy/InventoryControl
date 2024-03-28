@@ -1,6 +1,8 @@
 ﻿using DataAccess;
 using DevExpress.Utils.About;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Mask;
+using DevExpress.XtraEditors.Repository;
 using Entity;
 using ErrorManagement;
 using System;
@@ -20,6 +22,8 @@ namespace NSRetail.Stock
         object itemPriceID;
         double? multiplier;
         object addBulkProcessingID;
+        bool isOpenItem;
+
         ReportRepository reportRepository = new ReportRepository();
         StockRepository stockRepository = new StockRepository();
 
@@ -34,7 +38,7 @@ namespace NSRetail.Stock
             sluItemCode.Properties.ValueMember = "ITEMCODEID";
             sluItemCode.Properties.DisplayMember = "ITEMCODE";
 
-            txtQuantity.ConfirmBarCodeScan();
+            txtQtyOrWeight.ConfirmBarCodeScan();
 
             BindData();
         }
@@ -92,8 +96,11 @@ namespace NSRetail.Stock
                 }
 
                 txtParentSKU.EditValue = $"{sluItemCodeView.GetRowCellValue(parentRowHandle, "ITEMNAME")} ( {sluItemCodeView.GetRowCellValue(parentRowHandle, "SKUCODE")} )";
-                txtQuantity.EditValue = 0;
-                txtQuantity.Focus();
+
+                isOpenItem = bool.Parse(sluItemCodeView.GetRowCellValue(rowhandle, "ISOPENITEM").ToString());
+                SetQtyOrWeightFormat();
+
+                txtQtyOrWeight.Focus();
             }
             catch (Exception ex)
             {
@@ -114,10 +121,10 @@ namespace NSRetail.Stock
                 return; 
             }
 
-            if(txtQuantity.EditValue.Equals(0))
+            if(txtQtyOrWeight.EditValue.Equals(0))
             {
                 XtraMessageBox.Show("Quantity cannot be zero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop); 
-                txtQuantity.Focus();
+                txtQtyOrWeight.Focus();
                 return;
             }
 
@@ -128,7 +135,7 @@ namespace NSRetail.Stock
                     BindData(true);
                 }
 
-                stockRepository.AddBulkProcessingDetail(addBulkProcessingID, 0, itemPriceID, txtQuantity.EditValue);
+                stockRepository.AddBulkProcessingDetail(addBulkProcessingID, 0, itemPriceID, isOpenItem, txtQtyOrWeight.EditValue);
 
                 BindData();
             }
@@ -143,7 +150,7 @@ namespace NSRetail.Stock
 
         private void txtQuantity_EditValueChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(txtQuantity.EditValue?.ToString(), out int quantity) && multiplier.HasValue)
+            if (double.TryParse(txtQtyOrWeight.EditValue?.ToString(), out double quantity) && multiplier.HasValue)
                 txtCalculatedWeight.EditValue = quantity * multiplier.Value;
         }
 
@@ -154,10 +161,12 @@ namespace NSRetail.Stock
             txtParentSKU.EditValue =
             txtMRP.EditValue =
             txtSalePrice.EditValue =
-            txtQuantity.EditValue =
+            txtQtyOrWeight.EditValue =
             txtCalculatedWeight.EditValue = null;
 
             itemPriceID = multiplier = null;
+            isOpenItem = false;
+            SetQtyOrWeightFormat();
             sluItemCode.Focus();
         }
 
@@ -186,6 +195,7 @@ namespace NSRetail.Stock
             stockRepository.AddBulkProcessingDetail(addBulkProcessingID
                 , gvBulkProcessing.GetRowCellValue(e.RowHandle, "ADDBULKPROCESSINGDETAILID")
                 , gvBulkProcessing.GetRowCellValue(e.RowHandle, "ITEMPRICEID")
+                , bool.Parse(gvBulkProcessing.GetRowCellValue(e.RowHandle, "ISOPENITEM").ToString())
                 , gvBulkProcessing.GetRowCellValue(e.RowHandle, "QUANTITY"));            
         }
 
@@ -200,9 +210,24 @@ namespace NSRetail.Stock
 
             addBulkProcessingID = dsAddBulkProcessing.Tables[0].Rows[0][0];
 
-            if (dsAddBulkProcessing.Tables.Count > 1)
+            gcBulkProcessing.DataSource = dsAddBulkProcessing.Tables.Count > 1 ? dsAddBulkProcessing.Tables[1] : null;
+        }
+
+        private void SetQtyOrWeightFormat()
+        {
+            if (isOpenItem)
             {
-                gcBulkProcessing.DataSource = dsAddBulkProcessing.Tables[1];
+                txtQtyOrWeight.Properties.MaskSettings.Configure<MaskSettings.Numeric>(settings => settings.MaskExpression = "n2");
+                txtQtyOrWeight.Properties.EditFormat.FormatString = "n2";
+                txtQtyOrWeight.EditValue = 0.00;
+                lciQtyOrWght.Text = "Weight (in KGs)";
+            }
+            else
+            {
+                txtQtyOrWeight.Properties.MaskSettings.Configure<MaskSettings.Numeric>(settings => settings.MaskExpression = "d");
+                txtQtyOrWeight.Properties.EditFormat.FormatString = "d";
+                txtQtyOrWeight.EditValue = 0;
+                lciQtyOrWght.Text = "Quantity (# of packets)";
             }
         }
 
@@ -218,12 +243,26 @@ namespace NSRetail.Stock
                 XtraMessageBox.Show("Submit completed successfully", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 addBulkProcessingID = null;
                 ClearObjects();
+                gcBulkProcessing.DataSource = null;
             }
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
             }
+        }
+
+        private void gvBulkProcessing_CustomRowCellEditForEditing(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
+        {
+            if(e.Column.FieldName != "QUANTITY") return;
+
+            RepositoryItemTextEdit inPlaceEditor = new RepositoryItemTextEdit();
+            string maskString = bool.Parse(gvBulkProcessing.GetRowCellValue(e.RowHandle, "ISOPENITEM").ToString()) ? "n2" : "d";
+
+            inPlaceEditor.MaskSettings.Configure<MaskSettings.Numeric>(settings => settings.MaskExpression = maskString);
+            inPlaceEditor.EditFormat.FormatString = maskString;
+
+            e.RepositoryItem = inPlaceEditor;
         }
     }
 }

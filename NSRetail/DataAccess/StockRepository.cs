@@ -755,7 +755,7 @@ namespace DataAccess
             }
         }
 
-        public void AddBulkProcessingDetail(object addBulkProcessingID, object addBulkProcessingDetailID, object ItemPriceID, object quantity)
+        public void AddBulkProcessingDetail(object addBulkProcessingID, object addBulkProcessingDetailID, object ItemPriceID, bool isOpenItem, object qtyOrWght)
         {
             SqlTransaction transaction = null;
 
@@ -771,7 +771,8 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ADDBULKPROCESSINGID", addBulkProcessingID);
                     cmd.Parameters.AddWithValue("@ADDBULKPROCESSINGDETAILID", addBulkProcessingDetailID);
                     cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
-                    cmd.Parameters.AddWithValue("@Quantity", quantity);
+                    cmd.Parameters.AddWithValue("@Quantity", isOpenItem ? 0 : qtyOrWght);
+                    cmd.Parameters.AddWithValue("@WeightInKGs", isOpenItem ? qtyOrWght : 0);
                     object returnValue = cmd.ExecuteScalar();
                     if (!int.TryParse(returnValue?.ToString(), out int retVal))
                         throw new Exception(returnValue.ToString());

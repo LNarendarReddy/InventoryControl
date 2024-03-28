@@ -58,8 +58,10 @@
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDeleteDetail = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtCalculatedWeight = new DevExpress.XtraEditors.TextEdit();
-            this.txtQuantity = new DevExpress.XtraEditors.TextEdit();
+            this.txtQtyOrWeight = new DevExpress.XtraEditors.TextEdit();
             this.sluItemCode = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.sluItemCodeView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -79,12 +81,11 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciQtyOrWght = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider11 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtParentSKU.Properties)).BeginInit();
@@ -92,7 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvBulkProcessing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCalculatedWeight.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQtyOrWeight.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCodeView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).BeginInit();
@@ -107,7 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciQtyOrWght)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
@@ -122,7 +123,7 @@
             this.layoutControl1.Controls.Add(this.txtParentSKU);
             this.layoutControl1.Controls.Add(this.gcBulkProcessing);
             this.layoutControl1.Controls.Add(this.txtCalculatedWeight);
-            this.layoutControl1.Controls.Add(this.txtQuantity);
+            this.layoutControl1.Controls.Add(this.txtQtyOrWeight);
             this.layoutControl1.Controls.Add(this.sluItemCode);
             this.layoutControl1.Controls.Add(this.txtItemName);
             this.layoutControl1.Controls.Add(this.txtMRP);
@@ -209,10 +210,12 @@
             this.gridColumn15,
             this.gridColumn16,
             this.gridColumn17,
-            this.gridColumn18});
+            this.gridColumn18,
+            this.gridColumn19});
             this.gvBulkProcessing.GridControl = this.gcBulkProcessing;
             this.gvBulkProcessing.Name = "gvBulkProcessing";
             this.gvBulkProcessing.OptionsView.ShowGroupPanel = false;
+            this.gvBulkProcessing.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.gvBulkProcessing_CustomRowCellEditForEditing);
             this.gvBulkProcessing.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvBulkProcessing_CellValueChanged);
             // 
             // gridColumn7
@@ -263,7 +266,7 @@
             // 
             // gridColumn10
             // 
-            this.gridColumn10.Caption = "# of packets";
+            this.gridColumn10.Caption = "Qty or Weight In KG(s)";
             this.gridColumn10.FieldName = "QUANTITY";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
@@ -332,6 +335,18 @@
             this.btnDeleteDetail.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDeleteDetail.Click += new System.EventHandler(this.btnDeleteDetail_Click);
             // 
+            // gridColumn18
+            // 
+            this.gridColumn18.Caption = "ITEMPRICEID";
+            this.gridColumn18.FieldName = "ITEMPRICEID";
+            this.gridColumn18.Name = "gridColumn18";
+            // 
+            // gridColumn19
+            // 
+            this.gridColumn19.Caption = "ISOPENITEM";
+            this.gridColumn19.FieldName = "ISOPENITEM";
+            this.gridColumn19.Name = "gridColumn19";
+            // 
             // txtCalculatedWeight
             // 
             this.txtCalculatedWeight.EnterMoveNextControl = true;
@@ -346,21 +361,23 @@
             this.txtCalculatedWeight.TabIndex = 6;
             this.txtCalculatedWeight.TabStop = false;
             // 
-            // txtQuantity
+            // txtQtyOrWeight
             // 
-            this.txtQuantity.EnterMoveNextControl = true;
-            this.txtQuantity.Location = new System.Drawing.Point(149, 118);
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtQuantity.Properties.MaskSettings.Set("mask", "d");
-            this.txtQuantity.Properties.UseMaskAsDisplayFormat = true;
-            this.txtQuantity.Size = new System.Drawing.Size(259, 22);
-            this.txtQuantity.StyleController = this.layoutControl1;
-            this.txtQuantity.TabIndex = 5;
+            this.txtQtyOrWeight.EnterMoveNextControl = true;
+            this.txtQtyOrWeight.Location = new System.Drawing.Point(149, 118);
+            this.txtQtyOrWeight.Name = "txtQtyOrWeight";
+            this.txtQtyOrWeight.Properties.EditFormat.FormatString = "d";
+            this.txtQtyOrWeight.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtQtyOrWeight.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtQtyOrWeight.Properties.MaskSettings.Set("mask", "d");
+            this.txtQtyOrWeight.Properties.UseMaskAsDisplayFormat = true;
+            this.txtQtyOrWeight.Size = new System.Drawing.Size(259, 22);
+            this.txtQtyOrWeight.StyleController = this.layoutControl1;
+            this.txtQtyOrWeight.TabIndex = 5;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule1.ErrorText = "Value cannot be empty";
-            this.dxValidationProvider11.SetValidationRule(this.txtQuantity, conditionValidationRule1);
-            this.txtQuantity.EditValueChanged += new System.EventHandler(this.txtQuantity_EditValueChanged);
+            this.dxValidationProvider11.SetValidationRule(this.txtQtyOrWeight, conditionValidationRule1);
+            this.txtQtyOrWeight.EditValueChanged += new System.EventHandler(this.txtQuantity_EditValueChanged);
             // 
             // sluItemCode
             // 
@@ -488,7 +505,7 @@
             this.layoutControlItem8,
             this.emptySpaceItem2,
             this.layoutControlItem10,
-            this.layoutControlItem2,
+            this.lciQtyOrWght,
             this.layoutControlItem3,
             this.layoutControlItem11,
             this.layoutControlItem12});
@@ -584,15 +601,15 @@
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
-            // layoutControlItem2
+            // lciQtyOrWght
             // 
-            this.layoutControlItem2.Control = this.txtQuantity;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 102);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(404, 34);
-            this.layoutControlItem2.Text = "Quantity (# of packets)";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(121, 15);
+            this.lciQtyOrWght.Control = this.txtQtyOrWeight;
+            this.lciQtyOrWght.Location = new System.Drawing.Point(0, 102);
+            this.lciQtyOrWght.Name = "lciQtyOrWght";
+            this.lciQtyOrWght.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.lciQtyOrWght.Size = new System.Drawing.Size(404, 34);
+            this.lciQtyOrWght.Text = "Quantity (# of packets)";
+            this.lciQtyOrWght.TextSize = new System.Drawing.Size(121, 15);
             // 
             // layoutControlItem3
             // 
@@ -630,12 +647,6 @@
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
-            // gridColumn18
-            // 
-            this.gridColumn18.Caption = "ITEMPRICEID";
-            this.gridColumn18.FieldName = "ITEMPRICEID";
-            this.gridColumn18.Name = "gridColumn18";
-            // 
             // frmAddProcessing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -653,7 +664,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvBulkProcessing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCalculatedWeight.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQtyOrWeight.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemCodeView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).EndInit();
@@ -668,7 +679,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciQtyOrWght)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
@@ -699,8 +710,8 @@
         private DevExpress.XtraGrid.GridControl gcBulkProcessing;
         private DevExpress.XtraGrid.Views.Grid.GridView gvBulkProcessing;
         private DevExpress.XtraEditors.TextEdit txtCalculatedWeight;
-        private DevExpress.XtraEditors.TextEdit txtQuantity;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraEditors.TextEdit txtQtyOrWeight;
+        private DevExpress.XtraLayout.LayoutControlItem lciQtyOrWght;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.TextEdit txtParentSKU;
@@ -726,5 +737,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDeleteDetail;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
     }
 }

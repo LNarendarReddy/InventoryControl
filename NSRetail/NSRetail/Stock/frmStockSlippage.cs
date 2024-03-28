@@ -71,7 +71,7 @@ namespace NSRetail.Stock
                 }
 
                 txtSlippageWeight.EditValue = 0.00;
-
+                txtSlippageWeight.Focus();
             }
             catch (Exception ex)
             {
