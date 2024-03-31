@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBranchRefund));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
@@ -42,8 +43,8 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBranchRefund));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnDiscard = new DevExpress.XtraEditors.SimpleButton();
             this.cmbCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.txtWeightInKgs = new DevExpress.XtraEditors.TextEdit();
             this.txtTrayNumber = new DevExpress.XtraEditors.TextEdit();
@@ -91,9 +92,8 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.btnDiscard = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
@@ -123,8 +123,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -168,6 +168,18 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnDiscard
+            // 
+            this.btnDiscard.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDiscard.ImageOptions.Image")));
+            this.btnDiscard.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnDiscard.Location = new System.Drawing.Point(808, 136);
+            this.btnDiscard.Name = "btnDiscard";
+            this.btnDiscard.Size = new System.Drawing.Size(113, 22);
+            this.btnDiscard.StyleController = this.layoutControl1;
+            this.btnDiscard.TabIndex = 11;
+            this.btnDiscard.Text = "Discard";
+            this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
+            // 
             // cmbCategory
             // 
             this.cmbCategory.EnterMoveNextControl = true;
@@ -193,6 +205,10 @@
             // 
             this.txtWeightInKgs.Location = new System.Drawing.Point(833, 97);
             this.txtWeightInKgs.Name = "txtWeightInKgs";
+            this.txtWeightInKgs.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtWeightInKgs.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.txtWeightInKgs.Properties.MaskSettings.Set("mask", "n2");
+            this.txtWeightInKgs.Properties.UseMaskAsDisplayFormat = true;
             this.txtWeightInKgs.Size = new System.Drawing.Size(209, 22);
             this.txtWeightInKgs.StyleController = this.layoutControl1;
             this.txtWeightInKgs.TabIndex = 6;
@@ -745,18 +761,6 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(673, 32);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // btnDiscard
-            // 
-            this.btnDiscard.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDiscard.ImageOptions.Image")));
-            this.btnDiscard.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnDiscard.Location = new System.Drawing.Point(808, 136);
-            this.btnDiscard.Name = "btnDiscard";
-            this.btnDiscard.Size = new System.Drawing.Size(113, 22);
-            this.btnDiscard.StyleController = this.layoutControl1;
-            this.btnDiscard.TabIndex = 11;
-            this.btnDiscard.Text = "Discard";
-            this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
-            // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnDiscard;
@@ -812,8 +816,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
