@@ -29,7 +29,9 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "ADJQUANTITY", "Adjusted Qty" },
                 { "AFTERQUANTITY", "After Adjustment Qty" },
                 { "CURQUANTITY", "Current Qty" },
-                { "CREATETIME", "Created Time" }
+                { "CREATETIME", "Created Time" },
+                { "STOCKADJUSTMENTTYPE", "Stock Adj. type" },
+                { "DESCRIPTION", "Stock Adj. description" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -44,6 +46,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
                 , new IncludeSettings("Created-By", "IncludeCreatedBy", new List<string>{ "CREATEDBY" })
+                , new IncludeSettings("Stock Adj. type & Description", "IncludeDescription", new List<string>{ "STOCKADJUSTMENTTYPE", "DESCRIPTION" })
             };
 
             SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);
