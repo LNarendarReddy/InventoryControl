@@ -251,6 +251,11 @@ namespace NSRetailPOS
                 rpt.Parameters["IsDuplicate"].Value = false;
                 rpt.Print();
 
+                if(Utility.branchInfo.BranchID.Equals(103) || Utility.branchInfo.BranchID.Equals(105))
+                {
+                    rpt.Print();
+                }
+
                 //string error = Utility.WriteToPort($"Bill {oldBillObj.BillNumber} completed");
                 //if (!string.IsNullOrEmpty(error))
                 //{

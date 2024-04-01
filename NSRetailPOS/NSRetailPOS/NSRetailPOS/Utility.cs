@@ -44,6 +44,11 @@ namespace NSRetailPOS
 
         public static event EventHandler ItemOrCodeChanged;
         public static Form ActiveForm;
+
+        public static string AppVersion = "1.5.3";
+        public static string DBVersion = string.Empty;
+        public static string VersionDate = "(01-04-2024)";
+
         public static Bill GetBill(DataSet dsBillDetails)
         {
             Bill billObj = new Bill();
@@ -323,10 +328,6 @@ namespace NSRetailPOS
             data = data.EndsWith(Environment.NewLine) ? data.Replace(Environment.NewLine, string.Empty) : data;
             Form.ActiveForm.BeginInvoke((Action)(() => (Form.ActiveForm as IBarcodeReceiver).ReceiveBarCode(data)));
         }
-
-        public static string AppVersion = "1.5.2";
-        public static string DBVersion = string.Empty;
-        public static string VersionDate = "(01-02-2024)";
 
         private static bool DBVersionCheck(BackgroundWorker backgroundWorker, CloudRepository cloudRepository, SyncRepository syncRepository)
         {

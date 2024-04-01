@@ -87,6 +87,8 @@
             this.gvMRPList.GridControl = this.gcMRPList;
             this.gvMRPList.Name = "gvMRPList";
             this.gvMRPList.OptionsBehavior.Editable = false;
+            this.gvMRPList.OptionsCustomization.AllowFilter = false;
+            this.gvMRPList.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gvMRPList.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn1
