@@ -43,7 +43,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODOCITY" },true)
                 , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP",
                     "COSTPRICEWOT", "COSTPRICEWT", "COSTPRICETAX", "SALEPRICEWOT", "SALEPRICEWT", "SALEPRICETAX", "QUANTITY",
-                "REFUNDSTATUS", "APPROVEDBY", "APPROVEDDATE" })
+                "REFUNDSTATUS", "APPROVEDBY", "APPROVEDDATE", "GSTCODE" })
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
