@@ -10,6 +10,7 @@ using NSRetail.Login;
 using System.Diagnostics;
 using System.IO;
 using DevExpress.XtraRichEdit.Model;
+using NSRetail.Utilities;
 
 namespace NSRetail
 {
@@ -21,7 +22,7 @@ namespace NSRetail
             InitializeComponent();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
@@ -101,7 +102,8 @@ namespace NSRetail
                     }
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex) 
+            {
 
                 if (ex.Message.Contains("Application version mismatch"))
                 {
@@ -118,7 +120,7 @@ namespace NSRetail
 
                         SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
                         SplashScreenManager.Default.SetWaitFormDescription("Downloading installer...");
-                        string InstallerPath = GoogleDriveRepository.DownloadFile();
+                        string InstallerPath = await DropBoxRepository.DownloadFile();
                         SplashScreenManager.CloseForm();
                         if(File.Exists(InstallerPath))
                         {

@@ -409,7 +409,7 @@ namespace DataAccess
                             objStockEntry.DISCOUNTPER = ds.Tables[0].Rows[0]["DISCOUNTPER"];
                             objStockEntry.DISCOUNTFLAT = ds.Tables[0].Rows[0]["DISCOUNT"];
                             objStockEntry.EXPENSES = ds.Tables[0].Rows[0]["EXPENSES"];
-                            objStockEntry.TRANSPORT = ds.Tables[0].Rows[0]["TRANSPORT"];
+                            objStockEntry.TRANSPORT = ds.Tables[0].Rows[0]["TRANSPORT"];                            
                             objStockEntry.dtStockEntry = ds.Tables[1].Copy();
                         }
                     }
