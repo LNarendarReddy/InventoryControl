@@ -34,7 +34,7 @@ namespace NSRetailPOS.UI
             
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             if (XtraMessageBox.Show("This operation cannot be reversed. Please confirm that all the enetered values are correct?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
 
@@ -54,7 +54,7 @@ namespace NSRetailPOS.UI
                 rpt.Print();
                 rpt.Print();
                 SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
-                if(!Utility.StartSync(null))Application.Exit();
+                if(!await Utility.StartSync(true))Application.Exit();
                 SplashScreenManager.CloseForm();
                 this.Close();
             }

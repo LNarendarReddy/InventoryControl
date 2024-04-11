@@ -51,7 +51,7 @@ namespace NSRetailPOS.UI
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace NSRetailPOS.UI
                 Utility.branchInfo.BranchID = cmbBranch.EditValue;
                 string HDDSno = Utility.GetHDDSerialNumber();
                 objCloudRepository.CheckOrAddHDDSerialNumber(Utility.branchInfo.BranchCounterID, HDDSno);
-                if(!Utility.StartSync(null,true))
+                if(!await Utility.StartSync(true, true))
                 {
                     Application.Exit();
                     return;

@@ -21,6 +21,7 @@ using System.Net.Sockets;
 using System.Printing;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static DevExpress.Utils.HashCodeHelper.Blob;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
@@ -71,39 +72,39 @@ namespace NSRetailPOS
         }
 
         public delegate void NextPrimeDelegate();
-        public static bool StartSync(BackgroundWorker backgroundWorker, bool forceFullSync = false)
+
+        public static async Task<bool> StartSync(bool isOverlayShown, bool forceFullSync = false)
         {
             try
             {
                 LoggerUtility.InitializeLogger();
                 DateTime syncStartTime = DateTime.Now.AddMinutes(-5);
-                //LoggerUtility.Logger.Info($"POS sync started at {syncStartTime.ToLongTimeString()}");
-                backgroundWorker?.ReportProgress(0, $"POS sync started at {syncStartTime.ToLongTimeString()}");
+                
+                ReportText(false, $"POS sync started at {syncStartTime.ToLongTimeString()}");
                 SyncRepository syncRepository = new SyncRepository();
                 CloudRepository cloudRepository = new CloudRepository();
 
                 if (!Utility.ValidateTimeZone())
                 {
                     ShowUIMessage($"This system installed in different time zone!" +
-                        $"{Environment.NewLine}Please correct the timezone to continue or contact your administrator.", "Time error");
+                        $"{Environment.NewLine}Please correct the timezone to continue or contact your administrator.", "Time error", isOverlayShown, isOverlayShown);
                     return false;
                  }
 
-                if (!DBVersionCheck(backgroundWorker, cloudRepository, syncRepository))
+                if (!await DBVersionCheck(isOverlayShown, cloudRepository, syncRepository))
                     return false;
 
                 DataTable dtEntity = cloudRepository.GetEntityData(branchInfo.BranchCounterID, "FromCloud");
                 foreach (DataRow entityRow in dtEntity.Rows)
                 {
                     string entityName = entityRow["ENTITYNAME"].ToString();
-                    //LoggerUtility.Logger.Info($"{entityName} down sync started");
-
-                    ReportText(backgroundWorker, $"{entityName} down sync started");
+                    
+                    ReportText(isOverlayShown, $"{entityName} down sync started");
                      DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(
                         entityName,
                         forceFullSync ? "01-01-1900" : entityRow["SYNCDATE"]
                         , branchInfo.BranchID);
-                    ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
+                    ReportText(isOverlayShown, $"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
                     if (dtEntityWiseData?.Rows.Count > 0)
                     {
                      syncRepository.SaveData(entityName, dtEntityWiseData);
@@ -114,7 +115,7 @@ namespace NSRetailPOS
                             ItemOrCodeChanged?.Invoke(null, null);
                         }
                     }
-                    ReportText(backgroundWorker, $"{entityName} down sync completed");
+                    ReportText(isOverlayShown, $"{entityName} down sync completed");
                 }
 
                 // start up sync
@@ -122,33 +123,33 @@ namespace NSRetailPOS
                 foreach (DataRow entityRow in dtEntity.Rows)
                 {
                     string entityName = entityRow["ENTITYNAME"].ToString();
-                    ReportText(backgroundWorker, $"{entityName} up sync started");
+                    ReportText(isOverlayShown, $"{entityName} up sync started");
                     DataTable dtEntityWiseData = syncRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"]);
-                    ReportText(backgroundWorker, $"Found {dtEntityWiseData.Rows.Count} records to up sync in entity : {entityName} ");
+                    ReportText(isOverlayShown, $"Found {dtEntityWiseData.Rows.Count} records to up sync in entity : {entityName} ");
                     if (dtEntityWiseData?.Rows.Count > 0)
                     {
                         cloudRepository.SaveData(entityName, dtEntityWiseData);
                         cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
                     }
-                    ReportText(backgroundWorker, $"{entityName} up sync completed");
+                    ReportText(isOverlayShown, $"{entityName} up sync completed");
                 }
 
                 // clear old data
-                ReportText(backgroundWorker, $"clearing one month old data");
+                ReportText(isOverlayShown, $"clearing one month old data");
                 syncRepository.ClearOldData();
 
-                if(!AppVersionCheck(backgroundWorker, cloudRepository, syncRepository))
+                if(!await AppVersionCheck(isOverlayShown, cloudRepository))
                     return false;
 
-                //LoggerUtility.Logger.Info($"POS sync completed");
-                backgroundWorker?.ReportProgress(0, $"POS sync completed at {DateTime.Now.ToLongTimeString()}");
+                ReportText(false, $"POS sync completed at {DateTime.Now.ToLongTimeString()}");
             }
             catch (Exception ex)
             {
-                ShowUIMessage($"Error while running sync : {ex.Message} {Environment.NewLine} {ex.StackTrace}", "Error");
+                ShowUIMessage($"Error while running sync : {ex.Message} {Environment.NewLine} {ex.StackTrace}", "Error", false, isOverlayShown);
             }
             return true;
         }
+
         private static byte[] Encrypt(byte[] input)
         {
             PasswordDeriveBytes pdb = new PasswordDeriveBytes("NSoftSol", new byte[] { 0x43, 0x87, 0x23, 0x72, 0x45, 0x56, 0x68, 0x14, 0x62, 0x84 });
@@ -161,6 +162,7 @@ namespace NSRetailPOS
             cs.Close();
             return ms.ToArray();
         }
+
         private static byte[] Decrypt(byte[] input)
         {
             PasswordDeriveBytes pdb = new PasswordDeriveBytes("NSoftSol", new byte[] { 0x43, 0x87, 0x23, 0x72, 0x45, 0x56, 0x68, 0x14, 0x62, 0x84 });
@@ -173,23 +175,30 @@ namespace NSRetailPOS
             cs.Close();
             return ms.ToArray();
         }
+
         public static string Encrypt(string input)
         {
             return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(input)));
         }
+
         public static string Decrypt(string input)
         {
             return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(input)));
         }
-        public static void ReportText(BackgroundWorker bgwSyncWorker, string text)
+
+        public static void ReportText(bool isOverlayShown, string text)
         {
             string displayText = DateTime.Now.ToString() + " : " + text;
-            bgwSyncWorker?.ReportProgress(0, displayText);
-            if (bgwSyncWorker == null)
+            if (isOverlayShown)
             {
                 SplashScreenManager.Default.SetWaitFormDescription(displayText);
             }
+            else
+            {
+                frmMain.Instance.ShowProgress(displayText);
+            }
         }
+
         public static string GetHDDSerialNumber()
         {
             ManagementObjectSearcher moSearcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
@@ -329,15 +338,15 @@ namespace NSRetailPOS
             Form.ActiveForm.BeginInvoke((Action)(() => (Form.ActiveForm as IBarcodeReceiver).ReceiveBarCode(data)));
         }
 
-        private static bool DBVersionCheck(BackgroundWorker backgroundWorker, CloudRepository cloudRepository, SyncRepository syncRepository)
+        private static async Task<bool> DBVersionCheck(bool isOverlayShown, CloudRepository cloudRepository, SyncRepository syncRepository)
         {
             bool _isContinue = true;
             Tuple<string, string> posVersion = cloudRepository.GetPOSVersion();
             Utility.DBVersion = Utility.DBVersion == string.Empty ? syncRepository.GetDBVersion() : Utility.DBVersion;
+            bool actualIsOverlayShown = isOverlayShown;
+
             if (!posVersion.Item2.Equals(Utility.DBVersion))
-            {
-                if (backgroundWorker == null)
-                    SplashScreenManager.CloseForm();
+            {                
                 XtraMessageBoxArgs args = new XtraMessageBoxArgs();
                 args.AutoCloseOptions.Delay = 5000;
                 args.Caption = "Database Update";
@@ -345,12 +354,11 @@ namespace NSRetailPOS
                 args.DefaultButtonIndex = 0;
                 args.AutoCloseOptions.ShowTimerOnDefaultButton = true;
                 args.Buttons = new DialogResult[] { DialogResult.OK };
-                ShowUIMessage(args);
-                if (backgroundWorker == null)
-                    SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
-                ReportText(backgroundWorker, $"Update download started");
-                bool _updateAvailable = GoogleDriveRepository.DownloadFile("DBFiles", backgroundWorker);
-                ReportText(backgroundWorker, $"Update download completed");
+                ShowUIMessage(args, isOverlayShown, true);
+                isOverlayShown = true;
+                ReportText(isOverlayShown, $"Update download started");
+                bool _updateAvailable = await DropboxRepository.DownloadFile("DBFiles", isOverlayShown);
+                ReportText(isOverlayShown, $"Update download completed");
                 if (_updateAvailable)
                 {
                     string stpath = Path.Combine(Application.UserAppDataPath, "DBFiles", "RunSQL.bat");
@@ -367,34 +375,27 @@ namespace NSRetailPOS
                     if (!posVersion.Item2.Equals(Utility.DBVersion))
                     {
                         ShowUIMessage($"Database version mismatch!{Environment.NewLine}Please contact your administrator.",
-                        "Database Error");
+                        "Database Error", isOverlayShown, actualIsOverlayShown);
                         _isContinue = false;
-                    }
-
-                    if (backgroundWorker == null)
-                    {
-                        SplashScreenManager.CloseForm();
-                        SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
-                    }
+                    }                    
                 }
                 else
                 {
                     ShowUIMessage(
                         $"Error occured while updating database!{Environment.NewLine}Please contact your administrator.",
-                        "Database Error");
+                        "Database Error", isOverlayShown, actualIsOverlayShown);
                     _isContinue = false;
                 }
             }
             return _isContinue;
         }
-        private static bool AppVersionCheck(BackgroundWorker backgroundWorker, CloudRepository 
-            cloudRepository, SyncRepository syncRepository)
+
+        private static async Task<bool> AppVersionCheck(bool isOverlayShown, CloudRepository cloudRepository)
         {
             Tuple<string, string> posVersion = cloudRepository.GetPOSVersion();
+            bool actualIsOverlayShown = isOverlayShown;
             if (!posVersion.Item1.Equals(Utility.AppVersion))
-            {
-                if (backgroundWorker == null)
-                    SplashScreenManager.CloseForm();
+            {                
                 XtraMessageBoxArgs args = new XtraMessageBoxArgs();
                 args.AutoCloseOptions.Delay = 5000;
                 args.Caption = "Application Update";
@@ -403,51 +404,58 @@ namespace NSRetailPOS
                 args.DefaultButtonIndex = 0;
                 args.AutoCloseOptions.ShowTimerOnDefaultButton = true;
                 args.Buttons = new DialogResult[] { DialogResult.OK };
-                ShowUIMessage(args);
-
-                if (backgroundWorker == null)
-                    SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
-                ReportText(backgroundWorker, $"Update download started");
-                bool _updateAvailable = GoogleDriveRepository.DownloadFile("AppFiles", backgroundWorker);
-                ReportText(backgroundWorker, $"Update download completed");
+                ShowUIMessage(args, isOverlayShown, true);
+                isOverlayShown = true;
+                ReportText(isOverlayShown, $"Update download started");
+                bool _updateAvailable = await DropboxRepository.DownloadFile("AppFiles", isOverlayShown);
+                ReportText(isOverlayShown, $"Update download completed");
                 if (_updateAvailable)
                 {
-
                     string stpath = Path.Combine(Application.UserAppDataPath, "AppFiles", "UpdateEXEScript.bat");
                     ProcessStartInfo processInfo;
                     Process process;
                     processInfo = new ProcessStartInfo(stpath);
                     process = Process.Start(processInfo);
+                    process.WaitForExit();
+                    ShowUIMessage("Updates not installed, Please contact your administrator", "Application Error", isOverlayShown, actualIsOverlayShown);
                 }
                 else
                 {
-                    ShowUIMessage($"Error occured while updating application.{Environment.NewLine}Please contact your administrator", "Application Error");
+                    ShowUIMessage($"Error occured while updating application.{Environment.NewLine}Please contact your administrator", "Application Error", isOverlayShown, actualIsOverlayShown);
                     return false;
                 }
             }
             return true;
         }
 
-        private static void ShowUIMessage(XtraMessageBoxArgs args)
+        private static void ShowUIMessage(XtraMessageBoxArgs args, bool isOverlayShown, bool reOpenSplash)
         {
-            if (ActiveForm.InvokeRequired)
+            if(isOverlayShown)
             {
-                ActiveForm.BeginInvoke((Action<XtraMessageBoxArgs>)ShowUIMessage, args);
-                return;
+                SplashScreenManager.CloseForm();
             }
 
             XtraMessageBox.Show(args);
+
+            if(reOpenSplash)
+            {
+                SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);                
+            }
         }
 
-        private static void ShowUIMessage(string text, string caption)
+        private static void ShowUIMessage(string text, string caption, bool isOverlayShown, bool reOpenSplash)
         {
-            if (ActiveForm.InvokeRequired)
+            if (isOverlayShown)
             {
-                ActiveForm.BeginInvoke((Action<string, string>)ShowUIMessage, text, caption);
-                return;
+                SplashScreenManager.CloseForm();
             }
 
             XtraMessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            if (reOpenSplash)
+            {
+                SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
+            }
         }
 
         public static void ShowError(Exception ex)
@@ -459,11 +467,9 @@ namespace NSRetailPOS
         public static bool ValidateTimeZone()
         {
             bool _return = false;
-            TimeZone localZone = TimeZone.CurrentTimeZone;
-            _return = localZone.StandardName == "India Standard Time";
             object obj = new CloudRepository().GetTimeZone();
             DateTime localdt = DateTime.Now;
-            if (_return && DateTime.TryParse(Convert.ToString(obj), out DateTime clouddt) &&
+            if (TimeZone.CurrentTimeZone.StandardName == "India Standard Time" && DateTime.TryParse(Convert.ToString(obj), out DateTime clouddt) &&
                 clouddt.Date == localdt.Date && clouddt.Hour == localdt.Hour)
             {
                 _return = true;

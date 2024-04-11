@@ -104,7 +104,6 @@ namespace NSRetail
             }
             catch (Exception ex) 
             {
-
                 if (ex.Message.Contains("Application version mismatch"))
                 {
                     try

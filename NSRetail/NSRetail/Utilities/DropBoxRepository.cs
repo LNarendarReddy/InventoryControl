@@ -12,16 +12,17 @@ namespace NSRetail.Utilities
 {
     internal class DropBoxRepository
     {
-
         public async static Task<string> DownloadFile()
         {
             string localFilePath = Path.Combine(Application.UserAppDataPath, "NSRetail.exe")
                 , serverFilePath = @"/NSRetail_Build_Drops/ProdWANBuilds/NSRetail.exe"
-                , key = Utility.Decrypt("2A+S8fTsYt5IqxTNhflRE37XAswAdukxpLESN95kJ6Csu+cbzGH79ScGD2O+jgitKnhg44oa4HgJ+zcHXMeozRFQPlta4KPXZrvZ4VXrmn+iJ3xeQkFghg0N8czTVfl2fNnUr0RyIE8FpvRJk2Kbij1RR5JbG0dr0HCjRWoRUAyGEnk+X9dYrHkDfNfzIvq2wLfOdgAm50EMb3p2HyS6aA==");
+                , key = Utility.Decrypt("g7vdZwG6W2TwXJsYtkhXydFSRSzOjKTVsO2R6OnZKTZg5v/+xn4ZS9bo/MInw+N0+kIHaQEGRu6NZjv/d5kVquPM08GN53jFzIMO0IIdIo8=")
+                , appId = Utility.Decrypt("07rDVNCYtXOr0IHorUlumQ==")
+                , appValue = Utility.Decrypt("znxDIisO7x90WqkS+w0nQw==");
 
             SplashScreenManager.Default.SetWaitFormDescription("Establishig connection");
             
-            using (var dbx = new DropboxClient(key))
+            using (var dbx = new DropboxClient(key, appId, appValue))
             {
                 SplashScreenManager.Default.SetWaitFormDescription("Connection established, Searching for installer");
                 using (var response = await dbx.Files.DownloadAsync(serverFilePath))

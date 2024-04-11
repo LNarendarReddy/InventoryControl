@@ -15,6 +15,7 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS
@@ -39,6 +40,16 @@ namespace NSRetailPOS
         bool isEventCall = false;
         private const string noOfferText = "Offer : None   ";
         private const string noDealText = "Deal : None";
+
+        private static frmMain instance;
+
+        public static frmMain Instance 
+        {
+            get 
+            {
+                return instance = instance ?? new frmMain(); 
+            }
+        }
 
         public frmMain()
         {
@@ -85,10 +96,7 @@ namespace NSRetailPOS
             lblDeal.Text = noDealText;
             HighlightOffer();
 
-            bgSyncWorker.WorkerReportsProgress = true;
-            bgSyncWorker.DoWork += BgSyncWorker_DoWork;
-            bgSyncWorker.ProgressChanged += BgSyncWorker_ProgressChanged;
-            bgSyncWorker.RunWorkerAsync();
+            Task.Run(() => DoWorkAsync());
         }
 
         private void Utility_ItemOrCodeChanged(object sender, EventArgs e)
@@ -101,15 +109,27 @@ namespace NSRetailPOS
             lblProgressText.Text = e.UserState?.ToString();
         }
 
-        private void BgSyncWorker_DoWork(object sender, DoWorkEventArgs e)
+        public void ShowProgress(string text)
         {
-            if (!Utility.StartSync(bgSyncWorker))
+            if(this.InvokeRequired)
+            {
+                this.BeginInvoke((Action)(() => ShowProgress(text)));
+                return;
+            }
+
+            lblProgressText.Text = text;
+        }
+              
+
+        private async Task DoWorkAsync()
+        {
+            if (!await Utility.StartSync(false))
             {
                 Application.Exit();
                 return;
             }
             Thread.Sleep(30 * 60 * 1000);
-            BgSyncWorker_DoWork(sender, e);
+            await DoWorkAsync();
         }
 
         private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
@@ -699,12 +719,12 @@ namespace NSRetailPOS
             obj.ShowDialog();
         }
 
-        private void btnSyncData_Click(object sender, EventArgs e)
+        private async void btnSyncData_Click(object sender, EventArgs e)
         {
             if (!btnSyncData.Enabled) return;
 
             SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
-            if(!Utility.StartSync(null)) Application.Exit();
+            if (!await Utility.StartSync(true)) Application.Exit();
             SplashScreenManager.CloseForm();
         }
 

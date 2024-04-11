@@ -65,19 +65,19 @@ namespace NSRetailPOS
                         {
                             case DownloadStatus.Downloading:
                                 {
-                                    Utility.ReportText(backgroundWorker, $"Downloading {progress.BytesDownloaded} Bytes");
+                                    Utility.ReportText(true, $"Downloading {progress.BytesDownloaded} Bytes");
                                     break;
                                 }
                             case DownloadStatus.Completed:
                                 {
-                                    Utility.ReportText(backgroundWorker, "Download complete.");
+                                    Utility.ReportText(true, "Download complete.");
                                     SaveStream(stream1, filePath);
                                     _rtn = true;
                                     break;
                                 }
                             case DownloadStatus.Failed:
                                 {
-                                    Utility.ReportText(backgroundWorker, "Download failed.");
+                                    Utility.ReportText(true, "Download failed.");
                                     _rtn = false;
                                     break;
                                 }

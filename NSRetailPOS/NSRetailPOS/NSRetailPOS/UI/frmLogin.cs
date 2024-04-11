@@ -62,7 +62,7 @@ namespace NSRetailPOS.UI
                         }
                         else
                         {
-                            new frmMain().Show();
+                            frmMain.Instance.Show();
                             this.Hide();
                         }
                     }
@@ -81,10 +81,10 @@ namespace NSRetailPOS.UI
             this.Close();
         }
 
-        private void btnFullSync_Click(object sender, EventArgs e)
+        private async void btnFullSync_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
-            if(!Utility.StartSync(null,true))Application.Exit();
+            if(!await Utility.StartSync(true, true))Application.Exit();
             SplashScreenManager.CloseForm();
         }
 
