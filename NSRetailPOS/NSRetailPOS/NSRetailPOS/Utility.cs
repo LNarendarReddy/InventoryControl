@@ -188,6 +188,12 @@ namespace NSRetailPOS
 
         public static void ReportText(bool isOverlayShown, string text)
         {
+            if (frmMain.Instance.InvokeRequired)
+            {
+                frmMain.Instance.Invoke((Action)(() => ReportText(isOverlayShown, text)));
+                return;
+            }
+
             string displayText = DateTime.Now.ToString() + " : " + text;
             if (isOverlayShown)
             {
@@ -430,7 +436,13 @@ namespace NSRetailPOS
 
         private static void ShowUIMessage(XtraMessageBoxArgs args, bool isOverlayShown, bool reOpenSplash)
         {
-            if(isOverlayShown)
+            if (frmMain.Instance.InvokeRequired)
+            {
+                frmMain.Instance.Invoke((Action)(() => ShowUIMessage(args, isOverlayShown, reOpenSplash)));
+                return;
+            }
+
+            if (isOverlayShown)
             {
                 SplashScreenManager.CloseForm();
             }
@@ -445,6 +457,12 @@ namespace NSRetailPOS
 
         private static void ShowUIMessage(string text, string caption, bool isOverlayShown, bool reOpenSplash)
         {
+            if (frmMain.Instance.InvokeRequired)
+            {
+                frmMain.Instance.Invoke((Action)(() => ShowUIMessage(text, caption, isOverlayShown, reOpenSplash)));
+                return;
+            }
+
             if (isOverlayShown)
             {
                 SplashScreenManager.CloseForm();
