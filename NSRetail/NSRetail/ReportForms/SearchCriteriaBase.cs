@@ -314,7 +314,7 @@ namespace NSRetail
         {            
             MasterRepository masterRepo = new MasterRepository();
             CheckedComboBoxEdit cmb = (CheckedComboBoxEdit)cntrl;
-            cmb.Properties.DataSource = Utility.GetBranchList();
+            cmb.Properties.DataSource = Utility.GetBranchList(true);
             cmb.Properties.ValueMember = "BRANCHID";
             cmb.Properties.DisplayMember = "BRANCHNAME";
             cmb.CheckAll();

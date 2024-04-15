@@ -26,6 +26,7 @@ namespace NSRetail
         private static DataTable dtParentItemList;
         private static DataTable dtReturnStatus;
         private static DataTable dtBranchList;
+        private static DataTable dtBranchListIncludingDeleted;
         private static DataTable dtCatgeory;
         private static DataTable dtSubCatgeory;
 
@@ -50,8 +51,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "2.3.5";
-        public static string VersionDate = "(14-04-2024)";
+        public static string AppVersion = "2.3.6";
+        public static string VersionDate = "(15-04-2024)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -184,9 +185,12 @@ namespace NSRetail
             return dtNonEAN;
         }
 
-        public static DataTable GetBranchList()
+        public static DataTable GetBranchList(bool IncludingDeleted = false)
         {
-            return dtBranchList = dtBranchList ?? new MasterRepository().GetBranch();
+            dtBranchList = dtBranchList ?? new MasterRepository().GetBranch();
+            dtBranchListIncludingDeleted = dtBranchListIncludingDeleted ?? new MasterRepository().GetBranch(false, true);
+
+            return IncludingDeleted ? dtBranchListIncludingDeleted : dtBranchList;
         }
 
         public static DataTable GetCategoryList()

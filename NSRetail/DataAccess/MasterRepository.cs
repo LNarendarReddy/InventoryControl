@@ -51,9 +51,9 @@ namespace DataAccess
             }
             return ObjBranch;
         }
-        public DataTable GetBranch(bool UsedInReport = false)
+        public DataTable GetBranch(bool UsedInReport = false, bool IncludeDeleted = false)
         {
-            DataTable dtBranch = new ReportRepository().GetReportData("USP_R_BRANCH");
+            DataTable dtBranch = new ReportRepository().GetReportData("USP_R_BRANCH", new Dictionary<string, object>() { { "IncludeDeleted", IncludeDeleted } });
 
             if (UsedInReport)
             {
