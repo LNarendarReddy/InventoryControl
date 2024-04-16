@@ -347,7 +347,9 @@ namespace NSRetail
         public void BindCategoryCheckedComboboxEdit(Control cntrl)
         {
             CheckedComboBoxEdit cmb = (CheckedComboBoxEdit)cntrl;
-            cmb.Properties.DataSource = Utility.GetCategoryList();
+            DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
+            dvCategory.RowFilter = "CATEGORYID <> 13";
+            cmb.Properties.DataSource = dvCategory;
             cmb.Properties.ValueMember = "CATEGORYID";
             cmb.Properties.DisplayMember = "CATEGORYNAME";
             cmb.CheckAll();

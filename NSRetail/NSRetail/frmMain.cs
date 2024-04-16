@@ -3,6 +3,7 @@ using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
+using ErrorManagement;
 using Microsoft.Win32;
 using NSRetail.Countning;
 using NSRetail.Login;
@@ -526,12 +527,19 @@ namespace NSRetail
 
         private void ShowReportForm(List<ReportHolder> reportHolders, string header)
         {
-            frmReportPlaceHolder obj = new frmReportPlaceHolder(reportHolders, header);
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
-            obj.IconOptions.ShowIcon = false;
-            obj.MdiParent = this;
-            obj.Show();
+            try
+            {
+                frmReportPlaceHolder obj = new frmReportPlaceHolder(reportHolders, header);
+                obj.ShowInTaskbar = false;
+                obj.WindowState = FormWindowState.Maximized;
+                obj.IconOptions.ShowIcon = false;
+                obj.MdiParent = this;
+                obj.Show();
+            }
+            catch(Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+            }
         }
 
         private void btnProcessWHDispatch_ItemClick(object sender, ItemClickEventArgs e)
@@ -602,6 +610,15 @@ namespace NSRetail
 
         private void FY_Select(object sender, ItemClickEventArgs e)
         {
+            if(this.MdiChildren.Count() > 0 
+                && XtraMessageBox.Show("All open windows will be closed before changing the database, do you want to close them automatically? Any unsaved changes will be lost"
+                , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            this.MdiChildren.ToList().ForEach(x => x.Close());
+
             SQLCon.ChangeConnection(e.Item.Name);
             lblUserName.Caption = $"Logged In User : {Utility.FullName}   " +
                 $"Version : {Utility.AppVersion} {Utility.VersionDate} - {ConfigurationManager.AppSettings["BuildType"]} - {e.Item.Caption}";
