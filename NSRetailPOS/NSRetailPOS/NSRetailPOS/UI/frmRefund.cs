@@ -7,7 +7,6 @@ using NSRetailPOS.Entity;
 using NSRetailPOS.Reports;
 using System;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
@@ -59,7 +58,7 @@ namespace NSRetailPOS.UI
         {
             if (!dxValidationProvider1.Validate() ||
                 XtraMessageBox.Show("Are you sure to continue?","Confirm!",
-                MessageBoxButtons.YesNo,MessageBoxIcon.Question) != DialogResult.Yes) return;
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
 
             try
             {
@@ -82,8 +81,9 @@ namespace NSRetailPOS.UI
                 rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
                 rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
                 rpt.Parameters["IsWithBill"].Value = true;
-                rpt.Print();
+                Utility.PrintReport(rpt);
                 this.Close();
+                ActiveForm.BringToFront();
             }
             catch (Exception ex)
             {
@@ -187,7 +187,8 @@ namespace NSRetailPOS.UI
                 rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
                 rpt.Parameters["RoundingFactor"].Value = LastBillObj.Rounding;
                 rpt.Parameters["IsDuplicate"].Value = true;
-                rpt.Print();
+                Utility.PrintReport(rpt);
+                this.BringToFront();
             }
             catch (Exception ex)
             {

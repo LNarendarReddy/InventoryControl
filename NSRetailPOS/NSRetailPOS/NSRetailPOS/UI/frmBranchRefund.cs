@@ -306,9 +306,10 @@ namespace NSRetailPOS.UI
             rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
             rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
             rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
-            rpt.Print();
-            rpt.Print();
-            rpt.Print();
+            Utility.PrintReport(rpt);
+            Utility.PrintReport(rpt);
+            Utility.PrintReport(rpt);
+            this.BringToFront();
             XtraMessageBox.Show("Branch return sheet submitted successfully, re-open sheet for new return");
             this.Close();
         }

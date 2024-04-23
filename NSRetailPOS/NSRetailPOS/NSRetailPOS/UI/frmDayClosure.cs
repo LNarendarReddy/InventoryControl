@@ -51,8 +51,9 @@ namespace NSRetailPOS.UI
                 rpt.Parameters["BranchName"].Value = Utility.branchInfo.BranchName;
                 rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
                 rpt.Parameters["UserName"].Value = Utility.loginInfo.UserName;
-                rpt.Print();
-                rpt.Print();
+                Utility.PrintReport(rpt);
+                Utility.PrintReport(rpt);
+                this.BringToFront();
                 SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
                 if(!await Utility.StartSync(true))Application.Exit();
                 SplashScreenManager.CloseForm();

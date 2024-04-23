@@ -269,11 +269,13 @@ namespace NSRetailPOS
                 rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
                 rpt.Parameters["RoundingFactor"].Value = oldBillObj.Rounding;
                 rpt.Parameters["IsDuplicate"].Value = false;
-                rpt.Print();
+                Utility.PrintReport(rpt);
+                this.BringToFront();
 
                 if(Utility.branchInfo.BranchID.Equals(103) || Utility.branchInfo.BranchID.Equals(105))
                 {
-                    rpt.Print();
+                    Utility.PrintReport(rpt);
+                    this.BringToFront();
                 }
 
                 //string error = Utility.WriteToPort($"Bill {oldBillObj.BillNumber} completed");

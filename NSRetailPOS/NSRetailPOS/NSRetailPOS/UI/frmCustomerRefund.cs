@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
@@ -267,7 +268,7 @@ namespace NSRetailPOS.UI
             if (!dxValidationProvider2.Validate() ||
                 gvRefund.RowCount == 0 ||
                 XtraMessageBox.Show("Are you sure to continue?", "Confirm!",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
             new RefundRepository().InsertCRefundWOBill(dtRefund, 
                 Utility.loginInfo.UserID, 
@@ -286,8 +287,9 @@ namespace NSRetailPOS.UI
             rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
             rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
             rpt.Parameters["IsWithBill"].Value = false;
-            rpt.Print();
+            Utility.PrintReport(rpt);
             this.Close();
+            ActiveForm.BringToFront();
         }
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
