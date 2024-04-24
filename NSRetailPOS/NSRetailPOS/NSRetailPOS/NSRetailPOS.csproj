@@ -387,6 +387,12 @@
     <Compile Include="UI\frmConfiguration.Designer.cs">
       <DependentUpon>frmConfiguration.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\frmCredentials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmCredentials.Designer.cs">
+      <DependentUpon>frmCredentials.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmCustomerRefund.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -585,6 +591,9 @@
     <EmbeddedResource Include="UI\frmConfiguration.resx">
       <DependentUpon>frmConfiguration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmCredentials.resx">
+      <DependentUpon>frmCredentials.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmCustomerRefund.resx">
       <DependentUpon>frmCustomerRefund.cs</DependentUpon>
     </EmbeddedResource>
@@ -665,6 +674,8 @@
       <DependentUpon>NSRetailPOS.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\apply_16x16.png" />
+    <None Include="Resources\cancel_16x16.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

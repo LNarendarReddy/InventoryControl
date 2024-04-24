@@ -68,6 +68,15 @@ namespace NSRetailPOS.UI
                 DataTable dtFiltered = dv.ToTable();
                 if (dtFiltered.Rows.Count == 0)
                     throw new Exception("Refund quantity should be greater than '0'");
+
+                frmCredentials frmCredentials = new frmCredentials();
+                frmCredentials.ShowDialog();
+
+                if(!frmCredentials.IsLoginSuccess)
+                {
+                    return;
+                }
+
                 new RefundRepository().InsertCRefund(dtFiltered, Utility.loginInfo.UserID, billID, txtCustomerName.EditValue, txtCustomerPhone.EditValue);
                 rptCRefund rpt = new rptCRefund(dtFiltered);
                 rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
