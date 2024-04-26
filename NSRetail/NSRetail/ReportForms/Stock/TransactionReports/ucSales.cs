@@ -28,13 +28,14 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "ISDOORDELIVERY", "Is Door Delivery?" },
                 { "CUSTOMERNAME", "Customer Name" },
                 { "CUSTOMERNUMBER", "Customer #" },
-                { "CUSTOMERGST", "Customer GST" }
+                { "CUSTOMERGST", "Customer GST" },
+                { "HSNCODE", "HSN Code" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
                 new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODOCITY" },true)
-                , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "SALEPRICE", "SALEPRICEWOT", "SALEPRICETAX", "SALEQUANTITY" })
+                , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "SALEPRICE", "SALEPRICEWOT", "SALEPRICETAX", "SALEQUANTITY", "HSNCODE" })
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)
                 , new IncludeSettings("Counter", "IncludeCounter", new List<string>{ "COUNTERNAME" })
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })

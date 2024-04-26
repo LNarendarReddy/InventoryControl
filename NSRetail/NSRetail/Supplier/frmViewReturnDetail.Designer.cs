@@ -62,6 +62,8 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcSupplierReturns)).BeginInit();
@@ -165,7 +167,9 @@
             this.gridColumn21,
             this.gridColumn17,
             this.gridColumn18,
-            this.gridColumn19});
+            this.gridColumn19,
+            this.gridColumn22,
+            this.gridColumn23});
             this.gvSupplierReturns.GridControl = this.gcSupplierReturns;
             this.gvSupplierReturns.Name = "gvSupplierReturns";
             this.gvSupplierReturns.OptionsBehavior.Editable = false;
@@ -235,7 +239,7 @@
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 3;
+            this.gridColumn7.VisibleIndex = 4;
             this.gridColumn7.Width = 56;
             // 
             // gridColumn8
@@ -252,7 +256,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 5;
+            this.gridColumn9.VisibleIndex = 7;
             this.gridColumn9.Width = 61;
             // 
             // gridColumn10
@@ -262,7 +266,7 @@
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 4;
+            this.gridColumn10.VisibleIndex = 6;
             // 
             // gridColumn11
             // 
@@ -278,7 +282,7 @@
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 7;
+            this.gridColumn12.VisibleIndex = 9;
             this.gridColumn12.Width = 91;
             // 
             // gridColumn13
@@ -295,7 +299,7 @@
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 12;
+            this.gridColumn14.VisibleIndex = 14;
             // 
             // gridColumn15
             // 
@@ -318,7 +322,7 @@
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.OptionsColumn.AllowEdit = false;
             this.gridColumn20.Visible = true;
-            this.gridColumn20.VisibleIndex = 8;
+            this.gridColumn20.VisibleIndex = 10;
             // 
             // gridColumn21
             // 
@@ -329,7 +333,7 @@
             this.gridColumn21.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTALCOSTPRICE", "{0:0.##}")});
             this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 6;
+            this.gridColumn21.VisibleIndex = 8;
             // 
             // gridColumn17
             // 
@@ -338,7 +342,7 @@
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.OptionsColumn.AllowEdit = false;
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 11;
+            this.gridColumn17.VisibleIndex = 13;
             // 
             // gridColumn18
             // 
@@ -348,7 +352,7 @@
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.OptionsColumn.AllowEdit = false;
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 9;
+            this.gridColumn18.VisibleIndex = 11;
             // 
             // cmbReason
             // 
@@ -365,7 +369,7 @@
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 10;
+            this.gridColumn19.VisibleIndex = 12;
             // 
             // cmbSupplier
             // 
@@ -453,6 +457,22 @@
             this.layoutControlItem4.Text = "Select supplier to move items";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(162, 15);
             // 
+            // gridColumn22
+            // 
+            this.gridColumn22.Caption = "HSN Code";
+            this.gridColumn22.FieldName = "HSNCODE";
+            this.gridColumn22.Name = "gridColumn22";
+            this.gridColumn22.Visible = true;
+            this.gridColumn22.VisibleIndex = 3;
+            // 
+            // gridColumn23
+            // 
+            this.gridColumn23.Caption = "GST Code";
+            this.gridColumn23.FieldName = "GSTCODE";
+            this.gridColumn23.Name = "gridColumn23";
+            this.gridColumn23.Visible = true;
+            this.gridColumn23.VisibleIndex = 5;
+            // 
             // frmViewReturnDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -516,5 +536,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
         private DevExpress.XtraEditors.LookUpEdit cmbSupplier;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
     }
 }

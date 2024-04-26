@@ -38,7 +38,16 @@ namespace NSRetailPOS.Operations.Reports
                 { "ISOFFER", "Item Offer applied" },
                 { "WHSTOCK", "Warehouse Stock" },
                 { "BRANCHSTOCK", "Branch Stock" },
-                { "GSTCODE", "GST Code" }
+                { "GSTCODE", "GST Code" },
+                { "OFFERCODE", "Offer Code" },
+                { "BASEOFFERCODE", "Base Offer Code" },
+                { "BILLCREATEDBY", "Bill Created By" },
+                { "CREATEDTIME", "Created Time" },
+                { "ISDOORDELIVERY", "Is Door Delivery?" },
+                { "CUSTOMERNAME", "Customer Name" },
+                { "CUSTOMERNUMBER", "Customer #" },
+                { "CUSTOMERGST", "Customer GST" },
+                { "HSNCODE", "HSN Code" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -51,11 +60,14 @@ namespace NSRetailPOS.Operations.Reports
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
                 , new IncludeSettings("Classification", "IncludeClassification", new List<string>{ "CLASSIFICATIONNAME" })
                 , new IncludeSettings("Sub Classification", "IncludeSubClassification", new List<string>{ "SUBCLASSIFICATIONNAME" })
-                //, new IncludeSettings("Stock & Is offer", "IncludeStock", new List<string>{ "ISOFFER", "WHSTOCK", "BRANCHSTOCK" })
+                //, new IncludeSettings("Stock & Is offer", "IncludeStock", new List<string>{ "ISOFFER", "WHSTOCK", "BRANCHSTOCK", "OFFERCODE", "BASEOFFERCODE"  })
                 , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })
+                //, new IncludeSettings("Bill details", "IncludeBillDetails", new List<string>
+                //    { "BILLCREATEDBY", "BILLNUMBER", "CREATEDTIME", "ISDOORDELIVERY", "CUSTOMERNAME", "CUSTOMERNUMBER", "CUSTOMERGST" })
             };
 
-            HiddenColumns = new List<string> { "WHSTOCK", "BRANCHSTOCK" };
+            HiddenColumns = new List<string> { "WHSTOCK", "BRANCHSTOCK", "ISOFFER", "OFFERCODE", "BASEOFFERCODE"
+                , "BILLCREATEDBY", "BILLNUMBER", "CREATEDTIME", "ISDOORDELIVERY", "CUSTOMERNAME", "CUSTOMERNUMBER", "CUSTOMERGST" };
 
             SetFocusControls(cmbPeriodicity, cmbItemCode, specificColumnHeaders);
         }
