@@ -441,6 +441,12 @@
     <Compile Include="UI\frmPrePayment.Designer.cs">
       <DependentUpon>frmPrePayment.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\frmPriceCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmPriceCheck.Designer.cs">
+      <DependentUpon>frmPriceCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmRefund.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -618,6 +624,9 @@
     <EmbeddedResource Include="UI\frmPrePayment.resx">
       <DependentUpon>frmPrePayment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmPriceCheck.resx">
+      <DependentUpon>frmPriceCheck.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmRefund.resx">
       <DependentUpon>frmRefund.cs</DependentUpon>
     </EmbeddedResource>
@@ -676,6 +685,7 @@
     </Content>
     <None Include="Resources\apply_16x16.png" />
     <None Include="Resources\cancel_16x16.png" />
+    <None Include="Resources\show_16x16.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

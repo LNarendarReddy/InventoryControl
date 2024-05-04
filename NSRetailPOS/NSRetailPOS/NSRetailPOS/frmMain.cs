@@ -582,6 +582,9 @@ namespace NSRetailPOS
                 case Keys.F11:
                     btnBranchRefund_Click(sender, e);
                     break;
+                case Keys.F12:
+                    btnPriceCheck_Click(sender, e);
+                    break;
                 default:
                     break;
             }
@@ -864,6 +867,11 @@ namespace NSRetailPOS
         {
             frmOpetations frmOpetations = new frmOpetations();
             frmOpetations.ShowDialog();
+        }
+
+        private void btnPriceCheck_Click(object sender, EventArgs e)
+        {
+            _ = new frmPriceCheck(sluItemCode.Properties.DataSource).ShowDialog();
         }
     }
 }
