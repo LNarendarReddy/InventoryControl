@@ -517,5 +517,29 @@ namespace DataAccess
                 throw new Exception("Error while moving items", ex);
             }
         }
+
+        public void AddSupplierIndentDetail(object supplierIndentID, object itemPriceID, object qty, object userID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_SUPPLIERINDENTDETAIL]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERINDENTID", supplierIndentID);
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", itemPriceID);
+                    cmd.Parameters.AddWithValue("@QUANTITY", qty);
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+                    object obj = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(obj), out int id))
+                        throw new Exception(Convert.ToString(obj));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while saving supplier returns detail - " + ex.Message, ex);
+            }
+        }
     }
 }

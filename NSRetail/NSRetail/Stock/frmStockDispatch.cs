@@ -101,11 +101,7 @@ namespace NSRetail.Stock
 
         private void FrmStockDispatch_RefreshBaseLineData(object sender, EventArgs e)
         {
-            object selectedValue = cmbItemCode.EditValue;
-            cmbItemCode.Properties.DataSource = Utility.GetItemCodeListFiltered();
-            cmbItemCode.Properties.ValueMember = "ITEMCODEID";
-            cmbItemCode.Properties.DisplayMember = "ITEMCODE";
-            cmbItemCode.EditValue = selectedValue;
+            cmbCategory_EditValueChanged(sender, e);
         }
 
         private void btnDispatch_Click(object sender, EventArgs e)
