@@ -10,6 +10,8 @@ namespace ErrorManagement
     {
         public static readonly ILog Errorlog = LogManager.GetLogger("Errorlog");
 
+        public static Form MainFormInsance { get; set; }
+
         /// <summary>
         /// show the exceptions throwed
         /// </summary>
@@ -20,11 +22,19 @@ namespace ErrorManagement
                 Form.ActiveForm.BeginInvoke((Action)(() => ShowError(ex)));
                 return;
             }
+            
+            if (MainFormInsance != null && MainFormInsance.InvokeRequired)
+            {
+                MainFormInsance.BeginInvoke((Action)(() => ShowError(ex)));
+                return;
+            }
 
             try
             {
-                XtraMessageBox.Show(ex.Message + (ex.InnerException != null ? $" - {ex.InnerException.Message}" : string.Empty)
-                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //XtraMessageBox.Show(ex.Message + (ex.InnerException != null ? $" - {ex.InnerException.Message}" : string.Empty)
+                //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                new frmErrorDetails(ex) { Owner = MainFormInsance }.ShowDialog();
             }
             catch (Exception) { throw ex; }
         }

@@ -172,8 +172,7 @@ namespace NSRetail
             }
             catch (Exception ex)
             {
-                
-                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorManagement.ErrorMgmt.ShowError(ex);
             }
 
             return reportData;

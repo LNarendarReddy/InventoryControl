@@ -161,6 +161,12 @@
     <Compile Include="ReportForms\Branch\BranchReports\frmSplitQuantity.Designer.cs">
       <DependentUpon>frmSplitQuantity.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Branch\BranchReports\ucVoidItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Branch\BranchReports\ucVoidItems.Designer.cs">
+      <DependentUpon>ucVoidItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -983,6 +989,9 @@
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmSplitQuantity.resx">
       <DependentUpon>frmSplitQuantity.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Branch\BranchReports\ucVoidItems.resx">
+      <DependentUpon>ucVoidItems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.resx">
       <DependentUpon>ucConsolidatedCounting.cs</DependentUpon>
     </EmbeddedResource>
@@ -1458,7 +1467,7 @@
     <None Include="Resources\copy_16x16.png" />
     <None Include="Resources\add_16x162.png" />
     <None Include="Resources\delete_16x163.png" />
-    <None Include="Resources\addchartpane_16x16.png" />
+    <None Include="Resources\addchartpane_16x16.png" />  
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

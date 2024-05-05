@@ -30,6 +30,7 @@ namespace NSRetail
                 {
                     this.Hide();
                     frmMain ObjParent = new frmMain();
+                    ErrorMgmt.MainFormInsance = ObjParent;
                     ObjParent.Show();
                 }
                 else
@@ -96,6 +97,7 @@ namespace NSRetail
                                 UpdateUserDetails();
                                 this.Hide();
                                 frmMain ObjParent = new frmMain();
+                                ErrorMgmt.MainFormInsance = ObjParent;
                                 ObjParent.Show();
                             }
                         }

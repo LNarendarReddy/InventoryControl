@@ -9,6 +9,7 @@ using NSRetail.Countning;
 using NSRetail.Login;
 using NSRetail.Master;
 using NSRetail.ReportForms;
+using NSRetail.ReportForms.Branch;
 using NSRetail.ReportForms.Branch.BranchReports;
 using NSRetail.ReportForms.Branch.POSReports;
 using NSRetail.ReportForms.Stock.StockCounting;
@@ -429,6 +430,7 @@ namespace NSRetail
             ReportHolder POSReports = new ReportHolder() { ReportName = "POS Reports" };
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure List", SearchCriteriaControl = new ucDayClosureList() });
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Bills by Amount", SearchCriteriaControl = new ucBillSearchByAmount() });
+            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Void items", SearchCriteriaControl = new ucVoidItems() });
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Details", SearchCriteriaControl = new ucCustomerDetails() });
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "B2B Credit Bill Payments", SearchCriteriaControl = new ucCreditBillPayments() });
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Installed versions", SearchCriteriaControl = new ucInstalledVersions() });

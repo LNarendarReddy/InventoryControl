@@ -20,7 +20,11 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "FINALPRICE", "Final Price" },
                 { "PURCHASEQUANTITY", "Purchase Quantity" },
                 { "GSTCODE", "GST Code" },
-                { "SUPPLIERINVOICENO", "Invoice #" }
+                { "SUPPLIERINVOICENO", "Invoice #" },
+                { "DISCOUNTFLAT", "Discount flat" },
+                { "DISCOUNTPERCENTAGE", "Discount %" },
+                { "SCHEMEFLAT", "Scheme flat" },
+                { "SCHEMEPERCENTAGE", "Scheme %" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -31,9 +35,10 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
                 , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })
+                , new IncludeSettings("Discount & scheme details", "IncludeDiscount", new List<string> { "DISCOUNTFLAT", "DISCOUNTPERCENTAGE", "SCHEMEFLAT", "SCHEMEPERCENTAGE" })
             };
 
-            SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
+            SetFocusControls(cmbPeriodicity, cmbItemCode, specificColumnHeaders);
             AllowedRoles = new List<string> { "IT User" };
         }
 
@@ -49,13 +54,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             cmbSupplier.Properties.DisplayMember = "DEALERNAME";
             cmbSupplier.EditValue = 0;
 
-            SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, true);
-            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
-            {
-
-            };
-
-            SetFocusControls(cmbPeriodicity, cmbItemCode, columnHeaders);
+            SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, true);            
         }
         public override object GetData()
         {
