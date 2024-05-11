@@ -251,6 +251,7 @@ namespace NSRetail
                     rpt.Parameters["BatchNumber"].Value = BatchNumber;
                     rpt.Parameters["PackedDate"].Value = DateTime.Now.ToString("MM/yyyy");
                     rpt.Parameters["CategoryID"].Value = CategoryID;
+                    rpt.Parameters["IsOpenCategory"].Value = IsOpenCategory;
                     rpt.CreateDocument();
                     //rpt.ShowRibbonPreview();
                     ReportPrintTool printTool = new ReportPrintTool(rpt);
