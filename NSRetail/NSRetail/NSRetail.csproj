@@ -1467,7 +1467,7 @@
     <None Include="Resources\copy_16x16.png" />
     <None Include="Resources\add_16x162.png" />
     <None Include="Resources\delete_16x163.png" />
-    <None Include="Resources\addchartpane_16x16.png" />  
+    <None Include="Resources\addchartpane_16x16.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

@@ -42,7 +42,7 @@ namespace NSRetail.Stock
                 DataTable dtBranch = Utility.GetBranchList();
 
                 DataView gvWarehouse = dtBranch.Copy().DefaultView;
-                gvWarehouse.RowFilter = $"BRANCHID = {Utility.BranchID}";
+                gvWarehouse.RowFilter = $"BRANCHID = {Utility.BranchID} OR BRANCHID = 50";
                 cmbFromBranch.Properties.DataSource = gvWarehouse;
                 cmbFromBranch.Properties.ValueMember = "BRANCHID";
                 cmbFromBranch.Properties.DisplayMember = "BRANCHNAME";
@@ -111,6 +111,10 @@ namespace NSRetail.Stock
                 int iValue = 0;
                 if (int.TryParse(Convert.ToString(ObjStockDispatch.STOCKDISPATCHID), out iValue) && iValue > 0)
                 {
+                    if (XtraMessageBox.Show($"Are you sure want to submit dispatch from {cmbFromBranch.Text} to {cmbToBranch.Text} ?", "Confirm",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                        return;
+
                     if (!dxValidationProvider1.Validate() || 
                         XtraMessageBox.Show("Are you sure want to save dispatch?","Confirm",
                         MessageBoxButtons.YesNo,MessageBoxIcon.Question) != DialogResult.Yes)
@@ -215,7 +219,6 @@ namespace NSRetail.Stock
                         
             try
             {
-
                 if (Convert.ToInt32(ObjStockDispatch.STOCKDISPATCHID) == 0) SaveDispatch();
 
                 ObjStockDispatchDetail = new StockDispatchDetail();
@@ -285,6 +288,11 @@ namespace NSRetail.Stock
         {
             try
             {
+
+                if (XtraMessageBox.Show($"Are you sure want to save dispatch from {cmbFromBranch.Text} to {cmbToBranch.Text} ?", "Confirm",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
+
                 if (ObjStockDispatch == null)
                 {
                     ObjStockDispatch = new StockDispatch();
