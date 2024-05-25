@@ -16,6 +16,7 @@ using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using Entity;
 using ErrorManagement;
+using NSRetail;
 using NSRetail.Login;
 
 namespace NSRetail
@@ -263,26 +264,29 @@ namespace NSRetail
         private void ExportItemList(string ExportType)
         {
             DataTable dt = new ItemCodeRepository().ExportItemList(ExportType);
-            XtraReport report = null;
+            
             try
             {
-                report = new XtraReport()
-                {
-                    StyleSheet = {
-            new XRControlStyle() { Name = "ReportHeader", Font = new System.Drawing.Font("Helvetica", 10F, System.Drawing.FontStyle.Italic) },
-            new XRControlStyle() { Name = "ColumnHeader", Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Bold) },
-            new XRControlStyle() { Name = "Title", Font = new System.Drawing.Font("Helvetica", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))))},
-            new XRControlStyle() { Name = "Normal", Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Regular)},
-            new XRControlStyle() { Name = "Footer", Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Bold)},
-                    },
-                    DisplayName = "Result file",
-                    PaperKind = PaperKind.A4,
-                    Margins = new Margins(50, 50, 80, 50)
-                };
-                report.Bands.Add(CreateReportHeader(dt));
-                report.Bands.Add(CreateDetail(dt));
-                report.DataSource = dt;
-                report.ShowRibbonPreview();
+                frmExport frmexport = new frmExport(dt);
+                frmexport.ShowDialog();
+            //    XtraReport report = null;
+            //    report = new XtraReport()
+            //    {
+            //        StyleSheet = {
+            //new XRControlStyle() { Name = "ReportHeader", Font = new System.Drawing.Font("Helvetica", 10F, System.Drawing.FontStyle.Italic) },
+            //new XRControlStyle() { Name = "ColumnHeader", Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Bold) },
+            //new XRControlStyle() { Name = "Title", Font = new System.Drawing.Font("Helvetica", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))))},
+            //new XRControlStyle() { Name = "Normal", Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Regular)},
+            //new XRControlStyle() { Name = "Footer", Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Bold)},
+            //        },
+            //        DisplayName = "Result file",
+            //        PaperKind = PaperKind.A4,
+            //        Margins = new Margins(50, 50, 80, 50)
+            //    };
+            //    report.Bands.Add(CreateReportHeader(dt));
+            //    report.Bands.Add(CreateDetail(dt));
+            //    report.DataSource = dt;
+            //    report.ShowRibbonPreview();
             }
             catch (Exception ex)
             {
