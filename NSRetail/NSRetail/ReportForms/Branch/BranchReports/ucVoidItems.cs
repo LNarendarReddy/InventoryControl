@@ -40,7 +40,7 @@ namespace NSRetail.ReportForms.Branch
                 , new IncludeSettings("Item details", "IncludeItem", new List<string>
                         { 
                             "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "SALEPRICE", "SALEPRICEWOT", "SALEPRICETAX", "SALEQUANTITY"
-                            , "HSNCODE", "GSTCODE", "ISOFFER", "OFFERCODE", "BASEOFFERCODE"
+                            , "HSNCODE", "GSTCODE", "ISOFFER", "OFFERCODE", "BASEOFFERCODE", "CREATEDTIME", "DELETEDTIME"
                         })
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)
                 , new IncludeSettings("Counter", "IncludeCounter", new List<string>{ "COUNTERNAME" })
@@ -49,7 +49,7 @@ namespace NSRetail.ReportForms.Branch
                 , new IncludeSettings("Classification", "IncludeClassification", new List<string>{ "CLASSIFICATIONNAME" })
                 , new IncludeSettings("Sub Classification", "IncludeSubClassification", new List<string>{ "SUBCLASSIFICATIONNAME" })                
                 , new IncludeSettings("Bill details", "IncludeBillDetails", new List<string>
-                    { "BILLNUMBER", "CREATEDTIME", "ISDOORDELIVERY", "CUSTOMERNAME", "CUSTOMERNUMBER", "CUSTOMERGST", "DELETEDTIME" })
+                    { "BILLNUMBER", "ISDOORDELIVERY", "CUSTOMERNAME", "CUSTOMERNUMBER", "CUSTOMERGST" })
             };
 
             HiddenColumns = new List<string>() { "" };

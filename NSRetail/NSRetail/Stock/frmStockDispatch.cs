@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraPivotGrid.Data;
 using DevExpress.XtraReports.UI;
 using Entity;
 using ErrorManagement;
@@ -42,7 +43,7 @@ namespace NSRetail.Stock
                 DataTable dtBranch = Utility.GetBranchList();
 
                 DataView gvWarehouse = dtBranch.Copy().DefaultView;
-                gvWarehouse.RowFilter = $"BRANCHID = {Utility.BranchID} OR BRANCHID = 50";
+                gvWarehouse.RowFilter = $"BRANCHID = {Utility.BranchID}";
                 cmbFromBranch.Properties.DataSource = gvWarehouse;
                 cmbFromBranch.Properties.ValueMember = "BRANCHID";
                 cmbFromBranch.Properties.DisplayMember = "BRANCHNAME";
@@ -215,7 +216,8 @@ namespace NSRetail.Stock
 
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar != (char)Keys.Enter || !dxValidationProvider2.Validate()) return;
+            if (e.KeyChar != (char)Keys.Enter || !dxValidationProvider2.Validate() ||
+                txtQuantity.EditValue == null || Convert.ToInt32(txtQuantity.EditValue) <= 0) return;
                         
             try
             {

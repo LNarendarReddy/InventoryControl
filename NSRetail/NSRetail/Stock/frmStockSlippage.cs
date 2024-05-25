@@ -25,7 +25,8 @@ namespace NSRetail.Stock
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!dxValidationProvider1.Validate() ||
+            if (!dxValidationProvider1.Validate() || txtSlippageWeight.EditValue == null 
+                || Convert.ToInt32(txtSlippageWeight.EditValue) <= 0 ||
                 XtraMessageBox.Show("Are you sure to add processing slippage? This operation cannot be undone!!", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 != DialogResult.Yes)
                 return;

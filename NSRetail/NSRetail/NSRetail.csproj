@@ -485,6 +485,12 @@
     <Compile Include="Reports\rptBill.Designer.cs">
       <DependentUpon>rptBill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptBRefund.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptBRefund.Designer.cs">
+      <DependentUpon>rptBRefund.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stock\frmAddProcessing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1148,6 +1154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptBill.resx">
       <DependentUpon>rptBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptBRefund.resx">
+      <DependentUpon>rptBRefund.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmAddProcessing.resx">
       <DependentUpon>frmAddProcessing.cs</DependentUpon>

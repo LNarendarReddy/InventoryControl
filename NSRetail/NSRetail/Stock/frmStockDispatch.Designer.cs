@@ -517,12 +517,12 @@ namespace NSRetail.Stock
             this.txtQuantity.Location = new System.Drawing.Point(396, 99);
             this.txtQuantity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Properties.DisplayFormat.FormatString = "n0";
+            this.txtQuantity.Properties.DisplayFormat.FormatString = "d";
             this.txtQuantity.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtQuantity.Properties.EditFormat.FormatString = "n0";
+            this.txtQuantity.Properties.EditFormat.FormatString = "d";
             this.txtQuantity.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtQuantity.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtQuantity.Properties.MaskSettings.Set("mask", "n0");
+            this.txtQuantity.Properties.MaskSettings.Set("mask", "d");
             this.txtQuantity.Size = new System.Drawing.Size(173, 20);
             this.txtQuantity.StyleController = this.layoutControl1;
             this.txtQuantity.TabIndex = 8;

@@ -126,7 +126,8 @@ namespace NSRetail.Stock
         {
             try
             {
-                if (!dxValidationProvider1.Validate())
+                if (!dxValidationProvider1.Validate() 
+                    || txtQuantity.EditValue == null || Convert.ToInt32(txtQuantity.EditValue) <= 0)
                     return;
 
                 if (decimal.TryParse(Convert.ToString(txtMRP.EditValue), out decimal MRP) &&
