@@ -16,6 +16,8 @@ namespace Entity
         public object SafetyDays { get; set; }
         public object Status { get; set; }
         public bool IsApproved { get; set; }
+        public object IndentNo { get; set; }
+        public object MobileNo { get; set; }
         public DataTable dtSupplierIndent { get; set; }
     }
 

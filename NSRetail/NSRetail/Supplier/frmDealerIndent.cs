@@ -20,11 +20,13 @@ namespace NSRetail
         DealerIndent dealerIndent = null;
         DataRow drSelectedPrice;
 
-        public frmDealerIndent(DealerIndent _dealerIndent,string DealerName)
+        public frmDealerIndent(DealerIndent _dealerIndent, string DealerName)
         {
             InitializeComponent();
             dealerIndent = _dealerIndent;
             txtDealerName.EditValue = DealerName;
+            txtMobileNo.EditValue = _dealerIndent.MobileNo;
+            lcgIndentDetails.Text = $"Indent details - {_dealerIndent.IndentNo}";
         }
 
         private void frmDealerIndent_Load(object sender, EventArgs e)
@@ -45,6 +47,7 @@ namespace NSRetail
             try
             {
                 dealerIndent.IsApproved = Utility.Role == "Admin";
+                dealerIndent.MobileNo = txtMobileNo.EditValue;
                 new ReportRepository().SaveSupplierIndent(dealerIndent);
                 dealerIndent.IsSave = true;
                 XtraMessageBox.Show("Saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -99,27 +102,6 @@ namespace NSRetail
 
             txtMRP.EditValue = drSelectedPrice["MRP"];
             txtQtyOrWghtInKGs.Focus();
-            //if (isOpenItem)
-            //{
-            //    txtQtyOrWghtInKGs.Properties.MaskSettings.Configure<MaskSettings.Numeric>(settings => settings.MaskExpression = "n2");
-            //    txtQtyOrWghtInKGs.Properties.EditFormat.FormatString = "n2";
-            //    txtQtyOrWghtInKGs.EditValue = 0.00;
-            //    txtQtyOrWghtInKGs.Text = "Weight (in KGs)";
-            //}
-            //else
-            //{
-            //    txtQtyOrWghtInKGs.Properties.MaskSettings.Configure<MaskSettings.Numeric>(settings => settings.MaskExpression = "d");
-            //    txtQtyOrWghtInKGs.Properties.EditFormat.FormatString = "d";
-            //    txtQtyOrWghtInKGs.EditValue = 0;
-            //    txtQtyOrWghtInKGs.Text = "Quantity (# of packets)";
-            //}
-            //if (!isItemScanned)
-            //{
-            //    if (isOpenItem)
-            //        txtWeightInKgs.Focus();
-            //    else
-            //        txtQuantity.Focus();
-            //}
         }
 
         private void ClearItemData(bool focusItemCode = false)

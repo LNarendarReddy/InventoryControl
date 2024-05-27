@@ -101,6 +101,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@USERID", dealerIndent.UserID);
                     cmd.Parameters.AddWithValue("@dtDetail", dealerIndent.dtSupplierIndent);
                     cmd.Parameters.AddWithValue("@ISAPPROVED", dealerIndent.IsApproved);
+                    cmd.Parameters.AddWithValue("@MOBILENO", dealerIndent.MobileNo);
 
                     var columnsToRemove = dealerIndent.dtSupplierIndent.Columns.Cast<DataColumn>().Select(x => x.ColumnName).Where(x => !allowedColumns.Contains(x)).ToList();
                     columnsToRemove.ForEach(x => dealerIndent.dtSupplierIndent.Columns.Remove(x));

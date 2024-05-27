@@ -26,6 +26,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "APPROVEDBY", "Approved User" }
                 , { "APPROVEDDATE", "Approved User" }
                 , { "STATUS", "Status" }
+                , { "SUPPLIERINDENTNO", "Indent #" }
+                , { "MOBILENO", "Mobile #" }
             };
 
             ButtonColumns = new List<string>() { "View", "Print&Export" };
@@ -63,6 +65,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     dealerIndent.IndentDays = drFocusedRow["INDENTDAYS"];
                     dealerIndent.SafetyDays = drFocusedRow["SAFETYDAYS"];
                     dealerIndent.CategoryID = drFocusedRow["CATEGORYID"];
+                    dealerIndent.IndentNo = drFocusedRow["SUPPLIERINDENTNO"];
+                    dealerIndent.MobileNo = drFocusedRow["MOBILENO"];
                     dealerIndent.Status = drFocusedRow["STATUS"];
                     dealerIndent.UserID = Utility.UserID;
                     dealerIndent.dtSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
@@ -88,12 +92,14 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                         return; 
                     }
 
-                    rptDealerIndent rpt = new rptDealerIndent(new ReportRepository().GetSupplierIndentDetail(
-                                    drFocusedRow["SUPPLIERINDENTID"]));
+                    DataTable dtSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
+                    rptDealerIndent rpt = new rptDealerIndent(dtSupplierIndent);
                     rpt.Parameters["IndentID"].Value = drFocusedRow["SUPPLIERINDENTID"];
                     rpt.Parameters["SupplierName"].Value = drFocusedRow["DEALERNAME"];
                     rpt.Parameters["ApprovedUser"].Value = drFocusedRow["APPROVEDBY"];
                     rpt.Parameters["CreatedDate"].Value = drFocusedRow["CREATEDDATE"];
+                    rpt.Parameters["IndentNo"].Value = drFocusedRow["SUPPLIERINDENTNO"];
+                    rpt.Parameters["MobileNo"].Value = drFocusedRow["MOBILENO"];
                     rpt.Parameters["UserName"].Value = Utility.FullName;
                     rpt.ShowRibbonPreview();
                     break;
