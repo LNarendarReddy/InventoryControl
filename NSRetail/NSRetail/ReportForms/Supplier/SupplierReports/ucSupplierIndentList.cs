@@ -22,9 +22,9 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "INDENTDAYS", "Indent days" }
                 , { "SAFETYDAYS", "Safety days" }
                 , { "UPDATEDBY", "Updated User" }
-                , { "UPDATEDDATE", "Updated User" }
+                , { "UPDATEDDATE", "Updated Date" }
                 , { "APPROVEDBY", "Approved User" }
-                , { "APPROVEDDATE", "Approved User" }
+                , { "APPROVEDDATE", "Approved Date" }
                 , { "STATUS", "Status" }
                 , { "SUPPLIERINDENTNO", "Indent #" }
                 , { "MOBILENO", "Mobile #" }
@@ -93,6 +93,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     }
 
                     DataTable dtSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
+                    dtSupplierIndent.DefaultView.RowFilter = "DESIREDINDENT > 0";
                     rptDealerIndent rpt = new rptDealerIndent(dtSupplierIndent);
                     rpt.Parameters["IndentID"].Value = drFocusedRow["SUPPLIERINDENTID"];
                     rpt.Parameters["SupplierName"].Value = drFocusedRow["DEALERNAME"];
@@ -100,7 +101,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     rpt.Parameters["CreatedDate"].Value = drFocusedRow["CREATEDDATE"];
                     rpt.Parameters["IndentNo"].Value = drFocusedRow["SUPPLIERINDENTNO"];
                     rpt.Parameters["MobileNo"].Value = drFocusedRow["MOBILENO"];
-                    rpt.Parameters["UserName"].Value = Utility.FullName;
+                    rpt.Parameters["UserName"].Value = drFocusedRow["CREATEDBY"];
                     rpt.ShowRibbonPreview();
                     break;
             }

@@ -4,6 +4,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Configuration;
 using System.Data;
+using System.Linq;
 
 namespace NSRetail.Utilities
 {
@@ -123,17 +124,18 @@ namespace NSRetail.Utilities
             MyPrinter.Close();
         }
 
-        public static DataTable GetDataTableWYSIWYG(GridView xtraGridView)
+        public static DataTable GetDataTableWYSIWYG(GridView xtraGridView, bool includeAllColumns = false)
         {
             DataTable dt = new DataTable();
-            foreach (GridColumn column in xtraGridView.VisibleColumns)
+            var columns = includeAllColumns ? xtraGridView.Columns.AsEnumerable() : xtraGridView.VisibleColumns.AsEnumerable();
+            foreach (GridColumn column in columns)
             {
                 dt.Columns.Add(column.FieldName, column.ColumnType);
             }
             for (int i = 0; i < xtraGridView.DataRowCount; i++)
             {
                 DataRow row = dt.NewRow();
-                foreach (GridColumn column in xtraGridView.VisibleColumns)
+                foreach (GridColumn column in columns)
                 {
                     row[column.FieldName] = xtraGridView.GetRowCellValue(i, column);
                 }

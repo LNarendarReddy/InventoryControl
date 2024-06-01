@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using Entity;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -100,7 +101,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     IndentDays = txtIndentDays.EditValue,
                     SafetyDays = txtSafetyDays.EditValue,
                     UserID = Utility.UserID,
-                    dtSupplierIndent = ((DataSet)resultsGrid.DataSource).Tables[0].Copy()
+                    dtSupplierIndent = DotMatrixPrintHelper.GetDataTableWYSIWYG(ResultGridView, true)
                 };
                 new ReportRepository().SaveSupplierIndent(dealerIndent);
                 XtraMessageBox.Show("Indent saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
