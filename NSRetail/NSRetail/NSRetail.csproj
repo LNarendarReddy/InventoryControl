@@ -871,9 +871,7 @@
     <Compile Include="ReportForms\Supplier\SupplierReports\ucSupplierIndentList.Designer.cs">
       <DependentUpon>ucSupplierIndentList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\Supplier\SupplierReports\ucSupplierReturnsList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="ReportForms\Supplier\SupplierReports\ucSupplierReturnsList.cs" />
     <Compile Include="ReportForms\Supplier\SupplierReports\ucSupplierReturnsList.Designer.cs">
       <DependentUpon>ucSupplierReturnsList.cs</DependentUpon>
     </Compile>
@@ -912,6 +910,12 @@
     </Compile>
     <Compile Include="Stock\frmAddStockRecord.Designer.cs">
       <DependentUpon>frmAddStockRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\frmStockEntryPrices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmStockEntryPrices.Designer.cs">
+      <DependentUpon>frmStockEntryPrices.cs</DependentUpon>
     </Compile>
     <Compile Include="Stock\frmStockSlippage.cs">
       <SubType>Form</SubType>
@@ -1381,6 +1385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmAddStockRecord.resx">
       <DependentUpon>frmAddStockRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmStockEntryPrices.resx">
+      <DependentUpon>frmStockEntryPrices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmStockSlippage.resx">
       <DependentUpon>frmStockSlippage.cs</DependentUpon>

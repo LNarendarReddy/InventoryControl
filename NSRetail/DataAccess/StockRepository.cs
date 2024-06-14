@@ -1,6 +1,7 @@
 ﻿using Entity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -286,7 +287,7 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_CU_STOCKENTRYDETAIL]";
+                    cmd.CommandText = "[USP_CU_STOCKENTRYDETAIL1]";
                     cmd.Parameters.AddWithValue("@STOCKENTRYDETAILID", ObjStockEntryDetail.STOCKENTRYDETAILID);
                     cmd.Parameters.AddWithValue("@STOCKENTRYID", ObjStockEntryDetail.STOCKENTRYID);
                     cmd.Parameters.AddWithValue("@ITEMCODEID", ObjStockEntryDetail.ITEMCODEID);
@@ -325,8 +326,7 @@ namespace DataAccess
                             throw new Exception(str);
                         else
                         {
-                            ObjStockEntryDetail.STOCKENTRYDETAILID = StockEntryDetailID;
-                            ObjStockEntryDetail.ITEMPRICEID = dt.Rows[0][1];
+                            RefreshObject(dt, ObjStockEntryDetail);
                         }
                     }
                 }
@@ -338,12 +338,43 @@ namespace DataAccess
                     throw ex;
                 throw new Exception("Error While Saving Invoice Detail");
             }
-            finally
-            {
-
-            }
             return ObjStockEntryDetail;
         }
+
+        private void RefreshObject(DataTable dataTable, StockEntryDetail stockEntryDetail)
+        {
+            stockEntryDetail.STOCKENTRYDETAILID = dataTable.Rows[0]["STOCKENTRYDETAILID"];
+            stockEntryDetail.ITEMID = dataTable.Rows[0]["ITEMID"];
+            stockEntryDetail.ITEMCODEID = dataTable.Rows[0]["ITEMCODEID"];
+            stockEntryDetail.ITEMPRICEID = dataTable.Rows[0]["ITEMPRICEID"];
+            stockEntryDetail.SKUCODE = dataTable.Rows[0]["SKUCODE"];
+            stockEntryDetail.ITEMCODE = dataTable.Rows[0]["ITEMCODE"];
+            stockEntryDetail.ITEMNAME = dataTable.Rows[0]["ITEMNAME"];
+            stockEntryDetail.COSTPRICEWT = dataTable.Rows[0]["COSTPRICEWT"];
+            stockEntryDetail.COSTPRICEWOT = dataTable.Rows[0]["COSTPRICEWOT"];
+            stockEntryDetail.GSTID = dataTable.Rows[0]["GSTID"];
+            stockEntryDetail.MRP = dataTable.Rows[0]["MRP"];
+            stockEntryDetail.SALEPRICE = dataTable.Rows[0]["SALEPRICE"];
+            stockEntryDetail.QUANTITY = dataTable.Rows[0]["QUANTITY"];
+            stockEntryDetail.WEIGHTINKGS = dataTable.Rows[0]["WEIGHTINKGS"];
+            stockEntryDetail.FreeQuantity = dataTable.Rows[0]["FREEQUANTITY"];
+            stockEntryDetail.DiscountFlat = dataTable.Rows[0]["DISCOUNTFLAT"];
+            stockEntryDetail.DiscountPercentage = dataTable.Rows[0]["DISCOUNTPERCENTAGE"];
+            stockEntryDetail.SchemePercentage = dataTable.Rows[0]["SCHEMEPERCENTAGE"];
+            stockEntryDetail.SchemeFlat = dataTable.Rows[0]["SCHEMEFLAT"];
+            stockEntryDetail.TotalPriceWT = dataTable.Rows[0]["TOTALPRICEWT"];
+            stockEntryDetail.TotalPriceWOT = dataTable.Rows[0]["TOTALPRICEWOT"];
+            stockEntryDetail.AppliedDiscount = dataTable.Rows[0]["APPLIEDDISCOUNT"];
+            stockEntryDetail.AppliedScheme = dataTable.Rows[0]["APPLIEDSCHEME"];
+            stockEntryDetail.AppliedGST = dataTable.Rows[0]["APPLIEDDGST"];
+            stockEntryDetail.FinalPrice = dataTable.Rows[0]["FINALPRICE"];
+            stockEntryDetail.CGST = dataTable.Rows[0]["CGST"];
+            stockEntryDetail.SGST = dataTable.Rows[0]["SGST"];
+            stockEntryDetail.IGST = dataTable.Rows[0]["IGST"];
+            stockEntryDetail.CESS = dataTable.Rows[0]["CESS"];
+            stockEntryDetail.HSNCODE = dataTable.Rows[0]["HSNCODE"];
+        }
+
         public void SaveStockAdjustment(StockAdjustment stockAdjustment)
         {
             try
@@ -831,6 +862,31 @@ namespace DataAccess
                 sqlTransaction.Rollback();
                 throw new Exception($"Error While Updating Dispatch - {ex.Message}", ex);
             }
+        }
+
+        public DataTable FindItemPriceInStockEntry(object ItemPriceID, object StockEntryID)
+        {
+            DataTable entries = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[P_R_FINDITEMPRICEININOIVCE]";
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(entries);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Itemprices", ex);
+            }
+            return entries;
         }
     }
 }

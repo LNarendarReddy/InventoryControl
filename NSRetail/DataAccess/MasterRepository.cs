@@ -944,10 +944,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Deleteing Item Classification " + ex.Message);
             }
-            finally
-            {
-                
-            }
             return itemClassification;
         }
 
@@ -980,6 +976,30 @@ namespace DataAccess
                 
             }
             return itemSubClassification;
+        }
+        public void InitiateStockCounting(object BranchID, object UserId)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_INITIATESTOCKCOUNTING]";
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@USERID", UserId);
+                    int rowsaffected = cmd.ExecuteNonQuery();
+                    if (rowsaffected > 0)
+                        throw new Exception("Counting sheets are archived");
+                    else
+                        throw new Exception("No counting sheets to be archived");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While performing action");
+            }
         }
     }
 }

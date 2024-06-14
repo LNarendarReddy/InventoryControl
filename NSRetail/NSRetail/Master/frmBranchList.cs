@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using DataAccess;
 using Entity;
 using ErrorManagement;
+using DevExpress.Utils.Menu;
 
 namespace NSRetail
 {
@@ -117,7 +118,27 @@ namespace NSRetail
 
         private void gvBranch_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
+            if (e.HitInfo.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
+            {
+                e.Menu.Items.Add(new DXMenuItem("Initiate Stock Counting", new EventHandler(On_Click)));
+            }
+        }
 
+        void On_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvBranch.FocusedRowHandle >= 0)
+                {
+                    new MasterRepository().InitiateStockCounting(
+                        gvBranch.GetFocusedRowCellValue("BRANCHID"),Utility.UserID);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
         }
 
         private void btnViewReport_Click(object sender, EventArgs e)
