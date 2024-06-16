@@ -130,8 +130,13 @@ namespace NSRetail
             {
                 if (gvBranch.FocusedRowHandle >= 0)
                 {
-                    new MasterRepository().InitiateStockCounting(
+                    int rowsaffetced = new MasterRepository().InitiateStockCounting(
                         gvBranch.GetFocusedRowCellValue("BRANCHID"),Utility.UserID);
+                    if (rowsaffetced > 0)
+                        XtraMessageBox.Show("Old sheets are archived, please continue with stock counting");
+                    else
+                        XtraMessageBox.Show("No old sheets are exists to be archived, please continue with stock counting");
+
                 }
             }
             catch (Exception ex)

@@ -977,7 +977,8 @@ namespace DataAccess
             }
             return itemSubClassification;
         }
-        public void InitiateStockCounting(object BranchID, object UserId)
+
+        public int InitiateStockCounting(object BranchID, object UserId)
         {
             try
             {
@@ -989,10 +990,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
                     cmd.Parameters.AddWithValue("@USERID", UserId);
                     int rowsaffected = cmd.ExecuteNonQuery();
-                    if (rowsaffected > 0)
-                        throw new Exception("Counting sheets are archived");
-                    else
-                        throw new Exception("No counting sheets to be archived");
+                    return rowsaffected;
                 }
 
             }

@@ -104,6 +104,7 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.dxValidationProvider2 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.gridColumn32 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTIN.Properties)).BeginInit();
@@ -326,7 +327,8 @@
             this.gridColumn2,
             this.gridColumn31,
             this.gridColumn30,
-            this.gridColumn18});
+            this.gridColumn18,
+            this.gridColumn32});
             this.gvStockEntry.DetailHeight = 404;
             this.gvStockEntry.GridControl = this.gcStockEntry;
             this.gvStockEntry.IndicatorWidth = 40;
@@ -894,6 +896,12 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
+            // gridColumn32
+            // 
+            this.gridColumn32.Caption = "ITEMCOSTPRICEID";
+            this.gridColumn32.FieldName = "ITEMCOSTPRICEID";
+            this.gridColumn32.Name = "gridColumn32";
+            // 
             // frmStockEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1001,5 +1009,6 @@
         private DevExpress.XtraEditors.SimpleButton btnDraftInvoice;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn32;
     }
 }
