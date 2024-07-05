@@ -28,7 +28,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "STATUS", "Status" }
             };
 
-            ButtonColumns = new List<string>() { "View" };
+            ButtonColumns = new List<string>() { "View", "Delete" };
             HiddenColumns = new List<string>() { "TAXINCLUSIVE", "TCS", "DISCOUNTPER", "DISCOUNT", "EXPENSES", "TRANSPORT" };
 
             cmbDealer.Properties.DataSource = new MasterRepository().GetDealer(true);
@@ -58,26 +58,27 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
 
             if (drFocusedRow["STATUS"].ToString() == "Draft")
             {
-                XtraMessageBox.Show("Draft bills cannot be viewed or printed. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
-
-            DataSet ds = new StockRepository().GetInvoice(drFocusedRow["STOCKENTRYID"]);
-            if (ds == null || ds.Tables.Count < 2 || ds.Tables[0].Rows.Count <= 0)
-            {
-                XtraMessageBox.Show("No data returned from database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                XtraMessageBox.Show("Draft bills cannot be viewed, printed or deleted. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
             switch (buttonText)
             {
                 case "View":
+                    DataSet ds = new StockRepository().GetInvoice(drFocusedRow["STOCKENTRYID"]);
+                    if (ds == null || ds.Tables.Count < 2 || ds.Tables[0].Rows.Count <= 0)
+                    {
+                        XtraMessageBox.Show("No data returned from database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        return;
+                    }
                     if (ds != null && ds.Tables.Count > 1)
                     {
                         rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);
                         rpt.ShowPrintMarginsWarning = false;
                         rpt.ShowRibbonPreview();
                     }
+                    break;
+                case "Delete":
                     break;
             }
         }
