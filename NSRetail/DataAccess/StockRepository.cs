@@ -709,6 +709,49 @@ namespace DataAccess
                 
             }
         }
+        public void RevertStockEntry(object StockEntryID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_REVERTSTOCKENTRY]";
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    int RowsAffected = cmd.ExecuteNonQuery();
+                    if (RowsAffected <= 0)
+                        throw new Exception("Nothing is reverted");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while reverting invoice", ex);
+            }
+        }
+        public int CloneStockEntry(object StockEntryID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_CLONESTOCKENTRY]";
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object obj = cmd.ExecuteScalar();
+                    if (int.TryParse(Convert.ToString(obj), out int stockentryid) && stockentryid > 0)
+                        return stockentryid;
+                    else return 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while cloning invoice", ex);
+            }
+        }
         public void DiscardStockDispatch(object StockDispatchID,object UserID)
         {
             try

@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.Utils.Text.Internal;
 using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using NSRetail.Reports;
@@ -28,7 +29,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "STATUS", "Status" }
             };
 
-            ButtonColumns = new List<string>() { "View", "Delete" };
+            ButtonColumns = new List<string>() { "View", "Revert", "Clone" };
             HiddenColumns = new List<string>() { "TAXINCLUSIVE", "TCS", "DISCOUNTPER", "DISCOUNT", "EXPENSES", "TRANSPORT" };
 
             cmbDealer.Properties.DataSource = new MasterRepository().GetDealer(true);
@@ -58,7 +59,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
 
             if (drFocusedRow["STATUS"].ToString() == "Draft")
             {
-                XtraMessageBox.Show("Draft bills cannot be viewed, printed or deleted. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                XtraMessageBox.Show("Draft bills cannot be viewed, printed or reverted. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
@@ -78,7 +79,29 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                         rpt.ShowRibbonPreview();
                     }
                     break;
-                case "Delete":
+                case "Revert":
+                    if (drFocusedRow["STATUS"].ToString() != "Submitted")
+                    {
+                        XtraMessageBox.Show("Draft or reverted invoice cannot be reverted");
+                    }
+                    else
+                    {
+                        new StockRepository().RevertStockEntry(drFocusedRow["STOCKENTRYID"], Utility.UserID);
+                        XtraMessageBox.Show("Invoice successfully reverted");
+                        drFocusedRow["STATUS"] = "Reverted";
+                    }
+                    break;
+                case "Clone":
+                    if (drFocusedRow["STATUS"].ToString() != "Reverted")
+                    {
+                        XtraMessageBox.Show("Draft or submitted invoice cannot be cloned");
+                    }
+                    else
+                    {
+                        int newid = new StockRepository().CloneStockEntry(drFocusedRow["STOCKENTRYID"], Utility.UserID);
+                        if (newid > 0)
+                            XtraMessageBox.Show("Invoice successfully cloned, please open stockentry screen");
+                    }
                     break;
             }
         }
