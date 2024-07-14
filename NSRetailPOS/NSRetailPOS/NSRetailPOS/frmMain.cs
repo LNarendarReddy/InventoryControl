@@ -129,7 +129,7 @@ namespace NSRetailPOS
                 Application.Exit();
                 return;
             }
-            Thread.Sleep(30 * 60 * 1000);
+            Thread.Sleep(10 * 60 * 1000);
             await DoWorkAsync();
         }
 
