@@ -3,6 +3,7 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
+using NSRetailPOS.Helpers;
 using NSRetailPOS.Operations;
 using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
@@ -150,63 +151,70 @@ namespace NSRetailPOS
 
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)
         {
-            if (sluItemCode.EditValue == null)
+            try
             {
-                return;
-            }
-            int rowHandle = sluItemCodeView.LocateByValue("ITEMCODEID", sluItemCode.EditValue);
-            txtItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODE");
-            isOpenItem = Convert.ToBoolean(sluItemCodeView.GetRowCellValue(rowHandle, "ISOPENITEM"));
-            if (!isOpenItem)
-                txtWeightInKgs.EditValue = 0.00;
-            DataTable dtPrices = itemRepository.GetMRPList(sluItemCode.EditValue);
-            drSelectedPrice = null;
-            if (dtPrices.Rows.Count > 1)
-            {
-                frmMRPSelection mRPSelection = new frmMRPSelection(dtPrices, txtItemCode.EditValue, sluItemCode.Text)
-                { StartPosition = FormStartPosition.CenterScreen };
-                mRPSelection.ShowDialog();
-                if (!mRPSelection._IsSave)
+                if (sluItemCode.EditValue == null)
                 {
+                    return;
+                }
+                int rowHandle = sluItemCodeView.LocateByValue("ITEMCODEID", sluItemCode.EditValue);
+                txtItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODE");
+                isOpenItem = Convert.ToBoolean(sluItemCodeView.GetRowCellValue(rowHandle, "ISOPENITEM"));
+                if (!isOpenItem)
+                    txtWeightInKgs.EditValue = 0.00;
+                DataTable dtPrices = itemRepository.GetMRPList(sluItemCode.EditValue);
+                drSelectedPrice = null;
+                if (dtPrices.Rows.Count > 1)
+                {
+                    frmMRPSelection mRPSelection = new frmMRPSelection(dtPrices, txtItemCode.EditValue, sluItemCode.Text)
+                    { StartPosition = FormStartPosition.CenterScreen };
+                    mRPSelection.ShowDialog();
+                    if (!mRPSelection._IsSave)
+                    {
+                        ClearItemData();
+                        return;
+                    }
+
+                    drSelectedPrice = (mRPSelection.drSelected as DataRowView)?.Row;
+                }
+                else if (dtPrices.Rows.Count == 1)
+                {
+                    drSelectedPrice = dtPrices.Rows[0];
+                }
+                else if (dtPrices.Rows.Count == 0)
+                {
+                    XtraMessageBox.Show("Item code or stock not found for the scan. please contact administrator");
                     ClearItemData();
                     return;
                 }
 
-                drSelectedPrice = (mRPSelection.drSelected as DataRowView)?.Row;
+                DataTable dtOffers = itemRepository.GetOfferList(drSelectedPrice["ITEMPRICEID"]);
+
+                lblOffer.Text = Convert.ToString(dtOffers.Rows[0]["OFFERTYPE"]);
+                lblDeal.Text = Convert.ToString(dtOffers.Rows[0]["DEALTYPE"]);
+
+                HighlightOffer();
+
+                //txtItemName.EditValue = (sluItemCode.GetSelectedDataRow() as DataRowView)?.Row["ITEMNAME"];
+                txtMRP.EditValue = drSelectedPrice["MRP"];
+                txtSalePrice.EditValue = drSelectedPrice["SALEPRICE"];
+                txtQuantity.EditValue = 1;
+                gcBilling.Refresh();
+
+                if (chkSingleQuantity.Checked)
+                {
+                    txtQuantity_KeyDown(txtQuantity, new KeyEventArgs(Keys.Enter));
+                }
+                else
+                {
+                    if (!isItemScanned)
+                        txtQuantity.Focus();
+                    txtQuantity.SelectAll();
+                }
             }
-            else if (dtPrices.Rows.Count == 1)
+            catch (Exception ex)
             {
-                drSelectedPrice = dtPrices.Rows[0];
-            }
-            else if (dtPrices.Rows.Count == 0)
-            {
-                XtraMessageBox.Show("Item code or stock not found for the scan. please contact administrator");
-                ClearItemData();
-                return;
-            }
-
-            DataTable dtOffers = itemRepository.GetOfferList(drSelectedPrice["ITEMPRICEID"]);
-
-            lblOffer.Text = Convert.ToString(dtOffers.Rows[0]["OFFERTYPE"]);
-            lblDeal.Text = Convert.ToString(dtOffers.Rows[0]["DEALTYPE"]);
-
-            HighlightOffer();
-
-            //txtItemName.EditValue = (sluItemCode.GetSelectedDataRow() as DataRowView)?.Row["ITEMNAME"];
-            txtMRP.EditValue = drSelectedPrice["MRP"];
-            txtSalePrice.EditValue = drSelectedPrice["SALEPRICE"];
-            txtQuantity.EditValue = 1;
-            gcBilling.Refresh();
-
-            if (chkSingleQuantity.Checked)
-            {
-                txtQuantity_KeyDown(txtQuantity, new KeyEventArgs(Keys.Enter));
-            }
-            else
-            {
-                if (!isItemScanned)
-                    txtQuantity.Focus();
-                txtQuantity.SelectAll();
+                XtraMessageBox.Show(ex.Message);
             }
         }
 
@@ -278,12 +286,13 @@ namespace NSRetailPOS
                     this.BringToFront();
                 }
 
-                //string error = Utility.WriteToPort($"Bill {oldBillObj.BillNumber} completed");
-                //if (!string.IsNullOrEmpty(error))
-                //{
-                //    lblProgressText.Text = error;
-                //}
-
+                if(dv.ToTable().Select("MOPID=1").Count() > 0)
+                {
+                    DefaultPrinter printer = new DefaultPrinter();
+                    printer.OpenPrinter("");
+                    printer.Print($"{(char)27}{(char)112}{(char)0}{(char)25}{(char)250}");
+                    printer.Close();
+                }
             }
             catch (Exception ex)
             {

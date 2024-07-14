@@ -173,6 +173,7 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DefaultPrinter.cs" />
     <Compile Include="IBarcodeReceiver.cs" />
     <Compile Include="LoggerUtility.cs" />
     <Compile Include="Operations\frmOpetations.cs">
