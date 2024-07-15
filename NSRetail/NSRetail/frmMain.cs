@@ -419,8 +419,8 @@ namespace NSRetail
             List<ReportHolder> reportList = new List<ReportHolder>();
 
             ReportHolder branchReports = new ReportHolder() { ReportName = "Branch Reports" };
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
-            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent (AVG)", SearchCriteriaControl = new ucBranchIndentByAVG() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent (2M)", SearchCriteriaControl = new ucBranchIndent() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent (6M)", SearchCriteriaControl = new ucBranchIndentByAVG() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch List", SearchCriteriaControl = new ucDispatchList() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch DC List", SearchCriteriaControl = new ucDispatchDCList() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refund sheets", SearchCriteriaControl = new ucBranchRefunds() });
