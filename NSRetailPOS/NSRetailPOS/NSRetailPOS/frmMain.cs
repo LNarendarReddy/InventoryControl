@@ -286,12 +286,19 @@ namespace NSRetailPOS
                     this.BringToFront();
                 }
 
-                if(dv.ToTable().Select("MOPID=1").Count() > 0)
+                try
                 {
-                    DefaultPrinter printer = new DefaultPrinter();
-                    printer.OpenPrinter("");
-                    printer.Print($"{(char)27}{(char)112}{(char)0}{(char)25}{(char)250}");
-                    printer.Close();
+                    if (dv.ToTable().Select("MOPID=1").Count() > 0)
+                    {
+                        DefaultPrinter printer = new DefaultPrinter();
+                        printer.OpenPrinter("");
+                        printer.Print($"{(char)27}{(char)112}{(char)0}{(char)25}{(char)250}");
+                        printer.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Printer does not support cash drawer");
                 }
             }
             catch (Exception ex)
