@@ -80,6 +80,10 @@ namespace NSRetail.Stock
                     ObjStockEntry.SumGSTValue = CGST + SGST + IGST + CESS;
                     ObjStockEntry.SumFinalPrice = gvStockEntry.Columns["FINALPRICE"].SummaryItem.SummaryValue;
 
+                    ObjStockEntry.SUPPLIERID = cmbSupplier.EditValue;
+                    ObjStockEntry.SUPPLIERINVOICENO = txtInvoiceNumber.EditValue;
+                    ObjStockEntry.InvoiceDate = dtpInvoice.EditValue;
+
                     frmStockEntryPreview obj = new frmStockEntryPreview(ObjStockEntry);
                     obj.ShowInTaskbar = false;
                     obj.IconOptions.ShowIcon = false;
@@ -259,9 +263,6 @@ namespace NSRetail.Stock
                 ObjStockEntry.CATEGORYID = Utility.CategoryID;
                 ObjStockEntry.UserID = Utility.UserID;
                 ObjStockRep.SaveInvoice(ObjStockEntry);
-                cmbSupplier.Enabled = false;
-                dtpInvoice.Enabled = false;
-                txtInvoiceNumber.Enabled = false;
                 chkTaxInclusive.Enabled = false;
             }
             catch (Exception ex)
@@ -432,10 +433,7 @@ namespace NSRetail.Stock
             chkTaxInclusive.EditValue = ObjStockEntry.TAXINCLUSIVE;
             dtpInvoice.EditValue = ObjStockEntry.InvoiceDate;
             gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
-            cmbSupplier.Enabled = false;
-            txtInvoiceNumber.Enabled = false;
             chkTaxInclusive.Enabled = false;
-            dtpInvoice.Enabled = false;
         }
 
         private void frmStockEntry_KeyDown(object sender, KeyEventArgs e)
