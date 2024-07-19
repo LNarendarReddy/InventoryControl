@@ -81,7 +81,7 @@ namespace NSRetail
                         return;
                     }
                     new SupplierRepository().UpdateSupplierReturns(SupplierReturnsID, Utility.UserID, 
-                        gcSupplierReturns.DataSource as DataTable, txtReturnValue.EditValue);
+                        (gcSupplierReturns.DataSource as DataTable).Copy(), txtReturnValue.EditValue);
                     cNGenerated = true;
                 }
                 Close();

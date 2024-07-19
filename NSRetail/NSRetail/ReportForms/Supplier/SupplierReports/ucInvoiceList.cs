@@ -6,6 +6,7 @@ using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Supplier.SupplierReports
@@ -29,7 +30,11 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "STATUS", "Status" }
             };
 
-            ButtonColumns = new List<string>() { "View", "Revert", "Clone" };
+            if (Utility.UserName == "admin")
+                ButtonColumns = new List<string>() { "View", "Revert", "Clone" };
+            else
+                ButtonColumns = new List<string>() { "View" };
+
             HiddenColumns = new List<string>() { "TAXINCLUSIVE", "TCS", "DISCOUNTPER", "DISCOUNT", "EXPENSES", "TRANSPORT" };
 
             cmbDealer.Properties.DataSource = new MasterRepository().GetDealer(true);

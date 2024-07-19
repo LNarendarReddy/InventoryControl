@@ -134,7 +134,6 @@ namespace DataAccess
         {
             try
             {
-
                 if (dt.Rows.Count == 0)
                     return;
                 dt.Columns.Remove("SNO");
@@ -146,7 +145,6 @@ namespace DataAccess
                 dt.Columns.Remove("SALEPRICE");
                 dt.Columns.Remove("QUANTITY");
                 dt.Columns.Remove("COSTPRICE");
-                dt.Columns.Remove("WEIGHTINKGS");
                 dt.Columns.Remove("TOTALCOSTPRICE");
                 dt.Columns.Remove("SELECTED");
                 dt.Columns.Remove("BRANCHNAME");
@@ -158,6 +156,8 @@ namespace DataAccess
                 dt.Columns.Remove("BRCREATEDDATE");
                 dt.Columns.Remove("REASONID");
                 dt.Columns.Remove("BREFUNDNUMBER");
+                dt.Columns.Remove("HSNCODE");
+                dt.Columns.Remove("GSTCODE");
 
                 using (SqlCommand cmd = new SqlCommand())
                 {
@@ -182,10 +182,6 @@ namespace DataAccess
                 else
                     throw new Exception("Error while updating supplier returns detail");
             }
-            finally
-            {
-                
-            }
         }
 
         public void InitiateCreditNote(object SupplierReturnsID, object UserID, DataTable dt)
@@ -204,7 +200,6 @@ namespace DataAccess
                 dt.Columns.Remove("SALEPRICE");
                 dt.Columns.Remove("QUANTITY");
                 dt.Columns.Remove("COSTPRICE");
-                dt.Columns.Remove("WEIGHTINKGS");
                 dt.Columns.Remove("TOTALCOSTPRICE");
                 dt.Columns.Remove("SELECTED");
                 dt.Columns.Remove("RETURNSTATUS");
@@ -217,6 +212,8 @@ namespace DataAccess
                 dt.Columns.Remove("BRCREATEDDATE");
                 dt.Columns.Remove("REASONID");
                 dt.Columns.Remove("BREFUNDNUMBER");
+                dt.Columns.Remove("HSNCODE");
+                dt.Columns.Remove("GSTCODE");
 
                 using (SqlCommand cmd = new SqlCommand())
                 {
@@ -239,10 +236,6 @@ namespace DataAccess
                     throw ex;
                 else
                     throw new Exception("Error while updating supplier returns detail");
-            }
-            finally
-            {
-                
             }
         }
 
@@ -455,10 +448,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error while retrieving supplier returns items");
-            }
-            finally
-            {
-                
             }
             return dt;
         }
