@@ -43,7 +43,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
 
             DataSet dsData = (DataSet)GetReportData("USP_RPT_BULK_PROCESSING_INDENT", parameters);
             dsData.Relations.Add("Bulk Processing - item wise", dsData.Tables[0].Columns["ITEMID"], dsData.Tables[1].Columns["PARENTITEMID"]);
-            dsData.Relations.Add("Bulk Processing - item branch wise", dsData.Tables[1].Columns["ITEMID"], dsData.Tables[2].Columns["PARENTITEMID"]);
+            dsData.Relations.Add("Bulk Processing - item branch wise", dsData.Tables[1].Columns["ITEMID"], dsData.Tables[2].Columns["ITEMID"]);
             return dsData;
         }
     }
