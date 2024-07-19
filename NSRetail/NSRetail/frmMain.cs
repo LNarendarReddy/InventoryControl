@@ -460,9 +460,14 @@ namespace NSRetail
             transactionreports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucBranchTransactions("B") });
             transactionreports.SubCategory.Add(new ReportHolder() { ReportName = "Day sale by Payment Method", SearchCriteriaControl = new ucSaleByMOP() });
             transactionreports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Adjustment Report", SearchCriteriaControl = new ucStockAdjustment() });
-            transactionreports.SubCategory.Add(new ReportHolder() { ReportName = "Bulk Processing", SearchCriteriaControl = new ucBulkProcessing() });
-            transactionreports.SubCategory.Add(new ReportHolder() { ReportName = "Processing slippages", SearchCriteriaControl = new ucStockSlippage() });
             stockReportList.Add(transactionreports);
+
+            ReportHolder processingReports = new ReportHolder() { ReportName = "Bulk Processing Reports" };
+            processingReports.SubCategory.Add(new ReportHolder() { ReportName = "Bulk Processing", SearchCriteriaControl = new ucBulkProcessing() });
+            processingReports.SubCategory.Add(new ReportHolder() { ReportName = "Processing slippages", SearchCriteriaControl = new ucStockSlippage() });
+            processingReports.SubCategory.Add(new ReportHolder() { ReportName = "Processing Indent", SearchCriteriaControl = new ucProcessingIndent() });
+            stockReportList.Add(processingReports);
+
 
             ReportHolder StockCountingReports = new ReportHolder() { ReportName = "Stock Counting Reports" };
             StockCountingReports.SubCategory.Add(new ReportHolder() { ReportName = "Sheets", SearchCriteriaControl = new ucStockCountingList() });

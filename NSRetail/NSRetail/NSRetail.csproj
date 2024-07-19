@@ -221,6 +221,12 @@
     <Compile Include="ReportForms\Branch\BranchReports\ucVoidItems.Designer.cs">
       <DependentUpon>ucVoidItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Stock\ProcessingReports\ucProcessingIndent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Stock\ProcessingReports\ucProcessingIndent.Designer.cs">
+      <DependentUpon>ucProcessingIndent.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -239,10 +245,10 @@
     <Compile Include="ReportForms\Stock\StockReports\ucLeftOverPrices.Designer.cs">
       <DependentUpon>ucLeftOverPrices.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\Stock\TransactionReports\ucBulkProcessing.cs">
+    <Compile Include="ReportForms\Stock\ProcessingReports\ucBulkProcessing.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportForms\Stock\TransactionReports\ucBulkProcessing.Designer.cs">
+    <Compile Include="ReportForms\Stock\ProcessingReports\ucBulkProcessing.Designer.cs">
       <DependentUpon>ucBulkProcessing.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.cs">
@@ -515,10 +521,10 @@
     <Compile Include="ReportForms\Stock\StockReports\ucStockAsOnDate.Designer.cs">
       <DependentUpon>ucStockAsOnDate.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\Stock\TransactionReports\ucStockSlippage.cs">
+    <Compile Include="ReportForms\Stock\ProcessingReports\ucStockSlippage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportForms\Stock\TransactionReports\ucStockSlippage.Designer.cs">
+    <Compile Include="ReportForms\Stock\ProcessingReports\ucStockSlippage.Designer.cs">
       <DependentUpon>ucStockSlippage.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Wareshouse\TaxBreakUp\ucTaxBreakUpDayWise.cs">
@@ -1061,6 +1067,9 @@
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\ucVoidItems.resx">
       <DependentUpon>ucVoidItems.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Stock\ProcessingReports\ucProcessingIndent.resx">
+      <DependentUpon>ucProcessingIndent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.resx">
       <DependentUpon>ucConsolidatedCounting.cs</DependentUpon>
     </EmbeddedResource>
@@ -1070,7 +1079,7 @@
     <EmbeddedResource Include="ReportForms\Stock\StockReports\ucLeftOverPrices.resx">
       <DependentUpon>ucLeftOverPrices.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\Stock\TransactionReports\ucBulkProcessing.resx">
+    <EmbeddedResource Include="ReportForms\Stock\ProcessingReports\ucBulkProcessing.resx">
       <DependentUpon>ucBulkProcessing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.resx">
@@ -1200,7 +1209,7 @@
     <EmbeddedResource Include="ReportForms\Stock\StockReports\ucStockAsOnDate.resx">
       <DependentUpon>ucStockAsOnDate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\Stock\TransactionReports\ucStockSlippage.resx">
+    <EmbeddedResource Include="ReportForms\Stock\ProcessingReports\ucStockSlippage.resx">
       <DependentUpon>ucStockSlippage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\StockAndSale\ucStockAndSales.resx">
