@@ -76,13 +76,13 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     frmDealerIndentobj.IconOptions.ShowIcon = false;
                     frmDealerIndentobj.StartPosition = FormStartPosition.CenterScreen;
                     frmDealerIndentobj.ShowDialog();
-                    if (dealerIndent.IsSave && dealerIndent.IsApproved)
+                    if (dealerIndent.IsSave && (dealerIndent.IsApproved == 1 || dealerIndent.IsApproved == 2))
                     {
-                        drFocusedRow["STATUS"] = "APPROVED";
+                        drFocusedRow["STATUS"] = dealerIndent.IsApproved == 1 ? "APPROVED" : "REJECTED";
                         drFocusedRow["APPROVEDBY"] = Utility.FullName;
                         drFocusedRow["APPROVEDDATE"] = DateTime.Now;
                     }
-                    else if (dealerIndent.IsSave && !dealerIndent.IsApproved)
+                    else if (dealerIndent.IsSave)
                         drFocusedRow["STATUS"] = "DRAFT";
                     break;
                 case "Print&Export":

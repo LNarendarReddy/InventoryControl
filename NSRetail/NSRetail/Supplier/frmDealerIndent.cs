@@ -27,11 +27,12 @@ namespace NSRetail
             txtDealerName.EditValue = DealerName;
             txtMobileNo.EditValue = _dealerIndent.MobileNo;
             lcgIndentDetails.Text = $"Indent details - {_dealerIndent.IndentNo}";
+            btnReject.Enabled = Utility.Role.ToLower() == "admin";
         }
 
         private void frmDealerIndent_Load(object sender, EventArgs e)
         {
-            btnSave.Enabled = !dealerIndent.Status.Equals("APPROVED");
+            btnSave.Enabled = btnReject.Enabled = dealerIndent.Status.Equals("DRAFT");
             btnSave.Text = Utility.Role == "Admin" ? "Approve" : "Save";
             txtIndentDays.EditValue = dealerIndent.IndentDays;
             txtSafetyDays.EditValue = dealerIndent.SafetyDays;
@@ -46,12 +47,7 @@ namespace NSRetail
         {
             try
             {
-                dealerIndent.IsApproved = Utility.Role == "Admin";
-                dealerIndent.MobileNo = txtMobileNo.EditValue;
-                new ReportRepository().SaveSupplierIndent(dealerIndent);
-                dealerIndent.IsSave = true;
-                XtraMessageBox.Show("Saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                SaveSupplierIndent(Utility.Role.ToLower() == "admin" ? 1 :0);
             }
             catch (Exception ex)
             {
@@ -134,6 +130,28 @@ namespace NSRetail
                 ClearItemData(true);
             }
             catch (Exception ex) { ErrorMgmt.ShowError(ex); }
+        }
+
+        private void btnReject_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveSupplierIndent(2);
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+            }
+        }
+
+        private void SaveSupplierIndent(int status)
+        {
+            dealerIndent.IsApproved = status;
+            dealerIndent.MobileNo = txtMobileNo.EditValue;
+            new ReportRepository().SaveSupplierIndent(dealerIndent);
+            dealerIndent.IsSave = true;
+            XtraMessageBox.Show("Saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
         }
     }
 }
