@@ -86,12 +86,6 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                         drFocusedRow["STATUS"] = "DRAFT";
                     break;
                 case "Print&Export":
-                    if (Convert.ToString(drFocusedRow["STATUS"]) != "APPROVED")
-                    {
-                        XtraMessageBox.Show("Cannot print or view Draft indents");
-                        return; 
-                    }
-
                     DataTable dtSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
                     dtSupplierIndent.DefaultView.RowFilter = "DESIREDINDENT > 0";
                     rptDealerIndent rpt = new rptDealerIndent(dtSupplierIndent);
@@ -102,6 +96,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     rpt.Parameters["IndentNo"].Value = drFocusedRow["SUPPLIERINDENTNO"];
                     rpt.Parameters["MobileNo"].Value = drFocusedRow["MOBILENO"];
                     rpt.Parameters["UserName"].Value = drFocusedRow["CREATEDBY"];
+                    rpt.Parameters["IndentStatus"].Value = drFocusedRow["STATUS"];
                     rpt.ShowRibbonPreview();
                     break;
             }

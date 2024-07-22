@@ -69,6 +69,7 @@
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.IndentNo = new DevExpress.XtraReports.Parameters.Parameter();
             this.MobileNo = new DevExpress.XtraReports.Parameters.Parameter();
+            this.IndentStatus = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -84,7 +85,7 @@
             // 
             // xrTable4
             // 
-            this.xrTable4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTable4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(0F, 13F);
             this.xrTable4.Name = "xrTable4";
             this.xrTable4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
@@ -125,7 +126,7 @@
             // xrTableCell11
             // 
             this.xrTableCell11.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?SupplierName + \' - Purchase order\'")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?SupplierName + \' - Purchase order (\' + ?IndentStatus+\')\'")});
             this.xrTableCell11.Multiline = true;
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.Text = "xrTableCell11";
@@ -447,6 +448,13 @@
             this.MobileNo.ValueInfo = "0";
             this.MobileNo.Visible = false;
             // 
+            // IndentStatus
+            // 
+            this.IndentStatus.AllowNull = true;
+            this.IndentStatus.Description = "IndentStatus";
+            this.IndentStatus.Name = "IndentStatus";
+            this.IndentStatus.Visible = false;
+            // 
             // rptDealerIndent
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -464,7 +472,8 @@
             this.ApprovedUser,
             this.CreatedDate,
             this.IndentNo,
-            this.MobileNo});
+            this.MobileNo,
+            this.IndentStatus});
             this.Version = "21.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
@@ -516,5 +525,6 @@
         private DevExpress.XtraReports.Parameters.Parameter IndentNo;
         private DevExpress.XtraReports.Parameters.Parameter MobileNo;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell21;
+        private DevExpress.XtraReports.Parameters.Parameter IndentStatus;
     }
 }

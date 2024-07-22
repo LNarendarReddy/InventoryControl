@@ -4,6 +4,7 @@ using DevExpress.XtraReports.UI;
 using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 
@@ -54,11 +55,11 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
-            if (drFocusedRow["STATUS"].ToString() == "Draft")
-            {
-                XtraMessageBox.Show("Draft bills cannot be viewed or printed. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
+            //if (drFocusedRow["STATUS"].ToString() == "Draft")
+            //{
+            //    XtraMessageBox.Show("Draft bills cannot be viewed or printed. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            //    return;
+            //}
 
             DataSet ds = new StockRepository().GetDispatch(drFocusedRow["STOCKDISPATCHID"]);
             if (ds == null || ds.Tables.Count < 2 || ds.Tables[0].Rows.Count <= 0)
@@ -71,6 +72,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             {
                 case "View":
                     rptDispatch rpt = new rptDispatch(ds.Tables[0], ds.Tables[1]);
+                    rpt.Parameters["stReportHeader"].Value = $"BRANCH DISPATCH REPORT({Convert.ToString(drFocusedRow["STATUS"])})";
                     rpt.ShowPrintMarginsWarning = false;
                     rpt.ShowRibbonPreview();
                     break;
