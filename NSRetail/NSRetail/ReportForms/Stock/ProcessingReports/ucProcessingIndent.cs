@@ -14,12 +14,11 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             InitializeComponent();
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
-                { "WAREHOUSEQUANTITY", "Warehouse Quantity" }
+                { "WHSTOCK", "Warehouse Stock" }
                 , { "BRANCHSTOCK", "Branch Stock" }
-                , { "SALEQUANTITY", "90 Days sale qty" }
-                , { "AVGSALEQUANTITY", "Average Sale Quantity" }                
-                , { "INDENTQUANTITY", "Indent Quantity" }
-                , { "SUBCATEGORYNAME", "Sub Category" }
+                , { "PROCESSINGREQUIREDWGHTINKGS", "Processing needed wght. (In KG(s))" }
+                , { "BRANCHREQUIREDWGHTINKGS", "Branch needed wght. (In KG(s))" }
+                , { "BRANCHREQUIREDINDENT", "Branch Indent Quantity" }
             };
 
             MandatoryFields = new List<BaseEdit>() { cmbCategory, txtIndentDays };
@@ -42,9 +41,16 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             };
 
             DataSet dsData = (DataSet)GetReportData("USP_RPT_BULK_PROCESSING_INDENT", parameters);
-            dsData.Relations.Add("Bulk Processing - item wise", dsData.Tables[0].Columns["ITEMID"], dsData.Tables[1].Columns["PARENTITEMID"]);
-            dsData.Relations.Add("Bulk Processing - item branch wise", dsData.Tables[1].Columns["ITEMID"], dsData.Tables[2].Columns["ITEMID"]);
+            dsData.Relations.Add("Item wise", dsData.Tables[0].Columns["ITEMID"], dsData.Tables[1].Columns["PARENTITEMID"]);
+            dsData.Relations.Add("Item by Branch wise", dsData.Tables[1].Columns["ITEMID"], dsData.Tables[2].Columns["ITEMID"]);
             return dsData;
+        }
+
+        public override void DataBoundCompleted()
+        {
+            base.DataBoundCompleted();
+
+
         }
     }
 }

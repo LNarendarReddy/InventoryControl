@@ -1,0 +1,9 @@
+﻿v2.5.1
+
+-- Total items in dispatch report
+-- Processing Indent report
+-- Hide deleted prices in stock adjustment (deleted prices will still show if there is stock) - (DB Change only)
+
+v2.5.0
+
+-- Older build details

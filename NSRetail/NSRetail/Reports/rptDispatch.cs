@@ -9,11 +9,13 @@ namespace NSRetail.Reports
 {
     public partial class rptDispatch : DevExpress.XtraReports.UI.XtraReport
     {
+
         public rptDispatch(DataTable dtDispatch,DataTable dtItems)
         {
             InitializeComponent();
             this.DataSource = dtDispatch;
             drItems.DataSource = dtItems;
+            this.totalCount.Value = dtItems.Rows.Count;
         }
 
     }

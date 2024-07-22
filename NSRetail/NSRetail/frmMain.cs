@@ -22,6 +22,7 @@ using NSRetail.ReportForms.Wareshouse.Profitability;
 using NSRetail.ReportForms.Wareshouse.StockAndSale;
 using NSRetail.ReportForms.Wareshouse.TaxBreakUp;
 using NSRetail.Stock;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -662,6 +663,11 @@ namespace NSRetail
                 return;
 
             new frmClearLeftSales() {  MdiParent = this }.Show();
+        }
+
+        private void bbiBuildInfo_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new frmBuildInfo().ShowDialog();
         }
     }
 }

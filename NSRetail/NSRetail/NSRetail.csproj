@@ -1036,6 +1036,12 @@
     <Compile Include="Utilities\DotMatrixPrintHelper.cs" />
     <Compile Include="Utilities\DotMatrixPrinter.cs" />
     <Compile Include="Utilities\DropBoxRepository.cs" />
+    <Compile Include="Utilities\frmBuildInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\frmBuildInfo.Designer.cs">
+      <DependentUpon>frmBuildInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\GoogleDriveRepository.cs" />
     <Compile Include="Utilities\DeleteMessageUtility.cs" />
     <Compile Include="Utilities\frmSyncStatus.cs">
@@ -1478,6 +1484,9 @@
     <EmbeddedResource Include="Supplier\frmViewReturnItems.resx">
       <DependentUpon>frmViewReturnItems.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\frmBuildInfo.resx">
+      <DependentUpon>frmBuildInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Utilities\frmSyncStatus.resx">
       <DependentUpon>frmSyncStatus.cs</DependentUpon>
     </EmbeddedResource>
@@ -1552,6 +1561,9 @@
     <None Include="Resources\add_16x162.png" />
     <None Include="Resources\delete_16x163.png" />
     <None Include="Resources\addchartpane_16x16.png" />
+    <Content Include="BuildInfo.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

@@ -89,6 +89,7 @@
             this.puFinYear = new DevExpress.XtraBars.PopupMenu(this.components);
             this.bbiAddProcessing = new DevExpress.XtraBars.BarButtonItem();
             this.bbiSliceCounting = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiClearLeftSales = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -113,7 +114,7 @@
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.bbiClearLeftSales = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiBuildInfo = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
@@ -122,7 +123,7 @@
             // 
             // ribbonControl1
             // 
-            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35);
+            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(40);
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -184,11 +185,12 @@
             this.bbiChangeFY,
             this.bbiAddProcessing,
             this.bbiSliceCounting,
-            this.bbiClearLeftSales});
+            this.bbiClearLeftSales,
+            this.bbiBuildInfo});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 73;
+            this.ribbonControl1.MaxItemId = 74;
             this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.OptionsMenuMinWidth = 385;
+            this.ribbonControl1.OptionsMenuMinWidth = 440;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage3,
             this.ribbonPage4,
@@ -737,6 +739,14 @@
             this.bbiSliceCounting.Name = "bbiSliceCounting";
             this.bbiSliceCounting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSliceCounting_ItemClick);
             // 
+            // bbiClearLeftSales
+            // 
+            resources.ApplyResources(this.bbiClearLeftSales, "bbiClearLeftSales");
+            this.bbiClearLeftSales.Id = 72;
+            this.bbiClearLeftSales.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiClearLeftSales.ImageOptions.SvgImage")));
+            this.bbiClearLeftSales.Name = "bbiClearLeftSales";
+            this.bbiClearLeftSales.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClearLeftSales_ItemClick);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -760,6 +770,7 @@
             this.ribbonPageGroup5.Alignment = DevExpress.XtraBars.Ribbon.RibbonPageGroupAlignment.Far;
             this.ribbonPageGroup5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPageGroup5.ImageOptions.Image")));
             this.ribbonPageGroup5.ItemLinks.Add(this.bbiRefreshData);
+            this.ribbonPageGroup5.ItemLinks.Add(this.bbiBuildInfo);
             this.ribbonPageGroup5.ItemLinks.Add(this.btnChangePassword);
             this.ribbonPageGroup5.ItemLinks.Add(this.skinDropDownButtonItem1);
             this.ribbonPageGroup5.ItemLinks.Add(this.btnLogout);
@@ -930,13 +941,13 @@
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
             // 
-            // bbiClearLeftSales
+            // bbiBuildInfo
             // 
-            resources.ApplyResources(this.bbiClearLeftSales, "bbiClearLeftSales");
-            this.bbiClearLeftSales.Id = 72;
-            this.bbiClearLeftSales.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.bbiClearLeftSales.Name = "bbiClearLeftSales";
-            this.bbiClearLeftSales.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClearLeftSales_ItemClick);
+            resources.ApplyResources(this.bbiBuildInfo, "bbiBuildInfo");
+            this.bbiBuildInfo.Id = 73;
+            this.bbiBuildInfo.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.bbiBuildInfo.Name = "bbiBuildInfo";
+            this.bbiBuildInfo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBuildInfo_ItemClick);
             // 
             // frmMain
             // 
@@ -1047,6 +1058,7 @@
         private DevExpress.XtraBars.BarButtonItem bbiAddProcessing;
         private DevExpress.XtraBars.BarButtonItem bbiSliceCounting;
         private DevExpress.XtraBars.BarButtonItem bbiClearLeftSales;
+        private DevExpress.XtraBars.BarButtonItem bbiBuildInfo;
     }
 }
 

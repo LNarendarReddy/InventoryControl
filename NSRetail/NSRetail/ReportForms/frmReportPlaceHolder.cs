@@ -97,6 +97,7 @@ namespace NSRetail.ReportForms
             lblRecordCount.Text = $"Record count : {recCount}";
             SearchCriteriaBase searchCriteria = selectedReportHolder.SearchCriteriaControl;
             FormatGridViewColumns(gvResults);
+            ExpandAllMasterRows(gvResults);
 
             foreach (string buttonColumn in searchCriteria.ButtonColumns)
             {
@@ -266,12 +267,20 @@ namespace NSRetail.ReportForms
 
         private void gvResults_MasterRowExpanded(object sender, CustomMasterRowEventArgs e)
         {
-            var childDetail = gvResults.GetDetailView(e.RowHandle, e.RelationIndex);
-            FormatGridViewColumns(childDetail as GridView);
+            var childDetail = (sender as GridView).GetDetailView(e.RowHandle, e.RelationIndex) as GridView;
+            FormatGridViewColumns(childDetail);
+
+            // extra band
+            if(childDetail != gvResults)
+            {
+                childDetail.MasterRowExpanded += gvResults_MasterRowExpanded;
+            }
         }
 
         private void FormatGridViewColumns(GridView gridView)
         {
+            if(gridView == null) return;
+
             SearchCriteriaBase searchCriteria = selectedReportHolder.SearchCriteriaControl;
 
             foreach (GridColumn column in gridView.Columns)
@@ -322,6 +331,21 @@ namespace NSRetail.ReportForms
             {
                 e.Visible = (e.Row as ReportHolder).HasAccess;
                 e.Handled = true;
+            }
+        }
+
+        public void ExpandAllMasterRows(GridView View)
+        {
+            View.BeginUpdate();
+            try
+            {
+                int dataRowCount = View.DataRowCount;
+                for (int rHandle = 0; rHandle < dataRowCount; rHandle++)
+                    View.SetMasterRowExpanded(rHandle, true);
+            }
+            finally
+            {
+                View.EndUpdate();
             }
         }
     }
