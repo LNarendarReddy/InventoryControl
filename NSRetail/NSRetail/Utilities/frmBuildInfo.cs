@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.XtraCharts;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +27,12 @@ namespace NSRetail.Utilities
         private void btnOK_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmBuildInfo_Shown(object sender, EventArgs e)
+        {
+            txtBuildInfo.SelectionStart = 0;
+            txtBuildInfo.SelectionLength = 0;
         }
     }
 }

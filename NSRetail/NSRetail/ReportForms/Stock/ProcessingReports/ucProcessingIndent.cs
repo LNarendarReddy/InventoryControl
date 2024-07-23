@@ -49,8 +49,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
         public override void DataBoundCompleted()
         {
             base.DataBoundCompleted();
-
-
+            ExpandAllMasterRows();
         }
     }
 }

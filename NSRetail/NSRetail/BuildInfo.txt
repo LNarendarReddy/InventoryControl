@@ -1,4 +1,11 @@
-﻿v2.5.1
+﻿v2.5.2
+	
+ -- Fixed supplier indent report expanding automatically bug
+ -- Ignore negative warehouse stock in processing indent (DB change only)
+ -- Dispatch List Report -> view\print draft reports with watermark
+
+
+v2.5.1
 
 -- Total items in dispatch report
 -- Processing Indent report

@@ -26,15 +26,17 @@ namespace NSRetail
         IEnumerable<string> allowedRoles;
         List<int> excludedBranches = new List<int> { 91, 92, 97, 100, 103 };
 
+        private frmReportPlaceHolder frmReportPlaceHolder => ParentForm as frmReportPlaceHolder;
+
         public List<IncludeSettings> IncludeSettingsCollection { get; protected set; }
 
         public bool IsDataSet { get; protected set; }
 
         public LookUpEdit Periodicity => cmbPeriodicity;
 
-        protected GridView ResultGridView => (ParentForm as frmReportPlaceHolder)?.ResultsGridView;
+        protected GridView ResultGridView => frmReportPlaceHolder?.ResultsGridView;
 
-        protected GridControl ResultGrid => (ParentForm as frmReportPlaceHolder)?.ResultsGrid;
+        protected GridControl ResultGrid => frmReportPlaceHolder?.ResultsGrid;
 
         public bool ShowIncludeSetting => IncludeSettingsCollection != null && IncludeSettingsCollection.Any();
 
@@ -370,6 +372,11 @@ namespace NSRetail
             if (cmb == null) return;
 
             cmb.Enter -= cmbBranch_Enter;
+        }
+
+        public void ExpandAllMasterRows()
+        {
+            frmReportPlaceHolder?.ExpandAllMasterRows();
         }
 
         private void cmbBranch_Enter(object sender, EventArgs e)

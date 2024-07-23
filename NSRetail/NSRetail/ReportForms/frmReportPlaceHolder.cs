@@ -97,7 +97,7 @@ namespace NSRetail.ReportForms
             lblRecordCount.Text = $"Record count : {recCount}";
             SearchCriteriaBase searchCriteria = selectedReportHolder.SearchCriteriaControl;
             FormatGridViewColumns(gvResults);
-            ExpandAllMasterRows(gvResults);
+            //ExpandAllMasterRows(gvResults);
 
             foreach (string buttonColumn in searchCriteria.ButtonColumns)
             {
@@ -332,6 +332,12 @@ namespace NSRetail.ReportForms
                 e.Visible = (e.Row as ReportHolder).HasAccess;
                 e.Handled = true;
             }
+        }
+
+
+        public void ExpandAllMasterRows()
+        {
+            ExpandAllMasterRows(gvResults);
         }
 
         public void ExpandAllMasterRows(GridView View)
