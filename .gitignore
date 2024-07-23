@@ -11,3 +11,5 @@ Setup/NSRetailPOS/Output/*
 
 !Setup/NSRetail/Input/.gitignore
 !Setup/NSRetail/Output/.gitignore
+licenses.licx.bak
+.licx
