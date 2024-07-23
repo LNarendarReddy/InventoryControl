@@ -106,6 +106,7 @@
             this.xrTableRow11 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -121,7 +122,9 @@
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 32.02777F;
+            this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrPageInfo1});
+            this.BottomMargin.HeightF = 50F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
@@ -824,6 +827,15 @@
             this.xrTableCell41.Text = "Amount";
             this.xrTableCell41.Weight = 0.50300765221681065D;
             // 
+            // xrPageInfo1
+            // 
+            this.xrPageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 9.027761F);
+            this.xrPageInfo1.Name = "xrPageInfo1";
+            this.xrPageInfo1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrPageInfo1.SizeF = new System.Drawing.SizeF(1060F, 23F);
+            this.xrPageInfo1.StylePriority.UseTextAlignment = false;
+            this.xrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
             // rptDispatchDC
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -838,7 +850,7 @@
             this.mongoDBDataSource1});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Landscape = true;
-            this.Margins = new System.Drawing.Printing.Margins(20, 20, 10, 32);
+            this.Margins = new System.Drawing.Printing.Margins(20, 20, 10, 50);
             this.PageHeight = 850;
             this.PageWidth = 1100;
             this.Version = "21.2";
@@ -932,5 +944,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell43;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow12;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell37;
+        private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
     }
 }

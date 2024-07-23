@@ -32,6 +32,9 @@
             DevExpress.XtraReports.UI.XRSummary xrSummary2 = new DevExpress.XtraReports.UI.XRSummary();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rptDispatch));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.xrTable5 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow8 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.lblReportHeader = new DevExpress.XtraReports.UI.XRTableCell();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.drItems = new DevExpress.XtraReports.UI.DetailReportBand();
@@ -80,15 +83,13 @@
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.stReportHeader = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrTable5 = new DevExpress.XtraReports.UI.XRTable();
-            this.xrTableRow8 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.lblReportHeader = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -98,9 +99,44 @@
             this.TopMargin.HeightF = 50F;
             this.TopMargin.Name = "TopMargin";
             // 
+            // xrTable5
+            // 
+            this.xrTable5.Font = new System.Drawing.Font("Arial", 12F);
+            this.xrTable5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 15F);
+            this.xrTable5.Name = "xrTable5";
+            this.xrTable5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrTable5.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow8});
+            this.xrTable5.SizeF = new System.Drawing.SizeF(810F, 35F);
+            this.xrTable5.StylePriority.UseFont = false;
+            this.xrTable5.StylePriority.UseTextAlignment = false;
+            this.xrTable5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // xrTableRow8
+            // 
+            this.xrTableRow8.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.lblReportHeader});
+            this.xrTableRow8.Name = "xrTableRow8";
+            this.xrTableRow8.Weight = 0.88312200832765786D;
+            // 
+            // lblReportHeader
+            // 
+            this.lblReportHeader.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?stReportHeader")});
+            this.lblReportHeader.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.lblReportHeader.Multiline = true;
+            this.lblReportHeader.Name = "lblReportHeader";
+            this.lblReportHeader.StylePriority.UseFont = false;
+            this.lblReportHeader.StylePriority.UseTextAlignment = false;
+            this.lblReportHeader.Text = "BRANCH DISPATCH REPORT";
+            this.lblReportHeader.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lblReportHeader.Weight = 3D;
+            // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 35F;
+            this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrPageInfo1});
+            this.BottomMargin.HeightF = 50F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
@@ -552,38 +588,14 @@
             this.stReportHeader.Name = "stReportHeader";
             this.stReportHeader.Visible = false;
             // 
-            // xrTable5
+            // xrPageInfo1
             // 
-            this.xrTable5.Font = new System.Drawing.Font("Arial", 12F);
-            this.xrTable5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 15F);
-            this.xrTable5.Name = "xrTable5";
-            this.xrTable5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrTable5.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow8});
-            this.xrTable5.SizeF = new System.Drawing.SizeF(810F, 35F);
-            this.xrTable5.StylePriority.UseFont = false;
-            this.xrTable5.StylePriority.UseTextAlignment = false;
-            this.xrTable5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
-            // xrTableRow8
-            // 
-            this.xrTableRow8.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.lblReportHeader});
-            this.xrTableRow8.Name = "xrTableRow8";
-            this.xrTableRow8.Weight = 0.88312200832765786D;
-            // 
-            // lblReportHeader
-            // 
-            this.lblReportHeader.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?stReportHeader")});
-            this.lblReportHeader.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.lblReportHeader.Multiline = true;
-            this.lblReportHeader.Name = "lblReportHeader";
-            this.lblReportHeader.StylePriority.UseFont = false;
-            this.lblReportHeader.StylePriority.UseTextAlignment = false;
-            this.lblReportHeader.Text = "BRANCH DISPATCH REPORT";
-            this.lblReportHeader.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lblReportHeader.Weight = 3D;
+            this.xrPageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 17F);
+            this.xrPageInfo1.Name = "xrPageInfo1";
+            this.xrPageInfo1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrPageInfo1.SizeF = new System.Drawing.SizeF(810F, 23F);
+            this.xrPageInfo1.StylePriority.UseTextAlignment = false;
+            this.xrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // rptDispatch
             // 
@@ -595,7 +607,7 @@
             this.PageHeader,
             this.ReportFooter});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(20, 20, 50, 35);
+            this.Margins = new System.Drawing.Printing.Margins(20, 20, 50, 50);
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.totalCount,
             this.stReportHeader});
@@ -605,12 +617,12 @@
             this.Watermark.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("rptDispatch.Watermark.ImageSource"));
             this.Watermark.ImageTransparency = 200;
             this.Watermark.ImageViewMode = DevExpress.XtraPrinting.Drawing.ImageViewMode.Zoom;
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -669,5 +681,6 @@
         private DevExpress.XtraReports.UI.XRTable xrTable5;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow8;
         private DevExpress.XtraReports.UI.XRTableCell lblReportHeader;
+        private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
     }
 }
