@@ -14,7 +14,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             {
                 { "COSTPRICEWOT", "Cost Price WOT" },
                 { "COSTPRICEWT", "Cost Price WT" },
-                { "COSTPRICETAX", "cost Price Tax" },
+                { "COSTPRICETAX", "Cost Price Tax" },
                 { "SALEPRICEWOT", "Sale Price WOT" },
                 { "SALEPRICEWT", "Sale Price WT" },
                 { "SALEPRICETAX", "Sale Price TAX" },
@@ -31,7 +31,8 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "CURQUANTITY", "Current Qty" },
                 { "CREATETIME", "Created Time" },
                 { "STOCKADJUSTMENTTYPE", "Stock Adj. type" },
-                { "DESCRIPTION", "Stock Adj. description" }
+                { "DESCRIPTION", "Stock Adj. description" },
+                { "GSTCODE", "GST Code" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -69,6 +70,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , { "ItemCodeID", sluItemCode.EditValue }
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
+                , { "CategoryID", cmbCategory.EditValue }
             };
             return GetReportData("USP_RPT_STOCKADJUSTMENT", parameters);
         }

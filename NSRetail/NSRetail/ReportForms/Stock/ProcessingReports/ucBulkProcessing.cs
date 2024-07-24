@@ -22,6 +22,11 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
 
             MandatoryFields = new List<BaseEdit> { dtpFromDate, dtpToDate };
             AllowedRoles = new List<string> { "IT User" };
+
+            IncludeSettingsCollection = new List<IncludeSettings>()
+            {
+                new IncludeSettings("Parent Items", "IncludeParentItems", new List<string>{  }, false)
+            };
         }
 
         public override object GetData()

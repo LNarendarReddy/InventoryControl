@@ -1,4 +1,12 @@
-﻿v2.5.2
+﻿v2.5.3
+
+ -- Ignore "WH 2nd Sale" items in processing indent (DB change only)
+ -- Stock Adjustments Report => Category search citeria
+ -- Stock Adjustments Report => Sale price and GST Code in results (DB change only)
+ -- Bulk processing Report => New include option to show parent deductions
+ -- Stock dispatch report => Print support for A4 sheet
+
+v2.5.2
 	
  -- Fixed supplier indent report expanding automatically bug
  -- Ignore negative warehouse stock in processing indent (DB change only)
