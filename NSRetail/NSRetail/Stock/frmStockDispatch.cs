@@ -26,6 +26,7 @@ namespace NSRetail.Stock
         bool IsParentExist = false;
         bool IsOpenItem = false;
         bool IsEdit = false;
+        bool isEventCall = false;
         public frmStockDispatch()
         {
             InitializeComponent();
@@ -232,7 +233,9 @@ namespace NSRetail.Stock
                 ObjStockDispatchDetail.WEIGHTINKGS = txtWeightInKgs.EditValue;
                 ObjStockDispatchDetail.UserID = Utility.UserID;
                 ObjStockRep.SaveDispatchDetail(ObjStockDispatchDetail);
+                isEventCall = true;
                 RefreshGrid();
+                isEventCall = false;
                 ObjStockDispatchDetail.STOCKDISPATCHDETAILID = 0;
                 cmbItemCode.EditValue = null;
                 txtItemName.EditValue = null;
@@ -428,6 +431,28 @@ namespace NSRetail.Stock
         public void ReceiveBarCode(string data)
         {
             cmbItemCode.Text = data;
+        }
+
+        private void gvDispatch_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.FieldName != "DISPATCHQUANTITY" || isEventCall) return;
+            ObjStockDispatchDetail = new StockDispatchDetail();
+            ObjStockDispatchDetail.STOCKDISPATCHDETAILID = gvDispatch.GetFocusedRowCellValue("STOCKDISPATCHDETAILID");
+            ObjStockDispatchDetail.STOCKDISPATCHID = ObjStockDispatch.STOCKDISPATCHID;
+            ObjStockDispatchDetail.ITEMPRICEID = gvDispatch.GetFocusedRowCellValue("ITEMPRICEID");
+            ObjStockDispatchDetail.TRAYNUMBER = gvDispatch.GetFocusedRowCellValue("TRAYNUMBER");
+            ObjStockDispatchDetail.DISPATCHQUANTITY = gvDispatch.GetFocusedRowCellValue("DISPATCHQUANTITY");
+            ObjStockDispatchDetail.WEIGHTINKGS = gvDispatch.GetFocusedRowCellValue("WEIGHTINKGS");
+            ObjStockDispatchDetail.UserID = Utility.UserID;
+            ObjStockRep.SaveDispatchDetail(ObjStockDispatchDetail);
+            ObjStockDispatchDetail.STOCKDISPATCHDETAILID = 0;
+            cmbItemCode.EditValue = null;
+            txtItemName.EditValue = null;
+            txtMRP.EditValue = null;
+            txtSalePrice.EditValue = null;
+            txtQuantity.EditValue = null;
+            txtWeightInKgs.EditValue = null;
+            cmbItemCode.Focus();
         }
     }
 }

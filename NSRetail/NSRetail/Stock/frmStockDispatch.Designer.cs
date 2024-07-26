@@ -351,6 +351,7 @@ namespace NSRetail.Stock
             this.gvDispatch.Name = "gvDispatch";
             this.gvDispatch.OptionsView.ShowGroupPanel = false;
             this.gvDispatch.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvDispatch_InitNewRow);
+            this.gvDispatch.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvDispatch_CellValueChanged);
             this.gvDispatch.DoubleClick += new System.EventHandler(this.gvDispatch_DoubleClick);
             // 
             // gridColumn6
@@ -402,7 +403,7 @@ namespace NSRetail.Stock
             // 
             // gridColumn11
             // 
-            this.gridColumn11.Caption = "EAN CODE";
+            this.gridColumn11.Caption = "EAN Code";
             this.gridColumn11.FieldName = "ITEMCODE";
             this.gridColumn11.MinWidth = 23;
             this.gridColumn11.Name = "gridColumn11";
@@ -413,7 +414,7 @@ namespace NSRetail.Stock
             // 
             // gridColumn12
             // 
-            this.gridColumn12.Caption = "ITEMNAME";
+            this.gridColumn12.Caption = "Item Name";
             this.gridColumn12.FieldName = "ITEMNAME";
             this.gridColumn12.MinWidth = 23;
             this.gridColumn12.Name = "gridColumn12";
@@ -435,7 +436,7 @@ namespace NSRetail.Stock
             // 
             // gridColumn14
             // 
-            this.gridColumn14.Caption = "SALEPRICE";
+            this.gridColumn14.Caption = "Sale Price";
             this.gridColumn14.FieldName = "SALEPRICE";
             this.gridColumn14.MinWidth = 23;
             this.gridColumn14.Name = "gridColumn14";
@@ -446,18 +447,17 @@ namespace NSRetail.Stock
             // 
             // gridColumn15
             // 
-            this.gridColumn15.Caption = "DISPATCHQUANTITY";
+            this.gridColumn15.Caption = "Quantity";
             this.gridColumn15.FieldName = "DISPATCHQUANTITY";
             this.gridColumn15.MinWidth = 23;
             this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.OptionsColumn.AllowEdit = false;
             this.gridColumn15.Visible = true;
             this.gridColumn15.VisibleIndex = 5;
             this.gridColumn15.Width = 122;
             // 
             // gridColumn16
             // 
-            this.gridColumn16.Caption = "WEIGHTINKGS";
+            this.gridColumn16.Caption = "Weight in Kgs";
             this.gridColumn16.FieldName = "WEIGHTINKGS";
             this.gridColumn16.MinWidth = 23;
             this.gridColumn16.Name = "gridColumn16";
@@ -468,7 +468,7 @@ namespace NSRetail.Stock
             // 
             // gridColumn17
             // 
-            this.gridColumn17.Caption = "TRAYNUMBER";
+            this.gridColumn17.Caption = "Tray #";
             this.gridColumn17.FieldName = "TRAYNUMBER";
             this.gridColumn17.MinWidth = 23;
             this.gridColumn17.Name = "gridColumn17";
