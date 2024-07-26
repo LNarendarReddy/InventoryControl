@@ -1016,6 +1016,7 @@
     <EmbeddedResource Include="Master\frmClearHDDSNo.resx">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmSplitQuantity.resx">
       <DependentUpon>frmSplitQuantity.cs</DependentUpon>
     </EmbeddedResource>

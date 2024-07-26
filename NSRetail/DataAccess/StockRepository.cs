@@ -206,7 +206,7 @@ namespace DataAccess
             }
             return dt;
         }
-        public DataSet GetDispatch(object StockDispatchID)
+        public DataSet GetDispatch(object StockDispatchID, bool isDraft = false)
         {
             DataSet ds = new DataSet();
             try
@@ -217,6 +217,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_DISPATCH]";
                     cmd.Parameters.AddWithValue("@STOCKDISPATCHID", StockDispatchID);
+                    cmd.Parameters.AddWithValue("@ISDRAFT", isDraft);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);
