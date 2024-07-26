@@ -430,6 +430,7 @@ namespace NSRetail
 
             ReportHolder POSReports = new ReportHolder() { ReportName = "POS Reports" };
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Day closure List", SearchCriteriaControl = new ucDayClosureList() });
+            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "C Refunds By Bill Number", SearchCriteriaControl = new ucCRefundSheets() });
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Bills by Amount", SearchCriteriaControl = new ucBillSearchByAmount() });
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Void items", SearchCriteriaControl = new ucVoidItems() });
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Details", SearchCriteriaControl = new ucCustomerDetails() });

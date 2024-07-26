@@ -170,6 +170,12 @@
     <Compile Include="ReportForms\Branch\BranchReports\ucVoidItems.Designer.cs">
       <DependentUpon>ucVoidItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Branch\POSReports\ucCRefundSheets.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Branch\POSReports\ucCRefundSheets.Designer.cs">
+      <DependentUpon>ucCRefundSheets.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Stock\ProcessingReports\ucProcessingIndent.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -499,6 +505,12 @@
     </Compile>
     <Compile Include="Reports\rptBRefund.Designer.cs">
       <DependentUpon>rptBRefund.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptCRefund.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptCRefund.Designer.cs">
+      <DependentUpon>rptCRefund.cs</DependentUpon>
     </Compile>
     <Compile Include="Stock\frmAddProcessing.cs">
       <SubType>Form</SubType>
@@ -1023,6 +1035,9 @@
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\ucVoidItems.resx">
       <DependentUpon>ucVoidItems.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Branch\POSReports\ucCRefundSheets.resx">
+      <DependentUpon>ucCRefundSheets.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\ProcessingReports\ucProcessingIndent.resx">
       <DependentUpon>ucProcessingIndent.cs</DependentUpon>
     </EmbeddedResource>
@@ -1185,6 +1200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptBRefund.resx">
       <DependentUpon>rptBRefund.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptCRefund.resx">
+      <DependentUpon>rptCRefund.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmAddProcessing.resx">
       <DependentUpon>frmAddProcessing.cs</DependentUpon>

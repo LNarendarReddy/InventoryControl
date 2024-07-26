@@ -41,9 +41,9 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcBilledAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcDiscount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcGSTCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcGSTValue = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -151,6 +151,7 @@
             this.gcItems.TabIndex = 4;
             this.gcItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvItems});
+            this.gcItems.Click += new System.EventHandler(this.gcItems_Click);
             // 
             // gvItems
             // 
@@ -163,9 +164,9 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4,
-            this.gridColumn5,
+            this.gcQuantity,
             this.gridColumn6,
-            this.gridColumn7,
+            this.gcBilledAmount,
             this.gcDiscount,
             this.gcGSTCode,
             this.gcGSTValue,
@@ -227,16 +228,16 @@
             this.gridColumn4.VisibleIndex = 3;
             this.gridColumn4.Width = 87;
             // 
-            // gridColumn5
+            // gcQuantity
             // 
-            this.gridColumn5.Caption = "Quantity";
-            this.gridColumn5.FieldName = "QUANTITY";
-            this.gridColumn5.MinWidth = 23;
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.OptionsColumn.AllowEdit = false;
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
-            this.gridColumn5.Width = 87;
+            this.gcQuantity.Caption = "Billed Quantity";
+            this.gcQuantity.FieldName = "QUANTITY";
+            this.gcQuantity.MinWidth = 23;
+            this.gcQuantity.Name = "gcQuantity";
+            this.gcQuantity.OptionsColumn.AllowEdit = false;
+            this.gcQuantity.Visible = true;
+            this.gcQuantity.VisibleIndex = 4;
+            this.gcQuantity.Width = 87;
             // 
             // gridColumn6
             // 
@@ -249,18 +250,18 @@
             this.gridColumn6.VisibleIndex = 5;
             this.gridColumn6.Width = 87;
             // 
-            // gridColumn7
+            // gcBilledAmount
             // 
-            this.gridColumn7.Caption = "Billed Amount";
-            this.gridColumn7.FieldName = "BILLEDAMOUNT";
-            this.gridColumn7.MinWidth = 23;
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.OptionsColumn.AllowEdit = false;
-            this.gridColumn7.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            this.gcBilledAmount.Caption = "Billed Amount";
+            this.gcBilledAmount.FieldName = "BILLEDAMOUNT";
+            this.gcBilledAmount.MinWidth = 23;
+            this.gcBilledAmount.Name = "gcBilledAmount";
+            this.gcBilledAmount.OptionsColumn.AllowEdit = false;
+            this.gcBilledAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BILLEDAMOUNT", "{0:0.##}")});
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
-            this.gridColumn7.Width = 87;
+            this.gcBilledAmount.Visible = true;
+            this.gcBilledAmount.VisibleIndex = 6;
+            this.gcBilledAmount.Width = 87;
             // 
             // gcDiscount
             // 
@@ -299,13 +300,13 @@
             // 
             // gcCreatedBy
             // 
-            this.gcCreatedBy.Caption = "Created By";
+            this.gcCreatedBy.Caption = "Billed User";
             this.gcCreatedBy.FieldName = "CREATEDBY";
             this.gcCreatedBy.Name = "gcCreatedBy";
             // 
             // gcCreatedDate
             // 
-            this.gcCreatedDate.Caption = "Created Date";
+            this.gcCreatedDate.Caption = "Billed Date";
             this.gcCreatedDate.ColumnEdit = this.repositoryItemDateEdit1;
             this.gcCreatedDate.FieldName = "CREATEDDATE";
             this.gcCreatedDate.Name = "gcCreatedDate";
@@ -405,9 +406,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gcQuantity;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gcBilledAmount;
         private DevExpress.XtraGrid.Columns.GridColumn gcDiscount;
         private DevExpress.XtraGrid.Columns.GridColumn gcGSTCode;
         private DevExpress.XtraGrid.Columns.GridColumn gcGSTValue;

@@ -23,6 +23,10 @@ namespace NSRetail.ReportForms.Branch.POSReports
             gcCreatedDate.Visible = true;
             gcDeletedBy.Visible = IsVoidIems;
             gcDeletedDate.Visible = IsVoidIems;
+            gcBilledAmount.Caption = IsCustomerRefund ? "Refund Amount" : gcBilledAmount.Caption;
+            gcQuantity.Caption = IsCustomerRefund ? "Refund Quantity" : gcQuantity.Caption;
+            gcCreatedBy.Caption = IsCustomerRefund ? "Refund User" : gcCreatedBy.Caption;
+            gcCreatedDate.Caption = IsCustomerRefund ? "Refund Date" : gcCreatedDate.Caption;
         }
 
         private void gvItems_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
@@ -44,6 +48,11 @@ namespace NSRetail.ReportForms.Branch.POSReports
         }
 
         private void frmViewDCItems_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gcItems_Click(object sender, EventArgs e)
         {
 
         }

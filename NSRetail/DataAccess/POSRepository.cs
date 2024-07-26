@@ -258,11 +258,31 @@ namespace DataAccess
             {
                 throw new Exception("Error While Retrieving bill Detail", ex);
             }
-            finally
-            {
-                
-            }
             return dsbillDetail;
+        }
+        public DataSet GetRefundItemsByID(object CounterID, object BillID)
+        {
+            DataSet dtbillDetail = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_CREFUNDITEMS]";
+                    cmd.Parameters.AddWithValue("@BRANCHCOUNTERID", CounterID);
+                    cmd.Parameters.AddWithValue("@BILLID", BillID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtbillDetail);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving customer refunds", ex);
+            }
+            return dtbillDetail;
         }
         public void AcceptBRefund(object CounterID, object BRefundID,object UserID ,DataTable dtBRefundDetail)
         {
