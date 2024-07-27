@@ -19,8 +19,14 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "STOCKCOUNTINGID", "Stock Counting ID" }
-                , { "UPDATEDBY", "Updated User" }
-                , { "UPDATEDDATE", "Updated Date" }
+                , { "CREATEDBY", "Created By" }
+                , { "CREATEDDATE", "Created Date" }
+                , { "SubmittedBy", "Submitted By" }
+                , { "SubmittedDate", "Submitted Date" }
+                , { "ACCEPTEDBY", "Accepted By" }
+                , { "STOCKACCEPTEDDATE", "Accepted Date" }
+                , { "ArchivedBy", "Archived By" }
+                , { "ArchivedDate", "Archived Date" }
                 , { "STATUS", "Status" }
             };
 
