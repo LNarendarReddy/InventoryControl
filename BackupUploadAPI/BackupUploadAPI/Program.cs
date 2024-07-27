@@ -23,21 +23,32 @@ namespace BackupUploadAPI
                 new DirectoryInfo(ConfigurationManager.AppSettings[$"{backuptype}Source"]).GetFiles().OrderByDescending
                 (o => o.LastWriteTime).FirstOrDefault().FullName;
             Console.WriteLine($"Input File : {InputFile}");
-            string folderID = GoogleDriveRepository.GetfolderID(ConfigurationManager.AppSettings[$"{backuptype}Target"]);
-            Console.WriteLine($"Found google drive folder Name : {ConfigurationManager.AppSettings[$"{backuptype}Target"]} FolderID : {folderID}");
-            GoogleDriveRepository.UploadFile(folderID, InputFile);
-            Console.WriteLine($"Uploading success");
-            Tuple<string, string> fileinfo = GoogleDriveRepository.GetfileIDtoDelete(folderID);
-            if (fileinfo != null)
+
+            try
             {
-                Console.WriteLine($"File to delete filename : {fileinfo.Item2} fileid : {fileinfo.Item1}");
-                GoogleDriveRepository.DeleteFile(fileinfo.Item1);
-                Console.WriteLine($"Deletion success");
+                DropboxRepository.Upload(InputFile, ConfigurationManager.AppSettings[$"{backuptype}Target"]).Wait();
             }
-            else
-            {
-                Console.WriteLine($"Fileid to delete not exists");
+            catch (Exception ex)
+            { 
+                Console.WriteLine($"Error while uploading : {ex.Message}");
+                Console.WriteLine($"Stack trace : {ex.StackTrace}");
             }
+            
+            //string folderID = GoogleDriveRepository.GetfolderID(ConfigurationManager.AppSettings[$"{backuptype}Target"]);
+            //Console.WriteLine($"Found google drive folder Name : {ConfigurationManager.AppSettings[$"{backuptype}Target"]} FolderID : {folderID}");
+            //GoogleDriveRepository.UploadFile(folderID, InputFile);
+            //Console.WriteLine($"Uploading success");
+            //Tuple<string, string> fileinfo = GoogleDriveRepository.GetfileIDtoDelete(folderID);
+            //if (fileinfo != null)
+            //{
+            //    Console.WriteLine($"File to delete filename : {fileinfo.Item2} fileid : {fileinfo.Item1}");
+            //    GoogleDriveRepository.DeleteFile(fileinfo.Item1);
+            //    Console.WriteLine($"Deletion success");
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"Fileid to delete not exists");
+            //}
         }
     }
 }
