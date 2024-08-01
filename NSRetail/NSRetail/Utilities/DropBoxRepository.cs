@@ -15,7 +15,7 @@ namespace NSRetail.Utilities
         public async static Task<string> DownloadFile()
         {
             string localFilePath = Path.Combine(Application.UserAppDataPath, "NSRetail.exe")
-                , serverFilePath = @"/NSRetail_Build_Drops/ProdWANBuilds/NSRetail.exe"
+                , serverFilePath = @"/NSRetail/NSRetail_Build_Drops/ProdWANBuilds/NSRetail.exe"
                 , key = Utility.Decrypt("rtvOKSkGkto9Vigl6T78F4J2Ho8QXn7nHabO9HG6qOxqIpuvr+QO1FllQLXioqEik4ToI0FA33hV67QJlRndoQJhSymVXUJuesAQF6AMIWQ=")
                 , appId = Utility.Decrypt("VKWCC6efz906q5aWM/e6Wg==")
                 , appValue = Utility.Decrypt("taKC2YKSWI77QcU6abVbCA==");

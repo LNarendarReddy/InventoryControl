@@ -17,7 +17,7 @@ namespace NSRetailPOS
         public static async Task<bool> DownloadFile(string folderName, bool isOverlayShown, string prefix = "Prod")
         {
             string localFilePath = Path.Combine(Application.UserAppDataPath, folderName)
-                , serverFilePath = $@"/NSRetail_Build_Drops/ProdWANBuilds/{prefix}{folderName}"
+                , serverFilePath = $@"/NSRetail/NSRetail_Build_Drops/ProdWANBuilds/{prefix}{folderName}"
                 , key = Utility.Decrypt("rtvOKSkGkto9Vigl6T78F4J2Ho8QXn7nHabO9HG6qOxqIpuvr+QO1FllQLXioqEik4ToI0FA33hV67QJlRndoQJhSymVXUJuesAQF6AMIWQ=")
                 , appId = Utility.Decrypt("VKWCC6efz906q5aWM/e6Wg==")
                 , appValue = Utility.Decrypt("taKC2YKSWI77QcU6abVbCA==");
