@@ -16,9 +16,9 @@ namespace NSRetail.Utilities
         {
             string localFilePath = Path.Combine(Application.UserAppDataPath, "NSRetail.exe")
                 , serverFilePath = @"/NSRetail_Build_Drops/ProdWANBuilds/NSRetail.exe"
-                , key = Utility.Decrypt("g7vdZwG6W2TwXJsYtkhXydFSRSzOjKTVsO2R6OnZKTZg5v/+xn4ZS9bo/MInw+N0+kIHaQEGRu6NZjv/d5kVquPM08GN53jFzIMO0IIdIo8=")
-                , appId = Utility.Decrypt("07rDVNCYtXOr0IHorUlumQ==")
-                , appValue = Utility.Decrypt("znxDIisO7x90WqkS+w0nQw==");
+                , key = Utility.Decrypt("rtvOKSkGkto9Vigl6T78F4J2Ho8QXn7nHabO9HG6qOxqIpuvr+QO1FllQLXioqEik4ToI0FA33hV67QJlRndoQJhSymVXUJuesAQF6AMIWQ=")
+                , appId = Utility.Decrypt("VKWCC6efz906q5aWM/e6Wg==")
+                , appValue = Utility.Decrypt("taKC2YKSWI77QcU6abVbCA==");
 
             SplashScreenManager.Default.SetWaitFormDescription("Establishig connection");
             
