@@ -77,7 +77,6 @@ namespace NSRetailPOS.UI
 
             DataSet ds = new ReportRepository().GetReportDataset("USP_R_ITEMDATAFORITEMDETAILS", new Dictionary<string, object>() { { "ITEMCODEID", sluItemData.EditValue } });
             gcItemPriceList.DataSource = ds.Tables[0];
-            gcItemOfferList.DataSource = ds.Tables[1];
 
             txtItemCode.EditValue = sluItemDataView.GetRowCellValue(sluItemDataView.FocusedRowHandle, "ITEMCODE");
             txtItemCode.Focus();            
@@ -88,7 +87,6 @@ namespace NSRetailPOS.UI
             sluItemData.EditValue = null;
             txtItemCode.EditValue = null;
             gcItemPriceList.DataSource = null;
-            gcItemOfferList.DataSource = null;
         }
     }
 }

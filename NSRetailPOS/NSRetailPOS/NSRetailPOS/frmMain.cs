@@ -298,7 +298,7 @@ namespace NSRetailPOS
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Printer does not support cash drawer");
+                    throw new Exception("Printer does not support cash drawer : " + ex.Message);
                 }
             }
             catch (Exception ex)

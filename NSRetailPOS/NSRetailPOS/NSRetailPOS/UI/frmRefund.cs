@@ -7,6 +7,7 @@ using NSRetailPOS.Entity;
 using NSRetailPOS.Reports;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
@@ -59,6 +60,35 @@ namespace NSRetailPOS.UI
             if (!dxValidationProvider1.Validate() ||
                 XtraMessageBox.Show("Are you sure to continue?","Confirm!",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
+
+            string errorMsg = string.Empty;
+
+            if (string.IsNullOrEmpty(txtCustomerName.EditValue.ToString().Trim().Replace(" ", string.Empty)))
+            {
+                errorMsg += "* Customer name cannot be empty" + Environment.NewLine;
+            }
+
+            if (string.IsNullOrEmpty(txtCustomerPhone.EditValue.ToString().Trim().Replace(" ", string.Empty)))
+            {
+                errorMsg += "* Customer # cannot be empty" + Environment.NewLine;
+            }
+
+            if (txtCustomerPhone.EditValue.ToString().ToArray().Any(x => !char.IsDigit(x)))
+            {
+                errorMsg += "* Customer # cannot have characters or symbols" + Environment.NewLine;
+            }
+
+            if (txtCustomerPhone.EditValue.ToString().Length != 10)
+            {
+                errorMsg += "* Customer # should be 10 digits" + Environment.NewLine;
+            }
+
+            if(!string.IsNullOrEmpty(errorMsg))
+            {
+                errorMsg = "Customer details incorrect, fix the following errors to continue:" + Environment.NewLine + Environment.NewLine + errorMsg;
+                XtraMessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             try
             {

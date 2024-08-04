@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.gcItemOfferList = new DevExpress.XtraGrid.GridControl();
-            this.gvItemOfferList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcItemPriceList = new DevExpress.XtraGrid.GridControl();
             this.gvItemPriceList = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.sluItemData = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.sluItemDataView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ITEMCODEID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -46,17 +46,12 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemOfferList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemOfferList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemPriceList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemPriceList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemData.Properties)).BeginInit();
@@ -68,13 +63,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.gcItemOfferList);
             this.layoutControl1.Controls.Add(this.gcItemPriceList);
             this.layoutControl1.Controls.Add(this.sluItemData);
             this.layoutControl1.Controls.Add(this.txtItemCode);
@@ -86,33 +78,12 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // gcItemOfferList
-            // 
-            this.gcItemOfferList.Location = new System.Drawing.Point(24, 374);
-            this.gcItemOfferList.MainView = this.gvItemOfferList;
-            this.gcItemOfferList.Name = "gcItemOfferList";
-            this.gcItemOfferList.Size = new System.Drawing.Size(781, 204);
-            this.gcItemOfferList.TabIndex = 7;
-            this.gcItemOfferList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvItemOfferList});
-            // 
-            // gvItemOfferList
-            // 
-            this.gvItemOfferList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn6,
-            this.gridColumn7,
-            this.gridColumn8});
-            this.gvItemOfferList.GridControl = this.gcItemOfferList;
-            this.gvItemOfferList.Name = "gvItemOfferList";
-            this.gvItemOfferList.OptionsBehavior.ReadOnly = true;
-            this.gvItemOfferList.OptionsView.ShowGroupPanel = false;
-            // 
             // gcItemPriceList
             // 
             this.gcItemPriceList.Location = new System.Drawing.Point(24, 122);
             this.gcItemPriceList.MainView = this.gvItemPriceList;
             this.gcItemPriceList.Name = "gcItemPriceList";
-            this.gcItemPriceList.Size = new System.Drawing.Size(781, 203);
+            this.gcItemPriceList.Size = new System.Drawing.Size(781, 456);
             this.gcItemPriceList.TabIndex = 6;
             this.gcItemPriceList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvItemPriceList});
@@ -121,11 +92,31 @@
             // 
             this.gvItemPriceList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
-            this.gridColumn5});
+            this.gridColumn5,
+            this.gridColumn6,
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn9});
             this.gvItemPriceList.GridControl = this.gcItemPriceList;
             this.gvItemPriceList.Name = "gvItemPriceList";
             this.gvItemPriceList.OptionsBehavior.ReadOnly = true;
             this.gvItemPriceList.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "MRP";
+            this.gridColumn1.FieldName = "MRP";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Sale price";
+            this.gridColumn5.FieldName = "SALEPRICE";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 1;
             // 
             // sluItemData
             // 
@@ -157,32 +148,30 @@
             this.ITEMCODEID.Caption = "ITEMCODEID";
             this.ITEMCODEID.FieldName = "ITEMCODEID";
             this.ITEMCODEID.Name = "ITEMCODEID";
-            this.ITEMCODEID.Visible = true;
-            this.ITEMCODEID.VisibleIndex = 0;
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "ITEMCODE";
+            this.gridColumn2.Caption = "Item Code";
             this.gridColumn2.FieldName = "ITEMCODE";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.VisibleIndex = 0;
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "ITEMNAME";
+            this.gridColumn3.Caption = "Item Name";
             this.gridColumn3.FieldName = "ITEMNAME";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.VisibleIndex = 1;
             // 
             // gridColumn4
             // 
-            this.gridColumn4.Caption = "SKUCODE";
+            this.gridColumn4.Caption = "SKU Code";
             this.gridColumn4.FieldName = "SKUCODE";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.VisibleIndex = 2;
             // 
             // txtItemCode
             // 
@@ -201,8 +190,7 @@
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup1,
-            this.layoutControlGroup2,
-            this.layoutControlGroup3});
+            this.layoutControlGroup2});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(829, 602);
             this.Root.TextVisible = false;
@@ -243,7 +231,7 @@
             this.layoutControlItem3});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 77);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(809, 252);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(809, 505);
             this.layoutControlGroup2.Text = "Price list";
             // 
             // layoutControlItem3
@@ -251,51 +239,17 @@
             this.layoutControlItem3.Control = this.gcItemPriceList;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(785, 207);
+            this.layoutControlItem3.Size = new System.Drawing.Size(785, 460);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // layoutControlGroup3
-            // 
-            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem4});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 329);
-            this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(809, 253);
-            this.layoutControlGroup3.Text = "Offer list";
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.gcItemOfferList;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(785, 208);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "MRP";
-            this.gridColumn1.FieldName = "MRP";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "Sale price";
-            this.gridColumn5.FieldName = "SALEPRICE";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 1;
-            // 
             // gridColumn6
             // 
-            this.gridColumn6.Caption = "Offer type";
+            this.gridColumn6.Caption = "Offer Name";
             this.gridColumn6.FieldName = "OFFERTYPENAME";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 0;
+            this.gridColumn6.VisibleIndex = 2;
             // 
             // gridColumn7
             // 
@@ -303,7 +257,7 @@
             this.gridColumn7.FieldName = "OFFERCODE";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 1;
+            this.gridColumn7.VisibleIndex = 3;
             // 
             // gridColumn8
             // 
@@ -311,7 +265,15 @@
             this.gridColumn8.FieldName = "OFFERVALUE";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 2;
+            this.gridColumn8.VisibleIndex = 4;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "Final price";
+            this.gridColumn9.FieldName = "FINALPRICE";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 5;
             // 
             // frmPriceCheck
             // 
@@ -327,8 +289,6 @@
             this.Load += new System.EventHandler(this.frmPriceCheck_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemOfferList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemOfferList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemPriceList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemPriceList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemData.Properties)).EndInit();
@@ -340,8 +300,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -350,8 +308,6 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraGrid.GridControl gcItemOfferList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvItemOfferList;
         private DevExpress.XtraGrid.GridControl gcItemPriceList;
         private DevExpress.XtraGrid.Views.Grid.GridView gvItemPriceList;
         private DevExpress.XtraEditors.SearchLookUpEdit sluItemData;
@@ -362,16 +318,15 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraGrid.Columns.GridColumn ITEMCODEID;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
     }
 }
