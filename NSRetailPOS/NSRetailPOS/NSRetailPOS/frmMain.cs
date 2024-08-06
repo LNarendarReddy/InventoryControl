@@ -162,6 +162,11 @@ namespace NSRetailPOS
                 isOpenItem = Convert.ToBoolean(sluItemCodeView.GetRowCellValue(rowHandle, "ISOPENITEM"));
                 if (!isOpenItem)
                     txtWeightInKgs.EditValue = 0.00;
+                else if(!double.TryParse(txtWeightInKgs.EditValue?.ToString(), out double weightInKgs) || weightInKgs == 0)
+                {
+                    XtraMessageBox.Show("Loose\\Bulk items cannot be sold without weight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 DataTable dtPrices = itemRepository.GetMRPList(sluItemCode.EditValue);
                 drSelectedPrice = null;
                 if (dtPrices.Rows.Count > 1)
