@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using System.Linq;
+using Entity;
+using DevExpress.XtraSplashScreen;
+using NSRetail.Login;
+using NSRetail.ReportForms.Stock.StockCounting;
 
 namespace NSRetail.ReportForms.Wareshouse.Audit
 {
@@ -18,7 +22,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
 
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
-                { "STOCKCOUNTINGID", "Stock Counting ID" }
+                { "STOCKCOUNTINGID", "Counrting Sheet #" }
                 , { "CREATEDBY", "Created By" }
                 , { "CREATEDDATE", "Created Date" }
                 , { "SubmittedBy", "Submitted By" }
@@ -30,7 +34,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 , { "STATUS", "Status" }
             };
 
-            ButtonColumns = new List<string>() { "View" };
+            ButtonColumns = new List<string>() { "View", "Discard" };
 
             cmbBranch.Properties.DataSource = Utility.GetBranchList();
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -40,7 +44,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             AllowedRoles = new List<string> { "Stock counting user" };
         }
 
-        private void ShowItemsForm(frmViewItems obj)
+        private void ShowItemsForm(XtraForm obj)
         {
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
@@ -51,10 +55,28 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
         {
             if (cmbBranch.EditValue == null)
                 return;
-            frmViewItems obj =
-                new frmViewItems(countingRepository.GetConsolidatedItems(
-                    cmbBranch.EditValue), "consolidated", cmbBranch.EditValue);
+            frmViewSCItems obj =
+                new frmViewSCItems(countingRepository.GetConsolidatedItems(cmbBranch.EditValue), true, cmbBranch.EditValue, null);
             ShowItemsForm(obj);
+        }
+
+        private void btnViewDifferences_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbBranch.EditValue == null)
+                    return;
+                SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
+                frmViewSCItems obj =
+                    new frmViewSCItems(countingRepository.GetStockCountingDiff(cmbBranch.EditValue), false, cmbBranch.EditValue, null,true);
+                SplashScreenManager.CloseForm();
+                ShowItemsForm(obj);
+            }
+            catch (Exception ex)
+            {
+                SplashScreenManager.CloseForm();
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
@@ -63,27 +85,6 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 return;
 
             new frmAcceptCounting(cmbBranch.Text, cmbBranch.EditValue).ShowDialog();
-        }
-
-        private void btnViewDifferences_Click(object sender, EventArgs e)
-        {
-            if (cmbBranch.EditValue == null)
-                return;
-            frmViewItems obj =
-                new frmViewItems(countingRepository.GetStockCountingDiff(
-                    cmbBranch.EditValue), "differences", cmbBranch.EditValue);
-            ShowItemsForm(obj);
-        }
-
-        private void btnNotEntered_Click(object sender, EventArgs e)
-        {
-              if (cmbBranch.EditValue == null)
-                return;
-            frmViewItems obj =
-                new frmViewItems(countingRepository.GetStockCountingNoteEntered(
-                    cmbBranch.EditValue), "not enetered", cmbBranch.EditValue);
-            ShowItemsForm(obj);
-
         }
 
         public override object GetData()
@@ -101,8 +102,13 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             {
                 case "View":
                     frmViewItems obj =
-                        new frmViewItems(countingRepository.GetStockCountingDetail(drFocusedRow["STOCKCOUNTINGID"]), "items");
+                        new frmViewItems(countingRepository.GetStockCountingDetail(drFocusedRow["STOCKCOUNTINGID"]), cmbBranch.EditValue);
                     ShowItemsForm(obj);
+                    break;
+                case "Discard":
+                    countingRepository.DiscardStockCounting(drFocusedRow["STOCKCOUNTINGID"], Utility.UserID);
+                    new CloudRepository().DiscardCounting(new StockCounting() { STOCKCOUNTINGID = drFocusedRow["STOCKCOUNTINGID"] , UserID = Utility.UserID });
+                    (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
                     break;
             }
         }

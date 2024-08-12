@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NSRetail.ReportForms.Wareshouse.Audit
+namespace NSRetail.ReportForms.Stock.StockCounting
 {
     public partial class frmCountingDetails : DevExpress.XtraEditors.XtraForm
     {

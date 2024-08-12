@@ -122,7 +122,7 @@ namespace DataAccess
             return dtStockCountingDiff;
         }
 
-        public void AcceptStockCounting(object BranchID, string selectedCategories)
+        public void AcceptStockCounting(object BranchID, string selectedCategories, int UserID)
         {
             SqlTransaction sqlTransaction = null;
             try
@@ -136,6 +136,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_U_STOCKCOUNTING]";
                     cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
                     cmd.Parameters.AddWithValue("@SelectedCategories", selectedCategories);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
                     object objReturn = cmd.ExecuteScalar();
 
                     if (!int.TryParse(Convert.ToString(objReturn), out int ivalue))
@@ -152,10 +153,6 @@ namespace DataAccess
                     throw ex;
                 else
                     throw new Exception("Error While Accepting Stock Counting", ex);
-            }
-            finally
-            {
-                
             }
         }
 
@@ -180,14 +177,10 @@ namespace DataAccess
             {
                 throw new Exception("Error While Retrieving Consolidated Items", ex);
             }
-            finally
-            {
-                
-            }
             return dtStockCounting;
         }
 
-        public DataTable ViewCountingDetails(object BranchID, object ItemID)
+        public DataTable ViewCountingDetails(object BranchID, object ItemID, object CountingApprovalID)
         {
             DataTable dtStockCounting = new DataTable();
             try
@@ -199,6 +192,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_R_COUNTINGDETAIL]";
                     cmd.Parameters.AddWithValue("@BranchID", BranchID);
                     cmd.Parameters.AddWithValue("@ItemID", ItemID);
+                    cmd.Parameters.AddWithValue("@COUNTINGAPPROVALID", CountingApprovalID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtStockCounting);
@@ -209,9 +203,78 @@ namespace DataAccess
             {
                 throw new Exception("Error While Retrieving Counting Details", ex);
             }
-            finally
+            return dtStockCounting;
+        }
+
+        public DataTable DiscardStockCounting(object StockCountingID, object UserID)
+        {
+            DataTable dtStockCounting = new DataTable();
+            try
             {
-                
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_STOCKCOUNTING]";
+                    cmd.Parameters.AddWithValue("@STOCKCOUNTINGID", StockCountingID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    int rowaffected = cmd.ExecuteNonQuery();
+                    if(rowaffected ==0)
+                        throw new Exception("Error While Discarding Counting Sheet");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Discarding Counting Sheet", ex);
+            }
+            return dtStockCounting;
+        }
+
+        public DataTable GetStockCountingByAID(object CountingApprovalID)
+        {
+            DataTable dtStockCounting = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_COUNTINGSHEETSBYAPPROVALID]";
+                    cmd.Parameters.AddWithValue("@COUNTINGAPPROVALID", CountingApprovalID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtStockCounting);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Stock Counting List", ex);
+            }
+            return dtStockCounting;
+        }
+
+        public DataTable GetStockCountingItemsByAID(object CountingApprovalID, bool @IncludeMRP)
+        {
+            DataTable dtStockCounting = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_COUNTINGITEMSBYAPPROVALID]";
+                    cmd.Parameters.AddWithValue("@COUNTINGAPPROVALID", CountingApprovalID);
+                    cmd.Parameters.AddWithValue("@IncludeMRP", @IncludeMRP);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtStockCounting);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Stock Counting Items", ex);
             }
             return dtStockCounting;
         }

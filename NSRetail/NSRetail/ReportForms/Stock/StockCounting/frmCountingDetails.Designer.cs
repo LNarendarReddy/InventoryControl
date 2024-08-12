@@ -1,4 +1,4 @@
-﻿namespace NSRetail.ReportForms.Wareshouse.Audit
+﻿namespace NSRetail.ReportForms.Stock.StockCounting
 {
     partial class frmCountingDetails
     {

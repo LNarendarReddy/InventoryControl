@@ -473,7 +473,8 @@ namespace NSRetail
 
             ReportHolder StockCountingReports = new ReportHolder() { ReportName = "Stock Counting Reports" };
             StockCountingReports.SubCategory.Add(new ReportHolder() { ReportName = "Sheets", SearchCriteriaControl = new ucStockCountingList() });
-            StockCountingReports.SubCategory.Add(new ReportHolder() { ReportName = "Consolidated", SearchCriteriaControl = new ucConsolidatedCounting() });
+            StockCountingReports.SubCategory.Add(new ReportHolder() { ReportName = "Counting Approvals", SearchCriteriaControl = new ucCountingApprovals() });
+            //StockCountingReports.SubCategory.Add(new ReportHolder() { ReportName = "Consolidated", SearchCriteriaControl = new ucConsolidatedCounting() });
             stockReportList.Add(StockCountingReports);
 
             ShowReportForm(stockReportList, "Stock");
@@ -545,6 +546,7 @@ namespace NSRetail
                 obj.MdiParent = this;
                 obj.Show();
             }
+
             catch(Exception ex)
             {
                 ErrorMgmt.ShowError(ex);

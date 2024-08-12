@@ -83,6 +83,7 @@ namespace NSRetail.ReportForms
 
             gvResults.Columns.Clear();
             gcResults.DataSource = dtReportData;
+            gvResults.BestFitColumns();
 
             if(selectedReportHolder.SearchCriteriaControl.IsDataSet)
             {

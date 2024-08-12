@@ -52,6 +52,7 @@ namespace NSRetail
                 cmbState.DisplayMember = "STATENAME";
                 cmbState.ValueMember = "STATEID";
                 gcBranch.DataSource = objMasterRep.GetBranch();
+                gvBranch.BestFitColumns();
             }
             catch (Exception ex){
                 ErrorMgmt.ShowError(ex);
@@ -130,13 +131,9 @@ namespace NSRetail
             {
                 if (gvBranch.FocusedRowHandle >= 0)
                 {
-                    int rowsaffetced = new MasterRepository().InitiateStockCounting(
+                    new MasterRepository().InitiateStockCounting(
                         gvBranch.GetFocusedRowCellValue("BRANCHID"),Utility.UserID);
-                    if (rowsaffetced > 0)
-                        XtraMessageBox.Show("Old sheets are archived, please continue with stock counting");
-                    else
-                        XtraMessageBox.Show("No old sheets are exists to be archived, please continue with stock counting");
-
+                    XtraMessageBox.Show("Old sheets are archived, please continue with stock counting");
                 }
             }
             catch (Exception ex)

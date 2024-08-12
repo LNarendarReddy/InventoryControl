@@ -237,7 +237,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@STOCKCOUNTINGID", stockCounting.STOCKCOUNTINGID);
                     cmd.Parameters.AddWithValue("@USERID", stockCounting.UserID);
                     int rowsaffetced = cmd.ExecuteNonQuery();
-                    if(rowsaffetced <= 0)
+                    if(rowsaffetced == 0)
                         throw new Exception("Error while discarding counting");
                 }
             }

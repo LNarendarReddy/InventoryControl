@@ -65,7 +65,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 if (XtraMessageBox.Show(message, "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                     return;
 
-                new CountingRepository().AcceptStockCounting(branchID, string.Join(",", includedCategoryIDs));
+                new CountingRepository().AcceptStockCounting(branchID, string.Join(",", includedCategoryIDs), Utility.UserID);
                 XtraMessageBox.Show("Counting accepted succefully");
                 Close();
             }

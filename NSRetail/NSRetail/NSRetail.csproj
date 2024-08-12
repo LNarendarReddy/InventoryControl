@@ -182,11 +182,29 @@
     <Compile Include="ReportForms\Stock\ProcessingReports\ucProcessingIndent.Designer.cs">
       <DependentUpon>ucProcessingIndent.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Stock\StockCounting\frmCountingSheets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Stock\StockCounting\frmCountingSheets.Designer.cs">
+      <DependentUpon>frmCountingSheets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Stock\StockCounting\frmViewSCItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Stock\StockCounting\frmViewSCItems.Designer.cs">
+      <DependentUpon>frmViewSCItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.Designer.cs">
       <DependentUpon>ucConsolidatedCounting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Stock\StockCounting\ucCountingApprovals.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Stock\StockCounting\ucCountingApprovals.Designer.cs">
+      <DependentUpon>ucCountingApprovals.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Stock\StockReports\ucStockSummaryByPrice.cs">
       <SubType>UserControl</SubType>
@@ -224,10 +242,10 @@
     <Compile Include="ReportForms\Wareshouse\Audit\frmAcceptCounting.Designer.cs">
       <DependentUpon>frmAcceptCounting.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\Audit\frmCountingDetails.cs">
+    <Compile Include="ReportForms\Stock\StockCounting\frmCountingDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\Audit\frmCountingDetails.Designer.cs">
+    <Compile Include="ReportForms\Stock\StockCounting\frmCountingDetails.Designer.cs">
       <DependentUpon>frmCountingDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Item\frmAddBranchPrice.cs">
@@ -536,10 +554,10 @@
     <Compile Include="Stock\frmStockAdjustment.Designer.cs">
       <DependentUpon>frmStockAdjustment.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\Audit\frmViewItems.cs">
+    <Compile Include="ReportForms\Stock\StockCounting\frmViewItems.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportForms\Wareshouse\Audit\frmViewItems.Designer.cs">
+    <Compile Include="ReportForms\Stock\StockCounting\frmViewItems.Designer.cs">
       <DependentUpon>frmViewItems.cs</DependentUpon>
     </Compile>
     <Compile Include="Item\frmAddCode.cs">
@@ -1028,6 +1046,7 @@
     <EmbeddedResource Include="Master\frmClearHDDSNo.resx">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmSplitQuantity.resx">
       <DependentUpon>frmSplitQuantity.cs</DependentUpon>
     </EmbeddedResource>
@@ -1040,8 +1059,17 @@
     <EmbeddedResource Include="ReportForms\Stock\ProcessingReports\ucProcessingIndent.resx">
       <DependentUpon>ucProcessingIndent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Stock\StockCounting\frmCountingSheets.resx">
+      <DependentUpon>frmCountingSheets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Stock\StockCounting\frmViewSCItems.resx">
+      <DependentUpon>frmViewSCItems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockCounting\ucConsolidatedCounting.resx">
       <DependentUpon>ucConsolidatedCounting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Stock\StockCounting\ucCountingApprovals.resx">
+      <DependentUpon>ucCountingApprovals.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockReports\ucStockSummaryByPrice.resx">
       <DependentUpon>ucStockSummaryByPrice.cs</DependentUpon>
@@ -1061,7 +1089,7 @@
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\frmAcceptCounting.resx">
       <DependentUpon>frmAcceptCounting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\Wareshouse\Audit\frmCountingDetails.resx">
+    <EmbeddedResource Include="ReportForms\Stock\StockCounting\frmCountingDetails.resx">
       <DependentUpon>frmCountingDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.aa.resx">
@@ -1215,7 +1243,7 @@
     <EmbeddedResource Include="Stock\frmStockAdjustment.resx">
       <DependentUpon>frmStockAdjustment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\Wareshouse\Audit\frmViewItems.resx">
+    <EmbeddedResource Include="ReportForms\Stock\StockCounting\frmViewItems.resx">
       <DependentUpon>frmViewItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Item\frmAddCode.resx">

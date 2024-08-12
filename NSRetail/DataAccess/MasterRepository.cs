@@ -978,7 +978,7 @@ namespace DataAccess
             return itemSubClassification;
         }
 
-        public int InitiateStockCounting(object BranchID, object UserId)
+        public void InitiateStockCounting(object BranchID, object UserId)
         {
             try
             {
@@ -989,14 +989,17 @@ namespace DataAccess
                     cmd.CommandText = "[USP_U_INITIATESTOCKCOUNTING]";
                     cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
                     cmd.Parameters.AddWithValue("@USERID", UserId);
-                    int rowsaffected = cmd.ExecuteNonQuery();
-                    return rowsaffected;
+                    object obj = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(obj), out int ivalue))
+                        throw new Exception(Convert.ToString(obj));
                 }
-
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While performing action");
+                if (ex.Message.Contains("There are few sheets"))
+                    throw ex;
+                else
+                    throw new Exception("Error While performing action");
             }
         }
     }

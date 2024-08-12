@@ -1,4 +1,4 @@
-﻿namespace NSRetail.ReportForms.Wareshouse.Audit
+﻿namespace NSRetail.ReportForms.Stock.StockCounting
 {
     partial class frmViewItems
     {
@@ -40,21 +40,9 @@
             this.gcCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSubCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcMRP = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcSalePrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcPhysicalStock = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcSystemStock = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcStockDiff = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcCostPriceWT = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcPhysicalStockCP = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcSystemStockCP = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcDiffStockCP = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcCreatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSKUCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcPhysicalStockCPWT = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcSystemStockCPWT = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcStockDiffValue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -115,21 +103,9 @@
             this.gcCategory,
             this.gcSubCategory,
             this.gcMRP,
-            this.gcSalePrice,
             this.gcQuantity,
-            this.gcPhysicalStock,
-            this.gcSystemStock,
-            this.gcStockDiff,
-            this.gcCostPriceWT,
-            this.gcPhysicalStockCP,
-            this.gcSystemStockCP,
-            this.gcDiffStockCP,
-            this.gcCreatedDate,
             this.gcSKUCode,
-            this.gridColumn1,
-            this.gcPhysicalStockCPWT,
-            this.gcSystemStockCPWT,
-            this.gcStockDiffValue});
+            this.gridColumn1});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -199,89 +175,18 @@
             this.gcMRP.Caption = "MRP";
             this.gcMRP.FieldName = "MRP";
             this.gcMRP.Name = "gcMRP";
+            this.gcMRP.Visible = true;
+            this.gcMRP.VisibleIndex = 5;
             this.gcMRP.Width = 87;
-            // 
-            // gcSalePrice
-            // 
-            this.gcSalePrice.Caption = "Sale Price";
-            this.gcSalePrice.FieldName = "SALEPRICE";
-            this.gcSalePrice.Name = "gcSalePrice";
-            this.gcSalePrice.Width = 87;
             // 
             // gcQuantity
             // 
             this.gcQuantity.Caption = "Quantity";
             this.gcQuantity.FieldName = "QUANTITY";
             this.gcQuantity.Name = "gcQuantity";
+            this.gcQuantity.Visible = true;
+            this.gcQuantity.VisibleIndex = 6;
             this.gcQuantity.Width = 60;
-            // 
-            // gcPhysicalStock
-            // 
-            this.gcPhysicalStock.Caption = "Physical stock";
-            this.gcPhysicalStock.FieldName = "PHYSICALSTOCK";
-            this.gcPhysicalStock.Name = "gcPhysicalStock";
-            this.gcPhysicalStock.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PHYSICALSTOCK", "{0:0.##}")});
-            this.gcPhysicalStock.Width = 106;
-            // 
-            // gcSystemStock
-            // 
-            this.gcSystemStock.Caption = "System Stock";
-            this.gcSystemStock.FieldName = "SYSTEMSTOCK";
-            this.gcSystemStock.Name = "gcSystemStock";
-            this.gcSystemStock.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SYSTEMSTOCK", "{0:0.##}")});
-            this.gcSystemStock.Width = 109;
-            // 
-            // gcStockDiff
-            // 
-            this.gcStockDiff.Caption = "Stock Diff";
-            this.gcStockDiff.FieldName = "STOCKDIFF";
-            this.gcStockDiff.Name = "gcStockDiff";
-            this.gcStockDiff.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "STOCKDIFF", "{0:0.##}")});
-            // 
-            // gcCostPriceWT
-            // 
-            this.gcCostPriceWT.Caption = "Cost Price WT";
-            this.gcCostPriceWT.FieldName = "COSTPRICEWT";
-            this.gcCostPriceWT.Name = "gcCostPriceWT";
-            // 
-            // gcPhysicalStockCP
-            // 
-            this.gcPhysicalStockCP.Caption = "Physical Stock CP WT";
-            this.gcPhysicalStockCP.FieldName = "gcPhysical";
-            this.gcPhysicalStockCP.Name = "gcPhysicalStockCP";
-            this.gcPhysicalStockCP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcPhysical", "{0:0.##}")});
-            this.gcPhysicalStockCP.UnboundDataType = typeof(decimal);
-            this.gcPhysicalStockCP.UnboundExpression = "Round([PHYSICALSTOCK] * [COSTPRICEWT], 2)";
-            // 
-            // gcSystemStockCP
-            // 
-            this.gcSystemStockCP.Caption = "System stock CP WT";
-            this.gcSystemStockCP.FieldName = "gcSystemStockCP";
-            this.gcSystemStockCP.Name = "gcSystemStockCP";
-            this.gcSystemStockCP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcSystemStockCP", "{0:0.##}")});
-            this.gcSystemStockCP.UnboundDataType = typeof(decimal);
-            this.gcSystemStockCP.UnboundExpression = "Round([SYSTEMSTOCK] * [COSTPRICEWT], 2)";
-            // 
-            // gcDiffStockCP
-            // 
-            this.gcDiffStockCP.Caption = "Diff stock CP WT";
-            this.gcDiffStockCP.FieldName = "gridColumn3";
-            this.gcDiffStockCP.Name = "gcDiffStockCP";
-            this.gcDiffStockCP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gridColumn3", "{0:0.##}")});
-            this.gcDiffStockCP.UnboundDataType = typeof(decimal);
-            this.gcDiffStockCP.UnboundExpression = "Round([STOCKDIFF] * [COSTPRICEWT], 2)";
-            // 
-            // gcCreatedDate
-            // 
-            this.gcCreatedDate.Caption = "Counting Date";
-            this.gcCreatedDate.FieldName = "CREATEDDATE";
-            this.gcCreatedDate.Name = "gcCreatedDate";
             // 
             // gcSKUCode
             // 
@@ -296,30 +201,6 @@
             this.gridColumn1.Caption = "ITEMID";
             this.gridColumn1.FieldName = "ITEMID";
             this.gridColumn1.Name = "gridColumn1";
-            // 
-            // gcPhysicalStockCPWT
-            // 
-            this.gcPhysicalStockCPWT.Caption = "Physical Stock CP WT";
-            this.gcPhysicalStockCPWT.FieldName = "PHYSICALSTOCKCPWT";
-            this.gcPhysicalStockCPWT.Name = "gcPhysicalStockCPWT";
-            this.gcPhysicalStockCPWT.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PHYSICALSTOCKCPWT", "{0:0.##}")});
-            // 
-            // gcSystemStockCPWT
-            // 
-            this.gcSystemStockCPWT.Caption = "System Stock CP WT";
-            this.gcSystemStockCPWT.FieldName = "SYSTEMSTOCKCPWT";
-            this.gcSystemStockCPWT.Name = "gcSystemStockCPWT";
-            this.gcSystemStockCPWT.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SYSTEMSTOCKCPWT", "{0:0.##}")});
-            // 
-            // gcStockDiffValue
-            // 
-            this.gcStockDiffValue.Caption = "Stock Diff value";
-            this.gcStockDiffValue.FieldName = "STOCKDIFFVALUE";
-            this.gcStockDiffValue.Name = "gcStockDiffValue";
-            this.gcStockDiffValue.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "STOCKDIFFVALUE", "{0:0.##}")});
             // 
             // Root
             // 
@@ -398,26 +279,14 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcItemCode;
         private DevExpress.XtraGrid.Columns.GridColumn gcItemName;
         private DevExpress.XtraGrid.Columns.GridColumn gcMRP;
-        private DevExpress.XtraGrid.Columns.GridColumn gcSalePrice;
         private DevExpress.XtraGrid.Columns.GridColumn gcQuantity;
         private DevExpress.XtraGrid.Columns.GridColumn gcItemCodeID;
         private DevExpress.XtraGrid.Columns.GridColumn gcCategory;
         private DevExpress.XtraGrid.Columns.GridColumn gcSubCategory;
-        private DevExpress.XtraGrid.Columns.GridColumn gcPhysicalStock;
-        private DevExpress.XtraGrid.Columns.GridColumn gcSystemStock;
-        private DevExpress.XtraGrid.Columns.GridColumn gcStockDiff;
         private DevExpress.XtraEditors.SimpleButton btnViewReport;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraGrid.Columns.GridColumn gcCostPriceWT;
-        private DevExpress.XtraGrid.Columns.GridColumn gcPhysicalStockCP;
-        private DevExpress.XtraGrid.Columns.GridColumn gcSystemStockCP;
-        private DevExpress.XtraGrid.Columns.GridColumn gcDiffStockCP;
-        private DevExpress.XtraGrid.Columns.GridColumn gcCreatedDate;
         private DevExpress.XtraGrid.Columns.GridColumn gcSKUCode;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gcPhysicalStockCPWT;
-        private DevExpress.XtraGrid.Columns.GridColumn gcSystemStockCPWT;
-        private DevExpress.XtraGrid.Columns.GridColumn gcStockDiffValue;
     }
 }
