@@ -102,7 +102,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             {
                 case "View":
                     frmViewItems obj =
-                        new frmViewItems(countingRepository.GetStockCountingDetail(drFocusedRow["STOCKCOUNTINGID"]), cmbBranch.EditValue);
+                        new frmViewItems(countingRepository.GetStockCountingDetail(drFocusedRow["STOCKCOUNTINGID"]), cmbBranch.EditValue,
+                        Convert.ToString(drFocusedRow["STATUS"]) == "Draft" || Convert.ToString(drFocusedRow["STATUS"]) == "Submitted");
                     ShowItemsForm(obj);
                     break;
                 case "Discard":

@@ -11,12 +11,14 @@ namespace NSRetail.ReportForms.Stock.StockCounting
 {
     public partial class frmViewItems : XtraForm
     {
+        bool ShowViewdetail = true;
         private object BranchID = null;
 
-        public frmViewItems(DataTable dtItems, object branchID)
+        public frmViewItems(DataTable dtItems, object branchID, bool showViewdetail = true)
         {
             InitializeComponent();
             this.BranchID = branchID;
+            this.ShowViewdetail = showViewdetail;
             gcItems.DataSource = dtItems;
             gvItems.BestFitColumns();
         }
@@ -39,7 +41,7 @@ namespace NSRetail.ReportForms.Stock.StockCounting
 
         private void gvItems_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
-            if (gvItems.FocusedRowHandle < 0)
+            if (gvItems.FocusedRowHandle < 0 || !ShowViewdetail)
                 return;
             e.Menu.Items.Add(new DXMenuItem("View detail", new EventHandler(ViewDetail_Click)));
         }
