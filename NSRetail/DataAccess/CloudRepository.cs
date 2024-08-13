@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Net;
 using System.Runtime.InteropServices;
 
@@ -78,8 +79,15 @@ namespace DataAccess
                     }
                     if(ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                     {
-                        stockCounting.STOCKCOUNTINGID = ds.Tables[0].Rows[0][0];
-                        stockCounting.BRANCHID = ds.Tables[0].Rows[0][1];
+                        if (int.TryParse(Convert.ToString(ds.Tables[0].Rows[0][0]), out int ivalue))
+                        {
+                            stockCounting.STOCKCOUNTINGID = ds.Tables[0].Rows[0][0];
+                            stockCounting.BRANCHID = ds.Tables[0].Rows[0][1];
+                        }
+                        else
+                        {
+                            stockCounting.STOCKCOUNTINGID = 0;
+                        }
                     }
                     if (ds.Tables.Count > 1)
                         stockCounting.dtStockCountning = ds.Tables[1];
@@ -109,12 +117,20 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@BranchID", stockCounting.BRANCHID);
                     cmd.Parameters.AddWithValue("@USERID", stockCounting.UserID);
                     cmd.Parameters.AddWithValue("@CREATEDDATE", DateTime.Now);
-                    stockCounting.STOCKCOUNTINGID = cmd.ExecuteScalar();
+                    object obj = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(obj), out int ivalue))
+                        throw new Exception(Convert.ToString(obj));
+                    else
+                        stockCounting.STOCKCOUNTINGID = ivalue;
+
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while saving stock counting");
+                if (ex.Message.Contains("Stock counting not enabled"))
+                    throw ex;
+                else
+                    throw new Exception("Error while saving stock counting");
             }
             finally
             {
@@ -139,12 +155,19 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@QUANTITY", drNew["QUANTITY"]);
                     cmd.Parameters.AddWithValue("@WEIGHTINKGS", drNew["WEIGHTINKGS"]);
                     cmd.Parameters.AddWithValue("@CREATEDDATE", DateTime.Now);
-                    stockcountingdetailid = cmd.ExecuteScalar();
+                    object obj = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(obj), out int ivalue))
+                        throw new Exception(Convert.ToString(obj));
+                    else
+                        stockcountingdetailid = ivalue;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while saving stock counting detail");
+                if (ex.Message.Contains("Counting sheet already submitted") || ex.Message.Contains("Stock counting not enabled"))
+                    throw ex;
+                else
+                    throw new Exception("Error while saving stock counting detail");
             }
             finally
             {

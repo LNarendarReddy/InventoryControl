@@ -40,14 +40,14 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcMRP = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gcStockDiff = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcPhyQntyCP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSysQntyCP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcStockDiffValue = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
@@ -181,6 +181,30 @@
             this.gcMRP.Visible = true;
             this.gcMRP.VisibleIndex = 3;
             // 
+            // gcStockDiff
+            // 
+            this.gcStockDiff.Caption = "Stock diff";
+            this.gcStockDiff.FieldName = "STOCKDIFF";
+            this.gcStockDiff.Name = "gcStockDiff";
+            // 
+            // gcPhyQntyCP
+            // 
+            this.gcPhyQntyCP.Caption = "Phy Qnty CP WT";
+            this.gcPhyQntyCP.FieldName = "PHYSICALSTOCKCPWT";
+            this.gcPhyQntyCP.Name = "gcPhyQntyCP";
+            // 
+            // gcSysQntyCP
+            // 
+            this.gcSysQntyCP.Caption = "Sys Qnty CP WT";
+            this.gcSysQntyCP.FieldName = "SYSTEMSTOCKCPWT";
+            this.gcSysQntyCP.Name = "gcSysQntyCP";
+            // 
+            // gcStockDiffValue
+            // 
+            this.gcStockDiffValue.Caption = "Stock Diff Value";
+            this.gcStockDiffValue.FieldName = "STOCKDIFFVALUE";
+            this.gcStockDiffValue.Name = "gcStockDiffValue";
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -221,30 +245,6 @@
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
-            // gcStockDiff
-            // 
-            this.gcStockDiff.Caption = "Stock diff";
-            this.gcStockDiff.FieldName = "STOCKDIFF";
-            this.gcStockDiff.Name = "gcStockDiff";
-            // 
-            // gcPhyQntyCP
-            // 
-            this.gcPhyQntyCP.Caption = "Phy Qnty CP WT";
-            this.gcPhyQntyCP.FieldName = "PHYSICALSTOCKCPWT";
-            this.gcPhyQntyCP.Name = "gcPhyQntyCP";
-            // 
-            // gcSysQntyCP
-            // 
-            this.gcSysQntyCP.Caption = "Sys Qnty CP WT";
-            this.gcSysQntyCP.FieldName = "SYSTEMSTOCKCPWT";
-            this.gcSysQntyCP.Name = "gcSysQntyCP";
-            // 
-            // gcStockDiffValue
-            // 
-            this.gcStockDiffValue.Caption = "Stock Diff Value";
-            this.gcStockDiffValue.FieldName = "STOCKDIFFVALUE";
-            this.gcStockDiffValue.Name = "gcStockDiffValue";
-            // 
             // frmViewSCItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -252,8 +252,10 @@
             this.ClientSize = new System.Drawing.Size(1235, 659);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
+            this.KeyPreview = true;
             this.Name = "frmViewSCItems";
             this.Text = "Stock Counting Items";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmViewItems_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).EndInit();

@@ -147,5 +147,10 @@ namespace NSRetail
         {
             gcBranch.ShowRibbonPrintPreview();
         }
+
+        private void gcBranch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

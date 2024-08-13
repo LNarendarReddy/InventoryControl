@@ -55,9 +55,27 @@ namespace NSRetail.Countning
             {
                 cmbBranch.Enabled = true;
                 cmbBranch.EditValue = null;
+                InitilizeDataTable();
             }
-            gcCounting.DataSource = stockCounting.dtStockCountning
-;
+            gcCounting.DataSource = stockCounting.dtStockCountning;
+            gvCounting.BestFitColumns();
+        }
+
+        private void InitilizeDataTable()
+        {
+            stockCounting.dtStockCountning = new DataTable();
+            stockCounting.dtStockCountning.Columns.Add("SNO", typeof(int));
+            stockCounting.dtStockCountning.Columns.Add("STOCKCOUNTINGDETAILID", typeof(int));
+            stockCounting.dtStockCountning.Columns.Add("STOCKCOUNTINGID", typeof(int));
+            stockCounting.dtStockCountning.Columns.Add("ITEMPRICEID", typeof(int));
+            stockCounting.dtStockCountning.Columns.Add("ITEMCODE", typeof(string));
+            stockCounting.dtStockCountning.Columns.Add("ITEMNAME", typeof(string));
+            stockCounting.dtStockCountning.Columns.Add("MRP", typeof(decimal));
+            stockCounting.dtStockCountning.Columns.Add("SALEPRICE", typeof(decimal));
+            stockCounting.dtStockCountning.Columns.Add("QUANTITY", typeof(int));
+            stockCounting.dtStockCountning.Columns.Add("WEIGHTINKGS", typeof(decimal));
+            stockCounting.dtStockCountning.Columns.Add("ISOPENITEM", typeof(bool));
+            stockCounting.dtStockCountning.Columns.Add("SKUCODE", typeof(string));
         }
 
         private void FrmStockDispatch_RefreshBaseLineData(object sender, EventArgs e)

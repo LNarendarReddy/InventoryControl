@@ -13,12 +13,13 @@ namespace NSRetail.ReportForms.Stock.StockCounting
     {
         bool ShowViewdetail = true;
         private object BranchID = null;
-
-        public frmViewItems(DataTable dtItems, object branchID, bool showViewdetail = true)
+        object CountigApprovalID = null;
+        public frmViewItems(DataTable dtItems, object branchID, bool showViewdetail = true, object countigApprovalID = null)
         {
             InitializeComponent();
             this.BranchID = branchID;
             this.ShowViewdetail = showViewdetail;
+            this.CountigApprovalID = countigApprovalID;
             gcItems.DataSource = dtItems;
             gvItems.BestFitColumns();
         }
@@ -49,7 +50,7 @@ namespace NSRetail.ReportForms.Stock.StockCounting
         private void ViewDetail_Click(object sender, EventArgs e)
         {
             DataTable dt = new CountingRepository().ViewCountingDetails(BranchID,
-                gvItems.GetFocusedRowCellValue("ITEMID"), null);
+                gvItems.GetFocusedRowCellValue("ITEMID"), CountigApprovalID);
                 if (dt == null || dt.Rows.Count == 0)
                 return;
             frmCountingDetails obj = new frmCountingDetails(dt);

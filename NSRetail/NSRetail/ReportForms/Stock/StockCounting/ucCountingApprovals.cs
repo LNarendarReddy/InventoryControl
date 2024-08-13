@@ -51,7 +51,7 @@ namespace NSRetail.ReportForms.Stock.StockCounting
             {
                 case "Sheets":
                     DataTable dtCountingSheets = new CountingRepository().GetStockCountingByAID(drFocusedRow["COUNTINGAPPROVALID"]);
-                    frmObj = new frmCountingSheets(dtCountingSheets, drFocusedRow["BRANCHID"]);
+                    frmObj = new frmCountingSheets(dtCountingSheets, drFocusedRow["BRANCHID"], drFocusedRow["COUNTINGAPPROVALID"]);
                     break;
                 case "Items":
                     DataTable dtItems = new CountingRepository().GetStockCountingItemsByAID(drFocusedRow["COUNTINGAPPROVALID"], false);

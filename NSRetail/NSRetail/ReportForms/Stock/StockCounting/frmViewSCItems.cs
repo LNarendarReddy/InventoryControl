@@ -45,9 +45,12 @@ namespace NSRetail.ReportForms.Stock.StockCounting
         {
             if (gvItems.FocusedRowHandle < 0)
                 return;
+            if (decimal.TryParse(Convert.ToString(gvItems.GetFocusedRowCellValue("PHYSICALQAUNTITY")), out decimal ivalue) && ivalue > 0)
+            {
                 e.Menu.Items.Add(new DXMenuItem("View detail", new EventHandler(ViewDetail_Click)));
-            if (ShowPricecolumns)
-                e.Menu.Items.Add(new DXMenuItem("Delete item", new EventHandler(DeleteItem_Click)));
+                if (ShowPricecolumns)
+                    e.Menu.Items.Add(new DXMenuItem("Delete item", new EventHandler(DeleteItem_Click)));
+            }
         }
 
         private void DeleteItem_Click(object sender, EventArgs e)
@@ -72,6 +75,12 @@ namespace NSRetail.ReportForms.Stock.StockCounting
             obj.MinimizeBox = false;
             obj.MaximizeBox = false;
             obj.ShowDialog();
+        }
+
+        private void frmViewItems_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Escape)
+                this.Close();
         }
     }
 }
