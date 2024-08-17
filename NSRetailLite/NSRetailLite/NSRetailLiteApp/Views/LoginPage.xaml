@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.LoginPage"
+             Title="LoginPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+      
+        <Path Data="M291 0C291 40.5781 275.671 79.4943 248.384 108.187C221.097 136.88 184.089 153 145.5 153C106.911 153 69.9025 136.88 42.616 108.187C15.3294 79.4943 5.82678e-06 40.5781 0 2.31024e-05L145.5 0H291Z"
+              Fill="LightPink" Aspect="Fill"/>
+        <StackLayout>
+            <Image Source="victorylogo.svg" HeightRequest="130" Margin="30"/>
+        </StackLayout>
+        <Grid Margin="20" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <Label Text="Welcome!" FontSize="Title" HorizontalTextAlignment="Center" Grid.Row="1" Margin="0, 20, 0, 0"/>
+            <Label Text="Enter your credentials" FontSize="Subtitle" Grid.Row="2" HorizontalTextAlignment="Center" />
+            <Frame Grid.Row="3" HorizontalOptions="FillAndExpand" Padding="0" BorderColor="SteelBlue" CornerRadius="30" Margin="0, 20, 0, 0">
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <Frame HeightRequest="40"  Padding="0" BorderColor="Transparent" CornerRadius="30" Margin="0">
+                        <Image Source="username.png" />
+                    </Frame>
+                    <Entry Placeholder="User name" 
+                ClearButtonVisibility="WhileEditing" 
+                VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontAttributes="Bold" Margin="0" Text="{Binding Path=Model.UserName, Mode=TwoWay}"/>
+                </StackLayout>
+            </Frame>
+            <Frame Grid.Row="4" HorizontalOptions="FillAndExpand" Padding="0" BorderColor="SteelBlue" CornerRadius="30" Margin="0, 20, 0, 0">
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <Frame HeightRequest="40"  Padding="0" BorderColor="Transparent" CornerRadius="30" Margin="0">
+                        <Image Source="password.svg" />
+                    </Frame>
+                    <Entry Placeholder="Password" ClearButtonVisibility="WhileEditing" IsPassword="True" FontAttributes="Bold"  
+                Text="{Binding Path=Model.Password, Mode=TwoWay}"
+                Grid.Row="5" HorizontalOptions="FillAndExpand"  />
+                </StackLayout>
+            </Frame>
+            <Button Text="Login" BackgroundColor="SteelBlue" Grid.Row="6" HorizontalOptions="Center" WidthRequest="120"
+         Command="{Binding Path=LoginCommand}" Margin="0, 20, 0, 0"/>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.HomePage"
+             Title="HomePage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="180"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+       
+        <Path Data="M291 0C291 40.5781 275.671 79.4943 248.384 108.187C221.097 136.88 184.089 153 145.5 153C106.911 153 69.9025 136.88 42.616 108.187C15.3294 79.4943 5.82678e-06 40.5781 0 2.31024e-05L145.5 0H291Z"
+              Fill="LightPink" Aspect="Fill"/>
+        <StackLayout>
+            <Image Source="victorylogo.svg" HeightRequest="130" Margin="30"/>
+        </StackLayout>
+        <StackLayout Orientation="Vertical" VerticalOptions="Center" Margin="20, 0, 20, 0" Grid.Row="1">
+            <Label Text="Hello Sainath!" Margin="20, 0, 20, 0" LineBreakMode="WordWrap" FontSize="Title" HorizontalOptions="Center"/>
+            <Grid Margin="20, 10, 20, 0">
+                <Label Text="Branch : Test"  LineBreakMode="WordWrap" FontSize="Small" HorizontalOptions="Start"/>
+                <Label Text="Category : All" LineBreakMode="WordWrap" FontSize="Small" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+            </Grid>
+            <Label Text="Available options, what do you want to do next?" Margin="20, 20, 20, 0" LineBreakMode="WordWrap" FontSize="Header"/>
+            <Button Text="Stock Counting" BackgroundColor="SteelBlue" Margin="15"/>
+            <Button Text="Stock Dispatch" BackgroundColor="SteelBlue" Margin="15"/>
+            <Button Text="Stock Entry" BackgroundColor="SteelBlue" Margin="15"/>
+            <Button Text="Item details" BackgroundColor="SteelBlue" Margin="15"/>
+            <Button Text="Log out" BackgroundColor="PaleVioletRed" Margin="15, 20, 15, 20" Command="{Binding Path=LogoutCommand}"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
