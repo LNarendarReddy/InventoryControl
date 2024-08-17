@@ -56,6 +56,7 @@ namespace NSRetailPOS.UI
             if (rowHandle >= 0)
             {
                 sluItemData.EditValue = null;
+                sluItemDataView.FocusedRowHandle = rowHandle;
                 sluItemData.EditValue = sluItemDataView.GetRowCellValue(rowHandle, "ITEMCODEID");
             }
             else if (sluItemData.EditValue == null)
