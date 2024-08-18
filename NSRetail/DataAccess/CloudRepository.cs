@@ -273,5 +273,31 @@ namespace DataAccess
                 SQLCon.SqlCloudConn().Close();
             }
         }
+
+        public void InitiateCounting(object branchID, bool InitiateCounting)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlCloudConn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_INITIATESTOCKCOUNTING]";
+                    cmd.Parameters.AddWithValue("@BRANCHID", branchID);
+                    cmd.Parameters.AddWithValue("@InitiateCounting", InitiateCounting);
+                    object obj = cmd.ExecuteNonQuery();
+                    if (!int.TryParse(Convert.ToString(obj), out int ivalue))
+                        throw new Exception("Error while Initiating counting");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while discarding counting");
+            }
+            finally
+            {
+                SQLCon.SqlCloudConn().Close();
+            }
+        }
     }
 }

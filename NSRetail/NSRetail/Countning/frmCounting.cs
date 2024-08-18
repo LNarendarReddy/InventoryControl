@@ -94,6 +94,7 @@ namespace NSRetail.Countning
             cloudRepository.SaveStockCounting(stockCounting);
         }
 
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (gvCounting.RowCount == 0 ||

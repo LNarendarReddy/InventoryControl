@@ -66,6 +66,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                     return;
 
                 new CountingRepository().AcceptStockCounting(branchID, string.Join(",", includedCategoryIDs), Utility.UserID);
+                new CloudRepository().InitiateCounting(branchID, false);
                 XtraMessageBox.Show("Counting accepted succefully");
                 Close();
             }

@@ -131,9 +131,9 @@ namespace NSRetail
             {
                 if (gvBranch.FocusedRowHandle >= 0)
                 {
-                    new MasterRepository().InitiateStockCounting(
-                        gvBranch.GetFocusedRowCellValue("BRANCHID"),Utility.UserID);
-                    XtraMessageBox.Show("Old sheets are archived, please continue with stock counting");
+                    new MasterRepository().InitiateStockCounting(gvBranch.GetFocusedRowCellValue("BRANCHID"),Utility.UserID);
+                    new CloudRepository().InitiateCounting(gvBranch.GetFocusedRowCellValue("BRANCHID"), true);
+                    XtraMessageBox.Show("Old sheets are archived, please wait for 10 mins and continue with stock counting");
                 }
             }
             catch (Exception ex)
