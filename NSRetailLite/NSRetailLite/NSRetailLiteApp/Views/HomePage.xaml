@@ -20,12 +20,101 @@
                 <Label Text="Branch : Test"  LineBreakMode="WordWrap" FontSize="Small" HorizontalOptions="Start"/>
                 <Label Text="Category : All" LineBreakMode="WordWrap" FontSize="Small" HorizontalOptions="End" HorizontalTextAlignment="End"/>
             </Grid>
-            <Label Text="Available options, what do you want to do next?" Margin="20, 20, 20, 0" LineBreakMode="WordWrap" FontSize="Header"/>
-            <Button Text="Stock Counting" BackgroundColor="SteelBlue" Margin="15"/>
-            <Button Text="Stock Dispatch" BackgroundColor="SteelBlue" Margin="15"/>
-            <Button Text="Stock Entry" BackgroundColor="SteelBlue" Margin="15"/>
-            <Button Text="Item details" BackgroundColor="SteelBlue" Margin="15"/>
-            <Button Text="Log out" BackgroundColor="PaleVioletRed" Margin="15, 20, 15, 20" Command="{Binding Path=LogoutCommand}"/>
+            <Label Text="Available options, what do you want to do next?" Margin="20, 10, 10, 10" LineBreakMode="WordWrap" FontSize="Header"/>
+            <ScrollView>
+                <Grid Margin="10" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="Warehouse options" FontSize="Header" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                    <Frame BorderColor="LightPink" Padding="10" Grid.Row="1">
+                        <Grid Margin="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="1" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton BackgroundColor="White" Margin="0, 5, 0, 5" Source="stockcounting.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                                <Label Text="Stock Counting" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="0" Grid.Column="3" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton BackgroundColor="White" Margin="0, 5, 0, 5" Source="stockdispatch.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                                <Label Text="Stock Dispatch" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="0" Grid.Column="5" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton BackgroundColor="White" Margin="0, 5, 0, 5" Source="stockentry.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                                <Label Text="Stock Entry" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+
+                    <Label Grid.Row="2" Grid.Column="0" Text="Branch options" FontSize="Header" HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="0, 10, 0, 0"/>
+                    <Frame BorderColor="LightPink" Padding="10" Grid.Row="3">
+                        <Grid Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="3" Grid.Column="1" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton BackgroundColor="White" Margin="0, 5, 0, 5" Source="billing.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                                <Label Text="Billing" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="4" Grid.Column="3" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton BackgroundColor="White" Margin="0, 5, 0, 5" Source="itemdetails.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                                <Label Text="Item details" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+
+                    <Label Grid.Row="4" Grid.Column="0" Text="User options" FontSize="Header" HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="0, 10, 0, 0"/>
+                    <Frame BorderColor="LightPink" Padding="10" Grid.Row="5">
+                        <Grid Grid.Row="1" Margin="0" RowSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <StackLayout Grid.Row="0" Grid.Column="1" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton BackgroundColor="White" Margin="0, 5, 0, 5" Source="changepassword.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                                <Label Text="Change password" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="0" Grid.Column="3" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton BackgroundColor="White" Margin="0, 5, 0, 5" Source="logout.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=LogoutCommand}"/>
+                                <Label Text="Logout" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center" LineBreakMode="WordWrap"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </ScrollView>            
         </StackLayout>
     </Grid>
 </ContentPage>
