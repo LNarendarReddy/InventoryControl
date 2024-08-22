@@ -33,6 +33,12 @@ namespace WarehouseCloudSync
                 WarehouseRepository warehouseRepository = new WarehouseRepository();
                 CloudRepository cloudRepository = new CloudRepository();
                 DataTable dtEntity = cloudRepository.GetEntityData(BranchID, "ToCloud");
+
+                //do stock moves so that item price changes can be picked before sync starts
+                WriteLine("Proccesing stock move started");
+                warehouseRepository.ProccessStockMove();
+                WriteLine("Proccesing stock move completed");
+
                 foreach (DataRow entityRow in dtEntity.Rows)
                 {
                     string entityName = entityRow["ENTITYNAME"].ToString();

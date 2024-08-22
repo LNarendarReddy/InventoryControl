@@ -131,6 +131,36 @@ namespace WarehouseCloudSync.Data
                 SqlCon.SqlWHconn().Close();
             }
             return dtEntity;
-        }                
+        }
+
+        public void ProccessStockMove()
+        {
+            SqlTransaction transaction = null;
+            object count = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SqlCon.SqlWHconn();
+                    transaction = cmd.Connection.BeginTransaction();
+                    cmd.Transaction = transaction;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 600;
+                    cmd.CommandText = "USP_P_STOCKMOVE";
+                    count = cmd.ExecuteScalar();
+                    transaction?.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                transaction?.Rollback();
+                SyncData.WriteLine(ex.ToString());
+                throw new Exception("Error While proccesing stock moves", ex);
+            }
+            finally
+            {
+                SqlCon.SqlWHconn().Close();
+            }
+        }
     }
 }

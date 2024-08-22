@@ -406,7 +406,7 @@ namespace DataAccess
             }
         }
 
-        public int SaveItemPrice(object itemCodeID,object ItemPriceID, object MRP, object SalePrice, object GSTID, object UserID)
+        public int SaveItemPrice(ItemMRP itemMRP)            
         {
             SqlTransaction sqlTransaction = null;
             int retVal =  0;
@@ -419,12 +419,14 @@ namespace DataAccess
                     cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_ITEMPRICE]";
-                    cmd.Parameters.AddWithValue("@ITEMCODEID", itemCodeID);
-                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
-                    cmd.Parameters.AddWithValue("@MRP", MRP);
-                    cmd.Parameters.AddWithValue("@SALEPRICE", SalePrice);
-                    cmd.Parameters.AddWithValue("@GSTID", GSTID);
-                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@ITEMCODEID", itemMRP.ITEMCODEID);
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", itemMRP.ITEMPRICEID);
+                    cmd.Parameters.AddWithValue("@MRP", itemMRP.MRP);
+                    cmd.Parameters.AddWithValue("@SALEPRICE", itemMRP.SalePrice);
+                    cmd.Parameters.AddWithValue("@GSTID", itemMRP.GSTID);
+                    cmd.Parameters.AddWithValue("@USERID", itemMRP.UserID);
+                    cmd.Parameters.AddWithValue("@Immediate", itemMRP.Immediate);
+                    cmd.Parameters.AddWithValue("@GoLiveDate", itemMRP.GoLiveDateTime);
                     object objReturn = cmd.ExecuteScalar();
                     if (!int.TryParse(Convert.ToString(objReturn), out retVal))
                         throw new Exception(Convert.ToString(objReturn));

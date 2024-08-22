@@ -70,5 +70,17 @@ namespace Entity
         public object BRANCHID { get; set; }
 
     }
+
+    public class ItemMRP : EntityBase
+    {
+        public object ITEMPRICEID { get; set; }
+        public object ITEMCODEID { get; set; }
+        public object MRP { get; set; }
+        public object SalePrice { get; set; }
+        public object GSTID { get; set; }
+        public object Immediate { get; set; }
+        public object GoLiveDateTime { get; set; }
+        public object MoveStatus { get; set; }
+    }
 }
 

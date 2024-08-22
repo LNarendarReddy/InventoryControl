@@ -1,5 +1,6 @@
 ﻿v2.5.7
  -- Added supplier refunds reports under Stock reports ->  Transactions Reports ->  Supplier Refunds
+ -- Item MRP future prices support
 
 v2.5.6
  -- Stock coutning ->  Not counted items option removed and showing not counted items in view differences
