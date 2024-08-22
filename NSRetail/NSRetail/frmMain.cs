@@ -460,6 +460,8 @@ namespace NSRetail
             transactionreports.SubCategory.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
             transactionreports.SubCategory.Add(new ReportHolder() { ReportName = "Customer Refunds", SearchCriteriaControl = new ucBranchTransactions("C") });
             transactionreports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refunds", SearchCriteriaControl = new ucBranchTransactions("B") });
+            transactionreports.SubCategory.Add(new ReportHolder() { ReportName = "Supplier Refunds", SearchCriteriaControl = new ucSupplierRefunds() });
+
             transactionreports.SubCategory.Add(new ReportHolder() { ReportName = "Day sale by Payment Method", SearchCriteriaControl = new ucSaleByMOP() });
             transactionreports.SubCategory.Add(new ReportHolder() { ReportName = "Stock Adjustment Report", SearchCriteriaControl = new ucStockAdjustment() });
             stockReportList.Add(transactionreports);

@@ -1,4 +1,7 @@
-﻿V2.5.6
+﻿v2.5.7
+ -- Added supplier refunds reports under Stock reports ->  Transactions Reports ->  Supplier Refunds
+
+v2.5.6
  -- Stock coutning ->  Not counted items option removed and showing not counted items in view differences
  -- Saving counting data while accepting along with physical stock and system stock
  -- Counting approvals new report added to show accepted data
@@ -6,7 +9,10 @@
  -- Added Initiate stock counting option to enabled counting in mobile app and WH app
  -- Counting will be disabled while acceping stock counting
 
-V2.5.4
+v2.5.5
+ -- Invalid Build
+
+v2.5.4
  -- In dispatch option to edit in sytem after adding item in mobile app
  -- Dispatch preview enabled in draft mode with status print
  -- Supplier indent preview enabled in draft mode with status print

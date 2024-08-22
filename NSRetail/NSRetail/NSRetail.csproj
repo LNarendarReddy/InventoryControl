@@ -224,6 +224,12 @@
     <Compile Include="ReportForms\Stock\ProcessingReports\ucBulkProcessing.Designer.cs">
       <DependentUpon>ucBulkProcessing.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Stock\TransactionReports\ucSupplierRefunds.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Stock\TransactionReports\ucSupplierRefunds.Designer.cs">
+      <DependentUpon>ucSupplierRefunds.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1079,6 +1085,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\ProcessingReports\ucBulkProcessing.resx">
       <DependentUpon>ucBulkProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Stock\TransactionReports\ucSupplierRefunds.resx">
+      <DependentUpon>ucSupplierRefunds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.resx">
       <DependentUpon>ucSupplierItemMargin.cs</DependentUpon>
