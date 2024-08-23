@@ -64,6 +64,9 @@
 	  <None Remove="Resources\Images\Homepage\stockcounting.png" />
 	  <None Remove="Resources\Images\Homepage\stockdispatch.png" />
 	  <None Remove="Resources\Images\Homepage\stockentry.png" />
+	  <None Remove="Resources\Images\StockCounting\stockcountingadd.png" />
+	  <None Remove="Resources\Images\StockCounting\stockcountingdiscard.png" />
+	  <None Remove="Resources\Images\StockCounting\stockcountingsubmit.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,9 +76,13 @@
 	  <MauiImage Include="Resources\Images\Homepage\stockcounting.png" />
 	  <MauiImage Include="Resources\Images\Homepage\stockdispatch.png" />
 	  <MauiImage Include="Resources\Images\Homepage\stockentry.png" />
+	  <MauiImage Include="Resources\Images\StockCounting\stockcountingadd.png" />
+	  <MauiImage Include="Resources\Images\StockCounting\stockcountingdiscard.png" />
+	  <MauiImage Include="Resources\Images\StockCounting\stockcountingsubmit.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="8.0.8" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
@@ -93,6 +100,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StockCounting\BranchSelectionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StockCounting\StockCountingDetailListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
