@@ -7,14 +7,14 @@
              android:Application.WindowSoftInputModeAdjust="Resize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
       
         <Path Data="M291 0C291 40.5781 275.671 79.4943 248.384 108.187C221.097 136.88 184.089 153 145.5 153C106.911 153 69.9025 136.88 42.616 108.187C15.3294 79.4943 5.82678e-06 40.5781 0 2.31024e-05L145.5 0H291Z"
               Fill="LightPink" Aspect="Fill"/>
         <StackLayout>
-            <Image Source="victorylogo.svg" HeightRequest="130" Margin="30"/>
+            <Image Source="victorylogo.svg" HeightRequest="150" />
         </StackLayout>
         <Grid Margin="20" Grid.Row="1">
             <Grid.RowDefinitions>
@@ -27,7 +27,7 @@
             </Grid.RowDefinitions>
 
 
-            <Label Text="Welcome!" FontSize="Title" HorizontalTextAlignment="Center" Grid.Row="1" Margin="0, 20, 0, 0"/>
+            <Label Text="Welcome!" FontSize="Title" HorizontalTextAlignment="Center" Grid.Row="1" />
             <Label Text="Enter your credentials" FontSize="Subtitle" Grid.Row="2" HorizontalTextAlignment="Center" />
             <Frame Grid.Row="3" HorizontalOptions="FillAndExpand" Padding="0" BorderColor="SteelBlue" CornerRadius="30" Margin="0, 20, 0, 0">
                 <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
