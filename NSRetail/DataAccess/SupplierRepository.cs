@@ -23,14 +23,17 @@ namespace DataAccess
                     cmd.CommandText = "[USP_R_INITIALSR]";
                     cmd.Parameters.AddWithValue("@SupplierID", supplierReturns.SupplierID);
                     cmd.Parameters.AddWithValue("@CategoryID", supplierReturns.CategoryID);
+                    cmd.Parameters.AddWithValue("@StockEntryID", supplierReturns.StockEntryID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);
                     }
                     if (ds != null && ds.Tables.Count > 0)
                     {
-                        supplierReturns.SupplierReturnsID = ds.Tables[0].Rows.Count > 0 ? ds.Tables[0].Rows[0][0] : 0;
-                        supplierReturns.SupplierID = ds.Tables[0].Rows.Count > 0 ? ds.Tables[0].Rows[0][1] : 0;
+                        supplierReturns.SupplierReturnsID = ds.Tables[0].Rows.Count > 0 ? ds.Tables[0].Rows[0]["SUPPLIERRETURNSID"] : 0;
+                        supplierReturns.SupplierID = ds.Tables[0].Rows.Count > 0 ? ds.Tables[0].Rows[0]["SUPPLIERID"] : 0;
+                        supplierReturns.CategoryID = ds.Tables[0].Rows.Count > 0 ? ds.Tables[0].Rows[0]["CATEGORYID"] : 0;
+                        supplierReturns. StockEntryID = ds.Tables[0].Rows.Count > 0 ? ds.Tables[0].Rows[0]["STOCKENTRYID"] : 0;
                     }
                     if (ds.Tables.Count > 1)
                         supplierReturns.dtSupplierReturns = ds.Tables[1];
@@ -39,10 +42,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error while retrieving Supplier Returns");
-            }
-            finally
-            {
-                
             }
             return supplierReturns;
         }
@@ -59,6 +58,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SupplierReturnsID", supplierReturns.SupplierReturnsID);
                     cmd.Parameters.AddWithValue("@SupplierID", supplierReturns.SupplierID);
                     cmd.Parameters.AddWithValue("@CategoryID", supplierReturns.CategoryID);
+                    cmd.Parameters.AddWithValue("@StockEntryID", supplierReturns.StockEntryID);
                     cmd.Parameters.AddWithValue("@UserID", supplierReturns.UserID);
                     supplierReturns.SupplierReturnsID = cmd.ExecuteScalar();
                 }
@@ -98,10 +98,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error while saving supplier returns detail");
-            }
-            finally
-            {
-                
             }
             return SupplierReturnsDetailID;
         }
@@ -317,10 +313,6 @@ namespace DataAccess
             {
                 throw new Exception("Error while updating supplier cost price");
             }
-            finally
-            {
-                
-            }
         }
 
         public void UpdateBRReason(object BRDID, object ReasonID, object UserID)
@@ -341,10 +333,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error while updating BR Reason");
-            }
-            finally
-            {
-                
             }
         }
 
@@ -528,6 +516,55 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error while saving supplier returns detail - " + ex.Message, ex);
+            }
+        }
+
+        public DataTable GetInvoiceNumbers(object SupplierID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_INVOICELISTFORSUPPLIERRETURNS]";
+                    cmd.Parameters.AddWithValue("@SupplierID", SupplierID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving supplier returns");
+            }
+            return dt;
+        }
+
+        public void DiscardSupplierReturns(object SupplierReturnsID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_DISCARDSUPPLIERRETURNS]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERRETURNSID", SupplierReturnsID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object obj = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(obj), out int i))
+                        throw new Exception(Convert.ToString(obj));
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("Cannot discard return"))
+                    throw ex;
+                else
+                    throw new Exception("Error while discarding supplier returns");
             }
         }
     }

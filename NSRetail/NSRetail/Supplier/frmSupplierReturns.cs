@@ -23,11 +23,13 @@ namespace NSRetail.Stock
         bool isEventCall;
         SupplierReturns supplierReturns = null;
         SupplierRepository supplierRepository = new SupplierRepository();
+        
         public frmSupplierReturns()
         {
             InitializeComponent();
             supplierReturns = new SupplierReturns();
         }
+        
         private void frmSupplierReturns_Load(object sender, EventArgs e)
         {
             try
@@ -62,6 +64,7 @@ namespace NSRetail.Stock
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
         }
+        
         private void FrmStockDispatch_RefreshBaseLineData(object sender, EventArgs e)
         {
             object selectedValue = sluItemCode.EditValue;
@@ -70,10 +73,12 @@ namespace NSRetail.Stock
             sluItemCode.Properties.DisplayMember = "ITEMCODE";
             sluItemCode.EditValue = selectedValue;
         }
+
         private void cmbSupplier_EditValueChanged(object sender, EventArgs e)
         {
             try
             {
+                Loadinvoicenumbers();
                 InitialLoad();
             }
             catch (Exception ex)
@@ -82,6 +87,29 @@ namespace NSRetail.Stock
                 ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
             }
         }
+
+        private void cmbStockEntry_EditValueChanged(object sender, EventArgs e)
+        {
+            InitialLoad();
+        }
+
+        private void cmbCategory_EditValueChanged(object sender, EventArgs e)
+        {
+            sluItemCode.Properties.DataSource = new ItemCodeRepository().GetItemCodeByCategory(Utility.CategoryID);
+            sluItemCode.Properties.ValueMember = "ITEMCODEID";
+            sluItemCode.Properties.DisplayMember = "ITEMNAME";
+
+            sluItemCodeView.GridControl.BindingContext = new BindingContext();
+            sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
+        }
+
+        private void Loadinvoicenumbers()
+        {
+            cmbStockEntry.Properties.DataSource = new SupplierRepository().GetInvoiceNumbers(cmbSupplier.EditValue);
+            cmbStockEntry.Properties.ValueMember = "STOCKENTRYID";
+            cmbStockEntry.Properties.DisplayMember = "SUPPLIERINVOICENO";
+        }
+
         private void InitialLoad()
         {
             try
@@ -90,6 +118,7 @@ namespace NSRetail.Stock
                     return;
                 supplierReturns.SupplierID = cmbSupplier.EditValue;
                 supplierReturns.CategoryID = cmbCategory.EditValue;
+                supplierReturns.StockEntryID = cmbStockEntry.EditValue;
                 supplierRepository.GetInitialLoad(supplierReturns);
                 gcSupplierReturns.DataSource = supplierReturns.dtSupplierReturns;
                
@@ -99,6 +128,7 @@ namespace NSRetail.Stock
                 throw ex;
             }
 ;        }
+        
         private void ClearItemData(bool focusItemCode = true)
         {
             txtItemCode.EditValue = null;
@@ -111,6 +141,7 @@ namespace NSRetail.Stock
             if (focusItemCode)
                 txtItemCode.Focus();
         }
+        
         private void txtItemCode_Leave(object sender, EventArgs e)
         {
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
@@ -143,6 +174,7 @@ namespace NSRetail.Stock
 
             isItemScanned = false;
         }
+        
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)
         {
             if (sluItemCode.EditValue == null) { return; }
@@ -186,20 +218,20 @@ namespace NSRetail.Stock
             }
             if (!isItemScanned)
             {
-                if (isOpenItem)
-                    txtWeightInKgs.Focus();
-                else
-                    txtQuantity.Focus();
+                cmbReason.Focus();
             }
         }
+        
         private void txtItemCode_Click(object sender, EventArgs e)
         {
             txtItemCode.SelectAll();
         }
+        
         private void txtItemCode_Enter(object sender, EventArgs e)
         {
             txtItemCode.SelectAll();
         }
+        
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -218,7 +250,19 @@ namespace NSRetail.Stock
                     return;
 
                 if (supplierReturns.SupplierReturnsID.Equals(0))
+                {
+                    InitialLoad();
+                    if(supplierReturns.SupplierReturnsID.Equals(0))
+                    {
+                        var result = XtraMessageBox.Show("You are about save a new return sheet for selected supplier. Do you want to continue?",
+                            "Confirmation!",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question);
+                        if(!Convert.ToString(result).ToLower().Equals("yes"))
+                            return;
+                    }
                     SaveSupplierReturns();
+                }
 
                 gvSupplierReturns.GridControl.BindingContext = new BindingContext();
                 gvSupplierReturns.GridControl.DataSource = supplierReturns.dtSupplierReturns;
@@ -264,6 +308,7 @@ namespace NSRetail.Stock
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
         }
+        
         private int Getrowhandle()
         {
             int rowHandle = -1;
@@ -283,12 +328,14 @@ namespace NSRetail.Stock
             }
             return rowHandle;
         }
+        
         private void SaveSupplierReturns()
         {
             try
             {
                 supplierReturns.SupplierID = cmbSupplier.EditValue;
                 supplierReturns.CategoryID = cmbCategory.EditValue;
+                supplierReturns.StockEntryID = cmbStockEntry.EditValue;
                 supplierReturns.UserID = Utility.UserID;
                 supplierRepository.SaveSupplierReturns(supplierReturns);
             }
@@ -297,12 +344,14 @@ namespace NSRetail.Stock
                 throw ex;
             }
         }
+        
         private void SaveSupplierReturnsDetail(int rowHandle)
         {
             DataRow drDetail = (gvSupplierReturns.GetRow(rowHandle) as DataRowView).Row;
             object SupplierReturnsDetailID = supplierRepository.SaveSupplierReturnsDetail(drDetail,Utility.UserID, Utility.BranchID);
             drDetail["SUPPLIERRETURNSDETAILID"] = SupplierReturnsDetailID;
         }
+        
         private void gvSupplierReturns_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
             gvSupplierReturns.SetRowCellValue(e.RowHandle, "SNO", gvSupplierReturns.RowCount + 1);
@@ -318,11 +367,13 @@ namespace NSRetail.Stock
             gvSupplierReturns.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
             gvSupplierReturns.SetRowCellValue(e.RowHandle, "REASONID", cmbReason.EditValue);
         }
+        
         private void txtQuantity_Enter(object sender, EventArgs e)
         {
             TextEdit textedit = sender as TextEdit;
             textedit.SelectAll();
         }
+        
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (gvSupplierReturns.FocusedRowHandle < 0 ||
@@ -333,6 +384,7 @@ namespace NSRetail.Stock
                 gvSupplierReturns.GetFocusedRowCellValue("SUPPLIERRETURNSDETAILID"), Utility.UserID);
             gvSupplierReturns.DeleteRow(gvSupplierReturns.FocusedRowHandle);
         }
+        
         private void frmSupplierReturns_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F3)
@@ -340,6 +392,7 @@ namespace NSRetail.Stock
                 sluItemCode.Focus();
             }
         }
+
         private void gvSupplierReturns_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             if (e.Column.FieldName != "QUANTITY" || isEventCall) return;
@@ -353,6 +406,9 @@ namespace NSRetail.Stock
                 if (gvSupplierReturns.RowCount == 0)
                     return;
                 supplierRepository.FreezeSupplierReturns(supplierReturns.SupplierReturnsID, Utility.UserID);
+                XtraMessageBox.Show("Return sheet submitted successfully.",
+                        "Information!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)
@@ -367,14 +423,30 @@ namespace NSRetail.Stock
             this.Close();
         }
 
-        private void cmbCategory_EditValueChanged(object sender, EventArgs e)
+        private void btnDiscard_Click(object sender, EventArgs e)
         {
-            sluItemCode.Properties.DataSource = new ItemCodeRepository().GetItemCodeByCategory(Utility.CategoryID);
-            sluItemCode.Properties.ValueMember = "ITEMCODEID";
-            sluItemCode.Properties.DisplayMember = "ITEMNAME";
-
-            sluItemCodeView.GridControl.BindingContext = new BindingContext();
-            sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
+            try
+            {
+                if (!supplierReturns.SupplierReturnsID.Equals(0) && supplierReturns.StockEntryID != null && !supplierReturns.StockEntryID.Equals(0))
+                {
+                    var result = XtraMessageBox.Show("Are sure want to discard return sheet?",
+                        "Confirmation!",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (!Convert.ToString(result).ToLower().Equals("yes"))
+                        return;
+                    supplierRepository.DiscardSupplierReturns(supplierReturns.SupplierReturnsID, Utility.UserID);
+                    XtraMessageBox.Show("Return sheet discarded successfully.",
+                        "Information!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbSupplier.EditValue = null;
+                    cmbStockEntry.EditValue = null;
+                    gcSupplierReturns.DataSource = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
         }
     }
 }
