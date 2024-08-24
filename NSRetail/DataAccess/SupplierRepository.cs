@@ -92,12 +92,19 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     cmd.Parameters.AddWithValue("@BranchID", BranchID);
                     cmd.Parameters.AddWithValue("@ReasonID", drNew["REASONID"]);
-                    SupplierReturnsDetailID = cmd.ExecuteScalar();
+                    object obj = cmd.ExecuteScalar();
+                    if (int.TryParse(Convert.ToString(obj), out int ivaue))
+                        SupplierReturnsDetailID = obj;
+                    else
+                        throw new Exception(Convert.ToString(obj));
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while saving supplier returns detail");
+                if (ex.Message.Contains(""))
+                    throw;
+                else
+                    throw new Exception("Error while saving supplier returns detail");
             }
             return SupplierReturnsDetailID;
         }

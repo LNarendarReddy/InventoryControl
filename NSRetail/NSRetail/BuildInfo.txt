@@ -1,5 +1,18 @@
-﻿v2.5.7
+﻿v2.5.8
  -- Added supplier refunds reports under Stock reports ->  Transactions Reports ->  Supplier Refunds
+ -- MATERIAL REJECTION WHILE STOCK RECEIVING DURING VEHICLE STOCK DAMAGE
+ -- Supplier return not working properly, some items are missing
+ -- Sir item ledger mismatch (for example in store pos> branch refund >entered one item(qty 3) 
+	if we select multiple reasons for each quantity and submitted, 
+	if we accept that sheet in nsretail item ledger is mismatched)(Refunded 1024422 from test and accepted in warehouse 
+	yesterday 18.07.2024 and item ledger is mismatched)
+ -- Sir shakti ghee 50ml 1012003 item ledger mismatch and supplier return done on 30-07-2024 added to 15-06-2024 supplier return, 
+	video attached for your reference  posted ON SKYPE 31.07.2024
+ -- Added Item Count in invoice list
+ -- Supplier returns -> validate W/H stock before return
+ -- Branch refunds -> item ledger -> show in approved date
+
+v2.5.7
  -- Item MRP future prices support
 
 v2.5.6

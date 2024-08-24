@@ -59,6 +59,9 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                         gvItems.GetRowCellValue(e.RowHandle, "BRDID"),
                         gvItems.GetRowCellValue(e.RowHandle, "REASONID"),
                         Utility.UserID);
+
+                    gcItems.DataSource = new POSRepository().GetBRefundDetail(BRefundID, CounterID);
+
                 }
                 else if (gvItems.FocusedColumn == gcSupplier)
                 {

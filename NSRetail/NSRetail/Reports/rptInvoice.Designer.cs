@@ -147,6 +147,8 @@ namespace NSRetail.Reports
             this.xrTableRow14 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell78 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell79 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell80 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell81 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
@@ -235,6 +237,7 @@ namespace NSRetail.Reports
             // 
             this.xrTableRow5.BorderWidth = 2F;
             this.xrTableRow5.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell80,
             this.xrTableCell17,
             this.xrTableCell18,
             this.xrTableCell20,
@@ -261,14 +264,14 @@ namespace NSRetail.Reports
             this.xrTableCell17.Multiline = true;
             this.xrTableCell17.Name = "xrTableCell17";
             this.xrTableCell17.Text = "EANCODE";
-            this.xrTableCell17.Weight = 2.5735349088686461D;
+            this.xrTableCell17.Weight = 3.1997103384432544D;
             // 
             // xrTableCell18
             // 
             this.xrTableCell18.Multiline = true;
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.Text = "ITEMNAME";
-            this.xrTableCell18.Weight = 5.14706938874169D;
+            this.xrTableCell18.Weight = 5.6241557423119639D;
             // 
             // xrTableCell20
             // 
@@ -625,6 +628,7 @@ namespace NSRetail.Reports
             // 
             this.xrTableRow2.BorderWidth = 2F;
             this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell81,
             this.xrTableCell6,
             this.xrTableCell19,
             this.xrTableCell21,
@@ -653,7 +657,7 @@ namespace NSRetail.Reports
             this.xrTableCell6.Multiline = true;
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.Text = "ITEMCODE";
-            this.xrTableCell6.Weight = 2.6848229885932318D;
+            this.xrTableCell6.Weight = 3.3380840226569859D;
             // 
             // xrTableCell19
             // 
@@ -662,7 +666,7 @@ namespace NSRetail.Reports
             this.xrTableCell19.Multiline = true;
             this.xrTableCell19.Name = "xrTableCell19";
             this.xrTableCell19.Text = "ITEMNAME";
-            this.xrTableCell19.Weight = 5.3696459771864662D;
+            this.xrTableCell19.Weight = 5.8673553467815669D;
             // 
             // xrTableCell21
             // 
@@ -1160,6 +1164,22 @@ namespace NSRetail.Reports
             this.xrTableCell79.Text = "xrTableCell79";
             this.xrTableCell79.Weight = 1.2796377657766338D;
             // 
+            // xrTableCell80
+            // 
+            this.xrTableCell80.Multiline = true;
+            this.xrTableCell80.Name = "xrTableCell80";
+            this.xrTableCell80.Text = "Sno";
+            this.xrTableCell80.Weight = 1.4702731257237631D;
+            // 
+            // xrTableCell81
+            // 
+            this.xrTableCell81.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SNO]")});
+            this.xrTableCell81.Multiline = true;
+            this.xrTableCell81.Name = "xrTableCell81";
+            this.xrTableCell81.Text = "xrTableCell81";
+            this.xrTableCell81.Weight = 1.5338525849343772D;
+            // 
             // rptInvoice
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1300,5 +1320,7 @@ namespace NSRetail.Reports
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow14;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell78;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell79;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell80;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell81;
     }
 }

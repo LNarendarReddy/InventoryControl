@@ -305,6 +305,7 @@ namespace NSRetail.Stock
             }
             catch (Exception ex)
             {
+                gvSupplierReturns.DeleteRow(gvSupplierReturns.FocusedRowHandle);
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
         }
