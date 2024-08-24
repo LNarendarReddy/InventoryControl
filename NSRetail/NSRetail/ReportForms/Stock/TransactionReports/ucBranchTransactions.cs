@@ -37,7 +37,9 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "APPROVEDBY", "Approved by" },
                 { "APPROVEDDATE", "Approved Date" },
                 { "HSNCODE", "HSN Code" },
-                { "TRAYNUMBER", "Tray #" }
+                { "TRAYNUMBER", "Tray #" },
+                { "CUSTOMERNAME", "Customer Name" },
+                { "CUSTOMERNUMBER", "Customer Phone #" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -49,13 +51,24 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
-                , new IncludeSettings("Tray Number", "IncludeTrayNumber", new List<string>{ "TRAYNUMBER" })
+                //, new IncludeSettings("Tray Number", "IncludeTrayNumber", new List<string>{ "TRAYNUMBER" })
             };
 
             if (ReportType == "B")
             {
                 IncludeSettingsCollection.Add(new IncludeSettings("Reason", "IncludeReason", new List<string> { "Reason" }));
                 IncludeSettingsCollection.Add(new IncludeSettings("Refund Number", "IncludeRefundNumber", new List<string> { "BREFUNDNUMBER" }));
+            }
+
+            if (ReportType != "C")
+            {
+                IncludeSettingsCollection.Add(new IncludeSettings("Tray Number", "IncludeTrayNumber", new List<string> { "TRAYNUMBER" }));                
+            }
+
+            if (ReportType == "C")
+            {
+                IncludeSettingsCollection.Add(new IncludeSettings("Customer & Bill details", "IncludeCustomerDetails"
+                    , new List<string> { "CUSTOMERNAME", "CUSTOMERNUMBER", "BILLNUMBER" }));
             }
 
             SetFocusControls(cmbPeriodicity,  cmbItemCode, specificColumnHeaders);

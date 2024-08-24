@@ -31,7 +31,8 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 , { "CUSTOMERNUMBER", "Customer Number" }
                 , { "BILLOPENDATE", "Bill Open Date" }
                 , { "BILLOPENTIME", "Bill Open Time" }
-                , { "BILLCLOSEDDATE", "Bill Closed Date" }
+                , { "BILLCLOSEDTIME", "Bill Closed Time" }
+                , { "REFUNDQTYORWGHTINKGS", "Refund Qty or Wght (In KGs)" }
             };
 
             ButtonColumns = new List<string>() {"Items", "Print"};
