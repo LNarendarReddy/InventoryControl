@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -39,6 +38,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnPriceCheck = new DevExpress.XtraEditors.SimpleButton();
             this.btnOperations = new DevExpress.XtraEditors.SimpleButton();
@@ -59,11 +59,9 @@
             this.txtItemCode = new DevExpress.XtraEditors.TextEdit();
             this.btnDayClosure = new DevExpress.XtraEditors.SimpleButton();
             this.btnLoadDraftBill = new DevExpress.XtraEditors.SimpleButton();
-            this.btnStockIn = new DevExpress.XtraEditors.SimpleButton();
             this.btnCloseBill = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveBill = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefund = new DevExpress.XtraEditors.SimpleButton();
-            this.btnBranchRefund = new DevExpress.XtraEditors.SimpleButton();
             this.gcBilling = new DevExpress.XtraGrid.GridControl();
             this.gvBilling = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -131,13 +129,13 @@
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcgStoreManagerOptions = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.btnLogout = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSplDiscPer.Properties)).BeginInit();
@@ -184,13 +182,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgStoreManagerOptions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -210,6 +207,7 @@
             this.layoutControl1.Appearance.DisabledLayoutItem.Font = new System.Drawing.Font("Arial", 9F);
             this.layoutControl1.Appearance.DisabledLayoutItem.Options.UseFont = true;
             this.layoutControl1.Appearance.DisabledLayoutItem.Options.UseForeColor = true;
+            this.layoutControl1.Controls.Add(this.btnLogout);
             this.layoutControl1.Controls.Add(this.btnPriceCheck);
             this.layoutControl1.Controls.Add(this.btnOperations);
             this.layoutControl1.Controls.Add(this.lblVersionInfo);
@@ -229,11 +227,9 @@
             this.layoutControl1.Controls.Add(this.txtItemCode);
             this.layoutControl1.Controls.Add(this.btnDayClosure);
             this.layoutControl1.Controls.Add(this.btnLoadDraftBill);
-            this.layoutControl1.Controls.Add(this.btnStockIn);
             this.layoutControl1.Controls.Add(this.btnCloseBill);
             this.layoutControl1.Controls.Add(this.btnSaveBill);
             this.layoutControl1.Controls.Add(this.btnRefund);
-            this.layoutControl1.Controls.Add(this.btnBranchRefund);
             this.layoutControl1.Controls.Add(this.gcBilling);
             this.layoutControl1.Controls.Add(this.txtQuantity);
             this.layoutControl1.Controls.Add(this.txtSalePrice);
@@ -497,19 +493,6 @@
             this.btnLoadDraftBill.Text = "&Load Draft (F6)";
             this.btnLoadDraftBill.Click += new System.EventHandler(this.btnLoadDraftBill_Click);
             // 
-            // btnStockIn
-            // 
-            this.btnStockIn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnStockIn.ImageOptions.Image")));
-            this.btnStockIn.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnStockIn.Location = new System.Drawing.Point(1013, 664);
-            this.btnStockIn.Name = "btnStockIn";
-            this.btnStockIn.Size = new System.Drawing.Size(115, 22);
-            this.btnStockIn.StyleController = this.layoutControl1;
-            this.btnStockIn.TabIndex = 20;
-            this.btnStockIn.TabStop = false;
-            this.btnStockIn.Text = "Stock &In (F10)";
-            this.btnStockIn.Click += new System.EventHandler(this.btnStockIn_Click);
-            // 
             // btnCloseBill
             // 
             this.btnCloseBill.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseBill.ImageOptions.Image")));
@@ -548,19 +531,6 @@
             this.btnRefund.TabStop = false;
             this.btnRefund.Text = "&Refund (F7)";
             this.btnRefund.Click += new System.EventHandler(this.btnRefund_Click);
-            // 
-            // btnBranchRefund
-            // 
-            this.btnBranchRefund.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBranchRefund.ImageOptions.Image")));
-            this.btnBranchRefund.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnBranchRefund.Location = new System.Drawing.Point(1138, 664);
-            this.btnBranchRefund.Name = "btnBranchRefund";
-            this.btnBranchRefund.Size = new System.Drawing.Size(148, 22);
-            this.btnBranchRefund.StyleController = this.layoutControl1;
-            this.btnBranchRefund.TabIndex = 21;
-            this.btnBranchRefund.TabStop = false;
-            this.btnBranchRefund.Text = "&Branch Refund (F11)";
-            this.btnBranchRefund.Click += new System.EventHandler(this.btnBranchRefund_Click);
             // 
             // gcBilling
             // 
@@ -1295,7 +1265,6 @@
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem24,
             this.layoutControlItem18,
-            this.layoutControlItem7,
             this.layoutControlItem11});
             this.layoutControlGroup3.Location = new System.Drawing.Point(1001, 599);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
@@ -1322,26 +1291,6 @@
             this.layoutControlItem18.Size = new System.Drawing.Size(158, 32);
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.btnStockIn;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 32);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem7.Size = new System.Drawing.Size(125, 38);
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
-            // 
-            // layoutControlItem11
-            // 
-            this.layoutControlItem11.Control = this.btnBranchRefund;
-            this.layoutControlItem11.Location = new System.Drawing.Point(125, 32);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem11.Size = new System.Drawing.Size(158, 38);
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem11.TextVisible = false;
             // 
             // lcgStoreManagerOptions
             // 
@@ -1389,6 +1338,28 @@
             this.layoutControlGroup5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
             this.layoutControlGroup5.Size = new System.Drawing.Size(278, 26);
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLogout.ImageOptions.Image")));
+            this.btnLogout.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnLogout.Location = new System.Drawing.Point(1013, 664);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(273, 22);
+            this.btnLogout.StyleController = this.layoutControl1;
+            this.btnLogout.TabIndex = 47;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.Control = this.btnLogout;
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 32);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem11.Size = new System.Drawing.Size(283, 38);
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem11.TextVisible = false;
             // 
             // frmMain
             // 
@@ -1450,13 +1421,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgStoreManagerOptions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1477,13 +1447,9 @@
         private DevExpress.XtraEditors.SimpleButton btnCloseBill;
         private DevExpress.XtraEditors.SimpleButton btnSaveBill;
         private DevExpress.XtraEditors.SimpleButton btnRefund;
-        private DevExpress.XtraEditors.SimpleButton btnBranchRefund;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
-        private DevExpress.XtraEditors.SimpleButton btnStockIn;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
@@ -1562,6 +1528,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.SimpleButton btnPriceCheck;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
+        private DevExpress.XtraEditors.SimpleButton btnLogout;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
     }
 }
 

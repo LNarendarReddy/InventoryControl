@@ -4,6 +4,7 @@ using NSRetail.ReportForms;
 using NSRetailPOS.Operations.Items;
 using NSRetailPOS.Operations.Reports;
 using NSRetailPOS.Operations.Stock;
+using NSRetailPOS.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -64,12 +65,14 @@ namespace NSRetailPOS.Operations
 
         private void btnStockIn_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            new frmStockInList().ShowDialog();
         }
 
         private void btnBranchRefund_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            frmBranchRefund obj = new frmBranchRefund()
+            { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
+            obj.ShowDialog();
         }
 
         private void btnItem_ItemClick(object sender, ItemClickEventArgs e)

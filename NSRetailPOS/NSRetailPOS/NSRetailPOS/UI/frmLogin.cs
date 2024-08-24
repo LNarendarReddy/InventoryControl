@@ -10,6 +10,17 @@ namespace NSRetailPOS.UI
     public partial class frmLogin : XtraForm
     {
         POSRepository objPOSRep = new POSRepository();
+
+        private static frmLogin instance;
+
+        public static frmLogin Instance
+        {
+            get
+            {
+                return instance = instance ?? new frmLogin();
+            }
+        }
+
         public frmLogin()
         {
             InitializeComponent();
@@ -63,6 +74,7 @@ namespace NSRetailPOS.UI
                         else
                         {
                             frmMain.Instance.Show();
+                            txtPassword.Text = string.Empty;
                             this.Hide();
                         }
                     }

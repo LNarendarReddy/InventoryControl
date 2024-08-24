@@ -74,9 +74,7 @@ namespace NSRetailPOS
             btnCRWithoutBill.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             txtSplDiscPer.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             btnApplyDiscount.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
-            btnDayClosure.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
-            btnStockIn.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
-            btnBranchRefund.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
+            btnDayClosure.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");            
             btnOperations.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
             gcDiscount.Visible = Utility.branchInfo.BranchID.Equals(45) || Utility.branchInfo.BranchID.Equals(103);
 
@@ -472,7 +470,9 @@ namespace NSRetailPOS
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            instance = null;
+            Utility.ItemOrCodeChanged -= Utility_ItemOrCodeChanged;
+            frmLogin.Instance.Show();
         }
 
         private void btnLastBillPrint_Click(object sender, EventArgs e)
@@ -597,25 +597,12 @@ namespace NSRetailPOS
                 case Keys.F9:
                     btnDayClosure_Click(sender, e);
                     break;
-                case Keys.F10:
-                    btnStockIn_Click(sender, e);
-                    break;
-                case Keys.F11:
-                    btnBranchRefund_Click(sender, e);
-                    break;
                 case Keys.F12:
                     btnPriceCheck_Click(sender, e);
                     break;
                 default:
                     break;
             }
-        }
-
-        private void btnStockIn_Click(object sender, EventArgs e)
-        {
-            if (!btnStockIn.Enabled) return;
-
-            new frmStockInList().ShowDialog();
         }
 
         private void btnRefund_Click(object sender, EventArgs e)
@@ -626,15 +613,6 @@ namespace NSRetailPOS
             obj.ShowInTaskbar = false;
             obj.IconOptions.ShowIcon = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
-            obj.ShowDialog();
-        }
-
-        private void btnBranchRefund_Click(object sender, EventArgs e)
-        {
-            if (!btnBranchRefund.Enabled) return;
-
-            frmBranchRefund obj = new frmBranchRefund()
-            { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
             obj.ShowDialog();
         }
 
@@ -893,6 +871,11 @@ namespace NSRetailPOS
         private void btnPriceCheck_Click(object sender, EventArgs e)
         {
             _ = new frmPriceCheck(sluItemCode.Properties.DataSource).ShowDialog();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {            
+            this.Close();                 
         }
     }
 }

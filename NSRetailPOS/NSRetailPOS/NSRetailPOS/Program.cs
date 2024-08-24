@@ -47,7 +47,7 @@ namespace NSRetailPOS
                 Utility.branchInfo.BranchCounterID = dt.Rows[0]["BRANCHCOUNTERID"];
                 Utility.branchInfo.BranchName = dt.Rows[0]["BRANCHNAME"];
                 Utility.branchInfo.BranchCounterName = dt.Rows[0]["COUNTERNAME"];
-                Application.Run(new frmLogin());
+                Application.Run(frmLogin.Instance);
             }
             else
             {

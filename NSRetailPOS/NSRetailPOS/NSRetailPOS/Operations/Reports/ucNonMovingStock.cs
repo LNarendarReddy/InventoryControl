@@ -28,6 +28,7 @@ namespace NSRetailPOS.Operations.Reports
             SetFocusControls(cmbBranch,cmbItemCode , columnHeaders);
             MandatoryFields = new List<BaseEdit> { cmbBranch, dtpFromDate, dtpToDate };
             AllowedRoles = new List<string> { "Division Manager", "IT User", "Division User" };
+            dtpToDate.Properties.MaxValue = DateTime.Now.AddDays(-2);
         }
 
         public override object GetData()
