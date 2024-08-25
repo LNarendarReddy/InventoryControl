@@ -35,6 +35,7 @@ namespace NSRetail
             gcCostPriceWT.Visible = showCostPrice;
             gcCostPriceWOT.Visible = showCostPrice;
             gcEdit.Visible = IsItemListCall && (Utility.Role == "Admin" || Utility.Role == "IT Manager");
+            gcDelete.Visible = IsItemListCall && Utility.Role == "Admin";
 
             //if (IsItemListCall && Utility.Role == "Admin")
             //{
@@ -220,6 +221,11 @@ namespace NSRetail
         private void LoadItemPrices(ItemMRP itemMRP)
         {            
             gcMRPList.DataSource = new ItemCodeRepository().GetMRPList(_ItemCodeID);
+        }
+
+        private void frmMRPList_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

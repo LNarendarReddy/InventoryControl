@@ -1,4 +1,8 @@
-﻿v2.5.8
+﻿v2.5.9
+ -- Item MRP delete for admin users only (valdidation is no stock in all branches)
+ -- Supplier indent change to 6 months average (DB Change only)
+
+v2.5.8
  -- Added supplier refunds reports under Stock reports ->  Transactions Reports ->  Supplier Refunds
  -- MATERIAL REJECTION WHILE STOCK RECEIVING DURING VEHICLE STOCK DAMAGE
  -- Supplier return not working properly, some items are missing
