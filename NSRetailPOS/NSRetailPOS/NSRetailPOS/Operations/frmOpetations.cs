@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraSplashScreen;
 using NSRetail.ReportForms;
+using NSRetailPOS.Operations.Branch;
 using NSRetailPOS.Operations.Items;
 using NSRetailPOS.Operations.Reports;
 using NSRetailPOS.Operations.Stock;
@@ -94,6 +95,11 @@ namespace NSRetailPOS.Operations
             obj.IconOptions.ShowIcon = false;
             obj.MdiParent = this;
             obj.Show();
+        }
+
+        private void bbiBranchExpenses_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new frmBranchExpenseList() { MdiParent = this }.Show();
         }
     }
 }

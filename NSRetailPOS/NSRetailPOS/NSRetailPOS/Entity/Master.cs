@@ -141,4 +141,11 @@ namespace NSRetailPOS.Entity
 
         public object ItemSubClassificationName { get; set; }
     }
+
+    public class BranchExpense : EntityBase
+    { 
+        public object BranchExpenseID { get; set; } 
+        
+        public object Amount { get;set; }
+    }
 }

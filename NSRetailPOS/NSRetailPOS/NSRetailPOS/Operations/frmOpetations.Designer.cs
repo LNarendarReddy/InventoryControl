@@ -36,19 +36,20 @@
             this.btnStockIn = new DevExpress.XtraBars.BarButtonItem();
             this.btnBranchRefund = new DevExpress.XtraBars.BarButtonItem();
             this.btnItem = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSupplierReturns = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.btnSupplierReturns = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.bbiBranchExpenses = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbon
             // 
-            this.ribbon.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35);
             this.ribbon.ExpandCollapseItem.Id = 0;
             this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbon.ExpandCollapseItem,
@@ -59,15 +60,14 @@
             this.btnStockIn,
             this.btnBranchRefund,
             this.btnItem,
-            this.btnSupplierReturns});
+            this.btnSupplierReturns,
+            this.bbiBranchExpenses});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ribbon.MaxItemId = 9;
+            this.ribbon.MaxItemId = 10;
             this.ribbon.Name = "ribbon";
-            this.ribbon.OptionsMenuMinWidth = 385;
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
-            this.ribbon.Size = new System.Drawing.Size(1511, 163);
+            this.ribbon.Size = new System.Drawing.Size(1295, 157);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // bbiReports
@@ -118,11 +118,20 @@
             this.btnItem.Name = "btnItem";
             this.btnItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItem_ItemClick);
             // 
+            // btnSupplierReturns
+            // 
+            this.btnSupplierReturns.Caption = "Supplier Returns";
+            this.btnSupplierReturns.Id = 8;
+            this.btnSupplierReturns.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSupplierReturns.ImageOptions.SvgImage")));
+            this.btnSupplierReturns.Name = "btnSupplierReturns";
+            this.btnSupplierReturns.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSupplierReturns_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup4,
             this.ribbonPageGroup2,
+            this.ribbonPageGroup5,
             this.ribbonPageGroup1,
             this.ribbonPageGroup3});
             this.ribbonPage1.Name = "ribbonPage1";
@@ -157,30 +166,34 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 726);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 626);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1511, 22);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1295, 22);
             // 
-            // btnSupplierReturns
+            // ribbonPageGroup5
             // 
-            this.btnSupplierReturns.Caption = "Supplier Returns";
-            this.btnSupplierReturns.Id = 8;
-            this.btnSupplierReturns.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSupplierReturns.ImageOptions.SvgImage")));
-            this.btnSupplierReturns.Name = "btnSupplierReturns";
-            this.btnSupplierReturns.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSupplierReturns_ItemClick);
+            this.ribbonPageGroup5.ItemLinks.Add(this.bbiBranchExpenses);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "Branch Expenses";
+            // 
+            // bbiBranchExpenses
+            // 
+            this.bbiBranchExpenses.Caption = "Branch Expenses";
+            this.bbiBranchExpenses.Id = 9;
+            this.bbiBranchExpenses.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiBranchExpenses.ImageOptions.SvgImage")));
+            this.bbiBranchExpenses.Name = "bbiBranchExpenses";
+            this.bbiBranchExpenses.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBranchExpenses_ItemClick);
             // 
             // frmOpetations
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1511, 748);
+            this.ClientSize = new System.Drawing.Size(1295, 648);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.IconOptions.ShowIcon = false;
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmOpetations";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -209,5 +222,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.BarButtonItem btnItem;
         private DevExpress.XtraBars.BarButtonItem btnSupplierReturns;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
+        private DevExpress.XtraBars.BarButtonItem bbiBranchExpenses;
     }
 }

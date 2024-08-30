@@ -141,6 +141,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\OperationsRepository.cs" />
     <Compile Include="Data\SupplierRepository.cs" />
     <Compile Include="Data\ItemCodeRepository.cs" />
     <Compile Include="Data\MasterRepository.cs" />
@@ -172,6 +173,18 @@
     <Compile Include="Helpers\DefaultPrinter.cs" />
     <Compile Include="IBarcodeReceiver.cs" />
     <Compile Include="LoggerUtility.cs" />
+    <Compile Include="Operations\Branch\frmBranchExpense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Branch\frmBranchExpense.Designer.cs">
+      <DependentUpon>frmBranchExpense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\Branch\frmBranchExpenseList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Branch\frmBranchExpenseList.Designer.cs">
+      <DependentUpon>frmBranchExpenseList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\frmOpetations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -478,6 +491,12 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Branch\frmBranchExpense.resx">
+      <DependentUpon>frmBranchExpense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Branch\frmBranchExpenseList.resx">
+      <DependentUpon>frmBranchExpenseList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operations\frmOpetations.resx">
       <DependentUpon>frmOpetations.cs</DependentUpon>
     </EmbeddedResource>
@@ -683,6 +702,10 @@
     <None Include="Resources\apply_16x16.png" />
     <None Include="Resources\cancel_16x16.png" />
     <None Include="Resources\show_16x16.png" />
+    <None Include="Resources\refresh2_16x16.png" />
+    <None Include="Resources\addgroupfooter_16x16.png" />
+    <None Include="Resources\save_16x16.png" />
+    <None Include="Resources\cancel_16x161.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />
