@@ -426,6 +426,7 @@ namespace NSRetail
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch DC List", SearchCriteriaControl = new ucDispatchDCList() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Refund sheets", SearchCriteriaControl = new ucBranchRefunds() });
             branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
+            branchReports.SubCategory.Add(new ReportHolder() { ReportName = "Expenses", SearchCriteriaControl = new ucBranchExpenseList() });
             reportList.Add(branchReports);
 
             ReportHolder POSReports = new ReportHolder() { ReportName = "POS Reports" };
