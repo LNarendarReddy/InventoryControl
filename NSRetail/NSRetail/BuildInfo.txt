@@ -1,4 +1,7 @@
-﻿v2.6.0
+﻿v2.6.1
+ -- Fix Cost Price with tax calculation while tax exclusive in stock entry
+
+v2.6.0
  -- Branch expenses report
 
 v2.5.9

@@ -332,8 +332,7 @@ namespace NSRetail.Stock
                     decimal cpWT = 0;
                     if (decimal.TryParse(Convert.ToString(txtCostPriceWOT.EditValue), out cpWT))
                     {
-                        txtCostPriceWT.EditValue = cpWT +
-                            Math.Round(cpWT * gstInfo.TAXPercent, 4);
+                        txtCostPriceWT.EditValue = Math.Round(cpWT / (1 - gstInfo.TAXPercent), 4);
                         CalculateReadOnlyFields();
                     }
                 }
