@@ -19,7 +19,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             InitializeComponent();
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
-                { "EXPENSEDESC", "Description" }
+                { "BRANCHEXPENSETYPENAME", "Expense Type" }
+                , { "EXPENSEDESC", "Description" }
                 , { "AMOUNT", "Amount" }
                 , { "CREATEDBY", "Created by" }
                 , { "UPDATEDBY", "Updated by" }

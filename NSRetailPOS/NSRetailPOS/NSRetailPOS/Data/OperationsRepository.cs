@@ -21,6 +21,7 @@ namespace NSRetailPOS.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_BRANCHEXPENSE]";
                     cmd.Parameters.AddWithValue("@BranchExpenseID", branchExpense.BranchExpenseID);
+                    cmd.Parameters.AddWithValue("@BranchExpenseTypeID", branchExpense.BranchExpenseTypeID);
                     cmd.Parameters.AddWithValue("@BranchID", Utility.branchInfo.BranchID);
                     cmd.Parameters.AddWithValue("@Description", branchExpense.Description);
                     cmd.Parameters.AddWithValue("@Amount", branchExpense.Amount);

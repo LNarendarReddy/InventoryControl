@@ -145,7 +145,9 @@ namespace NSRetailPOS.Entity
     public class BranchExpense : EntityBase
     { 
         public object BranchExpenseID { get; set; } 
-        
+
+        public object BranchExpenseTypeID { get; set; }
+
         public object Amount { get;set; }
     }
 }

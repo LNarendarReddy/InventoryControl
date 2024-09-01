@@ -26,11 +26,12 @@ namespace NSRetailPOS.Operations.Branch
             {
                 Description = gvExpenses.GetFocusedRowCellValue("EXPENSEDESC")
                 , BranchExpenseID = gvExpenses.GetFocusedRowCellValue("BRANCHEXPENSEID")
+                , BranchExpenseTypeID = gvExpenses.GetFocusedRowCellValue("BRANCHEXPENSETYPEID")
                 , Amount = gvExpenses.GetFocusedRowCellValue("AMOUNT")
                 , CreatedDate = gvExpenses.GetFocusedRowCellValue("CREATEDDATE")
             };
 
-            if(((DateTime)branchExpense.CreatedDate).Date == DateTime.Today)
+            if(((DateTime)branchExpense.CreatedDate).Date != DateTime.Today)
             {
                 XtraMessageBox.Show("Only today's expenses can be edited", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
@@ -45,13 +46,11 @@ namespace NSRetailPOS.Operations.Branch
         {
             BranchExpense branchExpense = new BranchExpense
             {
-                Description = gvExpenses.GetFocusedRowCellValue("EXPENSEDESC")
-                , BranchExpenseID = gvExpenses.GetFocusedRowCellValue("BRANCHEXPENSEID")
-                , Amount = gvExpenses.GetFocusedRowCellValue("AMOUNT")
+                BranchExpenseID = gvExpenses.GetFocusedRowCellValue("BRANCHEXPENSEID")
                 , CreatedDate = gvExpenses.GetFocusedRowCellValue("CREATEDDATE")
             };
 
-            if (((DateTime)branchExpense.CreatedDate).Date == DateTime.Today)
+            if (((DateTime)branchExpense.CreatedDate).Date != DateTime.Today)
             {
                 XtraMessageBox.Show("Only today's expenses can be deleted", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
