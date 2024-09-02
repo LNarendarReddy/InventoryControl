@@ -1,4 +1,8 @@
-﻿v2.6.1
+﻿v2.6.2
+ -- Add dispatch discard option dispatch list, only draft invoices can be discarded.
+ -- Dispatch locking for branch, can be used before stock counting
+
+v2.6.1
  -- Fix Cost Price with tax calculation while tax exclusive in stock entry
 
 v2.6.0

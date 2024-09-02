@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Lifetime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,7 +39,10 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Saving Dispatch");
+                if (ex.Message.Contains("Stock dispatch disabled"))
+                    throw ex;
+                else
+                    throw new Exception("Error While Saving Dispatch");
             }
             finally
             {

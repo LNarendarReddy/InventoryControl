@@ -74,6 +74,7 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcBranch)).BeginInit();
@@ -158,7 +159,7 @@
             // 
             // gcBranch
             // 
-            this.gcBranch.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcBranch.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gcBranch.Location = new System.Drawing.Point(5, 35);
             this.gcBranch.MainView = this.gvBranch;
             this.gcBranch.Margin = new System.Windows.Forms.Padding(4);
@@ -198,6 +199,7 @@
             this.gridColumn11,
             this.gridColumn19,
             this.gridColumn20,
+            this.gridColumn21,
             this.gridColumn12,
             this.gridColumn13});
             this.gvBranch.DetailHeight = 404;
@@ -408,7 +410,7 @@
             this.gridColumn12.MinWidth = 24;
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 10;
+            this.gridColumn12.VisibleIndex = 11;
             this.gridColumn12.Width = 74;
             // 
             // btnEdit
@@ -430,7 +432,7 @@
             this.gridColumn13.MinWidth = 24;
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 11;
+            this.gridColumn13.VisibleIndex = 12;
             this.gridColumn13.Width = 76;
             // 
             // btnDelete
@@ -513,6 +515,15 @@
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
+            // gridColumn21
+            // 
+            this.gridColumn21.Caption = "Stock Dispatch Enabled";
+            this.gridColumn21.FieldName = "StockDispatchEnabled";
+            this.gridColumn21.Name = "gridColumn21";
+            this.gridColumn21.OptionsColumn.AllowEdit = false;
+            this.gridColumn21.Visible = true;
+            this.gridColumn21.VisibleIndex = 10;
+            // 
             // frmBranchList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -578,5 +589,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
     }
 }

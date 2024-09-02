@@ -54,6 +54,9 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -77,7 +80,6 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemList)).BeginInit();
@@ -253,7 +255,9 @@
             this.gridColumn10,
             this.gridColumn11,
             this.gridColumn14,
-            this.gridColumn15});
+            this.gridColumn15,
+            this.gridColumn16,
+            this.gridColumn17});
             this.gvItemList.DetailHeight = 404;
             this.gvItemList.GridControl = this.gcItemList;
             this.gvItemList.Name = "gvItemList";
@@ -345,6 +349,7 @@
             this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 5;
+            this.gridColumn13.Width = 106;
             // 
             // gridColumn4
             // 
@@ -363,8 +368,8 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 6;
-            this.gridColumn8.Width = 100;
+            this.gridColumn8.VisibleIndex = 8;
+            this.gridColumn8.Width = 123;
             // 
             // gridColumn9
             // 
@@ -374,8 +379,8 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 7;
-            this.gridColumn9.Width = 146;
+            this.gridColumn9.VisibleIndex = 9;
+            this.gridColumn9.Width = 103;
             // 
             // gridColumn10
             // 
@@ -400,6 +405,33 @@
             this.gridColumn14.Caption = "PARENTITEMID";
             this.gridColumn14.FieldName = "PARENTITEMID";
             this.gridColumn14.Name = "gridColumn14";
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "HSN Code";
+            this.gridColumn15.FieldName = "HSNCODE";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 10;
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "Parent SKU";
+            this.gridColumn16.FieldName = "PARENTSKUCODE";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.OptionsColumn.AllowEdit = false;
+            this.gridColumn16.Visible = true;
+            this.gridColumn16.VisibleIndex = 6;
+            this.gridColumn16.Width = 108;
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "Parent Item Name";
+            this.gridColumn17.FieldName = "PARENTITEMNAME";
+            this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.OptionsColumn.AllowEdit = false;
+            this.gridColumn17.Visible = true;
+            this.gridColumn17.VisibleIndex = 7;
             // 
             // Root
             // 
@@ -659,14 +691,6 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 685);
             // 
-            // gridColumn15
-            // 
-            this.gridColumn15.Caption = "HSN Code";
-            this.gridColumn15.FieldName = "HSNCODE";
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 8;
-            // 
             // frmItemCodeList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -755,5 +779,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
     }
 }

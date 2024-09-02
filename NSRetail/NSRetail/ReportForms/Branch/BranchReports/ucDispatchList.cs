@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.PivotGrid.OLAP.AdoWrappers;
 using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using NSRetail.Reports;
@@ -27,7 +28,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "STATUS", "Status" }
             };
 
-            ButtonColumns = new List<string>() { "View", "Print to DM" };
+            ButtonColumns = new List<string>() { "View", "Print to DM", "Discard" };
 
             cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
@@ -73,6 +74,15 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                     break;
                 case "Print to DM":
                     Utilities.DotMatrixPrintHelper.PrintDispatch(ds);
+                    break;
+                case "Discard":
+                    if (XtraMessageBox.Show("Are you sure want to discard dispatch?", "Confirm",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes
+                || Convert.ToInt32(Convert.ToString(drFocusedRow["STOCKDISPATCHID"])) == 0)
+                        return;
+                    new StockRepository().DiscardStockDispatch(Convert.ToString(drFocusedRow["STOCKDISPATCHID"]), Utility.UserID);
+                    drFocusedRow.Table.Rows.Remove(drFocusedRow);
+                    //(ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
                     break;
 
             }

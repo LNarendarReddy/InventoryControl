@@ -122,6 +122,11 @@ namespace NSRetail
             if (e.HitInfo.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
             {
                 e.Menu.Items.Add(new DXMenuItem("Initiate Stock Counting", new EventHandler(On_Click)));
+                string menu = "Enable Stock Dispatch";
+                if (gvBranch.GetFocusedRowCellValue("StockDispatchEnabled").Equals(true))
+                    menu = "Disable Stock Dispatch";
+                e.Menu.Items.Add(new DXMenuItem(menu, new EventHandler(OnDispatch_Click)));
+
             }
         }
 
@@ -134,6 +139,27 @@ namespace NSRetail
                     new MasterRepository().InitiateStockCounting(gvBranch.GetFocusedRowCellValue("BRANCHID"),Utility.UserID);
                     new CloudRepository().InitiateCounting(gvBranch.GetFocusedRowCellValue("BRANCHID"), true);
                     XtraMessageBox.Show("Old sheets are archived, please wait for 10 mins and continue with stock counting");
+                    gcBranch.DataSource = objMasterRep.GetBranch();
+                    gvBranch.BestFitColumns();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+
+        void OnDispatch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvBranch.FocusedRowHandle >= 0)
+                {
+                    bool stats = Convert.ToBoolean(gvBranch.GetFocusedRowCellValue("StockDispatchEnabled"));
+                    new MasterRepository().UpdateStockDispatchStatus(gvBranch.GetFocusedRowCellValue("BRANCHID"),Utility.UserID,!stats);
+                    XtraMessageBox.Show("Stock dispatch status updated");
+                    gvBranch.SetFocusedRowCellValue("StockDispatchEnabled", !stats);
                 }
             }
             catch (Exception ex)
@@ -150,7 +176,7 @@ namespace NSRetail
 
         private void gcBranch_Click(object sender, EventArgs e)
         {
-
+           
         }
     }
 }

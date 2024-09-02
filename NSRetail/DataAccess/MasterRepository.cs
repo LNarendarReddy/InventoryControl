@@ -1002,5 +1002,31 @@ namespace DataAccess
                     throw new Exception("Error While performing action");
             }
         }
+
+        public void UpdateStockDispatchStatus(object BranchID, object UserId, bool StockDispatchStatus)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_STOCKDISPATCHSTATUS]";
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@StockDispatchStatus", StockDispatchStatus);
+                    cmd.Parameters.AddWithValue("@USERID", UserId);
+                    object obj = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(obj), out int ivalue))
+                        throw new Exception(Convert.ToString(obj));
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("There are few dispatches"))
+                    throw ex;
+                else
+                    throw new Exception("Error While performing action");
+            }
+        }
     }
 }

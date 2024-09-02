@@ -141,6 +141,7 @@ namespace NSRetail
                 dtItemCodes = Utility.GetItemCodeListFiltered();
                 dtItems = Utility.GetItemSKUList();
                 gcItemList.DataSource = dtItemCodes;
+                gvItemList.BestFitColumns();
                 ((frmMain)this.MdiParent).RefreshBaseLineData += FrmItemCodeList_RefreshBaseLineData;
             }
             catch (Exception ex)

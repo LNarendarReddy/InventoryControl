@@ -40,6 +40,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             SetFocusControls(cmbSupplier, dtpToDate, columnHeaders);
             AllowedRoles = new List<string> { "Division Manager", "IT User" };
         }
+
         public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
@@ -51,6 +52,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             };
             return GetReportData("USP_R_SUPPLIERRETURNS", parameters);
         }
+
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
             switch (buttonText)
