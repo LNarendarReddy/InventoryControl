@@ -329,10 +329,10 @@ namespace NSRetail.Stock
                     !Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) 
                     && cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
                 {
-                    decimal cpWT = 0;
-                    if (decimal.TryParse(Convert.ToString(txtCostPriceWOT.EditValue), out cpWT))
+                    decimal cpWOT = 0;
+                    if (decimal.TryParse(Convert.ToString(txtCostPriceWOT.EditValue), out cpWOT))
                     {
-                        txtCostPriceWT.EditValue = Math.Round(cpWT / (1 - gstInfo.TAXPercent), 4);
+                        txtCostPriceWT.EditValue = Math.Round(cpWOT + (cpWOT * gstInfo.TAXPercent), 4);
                         CalculateReadOnlyFields();
                     }
                 }
@@ -360,7 +360,7 @@ namespace NSRetail.Stock
                     decimal cpWT = 0;
                     if (decimal.TryParse(Convert.ToString(txtCostPriceWT.EditValue), out cpWT))
                     {
-                        txtCostPriceWOT.EditValue = cpWT - Math.Round(cpWT * gstInfo.TAXPercent, 4);
+                        txtCostPriceWOT.EditValue = Math.Round(cpWT  / (1 + gstInfo.TAXPercent), 4);
                         CalculateReadOnlyFields();
                     }
                 }
