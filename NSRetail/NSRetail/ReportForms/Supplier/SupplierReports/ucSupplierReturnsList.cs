@@ -28,7 +28,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "STATUS", "Status" }
             };
 
-            ButtonColumns = new List<string>() { "View","Generate CN" };
+            ContextmenuItems = new List<string>() { "View","Generate CN" };
 
             cmbSupplier.Properties.DataSource = new MasterRepository().GetDealer(true);
             cmbSupplier.Properties.ValueMember = "DEALERID";

@@ -34,7 +34,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 , { "STATUS", "Status" }
             };
 
-            ButtonColumns = new List<string>() { "View", "Discard" };
+            ContextmenuItems = new List<string>() { "View", "Discard" };
 
             cmbBranch.Properties.DataSource = Utility.GetBranchList();
             cmbBranch.Properties.ValueMember = "BRANCHID";

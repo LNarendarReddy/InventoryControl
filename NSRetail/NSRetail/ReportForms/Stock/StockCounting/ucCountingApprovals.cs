@@ -25,7 +25,7 @@ namespace NSRetail.ReportForms.Stock.StockCounting
                 { "BRANCHNAME", "Branch" }
             };
 
-            ButtonColumns = new List<string>() { "Sheets", "Items", "Item By MRP"};
+            ContextmenuItems = new List<string>() { "Sheets", "Items", "Item By MRP"};
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;

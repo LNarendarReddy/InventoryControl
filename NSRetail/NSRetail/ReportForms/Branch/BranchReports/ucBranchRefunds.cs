@@ -28,7 +28,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                     , { "CATEGORYNAME", "Category" }
                 };
 
-            ButtonColumns = new List<string>() { "View", "Print" };
+            ContextmenuItems = new List<string>() { "View", "Print" };
 
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);

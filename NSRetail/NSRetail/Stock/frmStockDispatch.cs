@@ -74,7 +74,6 @@ namespace NSRetail.Stock
                     cmbCategory.EditValue = ObjStockDispatch.CATEGORYID;
                     gcDispatch.DataSource = ObjStockDispatch.dtDispatch;
                     cmbFromBranch.Enabled = false;
-                    cmbToBranch.Enabled = false;
                     cmbCategory.Enabled = false;
                 }
                 else
@@ -121,6 +120,7 @@ namespace NSRetail.Stock
                         XtraMessageBox.Show("Are you sure want to save dispatch?","Confirm",
                         MessageBoxButtons.YesNo,MessageBoxIcon.Question) != DialogResult.Yes)
                         return;
+                    ObjStockDispatch.TOBRANCHID = cmbToBranch.EditValue;
                     ObjStockRep.UpdateDispatch(ObjStockDispatch);
                     DataSet ds = ObjStockRep.GetDispatch(ObjStockDispatch.STOCKDISPATCHID);
 
@@ -136,7 +136,6 @@ namespace NSRetail.Stock
                     cmbToBranch.EditValue = null;
                     txtTrayNumber.EditValue = null;
                     cmbFromBranch.Enabled = true;
-                    cmbToBranch.Enabled = true;
                     if (Utility.Category == "ALL")
                         cmbCategory.Enabled = true;
                     cmbCategory.EditValue = Utility.CategoryID;
@@ -222,7 +221,9 @@ namespace NSRetail.Stock
                         
             try
             {
-                if (Convert.ToInt32(ObjStockDispatch.STOCKDISPATCHID) == 0) SaveDispatch();
+                if (Convert.ToInt32(ObjStockDispatch.STOCKDISPATCHID) == 0 ||
+                    Convert.ToInt32(cmbToBranch.EditValue) !=  Convert.ToInt32(ObjStockDispatch.STOCKDISPATCHID)) 
+                    SaveDispatch();
 
                 ObjStockDispatchDetail = new StockDispatchDetail();
                 ObjStockDispatchDetail.STOCKDISPATCHDETAILID = 0;
@@ -309,7 +310,6 @@ namespace NSRetail.Stock
                 ObjStockDispatch.UserID = Utility.UserID;
                 ObjStockRep.SaveDispatch(ObjStockDispatch);
                 cmbFromBranch.Enabled = false;
-                cmbToBranch.Enabled = false;
                 cmbCategory.Enabled = false;
             }
             catch (Exception ex)

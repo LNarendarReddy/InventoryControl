@@ -22,7 +22,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
 
             SetFocusControls(null, null, columnHeaders);
 
-            ButtonColumns = new List<string>() { "Un-delete" };
+            ContextmenuItems = new List<string>() { "Un-delete" };
         }
 
         public override object GetData()

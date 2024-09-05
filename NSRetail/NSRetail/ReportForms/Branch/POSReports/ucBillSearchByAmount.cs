@@ -25,7 +25,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 { "BILLCLOSEDDATE", "Finished time" },
             };
 
-            ButtonColumns = new List<string>() { "Items", "Print" };
+            ContextmenuItems = new List<string>() { "Items", "Print" };
             SetFocusControls(cmbBranch, txtCutOffAmt, specificColumnHeaders);
         }
 

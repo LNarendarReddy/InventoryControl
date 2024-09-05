@@ -35,7 +35,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 , { "REFUNDQTYORWGHTINKGS", "Refund Qty or Wght (In KGs)" }
             };
 
-            ButtonColumns = new List<string>() {"Items", "Print"};
+            ContextmenuItems = new List<string>() {"Items", "Print"};
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;

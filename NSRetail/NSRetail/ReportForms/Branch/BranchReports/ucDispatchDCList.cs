@@ -25,7 +25,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "STATUS", "Status" }
             };
 
-            ButtonColumns = new List<string>() { "View", "Print to DM" };
+            ContextmenuItems = new List<string>() { "View", "Print to DM" };
             cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";

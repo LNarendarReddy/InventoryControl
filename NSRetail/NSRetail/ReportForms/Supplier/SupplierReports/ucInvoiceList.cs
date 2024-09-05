@@ -31,9 +31,9 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             };
 
             if (Utility.UserName == "admin")
-                ButtonColumns = new List<string>() { "View", "Revert", "Clone" };
+                ContextmenuItems = new List<string>() { "View", "Revert", "Clone" };
             else
-                ButtonColumns = new List<string>() { "View" };
+                ContextmenuItems = new List<string>() { "View" };
 
             HiddenColumns = new List<string>() { "TAXINCLUSIVE", "TCS", "DISCOUNTPER", "DISCOUNT", "EXPENSES", "TRANSPORT" };
 
@@ -61,53 +61,64 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
-
-            if (drFocusedRow["STATUS"].ToString() == "Draft")
+            try
             {
-                XtraMessageBox.Show("Draft bills cannot be viewed, printed or reverted. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
+                if (drFocusedRow["STATUS"].ToString() == "Draft")
+                {
+                    XtraMessageBox.Show("Draft bills cannot be viewed, printed or reverted. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
+                switch (buttonText)
+                {
+                    case "View":
+                        DataSet ds = new StockRepository().GetInvoice(drFocusedRow["STOCKENTRYID"]);
+                        if (ds == null || ds.Tables.Count < 2 || ds.Tables[0].Rows.Count <= 0)
+                        {
+                            XtraMessageBox.Show("No data returned from database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            return;
+                        }
+                        if (ds != null && ds.Tables.Count > 1)
+                        {
+                            rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);
+                            rpt.ShowPrintMarginsWarning = false;
+                            rpt.ShowRibbonPreview();
+                        }
+                        break;
+                    case "Revert":
+                        if (drFocusedRow["STATUS"].ToString() != "Submitted")
+                        {
+                            XtraMessageBox.Show("Draft or reverted invoice cannot be reverted", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        }
+                        else
+                        {
+                            new StockRepository().RevertStockEntry(drFocusedRow["STOCKENTRYID"], Utility.UserID);
+                            XtraMessageBox.Show("Invoice successfully reverted", "Information",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                            drFocusedRow["STATUS"] = "Reverted";
+                        }
+                        break;
+                    case "Clone":
+                        if (drFocusedRow["STATUS"].ToString() != "Reverted")
+                        {
+                            XtraMessageBox.Show("Draft or submitted invoice cannot be cloned", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        }
+                        else
+                        {
+                            int newid = new StockRepository().CloneStockEntry(drFocusedRow["STOCKENTRYID"], Utility.UserID);
+                            if (newid > 0)
+                                XtraMessageBox.Show("Invoice successfully cloned, please load it from initial user's Invoice draft list",
+                                    "Information",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                        }
+                        break;
+                }
             }
-
-            switch (buttonText)
+            catch (Exception ex)
             {
-                case "View":
-                    DataSet ds = new StockRepository().GetInvoice(drFocusedRow["STOCKENTRYID"]);
-                    if (ds == null || ds.Tables.Count < 2 || ds.Tables[0].Rows.Count <= 0)
-                    {
-                        XtraMessageBox.Show("No data returned from database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        return;
-                    }
-                    if (ds != null && ds.Tables.Count > 1)
-                    {
-                        rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);
-                        rpt.ShowPrintMarginsWarning = false;
-                        rpt.ShowRibbonPreview();
-                    }
-                    break;
-                case "Revert":
-                    if (drFocusedRow["STATUS"].ToString() != "Submitted")
-                    {
-                        XtraMessageBox.Show("Draft or reverted invoice cannot be reverted");
-                    }
-                    else
-                    {
-                        new StockRepository().RevertStockEntry(drFocusedRow["STOCKENTRYID"], Utility.UserID);
-                        XtraMessageBox.Show("Invoice successfully reverted");
-                        drFocusedRow["STATUS"] = "Reverted";
-                    }
-                    break;
-                case "Clone":
-                    if (drFocusedRow["STATUS"].ToString() != "Reverted")
-                    {
-                        XtraMessageBox.Show("Draft or submitted invoice cannot be cloned");
-                    }
-                    else
-                    {
-                        int newid = new StockRepository().CloneStockEntry(drFocusedRow["STOCKENTRYID"], Utility.UserID);
-                        if (newid > 0)
-                            XtraMessageBox.Show("Invoice successfully cloned, please open stockentry screen");
-                    }
-                    break;
+                ErrorManagement.ErrorMgmt.ShowError(ex);
             }
         }
     }

@@ -32,7 +32,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
 
             SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);
             HiddenColumns = new List<string> { "STATUS" };
-            ButtonColumns = new List<string> { "Edit" };
+            ContextmenuItems = new List<string> { "Edit" };
         }
 
         public override object GetData()

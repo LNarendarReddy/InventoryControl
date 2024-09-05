@@ -1,10 +1,15 @@
-﻿using DevExpress.Utils;
+﻿using DataAccess;
+using DevExpress.Utils;
+using DevExpress.Utils.Menu;
+using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraSplashScreen;
+using ErrorManagement;
+using NSRetail.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +41,7 @@ namespace NSRetail.ReportForms
         ReportHolder selectedReportHolder;
         IOverlaySplashScreenHandle handle;
         BackgroundWorker bgwGetData = new BackgroundWorker();
+        List<string> contextmenuItems = new List<string>();
 
         private void frmReportPlaceHolder_Load(object sender, EventArgs e)
         {          
@@ -117,9 +123,16 @@ namespace NSRetail.ReportForms
                 gcButtonColumn.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
             }
 
-            if (searchCriteria.Periodicity != null && gvResults.Columns.ColumnByFieldName("PERIODOCITY") != null)
+            contextmenuItems.Clear();
+            foreach (string item in searchCriteria.ContextmenuItems)
+            {
+                contextmenuItems.Add(item);
+            }
+
+                if (searchCriteria.Periodicity != null && gvResults.Columns.ColumnByFieldName("PERIODOCITY") != null)
             {
                 GridColumn periodicityColumn = gvResults.Columns.ColumnByFieldName("PERIODOCITY");
+                 
 
                 dtpPeriodicity.MaskSettings.MaskManagerType = typeof(DateTime);
                 dtpPeriodicity.MaskSettings.UseMaskAsDisplayFormat = true;
@@ -335,7 +348,6 @@ namespace NSRetail.ReportForms
             }
         }
 
-
         public void ExpandAllMasterRows()
         {
             ExpandAllMasterRows(gvResults);
@@ -353,6 +365,33 @@ namespace NSRetail.ReportForms
             finally
             {
                 View.EndUpdate();
+            }
+        }
+
+        private void gvResults_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.HitInfo.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
+            {
+                foreach (string item in contextmenuItems)
+                {
+                    DXMenuItem menuItem = new DXMenuItem(item);
+                    menuItem.Click += On_Click;
+                    menuItem.Tag = item;
+                    e.Menu.Items.Add(menuItem);
+                }
+            }
+        }
+
+        void On_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                selectedReportHolder.SearchCriteriaControl.ActionExecute(Convert.ToString(((DXMenuItem)sender).Tag), gvResults.GetFocusedDataRow());
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
             }
         }
     }

@@ -127,6 +127,7 @@ namespace NSRetail
             };
 
             ButtonColumns = new List<string>();
+            ContextmenuItems = new List<string>();
             IsDataSet = false;
             AllowedRoles = null;
         }
@@ -187,6 +188,8 @@ namespace NSRetail
         public IEnumerable<string> HiddenColumns { get; protected set; }
 
         public IEnumerable<string> ButtonColumns { get; protected set; }
+        
+        public IEnumerable<string> ContextmenuItems { get; protected set; }
 
         public Control FirstControl => firstControl;
 

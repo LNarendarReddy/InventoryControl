@@ -50,6 +50,7 @@ namespace DataAccess
             }
             return ObjStockDispatch;
         }
+
         public StockDispatchDetail SaveDispatchDetail(StockDispatchDetail ObjStockDispatchDetail)
         {
             int StockDispatchDetailID = 0;
@@ -86,6 +87,7 @@ namespace DataAccess
             }
             return ObjStockDispatchDetail;
         }
+
         public StockDispatch GetDispatchDraft(StockDispatch objStockDispatch)
         {
             try
@@ -130,6 +132,7 @@ namespace DataAccess
             }
             return objStockDispatch;
         }
+
         public void DeleteDispatchDetail(object StockDispatchDetailID)
         {
             try
@@ -152,6 +155,7 @@ namespace DataAccess
                 
             }
         }
+
         public void UpdateDispatch(StockDispatch ObjStockDispatch)
         {
             SqlTransaction sqlTransaction = null;
@@ -165,6 +169,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_STOCKDISPATCH]";
                     cmd.Parameters.AddWithValue("@STOCKDISPATCHID", ObjStockDispatch.STOCKDISPATCHID);
+                    cmd.Parameters.AddWithValue("@TOBRANCHID", ObjStockDispatch.TOBRANCHID);
                     object obj = cmd.ExecuteScalar();
                     if(!int.TryParse(Convert.ToString(obj), out int id))
                         throw new Exception(Convert.ToString(obj));
@@ -181,6 +186,7 @@ namespace DataAccess
                 
             }
         }
+
         public DataTable GetDispatchList(object BranchID, object FromDate,object ToDate)
         {
             DataTable dt = new DataTable();
@@ -210,6 +216,7 @@ namespace DataAccess
             }
             return dt;
         }
+
         public DataSet GetDispatch(object StockDispatchID, bool isDraft = false)
         {
             DataSet ds = new DataSet();
@@ -238,6 +245,198 @@ namespace DataAccess
             }
             return ds;
         }
+
+        public DataSet SaveDispatchDC(object BranchID, object CategoryID, object LocationName, object UserID)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_DISPATCHDC]";
+                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@LocationName", LocationName);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(ds);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Saving Dispatch DC", ex);
+            }
+            finally
+            {
+
+            }
+            return ds;
+        }
+
+        public DataSet GetDispatchDC(object DispatchDCID)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_STOCKDISPATCHDC]";
+                    cmd.Parameters.AddWithValue("@DISPATCHDCID", DispatchDCID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(ds);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving Dispatch DC", ex);
+            }
+            finally
+            {
+
+            }
+            return ds;
+        }
+
+        public DataTable GetDCList(object BranchID, object FromDate, object ToDate)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_DISPATCHDCLIST]";
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                    cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retreiving Dispatch DC List", ex);
+            }
+            finally
+            {
+
+            }
+            return dt;
+        }
+
+        public void DiscardStockDispatch(object StockDispatchID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_DISPATCH]";
+                    cmd.Parameters.AddWithValue("@StockDispatchID", StockDispatchID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    int RowsAffected = cmd.ExecuteNonQuery();
+                    if (RowsAffected <= 0)
+                        throw new Exception("Nothing is deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("Dispatch already completed"))
+                    throw ex;
+                else
+                    throw new Exception("Error While Deleting Dispatch");
+            }
+        }
+
+        public void ProcessWarehouseDispatch(object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_WHDISPATCH]";
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object objreturn = cmd.ExecuteScalar();
+                    if (!string.IsNullOrEmpty(Convert.ToString(objreturn)))
+                        throw new Exception(Convert.ToString(objreturn));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while processing warehouse dispatch");
+            }
+            finally
+            {
+
+            }
+        }
+
+        public void RevertStockDispacth(object StockDispatchID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_REVERTSTOCKDISPATCH]";
+                    cmd.Parameters.AddWithValue("@STOCKDISPATCHID", StockDispatchID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    int RowsAffected = cmd.ExecuteNonQuery();
+                    if (RowsAffected <= 0)
+                        throw new Exception("Nothing is reverted");
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("Only submitted dispatch"))
+                    throw;
+                else
+                    throw new Exception("Error while reverting dispacth", ex);
+            }
+        }
+
+        public int CloneStockDispatch(object StockDispatchID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_CLONESTOCKDISPATCH]";
+                    cmd.Parameters.AddWithValue("@STOCKDISPATCHID", StockDispatchID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object obj = cmd.ExecuteScalar();
+                    if (int.TryParse(Convert.ToString(obj), out int stockentryid) && stockentryid > 0)
+                        return stockentryid;
+                    else
+                        throw new Exception(Convert.ToString(obj));
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("There is already a dispatch in draft state") || ex.Message.Contains("Only reverted dispatch"))
+                    throw;
+                else
+                    throw new Exception("Error while cloning dispatch", ex);
+            }
+        }
+
         public StockEntry SaveInvoice(StockEntry ObjStockEntry)
         {
             int StockEntryID = 0;
@@ -282,6 +481,7 @@ namespace DataAccess
             }
             return ObjStockEntry;
         }
+        
         public StockEntryDetail SaveInvoiceDetail(StockEntryDetail ObjStockEntryDetail)
         {
             DataTable dt = new DataTable();
@@ -346,71 +546,6 @@ namespace DataAccess
             return ObjStockEntryDetail;
         }
 
-        private void RefreshObject(DataTable dataTable, StockEntryDetail stockEntryDetail)
-        {
-            stockEntryDetail.STOCKENTRYDETAILID = dataTable.Rows[0]["STOCKENTRYDETAILID"];
-            stockEntryDetail.ITEMID = dataTable.Rows[0]["ITEMID"];
-            stockEntryDetail.ITEMCODEID = dataTable.Rows[0]["ITEMCODEID"];
-            stockEntryDetail.ITEMPRICEID = dataTable.Rows[0]["ITEMPRICEID"];
-            stockEntryDetail.SKUCODE = dataTable.Rows[0]["SKUCODE"];
-            stockEntryDetail.ITEMCODE = dataTable.Rows[0]["ITEMCODE"];
-            stockEntryDetail.ITEMNAME = dataTable.Rows[0]["ITEMNAME"];
-            stockEntryDetail.COSTPRICEWT = dataTable.Rows[0]["COSTPRICEWT"];
-            stockEntryDetail.COSTPRICEWOT = dataTable.Rows[0]["COSTPRICEWOT"];
-            stockEntryDetail.GSTID = dataTable.Rows[0]["GSTID"];
-            stockEntryDetail.MRP = dataTable.Rows[0]["MRP"];
-            stockEntryDetail.SALEPRICE = dataTable.Rows[0]["SALEPRICE"];
-            stockEntryDetail.QUANTITY = dataTable.Rows[0]["QUANTITY"];
-            stockEntryDetail.WEIGHTINKGS = dataTable.Rows[0]["WEIGHTINKGS"];
-            stockEntryDetail.FreeQuantity = dataTable.Rows[0]["FREEQUANTITY"];
-            stockEntryDetail.DiscountFlat = dataTable.Rows[0]["DISCOUNTFLAT"];
-            stockEntryDetail.DiscountPercentage = dataTable.Rows[0]["DISCOUNTPERCENTAGE"];
-            stockEntryDetail.SchemePercentage = dataTable.Rows[0]["SCHEMEPERCENTAGE"];
-            stockEntryDetail.SchemeFlat = dataTable.Rows[0]["SCHEMEFLAT"];
-            stockEntryDetail.TotalPriceWT = dataTable.Rows[0]["TOTALPRICEWT"];
-            stockEntryDetail.TotalPriceWOT = dataTable.Rows[0]["TOTALPRICEWOT"];
-            stockEntryDetail.AppliedDiscount = dataTable.Rows[0]["APPLIEDDISCOUNT"];
-            stockEntryDetail.AppliedScheme = dataTable.Rows[0]["APPLIEDSCHEME"];
-            stockEntryDetail.AppliedGST = dataTable.Rows[0]["APPLIEDDGST"];
-            stockEntryDetail.FinalPrice = dataTable.Rows[0]["FINALPRICE"];
-            stockEntryDetail.CGST = dataTable.Rows[0]["CGST"];
-            stockEntryDetail.SGST = dataTable.Rows[0]["SGST"];
-            stockEntryDetail.IGST = dataTable.Rows[0]["IGST"];
-            stockEntryDetail.CESS = dataTable.Rows[0]["CESS"];
-            stockEntryDetail.HSNCODE = dataTable.Rows[0]["HSNCODE"];
-        }
-
-        public void SaveStockAdjustment(StockAdjustment stockAdjustment)
-        {
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_CU_STOCKADJUSTMENT]";
-                    cmd.Parameters.AddWithValue("@ItemID", stockAdjustment.ItemID);
-                    cmd.Parameters.AddWithValue("@BRANCHID", stockAdjustment.BranchID);
-                    cmd.Parameters.AddWithValue("@Description", stockAdjustment.Description);
-                    cmd.Parameters.AddWithValue("@StockSummary", stockAdjustment.dtStockSummary);
-                    cmd.Parameters.AddWithValue("@USERID", stockAdjustment.UserID);
-
-                    object objReturn = cmd.ExecuteScalar();
-                    string str = Convert.ToString(objReturn);
-                    if (!int.TryParse(str, out int stockAdjustmentID))
-                        throw new Exception(str);                    
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error while saving stock adjustment - {ex.Message}", ex);
-            }
-            finally
-            {
-                
-            }
-        }
         public StockEntry GetInvoiceDraft(StockEntry objStockEntry)
         {
             try
@@ -445,7 +580,7 @@ namespace DataAccess
                             objStockEntry.DISCOUNTPER = ds.Tables[0].Rows[0]["DISCOUNTPER"];
                             objStockEntry.DISCOUNTFLAT = ds.Tables[0].Rows[0]["DISCOUNT"];
                             objStockEntry.EXPENSES = ds.Tables[0].Rows[0]["EXPENSES"];
-                            objStockEntry.TRANSPORT = ds.Tables[0].Rows[0]["TRANSPORT"];                            
+                            objStockEntry.TRANSPORT = ds.Tables[0].Rows[0]["TRANSPORT"];
                             objStockEntry.dtStockEntry = ds.Tables[1].Copy();
                         }
                     }
@@ -458,11 +593,12 @@ namespace DataAccess
             }
             finally
             {
-                
+
             }
             return objStockEntry;
         }
-        public void DeleteInvoiceDetail(object StockEntryDetailID,object UserID)
+
+        public void DeleteInvoiceDetail(object StockEntryDetailID, object UserID)
         {
             try
             {
@@ -482,9 +618,10 @@ namespace DataAccess
             }
             finally
             {
-                
+
             }
         }
+
         public void UpdateInvoice(StockEntry ObjStockEntry)
         {
             SqlTransaction sqlTransaction = null;
@@ -518,7 +655,8 @@ namespace DataAccess
                 throw new Exception("Error While Updating Invoice", ex);
             }
         }
-        public DataTable GetInvoiceList(object DealerID, object  FromDate,object ToDate)
+
+        public DataTable GetInvoiceList(object DealerID, object FromDate, object ToDate)
         {
             DataTable dt = new DataTable();
             try
@@ -543,10 +681,11 @@ namespace DataAccess
             }
             finally
             {
-                
+
             }
             return dt;
         }
+
         public DataSet GetInvoice(object StockEntryID)
         {
             DataSet ds = new DataSet();
@@ -570,99 +709,117 @@ namespace DataAccess
             }
             finally
             {
-                
+
             }
             return ds;
         }
-               
-        public DataSet SaveDispatchDC(object BranchID, object CategoryID, object LocationName, object UserID)
+
+        public void DiscardStockEntry(object StockEntryID, object UserID)
         {
-            DataSet ds = new DataSet();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_CU_DISPATCHDC]";
-                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
-                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.CommandText = "[USP_D_DISCARDSTOCKENTRY]";
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    int RowsAffected = cmd.ExecuteNonQuery();
+                    if (RowsAffected <= 0)
+                        throw new Exception("Nothing is deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Deleting Invoice", ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        public void RevertStockEntry(object StockEntryID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_REVERTSTOCKENTRY]";
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    int RowsAffected = cmd.ExecuteNonQuery();
+                    if (RowsAffected <= 0)
+                        throw new Exception("Nothing is reverted");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while reverting invoice", ex);
+            }
+        }
+
+        public int CloneStockEntry(object StockEntryID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_CLONESTOCKENTRY]";
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
-                    cmd.Parameters.AddWithValue("@LocationName", LocationName);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(ds);
-                    }
+                    object obj = cmd.ExecuteScalar();
+                    if (int.TryParse(Convert.ToString(obj), out int stockentryid) && stockentryid > 0)
+                        return stockentryid;
+                    else return 0;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Saving Dispatch DC", ex);
+                throw new Exception("Error while cloning invoice", ex);
             }
-            finally
-            {
-                
-            }
-            return ds;
         }
-        public DataSet GetDispatchDC(object DispatchDCID)
+
+        private void RefreshObject(DataTable dataTable, StockEntryDetail stockEntryDetail)
         {
-            DataSet ds = new DataSet();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_STOCKDISPATCHDC]";
-                    cmd.Parameters.AddWithValue("@DISPATCHDCID", DispatchDCID);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(ds);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retreiving Dispatch DC", ex);
-            }
-            finally
-            {
-                
-            }
-            return ds;
+            stockEntryDetail.STOCKENTRYDETAILID = dataTable.Rows[0]["STOCKENTRYDETAILID"];
+            stockEntryDetail.ITEMID = dataTable.Rows[0]["ITEMID"];
+            stockEntryDetail.ITEMCODEID = dataTable.Rows[0]["ITEMCODEID"];
+            stockEntryDetail.ITEMPRICEID = dataTable.Rows[0]["ITEMPRICEID"];
+            stockEntryDetail.SKUCODE = dataTable.Rows[0]["SKUCODE"];
+            stockEntryDetail.ITEMCODE = dataTable.Rows[0]["ITEMCODE"];
+            stockEntryDetail.ITEMNAME = dataTable.Rows[0]["ITEMNAME"];
+            stockEntryDetail.COSTPRICEWT = dataTable.Rows[0]["COSTPRICEWT"];
+            stockEntryDetail.COSTPRICEWOT = dataTable.Rows[0]["COSTPRICEWOT"];
+            stockEntryDetail.GSTID = dataTable.Rows[0]["GSTID"];
+            stockEntryDetail.MRP = dataTable.Rows[0]["MRP"];
+            stockEntryDetail.SALEPRICE = dataTable.Rows[0]["SALEPRICE"];
+            stockEntryDetail.QUANTITY = dataTable.Rows[0]["QUANTITY"];
+            stockEntryDetail.WEIGHTINKGS = dataTable.Rows[0]["WEIGHTINKGS"];
+            stockEntryDetail.FreeQuantity = dataTable.Rows[0]["FREEQUANTITY"];
+            stockEntryDetail.DiscountFlat = dataTable.Rows[0]["DISCOUNTFLAT"];
+            stockEntryDetail.DiscountPercentage = dataTable.Rows[0]["DISCOUNTPERCENTAGE"];
+            stockEntryDetail.SchemePercentage = dataTable.Rows[0]["SCHEMEPERCENTAGE"];
+            stockEntryDetail.SchemeFlat = dataTable.Rows[0]["SCHEMEFLAT"];
+            stockEntryDetail.TotalPriceWT = dataTable.Rows[0]["TOTALPRICEWT"];
+            stockEntryDetail.TotalPriceWOT = dataTable.Rows[0]["TOTALPRICEWOT"];
+            stockEntryDetail.AppliedDiscount = dataTable.Rows[0]["APPLIEDDISCOUNT"];
+            stockEntryDetail.AppliedScheme = dataTable.Rows[0]["APPLIEDSCHEME"];
+            stockEntryDetail.AppliedGST = dataTable.Rows[0]["APPLIEDDGST"];
+            stockEntryDetail.FinalPrice = dataTable.Rows[0]["FINALPRICE"];
+            stockEntryDetail.CGST = dataTable.Rows[0]["CGST"];
+            stockEntryDetail.SGST = dataTable.Rows[0]["SGST"];
+            stockEntryDetail.IGST = dataTable.Rows[0]["IGST"];
+            stockEntryDetail.CESS = dataTable.Rows[0]["CESS"];
+            stockEntryDetail.HSNCODE = dataTable.Rows[0]["HSNCODE"];
         }
-        public DataTable GetDCList(object BranchID, object FromDate,object ToDate)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_DISPATCHDCLIST]";
-                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
-                    cmd.Parameters.AddWithValue("@FromDate", FromDate);
-                    cmd.Parameters.AddWithValue("@ToDate", ToDate);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Retreiving Dispatch DC List", ex);
-            }
-            finally
-            {
-                
-            }
-            return dt;
-        }
-        public DataTable GetCurrentStock(object FROMBRANCHID,object TOBRANCHID,
-            object ITEMCODEID,object PARENTITEMID)
+        
+        public DataTable GetCurrentStock(object FROMBRANCHID,object TOBRANCHID,object ITEMCODEID,object PARENTITEMID)
         {
             DataTable dt = new DataTable();
             try
@@ -692,101 +849,8 @@ namespace DataAccess
             }
             return dt;
         }
-        public void DiscardStockEntry(object StockEntryID, object UserID)
-        {
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_D_DISCARDSTOCKENTRY]";
-                    cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
-                    cmd.Parameters.AddWithValue("@UserID", UserID);
-                    int RowsAffected = cmd.ExecuteNonQuery();
-                    if (RowsAffected <= 0)
-                        throw new Exception("Nothing is deleted");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Deleting Invoice", ex);
-            }
-            finally
-            {
-                
-            }
-        }
-        public void RevertStockEntry(object StockEntryID, object UserID)
-        {
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_D_REVERTSTOCKENTRY]";
-                    cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
-                    cmd.Parameters.AddWithValue("@UserID", UserID);
-                    int RowsAffected = cmd.ExecuteNonQuery();
-                    if (RowsAffected <= 0)
-                        throw new Exception("Nothing is reverted");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error while reverting invoice", ex);
-            }
-        }
-        public int CloneStockEntry(object StockEntryID, object UserID)
-        {
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_CU_CLONESTOCKENTRY]";
-                    cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
-                    cmd.Parameters.AddWithValue("@USERID", UserID);
-                    object obj = cmd.ExecuteScalar();
-                    if (int.TryParse(Convert.ToString(obj), out int stockentryid) && stockentryid > 0)
-                        return stockentryid;
-                    else return 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error while cloning invoice", ex);
-            }
-        }
-        public void DiscardStockDispatch(object StockDispatchID,object UserID)
-        {
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_D_DISPATCH]";
-                    cmd.Parameters.AddWithValue("@StockDispatchID", StockDispatchID);
-                    cmd.Parameters.AddWithValue("@UserID", UserID);
-                    int RowsAffected = cmd.ExecuteNonQuery();
-                    if (RowsAffected <= 0)
-                        throw new Exception("Nothing is deleted");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error While Deleting Dispatch");
-            }
-            finally
-            {
-                
-            }
-        }
 
-        public void ProcessWarehouseDispatch(object UserID)
+        public void SaveStockAdjustment(StockAdjustment stockAdjustment)
         {
             try
             {
@@ -794,20 +858,27 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_CU_WHDISPATCH]";
-                    cmd.Parameters.AddWithValue("@USERID", UserID);
-                    object objreturn = cmd.ExecuteScalar();
-                    if (!string.IsNullOrEmpty(Convert.ToString(objreturn)))
-                        throw new Exception(Convert.ToString(objreturn));
+                    cmd.CommandText = "[USP_CU_STOCKADJUSTMENT]";
+                    cmd.Parameters.AddWithValue("@ItemID", stockAdjustment.ItemID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", stockAdjustment.BranchID);
+                    cmd.Parameters.AddWithValue("@Description", stockAdjustment.Description);
+                    cmd.Parameters.AddWithValue("@StockSummary", stockAdjustment.dtStockSummary);
+                    cmd.Parameters.AddWithValue("@USERID", stockAdjustment.UserID);
+
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out int stockAdjustmentID))
+                        throw new Exception(str);
                 }
+
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while processing warehouse dispatch");
+                throw new Exception($"Error while saving stock adjustment - {ex.Message}", ex);
             }
             finally
             {
-                
+
             }
         }
 

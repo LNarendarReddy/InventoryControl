@@ -26,7 +26,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 , { "VOIDAMOUNT", "Void Amount"}
             };
 
-            ButtonColumns = new List<string>() { "Summary", "Bills", "Items", "Refunds","Void Items" };
+            ContextmenuItems = new List<string>() { "Summary", "Bills", "Items", "Refunds","Void Items" };
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;
