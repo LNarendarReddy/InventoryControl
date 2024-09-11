@@ -1,5 +1,9 @@
-﻿v2.6.2
- -- Add dispatch discard option dispatch list, only draft invoices can be discarded.
+﻿v2.6.3
+ -- Added dispatch revert and clone features in dispatch list.
+ -- Removed all button columns in report instead used context menu.
+
+v2.6.2
+ -- Added dispatch discard option dispatch list, only draft invoices can be discarded.
  -- Dispatch locking for branch, can be used before stock counting
 
 v2.6.1
