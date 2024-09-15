@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Entity;
 using DataAccess;
@@ -14,10 +6,11 @@ using ErrorManagement;
 
 namespace NSRetail
 {
-    public partial class frmBranch : DevExpress.XtraEditors.XtraForm
+    public partial class frmBranch : XtraForm
     {
         Branch ObjBranch = null;
         MasterRepository objMasterRep = new MasterRepository();
+        UserRepository objUserRep = new UserRepository();
         public frmBranch(Branch _ObjBranch)
         {
             InitializeComponent();
@@ -30,7 +23,7 @@ namespace NSRetail
             cmbState.Properties.ValueMember = "STATEID";
             cmbState.Properties.DisplayMember = "STATENAME";
 
-            cmbSupervisor.Properties.DataSource = objMasterRep.GetUser();
+            cmbSupervisor.Properties.DataSource = objUserRep.GetUser();
             cmbSupervisor.Properties.ValueMember = "USERID";
             cmbSupervisor.Properties.DisplayMember = "USERNAME";
             if (Convert.ToInt32(ObjBranch.BRANCHID) > 0)

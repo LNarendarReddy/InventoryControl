@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Microsoft.Win32;
 using DataAccess;
@@ -15,9 +8,9 @@ using ErrorManagement;
 
 namespace NSRetail
 {
-    public partial class frmChangePassword : DevExpress.XtraEditors.XtraForm
+    public partial class frmChangePassword : XtraForm
     {
-        MasterRepository ObjMasterRep = new MasterRepository();
+        UserRepository ObjUserRep = new UserRepository();
         User ObjUser = new User();
         public frmChangePassword()
         {
@@ -44,7 +37,7 @@ namespace NSRetail
                     throw new Exception("Both Passwords Should be same");
                 ObjUser.USERID = Utility.UserID;
                 ObjUser.PASSWORDSTRING = Utility.Encrypt(txtNPassword.Text);
-                DataTable dt = ObjMasterRep.ChangePassword(ObjUser);
+                DataTable dt = ObjUserRep.ChangePassword(ObjUser);
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     if (int.TryParse(Convert.ToString(dt.Rows[0]["USERID"]), out Utility.UserID))

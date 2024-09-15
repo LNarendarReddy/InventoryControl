@@ -90,6 +90,7 @@
             this.bbiAddProcessing = new DevExpress.XtraBars.BarButtonItem();
             this.bbiSliceCounting = new DevExpress.XtraBars.BarButtonItem();
             this.bbiClearLeftSales = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiBuildInfo = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -105,7 +106,6 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -114,7 +114,13 @@
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.bbiBuildInfo = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPage5 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPage7 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup16 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.bbiRoles = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
@@ -123,7 +129,7 @@
             // 
             // ribbonControl1
             // 
-            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(40);
+            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35);
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -186,16 +192,19 @@
             this.bbiAddProcessing,
             this.bbiSliceCounting,
             this.bbiClearLeftSales,
-            this.bbiBuildInfo});
+            this.bbiBuildInfo,
+            this.bbiRoles});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 74;
+            this.ribbonControl1.MaxItemId = 75;
             this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.OptionsMenuMinWidth = 440;
+            this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage3,
             this.ribbonPage4,
             this.ribbonPage6,
-            this.ribbonPage1});
+            this.ribbonPage1,
+            this.ribbonPage5,
+            this.ribbonPage7});
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1,
             this.repositoryItemLookUpEdit1});
@@ -747,6 +756,14 @@
             this.bbiClearLeftSales.Name = "bbiClearLeftSales";
             this.bbiClearLeftSales.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClearLeftSales_ItemClick);
             // 
+            // bbiBuildInfo
+            // 
+            resources.ApplyResources(this.bbiBuildInfo, "bbiBuildInfo");
+            this.bbiBuildInfo.Id = 73;
+            this.bbiBuildInfo.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiBuildInfo.ImageOptions.SvgImage")));
+            this.bbiBuildInfo.Name = "bbiBuildInfo";
+            this.bbiBuildInfo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBuildInfo_ItemClick);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -854,7 +871,6 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
             this.ribbonPageGroup4,
-            this.ribbonPageGroup10,
             this.ribbonPageGroup11,
             this.ribbonPageGroup12,
             this.ribbonPageGroup6,
@@ -875,17 +891,8 @@
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             resources.ApplyResources(this.ribbonPageGroup4, "ribbonPageGroup4");
             // 
-            // ribbonPageGroup10
-            // 
-            this.ribbonPageGroup10.ItemLinks.Add(this.btnSubCategory);
-            this.ribbonPageGroup10.ItemLinks.Add(this.btnCategory);
-            this.ribbonPageGroup10.ItemLinks.Add(this.bbiClassification);
-            this.ribbonPageGroup10.Name = "ribbonPageGroup10";
-            resources.ApplyResources(this.ribbonPageGroup10, "ribbonPageGroup10");
-            // 
             // ribbonPageGroup11
             // 
-            this.ribbonPageGroup11.ItemLinks.Add(this.btnUser);
             this.ribbonPageGroup11.ItemLinks.Add(this.btnDealer);
             this.ribbonPageGroup11.Name = "ribbonPageGroup11";
             resources.ApplyResources(this.ribbonPageGroup11, "ribbonPageGroup11");
@@ -941,13 +948,53 @@
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
             // 
-            // bbiBuildInfo
+            // ribbonPage5
             // 
-            resources.ApplyResources(this.bbiBuildInfo, "bbiBuildInfo");
-            this.bbiBuildInfo.Id = 73;
-            this.bbiBuildInfo.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.bbiBuildInfo.Name = "bbiBuildInfo";
-            this.bbiBuildInfo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBuildInfo_ItemClick);
+            this.ribbonPage5.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup13});
+            this.ribbonPage5.Name = "ribbonPage5";
+            resources.ApplyResources(this.ribbonPage5, "ribbonPage5");
+            // 
+            // ribbonPageGroup13
+            // 
+            this.ribbonPageGroup13.ItemLinks.Add(this.btnUser);
+            this.ribbonPageGroup13.ItemLinks.Add(this.bbiRoles);
+            this.ribbonPageGroup13.Name = "ribbonPageGroup13";
+            resources.ApplyResources(this.ribbonPageGroup13, "ribbonPageGroup13");
+            // 
+            // ribbonPage7
+            // 
+            this.ribbonPage7.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup14,
+            this.ribbonPageGroup10,
+            this.ribbonPageGroup16});
+            this.ribbonPage7.Name = "ribbonPage7";
+            resources.ApplyResources(this.ribbonPage7, "ribbonPage7");
+            // 
+            // ribbonPageGroup14
+            // 
+            this.ribbonPageGroup14.ItemLinks.Add(this.btnCategory);
+            this.ribbonPageGroup14.ItemLinks.Add(this.btnSubCategory);
+            this.ribbonPageGroup14.Name = "ribbonPageGroup14";
+            resources.ApplyResources(this.ribbonPageGroup14, "ribbonPageGroup14");
+            // 
+            // ribbonPageGroup10
+            // 
+            this.ribbonPageGroup10.ItemLinks.Add(this.bbiClassification);
+            this.ribbonPageGroup10.Name = "ribbonPageGroup10";
+            resources.ApplyResources(this.ribbonPageGroup10, "ribbonPageGroup10");
+            // 
+            // ribbonPageGroup16
+            // 
+            this.ribbonPageGroup16.Name = "ribbonPageGroup16";
+            resources.ApplyResources(this.ribbonPageGroup16, "ribbonPageGroup16");
+            // 
+            // bbiRoles
+            // 
+            resources.ApplyResources(this.bbiRoles, "bbiRoles");
+            this.bbiRoles.Id = 74;
+            this.bbiRoles.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.bbiRoles.Name = "bbiRoles";
             // 
             // frmMain
             // 
@@ -1013,7 +1060,6 @@
         private DevExpress.XtraBars.BarButtonItem btnOfferList;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
         private DevExpress.XtraBars.BarButtonItem btnStockCounting;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup11;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup12;
         private DevExpress.XtraBars.BarButtonItem btnDayClosure;
@@ -1059,6 +1105,13 @@
         private DevExpress.XtraBars.BarButtonItem bbiSliceCounting;
         private DevExpress.XtraBars.BarButtonItem bbiClearLeftSales;
         private DevExpress.XtraBars.BarButtonItem bbiBuildInfo;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage5;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup13;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage7;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup16;
+        private DevExpress.XtraBars.BarButtonItem bbiRoles;
     }
 }
 

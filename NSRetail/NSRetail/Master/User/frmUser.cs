@@ -3,21 +3,13 @@ using DevExpress.XtraEditors;
 using Entity;
 using ErrorManagement;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail
 {
-    public partial class frmUser : DevExpress.XtraEditors.XtraForm
+    public partial class frmUser : XtraForm
     {
         User ObjUser = null;
-        MasterRepository objMasterRep = new MasterRepository();
+        UserRepository objUserRep = new UserRepository();
         public frmUser(User _ObjUser)
         {
             InitializeComponent();
@@ -28,7 +20,7 @@ namespace NSRetail
         {
             try
             {
-                cmbRole.Properties.DataSource = objMasterRep.GetRole();
+                cmbRole.Properties.DataSource = objUserRep.GetRole();
                 cmbRole.Properties.DisplayMember = "ROLENAME";
                 cmbRole.Properties.ValueMember = "ROLEID";
 
@@ -40,7 +32,7 @@ namespace NSRetail
                 cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
                 cmbCategory.Properties.ValueMember = "CATEGORYID";
 
-                cmbReportingLead.Properties.DataSource = objMasterRep.GetUser();
+                cmbReportingLead.Properties.DataSource = objUserRep.GetUser();
                 cmbReportingLead.Properties.DisplayMember = "USERNAME";
                 cmbReportingLead.Properties.ValueMember = "USERID";
 
@@ -82,7 +74,7 @@ namespace NSRetail
                 ObjUser.CATEGORYID = cmbCategory.EditValue;
                 ObjUser.REPORTINGLEADID = cmbReportingLead.EditValue;
                 ObjUser.CUSERID = Utility.UserID;
-                objMasterRep.SaveUser(ObjUser);
+                objUserRep.SaveUser(ObjUser);
                 ObjUser.IsSave = true;
                 this.Close();
 

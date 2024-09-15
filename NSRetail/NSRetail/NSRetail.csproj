@@ -164,6 +164,12 @@
     <Compile Include="Master\frmClearHDDSNo.Designer.cs">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\User\frmRoleList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\User\frmRoleList.Designer.cs">
+      <DependentUpon>frmRoleList.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Branch\BranchReports\frmSplitQuantity.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -686,10 +692,10 @@
     <Compile Include="Master\frmUOM.Designer.cs">
       <DependentUpon>frmUOM.cs</DependentUpon>
     </Compile>
-    <Compile Include="Master\frmUser.cs">
+    <Compile Include="Master\User\frmUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Master\frmUser.Designer.cs">
+    <Compile Include="Master\User\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Master\frmBranchList.cs">
@@ -734,10 +740,10 @@
     <Compile Include="Master\frmDealerList.Designer.cs">
       <DependentUpon>frmDealerList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Master\frmUserList.cs">
+    <Compile Include="Master\User\frmUserList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Master\frmUserList.Designer.cs">
+    <Compile Include="Master\User\frmUserList.Designer.cs">
       <DependentUpon>frmUserList.cs</DependentUpon>
     </Compile>
     <Compile Include="Item\frmItemCode.cs">
@@ -1067,6 +1073,9 @@
     <EmbeddedResource Include="Master\frmClearHDDSNo.resx">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\User\frmRoleList.resx">
+      <DependentUpon>frmRoleList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmSplitQuantity.resx">
       <DependentUpon>frmSplitQuantity.cs</DependentUpon>
@@ -1327,7 +1336,7 @@
     <EmbeddedResource Include="Master\frmUOM.resx">
       <DependentUpon>frmUOM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmUser.resx">
+    <EmbeddedResource Include="Master\User\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmBranchList.resx">
@@ -1351,7 +1360,7 @@
     <EmbeddedResource Include="Master\frmDealerList.resx">
       <DependentUpon>frmDealerList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmUserList.resx">
+    <EmbeddedResource Include="Master\User\frmUserList.resx">
       <DependentUpon>frmUserList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Item\frmItemCode.resx">

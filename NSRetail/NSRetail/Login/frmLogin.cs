@@ -9,14 +9,13 @@ using DevExpress.XtraSplashScreen;
 using NSRetail.Login;
 using System.Diagnostics;
 using System.IO;
-using DevExpress.XtraRichEdit.Model;
 using NSRetail.Utilities;
 
 namespace NSRetail
 {
-    public partial class frmLogin : DevExpress.XtraEditors.XtraForm
+    public partial class frmLogin : XtraForm
     {
-        MasterRepository objMasterRep = new MasterRepository();
+        UserRepository objUserRep = new UserRepository();
         public frmLogin()
         {
             InitializeComponent();
@@ -39,7 +38,7 @@ namespace NSRetail
                     txtPassword.Text = txtPassword.Text.Trim();
                     if (!dxValidationProvider1.Validate())
                         return;
-                    DataSet ds = objMasterRep.GetUserCredentials(txtUserName.Text.ToLower(), Utility.Encrypt(txtPassword.Text)
+                    DataSet ds = objUserRep.GetUserCredentials(txtUserName.Text.ToLower(), Utility.Encrypt(txtPassword.Text)
                         , Utility.AppVersion);
                     if (ds != null && ds.Tables.Count > 0)
                     {

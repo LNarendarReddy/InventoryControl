@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DataAccess;
@@ -16,9 +9,9 @@ using DevExpress.XtraGrid.Columns;
 
 namespace NSRetail
 {
-    public partial class frmUserList : DevExpress.XtraEditors.XtraForm
+    public partial class frmUserList : XtraForm
     {
-        MasterRepository objMasterRep = new MasterRepository();
+        UserRepository objUserRep = new UserRepository();
         User ObjUser = null;
         public frmUserList()
         {
@@ -28,7 +21,7 @@ namespace NSRetail
         {
             try
             {
-                gcUser.DataSource = objMasterRep.GetUser();
+                gcUser.DataSource = objUserRep.GetUser();
                 gvUser.Columns["USERSTATUS"].FilterInfo = new ColumnFilterInfo("USERSTATUS = 'ACTIVE'");
             }
             catch (Exception ex)
@@ -47,7 +40,7 @@ namespace NSRetail
             obj.ShowDialog();
             if (ObjUser.IsSave)
             {
-                gcUser.DataSource = objMasterRep.GetUser();
+                gcUser.DataSource = objUserRep.GetUser();
                 Utility.Setfocus(gvUser, "USERID", ObjUser.USERID);
             }
         }
@@ -79,7 +72,7 @@ namespace NSRetail
                     obj.ShowDialog();
                     if (ObjUser.IsSave)
                     {
-                        gcUser.DataSource = objMasterRep. GetUser();
+                        gcUser.DataSource = objUserRep. GetUser();
                         Utility.Setfocus(gvUser, "USERID", ObjUser.USERID);
                     }
 
@@ -101,7 +94,7 @@ namespace NSRetail
                 ObjUser = new User();
                 ObjUser.USERID = gvUser.GetFocusedRowCellValue("USERID");
                 ObjUser.CUSERID = Utility.UserID;
-                objMasterRep.DeleteUser(ObjUser);
+                objUserRep.DeleteUser(ObjUser);
                 gvUser.SetFocusedRowCellValue("USERSTATUS", "IN-ACTIVE");
             }
             catch (Exception ex)
@@ -124,7 +117,7 @@ namespace NSRetail
             {
                 if (gvUser.FocusedRowHandle >= 0)
                 {
-                    new MasterRepository().ResetPassword(gvUser.GetFocusedRowCellValue("USERID"),
+                    new UserRepository().ResetPassword(gvUser.GetFocusedRowCellValue("USERID"),
                         Utility.Encrypt("Password@1234"));
                     XtraMessageBox.Show($"Password reset successfully done {Environment.NewLine}Please login with 'Password@1234'");
                 }
