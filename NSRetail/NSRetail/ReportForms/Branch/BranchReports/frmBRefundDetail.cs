@@ -71,6 +71,13 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                         gvItems.GetRowCellValue(e.RowHandle, "ITEMCOSTPRICEID"),
                         Utility.UserID);
                 }
+                else if (gvItems.FocusedColumn == gcDescription)
+                {
+                    SupplierRepository.UpdateBRDescription(
+                        gvItems.GetRowCellValue(e.RowHandle, "BRDID"),
+                        gvItems.GetRowCellValue(e.RowHandle, "REFUNDDESCRIPTION"),
+                        Utility.UserID);
+                }
             }
             catch (Exception ex)
             {
@@ -102,6 +109,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 dt.Columns.Remove("DELETEDDATE");
                 dt.Columns.Remove("COSTPRICEWOT");
                 dt.Columns.Remove("COSTPRICEWT");
+                dt.Columns.Remove("REFUNDDESCRIPTION");
                 new POSRepository().AcceptBRefund(CounterID, BRefundID, Utility.UserID, dt);
                 IsSave = true;
                 this.Close();

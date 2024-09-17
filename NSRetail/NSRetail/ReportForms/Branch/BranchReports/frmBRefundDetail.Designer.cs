@@ -54,6 +54,7 @@
             this.gcCPWT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BRDID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -153,7 +154,8 @@
             this.gcCPWOT,
             this.gcCPWT,
             this.BRDID,
-            this.gridColumn11});
+            this.gridColumn11,
+            this.gcDescription});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -356,6 +358,14 @@
             this.gridColumn11.FieldName = "ITEMPRICEID";
             this.gridColumn11.Name = "gridColumn11";
             // 
+            // gcDescription
+            // 
+            this.gcDescription.Caption = "Description";
+            this.gcDescription.FieldName = "REFUNDDESCRIPTION";
+            this.gcDescription.Name = "gcDescription";
+            this.gcDescription.Visible = true;
+            this.gcDescription.VisibleIndex = 13;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -470,5 +480,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbSupplier;
         private DevExpress.XtraGrid.Columns.GridColumn BRDID;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDescription;
     }
 }

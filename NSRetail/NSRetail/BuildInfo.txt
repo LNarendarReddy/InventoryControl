@@ -1,6 +1,7 @@
 ﻿v2.6.3
  -- Added dispatch revert and clone features in dispatch list.
- -- Removed all button columns in report instead used context menu.
+ -- Removed all button columns in reports instead used context menu.
+ -- Given provision to enter remarks while accepting or rejecting the branch refunds.
 
 v2.6.2
  -- Added dispatch discard option dispatch list, only draft invoices can be discarded.

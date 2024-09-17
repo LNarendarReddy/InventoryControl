@@ -200,6 +200,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@SNO", drDetail["SNO"]);
                     cmd.Parameters.AddWithValue("@TRAYNUMBER", drDetail["TRAYNUMBER"]);
                     cmd.Parameters.AddWithValue("@REASONID", drDetail["REASONID"]);
+                    cmd.Parameters.AddWithValue("@REFUNDDESCRIPTION", drDetail["REFUNDDESCRIPTION"]);
                     object objReturn = cmd.ExecuteScalar();
 
                     if (!int.TryParse(objReturn.ToString(), out BRefundDetailID))

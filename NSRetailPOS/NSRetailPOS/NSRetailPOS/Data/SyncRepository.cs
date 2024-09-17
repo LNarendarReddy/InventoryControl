@@ -178,6 +178,7 @@ namespace NSRetailPOS.Data
                 SQLCon.Sqlconn().Close();
             }
         }
+
         public string GetDBVersion()
         {
             string dbVersion = string.Empty;

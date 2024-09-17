@@ -31,6 +31,7 @@ namespace NSRetailPOS.UI
             Utility.SetGridFormatting(gvRefund);
             Utility.SetGridFormatting(sluItemCodeView);
         }
+
         private void InitialLoad()
         {
             DataSet dSInitialData = new RefundRepository().GetInitialLoad(Utility.loginInfo.UserID, Utility.branchInfo.BranchID);
@@ -51,6 +52,7 @@ namespace NSRetailPOS.UI
                 SNo = dtRefund.Rows.Count + 1;
             }
         }
+
         private void frmBranchRefund_Load(object sender, EventArgs e)
         {
             cmbRFR.Properties.DataSource = new RefundRepository().GETRFR();
@@ -66,6 +68,7 @@ namespace NSRetailPOS.UI
 
             InitialLoad();
         }
+
         private void sluItemCode_EditValueChanged(object sender, EventArgs e)
         {
             if (sluItemCode.EditValue == null) { return; }
@@ -118,6 +121,7 @@ namespace NSRetailPOS.UI
                     txtQuantity.Focus();
             }
         }
+
         private void ClearItemData(bool focusItemCode = true)
         {
             txtItemCode.EditValue = null;
@@ -125,10 +129,12 @@ namespace NSRetailPOS.UI
             txtMRP.EditValue = null;
             txtQuantity.EditValue = 1;
             txtWeightInKgs.EditValue = 0.00;
+            txtDescription.EditValue = null;
 
             if (focusItemCode)
                 txtItemCode.Focus();
         }
+
         private void txtItemCode_Leave(object sender, EventArgs e)
         {
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
@@ -161,14 +167,17 @@ namespace NSRetailPOS.UI
 
             isItemScanned = false;
         }
+
         private void txtItemCode_Enter(object sender, EventArgs e)
         {
             txtItemCode.SelectAll();
         }
+
         private void txtItemCode_Click(object sender, EventArgs e)
         {
             txtItemCode.SelectAll();
         }
+
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             object BRDetailID = gvRefund.GetFocusedRowCellValue("BREFUNDDETAILID");
@@ -188,6 +197,7 @@ namespace NSRetailPOS.UI
             gvRefund.DeleteRow(gvRefund.FocusedRowHandle);
             txtItemCode.Focus();
         }
+        
         private void txtQuantity_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter)
@@ -235,6 +245,7 @@ namespace NSRetailPOS.UI
             ClearItemData();
             gvRefund.FocusedRowHandle = rowHandle;
         }
+
         private int Getrowhandle()
         {
             int rowHandle = -1;  
@@ -256,6 +267,7 @@ namespace NSRetailPOS.UI
             }
             return rowHandle;
         }
+
         private void gvRefund_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
             gvRefund.SetRowCellValue(e.RowHandle, "BREFUNDDETAILID", -1);
@@ -271,7 +283,9 @@ namespace NSRetailPOS.UI
             gvRefund.SetRowCellValue(e.RowHandle, "TRAYNUMBER", txtTrayNumber.EditValue);
             gvRefund.SetRowCellValue(e.RowHandle, "REASONID", cmbRFR.EditValue);
             gvRefund.SetRowCellValue(e.RowHandle, "REASONNAME", cmbRFR.Text);
+            gvRefund.SetRowCellValue(e.RowHandle, "REFUNDDESCRIPTION", txtDescription.Text);
         }
+
         private void frmBranchRefund_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F3)
@@ -283,15 +297,18 @@ namespace NSRetailPOS.UI
                 btnSave_Click(null, null);
             }
         }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
         private void gvBilling_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             if (e.Column.FieldName != "QUANTITY" || isEventCall) return;
             SaveRefundDetail(e.RowHandle);
         }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (gvRefund.RowCount == 0 ||
@@ -313,15 +330,18 @@ namespace NSRetailPOS.UI
             XtraMessageBox.Show("Branch return sheet submitted successfully, re-open sheet for new return");
             this.Close();
         }
+
         private void txtQuantity_Enter(object sender, EventArgs e)
         {
             TextEdit textedit = sender as TextEdit;
             textedit.SelectAll();
         }
+
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
 
         }
+
         private void cmbCategory_EditValueChanged(object sender, EventArgs e)
         {
             if (cmbCategory.EditValue != null)
@@ -334,6 +354,7 @@ namespace NSRetailPOS.UI
                 sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
             }
         }
+
         private void btnDiscard_Click(object sender, EventArgs e)
         {
             try
@@ -347,6 +368,7 @@ namespace NSRetailPOS.UI
                 XtraMessageBox.Show(ex.Message);
             }
         }
+
         private void SaveBRefund()
         {
             DataTable dt = new RefundRepository().SaveBRefund(Utility.loginInfo.UserID, Utility.branchInfo.BranchID, cmbCategory.EditValue);
@@ -361,6 +383,7 @@ namespace NSRetailPOS.UI
             else
                 throw new Exception("Error while saving BRefund");
         }
+
         private void SaveRefundDetail(int rowHandle)
         {
             DataRow drDetail = (gvRefund.GetRow(rowHandle) as DataRowView).Row;

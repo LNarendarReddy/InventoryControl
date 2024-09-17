@@ -343,6 +343,27 @@ namespace DataAccess
             }
         }
 
+        public void UpdateBRDescription(object BRDID, object BRDescription, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_BRDESCRIPTION]";
+                    cmd.Parameters.AddWithValue("@BRDID", BRDID);
+                    cmd.Parameters.AddWithValue("@REFUNDDESCRIPTION", BRDescription);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while updating BR Reason");
+            }
+        }
+
         public DataTable GetReason()
         {
             DataTable dt = new DataTable();
