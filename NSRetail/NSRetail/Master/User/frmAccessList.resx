@@ -117,35 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="DevExpress.Data.v21.2" name="DevExpress.Data.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="editorButtonImageOptions1.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
-        NS4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAB1E
-        ZXZFeHByZXNzLlV0aWxzLlN2Zy5TdmdJbWFnZQEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABXBQAAAu+7
-        vzw/eG1sIHZlcnNpb249JzEuMCcgZW5jb2Rpbmc9J1VURi04Jz8+DQo8c3ZnIHg9IjBweCIgeT0iMHB4
-        IiB2aWV3Qm94PSIwIDAgMzIgMzIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3Jn
-        LzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNw
-        YWNlPSJwcmVzZXJ2ZSIgaWQ9IkVkaXRSYW5nZVBlcm1pc3Npb24iIHN0eWxlPSJlbmFibGUtYmFja2dy
-        b3VuZDpuZXcgMCAwIDMyIDMyIj4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5ZZWxsb3d7Zmls
-        bDojRkZCMTE1O30KCS5CbGFja3tmaWxsOiM3MjcyNzI7fQo8L3N0eWxlPg0KICA8cGF0aCBkPSJNMzEs
-        MjRoLTF2LTNjMC0xLjctMS4zLTMtMy0zaC0yYy0xLjcsMC0zLDEuMy0zLDN2M2gtMWMtMC42LDAtMSww
-        LjQtMSwxdjZjMCwwLjYsMC40LDEsMSwxaDEwICBjMC42LDAsMS0wLjQsMS0xdi02QzMyLDI0LjQsMzEu
-        NiwyNCwzMSwyNHogTTI0LDIxYzAtMC42LDAuNC0xLDEtMWgyYzAuNiwwLDEsMC40LDEsMXYzaC00VjIx
-        eiIgY2xhc3M9IlllbGxvdyIgLz4NCiAgPHBhdGggZD0iTTEwLDIyaDEwdjAuMmMtMC45LDAuMy0xLjUs
-        MS0xLjgsMS44SDEwVjIyeiBNMjcsNEgxMi4zYzAsMCwwLDAsMCwwYzAsMC4xLDAuMSwwLjIsMC4xLDAu
-        NCAgQzEyLjYsNSwxMi41LDUuNiwxMi4zLDZIMjZ2MTBoMWMwLjMsMCwwLjcsMCwxLDAuMVY1QzI4LDQu
-        NCwyNy42LDQsMjcsNHogTTEwLDE4djJoMTAuMWMwLjItMC43LDAuNS0xLjQsMC45LTJoLTVIMTB6IE02
-        LDE4SDR2MTEgIGMwLDAuNiwwLjQsMSwxLDFoMTN2LTJINlYxOHogTTE2LDE1LjFWMTZoNnYtMmgtNi4x
-        QzE2LDE0LjMsMTYsMTQuNywxNiwxNS4xeiBNMTUuNCwxMkgyMnYtMmgtOC42QzE0LjEsMTAuNCwxNC45
-        LDExLDE1LjQsMTJ6IiBjbGFzcz0iQmxhY2siIC8+DQogIDxwYXRoIGQ9Ik0zLjcsNS43QzMuNiw1LjQs
-        My40LDUuMiwzLjUsNC44YzAtMC4xLDAuMi0wLjIsMC4zLTAuMkMzLjEsMi40LDMuOCwwLjIsNi4zLDBD
-        OS0wLjIsOS41LDEuOCw5LjUsMS44ICBzMS40LTAuMSwwLjYsMi45YzAuMSwwLDAuMywwLDAuMywwLjJj
-        MC4xLDAuMywwLDAuNi0wLjIsMC45Yy0wLjEsMC4zLDAuMSwxLTAuNSwxYzAsMCwwLDAuMSwwLDAuMWMt
-        MC4zLDEuNC0xLjIsMy0yLjgsMyAgYy0xLjYsMC0yLjQtMS42LTIuOC0zYzAsMCwwLTAuMSwwLTAuMUMz
-        LjcsNi43LDMuOSw2LDMuNyw1Ljd6IE05LjMsOS45Yy0wLjUsMC45LTEuMiwyLjUtMi4zLDIuNWMtMS4x
-        LDAtMS44LTEuNi0yLjMtMi42ICBDMy40LDEyLjEsMCwxMC41LDAsMTUuMVYxNmgxNHYtMC45QzE0LDEw
-        LjUsMTAuNywxMiw5LjMsOS45eiIgY2xhc3M9IkJsYWNrIiAvPg0KPC9zdmc+Cw==
-</value>
-  </data>
 </root>

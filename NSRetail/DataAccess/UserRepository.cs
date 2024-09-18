@@ -92,9 +92,15 @@ namespace DataAccess
             return ObjUser;
         }
 
-        public DataTable GetRole()
+        public DataTable GetRoles()
         {
             return new ReportRepository().GetReportData("USP_R_ROLE");
+        }
+
+        public DataSet GetRoleAccessList(object roleID, object userID)
+        {
+            return new ReportRepository().GetReportDataset("USP_R_HASACCESS"
+                , new Dictionary<string, object> { { "RoleID", roleID }, { "UserID", userID } });
         }
 
         public DataSet GetUserCredentials(string UserName, string Password, string AppVersion)
@@ -161,6 +167,32 @@ namespace DataAccess
                 throw ex;
             }
             finally { }
+        }
+
+        public void SaveAccess(object roleID, object userID
+            , object addedAccessList, object removedAccessList
+            , object applyToUsers, object changedByUserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_C_HASACCESS]";
+                    cmd.Parameters.AddWithValue("@USERID", userID);
+                    cmd.Parameters.AddWithValue("@ROLEID", roleID);
+                    cmd.Parameters.AddWithValue("@AddedAccessList", addedAccessList);
+                    cmd.Parameters.AddWithValue("@RemovedAccessList", removedAccessList);
+                    cmd.Parameters.AddWithValue("@ApplyToUsers", applyToUsers);
+                    cmd.Parameters.AddWithValue("@ChangedByUserID", changedByUserID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error While Saving access date : {ex.Message}");
+            }
         }
     }
 }

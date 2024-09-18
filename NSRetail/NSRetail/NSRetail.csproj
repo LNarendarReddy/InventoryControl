@@ -164,6 +164,12 @@
     <Compile Include="Master\frmClearHDDSNo.Designer.cs">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\User\frmAccessList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\User\frmAccessList.Designer.cs">
+      <DependentUpon>frmAccessList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\User\frmRoleList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1073,6 +1079,9 @@
     <EmbeddedResource Include="Master\frmClearHDDSNo.resx">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\User\frmAccessList.resx">
+      <DependentUpon>frmAccessList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Master\User\frmRoleList.resx">
       <DependentUpon>frmRoleList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1594,6 +1603,9 @@
     <Content Include="BuildInfo.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\add_16x163.png" />
+    <None Include="Resources\removepivotfield_16x161.png" />
+    <None Include="Resources\save_16x161.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

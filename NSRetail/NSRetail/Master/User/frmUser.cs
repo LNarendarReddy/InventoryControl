@@ -20,7 +20,7 @@ namespace NSRetail
         {
             try
             {
-                cmbRole.Properties.DataSource = objUserRep.GetRole();
+                cmbRole.Properties.DataSource = objUserRep.GetRoles();
                 cmbRole.Properties.DisplayMember = "ROLENAME";
                 cmbRole.Properties.ValueMember = "ROLEID";
 

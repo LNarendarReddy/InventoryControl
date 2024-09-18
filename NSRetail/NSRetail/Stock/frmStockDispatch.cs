@@ -221,9 +221,12 @@ namespace NSRetail.Stock
                         
             try
             {
-                if (Convert.ToInt32(ObjStockDispatch.STOCKDISPATCHID) == 0 ||
-                    Convert.ToInt32(cmbToBranch.EditValue) !=  Convert.ToInt32(ObjStockDispatch.STOCKDISPATCHID)) 
+                if (Convert.ToInt32(ObjStockDispatch?.STOCKDISPATCHID) == 0 ||
+                    Convert.ToInt32(cmbToBranch.EditValue) !=  Convert.ToInt32(ObjStockDispatch.TOBRANCHID)) 
                     SaveDispatch();
+
+                // in case the save dispatch failed above
+                if (Convert.ToInt32(ObjStockDispatch?.STOCKDISPATCHID) == 0) return;
 
                 ObjStockDispatchDetail = new StockDispatchDetail();
                 ObjStockDispatchDetail.STOCKDISPATCHDETAILID = 0;

@@ -8,6 +8,7 @@ using Microsoft.Win32;
 using NSRetail.Countning;
 using NSRetail.Login;
 using NSRetail.Master;
+using NSRetail.Master.User;
 using NSRetail.ReportForms;
 using NSRetail.ReportForms.Branch;
 using NSRetail.ReportForms.Branch.BranchReports;
@@ -674,6 +675,11 @@ namespace NSRetail
         private void bbiBuildInfo_ItemClick(object sender, ItemClickEventArgs e)
         {
             new frmBuildInfo().ShowDialog();
+        }
+
+        private void bbiRoles_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new frmRoleList() { MdiParent= this }.Show();
         }
     }
 }

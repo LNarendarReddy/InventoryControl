@@ -6,6 +6,8 @@ using Entity;
 using ErrorManagement;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraGrid.Columns;
+using NSRetail.Master.User;
+using System.Web.Security;
 
 namespace NSRetail
 {
@@ -127,6 +129,11 @@ namespace NSRetail
                 ErrorMgmt.ShowError(ex);
                 ErrorMgmt.Errorlog.Error(ex);
             }
+        }
+
+        private void btnEditAccess_Click(object sender, EventArgs e)
+        {
+            new frmAccessList(null, gvUser.GetFocusedRowCellValue("USERID"), $"Access permissions for User : {gvUser.GetFocusedRowCellValue("USERNAME")}").ShowDialog();
         }
     }
 }

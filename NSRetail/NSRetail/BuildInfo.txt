@@ -1,4 +1,8 @@
-﻿v2.6.3
+﻿v2.6.4
+ -- fixed issue in stock dispatch
+ -- User & Role access screens (testing only)
+
+v2.6.3
  -- Added dispatch revert and clone features in dispatch list.
  -- Removed all button columns in reports instead used context menu.
  -- Given provision to enter remarks while accepting or rejecting the branch refunds.
