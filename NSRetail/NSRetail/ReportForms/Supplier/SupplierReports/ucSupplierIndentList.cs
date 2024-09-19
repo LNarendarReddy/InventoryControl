@@ -30,7 +30,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "MOBILENO", "Mobile #" }
             };
 
-            ContextmenuItems = new List<string>() { "View", "Print&Export" };
+            ContextmenuItems = new List<string>() { "View", "Print && Export" };
 
             cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";

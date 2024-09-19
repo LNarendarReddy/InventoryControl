@@ -49,6 +49,8 @@ namespace NSRetail.ReportForms
             bgwGetData.RunWorkerCompleted += BgwGetData_RunWorkerCompleted;
                         
             tlReport.ExpandAll();
+            lblContextOptions.Text= string.Empty;
+            lblRecordCount.Text= string.Empty;
         }
 
         private void BgwGetData_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -194,6 +196,10 @@ namespace NSRetail.ReportForms
 
             pcSearchCriteria.Controls.Add(selectedReportHolder.SearchCriteriaControl);
             selectedReportHolder.SearchCriteriaControl.Location = new System.Drawing.Point(2, 2);
+
+            lblContextOptions.Text = selectedReportHolder.SearchCriteriaControl.ContextmenuItems.Any()
+                ? $"Right click for options : {string.Join(", ", selectedReportHolder.SearchCriteriaControl.ContextmenuItems)}"
+                : string.Empty;
 
             btnSearch.Enabled = true;
             btnReport.Enabled = true;            
