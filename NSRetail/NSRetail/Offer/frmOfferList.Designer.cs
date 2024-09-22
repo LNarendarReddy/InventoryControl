@@ -487,6 +487,7 @@
             this.gcViewItems.ColumnEdit = this.btnViewItems;
             this.gcViewItems.MinWidth = 23;
             this.gcViewItems.Name = "gcViewItems";
+            this.gcViewItems.Tag = "88ED5D64-B60C-4BC7-BF34-4CE1F0D665B1";
             this.gcViewItems.Width = 64;
             // 
             // btnViewItems

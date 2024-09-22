@@ -34,14 +34,17 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 , { "STATUS", "Status" }
             };
 
-            ContextmenuItems = new List<string>() { "View", "Discard" };
+            ContextmenuItems = new Dictionary<string, string> 
+            { 
+                { "View", "69FB1182-A548-4547-958F-126D4AB086B5" }, 
+                { "Discard", "1A2B9C8E-A56B-4CCE-9598-B063E7B61CBC" } 
+            };
 
             cmbBranch.Properties.DataSource = Utility.GetBranchList();
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
 
             SetFocusControls(cmbBranch, cmbBranch,columnHeaders);
-            AllowedRoles = new List<string> { "Stock counting user" };
         }
 
         private void ShowItemsForm(XtraForm obj)

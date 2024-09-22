@@ -19,7 +19,8 @@ namespace NSRetail.Utilities
 
         private void frmSyncStatus_Load(object sender, EventArgs e)
         {
-            btnRefresh_Click(null, null);
+            AccessUtility.SetStatusByAccess(btnDelete);
+            btnRefresh_Click(null, null);            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

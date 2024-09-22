@@ -69,34 +69,34 @@
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcEdit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcEditAccess = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnEditAccess = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnEditAccess = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditAccess)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditAccess)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -164,6 +164,7 @@
             this.btnNew.Size = new System.Drawing.Size(101, 26);
             this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 5;
+            this.btnNew.Tag = "6CF2EAD9-ECC8-4566-8680-D23CAB3BF4EC::Create";
             this.btnNew.Text = "New";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
@@ -209,12 +210,12 @@
             this.gridColumn18,
             this.gridColumn17,
             this.gridColumn16,
-            this.gridColumn12,
-            this.gridColumn13,
+            this.gcEdit,
+            this.gcDelete,
             this.gridColumn22,
             this.gridColumn23,
             this.gridColumn24,
-            this.gridColumn25});
+            this.gcEditAccess});
             this.gvUser.DetailHeight = 404;
             this.gvUser.GridControl = this.gcUser;
             this.gvUser.Name = "gvUser";
@@ -405,17 +406,18 @@
             this.gridColumn16.OptionsColumn.AllowEdit = false;
             this.gridColumn16.Width = 87;
             // 
-            // gridColumn12
+            // gcEdit
             // 
-            this.gridColumn12.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn12.Caption = "Edit";
-            this.gridColumn12.ColumnEdit = this.btnEdit;
-            this.gridColumn12.MinWidth = 23;
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 8;
-            this.gridColumn12.Width = 63;
+            this.gcEdit.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcEdit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcEdit.Caption = "Edit";
+            this.gcEdit.ColumnEdit = this.btnEdit;
+            this.gcEdit.MinWidth = 23;
+            this.gcEdit.Name = "gcEdit";
+            this.gcEdit.Tag = "6CF2EAD9-ECC8-4566-8680-D23CAB3BF4EC::Update";
+            this.gcEdit.Visible = true;
+            this.gcEdit.VisibleIndex = 8;
+            this.gcEdit.Width = 63;
             // 
             // btnEdit
             // 
@@ -427,17 +429,18 @@
             this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_ButtonClick);
             // 
-            // gridColumn13
+            // gcDelete
             // 
-            this.gridColumn13.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn13.Caption = "Delete";
-            this.gridColumn13.ColumnEdit = this.btnDelete;
-            this.gridColumn13.MinWidth = 23;
-            this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 9;
-            this.gridColumn13.Width = 63;
+            this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcDelete.Caption = "Delete";
+            this.gcDelete.ColumnEdit = this.btnDelete;
+            this.gcDelete.MinWidth = 23;
+            this.gcDelete.Name = "gcDelete";
+            this.gcDelete.Tag = "6CF2EAD9-ECC8-4566-8680-D23CAB3BF4EC::Delete";
+            this.gcDelete.Visible = true;
+            this.gcDelete.VisibleIndex = 9;
+            this.gcDelete.Width = 63;
             // 
             // btnDelete
             // 
@@ -471,6 +474,27 @@
             this.gridColumn24.OptionsColumn.AllowEdit = false;
             this.gridColumn24.Visible = true;
             this.gridColumn24.VisibleIndex = 7;
+            // 
+            // gcEditAccess
+            // 
+            this.gcEditAccess.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcEditAccess.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcEditAccess.Caption = "Edit Access";
+            this.gcEditAccess.ColumnEdit = this.btnEditAccess;
+            this.gcEditAccess.Name = "gcEditAccess";
+            this.gcEditAccess.Tag = "FBB23188-968A-4E8B-A615-A6ED34C2A2A6::Execute";
+            this.gcEditAccess.Visible = true;
+            this.gcEditAccess.VisibleIndex = 10;
+            // 
+            // btnEditAccess
+            // 
+            this.btnEditAccess.AutoHeight = false;
+            editorButtonImageOptions3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions3.SvgImage")));
+            this.btnEditAccess.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnEditAccess.Name = "btnEditAccess";
+            this.btnEditAccess.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnEditAccess.Click += new System.EventHandler(this.btnEditAccess_Click);
             // 
             // Root
             // 
@@ -542,26 +566,6 @@
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // gridColumn25
-            // 
-            this.gridColumn25.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn25.Caption = "Edit Access";
-            this.gridColumn25.ColumnEdit = this.btnEditAccess;
-            this.gridColumn25.Name = "gridColumn25";
-            this.gridColumn25.Visible = true;
-            this.gridColumn25.VisibleIndex = 10;
-            // 
-            // btnEditAccess
-            // 
-            this.btnEditAccess.AutoHeight = false;
-            editorButtonImageOptions3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions3.SvgImage")));
-            this.btnEditAccess.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnEditAccess.Name = "btnEditAccess";
-            this.btnEditAccess.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.btnEditAccess.Click += new System.EventHandler(this.btnEditAccess_Click);
-            // 
             // frmUserList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -579,13 +583,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditAccess)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditAccess)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -608,9 +612,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gcEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEdit;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
@@ -630,7 +634,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
+        private DevExpress.XtraGrid.Columns.GridColumn gcEditAccess;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditAccess;
     }
 }

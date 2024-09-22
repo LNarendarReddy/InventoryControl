@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using Entity;
 using ErrorManagement;
+using NSRetail.Utilities;
 using System;
 using System.Windows.Forms;
 
@@ -21,6 +22,9 @@ namespace NSRetail.Master
             try
             {
                 gcCounter.DataSource = objMasterRep.GetCounter();
+
+                AccessUtility.SetStatusByAccess(btnNew);
+                AccessUtility.SetStatusByAccess(gcEdit, gcDelete, gcClearHDDSNo);
             }
             catch (Exception ex)
             {

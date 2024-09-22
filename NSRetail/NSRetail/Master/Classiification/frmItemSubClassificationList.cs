@@ -7,6 +7,7 @@ using Entity;
 using DataAccess;
 using DevExpress.XtraGrid.Views.Grid;
 using ErrorManagement;
+using NSRetail.Utilities;
 
 namespace NSRetail.Master.Classiification
 {
@@ -33,6 +34,17 @@ namespace NSRetail.Master.Classiification
             reportRepository = new ReportRepository();
             txtCategory.EditValue = itemClassificationObj.CategoryName;
             txtClassificationName.EditValue = itemClassificationObj.ItemClassificationName;
+
+            string accessIdentifier = "228F0F04-BE41-4F5F-98B5-3FA59CB7C182";
+
+            gvSubClassifications.Tag = $"{accessIdentifier}::Create";
+            AccessUtility.SetStatusByAccess(gvSubClassifications);
+
+            gvSubClassifications.Tag = $"{accessIdentifier}::Update";
+            AccessUtility.SetStatusByAccess(gvSubClassifications);
+
+            AccessUtility.SetStatusByAccess(gcDelete);
+
             BindDatasource();
         }
 

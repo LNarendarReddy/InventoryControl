@@ -40,18 +40,6 @@ namespace NSRetail
 
         public bool ShowIncludeSetting => IncludeSettingsCollection != null && IncludeSettingsCollection.Any();
 
-        public bool HasAccess { get; private set; }
-
-        protected IEnumerable<string> AllowedRoles 
-        {
-            get => allowedRoles;
-            set
-            {
-                allowedRoles = value;
-                HasAccess = Utility.Role == "Admin" || Utility.Role == "IT Manager" || (AllowedRoles != null && AllowedRoles.Contains(Utility.Role));
-            }
-        }
-
         protected override void OnLoad(EventArgs e)
         {
             foreach(Control cntrl in this.Controls)
@@ -127,9 +115,8 @@ namespace NSRetail
             };
 
             ButtonColumns = new List<string>();
-            ContextmenuItems = new List<string>();
-            IsDataSet = false;
-            AllowedRoles = null;
+            ContextmenuItems = new Dictionary<string, string>();
+            IsDataSet = false;            
         }
 
         public virtual object GetData() => throw new NotImplementedException();
@@ -189,7 +176,7 @@ namespace NSRetail
 
         public IEnumerable<string> ButtonColumns { get; protected set; }
         
-        public IEnumerable<string> ContextmenuItems { get; protected set; }
+        public Dictionary<string, string> ContextmenuItems { get; protected set; }
 
         public Control FirstControl => firstControl;
 

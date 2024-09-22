@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,15 +17,18 @@ namespace NSRetail
         DataTable dtItems = new DataTable();
         bool isExcludeList;
 
-        public frmGroupItems(object GroupName, object _ItemGroupID,
+
+        public frmGroupItems(object _groupName, object _ItemGroupID,
             object OfferName = null, object _OfferID = null, bool _IsGroupItem = true, bool isExclude = false)
         {
             InitializeComponent();
-            IsGroupItem = _IsGroupItem;
+            IsGroupItem = _IsGroupItem;      
+            ItemGroupID = _ItemGroupID;
+
             if (IsGroupItem)
             {
                 lcbtnimport.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                this.Text = "Group Items - " + GroupName;
+                this.Text = "Group Items - " + _groupName;
                 ItemGroupID = _ItemGroupID;
                 gcItems.DataSource = dtItems = new OfferRepository().GetItemGroupDetail(ItemGroupID);
             }
@@ -35,10 +39,6 @@ namespace NSRetail
                 isExcludeList = isExclude;
                 gcItems.DataSource = dtItems = new OfferRepository().GetOfferItem(OfferID);
             }
-
-            cmbItemCode.Properties.DataSource = Utility.GetItemCodeList();
-            cmbItemCode.Properties.ValueMember = "ITEMCODEID";
-            cmbItemCode.Properties.DisplayMember = "ITEMCODE";
         }
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -166,7 +166,12 @@ namespace NSRetail
 
         private void frmGroupItems_Load(object sender, EventArgs e)
         {
+            cmbItemCode.Properties.DataSource = Utility.GetItemCodeList();
+            cmbItemCode.Properties.ValueMember = "ITEMCODEID";
+            cmbItemCode.Properties.DisplayMember = "ITEMCODE";
 
+            AccessUtility.SetStatusByAccess(btnAdd, btnImport);
+            AccessUtility.SetStatusByAccess(gcDelete);
         }
     }
 }

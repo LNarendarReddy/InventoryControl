@@ -43,7 +43,7 @@
             this.gridColumn36 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcsaleprice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtPrice = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.gridColumn38 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDeleteBranchPrice = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gcOffer = new DevExpress.XtraGrid.GridControl();
             this.gvOffer = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -162,6 +162,7 @@
             this.btnAddNewPrice.Size = new System.Drawing.Size(116, 22);
             this.btnAddNewPrice.StyleController = this.layoutControl1;
             this.btnAddNewPrice.TabIndex = 12;
+            this.btnAddNewPrice.Tag = "9B3DFBCD-EE27-40D8-B899-E3B1C4E22153::Create";
             this.btnAddNewPrice.Text = "Add new branch price";
             this.btnAddNewPrice.Click += new System.EventHandler(this.btnAddNewPrice_Click);
             // 
@@ -185,10 +186,11 @@
             this.gridColumn35,
             this.gridColumn36,
             this.gcsaleprice,
-            this.gridColumn38});
+            this.gcDelete});
             this.gvBranchPrices.GridControl = this.gcBranchPrices;
             this.gvBranchPrices.Name = "gvBranchPrices";
             this.gvBranchPrices.OptionsView.ShowGroupPanel = false;
+            this.gvBranchPrices.Tag = "A9B75D0E-A347-4BDC-B064-A7417E96E264::Update";
             this.gvBranchPrices.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvBranchPrices_InitNewRow);
             this.gvBranchPrices.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvBranchPrices_CellValueChanged);
             // 
@@ -238,16 +240,17 @@
             this.txtPrice.MaskSettings.Set("mask", "n2");
             this.txtPrice.Name = "txtPrice";
             // 
-            // gridColumn38
+            // gcDelete
             // 
-            this.gridColumn38.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn38.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn38.Caption = "Delete";
-            this.gridColumn38.ColumnEdit = this.btnDeleteBranchPrice;
-            this.gridColumn38.Name = "gridColumn38";
-            this.gridColumn38.Visible = true;
-            this.gridColumn38.VisibleIndex = 2;
-            this.gridColumn38.Width = 68;
+            this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcDelete.Caption = "Delete";
+            this.gcDelete.ColumnEdit = this.btnDeleteBranchPrice;
+            this.gcDelete.Name = "gcDelete";
+            this.gcDelete.Tag = "9B3DFBCD-EE27-40D8-B899-E3B1C4E22153::Delete";
+            this.gcDelete.Visible = true;
+            this.gcDelete.VisibleIndex = 2;
+            this.gcDelete.Width = 68;
             // 
             // btnDeleteBranchPrice
             // 
@@ -901,7 +904,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn35;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn36;
         private DevExpress.XtraGrid.Columns.GridColumn gcsaleprice;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn38;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDeleteBranchPrice;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtPrice;
     }

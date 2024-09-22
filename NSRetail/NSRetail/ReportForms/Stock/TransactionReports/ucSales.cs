@@ -49,7 +49,6 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             };
 
             SetFocusControls(cmbPeriodicity, cmbItemCode, specificColumnHeaders);
-            AllowedRoles = new List<string> { "Division Manager", "IT User" };
         }
         private void ucSales_Load(object sender, EventArgs e)
         {

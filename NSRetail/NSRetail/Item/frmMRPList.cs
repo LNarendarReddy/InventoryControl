@@ -9,6 +9,7 @@ using DevExpress.XtraSplashScreen;
 using static DevExpress.Utils.Diagnostics.GUIResources;
 using Entity;
 using DevExpress.Utils.Gesture;
+using NSRetail.Utilities;
 
 namespace NSRetail
 {
@@ -34,8 +35,8 @@ namespace NSRetail
 
             gcCostPriceWT.Visible = showCostPrice;
             gcCostPriceWOT.Visible = showCostPrice;
-            gcEdit.Visible = IsItemListCall && (Utility.Role == "Admin" || Utility.Role == "IT Manager");
-            gcDelete.Visible = IsItemListCall && Utility.Role == "Admin";
+            gcEdit.Visible = IsItemListCall;
+            gcDelete.Visible = IsItemListCall;
 
             //if (IsItemListCall && Utility.Role == "Admin")
             //{
@@ -225,7 +226,8 @@ namespace NSRetail
 
         private void frmMRPList_Load(object sender, EventArgs e)
         {
-
+            AccessUtility.SetStatusByAccess(btnAddMRP);
+            AccessUtility.SetStatusByAccess(gcEdit, gcDelete);
         }
     }
 }

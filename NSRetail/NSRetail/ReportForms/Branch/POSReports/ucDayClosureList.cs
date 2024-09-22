@@ -26,7 +26,14 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 , { "VOIDAMOUNT", "Void Amount"}
             };
 
-            ContextmenuItems = new List<string>() { "Summary", "Bills", "Items", "Refunds","Void Items" };
+            ContextmenuItems = new Dictionary<string, string> 
+            { 
+                { "Summary", "C500371E-309E-43CE-AAAE-C9D269790606" }, 
+                { "Bills", "4A5FF1E8-AD9B-4F1A-B65F-9FE3989D2CF3" }, 
+                { "Items", "6B55A259-F03E-4D6E-9F89-A01B8F4AF3A5" }, 
+                { "Refunds", "BC42D348-24DA-462A-BF53-445F092A73B4" },
+                { "Void Items", "FA0424F9-56F0-4104-ADBC-FCE826647663" } 
+            };
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;

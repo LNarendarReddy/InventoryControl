@@ -49,7 +49,7 @@ namespace NSRetail.Master
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -81,22 +81,25 @@ namespace NSRetail.Master
             this.layoutControl1.Controls.Add(this.gcMOP);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1160, 330, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(356, 426);
+            this.layoutControl1.Size = new System.Drawing.Size(415, 492);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // gcMOP
             // 
+            this.gcMOP.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.gcMOP.Location = new System.Drawing.Point(4, 4);
             this.gcMOP.MainView = this.gvMOP;
+            this.gcMOP.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcMOP.Name = "gcMOP";
             this.gcMOP.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEdit,
             this.btnDelete});
-            this.gcMOP.Size = new System.Drawing.Size(348, 418);
+            this.gcMOP.Size = new System.Drawing.Size(407, 484);
             this.gcMOP.TabIndex = 4;
             this.gcMOP.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvMOP});
@@ -114,12 +117,14 @@ namespace NSRetail.Master
             this.gridColumn9,
             this.gridColumn10,
             this.gridColumn11,
-            this.gridColumn5});
+            this.gcDelete});
+            this.gvMOP.DetailHeight = 404;
             this.gvMOP.GridControl = this.gcMOP;
             this.gvMOP.Name = "gvMOP";
             this.gvMOP.OptionsNavigation.AutoFocusNewRow = true;
             this.gvMOP.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.gvMOP.OptionsView.ShowGroupPanel = false;
+            this.gvMOP.Tag = "5A872299-57E3-4DB3-A55A-8BFE9CFB346B";
             this.gvMOP.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvCategory_InitNewRow);
             this.gvMOP.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gvCategory_RowUpdated);
             // 
@@ -127,58 +132,70 @@ namespace NSRetail.Master
             // 
             this.gridColumn1.Caption = "MOPID";
             this.gridColumn1.FieldName = "MOPID";
+            this.gridColumn1.MinWidth = 23;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.Width = 87;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "MOP";
             this.gridColumn2.FieldName = "MOPNAME";
+            this.gridColumn2.MinWidth = 23;
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Tag = "5A872299-57E3-4DB3-A55A-8BFE9CFB346B::Update";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
-            this.gridColumn2.Width = 345;
+            this.gridColumn2.Width = 402;
             // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "CREATEDBY";
             this.gridColumn8.FieldName = "CREATEDBY";
+            this.gridColumn8.MinWidth = 23;
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
-            this.gridColumn8.Width = 133;
+            this.gridColumn8.Width = 155;
             // 
             // gridColumn9
             // 
             this.gridColumn9.Caption = "CREATEDDATE";
             this.gridColumn9.FieldName = "CREATEDDATE";
+            this.gridColumn9.MinWidth = 23;
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
-            this.gridColumn9.Width = 119;
+            this.gridColumn9.Width = 139;
             // 
             // gridColumn10
             // 
             this.gridColumn10.Caption = "UPDATEDBY";
             this.gridColumn10.FieldName = "UPDATEDBY";
+            this.gridColumn10.MinWidth = 23;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
+            this.gridColumn10.Width = 87;
             // 
             // gridColumn11
             // 
             this.gridColumn11.Caption = "UPDATEDDATE";
             this.gridColumn11.FieldName = "UPDATEDDATE";
+            this.gridColumn11.MinWidth = 23;
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
+            this.gridColumn11.Width = 87;
             // 
-            // gridColumn5
+            // gcDelete
             // 
-            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn5.Caption = "Delete";
-            this.gridColumn5.ColumnEdit = this.btnDelete;
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 1;
-            this.gridColumn5.Width = 114;
+            this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcDelete.Caption = "Delete";
+            this.gcDelete.ColumnEdit = this.btnDelete;
+            this.gcDelete.MinWidth = 23;
+            this.gcDelete.Name = "gcDelete";
+            this.gcDelete.Tag = "5A872299-57E3-4DB3-A55A-8BFE9CFB346B::Delete";
+            this.gcDelete.Visible = true;
+            this.gcDelete.VisibleIndex = 1;
+            this.gcDelete.Width = 133;
             // 
             // btnDelete
             // 
@@ -209,7 +226,7 @@ namespace NSRetail.Master
             this.layoutControlItem1});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(356, 426);
+            this.Root.Size = new System.Drawing.Size(415, 492);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -217,16 +234,17 @@ namespace NSRetail.Master
             this.layoutControlItem1.Control = this.gcMOP;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(352, 422);
+            this.layoutControlItem1.Size = new System.Drawing.Size(411, 488);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // frmModeofPayment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 426);
+            this.ClientSize = new System.Drawing.Size(415, 492);
             this.Controls.Add(this.layoutControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmModeofPayment";
             this.Text = "Mode of Payment";
             this.Load += new System.EventHandler(this.frmModeofPayment_Load);
@@ -253,7 +271,7 @@ namespace NSRetail.Master
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEdit;
         private DevExpress.XtraLayout.LayoutControlGroup Root;

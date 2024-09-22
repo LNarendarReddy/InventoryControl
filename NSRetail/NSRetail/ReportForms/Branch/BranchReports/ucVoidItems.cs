@@ -55,7 +55,6 @@ namespace NSRetail.ReportForms.Branch
             HiddenColumns = new List<string>() { "" };
 
             SetFocusControls(cmbPeriodicity, cmbItemCode, specificColumnHeaders);
-            AllowedRoles = new List<string> { "Division Manager", "IT User" };
         }
         private void ucSales_Load(object sender, EventArgs e)
         {

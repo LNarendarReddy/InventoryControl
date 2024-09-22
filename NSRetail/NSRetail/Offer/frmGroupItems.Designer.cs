@@ -64,7 +64,7 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -150,6 +150,7 @@
             this.btnImport.Size = new System.Drawing.Size(103, 36);
             this.btnImport.StyleController = this.layoutControl1;
             this.btnImport.TabIndex = 3;
+            this.btnImport.Tag = "C6962AD0-40F6-416F-B746-F090058E1CBD::Execute";
             this.btnImport.Text = "Import";
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
@@ -162,6 +163,7 @@
             this.btnAdd.Size = new System.Drawing.Size(103, 36);
             this.btnAdd.StyleController = this.layoutControl1;
             this.btnAdd.TabIndex = 2;
+            this.btnAdd.Tag = "88ED5D64-B60C-4BC7-BF34-4CE1F0D665B1::Create";
             this.btnAdd.Text = "Add Item";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -315,7 +317,7 @@
             this.gridColumn6,
             this.gridColumn7,
             this.gridColumn8,
-            this.gridColumn9,
+            this.gcDelete,
             this.gridColumn21});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
@@ -422,17 +424,18 @@
             this.gridColumn8.VisibleIndex = 4;
             this.gridColumn8.Width = 140;
             // 
-            // gridColumn9
+            // gcDelete
             // 
-            this.gridColumn9.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn9.Caption = "Delete";
-            this.gridColumn9.ColumnEdit = this.btnDelete;
-            this.gridColumn9.MinWidth = 23;
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 6;
-            this.gridColumn9.Width = 126;
+            this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcDelete.Caption = "Delete";
+            this.gcDelete.ColumnEdit = this.btnDelete;
+            this.gcDelete.MinWidth = 23;
+            this.gcDelete.Name = "gcDelete";
+            this.gcDelete.Tag = "88ED5D64-B60C-4BC7-BF34-4CE1F0D665B1::Delete";
+            this.gcDelete.Visible = true;
+            this.gcDelete.VisibleIndex = 6;
+            this.gcDelete.Width = 126;
             // 
             // btnDelete
             // 
@@ -580,7 +583,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;

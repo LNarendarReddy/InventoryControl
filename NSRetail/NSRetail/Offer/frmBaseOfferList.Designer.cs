@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBaseOfferList));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -53,8 +54,8 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBaseOfferList));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
             this.btnNewOffer = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.gcOffer = new DevExpress.XtraGrid.GridControl();
@@ -72,22 +73,21 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcEdit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcBranches = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnBranches = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcOffers = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnOfferList = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -121,6 +121,17 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnViewReport
+            // 
+            this.btnViewReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnViewReport.ImageOptions.SvgImage")));
+            this.btnViewReport.Location = new System.Drawing.Point(669, 12);
+            this.btnViewReport.Name = "btnViewReport";
+            this.btnViewReport.Size = new System.Drawing.Size(109, 36);
+            this.btnViewReport.StyleController = this.layoutControl1;
+            this.btnViewReport.TabIndex = 7;
+            this.btnViewReport.Text = "View Report";
+            this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
+            // 
             // btnNewOffer
             // 
             this.btnNewOffer.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
@@ -130,6 +141,7 @@
             this.btnNewOffer.Size = new System.Drawing.Size(130, 36);
             this.btnNewOffer.StyleController = this.layoutControl1;
             this.btnNewOffer.TabIndex = 6;
+            this.btnNewOffer.Tag = "3E092EA2-90A5-4D9A-B63E-2E3DC7713520::Create";
             this.btnNewOffer.Text = "New Offer";
             this.btnNewOffer.Click += new System.EventHandler(this.btnNewOffer_Click);
             // 
@@ -177,12 +189,12 @@
             this.gridColumn10,
             this.gridColumn11,
             this.gridColumn12,
-            this.gridColumn13,
-            this.gridColumn14,
-            this.gridColumn15,
+            this.gcEdit,
+            this.gcBranches,
+            this.gcOffers,
             this.gridColumn16,
             this.gridColumn17,
-            this.gridColumn19});
+            this.gcDelete});
             this.gvOffer.GridControl = this.gcOffer;
             this.gvOffer.Name = "gvOffer";
             this.gvOffer.OptionsView.ShowGroupPanel = false;
@@ -297,16 +309,17 @@
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             // 
-            // gridColumn13
+            // gcEdit
             // 
-            this.gridColumn13.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn13.Caption = "Edit";
-            this.gridColumn13.ColumnEdit = this.btnEdit;
-            this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 6;
-            this.gridColumn13.Width = 103;
+            this.gcEdit.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcEdit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcEdit.Caption = "Edit";
+            this.gcEdit.ColumnEdit = this.btnEdit;
+            this.gcEdit.Name = "gcEdit";
+            this.gcEdit.Tag = "3E092EA2-90A5-4D9A-B63E-2E3DC7713520::Update";
+            this.gcEdit.Visible = true;
+            this.gcEdit.VisibleIndex = 6;
+            this.gcEdit.Width = 103;
             // 
             // btnEdit
             // 
@@ -318,16 +331,17 @@
             this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_ButtonClick);
             // 
-            // gridColumn14
+            // gcBranches
             // 
-            this.gridColumn14.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn14.Caption = "Branches";
-            this.gridColumn14.ColumnEdit = this.btnBranches;
-            this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 7;
-            this.gridColumn14.Width = 71;
+            this.gcBranches.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcBranches.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcBranches.Caption = "Branches";
+            this.gcBranches.ColumnEdit = this.btnBranches;
+            this.gcBranches.Name = "gcBranches";
+            this.gcBranches.Tag = "18EB46B9-DB69-481F-AA11-CE1FE8CD8709";
+            this.gcBranches.Visible = true;
+            this.gcBranches.VisibleIndex = 7;
+            this.gcBranches.Width = 71;
             // 
             // btnBranches
             // 
@@ -339,16 +353,17 @@
             this.btnBranches.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnBranches.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnBranches_ButtonClick);
             // 
-            // gridColumn15
+            // gcOffers
             // 
-            this.gridColumn15.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn15.Caption = "Offer List";
-            this.gridColumn15.ColumnEdit = this.btnOfferList;
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 8;
-            this.gridColumn15.Width = 71;
+            this.gcOffers.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcOffers.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcOffers.Caption = "Offer List";
+            this.gcOffers.ColumnEdit = this.btnOfferList;
+            this.gcOffers.Name = "gcOffers";
+            this.gcOffers.Tag = "60528CE1-B697-451D-BAAB-84A9F1EF94C2";
+            this.gcOffers.Visible = true;
+            this.gcOffers.VisibleIndex = 8;
+            this.gcOffers.Width = 71;
             // 
             // btnOfferList
             // 
@@ -377,15 +392,16 @@
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.OptionsColumn.AllowEdit = false;
             // 
-            // gridColumn19
+            // gcDelete
             // 
-            this.gridColumn19.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn19.Caption = "Delete";
-            this.gridColumn19.ColumnEdit = this.btnDelete;
-            this.gridColumn19.Name = "gridColumn19";
-            this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 9;
+            this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcDelete.Caption = "Delete";
+            this.gcDelete.ColumnEdit = this.btnDelete;
+            this.gcDelete.Name = "gcDelete";
+            this.gcDelete.Tag = "3E092EA2-90A5-4D9A-B63E-2E3DC7713520::Delete";
+            this.gcDelete.Visible = true;
+            this.gcDelete.VisibleIndex = 9;
             // 
             // btnDelete
             // 
@@ -451,17 +467,6 @@
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(657, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // btnViewReport
-            // 
-            this.btnViewReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnViewReport.ImageOptions.SvgImage")));
-            this.btnViewReport.Location = new System.Drawing.Point(669, 12);
-            this.btnViewReport.Name = "btnViewReport";
-            this.btnViewReport.Size = new System.Drawing.Size(109, 36);
-            this.btnViewReport.StyleController = this.layoutControl1;
-            this.btnViewReport.TabIndex = 7;
-            this.btnViewReport.Text = "View Report";
-            this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
             // 
             // layoutControlItem4
             // 
@@ -530,16 +535,16 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraGrid.Columns.GridColumn gcEdit;
+        private DevExpress.XtraGrid.Columns.GridColumn gcBranches;
+        private DevExpress.XtraGrid.Columns.GridColumn gcOffers;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnBranches;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnOfferList;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnImport;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraEditors.SimpleButton btnViewReport;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;

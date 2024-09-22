@@ -25,7 +25,11 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 { "BILLCLOSEDDATE", "Finished time" },
             };
 
-            ContextmenuItems = new List<string>() { "Items", "Print" };
+            ContextmenuItems = new Dictionary<string, string>
+            { 
+                {"Items", "1414895B-9B4D-4413-BC82-D5410EB7DAC9" }, 
+                {"Print" , "4B326209-0095-413D-9DC6-6148E2A516DE" } 
+            };
             SetFocusControls(cmbBranch, txtCutOffAmt, specificColumnHeaders);
         }
 

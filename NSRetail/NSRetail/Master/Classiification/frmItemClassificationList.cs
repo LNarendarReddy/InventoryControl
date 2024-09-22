@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using Entity;
 using NSRetail.Master.Classiification;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -27,6 +28,9 @@ namespace NSRetail.Master
         {
             reportRepository = new ReportRepository();
             BindDataSource();
+
+            AccessUtility.SetStatusByAccess(btnAdd);
+            AccessUtility.SetStatusByAccess(gcEdit, gcDelete, gcSubClassification);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

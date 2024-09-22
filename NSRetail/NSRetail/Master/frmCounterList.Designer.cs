@@ -59,31 +59,31 @@ namespace NSRetail.Master
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcEdit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gcClearHDDSNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnClearHDDSNo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnClearHDDSNo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcCounter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCounter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClearHDDSNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnClearHDDSNo)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -151,6 +151,7 @@ namespace NSRetail.Master
             this.btnNew.Size = new System.Drawing.Size(121, 26);
             this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 5;
+            this.btnNew.Tag = "D7371CA4-24FF-44FB-911B-7801FC5180F3::Create";
             this.btnNew.Text = "New";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
@@ -186,9 +187,9 @@ namespace NSRetail.Master
             this.gridColumn9,
             this.gridColumn10,
             this.gridColumn11,
-            this.gridColumn12,
-            this.gridColumn13,
-            this.gridColumn3});
+            this.gcEdit,
+            this.gcDelete,
+            this.gcClearHDDSNo});
             this.gvCounter.DetailHeight = 404;
             this.gvCounter.GridControl = this.gcCounter;
             this.gvCounter.Name = "gvCounter";
@@ -273,17 +274,18 @@ namespace NSRetail.Master
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Width = 87;
             // 
-            // gridColumn12
+            // gcEdit
             // 
-            this.gridColumn12.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn12.Caption = "Edit";
-            this.gridColumn12.ColumnEdit = this.btnEdit;
-            this.gridColumn12.MinWidth = 23;
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 4;
-            this.gridColumn12.Width = 56;
+            this.gcEdit.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcEdit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcEdit.Caption = "Edit";
+            this.gcEdit.ColumnEdit = this.btnEdit;
+            this.gcEdit.MinWidth = 23;
+            this.gcEdit.Name = "gcEdit";
+            this.gcEdit.Tag = "D7371CA4-24FF-44FB-911B-7801FC5180F3::Update";
+            this.gcEdit.Visible = true;
+            this.gcEdit.VisibleIndex = 4;
+            this.gcEdit.Width = 56;
             // 
             // btnEdit
             // 
@@ -295,17 +297,18 @@ namespace NSRetail.Master
             this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_ButtonClick);
             // 
-            // gridColumn13
+            // gcDelete
             // 
-            this.gridColumn13.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn13.Caption = "Delete";
-            this.gridColumn13.ColumnEdit = this.btnDelete;
-            this.gridColumn13.MinWidth = 23;
-            this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 5;
-            this.gridColumn13.Width = 50;
+            this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcDelete.Caption = "Delete";
+            this.gcDelete.ColumnEdit = this.btnDelete;
+            this.gcDelete.MinWidth = 23;
+            this.gcDelete.Name = "gcDelete";
+            this.gcDelete.Tag = "D7371CA4-24FF-44FB-911B-7801FC5180F3::Delete";
+            this.gcDelete.Visible = true;
+            this.gcDelete.VisibleIndex = 5;
+            this.gcDelete.Width = 50;
             // 
             // btnDelete
             // 
@@ -316,6 +319,29 @@ namespace NSRetail.Master
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
+            // 
+            // gcClearHDDSNo
+            // 
+            this.gcClearHDDSNo.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcClearHDDSNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcClearHDDSNo.Caption = "Clear HDD SNo";
+            this.gcClearHDDSNo.ColumnEdit = this.btnClearHDDSNo;
+            this.gcClearHDDSNo.Name = "gcClearHDDSNo";
+            this.gcClearHDDSNo.Tag = "6E68CDA9-E0A0-4084-89DD-99BE86F4BEF1::Execute";
+            this.gcClearHDDSNo.Visible = true;
+            this.gcClearHDDSNo.VisibleIndex = 6;
+            this.gcClearHDDSNo.Width = 87;
+            // 
+            // btnClearHDDSNo
+            // 
+            this.btnClearHDDSNo.AutoHeight = false;
+            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
+            editorButtonImageOptions3.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnClearHDDSNo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnClearHDDSNo.Name = "btnClearHDDSNo";
+            this.btnClearHDDSNo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnClearHDDSNo.Click += new System.EventHandler(this.btnClearHDDSNo_Click);
             // 
             // Root
             // 
@@ -387,28 +413,6 @@ namespace NSRetail.Master
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // gridColumn3
-            // 
-            this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn3.Caption = "Clear HDD SNo";
-            this.gridColumn3.ColumnEdit = this.btnClearHDDSNo;
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 6;
-            this.gridColumn3.Width = 87;
-            // 
-            // btnClearHDDSNo
-            // 
-            this.btnClearHDDSNo.AutoHeight = false;
-            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
-            editorButtonImageOptions3.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnClearHDDSNo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnClearHDDSNo.Name = "btnClearHDDSNo";
-            this.btnClearHDDSNo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.btnClearHDDSNo.Click += new System.EventHandler(this.btnClearHDDSNo_Click);
-            // 
             // frmCounterList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -426,13 +430,13 @@ namespace NSRetail.Master
             ((System.ComponentModel.ISupportInitialize)(this.gvCounter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClearHDDSNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnClearHDDSNo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -452,9 +456,9 @@ namespace NSRetail.Master
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gcEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEdit;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
@@ -463,7 +467,7 @@ namespace NSRetail.Master
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraEditors.SimpleButton btnViewReport;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gcClearHDDSNo;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnClearHDDSNo;
     }
 }

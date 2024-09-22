@@ -6,6 +6,7 @@ using DevExpress.XtraSplashScreen;
 using Entity;
 using ErrorManagement;
 using log4net.Core;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,6 +40,10 @@ namespace NSRetail
 
             gcOffer.DataSource = offerRepository.GetOfferByBaseOffer(BaseOfferID);
             gvOffer.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
+
+            AccessUtility.SetStatusByAccess(gvOffer);
+            AccessUtility.SetStatusByAccess(btnImport);
+            AccessUtility.SetStatusByAccess(gcDelete);
         }
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {

@@ -28,7 +28,11 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "STATUS", "Status" }
             };
 
-            ContextmenuItems = new List<string>() { "View","Generate CN" };
+            ContextmenuItems = new Dictionary<string, string>
+            { 
+                { "View", "9B101F20-1E08-44A0-BE65-A8FA5D197574" },
+                { "Generate CN", "00D6561B-C2D3-4D6C-A88A-BC14B519925F" }
+            };
 
             cmbSupplier.Properties.DataSource = new MasterRepository().GetDealer(true);
             cmbSupplier.Properties.ValueMember = "DEALERID";
@@ -38,7 +42,6 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             dtpToDate.EditValue = DateTime.Now;
 
             SetFocusControls(cmbSupplier, dtpToDate, columnHeaders);
-            AllowedRoles = new List<string> { "Division Manager", "IT User" };
         }
 
         public override object GetData()

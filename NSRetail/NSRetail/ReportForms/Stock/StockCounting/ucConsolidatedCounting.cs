@@ -21,7 +21,6 @@ namespace NSRetail.ReportForms.Stock.StockCounting
             };
 
             SetFocusControls(cmbBranch, cmbItemCode, columnHeaders);
-            AllowedRoles = new List<string> { "Stock counting user" };
             MandatoryFields = new List<BaseEdit> { cmbBranch, dtpCountingDate };
             IncludeSettingsCollection = new List<IncludeSettings>
             {

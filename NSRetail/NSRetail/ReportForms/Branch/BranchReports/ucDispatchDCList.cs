@@ -25,7 +25,12 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "STATUS", "Status" }
             };
 
-            ContextmenuItems = new List<string>() { "View", "Print to DM" };
+            ContextmenuItems = new Dictionary<string, string>
+            { 
+                { "View", "CE8B8A21-12C8-4AFD-B246-750110BDE248" }, 
+                { "Print to DM", "DFEE4755-1975-4BA0-9478-F9BAA6E25C5E" } 
+            };
+
             cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
@@ -36,7 +41,6 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             dtpToDate.EditValue = DateTime.Now;
 
             SetFocusControls(cmbBranch, dtpToDate, columnHeaders);
-            AllowedRoles = new List<string> { "Division User", "IT User" };
         }
 
         public override object GetData()

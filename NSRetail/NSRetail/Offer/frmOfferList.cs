@@ -6,6 +6,7 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraRichEdit.API.Layout;
 using DevExpress.XtraRichEdit.Import.WordML;
 using Entity;
+using NSRetail.Utilities;
 using System;
 using System.Windows.Forms;
 
@@ -15,39 +16,12 @@ namespace NSRetail
     {
         Offer offer = null;
         bool _IsDeal = false;
+        OfferType offerType;
+
         public frmOfferList(bool IsDeal = false)
         {
             InitializeComponent();
-            _IsDeal = IsDeal;
-            gcOffer.DataSource = new OfferRepository().GetOffer(IsDeal);
-            gvOffer.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
-            gcSKUCode.Visible = IsDeal;
-            gcItemCode.Visible = IsDeal;
-            gcItemName.Visible = IsDeal;
-            gcAppliesto.Visible = !IsDeal;
-            gcCategory.Visible = !IsDeal;
-            gcOfferThresholdPrice.Visible = !IsDeal;
-            gcNoOfItems.Visible = true;
-            if (IsDeal)
-                gcNoOfItems.Caption = "No of Items to Buy";
-            gcDelete.VisibleIndex = gvOffer.VisibleColumns.Count;
-            gcViewBranches.VisibleIndex = gvOffer.VisibleColumns.Count - 1;
-            if (IsDeal)
-            {
-                gcViewItems.Visible = true;
-                gcViewItems.VisibleIndex = gvOffer.VisibleColumns.Count - 2;
-                gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count - 3;
-            }
-            else
-            {
-                gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count - 2;
-            }
-            if (IsDeal)
-            {
-                gcOfferName.Caption = "Deal Name";
-                gcOfferType.Caption = "Deal Type";
-                gcOfferValue.Caption = "Deal Value";
-            }
+            _IsDeal = IsDeal;            
         }
         private void btnNew_Click(object sender, EventArgs e)
         {
@@ -59,25 +33,14 @@ namespace NSRetail
         }
         private bool ShowCreateForm(bool _IsEdit = false)
         {
-            if (_IsDeal)
-            {
-                frmCreateDeal obj = new frmCreateDeal();
-                obj.ShowInTaskbar = false;
-                obj.StartPosition = FormStartPosition.CenterScreen;
-                obj.offer = offer;
-                obj.ShowDialog();
-                return obj.IsSave;
-            }
-            else
-            {
-                frmCreateOffer obj = new frmCreateOffer();
-                obj.ShowInTaskbar = false;
-                obj.StartPosition = FormStartPosition.CenterScreen;
-                obj.offer = offer;
-                obj.ShowDialog();
-                return obj.IsSave;
-            }
+            XtraForm xtraForm = _IsDeal ? (XtraForm)new frmCreateDeal() { offer = offer } : new frmCreateOffer() { offer = offer };
+            xtraForm.ShowInTaskbar = false;
+            xtraForm.StartPosition = FormStartPosition.CenterScreen;
+            xtraForm.ShowDialog();
+
+            return _IsDeal ? ((frmCreateDeal)xtraForm).IsSave : ((frmCreateOffer)xtraForm).IsSave;
         }
+
         private void gvOffer_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
             UpdateGridRow(e.RowHandle, false);
@@ -154,13 +117,15 @@ namespace NSRetail
                 Utility.UserID);
             gvOffer.SetFocusedRowCellValue("ISACTIVE", "NO");
         }
+
         private void btnViewBranches_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             frmOfferBranch obj = new frmOfferBranch(gvOffer.GetFocusedRowCellValue("OFFERNAME"),
-                gvOffer.GetFocusedRowCellValue("OFFERID"))
+                gvOffer.GetFocusedRowCellValue("OFFERID"), offerType)
             { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
             obj.ShowDialog();
         }
+
         private void btnViewItems_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if(gvOffer.GetFocusedRowCellValue("AppliesToID").Equals(2))
@@ -188,7 +153,50 @@ namespace NSRetail
         }
         private void gcOffer_Click(object sender, EventArgs e)
         {
+            gcOffer.DataSource = new OfferRepository().GetOffer(_IsDeal);
+            gvOffer.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
+            gcSKUCode.Visible = _IsDeal;
+            gcItemCode.Visible = _IsDeal;
+            gcItemName.Visible = _IsDeal;
+            gcAppliesto.Visible = !_IsDeal;
+            gcCategory.Visible = !_IsDeal;
+            gcOfferThresholdPrice.Visible = !_IsDeal;
+            gcNoOfItems.Visible = true;
 
+            gcDelete.VisibleIndex = gvOffer.VisibleColumns.Count;
+            gcViewBranches.VisibleIndex = gvOffer.VisibleColumns.Count - 1;
+                        
+            if (_IsDeal)
+            {
+                gcViewItems.Visible = true;
+                gcViewItems.VisibleIndex = gvOffer.VisibleColumns.Count - 2;
+                gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count - 3;
+
+                gcOfferName.Caption = "Deal Name";
+                gcOfferType.Caption = "Deal Type";
+                gcOfferValue.Caption = "Deal Value";
+
+                gcNoOfItems.Caption = "No of Items to Buy";
+
+                offerType = OfferType.Deal;
+            }
+            else
+            {
+                gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count - 2;
+                offerType = OfferType.Category;
+
+                
+            }
+
+            string accessIdentifier = _IsDeal ? "AE372AD7-249C-4355-8529-1233FEB89C98" : "72F4C2BA-5F86-404F-BC27-3B4970AF5E6A";
+
+            btnNew.Tag = $"{accessIdentifier}::Create";
+            gcEdit.Tag = $"{accessIdentifier}::Update";
+            gcDelete.Tag = $"{accessIdentifier}::Delete";
+            gcViewBranches.Tag = _IsDeal ? "978FF449-7E8D-41F6-AFE7-C136154B8227" : "B076FE8D-4982-4A73-ADC6-58E2EDE1280D";
+
+            AccessUtility.SetStatusByAccess(btnNew);
+            AccessUtility.SetStatusByAccess(gcEdit, gcDelete, gcViewBranches);
         }
 
         private void btnViewReport_Click(object sender, EventArgs e)

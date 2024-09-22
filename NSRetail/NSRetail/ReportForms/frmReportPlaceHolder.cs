@@ -10,6 +10,7 @@ using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraSplashScreen;
 using ErrorManagement;
 using NSRetail.Properties;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,7 +42,7 @@ namespace NSRetail.ReportForms
         ReportHolder selectedReportHolder;
         IOverlaySplashScreenHandle handle;
         BackgroundWorker bgwGetData = new BackgroundWorker();
-        List<string> contextmenuItems = new List<string>();
+        Dictionary<string, string> contextmenuItems = new Dictionary<string, string>();
 
         private void frmReportPlaceHolder_Load(object sender, EventArgs e)
         {          
@@ -126,9 +127,11 @@ namespace NSRetail.ReportForms
             }
 
             contextmenuItems.Clear();
-            foreach (string item in searchCriteria.ContextmenuItems)
+            foreach (var item in searchCriteria.ContextmenuItems)
             {
-                contextmenuItems.Add(item);
+                string accessIdentifier = item.Value;
+                if(!accessIdentifier.Contains("::")) accessIdentifier = $"{accessIdentifier}::Execute";
+                contextmenuItems.Add(item.Key, accessIdentifier);
             }
 
                 if (searchCriteria.Periodicity != null && gvResults.Columns.ColumnByFieldName("PERIODOCITY") != null)
@@ -198,7 +201,7 @@ namespace NSRetail.ReportForms
             selectedReportHolder.SearchCriteriaControl.Location = new System.Drawing.Point(2, 2);
 
             lblContextOptions.Text = selectedReportHolder.SearchCriteriaControl.ContextmenuItems.Any()
-                ? $"Right click for options : {string.Join(", ", selectedReportHolder.SearchCriteriaControl.ContextmenuItems)}"
+                ? $"Right click for options : {string.Join(", ", selectedReportHolder.SearchCriteriaControl.ContextmenuItems.Keys)}"
                 : string.Empty;
 
             btnSearch.Enabled = true;
@@ -349,7 +352,7 @@ namespace NSRetail.ReportForms
         {
             if (e.Row is ReportHolder)
             {
-                e.Visible = (e.Row as ReportHolder).HasAccess;
+                e.Visible = AccessUtility.HasAccess((e.Row as ReportHolder).AccessIdentifier);
                 e.Handled = true;
             }
         }
@@ -376,15 +379,19 @@ namespace NSRetail.ReportForms
 
         private void gvResults_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
-            if (e.HitInfo.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
+            if (e.HitInfo.HitTest != DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
             {
-                foreach (string item in contextmenuItems)
-                {
-                    DXMenuItem menuItem = new DXMenuItem(item);
-                    menuItem.Click += On_Click;
-                    menuItem.Tag = item;
-                    e.Menu.Items.Add(menuItem);
-                }
+                return;
+            }
+
+            foreach (var item in contextmenuItems)
+            {
+                if(!AccessUtility.HasAccess(item.Value)) return;
+
+                DXMenuItem menuItem = new DXMenuItem(item.Key);
+                menuItem.Click += On_Click;
+                menuItem.Tag = item;
+                e.Menu.Items.Add(menuItem);
             }
         }
 
@@ -404,9 +411,14 @@ namespace NSRetail.ReportForms
 
     public class ReportHolder
     {
-        public ReportHolder()
+        public ReportHolder(string accessIdentifier)
         {
             SubCategory = new List<ReportHolder>();
+
+            if (!accessIdentifier.Contains("::")) 
+                accessIdentifier = $"{accessIdentifier}::View";
+
+            AccessIdentifier = accessIdentifier;
         }
 
         public string ReportName { get; set; }
@@ -415,7 +427,7 @@ namespace NSRetail.ReportForms
 
         public List<ReportHolder> SubCategory { get; set; }
 
-        public bool HasAccess => (SearchCriteriaControl != null && SearchCriteriaControl.HasAccess) || SubCategory.Any(x => x.HasAccess);
+        public string AccessIdentifier { get; }
     }
 
 }

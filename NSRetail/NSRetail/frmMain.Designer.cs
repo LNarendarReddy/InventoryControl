@@ -68,7 +68,6 @@
             this.bbiReport = new DevExpress.XtraBars.BarButtonItem();
             this.bbiItemSummary = new DevExpress.XtraBars.BarButtonItem();
             this.btnCounting = new DevExpress.XtraBars.BarButtonItem();
-            this.btnDealerIndent = new DevExpress.XtraBars.BarButtonItem();
             this.btnSupplierReturns = new DevExpress.XtraBars.BarButtonItem();
             this.btnSupplierReturnsList = new DevExpress.XtraBars.BarButtonItem();
             this.bbiClearProcedureCache = new DevExpress.XtraBars.BarButtonItem();
@@ -92,28 +91,28 @@
             this.bbiClearLeftSales = new DevExpress.XtraBars.BarButtonItem();
             this.bbiBuildInfo = new DevExpress.XtraBars.BarButtonItem();
             this.bbiRoles = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpOperations = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup15 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpReports = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup20 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup19 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpOffers = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpAdmin = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup17 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage5 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpUserAccess = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage7 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpItemExtras = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup16 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -171,7 +170,6 @@
             this.bbiReport,
             this.bbiItemSummary,
             this.btnCounting,
-            this.btnDealerIndent,
             this.btnSupplierReturns,
             this.btnSupplierReturnsList,
             this.bbiClearProcedureCache,
@@ -199,12 +197,12 @@
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.ribbonPage3,
-            this.ribbonPage4,
-            this.ribbonPage6,
-            this.ribbonPage1,
-            this.ribbonPage5,
-            this.ribbonPage7});
+            this.rpOperations,
+            this.rpReports,
+            this.rpOffers,
+            this.rpAdmin,
+            this.rpUserAccess,
+            this.rpItemExtras});
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1,
             this.repositoryItemLookUpEdit1});
@@ -216,6 +214,7 @@
             this.btnBranch.Id = 1;
             this.btnBranch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBranch.ImageOptions.SvgImage")));
             this.btnBranch.Name = "btnBranch";
+            this.btnBranch.Tag = "AC3A8088-8296-4494-B11F-29D031071E2D";
             this.btnBranch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBranch_ItemClick);
             // 
             // btnBranchCouter
@@ -224,6 +223,7 @@
             this.btnBranchCouter.Id = 2;
             this.btnBranchCouter.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBranchCouter.ImageOptions.SvgImage")));
             this.btnBranchCouter.Name = "btnBranchCouter";
+            this.btnBranchCouter.Tag = "D7371CA4-24FF-44FB-911B-7801FC5180F3";
             this.btnBranchCouter.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBranchCouter_ItemClick);
             // 
             // btnUser
@@ -232,6 +232,7 @@
             this.btnUser.Id = 3;
             this.btnUser.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnUser.ImageOptions.SvgImage")));
             this.btnUser.Name = "btnUser";
+            this.btnUser.Tag = "6CF2EAD9-ECC8-4566-8680-D23CAB3BF4EC";
             this.btnUser.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUser_ItemClick);
             // 
             // btnCategory
@@ -240,6 +241,7 @@
             this.btnCategory.Id = 4;
             this.btnCategory.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCategory.ImageOptions.SvgImage")));
             this.btnCategory.Name = "btnCategory";
+            this.btnCategory.Tag = "D81C10D9-FCD1-4E51-8035-20E2150D78A8";
             this.btnCategory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCategory_ItemClick);
             // 
             // btnDealer
@@ -248,6 +250,7 @@
             this.btnDealer.Id = 5;
             this.btnDealer.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDealer.ImageOptions.SvgImage")));
             this.btnDealer.Name = "btnDealer";
+            this.btnDealer.Tag = "0DF3A103-9ECD-465D-9968-DCBF9A23C626";
             this.btnDealer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDealer_ItemClick);
             // 
             // btnTaxMaster
@@ -256,6 +259,7 @@
             this.btnTaxMaster.Id = 6;
             this.btnTaxMaster.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTaxMaster.ImageOptions.SvgImage")));
             this.btnTaxMaster.Name = "btnTaxMaster";
+            this.btnTaxMaster.Tag = "A37FD97E-C922-4FD9-8870-BB993E5EBF93";
             this.btnTaxMaster.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaxMaster_ItemClick);
             // 
             // btnModeOfPayment
@@ -264,6 +268,7 @@
             this.btnModeOfPayment.Id = 7;
             this.btnModeOfPayment.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnModeOfPayment.ImageOptions.SvgImage")));
             this.btnModeOfPayment.Name = "btnModeOfPayment";
+            this.btnModeOfPayment.Tag = "5A872299-57E3-4DB3-A55A-8BFE9CFB346B";
             this.btnModeOfPayment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnModeOfPayment_ItemClick);
             // 
             // btnUnitsofMeasure
@@ -272,6 +277,7 @@
             this.btnUnitsofMeasure.Id = 8;
             this.btnUnitsofMeasure.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnUnitsofMeasure.ImageOptions.SvgImage")));
             this.btnUnitsofMeasure.Name = "btnUnitsofMeasure";
+            this.btnUnitsofMeasure.Tag = "A416FBC9-2AFB-4EC6-A27D-A8E07C617443";
             this.btnUnitsofMeasure.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUnitsofMeasure_ItemClick);
             // 
             // btnItem
@@ -280,6 +286,7 @@
             this.btnItem.Id = 10;
             this.btnItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnItem.ImageOptions.SvgImage")));
             this.btnItem.Name = "btnItem";
+            this.btnItem.Tag = "5081738C-2C7B-40E5-8ECB-BB2CC5FDFAF7";
             this.btnItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItem_ItemClick);
             // 
             // btnLogout
@@ -320,6 +327,7 @@
             this.btnBarCodePrint.Id = 16;
             this.btnBarCodePrint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBarCodePrint.ImageOptions.SvgImage")));
             this.btnBarCodePrint.Name = "btnBarCodePrint";
+            this.btnBarCodePrint.Tag = "537B9C06-EFC1-4F7E-9456-D03093BE1BF1::Execute";
             this.btnBarCodePrint.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBarCodePrint_ItemClick);
             // 
             // btnPrinterMaster
@@ -328,6 +336,7 @@
             this.btnPrinterMaster.Id = 17;
             this.btnPrinterMaster.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrinterMaster.ImageOptions.SvgImage")));
             this.btnPrinterMaster.Name = "btnPrinterMaster";
+            this.btnPrinterMaster.Tag = "E5749E5C-0AA3-4862-A312-F1F53C5566E8::Execute";
             this.btnPrinterMaster.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPrinterMaster_ItemClick);
             // 
             // btnStockEntry
@@ -336,6 +345,7 @@
             this.btnStockEntry.Id = 18;
             this.btnStockEntry.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockEntry.ImageOptions.SvgImage")));
             this.btnStockEntry.Name = "btnStockEntry";
+            this.btnStockEntry.Tag = "58835197-33AA-49FB-AE5E-F9326CCB2970::Execute";
             this.btnStockEntry.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockEntry_ItemClick);
             // 
             // btnStockDispatch
@@ -344,6 +354,7 @@
             this.btnStockDispatch.Id = 19;
             this.btnStockDispatch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockDispatch.ImageOptions.SvgImage")));
             this.btnStockDispatch.Name = "btnStockDispatch";
+            this.btnStockDispatch.Tag = "A21620AC-5002-480B-81AF-2FD024FFC709::Execute";
             this.btnStockDispatch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockDispatch_ItemClick);
             // 
             // bbiRefreshData
@@ -369,6 +380,7 @@
             this.btnSubCategory.Id = 21;
             this.btnSubCategory.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSubCategory.ImageOptions.SvgImage")));
             this.btnSubCategory.Name = "btnSubCategory";
+            this.btnSubCategory.Tag = "CA6B5A04-8407-4D34-A581-8B27DED930CC";
             this.btnSubCategory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSubCategory_ItemClick);
             // 
             // btnInvoiceList
@@ -426,6 +438,7 @@
             this.btnPrintDC.Id = 25;
             this.btnPrintDC.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintDC.ImageOptions.SvgImage")));
             this.btnPrintDC.Name = "btnPrintDC";
+            this.btnPrintDC.Tag = "EF3F13BF-FEC5-404B-9F53-2401E7592F3F::Execute";
             this.btnPrintDC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPrintDC_ItemClick);
             // 
             // btnDCList
@@ -456,6 +469,7 @@
             this.bbiSyncStatus.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiSyncStatus.ImageOptions.Image")));
             this.bbiSyncStatus.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiSyncStatus.ImageOptions.LargeImage")));
             this.bbiSyncStatus.Name = "bbiSyncStatus";
+            this.bbiSyncStatus.Tag = "9CAA2F56-0259-494A-8CA1-B365E79A6A5E";
             this.bbiSyncStatus.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSyncStatus_ItemClick);
             // 
             // btnOfferList
@@ -464,6 +478,7 @@
             this.btnOfferList.Id = 30;
             this.btnOfferList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnOfferList.ImageOptions.SvgImage")));
             this.btnOfferList.Name = "btnOfferList";
+            this.btnOfferList.Tag = "72F4C2BA-5F86-404F-BC27-3B4970AF5E6A";
             this.btnOfferList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOfferList_ItemClick);
             // 
             // btnStockCounting
@@ -573,6 +588,7 @@
             this.bbiItemSummary.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiItemSummary.ImageOptions.Image")));
             this.bbiItemSummary.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiItemSummary.ImageOptions.LargeImage")));
             this.bbiItemSummary.Name = "bbiItemSummary";
+            this.bbiItemSummary.Tag = "1EAF4F64-FCF3-4296-8DFC-74428E1B0271";
             this.bbiItemSummary.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiItemSummary_ItemClick);
             // 
             // btnCounting
@@ -581,15 +597,8 @@
             this.btnCounting.Id = 47;
             this.btnCounting.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCounting.ImageOptions.SvgImage")));
             this.btnCounting.Name = "btnCounting";
+            this.btnCounting.Tag = "0F228693-4151-4BAC-A8BC-17F58A7DA2A9::Execute";
             this.btnCounting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCounting_ItemClick);
-            // 
-            // btnDealerIndent
-            // 
-            resources.ApplyResources(this.btnDealerIndent, "btnDealerIndent");
-            this.btnDealerIndent.Id = 48;
-            this.btnDealerIndent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDealerIndent.ImageOptions.SvgImage")));
-            this.btnDealerIndent.Name = "btnDealerIndent";
-            this.btnDealerIndent.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnSupplierReturns
             // 
@@ -597,6 +606,7 @@
             this.btnSupplierReturns.Id = 49;
             this.btnSupplierReturns.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSupplierReturns.ImageOptions.SvgImage")));
             this.btnSupplierReturns.Name = "btnSupplierReturns";
+            this.btnSupplierReturns.Tag = "C275A7D5-21CB-46BB-BA30-1B93A6E4C6BD::Execute";
             this.btnSupplierReturns.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSupplierReturns_ItemClick);
             // 
             // btnSupplierReturnsList
@@ -612,6 +622,7 @@
             this.bbiClearProcedureCache.Id = 51;
             this.bbiClearProcedureCache.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiClearProcedureCache.ImageOptions.SvgImage")));
             this.bbiClearProcedureCache.Name = "bbiClearProcedureCache";
+            this.bbiClearProcedureCache.Tag = "FD301834-8670-4C0C-86BD-17930E950E3B::Execute";
             this.bbiClearProcedureCache.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClearProcedureCache_ItemClick);
             // 
             // bbiStockReports
@@ -620,6 +631,7 @@
             this.bbiStockReports.Id = 53;
             this.bbiStockReports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiStockReports.ImageOptions.SvgImage")));
             this.bbiStockReports.Name = "bbiStockReports";
+            this.bbiStockReports.Tag = "F48BA92E-3B7C-4744-901C-B767DB04E2AF";
             this.bbiStockReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiStockReports_ItemClick);
             // 
             // bbiWarehouseReports
@@ -628,6 +640,7 @@
             this.bbiWarehouseReports.Id = 54;
             this.bbiWarehouseReports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiWarehouseReports.ImageOptions.SvgImage")));
             this.bbiWarehouseReports.Name = "bbiWarehouseReports";
+            this.bbiWarehouseReports.Tag = "D41DA60A-B7EA-4B63-85FA-D6712473EC92";
             this.bbiWarehouseReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiWarehouseReports_ItemClick);
             // 
             // btnProcessWHDispatch
@@ -636,6 +649,7 @@
             this.btnProcessWHDispatch.Id = 55;
             this.btnProcessWHDispatch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnProcessWHDispatch.ImageOptions.SvgImage")));
             this.btnProcessWHDispatch.Name = "btnProcessWHDispatch";
+            this.btnProcessWHDispatch.Tag = "F4467F2B-F6EC-48C2-B4F9-76F0D71479B8::Execute";
             this.btnProcessWHDispatch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProcessWHDispatch_ItemClick);
             // 
             // btnStockAdjustment
@@ -644,6 +658,7 @@
             this.btnStockAdjustment.Id = 56;
             this.btnStockAdjustment.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockAdjustment.ImageOptions.SvgImage")));
             this.btnStockAdjustment.Name = "btnStockAdjustment";
+            this.btnStockAdjustment.Tag = "AE13964F-575E-487D-981F-F62B2BC977C0::Execute";
             this.btnStockAdjustment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockAdjustment_ItemClick);
             // 
             // btnItemLedger
@@ -652,6 +667,7 @@
             this.btnItemLedger.Id = 57;
             this.btnItemLedger.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnItemLedger.ImageOptions.SvgImage")));
             this.btnItemLedger.Name = "btnItemLedger";
+            this.btnItemLedger.Tag = "54FADBDC-08D6-495C-BC96-B0E8DE082943";
             this.btnItemLedger.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItemLedger_ItemClick);
             // 
             // btnStockSummary
@@ -660,6 +676,7 @@
             this.btnStockSummary.Id = 58;
             this.btnStockSummary.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockSummary.ImageOptions.SvgImage")));
             this.btnStockSummary.Name = "btnStockSummary";
+            this.btnStockSummary.Tag = "F48BA92E-3B7C-4744-901C-B767DB04E2AF";
             this.btnStockSummary.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockSummary_ItemClick);
             // 
             // btnDealList
@@ -668,6 +685,7 @@
             this.btnDealList.Id = 60;
             this.btnDealList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDealList.ImageOptions.SvgImage")));
             this.btnDealList.Name = "btnDealList";
+            this.btnDealList.Tag = "AE372AD7-249C-4355-8529-1233FEB89C98";
             this.btnDealList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDealList_ItemClick);
             // 
             // btnNewDeal
@@ -684,6 +702,7 @@
             this.btnBaseOfferList.Id = 62;
             this.btnBaseOfferList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBaseOfferList.ImageOptions.SvgImage")));
             this.btnBaseOfferList.Name = "btnBaseOfferList";
+            this.btnBaseOfferList.Tag = "3E092EA2-90A5-4D9A-B63E-2E3DC7713520";
             this.btnBaseOfferList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBaseOfferList_ItemClick);
             // 
             // bbiStockSlippage
@@ -692,6 +711,7 @@
             this.bbiStockSlippage.Id = 63;
             this.bbiStockSlippage.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiStockSlippage.ImageOptions.SvgImage")));
             this.bbiStockSlippage.Name = "bbiStockSlippage";
+            this.bbiStockSlippage.Tag = "2C57DC64-B244-4681-ADE0-3675C2C4BFC7::Execute";
             this.bbiStockSlippage.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiStockSlippage_ItemClick);
             // 
             // bbiClassification
@@ -700,6 +720,7 @@
             this.bbiClassification.Id = 64;
             this.bbiClassification.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiClassification.ImageOptions.SvgImage")));
             this.bbiClassification.Name = "bbiClassification";
+            this.bbiClassification.Tag = "4DA44621-28C7-43F9-ADE2-78151F049401";
             this.bbiClassification.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClassification_ItemClick);
             // 
             // bbiSupplierReports
@@ -708,6 +729,7 @@
             this.bbiSupplierReports.Id = 65;
             this.bbiSupplierReports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiSupplierReports.ImageOptions.SvgImage")));
             this.bbiSupplierReports.Name = "bbiSupplierReports";
+            this.bbiSupplierReports.Tag = "9355C901-8779-483D-BFE6-6CD1005AE7FF";
             this.bbiSupplierReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSupplierReports_ItemClick);
             // 
             // bbiBranchReports
@@ -716,6 +738,7 @@
             this.bbiBranchReports.Id = 66;
             this.bbiBranchReports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiBranchReports.ImageOptions.SvgImage")));
             this.bbiBranchReports.Name = "bbiBranchReports";
+            this.bbiBranchReports.Tag = "96E4398D-2B12-4A58-A93E-DD06B9126D97";
             this.bbiBranchReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBranchReports_ItemClick_1);
             // 
             // bbiChangeFY
@@ -738,6 +761,7 @@
             this.bbiAddProcessing.Id = 70;
             this.bbiAddProcessing.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiAddProcessing.ImageOptions.SvgImage")));
             this.bbiAddProcessing.Name = "bbiAddProcessing";
+            this.bbiAddProcessing.Tag = "6DDBCE7A-849B-49A8-B850-7B9AF448D958::Execute";
             this.bbiAddProcessing.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiAddProcessing_ItemClick);
             // 
             // bbiSliceCounting
@@ -746,6 +770,7 @@
             this.bbiSliceCounting.Id = 71;
             this.bbiSliceCounting.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiSliceCounting.ImageOptions.SvgImage")));
             this.bbiSliceCounting.Name = "bbiSliceCounting";
+            this.bbiSliceCounting.Tag = "86389BAD-168D-4A11-B05B-A0528C202337::Execute";
             this.bbiSliceCounting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSliceCounting_ItemClick);
             // 
             // bbiClearLeftSales
@@ -754,6 +779,7 @@
             this.bbiClearLeftSales.Id = 72;
             this.bbiClearLeftSales.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiClearLeftSales.ImageOptions.SvgImage")));
             this.bbiClearLeftSales.Name = "bbiClearLeftSales";
+            this.bbiClearLeftSales.Tag = "C7AA2C44-DC0A-43CF-85EB-1EDAB5E09674::Execute";
             this.bbiClearLeftSales.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClearLeftSales_ItemClick);
             // 
             // bbiBuildInfo
@@ -770,18 +796,20 @@
             this.bbiRoles.Id = 74;
             this.bbiRoles.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiRoles.ImageOptions.SvgImage")));
             this.bbiRoles.Name = "bbiRoles";
+            this.bbiRoles.Tag = "D1366B69-A667-4502-AB56-D6206ABE8B0E";
             this.bbiRoles.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRoles_ItemClick);
             // 
-            // ribbonPage3
+            // rpOperations
             // 
-            this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpOperations.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2,
             this.ribbonPageGroup5,
             this.ribbonPageGroup3,
             this.ribbonPageGroup15,
             this.ribbonPageGroup9});
-            this.ribbonPage3.Name = "ribbonPage3";
-            resources.ApplyResources(this.ribbonPage3, "ribbonPage3");
+            this.rpOperations.Name = "rpOperations";
+            this.rpOperations.Tag = "7EEB4023-F8C7-4623-8452-F56FB5038365";
+            resources.ApplyResources(this.rpOperations, "rpOperations");
             // 
             // ribbonPageGroup2
             // 
@@ -816,7 +844,6 @@
             // 
             // ribbonPageGroup15
             // 
-            this.ribbonPageGroup15.ItemLinks.Add(this.btnDealerIndent);
             this.ribbonPageGroup15.ItemLinks.Add(this.btnSupplierReturns);
             this.ribbonPageGroup15.Name = "ribbonPageGroup15";
             resources.ApplyResources(this.ribbonPageGroup15, "ribbonPageGroup15");
@@ -828,13 +855,14 @@
             this.ribbonPageGroup9.Name = "ribbonPageGroup9";
             resources.ApplyResources(this.ribbonPageGroup9, "ribbonPageGroup9");
             // 
-            // ribbonPage4
+            // rpReports
             // 
-            this.ribbonPage4.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpReports.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup20,
             this.ribbonPageGroup19});
-            this.ribbonPage4.Name = "ribbonPage4";
-            resources.ApplyResources(this.ribbonPage4, "ribbonPage4");
+            this.rpReports.Name = "rpReports";
+            this.rpReports.Tag = "8960ACB4-1BBD-4088-BB68-3CF95169EE13";
+            resources.ApplyResources(this.rpReports, "rpReports");
             // 
             // ribbonPageGroup20
             // 
@@ -853,13 +881,14 @@
             this.ribbonPageGroup19.Name = "ribbonPageGroup19";
             resources.ApplyResources(this.ribbonPageGroup19, "ribbonPageGroup19");
             // 
-            // ribbonPage6
+            // rpOffers
             // 
-            this.ribbonPage6.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpOffers.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup8,
             this.ribbonPageGroup7});
-            this.ribbonPage6.Name = "ribbonPage6";
-            resources.ApplyResources(this.ribbonPage6, "ribbonPage6");
+            this.rpOffers.Name = "rpOffers";
+            this.rpOffers.Tag = "3F1B304F-FA66-4310-809C-E58846E94782";
+            resources.ApplyResources(this.rpOffers, "rpOffers");
             // 
             // ribbonPageGroup8
             // 
@@ -874,17 +903,18 @@
             this.ribbonPageGroup7.Name = "ribbonPageGroup7";
             resources.ApplyResources(this.ribbonPageGroup7, "ribbonPageGroup7");
             // 
-            // ribbonPage1
+            // rpAdmin
             // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpAdmin.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
             this.ribbonPageGroup4,
             this.ribbonPageGroup11,
             this.ribbonPageGroup12,
             this.ribbonPageGroup6,
             this.ribbonPageGroup17});
-            this.ribbonPage1.Name = "ribbonPage1";
-            resources.ApplyResources(this.ribbonPage1, "ribbonPage1");
+            this.rpAdmin.Name = "rpAdmin";
+            this.rpAdmin.Tag = "7E9267A7-4A6A-44A5-9CEA-54DB75A9E8E8";
+            resources.ApplyResources(this.rpAdmin, "rpAdmin");
             // 
             // ribbonPageGroup1
             // 
@@ -928,12 +958,13 @@
             this.ribbonPageGroup17.Name = "ribbonPageGroup17";
             resources.ApplyResources(this.ribbonPageGroup17, "ribbonPageGroup17");
             // 
-            // ribbonPage5
+            // rpUserAccess
             // 
-            this.ribbonPage5.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpUserAccess.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup13});
-            this.ribbonPage5.Name = "ribbonPage5";
-            resources.ApplyResources(this.ribbonPage5, "ribbonPage5");
+            this.rpUserAccess.Name = "rpUserAccess";
+            this.rpUserAccess.Tag = "16D60C92-F709-4A43-AF51-3CC7EA1E12A1";
+            resources.ApplyResources(this.rpUserAccess, "rpUserAccess");
             // 
             // ribbonPageGroup13
             // 
@@ -942,14 +973,15 @@
             this.ribbonPageGroup13.Name = "ribbonPageGroup13";
             resources.ApplyResources(this.ribbonPageGroup13, "ribbonPageGroup13");
             // 
-            // ribbonPage7
+            // rpItemExtras
             // 
-            this.ribbonPage7.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpItemExtras.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup14,
             this.ribbonPageGroup10,
             this.ribbonPageGroup16});
-            this.ribbonPage7.Name = "ribbonPage7";
-            resources.ApplyResources(this.ribbonPage7, "ribbonPage7");
+            this.rpItemExtras.Name = "rpItemExtras";
+            this.rpItemExtras.Tag = "16C97066-8CF4-4307-AE4F-A97B1255028F";
+            resources.ApplyResources(this.rpItemExtras, "rpItemExtras");
             // 
             // ribbonPageGroup14
             // 
@@ -1023,7 +1055,7 @@
         #endregion
 
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpAdmin;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
@@ -1036,7 +1068,7 @@
         private DevExpress.XtraBars.BarButtonItem btnModeOfPayment;
         private DevExpress.XtraBars.BarButtonItem btnUnitsofMeasure;
         private DevExpress.XtraBars.BarButtonItem btnItem;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpOperations;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
@@ -1073,15 +1105,14 @@
         private DevExpress.XtraBars.BarButtonItem bbiReport;
         private DevExpress.XtraBars.BarButtonItem bbiItemSummary;
         private DevExpress.XtraBars.BarButtonItem btnCounting;
-        private DevExpress.XtraBars.BarButtonItem btnDealerIndent;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup15;
         private DevExpress.XtraBars.BarButtonItem btnSupplierReturns;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage6;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpOffers;
         private DevExpress.XtraBars.BarButtonItem btnSupplierReturnsList;
         private DevExpress.XtraBars.BarButtonItem btnBranchRefund;
         private DevExpress.XtraBars.BarButtonItem bbiClearProcedureCache;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup17;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage4;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpReports;
         private DevExpress.XtraBars.BarButtonItem bbiStockReports;
         private DevExpress.XtraBars.BarButtonItem bbiWarehouseReports;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup19;
@@ -1106,9 +1137,9 @@
         private DevExpress.XtraBars.BarButtonItem bbiSliceCounting;
         private DevExpress.XtraBars.BarButtonItem bbiClearLeftSales;
         private DevExpress.XtraBars.BarButtonItem bbiBuildInfo;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage5;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpUserAccess;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup13;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage7;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpItemExtras;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup16;

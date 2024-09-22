@@ -22,7 +22,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
 
             SetFocusControls(null, null, columnHeaders);
 
-            ContextmenuItems = new List<string>() { "Un-delete" };
+            ContextmenuItems = new Dictionary<string, string> { { "Un-delete", "035DB43B-11EE-4DDB-B510-682CCD1FEC55" } };
         }
 
         public override object GetData()

@@ -57,11 +57,11 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcEdit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcSubClassification = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnViewEditSubClassifications = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
@@ -124,9 +124,9 @@
             this.gridColumn10,
             this.gridColumn9,
             this.gridColumn8,
-            this.gridColumn5,
-            this.gridColumn6,
-            this.gridColumn7});
+            this.gcEdit,
+            this.gcSubClassification,
+            this.gcDelete});
             this.gvItemClassification.GridControl = this.gcItemClassification;
             this.gvItemClassification.Name = "gvItemClassification";
             this.gvItemClassification.OptionsView.ShowGroupPanel = false;
@@ -217,17 +217,18 @@
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 7;
             // 
-            // gridColumn5
+            // gcEdit
             // 
-            this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn5.Caption = "Edit";
-            this.gridColumn5.ColumnEdit = this.btnEdit;
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 8;
-            this.gridColumn5.Width = 105;
+            this.gcEdit.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcEdit.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcEdit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcEdit.Caption = "Edit";
+            this.gcEdit.ColumnEdit = this.btnEdit;
+            this.gcEdit.Name = "gcEdit";
+            this.gcEdit.Tag = "4DA44621-28C7-43F9-ADE2-78151F049401::Update";
+            this.gcEdit.Visible = true;
+            this.gcEdit.VisibleIndex = 8;
+            this.gcEdit.Width = 105;
             // 
             // btnEdit
             // 
@@ -239,18 +240,19 @@
             this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // gridColumn6
+            // gcSubClassification
             // 
-            this.gridColumn6.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn6.Caption = "View / Edit Sub-Classifications";
-            this.gridColumn6.ColumnEdit = this.btnViewEditSubClassifications;
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 9;
-            this.gridColumn6.Width = 189;
+            this.gcSubClassification.AppearanceCell.Options.UseTextOptions = true;
+            this.gcSubClassification.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcSubClassification.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcSubClassification.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcSubClassification.Caption = "View / Edit Sub-Classifications";
+            this.gcSubClassification.ColumnEdit = this.btnViewEditSubClassifications;
+            this.gcSubClassification.Name = "gcSubClassification";
+            this.gcSubClassification.Tag = "228F0F04-BE41-4F5F-98B5-3FA59CB7C182";
+            this.gcSubClassification.Visible = true;
+            this.gcSubClassification.VisibleIndex = 9;
+            this.gcSubClassification.Width = 189;
             // 
             // btnViewEditSubClassifications
             // 
@@ -262,18 +264,19 @@
             this.btnViewEditSubClassifications.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnViewEditSubClassifications.Click += new System.EventHandler(this.btnViewEditSubClassifications_Click);
             // 
-            // gridColumn7
+            // gcDelete
             // 
-            this.gridColumn7.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn7.Caption = "Delete";
-            this.gridColumn7.ColumnEdit = this.btnDelete;
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 10;
-            this.gridColumn7.Width = 105;
+            this.gcDelete.AppearanceCell.Options.UseTextOptions = true;
+            this.gcDelete.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcDelete.Caption = "Delete";
+            this.gcDelete.ColumnEdit = this.btnDelete;
+            this.gcDelete.Name = "gcDelete";
+            this.gcDelete.Tag = "4DA44621-28C7-43F9-ADE2-78151F049401::Delete";
+            this.gcDelete.Visible = true;
+            this.gcDelete.VisibleIndex = 10;
+            this.gcDelete.Width = 105;
             // 
             // btnDelete
             // 
@@ -306,6 +309,7 @@
             this.btnAdd.Size = new System.Drawing.Size(149, 22);
             this.btnAdd.StyleController = this.layoutControl1;
             this.btnAdd.TabIndex = 4;
+            this.btnAdd.Tag = "4DA44621-28C7-43F9-ADE2-78151F049401::Create";
             this.btnAdd.Text = "Add New";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -412,9 +416,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gcEdit;
+        private DevExpress.XtraGrid.Columns.GridColumn gcSubClassification;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnViewEditSubClassifications;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;

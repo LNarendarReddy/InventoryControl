@@ -57,6 +57,8 @@ namespace NSRetail
                             Utility.Email = Convert.ToString(ds.Tables[0].Rows[0]["EMAIL"]);
                             Utility.IsOpenCategory = Convert.ToBoolean(ds.Tables[0].Rows[0]["ALLOWOPENITEMS"]);
                             Utility.dtConnectionInfo = ds.Tables[2];
+                            AccessUtility.BuildAccessInfo(ds.Tables[3]);
+
                             bool IsOTP = Convert.ToBoolean(ds.Tables[0].Rows[0]["ISOTP"]);
 
                             if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count != 0)

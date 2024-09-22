@@ -18,6 +18,7 @@ using Entity;
 using ErrorManagement;
 using NSRetail;
 using NSRetail.Login;
+using NSRetail.Utilities;
 
 namespace NSRetail
 {
@@ -143,6 +144,9 @@ namespace NSRetail
                 gcItemList.DataSource = dtItemCodes;
                 gvItemList.BestFitColumns();
                 ((frmMain)this.MdiParent).RefreshBaseLineData += FrmItemCodeList_RefreshBaseLineData;
+
+                AccessUtility.SetStatusByAccess(btnNew, btnEdit, btnDelete, btnVisualize, btnMRPList);
+                AccessUtility.SetStatusByAccess(bbiEdit, bbiMRP, bbiVisualize);
             }
             catch (Exception ex)
             {
@@ -185,6 +189,9 @@ namespace NSRetail
             btnEdit.Enabled = enabled;
             btnVisualize.Enabled = enabled;
             btnDelete.Enabled = enabled;
+
+            if (enabled)
+                AccessUtility.SetStatusByAccess(btnEdit, btnVisualize, btnDelete);
         }
 
         private void gvItemList_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)

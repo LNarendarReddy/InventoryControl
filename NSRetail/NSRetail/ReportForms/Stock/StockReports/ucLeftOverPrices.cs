@@ -14,8 +14,6 @@ namespace NSRetail.ReportForms.Stock.StockReports
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 
             SetFocusControls(cmbCategory, cmbCategory, null);
-
-            AllowedRoles = new List<string> { "Division Manager", "IT User", "Division User" };
         }
 
         public override object GetData()

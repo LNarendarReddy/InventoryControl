@@ -1042,6 +1042,7 @@
     <Compile Include="Supplier\frmViewReturnItems.Designer.cs">
       <DependentUpon>frmViewReturnItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\AccessUtility.cs" />
     <Compile Include="Utilities\DotMatrixPrintHelper.cs" />
     <Compile Include="Utilities\DotMatrixPrinter.cs" />
     <Compile Include="Utilities\DropBoxRepository.cs" />

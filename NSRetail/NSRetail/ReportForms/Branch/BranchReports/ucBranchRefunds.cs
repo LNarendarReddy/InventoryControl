@@ -28,14 +28,17 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                     , { "CATEGORYNAME", "Category" }
                 };
 
-            ContextmenuItems = new List<string>() { "View", "Print" };
+            ContextmenuItems = new Dictionary<string, string>
+            { 
+                {"View", "6512E156-9D65-4C12-A925-6F6F215D99EB" }, 
+                {"Print", "FDF97A4E-9DAD-4505-8211-77B6273C424F" } 
+            };
 
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
 
-            SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);
-            AllowedRoles = new List<string> { "IT User" };
+            SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);            
         }
 
         public override object GetData()

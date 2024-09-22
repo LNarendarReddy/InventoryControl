@@ -39,7 +39,7 @@
             this.gvRoles = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcEditAccess = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditAccess = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -80,7 +80,7 @@
             this.gvRoles.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
-            this.gridColumn3});
+            this.gcEditAccess});
             this.gvRoles.GridControl = this.gcRoles;
             this.gvRoles.Name = "gvRoles";
             this.gvRoles.OptionsView.ShowGroupPanel = false;
@@ -101,16 +101,17 @@
             this.gridColumn2.VisibleIndex = 0;
             this.gridColumn2.Width = 452;
             // 
-            // gridColumn3
+            // gcEditAccess
             // 
-            this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn3.Caption = "Edit Access";
-            this.gridColumn3.ColumnEdit = this.btnEditAccess;
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
-            this.gridColumn3.Width = 126;
+            this.gcEditAccess.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcEditAccess.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcEditAccess.Caption = "Edit Access";
+            this.gcEditAccess.ColumnEdit = this.btnEditAccess;
+            this.gcEditAccess.Name = "gcEditAccess";
+            this.gcEditAccess.Tag = "9634C946-764F-4B4C-99A3-897D0346E5BF::Execute";
+            this.gcEditAccess.Visible = true;
+            this.gcEditAccess.VisibleIndex = 1;
+            this.gcEditAccess.Width = 126;
             // 
             // btnEditAccess
             // 
@@ -174,7 +175,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gcEditAccess;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditAccess;
     }
 }

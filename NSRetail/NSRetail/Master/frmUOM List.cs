@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using Entity;
 using ErrorManagement;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,9 @@ namespace NSRetail.Master
             try
             {
                 gcUOM.DataSource = objMasterRep.GetUOM();
+
+                AccessUtility.SetStatusByAccess(gcEdit, gcDelete);
+                AccessUtility.SetStatusByAccess(btnNew);
             }
             catch (Exception ex)
             {

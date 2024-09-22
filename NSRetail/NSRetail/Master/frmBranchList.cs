@@ -12,6 +12,7 @@ using DataAccess;
 using Entity;
 using ErrorManagement;
 using DevExpress.Utils.Menu;
+using NSRetail.Utilities;
 
 namespace NSRetail
 {
@@ -53,6 +54,9 @@ namespace NSRetail
                 cmbState.ValueMember = "STATEID";
                 gcBranch.DataSource = objMasterRep.GetBranch();
                 gvBranch.BestFitColumns();
+
+                AccessUtility.SetStatusByAccess(btnNew);
+                AccessUtility.SetStatusByAccess(gcEdit, gcDelete);
             }
             catch (Exception ex){
                 ErrorMgmt.ShowError(ex);

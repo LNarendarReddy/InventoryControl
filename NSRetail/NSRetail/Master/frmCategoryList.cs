@@ -12,6 +12,7 @@ using Entity;
 using DataAccess;
 using ErrorManagement;
 using DevExpress.XtraGrid.Views.Grid;
+using NSRetail.Utilities;
 
 namespace NSRetail
 {
@@ -28,8 +29,17 @@ namespace NSRetail
         {
             try
             {
-                 gcCategory.DataSource = ObjMasterRep.GetCategory();
+                gcCategory.DataSource = ObjMasterRep.GetCategory();
 
+                string accessIdentifier = "D81C10D9-FCD1-4E51-8035-20E2150D78A8";
+                
+                gvCategory.Tag = $"{accessIdentifier}::Create";
+                AccessUtility.SetStatusByAccess(gvCategory);
+
+                gvCategory.Tag = $"{accessIdentifier}::Update";
+                AccessUtility.SetStatusByAccess(gvCategory);
+                
+                AccessUtility.SetStatusByAccess(gcDelete);
             }
             catch (Exception ex) {
                 ErrorMgmt.ShowError(ex);

@@ -113,6 +113,7 @@
             this.treeListColumn2.Caption = "Work flow";
             this.treeListColumn2.FieldName = "WORKFLOWTEXT";
             this.treeListColumn2.Name = "treeListColumn2";
+            this.treeListColumn2.OptionsColumn.ReadOnly = true;
             this.treeListColumn2.Visible = true;
             this.treeListColumn2.VisibleIndex = 0;
             this.treeListColumn2.Width = 503;

@@ -41,7 +41,6 @@ namespace NSRetail.ReportForms.Supplier.SupplierWiseReports
             };
 
             SetFocusControls(cmbsupplier, cmbsupplier, specificColumnHeaders);
-            AllowedRoles = new List<string> { "Division Manager" };
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
                 new IncludeSettings("Classification", "IncludeClassification", new List<string>() { "CLASSIFICATIONNAME" }),

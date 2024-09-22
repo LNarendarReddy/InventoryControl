@@ -5,6 +5,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
 using Entity;
 using NSRetail.Reports;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -219,6 +220,7 @@ namespace NSRetail
             FillItemBaseline();
             GetGSTBaseline();
             FillParentItemBaseline();
+            AccessUtility.FetchAndBuildAccessInfo();
         }
 
         public static void PrintBarCode(object ItemCode, object ItemName, 

@@ -77,7 +77,6 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             {
                 case "D":
                 case "B":
-                    AllowedRoles = new List<string> { "Division Manager", "IT User", "Division User" };
                     break;
             }
         }

@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using Entity;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,9 @@ namespace NSRetail
         {
             gcOffer.DataSource = offerRepository.GetBaseOffer();
             gvOffer.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
+
+            AccessUtility.SetStatusByAccess(btnNewOffer);
+            AccessUtility.SetStatusByAccess(gcEdit, gcDelete, gcBranches, gcOffers);
         }
 
         private void btnNewOffer_Click(object sender, EventArgs e)
@@ -96,7 +100,7 @@ namespace NSRetail
         private void btnBranches_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             frmOfferBranch obj = new frmOfferBranch(gvOffer.GetFocusedRowCellValue("OFFERNAME"),
-                gvOffer.GetFocusedRowCellValue("BASEOFFERID"), true)
+                gvOffer.GetFocusedRowCellValue("BASEOFFERID"), OfferType.Base, true)
             { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
             obj.ShowDialog();
         }

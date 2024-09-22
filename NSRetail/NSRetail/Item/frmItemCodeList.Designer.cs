@@ -68,9 +68,9 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.pmItemList = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiEdit = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiVisualize = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiMRP = new DevExpress.XtraBars.BarButtonItem();
             this.btnExportSKU = new DevExpress.XtraBars.BarButtonItem();
             this.btnExportItemCode = new DevExpress.XtraBars.BarButtonItem();
             this.btnExportItemPrice = new DevExpress.XtraBars.BarButtonItem();
@@ -139,6 +139,7 @@
             this.btnDelete.Size = new System.Drawing.Size(74, 22);
             this.btnDelete.StyleController = this.layoutControl1;
             this.btnDelete.TabIndex = 11;
+            this.btnDelete.Tag = "5081738C-2C7B-40E5-8ECB-BB2CC5FDFAF7::Delete";
             this.btnDelete.Text = "&Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -151,6 +152,7 @@
             this.btnMRPList.Size = new System.Drawing.Size(115, 22);
             this.btnMRPList.StyleController = this.layoutControl1;
             this.btnMRPList.TabIndex = 10;
+            this.btnMRPList.Tag = "A9B75D0E-A347-4BDC-B064-A7417E96E264";
             this.btnMRPList.Text = "View MRP List";
             this.btnMRPList.Click += new System.EventHandler(this.btnMRPList_Click);
             // 
@@ -177,6 +179,7 @@
             this.btnVisualize.Size = new System.Drawing.Size(95, 22);
             this.btnVisualize.StyleController = this.layoutControl1;
             this.btnVisualize.TabIndex = 8;
+            this.btnVisualize.Tag = "2F455429-6A62-4CB0-BBC5-7AEEA536170A";
             this.btnVisualize.Text = "&Visualize";
             this.btnVisualize.Click += new System.EventHandler(this.btnVisualize_Click);
             // 
@@ -190,6 +193,7 @@
             this.btnEdit.Size = new System.Drawing.Size(107, 22);
             this.btnEdit.StyleController = this.layoutControl1;
             this.btnEdit.TabIndex = 7;
+            this.btnEdit.Tag = "5081738C-2C7B-40E5-8ECB-BB2CC5FDFAF7::Update";
             this.btnEdit.Text = "&Edit";
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -217,6 +221,7 @@
             this.btnNew.Size = new System.Drawing.Size(117, 22);
             this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 5;
+            this.btnNew.Tag = "5081738C-2C7B-40E5-8ECB-BB2CC5FDFAF7::Create";
             this.btnNew.Text = "&New";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
@@ -565,9 +570,9 @@
             // pmItemList
             // 
             this.pmItemList.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiEdit),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiVisualize),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiMRP),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportSKU),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCode),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemPrice),
@@ -575,32 +580,35 @@
             this.pmItemList.Manager = this.barManager1;
             this.pmItemList.Name = "pmItemList";
             // 
-            // barButtonItem1
+            // bbiEdit
             // 
-            this.barButtonItem1.Caption = "Edit";
-            this.barButtonItem1.Id = 0;
-            this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.barButtonItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            this.bbiEdit.Caption = "Edit";
+            this.bbiEdit.Id = 0;
+            this.bbiEdit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.bbiEdit.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.bbiEdit.Name = "bbiEdit";
+            this.bbiEdit.Tag = "5081738C-2C7B-40E5-8ECB-BB2CC5FDFAF7::Create";
+            this.bbiEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
-            // barButtonItem2
+            // bbiVisualize
             // 
-            this.barButtonItem2.Caption = "Visualize";
-            this.barButtonItem2.Id = 1;
-            this.barButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.barButtonItem2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            this.bbiVisualize.Caption = "Visualize";
+            this.bbiVisualize.Id = 1;
+            this.bbiVisualize.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
+            this.bbiVisualize.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
+            this.bbiVisualize.Name = "bbiVisualize";
+            this.bbiVisualize.Tag = "2F455429-6A62-4CB0-BBC5-7AEEA536170A";
+            this.bbiVisualize.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
             // 
-            // barButtonItem3
+            // bbiMRP
             // 
-            this.barButtonItem3.Caption = "View MRP List";
-            this.barButtonItem3.Id = 2;
-            this.barButtonItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.barButtonItem3.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
-            this.barButtonItem3.Name = "barButtonItem3";
-            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+            this.bbiMRP.Caption = "View MRP List";
+            this.bbiMRP.Id = 2;
+            this.bbiMRP.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
+            this.bbiMRP.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.bbiMRP.Name = "bbiMRP";
+            this.bbiMRP.Tag = "A9B75D0E-A347-4BDC-B064-A7417E96E264";
+            this.bbiMRP.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
             // 
             // btnExportSKU
             // 
@@ -646,9 +654,9 @@
             this.barManager1.DockControls.Add(this.barDockControlRight);
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barButtonItem1,
-            this.barButtonItem2,
-            this.barButtonItem3,
+            this.bbiEdit,
+            this.bbiVisualize,
+            this.bbiMRP,
             this.btnExportSKU,
             this.btnExportItemCode,
             this.btnExportItemPrice,
@@ -756,8 +764,8 @@
         private DevExpress.XtraEditors.SimpleButton btnVisualize;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraBars.PopupMenu pmItemList;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem bbiEdit;
+        private DevExpress.XtraBars.BarButtonItem bbiVisualize;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
@@ -769,7 +777,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraEditors.SimpleButton btnMRPList;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.BarButtonItem bbiMRP;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraBars.BarButtonItem btnExportSKU;
         private DevExpress.XtraBars.BarButtonItem btnExportItemCode;

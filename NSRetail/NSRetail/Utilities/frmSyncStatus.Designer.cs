@@ -157,6 +157,7 @@
             this.btnDelete.Size = new System.Drawing.Size(112, 22);
             this.btnDelete.StyleController = this.layoutControl1;
             this.btnDelete.TabIndex = 5;
+            this.btnDelete.Tag = "9CAA2F56-0259-494A-8CA1-B365E79A6A5E::Delete";
             this.btnDelete.Text = "Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 

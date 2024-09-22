@@ -35,7 +35,11 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 , { "REFUNDQTYORWGHTINKGS", "Refund Qty or Wght (In KGs)" }
             };
 
-            ContextmenuItems = new List<string>() {"Items", "Print"};
+            ContextmenuItems = new Dictionary<string, string>
+            {
+                { "Items", "2EA3591F-63BA-4F33-9070-8B898868EF7F" }, 
+                { "Print", "C7FBC73D-CD73-4B64-8ABE-42D970E4D956" }
+            };
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;

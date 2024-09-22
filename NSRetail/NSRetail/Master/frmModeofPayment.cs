@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using Entity;
 using ErrorManagement;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,7 +30,18 @@ namespace NSRetail.Master
             try
             {
                 gcMOP.DataSource = ObjMasterRep.GetMOP();
+                AccessUtility.SetStatusByAccess(gvMOP);
+                AccessUtility.SetStatusByAccess(gcDelete);
 
+                string accessIdentifier = "5A872299-57E3-4DB3-A55A-8BFE9CFB346B";
+                
+                gvMOP.Tag = $"{accessIdentifier}::Create";
+                AccessUtility.SetStatusByAccess(gvMOP);
+
+                gvMOP.Tag = $"{accessIdentifier}::Update";
+                AccessUtility.SetStatusByAccess(gvMOP);
+
+                AccessUtility.SetStatusByAccess(gcDelete);
             }
             catch (Exception ex)
             {

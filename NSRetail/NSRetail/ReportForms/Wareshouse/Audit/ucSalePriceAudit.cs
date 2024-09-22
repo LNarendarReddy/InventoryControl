@@ -24,7 +24,6 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             sluSKUCode.Properties.ValueMember = "ITEMID";
 
             SetFocusControls(sluSKUCode,sluSKUCode, columnHeaders);
-            AllowedRoles = new List<string> { "Division Manager" };
         }
 
         public override object GetData()

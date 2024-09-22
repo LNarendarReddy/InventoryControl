@@ -39,7 +39,6 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             };
 
             SetFocusControls(cmbPeriodicity, cmbItemCode, specificColumnHeaders);
-            AllowedRoles = new List<string> { "IT User" };
         }
 
         private void ucPurchases_Load(object sender, EventArgs e)

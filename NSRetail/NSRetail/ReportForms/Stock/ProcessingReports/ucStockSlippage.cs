@@ -26,7 +26,6 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             dtpToDate.EditValue = DateTime.Now;
 
             MandatoryFields = new List<BaseEdit> { dtpFromDate, dtpToDate };
-            AllowedRoles = new List<string> { "IT User" };
         }
 
         private void sluItem_Popup(object sender, EventArgs e)

@@ -30,10 +30,13 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "STATUS", "Status" }
             };
 
-            if (Utility.UserName == "admin")
-                ContextmenuItems = new List<string>() { "View", "Revert", "Clone" };
-            else
-                ContextmenuItems = new List<string>() { "View" };
+            ContextmenuItems = new Dictionary<string, string>
+            {
+                { "View", "3A365A22-5334-4667-8782-A83825298BF6" },
+                { "Revert", "7CE473E7-514B-4BC9-B07E-2B26B5AA44F2" },
+                { "Clone", "50C463EA-A4BE-49A8-8484-B2C73186A373" }
+            };
+                
 
             HiddenColumns = new List<string>() { "TAXINCLUSIVE", "TCS", "DISCOUNTPER", "DISCOUNT", "EXPENSES", "TRANSPORT" };
 
@@ -45,7 +48,6 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             dtpToDate.EditValue = DateTime.Now;
 
             SetFocusControls(cmbDealer, dtpToDate,columnHeaders);
-            AllowedRoles = new List<string> { "IT User" };
         }
 
         public override object GetData()

@@ -8,6 +8,7 @@ using DevExpress.Utils.Menu;
 using DevExpress.XtraGrid.Columns;
 using NSRetail.Master.User;
 using System.Web.Security;
+using NSRetail.Utilities;
 
 namespace NSRetail
 {
@@ -25,6 +26,9 @@ namespace NSRetail
             {
                 gcUser.DataSource = objUserRep.GetUser();
                 gvUser.Columns["USERSTATUS"].FilterInfo = new ColumnFilterInfo("USERSTATUS = 'ACTIVE'");
+
+                AccessUtility.SetStatusByAccess(btnNew);
+                AccessUtility.SetStatusByAccess(gcEdit, gcDelete, gcEditAccess);
             }
             catch (Exception ex)
             {

@@ -54,9 +54,9 @@ namespace NSRetail.Master
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcEdit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -95,10 +95,11 @@ namespace NSRetail.Master
             this.layoutControl1.Controls.Add(this.gcUOM);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1160, 330, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(899, 460);
+            this.layoutControl1.Size = new System.Drawing.Size(1049, 531);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -107,9 +108,10 @@ namespace NSRetail.Master
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(809, 4);
+            this.btnCancel.Location = new System.Drawing.Point(944, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(86, 22);
+            this.btnCancel.Size = new System.Drawing.Size(101, 26);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
@@ -119,23 +121,27 @@ namespace NSRetail.Master
             // 
             this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
             this.btnNew.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnNew.Location = new System.Drawing.Point(707, 4);
+            this.btnNew.Location = new System.Drawing.Point(825, 4);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(98, 22);
+            this.btnNew.Size = new System.Drawing.Size(115, 26);
             this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 5;
+            this.btnNew.Tag = "A416FBC9-2AFB-4EC6-A27D-A8E07C617443::Create";
             this.btnNew.Text = "New";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // gcUOM
             // 
-            this.gcUOM.Location = new System.Drawing.Point(4, 30);
+            this.gcUOM.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.gcUOM.Location = new System.Drawing.Point(4, 34);
             this.gcUOM.MainView = this.gvUOM;
+            this.gcUOM.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcUOM.Name = "gcUOM";
             this.gcUOM.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEdit,
             this.btnDelete});
-            this.gcUOM.Size = new System.Drawing.Size(891, 426);
+            this.gcUOM.Size = new System.Drawing.Size(1041, 493);
             this.gcUOM.TabIndex = 4;
             this.gcUOM.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvUOM});
@@ -156,8 +162,9 @@ namespace NSRetail.Master
             this.gridColumn9,
             this.gridColumn10,
             this.gridColumn11,
-            this.gridColumn12,
-            this.gridColumn13});
+            this.gcEdit,
+            this.gcDelete});
+            this.gvUOM.DetailHeight = 404;
             this.gvUOM.GridControl = this.gcUOM;
             this.gvUOM.Name = "gvUOM";
             // 
@@ -165,87 +172,101 @@ namespace NSRetail.Master
             // 
             this.gridColumn1.Caption = "UOMID";
             this.gridColumn1.FieldName = "UOMID";
+            this.gridColumn1.MinWidth = 23;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.Width = 87;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Display Value";
             this.gridColumn2.FieldName = "DISPLAYVALUE";
+            this.gridColumn2.MinWidth = 23;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
-            this.gridColumn2.Width = 100;
+            this.gridColumn2.Width = 117;
             // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "Multiplier";
             this.gridColumn5.FieldName = "MULTIPLIER";
+            this.gridColumn5.MinWidth = 23;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 1;
-            this.gridColumn5.Width = 100;
+            this.gridColumn5.Width = 117;
             // 
             // gridColumn6
             // 
             this.gridColumn6.Caption = "BASEUOMID";
             this.gridColumn6.FieldName = "BASEUOMID";
+            this.gridColumn6.MinWidth = 23;
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
-            this.gridColumn6.Width = 100;
+            this.gridColumn6.Width = 117;
             // 
             // gridColumn7
             // 
             this.gridColumn7.Caption = "Base UOM";
             this.gridColumn7.FieldName = "BASEUOM";
+            this.gridColumn7.MinWidth = 23;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 2;
-            this.gridColumn7.Width = 100;
+            this.gridColumn7.Width = 117;
             // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "CREATEDBY";
             this.gridColumn8.FieldName = "CREATEDBY";
+            this.gridColumn8.MinWidth = 23;
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
-            this.gridColumn8.Width = 100;
+            this.gridColumn8.Width = 117;
             // 
             // gridColumn9
             // 
             this.gridColumn9.Caption = "CREATEDDATE";
             this.gridColumn9.FieldName = "CREATEDDATE";
+            this.gridColumn9.MinWidth = 23;
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
-            this.gridColumn9.Width = 100;
+            this.gridColumn9.Width = 117;
             // 
             // gridColumn10
             // 
             this.gridColumn10.Caption = "UPDATEDBY";
             this.gridColumn10.FieldName = "UPDATEDBY";
+            this.gridColumn10.MinWidth = 23;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
+            this.gridColumn10.Width = 87;
             // 
             // gridColumn11
             // 
             this.gridColumn11.Caption = "UPDATEDDATE";
             this.gridColumn11.FieldName = "UPDATEDDATE";
+            this.gridColumn11.MinWidth = 23;
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
+            this.gridColumn11.Width = 87;
             // 
-            // gridColumn12
+            // gcEdit
             // 
-            this.gridColumn12.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn12.Caption = "Edit";
-            this.gridColumn12.ColumnEdit = this.btnEdit;
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 3;
-            this.gridColumn12.Width = 37;
+            this.gcEdit.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcEdit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcEdit.Caption = "Edit";
+            this.gcEdit.ColumnEdit = this.btnEdit;
+            this.gcEdit.MinWidth = 23;
+            this.gcEdit.Name = "gcEdit";
+            this.gcEdit.Tag = "A416FBC9-2AFB-4EC6-A27D-A8E07C617443::Update";
+            this.gcEdit.Visible = true;
+            this.gcEdit.VisibleIndex = 3;
+            this.gcEdit.Width = 43;
             // 
             // btnEdit
             // 
@@ -257,16 +278,18 @@ namespace NSRetail.Master
             this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_ButtonClick);
             // 
-            // gridColumn13
+            // gcDelete
             // 
-            this.gridColumn13.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.gridColumn13.Caption = "Delete";
-            this.gridColumn13.ColumnEdit = this.btnDelete;
-            this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 4;
-            this.gridColumn13.Width = 38;
+            this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gcDelete.Caption = "Delete";
+            this.gcDelete.ColumnEdit = this.btnDelete;
+            this.gcDelete.MinWidth = 23;
+            this.gcDelete.Name = "gcDelete";
+            this.gcDelete.Tag = "A416FBC9-2AFB-4EC6-A27D-A8E07C617443::Delete";
+            this.gcDelete.Visible = true;
+            this.gcDelete.VisibleIndex = 4;
+            this.gcDelete.Width = 44;
             // 
             // btnDelete
             // 
@@ -291,26 +314,26 @@ namespace NSRetail.Master
             this.emptySpaceItem1});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(899, 460);
+            this.Root.Size = new System.Drawing.Size(1049, 531);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gcUOM;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 26);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 30);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(895, 430);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1045, 497);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnNew;
-            this.layoutControlItem2.Location = new System.Drawing.Point(703, 0);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(102, 26);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(102, 26);
+            this.layoutControlItem2.Location = new System.Drawing.Point(821, 0);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(119, 30);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(119, 30);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(102, 26);
+            this.layoutControlItem2.Size = new System.Drawing.Size(119, 30);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
@@ -318,11 +341,11 @@ namespace NSRetail.Master
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnCancel;
-            this.layoutControlItem3.Location = new System.Drawing.Point(805, 0);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(90, 26);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(90, 26);
+            this.layoutControlItem3.Location = new System.Drawing.Point(940, 0);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(105, 30);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(105, 30);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(90, 26);
+            this.layoutControlItem3.Size = new System.Drawing.Size(105, 30);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -332,16 +355,17 @@ namespace NSRetail.Master
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(703, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(821, 30);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmUOMList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(899, 460);
+            this.ClientSize = new System.Drawing.Size(1049, 531);
             this.Controls.Add(this.layoutControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmUOMList";
             this.Text = "UOM List";
             this.Load += new System.EventHandler(this.frmUOMList_Load);
@@ -376,9 +400,9 @@ namespace NSRetail.Master
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gcEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEdit;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;

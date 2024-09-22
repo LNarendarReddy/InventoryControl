@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,7 @@ namespace NSRetail.Master.User
         private void frmRoleList_Load(object sender, EventArgs e)
         {
             gcRoles.DataSource = userRepository.GetRoles();
+            AccessUtility.SetStatusByAccess(gcEditAccess);
         }
 
         private void btnEditAccess_Click(object sender, EventArgs e)

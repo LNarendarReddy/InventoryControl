@@ -5,6 +5,7 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using Entity;
 using NSRetail;
+using NSRetail.Utilities;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -34,6 +35,10 @@ namespace NSRetail
             gcBranchPrices.DataSource = dsItemVisualizer.Tables["BRANCHPRICES"];
 
             gvItemPrice_FocusedRowChanged(null, null);
+
+            AccessUtility.SetStatusByAccess(btnAddNewPrice);
+            AccessUtility.SetStatusByAccess(gcDelete);
+            AccessUtility.SetStatusByAccess(gvBranchPrices);
         }
 
         private void frmItemVisualize_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -57,6 +62,7 @@ namespace NSRetail
                 gcOffer.DataSource =
                     itemCodeRepository.GetOffers(gvItemPrice.GetFocusedRowCellValue("ITEMPRICEID"));
                 btnAddNewPrice.Enabled = string.IsNullOrEmpty(Convert.ToString(gvItemPrice.GetFocusedRowCellValue("IPDELETEDBY")));
+                AccessUtility.SetStatusByAccess(btnAddNewPrice);
             }
             catch (Exception ex) { }
         }

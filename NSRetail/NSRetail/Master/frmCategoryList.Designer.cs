@@ -51,7 +51,7 @@
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -155,13 +155,14 @@
             this.gridColumn9,
             this.gridColumn10,
             this.gridColumn11,
-            this.gridColumn5});
+            this.gcDelete});
             this.gvCategory.DetailHeight = 404;
             this.gvCategory.GridControl = this.gcCategory;
             this.gvCategory.Name = "gvCategory";
             this.gvCategory.OptionsNavigation.AutoFocusNewRow = true;
             this.gvCategory.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.gvCategory.OptionsView.ShowGroupPanel = false;
+            this.gvCategory.Tag = "D81C10D9-FCD1-4E51-8035-20E2150D78A8::Create";
             this.gvCategory.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvCategory_InitNewRow);
             this.gvCategory.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gvCategory_RowUpdated);
             // 
@@ -180,6 +181,7 @@
             this.gridColumn2.FieldName = "CATEGORYNAME";
             this.gridColumn2.MinWidth = 23;
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Tag = "D81C10D9-FCD1-4E51-8035-20E2150D78A8::Update";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
             this.gridColumn2.Width = 492;
@@ -190,6 +192,7 @@
             this.gridColumn3.FieldName = "ALLOWOPENITEMS";
             this.gridColumn3.MinWidth = 23;
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Tag = "D81C10D9-FCD1-4E51-8035-20E2150D78A8::Update";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
             this.gridColumn3.Width = 187;
@@ -230,17 +233,18 @@
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Width = 87;
             // 
-            // gridColumn5
+            // gcDelete
             // 
-            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn5.Caption = "Delete";
-            this.gridColumn5.ColumnEdit = this.btnDelete;
-            this.gridColumn5.MinWidth = 23;
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 2;
-            this.gridColumn5.Width = 120;
+            this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcDelete.Caption = "Delete";
+            this.gcDelete.ColumnEdit = this.btnDelete;
+            this.gcDelete.MinWidth = 23;
+            this.gcDelete.Name = "gcDelete";
+            this.gcDelete.Tag = "D81C10D9-FCD1-4E51-8035-20E2150D78A8::Delete";
+            this.gcDelete.Visible = true;
+            this.gcDelete.VisibleIndex = 2;
+            this.gcDelete.Width = 120;
             // 
             // btnDelete
             // 
@@ -358,7 +362,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEdit;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraEditors.SimpleButton btnCancel;

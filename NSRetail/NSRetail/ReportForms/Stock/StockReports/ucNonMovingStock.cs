@@ -20,7 +20,6 @@ namespace NSRetail.ReportForms.Stock.StockReports
 
             SetFocusControls(cmbBranch, txtCutOff , columnHeaders);
             MandatoryFields = new List<BaseEdit> { cmbBranch, dtpFromDate, dtpToDate };
-            AllowedRoles = new List<string> { "Division Manager", "IT User", "Division User" };
         }
 
         public override object GetData()

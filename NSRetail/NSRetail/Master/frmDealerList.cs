@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using Entity;
 using ErrorManagement;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +32,9 @@ namespace NSRetail.Master
                 cmbState.DisplayMember = "STATENAME";
                 cmbState.ValueMember = "STATEID";
                 gcDealer.DataSource = objMasterRep.GetDealer();
+
+                AccessUtility.SetStatusByAccess(btnNew);
+                AccessUtility.SetStatusByAccess(gcEdit, gcDelete);
             }
             catch (Exception ex)
             {

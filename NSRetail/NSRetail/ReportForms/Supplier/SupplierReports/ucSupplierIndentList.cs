@@ -30,7 +30,11 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "MOBILENO", "Mobile #" }
             };
 
-            ContextmenuItems = new List<string>() { "View", "Print && Export" };
+            ContextmenuItems = new Dictionary<string, string>
+            { 
+                { "View", "8238CA9D-A819-411C-A9D3-71C9030D4637" },
+                { "Print && Export", "93DE3B46-DA10-4E5F-8A42-47AE2B390C15" }
+            };
 
             cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
@@ -40,7 +44,6 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             dtpToDate.EditValue = DateTime.Now;
             
             SetFocusControls(cmbCategory, dtpToDate, columnHeaders);
-            AllowedRoles = new List<string> { "Division Manager", "IT User", "Division User" };
         }
 
         public override object GetData()
