@@ -142,17 +142,6 @@ namespace NSRetail
         }
         private void frmOfferList_Load(object sender, EventArgs e)
         {
-
-        }
-        private void gvOffer_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = (gvOffer.FocusedColumn == gcEdit ||
-                gvOffer.FocusedColumn == gcViewBranches ||
-                gvOffer.FocusedColumn == gcViewItems) &&
-                !string.IsNullOrEmpty(Convert.ToString(gvOffer.GetFocusedRowCellValue("BASEOFFERID")));
-        }
-        private void gcOffer_Click(object sender, EventArgs e)
-        {
             gcOffer.DataSource = new OfferRepository().GetOffer(_IsDeal);
             gvOffer.Columns["ISACTIVE"].FilterInfo = new ColumnFilterInfo("ISACTIVE = 'YES'");
             gcSKUCode.Visible = _IsDeal;
@@ -165,7 +154,7 @@ namespace NSRetail
 
             gcDelete.VisibleIndex = gvOffer.VisibleColumns.Count;
             gcViewBranches.VisibleIndex = gvOffer.VisibleColumns.Count - 1;
-                        
+
             if (_IsDeal)
             {
                 gcViewItems.Visible = true;
@@ -185,7 +174,7 @@ namespace NSRetail
                 gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count - 2;
                 offerType = OfferType.Category;
 
-                
+
             }
 
             string accessIdentifier = _IsDeal ? "AE372AD7-249C-4355-8529-1233FEB89C98" : "72F4C2BA-5F86-404F-BC27-3B4970AF5E6A";
@@ -197,6 +186,17 @@ namespace NSRetail
 
             AccessUtility.SetStatusByAccess(btnNew);
             AccessUtility.SetStatusByAccess(gcEdit, gcDelete, gcViewBranches);
+        }
+        private void gvOffer_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = (gvOffer.FocusedColumn == gcEdit ||
+                gvOffer.FocusedColumn == gcViewBranches ||
+                gvOffer.FocusedColumn == gcViewItems) &&
+                !string.IsNullOrEmpty(Convert.ToString(gvOffer.GetFocusedRowCellValue("BASEOFFERID")));
+        }
+        private void gcOffer_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void btnViewReport_Click(object sender, EventArgs e)

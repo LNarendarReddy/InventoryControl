@@ -8,7 +8,7 @@ namespace NSRetailPOS.Data
     public class BillingRepository
     {
         public DataTable SaveBillDetail(object billID, object ItemPriceID, object quantity, object weightInKGS
-               , object userID, object billDetailID, bool isBillOfferItem = false)
+               , object userID, object billDetailID, bool isBillOfferItem = false, object billOfferPrice = null)
         {
             DataTable dtBillDetails = new DataTable();
             SqlTransaction transaction = null;
@@ -28,6 +28,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@UserID", userID);
                     cmd.Parameters.AddWithValue("@BillDetailID", billDetailID);
                     cmd.Parameters.AddWithValue("@IsBillOfferItem", isBillOfferItem);
+                    cmd.Parameters.AddWithValue("@BillOfferPrice", billOfferPrice);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtBillDetails);

@@ -241,10 +241,10 @@ namespace NSRetailPOS
                 DataTable dtBillOffers = billingRepository.GetBillOffers(billObj.BillID);
                 if (dtBillOffers != null && dtBillOffers.Rows.Count == 1)
                 {
-                    if (XtraMessageBox.Show($"Add free item {dtBillOffers.Rows[0]["ITEMNAME"]} ({dtBillOffers.Rows[0]["SKUCODE"]}) to the bill?",
+                    if (XtraMessageBox.Show($"Add item {dtBillOffers.Rows[0]["ITEMNAME"]} ({dtBillOffers.Rows[0]["SKUCODE"]}) for Rs.{dtBillOffers.Rows[0]["ACTUALSALEPRICE"]} to the bill?",
                         "Add free item", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        SaveBillDetail(dtBillOffers.Rows[0]["ITEMPRICEID"], 1, 0, -1, true);
+                        SaveBillDetail(dtBillOffers.Rows[0]["ITEMPRICEID"], 1, 0, -1, true, dtBillOffers.Rows[0]["ACTUALSALEPRICE"]);
                     }
                 }
                 nextBillDetails = billingRepository.FinishBill(Utility.loginInfo.UserID, daySequenceID, billObj);
@@ -311,12 +311,13 @@ namespace NSRetailPOS
             LoadBillData(nextBillDetails);
         }
 
-        private void SaveBillDetail(object itemPriceID, object quantity, object weightInKgs, object billDetailID, bool isBillOfferItem = false)
+        private void SaveBillDetail(object itemPriceID, object quantity, object weightInKgs, object billDetailID
+            , bool isBillOfferItem = false, object billOfferPrice = null)
         {
             try
             {
                 DataTable dtBillDetails = billingRepository.SaveBillDetail(billObj.BillID
-                    , itemPriceID, quantity, weightInKgs, Utility.loginInfo.UserID, billDetailID, isBillOfferItem);
+                    , itemPriceID, quantity, weightInKgs, Utility.loginInfo.UserID, billDetailID, isBillOfferItem, billOfferPrice);
 
                 UpdateBillDetails(dtBillDetails, itemPriceID);
             }

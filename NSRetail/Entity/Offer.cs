@@ -34,6 +34,11 @@ namespace Entity
         public object ItemName { get; set; }
         public object ItemCodeID { get; set; }
         public object OfferThreshold { get; set; }
+
+        /// <summary>
+        /// Offer threshold price in case of offers where offer will be excluded
+        ///     in case of deals, free\discounted item price will be stored here, the value is 0 for free
+        /// </summary>
         public object OfferThresholdPrice { get; set; }
     }
 }

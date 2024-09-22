@@ -22,12 +22,7 @@ namespace NSRetail
 
         private void frmAddDeal_Load(object sender, EventArgs e)
         {
-            cmbFreeItemCode.Enabled = false;
-            cmbFreeItemCode.EditValue = null;
-            txtNumberOfItems.Enabled = false;
-            txtNumberOfItems.EditValue = null;
-            txtOfferValue.Enabled = false;
-            txtOfferValue.EditValue = null;
+            DisableControls();
 
             cmbOfferType.Properties.DataSource = new OfferRepository().GetOfferType(2);
             cmbOfferType.Properties.ValueMember = "OFFERTYPEID";
@@ -47,6 +42,7 @@ namespace NSRetail
                 txtOfferValue.EditValue = offer.OfferValue;
                 cmbFreeItemCode.EditValue = offer.FreeItemPriceID;
                 txtNumberOfItems.EditValue = offer.NumberOfItems;
+                txtFreeItemPrice.EditValue = offer.OfferThresholdPrice;
 
                 txtOfferCode.Enabled = false;
                 txtOfferName.Enabled = false;
@@ -54,6 +50,7 @@ namespace NSRetail
                 txtOfferValue.Enabled = false;
                 cmbFreeItemCode.Enabled = false;
                 txtNumberOfItems.Enabled = false;
+                txtFreeItemPrice.Enabled = false;
             }
         }
 
@@ -84,6 +81,13 @@ namespace NSRetail
                     return;
                 }
 
+                if (txtFreeItemPrice.Enabled && txtFreeItemPrice.EditValue == null)
+                {
+                    XtraMessageBox.Show("Free item price is required", "Mandatory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtFreeItemPrice.Focus();
+                    return;
+                }
+
                 offer.OfferCode = txtOfferCode.EditValue;
                 offer.OfferName = txtOfferName.EditValue;
                 offer.StartDate = dtpStartDate.EditValue;
@@ -106,6 +110,7 @@ namespace NSRetail
                 }
                 offer.NumberOfItems = txtNumberOfItems.EditValue;
                 offer.UserID = Utility.UserID;
+                offer.OfferThresholdPrice = txtFreeItemPrice.EditValue;
                 offer.OfferID = new OfferRepository().SaveOffer(offer);
                 this.IsSave = true;
                 this.Close();
@@ -127,12 +132,7 @@ namespace NSRetail
                 return;
                 txtOfferValue.Enabled = true;
             layoutControlItem14.Text = "Offer Value";
-            cmbFreeItemCode.Enabled = false;
-            cmbFreeItemCode.EditValue = null;
-            txtNumberOfItems.Enabled = false;
-            txtNumberOfItems.EditValue = null;
-            txtOfferValue.Enabled = false;
-            txtOfferValue.EditValue = null;
+            DisableControls();
 
             if (cmbOfferType.EditValue.Equals(1) ||
                 cmbOfferType.EditValue.Equals(2) ||
@@ -140,26 +140,38 @@ namespace NSRetail
             {
                 txtOfferValue.Enabled = true;
             }
-            else if (cmbOfferType.EditValue.Equals(1004))
+            else
             {
-                layoutControlItem14.Text = "Bill Value";
-                txtOfferValue.Enabled = true;
                 cmbFreeItemCode.Enabled = true;
-                txtNumberOfItems.Enabled = false;
+                
+                if (cmbOfferType.EditValue.Equals(1004))
+                {
+                    layoutControlItem14.Text = "Bill Value";
+                    txtOfferValue.Enabled = true;
+                    txtFreeItemPrice.Enabled = true;
+                }
+                else if (cmbOfferType.EditValue.Equals(1005))
+                {
+                    layoutControlItem14.Text = "Bill Value of sub items";
+                    txtOfferValue.Enabled = true;                    
+                }
+                else if (cmbOfferType.EditValue.Equals(1006))
+                {
+                    txtNumberOfItems.Enabled = true;
+                }
             }
-            else if (cmbOfferType.EditValue.Equals(1005))
-            {
-                layoutControlItem14.Text = "Bill Value of sub items";
-                txtOfferValue.Enabled = true;
-                cmbFreeItemCode.Enabled = true;
-                txtNumberOfItems.Enabled = false;
-            }
-            else if (cmbOfferType.EditValue.Equals(1006))
-            {
-                txtOfferValue.Enabled = false;
-                cmbFreeItemCode.Enabled = true;
-                txtNumberOfItems.Enabled = true;
-            }
+        }
+
+        private void DisableControls()
+        {
+            cmbFreeItemCode.Enabled = false;
+            cmbFreeItemCode.EditValue = null;
+            txtNumberOfItems.Enabled = false;
+            txtNumberOfItems.EditValue = null;
+            txtOfferValue.Enabled = false;
+            txtOfferValue.EditValue = null;
+            txtFreeItemPrice.Enabled = false;
+            txtFreeItemPrice.EditValue = null;
         }
     }
 }

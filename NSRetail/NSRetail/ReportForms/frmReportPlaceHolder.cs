@@ -390,7 +390,7 @@ namespace NSRetail.ReportForms
 
                 DXMenuItem menuItem = new DXMenuItem(item.Key);
                 menuItem.Click += On_Click;
-                menuItem.Tag = item;
+                menuItem.Tag = item.Key;
                 e.Menu.Items.Add(menuItem);
             }
         }

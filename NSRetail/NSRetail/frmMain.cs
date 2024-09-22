@@ -210,8 +210,9 @@ namespace NSRetail
         public void bbiRefreshData_ItemClick(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmProgress), true, true);
-            Utility.FillBaseLine();
+            Utility.FillBaseLine();            
             RefreshBaseLineData?.Invoke(null, null);
+            AccessUtility.SetStatusByAccess(rpOperations, rpReports, rpOffers, rpUserAccess, rpAdmin, rpItemExtras);
             SplashScreenManager.CloseForm();
         }
 
