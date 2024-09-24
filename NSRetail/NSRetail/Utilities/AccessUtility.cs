@@ -51,9 +51,9 @@ namespace NSRetail.Utilities
             }
         }
 
-        internal static void SetStatusByAccess(params RibbonPage[] pages)
+        internal static void SetStatusByAccess(RibbonControl ribbonControl)
         {
-            foreach (RibbonPage page in pages)
+            foreach (RibbonPage page in ribbonControl.Pages)
             {
                 page.Visible = HasAccess(page.Tag?.ToString());
 

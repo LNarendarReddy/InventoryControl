@@ -212,7 +212,8 @@ namespace NSRetail
             SplashScreenManager.ShowForm(typeof(frmProgress), true, true);
             Utility.FillBaseLine();            
             RefreshBaseLineData?.Invoke(null, null);
-            AccessUtility.SetStatusByAccess(rpOperations, rpReports, rpOffers, rpUserAccess, rpAdmin, rpItemExtras);
+            //AccessUtility.SetStatusByAccess(rpOperations, rpReports, rpOffers, rpUserAccess, rpAdmin, rpItemExtras);
+            AccessUtility.SetStatusByAccess(ribbonControl1);
             SplashScreenManager.CloseForm();
         }
 
@@ -276,7 +277,8 @@ namespace NSRetail
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            AccessUtility.SetStatusByAccess(rpOperations, rpReports, rpOffers, rpUserAccess, rpAdmin, rpItemExtras);
+            //AccessUtility.SetStatusByAccess(rpOperations, rpReports, rpOffers, rpUserAccess, rpAdmin, rpItemExtras);
+            AccessUtility.SetStatusByAccess(ribbonControl1);
             FillFinYears();
         }
 

@@ -631,7 +631,7 @@
             this.bbiStockReports.Id = 53;
             this.bbiStockReports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiStockReports.ImageOptions.SvgImage")));
             this.bbiStockReports.Name = "bbiStockReports";
-            this.bbiStockReports.Tag = "F48BA92E-3B7C-4744-901C-B767DB04E2AF";
+            this.bbiStockReports.Tag = "ECF39692-2069-49EE-B629-5180248B7A94";
             this.bbiStockReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiStockReports_ItemClick);
             // 
             // bbiWarehouseReports

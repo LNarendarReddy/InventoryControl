@@ -1880,17 +1880,59 @@
   <data name="rpOperations.Text" xml:space="preserve">
     <value>Operations</value>
   </data>
+  <data name="ribbonPageGroup20.Text" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="ribbonPageGroup19.Text" xml:space="preserve">
+    <value>Warehouse Reports</value>
+  </data>
   <data name="rpReports.Text" xml:space="preserve">
     <value>Reports</value>
+  </data>
+  <data name="ribbonPageGroup8.Text" xml:space="preserve">
+    <value>Offers</value>
+  </data>
+  <data name="ribbonPageGroup7.Text" xml:space="preserve">
+    <value>Deals</value>
   </data>
   <data name="rpOffers.Text" xml:space="preserve">
     <value>Offer &amp; Deals</value>
   </data>
+  <data name="ribbonPageGroup1.Text" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="ribbonPageGroup4.Text" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="ribbonPageGroup11.Text" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="ribbonPageGroup12.Text" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="ribbonPageGroup6.Text" xml:space="preserve">
+    <value>Sync</value>
+  </data>
+  <data name="ribbonPageGroup17.Text" xml:space="preserve">
+    <value>Database Cache</value>
+  </data>
   <data name="rpAdmin.Text" xml:space="preserve">
     <value>Admin</value>
   </data>
+  <data name="ribbonPageGroup13.Text" xml:space="preserve">
+    <value>User</value>
+  </data>
   <data name="rpUserAccess.Text" xml:space="preserve">
     <value>User Access</value>
+  </data>
+  <data name="ribbonPageGroup14.Text" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="ribbonPageGroup10.Text" xml:space="preserve">
+    <value>Classification</value>
+  </data>
+  <data name="ribbonPageGroup16.Text" xml:space="preserve">
+    <value>Brand</value>
   </data>
   <data name="rpItemExtras.Text" xml:space="preserve">
     <value>Item Extras</value>
@@ -1944,48 +1986,6 @@
   </data>
   <data name="&gt;&gt;ribbonControl1.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="ribbonPageGroup20.Text" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="ribbonPageGroup19.Text" xml:space="preserve">
-    <value>Warehouse Reports</value>
-  </data>
-  <data name="ribbonPageGroup8.Text" xml:space="preserve">
-    <value>Offers</value>
-  </data>
-  <data name="ribbonPageGroup7.Text" xml:space="preserve">
-    <value>Deals</value>
-  </data>
-  <data name="ribbonPageGroup1.Text" xml:space="preserve">
-    <value>Branch</value>
-  </data>
-  <data name="ribbonPageGroup4.Text" xml:space="preserve">
-    <value>Profile</value>
-  </data>
-  <data name="ribbonPageGroup11.Text" xml:space="preserve">
-    <value>Supplier</value>
-  </data>
-  <data name="ribbonPageGroup12.Text" xml:space="preserve">
-    <value>Other</value>
-  </data>
-  <data name="ribbonPageGroup6.Text" xml:space="preserve">
-    <value>Sync</value>
-  </data>
-  <data name="ribbonPageGroup17.Text" xml:space="preserve">
-    <value>Database Cache</value>
-  </data>
-  <data name="ribbonPageGroup13.Text" xml:space="preserve">
-    <value>User</value>
-  </data>
-  <data name="ribbonPageGroup14.Text" xml:space="preserve">
-    <value>Category</value>
-  </data>
-  <data name="ribbonPageGroup10.Text" xml:space="preserve">
-    <value>Classification</value>
-  </data>
-  <data name="ribbonPageGroup16.Text" xml:space="preserve">
-    <value>Brand</value>
   </data>
   <data name="ribbonPage2.Text" xml:space="preserve">
     <value>ribbonPage2</value>
