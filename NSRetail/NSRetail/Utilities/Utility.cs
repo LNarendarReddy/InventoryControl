@@ -30,6 +30,8 @@ namespace NSRetail
         private static DataTable dtBranchListIncludingDeleted;
         private static DataTable dtCatgeory;
         private static DataTable dtSubCatgeory;
+        private static DataTable dtBrand;
+        private static DataTable dtManufacturer;
 
         private static List<GSTInfo> gstInfoList;
         public static DataTable dtConnectionInfo;
@@ -52,8 +54,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "2.6.4";
-        public static string VersionDate = "(18-09-2024)";
+        public static string AppVersion = "2.6.6";
+        public static string VersionDate = "(25-09-2024)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -197,6 +199,20 @@ namespace NSRetail
         public static DataTable GetCategoryList()
         {
             return dtCatgeory = dtCatgeory ?? new MasterRepository().GetCategory();
+        }
+
+        public static DataTable GetBrand(bool refresh = false)
+        {
+            if (refresh)
+                dtBrand = null;
+            return dtBrand = dtBrand ?? new MasterRepository().GetBrand();
+        }
+
+        public static DataTable GetManufacturer(bool refresh = false)
+        {
+            if (refresh)
+                dtManufacturer = null;
+            return dtManufacturer = dtManufacturer ?? new MasterRepository().GetManufacturer();
         }
 
         public static IEnumerable<GSTInfo> GetGSTInfoList()

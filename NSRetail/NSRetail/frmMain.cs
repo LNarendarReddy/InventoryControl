@@ -580,5 +580,23 @@ namespace NSRetail
         {
             new frmRoleList() { MdiParent= this }.Show();
         }
+
+        private void btnBrand_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmBrand obj = new frmBrand();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
+        }
+
+        private void btnManufacturer_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmManufacturer obj = new frmManufacturer();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
+        }
     }
 }

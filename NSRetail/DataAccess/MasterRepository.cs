@@ -1,6 +1,7 @@
 ﻿using Entity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -178,6 +179,7 @@ namespace DataAccess
             }
             return ObjCategory;
         }
+
         public SubCategory SaveSubCategory(SubCategory ObjSubCategory)
         {
             int SubCategoryID = 0;
@@ -881,6 +883,129 @@ namespace DataAccess
                     throw ex;
                 else
                     throw new Exception("Error While performing action");
+            }
+        }
+
+
+        public DataTable GetBrand()
+        {
+            return new ReportRepository().GetReportData("USP_R_BRAND");
+        }
+
+        public object SaveBrand(object BrandID, string BrandName, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_BRAND]";
+                    cmd.Parameters.AddWithValue("@BRANDID", BrandID);
+                    cmd.Parameters.AddWithValue("@BRANDNAME", BrandName);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (int.TryParse(str, out int CategoryID))
+                        return objReturn;
+                    else
+                        throw new Exception(str);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("UC_TBLBRAND_BRANDNAME"))
+                    throw new Exception("Brand Already Exists!!");
+                else
+                    throw new Exception("Error While Saving Brand");
+            }
+        }
+
+        public void DeleteBrand(object BrandID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_BRAND]";
+                    cmd.Parameters.AddWithValue("@BRANDID", BrandID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out int id))
+                        throw new Exception(str);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("Few items are mapped with selected brand"))
+                    throw ex;
+                else
+                    throw new Exception("Error while deleteing brand", ex);
+            }
+        }
+
+        public DataTable GetManufacturer()
+        {
+            return new ReportRepository().GetReportData("USP_R_MANUFACTURER");
+        }
+
+        public object SaveManufacturer(object MANUFACTURERID, string MANUFACTURERNAME, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_MANUFACTURER]";
+                    cmd.Parameters.AddWithValue("@MANUFACTURERID", MANUFACTURERID);
+                    cmd.Parameters.AddWithValue("@MANUFACTURERNAME", MANUFACTURERNAME);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (int.TryParse(str, out int CategoryID))
+                        return objReturn;
+                    else
+                        throw new Exception(str);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("UC_TBLMANUFACTURER_MANUFACTURERNAME"))
+                    throw new Exception("Manufacturer Already Exists!!");
+                else
+                    throw new Exception("Error While Saving manufacturer");
+            }
+        }
+
+        public void DeleteManufacturer(object MANUFACTURERID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_MANUFACTURER]";
+                    cmd.Parameters.AddWithValue("@MANUFACTURERID", MANUFACTURERID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out int id))
+                        throw new Exception(str);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("Few items are mapped with selected"))
+                    throw ex;
+                else
+                    throw new Exception("Error While Deleteing manufacturer", ex);
             }
         }
     }

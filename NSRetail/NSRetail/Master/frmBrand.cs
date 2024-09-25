@@ -1,0 +1,104 @@
+﻿using DataAccess;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
+using ErrorManagement;
+using NSRetail.Utilities;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace NSRetail.Master
+{
+    public partial class frmBrand : DevExpress.XtraEditors.XtraForm
+    {
+        MasterRepository ObjMasterRep = new MasterRepository();
+
+        public frmBrand()
+        {
+            InitializeComponent();
+        }
+
+        private void frmBrand_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                gcBrand.DataSource = ObjMasterRep.GetBrand();
+
+                //string accessIdentifier = "D81C10D9-FCD1-4E51-8035-20E2150D78A8";
+
+                //gvBrand.Tag = $"{accessIdentifier}::Create";
+                //AccessUtility.SetStatusByAccess(gvBrand);
+
+                //gvBrand.Tag = $"{accessIdentifier}::Update";
+                //AccessUtility.SetStatusByAccess(gvBrand);
+
+                //AccessUtility.SetStatusByAccess(gcDelete);
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+
+        private void gvBrand_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                view.SetRowCellValue(e.RowHandle, view.Columns["BRANDID"], -1);
+            }
+            catch (Exception ex) { }
+        }
+
+        private void gvBrand_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                DataRow row = (e.Row as DataRowView).Row;
+                object rtn = ObjMasterRep.SaveBrand(Convert.ToInt32(row["BRANDID"]), Convert.ToString(row["BRANDNAME"]), Utility.UserID);
+                row["BRANDID"] = rtn;
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+
+        private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+                var dlgResult = XtraMessageBox.Show("Are you sure want to delete?", "Confirmation!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (Convert.ToString(dlgResult) == "OK" && gvBrand.FocusedRowHandle >= 0)
+                {
+                    ObjMasterRep.DeleteBrand(gvBrand.GetFocusedRowCellValue("BRANDID"), Utility.UserID);
+                    gvBrand.DeleteRow(gvBrand.FocusedRowHandle);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnViewReport_Click(object sender, EventArgs e)
+        {
+            gcBrand.ShowRibbonPrintPreview();
+        }
+    }
+}

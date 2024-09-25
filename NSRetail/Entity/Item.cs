@@ -52,6 +52,10 @@ namespace Entity
 
         public object SubClassificationID { get; set; }
 
+        public object BrandID { get; set; }
+
+        public object ManufacturerID { get; set; }
+
     }
 
     public class ItemNewCode : EntityBase

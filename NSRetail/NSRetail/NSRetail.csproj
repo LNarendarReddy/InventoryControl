@@ -158,11 +158,23 @@
     <Compile Include="Item\frmMRP.Designer.cs">
       <DependentUpon>frmMRP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\frmBrand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmBrand.Designer.cs">
+      <DependentUpon>frmBrand.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\frmClearHDDSNo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Master\frmClearHDDSNo.Designer.cs">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmManufacturer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmManufacturer.Designer.cs">
+      <DependentUpon>frmManufacturer.cs</DependentUpon>
     </Compile>
     <Compile Include="Master\User\frmAccessList.cs">
       <SubType>Form</SubType>
@@ -1077,8 +1089,14 @@
     <EmbeddedResource Include="Item\frmMRP.resx">
       <DependentUpon>frmMRP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmBrand.resx">
+      <DependentUpon>frmBrand.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Master\frmClearHDDSNo.resx">
       <DependentUpon>frmClearHDDSNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmManufacturer.resx">
+      <DependentUpon>frmManufacturer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\User\frmAccessList.resx">
       <DependentUpon>frmAccessList.cs</DependentUpon>

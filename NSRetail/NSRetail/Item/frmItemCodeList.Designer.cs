@@ -80,6 +80,8 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemList)).BeginInit();
@@ -262,7 +264,9 @@
             this.gridColumn14,
             this.gridColumn15,
             this.gridColumn16,
-            this.gridColumn17});
+            this.gridColumn17,
+            this.gridColumn18,
+            this.gridColumn19});
             this.gvItemList.DetailHeight = 404;
             this.gvItemList.GridControl = this.gcItemList;
             this.gvItemList.Name = "gvItemList";
@@ -342,8 +346,6 @@
             this.gridColumn12.MinWidth = 23;
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 4;
             this.gridColumn12.Width = 87;
             // 
             // gridColumn13
@@ -353,7 +355,7 @@
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 5;
+            this.gridColumn13.VisibleIndex = 7;
             this.gridColumn13.Width = 106;
             // 
             // gridColumn4
@@ -373,7 +375,7 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 8;
+            this.gridColumn8.VisibleIndex = 10;
             this.gridColumn8.Width = 123;
             // 
             // gridColumn9
@@ -384,7 +386,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 9;
+            this.gridColumn9.VisibleIndex = 11;
             this.gridColumn9.Width = 103;
             // 
             // gridColumn10
@@ -417,7 +419,7 @@
             this.gridColumn15.FieldName = "HSNCODE";
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 10;
+            this.gridColumn15.VisibleIndex = 12;
             // 
             // gridColumn16
             // 
@@ -426,8 +428,8 @@
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.OptionsColumn.AllowEdit = false;
             this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 6;
-            this.gridColumn16.Width = 108;
+            this.gridColumn16.VisibleIndex = 5;
+            this.gridColumn16.Width = 100;
             // 
             // gridColumn17
             // 
@@ -436,7 +438,7 @@
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.OptionsColumn.AllowEdit = false;
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 7;
+            this.gridColumn17.VisibleIndex = 9;
             // 
             // Root
             // 
@@ -584,8 +586,8 @@
             // 
             this.bbiEdit.Caption = "Edit";
             this.bbiEdit.Id = 0;
-            this.bbiEdit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.bbiEdit.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.bbiEdit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiEdit.ImageOptions.Image")));
+            this.bbiEdit.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiEdit.ImageOptions.LargeImage")));
             this.bbiEdit.Name = "bbiEdit";
             this.bbiEdit.Tag = "5081738C-2C7B-40E5-8ECB-BB2CC5FDFAF7::Create";
             this.bbiEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
@@ -594,8 +596,8 @@
             // 
             this.bbiVisualize.Caption = "Visualize";
             this.bbiVisualize.Id = 1;
-            this.bbiVisualize.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.bbiVisualize.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
+            this.bbiVisualize.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiVisualize.ImageOptions.Image")));
+            this.bbiVisualize.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiVisualize.ImageOptions.LargeImage")));
             this.bbiVisualize.Name = "bbiVisualize";
             this.bbiVisualize.Tag = "2F455429-6A62-4CB0-BBC5-7AEEA536170A";
             this.bbiVisualize.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
@@ -604,8 +606,8 @@
             // 
             this.bbiMRP.Caption = "View MRP List";
             this.bbiMRP.Id = 2;
-            this.bbiMRP.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.bbiMRP.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.bbiMRP.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiMRP.ImageOptions.Image")));
+            this.bbiMRP.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiMRP.ImageOptions.LargeImage")));
             this.bbiMRP.Name = "bbiMRP";
             this.bbiMRP.Tag = "A9B75D0E-A347-4BDC-B064-A7417E96E264";
             this.bbiMRP.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
@@ -699,6 +701,18 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 685);
             // 
+            // gridColumn18
+            // 
+            this.gridColumn18.Caption = "Brand";
+            this.gridColumn18.FieldName = "BRANDNAME";
+            this.gridColumn18.Name = "gridColumn18";
+            // 
+            // gridColumn19
+            // 
+            this.gridColumn19.Caption = "Manufacturer";
+            this.gridColumn19.FieldName = "MANUFACTURERNAME";
+            this.gridColumn19.Name = "gridColumn19";
+            // 
             // frmItemCodeList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -789,5 +803,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
     }
 }

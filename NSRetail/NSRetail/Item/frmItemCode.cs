@@ -101,6 +101,8 @@ namespace NSRetail
                 itemObj.FreeItemCodeID = sluFreeItem.EditValue;
                 itemObj.ClassificationID = cmbClassification.EditValue;
                 itemObj.SubClassificationID = cmbSubClassification.EditValue;
+                itemObj.BrandID = cmbBrand.EditValue;
+                itemObj.ManufacturerID = cmbManufacturer.EditValue;
 
                 new ItemCodeRepository().SaveItemCode(itemObj);
 
@@ -243,6 +245,14 @@ namespace NSRetail
                 gluCategory.EditValue = dvCategory[0]["CATEGORYID"];
             }
 
+            cmbBrand.Properties.DataSource = Utility.GetBrand();
+            cmbBrand.Properties.DisplayMember = "BRANDNAME";
+            cmbBrand.Properties.ValueMember = "BRANDID";
+
+            cmbManufacturer.Properties.DataSource = Utility.GetManufacturer();
+            cmbManufacturer.Properties.DisplayMember = "MANUFACTURERNAME";
+            cmbManufacturer.Properties.ValueMember = "MANUFACTURERID";
+
             sluParentItem.Properties.DataSource = Utility.GetParentItemList();
             sluParentItem.Properties.DisplayMember = "ITEMNAME";
             sluParentItem.Properties.ValueMember = "ITEMID";
@@ -341,6 +351,8 @@ namespace NSRetail
             sluFreeItem.EditValue = null;
             cmbClassification.EditValue = null;
             cmbSubClassification.EditValue = null;
+            cmbBrand.EditValue = null;
+            cmbManufacturer.EditValue = null;
             isEditMode = false;
         }
 
@@ -396,6 +408,8 @@ namespace NSRetail
             sluFreeItem.EditValue = dtItemDetails.Rows[0]["FREEITEMCODEID"];
             cmbClassification.EditValue = dtItemDetails.Rows[0]["CLASSIFICATIONID"];
             cmbSubClassification.EditValue = dtItemDetails.Rows[0]["SUBCLASSIFICATIONID"];
+            cmbBrand.EditValue = dtItemDetails.Rows[0]["BRANDID"];
+            cmbManufacturer.EditValue = dtItemDetails.Rows[0]["MANUFACTURERID"];
 
             DataTable dtItemCodePrices = dsItemDetails.Tables["ITEMCODEPRICES"];
             DataRow selectedPrice = dtItemCodePrices.Rows[0];

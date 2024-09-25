@@ -147,19 +147,19 @@
             this.layoutControl1.Controls.Add(this.txtSKUCode);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1270, 446, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1154, 707);
+            this.layoutControl1.Size = new System.Drawing.Size(1319, 801);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // btnAddNewPrice
             // 
-            this.btnAddNewPrice.Location = new System.Drawing.Point(1031, 198);
+            this.btnAddNewPrice.Location = new System.Drawing.Point(1179, 223);
             this.btnAddNewPrice.Name = "btnAddNewPrice";
-            this.btnAddNewPrice.Size = new System.Drawing.Size(116, 22);
+            this.btnAddNewPrice.Size = new System.Drawing.Size(133, 27);
             this.btnAddNewPrice.StyleController = this.layoutControl1;
             this.btnAddNewPrice.TabIndex = 12;
             this.btnAddNewPrice.Tag = "9B3DFBCD-EE27-40D8-B899-E3B1C4E22153::Create";
@@ -168,13 +168,13 @@
             // 
             // gcBranchPrices
             // 
-            this.gcBranchPrices.Location = new System.Drawing.Point(739, 241);
+            this.gcBranchPrices.Location = new System.Drawing.Point(845, 273);
             this.gcBranchPrices.MainView = this.gvBranchPrices;
             this.gcBranchPrices.Name = "gcBranchPrices";
             this.gcBranchPrices.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDeleteBranchPrice,
             this.txtPrice});
-            this.gcBranchPrices.Size = new System.Drawing.Size(408, 459);
+            this.gcBranchPrices.Size = new System.Drawing.Size(467, 521);
             this.gcBranchPrices.TabIndex = 11;
             this.gcBranchPrices.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvBranchPrices});
@@ -187,6 +187,7 @@
             this.gridColumn36,
             this.gcsaleprice,
             this.gcDelete});
+            this.gvBranchPrices.DetailHeight = 397;
             this.gvBranchPrices.GridControl = this.gcBranchPrices;
             this.gvBranchPrices.Name = "gvBranchPrices";
             this.gvBranchPrices.OptionsView.ShowGroupPanel = false;
@@ -198,23 +199,28 @@
             // 
             this.gridColumn34.Caption = "ITEMPRICEID";
             this.gridColumn34.FieldName = "ITEMPRICEID";
+            this.gridColumn34.MinWidth = 23;
             this.gridColumn34.Name = "gridColumn34";
+            this.gridColumn34.Width = 86;
             // 
             // gridColumn35
             // 
             this.gridColumn35.Caption = "PARENTITEMPRICEID";
             this.gridColumn35.FieldName = "PARENTITEMPRICEID";
+            this.gridColumn35.MinWidth = 23;
             this.gridColumn35.Name = "gridColumn35";
+            this.gridColumn35.Width = 86;
             // 
             // gridColumn36
             // 
             this.gridColumn36.Caption = "Branch";
             this.gridColumn36.FieldName = "BRANCHNAME";
+            this.gridColumn36.MinWidth = 23;
             this.gridColumn36.Name = "gridColumn36";
             this.gridColumn36.OptionsColumn.AllowEdit = false;
             this.gridColumn36.Visible = true;
             this.gridColumn36.VisibleIndex = 0;
-            this.gridColumn36.Width = 192;
+            this.gridColumn36.Width = 219;
             // 
             // gcsaleprice
             // 
@@ -223,10 +229,11 @@
             this.gcsaleprice.Caption = "Sale Price";
             this.gcsaleprice.ColumnEdit = this.txtPrice;
             this.gcsaleprice.FieldName = "SALEPRICE";
+            this.gcsaleprice.MinWidth = 23;
             this.gcsaleprice.Name = "gcsaleprice";
             this.gcsaleprice.Visible = true;
             this.gcsaleprice.VisibleIndex = 1;
-            this.gcsaleprice.Width = 123;
+            this.gcsaleprice.Width = 141;
             // 
             // txtPrice
             // 
@@ -246,11 +253,12 @@
             this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gcDelete.Caption = "Delete";
             this.gcDelete.ColumnEdit = this.btnDeleteBranchPrice;
+            this.gcDelete.MinWidth = 23;
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Tag = "9B3DFBCD-EE27-40D8-B899-E3B1C4E22153::Delete";
             this.gcDelete.Visible = true;
             this.gcDelete.VisibleIndex = 2;
-            this.gcDelete.Width = 68;
+            this.gcDelete.Width = 78;
             // 
             // btnDeleteBranchPrice
             // 
@@ -264,10 +272,10 @@
             // 
             // gcOffer
             // 
-            this.gcOffer.Location = new System.Drawing.Point(7, 215);
+            this.gcOffer.Location = new System.Drawing.Point(7, 242);
             this.gcOffer.MainView = this.gvOffer;
             this.gcOffer.Name = "gcOffer";
-            this.gcOffer.Size = new System.Drawing.Size(728, 94);
+            this.gcOffer.Size = new System.Drawing.Size(834, 107);
             this.gcOffer.TabIndex = 10;
             this.gcOffer.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvOffer});
@@ -282,6 +290,7 @@
             this.gridColumn6,
             this.gridColumn7,
             this.gridColumn8});
+            this.gvOffer.DetailHeight = 397;
             this.gvOffer.GridControl = this.gcOffer;
             this.gvOffer.Name = "gvOffer";
             this.gvOffer.OptionsBehavior.Editable = false;
@@ -291,62 +300,76 @@
             // 
             this.gridColumn2.Caption = "OFFERID";
             this.gridColumn2.FieldName = "OFFERID";
+            this.gridColumn2.MinWidth = 23;
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Width = 86;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Name";
             this.gridColumn3.FieldName = "OFFERNAME";
+            this.gridColumn3.MinWidth = 23;
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Width = 86;
             // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Code";
             this.gridColumn4.FieldName = "OFFERCODE";
+            this.gridColumn4.MinWidth = 23;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 0;
+            this.gridColumn4.Width = 86;
             // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "Start Date";
             this.gridColumn5.FieldName = "STARTDATE";
+            this.gridColumn5.MinWidth = 23;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 1;
+            this.gridColumn5.Width = 86;
             // 
             // gridColumn6
             // 
             this.gridColumn6.Caption = "End Date";
             this.gridColumn6.FieldName = "ENDDATE";
+            this.gridColumn6.MinWidth = 23;
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 2;
+            this.gridColumn6.Width = 86;
             // 
             // gridColumn7
             // 
             this.gridColumn7.Caption = "Value";
             this.gridColumn7.FieldName = "OFFERVALUE";
+            this.gridColumn7.MinWidth = 23;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 3;
+            this.gridColumn7.Width = 86;
             // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "Type";
             this.gridColumn8.FieldName = "OFFERTYPE";
+            this.gridColumn8.MinWidth = 23;
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 4;
+            this.gridColumn8.Width = 86;
             // 
             // gcStockSummary
             // 
-            this.gcStockSummary.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.gcStockSummary.Location = new System.Drawing.Point(7, 330);
+            this.gcStockSummary.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
+            this.gcStockSummary.Location = new System.Drawing.Point(7, 372);
             this.gcStockSummary.MainView = this.gvStockSummary;
-            this.gcStockSummary.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.gcStockSummary.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.gcStockSummary.Name = "gcStockSummary";
-            this.gcStockSummary.Size = new System.Drawing.Size(728, 370);
+            this.gcStockSummary.Size = new System.Drawing.Size(834, 422);
             this.gcStockSummary.TabIndex = 9;
             this.gcStockSummary.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvStockSummary});
@@ -363,7 +386,7 @@
             this.gridColumn22,
             this.gridColumn23,
             this.gridColumn26});
-            this.gvStockSummary.DetailHeight = 404;
+            this.gvStockSummary.DetailHeight = 458;
             this.gvStockSummary.GridControl = this.gcStockSummary;
             this.gvStockSummary.Name = "gvStockSummary";
             this.gvStockSummary.OptionsBehavior.Editable = false;
@@ -373,61 +396,61 @@
             // 
             this.gridColumn21.Caption = "BRANCHID";
             this.gridColumn21.FieldName = "BRANCHID";
-            this.gridColumn21.MinWidth = 23;
+            this.gridColumn21.MinWidth = 26;
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.OptionsColumn.AllowEdit = false;
-            this.gridColumn21.Width = 87;
+            this.gridColumn21.Width = 99;
             // 
             // gridColumn29
             // 
             this.gridColumn29.Caption = "EAN Code";
             this.gridColumn29.FieldName = "ITEMCODE";
-            this.gridColumn29.MinWidth = 23;
+            this.gridColumn29.MinWidth = 26;
             this.gridColumn29.Name = "gridColumn29";
             this.gridColumn29.Visible = true;
             this.gridColumn29.VisibleIndex = 1;
-            this.gridColumn29.Width = 173;
+            this.gridColumn29.Width = 198;
             // 
             // gridColumn22
             // 
             this.gridColumn22.Caption = "Branch Name";
             this.gridColumn22.FieldName = "BRANCHNAME";
-            this.gridColumn22.MinWidth = 23;
+            this.gridColumn22.MinWidth = 26;
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.OptionsColumn.AllowEdit = false;
             this.gridColumn22.Visible = true;
             this.gridColumn22.VisibleIndex = 0;
-            this.gridColumn22.Width = 173;
+            this.gridColumn22.Width = 198;
             // 
             // gridColumn23
             // 
             this.gridColumn23.Caption = "Qnty";
             this.gridColumn23.FieldName = "QUANTITY";
-            this.gridColumn23.MinWidth = 23;
+            this.gridColumn23.MinWidth = 26;
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.OptionsColumn.AllowEdit = false;
             this.gridColumn23.Visible = true;
             this.gridColumn23.VisibleIndex = 2;
-            this.gridColumn23.Width = 187;
+            this.gridColumn23.Width = 214;
             // 
             // gridColumn26
             // 
             this.gridColumn26.Caption = "weight (in KGs)";
             this.gridColumn26.FieldName = "WEIGHTINKGS";
-            this.gridColumn26.MinWidth = 23;
+            this.gridColumn26.MinWidth = 26;
             this.gridColumn26.Name = "gridColumn26";
             this.gridColumn26.Visible = true;
             this.gridColumn26.VisibleIndex = 3;
-            this.gridColumn26.Width = 187;
+            this.gridColumn26.Width = 214;
             // 
             // gcItemPriceList
             // 
-            this.gcItemPriceList.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.gcItemPriceList.Location = new System.Drawing.Point(4, 53);
+            this.gcItemPriceList.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
+            this.gcItemPriceList.Location = new System.Drawing.Point(4, 59);
             this.gcItemPriceList.MainView = this.gvItemPrice;
-            this.gcItemPriceList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.gcItemPriceList.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.gcItemPriceList.Name = "gcItemPriceList";
-            this.gcItemPriceList.Size = new System.Drawing.Size(1146, 138);
+            this.gcItemPriceList.Size = new System.Drawing.Size(1311, 157);
             this.gcItemPriceList.TabIndex = 8;
             this.gcItemPriceList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvItemPrice});
@@ -460,7 +483,7 @@
             this.gridColumn31,
             this.gridColumn32,
             this.gridColumn33});
-            this.gvItemPrice.DetailHeight = 404;
+            this.gvItemPrice.DetailHeight = 458;
             this.gvItemPrice.GridControl = this.gcItemPriceList;
             this.gvItemPrice.Name = "gvItemPrice";
             this.gvItemPrice.OptionsBehavior.Editable = false;
@@ -471,211 +494,227 @@
             // 
             this.gridColumn9.Caption = "ITEMPRICEID";
             this.gridColumn9.FieldName = "ITEMPRICEID";
-            this.gridColumn9.MinWidth = 23;
+            this.gridColumn9.MinWidth = 26;
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
-            this.gridColumn9.Width = 87;
+            this.gridColumn9.Width = 99;
             // 
             // gridColumn10
             // 
             this.gridColumn10.Caption = "ITEMCODEID";
             this.gridColumn10.FieldName = "ITEMCODEID";
-            this.gridColumn10.MinWidth = 23;
+            this.gridColumn10.MinWidth = 26;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
-            this.gridColumn10.Width = 87;
+            this.gridColumn10.Width = 99;
             // 
             // gridColumn11
             // 
             this.gridColumn11.Caption = "EAN Code";
             this.gridColumn11.FieldName = "ITEMCODE";
-            this.gridColumn11.MinWidth = 23;
+            this.gridColumn11.MinWidth = 26;
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 0;
-            this.gridColumn11.Width = 87;
+            this.gridColumn11.Width = 99;
             // 
             // gridColumn12
             // 
             this.gridColumn12.Caption = "Cost Price With Tax";
             this.gridColumn12.FieldName = "COSTPRICEWT";
-            this.gridColumn12.MinWidth = 23;
+            this.gridColumn12.MinWidth = 26;
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 8;
-            this.gridColumn12.Width = 87;
+            this.gridColumn12.Width = 99;
             // 
             // gridColumn25
             // 
             this.gridColumn25.Caption = "Cost Price w/o Tax";
             this.gridColumn25.FieldName = "COSTPRICEWOT";
-            this.gridColumn25.MinWidth = 23;
+            this.gridColumn25.MinWidth = 26;
             this.gridColumn25.Name = "gridColumn25";
             this.gridColumn25.Visible = true;
             this.gridColumn25.VisibleIndex = 9;
-            this.gridColumn25.Width = 87;
+            this.gridColumn25.Width = 99;
             // 
             // gridColumn13
             // 
             this.gridColumn13.Caption = "Sale Price";
             this.gridColumn13.FieldName = "SALEPRICE";
-            this.gridColumn13.MinWidth = 23;
+            this.gridColumn13.MinWidth = 26;
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 2;
-            this.gridColumn13.Width = 87;
+            this.gridColumn13.Width = 99;
             // 
             // gridColumn14
             // 
             this.gridColumn14.Caption = "MRP";
             this.gridColumn14.FieldName = "MRP";
-            this.gridColumn14.MinWidth = 23;
+            this.gridColumn14.MinWidth = 26;
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 1;
-            this.gridColumn14.Width = 87;
+            this.gridColumn14.Width = 99;
             // 
             // gridColumn15
             // 
             this.gridColumn15.Caption = "GSTID";
             this.gridColumn15.FieldName = "GSTID";
-            this.gridColumn15.MinWidth = 23;
+            this.gridColumn15.MinWidth = 26;
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.OptionsColumn.AllowEdit = false;
-            this.gridColumn15.Width = 87;
+            this.gridColumn15.Width = 99;
             // 
             // gridColumn16
             // 
             this.gridColumn16.Caption = "GST Code";
             this.gridColumn16.FieldName = "GSTCODE";
-            this.gridColumn16.MinWidth = 23;
+            this.gridColumn16.MinWidth = 26;
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.OptionsColumn.AllowEdit = false;
             this.gridColumn16.Visible = true;
             this.gridColumn16.VisibleIndex = 3;
-            this.gridColumn16.Width = 87;
+            this.gridColumn16.Width = 99;
             // 
             // gridColumn17
             // 
             this.gridColumn17.Caption = "Created By";
             this.gridColumn17.FieldName = "CREATEDBY";
-            this.gridColumn17.MinWidth = 23;
+            this.gridColumn17.MinWidth = 26;
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.OptionsColumn.AllowEdit = false;
-            this.gridColumn17.Width = 87;
+            this.gridColumn17.Width = 99;
             // 
             // gridColumn18
             // 
             this.gridColumn18.Caption = "Created Date";
             this.gridColumn18.FieldName = "CREATEDDATE";
-            this.gridColumn18.MinWidth = 23;
+            this.gridColumn18.MinWidth = 26;
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.OptionsColumn.AllowEdit = false;
-            this.gridColumn18.Width = 87;
+            this.gridColumn18.Width = 99;
             // 
             // gridColumn19
             // 
             this.gridColumn19.Caption = "Updated By";
             this.gridColumn19.FieldName = "UPDATEDBY";
-            this.gridColumn19.MinWidth = 23;
+            this.gridColumn19.MinWidth = 26;
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.OptionsColumn.AllowEdit = false;
-            this.gridColumn19.Width = 87;
+            this.gridColumn19.Width = 99;
             // 
             // gridColumn20
             // 
             this.gridColumn20.Caption = "Updated Date";
             this.gridColumn20.FieldName = "UPDATEDATE";
-            this.gridColumn20.MinWidth = 23;
+            this.gridColumn20.MinWidth = 26;
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.OptionsColumn.AllowEdit = false;
-            this.gridColumn20.Width = 87;
+            this.gridColumn20.Width = 99;
             // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "SP Created By";
             this.gridColumn1.FieldName = "IPCREATEDBY";
+            this.gridColumn1.MinWidth = 23;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 4;
+            this.gridColumn1.Width = 86;
             // 
             // gridColumn24
             // 
             this.gridColumn24.Caption = "SP Created Date";
             this.gridColumn24.FieldName = "IPCREATEDDATE";
+            this.gridColumn24.MinWidth = 23;
             this.gridColumn24.Name = "gridColumn24";
             this.gridColumn24.Visible = true;
             this.gridColumn24.VisibleIndex = 5;
+            this.gridColumn24.Width = 86;
             // 
             // gridColumn27
             // 
             this.gridColumn27.Caption = "SP Deleted By";
             this.gridColumn27.FieldName = "IPDELETEDBY";
+            this.gridColumn27.MinWidth = 23;
             this.gridColumn27.Name = "gridColumn27";
             this.gridColumn27.Visible = true;
             this.gridColumn27.VisibleIndex = 6;
+            this.gridColumn27.Width = 86;
             // 
             // gridColumn28
             // 
             this.gridColumn28.Caption = "SP Deleted Date";
             this.gridColumn28.FieldName = "IPDELETEDDATE";
+            this.gridColumn28.MinWidth = 23;
             this.gridColumn28.Name = "gridColumn28";
             this.gridColumn28.Visible = true;
             this.gridColumn28.VisibleIndex = 7;
+            this.gridColumn28.Width = 86;
             // 
             // gridColumn30
             // 
             this.gridColumn30.Caption = "CP Created By";
             this.gridColumn30.FieldName = "ICPCREATEDBY";
+            this.gridColumn30.MinWidth = 23;
             this.gridColumn30.Name = "gridColumn30";
             this.gridColumn30.Visible = true;
             this.gridColumn30.VisibleIndex = 10;
+            this.gridColumn30.Width = 86;
             // 
             // gridColumn31
             // 
             this.gridColumn31.Caption = "CP Created Date";
             this.gridColumn31.FieldName = "ICPCREATEDDATE";
+            this.gridColumn31.MinWidth = 23;
             this.gridColumn31.Name = "gridColumn31";
             this.gridColumn31.Visible = true;
             this.gridColumn31.VisibleIndex = 11;
+            this.gridColumn31.Width = 86;
             // 
             // gridColumn32
             // 
             this.gridColumn32.Caption = "CP Deleted By";
             this.gridColumn32.FieldName = "ICPDELETEDBY";
+            this.gridColumn32.MinWidth = 23;
             this.gridColumn32.Name = "gridColumn32";
             this.gridColumn32.Visible = true;
             this.gridColumn32.VisibleIndex = 12;
+            this.gridColumn32.Width = 86;
             // 
             // gridColumn33
             // 
             this.gridColumn33.Caption = "CP Deleted Date";
             this.gridColumn33.FieldName = "ICPDELETEDDATE";
+            this.gridColumn33.MinWidth = 23;
             this.gridColumn33.Name = "gridColumn33";
             this.gridColumn33.Visible = true;
             this.gridColumn33.VisibleIndex = 13;
+            this.gridColumn33.Width = 86;
             // 
             // txtItemName
             // 
-            this.txtItemName.Location = new System.Drawing.Point(707, 8);
-            this.txtItemName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtItemName.Location = new System.Drawing.Point(809, 9);
+            this.txtItemName.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Properties.ReadOnly = true;
-            this.txtItemName.Size = new System.Drawing.Size(439, 20);
+            this.txtItemName.Size = new System.Drawing.Size(501, 22);
             this.txtItemName.StyleController = this.layoutControl1;
             this.txtItemName.TabIndex = 5;
             // 
             // txtSKUCode
             // 
-            this.txtSKUCode.Location = new System.Drawing.Point(132, 8);
-            this.txtSKUCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtSKUCode.Location = new System.Drawing.Point(152, 9);
+            this.txtSKUCode.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.txtSKUCode.Name = "txtSKUCode";
             this.txtSKUCode.Properties.ReadOnly = true;
-            this.txtSKUCode.Size = new System.Drawing.Size(439, 20);
+            this.txtSKUCode.Size = new System.Drawing.Size(500, 22);
             this.txtSKUCode.StyleController = this.layoutControl1;
             this.txtSKUCode.TabIndex = 4;
             // 
@@ -692,7 +731,7 @@
             this.layoutControlItem5});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(1154, 707);
+            this.Root.Size = new System.Drawing.Size(1319, 801);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -700,20 +739,20 @@
             this.layoutControlItem1.Control = this.txtSKUCode;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem1.Size = new System.Drawing.Size(575, 32);
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(7, 7, 7, 7);
+            this.layoutControlItem1.Size = new System.Drawing.Size(657, 36);
             this.layoutControlItem1.Text = "SKU Code";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(112, 14);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(129, 16);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtItemName;
-            this.layoutControlItem2.Location = new System.Drawing.Point(575, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(657, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(575, 32);
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(7, 7, 7, 7);
+            this.layoutControlItem2.Size = new System.Drawing.Size(658, 36);
             this.layoutControlItem2.Text = "Item Name";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(112, 14);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(129, 16);
             // 
             // layoutControlGroup3
             // 
@@ -724,10 +763,10 @@
             this.layoutControlItem7,
             this.emptySpaceItem1,
             this.layoutControlItem3});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 191);
+            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 216);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
             this.layoutControlGroup3.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup3.Size = new System.Drawing.Size(1150, 512);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(1315, 581);
             this.layoutControlGroup3.Text = "Item Summary";
             this.layoutControlGroup3.TextVisible = false;
             // 
@@ -736,38 +775,38 @@
             this.layoutControlItem6.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.layoutControlItem6.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem6.Control = this.gcStockSummary;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 115);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 130);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(732, 391);
+            this.layoutControlItem6.Size = new System.Drawing.Size(838, 445);
             this.layoutControlItem6.Text = "Item Summary";
             this.layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(112, 14);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(129, 16);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.gcBranchPrices;
-            this.layoutControlItem4.Location = new System.Drawing.Point(732, 26);
+            this.layoutControlItem4.Location = new System.Drawing.Point(838, 31);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(412, 480);
+            this.layoutControlItem4.Size = new System.Drawing.Size(471, 544);
             this.layoutControlItem4.Text = "Branch Prices";
             this.layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(112, 14);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(129, 16);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnAddNewPrice;
-            this.layoutControlItem7.Location = new System.Drawing.Point(1024, 0);
+            this.layoutControlItem7.Location = new System.Drawing.Point(1172, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(120, 26);
+            this.layoutControlItem7.Size = new System.Drawing.Size(137, 31);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(732, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(838, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(292, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(334, 31);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
@@ -776,39 +815,39 @@
             this.layoutControlItem3.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem3.Control = this.gcOffer;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(0, 115);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(116, 115);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(0, 130);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(133, 130);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(732, 115);
+            this.layoutControlItem3.Size = new System.Drawing.Size(838, 130);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.Text = "Offer List";
             this.layoutControlItem3.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(112, 14);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(129, 16);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.layoutControlItem5.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem5.Control = this.gcItemPriceList;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 32);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(0, 159);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(116, 159);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 36);
+            this.layoutControlItem5.MaxSize = new System.Drawing.Size(0, 180);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(133, 180);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(1150, 159);
+            this.layoutControlItem5.Size = new System.Drawing.Size(1315, 180);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.Text = "Item Code/Price List";
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(112, 14);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(129, 16);
             // 
             // frmItemVisualize
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1154, 707);
+            this.ClientSize = new System.Drawing.Size(1319, 801);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.Name = "frmItemVisualize";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

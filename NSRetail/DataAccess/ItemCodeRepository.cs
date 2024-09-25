@@ -132,6 +132,8 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@FreeItemCodeID", itemObj.FreeItemCodeID);
                     cmd.Parameters.AddWithValue("@ClassificationID", itemObj.ClassificationID);
                     cmd.Parameters.AddWithValue("@SubClassificationID", itemObj.SubClassificationID);
+                    cmd.Parameters.AddWithValue("@BrandID", itemObj.BrandID);
+                    cmd.Parameters.AddWithValue("@ManufacturerID", itemObj.ManufacturerID);
                     object objReturn = cmd.ExecuteScalar();
 
                     string str = Convert.ToString(objReturn.ToString().Split(',')[0]);

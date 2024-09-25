@@ -75,10 +75,10 @@
             this.RootLayout.Controls.Add(this.txtCode);
             this.RootLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RootLayout.Location = new System.Drawing.Point(0, 0);
-            this.RootLayout.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.RootLayout.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.RootLayout.Name = "RootLayout";
             this.RootLayout.Root = this.Root;
-            this.RootLayout.Size = new System.Drawing.Size(604, 111);
+            this.RootLayout.Size = new System.Drawing.Size(690, 126);
             this.RootLayout.TabIndex = 0;
             this.RootLayout.Text = "layoutControl1";
             // 
@@ -86,10 +86,10 @@
             // 
             this.btnGenerateSKU.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerateSKU.ImageOptions.Image")));
             this.btnGenerateSKU.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnGenerateSKU.Location = new System.Drawing.Point(158, 58);
-            this.btnGenerateSKU.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnGenerateSKU.Location = new System.Drawing.Point(179, 63);
+            this.btnGenerateSKU.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btnGenerateSKU.Name = "btnGenerateSKU";
-            this.btnGenerateSKU.Size = new System.Drawing.Size(163, 36);
+            this.btnGenerateSKU.Size = new System.Drawing.Size(188, 36);
             this.btnGenerateSKU.StyleController = this.RootLayout;
             this.btnGenerateSKU.TabIndex = 9;
             this.btnGenerateSKU.Text = "Generate SKU Code";
@@ -99,10 +99,10 @@
             // 
             this.btnApply.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnApply.ImageOptions.Image")));
             this.btnApply.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnApply.Location = new System.Drawing.Point(325, 58);
-            this.btnApply.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnApply.Location = new System.Drawing.Point(371, 63);
+            this.btnApply.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(130, 36);
+            this.btnApply.Size = new System.Drawing.Size(150, 36);
             this.btnApply.StyleController = this.RootLayout;
             this.btnApply.TabIndex = 8;
             this.btnApply.Text = "Apply";
@@ -113,21 +113,21 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(459, 58);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnCancel.Location = new System.Drawing.Point(525, 63);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(131, 36);
+            this.btnCancel.Size = new System.Drawing.Size(152, 36);
             this.btnCancel.StyleController = this.RootLayout;
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             // 
             // txtCode
             // 
-            this.txtCode.Location = new System.Drawing.Point(112, 24);
-            this.txtCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtCode.Location = new System.Drawing.Point(134, 25);
+            this.txtCode.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.txtCode.Name = "txtCode";
             this.txtCode.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtCode.Size = new System.Drawing.Size(468, 20);
+            this.txtCode.Size = new System.Drawing.Size(531, 22);
             this.txtCode.StyleController = this.RootLayout;
             this.txtCode.TabIndex = 4;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -148,7 +148,7 @@
             this.emptySpaceItem2,
             this.layoutControlItem6});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(604, 111);
+            this.Root.Size = new System.Drawing.Size(690, 126);
             this.Root.TextVisible = false;
             // 
             // lcCode
@@ -156,56 +156,56 @@
             this.lcCode.Control = this.txtCode;
             this.lcCode.Location = new System.Drawing.Point(0, 0);
             this.lcCode.Name = "lcCode";
-            this.lcCode.Padding = new DevExpress.XtraLayout.Utils.Padding(12, 12, 12, 12);
-            this.lcCode.Size = new System.Drawing.Size(580, 44);
+            this.lcCode.Padding = new DevExpress.XtraLayout.Utils.Padding(14, 14, 14, 14);
+            this.lcCode.Size = new System.Drawing.Size(668, 50);
             this.lcCode.Text = "SKU/ITEM Code";
-            this.lcCode.TextSize = new System.Drawing.Size(74, 14);
+            this.lcCode.TextSize = new System.Drawing.Size(95, 16);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnCancel;
-            this.layoutControlItem4.Location = new System.Drawing.Point(445, 44);
+            this.layoutControlItem4.Location = new System.Drawing.Point(512, 50);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(135, 43);
+            this.layoutControlItem4.Size = new System.Drawing.Size(156, 54);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnApply;
-            this.layoutControlItem5.Location = new System.Drawing.Point(311, 44);
+            this.layoutControlItem5.Location = new System.Drawing.Point(358, 50);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(134, 43);
+            this.layoutControlItem5.Size = new System.Drawing.Size(154, 54);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 44);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 50);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(144, 43);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(166, 54);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.btnGenerateSKU;
-            this.layoutControlItem6.Location = new System.Drawing.Point(144, 44);
+            this.layoutControlItem6.Location = new System.Drawing.Point(166, 50);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(167, 43);
+            this.layoutControlItem6.Size = new System.Drawing.Size(192, 54);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
             // frmAddCode
             // 
             this.AcceptButton = this.btnApply;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(604, 111);
+            this.ClientSize = new System.Drawing.Size(690, 126);
             this.Controls.Add(this.RootLayout);
             this.IconOptions.ShowIcon = false;
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.Name = "frmAddCode";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Code";

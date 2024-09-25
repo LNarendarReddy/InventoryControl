@@ -1666,12 +1666,12 @@
         SDh2MmgxNFYxNHoiIGNsYXNzPSJCbGFjayIgLz4NCiAgICA8L2c+DQogIDwvZz4NCjwvc3ZnPgs=
 </value>
   </data>
-  <data name="bbiChangeFY.Caption" xml:space="preserve">
-    <value>Change Fin. year</value>
-  </data>
   <metadata name="puFinYear.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="bbiChangeFY.Caption" xml:space="preserve">
+    <value>Change Fin. year</value>
+  </data>
   <data name="bbiChangeFY.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
@@ -1823,6 +1823,70 @@
         LjUsMTAuNywxMiw5LjMsOS45eiIgY2xhc3M9IkJsYWNrIiAvPg0KPC9zdmc+Cw==
 </value>
   </data>
+  <data name="btnBrand.Caption" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="barButtonItem1.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
+        NS4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAB1E
+        ZXZFeHByZXNzLlV0aWxzLlN2Zy5TdmdJbWFnZQEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAATBQAAAu+7
+        vzw/eG1sIHZlcnNpb249JzEuMCcgZW5jb2Rpbmc9J1VURi04Jz8+DQo8c3ZnIHg9IjBweCIgeT0iMHB4
+        IiB2aWV3Qm94PSIwIDAgMzIgMzIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3Jn
+        LzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNw
+        YWNlPSJwcmVzZXJ2ZSIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAw
+        IDMyIDMyIj4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5CbHVle2ZpbGw6IzExNzdENzt9Cgku
+        WWVsbG93e2ZpbGw6I0ZGQjExNTt9CgkuUmVke2ZpbGw6I0QxMUMxQzt9CgkuR3JlZW57ZmlsbDojMDM5
+        QzIzO30KCS5CbGFja3tmaWxsOiM3MjcyNzI7fQoJLldoaXRle2ZpbGw6I0ZGRkZGRjt9Cgkuc3Qwe29w
+        YWNpdHk6MC41O30KCS5zdDF7b3BhY2l0eTowLjc1O30KCS5zdDJ7ZGlzcGxheTpub25lO30KCS5zdDN7
+        ZGlzcGxheTppbmxpbmU7ZmlsbDojRkZCMTE1O30KCS5zdDR7ZGlzcGxheTppbmxpbmU7fQoJLnN0NXtk
+        aXNwbGF5OmlubGluZTtvcGFjaXR5OjAuNzU7fQoJLnN0NntkaXNwbGF5OmlubGluZTtvcGFjaXR5OjAu
+        NTt9Cgkuc3Q3e2Rpc3BsYXk6aW5saW5lO2ZpbGw6IzAzOUMyMzt9Cgkuc3Q4e2Rpc3BsYXk6aW5saW5l
+        O2ZpbGw6I0QxMUMxQzt9Cgkuc3Q5e2Rpc3BsYXk6aW5saW5lO2ZpbGw6IzExNzdENzt9Cgkuc3QxMHtk
+        aXNwbGF5OmlubGluZTtmaWxsOiNGRkZGRkY7fQo8L3N0eWxlPg0KICA8ZyBpZD0iT3JkZXJfeDVGX0l0
+        ZW0iPg0KICAgIDxnIGNsYXNzPSJzdDEiPg0KICAgICAgPHBhdGggZD0iTTE0LDIwaC0xYy0wLjYsMC0x
+        LTAuNC0xLTF2LTRjMC0wLjYsMC40LTEsMS0xaDNWOEgydjE0aDEyVjIweiIgY2xhc3M9IlllbGxvdyIg
+        Lz4NCiAgICA8L2c+DQogICAgPGcgY2xhc3M9InN0MCI+DQogICAgICA8cG9seWdvbiBwb2ludHM9IjYs
+        MiAyLDYgMTYuNiw2IDIwLjYsMiAgICIgY2xhc3M9IlllbGxvdyIgLz4NCiAgICA8L2c+DQogICAgPHBv
+        bHlnb24gcG9pbnRzPSIyMiwzLjQgMTgsNy40IDE4LDEyIDIyLDEyICAiIGNsYXNzPSJZZWxsb3ciIC8+
+        DQogICAgPHBhdGggZD0iTTIwLDI4Yy0xLjEsMC0yLDAuOS0yLDJzMC45LDIsMiwyczItMC45LDItMlMy
+        MS4xLDI4LDIwLDI4eiBNMzAsMzBjMCwxLjEtMC45LDItMiwycy0yLTAuOS0yLTJzMC45LTIsMi0yICAg
+        UzMwLDI4LjksMzAsMzB6IE0zMiwyNHYySDE2di04aC0ydi0yaDR2OEgzMnogTTIwLDIydi04aDEwdjhI
+        MjB6IiBjbGFzcz0iQmxhY2siIC8+DQogIDwvZz4NCjwvc3ZnPgs=
+</value>
+  </data>
+  <data name="btnManufacturer.Caption" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="barButtonItem2.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
+        NS4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAB1E
+        ZXZFeHByZXNzLlV0aWxzLlN2Zy5TdmdJbWFnZQEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAD0BAAAAu+7
+        vzw/eG1sIHZlcnNpb249JzEuMCcgZW5jb2Rpbmc9J1VURi04Jz8+DQo8c3ZnIHg9IjBweCIgeT0iMHB4
+        IiB2aWV3Qm94PSIwIDAgMzIgMzIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3Jn
+        LzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNw
+        YWNlPSJwcmVzZXJ2ZSIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAw
+        IDMyIDMyIj4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5CbHVle2ZpbGw6IzExNzdENzt9Cgku
+        WWVsbG93e2ZpbGw6I0ZGQjExNTt9CgkuUmVke2ZpbGw6I0QxMUMxQzt9CgkuR3JlZW57ZmlsbDojMDM5
+        QzIzO30KCS5CbGFja3tmaWxsOiM3MjcyNzI7fQoJLldoaXRle2ZpbGw6I0ZGRkZGRjt9Cgkuc3Qwe29w
+        YWNpdHk6MC41O30KCS5zdDF7b3BhY2l0eTowLjc1O30KCS5zdDJ7ZGlzcGxheTpub25lO30KCS5zdDN7
+        ZGlzcGxheTppbmxpbmU7ZmlsbDojRkZCMTE1O30KCS5zdDR7ZGlzcGxheTppbmxpbmU7fQoJLnN0NXtk
+        aXNwbGF5OmlubGluZTtvcGFjaXR5OjAuNzU7fQoJLnN0NntkaXNwbGF5OmlubGluZTtvcGFjaXR5OjAu
+        NTt9Cgkuc3Q3e2Rpc3BsYXk6aW5saW5lO2ZpbGw6IzAzOUMyMzt9Cgkuc3Q4e2Rpc3BsYXk6aW5saW5l
+        O2ZpbGw6I0QxMUMxQzt9Cgkuc3Q5e2Rpc3BsYXk6aW5saW5lO2ZpbGw6IzExNzdENzt9Cgkuc3QxMHtk
+        aXNwbGF5OmlubGluZTtmaWxsOiNGRkZGRkY7fQo8L3N0eWxlPg0KICA8ZyBpZD0iUG9zaXRpb24iPg0K
+        ICAgIDxwYXRoIGQ9Ik02LjEsMThjMC4yLTUuMiw0LjMtMy41LDYtNmMwLjYsMS4xLDEuNiwzLDMsM3My
+        LjQtMS45LDMtM2MxLjcsMi41LDUuOCwwLjksNiw2SDYuMXogTTExLjUsOC4xICAgYzAsMCwwLDAuMSww
+        LDAuMUMxMiwxMCwxMywxMiwxNSwxMnMzLjEtMS45LDMuNS0zLjdWOC4yQzE5LjMsOC4zLDE5LDcuNCwx
+        OS4yLDdjMC4xLTAuNCwwLjMtMC43LDAuMi0xYy0wLjEtMC4zLTAuMy0wLjMtMC40LTAuMiAgIGMxLjMt
+        My43LTAuOC0zLjUtMC44LTMuNVMxOCwwLDE0LjEsMGMtMy42LDAtNCwzLTMuMiw1LjdjLTAuMSwwLTAu
+        MywwLjEtMC40LDAuMmMtMC4xLDAuNCwwLjEsMC43LDAuMywxQzExLDcuMywxMC44LDguMiwxMS41LDgu
+        MSAgIHoiIGNsYXNzPSJCbGFjayIgLz4NCiAgICA8cG9seWdvbiBwb2ludHM9IjIsMjAgMiwzMiA2LDMy
+        IDYsMjQgMTgsMjQgMTgsMzIgMzAsMzIgMzAsMjAgICIgY2xhc3M9IlllbGxvdyIgLz4NCiAgPC9nPg0K
+        PC9zdmc+Cw==
+</value>
+  </data>
   <data name="ribbonControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -1830,97 +1894,17 @@
   <data name="ribbonControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
-  <data name="ribbonPageGroup2.Text" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="ribbonPageGroup5.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        RK5CYII=
-</value>
-  </data>
-  <data name="ribbonPageGroup5.Text" xml:space="preserve">
-    <value>Refresh</value>
-  </data>
-  <data name="ribbonPageGroup3.Text" xml:space="preserve">
-    <value>Stock</value>
-  </data>
-  <data name="ribbonPageGroup15.Text" xml:space="preserve">
-    <value>Supplier</value>
-  </data>
-  <data name="ribbonPageGroup9.Text" xml:space="preserve">
-    <value>Bulk processing</value>
-  </data>
   <data name="rpOperations.Text" xml:space="preserve">
     <value>Operations</value>
-  </data>
-  <data name="ribbonPageGroup20.Text" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="ribbonPageGroup19.Text" xml:space="preserve">
-    <value>Warehouse Reports</value>
   </data>
   <data name="rpReports.Text" xml:space="preserve">
     <value>Reports</value>
   </data>
-  <data name="ribbonPageGroup8.Text" xml:space="preserve">
-    <value>Offers</value>
-  </data>
-  <data name="ribbonPageGroup7.Text" xml:space="preserve">
-    <value>Deals</value>
-  </data>
   <data name="rpOffers.Text" xml:space="preserve">
     <value>Offer &amp; Deals</value>
   </data>
-  <data name="ribbonPageGroup1.Text" xml:space="preserve">
-    <value>Branch</value>
-  </data>
-  <data name="ribbonPageGroup4.Text" xml:space="preserve">
-    <value>Profile</value>
-  </data>
-  <data name="ribbonPageGroup11.Text" xml:space="preserve">
-    <value>Supplier</value>
-  </data>
-  <data name="ribbonPageGroup12.Text" xml:space="preserve">
-    <value>Other</value>
-  </data>
-  <data name="ribbonPageGroup6.Text" xml:space="preserve">
-    <value>Sync</value>
-  </data>
-  <data name="ribbonPageGroup17.Text" xml:space="preserve">
-    <value>Database Cache</value>
-  </data>
   <data name="rpAdmin.Text" xml:space="preserve">
     <value>Admin</value>
-  </data>
-  <data name="ribbonPageGroup13.Text" xml:space="preserve">
-    <value>User</value>
   </data>
   <data name="rpUserAccess.Text" xml:space="preserve">
     <value>User Access</value>
@@ -1986,6 +1970,89 @@
   </data>
   <data name="&gt;&gt;ribbonControl1.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <metadata name="puFinYear.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="ribbonPageGroup2.Text" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="ribbonPageGroup5.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        RK5CYII=
+</value>
+  </data>
+  <data name="ribbonPageGroup5.Text" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="ribbonPageGroup3.Text" xml:space="preserve">
+    <value>Stock</value>
+  </data>
+  <data name="ribbonPageGroup15.Text" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="ribbonPageGroup9.Text" xml:space="preserve">
+    <value>Bulk processing</value>
+  </data>
+  <data name="ribbonPageGroup20.Text" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="ribbonPageGroup19.Text" xml:space="preserve">
+    <value>Warehouse Reports</value>
+  </data>
+  <data name="ribbonPageGroup8.Text" xml:space="preserve">
+    <value>Offers</value>
+  </data>
+  <data name="ribbonPageGroup7.Text" xml:space="preserve">
+    <value>Deals</value>
+  </data>
+  <data name="ribbonPageGroup1.Text" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="ribbonPageGroup4.Text" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="ribbonPageGroup11.Text" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="ribbonPageGroup12.Text" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="ribbonPageGroup6.Text" xml:space="preserve">
+    <value>Sync</value>
+  </data>
+  <data name="ribbonPageGroup17.Text" xml:space="preserve">
+    <value>Database Cache</value>
+  </data>
+  <data name="ribbonPageGroup13.Text" xml:space="preserve">
+    <value>User</value>
   </data>
   <data name="ribbonPage2.Text" xml:space="preserve">
     <value>ribbonPage2</value>
@@ -3070,6 +3137,18 @@
   </data>
   <data name="&gt;&gt;ribbonPage2.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;btnBrand.Name" xml:space="preserve">
+    <value>btnBrand</value>
+  </data>
+  <data name="&gt;&gt;btnBrand.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;btnManufacturer.Name" xml:space="preserve">
+    <value>btnManufacturer</value>
+  </data>
+  <data name="&gt;&gt;btnManufacturer.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmMain</value>
