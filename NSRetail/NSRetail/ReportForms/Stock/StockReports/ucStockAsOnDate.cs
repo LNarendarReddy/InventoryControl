@@ -15,6 +15,8 @@ namespace NSRetail.ReportForms.Stock.StockReports
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "QTYORWGHT", "Quantity or Weight in KG(s)" }
+                , { "BRANDNAME", "Brand" }
+                , { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             SetFocusControls(dtAsOnDate, cmbItemCode, columnHeaders);

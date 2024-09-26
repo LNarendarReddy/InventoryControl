@@ -21,6 +21,8 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 , { "BRANCHSTOCK", "Branch Stock" }
                 , { "CATEGORYNAME", "Category" }
                 , { "SUBCATEGORYNAME", "Sub Category" }
+                , { "BRANDNAME", "Brand" }
+                , { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             cmbCategory.Properties.DataSource = Utility.GetCategoryList();

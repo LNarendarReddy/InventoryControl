@@ -16,7 +16,9 @@ namespace NSRetail.ReportForms.Stock.StockReports
             {
                 { "STOCKQTYORWGHT", "Stock Qty or Weight in KGs" }
                 , { "SALEQTYORWGHT", "Sale Qty or Weight in KGs" }
-                , { "CURRENTQTYORWGHT", "Current Qty or Weight in KGs" }                
+                , { "CURRENTQTYORWGHT", "Current Qty or Weight in KGs" }
+                , { "BRANDNAME", "Brand" }
+                , { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             MandatoryFields = new List<BaseEdit> { cmbBranch, cmbCategory };

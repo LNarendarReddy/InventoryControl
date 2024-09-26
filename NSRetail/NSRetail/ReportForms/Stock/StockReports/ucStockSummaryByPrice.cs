@@ -15,12 +15,14 @@ namespace NSRetail.ReportForms.Stock.StockReports
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "QTYORWGHT", "Qty or Weight in KGs" }
+                , { "BRANDNAME", "Brand" }
+                , { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             MandatoryFields = new List<BaseEdit> { cmbBranch };
 
             IncludeSettingsCollection = new List<IncludeSettings>
-            { 
+            {
                 new IncludeSettings("Positives", "IncludePositives", new List<string>(), true),
                 new IncludeSettings("Zero", "IncludeZeros", new List<string>(), false),
                 new IncludeSettings("Negatives", "IncludeNegatives", new List<string>(), false)

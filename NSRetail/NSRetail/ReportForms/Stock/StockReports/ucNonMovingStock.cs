@@ -13,6 +13,8 @@ namespace NSRetail.ReportForms.Stock.StockReports
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "STOCKQTYORWGHT", "Stock Qty or Weight in KGs" }
+                , { "BRANDNAME", "Brand" }
+                , { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-30);
