@@ -88,7 +88,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     else if (dealerIndent.IsSave)
                         drFocusedRow["STATUS"] = "DRAFT";
                     break;
-                case "Print&Export":
+                case "Print && Export":
                     DataTable dtSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
                     dtSupplierIndent.DefaultView.RowFilter = "DESIREDINDENT > 0";
                     rptDealerIndent rpt = new rptDealerIndent(dtSupplierIndent);

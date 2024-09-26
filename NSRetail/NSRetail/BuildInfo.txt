@@ -2,7 +2,7 @@
  -- Added brand and manufacturer masters and changes in item screen
 
 v2.6.5
- --
+ -- User & Role access screens roll out
 
 v2.6.4
  -- fixed issue in stock dispatch
