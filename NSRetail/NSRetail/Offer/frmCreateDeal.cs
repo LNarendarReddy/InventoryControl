@@ -158,6 +158,7 @@ namespace NSRetail
                 else if (cmbOfferType.EditValue.Equals(1006))
                 {
                     txtNumberOfItems.Enabled = true;
+                    txtFreeItemPrice.Enabled = true;
                 }
             }
         }

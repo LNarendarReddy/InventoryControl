@@ -69,6 +69,7 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtComment.Properties)).BeginInit();
@@ -144,7 +145,8 @@
             this.gridColumn12,
             this.gridColumn15,
             this.gridColumn13,
-            this.gridColumn14});
+            this.gridColumn14,
+            this.gridColumn16});
             this.gvItemStockByMRP.GridControl = this.gcItemStockByMRP;
             this.gvItemStockByMRP.Name = "gvItemStockByMRP";
             this.gvItemStockByMRP.OptionsView.ShowFooter = true;
@@ -205,7 +207,7 @@
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.ReadOnly = true;
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 3;
+            this.gridColumn11.VisibleIndex = 4;
             // 
             // gridColumn12
             // 
@@ -216,7 +218,7 @@
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.ReadOnly = true;
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 4;
+            this.gridColumn12.VisibleIndex = 5;
             // 
             // gridColumn15
             // 
@@ -224,7 +226,7 @@
             this.gridColumn15.FieldName = "INTRANSITSTOCK";
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 5;
+            this.gridColumn15.VisibleIndex = 6;
             // 
             // gridColumn13
             // 
@@ -235,7 +237,7 @@
             this.gridColumn13.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SYSTEMSTOCK", "{0:0.##}")});
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 6;
+            this.gridColumn13.VisibleIndex = 7;
             // 
             // gridColumn14
             // 
@@ -245,7 +247,7 @@
             this.gridColumn14.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PHYSICALSTOCK", "{0:0.##}")});
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 7;
+            this.gridColumn14.VisibleIndex = 8;
             // 
             // btnCancel
             // 
@@ -481,6 +483,14 @@
             this.layoutControlItem4.Text = "Comment";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(61, 15);
             // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "GST Code";
+            this.gridColumn16.FieldName = "GSTCODE";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.Visible = true;
+            this.gridColumn16.VisibleIndex = 3;
+            // 
             // frmStockAdjustment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -551,5 +561,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraEditors.MemoEdit txtComment;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
     }
 }

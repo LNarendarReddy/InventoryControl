@@ -65,6 +65,8 @@ namespace NSRetail
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (!AccessUtility.HasAccess(btnEdit.Tag?.ToString())) return;
+
             try
             {
                 if (gvItemList.FocusedRowHandle >= 0)
@@ -87,6 +89,8 @@ namespace NSRetail
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (!AccessUtility.HasAccess(btnDelete.Tag?.ToString())) return;
+
             try
             {
                 if (gvItemList.FocusedRowHandle >= 0 &&
