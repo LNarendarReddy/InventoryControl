@@ -31,7 +31,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             ContextmenuItems = new Dictionary<string, string>
             { 
                 { "View", "5BEC2D9A-2266-4B3B-A5A0-EE16079109BB" },
-                { "Print to DM", "16D2B49F-BE0F-44A9-844A-F30954158C77" }, 
+                //{ "Print to DM", "16D2B49F-BE0F-44A9-844A-F30954158C77" }, 
                 { "Discard", "62146C6B-56F9-4504-BA2D-B07579CB5A63" }, 
                 { "Revert", "3FF71395-4024-421A-9CFD-86891245BACD" }, 
                 { "Clone", "242EC249-1A85-4738-AB6A-733CF36BD522" } 

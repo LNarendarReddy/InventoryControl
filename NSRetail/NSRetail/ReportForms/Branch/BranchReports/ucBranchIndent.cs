@@ -40,6 +40,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             txtSafetyDays.EditValue = 0;
 
             SetFocusControls(cmbBranch, txtSafetyDays, columnHeaders);
+            btnPrintToDM.Visible = false;
         }
 
         public override object GetData()

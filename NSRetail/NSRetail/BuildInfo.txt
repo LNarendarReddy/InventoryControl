@@ -1,7 +1,8 @@
-﻿v2.6.7 (TO BE DEPLOYED)
+﻿v2.6.7 
  -- New deals changed to give items at discounted price instead of free
  -- fixed Item delete issue using delete key even when permissions are not there for there
  -- Added GST code column in Stock adjustment screen
+ -- Add with CP or Without CP report options in Dispatch DC print
 
 v2.6.6
  -- Added brand and manufacturer masters and changes in item screen

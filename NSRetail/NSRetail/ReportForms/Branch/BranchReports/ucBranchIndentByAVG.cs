@@ -34,6 +34,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             txtIndentDays.EditValue = 1;
 
             SetFocusControls(cmbBranch, txtIndentDays, columnHeaders);
+            btnPrintToDM.Visible = false;
         }
 
         public override object GetData()

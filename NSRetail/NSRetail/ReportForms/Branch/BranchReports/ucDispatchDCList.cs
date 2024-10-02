@@ -27,8 +27,9 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
             ContextmenuItems = new Dictionary<string, string>
             { 
-                { "View", "CE8B8A21-12C8-4AFD-B246-750110BDE248" }, 
-                { "Print to DM", "DFEE4755-1975-4BA0-9478-F9BAA6E25C5E" } 
+                { "View items", "CE8B8A21-12C8-4AFD-B246-750110BDE248" },
+                //{ "Print to DM", "DFEE4755-1975-4BA0-9478-F9BAA6E25C5E" } 
+                { "View items with CP", "62331050-12E0-46BD-997F-48BF7B755F84" }
             };
 
             cmbCategory.Properties.DataSource = Utility.GetCategoryList();
@@ -63,11 +64,16 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 return;
             }
 
+            rptDispatchDC rpt;
+
             switch (buttonText)
             {
-                case "View":
-                    rptDispatchDC rpt = new rptDispatchDC(ds.Tables[0], ds.Tables[1]);
-                    rpt.ShowPrintMarginsWarning = false;
+                case "View items":
+                    rpt = new rptDispatchDC(ds.Tables[0], ds.Tables[1], false);
+                    rpt.ShowRibbonPreview();
+                    break;
+                case "View items with CP":
+                    rpt = new rptDispatchDC(ds.Tables[0], ds.Tables[1], true);
                     rpt.ShowRibbonPreview();
                     break;
                 case "Print to DM":

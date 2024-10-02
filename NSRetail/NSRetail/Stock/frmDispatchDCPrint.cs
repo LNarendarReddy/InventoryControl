@@ -43,7 +43,7 @@ namespace NSRetail.Stock
                     return;
                 DataSet ds = new StockRepository().SaveDispatchDC(cmbBranch.EditValue, cmbCategory.EditValue, luLocation.EditValue, Utility.UserID);
                 if (ds == null || ds.Tables.Count == 0) throw new Exception("No Dispatch Exists");
-                rptDispatchDC rpt = new rptDispatchDC(ds.Tables[0], ds.Tables[1]);
+                rptDispatchDC rpt = new rptDispatchDC(ds.Tables[0], ds.Tables[1], false);
                 rpt.ShowPrintMarginsWarning = false;
                 rpt.ShowRibbonPreview();
             }
