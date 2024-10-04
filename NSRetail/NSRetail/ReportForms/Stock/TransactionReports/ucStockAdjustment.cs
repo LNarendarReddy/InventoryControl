@@ -32,7 +32,9 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "CREATETIME", "Created Time" },
                 { "STOCKADJUSTMENTTYPE", "Stock Adj. type" },
                 { "DESCRIPTION", "Stock Adj. description" },
-                { "GSTCODE", "GST Code" }
+                { "GSTCODE", "GST Code" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -48,6 +50,8 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
                 , new IncludeSettings("Created-By", "IncludeCreatedBy", new List<string>{ "CREATEDBY" })
                 , new IncludeSettings("Stock Adj. type & Description", "IncludeDescription", new List<string>{ "STOCKADJUSTMENTTYPE", "DESCRIPTION" })
+                , new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" })
+                , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
             };
 
             SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);

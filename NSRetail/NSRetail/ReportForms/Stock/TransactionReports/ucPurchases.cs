@@ -24,7 +24,9 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "DISCOUNTFLAT", "Discount flat" },
                 { "DISCOUNTPERCENTAGE", "Discount %" },
                 { "SCHEMEFLAT", "Scheme flat" },
-                { "SCHEMEPERCENTAGE", "Scheme %" }
+                { "SCHEMEPERCENTAGE", "Scheme %" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" },
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -36,6 +38,8 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
                 , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })
                 , new IncludeSettings("Discount & scheme details", "IncludeDiscount", new List<string> { "DISCOUNTFLAT", "DISCOUNTPERCENTAGE", "SCHEMEFLAT", "SCHEMEPERCENTAGE" })
+                , new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" })
+                , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
             };
 
             SetFocusControls(cmbPeriodicity, cmbItemCode, specificColumnHeaders);

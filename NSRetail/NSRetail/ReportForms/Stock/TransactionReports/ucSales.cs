@@ -29,7 +29,9 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "CUSTOMERNAME", "Customer Name" },
                 { "CUSTOMERNUMBER", "Customer #" },
                 { "CUSTOMERGST", "Customer GST" },
-                { "HSNCODE", "HSN Code" }
+                { "HSNCODE", "HSN Code" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -46,6 +48,8 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })                
                 , new IncludeSettings("Bill details", "IncludeBillDetails", new List<string>
                     { "BILLCREATEDBY", "BILLNUMBER", "CREATEDTIME", "ISDOORDELIVERY", "CUSTOMERNAME", "CUSTOMERNUMBER", "CUSTOMERGST" })
+                , new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" })
+                , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
             };
 
             SetFocusControls(cmbPeriodicity, cmbItemCode, specificColumnHeaders);

@@ -17,6 +17,8 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , { "REFUNDQUANTITY", "Quantity" }
                 , { "REFUNDWEIGHTINKGS", "Weight In Kgs" }
                 , { "REFUNDAMOUNT", "Refund Amount" }
+                , { "BRANDNAME", "Brand" }
+                , { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
@@ -34,6 +36,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , { "IncludeBillNo", chkIncludeBillNumber.EditValue }
                 , { "IncludeBranch", chkIncludeBranch.EditValue }
                 , { "IncludeRefundDate", chkIncludeDate.EditValue }
+                
             };
             DataTable dt = (DataTable)GetReportData("USP_RPT_CUSTOMERRETURNS", parameters);
 

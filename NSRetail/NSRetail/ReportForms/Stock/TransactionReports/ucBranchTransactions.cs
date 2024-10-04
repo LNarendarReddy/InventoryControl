@@ -39,7 +39,10 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "HSNCODE", "HSN Code" },
                 { "TRAYNUMBER", "Tray #" },
                 { "CUSTOMERNAME", "Customer Name" },
-                { "CUSTOMERNUMBER", "Customer Phone #" }
+                { "CUSTOMERNUMBER", "Customer Phone #" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" },
+
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -51,6 +54,8 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
+                , new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" })
+                , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
                 //, new IncludeSettings("Tray Number", "IncludeTrayNumber", new List<string>{ "TRAYNUMBER" })
             };
 

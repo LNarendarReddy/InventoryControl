@@ -23,6 +23,8 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "RETURNSTATUS", "Refund Status" },
                 { "CREATEDBY", "Refund By" },
                 { "CREATEDDATE", "Refund Date" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" },
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -35,6 +37,8 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("Reason", "IncludeReason", new List<string>{ "Reason" })
                 , new IncludeSettings("BRefund Number", "IncludeBRefundNumber", new List<string>{ "BREFUNDNUMBER" })
                 , new IncludeSettings("SRefund Number", "IncludeSRefundNumber", new List<string>{ "Supplier Returns #", "Supplier Name" })
+                , new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" })
+                , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
             };
 
             SetFocusControls(cmbPeriodicity, cmbItemCode, specificColumnHeaders);

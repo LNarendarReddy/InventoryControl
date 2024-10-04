@@ -1,4 +1,19 @@
-﻿v2.6.7 
+﻿v2.6.8
+ -- Add Brand and Manufacturer fields in below reports
+	Non moving stock
+	Zero stock
+	Stock as on date
+	Stock summry by price
+	current stock
+	Transaction Reports - Dispatches
+	Transaction Reports - Sales
+	Transaction Reports - Custom Returns
+	Transaction Reports - Branch Returns
+	Transaction Reports - supplier Returns
+	Transaction Reports - purchases
+	Transaction Reports - Stock Adjustment
+
+v2.6.7 
  -- New deals changed to give items at discounted price instead of free
  -- fixed Item delete issue using delete key even when permissions are not there for there
  -- Added GST code column in Stock adjustment screen
