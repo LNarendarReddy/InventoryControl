@@ -27,7 +27,9 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "ACTUALSALEPRICE", "Actual Sale Price" },
                 { "GSTCODE", "GST Code" },
                 { "SALEQUANTITY", "Sale Qty" },
-                { "DEALERNAME", "Supplier Name" }
+                { "DEALERNAME", "Supplier Name" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
@@ -47,6 +49,8 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 , new IncludeSettings("Sub Classification", "IncludeSubClassification", new List<string>{ "SUBCLASSIFICATIONNAME" })
                 , new IncludeSettings("Supplier", "IncludeSupplier", new List<string>{ "DEALERNAME" })
                 , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })
+                , new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" })
+                , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
             };
 
             SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate);

@@ -36,7 +36,9 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "ACTUALPRICEWOT", "Actual Price WOT" },
                 { "MRPWOT", "MRP WOT" },
                 { "SALEPRICEWOT", "Sale Price WOT" },
-                { "OFFERNAME", "Applied Offer Name" }
+                { "OFFERNAME", "Applied Offer Name" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             SetFocusControls(cmbCategory, cmbItemCode, specificColumnHeaders);
@@ -44,6 +46,8 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
             {
                 new IncludeSettings("Classification", "IncludeClassification", new List<string>() { "CLASSIFICATIONNAME" }),
                 new IncludeSettings("Sub-Classification", "IncludeSubClassification", new List<string>() { "SUBCLASSIFICATIONNAME" }),
+                new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" }), 
+                new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
             };
         }
 

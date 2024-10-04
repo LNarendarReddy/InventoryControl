@@ -17,6 +17,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 , { "DELETEDDATE", "Deleted Date" }
                 , { "CREATEDTIME", "Created Time" }
                 , { "DELETEDTIME", "Deleted Time" }
+                , { "BRANDNAME", "Brand" }
+                , { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             sluSKUCode.Properties.DataSource = Utility.GetItemCodeList();

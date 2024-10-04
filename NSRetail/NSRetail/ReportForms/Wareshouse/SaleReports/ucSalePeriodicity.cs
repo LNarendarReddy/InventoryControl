@@ -18,7 +18,9 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 { "TOTALSALEPRICEWT", "Total Sale Price WT" },
                 { "SALEPRICEWOT", "Sale Price WOT" },
                 { "SALEPRICETAX", "Sale Price Tax" },
-                { "SALEQUANTITY", "Sale Quantity" }
+                { "SALEQUANTITY", "Sale Quantity" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" },
             };
 
             SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);

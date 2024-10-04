@@ -37,14 +37,18 @@ namespace NSRetail.ReportForms.Supplier.SupplierWiseReports
                 { "ACTUALMARGINWTPER", "Actual Margin % WT" },
                 { "ACTUALPRICEWT", "Actual Price WT" },
                 { "ACTUALPRICEWOT", "Actual Price WOT" },
-                { "OFFERNAME", "Applied Offer Name" }
+                { "OFFERNAME", "Applied Offer Name" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             SetFocusControls(cmbsupplier, cmbsupplier, specificColumnHeaders);
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
                 new IncludeSettings("Classification", "IncludeClassification", new List<string>() { "CLASSIFICATIONNAME" }),
-                new IncludeSettings("Sub-Classification", "IncludeSubClassification", new List<string>() { "SUBCLASSIFICATIONNAME" })                
+                new IncludeSettings("Sub-Classification", "IncludeSubClassification", new List<string>() { "SUBCLASSIFICATIONNAME" }), 
+                new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" }), 
+                new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
             };
         }
         public override object GetData()

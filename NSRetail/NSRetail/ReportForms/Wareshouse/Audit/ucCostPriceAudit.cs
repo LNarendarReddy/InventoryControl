@@ -18,6 +18,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 , { "CREATEDTIME", "Created Time" }
                 , { "DELETEDTIME", "Deleted Time" }
                 , { "SUPPLIERINVOICENO", "Invoice #" }
+                , { "BRANDNAME", "Brand" }
+                , { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             cmbSupplier.Properties.DataSource = new MasterRepository().GetDealer();

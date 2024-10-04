@@ -31,12 +31,16 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "PROFITMARGINWOT", "Profit Margin WOT" },
                 { "PROFITMARGINPERWOT", "Profit Margin % WOT" },
                 { "PROFITMARGINWT", "Profit Margin WT" },
-                { "PROFITMARGINPERWT", "Profit Margin % WT" }
+                { "PROFITMARGINPERWT", "Profit Margin % WT" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);
 
-            IncludeSettingsCollection = new List<IncludeSettings> { new IncludeSettings("Include Branch Name", "IncludeBranch", new List<string> { }) };
+            IncludeSettingsCollection = new List<IncludeSettings> { 
+                new IncludeSettings("Include Branch Name", "IncludeBranch", new List<string> { })
+            };
         }
 
         private void ucItemWise_Load(object sender, EventArgs e)

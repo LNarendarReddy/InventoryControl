@@ -20,6 +20,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 { "ISACTIVE", "Is Active" },
                 { "OFFERTHRESHOLD", "Threshold" },
                 { "PERIODSALEQUANTITY", "Sale Qty" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             HiddenColumns = new List<string>() { "TOTALSALEQTYORWGHT" };
@@ -38,6 +40,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
                 , new IncludeSettings("Classification", "IncludeClassification", new List<string>{ "CLASSIFICATIONNAME" })
                 , new IncludeSettings("Sub Classification", "IncludeSubClassification", new List<string>{ "SUBCLASSIFICATIONNAME" })
+                , new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" })
+                , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
             };
 
             SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate);

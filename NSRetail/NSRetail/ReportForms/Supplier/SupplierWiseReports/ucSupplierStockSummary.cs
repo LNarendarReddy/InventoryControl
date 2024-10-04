@@ -12,7 +12,9 @@ namespace NSRetail.ReportForms.Supplier.SupplierWiseReports
 
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
-                { "WEIGHTINKGS", "Weight In Kgs" }
+                { "WEIGHTINKGS", "Weight In Kgs" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" },
             };
 
             cmbSupplier.Properties.DataSource = new MasterRepository().GetDealer(true);

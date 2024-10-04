@@ -19,6 +19,8 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 { "SALEQUANTITY", "Sale Qty" },
                 { "BALANCESALE", "Balance Sale" },
                 { "OFFERVALUE", "Offer Value" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" },
             };
 
             SetFocusControls(null, null, specificColumnHeaders);

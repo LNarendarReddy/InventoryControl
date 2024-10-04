@@ -18,6 +18,8 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 , { "BILLDATE", "Bill Date" }
                 , { "DEALERNAME", "Supplier" }
                 , { "ACTUALBILLEDAMOUNT", "Billed Amount" }
+                , { "BRANDNAME", "Brand" }
+                , { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);

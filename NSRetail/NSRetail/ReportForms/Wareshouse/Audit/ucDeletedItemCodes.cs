@@ -18,6 +18,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 , { "DELETEDDATE", "Deleted Date" }
                 , { "CREATEDTIME", "Created Time" }
                 , { "UPDATEDATE", "Updated Time" }
+                , { "BRANDNAME", "Brand" }
+                , { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             SetFocusControls(null, null, columnHeaders);

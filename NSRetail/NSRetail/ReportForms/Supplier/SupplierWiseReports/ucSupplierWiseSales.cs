@@ -29,6 +29,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierWiseReports
                 , { "BILLDATE", "Bill Date" }
                 , { "WEIGHTINKGS", "Weight In Kgs" }
                 , { "BREFUNDNUMBER", "Branch Refund #" }
+                , { "BRANDNAME", "Brand" }
+                , { "MANUFACTURERNAME", "Manufacturer" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -39,6 +41,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierWiseReports
                 , new IncludeSettings("Date", "IncludeDate", new List<string>{ "BILLDATE" })
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("Sub Category", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
+                , new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" })
+                , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
             };
 
             if (reporttype == "B")

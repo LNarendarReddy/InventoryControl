@@ -16,6 +16,8 @@ namespace NSRetail.ReportForms.Wareshouse.SaleReports
                 { "SALEPRICEWOT", "Sale Price WOT" },
                 { "SALETAX", "Sale Price Tax" },
                 { "SALEPRICEWT", "Sale Price WT" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" },
             };
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);

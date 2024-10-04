@@ -1,5 +1,8 @@
-﻿v2.6.8
- -- Add Brand and Manufacturer fields in below reports
+﻿v2.6.9
+ -- Added Brand and Manufacturer fields in all reports
+
+v2.6.8
+ -- Added Brand and Manufacturer fields in below reports
 	Non moving stock
 	Zero stock
 	Stock as on date

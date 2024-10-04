@@ -22,7 +22,9 @@ namespace NSRetail.ReportForms.Wareshouse.StockAndSale
                 { "BRCPWOT", "Branch refund CP WOT" },
                 { "SALECPWOT", "Sale CP WOT" },
                 { "CLOSINGCPWOT", "Closing CP WOT" },
-                { "GSTCODE", "Tax %" }
+                { "GSTCODE", "Tax %" },
+                { "BRANDNAME", "Brand" },
+                { "MANUFACTURERNAME", "Manufacturer" },
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -36,6 +38,8 @@ namespace NSRetail.ReportForms.Wareshouse.StockAndSale
                 , new IncludeSettings("Classification", "IncludeClassification", new List<string>{ "CLASSIFICATIONNAME" })
                 , new IncludeSettings("Sub Classification", "IncludeSubClassification", new List<string>{ "SUBCLASSIFICATIONNAME" })
                 , new IncludeSettings("Tax wise", "IncludeGST", new List<string>{ "GSTCODE" })
+                , new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" })
+                , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
             };
 
             SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);
