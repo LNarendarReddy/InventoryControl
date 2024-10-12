@@ -395,5 +395,23 @@ namespace NSRetailPOS.UI
             int BRefundDetailID = new RefundRepository().SaveBRefundDetail(drDetail);
             drDetail["BREFUNDDETAILID"] = BRefundDetailID;
         }
+
+        private void gvRefund_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
+        {
+            string textValue = e.Value != null ? e.Value.ToString() : string.Empty;
+
+            if(string.IsNullOrEmpty(textValue))
+            {
+                e.Valid = false;
+                return;
+            }
+
+            if (textValue.Length > 4 && XtraMessageBox.Show($"Large number detected, possible barcode scan detected, Do you want to accept the value {textValue}"
+                    , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+            {
+                e.Value = null;
+                e.Valid = false;
+            }
+        }
     }
 }

@@ -500,7 +500,7 @@ namespace NSRetailPOS
 
         private static void BaseEdit_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (e.KeyCode != Keys.Enter)
+            if (e.KeyCode != Keys.Enter && e.KeyCode != Keys.Tab)
                 return;
             BaseEdit baseEdit = sender as BaseEdit;
             string textValue = baseEdit.EditValue != null ? baseEdit.EditValue.ToString() : string.Empty;
