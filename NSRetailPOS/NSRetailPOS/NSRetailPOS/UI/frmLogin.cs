@@ -63,6 +63,8 @@ namespace NSRetailPOS.UI
                         Utility.DBVersion = Convert.ToString(dSUserInfo.Tables[0].Rows[0]["DBVersion"]);
                         Utility.branchInfo.FilterMRPByStock = dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"] != DBNull.Value 
                             && bool.Parse(dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"].ToString());
+                        Utility.branchInfo.EnableDraftBills = dSUserInfo.Tables[0].Rows[0]["ENABLEDRAFTBILLS"] != DBNull.Value
+                            && bool.Parse(dSUserInfo.Tables[0].Rows[0]["ENABLEDRAFTBILLS"].ToString());
                         if (ISOTP)
                         {
                             frmChangePassword Obj = new frmChangePassword();

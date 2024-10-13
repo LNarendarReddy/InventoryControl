@@ -94,7 +94,7 @@ namespace NSRetailPOS
             lblOffer.Text = noOfferText;
             lblDeal.Text = noDealText;
             HighlightOffer();
-
+            btnSaveBill.Enabled = Utility.branchInfo.EnableDraftBills;
             Task.Run(() => DoWorkAsync());
         }
 

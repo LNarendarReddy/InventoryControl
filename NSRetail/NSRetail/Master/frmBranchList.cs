@@ -81,6 +81,7 @@ namespace NSRetail
                     ObjBranch.ISWAREHOUSE = gvBranch.GetFocusedRowCellValue("ISWAREHOUSE");
                     ObjBranch.LANDLINE = gvBranch.GetFocusedRowCellValue("LANDLINE");
                     ObjBranch.SUPERVISERID = gvBranch.GetFocusedRowCellValue("SUPERVISORID");
+                    ObjBranch.ENABLEDRAFTBILLS = gvBranch.GetFocusedRowCellValue("ENABLEDRAFTBILLS");
                     frmBranch obj = new frmBranch(ObjBranch);
                     obj.ShowInTaskbar = false;
                     obj.StartPosition = FormStartPosition.CenterScreen;

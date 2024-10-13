@@ -29,6 +29,8 @@ namespace Entity
         public object EMAILID { get; set; }
         public object ISWAREHOUSE { get; set; }
         public object SUPERVISERID { get; set; }
+
+        public object ENABLEDRAFTBILLS { get; set; }
     }
 
     public class Category : EntityBase

@@ -36,11 +36,8 @@ namespace NSRetail
                 txtLandLine.EditValue = ObjBranch.LANDLINE;
                 txtEmailID.EditValue = ObjBranch.EMAILID;
                 cmbSupervisor.EditValue = ObjBranch.SUPERVISERID;
-                cmbState.EditValue = ObjBranch.STATEID;
-                if (Convert.ToBoolean(ObjBranch.ISWAREHOUSE))
-                    chkIsWarehouse.Checked = true;
-                else
-                    chkIsWarehouse.Checked = false;
+                chkIsWarehouse.EditValue = ObjBranch.ISWAREHOUSE;
+                chkEnableDraftBills.EditValue = ObjBranch.ENABLEDRAFTBILLS;
                 chkIsWarehouse.Enabled = false;
             }
         }
@@ -64,8 +61,9 @@ namespace NSRetail
                 ObjBranch.PHONENO = txtPhoneNo.EditValue;
                 ObjBranch.LANDLINE = txtLandLine.EditValue;
                 ObjBranch.EMAILID = txtEmailID.EditValue;
-                ObjBranch.ISWAREHOUSE = Convert.ToBoolean(chkIsWarehouse.CheckState);
-                ObjBranch. SUPERVISERID = cmbSupervisor.EditValue;
+                ObjBranch.ISWAREHOUSE = chkIsWarehouse.EditValue;
+                ObjBranch.ENABLEDRAFTBILLS = chkEnableDraftBills.EditValue;
+                ObjBranch.SUPERVISERID = cmbSupervisor.EditValue;
                 ObjBranch.UserID = Utility.UserID;
                 objMasterRep.SaveBranch(ObjBranch);
                 ObjBranch.IsSave = true;

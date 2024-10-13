@@ -28,6 +28,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@EMAILID", ObjBranch.EMAILID);
                     cmd.Parameters.AddWithValue("@USERID", ObjBranch.UserID);
                     cmd.Parameters.AddWithValue("@ISWAREHOUSE", ObjBranch.ISWAREHOUSE);
+                    cmd.Parameters.AddWithValue("@EnableDraftBills", ObjBranch.ENABLEDRAFTBILLS);
                     cmd.Parameters.AddWithValue("@SUPERVISORID", ObjBranch.SUPERVISERID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
