@@ -50,9 +50,9 @@ namespace NSRetailLiteApp.ViewModels
                     { "isNested", "True" }
                 }, false);
 
-            if(stockCounting.Exception != null) 
+            if (stockCounting.Exception != null)
             {
-                if(stockCounting.Exception.Message != "No counting data found")
+                if (stockCounting.Exception.Message != "No counting data found")
                 {
                     DisplayErrorMessage(stockCounting.Exception.Message);
                     return;
@@ -66,7 +66,33 @@ namespace NSRetailLiteApp.ViewModels
                     { "UserID", Model.UserId.ToString() },
                     { "isNested", "True" }
                 });
-                Application.Current?.MainPage?.Navigation.PushAsync(new BranchSelectionPage(new BranchSelectionViewModel(holderClass.Branch)));
+
+                BranchSelectionViewModel branchSelectionViewModel = new BranchSelectionViewModel(holderClass.Branch);
+                await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
+
+                if (branchSelectionViewModel.SelectedBranch == null) return;
+
+                if (!await Application.Current.MainPage.DisplayAlert("Confirm", $"Are you sure you want to start counting for {branchSelectionViewModel.SelectedBranch.BranchName}?", "Yes", "No")) return;
+
+                holderClass = new HolderClass();
+                PostAsync("stockcounting/savecounting", ref holderClass
+                , new Dictionary<string, string?>()
+                {
+                    { "StockCountingID", "0" },
+                    { "UserID", Model.UserId.ToString() },
+                    { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() }
+                }, true);
+
+                if(holderClass.Exception != null) return;
+
+                stockCounting.StockCountingId = holderClass.GenericID;
+
+                GetAsync("stockcounting/getcounting", ref stockCounting
+                , new Dictionary<string, string?>()
+                {
+                    { "UserID", Model.UserId.ToString() },
+                    { "isNested", "True" }
+                }, true);
             }
 
             if(stockCounting.StockCountingId <= 0)
@@ -75,7 +101,7 @@ namespace NSRetailLiteApp.ViewModels
                 return;
             }
 
-            Application.Current?.MainPage?.Navigation.PushAsync(new StockCountingDetailListPage(new StockCountingDetailListViewModel(stockCounting)));
+            RedirectToPage(stockCounting, new StockCountingDetailListPage(new StockCountingDetailListViewModel(stockCounting)));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using NSRetailLiteApp.Models;
@@ -91,8 +92,13 @@ namespace NSRetailLiteApp.ViewModels
                 return;
             }
 
-            var jsonSerializer = new JsonSerializer();
+            if(int.TryParse(responeMessage, out int ID) && callingObject.GetType() == typeof(HolderClass))
+            {
+                (callingObject as HolderClass).GenericID = ID;
+                return;
+            }
 
+            var jsonSerializer = new JsonSerializer();
 
             RootClass root = new RootClass();
             jsonSerializer.Populate(new StringReader(responeMessage), root);
@@ -119,11 +125,22 @@ namespace NSRetailLiteApp.ViewModels
             Application.Current?.MainPage?.DisplayAlert("Error", error, "OK");
         }
 
-        protected void RedirectToPage(BaseObservableObject callingObject, ContentPage redirectToPage)
+        protected async Task RedirectToPage(BaseObservableObject callingObject, ContentPage redirectToPage, bool isModal = false)
         {
-            if (callingObject.Exception == null && Application.Current != null && Application.Current.MainPage != null)
+            if (callingObject?.Exception == null && Application.Current != null && Application.Current.MainPage != null)
             {
-                Application.Current.MainPage.Navigation.PushAsync(redirectToPage);
+                if (isModal)
+                    await Application.Current.MainPage.Navigation.PushModalAsync(redirectToPage);
+                else
+                    await Application.Current.MainPage.Navigation.PushAsync(redirectToPage);
+            }
+        }
+
+        protected async Task ShowPopup(BaseObservableObject callingObject, Popup popupPage)
+        {
+            if (callingObject?.Exception == null && Application.Current != null && Application.Current.MainPage != null)
+            {
+                await Application.Current.MainPage.ShowPopupAsync(popupPage);                
             }
         }
     }

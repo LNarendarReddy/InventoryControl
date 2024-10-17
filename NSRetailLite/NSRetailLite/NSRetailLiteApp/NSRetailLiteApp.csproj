@@ -57,6 +57,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Platforms\Android\Resources\values\styles.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Images\Homepage\billing.png" />
 	  <None Remove="Resources\Images\Homepage\changepassword.png" />
 	  <None Remove="Resources\Images\Homepage\itemdetails.png" />

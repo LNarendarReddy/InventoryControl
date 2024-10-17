@@ -64,6 +64,8 @@ namespace NSRetailLiteApp.Models
         public StockCountingModel Counting;
 
         public ObservableCollection<Branch> Branch;
+
+        public int GenericID;
     }
 
     internal class RootClass

@@ -47,17 +47,17 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <StackLayout Grid.Row="0" Grid.Column="1" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
-                                <ImageButton Margin="0, 5, 0, 5" Source="stockcounting.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"
+                            <StackLayout Grid.Row="0" Grid.Column="1" HeightRequest="80" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton Margin="0, 5, 0, 5" Source="stockcounting.png" Aspect="Fill" HeightRequest="40" WidthRequest="40"
                                              Command="{Binding Path=OpenStockCountingCommand}"/>
                                 <Label Text="Stock Counting" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center" />
                             </StackLayout>
-                            <StackLayout Grid.Row="0" Grid.Column="3" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
-                                <ImageButton Margin="0, 5, 0, 5" Source="stockdispatch.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                            <StackLayout Grid.Row="0" Grid.Column="3" HeightRequest="80" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton Margin="0, 5, 0, 5" Source="stockdispatch.png" Aspect="Fill" HeightRequest="40" WidthRequest="40"/>
                                 <Label Text="Stock Dispatch" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center"/>
                             </StackLayout>
-                            <StackLayout Grid.Row="0" Grid.Column="5" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
-                                <ImageButton Margin="0, 5, 0, 5" Source="stockentry.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                            <StackLayout Grid.Row="0" Grid.Column="5" HeightRequest="80" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton Margin="0, 5, 0, 5" Source="stockentry.png" Aspect="Fill" HeightRequest="40" WidthRequest="40"/>
                                 <Label Text="Stock Entry" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </Grid>
@@ -79,12 +79,12 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <StackLayout Grid.Row="3" Grid.Column="1" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
-                                <ImageButton Margin="0, 5, 0, 5" Source="billing.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                            <StackLayout Grid.Row="3" Grid.Column="1" HeightRequest="80" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton Margin="0, 5, 0, 5" Source="billing.png" Aspect="Fill" HeightRequest="40" WidthRequest="40"/>
                                 <Label Text="Billing" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center"/>
                             </StackLayout>
-                            <StackLayout Grid.Row="4" Grid.Column="3" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
-                                <ImageButton Margin="0, 5, 0, 5" Source="itemdetails.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                            <StackLayout Grid.Row="4" Grid.Column="3" HeightRequest="80" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton Margin="0, 5, 0, 5" Source="itemdetails.png" Aspect="Fill" HeightRequest="40" WidthRequest="40"/>
                                 <Label Text="Item details" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </Grid>
@@ -104,12 +104,12 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             
-                            <StackLayout Grid.Row="0" Grid.Column="1" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
-                                <ImageButton Margin="0, 5, 0, 5" Source="changepassword.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                            <StackLayout Grid.Row="0" Grid.Column="1" HeightRequest="80" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton Margin="0, 0, 0, 5" Source="changepassword.png" Aspect="Fill" HeightRequest="40" WidthRequest="40"/>
                                 <Label Text="Change password" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center"/>
                             </StackLayout>
-                            <StackLayout Grid.Row="0" Grid.Column="3" HeightRequest="70" WidthRequest="45" Orientation="Vertical">
-                                <ImageButton Margin="0, 5, 0, 5" Source="logout.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=LogoutCommand}"/>
+                            <StackLayout Grid.Row="0" Grid.Column="3" HeightRequest="80" WidthRequest="45" Orientation="Vertical">
+                                <ImageButton Margin="0, 5, 0, 5" Source="logout.png" Aspect="Fill" HeightRequest="40" WidthRequest="40" Command="{Binding Path=LogoutCommand}"/>
                                 <Label Text="Logout" WidthRequest="45" FontSize="Micro" HorizontalTextAlignment="Center" LineBreakMode="WordWrap"/>
                             </StackLayout>
                         </Grid>
