@@ -40,5 +40,13 @@ namespace NSRetailLiteApp.Views.Common
             else 
                 return new Tuple<ItemCodeData, ItemPrice>(selectedItemCode, selectedItemCode.ItemPrices[0]);
         }
+
+        public async Task<string> ScanBarCodeWithCamera()
+        {
+            BarcodeScannerViewModel barcodeScannerViewModel = new BarcodeScannerViewModel();
+            await base.ShowPopup(null, new BarcodeScannerPopup(barcodeScannerViewModel));
+            return barcodeScannerViewModel.ScannedCode;
+
+        }
     }
 }

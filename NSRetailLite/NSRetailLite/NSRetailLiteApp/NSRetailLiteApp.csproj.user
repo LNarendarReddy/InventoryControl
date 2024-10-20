@@ -15,6 +15,9 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
+    <MauiXaml Update="Views\Common\BarcodeScannerPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\Common\ItemCodeSelectionPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

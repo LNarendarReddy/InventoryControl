@@ -17,8 +17,13 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
 
         public IAsyncRelayCommand SaveCommand { get; }
         public IAsyncRelayCommand LoadItemCommand { get; }
+        public IAsyncRelayCommand ScanCommand { get; }
 
         private StockCountingDetailListViewModel _stockCountingDetailListViewModel;
+
+        public delegate void SaveCompleted();
+
+        public event SaveCompleted SaveComplete; 
 
         public StockCountingDetailViewModel(StockCountingDetailListViewModel stockCountingDetailListViewModel
             , StockCountingDetailModel stockCountingDetailModel)
@@ -27,6 +32,7 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
             StockCountingDetailModel = stockCountingDetailModel;
             SaveCommand = new AsyncRelayCommand(Save);
             LoadItemCommand = new AsyncRelayCommand(LoadItem);
+            ScanCommand = new AsyncRelayCommand(Scan);
         }
 
         private async Task Save()
@@ -65,6 +71,7 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
             if (StockCountingDetailModel.Exception == null)
             {
                 ClearData();
+                SaveComplete?.Invoke();
             }
         }
 
@@ -100,6 +107,12 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
             StockCountingDetailModel.ItemName = item.ItemName;
             StockCountingDetailModel.MRP = "MRP : " + itemPrice.MRP.ToString();
             StockCountingDetailModel.SalePrice = "Sale price : " + itemPrice.SalePrice.ToString();
+        }
+
+        private async Task Scan()
+        {
+            StockCountingDetailModel.ItemCode = await new ItemPriceSelectionUtility().ScanBarCodeWithCamera();
+            LoadItem();
         }
 
         private void ClearData()

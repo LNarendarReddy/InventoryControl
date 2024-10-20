@@ -12,10 +12,16 @@ public partial class AddItem : ContentPage
 		InitializeComponent();
         this.stockCountingDetailViewModel = stockCountingDetailViewModel;
         BindingContext = stockCountingDetailViewModel;
+        stockCountingDetailViewModel.SaveComplete += StockCountingDetailViewModel_SaveComplete;
+    }
+
+    private void StockCountingDetailViewModel_SaveComplete()
+    {
+        txtItemCode.Focus();
     }
 
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
-        //txtItemCode.Focus();
+        txtItemCode.Focus();
     }
 }

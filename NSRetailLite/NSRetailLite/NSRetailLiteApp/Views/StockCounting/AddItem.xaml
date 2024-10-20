@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NSRetailLiteApp.Views.StockCounting.AddItem"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="Add Stock for item" Loaded="ContentPage_Loaded">
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"             
+             Title="Add Stock for item" Loaded="ContentPage_Loaded"
+             x:Name="AddItemPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
@@ -11,13 +12,22 @@
     </ContentPage.Resources>
     
     <VerticalStackLayout Margin="20">
-        <Entry Placeholder="EAN Code" Margin="0, 0, 0, 10" Text="{Binding Path=StockCountingDetailModel.ItemCode, Mode=TwoWay}"
-               ClearButtonVisibility="WhileEditing" ReturnType="Done" ReturnCommand="{Binding Path=LoadItemCommand}" Keyboard="Numeric"
-               x:Name="txtItemCode">
-            <Entry.Behaviors>
-                <toolkit:SelectAllTextBehavior />
-            </Entry.Behaviors>
-        </Entry>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Entry Placeholder="EAN Code" Margin="0, 0, 0, 10" Text="{Binding Path=StockCountingDetailModel.ItemCode, Mode=TwoWay}"
+                   ClearButtonVisibility="WhileEditing" ReturnType="Done" 
+                   ReturnCommand="{Binding Path=BindingContext.LoadItemCommand, Source={x:Reference AddItemPage}}" Keyboard="Numeric"
+                   x:Name="txtItemCode" Grid.Column="0">
+                <Entry.Behaviors>
+                    <toolkit:SelectAllTextBehavior />
+                </Entry.Behaviors>
+            </Entry>
+            <ImageButton Source="camera.png" Command="{Binding Path=BindingContext.ScanCommand, Source={x:Reference AddItemPage}}" 
+                         Margin="10, 0, 0, 0" WidthRequest="40" Grid.Column="1"/>
+        </Grid>
         <Entry Placeholder="Item Name" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockCountingDetailModel.ItemName, Mode=TwoWay}"/>
         <Entry Placeholder="SKU Code" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockCountingDetailModel.SKUCode, Mode=TwoWay}"/>
         <Entry Placeholder="MRP" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockCountingDetailModel.MRP, Mode=TwoWay}"
