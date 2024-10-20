@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.StockCounting.AddItem"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Add Stock for item" Loaded="ContentPage_Loaded">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <VerticalStackLayout Margin="20">
+        <Entry Placeholder="EAN Code" Margin="0, 0, 0, 10" Text="{Binding Path=StockCountingDetailModel.ItemCode, Mode=TwoWay}"
+               ClearButtonVisibility="WhileEditing" ReturnType="Done" ReturnCommand="{Binding Path=LoadItemCommand}" Keyboard="Numeric"
+               x:Name="txtItemCode">
+            <Entry.Behaviors>
+                <toolkit:SelectAllTextBehavior />
+            </Entry.Behaviors>
+        </Entry>
+        <Entry Placeholder="Item Name" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockCountingDetailModel.ItemName, Mode=TwoWay}"/>
+        <Entry Placeholder="SKU Code" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockCountingDetailModel.SKUCode, Mode=TwoWay}"/>
+        <Entry Placeholder="MRP" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockCountingDetailModel.MRP, Mode=TwoWay}"
+              />
+        <Entry Placeholder="Sale Price" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockCountingDetailModel.SalePrice, Mode=TwoWay}"/>
+
+        <Label Text="Quantity" FontSize="Small"/>
+        <Entry Margin="0, 0, 0, 10" Text="{Binding Path=StockCountingDetailModel.Quantity, Mode=TwoWay}" 
+               Keyboard="Numeric" IsEnabled="{Binding Path=StockCountingDetailModel.IsOpenItem, Converter={StaticResource InvertedBoolConverter}}">
+            <Entry.Behaviors>
+                <toolkit:NumericValidationBehavior 
+                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                    ValidStyle="{StaticResource ValidEntryStyle}"
+                    Flags="ValidateOnValueChanged" 
+                    MaximumDecimalPlaces="0"/>
+                <toolkit:SelectAllTextBehavior />
+            </Entry.Behaviors>
+        </Entry>
+
+        <Label Text="Weight in KG(s)" FontSize="Small"/>
+        <Entry Margin="0, 0, 0, 10" Text="{Binding Path=StockCountingDetailModel.WeightInKGs, Mode=TwoWay}"  Keyboard="Numeric"
+               IsEnabled="{Binding Path=StockCountingDetailModel.IsOpenItem}" >
+            <Entry.Behaviors>
+                <toolkit:NumericValidationBehavior 
+                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                    ValidStyle="{StaticResource ValidEntryStyle}"
+                    Flags="ValidateOnValueChanged" 
+                    MaximumDecimalPlaces="2"/>
+                <toolkit:SelectAllTextBehavior />
+            </Entry.Behaviors>
+        </Entry>
+        <Button Text="Save" WidthRequest="120" Command="{Binding Path=SaveCommand}" />
+        <!--toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference txtItemCode}"-->
+    </VerticalStackLayout>
+</ContentPage>

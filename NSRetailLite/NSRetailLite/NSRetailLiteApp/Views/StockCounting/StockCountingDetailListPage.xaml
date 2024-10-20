@@ -3,15 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NSRetailLiteApp.Views.StockCounting.StockCountingDetailListPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="StockCountingDetailListPage">
-
+             xmlns:views="clr-namespace:NSRetailLiteApp.Views.StockCounting"
+             Title="StockCountingDetailListPage" x:Name="stockCountingListPage" Loaded="stockCountingListPage_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
         
         <SearchBar x:Name="searchBar" Grid.Row="0"
@@ -25,39 +24,52 @@
                     EventName="TextChanged" />
             </SearchBar.Behaviors>
         </SearchBar>
-        <CollectionView ItemsSource="{Binding Path=FilteredStockCountingDetails}" Grid.Row="1">
-                <CollectionView.ItemTemplate>
+        <CollectionView ItemsSource="{Binding Path=FilteredStockCountingDetails}" Grid.Row="1" x:Name="mCollectionView">
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-
-                    <Grid Padding="10, 5, 10, 5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <Label Text="{Binding Path=SNo, StringFormat='{0}.'}" Margin="0, 0, 5, 0" 
-                                    Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItem 
+                                Text="Edit"
+                                Command="{Binding Path=BindingContext.EditCommand, Source={RelativeSource AncestorType={x:Type views:StockCountingDetailListPage}}}"
+                                CommandParameter="{Binding .}"/>
+                            <SwipeItem 
+                                IconImageSource="stockcountingdiscard.png" 
+                                BackgroundColor="LightPink"
+                                Command="{Binding Path=BindingContext.DeleteCommand, Source={RelativeSource AncestorType={x:Type views:StockCountingDetailListPage}}}"
+                                CommandParameter="{Binding .}"/>
+                        </SwipeView.RightItems>
                         
-                        <Label Text="{Binding Path=ItemCode}" Margin="0, 0, 5, 0" Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand"/>
-                        <Label Text="{Binding Path=MRP, StringFormat='MRP: {0}'}" Margin="0, 0, 10, 0" Grid.Row="0" Grid.Column="2" FontSize="Caption" HorizontalOptions="End"/>
-                        <Label Text="{Binding Path=Quantity, StringFormat='Qty: {0}'}" Margin="0, 0, 10, 0" Grid.Row="0" Grid.Column="3" 
+                        <Grid Padding="10, 5, 10, 5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding Path=SNo, StringFormat='{0}.'}" Margin="0, 0, 5, 0" 
+                                    Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+
+                            <Label Text="{Binding Path=ItemCode}" Margin="0, 0, 5, 0" Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding Path=MRP, StringFormat='MRP: {0}'}" Margin="0, 0, 10, 0" Grid.Row="0" Grid.Column="2" FontSize="Caption" HorizontalOptions="End"/>
+                            <Label Text="{Binding Path=Quantity, StringFormat='Qty: {0}'}" Margin="0, 0, 10, 0" Grid.Row="0" Grid.Column="3" 
                                HorizontalOptions="End" FontSize="Caption" FontAttributes="Bold"/>
 
-                        <Label Text="{Binding Path=ItemName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" LineBreakMode="TailTruncation" />
-                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="2" Grid.ColumnSpan="5"/>
-                        <ImageButton Source="stockcountingdiscard.png" Grid.Row="0" Grid.Column="4" Grid.RowSpan="2" Aspect="Fill" HeightRequest="20" WidthRequest="20"/>
-                    </Grid>
+                            <Label Text="{Binding Path=ItemName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" LineBreakMode="TailTruncation" />
+                            <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="2" Grid.ColumnSpan="5"/>                            
+                        </Grid>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            </CollectionView>
+        </CollectionView>
+
         <Grid Grid.Row="2" BackgroundColor="LightPink">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
@@ -70,15 +82,15 @@
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
-                <ImageButton Source="stockcountingadd.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                <ImageButton Source="stockcountingadd.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=AddItemCommand}"/>
                 <Label Text="Add Item"/>
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
-                <ImageButton Source="stockcountingsubmit.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                <ImageButton Source="stockcountingsubmit.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=SubmitCommand}"/>
                 <Label Text="Submit"/>
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
-                <ImageButton Source="stockcountingdiscard.png" Aspect="Fill" HeightRequest="30" WidthRequest="30"/>
+                <ImageButton Source="stockcountingdiscard.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=DiscardCommand}"/>
                 <Label Text="Discard"/>
             </VerticalStackLayout>
         </Grid>

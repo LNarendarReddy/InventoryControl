@@ -1,0 +1,44 @@
+﻿using NSRetailLiteApp.Models;
+using NSRetailLiteApp.ViewModels;
+using NSRetailLiteApp.ViewModels.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NSRetailLiteApp.Views.Common
+{
+    public class ItemPriceSelectionUtility : BaseViewModel
+    {
+        public async Task<Tuple<ItemCodeData, ItemPrice>> GetSelectedItemPrice(Item item)
+        {
+            if (item == null || item.ItemCodes == null || !item.ItemCodes.Any()) return new Tuple<ItemCodeData, ItemPrice>(null, null);
+
+            ItemCodeData selectedItemCode;
+
+            if (item.ItemCodes.Count > 1)
+            {
+                ItemCodeSelectionViewModel itemCodeSelectionViewModel = new ItemCodeSelectionViewModel(item);
+                await base.ShowPopup(item, new ItemCodeSelectionPage(itemCodeSelectionViewModel));
+                selectedItemCode = itemCodeSelectionViewModel.SelectedItemCode;
+            }
+            else
+            {
+                selectedItemCode = item.ItemCodes[0];
+            }
+
+            if (selectedItemCode == null) return new Tuple<ItemCodeData, ItemPrice>(null, null); ;
+
+            if (selectedItemCode.ItemPrices.Count > 1)
+            {
+                ItemPriceSelectionViewModel itemPriceSelectionViewModel = new ItemPriceSelectionViewModel(selectedItemCode);
+                await base.ShowPopup(selectedItemCode, new ItemPriceSelectionPage(itemPriceSelectionViewModel));
+
+                return new Tuple<ItemCodeData, ItemPrice>(selectedItemCode, itemPriceSelectionViewModel.SelectedItemPrice);
+            }
+            else 
+                return new Tuple<ItemCodeData, ItemPrice>(selectedItemCode, selectedItemCode.ItemPrices[0]);
+        }
+    }
+}

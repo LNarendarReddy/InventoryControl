@@ -6,6 +6,7 @@ using NSRetailLiteApp.Views.StockCounting;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +18,14 @@ namespace NSRetailLiteApp.ViewModels
         [ObservableProperty]
         public LoggedInUser _model;
 
+        public static LoggedInUser User { get; private set; }
+
         public HomePageViewModel(LoggedInUser loggedInUser) 
         {
             LogoutCommand = new AsyncRelayCommand(Logout);
             OpenStockCountingCommand = new AsyncRelayCommand(OpenStockCounting);
             _model = loggedInUser;
+            User = loggedInUser;
         }
 
         public IAsyncRelayCommand LogoutCommand { get; }
@@ -30,7 +34,7 @@ namespace NSRetailLiteApp.ViewModels
         {
             if(Application.Current == null || Application.Current.MainPage == null) return;
 
-            bool confirm = await Application.Current.MainPage.DisplayAlert("Confirm", "Are you sure to logout?", "Yes", "No");
+            bool confirm = await DisplayAlert("Confirm", "Are you sure to logout?", "Yes", "No");
             if (confirm)
                 Application.Current?.MainPage?.Navigation.PopAsync();
         }
@@ -101,7 +105,7 @@ namespace NSRetailLiteApp.ViewModels
                 return;
             }
 
-            RedirectToPage(stockCounting, new StockCountingDetailListPage(new StockCountingDetailListViewModel(stockCounting)));
+            RedirectToPage(stockCounting, new StockCountingDetailListPage(new StockCountingDetailListViewModel(stockCounting, Model.UserId)));
         }
     }
 }

@@ -10,5 +10,13 @@ public partial class StockCountingDetailListPage : ContentPage
 		InitializeComponent();
         NavigationPage.SetHasNavigationBar(this, false);
         BindingContext = stockCountingDetailListViewModel;
+        StockCountingDetailListViewModel = stockCountingDetailListViewModel;
+    }
+
+    public StockCountingDetailListViewModel StockCountingDetailListViewModel { get; }
+
+    private void stockCountingListPage_Loaded(object sender, EventArgs e)
+    {
+        StockCountingDetailListViewModel.Reload();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using NSRetailLiteApp.Views;
+using System.Runtime.ExceptionServices;
 
 namespace NSRetailLiteApp
 {
@@ -8,8 +9,15 @@ namespace NSRetailLiteApp
         {
             InitializeComponent();
 
+            AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
+
             //MainPage = new AppShell();
             MainPage = new NavigationPage(new LoginPage());
+        }
+
+        private void CurrentDomain_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
+        {
+            //Current?.MainPage?.DisplayAlert("Error", e.Exception.Source, "OK");
         }
     }
 }

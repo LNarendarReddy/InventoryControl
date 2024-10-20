@@ -55,21 +55,5 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         public bool _accessAvailable;
 
-    }
-
-    internal class HolderClass : BaseObservableObject
-    {
-        public LoggedInUser User;
-
-        public StockCountingModel Counting;
-
-        public ObservableCollection<Branch> Branch;
-
-        public int GenericID;
-    }
-
-    internal class RootClass
-    {
-        public HolderClass Holder;
-    }
+    }    
 }

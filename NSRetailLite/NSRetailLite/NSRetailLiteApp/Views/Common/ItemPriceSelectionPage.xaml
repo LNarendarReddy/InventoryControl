@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.Common.ItemPriceSelectionPage"             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             >
+    <ScrollView BackgroundColor="White">
+        <StackLayout Orientation="Vertical">
+            <Label Text="{Binding Path=ItemCode.ItemCode, Mode=TwoWay}" Margin="0, 20, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" />
+            <ListView ItemsSource="{Binding Path=ItemCode.ItemPrices}" SelectedItem="{Binding Path=SelectedItemPrice}" SelectionMode="Single"
+          ItemSelected="ListView_ItemSelected" Margin="20">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="MRP: " Grid.Row="0" Grid.Column="1"/>
+                                <Label Text="{Binding Path=MRP}" Grid.Row="0" Grid.Column="2" FontAttributes="Bold" />
+                                <Label Text=" Sale price: " Grid.Row="0" Grid.Column="3" Margin="10, 0, 0, 0"/>
+                                <Label Text="{Binding Path=SalePrice}" Grid.Row="0" Grid.Column="4" FontAttributes="Bold" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</mct:Popup>

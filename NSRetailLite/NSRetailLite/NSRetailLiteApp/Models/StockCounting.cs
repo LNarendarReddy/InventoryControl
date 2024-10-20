@@ -50,10 +50,10 @@ namespace NSRetailLiteApp.Models
         public string _itemName;
 
         [ObservableProperty]
-        public double _mRP;
+        public string _mRP;
 
         [ObservableProperty]
-        public double _salePrice;
+        public string _salePrice;
 
         [ObservableProperty]
         public int _quantity;
@@ -63,5 +63,8 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         public int _sNo;
+
+        [ObservableProperty]
+        public bool _isOpenItem;
     }
 }

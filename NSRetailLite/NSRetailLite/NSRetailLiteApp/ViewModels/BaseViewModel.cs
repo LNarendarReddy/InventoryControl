@@ -24,12 +24,13 @@ namespace NSRetailLiteApp.ViewModels
             PostAsync(path, ref callingObject, new Dictionary<string, string?> { { "jsonstring", JsonConvert.SerializeObject(callingObject) } }, displayAlert);
         }
 
-        protected void PostAsync<T>(string path, ref T callingObject, Dictionary<string, string?> values, bool displayAlert = true) where T : BaseObservableObject
+        protected void PostAsync<T>(string path, ref T callingObject, Dictionary<string, string?> values
+            , bool displayAlert = true, bool showResponse = false) where T : BaseObservableObject
         {
             try
             {
                 HttpResponseMessage responseMessage = httpClient.PostAsync(QueryHelpers.AddQueryString("https://nsoftsol.com:6002/api/" + path, values), null).Result;
-                ProcessResponse(responseMessage, ref callingObject, displayAlert);
+                ProcessResponse(responseMessage, ref callingObject, displayAlert, showResponse);
             }
             catch (Exception ex)
             {
@@ -50,9 +51,10 @@ namespace NSRetailLiteApp.ViewModels
             }
         }
 
-        public void ProcessResponse<T>(HttpResponseMessage message, ref T callingObject, bool displayAlert = true) where T : BaseObservableObject
+        public void ProcessResponse<T>(HttpResponseMessage message, ref T callingObject, bool displayAlert = true
+            , bool showResponse = false) where T : BaseObservableObject
         {
-            ReadResponse(message, ref callingObject);
+            ReadResponse(message, ref callingObject, showResponse);
             DisplayErrorMessage(callingObject, displayAlert);
         }
 
@@ -69,7 +71,7 @@ namespace NSRetailLiteApp.ViewModels
         }
 
 
-        private void ReadResponse<T>(HttpResponseMessage message, ref T callingObject) where T : BaseObservableObject
+        private void ReadResponse<T>(HttpResponseMessage message, ref T callingObject, bool showResponse) where T : BaseObservableObject
         {
             if (message == null)
             {
@@ -92,7 +94,13 @@ namespace NSRetailLiteApp.ViewModels
                 return;
             }
 
-            if(int.TryParse(responeMessage, out int ID) && callingObject.GetType() == typeof(HolderClass))
+            if(showResponse)
+            {
+                DisplayAlert("Response", responeMessage, "OK");
+                return;
+            }
+
+            if (int.TryParse(responeMessage, out int ID) && callingObject.GetType() == typeof(HolderClass))
             {
                 (callingObject as HolderClass).GenericID = ID;
                 return;
@@ -107,6 +115,8 @@ namespace NSRetailLiteApp.ViewModels
                 callingObject = root.Holder.User as T;
             else if (callingObject.GetType() == typeof(StockCountingModel))
                 callingObject = root.Holder.Counting as T;
+            else if (callingObject.GetType() == typeof(Item))
+                callingObject = root.Holder.Item as T;
             else if (callingObject.GetType() == typeof(ObservableCollection<Branch>))
                 callingObject = root.Holder.Branch as T;
             else if (callingObject.GetType() == typeof(HolderClass))
@@ -122,7 +132,8 @@ namespace NSRetailLiteApp.ViewModels
 
         protected void DisplayErrorMessage(string error)
         {
-            Application.Current?.MainPage?.DisplayAlert("Error", error, "OK");
+            //Application.Current?.MainPage?.DisplayAlert("Error", error, "OK");
+            DisplayAlert("Error", error, "OK");
         }
 
         protected async Task RedirectToPage(BaseObservableObject callingObject, ContentPage redirectToPage, bool isModal = false)
@@ -141,6 +152,35 @@ namespace NSRetailLiteApp.ViewModels
             if (callingObject?.Exception == null && Application.Current != null && Application.Current.MainPage != null)
             {
                 await Application.Current.MainPage.ShowPopupAsync(popupPage);                
+            }
+        }
+
+        protected async Task<bool> DisplayAlert(string caption, string message, string accept, string cancel = "")
+        {
+            if (Application.Current != null && Application.Current.MainPage != null)
+            {
+                if (string.IsNullOrEmpty(cancel))
+                {
+                    await Application.Current.MainPage.DisplayAlert(caption, message, accept);
+                    return true;
+                }
+                else
+                {
+                    return await Application.Current.MainPage.DisplayAlert(caption, message, accept, cancel);
+                }
+            }
+
+            return false;
+        }
+
+        protected async Task Pop(bool isModal = false)
+        {
+            if (Application.Current != null && Application.Current.MainPage != null)
+            {
+                if (isModal)
+                    await Application.Current.MainPage.Navigation.PopModalAsync();
+                else
+                    await Application.Current.MainPage.Navigation.PopAsync();
             }
         }
     }
