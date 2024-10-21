@@ -4,24 +4,26 @@
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              x:Class="NSRetailLiteApp.Views.StockCounting.BranchSelectionPage"
            >
-    <ScrollView BackgroundColor="White">
-        <StackLayout Orientation="Vertical">
-            <Label Text="Select Branch" Margin="0, 20, 0, 0" WidthRequest="100" HorizontalOptions="Center" FontAttributes="Bold" />
-            <ListView ItemsSource="{Binding Path=Branches}" SelectedItem="{Binding Path=SelectedBranch}" SelectionMode="Single"
-              ItemSelected="ListView_ItemSelected" Margin="20">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid Padding="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
-                                <Label Text="{Binding Path=BranchName}" Grid.Row="0"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ScrollView>
+    <Grid BackgroundColor="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Text="Select Branch" Margin="0, 20, 0, 0" WidthRequest="100" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" />
+        <CollectionView ItemsSource="{Binding Path=Branches}" SelectedItem="{Binding Path=SelectedBranch}" SelectionMode="Single"
+              SelectionChanged="CollectionView_SelectionChanged" Margin="20" VerticalScrollBarVisibility="Always" Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="{Binding Path=BranchName}" Grid.Row="0"/>
+                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="1" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </mct:Popup>

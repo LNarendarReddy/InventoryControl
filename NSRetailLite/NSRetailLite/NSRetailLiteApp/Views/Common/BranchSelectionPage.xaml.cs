@@ -12,7 +12,7 @@ public partial class BranchSelectionPage : Popup
         BindingContext = branchSelectionViewModel;
     }
 
-    private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         this.CloseAsync();
     }

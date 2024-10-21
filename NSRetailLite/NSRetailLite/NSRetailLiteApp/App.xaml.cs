@@ -17,7 +17,7 @@ namespace NSRetailLiteApp
 
         private void CurrentDomain_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
         {
-            //Current?.MainPage?.DisplayAlert("Error", e.Exception.Source, "OK");
+            //Current?.MainPage?.DisplayAlert("Error", e.Exception.StackTrace, "OK");
         }
     }
 }

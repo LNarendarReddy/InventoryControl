@@ -4,24 +4,24 @@
              x:Class="NSRetailLiteApp.Views.Common.ItemCodeSelectionPage"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              >
-    <ScrollView BackgroundColor="White">
-        <StackLayout Orientation="Vertical">
-            <Label Text="{Binding Path=Item.ItemName, Mode=TwoWay}" Margin="0, 20, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" />
-            <ListView ItemsSource="{Binding Path=Item.ItemCodes}" SelectedItem="{Binding Path=SelectedItemCode}" SelectionMode="Single"
-          ItemSelected="ListView_ItemSelected" Margin="20">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid Padding="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
-                                <Label Text="{Binding Path=ItemCode}" Grid.Row="0"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ScrollView>
+    <Grid BackgroundColor="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Text="{Binding Path=Item.ItemName, Mode=TwoWay}" Margin="0, 20, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" />
+        <CollectionView ItemsSource="{Binding Path=Item.ItemCodes}" SelectedItem="{Binding Path=SelectedItemCode}" SelectionMode="Single"
+                    SelectionChanged="CollectionView_SelectionChanged" Margin="20" Grid.Row="1" VerticalScrollBarVisibility="Always">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="{Binding Path=ItemCode}" Grid.Row="0"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </mct:Popup>
