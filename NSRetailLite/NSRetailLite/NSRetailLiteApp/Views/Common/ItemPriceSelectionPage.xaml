@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NSRetailLiteApp.Views.Common.ItemPriceSelectionPage"             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="NSRetailLiteApp.Views.Common.ItemPriceSelectionPage"             
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             xmlns:models="clr-namespace:NSRetailLiteApp.Models"
              >
     <Grid BackgroundColor="White">
         <Grid.RowDefinitions>
@@ -12,13 +14,13 @@
         <CollectionView ItemsSource="{Binding Path=ItemCode.ItemPrices}" SelectedItem="{Binding Path=SelectedItemPrice}" SelectionMode="Single"
                      SelectionChanged="CollectionView_SelectionChanged" Margin="20" Grid.Row="1" VerticalScrollBarVisibility="Always">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <VerticalStackLayout VerticalOptions="Center" Margin="10" HorizontalOptions="Center">
+                <DataTemplate x:DataType="{x:Type models:ItemPrice}">
+                    <VerticalStackLayout VerticalOptions="Center" Margin="10" HorizontalOptions="Center" x:Name="templateRoot">
                         <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
                             <Label Text="MRP: " FontSize="Medium" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding Path=MRP}" FontAttributes="Bold" FontSize="Medium"/>
+                            <Label Text="{Binding Path=BindingContext.MRP, Source={x:Reference templateRoot}}" FontAttributes="Bold" FontSize="Medium"/>
                             <Label Text=" Sale price: " Margin="10, 0, 0, 0" FontSize="Medium"/>
-                            <Label Text="{Binding Path=SalePrice}" FontAttributes="Bold" FontSize="Medium"/>
+                            <Label Text="{Binding Path=BindingContext.SalePrice, Source={x:Reference templateRoot}}" FontAttributes="Bold" FontSize="Medium"/>
                         </HorizontalStackLayout>
                         <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" />
                     </VerticalStackLayout>

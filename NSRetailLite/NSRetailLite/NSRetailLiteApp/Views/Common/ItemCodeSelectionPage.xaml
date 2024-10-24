@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NSRetailLiteApp.Views.Common.ItemCodeSelectionPage"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             xmlns:models="clr-namespace:NSRetailLiteApp.Models"
              >
     <Grid BackgroundColor="White">
         <Grid.RowDefinitions>
@@ -14,9 +15,11 @@
         <CollectionView ItemsSource="{Binding Path=Item.ItemCodes}" SelectedItem="{Binding Path=SelectedItemCode}" SelectionMode="Single"
                     SelectionChanged="CollectionView_SelectionChanged" Margin="20" Grid.Row="1" VerticalScrollBarVisibility="Always">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <VerticalStackLayout VerticalOptions="Center" Margin="50, 0, 50, 0">
-                        <Label Text="{Binding Path=ItemCode}" Margin="0, 15, 0, 5" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                <DataTemplate x:DataType="{x:Type models:ItemCodeData}">
+                    <VerticalStackLayout VerticalOptions="Center" Margin="50, 0, 50, 0" x:Name="templateRoot">
+                        <Label 
+                            Text="{Binding Path=BindingContext.ItemCode, Source={x:Reference templateRoot}}" 
+                            Margin="0, 15, 0, 5" HorizontalTextAlignment="Center" FontSize="Medium"/>
                         <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" />
                     </VerticalStackLayout>
                 </DataTemplate>

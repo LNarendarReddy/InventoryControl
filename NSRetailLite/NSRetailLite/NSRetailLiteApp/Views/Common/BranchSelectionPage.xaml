@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              x:Class="NSRetailLiteApp.Views.StockCounting.BranchSelectionPage"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:NSRetailLiteApp.Models">
     <Grid BackgroundColor="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -23,11 +24,13 @@
         <CollectionView ItemsSource="{Binding Path=FilteredBranches}" SelectedItem="{Binding Path=SelectedBranch}" SelectionMode="Single"
               SelectionChanged="CollectionView_SelectionChanged" Margin="20" VerticalScrollBarVisibility="Always" Grid.Row="1">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <VerticalStackLayout  Margin="5, 15, 0, 5" VerticalOptions="CenterAndExpand">
+                <DataTemplate x:DataType="{x:Type models:Branch}">
+                    <VerticalStackLayout  Margin="5, 15, 0, 5" VerticalOptions="CenterAndExpand" x:Name="templateRoot">
                         <HorizontalStackLayout Margin="5, 0, 5, 0" HorizontalOptions="Start">
-                            <Label Text="{Binding Path=BranchCode}" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
-                            <Label Text="{Binding Path=BranchName, StringFormat='  ( {0} )'}" />
+                            <Label 
+                                Text="{Binding Path=BindingContext.BranchCode, Source={x:Reference templateRoot}}" 
+                                HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                            <Label Text="{Binding Path=BindingContext.BranchName, Source={x:Reference templateRoot}, StringFormat='  ( {0} )'}" />
                         </HorizontalStackLayout>
                         <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" />
                     </VerticalStackLayout>
