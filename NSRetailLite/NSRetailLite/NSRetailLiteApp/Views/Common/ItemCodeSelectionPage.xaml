@@ -9,17 +9,16 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Text="{Binding Path=Item.ItemName, Mode=TwoWay}" Margin="0, 20, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" />
+        <Label Text="{Binding Path=Item.ItemName, Mode=TwoWay}" Margin="0, 20, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0"
+               FontSize="Title"/>
         <CollectionView ItemsSource="{Binding Path=Item.ItemCodes}" SelectedItem="{Binding Path=SelectedItemCode}" SelectionMode="Single"
                     SelectionChanged="CollectionView_SelectionChanged" Margin="20" Grid.Row="1" VerticalScrollBarVisibility="Always">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-                        <Label Text="{Binding Path=ItemCode}" Grid.Row="0"/>
-                    </Grid>
+                    <VerticalStackLayout VerticalOptions="Center" Margin="50, 0, 50, 0">
+                        <Label Text="{Binding Path=ItemCode}" Margin="0, 15, 0, 5" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" />
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

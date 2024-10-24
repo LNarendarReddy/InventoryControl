@@ -3,25 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              x:Class="NSRetailLiteApp.Views.StockCounting.BranchSelectionPage"
-           >
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <Grid BackgroundColor="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Text="Select Branch" Margin="0, 20, 0, 0" WidthRequest="100" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" />
-        <CollectionView ItemsSource="{Binding Path=Branches}" SelectedItem="{Binding Path=SelectedBranch}" SelectionMode="Single"
+        <SearchBar x:Name="searchBar" Margin="0, 0, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" 
+                              SearchCommand="{Binding Path=PerformSearchCommand}"                   
+           SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+           Placeholder="Available brances" BackgroundColor="LightPink">
+            <SearchBar.Behaviors>
+                <toolkit:EventToCommandBehavior
+            Command = "{Binding PerformSearchCommand}"
+            CommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+            EventName="TextChanged" />
+            </SearchBar.Behaviors>
+        </SearchBar>
+        <CollectionView ItemsSource="{Binding Path=FilteredBranches}" SelectedItem="{Binding Path=SelectedBranch}" SelectionMode="Single"
               SelectionChanged="CollectionView_SelectionChanged" Margin="20" VerticalScrollBarVisibility="Always" Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10">
+                    <VerticalStackLayout  Margin="5, 15, 0, 5" VerticalOptions="CenterAndExpand">
+                        <HorizontalStackLayout Margin="5, 0, 5, 0" HorizontalOptions="Start">
+                            <Label Text="{Binding Path=BranchCode}" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                            <Label Text="{Binding Path=BranchName, StringFormat='  ( {0} )'}" />
+                        </HorizontalStackLayout>
+                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" />
+                    </VerticalStackLayout>
+                    <!--<Grid Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
                         <Label Text="{Binding Path=BranchName}" Grid.Row="0"/>
                         <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="1" />
-                    </Grid>
+                    </Grid>-->
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -8,12 +8,21 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Text="{Binding Path=ItemCode.ItemCode, Mode=TwoWay}" Margin="0, 20, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0"/>
+        <Label Text="{Binding Path=ItemCode.ItemCode, Mode=TwoWay}" Margin="0, 20, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" FontSize="Title"/>
         <CollectionView ItemsSource="{Binding Path=ItemCode.ItemPrices}" SelectedItem="{Binding Path=SelectedItemPrice}" SelectionMode="Single"
                      SelectionChanged="CollectionView_SelectionChanged" Margin="20" Grid.Row="1" VerticalScrollBarVisibility="Always">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10">
+                    <VerticalStackLayout VerticalOptions="Center" Margin="10" HorizontalOptions="Center">
+                        <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <Label Text="MRP: " FontSize="Medium" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Path=MRP}" FontAttributes="Bold" FontSize="Medium"/>
+                            <Label Text=" Sale price: " Margin="10, 0, 0, 0" FontSize="Medium"/>
+                            <Label Text="{Binding Path=SalePrice}" FontAttributes="Bold" FontSize="Medium"/>
+                        </HorizontalStackLayout>
+                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" />
+                    </VerticalStackLayout>
+                    <!--<Grid Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
@@ -29,7 +38,7 @@
                         <Label Text="{Binding Path=MRP}" Grid.Row="0" Grid.Column="2" FontAttributes="Bold" />
                         <Label Text=" Sale price: " Grid.Row="0" Grid.Column="3" Margin="10, 0, 0, 0"/>
                         <Label Text="{Binding Path=SalePrice}" Grid.Row="0" Grid.Column="4" FontAttributes="Bold" />
-                    </Grid>
+                    </Grid>-->
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
