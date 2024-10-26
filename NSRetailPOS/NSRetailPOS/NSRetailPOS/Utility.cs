@@ -15,6 +15,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Ports;
+using System.Linq;
 using System.Management;
 using System.Net;
 using System.Net.Sockets;
@@ -44,9 +45,9 @@ namespace NSRetailPOS
         public static event EventHandler ItemOrCodeChanged;
         public static Form ActiveForm;
 
-        public static string AppVersion = "1.6.7";
+        public static string AppVersion = "1.6.8";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(13-10-2024)";
+        public static string VersionDate = "(25-10-2024)";
 
         public static Bill GetBill(DataSet dsBillDetails)
         {
@@ -311,6 +312,20 @@ namespace NSRetailPOS
         private static void GridView_RowStyle(object sender, RowStyleEventArgs e)
         {
             GridView view = sender as GridView;
+
+            if (view.Columns.Any(x => x.FieldName == "DELETEDDATE")
+                    && view.GetRowCellValue(e.RowHandle, "DELETEDDATE") != DBNull.Value)
+            {
+                e.Appearance.Font = new Font(e.Appearance.Font.Name, e.Appearance.Font.Size, FontStyle.Strikeout);
+                e.Appearance.BackColor = Color.Maroon;
+                e.Appearance.Options.UseForeColor = true;
+                e.Appearance.Options.UseBackColor = true;
+                e.Appearance.Options.UseFont = true;
+                e.HighPriority = true;
+                return;
+            }
+
+
             if (view.IsRowSelected(e.RowHandle) || view.FocusedRowHandle == e.RowHandle)
             {
                 e.Appearance.BackColor = Color.GhostWhite;
@@ -673,7 +688,7 @@ namespace NSRetailPOS
         public int MultiEditThreshold { get; set; }
 
         public object FilterMRPByStock { get; set; }
-        public bool EnableDraftBills { get; set; }
+        public int EnableDraftBills { get; set; }
     }
 }
 

@@ -1,5 +1,7 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Data;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
@@ -93,8 +95,7 @@ namespace NSRetailPOS
 
             lblOffer.Text = noOfferText;
             lblDeal.Text = noDealText;
-            HighlightOffer();
-            btnSaveBill.Enabled = Utility.branchInfo.EnableDraftBills;
+            HighlightOffer();            
             Task.Run(() => DoWorkAsync());
         }
 
@@ -225,7 +226,11 @@ namespace NSRetailPOS
         {
             if (!btnCloseBill.Enabled) return;
 
-            if (billObj.dtBillDetails.Rows.Count == 0)
+            DataTable dtBillDetails = billObj.dtBillDetails.Copy();
+            dtBillDetails.DefaultView.RowFilter = "DELETEDDATE IS NULL";
+            dtBillDetails = dtBillDetails.DefaultView.ToTable();
+
+            if (dtBillDetails.Rows.Count == 0)
             {
                 XtraMessageBox.Show("No items to bill", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -261,7 +266,7 @@ namespace NSRetailPOS
                 Bill oldBillObj = billObj.Clone() as Bill;
                 DataView dv = oldBillObj.dtMopValues.DefaultView;
                 dv.RowFilter = "MOPVALUE > 0";
-                rptBill rpt = new rptBill(oldBillObj.dtBillDetails, dv.ToTable());
+                rptBill rpt = new rptBill(dtBillDetails, dv.ToTable());
                 rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
                 rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
                 rpt.Parameters["FSSAI"].Value = "10114004000548";
@@ -372,7 +377,9 @@ namespace NSRetailPOS
             gcBilling.Refresh();
 
             UpdateSummary();
-            SNo = billObj.dtBillDetails.Rows.Count + 1;
+            DataView dvBillDetails = billObj.dtBillDetails.Copy().DefaultView;
+            dvBillDetails.RowFilter = "DELETEDDATE IS NULL";
+            SNo = dvBillDetails.Count + 1;
 
             txtItemCode.Focus();
         }
@@ -429,9 +436,21 @@ namespace NSRetailPOS
         {
             if (!btnSaveBill.Enabled) return;
 
-            if (billObj.dtBillDetails.Rows.Count == 0)
+            DataTable dtBillDetails = billObj.dtBillDetails.Copy();
+            dtBillDetails.DefaultView.RowFilter = "DELETEDDATE IS NULL";
+            dtBillDetails = dtBillDetails.DefaultView.ToTable();
+
+            if (dtBillDetails.Rows.Count == 0)
             {
                 XtraMessageBox.Show("No items to draft", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DataTable dtDraftBills = new BillingRepository().GetDraftBills(daySequenceID);
+            if(dtDraftBills.Rows.Count >= Utility.branchInfo.EnableDraftBills 
+                || Utility.branchInfo.EnableDraftBills == 0)
+            {
+                XtraMessageBox.Show("Draft limit reached, operation has been cancelled!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -540,13 +559,18 @@ namespace NSRetailPOS
 
             for (int curRowHandle = gvBilling.FocusedRowHandle - 1; curRowHandle >= 0; curRowHandle--)
             {
+                if (gvBilling.GetRowCellValue(curRowHandle, "DELETEDDATE") != DBNull.Value)
+                    continue;
+
                 gvBilling.SetRowCellValue(curRowHandle, "SNO", SNo);
                 dtSNos.Rows.Add(gvBilling.GetRowCellValue(curRowHandle, "BILLDETAILID"), SNo);
                 SNo++;
             }
 
             DataTable dtBillingDetails = billingRepository.DeleteBillDetail(billDetailID, Utility.loginInfo.UserID, dtSNos);
-            gvBilling.DeleteRow(gvBilling.FocusedRowHandle);
+            gvBilling.SetFocusedRowCellValue("DELETEDDATE", DateTime.Now.ToString("d"));
+            gvBilling.SetFocusedRowCellValue("SNO", null);
+            //gvBilling.DeleteRow(gvBilling.FocusedRowHandle);
             UpdateBillDetails(dtBillingDetails, 0);
             txtItemCode.Focus();
         }
@@ -626,6 +650,21 @@ namespace NSRetailPOS
 
             try
             {
+
+                DataTable dtBillDetails = billObj.dtBillDetails.Copy();
+                DataView dvBillDetails = dtBillDetails.DefaultView;
+                dvBillDetails.RowFilter = "DELETEDDATE IS NULL";
+
+                DataTable dtDraftBills = new BillingRepository().GetDraftBills(daySequenceID);
+                DataView dvDraftBills = dtDraftBills.DefaultView;
+                dvDraftBills.RowFilter = "QUANTITY > 0";
+
+                if(dvBillDetails.Count > 0 || dvDraftBills.Count > 0)
+                {
+                    if(XtraMessageBox.Show("Any scanned items in open and draft bills will be automatically deleted, do you want to proceed?"
+                        , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+                }
+
                 frmDayClosure obj = new frmDayClosure(daySequenceID)
                 { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
                 obj.ShowDialog();
@@ -822,6 +861,12 @@ namespace NSRetailPOS
 
         private void gvBilling_ShowingEditor(object sender, CancelEventArgs e)
         {
+            if (gvBilling.GetFocusedRowCellValue("DELETEDDATE") != DBNull.Value)
+            {
+                e.Cancel = true;
+                return;
+            }
+
             if (Utility.branchInfo.MultiEditThreshold == 0 || gvBilling.FocusedColumn != gcQuantity) return;
             e.Cancel = Utility.branchInfo.MultiEditThreshold < decimal.Parse(gvBilling.GetFocusedRowCellValue("MRP").ToString());
         }
@@ -877,6 +922,57 @@ namespace NSRetailPOS
         private void btnLogout_Click(object sender, EventArgs e)
         {            
             this.Close();                 
+        }
+
+        private void gvBilling_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        {
+            //if(gvBilling.GetRowCellValue(e.RowHandle, "DELETEDDATE") != DBNull.Value)
+            //{
+            //    e.Appearance.Font = new Font(e.Appearance.Font.Name, e.Appearance.Font.Size, FontStyle.Strikeout);
+            //    e.Appearance.BackColor = Color.Maroon;
+            //}
+        }
+
+        int totalQuantity = 0;
+        decimal totalValue = 0;
+        private void gvBilling_CustomSummaryCalculate(object sender, CustomSummaryEventArgs e)
+        {
+            GridSummaryItem gridSummaryItem = (e.Item as GridSummaryItem);
+            
+            if (gridSummaryItem.FieldName == "QUANTITY")
+            {
+                if (e.SummaryProcess == CustomSummaryProcess.Start)
+                {
+                    totalQuantity = 0;
+                }
+                else if (e.SummaryProcess == CustomSummaryProcess.Calculate &&
+                    gvBilling.GetRowCellValue(e.RowHandle, "DELETEDDATE") == DBNull.Value)
+                {
+                    totalQuantity += int.Parse(gvBilling.GetRowCellValue(e.RowHandle, "QUANTITY").ToString());
+                }
+                else if (e.SummaryProcess == CustomSummaryProcess.Finalize)
+                {
+                    e.TotalValue = totalQuantity;
+                    e.TotalValueReady = true;
+                }
+            }
+            else if (gridSummaryItem.FieldName == "BILLEDAMOUNT")
+            {
+                if (e.SummaryProcess == CustomSummaryProcess.Start)
+                {
+                    totalValue = 0;
+                }
+                else if (e.SummaryProcess == CustomSummaryProcess.Calculate &&
+                    gvBilling.GetRowCellValue(e.RowHandle, "DELETEDDATE") == DBNull.Value)
+                {
+                    totalValue += decimal.Parse(gvBilling.GetRowCellValue(e.RowHandle, "BILLEDAMOUNT").ToString());
+                }
+                else if (e.SummaryProcess == CustomSummaryProcess.Finalize)
+                {
+                    e.TotalValue = totalValue;
+                    e.TotalValueReady = true;
+                }
+            }
         }
     }
 }

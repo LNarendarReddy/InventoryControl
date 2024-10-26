@@ -384,7 +384,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@DaySequenceID", DaySequenceID);
                     object objReturn = cmd.ExecuteScalar();
                     if (!int.TryParse(Convert.ToString(objReturn),out DayClosureID))
-                        throw new Exception("Error while saving day cllosure");
+                        throw new Exception("Error while saving day closure - " + Convert.ToString(objReturn));
                     transaction.Commit();
                 }
             }
