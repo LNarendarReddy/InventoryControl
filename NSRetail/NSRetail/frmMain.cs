@@ -336,12 +336,17 @@ namespace NSRetail
             POSReports.SubCategory.Add(new ReportHolder("32E47050-3D12-4E84-92D7-DB8CAFF0E734") { ReportName = "Day closure List", SearchCriteriaControl = new ucDayClosureList() });
             POSReports.SubCategory.Add(new ReportHolder("24CFD73A-1E90-40B6-8858-9B54D8B0DAA1") { ReportName = "Customer Refunds By Bill #", SearchCriteriaControl = new ucCRefundSheets() });
             POSReports.SubCategory.Add(new ReportHolder("3FAFD637-7559-407F-A795-ABFD217A1959") { ReportName = "Bills by Amount", SearchCriteriaControl = new ucBillSearchByAmount() });
-            POSReports.SubCategory.Add(new ReportHolder("FB32CA0D-4159-4141-92D8-13C7C8023889") { ReportName = "Void items", SearchCriteriaControl = new ucVoidItems() });
             POSReports.SubCategory.Add(new ReportHolder("744A7572-FB6D-4CEF-A06B-234D1966F248") { ReportName = "Customer Details", SearchCriteriaControl = new ucCustomerDetails() });
             POSReports.SubCategory.Add(new ReportHolder("A4FD9F89-D28A-41DF-8DD9-83CB6C0C55B3") { ReportName = "B2B Credit Bill Payments", SearchCriteriaControl = new ucCreditBillPayments() });
             POSReports.SubCategory.Add(new ReportHolder("E1D65F8D-E918-41BF-A6BB-3D7BDAF3C1B8") { ReportName = "Installed versions", SearchCriteriaControl = new ucInstalledVersions() });
             POSReports.SubCategory.Add(new ReportHolder("54C8D668-1B98-43AD-BFA0-B828357A4101") { ReportName = "HDD SNo history", SearchCriteriaControl = new ucHDDClearhistory() });
             reportList.Add(POSReports);
+
+            ReportHolder VoidReports = new ReportHolder("F29F47AA-857C-4725-A2B7-BABBF90187FA") { ReportName = "Void Data Analysis" };
+            VoidReports.SubCategory.Add(new ReportHolder("8E9023EE-4FD7-4A88-B784-D2A6985512A3") { ReportName = "Bills", SearchCriteriaControl = new ucVoidDataAnalysis_Bills() });
+            VoidReports.SubCategory.Add(new ReportHolder("D2288844-91ED-4E60-9AA6-E4B75562C513") { ReportName = "Items", SearchCriteriaControl = new ucVoidDataAnalysis_Bills() });
+            VoidReports.SubCategory.Add(new ReportHolder("FB32CA0D-4159-4141-92D8-13C7C8023889") { ReportName = "Items_Old", SearchCriteriaControl = new ucVoidItems() });
+            reportList.Add(VoidReports);
 
             ShowReportForm(reportList, "Branch");
         }

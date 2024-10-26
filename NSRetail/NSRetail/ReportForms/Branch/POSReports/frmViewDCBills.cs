@@ -19,22 +19,26 @@ namespace NSRetail.ReportForms.Branch.POSReports
     public partial class frmViewDCBills : DevExpress.XtraEditors.XtraForm
     {
         object CounterID = null;
+
         public frmViewDCBills(DataTable dtBills,object _CounterID)
         {
             InitializeComponent();
             gcBills.DataSource = dtBills;
             CounterID = _CounterID;
         }
+
         private void gvBills_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
             if (gvBills.FocusedRowHandle < 0)
                 return; 
             e.Menu.Items.Add(new DXMenuItem("View Report", new EventHandler(ViewReport_Click)));
         }
+
         private void ViewReport_Click(object sender, EventArgs e)
         {
             gcBills.ShowRibbonPrintPreview();
         }
+
         private void btnViewItems_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (gvBills.FocusedRowHandle < 0)
@@ -58,7 +62,9 @@ namespace NSRetail.ReportForms.Branch.POSReports
             if (e.KeyCode == Keys.Escape)
                 this.Close();
         }
+
         decimal sum = 0;
+
         private void gvBills_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
         {
             GridView view = sender as GridView;

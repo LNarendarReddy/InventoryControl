@@ -1,4 +1,7 @@
-﻿using DevExpress.Utils.Menu;
+﻿using DevExpress.Data;
+using DevExpress.Utils.Menu;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -52,9 +55,33 @@ namespace NSRetail.ReportForms.Branch.POSReports
 
         }
 
-        private void gcItems_Click(object sender, EventArgs e)
-        {
+        decimal sum = 0;
 
+        private void gvItems_CustomSummaryCalculate(object sender, CustomSummaryEventArgs e)
+        {
+            //GridView view = sender as GridView;
+            //if (e.IsTotalSummary && (e.Item as GridSummaryItem).FieldName == "BILLEDAMOUNT")
+            //{
+            //    GridSummaryItem item = e.Item as GridSummaryItem;
+            //    if (item.FieldName == "BILLEDAMOUNT")
+            //    {
+            //        switch (e.SummaryProcess)
+            //        {
+            //            case CustomSummaryProcess.Start:
+            //                sum = 0;
+            //                break;
+            //            case CustomSummaryProcess.Calculate:
+            //                if (view.GetRowCellValue(e.RowHandle, "DELETEDDATE").Equals(DBNull.Value) && e.FieldValue != null)
+            //                {
+            //                    sum += (decimal)e.FieldValue;
+            //                }
+            //                break;
+            //            case CustomSummaryProcess.Finalize:
+            //                e.TotalValue = sum;
+            //                break;
+            //        }
+            //    }
+            //}
         }
     }
 }

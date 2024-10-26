@@ -200,6 +200,12 @@
     <Compile Include="ReportForms\Branch\BranchReports\ucBranchExpenseList.Designer.cs">
       <DependentUpon>ucBranchExpenseList.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Branch\BranchReports\ucVoidDataAnalysis_Bills.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Branch\BranchReports\ucVoidDataAnalysis_Bills.Designer.cs">
+      <DependentUpon>ucVoidDataAnalysis_Bills.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Branch\BranchReports\ucVoidItems.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1110,6 +1116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\ucBranchExpenseList.resx">
       <DependentUpon>ucBranchExpenseList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Branch\BranchReports\ucVoidDataAnalysis_Bills.resx">
+      <DependentUpon>ucVoidDataAnalysis_Bills.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\ucVoidItems.resx">
       <DependentUpon>ucVoidItems.cs</DependentUpon>
