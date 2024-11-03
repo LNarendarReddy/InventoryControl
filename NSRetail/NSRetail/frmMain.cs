@@ -379,6 +379,7 @@ namespace NSRetail
             processingReports.SubCategory.Add(new ReportHolder("884FDED9-ED29-49ED-84D1-A68EF1EAC794") { ReportName = "Bulk Processing", SearchCriteriaControl = new ucBulkProcessing() });
             processingReports.SubCategory.Add(new ReportHolder("B10365BB-7DF0-42C0-A921-2C00C7406EF6") { ReportName = "Processing slippages", SearchCriteriaControl = new ucStockSlippage() });
             processingReports.SubCategory.Add(new ReportHolder("C13DCD05-3CDA-44F9-ACE5-15C299CB5AD7") { ReportName = "Processing Indent", SearchCriteriaControl = new ucProcessingIndent() });
+            processingReports.SubCategory.Add(new ReportHolder("C13DCD05-3CDA-44F9-ACE5-15C299CB5AD7") { ReportName = "Processing Indent by Dispatch", SearchCriteriaControl = new ucProcessingIndentByDispatch() });
             stockReportList.Add(processingReports);
 
 

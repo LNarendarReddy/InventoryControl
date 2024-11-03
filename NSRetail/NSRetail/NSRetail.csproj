@@ -218,6 +218,12 @@
     <Compile Include="ReportForms\Branch\POSReports\ucCRefundSheets.Designer.cs">
       <DependentUpon>ucCRefundSheets.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Stock\ProcessingReports\ucProcessingIndentByDispatch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Stock\ProcessingReports\ucProcessingIndentByDispatch.Designer.cs">
+      <DependentUpon>ucProcessingIndentByDispatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Stock\ProcessingReports\ucProcessingIndent.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1125,6 +1131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\POSReports\ucCRefundSheets.resx">
       <DependentUpon>ucCRefundSheets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Stock\ProcessingReports\ucProcessingIndentByDispatch.resx">
+      <DependentUpon>ucProcessingIndentByDispatch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\ProcessingReports\ucProcessingIndent.resx">
       <DependentUpon>ucProcessingIndent.cs</DependentUpon>
