@@ -49,6 +49,11 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions5 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gcOffer = new DevExpress.XtraGrid.GridControl();
             this.gvOffer = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -89,6 +94,8 @@
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.GCBASEOFFERID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcOfferExclusion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnExclussion = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
@@ -107,6 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnViewItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExclussion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcnewbutton)).BeginInit();
@@ -155,7 +163,8 @@
             this.btnDelete,
             this.btnViewBranches,
             this.btnViewItems,
-            this.txtDecimal});
+            this.txtDecimal,
+            this.btnExclussion});
             this.gcOffer.Size = new System.Drawing.Size(1217, 704);
             this.gcOffer.TabIndex = 4;
             this.gcOffer.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -200,7 +209,8 @@
             this.gcEdit,
             this.gcDelete,
             this.GCBASEOFFERID,
-            this.gridColumn3});
+            this.gridColumn3,
+            this.gcOfferExclusion});
             this.gvOffer.DetailHeight = 404;
             this.gvOffer.GridControl = this.gcOffer;
             this.gvOffer.Name = "gvOffer";
@@ -463,6 +473,10 @@
             // 
             // gcViewBranches
             // 
+            this.gcViewBranches.AppearanceCell.Options.UseTextOptions = true;
+            this.gcViewBranches.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcViewBranches.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcViewBranches.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gcViewBranches.Caption = "View Branches";
             this.gcViewBranches.ColumnEdit = this.btnViewBranches;
             this.gcViewBranches.MinWidth = 23;
@@ -483,6 +497,10 @@
             // 
             // gcViewItems
             // 
+            this.gcViewItems.AppearanceCell.Options.UseTextOptions = true;
+            this.gcViewItems.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcViewItems.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcViewItems.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gcViewItems.Caption = "View Items";
             this.gcViewItems.ColumnEdit = this.btnViewItems;
             this.gcViewItems.MinWidth = 23;
@@ -502,6 +520,8 @@
             // 
             // gcEdit
             // 
+            this.gcEdit.AppearanceCell.Options.UseTextOptions = true;
+            this.gcEdit.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gcEdit.AppearanceHeader.Options.UseTextOptions = true;
             this.gcEdit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gcEdit.Caption = "Edit";
@@ -524,6 +544,8 @@
             // 
             // gcDelete
             // 
+            this.gcDelete.AppearanceCell.Options.UseTextOptions = true;
+            this.gcDelete.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gcDelete.AppearanceHeader.Options.UseTextOptions = true;
             this.gcDelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gcDelete.Caption = "Delete";
@@ -531,7 +553,7 @@
             this.gcDelete.MinWidth = 23;
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 12;
+            this.gcDelete.VisibleIndex = 13;
             this.gcDelete.Width = 73;
             // 
             // btnDelete
@@ -557,6 +579,28 @@
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Width = 66;
+            // 
+            // gcOfferExclusion
+            // 
+            this.gcOfferExclusion.AppearanceCell.Options.UseTextOptions = true;
+            this.gcOfferExclusion.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcOfferExclusion.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcOfferExclusion.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcOfferExclusion.Caption = "Offer Exclusion";
+            this.gcOfferExclusion.ColumnEdit = this.btnExclussion;
+            this.gcOfferExclusion.Name = "gcOfferExclusion";
+            this.gcOfferExclusion.Visible = true;
+            this.gcOfferExclusion.VisibleIndex = 12;
+            // 
+            // btnExclussion
+            // 
+            this.btnExclussion.AutoHeight = false;
+            editorButtonImageOptions5.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions5.SvgImage")));
+            this.btnExclussion.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnExclussion.Name = "btnExclussion";
+            this.btnExclussion.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnExclussion.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnExclussion_ButtonClick);
             // 
             // btnViewReport
             // 
@@ -687,6 +731,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnViewItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExclussion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcnewbutton)).EndInit();
@@ -748,5 +793,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraGrid.Columns.GridColumn gcOfferThresholdPrice;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtDecimal;
+        private DevExpress.XtraGrid.Columns.GridColumn gcOfferExclusion;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnExclussion;
     }
 }
