@@ -33,6 +33,8 @@ namespace NSRetail.ReportForms.Stock.StockCounting
             gcPhyQntyCP.Visible = showPricecolumns;
             gcSysQntyCP.Visible= showPricecolumns;
             gcStockDiffValue.Visible = showPricecolumns;
+            gcSheetNumber.Visible = !showPricecolumns;
+            gcStockLocation.Visible = !showPricecolumns;
             gvItems.BestFitColumns();
         }
 

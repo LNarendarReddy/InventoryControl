@@ -48,6 +48,8 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gcSheetNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcStockLocation = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
@@ -107,7 +109,9 @@
             this.gcStockDiff,
             this.gcPhyQntyCP,
             this.gcSysQntyCP,
-            this.gcStockDiffValue});
+            this.gcStockDiffValue,
+            this.gcSheetNumber,
+            this.gcStockLocation});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -245,6 +249,18 @@
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
+            // gcSheetNumber
+            // 
+            this.gcSheetNumber.Caption = "Counting Sheet #";
+            this.gcSheetNumber.FieldName = "STOCKCOUNTINGID";
+            this.gcSheetNumber.Name = "gcSheetNumber";
+            // 
+            // gcStockLocation
+            // 
+            this.gcStockLocation.Caption = "Stock Location";
+            this.gcStockLocation.FieldName = "STOCKLOCATIONNAME";
+            this.gcStockLocation.Name = "gcStockLocation";
+            // 
             // frmViewSCItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -290,5 +306,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcPhyQntyCP;
         private DevExpress.XtraGrid.Columns.GridColumn gcSysQntyCP;
         private DevExpress.XtraGrid.Columns.GridColumn gcStockDiffValue;
+        private DevExpress.XtraGrid.Columns.GridColumn gcSheetNumber;
+        private DevExpress.XtraGrid.Columns.GridColumn gcStockLocation;
     }
 }
