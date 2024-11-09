@@ -4,6 +4,8 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Branch.POSReports
@@ -30,6 +32,28 @@ namespace NSRetail.ReportForms.Branch.POSReports
             gcQuantity.Caption = IsCustomerRefund ? "Refund Quantity" : gcQuantity.Caption;
             gcCreatedBy.Caption = IsCustomerRefund ? "Refund User" : gcCreatedBy.Caption;
             gcCreatedDate.Caption = IsCustomerRefund ? "Refund Date" : gcCreatedDate.Caption;
+
+            if(IsBilldetail && IsVoidIems)
+            {
+                gvItems.RowStyle += GvItems_RowStyle;
+            }
+        }
+
+        private void GvItems_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+
+            if (view.Columns.Any(x => x.FieldName == "DELETEDDATE")
+                    && view.GetRowCellValue(e.RowHandle, "DELETEDDATE") != DBNull.Value)
+            {
+                //e.Appearance.Font = new Font(e.Appearance.Font.Name, e.Appearance.Font.Size, FontStyle.Strikeout);
+                e.Appearance.BackColor = Color.Maroon;
+                //e.Appearance.Options.UseForeColor = true;
+                e.Appearance.Options.UseBackColor = true;
+                //e.Appearance.Options.UseFont = true;
+                e.HighPriority = true;
+                return;
+            }
         }
 
         private void gvItems_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)

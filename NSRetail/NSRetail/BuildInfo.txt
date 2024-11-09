@@ -1,4 +1,11 @@
-﻿v2.7.3
+﻿v2.7.5
+  -- Sub category selection in processing Indent report
+  -- Deleted items will be shown in red in void analysis reports
+
+v2.7.4
+  -- Bill value Offer exclusions
+
+v2.7.3
   -- minor issue fix in bar code print
 
 v2.7.2

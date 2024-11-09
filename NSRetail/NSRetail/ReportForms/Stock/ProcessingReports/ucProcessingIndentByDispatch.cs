@@ -43,6 +43,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             {
                 { "CategoryID", cmbCategory.EditValue}
                 , { "NoOfDays", txtIndentDays.EditValue}
+                , { "SubCategoryID", cmbSubCat.EditValue}
             };
 
             DataSet dsData = (DataSet)GetReportData("USP_RPT_BULK_PROCESSING_INDENT_BY_DISPATCH", parameters);
@@ -55,6 +56,16 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
         {
             base.DataBoundCompleted();
             ExpandAllMasterRows();
+        }
+
+        private void cmbCategory_EditValueChanged(object sender, EventArgs e)
+        {
+            DataView dtSubcategory = new MasterRepository().GetSubCategory().Copy().DefaultView;
+            dtSubcategory.RowFilter = $"CATEGORYID = {cmbCategory.EditValue}";
+
+            cmbSubCat.Properties.DataSource = dtSubcategory;
+            cmbSubCat.Properties.ValueMember = "SUBCATEGORYID";
+            cmbSubCat.Properties.DisplayMember = "SUBCATEGORYNAME";
         }
     }
 }
