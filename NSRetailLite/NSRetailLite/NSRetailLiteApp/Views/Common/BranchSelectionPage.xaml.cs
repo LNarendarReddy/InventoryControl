@@ -17,6 +17,6 @@ public partial class BranchSelectionPage : Popup
 
     private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        this.CloseAsync();
+        this.CloseAsync();        
     }
 }

@@ -42,6 +42,12 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         public ObservableCollection<FeatureAccessData> _featureAccess;
+
+        [ObservableProperty]
+        public string _appVersion;
+
+        [ObservableProperty]
+        public string _appURL;
     }
 
     public partial class FeatureAccessData : BaseObservableObject

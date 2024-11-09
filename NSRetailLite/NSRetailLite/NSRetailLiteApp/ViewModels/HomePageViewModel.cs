@@ -76,7 +76,13 @@ namespace NSRetailLiteApp.ViewModels
 
                 if (branchSelectionViewModel.SelectedBranch == null) return;
 
-                if (!await Application.Current.MainPage.DisplayAlert("Confirm", $"Are you sure you want to start counting for {branchSelectionViewModel.SelectedBranch.BranchName}?", "Yes", "No")) return;
+                string location = await Application.Current?.MainPage?.DisplayPromptAsync("Location", "Enter the stock location for counting:", "OK");
+
+                if(string.IsNullOrEmpty(location)) return;
+
+                if (!await Application.Current.MainPage.DisplayAlert("Confirm"
+                    , $"Are you sure you want to start counting for {branchSelectionViewModel.SelectedBranch.BranchName} in location {location}?"
+                    , "Yes", "No")) return;
 
                 holderClass = new HolderClass();
                 PostAsync("stockcounting/savecounting", ref holderClass
@@ -84,7 +90,8 @@ namespace NSRetailLiteApp.ViewModels
                 {
                     { "StockCountingID", "0" },
                     { "UserID", Model.UserId.ToString() },
-                    { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() }
+                    { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() },
+                    { "StockLocationName", location }
                 }, true);
 
                 if(holderClass.Exception != null) return;

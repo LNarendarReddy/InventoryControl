@@ -18,7 +18,7 @@ namespace NSRetailLiteApp.ViewModels
         public LoginPageViewModel() { Model = new LoggedInUser(); }
 
         [RelayCommand]
-        public void Login()
+        public async void Login()
         {
             LoggedInUser loggedInUserInfo = new();
             if (string.IsNullOrEmpty(Model.UserName))
@@ -43,6 +43,13 @@ namespace NSRetailLiteApp.ViewModels
                 );
 
             Model.Password = string.Empty;
+
+            if (loggedInUserInfo.Exception == null && loggedInUserInfo.AppVersion != App.Version
+                && await DisplayAlert("Update", $"New update available, do you want to download new APK?", "Yes", "No"))
+            {
+                Launcher.OpenAsync(loggedInUserInfo.AppURL);
+                return;
+            }
 
             RedirectToPage(loggedInUserInfo, new HomePage(loggedInUserInfo));
         }
