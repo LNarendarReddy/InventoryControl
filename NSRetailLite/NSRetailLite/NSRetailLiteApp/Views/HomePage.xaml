@@ -9,8 +9,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
        
-        <Path Data="M291 0C291 40.5781 275.671 79.4943 248.384 108.187C221.097 136.88 184.089 153 145.5 153C106.911 153 69.9025 136.88 42.616 108.187C15.3294 79.4943 5.82678e-06 40.5781 0 2.31024e-05L145.5 0H291Z"
-              Fill="LightPink" Aspect="Fill"/>
+        <!--<Path Data="M291 0C291 40.5781 275.671 79.4943 248.384 108.187C221.097 136.88 184.089 153 145.5 153C106.911 153 69.9025 136.88 42.616 108.187C15.3294 79.4943 5.82678e-06 40.5781 0 2.31024e-05L145.5 0H291Z"
+              Fill="LightPink" Aspect="Fill"/>-->
         <StackLayout>
             <Image Source="victorylogo.svg" HeightRequest="150"/>
         </StackLayout>
@@ -32,7 +32,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Frame BorderColor="LightPink" Padding="1" Grid.Row="0">
+                    <Frame Padding="1" Grid.Row="0">
                         <Grid Margin="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -49,8 +49,17 @@
                             <VerticalStackLayout Grid.Row="0" Grid.Column="1">
                                 <ImageButton Margin="0, 5, 0, 2" Source="stockcounting.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                              Command="{Binding Path=OpenStockCountingCommand}" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Label Text="Stock" FontSize="Small" HorizontalOptions="Center"/>
-                                <Label Text="Counting" FontSize="Small" HorizontalOptions="Center"/>
+                                <Label Text="Stock" FontSize="Small" HorizontalOptions="Center"                                        
+                                        TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenStockCountingCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Text="Counting" FontSize="Small" HorizontalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenStockCountingCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="0" Grid.Column="3">
                                 <ImageButton Margin="0, 5, 0, 2" Source="stockdispatch.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
@@ -65,7 +74,7 @@
                         </Grid>
                     </Frame>
 
-                    <Frame BorderColor="LightPink" Padding="1" Margin="0, 5, 0, 5" Grid.Row="1">
+                    <Frame Padding="1" Margin="0, 5, 0, 5" Grid.Row="1">
                         <Grid Margin="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -91,7 +100,7 @@
                         </Grid>
                     </Frame>
 
-                    <Frame BorderColor="LightPink" Padding="1" Grid.Row="2">
+                    <Frame Padding="1" Grid.Row="2">
                         <Grid Grid.Row="1" Margin="0" RowSpacing="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>

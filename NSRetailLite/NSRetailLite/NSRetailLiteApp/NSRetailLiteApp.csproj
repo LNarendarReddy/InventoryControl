@@ -76,7 +76,10 @@
 	  <None Remove="Resources\Images\Homepage\stockdispatch.png" />
 	  <None Remove="Resources\Images\Homepage\stockentry.png" />
 	  <None Remove="Resources\Images\StockCounting\stockcountingadd.png" />
+	  <None Remove="Resources\Images\StockCounting\stockcountingdetaildiscard.png" />
+	  <None Remove="Resources\Images\StockCounting\stockcountingdetailedit.png" />
 	  <None Remove="Resources\Images\StockCounting\stockcountingdiscard.png" />
+	  <None Remove="Resources\Images\StockCounting\stockcountingedit.png" />
 	  <None Remove="Resources\Images\StockCounting\stockcountingsubmit.png" />
 	</ItemGroup>
 
@@ -88,6 +91,8 @@
 	  <MauiImage Include="Resources\Images\Homepage\stockdispatch.png" />
 	  <MauiImage Include="Resources\Images\Homepage\stockentry.png" />
 	  <MauiImage Include="Resources\Images\StockCounting\stockcountingadd.png" />
+	  <MauiImage Include="Resources\Images\StockCounting\stockcountingdetaildiscard.png" />
+	  <MauiImage Include="Resources\Images\StockCounting\stockcountingdetailedit.png" />
 	  <MauiImage Include="Resources\Images\StockCounting\stockcountingdiscard.png" />
 	  <MauiImage Include="Resources\Images\StockCounting\stockcountingsubmit.png" />
 	</ItemGroup>

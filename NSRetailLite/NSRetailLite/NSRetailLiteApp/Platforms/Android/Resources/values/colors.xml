@@ -2,11 +2,11 @@
 <resources>
 	
     <!--<color name="colorPrimary">#512BD4</color>-->
-	<color name="colorPrimary">#FFB6C1</color>
-    <color name="colorPrimaryDark">#FFB6C1</color>
+	<color name="colorPrimary">#4682B4</color>
+    <color name="colorPrimaryDark">#4682B4</color>
     <!--<color name="colorAccent">#2B0B98</color>-->
 	<color name="colorAccent">#2B0B98</color>
-	<color name="ListViewItemBackgroundSelected">#FFB6C1</color>
-	<color name="ListViewSelected">#FFB6C1</color>
-	<color name="ListViewHighlighted">#FFB6C1</color>
+	<color name="ListViewItemBackgroundSelected">#4682B4</color>
+	<color name="ListViewSelected">#4682B4</color>
+	<color name="ListViewHighlighted">#4682B4</color>
 </resources>

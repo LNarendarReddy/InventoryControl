@@ -48,7 +48,13 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
             if (StockCountingDetailModel.IsOpenItem && StockCountingDetailModel.WeightInKGs <= 0)
                 errors.Add("Weight cannot be empty");
 
-            if(errors.Any())
+            if (!StockCountingDetailModel.IsOpenItem && StockCountingDetailModel.Quantity > 9999)
+                errors.Add("Quantity cannot be more than 4 digits");
+
+            if (StockCountingDetailModel.IsOpenItem && StockCountingDetailModel.WeightInKGs >= 10000)
+                errors.Add("Weight cannot be more than 4 digits");
+
+            if (errors.Any())
             {
                 await DisplayAlert("Error"
                     , "Fix the following errors: \n\n"
@@ -107,6 +113,9 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
             StockCountingDetailModel.ItemName = item.ItemName;
             StockCountingDetailModel.MRP = "MRP : " + itemPrice.MRP.ToString();
             StockCountingDetailModel.SalePrice = "Sale price : " + itemPrice.SalePrice.ToString();
+            StockCountingDetailModel.IsOpenItem = item.IsOpenItem;
+            StockCountingDetailModel.Quantity = 0;
+            StockCountingDetailModel.WeightInKGs = 0;
         }
 
         private async Task Scan()

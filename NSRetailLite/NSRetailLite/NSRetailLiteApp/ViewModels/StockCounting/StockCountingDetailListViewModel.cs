@@ -73,6 +73,12 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
 
         private async Task Submit()
         {
+            if (!StockCountingModel.CountingDetail.Any())
+            {
+                DisplayErrorMessage("No items to submit");
+                return;
+            }
+
             if (!await DisplayAlert("Confirm", "Are you sure you want to submit stock counting?", "Yes", "No")) return;
 
             StockCountingModel stockCounting = StockCountingModel;

@@ -16,7 +16,8 @@
         <SearchBar x:Name="searchBar" Grid.Row="0"
                    SearchCommand="{Binding Path=PerformSearchCommand}"                   
                    SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
-                   Placeholder="{Binding Path=StockCountingModel.BranchName, StringFormat='Stock counting for : {0}'}" BackgroundColor="LightPink">
+                   Placeholder="{Binding Path=StockCountingModel.BranchName, StringFormat='Stock counting for : {0}'}" 
+                   PlaceholderColor="White" CancelButtonColor="White">
             <SearchBar.Behaviors>
                 <toolkit:EventToCommandBehavior
                     Command = "{Binding PerformSearchCommand}"
@@ -30,14 +31,13 @@
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItem 
-                                Text="Edit"
+                                IconImageSource="stockcountingdetailedit.png"
                                 Command="{Binding Path=BindingContext.EditCommand, Source={RelativeSource AncestorType={x:Type views:StockCountingDetailListPage}}}"
-                                CommandParameter="{Binding .}"/>
+                                CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
                             <SwipeItem 
-                                IconImageSource="stockcountingdiscard.png" 
-                                BackgroundColor="LightPink"
+                                IconImageSource="stockcountingdetaildiscard.png"                                 
                                 Command="{Binding Path=BindingContext.DeleteCommand, Source={RelativeSource AncestorType={x:Type views:StockCountingDetailListPage}}}"
-                                CommandParameter="{Binding .}"/>
+                                CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
                         </SwipeView.RightItems>
                         
                         <Grid Padding="10, 5, 10, 5">
@@ -70,7 +70,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Grid Grid.Row="2" BackgroundColor="LightPink">
+        <Grid Grid.Row="2" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
@@ -83,15 +83,27 @@
             </Grid.RowDefinitions>
             <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
                 <ImageButton Source="stockcountingadd.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=AddItemCommand}"/>
-                <Label Text="Add Item"/>
+                <Label Text="Add Item" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddItemCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
                 <ImageButton Source="stockcountingsubmit.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=SubmitCommand}"/>
-                <Label Text="Submit"/>
+                <Label Text="Submit" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SubmitCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
                 <ImageButton Source="stockcountingdiscard.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=DiscardCommand}"/>
-                <Label Text="Discard"/>
+                <Label Text="Discard" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DiscardCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
             </VerticalStackLayout>
         </Grid>
     </Grid>
