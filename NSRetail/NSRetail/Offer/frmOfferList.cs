@@ -117,7 +117,6 @@ namespace NSRetail
                 Utility.UserID);
             gvOffer.SetFocusedRowCellValue("ISACTIVE", "NO");
         }
-
         private void btnViewBranches_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             frmOfferBranch obj = new frmOfferBranch(gvOffer.GetFocusedRowCellValue("OFFERNAME"),
@@ -125,7 +124,6 @@ namespace NSRetail
             { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
             obj.ShowDialog();
         }
-
         private void btnViewItems_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if(gvOffer.GetFocusedRowCellValue("AppliesToID").Equals(2))
@@ -158,8 +156,10 @@ namespace NSRetail
             if (_IsDeal)
             {
                 gcViewItems.Visible = true;
-                gcViewItems.VisibleIndex = gvOffer.VisibleColumns.Count - 2;
-                gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count - 3;
+                gcOfferExclusion.Visible = _IsDeal;
+                gcOfferExclusion.VisibleIndex = gvOffer.VisibleColumns.Count - 2;
+                gcViewItems.VisibleIndex = gvOffer.VisibleColumns.Count - 3;
+                gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count - 4;
 
                 gcOfferName.Caption = "Deal Name";
                 gcOfferType.Caption = "Deal Type";
@@ -198,10 +198,20 @@ namespace NSRetail
         {
             
         }
-
         private void btnViewReport_Click(object sender, EventArgs e)
         {
             gcOffer.ShowRibbonPrintPreview();
+        }
+        private void btnExclussion_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if(!_IsDeal)
+                return;
+            frmOfferExclusion obj = new frmOfferExclusion(gvOffer.GetFocusedRowCellValue("OFFERNAME"),gvOffer.GetFocusedRowCellValue("OFFERID"))
+            {
+                ShowInTaskbar = false,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            obj.ShowDialog();
         }
     }
 }

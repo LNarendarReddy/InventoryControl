@@ -1,4 +1,18 @@
-﻿v2.6.9
+﻿v2.7.3
+  -- minor issue fix in bar code print
+
+v2.7.2
+  -- Bulk processing Indent by dispatch report
+
+v2.7.1
+  -- Enable draft bills changed to number of draft bills
+  -- Showing deleted bills on screen with red background and striked out in billing
+  -- Void analysis reports
+
+v2.7.0
+  -- Enable draft bills option in Branch 
+
+v2.6.9
  -- Added Brand and Manufacturer fields in all reports
 
 v2.6.8

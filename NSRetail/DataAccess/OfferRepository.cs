@@ -679,5 +679,96 @@ namespace DataAccess
                 
             }
         }
+        public DataTable GetOfferExclusion(object OfferID)
+        {
+            DataTable dtOfferItem = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_OFFEREXCLUSION]";
+                    cmd.Parameters.AddWithValue("@OFFERID", OfferID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtOfferItem);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Offer Exclusion List", ex);
+            }
+            return dtOfferItem;
+        }
+        public int SaveOfferExclusion(object OfferID, object EXCLUSIONID, object UserID, bool IsCategory = false)
+        {
+            int OFFEREXCLUSIONID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_OFFEREXCLUSION]";
+                    cmd.Parameters.AddWithValue("@OFFERID", OfferID);
+                    cmd.Parameters.AddWithValue("@EXCLUSIONID", EXCLUSIONID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@ISCATEGORY", IsCategory);
+                    object objreturn = cmd.ExecuteScalar();
+                    if (!int.TryParse(objreturn.ToString(), out OFFEREXCLUSIONID))
+                        throw new Exception("Error while saivng offer exclusion");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return OFFEREXCLUSIONID;
+        }
+        public void ImportOfferExclusion(object OfferID, DataTable dtItems, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_IMP_OFFERITEMS]";
+                    cmd.Parameters.AddWithValue("@OFFERID", OfferID);
+                    cmd.Parameters.AddWithValue("@dtitems", dtItems);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    int ivalue = cmd.ExecuteNonQuery();
+                    if (ivalue <= 0)
+                        throw new Exception("Error while importing Items");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While saving offer", ex);
+            }
+        }
+        public void DeleteOfferExclusion(object OFFEREXCLUSIONID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_OFFEREXCLUSION]";
+                    cmd.Parameters.AddWithValue("@OFFEREXCLUSIONID", OFFEREXCLUSIONID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    int rowsaffected = cmd.ExecuteNonQuery();
+                    if (rowsaffected <= 0)
+                        throw new Exception("Error while deleting offer exclusion");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace NSRetailPOS.Data
             , { "POS_DENOMINATION",  new EntityMapping("USP_CU_DENOMINATION", "@Denomination") }
             , { "TBLCATEGORY",  new EntityMapping("USP_CU_TBLCATEGORY", "@Category") }
             , { "REASONFORREFUND",  new EntityMapping("USP_CU_REASONFORREFUND", "@RFR") }
+            , { "OFFEREXCLUSION",  new EntityMapping("USP_CU_OFFEREXCLUSION", "@OfferItemExclusion") }
         };
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)

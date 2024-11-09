@@ -22,6 +22,7 @@ namespace WarehouseCloudSync.Data
             , { "USER",  new EntityMapping("USP_SYNC_CU_USER", "@User") }
             , { "CLOUD_STOCKCOUNTING",  new EntityMapping("USP_SYNC_CU_STOCKCOUNTING", "@StockCounting") }
             , { "CLOUD_STOCKCOUNTINGDETAIL",  new EntityMapping("USP_SYNC_CU_STOCKCOUNTINGDETAIL", "@StockCountingDetail") }
+            , { "STOCKLOCATION",  new EntityMapping("USP_SYNC_CU_STOCKLOCATION", "@StockLocation") }
         };
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)

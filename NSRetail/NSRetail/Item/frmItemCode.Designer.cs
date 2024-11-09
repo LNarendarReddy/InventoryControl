@@ -209,7 +209,7 @@
             // 
             // cmbManufacturer
             // 
-            this.cmbManufacturer.Location = new System.Drawing.Point(531, 279);
+            this.cmbManufacturer.Location = new System.Drawing.Point(533, 279);
             this.cmbManufacturer.Name = "cmbManufacturer";
             this.cmbManufacturer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -219,7 +219,7 @@
             this.cmbManufacturer.Properties.NullText = "";
             this.cmbManufacturer.Properties.ShowFooter = false;
             this.cmbManufacturer.Properties.ShowHeader = false;
-            this.cmbManufacturer.Size = new System.Drawing.Size(276, 22);
+            this.cmbManufacturer.Size = new System.Drawing.Size(274, 22);
             this.cmbManufacturer.StyleController = this.layoutControl1;
             this.cmbManufacturer.TabIndex = 9;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -229,7 +229,7 @@
             // 
             // cmbBrand
             // 
-            this.cmbBrand.Location = new System.Drawing.Point(131, 279);
+            this.cmbBrand.Location = new System.Drawing.Point(133, 279);
             this.cmbBrand.Name = "cmbBrand";
             this.cmbBrand.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -239,7 +239,7 @@
             this.cmbBrand.Properties.NullText = "";
             this.cmbBrand.Properties.ShowFooter = false;
             this.cmbBrand.Properties.ShowHeader = false;
-            this.cmbBrand.Size = new System.Drawing.Size(274, 22);
+            this.cmbBrand.Size = new System.Drawing.Size(272, 22);
             this.cmbBrand.StyleController = this.layoutControl1;
             this.cmbBrand.TabIndex = 8;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -249,7 +249,7 @@
             // 
             // cmbSubClassification
             // 
-            this.cmbSubClassification.Location = new System.Drawing.Point(531, 245);
+            this.cmbSubClassification.Location = new System.Drawing.Point(533, 245);
             this.cmbSubClassification.Name = "cmbSubClassification";
             this.cmbSubClassification.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -260,7 +260,7 @@
             this.cmbSubClassification.Properties.NullText = "";
             this.cmbSubClassification.Properties.ShowFooter = false;
             this.cmbSubClassification.Properties.ShowHeader = false;
-            this.cmbSubClassification.Size = new System.Drawing.Size(276, 22);
+            this.cmbSubClassification.Size = new System.Drawing.Size(274, 22);
             this.cmbSubClassification.StyleController = this.layoutControl1;
             this.cmbSubClassification.TabIndex = 7;
             conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -271,7 +271,7 @@
             // cmbClassification
             // 
             this.cmbClassification.EnterMoveNextControl = true;
-            this.cmbClassification.Location = new System.Drawing.Point(131, 245);
+            this.cmbClassification.Location = new System.Drawing.Point(133, 245);
             this.cmbClassification.Name = "cmbClassification";
             this.cmbClassification.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -282,7 +282,7 @@
             this.cmbClassification.Properties.NullText = "";
             this.cmbClassification.Properties.ShowFooter = false;
             this.cmbClassification.Properties.ShowHeader = false;
-            this.cmbClassification.Size = new System.Drawing.Size(274, 22);
+            this.cmbClassification.Size = new System.Drawing.Size(272, 22);
             this.cmbClassification.StyleController = this.layoutControl1;
             this.cmbClassification.TabIndex = 6;
             conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -295,14 +295,14 @@
             // 
             this.sluFreeItem.EditValue = "";
             this.sluFreeItem.EnterMoveNextControl = true;
-            this.sluFreeItem.Location = new System.Drawing.Point(532, 456);
+            this.sluFreeItem.Location = new System.Drawing.Point(534, 457);
             this.sluFreeItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.sluFreeItem.Name = "sluFreeItem";
             this.sluFreeItem.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sluFreeItem.Properties.NullText = "";
             this.sluFreeItem.Properties.PopupView = this.searchLookUpEdit1View;
-            this.sluFreeItem.Size = new System.Drawing.Size(273, 22);
+            this.sluFreeItem.Size = new System.Drawing.Size(270, 22);
             this.sluFreeItem.StyleController = this.layoutControl1;
             this.sluFreeItem.TabIndex = 18;
             // 
@@ -349,7 +349,7 @@
             // txtCostPriceWOT
             // 
             this.txtCostPriceWOT.EnterMoveNextControl = true;
-            this.txtCostPriceWOT.Location = new System.Drawing.Point(532, 422);
+            this.txtCostPriceWOT.Location = new System.Drawing.Point(534, 423);
             this.txtCostPriceWOT.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtCostPriceWOT.Name = "txtCostPriceWOT";
             this.txtCostPriceWOT.Properties.DisplayFormat.FormatString = "n4";
@@ -358,7 +358,7 @@
             this.txtCostPriceWOT.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtCostPriceWOT.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtCostPriceWOT.Properties.MaskSettings.Set("mask", "n4");
-            this.txtCostPriceWOT.Size = new System.Drawing.Size(273, 22);
+            this.txtCostPriceWOT.Size = new System.Drawing.Size(270, 22);
             this.txtCostPriceWOT.StyleController = this.layoutControl1;
             this.txtCostPriceWOT.TabIndex = 16;
             conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -369,7 +369,7 @@
             // luUOM
             // 
             this.luUOM.EnterMoveNextControl = true;
-            this.luUOM.Location = new System.Drawing.Point(131, 313);
+            this.luUOM.Location = new System.Drawing.Point(133, 313);
             this.luUOM.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.luUOM.Name = "luUOM";
             this.luUOM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -381,14 +381,14 @@
             this.luUOM.Properties.NullText = "";
             this.luUOM.Properties.ShowFooter = false;
             this.luUOM.Properties.ShowHeader = false;
-            this.luUOM.Size = new System.Drawing.Size(274, 22);
+            this.luUOM.Size = new System.Drawing.Size(272, 22);
             this.luUOM.StyleController = this.layoutControl1;
             this.luUOM.TabIndex = 10;
             // 
             // luSubCategory
             // 
             this.luSubCategory.EnterMoveNextControl = true;
-            this.luSubCategory.Location = new System.Drawing.Point(531, 211);
+            this.luSubCategory.Location = new System.Drawing.Point(533, 211);
             this.luSubCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.luSubCategory.Name = "luSubCategory";
             this.luSubCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -400,7 +400,7 @@
             this.luSubCategory.Properties.NullText = "";
             this.luSubCategory.Properties.ShowFooter = false;
             this.luSubCategory.Properties.ShowHeader = false;
-            this.luSubCategory.Size = new System.Drawing.Size(276, 22);
+            this.luSubCategory.Size = new System.Drawing.Size(274, 22);
             this.luSubCategory.StyleController = this.layoutControl1;
             this.luSubCategory.TabIndex = 5;
             // 
@@ -409,7 +409,7 @@
             this.sluParentItem.EditValue = "";
             this.sluParentItem.Enabled = false;
             this.sluParentItem.EnterMoveNextControl = true;
-            this.sluParentItem.Location = new System.Drawing.Point(532, 138);
+            this.sluParentItem.Location = new System.Drawing.Point(534, 138);
             this.sluParentItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.sluParentItem.Name = "sluParentItem";
             this.sluParentItem.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -417,7 +417,7 @@
             this.sluParentItem.Properties.NullText = "";
             this.sluParentItem.Properties.PopupView = this.gvParentItem;
             this.sluParentItem.Properties.EditValueChanged += new System.EventHandler(this.sluParentItem_Properties_EditValueChanged);
-            this.sluParentItem.Size = new System.Drawing.Size(275, 22);
+            this.sluParentItem.Size = new System.Drawing.Size(273, 22);
             this.sluParentItem.StyleController = this.layoutControl1;
             this.sluParentItem.TabIndex = 12;
             this.sluParentItem.EditValueChanged += new System.EventHandler(this.sluParentItem_EditValueChanged);
@@ -479,12 +479,12 @@
             // tsCreateNew
             // 
             this.tsCreateNew.EnterMoveNextControl = true;
-            this.tsCreateNew.Location = new System.Drawing.Point(327, 501);
+            this.tsCreateNew.Location = new System.Drawing.Point(329, 503);
             this.tsCreateNew.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tsCreateNew.Name = "tsCreateNew";
             this.tsCreateNew.Properties.OffText = "Off";
             this.tsCreateNew.Properties.OnText = "On";
-            this.tsCreateNew.Size = new System.Drawing.Size(86, 19);
+            this.tsCreateNew.Size = new System.Drawing.Size(84, 19);
             this.tsCreateNew.StyleController = this.layoutControl1;
             this.tsCreateNew.TabIndex = 23;
             // 
@@ -505,7 +505,7 @@
             // 
             this.sluSKUCode.EditValue = "";
             this.sluSKUCode.EnterMoveNextControl = true;
-            this.sluSKUCode.Location = new System.Drawing.Point(131, 70);
+            this.sluSKUCode.Location = new System.Drawing.Point(133, 70);
             this.sluSKUCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.sluSKUCode.Name = "sluSKUCode";
             this.sluSKUCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -514,7 +514,7 @@
             this.sluSKUCode.Properties.NullText = "";
             this.sluSKUCode.Properties.PopupView = this.gvItemSKU;
             this.sluSKUCode.Properties.EditValueChanged += new System.EventHandler(this.searchLookUpEdit1_Properties_EditValueChanged);
-            this.sluSKUCode.Size = new System.Drawing.Size(535, 22);
+            this.sluSKUCode.Size = new System.Drawing.Size(533, 22);
             this.sluSKUCode.StyleController = this.layoutControl1;
             this.sluSKUCode.TabIndex = 1;
             conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -574,7 +574,7 @@
             // txtSalePrice
             // 
             this.txtSalePrice.EnterMoveNextControl = true;
-            this.txtSalePrice.Location = new System.Drawing.Point(532, 388);
+            this.txtSalePrice.Location = new System.Drawing.Point(534, 389);
             this.txtSalePrice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSalePrice.Name = "txtSalePrice";
             this.txtSalePrice.Properties.DisplayFormat.FormatString = "n2";
@@ -583,7 +583,7 @@
             this.txtSalePrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtSalePrice.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtSalePrice.Properties.MaskSettings.Set("mask", "n2");
-            this.txtSalePrice.Size = new System.Drawing.Size(273, 22);
+            this.txtSalePrice.Size = new System.Drawing.Size(270, 22);
             this.txtSalePrice.StyleController = this.layoutControl1;
             this.txtSalePrice.TabIndex = 14;
             conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -593,7 +593,7 @@
             // txtMRP
             // 
             this.txtMRP.EnterMoveNextControl = true;
-            this.txtMRP.Location = new System.Drawing.Point(133, 388);
+            this.txtMRP.Location = new System.Drawing.Point(136, 389);
             this.txtMRP.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtMRP.Name = "txtMRP";
             this.txtMRP.Properties.DisplayFormat.FormatString = "n2";
@@ -602,7 +602,7 @@
             this.txtMRP.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtMRP.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtMRP.Properties.MaskSettings.Set("mask", "n2");
-            this.txtMRP.Size = new System.Drawing.Size(273, 22);
+            this.txtMRP.Size = new System.Drawing.Size(270, 22);
             this.txtMRP.StyleController = this.layoutControl1;
             this.txtMRP.TabIndex = 13;
             conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -612,7 +612,7 @@
             // txtCostPriceWT
             // 
             this.txtCostPriceWT.EnterMoveNextControl = true;
-            this.txtCostPriceWT.Location = new System.Drawing.Point(133, 422);
+            this.txtCostPriceWT.Location = new System.Drawing.Point(136, 423);
             this.txtCostPriceWT.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtCostPriceWT.Name = "txtCostPriceWT";
             this.txtCostPriceWT.Properties.DisplayFormat.FormatString = "n4";
@@ -621,7 +621,7 @@
             this.txtCostPriceWT.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtCostPriceWT.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtCostPriceWT.Properties.MaskSettings.Set("mask", "n4");
-            this.txtCostPriceWT.Size = new System.Drawing.Size(273, 22);
+            this.txtCostPriceWT.Size = new System.Drawing.Size(270, 22);
             this.txtCostPriceWT.StyleController = this.layoutControl1;
             this.txtCostPriceWT.TabIndex = 15;
             conditionValidationRule9.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -632,7 +632,7 @@
             // luGST
             // 
             this.luGST.EnterMoveNextControl = true;
-            this.luGST.Location = new System.Drawing.Point(133, 456);
+            this.luGST.Location = new System.Drawing.Point(136, 457);
             this.luGST.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.luGST.Name = "luGST";
             this.luGST.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -641,7 +641,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTID", "GSTID", 23, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTCODE", "GST Code", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.luGST.Properties.NullText = "";
-            this.luGST.Size = new System.Drawing.Size(273, 22);
+            this.luGST.Size = new System.Drawing.Size(270, 22);
             this.luGST.StyleController = this.layoutControl1;
             this.luGST.TabIndex = 17;
             conditionValidationRule10.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -668,7 +668,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(626, 501);
+            this.btnCancel.Location = new System.Drawing.Point(626, 503);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(190, 22);
@@ -680,7 +680,7 @@
             // 
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSave.Location = new System.Drawing.Point(425, 501);
+            this.btnSave.Location = new System.Drawing.Point(425, 503);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(189, 22);
@@ -692,10 +692,10 @@
             // txtHSNCode
             // 
             this.txtHSNCode.EnterMoveNextControl = true;
-            this.txtHSNCode.Location = new System.Drawing.Point(131, 138);
+            this.txtHSNCode.Location = new System.Drawing.Point(133, 138);
             this.txtHSNCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtHSNCode.Name = "txtHSNCode";
-            this.txtHSNCode.Size = new System.Drawing.Size(275, 22);
+            this.txtHSNCode.Size = new System.Drawing.Size(273, 22);
             this.txtHSNCode.StyleController = this.layoutControl1;
             this.txtHSNCode.TabIndex = 3;
             conditionValidationRule11.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -705,10 +705,10 @@
             // txtItemName
             // 
             this.txtItemName.EnterMoveNextControl = true;
-            this.txtItemName.Location = new System.Drawing.Point(131, 104);
+            this.txtItemName.Location = new System.Drawing.Point(133, 104);
             this.txtItemName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(676, 22);
+            this.txtItemName.Size = new System.Drawing.Size(674, 22);
             this.txtItemName.StyleController = this.layoutControl1;
             this.txtItemName.TabIndex = 2;
             conditionValidationRule12.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -720,14 +720,14 @@
             // 
             this.txtItemCode.EditValue = "";
             this.txtItemCode.EnterMoveNextControl = true;
-            this.txtItemCode.Location = new System.Drawing.Point(131, 38);
+            this.txtItemCode.Location = new System.Drawing.Point(133, 38);
             this.txtItemCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtItemCode.Name = "txtItemCode";
             this.txtItemCode.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtItemCode.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtItemCode.Properties.MaskSettings.Set("mask", "####################");
             this.txtItemCode.Properties.Leave += new System.EventHandler(this.txtItemCode_Properties_Leave);
-            this.txtItemCode.Size = new System.Drawing.Size(606, 22);
+            this.txtItemCode.Size = new System.Drawing.Size(604, 22);
             this.txtItemCode.StyleController = this.layoutControl1;
             this.txtItemCode.TabIndex = 0;
             conditionValidationRule13.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -737,7 +737,7 @@
             // gluCategory
             // 
             this.gluCategory.EnterMoveNextControl = true;
-            this.gluCategory.Location = new System.Drawing.Point(131, 211);
+            this.gluCategory.Location = new System.Drawing.Point(133, 211);
             this.gluCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gluCategory.Name = "gluCategory";
             this.gluCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -749,7 +749,7 @@
             this.gluCategory.Properties.NullText = "";
             this.gluCategory.Properties.ShowFooter = false;
             this.gluCategory.Properties.ShowHeader = false;
-            this.gluCategory.Size = new System.Drawing.Size(274, 22);
+            this.gluCategory.Size = new System.Drawing.Size(272, 22);
             this.gluCategory.StyleController = this.layoutControl1;
             this.gluCategory.TabIndex = 4;
             conditionValidationRule14.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -778,38 +778,38 @@
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnCancel;
-            this.layoutControlItem8.Location = new System.Drawing.Point(618, 493);
+            this.layoutControlItem8.Location = new System.Drawing.Point(618, 495);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem8.Size = new System.Drawing.Size(202, 45);
+            this.layoutControlItem8.Size = new System.Drawing.Size(202, 43);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 493);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 495);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(205, 45);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(205, 43);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnSave;
-            this.layoutControlItem7.Location = new System.Drawing.Point(417, 493);
+            this.layoutControlItem7.Location = new System.Drawing.Point(417, 495);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem7.Size = new System.Drawing.Size(201, 45);
+            this.layoutControlItem7.Size = new System.Drawing.Size(201, 43);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.tsCreateNew;
-            this.layoutControlItem3.Location = new System.Drawing.Point(205, 493);
+            this.layoutControlItem3.Location = new System.Drawing.Point(205, 495);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem3.Size = new System.Drawing.Size(212, 45);
+            this.layoutControlItem3.Size = new System.Drawing.Size(212, 43);
             this.layoutControlItem3.Text = "Create New";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(104, 15);
             // 
@@ -912,7 +912,7 @@
             this.layoutControlItem21});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 348);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(820, 145);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(820, 147);
             this.layoutControlGroup2.Text = "Cost Details";
             // 
             // layoutControlItem10
@@ -921,7 +921,7 @@
             this.layoutControlItem10.Location = new System.Drawing.Point(0, 68);
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem10.Size = new System.Drawing.Size(399, 34);
+            this.layoutControlItem10.Size = new System.Drawing.Size(398, 34);
             this.layoutControlItem10.Text = "GST";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(104, 15);
             // 
@@ -931,17 +931,17 @@
             this.layoutControlItem12.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem12.Name = "layoutControlItem12";
             this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem12.Size = new System.Drawing.Size(399, 34);
+            this.layoutControlItem12.Size = new System.Drawing.Size(398, 34);
             this.layoutControlItem12.Text = "MRP";
             this.layoutControlItem12.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.txtSalePrice;
-            this.layoutControlItem13.Location = new System.Drawing.Point(399, 0);
+            this.layoutControlItem13.Location = new System.Drawing.Point(398, 0);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem13.Size = new System.Drawing.Size(399, 34);
+            this.layoutControlItem13.Size = new System.Drawing.Size(398, 34);
             this.layoutControlItem13.Text = "Sale Price";
             this.layoutControlItem13.TextSize = new System.Drawing.Size(104, 15);
             // 
@@ -951,27 +951,27 @@
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 34);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem11.Size = new System.Drawing.Size(399, 34);
+            this.layoutControlItem11.Size = new System.Drawing.Size(398, 34);
             this.layoutControlItem11.Text = "Cost Price with Tax";
             this.layoutControlItem11.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem20
             // 
             this.layoutControlItem20.Control = this.txtCostPriceWOT;
-            this.layoutControlItem20.Location = new System.Drawing.Point(399, 34);
+            this.layoutControlItem20.Location = new System.Drawing.Point(398, 34);
             this.layoutControlItem20.Name = "layoutControlItem20";
             this.layoutControlItem20.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem20.Size = new System.Drawing.Size(399, 34);
+            this.layoutControlItem20.Size = new System.Drawing.Size(398, 34);
             this.layoutControlItem20.Text = "Cost Price w/o Tax";
             this.layoutControlItem20.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.sluFreeItem;
-            this.layoutControlItem21.Location = new System.Drawing.Point(399, 68);
+            this.layoutControlItem21.Location = new System.Drawing.Point(398, 68);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem21.Size = new System.Drawing.Size(399, 34);
+            this.layoutControlItem21.Size = new System.Drawing.Size(398, 34);
             this.layoutControlItem21.Text = "Free Item code";
             this.layoutControlItem21.TextSize = new System.Drawing.Size(104, 15);
             // 

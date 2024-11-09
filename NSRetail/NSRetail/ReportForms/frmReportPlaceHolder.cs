@@ -130,7 +130,7 @@ namespace NSRetail.ReportForms
             foreach (var item in searchCriteria.ContextmenuItems)
             {
                 string accessIdentifier = item.Value;
-                if(!accessIdentifier.Contains("::")) accessIdentifier = $"{accessIdentifier}::Execute";
+                if(!string.IsNullOrEmpty(accessIdentifier) && !accessIdentifier.Contains("::")) accessIdentifier = $"{accessIdentifier}::Execute";
                 contextmenuItems.Add(item.Key, accessIdentifier);
             }
 

@@ -236,7 +236,7 @@ namespace DataAccess
             }
             return dsDayClosureVoidItems;
         }
-        public DataSet GetBillDetailByID(object CounterID, object DayClosureID)
+        public DataSet GetBillDetailByID(object CounterID, object DayClosureID, bool IncludeVoidItems = false)
         {
             DataSet dsbillDetail = new DataSet();
             try
@@ -248,6 +248,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_R_BILLDETAILBYID]";
                     cmd.Parameters.AddWithValue("@BRANCHCOUNTERID", CounterID);
                     cmd.Parameters.AddWithValue("@BILLID", DayClosureID);
+                    cmd.Parameters.AddWithValue("@INCLUDEVOIDITEMS", IncludeVoidItems);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dsbillDetail);
