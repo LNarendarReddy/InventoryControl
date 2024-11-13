@@ -45,6 +45,8 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcCategory)).BeginInit();
@@ -105,12 +107,15 @@
             this.gcCategory.TabIndex = 5;
             this.gcCategory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCategory});
+            this.gcCategory.Click += new System.EventHandler(this.gcCategory_Click);
             // 
             // gvCategory
             // 
             this.gvCategory.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
+            this.gridColumn5,
             this.gridColumn2,
+            this.gridColumn6,
             this.gridColumn3,
             this.gridColumn4});
             this.gvCategory.GridControl = this.gcCategory;
@@ -140,7 +145,7 @@
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
+            this.gridColumn3.VisibleIndex = 2;
             // 
             // gridColumn4
             // 
@@ -148,7 +153,7 @@
             this.gridColumn4.FieldName = "INCLUDEINACCEPT";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 2;
+            this.gridColumn4.VisibleIndex = 3;
             // 
             // txtBranchName
             // 
@@ -221,6 +226,20 @@
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "SUBCATEGORYID";
+            this.gridColumn5.FieldName = "SUBCATEGORYID";
+            this.gridColumn5.Name = "gridColumn5";
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Sub Category";
+            this.gridColumn6.FieldName = "SUBCATEGORYNAME";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 1;
+            // 
             // frmAcceptCounting
             // 
             this.AcceptButton = this.btnAccept;
@@ -268,5 +287,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }

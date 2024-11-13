@@ -41,25 +41,25 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 {
                     if((bool)drRow["INCOUNTING"])
                     {
-                        countedCategories.Add(drRow["CATEGORYNAME"].ToString());
-                        includedCategoryIDs.Add(drRow["CATEGORYID"].ToString());
+                        countedCategories.Add(drRow["SUBCATEGORYNAME"].ToString());
+                        includedCategoryIDs.Add(drRow["SUBCATEGORYID"].ToString());
                         continue;
                     }
 
                     if((bool)drRow["INCLUDEINACCEPT"])
                     {
-                        includedCategories.Add(drRow["CATEGORYNAME"].ToString());
-                        includedCategoryIDs.Add(drRow["CATEGORYID"].ToString());
+                        includedCategories.Add(drRow["SUBCATEGORYNAME"].ToString());
+                        includedCategoryIDs.Add(drRow["SUBCATEGORYID"].ToString());
                     }
                 }
 
-                string message = $"Are you sure want to accept the below categories? {Environment.NewLine}{Environment.NewLine}";
+                string message = $"Are you sure want to accept the below sub categories? {Environment.NewLine}{Environment.NewLine}";
                 
-                message += $"\tCounted Categories : {Environment.NewLine}{Environment.NewLine}\t\t\t\t * " + string.Join($"{Environment.NewLine}\t\t\t\t * ", countedCategories);
+                message += $"\tCounted Sub Categories : {Environment.NewLine}{Environment.NewLine}\t\t\t\t * " + string.Join($"{Environment.NewLine}\t\t\t\t * ", countedCategories);
                 if (includedCategories.Any())
                 {
                     message += $"{Environment.NewLine}{Environment.NewLine}";
-                    message += $"\tUser included Categories : {Environment.NewLine}{Environment.NewLine}\t\t\t\t * " + string.Join($"{Environment.NewLine}\t\t\t\t * ", includedCategories);
+                    message += $"\tUser included Sub Categories : {Environment.NewLine}{Environment.NewLine}\t\t\t\t * " + string.Join($"{Environment.NewLine}\t\t\t\t * ", includedCategories);
                 }
                 message += $"{Environment.NewLine}{Environment.NewLine} The system cannot be reverted beyond this point!!";
                 if (XtraMessageBox.Show(message, "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
@@ -80,6 +80,11 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
         private void gvCategory_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = (bool)gvCategory.GetFocusedRowCellValue("INCOUNTING");
+        }
+
+        private void gcCategory_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
