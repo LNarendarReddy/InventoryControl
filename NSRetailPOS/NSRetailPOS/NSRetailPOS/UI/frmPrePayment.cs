@@ -17,11 +17,16 @@ namespace NSRetailPOS.UI
 
         private Bill billObj;
 
-        public frmPrePayment(Bill bill)
+        private bool canClose = true;
+
+        public frmPrePayment(Bill bill, bool canClose = true)
         {
             InitializeComponent();
             billObj = bill;
             Text += billObj.BillNumber;
+            this.canClose = canClose;
+            this.CloseBox = canClose;
+            this.btnCancel.Enabled = canClose;
         }
 
         private void frmPrePayment_Load(object sender, EventArgs e)
@@ -76,7 +81,7 @@ namespace NSRetailPOS.UI
             billObj.CustomerGST = txtCustomerGST.EditValue;
             billObj.PaymentMode = rgPaymentModes.EditValue;
 
-            frmPayment payment = new frmPayment(billObj);
+            frmPayment payment = new frmPayment(billObj, canClose);
             payment.ShowDialog();
             if(payment.IsPaid)
             {

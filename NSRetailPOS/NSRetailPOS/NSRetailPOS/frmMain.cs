@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
@@ -97,6 +98,7 @@ namespace NSRetailPOS
             lblDeal.Text = noDealText;
             HighlightOffer();            
             Task.Run(() => DoWorkAsync());
+            Blink();
         }
 
         private void Utility_ItemOrCodeChanged(object sender, EventArgs e)
@@ -246,12 +248,24 @@ namespace NSRetailPOS
                 DataTable dtBillOffers = billingRepository.GetBillOffers(billObj.BillID);
                 if (dtBillOffers != null && dtBillOffers.Rows.Count == 1)
                 {
-                    if (XtraMessageBox.Show($"Add item {dtBillOffers.Rows[0]["ITEMNAME"]} ({dtBillOffers.Rows[0]["SKUCODE"]}) for Rs.{dtBillOffers.Rows[0]["ACTUALSALEPRICE"]} to the bill?",
+                    double actualSalePrice = Convert.ToDouble(dtBillOffers.Rows[0]["ACTUALSALEPRICE"]);
+                    if (XtraMessageBox.Show($"Add item {dtBillOffers.Rows[0]["ITEMNAME"]} ({dtBillOffers.Rows[0]["SKUCODE"]}) for Rs.{actualSalePrice} to the bill?",
                         "Add free item", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        SaveBillDetail(dtBillOffers.Rows[0]["ITEMPRICEID"], 1, 0, -1, true, dtBillOffers.Rows[0]["ACTUALSALEPRICE"]);
+                        SaveBillDetail(dtBillOffers.Rows[0]["ITEMPRICEID"], 1, 0, -1, true, actualSalePrice);
+
+                        if (actualSalePrice > 0)
+                        {
+                            XtraMessageBox.Show("Bill amount updated, please verify amount", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            frmPrePayment frmPayment = new frmPrePayment(billObj, false);
+                            frmPayment.ShowDialog();
+                            if (!frmPayment.IsPaid)
+                                return;
+                        }
                     }
                 }
+
                 nextBillDetails = billingRepository.FinishBill(Utility.loginInfo.UserID, daySequenceID, billObj);
             }
             catch (Exception ex)
@@ -325,6 +339,11 @@ namespace NSRetailPOS
                     , itemPriceID, quantity, weightInKgs, Utility.loginInfo.UserID, billDetailID, isBillOfferItem, billOfferPrice);
 
                 UpdateBillDetails(dtBillDetails, itemPriceID);
+
+                if (!isBillOfferItem)
+                {
+                    RefreshBillOfferLabel();
+                }
             }
             catch (Exception ex)
             {
@@ -382,6 +401,7 @@ namespace NSRetailPOS
             SNo = dvBillDetails.Count + 1;
 
             txtItemCode.Focus();
+            lblBillOfferContainer.Visibility = LayoutVisibility.Never;
         }
 
         private void txtItemCode_Leave(object sender, EventArgs e)
@@ -572,6 +592,7 @@ namespace NSRetailPOS
             gvBilling.SetFocusedRowCellValue("SNO", null);
             //gvBilling.DeleteRow(gvBilling.FocusedRowHandle);
             UpdateBillDetails(dtBillingDetails, 0);
+            RefreshBillOfferLabel();
             txtItemCode.Focus();
         }
 
@@ -972,6 +993,35 @@ namespace NSRetailPOS
                     e.TotalValue = totalValue;
                     e.TotalValueReady = true;
                 }
+            }
+        }
+
+        private void RefreshBillOfferLabel()
+        {
+            DataTable dtBillOffers = billingRepository.GetBillOffers(billObj.BillID);
+            if (dtBillOffers != null && dtBillOffers.Rows.Count == 1)
+            {
+                lblBillOffer.Text = $"Bill offer : {dtBillOffers.Rows[0]["ITEMNAME"]}  for Rs.{dtBillOffers.Rows[0]["ACTUALSALEPRICE"]}";
+                lblBillOffer.Visible = true;
+                
+                lblBillOfferContainer.Visibility = LayoutVisibility.Always;
+            }
+            else
+            {
+                lblBillOffer.Visible = false;
+                lblBillOfferContainer.Visibility = LayoutVisibility.Never;
+            }
+        }
+
+        private async void Blink()
+        {
+            while (true)
+            {
+                await Task.Delay(500);
+                if(!lblBillOfferContainer.Visible) continue;
+                //Color.FromArgb(59, 154, 220)
+                lblBillOffer.ForeColor = lblBillOffer.ForeColor == Color.LightBlue ? Color.YellowGreen : Color.LightBlue;
+                //lblBillOffer.BackColor = lblBillOffer.BackColor == Color.Black ? Color.FromArgb(50, 50, 50) : Color.Black;
             }
         }
     }

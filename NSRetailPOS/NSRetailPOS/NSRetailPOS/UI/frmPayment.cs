@@ -22,7 +22,7 @@ namespace NSRetailPOS.UI
 
         int cashRowHandle = -1, b2bCreditRowHandle = -1;
 
-        public frmPayment(Bill bill)
+        public frmPayment(Bill bill, bool canClose = true)
         {
             InitializeComponent();
 
@@ -31,6 +31,9 @@ namespace NSRetailPOS.UI
 
             billObj = bill;
             Text += billObj.BillNumber;
+
+            btnCancel.Enabled = canClose;
+            this.CloseBox = canClose;
         }
 
         private void gvMOP_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
