@@ -46,7 +46,7 @@ namespace NSRetail
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (cmbItemCode.EditValue == null)
+            if (string.IsNullOrEmpty(cmbItemCode.EditValue?.ToString()))
                 return;
             gvItems.GridControl.BindingContext = new BindingContext();
             gvItems.GridControl.DataSource = dtItems;
