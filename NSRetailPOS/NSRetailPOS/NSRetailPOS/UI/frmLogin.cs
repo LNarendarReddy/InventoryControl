@@ -56,7 +56,7 @@ namespace NSRetailPOS.UI
                         Utility.branchInfo.BranchCounterID = dSUserInfo.Tables[1].Rows[0]["COUNTERID"];
                         Utility.branchInfo.BranchCounterName = dSUserInfo.Tables[1].Rows[0]["COUNTERNAME"];
                         Utility.branchInfo.MultiEditThreshold =
-                            Utility.loginInfo.RoleName.Equals("Store Admin") &&
+                            !Utility.loginInfo.RoleName.Equals("Store Admin") &&
                             dSUserInfo.Tables[0].Rows[0]["MULTIEDITTHRESHOLD"] != null && 
                             int.TryParse(dSUserInfo.Tables[0].Rows[0]["MULTIEDITTHRESHOLD"].ToString(), out int multiEditThreshold) 
                             ? multiEditThreshold : 0;

@@ -254,6 +254,11 @@ namespace NSRetailPOS
                     {
                         SaveBillDetail(dtBillOffers.Rows[0]["ITEMPRICEID"], 1, 0, -1, true, actualSalePrice);
 
+                        //refresh bill details
+                        dtBillDetails = billObj.dtBillDetails.Copy();
+                        dtBillDetails.DefaultView.RowFilter = "DELETEDDATE IS NULL";
+                        dtBillDetails = dtBillDetails.DefaultView.ToTable();
+
                         if (actualSalePrice > 0)
                         {
                             XtraMessageBox.Show("Bill amount updated, please verify amount", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Warning);
