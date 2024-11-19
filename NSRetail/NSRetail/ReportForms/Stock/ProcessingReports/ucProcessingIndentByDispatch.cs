@@ -47,16 +47,17 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             };
 
             DataSet dsData = (DataSet)GetReportData("USP_RPT_BULK_PROCESSING_INDENT_BY_DISPATCH", parameters);
-            dsData.Relations.Add("Item wise", dsData.Tables[0].Columns["ITEMID"], dsData.Tables[1].Columns["PARENTITEMID"]);
-            dsData.Relations.Add("Item by Branch wise", dsData.Tables[1].Columns["ITEMID"], dsData.Tables[2].Columns["ITEMID"]);
+            //dsData.Relations.Add("Item wise", dsData.Tables[0].Columns["ITEMID"], dsData.Tables[1].Columns["PARENTITEMID"]);
+            //dsData.Relations.Add("Item by Branch wise", dsData.Tables[1].Columns["ITEMID"], dsData.Tables[2].Columns["ITEMID"]);
+            dsData.Relations.Add("Item by Branch wise", dsData.Tables[0].Columns["ITEMID"], dsData.Tables[1].Columns["ITEMID"]);
             return dsData;
         }
 
-        public override void DataBoundCompleted()
-        {
-            base.DataBoundCompleted();
-            ExpandAllMasterRows();
-        }
+        //public override void DataBoundCompleted()
+        //{
+        //    base.DataBoundCompleted();
+        //    ExpandAllMasterRows();
+        //}
 
         private void cmbCategory_EditValueChanged(object sender, EventArgs e)
         {
