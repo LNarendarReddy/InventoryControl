@@ -242,6 +242,12 @@ namespace NSRetailPOS.UI
                     SaveBRefund();
                 SaveRefundDetail(rowHandle);
             }
+            else
+            {
+                //something went wrong
+                XtraMessageBox.Show("Something went wrong, please contact IT support", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CheckBRefundID();
+            }
             ClearItemData();
             gvRefund.FocusedRowHandle = rowHandle;
         }
@@ -315,6 +321,9 @@ namespace NSRetailPOS.UI
                 XtraMessageBox.Show("Are you sure to continue?", "Confirm!",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
+
+            CheckBRefundID();
+
             object NewBRefundNumber = new RefundRepository().FinishBRefund(BRefundID);
             rptBRefund rpt = new rptBRefund(dtRefund);
             rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
@@ -369,6 +378,14 @@ namespace NSRetailPOS.UI
             }
         }
 
+        private void CheckBRefundID()
+        {
+            if (BRefundID == null || !int.TryParse(Convert.ToString(BRefundID), out int tempBRefundID) || tempBRefundID <= 0)
+            {
+                throw new Exception("Error while saving BRefund - ID empty, please contact IT support");
+            }
+        }
+
         private void SaveBRefund()
         {
             DataTable dt = new RefundRepository().SaveBRefund(Utility.loginInfo.UserID, Utility.branchInfo.BranchID, cmbCategory.EditValue);
@@ -382,10 +399,14 @@ namespace NSRetailPOS.UI
             }
             else
                 throw new Exception("Error while saving BRefund");
+
+            CheckBRefundID();
         }
 
         private void SaveRefundDetail(int rowHandle)
         {
+            CheckBRefundID();
+
             DataRow drDetail = (gvRefund.GetRow(rowHandle) as DataRowView).Row;
 
             // refresh BREFUNDID just before going for save so that in case of first create,
