@@ -168,6 +168,39 @@ namespace NSRetailPOS.Data
             return dsNextBill;
         }
 
+        public DataSet DiscardBill(object userID, int daySequenceID, object billID)
+        {
+            DataSet dsNextBill = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[POS_USP_DISCARD_BILL]";
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+                    cmd.Parameters.AddWithValue("@BillID", billID);
+                    cmd.Parameters.AddWithValue("@DaySequenceID", daySequenceID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsNextBill);
+                    }
+
+                    dsNextBill.Tables[0].TableName = "BILL";
+                    dsNextBill.Tables[1].TableName = "BILLDETAILS";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While drafting and getting next bill", ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return dsNextBill;
+        }
+
         public DataTable DeleteBillDetail(object billDetailID, object userID, DataTable dtSNos)
         {
             DataTable dtBillDetails = new DataTable();

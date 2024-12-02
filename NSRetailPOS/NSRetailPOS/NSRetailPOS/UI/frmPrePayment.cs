@@ -13,7 +13,7 @@ namespace NSRetailPOS.UI
     {
         BillingRepository billingRepository = new BillingRepository();
 
-        public bool IsPaid = false;
+        public bool IsPaid = false, IsDiscarded = false;
 
         private Bill billObj;
 
@@ -27,6 +27,7 @@ namespace NSRetailPOS.UI
             this.canClose = canClose;
             this.CloseBox = canClose;
             this.btnCancel.Enabled = canClose;
+            btnDiscardBill.Enabled = !canClose;
         }
 
         private void frmPrePayment_Load(object sender, EventArgs e)
@@ -45,6 +46,15 @@ namespace NSRetailPOS.UI
 
             rgSaleType.EditValue = false;
             rgPaymentModes.EditValue = "CASH";
+        }
+
+        private void btnDiscardBill_Click(object sender, EventArgs e)
+        {
+            if (XtraMessageBox.Show("Are you sure you want to discard bill?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                != DialogResult.Yes) return;
+
+            IsDiscarded = true;
+            this.Close();
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -83,9 +93,12 @@ namespace NSRetailPOS.UI
 
             frmPayment payment = new frmPayment(billObj, canClose);
             payment.ShowDialog();
-            if(payment.IsPaid)
+
+            IsPaid = payment.IsPaid;
+            IsDiscarded = payment.IsDiscarded;
+
+            if (payment.IsPaid || payment.IsDiscarded)
             {
-                IsPaid = true;
                 Close();
             }
         }

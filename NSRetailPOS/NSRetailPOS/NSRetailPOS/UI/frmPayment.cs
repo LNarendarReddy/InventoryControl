@@ -12,7 +12,7 @@ namespace NSRetailPOS.UI
 {
     public partial class frmPayment : XtraForm
     {
-        public bool IsPaid = false;
+        public bool IsPaid = false, IsDiscarded = false;
 
         private Bill billObj;
 
@@ -34,6 +34,7 @@ namespace NSRetailPOS.UI
 
             btnCancel.Enabled = canClose;
             this.CloseBox = canClose;
+            btnDiscardBill.Enabled = !canClose;
         }
 
         private void gvMOP_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -109,6 +110,15 @@ namespace NSRetailPOS.UI
                 return; 
             }
             e.Cancel = true;
+        }
+
+        private void btnDiscardBill_Click(object sender, EventArgs e)
+        {
+            if (XtraMessageBox.Show("Are you sure you want to discard bill?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                != DialogResult.Yes) return;
+
+            IsDiscarded = true;
+            this.Close();
         }
 
         private void frmPayment_Load(object sender, EventArgs e)

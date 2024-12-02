@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrePayment));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnDiscardBill = new DevExpress.XtraEditors.SimpleButton();
             this.btnApply = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.rgPaymentModes = new DevExpress.XtraEditors.RadioGroup();
@@ -50,6 +51,7 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -69,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,6 +81,7 @@
             this.layoutControl1.Appearance.Control.Options.UseFont = true;
             this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 12F);
             this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
+            this.layoutControl1.Controls.Add(this.btnDiscardBill);
             this.layoutControl1.Controls.Add(this.btnApply);
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.rgPaymentModes);
@@ -93,6 +97,19 @@
             this.layoutControl1.Size = new System.Drawing.Size(703, 346);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnDiscardBill
+            // 
+            this.btnDiscardBill.ImageOptions.Image = global::NSRetailPOS.Properties.Resources.delete_16x161;
+            this.btnDiscardBill.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnDiscardBill.Location = new System.Drawing.Point(15, 308);
+            this.btnDiscardBill.Name = "btnDiscardBill";
+            this.btnDiscardBill.Size = new System.Drawing.Size(153, 23);
+            this.btnDiscardBill.StyleController = this.layoutControl1;
+            this.btnDiscardBill.TabIndex = 8;
+            this.btnDiscardBill.TabStop = false;
+            this.btnDiscardBill.Text = "Discard bill";
+            this.btnDiscardBill.Click += new System.EventHandler(this.btnDiscardBill_Click);
             // 
             // btnApply
             // 
@@ -206,7 +223,8 @@
             this.layoutControlItem6,
             this.layoutControlItem7,
             this.layoutControlItem8,
-            this.layoutControlItem4});
+            this.layoutControlItem4,
+            this.layoutControlItem9});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(703, 346);
             this.Root.TextVisible = false;
@@ -246,9 +264,9 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 293);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(163, 293);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(327, 33);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(164, 33);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem5
@@ -305,6 +323,16 @@
             this.layoutControlItem4.Text = "Customer GST #";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(109, 16);
             // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.btnDiscardBill;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 293);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem9.Size = new System.Drawing.Size(163, 33);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
             // frmPrePayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -335,6 +363,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
@@ -362,5 +391,7 @@
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
         private DevExpress.XtraEditors.TextEdit txtCustomerGST;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraEditors.SimpleButton btnDiscardBill;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
     }
 }

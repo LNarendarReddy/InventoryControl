@@ -240,9 +240,17 @@ namespace NSRetailPOS
             
             frmPrePayment paymentForm = new frmPrePayment(billObj);
             paymentForm.ShowDialog();
+            DataSet nextBillDetails = null;
+
+            if (paymentForm.IsDiscarded)
+            {
+                nextBillDetails = billingRepository.DiscardBill(Utility.loginInfo.UserID, daySequenceID, billObj.BillID);
+                LoadBillData(nextBillDetails);
+                return;
+            }
+
             if (!paymentForm.IsPaid) { return; }
 
-            DataSet nextBillDetails = null;
             try
             {
                 DataTable dtBillOffers = billingRepository.GetBillOffers(billObj.BillID);
@@ -265,6 +273,14 @@ namespace NSRetailPOS
 
                             frmPrePayment frmPayment = new frmPrePayment(billObj, false);
                             frmPayment.ShowDialog();
+                            
+                            if (frmPayment.IsDiscarded)
+                            {
+                                nextBillDetails = billingRepository.DiscardBill(Utility.loginInfo.UserID, daySequenceID, billObj.BillID);
+                                LoadBillData(nextBillDetails);
+                                return;
+                            }
+
                             if (!frmPayment.IsPaid)
                                 return;
                         }
