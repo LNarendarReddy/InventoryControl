@@ -21,11 +21,11 @@ namespace NSRetailLiteApp.Models
         public string _branchName;
 
         [ObservableProperty]
-        public ObservableCollection<StockCountingDetailModel> _countingDetail;
+        public ObservableCollection<StockCountingDetailModel> _countingDetailList;
 
         public StockCountingModel()
         {
-            CountingDetail = new ObservableCollection<StockCountingDetailModel>();
+            CountingDetailList = [];
         }
     }
 

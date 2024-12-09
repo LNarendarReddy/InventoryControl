@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="NSRetailLiteApp.Views.Common.BranchCounterSelectionPage">
+    <Grid BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Text="Select counter for billing" Grid.Row="0" FontSize="Medium" HorizontalTextAlignment="Center"/>
+        <CollectionView ItemsSource="{Binding Path=BranchCounters}" SelectedItem="{Binding Path=SelectedBranchCounter}" SelectionMode="Single"
+          SelectionChanged="CollectionView_SelectionChanged" Margin="20" VerticalScrollBarVisibility="Always" Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout  Margin="5, 15, 0, 5" VerticalOptions="CenterAndExpand" x:Name="templateRoot">
+                        <Label 
+                            Text="{Binding Path=BindingContext.CounterName, Source={x:Reference templateRoot}}" 
+                            HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Medium"/>
+                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</mct:Popup>

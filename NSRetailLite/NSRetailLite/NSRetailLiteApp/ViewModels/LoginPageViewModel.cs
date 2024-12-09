@@ -34,24 +34,34 @@ namespace NSRetailLiteApp.ViewModels
             }
 
             PostAsync("user/getuserlogin", ref loggedInUserInfo
-                , new Dictionary<string, string?> 
-                    { 
-                        { "UserName", Model.UserName }, 
-                        { "Password", Model.Password }, 
-                        { "AppVersion", "1.5" }, 
+                , new Dictionary<string, string?>
+                    {
+                        { "UserName", Model.UserName },
+                        { "Password", Model.Password },
+                        { "AppVersion", "1.5" },
                         { "IsNested", "True" } }
                 );
 
             Model.Password = string.Empty;
 
-            if (loggedInUserInfo.Exception == null && loggedInUserInfo.AppVersion != App.Version
-                && await DisplayAlert("Update", $"New update available, do you want to download new APK?", "Yes", "No"))
+            if (loggedInUserInfo.Exception != null)
+            {
+                return;
+            }
+
+            if (loggedInUserInfo.AppVersion == App.Version)
+            {
+                RedirectToPage(loggedInUserInfo, new HomePage(loggedInUserInfo));
+                return;
+            }
+
+            if (await DisplayAlert("Update", $"New update available, do you want to download new APK?", "Yes", "No"))
             {
                 Launcher.OpenAsync(loggedInUserInfo.AppURL);
                 return;
             }
 
-            RedirectToPage(loggedInUserInfo, new HomePage(loggedInUserInfo));
+            DisplayErrorMessage("The operation has been cancelled");
         }
     }
 }

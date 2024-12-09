@@ -11,7 +11,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Text="{Binding Path=ItemCode.ItemCode, Mode=TwoWay}" Margin="0, 20, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" FontSize="Title"/>
-        <CollectionView ItemsSource="{Binding Path=ItemCode.ItemPrices}" SelectedItem="{Binding Path=SelectedItemPrice}" SelectionMode="Single"
+        <CollectionView ItemsSource="{Binding Path=ItemCode.ItemPriceList}" SelectedItem="{Binding Path=SelectedItemPrice}" SelectionMode="Single"
                      SelectionChanged="CollectionView_SelectionChanged" Margin="20" Grid.Row="1" VerticalScrollBarVisibility="Always">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type models:ItemPrice}">

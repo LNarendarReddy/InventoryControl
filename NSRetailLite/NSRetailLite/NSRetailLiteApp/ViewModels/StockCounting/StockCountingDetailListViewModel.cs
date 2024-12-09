@@ -36,7 +36,7 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
         {
             StockCountingModel = stockCountingModel;
             userID = UserID;
-            FilteredStockCountingDetails = stockCountingModel.CountingDetail;
+            FilteredStockCountingDetails = stockCountingModel.CountingDetailList;
 
             AddItemCommand = new AsyncRelayCommand(AddItem);
             SubmitCommand = new AsyncRelayCommand(Submit);
@@ -50,14 +50,14 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
         {
             if (string.IsNullOrEmpty(search))
             {
-                FilteredStockCountingDetails = StockCountingModel.CountingDetail;
+                FilteredStockCountingDetails = StockCountingModel.CountingDetailList;
                 return;
             }
 
             search = search.ToLower();
             FilteredStockCountingDetails
                 = new ObservableCollection<StockCountingDetailModel>(
-                    StockCountingModel.CountingDetail
+                    StockCountingModel.CountingDetailList
                     .Where(x => x.ItemName.Contains(search, StringComparison.CurrentCultureIgnoreCase)
                     || x.ItemCode.Contains(search, StringComparison.CurrentCultureIgnoreCase)));
         }
@@ -73,7 +73,7 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
 
         private async Task Submit()
         {
-            if (!StockCountingModel.CountingDetail.Any())
+            if (!StockCountingModel.CountingDetailList.Any())
             {
                 DisplayErrorMessage("No items to submit");
                 return;

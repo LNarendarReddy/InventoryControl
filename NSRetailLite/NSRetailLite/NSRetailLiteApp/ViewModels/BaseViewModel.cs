@@ -118,7 +118,11 @@ namespace NSRetailLiteApp.ViewModels
             else if (callingObject.GetType() == typeof(Item))
                 callingObject = root.Holder.Item as T;
             else if (callingObject.GetType() == typeof(ObservableCollection<Branch>))
+                callingObject = root.Holder.BranchList as T;
+            else if (callingObject.GetType() == typeof(Branch))
                 callingObject = root.Holder.Branch as T;
+            else if (callingObject.GetType() == typeof(DaySequence))
+                callingObject = root.Holder.DaySequence as T;
             else if (callingObject.GetType() == typeof(HolderClass))
                 callingObject = root.Holder as T;
         }

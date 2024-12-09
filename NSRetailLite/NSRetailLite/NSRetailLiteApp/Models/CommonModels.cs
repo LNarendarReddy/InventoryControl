@@ -22,11 +22,20 @@ namespace NSRetailLiteApp.Models
 
         public Item Item;
 
-        public ObservableCollection<Branch> Branch;
+        public Branch Branch;
+
+        public DaySequence DaySequence;
+
+        public ObservableCollection<Branch> BranchList;
+
+        public ObservableCollection<MOP> MOPList;
 
         public int GenericID;
-    }
 
+        public Bill Bill;
+
+        public HolderClass Holder;
+    }
     
     public partial class Branch : BaseObservableObject
     {
@@ -50,6 +59,14 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         public string _emailID;
+
+        [ObservableProperty]
+        public ObservableCollection<BranchCounter> _branchCounterList;
+
+        public Branch()
+        {
+            BranchCounterList = [];
+        }
     }
 
     public partial class Item : BaseObservableObject
@@ -70,7 +87,12 @@ namespace NSRetailLiteApp.Models
         public int _parentItemID;
 
         [ObservableProperty]
-        public ObservableCollection<ItemCodeData> _itemCodes;
+        public ObservableCollection<ItemCodeData> _itemCodeList;
+
+        public Item()
+        {
+            ItemCodeList = [];
+        }
     }
 
     public partial class ItemCodeData : BaseObservableObject
@@ -88,7 +110,12 @@ namespace NSRetailLiteApp.Models
         public string _hSNCode;
 
         [ObservableProperty]
-        public ObservableCollection<ItemPrice> _itemPrices;
+        public ObservableCollection<ItemPrice> _itemPriceList;
+
+        public ItemCodeData()
+        {
+            ItemPriceList = [];
+        }
     }
 
     public partial class ItemPrice : BaseObservableObject

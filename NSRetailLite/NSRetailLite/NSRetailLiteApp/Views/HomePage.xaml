@@ -90,8 +90,13 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <VerticalStackLayout Grid.Row="3" Grid.Column="1">
-                                <ImageButton Margin="0, 5, 0, 2" Source="billing.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
-                                <Label Text="Billing" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                <ImageButton Margin="0, 5, 0, 2" Source="billing.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
+                                             Command="{Binding Path=OpenBillingCommand}"/>
+                                <Label Text="Billing" FontSize="Small" HorizontalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="4" Grid.Column="3">
                                 <ImageButton Margin="0, 5, 0, 2" Source="itemdetails.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>

@@ -12,7 +12,7 @@
         </Grid.RowDefinitions>
         <Label Text="{Binding Path=Item.ItemName, Mode=TwoWay}" Margin="0, 20, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0"
                FontSize="Title"/>
-        <CollectionView ItemsSource="{Binding Path=Item.ItemCodes}" SelectedItem="{Binding Path=SelectedItemCode}" SelectionMode="Single"
+        <CollectionView ItemsSource="{Binding Path=Item.ItemCodeList}" SelectedItem="{Binding Path=SelectedItemCode}" SelectionMode="Single"
                     SelectionChanged="CollectionView_SelectionChanged" Margin="20" Grid.Row="1" VerticalScrollBarVisibility="Always">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type models:ItemCodeData}">

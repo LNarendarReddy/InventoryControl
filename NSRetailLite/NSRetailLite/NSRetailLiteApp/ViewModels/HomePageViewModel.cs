@@ -1,7 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls.PlatformConfiguration;
 using NSRetailLiteApp.Models;
+using NSRetailLiteApp.ViewModels.Common;
 using NSRetailLiteApp.ViewModels.StockCounting;
+using NSRetailLiteApp.Views.Billing;
+using NSRetailLiteApp.Views.Common;
 using NSRetailLiteApp.Views.StockCounting;
 using System;
 using System.Collections.Generic;
@@ -24,6 +28,7 @@ namespace NSRetailLiteApp.ViewModels
         {
             LogoutCommand = new AsyncRelayCommand(Logout);
             OpenStockCountingCommand = new AsyncRelayCommand(OpenStockCounting);
+            OpenBillingCommand = new AsyncRelayCommand(OpenBilling);
             _model = loggedInUser;
             User = loggedInUser;
         }
@@ -62,7 +67,7 @@ namespace NSRetailLiteApp.ViewModels
                     return;
                 }
 
-                HolderClass holderClass = new HolderClass();
+                HolderClass holderClass = new();
 
                 GetAsync("stockcounting/getbranch", ref holderClass
                     , new Dictionary<string, string?>()
@@ -71,7 +76,7 @@ namespace NSRetailLiteApp.ViewModels
                     { "isNested", "True" }
                 });
 
-                BranchSelectionViewModel branchSelectionViewModel = new BranchSelectionViewModel(holderClass.Branch);
+                BranchSelectionViewModel branchSelectionViewModel = new BranchSelectionViewModel(holderClass.Holder.BranchList);
                 await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
 
                 if (branchSelectionViewModel.SelectedBranch == null) return;
@@ -112,7 +117,93 @@ namespace NSRetailLiteApp.ViewModels
                 return;
             }
 
-            RedirectToPage(stockCounting, new StockCountingDetailListPage(new StockCountingDetailListViewModel(stockCounting, Model.UserId)));
+            await RedirectToPage(stockCounting, new StockCountingDetailListPage(new StockCountingDetailListViewModel(stockCounting, Model.UserId)));
+        }
+
+        public IAsyncRelayCommand OpenBillingCommand { get; }
+
+        private async Task OpenBilling()
+        {
+            if (Application.Current == null || Application.Current.MainPage == null) return;
+
+            int counterId = await GetCounterId();
+
+            if (counterId <= 0) return;
+
+            DaySequence daySequence = new();
+            GetAsync("billing/getinitialload", ref daySequence
+                , new Dictionary<string, string?>()
+                {
+                    { "userID", Model.UserId.ToString() },
+                    { "branchCounterID", counterId.ToString() }
+                });
+
+            await RedirectToPage(daySequence, new BillingPage(new Billing.BillingViewModel(daySequence.BillList.First(), counterId)));
+        }
+
+        private async Task<int> GetCounterId()
+        {
+
+            string device_id = string.Empty;
+            int counterId = 0;
+
+#if ANDROID
+            device_id =  Android.Provider.Settings.Secure.GetString(Android.App.Application.Context.ContentResolver, Android.Provider.Settings.Secure.AndroidId);
+#endif
+
+            HolderClass holder = new();
+
+            GetAsync("billing/getcounterbyidentifier", ref holder
+                , new Dictionary<string, string?>()
+                {
+                    { "Identifier", device_id }
+                }, false);
+
+            if (holder.Exception != null || holder.GenericID <= 0)
+            {
+                Branch branch = new();
+                GetAsync("billing/getcounters", ref branch
+                    , new Dictionary<string, string?>()
+                    {
+                        { "BranchID", Model.BranchId.ToString() }
+                    }, true);
+
+                BranchCounterSelectionViewModel branchCounterSelectionViewModel = new(branch.BranchCounterList);
+                await ShowPopup(branch, new BranchCounterSelectionPage(branchCounterSelectionViewModel));
+                if (branchCounterSelectionViewModel.SelectedBranchCounter == null) return counterId;
+
+                holder = new();
+                PostAsync("billing/savecounteridentifier", ref holder
+                    , new Dictionary<string, string?>()
+                    {
+                        { "Identifier", device_id },
+                        { "CounterId",  branchCounterSelectionViewModel.SelectedBranchCounter.CounterId.ToString() }
+                    }, true);
+
+                if (holder.Exception != null) { return counterId; }
+
+                holder = new();
+                GetAsync("billing/getcounterbyidentifier", ref holder
+                    , new Dictionary<string, string?>()
+                    {
+                        { "Identifier", device_id }
+                    }, true);
+
+                if (holder.Exception != null) { return counterId; }
+
+                counterId = holder.GenericID;
+            }
+            else
+            {
+                counterId = holder.GenericID;
+            }
+
+            if (counterId <= 0)
+            {
+                DisplayErrorMessage("Something went wrong, counter not set");
+            }
+
+            return counterId;
         }
     }
 }

@@ -37,7 +37,7 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
 
         private async Task Save()
         {
-            List<string> errors = new List<string>();
+            List<string> errors = [];
 
             if (StockCountingDetailModel.ItemPriceId <= 0)
                 errors.Add("Item or price not selected");

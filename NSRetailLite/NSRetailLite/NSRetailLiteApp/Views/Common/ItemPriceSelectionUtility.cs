@@ -13,11 +13,11 @@ namespace NSRetailLiteApp.Views.Common
     {
         public async Task<Tuple<ItemCodeData, ItemPrice>> GetSelectedItemPrice(Item item)
         {
-            if (item == null || item.ItemCodes == null || !item.ItemCodes.Any()) return new Tuple<ItemCodeData, ItemPrice>(null, null);
+            if (item == null || item.ItemCodeList == null || !item.ItemCodeList.Any()) return new Tuple<ItemCodeData, ItemPrice>(null, null);
 
             ItemCodeData selectedItemCode;
 
-            if (item.ItemCodes.Count > 1)
+            if (item.ItemCodeList.Count > 1)
             {
                 ItemCodeSelectionViewModel itemCodeSelectionViewModel = new ItemCodeSelectionViewModel(item);
                 await base.ShowPopup(item, new ItemCodeSelectionPage(itemCodeSelectionViewModel));
@@ -25,12 +25,12 @@ namespace NSRetailLiteApp.Views.Common
             }
             else
             {
-                selectedItemCode = item.ItemCodes[0];
+                selectedItemCode = item.ItemCodeList[0];
             }
 
             if (selectedItemCode == null) return new Tuple<ItemCodeData, ItemPrice>(null, null); ;
 
-            if (selectedItemCode.ItemPrices.Count > 1)
+            if (selectedItemCode.ItemPriceList.Count > 1)
             {
                 ItemPriceSelectionViewModel itemPriceSelectionViewModel = new ItemPriceSelectionViewModel(selectedItemCode);
                 await base.ShowPopup(selectedItemCode, new ItemPriceSelectionPage(itemPriceSelectionViewModel));
@@ -38,7 +38,7 @@ namespace NSRetailLiteApp.Views.Common
                 return new Tuple<ItemCodeData, ItemPrice>(selectedItemCode, itemPriceSelectionViewModel.SelectedItemPrice);
             }
             else 
-                return new Tuple<ItemCodeData, ItemPrice>(selectedItemCode, selectedItemCode.ItemPrices[0]);
+                return new Tuple<ItemCodeData, ItemPrice>(selectedItemCode, selectedItemCode.ItemPriceList[0]);
         }
 
         public async Task<string> ScanBarCodeWithCamera()

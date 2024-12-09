@@ -48,6 +48,15 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         public string _appURL;
+
+        [ObservableProperty]
+        public decimal? _multiEditThreshold;
+
+        [ObservableProperty]
+        public bool _filterMRPByStock;
+
+        [ObservableProperty]
+        public decimal? _enableDraftBills;
     }
 
     public partial class FeatureAccessData : BaseObservableObject
@@ -61,5 +70,14 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         public bool _accessAvailable;
 
-    }    
+    }
+    
+    public partial class BranchCounter : BaseObservableObject
+    {
+        [ObservableProperty]
+        public int _counterId;
+
+        [ObservableProperty]
+        public string _counterName;
+    }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.Billing.BillInfoPage"
+             Title="BillInfoPage">
+    <Grid RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto, auto" Margin="10" RowSpacing="5">
+        <Button Text="{Binding Path=CurrentBill.TotalAmount, StringFormat='Pay Amount : {0}'}"
+                FontAttributes="Bold" FontSize="Large" Grid.Row="0" HorizontalOptions="Center"
+                Command="{Binding Path=PayBillCommand}"/>
+        
+        <HorizontalStackLayout Grid.Row="1" Spacing="20">
+            <Label Text="Sale Type" VerticalTextAlignment="Center" />
+            <RadioButton Content="Walk-in" Value="0"/>
+            <RadioButton Content="Delivery" Value="1"/>
+        </HorizontalStackLayout>
+        <Label Text="Customer Name" Grid.Row="2"/>
+        <Entry Placeholder="Customer Name" Text="{Binding Path=CurrentBill.CustomerName}" Grid.Row="3" />
+        <Label Text="Customer Mobile #" Grid.Row="4"/>
+        <Entry Placeholder="Customer Mobile #" Text="{Binding Path=CurrentBill.CustomerName}" Grid.Row="5"/>
+        <Label Text="Customer GST #" Grid.Row="6"/>
+        <Entry Placeholder="Customer GST #" Text="{Binding Path=CurrentBill.CustomerName}" Grid.Row="7"/>
+        <Label Text="Select Payment mode" Grid.Row="8" FontSize="Large" Margin="0, 20, 0, 10"/>
+        <CollectionView Grid.Row="9" ItemsSource="{Binding Path=MopList}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                        Span="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>                
+                <DataTemplate>
+                    <RadioButton Content="{Binding Path=MOPName}" Value="{Binding Path=MOPID}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
