@@ -852,11 +852,14 @@ namespace DataAccess
 
         public void SaveStockAdjustment(StockAdjustment stockAdjustment)
         {
+            SqlTransaction sqlTransaction = null;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.Sqlconn();
+                    sqlTransaction = cmd.Connection.BeginTransaction();                    
+                    cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_STOCKADJUSTMENT]";
                     cmd.Parameters.AddWithValue("@ItemID", stockAdjustment.ItemID);
@@ -869,11 +872,13 @@ namespace DataAccess
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out int stockAdjustmentID))
                         throw new Exception(str);
-                }
 
+                    sqlTransaction.Commit();
+                }
             }
             catch (Exception ex)
             {
+                sqlTransaction.Rollback();
                 throw new Exception($"Error while saving stock adjustment - {ex.Message}", ex);
             }
             finally

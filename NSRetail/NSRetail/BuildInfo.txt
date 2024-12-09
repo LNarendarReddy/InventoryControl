@@ -1,4 +1,7 @@
-﻿v2.7.6
+﻿v2.7.7 (to be deployed)
+  -- transactions in stock adjustments
+
+v2.7.6
   -- Classification & sub-classification in Item code list
   -- Processing indent by dispatch without parent indent grouping
   -- Stock counting sub-category wise accept
