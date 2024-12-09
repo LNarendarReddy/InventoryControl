@@ -20,7 +20,7 @@ namespace NSRetailLiteApp.Models
         public ObservableCollection<BillDetail> _billDetailList;
 
         [ObservableProperty]
-        public double _totalAmount;
+        public decimal _totalAmount;
 
         [ObservableProperty]
         public string _customerName;
@@ -32,14 +32,42 @@ namespace NSRetailLiteApp.Models
         public string _customerGST;
 
         [ObservableProperty]
-        public string _saleType;
+        public bool _isDoorDelivery;
 
         [ObservableProperty]
         public string _paymentModeId;
 
+        [ObservableProperty]
+        public decimal _rounding;
+
+        [ObservableProperty]
+        public decimal _paidTotalAmount;
+
+        [ObservableProperty]
+        public decimal _remainingAmount;
+
+        [ObservableProperty]
+        public decimal _tenderedCash;
+
+        [ObservableProperty]
+        public decimal _tenderedChange;
+
+        [ObservableProperty]
+        public ObservableCollection<MOP> _mOPValueList;
+
+        [ObservableProperty]
+        public int _userId;
+
+        [ObservableProperty]
+        public int _branchCounterId;
+
+        [ObservableProperty]
+        public int _daySequenceId;
+
         public Bill() 
         {
-            BillDetailList = new ObservableCollection<BillDetail>();
+            BillDetailList = [];
+            MOPValueList = [];
         }
     }
 
@@ -67,10 +95,10 @@ namespace NSRetailLiteApp.Models
         public string _hSNCode;
 
         [ObservableProperty]
-        public double _mRP;
+        public decimal _mRP;
 
         [ObservableProperty]
-        public double _salePrice;
+        public decimal _salePrice;
 
         [ObservableProperty]
         public string _gSTCode;
@@ -82,40 +110,40 @@ namespace NSRetailLiteApp.Models
         public double _weightInKGs;
 
         [ObservableProperty]
-        public double _billedAmount;
+        public decimal _billedAmount;
 
         [ObservableProperty]
-        public double _cGST;
+        public decimal _cGST;
 
         [ObservableProperty]
-        public double _sGST;
+        public decimal _sGST;
 
         [ObservableProperty]
-        public double _iGST;
+        public decimal _iGST;
 
         [ObservableProperty]
-        public double _cESS;
+        public decimal _cESS;
 
         [ObservableProperty]
-        public double _gSTValue;
+        public decimal _gSTValue;
 
         [ObservableProperty]
         public int _gSTId;
 
         [ObservableProperty]
-        public double _cGSTDesc;
+        public decimal _cGSTDesc;
 
         [ObservableProperty]
-        public double _sGSTDesc;
+        public decimal _sGSTDesc;
 
         [ObservableProperty]
-        public double _cESSDesc;
+        public decimal _cESSDesc;
 
         [ObservableProperty]
         public bool _isOpenItem;
 
         [ObservableProperty]
-        public double _discount;
+        public decimal _discount;
 
         [ObservableProperty]
         public int _offerId;
@@ -146,6 +174,9 @@ namespace NSRetailLiteApp.Models
                     : Color.FromArgb("#65000b"); // rose wood
             }
         }
+
+        [ObservableProperty]
+        public int _branchId;
     }
 
     public partial class DaySequence : BaseObservableObject

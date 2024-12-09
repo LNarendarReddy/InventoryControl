@@ -24,19 +24,28 @@ namespace NSRetailLiteApp.ViewModels.Billing
         public string _itemCode;
 
         public IAsyncRelayCommand FinishBillCommand { get; }
+
         public IAsyncRelayCommand LoadItemCommand { get; }
+
+        public IAsyncRelayCommand<BillDetail> EditItemCommand { get; }
+
+        public IAsyncRelayCommand<BillDetail> DeleteItemCommand { get; }
+        public int DaySequenceId { get; }
 
         public delegate void LoadCompletedHandler();
 
         public event LoadCompletedHandler LoadCompleted;
 
-        public BillingViewModel(Bill bill, int branchCounterId) 
+        public BillingViewModel(Bill bill, int branchCounterId, int daySequenceId) 
         { 
-            _currentBill = bill;
             this.branchCounterId = branchCounterId;
+            DaySequenceId = daySequenceId;
             FinishBillCommand = new AsyncRelayCommand(FinishBill);
             LoadItemCommand = new AsyncRelayCommand(LoadItem);
-            UpdateTotals();
+            EditItemCommand = new AsyncRelayCommand<BillDetail>(EditItem);
+            DeleteItemCommand = new AsyncRelayCommand<BillDetail>(DeleteItem);
+
+            UpdateTotals(bill);
         }
 
         private async Task FinishBill()
@@ -47,58 +56,20 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 return;
             }
 
-
             HolderClass holder = new();
 
             GetAsync("billing/getmop", ref holder, []);
 
-            ObservableCollection<MOP> MOPItemsList = holder.Holder.MOPList;
-            MOPItemsList.Add(new MOP() { MOPId = 0, MOPName = "Multiple" });
+            BillInfoViewModel billInfoViewModel = new(CurrentBill, holder.Holder.MOPList);
+            billInfoViewModel.OnBillFinished += BillInfoViewModel_OnBillFinished;
+            await RedirectToPage(holder, new BillInfoPage(billInfoViewModel));
             
-            await RedirectToPage(holder, new BillInfoPage(new BillInfoViewModel(CurrentBill, MOPItemsList)));
+        }
 
-            //List<string> errors = new List<string>();
-
-            //if (StockCountingDetailModel.ItemPriceId <= 0)
-            //    errors.Add("Item or price not selected");
-
-            //if (!StockCountingDetailModel.IsOpenItem && StockCountingDetailModel.Quantity <= 0)
-            //    errors.Add("Quantity cannot be empty");
-
-            //if (StockCountingDetailModel.IsOpenItem && StockCountingDetailModel.WeightInKGs <= 0)
-            //    errors.Add("Weight cannot be empty");
-
-            //if (!StockCountingDetailModel.IsOpenItem && StockCountingDetailModel.Quantity > 9999)
-            //    errors.Add("Quantity cannot be more than 4 digits");
-
-            //if (StockCountingDetailModel.IsOpenItem && StockCountingDetailModel.WeightInKGs >= 10000)
-            //    errors.Add("Weight cannot be more than 4 digits");
-
-            //if (errors.Any())
-            //{
-            //    await DisplayAlert("Error"
-            //        , "Fix the following errors: \n\n"
-            //        + string.Join("", errors.Select(x => x = $"\r * {x}.\n"))
-            //        , "OK");
-            //    return;
-            //}
-
-            //var stockCountingDetailModel = StockCountingDetailModel;
-            //PostAsync("stockcounting/savecountingdetail", ref stockCountingDetailModel
-            //    , new Dictionary<string, string?>()
-            //    {
-            //        { "StockCountingID", _stockCountingDetailListViewModel.StockCountingModel.StockCountingId.ToString() },
-            //        { "StockCountingDetailID", StockCountingDetailModel.StockCountingDetailId.ToString() },
-            //        { "ItemPriceID", StockCountingDetailModel.ItemPriceId.ToString() },
-            //        { "Quantity", StockCountingDetailModel.Quantity.ToString() },
-            //        { "WeightInKgs", StockCountingDetailModel.WeightInKGs.ToString() }
-            //    }, displayAlert: true, showResponse: true);
-
-            //if (StockCountingDetailModel.Exception == null)
-            //{
-            //    ClearData();
-            //    SaveComplete?.Invoke();
-            //}
+        private void BillInfoViewModel_OnBillFinished(Bill bill)
+        {
+            CurrentBill = bill;
+            UpdateTotals();
         }
 
         private async Task LoadItem()
@@ -155,28 +126,80 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 ItemPriceId = itemPrice.ItemPriceID,
                 Quantity = 1,
                 BillId = CurrentBill.BillId,
-                WeightInKGs = weightInKGs,
-                BranchCounterId = branchCounterId,
-                UserId = HomePageViewModel.User.UserId
+                WeightInKGs = weightInKGs                
             };
 
+            UpdateBillDetail(billDetail, "save");
+        }
+
+        private async Task EditItem(BillDetail billDetail)
+        {
+            if (billDetail.DeletedDate != null)
+            {
+                DisplayErrorMessage("Deleted items cannot be edited");
+                return;
+            }
+
+            if (billDetail.IsOpenItem)
+            {
+                DisplayErrorMessage("Loose\\open items cannot be edited");
+                return;
+            }
+
+            if (billDetail.MRP > HomePageViewModel.User.MultiEditThreshold)
+            {
+                DisplayErrorMessage("Cannot edit quantity as it exceeds threshold limit");
+                return;
+            }
+
+            string newQuantity = await Application.Current?.MainPage?.DisplayPromptAsync($"{billDetail.ItemName} - MRP : {billDetail.MRP}", "Enter the quantity:", "OK");
+
+            if (int.TryParse(newQuantity, out int qty))
+            {
+                billDetail.Quantity = qty;
+                UpdateBillDetail(billDetail, "save");
+            }
+        }
+
+        private async Task DeleteItem(BillDetail billDetail)
+        {
+            if (billDetail.DeletedDate != null)
+            {
+                DisplayErrorMessage("Deleted items cannot be edited");
+                return;
+            }
+
+            if (await DisplayAlert("Confirm", $"Are you sure you want to delete - {billDetail.ItemName} with MRP - {billDetail.MRP}?", "Yes", "No"))
+                UpdateBillDetail(billDetail, "delete");
+        }
+
+        private void UpdateTotals(Bill bill = null)
+        {
+            if (bill != null) 
+            { 
+                CurrentBill = bill;
+                CurrentBill.DaySequenceId = DaySequenceId;
+            }
+
+            CurrentBill.TotalAmount = CurrentBill.BillDetailList.Where(x => x.DeletedDate == null).Sum(x => x.BilledAmount);
+            LoadCompleted?.Invoke();
+        }
+
+        private void UpdateBillDetail(BillDetail billDetail, string urlPrefix)
+        {
             HolderClass holder = new();
-            PostAsync("billing/savebilldetail", ref holder
+            billDetail.BranchCounterId = branchCounterId;
+            billDetail.UserId = HomePageViewModel.User.UserId;
+            billDetail.BranchId = HomePageViewModel.User.BranchId;
+            PostAsync($"billing/{urlPrefix}billdetail", ref holder
                 , new Dictionary<string, string?>()
                 {
                     { "jsonstring", JsonConvert.SerializeObject(billDetail) }
                 });
 
-            if(holder.Exception != null) return;
+            if (holder.Exception != null) return;
 
-            CurrentBill = holder.Bill;
-            UpdateTotals();
-        }
-
-        private void UpdateTotals()
-        {
-            CurrentBill.TotalAmount = CurrentBill.BillDetailList.Where(x => x.DeletedDate == null).Sum(x => x.BilledAmount);
-            LoadCompleted?.Invoke();
+            UpdateTotals(holder.Bill);
         }
     }
 }

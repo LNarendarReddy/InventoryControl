@@ -13,4 +13,10 @@ public partial class BillInfoPage : ContentPage
     }
 
     public BillInfoViewModel BillInfoViewModel { get; }
+
+    private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if (e.Value)
+            BillInfoViewModel.CurrentBill.PaymentModeId = Convert.ToString((sender as RadioButton)?.Value);
+    }
 }

@@ -3,103 +3,88 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NSRetailLiteApp.Views.Billing.BillingPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" 
+             xmlns:views="clr-namespace:NSRetailLiteApp.Views.Billing"
              Title="BillingPage">
-
-    <!--<ContentPage.Resources>
-        <Style TargetType="Grid">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor"
-                                    Value="White" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor"
-                                        Value="Transparent" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
-        <Style TargetType="CollectionView">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor"
-                                    Value="yellow" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor"
-                                Value="White" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
-    </ContentPage.Resources>-->
     
     <Grid Margin="10" RowDefinitions="auto,auto,*" ColumnDefinitions="*,auto">
+
         <Label Text="{Binding Path=CurrentBill.BillNumber}" HorizontalTextAlignment="Center" 
-               FontAttributes="Bold" FontSize="Large" Margin="0" Grid.Row="0" Grid.ColumnSpan="2"
-               TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
-        <Entry Placeholder="scan item code here" Grid.Row="1" Grid.Column="0" Margin="0, 0, 5, 0"
-               ClearButtonVisibility="WhileEditing" ReturnType="Done"
-               Text="{Binding Path=ItemCode}" x:Name="txtItemCode"
-               ReturnCommand="{Binding Path=LoadItemCommand}" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
-            <Entry.Behaviors>
-                <toolkit:SelectAllTextBehavior />
-                <toolkit:EventToCommandBehavior
-                    EventName="Completed"
-                    Command="{Binding Path=LoadItemCommand}" />
-            </Entry.Behaviors>
-        </Entry>
-        <Button Text="{Binding Path=CurrentBill.TotalAmount, StringFormat='Finish bill: {0}'}" 
-                Grid.Row="1" Grid.Column="1" Margin="5" FontAttributes="Bold" FontSize="Medium"
-                Command="{Binding Path=FinishBillCommand}"/>
+            FontAttributes="Bold" FontSize="Large" Margin="0" Grid.Row="0" Grid.ColumnSpan="2"
+            TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+
+        <SwipeView Grid.Row="1" Grid.ColumnSpan="2">
+            <SwipeView.RightItems>
+                <SwipeItem IconImageSource="stockcountingdetaildiscard.png" Command="{Binding Path=BindingContext.DiscardCommand}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                <SwipeItem IconImageSource="draft.png" Command="{Binding Path=BindingContext.DraftCommand}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+            </SwipeView.RightItems>
+            <HorizontalStackLayout>
+                <Entry Placeholder="scan item code here" Grid.Row="1" Grid.Column="0" Margin="0, 0, 5, 0"
+                    ClearButtonVisibility="WhileEditing" ReturnType="Done"
+                    Text="{Binding Path=ItemCode}" x:Name="txtItemCode"
+                    ReturnCommand="{Binding Path=LoadItemCommand}" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                    <Entry.Behaviors>
+                        <toolkit:SelectAllTextBehavior />
+                        <toolkit:EventToCommandBehavior
+                            EventName="Completed"
+                            Command="{Binding Path=LoadItemCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Button Text="{Binding Path=CurrentBill.TotalAmount, StringFormat='Finish bill: {0}'}" 
+                    Grid.Row="1" Grid.Column="1" Margin="5" FontAttributes="Bold" FontSize="Medium"
+                    Command="{Binding Path=FinishBillCommand}" />
+            </HorizontalStackLayout>
+        </SwipeView>
         <CollectionView Grid.Row="2" Grid.ColumnSpan="2"
                         ItemsSource="{Binding Path=CurrentBill.BillDetailList}"
                         SelectionMode="None" BackgroundColor="Transparent">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid ColumnDefinitions="auto, *, auto, 10" ColumnSpacing="10" RowDefinitions="*,*,*,auto,10"
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItem 
+                                IconImageSource="stockcountingdetailedit.png"
+                                Command="{Binding Path=BindingContext.EditItemCommand, Source={RelativeSource AncestorType={x:Type views:BillingPage}}}"
+                                CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                            <SwipeItem 
+                                IconImageSource="stockcountingdetaildiscard.png"                                 
+                                Command="{Binding Path=BindingContext.DeleteItemCommand, Source={RelativeSource AncestorType={x:Type views:BillingPage}}}"
+                                CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                        </SwipeView.RightItems>
+                        
+                        <Grid ColumnDefinitions="auto, *, auto, 10" ColumnSpacing="10" RowDefinitions="*,*,*,auto,10"
                           BackgroundColor="{Binding Path=BackColor}">
-                        <Label Text="{Binding Path=SNO, StringFormat='{0})'}" FontSize="Large"
+                            
+                            <Label Text="{Binding Path=SNO, StringFormat='{0})'}" FontSize="Large"
                                Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" VerticalTextAlignment="Center"/>
-                        <Grid Grid.Row="0" Grid.Column="1" ColumnDefinitions="*, *">
-                            <Label Text="{Binding Path=ItemCode}" VerticalTextAlignment="Center"
+                            <Grid Grid.Row="0" Grid.Column="1" ColumnDefinitions="*, *">
+                                <Label Text="{Binding Path=ItemCode}" VerticalTextAlignment="Center"
                                    Grid.Column="0"/>
-                            <Label Text="{Binding Path=ItemName}" FontAttributes="Bold" 
+                                <Label Text="{Binding Path=ItemName}" FontAttributes="Bold" 
                                    HorizontalOptions="End" HorizontalTextAlignment="End" Grid.Column="1"/>
-                        </Grid>
-                        <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="auto,auto, *,auto,auto,auto,auto" ColumnSpacing="5">
-                            <Label Text="{Binding Path=MRP, StringFormat='MRP : {0}'}" Grid.Column="0" />
-                            <Label Text="{Binding Path=SalePrice, StringFormat='Sale price : {0}'}" Grid.Column="1"/>
-                            <Label Text="Qty" Grid.Column="3"/>
-                            <Label Text="{Binding Path=Quantity}" FontAttributes="Bold" Grid.Column="4"/>
-                            <Label Text="Wght" Grid.Column="5"/>
-                            <Label Text="{Binding Path=WeightInKGs}" Grid.Column="6"/>
-                        </Grid>
-                        <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="*,*" ColumnSpacing="5">
-                            <Label Text="{Binding Path=OfferTypeCode, StringFormat='Offer : {0}'}" Grid.Column="0"/>
-                            <Label Text="{Binding Path=Discount, StringFormat='Discount : {0}'}" Grid.Column="1"
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="auto,auto, *,auto,auto,auto,auto" ColumnSpacing="5">
+                                <Label Text="{Binding Path=MRP, StringFormat='MRP : {0}'}" Grid.Column="0" />
+                                <Label Text="{Binding Path=SalePrice, StringFormat='Sale price : {0}'}" Grid.Column="1"/>
+                                <Label Text="Qty" Grid.Column="3"/>
+                                <Label Text="{Binding Path=Quantity}" FontAttributes="Bold" Grid.Column="4"/>
+                                <Label Text="Wght" Grid.Column="5"/>
+                                <Label Text="{Binding Path=WeightInKGs}" Grid.Column="6"/>
+                            </Grid>
+                            <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="*,*" ColumnSpacing="5">
+                                <Label Text="{Binding Path=OfferTypeCode, StringFormat='Offer : {0}'}" Grid.Column="0"/>
+                                <Label Text="{Binding Path=Discount, StringFormat='Discount : {0}'}" Grid.Column="1"
                                    HorizontalOptions="End" HorizontalTextAlignment="End"/>
-                        </Grid>
+                            </Grid>
 
-                        <Label Text="{Binding Path=BilledAmount}" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
+                            <Label Text="{Binding Path=BilledAmount}" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
                                FontSize="Large" FontAttributes="Bold" VerticalTextAlignment="Center"/>
 
-                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.ColumnSpan="4" Margin="10, 5, 10, 0"/>
-                    </Grid>
+                            <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.ColumnSpan="4" Margin="10, 5, 10, 0"/>
+                        </Grid>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

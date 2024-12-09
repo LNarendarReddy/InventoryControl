@@ -1,5 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Core.Extensions;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Newtonsoft.Json;
 using NSRetailLiteApp.Models;
 using NSRetailLiteApp.Views.Billing;
 using System;
@@ -18,24 +20,83 @@ namespace NSRetailLiteApp.ViewModels.Billing
         
         public ObservableCollection<MOP> MopList { get; }
 
+        public ObservableCollection<MOPViewModel> MopValueList { get; }
+
+        public MOPViewModel CashMOP { get; }
+
+        public MOPViewModel B2BMOP { get; }
+
+        [ObservableProperty]
+        public MOP _selectedMOP;
+
         public IAsyncRelayCommand PayBillCommand { get; }
+
+        public delegate void OnBillFinishedHandler(Bill bill);
+
+        public event OnBillFinishedHandler OnBillFinished;
 
         public BillInfoViewModel(Bill bill, ObservableCollection<MOP> mopList)
         {
             CurrentBill = bill;
             MopList = mopList;
+            MopValueList = mopList.Select(x => new MOPViewModel(x, CurrentBill)).ToList().ToObservableCollection();
+            MopValueList.ToList().ForEach(x => x.MOPValueChanged += UpdateTotals);
+
+            CashMOP = MopValueList.First(x => x.MOPName.Equals("CASH"));
+            B2BMOP = MopValueList.First(x => x.MOPName.Equals("B2B Credit"));
+
             PayBillCommand = new AsyncRelayCommand(PayBill);
+            MopList.Add(new MOP() { MOPId = 0, MOPName = "Multiple" });
+
+            UpdateTotals();
+        }
+
+        private void UpdateTotals()
+        {
+            CurrentBill.PaidTotalAmount = MopValueList.Sum(x => x.MOPValue);
+            CurrentBill.RemainingAmount = CurrentBill.TotalAmount - CurrentBill.PaidTotalAmount;
+
+            if (CashMOP.MOPValue > 0)
+            {
+                CurrentBill.Rounding = Math.Round(CurrentBill.TotalAmount) - CurrentBill.TotalAmount;
+                CurrentBill.TenderedCash = CashMOP.MOPValue;
+                CurrentBill.TenderedChange = CurrentBill.RemainingAmount + Math.Round(CurrentBill.TotalAmount) - CurrentBill.TotalAmount;
+            }
+            else
+            {
+                CurrentBill.Rounding = 0;
+                CurrentBill.TenderedCash = 0;
+                CurrentBill.TenderedChange = 0;
+            }
         }
 
         private async Task PayBill()
         {
-            List<string> errors = new List<string>();
+            List<string> errors = [];
 
-            if (string.IsNullOrEmpty(CurrentBill.SaleType))
-                errors.Add("Sale type not selected");
+            //if (string.IsNullOrEmpty(CurrentBill.IsDoorDelivery))
+            //    errors.Add("Sale type not selected");
 
-            if (string.IsNullOrEmpty(CurrentBill.PaymentModeId))
+            if (SelectedMOP == null)
                 errors.Add("Payment mode not selected");
+
+            if (!string.IsNullOrEmpty(CurrentBill.CustomerMobile) 
+                && CurrentBill.CustomerMobile.Length != 10)
+            {
+                errors.Add("Customer mobile # should be 10 digits");
+            }
+
+            if (B2BMOP.MOPValue > 0)
+            {
+                if (string.IsNullOrEmpty(CurrentBill.CustomerName))
+                    errors.Add("Customer name cannot be empty for B2B credit bill");
+
+                if (string.IsNullOrEmpty(CurrentBill.CustomerMobile))
+                    errors.Add("Customer mobile # cannot be empty for B2B credit bill");
+
+                if (string.IsNullOrEmpty(CurrentBill.CustomerGST))
+                    errors.Add("Customer GST # cannot be empty for B2B credit bill");
+            }
 
             if (errors.Any())
             {
@@ -46,7 +107,67 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 return;
             }
 
+            CurrentBill.MOPValueList.Clear();
 
+            MopValueList.Where(x => x.MOPValue > 0).ToList().ForEach(x => CurrentBill.MOPValueList.Add(new MOP() { MOPId = x.MOPId, MOPValue = x.MOPValue }));
+            CurrentBill.UserId = HomePageViewModel.User.UserId;
+
+            HolderClass holder = new();
+            CurrentBill.BillDetailList.Clear(); // no need to resend
+            PostAsync("billing/finishbill", ref holder, new Dictionary<string, string?>
+            {
+                { "jsonString", JsonConvert.SerializeObject(CurrentBill) }
+            });
+
+            if (holder.Exception != null) return;
+
+            CurrentBill = holder.Bill;
+            await Pop();
+            OnBillFinished?.Invoke(CurrentBill);
+        }
+
+        partial void OnSelectedMOPChanged(MOP value)
+        {
+            foreach (var mop in MopValueList) 
+            {
+                mop.IsEnabled = value.MOPId == 0 || value.MOPId == mop.MOPId;
+                mop.MOPValue = value.MOPId == mop.MOPId && value.MOPId != CashMOP.MOPId ? CurrentBill.TotalAmount : 0;
+            }
+        }
+    }
+
+    public partial class MOPViewModel : BaseViewModel
+    {
+        [ObservableProperty]
+        public int _mOPId;
+
+        [ObservableProperty]
+        public string _mOPName;
+
+        [ObservableProperty]
+        public decimal _mOPValue;
+
+        [ObservableProperty]
+        public bool _isEnabled;
+
+        public MOPViewModel(MOP mopValue, Bill bill)
+        {
+            MOPId = mopValue.MOPId;
+            MOPName = mopValue.MOPName;
+            MOPValue = mopValue.MOPValue;
+            IsEnabled = false;
+            Bill = bill;
+        }
+
+        public Bill Bill { get; }
+
+        public delegate void MOPValueChangedHandler();
+
+        public event MOPValueChangedHandler MOPValueChanged;
+
+        partial void OnMOPValueChanged(decimal value)
+        {
+            MOPValueChanged?.Invoke();
         }
     }
 }
