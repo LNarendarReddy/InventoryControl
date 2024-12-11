@@ -65,6 +65,7 @@ namespace NSRetail.Master
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gcClearHDDSNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnClearHDDSNo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -189,7 +190,8 @@ namespace NSRetail.Master
             this.gridColumn11,
             this.gcEdit,
             this.gcDelete,
-            this.gcClearHDDSNo});
+            this.gcClearHDDSNo,
+            this.gridColumn3});
             this.gvCounter.DetailHeight = 404;
             this.gvCounter.GridControl = this.gcCounter;
             this.gvCounter.Name = "gvCounter";
@@ -284,7 +286,7 @@ namespace NSRetail.Master
             this.gcEdit.Name = "gcEdit";
             this.gcEdit.Tag = "D7371CA4-24FF-44FB-911B-7801FC5180F3::Update";
             this.gcEdit.Visible = true;
-            this.gcEdit.VisibleIndex = 4;
+            this.gcEdit.VisibleIndex = 5;
             this.gcEdit.Width = 56;
             // 
             // btnEdit
@@ -307,7 +309,7 @@ namespace NSRetail.Master
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Tag = "D7371CA4-24FF-44FB-911B-7801FC5180F3::Delete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 5;
+            this.gcDelete.VisibleIndex = 6;
             this.gcDelete.Width = 50;
             // 
             // btnDelete
@@ -329,7 +331,7 @@ namespace NSRetail.Master
             this.gcClearHDDSNo.Name = "gcClearHDDSNo";
             this.gcClearHDDSNo.Tag = "6E68CDA9-E0A0-4084-89DD-99BE86F4BEF1::Execute";
             this.gcClearHDDSNo.Visible = true;
-            this.gcClearHDDSNo.VisibleIndex = 6;
+            this.gcClearHDDSNo.VisibleIndex = 7;
             this.gcClearHDDSNo.Width = 87;
             // 
             // btnClearHDDSNo
@@ -342,6 +344,15 @@ namespace NSRetail.Master
             this.btnClearHDDSNo.Name = "btnClearHDDSNo";
             this.btnClearHDDSNo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnClearHDDSNo.Click += new System.EventHandler(this.btnClearHDDSNo_Click);
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Is Mobile Counter";
+            this.gridColumn3.FieldName = "ISMOBILECOUNTER";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 4;
             // 
             // Root
             // 
@@ -469,5 +480,6 @@ namespace NSRetail.Master
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraGrid.Columns.GridColumn gcClearHDDSNo;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnClearHDDSNo;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
     }
 }
