@@ -87,8 +87,15 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             if (cmbBranch.EditValue == null)
                 return;
 
-            new frmAcceptCounting(cmbBranch.Text, cmbBranch.EditValue).ShowDialog();
-            (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
+            DataTable dt = countingRepository.GetCountingData(cmbBranch.EditValue);
+
+            frmCountingData obj = new frmCountingData(dt, cmbBranch.EditValue);
+            obj.ShowDialog();
+            if (obj.isSave)
+            {
+                new frmAcceptCounting(cmbBranch.Text, cmbBranch.EditValue).ShowDialog();
+                (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
+            }
         }
 
         public override object GetData()
