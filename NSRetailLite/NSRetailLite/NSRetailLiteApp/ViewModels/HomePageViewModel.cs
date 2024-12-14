@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 using NSRetailLiteApp.Models;
+using NSRetailLiteApp.ViewModels.Billing;
 using NSRetailLiteApp.ViewModels.Common;
 using NSRetailLiteApp.ViewModels.StockCounting;
 using NSRetailLiteApp.Views.Billing;
@@ -29,6 +30,7 @@ namespace NSRetailLiteApp.ViewModels
             LogoutCommand = new AsyncRelayCommand(Logout);
             OpenStockCountingCommand = new AsyncRelayCommand(OpenStockCounting);
             OpenBillingCommand = new AsyncRelayCommand(OpenBilling);
+            DayclosureCommand = new AsyncRelayCommand(Dayclose);
             _model = loggedInUser;
             User = loggedInUser;
         }
@@ -204,6 +206,39 @@ namespace NSRetailLiteApp.ViewModels
             }
 
             return counterId;
+        }
+
+        public IAsyncRelayCommand DayclosureCommand { get; }
+
+        private async Task Dayclose()
+        {
+            await DisplayAlert("Info", "Any open bills will be voided by default", "OK");
+
+            if (!await DisplayAlert("Confirm", "Are you sure you want to close billing? This operation cannot be undone", "Yes", "No"))
+                return;
+
+            HolderClass holder = new();
+            int counterId = await GetCounterId();
+            GetAsync("Billing/getdayclosure", ref holder, new Dictionary<string, string?>() { { "CounterId", counterId.ToString() } });
+
+            if (holder.Exception != null) return;
+
+            DaySequence daySequence = new();
+            GetAsync("billing/getinitialload", ref daySequence
+                , new Dictionary<string, string?>()
+                {
+                    { "userID", Model.UserId.ToString() },
+                    { "branchCounterID", counterId.ToString() }
+                });
+
+            await RedirectToPage(holder
+                , new DayClosurePage(
+                    new DayClosureViewModel(
+                        holder.Holder.DenominationList
+                        , holder.MOPList
+                        , holder.RefundList
+                        , counterId
+                        , daySequence.DaySequenceId)));
         }
     }
 }

@@ -5,7 +5,9 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" 
              xmlns:views="clr-namespace:NSRetailLiteApp.Views.Billing"
              Title="BillingPage">
-    
+    <ContentPage.Resources>
+        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverted" />
+    </ContentPage.Resources>
     <Grid Margin="10" RowDefinitions="auto,auto,*" ColumnDefinitions="*,auto">
 
         <Label Text="{Binding Path=CurrentBill.BillNumber}" HorizontalTextAlignment="Center" 
@@ -34,7 +36,7 @@
 
                 <Button Text="{Binding Path=CurrentBill.TotalAmount, StringFormat='Finish bill: {0}'}" 
                     Grid.Row="1" Grid.Column="1" Margin="5" FontAttributes="Bold" FontSize="Medium"
-                    Command="{Binding Path=FinishBillCommand}" />
+                    Command="{Binding Path=FinishBillCommand}" HorizontalOptions="FillAndExpand" />
             </HorizontalStackLayout>
         </SwipeView>
         <CollectionView Grid.Row="2" Grid.ColumnSpan="2"
@@ -65,13 +67,14 @@
                                 <Label Text="{Binding Path=ItemName}" FontAttributes="Bold" 
                                    HorizontalOptions="End" HorizontalTextAlignment="End" Grid.Column="1"/>
                             </Grid>
-                            <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="auto,auto, *,auto,auto,auto,auto">
+                            <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="auto,auto, *, auto, auto, auto, auto">
                                 <Label Text="{Binding Path=MRP, StringFormat='MRP : {0}|'}" Grid.Column="0" />
                                 <Label Text="{Binding Path=SalePrice, StringFormat='SP : {0}|'}" Grid.Column="1"/>
-                                <Label Text="Qty" Grid.Column="3"/>
-                                <Label Text="{Binding Path=Quantity, StringFormat='{0}|'}" FontAttributes="Bold" Grid.Column="4"/>
-                                <Label Text="Wght" Grid.Column="5"/>
-                                <Label Text="{Binding Path=WeightInKGs}" Grid.Column="6"/>
+                                <Label Text="Qty: " Grid.Column="3" IsVisible="{Binding Path=IsOpenItem, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+                                <Label Text="{Binding Path=Quantity}" FontAttributes="Bold" Grid.Column="4"
+                                       IsVisible="{Binding Path=IsOpenItem, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+                                <Label Text="Wght: " Grid.Column="5" IsVisible="{Binding Path=IsOpenItem}"/>
+                                <Label Text="{Binding Path=WeightInKGs}" FontAttributes="Bold" Grid.Column="6" IsVisible="{Binding Path=IsOpenItem}"/>
                             </Grid>
                             <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="*,*" ColumnSpacing="0">
                                 <Label Text="{Binding Path=OfferTypeCode, StringFormat='Offer : {0}'}" Grid.Column="0"/>

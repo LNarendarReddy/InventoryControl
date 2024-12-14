@@ -36,6 +36,10 @@ namespace NSRetailLiteApp.Models
 
         public ObservableCollection<BillOffer> OfferList;
 
+        public ObservableCollection<Denomination> DenominationList;
+
+        public ObservableCollection<Refund> RefundList;
+
         public HolderClass Holder;
 
     }

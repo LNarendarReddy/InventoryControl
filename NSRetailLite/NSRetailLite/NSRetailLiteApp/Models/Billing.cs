@@ -315,6 +315,69 @@ namespace NSRetailLiteApp.Models
 
         [JsonIgnore]
         [ObservableProperty]
-        public decimal _actualSalePrice;        
+        public decimal _actualSalePrice;
+    }
+
+    public partial class Denomination : BaseObservableObject
+    {
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _denominationId;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _displayValue;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _multiplier;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _quantity;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _closureValue;
+
+        partial void OnQuantityChanged(int value)
+        {
+            ClosureValue = Multiplier * value;
+        }
+    }
+
+    public partial class Refund :BaseObservableObject
+    {
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _refundAmount;
+    }
+
+    public partial class SaveDayClosure : BaseObservableObject
+    {
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _refundAmount;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _daySequenceID;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _branchCounterId;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _userId;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public ObservableCollection<MOP> _mopValues;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public ObservableCollection<MOP> _denominations;
+
     }
 }

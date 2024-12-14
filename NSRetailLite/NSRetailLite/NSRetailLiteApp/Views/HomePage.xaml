@@ -22,30 +22,9 @@
             </Grid>
             
             <ScrollView>
-                <Grid Margin="10" RowSpacing="0" Padding="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
+                <Grid Margin="10" RowSpacing="0" Padding="0" RowDefinitions="auto, auto, auto, auto, auto, auto">
                     <Frame Padding="1" Grid.Row="0">
-                        <Grid Margin="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                        <Grid Margin="0" RowDefinitions="auto" ColumnDefinitions="*, auto, 20, auto, 20, auto, *">
                             <VerticalStackLayout Grid.Row="0" Grid.Column="1">
                                 <ImageButton Margin="0, 5, 0, 2" Source="stockcounting.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                              Command="{Binding Path=OpenStockCountingCommand}" HorizontalOptions="Center" VerticalOptions="Center"/>
@@ -75,21 +54,8 @@
                     </Frame>
 
                     <Frame Padding="1" Margin="0, 5, 0, 5" Grid.Row="1">
-                        <Grid Margin="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="10"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <VerticalStackLayout Grid.Row="3" Grid.Column="1">
+                        <Grid Margin="0" ColumnDefinitions="*, auto, auto, auto, *" ColumnSpacing="20">
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
                                 <ImageButton Margin="0, 5, 0, 2" Source="billing.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                              Command="{Binding Path=OpenBillingCommand}"/>
                                 <Label Text="Billing" FontSize="Small" HorizontalTextAlignment="Center">
@@ -98,26 +64,38 @@
                                     </Label.GestureRecognizers>
                                 </Label>
                             </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="4" Grid.Column="3">
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="2">
+                                <ImageButton Margin="0, 5, 0, 2" Source="dayclosure.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
+                                    Command="{Binding Path=DayclosureCommand}"/>
+                                <Label Text="Day" FontSize="Small" HorizontalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding DayclosureCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Text="Close" FontSize="Small" HorizontalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding DayclosureCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="3">
                                 <ImageButton Margin="0, 5, 0, 2" Source="itemdetails.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
-                                <Label Text="Item details" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                <Label Text="Item" FontSize="Small" HorizontalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Text="details" FontSize="Small" HorizontalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
                             </VerticalStackLayout>
                         </Grid>
                     </Frame>
 
                     <Frame Padding="1" Grid.Row="2">
-                        <Grid Grid.Row="1" Margin="0" RowSpacing="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="10"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-
+                        <Grid Grid.Row="1" Margin="0" RowSpacing="0" ColumnDefinitions="*, auto, 10, auto, *" RowDefinitions="auto">
                             <VerticalStackLayout Grid.Row="0" Grid.Column="1">
                                 <ImageButton Margin="0, 5, 0, 2" Source="changepassword.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
                                 <Label Text="Change" FontSize="Small" HorizontalTextAlignment="Center"/>

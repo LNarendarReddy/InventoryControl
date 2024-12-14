@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.Billing.DayClosurePage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" 
+             Title="DayClosurePage">
+    <VerticalStackLayout Margin="10" Spacing="10">
+        <Button Text="{Binding Path=TotalAmount, StringFormat='Day close: {0}'}" 
+               FontSize="Large" Command="{Binding Path=DayCloseCommand}"/>
+        <Label Text="{Binding Path=RefundAmount, StringFormat='Refund Amount: {0}'}" 
+               FontSize="Large" HorizontalTextAlignment="Center"/>
+        
+        <VerticalStackLayout Spacing="10">
+            <Frame>
+                <CollectionView ItemsSource="{Binding Path=Denominations}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.HeaderTemplate>
+                        <DataTemplate>
+                            <Label Text="Cash denominations" FontSize="Large" FontAttributes="Bold" 
+                                   HorizontalTextAlignment="Center"/>
+                        </DataTemplate>
+                    </CollectionView.HeaderTemplate>
+                    
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnSpacing="5" ColumnDefinitions="auto, auto, auto" Margin="0, 0, 10, 0"
+                                   toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Quantity}">
+                                <Label Text="{Binding Path=DisplayValue}" VerticalTextAlignment="Center"
+                                       Grid.Column="0"/>
+                                <Entry Placeholder="Quantity" Text="{Binding Path=Quantity}" Grid.Column="1"
+                                       Keyboard="Numeric" ReturnType="Next" x:Name="Quantity">
+                                    <Entry.Behaviors>
+                                        <toolkit:SelectAllTextBehavior />                                        
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Label Text="{Binding Path=ClosureValue}" Grid.Column="2" VerticalTextAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+            <Frame>
+                <CollectionView ItemsSource="{Binding Path=MOPs}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.HeaderTemplate>
+                        <DataTemplate>
+                            <Label Text="Mode of payments" FontSize="Large" FontAttributes="Bold" 
+                                   HorizontalTextAlignment="Center"/>
+                        </DataTemplate>
+                    </CollectionView.HeaderTemplate>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnSpacing="10" ColumnDefinitions="auto, auto" Margin="5">
+                                <Label Text="{Binding Path=MOPName}" VerticalTextAlignment="Center"
+                                       Grid.Column="0"/>
+                                <Label Text="{Binding Path=MOPValue}" Grid.Column="1" FontAttributes="Bold"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

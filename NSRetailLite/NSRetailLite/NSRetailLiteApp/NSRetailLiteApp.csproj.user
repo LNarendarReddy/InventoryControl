@@ -21,6 +21,9 @@
     <MauiXaml Update="Views\Billing\BillingPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Views\Billing\DayClosurePage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\Common\BarcodeScannerPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
