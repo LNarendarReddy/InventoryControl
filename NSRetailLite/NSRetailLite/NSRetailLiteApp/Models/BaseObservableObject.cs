@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Maui.Controls;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace NSRetailLiteApp.Models
 {
     public abstract partial class BaseObservableObject : ObservableObject
     {
+        [JsonIgnore]
         [ObservableProperty]
         public Exception _exception;
     }

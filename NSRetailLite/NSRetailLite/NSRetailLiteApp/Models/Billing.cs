@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,57 +11,75 @@ namespace NSRetailLiteApp.Models
 {
     public partial class Bill : BaseObservableObject
     {
+        [JsonIgnore]
         [ObservableProperty]
         public int _billId;
 
+        [JsonIgnore]
         [ObservableProperty]
         public string _billNumber;
 
+        [JsonIgnore]
         [ObservableProperty]
         public ObservableCollection<BillDetail> _billDetailList;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _totalAmount;
 
+        [JsonIgnore]
         [ObservableProperty]
         public string _customerName;
 
+        [JsonIgnore]
         [ObservableProperty]
         public string _customerMobile;
 
+        [JsonIgnore]
         [ObservableProperty]
         public string _customerGST;
 
+        [JsonIgnore]
         [ObservableProperty]
         public bool _isDoorDelivery;
 
+        [JsonIgnore]
         [ObservableProperty]
         public string _paymentModeId;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _rounding;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _paidTotalAmount;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _remainingAmount;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _tenderedCash;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _tenderedChange;
 
+        [JsonIgnore]
         [ObservableProperty]
         public ObservableCollection<MOP> _mOPValueList;
 
+        [JsonIgnore]
         [ObservableProperty]
         public int _userId;
 
+        [JsonIgnore]
         [ObservableProperty]
         public int _branchCounterId;
 
+        [JsonIgnore]
         [ObservableProperty]
         public int _daySequenceId;
 
@@ -73,93 +92,123 @@ namespace NSRetailLiteApp.Models
 
     public partial class BillDetail : BaseObservableObject
     {
+        [JsonIgnore]
         [ObservableProperty]
         public int _billDetailId;
 
+        [JsonIgnore]
         [ObservableProperty]
         public int _billId;
 
+        [JsonIgnore]
         [ObservableProperty]
         public int _itemPriceId;
 
+        [JsonIgnore]
         [ObservableProperty]
         public int _sNO;
 
+        [JsonIgnore]
         [ObservableProperty]
         public string _itemName;
 
+        [JsonIgnore]
         [ObservableProperty]
         public string _itemCode;
 
+        [JsonIgnore]
         [ObservableProperty]
         public string _hSNCode;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _mRP;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _salePrice;
 
+        [JsonIgnore]
         [ObservableProperty]
         public string _gSTCode;
 
+        [JsonIgnore]
         [ObservableProperty]
         public int _quantity;
 
+        [JsonIgnore]
         [ObservableProperty]
         public double _weightInKGs;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _billedAmount;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _cGST;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _sGST;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _iGST;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _cESS;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _gSTValue;
 
+        [JsonIgnore]
         [ObservableProperty]
         public int _gSTId;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _cGSTDesc;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _sGSTDesc;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _cESSDesc;
 
+        [JsonIgnore]
         [ObservableProperty]
         public bool _isOpenItem;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _discount;
 
+        [JsonIgnore]
         [ObservableProperty]
         public int _offerId;
 
+        [JsonIgnore]
         [ObservableProperty]
         public string _offerTypeCode;
 
+        [JsonIgnore]
         [ObservableProperty]
         public DateTime? _deletedDate;
 
+        [JsonIgnore]
         [ObservableProperty]
         public int _branchCounterId;
 
+        [JsonIgnore]
         [ObservableProperty]
         public int _userId;
 
+        [JsonIgnore]
         public Color BackColor
         {
             get
@@ -175,8 +224,35 @@ namespace NSRetailLiteApp.Models
             }
         }
 
+        [JsonIgnore]
         [ObservableProperty]
         public int _branchId;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public ObservableCollection<BillDetailSNo> _snos;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public bool _isBillOfferItem;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _billOfferPrice;
+
+        public BillDetail()
+        {
+            Snos = [];
+        }
+    }
+
+    public partial class BillDetailSNo : BaseObservableObject
+    {
+        [ObservableProperty]
+        public int _billDetailId;
+
+        [ObservableProperty]
+        public int _sNo;
     }
 
     public partial class DaySequence : BaseObservableObject
@@ -198,13 +274,47 @@ namespace NSRetailLiteApp.Models
 
     public partial class MOP : BaseObservableObject
     {
+        [JsonIgnore]
         [ObservableProperty]
         public int _mOPId;
 
+        [JsonIgnore]
         [ObservableProperty]
         public string _mOPName;
 
+        [JsonIgnore]
         [ObservableProperty]
         public decimal _mOPValue;
+    }
+
+    public partial class BillOffer : BaseObservableObject
+    {
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _itemPriceId;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _sKUCode;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _itemName;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _itemCode;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _mRP;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _salePrice;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _actualSalePrice;        
     }
 }

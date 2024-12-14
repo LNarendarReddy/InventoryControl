@@ -31,7 +31,8 @@
 
             <Label Text="Payment mode:" VerticalTextAlignment="Center" Grid.Row="4" Grid.Column="0"/>
             <Picker ItemsSource="{Binding Path=MopList}" ItemDisplayBinding="{Binding Path=MOPName}"
-                    SelectedItem="{Binding Path=SelectedMOP}" Grid.Row="4" Grid.Column="1"/>
+                    SelectedItem="{Binding Path=SelectedMOP}" Grid.Row="4" Grid.Column="1"
+                    Title="Select payment mode"/>
         </Grid>
 
         <Label Text="Payment breakdown" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" FontSize="Large" />

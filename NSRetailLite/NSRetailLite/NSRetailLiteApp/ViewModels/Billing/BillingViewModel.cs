@@ -60,7 +60,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             GetAsync("billing/getmop", ref holder, []);
 
-            BillInfoViewModel billInfoViewModel = new(CurrentBill, holder.Holder.MOPList);
+            BillInfoViewModel billInfoViewModel = new(CurrentBill, holder.Holder.MOPList, branchCounterId);
             billInfoViewModel.OnBillFinished += BillInfoViewModel_OnBillFinished;
             await RedirectToPage(holder, new BillInfoPage(billInfoViewModel));
             
@@ -169,8 +169,24 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 return;
             }
 
-            if (await DisplayAlert("Confirm", $"Are you sure you want to delete - {billDetail.ItemName} with MRP - {billDetail.MRP}?", "Yes", "No"))
-                UpdateBillDetail(billDetail, "delete");
+            if (!await DisplayAlert("Confirm", $"Are you sure you want to delete - {billDetail.ItemName} with MRP - {billDetail.MRP}?", "Yes", "No"))
+            {
+                return;
+            }
+
+            // add SNOs for remaining items
+            int currentIndex = CurrentBill.BillDetailList.IndexOf(billDetail);
+            for (int i = currentIndex + 1; i < CurrentBill.BillDetailList.Count; i++)
+            {
+                BillDetail currentBillDetail = CurrentBill.BillDetailList[i];
+                if (currentBillDetail.DeletedDate != null) continue;
+
+                currentBillDetail.SNO--;
+
+                billDetail.Snos.Add(new BillDetailSNo() { BillDetailId = currentBillDetail.BillDetailId, SNo = currentBillDetail.SNO });
+            }
+
+            UpdateBillDetail(billDetail, "delete");
         }
 
         private void UpdateTotals(Bill bill = null)
@@ -191,6 +207,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
             billDetail.BranchCounterId = branchCounterId;
             billDetail.UserId = HomePageViewModel.User.UserId;
             billDetail.BranchId = HomePageViewModel.User.BranchId;
+
             PostAsync($"billing/{urlPrefix}billdetail", ref holder
                 , new Dictionary<string, string?>()
                 {

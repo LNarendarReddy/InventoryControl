@@ -8,6 +8,7 @@ public partial class BillInfoPage : ContentPage
 	{
 		InitializeComponent();
         NavigationPage.SetHasNavigationBar(this, false);
+        NavigationPage.SetHasBackButton(this, false);
         BindingContext = billInfoViewModel;
         BillInfoViewModel = billInfoViewModel;
     }
@@ -18,5 +19,10 @@ public partial class BillInfoPage : ContentPage
     {
         if (e.Value)
             BillInfoViewModel.CurrentBill.PaymentModeId = Convert.ToString((sender as RadioButton)?.Value);
+    }
+
+    protected override bool OnBackButtonPressed()
+    {
+        return BillInfoViewModel.IsBillOfferApplied ? true : base.OnBackButtonPressed();
     }
 }

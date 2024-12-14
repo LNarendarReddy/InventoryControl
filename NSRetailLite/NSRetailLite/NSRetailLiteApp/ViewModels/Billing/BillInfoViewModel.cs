@@ -29,16 +29,22 @@ namespace NSRetailLiteApp.ViewModels.Billing
         [ObservableProperty]
         public MOP _selectedMOP;
 
+        private readonly int branchCounterId;
+
+        [ObservableProperty]
+        private bool _isBillOfferApplied;
+
         public IAsyncRelayCommand PayBillCommand { get; }
 
         public delegate void OnBillFinishedHandler(Bill bill);
 
         public event OnBillFinishedHandler OnBillFinished;
 
-        public BillInfoViewModel(Bill bill, ObservableCollection<MOP> mopList)
+        public BillInfoViewModel(Bill bill, ObservableCollection<MOP> mopList, int branchCounterId)
         {
             CurrentBill = bill;
             MopList = mopList;
+            this.branchCounterId = branchCounterId;
             MopValueList = mopList.Select(x => new MOPViewModel(x, CurrentBill)).ToList().ToObservableCollection();
             MopValueList.ToList().ForEach(x => x.MOPValueChanged += UpdateTotals);
 
@@ -106,13 +112,62 @@ namespace NSRetailLiteApp.ViewModels.Billing
                     , "OK");
                 return;
             }
+                        
+            HolderClass holder = new();
+
+            GetAsync("Billing/getbilloffers", ref holder, new Dictionary<string, string?>
+            {
+                { "BillID", CurrentBill.BillId.ToString() },
+                { "BranchId", HomePageViewModel.User.BranchId.ToString() },
+                { "CounterId", branchCounterId.ToString() }
+            });
+
+            if (holder.Holder.OfferList != null && holder.Holder.OfferList.Any())
+            {
+                BillOffer offerItem = holder.Holder.OfferList[0];
+                if (await DisplayAlert("Add free item", $"Add item {offerItem.ItemName} ({offerItem.SKUCode}) for Rs.{offerItem.ActualSalePrice} to the bill?", "Yes", "No"))
+                {
+                    holder = new();
+                    BillDetail billDetail = new BillDetail()
+                    {
+                        BranchCounterId = branchCounterId,
+                        UserId = HomePageViewModel.User.UserId,
+                        BranchId = HomePageViewModel.User.BranchId,
+                        ItemPriceId = offerItem.ItemPriceId,
+                        Quantity = 1,
+                        BillId = CurrentBill.BillId,
+                        WeightInKGs = 0,
+                        IsBillOfferItem = true,
+                        BillOfferPrice = offerItem.ActualSalePrice
+                    };
+
+                    PostAsync($"billing/savebilldetail", ref holder
+                        , new Dictionary<string, string?>()
+                        {
+                            { "jsonstring", JsonConvert.SerializeObject(billDetail) }
+                        });
+
+                    if (holder.Exception != null) return;
+
+                    if (offerItem.ActualSalePrice > 0)
+                    {
+                        await DisplayAlert("Verification", "Bill amount updated, please verify amount", "OK");
+                        SelectedMOP = null;
+
+                        MopValueList.ToList().ForEach(item => item.MOPValue = 0);
+                        IsBillOfferApplied = true;
+                        return;
+                    }
+                }
+            }
 
             CurrentBill.MOPValueList.Clear();
 
             MopValueList.Where(x => x.MOPValue > 0).ToList().ForEach(x => CurrentBill.MOPValueList.Add(new MOP() { MOPId = x.MOPId, MOPValue = x.MOPValue }));
             CurrentBill.UserId = HomePageViewModel.User.UserId;
 
-            HolderClass holder = new();
+            //reset object
+            holder = new();
             CurrentBill.BillDetailList.Clear(); // no need to resend
             PostAsync("billing/finishbill", ref holder, new Dictionary<string, string?>
             {
@@ -130,8 +185,8 @@ namespace NSRetailLiteApp.ViewModels.Billing
         {
             foreach (var mop in MopValueList) 
             {
-                mop.IsEnabled = value.MOPId == 0 || value.MOPId == mop.MOPId;
-                mop.MOPValue = value.MOPId == mop.MOPId && value.MOPId != CashMOP.MOPId ? CurrentBill.TotalAmount : 0;
+                mop.IsEnabled = value != null && (value.MOPId == 0 || value.MOPId == mop.MOPId);
+                mop.MOPValue = value != null && value.MOPId == mop.MOPId && value.MOPId != CashMOP.MOPId ? CurrentBill.TotalAmount : 0;
             }
         }
     }

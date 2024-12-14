@@ -59,21 +59,21 @@
                             
                             <Label Text="{Binding Path=SNO, StringFormat='{0})'}" FontSize="Large"
                                Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" VerticalTextAlignment="Center"/>
-                            <Grid Grid.Row="0" Grid.Column="1" ColumnDefinitions="*, *">
+                            <Grid Grid.Row="0" Grid.Column="1" ColumnDefinitions="auto, *">
                                 <Label Text="{Binding Path=ItemCode}" VerticalTextAlignment="Center"
                                    Grid.Column="0"/>
                                 <Label Text="{Binding Path=ItemName}" FontAttributes="Bold" 
                                    HorizontalOptions="End" HorizontalTextAlignment="End" Grid.Column="1"/>
                             </Grid>
-                            <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="auto,auto, *,auto,auto,auto,auto" ColumnSpacing="5">
-                                <Label Text="{Binding Path=MRP, StringFormat='MRP : {0}'}" Grid.Column="0" />
-                                <Label Text="{Binding Path=SalePrice, StringFormat='Sale price : {0}'}" Grid.Column="1"/>
+                            <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="auto,auto, *,auto,auto,auto,auto">
+                                <Label Text="{Binding Path=MRP, StringFormat='MRP : {0}|'}" Grid.Column="0" />
+                                <Label Text="{Binding Path=SalePrice, StringFormat='SP : {0}|'}" Grid.Column="1"/>
                                 <Label Text="Qty" Grid.Column="3"/>
-                                <Label Text="{Binding Path=Quantity}" FontAttributes="Bold" Grid.Column="4"/>
+                                <Label Text="{Binding Path=Quantity, StringFormat='{0}|'}" FontAttributes="Bold" Grid.Column="4"/>
                                 <Label Text="Wght" Grid.Column="5"/>
                                 <Label Text="{Binding Path=WeightInKGs}" Grid.Column="6"/>
                             </Grid>
-                            <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="*,*" ColumnSpacing="5">
+                            <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="*,*" ColumnSpacing="0">
                                 <Label Text="{Binding Path=OfferTypeCode, StringFormat='Offer : {0}'}" Grid.Column="0"/>
                                 <Label Text="{Binding Path=Discount, StringFormat='Discount : {0}'}" Grid.Column="1"
                                    HorizontalOptions="End" HorizontalTextAlignment="End"/>

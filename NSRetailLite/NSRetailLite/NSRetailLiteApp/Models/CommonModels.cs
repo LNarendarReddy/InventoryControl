@@ -34,7 +34,10 @@ namespace NSRetailLiteApp.Models
 
         public Bill Bill;
 
+        public ObservableCollection<BillOffer> OfferList;
+
         public HolderClass Holder;
+
     }
     
     public partial class Branch : BaseObservableObject
