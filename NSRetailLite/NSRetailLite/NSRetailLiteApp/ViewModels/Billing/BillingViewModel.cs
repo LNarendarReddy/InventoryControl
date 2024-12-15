@@ -199,7 +199,9 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 CurrentBill.DaySequenceId = DaySequenceId;
             }
 
-            CurrentBill.TotalAmount = CurrentBill.BillDetailList.Where(x => x.DeletedDate == null).Sum(x => x.BilledAmount);
+            if (CurrentBill != null)
+                CurrentBill.TotalAmount = CurrentBill.BillDetailList.Where(x => x.DeletedDate == null).Sum(x => x.BilledAmount);
+
             LoadCompleted?.Invoke();
         }
 

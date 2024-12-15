@@ -140,7 +140,7 @@ namespace NSRetailLiteApp.ViewModels
                     { "branchCounterID", counterId.ToString() }
                 });
 
-            await RedirectToPage(daySequence, new BillingPage(new Billing.BillingViewModel(daySequence.BillList.First(), counterId, daySequence.DaySequenceId)));
+            await RedirectToPage(daySequence, new BillingPage(new Billing.BillingViewModel(daySequence.BillList.FirstOrDefault(), counterId, daySequence.DaySequenceId)));
         }
 
         private async Task<int> GetCounterId()
