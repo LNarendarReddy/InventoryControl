@@ -104,6 +104,11 @@ namespace NSRetailLiteApp.ViewModels.Billing
                     errors.Add("Customer GST # cannot be empty for B2B credit bill");
             }
 
+            if(CurrentBill.RemainingAmount > 0)
+            {
+                errors.Add($"Amount not complete, please fill respective payment mode for remaining amount {CurrentBill.RemainingAmount}");
+            }
+
             if (errors.Any())
             {
                 await DisplayAlert("Error"
@@ -112,6 +117,8 @@ namespace NSRetailLiteApp.ViewModels.Billing
                     , "OK");
                 return;
             }
+
+            if (!await DisplayAlert("Confirm", "Are you sure you want to pay bill? This operation cannot be reversed", "Yes", "No")) return;
                         
             HolderClass holder = new();
 

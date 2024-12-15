@@ -56,6 +56,8 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 return;
             }
 
+            if (!await DisplayAlert("Confirm", "Are you sure you want to finish current bill?", "Yes", "No")) return;
+
             HolderClass holder = new();
 
             GetAsync("billing/getmop", ref holder, []);
@@ -216,6 +218,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             if (holder.Exception != null) return;
 
+            ItemCode = string.Empty;
             UpdateTotals(holder.Bill);
         }
     }

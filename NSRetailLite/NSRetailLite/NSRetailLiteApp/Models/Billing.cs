@@ -209,20 +209,8 @@ namespace NSRetailLiteApp.Models
         public int _userId;
 
         [JsonIgnore]
-        public Color BackColor
-        {
-            get
-            {
-                if (DeletedDate == null || Application.Current == null)
-                {
-                    return Color.FromArgb("#00FFFFFF"); // transparent
-                }
-
-                return Application.Current.RequestedTheme == AppTheme.Light
-                    ? Color.FromArgb("#B22222") // flame red
-                    : Color.FromArgb("#65000b"); // rose wood
-            }
-        }
+        [ObservableProperty]
+        public Color _backColor;
 
         [JsonIgnore]
         [ObservableProperty]
@@ -240,9 +228,29 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         public decimal _billOfferPrice;
 
+        [JsonIgnore]
+        [ObservableProperty]
+        public bool _isDeleted;
+
         public BillDetail()
         {
             Snos = [];
+        }
+
+        partial void OnDeletedDateChanged(DateTime? value)
+        {
+            IsDeleted = value != null;
+
+            if (DeletedDate == null || Application.Current == null)
+            {
+                BackColor = Color.FromArgb("#00FFFFFF"); // transparent
+            }
+            else
+            {
+                BackColor = Application.Current.RequestedTheme == AppTheme.Light
+                    ? Color.FromArgb("#B22222") // flame red
+                    : Color.FromArgb("#65000b"); // rose wood
+            }
         }
     }
 

@@ -60,7 +60,8 @@
                           BackgroundColor="{Binding Path=BackColor}">
                             
                             <Label Text="{Binding Path=SNO, StringFormat='{0})'}" FontSize="Large"
-                               Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" VerticalTextAlignment="Center"/>
+                               Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" VerticalTextAlignment="Center"
+                                   IsVisible="{Binding Path=IsDeleted, Converter={StaticResource Key=InvertedBoolConverted}}"/>
                             <Grid Grid.Row="0" Grid.Column="1" ColumnDefinitions="auto, *">
                                 <Label Text="{Binding Path=ItemCode}" VerticalTextAlignment="Center"
                                    Grid.Column="0"/>
