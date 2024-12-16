@@ -92,6 +92,12 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 errors.Add("Customer mobile # should be 10 digits");
             }
 
+            if (!string.IsNullOrEmpty(CurrentBill.CustomerGST)
+                && CurrentBill.CustomerGST.Length != 15)
+            {
+                errors.Add("Customer GST # should be 15 characters");
+            }
+
             if (B2BMOP.MOPValue > 0)
             {
                 if (string.IsNullOrEmpty(CurrentBill.CustomerName))
@@ -122,14 +128,17 @@ namespace NSRetailLiteApp.ViewModels.Billing
                         
             HolderClass holder = new();
 
-            GetAsync("Billing/getbilloffers", ref holder, new Dictionary<string, string?>
+            if (!IsBillOfferApplied) // since bill offer is already checked and applied
             {
-                { "BillID", CurrentBill.BillId.ToString() },
-                { "BranchId", HomePageViewModel.User.BranchId.ToString() },
-                { "CounterId", branchCounterId.ToString() }
-            });
+                GetAsync("Billing/getbilloffers", ref holder, new Dictionary<string, string?>
+                {
+                    { "BillID", CurrentBill.BillId.ToString() },
+                    { "BranchId", HomePageViewModel.User.BranchId.ToString() },
+                    { "CounterId", branchCounterId.ToString() }
+                });
+            }
 
-            if (holder.Holder.OfferList != null && holder.Holder.OfferList.Any())
+            if (holder.Holder?.OfferList != null && holder.Holder.OfferList.Any())
             {
                 BillOffer offerItem = holder.Holder.OfferList[0];
                 if (await DisplayAlert("Add free item", $"Add item {offerItem.ItemName} ({offerItem.SKUCode}) for Rs.{offerItem.ActualSalePrice} to the bill?", "Yes", "No"))

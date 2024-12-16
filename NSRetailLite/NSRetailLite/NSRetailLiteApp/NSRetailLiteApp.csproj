@@ -70,6 +70,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\Homepage\billing.png" />
 	  <None Remove="Resources\Images\Homepage\changepassword.png" />
+	  <None Remove="Resources\Images\Homepage\customerrefund.png" />
 	  <None Remove="Resources\Images\Homepage\dayclosure.png" />
 	  <None Remove="Resources\Images\Homepage\itemdetails.png" />
 	  <None Remove="Resources\Images\Homepage\logout.png" />
@@ -86,6 +87,7 @@
 
 	<ItemGroup>
 	  <MauiImage Include="Resources\Images\Homepage\changepassword.png" />
+	  <MauiImage Include="Resources\Images\Homepage\customerrefund.png" />
 	  <MauiImage Include="Resources\Images\Homepage\dayclosure.png" />
 	  <MauiImage Include="Resources\Images\Homepage\itemdetails.png" />
 	  <MauiImage Include="Resources\Images\Homepage\logout.png" />

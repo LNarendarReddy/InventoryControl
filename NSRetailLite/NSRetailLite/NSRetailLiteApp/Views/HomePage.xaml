@@ -54,7 +54,7 @@
                     </Frame>
 
                     <Frame Padding="1" Margin="0, 5, 0, 5" Grid.Row="1">
-                        <Grid Margin="0" ColumnDefinitions="*, auto, auto, auto, *" ColumnSpacing="20">
+                        <Grid Margin="0" ColumnDefinitions="*, auto, auto, auto, auto, *" ColumnSpacing="20">
                             <VerticalStackLayout Grid.Row="0" Grid.Column="1">
                                 <ImageButton Margin="0, 5, 0, 2" Source="billing.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                              Command="{Binding Path=OpenBillingCommand}"/>
@@ -79,6 +79,19 @@
                                 </Label>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="0" Grid.Column="3">
+                                <ImageButton Margin="0, 5, 0, 2" Source="customerrefund.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
+                                <Label Text="Customer" FontSize="Small" HorizontalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Text="refunds" FontSize="Small" HorizontalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="4">
                                 <ImageButton Margin="0, 5, 0, 2" Source="itemdetails.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
                                 <Label Text="Item" FontSize="Small" HorizontalTextAlignment="Center">
                                     <Label.GestureRecognizers>
