@@ -4,126 +4,130 @@
              x:Class="NSRetailLiteApp.Views.HomePage"
              Title="HomePage">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-       
-        <!--<Path Data="M291 0C291 40.5781 275.671 79.4943 248.384 108.187C221.097 136.88 184.089 153 145.5 153C106.911 153 69.9025 136.88 42.616 108.187C15.3294 79.4943 5.82678e-06 40.5781 0 2.31024e-05L145.5 0H291Z"
+        <ActivityIndicator IsRunning="{Binding Path=IsLoading}" WidthRequest="100"/>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--<Path Data="M291 0C291 40.5781 275.671 79.4943 248.384 108.187C221.097 136.88 184.089 153 145.5 153C106.911 153 69.9025 136.88 42.616 108.187C15.3294 79.4943 5.82678e-06 40.5781 0 2.31024e-05L145.5 0H291Z"
               Fill="LightPink" Aspect="Fill"/>-->
-        <StackLayout>
-            <Image Source="victorylogo.svg" HeightRequest="150"/>
-        </StackLayout>
-        <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="20" Grid.Row="1">
-            <Label Text="{Binding Path=Model.FullName, StringFormat='Hello {0}!'}" Margin="20, 0, 0, 0" LineBreakMode="WordWrap" FontSize="Title" HorizontalOptions="Center"/>
-            <Grid Margin="20, 10, 20, 0">
-                <Label Text="{Binding Path=Model.BranchName, StringFormat='Branch : {0}'}"  LineBreakMode="WordWrap" FontSize="Small" HorizontalOptions="Start"/>
-                <Label Text="{Binding Path=Model.CategoryName, StringFormat='Category : {0}'}" LineBreakMode="WordWrap" FontSize="Small" HorizontalOptions="End" HorizontalTextAlignment="End"/>
-            </Grid>
-            
-            <ScrollView>
-                <Grid Margin="10" RowSpacing="0" Padding="0" RowDefinitions="auto, auto, auto, auto, auto, auto">
-                    <Frame Padding="1" Grid.Row="0">
-                        <Grid Margin="0" RowDefinitions="auto" ColumnDefinitions="*, auto, 20, auto, 20, auto, *">
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                                <ImageButton Margin="0, 5, 0, 2" Source="stockcounting.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
+            <StackLayout>
+                <Image Source="victorylogo.svg" HeightRequest="150"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="20" Grid.Row="1">
+                <Label Text="{Binding Path=Model.FullName, StringFormat='Hello {0}!'}" Margin="20, 0, 0, 0" LineBreakMode="WordWrap" FontSize="Title" HorizontalOptions="Center"/>
+                <Grid Margin="20, 10, 20, 0">
+                    <Label Text="{Binding Path=Model.BranchName, StringFormat='Branch : {0}'}"  LineBreakMode="WordWrap" FontSize="Small" HorizontalOptions="Start"/>
+                    <Label Text="{Binding Path=Model.CategoryName, StringFormat='Category : {0}'}" LineBreakMode="WordWrap" FontSize="Small" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                </Grid>
+
+                <ScrollView>
+                    <Grid Margin="10" RowSpacing="0" Padding="0" RowDefinitions="auto, auto, auto, auto, auto, auto">
+                        <Frame Padding="1" Grid.Row="0">
+                            <Grid Margin="0" RowDefinitions="auto" ColumnDefinitions="*, auto, 20, auto, 20, auto, *">
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                    <ImageButton Margin="0, 5, 0, 2" Source="stockcounting.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                              Command="{Binding Path=OpenStockCountingCommand}" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Label Text="Stock" FontSize="Small" HorizontalOptions="Center"                                        
+                                    <Label Text="Stock" FontSize="Small" HorizontalOptions="Center"                                        
                                         TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding OpenStockCountingCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                                <Label Text="Counting" FontSize="Small" HorizontalOptions="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding OpenStockCountingCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="3">
-                                <ImageButton Margin="0, 5, 0, 2" Source="stockdispatch.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
-                                <Label Text="Stock" FontSize="Small" HorizontalTextAlignment="Center"/>
-                                <Label Text="Dispatch" FontSize="Small" HorizontalTextAlignment="Center"/>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="5">
-                                <ImageButton Margin="0, 5, 0, 2" Source="stockentry.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
-                                <Label Text="Stock" FontSize="Small" HorizontalTextAlignment="Center"/>
-                                <Label Text="Entry" FontSize="Small" HorizontalTextAlignment="Center"/>
-                            </VerticalStackLayout>
-                        </Grid>
-                    </Frame>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OpenStockCountingCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Text="Counting" FontSize="Small" HorizontalOptions="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OpenStockCountingCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="3">
+                                    <ImageButton Margin="0, 5, 0, 2" Source="stockdispatch.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
+                                    <Label Text="Stock" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                    <Label Text="Dispatch" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="5">
+                                    <ImageButton Margin="0, 5, 0, 2" Source="stockentry.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
+                                    <Label Text="Stock" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                    <Label Text="Entry" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
 
-                    <Frame Padding="1" Margin="0, 5, 0, 5" Grid.Row="1">
-                        <Grid Margin="0" ColumnDefinitions="*, auto, auto, auto, auto, *" ColumnSpacing="20">
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                                <ImageButton Margin="0, 5, 0, 2" Source="billing.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
+                        <Frame Padding="1" Margin="0, 5, 0, 5" Grid.Row="1">
+                            <Grid Margin="0" ColumnDefinitions="*, auto, auto, auto, auto, *" ColumnSpacing="20">
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                    <ImageButton Margin="0, 5, 0, 2" Source="billing.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                              Command="{Binding Path=OpenBillingCommand}"/>
-                                <Label Text="Billing" FontSize="Small" HorizontalTextAlignment="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="2">
-                                <ImageButton Margin="0, 5, 0, 2" Source="dayclosure.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
+                                    <Label Text="Billing" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="2">
+                                    <ImageButton Margin="0, 5, 0, 2" Source="dayclosure.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                     Command="{Binding Path=DayclosureCommand}"/>
-                                <Label Text="Day" FontSize="Small" HorizontalTextAlignment="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding DayclosureCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                                <Label Text="Close" FontSize="Small" HorizontalTextAlignment="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding DayclosureCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="3">
-                                <ImageButton Margin="0, 5, 0, 2" Source="customerrefund.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
-                                <Label Text="Customer" FontSize="Small" HorizontalTextAlignment="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                                <Label Text="refunds" FontSize="Small" HorizontalTextAlignment="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="4">
-                                <ImageButton Margin="0, 5, 0, 2" Source="itemdetails.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
-                                <Label Text="Item" FontSize="Small" HorizontalTextAlignment="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                                <Label Text="details" FontSize="Small" HorizontalTextAlignment="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </VerticalStackLayout>
-                        </Grid>
-                    </Frame>
+                                    <Label Text="Day" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DayclosureCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Text="Close" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DayclosureCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="3">
+                                    <ImageButton Margin="0, 5, 0, 2" Source="customerrefund.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
+                                    <Label Text="Customer" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Text="refunds" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="4">
+                                    <ImageButton Margin="0, 5, 0, 2" Source="itemdetails.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
+                                    <Label Text="Item" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Text="details" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
 
-                    <Frame Padding="1" Grid.Row="2">
-                        <Grid Grid.Row="1" Margin="0" RowSpacing="0" ColumnDefinitions="*, auto, 10, auto, *" RowDefinitions="auto">
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                                <ImageButton Margin="0, 5, 0, 2" Source="changepassword.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
-                                <Label Text="Change" FontSize="Small" HorizontalTextAlignment="Center"/>
-                                <Label Text="password" FontSize="Small" HorizontalTextAlignment="Center"/>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="3">
-                                <ImageButton 
+                        <Frame Padding="1" Grid.Row="2">
+                            <Grid Grid.Row="1" Margin="0" RowSpacing="0" ColumnDefinitions="*, auto, 10, auto, *" RowDefinitions="auto">
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                    <ImageButton Margin="0, 5, 0, 2" Source="changepassword.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
+                                    <Label Text="Change" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                    <Label Text="password" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="3">
+                                    <ImageButton 
                                     Margin="0, 5, 0, 2" Source="logout.png" Aspect="Fill" 
                                     HeightRequest="50" WidthRequest="50" Command="{Binding Path=LogoutCommand}"/>
-                                <Label Text="Logout" FontSize="Small" HorizontalTextAlignment="Center"/>
-                            </VerticalStackLayout>
-                        </Grid>
-                    </Frame>
-                </Grid>
-            </ScrollView>            
-        </StackLayout>
+                                    <Label Text="Logout" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </ScrollView>
+            </StackLayout>
+        </Grid>
     </Grid>
 </ContentPage>

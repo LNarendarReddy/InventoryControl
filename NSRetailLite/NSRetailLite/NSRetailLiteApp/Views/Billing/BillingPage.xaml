@@ -8,89 +8,93 @@
     <ContentPage.Resources>
         <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverted" />
     </ContentPage.Resources>
-    <Grid Margin="10" RowDefinitions="auto,auto,*" ColumnDefinitions="*,auto">
 
-        <Label Text="{Binding Path=CurrentBill.BillNumber}" HorizontalTextAlignment="Center" 
+    <Grid>
+        <ActivityIndicator IsRunning="{Binding Path=IsLoading}" WidthRequest="100" />
+        
+        <Grid Margin="10" RowDefinitions="auto,auto,*" ColumnDefinitions="*,auto">
+            <Label Text="{Binding Path=CurrentBill.BillNumber}" HorizontalTextAlignment="Center" 
             FontAttributes="Bold" FontSize="Large" Margin="0" Grid.Row="0" Grid.ColumnSpan="2"
             TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
 
-        <SwipeView Grid.Row="1" Grid.ColumnSpan="2">
-            <SwipeView.RightItems>
-                <SwipeItem IconImageSource="stockcountingdetaildiscard.png" Command="{Binding Path=BindingContext.DiscardCommand}"
+            <SwipeView Grid.Row="1" Grid.ColumnSpan="2">
+                <SwipeView.RightItems>
+                    <SwipeItem IconImageSource="stockcountingdetaildiscard.png" Command="{Binding Path=BindingContext.DiscardCommand}"
                     BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
-                <SwipeItem IconImageSource="draft.png" Command="{Binding Path=BindingContext.DraftCommand}"
+                    <SwipeItem IconImageSource="draft.png" Command="{Binding Path=BindingContext.DraftCommand}"
                     BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
-            </SwipeView.RightItems>
-            <HorizontalStackLayout>
-                <Entry Placeholder="scan item code here" Grid.Row="1" Grid.Column="0" Margin="0, 0, 5, 0"
+                </SwipeView.RightItems>
+                <HorizontalStackLayout>
+                    <Entry Placeholder="scan item code here" Grid.Row="1" Grid.Column="0" Margin="0, 0, 5, 0"
                     ClearButtonVisibility="WhileEditing" ReturnType="Done"
                     Text="{Binding Path=ItemCode}" x:Name="txtItemCode"
                     ReturnCommand="{Binding Path=LoadItemCommand}" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
-                    <Entry.Behaviors>
-                        <toolkit:SelectAllTextBehavior />
-                        <toolkit:EventToCommandBehavior
+                        <Entry.Behaviors>
+                            <toolkit:SelectAllTextBehavior />
+                            <toolkit:EventToCommandBehavior
                             EventName="Completed"
                             Command="{Binding Path=LoadItemCommand}" />
-                    </Entry.Behaviors>
-                </Entry>
+                        </Entry.Behaviors>
+                    </Entry>
 
-                <Button Text="{Binding Path=CurrentBill.TotalAmount, StringFormat='Finish bill: {0}'}" 
+                    <Button Text="{Binding Path=CurrentBill.TotalAmount, StringFormat='Finish bill: {0}'}" 
                     Grid.Row="1" Grid.Column="1" Margin="5" FontAttributes="Bold" FontSize="Medium"
                     Command="{Binding Path=FinishBillCommand}" HorizontalOptions="FillAndExpand" />
-            </HorizontalStackLayout>
-        </SwipeView>
-        <CollectionView Grid.Row="2" Grid.ColumnSpan="2"
+                </HorizontalStackLayout>
+            </SwipeView>
+            <CollectionView Grid.Row="2" Grid.ColumnSpan="2"
                         ItemsSource="{Binding Path=CurrentBill.BillDetailList}"
                         SelectionMode="None" BackgroundColor="Transparent">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItem 
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItem 
                                 IconImageSource="stockcountingdetailedit.png"
                                 Command="{Binding Path=BindingContext.EditItemCommand, Source={RelativeSource AncestorType={x:Type views:BillingPage}}}"
                                 CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
-                            <SwipeItem 
+                                <SwipeItem 
                                 IconImageSource="stockcountingdetaildiscard.png"                                 
                                 Command="{Binding Path=BindingContext.DeleteItemCommand, Source={RelativeSource AncestorType={x:Type views:BillingPage}}}"
                                 CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
-                        </SwipeView.RightItems>
-                        
-                        <Grid ColumnDefinitions="auto, *, auto, 10" ColumnSpacing="10" RowDefinitions="*,*,*,auto,10"
+                            </SwipeView.RightItems>
+
+                            <Grid ColumnDefinitions="auto, *, auto, 10" ColumnSpacing="10" RowDefinitions="*,*,*,auto,10"
                           BackgroundColor="{Binding Path=BackColor}">
-                            
-                            <Label Text="{Binding Path=SNO, StringFormat='{0})'}" FontSize="Large"
+
+                                <Label Text="{Binding Path=SNO, StringFormat='{0})'}" FontSize="Large"
                                Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" VerticalTextAlignment="Center"
                                    IsVisible="{Binding Path=IsDeleted, Converter={StaticResource Key=InvertedBoolConverted}}"/>
-                            <Grid Grid.Row="0" Grid.Column="1" ColumnDefinitions="auto, *">
-                                <Label Text="{Binding Path=ItemCode}" VerticalTextAlignment="Center"
+                                <Grid Grid.Row="0" Grid.Column="1" ColumnDefinitions="auto, *">
+                                    <Label Text="{Binding Path=ItemCode}" VerticalTextAlignment="Center"
                                    Grid.Column="0"/>
-                                <Label Text="{Binding Path=ItemName}" FontAttributes="Bold" 
+                                    <Label Text="{Binding Path=ItemName}" FontAttributes="Bold" 
                                    HorizontalOptions="End" HorizontalTextAlignment="End" Grid.Column="1"/>
-                            </Grid>
-                            <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="auto,auto, *, auto, auto, auto, auto">
-                                <Label Text="{Binding Path=MRP, StringFormat='MRP : {0}|'}" Grid.Column="0" />
-                                <Label Text="{Binding Path=SalePrice, StringFormat='SP : {0}|'}" Grid.Column="1"/>
-                                <Label Text="Qty: " Grid.Column="3" IsVisible="{Binding Path=IsOpenItem, Converter={StaticResource Key=InvertedBoolConverted}}"/>
-                                <Label Text="{Binding Path=Quantity}" FontAttributes="Bold" Grid.Column="4"
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="auto,auto, *, auto, auto, auto, auto">
+                                    <Label Text="{Binding Path=MRP, StringFormat='MRP : {0}|'}" Grid.Column="0" />
+                                    <Label Text="{Binding Path=SalePrice, StringFormat='SP : {0}|'}" Grid.Column="1"/>
+                                    <Label Text="Qty: " Grid.Column="3" IsVisible="{Binding Path=IsOpenItem, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+                                    <Label Text="{Binding Path=Quantity}" FontAttributes="Bold" Grid.Column="4"
                                        IsVisible="{Binding Path=IsOpenItem, Converter={StaticResource Key=InvertedBoolConverted}}"/>
-                                <Label Text="Wght: " Grid.Column="5" IsVisible="{Binding Path=IsOpenItem}"/>
-                                <Label Text="{Binding Path=WeightInKGs}" FontAttributes="Bold" Grid.Column="6" IsVisible="{Binding Path=IsOpenItem}"/>
-                            </Grid>
-                            <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="*,*" ColumnSpacing="0">
-                                <Label Text="{Binding Path=OfferTypeCode, StringFormat='Offer : {0}'}" Grid.Column="0"/>
-                                <Label Text="{Binding Path=Discount, StringFormat='Discount : {0}'}" Grid.Column="1"
+                                    <Label Text="Wght: " Grid.Column="5" IsVisible="{Binding Path=IsOpenItem}"/>
+                                    <Label Text="{Binding Path=WeightInKGs}" FontAttributes="Bold" Grid.Column="6" IsVisible="{Binding Path=IsOpenItem}"/>
+                                </Grid>
+                                <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="*,*" ColumnSpacing="0">
+                                    <Label Text="{Binding Path=OfferTypeCode, StringFormat='Offer : {0}'}" Grid.Column="0"/>
+                                    <Label Text="{Binding Path=Discount, StringFormat='Discount : {0}'}" Grid.Column="1"
                                    HorizontalOptions="End" HorizontalTextAlignment="End"/>
-                            </Grid>
+                                </Grid>
 
-                            <Label Text="{Binding Path=BilledAmount}" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
+                                <Label Text="{Binding Path=BilledAmount}" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
                                FontSize="Large" FontAttributes="Bold" VerticalTextAlignment="Center"/>
 
-                            <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.ColumnSpan="4" Margin="10, 5, 10, 0"/>
-                        </Grid>
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.ColumnSpan="4" Margin="10, 5, 10, 0"/>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </Grid>
 </ContentPage>

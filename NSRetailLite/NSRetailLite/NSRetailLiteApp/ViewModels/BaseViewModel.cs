@@ -12,8 +12,12 @@ using System.Threading.Tasks;
 
 namespace NSRetailLiteApp.ViewModels
 {
-    public abstract class BaseViewModel : ObservableObject
+    public abstract partial class BaseViewModel : ObservableObject
     {
+
+        [ObservableProperty]
+        public bool _isLoading;
+
         private static readonly HttpClient httpClient = new()
         {
             Timeout = new TimeSpan(0, 0, 5)
@@ -27,6 +31,7 @@ namespace NSRetailLiteApp.ViewModels
         protected void PostAsync<T>(string path, ref T callingObject, Dictionary<string, string?> values
             , bool displayAlert = true, bool showResponse = false) where T : BaseObservableObject
         {
+            IsLoading = true;
             try
             {
                 HttpResponseMessage responseMessage = httpClient.PostAsync(QueryHelpers.AddQueryString("https://nsoftsol.com:6002/api/" + path, values), null).Result;
@@ -36,10 +41,12 @@ namespace NSRetailLiteApp.ViewModels
             {
                 ProcessResponse(ex, callingObject);
             }
+            finally { IsLoading = false; }
         }
 
         protected void GetAsync<T>(string path, ref T callingObject, Dictionary<string, string?> values, bool displayAlert = true) where T : BaseObservableObject
         {
+            IsLoading = true;
             try
             {
                 HttpResponseMessage responseMessage = httpClient.GetAsync(QueryHelpers.AddQueryString("https://nsoftsol.com:6002/api/" + path, values)).Result;
@@ -49,6 +56,7 @@ namespace NSRetailLiteApp.ViewModels
             {
                 ProcessResponse(ex, callingObject);
             }
+            finally { IsLoading = false; }
         }
 
         public void ProcessResponse<T>(HttpResponseMessage message, ref T callingObject, bool displayAlert = true

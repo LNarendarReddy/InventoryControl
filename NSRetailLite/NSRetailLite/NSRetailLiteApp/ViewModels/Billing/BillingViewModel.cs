@@ -112,7 +112,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
             if(item.IsOpenItem && weightInKGs <= 0)
             {
                 DisplayErrorMessage("Invalid weight value, operation has been cancelled");
-                UpdateTotals();
+                UpdateTotals();                
                 return;
             }
 
@@ -176,6 +176,8 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 return;
             }
 
+            IsLoading = true;
+
             // add SNOs for remaining items
             int currentIndex = CurrentBill.BillDetailList.IndexOf(billDetail);
             for (int i = currentIndex + 1; i < CurrentBill.BillDetailList.Count; i++)
@@ -203,10 +205,12 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 CurrentBill.TotalAmount = CurrentBill.BillDetailList.Where(x => x.DeletedDate == null).Sum(x => x.BilledAmount);
 
             LoadCompleted?.Invoke();
+            IsLoading = false;
         }
 
         private void UpdateBillDetail(BillDetail billDetail, string urlPrefix)
         {
+            IsLoading = true;
             HolderClass holder = new();
             billDetail.BranchCounterId = branchCounterId;
             billDetail.UserId = HomePageViewModel.User.UserId;
@@ -218,7 +222,12 @@ namespace NSRetailLiteApp.ViewModels.Billing
                     { "jsonstring", JsonConvert.SerializeObject(billDetail) }
                 });
 
-            if (holder.Exception != null) return;
+
+            if (holder.Exception != null) 
+            {
+                IsLoading = false;
+                return; 
+            }
 
             ItemCode = string.Empty;
             UpdateTotals(holder.Bill);
