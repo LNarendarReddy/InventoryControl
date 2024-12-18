@@ -86,16 +86,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
         {
             if (cmbBranch.EditValue == null)
                 return;
-
-            DataTable dt = countingRepository.GetCountingData(cmbBranch.EditValue);
-
-            frmCountingData obj = new frmCountingData(dt, cmbBranch.EditValue);
-            obj.ShowDialog();
-            if (obj.isSave)
-            {
-                new frmAcceptCounting(cmbBranch.Text, cmbBranch.EditValue).ShowDialog();
-                (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
-            }
+            new frmAcceptCounting(cmbBranch.Text, cmbBranch.EditValue).ShowDialog();
+            (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
         }
 
         public override object GetData()
@@ -123,6 +115,26 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                     (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
                     break;
             }
+        }
+
+        private void btnSKUData_Click(object sender, EventArgs e)
+        {
+            if (cmbBranch.EditValue == null)
+                return;
+
+            DataTable dt = countingRepository.GetCountingData(cmbBranch.EditValue);
+            frmCountingData obj = new frmCountingData(dt, cmbBranch.EditValue);
+            obj.ShowDialog();
+        }
+
+        private void btnMRPData_Click(object sender, EventArgs e)
+        {
+            if (cmbBranch.EditValue == null)
+                return;
+
+            DataTable dt = countingRepository.GetCountingData_MRP(cmbBranch.EditValue);
+            frmCountingData obj = new frmCountingData(dt, cmbBranch.EditValue,true);
+            obj.ShowDialog();
         }
     }
 }

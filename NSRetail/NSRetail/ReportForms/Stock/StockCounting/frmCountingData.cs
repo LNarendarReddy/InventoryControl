@@ -15,10 +15,12 @@ namespace NSRetail.ReportForms.Stock.StockCounting
     {
         private object branchid = 0;
         public bool isSave = false;
-        public frmCountingData(DataTable dt, object _branchid)
+        public frmCountingData(DataTable dt, object _branchid, bool MRPIncluded = false)
         {
             InitializeComponent();
             branchid = _branchid;
+            gcItemCode.Visible = MRPIncluded;
+            gcMRP.Visible = MRPIncluded;
             gcItems.DataSource = dt;
             gvItems.BestFitColumns();
         }

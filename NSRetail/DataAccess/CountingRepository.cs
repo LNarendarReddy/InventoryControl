@@ -204,6 +204,30 @@ namespace DataAccess
             return dtStockCounting;
         }
 
+        public DataTable GetCountingData_MRP(object BranchID)
+        {
+            DataTable dtStockCounting = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_COUNTINGDATABYMRP]";
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtStockCounting);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving counting data", ex);
+            }
+            return dtStockCounting;
+        }
+
         public DataTable ViewCountingDetails(object BranchID, object ItemID, object CountingApprovalID)
         {
             DataTable dtStockCounting = new DataTable();
