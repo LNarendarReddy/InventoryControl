@@ -25,6 +25,10 @@ namespace NSRetailLiteApp.Models
 
         [JsonIgnore]
         [ObservableProperty]
+        public ObservableCollection<BillDetail> _cR_BillDetailList;
+
+        [JsonIgnore]
+        [ObservableProperty]
         public decimal _totalAmount;
 
         [JsonIgnore]
@@ -83,9 +87,14 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         public int _daySequenceId;
 
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _totalRefundAmount;
+
         public Bill() 
         {
             BillDetailList = [];
+            CR_BillDetailList = [];
             MOPValueList = [];
         }
     }
@@ -232,9 +241,18 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         public bool _isDeleted;
 
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _refundQuantity;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _refundAmount;
+
         public BillDetail()
         {
             Snos = [];
+            RefundQuantity = 0;
         }
 
         partial void OnDeletedDateChanged(DateTime? value)
@@ -251,6 +269,11 @@ namespace NSRetailLiteApp.Models
                     ? Color.FromArgb("#B22222") // flame red
                     : Color.FromArgb("#65000b"); // rose wood
             }
+        }
+
+        partial void OnRefundQuantityChanged(int value)
+        {
+            RefundAmount = (BilledAmount / Quantity) * RefundQuantity;
         }
     }
 

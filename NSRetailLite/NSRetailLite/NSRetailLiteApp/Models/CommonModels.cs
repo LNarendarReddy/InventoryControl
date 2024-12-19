@@ -34,6 +34,8 @@ namespace NSRetailLiteApp.Models
 
         public Bill Bill;
 
+        public Bill CR_Bill;
+
         public ObservableCollection<BillOffer> OfferList;
 
         public ObservableCollection<Denomination> DenominationList;

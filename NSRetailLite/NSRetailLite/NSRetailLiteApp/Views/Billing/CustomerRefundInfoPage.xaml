@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.Billing.CustomerRefundInfoPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" 
+             Title="CustomerRefundInfoPage">
+    <ContentPage.Resources>
+        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverted" />
+    </ContentPage.Resources>
+    
+    <Grid>
+        <ActivityIndicator IsRunning="{Binding Path=IsLoading}" WidthRequest="100" />
+
+        <Grid RowDefinitions="auto, auto, auto, auto, auto, auto, auto" RowSpacing="5" Margin="10" ColumnDefinitions="*">
+            <Label Text="{Binding Path=CurrentBill.BillNumber}" HorizontalTextAlignment="Center" 
+                   FontAttributes="Bold" FontSize="Large" Margin="0" Grid.Row="0" 
+                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+            
+            <Button Text="{Binding Path=CurrentBill.TotalRefundAmount, StringFormat='Refund Amount : {0}'}"
+                    FontAttributes="Bold" FontSize="Large" Grid.Row="1" HorizontalOptions="Center"
+                    Command="{Binding Path=FinishRefundCommand}"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="2">
+                <Label Text="{Binding Path=NoOfItems, StringFormat='Refund Items : {0} | '}" FontSize="Large"/>
+                <Label Text="{Binding Path=NoOfPieces, StringFormat='Refund Pieces : {0}'}" FontSize="Large" />
+            </HorizontalStackLayout>
+            
+
+            <Frame Grid.Row="4" Padding="10" Margin="10">
+                <Grid RowDefinitions="auto, auto, auto" ColumnDefinitions="auto, *" ColumnSpacing="5">
+                    <!--<Label Text="Customer Details" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center"
+                           Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />-->
+
+                    <Label Text="Customer Name" Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" />
+                    <Entry Text="{Binding Path=CurrentBill.CustomerName}" Grid.Row="1" Grid.Column="1" Placeholder="Customer name" />
+
+                    <Label Text="Customer Mobile #" Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Center" />
+                    <Entry Text="{Binding Path=CurrentBill.CustomerMobile}" Grid.Row="2" Grid.Column="1" Placeholder="Customer mobile" />
+
+                </Grid>
+            </Frame>
+
+            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="Refund List" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center" />
+            <Frame Padding="10" Grid.Row="6" Margin="10" HorizontalOptions="CenterAndExpand">
+                <CollectionView ItemsSource="{Binding Path=RefundDetailList}"
+                 SelectionMode="None" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="auto, auto, auto, *" ColumnSpacing="5" RowDefinitions="auto, auto, auto, auto" RowSpacing="5">
+
+                                <Label Text="{Binding Path=SNO, StringFormat='{0})'}" VerticalTextAlignment="Center" 
+                        Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
+                                <Label Text="{Binding Path=ItemCode}" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+                                <Label Text="{Binding Path=ItemName}" FontAttributes="Bold" Grid.Column="3" Grid.Row="0"
+                        HorizontalOptions="End" HorizontalTextAlignment="End" />
+
+                                <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <Label Text="{Binding Path=MRP, StringFormat='MRP : {0}|'}" />
+                                    <Label Text="{Binding Path=SalePrice, StringFormat='SP : {0}|'}" />
+                                    <Label Text="{Binding Path=Quantity, StringFormat='Qty : {0}'}" />
+                                </HorizontalStackLayout>
+
+                                <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Padding="5">
+                                    <HorizontalStackLayout HorizontalOptions="Center">
+                                        <Label Text="{Binding Path=RefundQuantity, StringFormat='Refund Qty : {0}|'}" />
+                                        <Label Text="{Binding Path=RefundAmount, StringFormat='Refund Amt : {0}'}" />
+                                    </HorizontalStackLayout>
+                                </Frame>
+
+                                <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.ColumnSpan="4" Margin="10, 5, 10, 0"/>
+
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentPage>

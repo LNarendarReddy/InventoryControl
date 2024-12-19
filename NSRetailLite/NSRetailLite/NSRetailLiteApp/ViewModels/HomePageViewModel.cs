@@ -258,7 +258,19 @@ namespace NSRetailLiteApp.ViewModels
 
         private async Task CustomerRefund()
         {
-            DisplayAlert("Pending module", "Customer refund", "OK");
+            int counterId = await GetCounterId();
+
+            string billnumber = await Application.Current?.MainPage?.DisplayPromptAsync("Customer refund", "Enter\\scan the bill number for refund", "OK");
+            if (string.IsNullOrEmpty(billnumber)) return;
+
+            HolderClass holderClass = new();
+            GetAsync("CRefund/GetBillByNumber", ref holderClass, new Dictionary<string, string?>()
+            {
+                { "billNumber", billnumber },
+                { "branchCounterId", counterId.ToString() }
+            });
+
+            await RedirectToPage(holderClass, new CustomerRefundPage(new CustomerRefundViewModel(holderClass.CR_Bill, counterId)));
         }
 
         public IAsyncRelayCommand ItemDetailsCommand { get; }

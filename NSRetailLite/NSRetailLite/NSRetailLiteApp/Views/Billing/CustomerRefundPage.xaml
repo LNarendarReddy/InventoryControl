@@ -2,11 +2,84 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NSRetailLiteApp.Views.Billing.CustomerRefundPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" 
+             xmlns:views="clr-namespace:NSRetailLiteApp.Views.Billing"
              Title="CustomerRefundPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.Resources>
+        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverted" />
+    </ContentPage.Resources>
+
+    <Grid>
+        <ActivityIndicator IsRunning="{Binding Path=IsLoading}" WidthRequest="100" />
+
+        <Grid Margin="10" RowDefinitions="auto,auto,*" ColumnDefinitions="*,auto">
+            <Label Text="{Binding Path=CurrentBill.BillNumber}" HorizontalTextAlignment="Center" 
+                 FontAttributes="Bold" FontSize="Large" Margin="0" Grid.Row="0" Grid.ColumnSpan="2"
+                 TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+
+            <Button Text="{Binding Path=CurrentBill.TotalRefundAmount, StringFormat='Finish refund: {0}'}" 
+                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" FontAttributes="Bold" FontSize="Medium"
+                    Command="{Binding Path=FinishRefundCommand}" HorizontalOptions="FillAndExpand" />
+            
+            <CollectionView Grid.Row="2" Grid.ColumnSpan="2"
+                     ItemsSource="{Binding Path=CurrentBill.CR_BillDetailList}"
+                     SelectionMode="None" BackgroundColor="Transparent">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItem IconImageSource="stockcountingdetailedit.png"
+                                           Command="{Binding Path=BindingContext.EditQuantityCommand, Source={RelativeSource AncestorType={x:Type views:CustomerRefundPage}}}" 
+                                           CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                                <SwipeItem IconImageSource="stockcountingdetaildiscard.png"
+                                           Command="{Binding Path=BindingContext.DeleteQuantityCommand, Source={RelativeSource AncestorType={x:Type views:CustomerRefundPage}}}"
+                                           CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                            </SwipeView.RightItems>
+
+                            <Grid ColumnDefinitions="auto, *, 10" ColumnSpacing="10" RowDefinitions="*,*,*,auto,10"
+                                  BackgroundColor="{Binding Path=BackColor}">
+
+                                <Label Text="{Binding Path=SNO, StringFormat='{0})'}" FontSize="Large"
+                                       Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" VerticalTextAlignment="Center"
+                                       IsVisible="{Binding Path=IsDeleted, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+                                <Grid Grid.Row="0" Grid.Column="1" ColumnDefinitions="auto, *">
+                                    <Label Text="{Binding Path=ItemCode}" VerticalTextAlignment="Center" Grid.Column="0"/>
+                                    <Label Text="{Binding Path=ItemName}" FontAttributes="Bold" 
+                                           HorizontalOptions="End" HorizontalTextAlignment="End" Grid.Column="1"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="auto,auto, *, auto, auto, auto, auto">
+                                    <Label Text="{Binding Path=MRP, StringFormat='MRP : {0}|'}" Grid.Column="0" />
+                                    <Label Text="{Binding Path=SalePrice, StringFormat='SP : {0}|'}" Grid.Column="1"/>
+                                    <Label Text="Qty: " Grid.Column="3" IsVisible="{Binding Path=IsOpenItem, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+                                    <Label Text="{Binding Path=Quantity}" FontAttributes="Bold" Grid.Column="4" 
+                                           IsVisible="{Binding Path=IsOpenItem, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+                                    <Label Text="Wght: " Grid.Column="5" IsVisible="{Binding Path=IsOpenItem}"/>
+                                    <Label Text="{Binding Path=WeightInKGs}" FontAttributes="Bold" Grid.Column="6" IsVisible="{Binding Path=IsOpenItem}"/>
+                                </Grid>
+                                <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="auto, auto, *" ColumnSpacing="5">
+                                    <Label Text="{Binding Path=OfferTypeCode, StringFormat='Offer : {0} |'}" Grid.Column="0"/>
+                                    <Label Text="{Binding Path=Discount, StringFormat='Disc : {0} |'}" Grid.Column="1" 
+                                           HorizontalOptions="End" HorizontalTextAlignment="End"/>
+
+                                    <Label Text="{Binding Path=BilledAmount, StringFormat='Billed Amt: {0}'}" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" 
+                                           FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
+                                </Grid>
+
+                                <Frame Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Padding="5" Margin="0, 5, 0, 0">
+                                    <Grid ColumnDefinitions="auto, auto, auto, auto" ColumnSpacing="10" HorizontalOptions="Center">
+                                        <Label Text="Refund Qty:" Grid.Column="0"/>
+                                        <Label Text="{Binding Path=RefundQuantity}"  Grid.Column="1"/>
+                                        <Label Text="Refund Amt:" Grid.Column="2"/>
+                                        <Label Text="{Binding Path=RefundAmount}" FontAttributes="Bold"  Grid.Column="3"/>
+                                    </Grid>
+                                </Frame>
+
+                                <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="4" Grid.ColumnSpan="4" Margin="10, 5, 10, 0"/>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </Grid>
 </ContentPage>

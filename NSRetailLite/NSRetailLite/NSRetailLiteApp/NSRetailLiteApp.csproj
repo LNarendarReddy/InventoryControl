@@ -129,6 +129,9 @@
 	  <MauiXaml Update="Views\Billing\BillingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Billing\CustomerRefundInfoPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Billing\CustomerRefundPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

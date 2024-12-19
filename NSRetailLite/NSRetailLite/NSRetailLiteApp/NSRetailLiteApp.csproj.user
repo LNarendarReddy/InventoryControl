@@ -21,6 +21,9 @@
     <MauiXaml Update="Views\Billing\BillingPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Views\Billing\CustomerRefundInfoPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\Billing\CustomerRefundPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
