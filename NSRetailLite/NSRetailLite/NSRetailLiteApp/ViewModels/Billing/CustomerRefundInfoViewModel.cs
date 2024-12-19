@@ -34,8 +34,8 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             RefundDetailList = CurrentBill.CR_BillDetailList.Where(x => x.RefundQuantity != 0).ToObservableCollection();
             //CurrentBill.CR_BillDetailList.Where(x => x.RefundQuantity == 0).ToList().ForEach(x => CurrentBill.CR_BillDetailList.Remove(x));
-            NoOfItems = CurrentBill.CR_BillDetailList.Count(x => x.RefundQuantity > 0);
-            NoOfPieces = CurrentBill.CR_BillDetailList.Sum(x => x.RefundQuantity);
+            NoOfItems = RefundDetailList.Count(x => x.RefundQuantity > 0);
+            NoOfPieces = RefundDetailList.Sum(x => x.RefundQuantity);
         }
 
         public Bill CurrentBill { get; }
@@ -67,7 +67,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             if (!await DisplayAlert("Confirm", "Are you sure to finish refund?", "Yes", "No")) return;
 
-            CurrentBill.BillDetailList = CurrentBill.CR_BillDetailList.ToObservableCollection();
+            CurrentBill.BillDetailList = RefundDetailList.ToObservableCollection();
             CurrentBill.CR_BillDetailList = [];
 
             CurrentBill.BranchCounterId = branchCounterId;

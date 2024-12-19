@@ -6,7 +6,7 @@ namespace NSRetailLiteApp
     public partial class App : Application
     {
 
-        public static string Version = "0.0.0.7";
+        public static string Version = "0.0.1.0";
 
         public App()
         {
@@ -20,6 +20,7 @@ namespace NSRetailLiteApp
 
         private void CurrentDomain_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
         {
+            //Current?.MainPage?.DisplayAlert("Error", e.Exception.Message, "OK");
             //Current?.MainPage?.DisplayAlert("Error", e.Exception.StackTrace, "OK");
         }
     }
