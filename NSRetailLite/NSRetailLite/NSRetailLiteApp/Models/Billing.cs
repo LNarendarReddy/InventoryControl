@@ -348,9 +348,19 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         public decimal _closureValue;
 
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _quantityString;
+
         partial void OnQuantityChanged(int value)
         {
             ClosureValue = Multiplier * value;
+        }
+
+        partial void OnQuantityStringChanged(string value)
+        {
+            if (string.IsNullOrEmpty(value)) QuantityString = "0";
+            Quantity = int.TryParse(value, out int newValue) ? newValue : 0;
         }
     }
 

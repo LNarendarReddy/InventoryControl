@@ -31,6 +31,10 @@ namespace NSRetailLiteApp.ViewModels
             OpenStockCountingCommand = new AsyncRelayCommand(OpenStockCounting);
             OpenBillingCommand = new AsyncRelayCommand(OpenBilling);
             DayclosureCommand = new AsyncRelayCommand(Dayclose);
+            ChangePasswordCommand = new AsyncRelayCommand(ChangePassword);
+            CustomerRefundCommand = new AsyncRelayCommand(CustomerRefund);
+            ItemDetailsCommand = new AsyncRelayCommand(ItemDetails);
+
             _model = loggedInUser;
             User = loggedInUser;
         }
@@ -158,7 +162,8 @@ namespace NSRetailLiteApp.ViewModels
             GetAsync("billing/getcounterbyidentifier", ref holder
                 , new Dictionary<string, string?>()
                 {
-                    { "Identifier", device_id }
+                    { "Identifier", device_id },
+                    { "BranchId", Model.BranchId.ToString() },
                 }, false);
 
             if (holder.Exception != null || holder.GenericID <= 0)
@@ -239,6 +244,28 @@ namespace NSRetailLiteApp.ViewModels
                         , holder.RefundList
                         , counterId
                         , daySequence.DaySequenceId)));
+        }
+
+
+        public IAsyncRelayCommand ChangePasswordCommand { get; }
+
+        private async Task ChangePassword()
+        {
+            await RedirectToPage(Model, new ChangePasswordPage(new ChangePasswordViewModel(Model)));
+        }
+
+        public IAsyncRelayCommand CustomerRefundCommand { get; }
+
+        private async Task CustomerRefund()
+        {
+            DisplayAlert("Pending module", "Customer refund", "OK");
+        }
+
+        public IAsyncRelayCommand ItemDetailsCommand { get; }
+
+        private async Task ItemDetails()
+        {
+            DisplayAlert("Pending module", "Item details", "OK");
         }
     }
 }

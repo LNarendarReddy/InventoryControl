@@ -21,6 +21,9 @@
     <MauiXaml Update="Views\Billing\BillingPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Views\Billing\CustomerRefundPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\Billing\DayClosurePage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
@@ -28,6 +31,9 @@
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Views\Common\BranchCounterSelectionPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\Common\ChangePasswordPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Views\Common\ItemCodeSelectionPage.xaml">

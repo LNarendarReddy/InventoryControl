@@ -82,28 +82,30 @@
                                     </Label>
                                 </VerticalStackLayout>
                                 <VerticalStackLayout Grid.Row="0" Grid.Column="3">
-                                    <ImageButton Margin="0, 5, 0, 2" Source="customerrefund.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
+                                    <ImageButton Margin="0, 5, 0, 2" Source="customerrefund.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
+                                                 Command="{Binding Path=CustomerRefundCommand}"/>
                                     <Label Text="Customer" FontSize="Small" HorizontalTextAlignment="Center">
                                         <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                            <TapGestureRecognizer Command="{Binding CustomerRefundCommand}" />
                                         </Label.GestureRecognizers>
                                     </Label>
                                     <Label Text="refunds" FontSize="Small" HorizontalTextAlignment="Center">
                                         <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                            <TapGestureRecognizer Command="{Binding CustomerRefundCommand}" />
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </VerticalStackLayout>
                                 <VerticalStackLayout Grid.Row="0" Grid.Column="4">
-                                    <ImageButton Margin="0, 5, 0, 2" Source="itemdetails.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
+                                    <ImageButton Margin="0, 5, 0, 2" Source="itemdetails.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
+                                                 Command="{Binding Path=ItemDetailsCommand}"/>
                                     <Label Text="Item" FontSize="Small" HorizontalTextAlignment="Center">
                                         <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                            <TapGestureRecognizer Command="{Binding ItemDetailsCommand}" />
                                         </Label.GestureRecognizers>
                                     </Label>
                                     <Label Text="details" FontSize="Small" HorizontalTextAlignment="Center">
                                         <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding OpenBillingCommand}" />
+                                            <TapGestureRecognizer Command="{Binding ItemDetailsCommand}" />
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </VerticalStackLayout>
@@ -113,14 +115,23 @@
                         <Frame Padding="1" Grid.Row="2">
                             <Grid Grid.Row="1" Margin="0" RowSpacing="0" ColumnDefinitions="*, auto, 10, auto, *" RowDefinitions="auto">
                                 <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                                    <ImageButton Margin="0, 5, 0, 2" Source="changepassword.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
-                                    <Label Text="Change" FontSize="Small" HorizontalTextAlignment="Center"/>
-                                    <Label Text="password" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                    <ImageButton Margin="0, 5, 0, 2" Source="changepassword.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
+                                                 Command="{Binding Path=ChangePasswordCommand}"/>
+                                    <Label Text="Change" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ChangePasswordCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Text="password" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ChangePasswordCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
                                 </VerticalStackLayout>
                                 <VerticalStackLayout Grid.Row="0" Grid.Column="3">
                                     <ImageButton 
                                     Margin="0, 5, 0, 2" Source="logout.png" Aspect="Fill" 
-                                    HeightRequest="50" WidthRequest="50" Command="{Binding Path=LogoutCommand}"/>
+                                    HeightRequest="50" WidthRequest="50" Command="{Binding Path=ChangePasswordCommand}"/>
                                     <Label Text="Logout" FontSize="Small" HorizontalTextAlignment="Center"/>
                                 </VerticalStackLayout>
                             </Grid>

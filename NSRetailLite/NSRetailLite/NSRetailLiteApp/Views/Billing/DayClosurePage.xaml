@@ -26,12 +26,11 @@
                     
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid ColumnSpacing="5" ColumnDefinitions="auto, auto, auto" Margin="0, 0, 10, 0"
-                                   toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Quantity}">
+                            <Grid ColumnSpacing="5" ColumnDefinitions="auto, auto, auto" Margin="0, 0, 10, 0">
                                 <Label Text="{Binding Path=DisplayValue}" VerticalTextAlignment="Center"
                                        Grid.Column="0"/>
-                                <Entry Placeholder="Quantity" Text="{Binding Path=Quantity}" Grid.Column="1"
-                                       Keyboard="Numeric" ReturnType="Next" x:Name="Quantity">
+                                <Entry Placeholder="count" Text="{Binding Path=QuantityString, TargetNullValue=''}" Grid.Column="1"
+                                       Keyboard="Numeric" ReturnType="Next">
                                     <Entry.Behaviors>
                                         <toolkit:SelectAllTextBehavior />                                        
                                     </Entry.Behaviors>
