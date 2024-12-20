@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DevExpress.XtraReports.UI;
 using Newtonsoft.Json;
 using NSRetailLiteApp.Models;
 using NSRetailLiteApp.Views.Billing;
@@ -190,6 +191,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             //reset object
             holder = new();
+            ObservableCollection<BillDetail> billDetails = CurrentBill.BillDetailList.ToObservableCollection();
             CurrentBill.BillDetailList.Clear(); // no need to resend
             PostAsync("billing/finishbill", ref holder, new Dictionary<string, string?>
             {
@@ -197,6 +199,16 @@ namespace NSRetailLiteApp.ViewModels.Billing
             });
 
             if (holder.Exception != null) return;
+
+            CurrentBill.BillDetailList = billDetails;
+            try
+            {
+                await PrintCurrentBill();
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage("Print error : " + ex.Message);
+            }
 
             // Report logic to go here
 
@@ -212,6 +224,51 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 mop.IsEnabled = value != null && (value.MOPId == 0 || value.MOPId == mop.MOPId);
                 mop.MOPValue = value != null && value.MOPId == mop.MOPId && value.MOPId != CashMOP.MOPId ? CurrentBill.TotalAmount : 0;
             }
+        }
+
+        private async Task PrintCurrentBill()
+        {
+            XtraReport report = new XtraReport() { Name = "Sample" };
+
+            DetailBand detail = new DetailBand();
+
+            // Create a label, apply Lobster font
+            XRLabel labelLobster = new XRLabel()
+            {
+                Text = "Sample Text Lobster",
+                CanGrow = true,
+                SizeF = new System.Drawing.SizeF(report.PageWidth - report.Margins.Left - report.Margins.Right, 200),
+            };
+
+            // Create a label, apply Open Sans font and border
+            XRLabel labelOpenSans = new XRLabel()
+            {
+                Text = "Sample Text Open Sans",
+                CanGrow = true,
+                Borders = DevExpress.XtraPrinting.BorderSide.All,
+                BorderColor = System.Drawing.Color.BlueViolet,
+                BorderWidth = 2,
+                SizeF = new System.Drawing.SizeF(report.PageWidth - report.Margins.Left - report.Margins.Right, 200),
+                LocationF = new System.Drawing.PointF(0, 200)
+            };
+
+            // Add both labels to the detail band
+            detail.Controls.Add(labelLobster);
+            detail.Controls.Add(labelOpenSans);
+
+            report.Bands.Add(detail);
+
+            report.CreateDocument();
+
+            // Export the report to a PDF file
+            string resultFile = Path.Combine(FileSystem.Current.AppDataDirectory, report.Name + ".pdf");
+            report.ExportToPdf(resultFile);
+
+            await Share.Default.RequestAsync(new ShareFileRequest
+            {
+                Title = "Share PDF file",
+                File = new ShareFile(resultFile)
+            });
         }
     }
 
