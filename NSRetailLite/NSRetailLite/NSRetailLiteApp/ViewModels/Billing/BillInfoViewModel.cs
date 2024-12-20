@@ -34,6 +34,9 @@ namespace NSRetailLiteApp.ViewModels.Billing
         [ObservableProperty]
         private bool _isBillOfferApplied;
 
+        [ObservableProperty]
+        private decimal _roundedValue;
+
         public IAsyncRelayCommand PayBillCommand { get; }
 
         public delegate void OnBillFinishedHandler(Bill bill);
@@ -59,8 +62,10 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
         private void UpdateTotals()
         {
+            CurrentBill.TotalAmount = CurrentBill.BillDetailList.Where(x => x.DeletedDate == null).Sum(x => x.BilledAmount);
             CurrentBill.PaidTotalAmount = MopValueList.Sum(x => x.MOPValue);
             CurrentBill.RemainingAmount = CurrentBill.TotalAmount - CurrentBill.PaidTotalAmount;
+            RoundedValue = CurrentBill.RemainingAmount < 0 ? 0 : Math.Round(CurrentBill.RemainingAmount);
 
             if (CashMOP.MOPValue > 0)
             {
@@ -167,11 +172,12 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
                     if (offerItem.ActualSalePrice > 0)
                     {
-                        await DisplayAlert("Verification", "Bill amount updated, please verify amount", "OK");
-                        SelectedMOP = null;
-
+                        CurrentBill = holder.Bill;
                         MopValueList.ToList().ForEach(item => item.MOPValue = 0);
                         IsBillOfferApplied = true;
+                        UpdateTotals();
+                        await DisplayAlert("Verification", "Bill amount updated, please verify amount", "OK");
+                        SelectedMOP = null;
                         return;
                     }
                 }
@@ -191,6 +197,8 @@ namespace NSRetailLiteApp.ViewModels.Billing
             });
 
             if (holder.Exception != null) return;
+
+            // Report logic to go here
 
             CurrentBill = holder.Bill;
             await Pop();

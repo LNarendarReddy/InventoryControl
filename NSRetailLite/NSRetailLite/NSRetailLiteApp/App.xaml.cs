@@ -6,7 +6,7 @@ namespace NSRetailLiteApp
     public partial class App : Application
     {
 
-        public static string Version = "0.0.1.0";
+        public static string Version = "0.0.1.1";
 
         public App()
         {

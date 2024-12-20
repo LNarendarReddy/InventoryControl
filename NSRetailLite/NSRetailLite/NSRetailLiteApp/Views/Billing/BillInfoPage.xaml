@@ -4,12 +4,12 @@
              x:Class="NSRetailLiteApp.Views.Billing.BillInfoPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" 
              Title="BillInfoPage">
-    <Grid RowDefinitions="auto, auto, auto, auto, auto, auto" Margin="10" RowSpacing="5">
+    <Grid RowDefinitions="auto, auto, auto, auto, auto, auto, auto" Margin="10" RowSpacing="5">
         <Button Text="{Binding Path=CurrentBill.TotalAmount, StringFormat='Pay Amount : {0}'}"
                 FontAttributes="Bold" FontSize="Large" Grid.Row="0" HorizontalOptions="Center"
                 Command="{Binding Path=PayBillCommand}"/>
 
-        <Grid Grid.Row="1" RowDefinitions="auto, auto, auto, auto, auto" ColumnDefinitions="auto, *" ColumnSpacing="5">
+        <Grid Grid.Row="1" RowDefinitions="auto, auto, auto, auto, auto, auto" ColumnDefinitions="auto, *" ColumnSpacing="5">
             <Label Text="Sale Type" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0"/>
 
             <HorizontalStackLayout Grid.Row="0" Grid.Column="1" Spacing="20"
@@ -63,6 +63,9 @@
 
         <Label Text="{Binding Path=CurrentBill.PaidTotalAmount, StringFormat='(Paid Amount: {0})'}" 
             Grid.Row="5" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" />
-        
+
+        <Label Text="{Binding Path=RoundedValue, StringFormat='(Rounded Remaining Amount: {0})'}" 
+               Grid.Row="6" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" />
+
     </Grid>
 </ContentPage>
