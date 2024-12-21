@@ -228,28 +228,36 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
         private async Task PrintCurrentBill()
         {
-            XtraReport report = new XtraReport() { Name = "Sample" };
+            XtraReport report = new XtraReport()
+            {
+                Name = "BillPrint",
+                PaperKind = DevExpress.Drawing.Printing.DXPaperKind.Custom,
+                PageWidth = 300,
+                Margins = new DevExpress.Drawing.DXMargins(7, 15, 9, 10),
+                PageHeight = 100
+            };
 
-            DetailBand detail = new DetailBand();
+            DetailBand detail = new DetailBand() { PageBreak = PageBreak.AfterBand };
 
             // Create a label, apply Lobster font
             XRLabel labelLobster = new XRLabel()
             {
-                Text = "Sample Text Lobster",
+                Text = CurrentBill.BillNumber,
                 CanGrow = true,
-                SizeF = new System.Drawing.SizeF(report.PageWidth - report.Margins.Left - report.Margins.Right, 200),
+                //SizeF = new System.Drawing.SizeF(report.PageWidth - report.Margins.Left - report.Margins.Right, 200),
+                SizeF = new System.Drawing.SizeF(275, 20)
             };
 
             // Create a label, apply Open Sans font and border
             XRLabel labelOpenSans = new XRLabel()
             {
-                Text = "Sample Text Open Sans",
+                Text = CurrentBill.TotalAmount.ToString(),
                 CanGrow = true,
                 Borders = DevExpress.XtraPrinting.BorderSide.All,
                 BorderColor = System.Drawing.Color.BlueViolet,
                 BorderWidth = 2,
-                SizeF = new System.Drawing.SizeF(report.PageWidth - report.Margins.Left - report.Margins.Right, 200),
-                LocationF = new System.Drawing.PointF(0, 200)
+                SizeF = new System.Drawing.SizeF(report.PageWidth - report.Margins.Left - report.Margins.Right, 30),
+                LocationF = new System.Drawing.PointF(0, 30)
             };
 
             // Add both labels to the detail band
@@ -268,6 +276,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
             {
                 Title = "Share PDF file",
                 File = new ShareFile(resultFile)
+
             });
         }
     }
