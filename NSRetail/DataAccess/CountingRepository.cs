@@ -156,6 +156,41 @@ namespace DataAccess
             }
         }
 
+        public void AcceptStockCounting(object BranchID, string selectedCategories, int UserID, DataTable dt)
+        {
+            SqlTransaction sqlTransaction = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    sqlTransaction = SQLCon.Sqlconn().BeginTransaction();
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Transaction = sqlTransaction;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_STOCKCOUNTING_NEW]";
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@SelectedCategories", selectedCategories);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@dt", dt);
+                    object objReturn = cmd.ExecuteScalar();
+
+                    if (!int.TryParse(Convert.ToString(objReturn), out int ivalue))
+                        throw new Exception(Convert.ToString(objReturn));
+                    sqlTransaction.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                sqlTransaction.Rollback();
+                if (ex.Message.Contains("Pending sheets") ||
+                    ex.Message.Contains("No Counting") ||
+                    ex.Message.Contains("Multiple categories"))
+                    throw ex;
+                else
+                    throw new Exception("Error While Accepting Stock Counting", ex);
+            }
+        }
+
         public DataTable GetConsolidatedItems(object BranchID)
         {
             DataTable dtStockCounting = new DataTable();
