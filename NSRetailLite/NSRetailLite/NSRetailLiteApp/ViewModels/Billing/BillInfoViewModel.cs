@@ -220,9 +220,9 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             // Report logic to go here
 
-            //CurrentBill = holder.Bill;
-            //await Pop();
-            //OnBillFinished?.Invoke(CurrentBill);
+            CurrentBill = holder.Bill;
+            await Pop();
+            OnBillFinished?.Invoke(CurrentBill);
         }
 
         partial void OnSelectedMOPChanged(MOP value)
