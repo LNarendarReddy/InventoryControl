@@ -1,6 +1,10 @@
 ﻿using CommunityToolkit.Maui;
+using DevExpress.Maui;
+using DevExpress.Maui.CollectionView.Internal;
+using DevExpress.Maui.CollectionView;
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
+using DevExpress.Maui.Pdf;
 
 namespace NSRetailLiteApp
 {
@@ -10,14 +14,19 @@ namespace NSRetailLiteApp
         {
             var builder = MauiApp.CreateBuilder();
             builder
-                .UseMauiApp<App>()
+                .UseDevExpressPdf()
+                .UseDevExpressCollectionView()
+                .UseDevExpressControls()
+                .UseDevExpressEditors()
+                .UseDevExpress()
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
-                .UseBarcodeReader();
+                .UseBarcodeReader()
+                .UseMauiApp<App>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

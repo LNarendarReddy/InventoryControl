@@ -1,6 +1,8 @@
-﻿using CommunityToolkit.Maui.Core.Extensions;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DevExpress.Maui.Core.Internal;
+using DevExpress.Maui.Mvvm;
+using DevExpress.Maui.Pdf;
 using DevExpress.XtraReports.UI;
 using Newtonsoft.Json;
 using NSRetailLiteApp.Models;
@@ -8,6 +10,7 @@ using NSRetailLiteApp.Views.Billing;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -203,18 +206,23 @@ namespace NSRetailLiteApp.ViewModels.Billing
             CurrentBill.BillDetailList = billDetails;
             try
             {
+                IsLoading = true;
                 await PrintCurrentBill();
             }
             catch (Exception ex)
             {
                 DisplayErrorMessage("Print error : " + ex.Message);
             }
+            finally
+            {
+                IsLoading = false;
+            }
 
             // Report logic to go here
 
-            CurrentBill = holder.Bill;
-            await Pop();
-            OnBillFinished?.Invoke(CurrentBill);
+            //CurrentBill = holder.Bill;
+            //await Pop();
+            //OnBillFinished?.Invoke(CurrentBill);
         }
 
         partial void OnSelectedMOPChanged(MOP value)
@@ -228,6 +236,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
         private async Task PrintCurrentBill()
         {
+            
             XtraReport report = new XtraReport()
             {
                 Name = "BillPrint",
@@ -270,14 +279,31 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             // Export the report to a PDF file
             string resultFile = Path.Combine(FileSystem.Current.AppDataDirectory, report.Name + ".pdf");
-            report.ExportToPdf(resultFile);
+            MemoryStream stream = new MemoryStream();
+            report.ExportToPdf(stream);
 
-            await Share.Default.RequestAsync(new ShareFileRequest
+            var printService = ApplicationHelper.ServiceProvider.GetService<IPrintService>();
+
+            bool printed = printService != null &&
+                await printService.PrintAsync(stream, "BillPrintJob");
+
+            if (!printed)
             {
-                Title = "Share PDF file",
-                File = new ShareFile(resultFile)
+                DisplayErrorMessage("Print operation failed");
+            }
 
-            });
+            //PdfViewer pdfViewer = new();
+            //await pdfViewer.SetDocumentSourceAsync(PdfDocumentSource.FromFile(resultFile));
+
+            //bool printed = await pdfViewer.PrintDocumentAsync("BillPrintJob");
+            //await DisplayAlert("Status", $"{printed}", "OK");
+
+            //await Share.Default.RequestAsync(new ShareFileRequest
+            //{
+            //    Title = "Share PDF file",
+            //    File = new ShareFile(resultFile)
+
+            //});
         }
     }
 
