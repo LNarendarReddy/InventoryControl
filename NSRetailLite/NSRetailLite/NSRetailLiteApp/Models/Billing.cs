@@ -85,6 +85,10 @@ namespace NSRetailLiteApp.Models
 
         [JsonIgnore]
         [ObservableProperty]
+        public string _counterName;
+
+        [JsonIgnore]
+        [ObservableProperty]
         public int _daySequenceId;
 
         [JsonIgnore]

@@ -57,6 +57,12 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         public decimal? _enableDraftBills;
+
+        [ObservableProperty]
+        public string? _address;
+
+        [ObservableProperty]
+        public string? _phoneNo;
     }
 
     public partial class FeatureAccessData : BaseObservableObject
