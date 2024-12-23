@@ -255,6 +255,14 @@ namespace NSRetailLiteApp.ViewModels.Billing
             {
                 DisplayErrorMessage("Print operation failed");
             }
+
+            //await Share.Default.RequestAsync(new ShareFileRequest
+            //{
+            //    Title = "Share PDF file",
+            //    File = new ShareFile(resultFile)
+
+            //});
+
         }
 
         private async Task PrintCurrentBill()
@@ -315,8 +323,8 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 DisplayErrorMessage("Print operation failed");
             }
 
-            //PdfViewer pdfViewer = new();
-            //await pdfViewer.SetDocumentSourceAsync(PdfDocumentSource.FromFile(resultFile));
+            PdfViewer pdfViewer = new();
+            await pdfViewer.SetDocumentSourceAsync(PdfDocumentSource.FromFile(resultFile));
 
             //bool printed = await pdfViewer.PrintDocumentAsync("BillPrintJob");
             //await DisplayAlert("Status", $"{printed}", "OK");

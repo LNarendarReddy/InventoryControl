@@ -2,8 +2,10 @@
 using DevExpress.Drawing.Internal.Fonts.Interop;
 using DevExpress.Export.Xl;
 using DevExpress.Utils.About;
+using DevExpress.XtraPrinting.BarCode;
 using DevExpress.XtraReports.Parameters;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraRichEdit.Layout.Engine;
 using NSRetailLiteApp.Models;
 using SkiaSharp;
 using System;
@@ -17,8 +19,40 @@ namespace NSRetailLiteApp.Helpers
 {
     internal class BillHelper
     {
+        private XRTableRow? xrTableRow19;
+        private XRTableCell? xrTableCell45;
+        private XRTableRow? xrTableRow23;
+        private XRTableCell? xrTableCell54;
+        private XRTableRow? xrTableRow24;
+        private XRTableCell? xrTableCell55;
+        private XRTableRow? xrTableRow40;
+        private XRTableCell? xrTableCell71;
+        private XRTableRow? xrTableRow25;
+        private XRTableCell? xrTableCell56;
+        private XRTableRow? xrTableRow26;
+        private XRTableCell? xrTableCell57;
+
+        public BillHelper()
+        {
+            xrTableRow19 = new DevExpress.XtraReports.UI.XRTableRow();
+            xrTableCell45 = new DevExpress.XtraReports.UI.XRTableCell();
+            xrTableRow23 = new DevExpress.XtraReports.UI.XRTableRow();
+            xrTableCell54 = new DevExpress.XtraReports.UI.XRTableCell();
+            xrTableRow24 = new DevExpress.XtraReports.UI.XRTableRow();
+            xrTableCell55 = new DevExpress.XtraReports.UI.XRTableCell();
+            xrTableRow40 = new DevExpress.XtraReports.UI.XRTableRow();
+            xrTableCell71 = new DevExpress.XtraReports.UI.XRTableCell();
+            xrTableRow25 = new DevExpress.XtraReports.UI.XRTableRow();
+            xrTableCell56 = new DevExpress.XtraReports.UI.XRTableCell();
+            xrTableRow26 = new DevExpress.XtraReports.UI.XRTableRow();
+            xrTableCell57 = new DevExpress.XtraReports.UI.XRTableCell();
+        }
         public XtraReport GetBill(Bill currentBill)
         {
+
+            DataTable dtItems = Getbilldetail(currentBill);
+            DataTable dtMOP = GetMOPDataTable(currentBill);
+
             XtraReport report = CreateReport();
             report.Parameters["CIN"].Value = "U51390AP2022PTC121579";
             report.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
@@ -39,10 +73,68 @@ namespace NSRetailLiteApp.Helpers
             report.Parameters["IsDoorDelivery"].Value = currentBill.IsDoorDelivery;
             report.Parameters["CustomerGST"].Value = currentBill.CustomerGST;
             
-            report.Bands.Add(CreateItemDetailReportBand(currentBill));
-            report.Bands.Add(CreateGSTDetailReportBand(currentBill));
+            report.Bands.Add(CreateItemDetailReportBand(dtItems));
+            report.Bands.Add(CreateGSTDetailReportBand(dtItems));
+            report.Bands.Add(CreateMOPDetailReportBand(dtMOP));
+            report.Bands.Add(CreateFooterDetailReport(dtItems));
 
             return report;
+        }
+
+        private DataTable Getbilldetail(Bill currentBill)
+        {
+            DataTable dtBillDetail = new();
+            dtBillDetail.Columns.Add("ITEMCODE", typeof(string));
+            dtBillDetail.Columns.Add("ITEMNAME", typeof(string));
+            dtBillDetail.Columns.Add("HSNCODE", typeof(string));
+            dtBillDetail.Columns.Add("MRP", typeof(decimal));
+            dtBillDetail.Columns.Add("BILLEDAMOUNT", typeof(decimal));
+            dtBillDetail.Columns.Add("ISOPENITEM", typeof(bool));
+            dtBillDetail.Columns.Add("QUANTITY", typeof(decimal));
+            dtBillDetail.Columns.Add("WEIGHTINKGS", typeof(decimal));
+            dtBillDetail.Columns.Add("DISCOUNT", typeof(decimal));
+            dtBillDetail.Columns.Add("GSTCODE", typeof(string));
+            dtBillDetail.Columns.Add("GSTVALUE", typeof(decimal));
+            dtBillDetail.Columns.Add("CGST", typeof(decimal));
+            dtBillDetail.Columns.Add("SGST", typeof(decimal));
+            dtBillDetail.Columns.Add("CESS", typeof(decimal));
+
+            currentBill.BillDetailList.Where(x => !x.IsDeleted).ToList().ForEach(x =>
+            {
+                DataRow dataRow = dtBillDetail.NewRow();
+                dataRow["ITEMNAME"] = x.ItemName;
+                dataRow["ITEMCODE"] = x.ItemCode;
+                dataRow["HSNCODE"] = x.HSNCode;
+                dataRow["MRP"] = x.MRP;
+                dataRow["BILLEDAMOUNT"] = x.BilledAmount;
+                dataRow["ISOPENITEM"] = x.IsOpenItem;
+                dataRow["QUANTITY"] = x.Quantity;
+                dataRow["WEIGHTINKGS"] = x.WeightInKGs;
+                dataRow["DISCOUNT"] = x.Discount;
+                dataRow["GSTCODE"] = x.GSTCode;
+                dataRow["GSTVALUE"] = x.GSTValue;
+
+                dtBillDetail.Rows.Add(dataRow);
+            });
+
+            return dtBillDetail;
+        }
+
+        private DataTable GetMOPDataTable(Bill currentBill)
+        {
+            DataTable dtMopDetail = new();
+            dtMopDetail.Columns.Add("MOPNAME", typeof(string));
+            dtMopDetail.Columns.Add("MOPVALUE", typeof(decimal));
+
+            currentBill.MOPValueList.Where(x => x.MOPValue > 0).ToList().ForEach(x =>
+            {
+                DataRow dataRow = dtMopDetail.NewRow();
+                dataRow["MOPNAME"] = x.MOPName;
+                dataRow["MOPVALUE"] = x.MOPValue;
+
+                dtMopDetail.Rows.Add(dataRow);
+            });
+            return dtMopDetail;
         }
 
         public XtraReport CreateReport()
@@ -250,9 +342,10 @@ namespace NSRetailLiteApp.Helpers
             return report;
         }
 
-        public DetailReportBand CreateItemDetailReportBand(Bill dtitems)
+        public DetailReportBand CreateItemDetailReportBand(DataTable dtitems)
         {
             DetailReportBand stdDetail = new DetailReportBand();
+            stdDetail.Level = 0;
             stdDetail.DataSource = dtitems;
             stdDetail.Bands.AddRange(new Band[] {
                 CreateItemReportHeader(),
@@ -595,7 +688,7 @@ namespace NSRetailLiteApp.Helpers
             return band;
         }
 
-        public DetailReportBand CreateGSTDetailReportBand(Bill dtitems)
+        public DetailReportBand CreateGSTDetailReportBand(DataTable dtitems)
         {
             DetailReportBand drGST = new DetailReportBand();
             drGST.DataSource = dtitems;
@@ -878,5 +971,366 @@ namespace NSRetailLiteApp.Helpers
             GroupHeader1.Controls.AddRange(new XRControl[] {xrTable6});
             return GroupHeader1;
         }
+
+        public DetailReportBand CreateMOPDetailReportBand(DataTable dtMOP)
+        {
+            DetailReportBand drMOP = new DetailReportBand() 
+            {
+                Level = 2,
+                Name = "drMOP",
+            };
+            drMOP.Bands.AddRange(new Band[] { CreateMOPDetailBand(), CreateMOPReportHeader(), CreateMOPReportFooterBand() });
+            return drMOP;
+        }
+
+        public DetailBand CreateMOPDetailBand()
+        {
+            DetailBand Detail2 = new DetailBand() { HeightF = 12F };
+
+            XRTable xrTable9 = new XRTable()
+            {
+                Font = new DevExpress.Drawing.DXFont("Arial", 7F),
+                LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F),
+                Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F),
+                SizeF = new System.Drawing.SizeF(275F, 12F)
+            };
+            xrTable9.StylePriority.UseFont = false;
+
+            XRTableRow xrTableRow18 = new XRTableRow() { Weight = 0.36D };
+
+            XRTableCell xrTableCell44 = new XRTableCell()
+            {
+                Multiline = true,
+                TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight,
+                Weight = 1D
+            };
+            xrTableCell44.StylePriority.UseTextAlignment = false;
+            xrTableCell44.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[MOPNAME] + \': \'")});
+
+            XRTableCell xrTableCell46 = new XRTableCell() 
+            {
+                Multiline = true,
+                TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight,
+                TextFormatString = "{0:N2}",
+                Weight = 0.71757568359375168D
+            };
+            xrTableCell46.StylePriority.UseTextAlignment = false;
+            xrTableCell46.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[MOPVALUE]")});
+
+            XRTableCell xrTableCell1 = new XRTableCell() 
+            {
+                Multiline = true,
+                Text = "/-",
+                TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft,
+                Weight = 0.28242431640625038D
+            };
+            xrTableCell1.StylePriority.UseTextAlignment = false;
+
+            xrTableRow18.Cells.AddRange(new XRTableCell[] {xrTableCell44,xrTableCell46,xrTableCell1});
+
+            xrTable9.Rows.AddRange(new XRTableRow[] { xrTableRow18 });
+
+            Detail2.Controls.AddRange(new XRControl[] { xrTable9 });
+
+            return Detail2;
+        }
+
+        public ReportHeaderBand CreateMOPReportHeader()
+        {
+            ReportHeaderBand ReportHeader3 = new ReportHeaderBand() { HeightF = 12F };
+
+            XRTable xrTable8 = new XRTable() 
+            {
+                Font = new DevExpress.Drawing.DXFont("Arial", 7F),
+                LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F),
+                Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F),
+                SizeF = new System.Drawing.SizeF(275F, 12F),
+                TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter,
+            };
+            xrTable8.StylePriority.UseFont = false;
+            xrTable8.StylePriority.UseTextAlignment = false;
+
+            XRTableRow xrTableRow17 = new XRTableRow() 
+            {
+                Borders = DevExpress.XtraPrinting.BorderSide.Bottom,
+                Weight = 0.48000000000000015D
+            };
+            xrTableRow17.StylePriority.UseBorders = false;
+
+            XRTableCell xrTableCell43 = new XRTableCell();
+            xrTableCell43.Multiline = true;
+            xrTableCell43.Text = "<-----Amount Received From Customer----->";
+            xrTableCell43.Weight = 1D;
+
+            xrTableRow17.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] { xrTableCell43 });
+            xrTable8.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] { xrTableRow17 });
+            ReportHeader3.Controls.AddRange(new XRControl[] { xrTable8 });
+            return ReportHeader3;
+        }
+
+        public ReportFooterBand CreateMOPReportFooterBand()
+        {
+            ReportFooterBand ReportFooter3 = new ReportFooterBand() { HeightF = 6F };
+            XRLine xrLine6 = new XRLine();
+            xrLine6.LocationFloat = new DevExpress.Utils.PointFloat(0F, 3F);
+            xrLine6.SizeF = new System.Drawing.SizeF(275F, 3F);
+
+            XRLine xrLine5 = new XRLine();
+            xrLine5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            xrLine5.SizeF = new System.Drawing.SizeF(275F, 3F);
+
+            ReportFooter3.Controls.AddRange(new XRControl[] { xrLine6, xrLine5 });
+
+            return ReportFooter3;
+        }
+
+        public DetailReportBand CreateFooterDetailReport(DataTable dtitems)
+        {
+            DetailReportBand drFooter = new DetailReportBand() { Level = 3 };
+            DetailBand Detail3 = new DetailBand();
+            Detail3.HeightF = 0F;
+
+
+            drFooter.Bands.AddRange(new Band[] {Detail3, CreateFooterReportFooterBand() });
+            return drFooter;
+        }
+
+        public ReportFooterBand CreateFooterReportFooterBand() 
+        {
+            ReportFooterBand ReportFooter4 = new ReportFooterBand() { HeightF = 235F };
+
+            XRTable xrTable12 = new XRTable();
+            xrTable12.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
+            xrTable12.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            xrTable12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            xrTable12.SizeF = new System.Drawing.SizeF(275F, 235F);
+            xrTable12.StylePriority.UseFont = false;
+            xrTable12.StylePriority.UseTextAlignment = false;
+            xrTable12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+
+            XRTableRow xrTableRow32 = new XRTableRow();
+            xrTableRow32.Weight = 0.38709677419354827D;
+            xrTableRow32.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+                new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(IsNull(?CustomerName,\'\') = \'\',false ,true\t)")});
+
+            XRTableCell xrTableCell63 = new XRTableCell();
+            xrTableCell63.Multiline = true;
+            xrTableCell63.Weight = 1D;
+            xrTableCell63.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+                new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'Customer Name : \' + ?CustomerName")});
+
+            xrTableRow32.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] { xrTableCell63 });
+
+            XRTableRow xrTableRow33 = new XRTableRow();
+            xrTableRow33.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+                new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(IsNull(?CustomerNumber,\'\') = \'\',false ,true )")});
+            xrTableRow33.Weight = 0.38709677419354827D;
+
+            XRTableCell xrTableCell64 = new XRTableCell();
+            xrTableCell64.Multiline = true;
+            xrTableCell64.Weight = 1D;
+            xrTableCell64.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+                new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'Customer Mobile : \' + ?CustomerNumber")});
+
+            xrTableRow33.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] { xrTableCell64 });
+
+            XRTableRow xrTableRow31 = new XRTableRow();
+            xrTableRow31.Weight = 0.38709677419354827D;
+            xrTableRow31.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(IsNull(?CustomerGST,\'\') = \'\',false ,true )")});
+
+            XRTableCell xrTableCell62 = new XRTableCell();
+            xrTableCell62.Multiline = true;
+            xrTableCell62.Weight = 1D;
+            xrTableCell62.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'Customer GST # \' + ?CustomerGST")});
+
+            xrTableRow31.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] { xrTableCell62 });
+
+            XRTableRow xrTableRow34 = new XRTableRow();
+            xrTableRow34.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(IsNull(?TenderedCash,0) = 0,false ,true )")});
+            xrTableRow34.Weight = 0.38709677419354827D;
+
+            XRTableCell xrTableCell65 = new XRTableCell();
+            xrTableCell65.Multiline = true;
+            xrTableCell65.Weight = 1D;
+            xrTableCell65.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'Tendered Cash : \' + ?TenderedCash")});
+
+            xrTableRow34.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {xrTableCell65});
+
+            XRTableRow xrTableRow35 = new XRTableRow();
+            xrTableRow35.Weight = 0.38709677419354827D;
+            xrTableRow35.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(IsNull(?TenderedChange,0) = 0,false ,true )")});
+
+            XRTableCell xrTableCell66 = new XRTableCell();
+            xrTableCell66.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'Tendered Change : \' + ?TenderedChange")});
+            xrTableCell66.Multiline = true;
+            xrTableCell66.Weight = 1D;
+
+            xrTableRow35.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {xrTableCell66});
+
+            XRTableRow xrTableRow37 = new XRTableRow() { Weight = 0.96774193548387077D};
+
+            XRSummary xrSummary15 = new XRSummary();
+            xrSummary15.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
+            XRTableCell xrTableCell68 = new XRTableCell();
+            xrTableCell68.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'* * Saved Rs. \' + sumSum([DISCOUNT]) + \' /- On MRP * *\'")});
+            xrTableCell68.Font = new DevExpress.Drawing.DXFont("Arial", 10F, DevExpress.Drawing.DXFontStyle.Bold);
+            xrTableCell68.Multiline = true;
+            xrTableCell68.StylePriority.UseFont = false;
+            xrTableCell68.Summary = xrSummary15;
+            xrTableCell68.Text = "xrTableCell68";
+            xrTableCell68.Weight = 1D;
+
+            xrTableRow37.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] { xrTableCell68 });
+
+            XRTableRow xrTableRow36 = new XRTableRow() { Weight = 1.5483870967741933D };
+
+            XRTableCell xrTableCell67 = new XRTableCell();
+            xrTableCell67.Font = new DevExpress.Drawing.DXFont("Arial", 10F, DevExpress.Drawing.DXFontStyle.Bold);
+            xrTableCell67.Multiline = true;
+            xrTableCell67.StylePriority.UseFont = false;
+            xrTableCell67.Weight = 1D;
+
+            DevExpress.XtraPrinting.BarCode.Code128Generator code128Generator1 = new DevExpress.XtraPrinting.BarCode.Code128Generator();
+
+            XRBarCode xrBarCode1 = new XRBarCode();
+            xrBarCode1.AutoModule = true;
+            xrBarCode1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?BillNumber")});
+            xrBarCode1.LocationFloat = new DevExpress.Utils.PointFloat(0.999997F, 1.525879E-05F);
+            xrBarCode1.Padding = new DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100F);
+            xrBarCode1.ShowText = false;
+            xrBarCode1.SizeF = new System.Drawing.SizeF(275F, 40F);
+            xrBarCode1.StylePriority.UsePadding = false;
+            xrBarCode1.Symbology = code128Generator1;
+
+            xrTableCell67.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] { xrBarCode1 });
+
+            xrTableRow36.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {xrTableCell67});
+
+            XRTableRow xrTableRow38 = new XRTableRow();
+            xrTableRow38.Weight = 0.38709677419354827D;
+
+            XRTableCell xrTableCell69 = new XRTableCell();
+            xrTableCell69.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
+            xrTableCell69.Multiline = true;
+            xrTableCell69.Name = "xrTableCell69";
+            xrTableCell69.StylePriority.UseFont = false;
+            xrTableCell69.StylePriority.UseTextAlignment = false;
+            xrTableCell69.Text = "This is computer generated invoice.";
+            xrTableCell69.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            xrTableCell69.Weight = 1D;
+
+            xrTableRow38.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] { xrTableCell69 });
+
+            XRTableRow xrTableRow39 = new XRTableRow();
+            xrTableRow39.Name = "xrTableRow39";
+            xrTableRow39.Weight = 0.38709677419354938D;
+
+            XRTableCell xrTableCell70 = new XRTableCell();
+            xrTableCell70.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
+            xrTableCell70.Multiline = true;
+            xrTableCell70.Name = "xrTableCell70";
+            xrTableCell70.StylePriority.UseFont = false;
+            xrTableCell70.StylePriority.UseTextAlignment = false;
+            xrTableCell70.Text = "Net amount inclusive of all taxes.";
+            xrTableCell70.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            xrTableCell70.Weight = 1D;
+
+            xrTableRow39.Cells.AddRange(new XRTableCell[] {xrTableCell70});
+
+            xrTableRow19.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {xrTableCell45});
+            xrTableRow19.Name = "xrTableRow19";
+            xrTableRow19.Weight = 0.3870967741935496D;
+
+            xrTableCell45.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
+            xrTableCell45.Multiline = true;
+            xrTableCell45.Name = "xrTableCell45";
+            xrTableCell45.StylePriority.UseFont = false;
+            xrTableCell45.StylePriority.UseTextAlignment = false;
+            xrTableCell45.Text = "Total savings are derived over MRP and additional promotions.";
+            xrTableCell45.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            xrTableCell45.Weight = 1D;
+            
+            xrTableRow23.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {xrTableCell54});
+            xrTableRow23.Name = "xrTableRow23";
+            xrTableRow23.Weight = 0.38709677419354982D;
+           
+            xrTableCell54.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
+            xrTableCell54.Multiline = true;
+            xrTableCell54.Name = "xrTableCell54";
+            xrTableCell54.StylePriority.UseFont = false;
+            xrTableCell54.StylePriority.UseTextAlignment = false;
+            xrTableCell54.Text = "Any exchange must be accompanied by original bill.";
+            xrTableCell54.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            xrTableCell54.Weight = 1D;
+           
+            xrTableRow24.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {xrTableCell55});
+            xrTableRow24.Name = "xrTableRow24";
+            xrTableRow24.Weight = 0.38709677419354938D;
+           
+            xrTableCell55.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
+            xrTableCell55.Multiline = true;
+            xrTableCell55.Name = "xrTableCell55";
+            xrTableCell55.StylePriority.UseFont = false;
+            xrTableCell55.StylePriority.UseTextAlignment = false;
+            xrTableCell55.Text = "Refund not accepted after 3 days from billl date.";
+            xrTableCell55.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            xrTableCell55.Weight = 1D;
+            
+            xrTableRow40.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {xrTableCell71});
+            xrTableRow40.Name = "xrTableRow40";
+            xrTableRow40.Weight = 0.38709677419354982D;
+           
+            xrTableCell71.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
+            xrTableCell71.Multiline = true;
+            xrTableCell71.Name = "xrTableCell71";
+            xrTableCell71.StylePriority.UseFont = false;
+            xrTableCell71.StylePriority.UseTextAlignment = false;
+            xrTableCell71.Text = "Without original bill refund cannot be taken";
+            xrTableCell71.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            xrTableCell71.Weight = 1D;
+            
+            xrTableRow25.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {xrTableCell56});
+            xrTableRow25.Name = "xrTableRow25";
+            xrTableRow25.Weight = 0.38709677419354938D;
+           
+            xrTableCell56.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
+            xrTableCell56.Multiline = true;
+            xrTableCell56.Name = "xrTableCell56";
+            xrTableCell56.StylePriority.UseFont = false;
+            xrTableCell56.StylePriority.UseTextAlignment = false;
+            xrTableCell56.Text = "Plastic, gifts, jwellery, toys and offer items are not refundable,";
+            xrTableCell56.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            xrTableCell56.Weight = 1D;
+            
+            xrTableRow26.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {xrTableCell57});
+            xrTableRow26.Name = "xrTableRow26";
+            xrTableRow26.Weight = 1.9354838709677431D;
+            
+            xrTableCell57.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
+            xrTableCell57.Multiline = true;
+            xrTableCell57.Name = "xrTableCell57";
+            xrTableCell57.StylePriority.UseFont = false;
+            xrTableCell57.StylePriority.UseTextAlignment = false;
+            xrTableCell57.Text = "***";
+            xrTableCell57.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomCenter;
+            xrTableCell57.Weight = 1D;
+
+            xrTable12.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {xrTableRow32,xrTableRow33,xrTableRow31,xrTableRow34,xrTableRow35,xrTableRow37,
+            xrTableRow36,xrTableRow38,xrTableRow39,xrTableRow19,xrTableRow23,xrTableRow24,xrTableRow40,xrTableRow25,xrTableRow26});
+            ReportFooter4.Controls.AddRange(new XRControl[] {xrTable12});
+
+            return ReportFooter4;
+        }
+
     }
 }
