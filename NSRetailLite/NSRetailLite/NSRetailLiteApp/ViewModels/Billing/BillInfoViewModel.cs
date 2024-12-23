@@ -11,6 +11,7 @@ using NSRetailLiteApp.Views.Billing;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -190,7 +191,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             CurrentBill.MOPValueList.Clear();
 
-            MopValueList.Where(x => x.MOPValue > 0).ToList().ForEach(x => CurrentBill.MOPValueList.Add(new MOP() { MOPId = x.MOPId, MOPValue = x.MOPValue }));
+            MopValueList.Where(x => x.MOPValue > 0).ToList().ForEach(x => CurrentBill.MOPValueList.Add(new MOP() { MOPId = x.MOPId,MOPName =x.MOPName , MOPValue = x.MOPValue }));
             CurrentBill.UserId = HomePageViewModel.User.UserId;
 
             //reset object
@@ -238,104 +239,107 @@ namespace NSRetailLiteApp.ViewModels.Billing
         private async Task PrintBill(Bill CurrentBill)
         {
 
-            XtraReport report = new BillHelper().GetBill(CurrentBill);
+            DataTable dtItems = Getbilldetail(CurrentBill);
+            DataTable dtMOP = GetMOPDataTable(CurrentBill);
+            XtraReport report = new BillHelper(dtItems, dtMOP).GetReport();
+            report.Parameters["CIN"].Value = "U51390AP2022PTC121579";
+            report.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
+            report.Parameters["FSSAI"].Value = "10114004000548";
+            report.Parameters["Address"].Value = "10114004000548";
+            report.Parameters["Phone"].Value = "10114004000548";
+            report.Parameters["BillNumber"].Value = CurrentBill.BillNumber;
+            report.Parameters["BillDate"].Value = DateTime.Now;
+            report.Parameters["CounterName"].Value = "10114004000548";
+            report.Parameters["UserName"].Value = "10114004000548";
+            report.Parameters["BranchName"].Value = "10114004000548";
+            report.Parameters["RoundingFactor"].Value = CurrentBill.Rounding;
+            report.Parameters["IsDuplicate"].Value = false;
+            report.Parameters["CustomerName"].Value = CurrentBill.CustomerName;
+            report.Parameters["CustomerNumber"].Value = CurrentBill.CustomerMobile;
+            report.Parameters["TenderedCash"].Value = CurrentBill.TenderedCash;
+            report.Parameters["TenderedChange"].Value = CurrentBill.TenderedChange;
+            report.Parameters["IsDoorDelivery"].Value = CurrentBill.IsDoorDelivery;
+            report.Parameters["CustomerGST"].Value = CurrentBill.CustomerGST;
+
             report.CreateDocument();
 
             // Export the report to a PDF file
             string resultFile = Path.Combine(FileSystem.Current.AppDataDirectory, report.Name + ".pdf");
-            MemoryStream stream = new MemoryStream();
-            report.ExportToPdf(stream);
+            report.ExportToPdf(resultFile);
 
-            var printService = ApplicationHelper.ServiceProvider.GetService<IPrintService>();
-
-            bool printed = printService != null &&
-                await printService.PrintAsync(stream, "BillPrintJob");
-
-            if (!printed)
+            await Share.Default.RequestAsync(new ShareFileRequest
             {
-                DisplayErrorMessage("Print operation failed");
-            }
+                Title = "Share PDF file",
+                File = new ShareFile(resultFile)
 
-            //await Share.Default.RequestAsync(new ShareFileRequest
-            //{
-            //    Title = "Share PDF file",
-            //    File = new ShareFile(resultFile)
-
-            //});
-
+            });
         }
 
-        private async Task PrintCurrentBill()
+        private DataTable Getbilldetail(Bill currentBill)
         {
-            
-            XtraReport report = new XtraReport()
+            DataTable dtBillDetail = new DataTable();
+            dtBillDetail.Columns.Add("ITEMCODE", typeof(string));
+            dtBillDetail.Columns.Add("ITEMNAME", typeof(string));
+            dtBillDetail.Columns.Add("HSNCODE", typeof(string));
+            dtBillDetail.Columns.Add("MRP", typeof(decimal));
+            dtBillDetail.Columns.Add("BILLEDAMOUNT", typeof(decimal));
+            dtBillDetail.Columns.Add("ISOPENITEM", typeof(bool));
+            dtBillDetail.Columns.Add("QUANTITY", typeof(decimal));
+            dtBillDetail.Columns.Add("WEIGHTINKGS", typeof(decimal));
+            dtBillDetail.Columns.Add("DISCOUNT", typeof(decimal));
+            dtBillDetail.Columns.Add("GSTCODE", typeof(string));
+            dtBillDetail.Columns.Add("GSTVALUE", typeof(decimal));
+            dtBillDetail.Columns.Add("CGST", typeof(decimal));
+            dtBillDetail.Columns.Add("SGST", typeof(decimal));
+            dtBillDetail.Columns.Add("CESS", typeof(decimal));
+            dtBillDetail.Columns.Add("CGSTDESC", typeof(decimal));
+            dtBillDetail.Columns.Add("SGSTDESC", typeof(decimal));
+            dtBillDetail.Columns.Add("CESSDESC", typeof(decimal));
+
+            currentBill.BillDetailList.Where(x => !x.IsDeleted).ToList().ForEach(x =>
             {
-                Name = "BillPrint",
-                PaperKind = DevExpress.Drawing.Printing.DXPaperKind.Custom,
-                PageWidth = 300,
-                Margins = new DevExpress.Drawing.DXMargins(7, 15, 9, 10),
-                PageHeight = 100
-            };
+                DataRow dataRow = dtBillDetail.NewRow();
+                dataRow["ITEMNAME"] = x.ItemName;
+                dataRow["ITEMCODE"] = x.ItemCode;
+                dataRow["HSNCODE"] = x.HSNCode;
+                dataRow["MRP"] = x.MRP;
+                dataRow["BILLEDAMOUNT"] = x.BilledAmount;
+                dataRow["ISOPENITEM"] = x.IsOpenItem;
+                dataRow["QUANTITY"] = x.Quantity;
+                dataRow["WEIGHTINKGS"] = x.WeightInKGs;
+                dataRow["DISCOUNT"] = x.Discount;
+                dataRow["GSTCODE"] = x.GSTCode;
+                dataRow["GSTVALUE"] = x.GSTValue;
+                dataRow["CGST"] = x.CGST;
+                dataRow["SGST"] = x.SGST;
+                dataRow["CESS"] = x.CESS;
+                dataRow["CGSTDESC"] = x.CGSTDesc;
+                dataRow["SGSTDESC"] = x.SGSTDesc;
+                dataRow["CESSDESC"] = x.CESSDesc;
 
-            DetailBand detail = new DetailBand() { PageBreak = PageBreak.AfterBand };
+                dtBillDetail.Rows.Add(dataRow);
+            });
 
-            // Create a label, apply Lobster font
-            XRLabel labelLobster = new XRLabel()
-            {
-                Text = CurrentBill.BillNumber,
-                CanGrow = true,
-                //SizeF = new System.Drawing.SizeF(report.PageWidth - report.Margins.Left - report.Margins.Right, 200),
-                SizeF = new System.Drawing.SizeF(275, 20)
-            };
-
-            // Create a label, apply Open Sans font and border
-            XRLabel labelOpenSans = new XRLabel()
-            {
-                Text = CurrentBill.TotalAmount.ToString(),
-                CanGrow = true,
-                Borders = DevExpress.XtraPrinting.BorderSide.All,
-                BorderColor = System.Drawing.Color.BlueViolet,
-                BorderWidth = 2,
-                SizeF = new System.Drawing.SizeF(report.PageWidth - report.Margins.Left - report.Margins.Right, 30),
-                LocationF = new System.Drawing.PointF(0, 30)
-            };
-
-            // Add both labels to the detail band
-            detail.Controls.Add(labelLobster);
-            detail.Controls.Add(labelOpenSans);
-
-            report.Bands.Add(detail);
-
-            report.CreateDocument();
-
-            // Export the report to a PDF file
-            string resultFile = Path.Combine(FileSystem.Current.AppDataDirectory, report.Name + ".pdf");
-            MemoryStream stream = new MemoryStream();
-            report.ExportToPdf(stream);
-
-            var printService = ApplicationHelper.ServiceProvider.GetService<IPrintService>();
-
-            bool printed = printService != null &&
-                await printService.PrintAsync(stream, "BillPrintJob");
-
-            if (!printed)
-            {
-                DisplayErrorMessage("Print operation failed");
-            }
-
-            PdfViewer pdfViewer = new();
-            await pdfViewer.SetDocumentSourceAsync(PdfDocumentSource.FromFile(resultFile));
-
-            //bool printed = await pdfViewer.PrintDocumentAsync("BillPrintJob");
-            //await DisplayAlert("Status", $"{printed}", "OK");
-
-            //await Share.Default.RequestAsync(new ShareFileRequest
-            //{
-            //    Title = "Share PDF file",
-            //    File = new ShareFile(resultFile)
-
-            //});
+            return dtBillDetail;
         }
+
+        private DataTable GetMOPDataTable(Bill currentBill)
+        {
+            DataTable dtMopDetail = new DataTable();
+            dtMopDetail.Columns.Add("MOPNAME", typeof(string));
+            dtMopDetail.Columns.Add("MOPVALUE", typeof(decimal));
+
+            currentBill.MOPValueList.Where(x => x.MOPValue > 0).ToList().ForEach(x =>
+            {
+                DataRow dataRow = dtMopDetail.NewRow();
+                dataRow["MOPNAME"] = x.MOPName;
+                dataRow["MOPVALUE"] = x.MOPValue;
+
+                dtMopDetail.Rows.Add(dataRow);
+            });
+            return dtMopDetail;
+        }
+
     }
 
     public partial class MOPViewModel : BaseViewModel
