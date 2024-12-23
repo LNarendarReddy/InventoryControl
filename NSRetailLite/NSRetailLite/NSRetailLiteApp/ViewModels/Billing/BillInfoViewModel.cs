@@ -5,6 +5,7 @@ using DevExpress.Maui.Mvvm;
 using DevExpress.Maui.Pdf;
 using DevExpress.XtraReports.UI;
 using Newtonsoft.Json;
+using NSRetailLiteApp.Helpers;
 using NSRetailLiteApp.Models;
 using NSRetailLiteApp.Views.Billing;
 using System;
@@ -207,7 +208,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
             try
             {
                 IsLoading = true;
-                await PrintCurrentBill();
+                await PrintBill(CurrentBill);
             }
             catch (Exception ex)
             {
@@ -231,6 +232,28 @@ namespace NSRetailLiteApp.ViewModels.Billing
             {
                 mop.IsEnabled = value != null && (value.MOPId == 0 || value.MOPId == mop.MOPId);
                 mop.MOPValue = value != null && value.MOPId == mop.MOPId && value.MOPId != CashMOP.MOPId ? CurrentBill.TotalAmount : 0;
+            }
+        }
+
+        private async Task PrintBill(Bill CurrentBill)
+        {
+
+            XtraReport report = new BillHelper().GetBill(CurrentBill);
+            report.CreateDocument();
+
+            // Export the report to a PDF file
+            string resultFile = Path.Combine(FileSystem.Current.AppDataDirectory, report.Name + ".pdf");
+            MemoryStream stream = new MemoryStream();
+            report.ExportToPdf(stream);
+
+            var printService = ApplicationHelper.ServiceProvider.GetService<IPrintService>();
+
+            bool printed = printService != null &&
+                await printService.PrintAsync(stream, "BillPrintJob");
+
+            if (!printed)
+            {
+                DisplayErrorMessage("Print operation failed");
             }
         }
 
