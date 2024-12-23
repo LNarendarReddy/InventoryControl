@@ -263,16 +263,31 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             report.CreateDocument();
 
-            // Export the report to a PDF file
-            string resultFile = Path.Combine(FileSystem.Current.AppDataDirectory, report.Name + ".pdf");
-            report.ExportToPdf(resultFile);
+            // Export the report to a stream
+            MemoryStream stream = new MemoryStream();
+            report.ExportToPdf(stream);
 
-            await Share.Default.RequestAsync(new ShareFileRequest
+            var printService = ApplicationHelper.ServiceProvider.GetService<IPrintService>();
+
+            bool printed = printService != null &&
+                await printService.PrintAsync(stream, "BillPrintJob");
+
+            if (!printed)
             {
-                Title = "Share PDF file",
-                File = new ShareFile(resultFile)
+                DisplayErrorMessage("Print operation failed");
+            }
 
-            });
+            //narender test code
+            //// Export the report to a PDF file
+            //string resultFile = Path.Combine(FileSystem.Current.AppDataDirectory, report.Name + ".pdf");
+            //report.ExportToPdf(resultFile);
+
+            //await Share.Default.RequestAsync(new ShareFileRequest
+            //{
+            //    Title = "Share PDF file",
+            //    File = new ShareFile(resultFile)
+
+            //});
         }
 
         private DataTable Getbilldetail(Bill currentBill)

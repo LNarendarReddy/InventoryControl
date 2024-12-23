@@ -190,6 +190,8 @@ namespace NSRetailLiteApp.Helpers
         { 
             rpt = new XtraReport();
             InitializeComponent();
+            rpt.PageWidth = 300;
+            rpt.RollPaper = true;
             drFooter.DataSource = dtItems;
             drItems.DataSource = dtItems;
             drGST.DataSource = dtItems;
