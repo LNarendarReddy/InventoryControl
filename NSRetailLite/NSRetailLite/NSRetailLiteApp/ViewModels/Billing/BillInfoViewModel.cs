@@ -238,10 +238,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
         private async Task PrintBill(Bill CurrentBill)
         {
-
-            DataTable dtItems = Getbilldetail(CurrentBill);
-            DataTable dtMOP = GetMOPDataTable(CurrentBill);
-            XtraReport report = new BillHelper(dtItems, dtMOP).GetReport();
+            XtraReport report = new BillHelper(CurrentBill).GetBillPrint();
             report.Parameters["CIN"].Value = "U51390AP2022PTC121579";
             report.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
             report.Parameters["FSSAI"].Value = "10114004000548";
@@ -261,23 +258,12 @@ namespace NSRetailLiteApp.ViewModels.Billing
             report.Parameters["IsDoorDelivery"].Value = CurrentBill.IsDoorDelivery;
             report.Parameters["CustomerGST"].Value = CurrentBill.CustomerGST;
 
-            report.CreateDocument();
-
-            // Export the report to a stream
-            MemoryStream stream = new MemoryStream();
-            report.ExportToPdf(stream);
-
-            var printService = ApplicationHelper.ServiceProvider.GetService<IPrintService>();
-
-            bool printed = printService != null &&
-                await printService.PrintAsync(stream, "BillPrintJob");
-
-            if (!printed)
+            if (!PrintHelper.PrintReport(report).Result)
             {
                 DisplayErrorMessage("Print operation failed");
             }
 
-            //narender test code
+            //narendar test code
             //// Export the report to a PDF file
             //string resultFile = Path.Combine(FileSystem.Current.AppDataDirectory, report.Name + ".pdf");
             //report.ExportToPdf(resultFile);
@@ -289,72 +275,6 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             //});
         }
-
-        private DataTable Getbilldetail(Bill currentBill)
-        {
-            DataTable dtBillDetail = new DataTable();
-            dtBillDetail.Columns.Add("ITEMCODE", typeof(string));
-            dtBillDetail.Columns.Add("ITEMNAME", typeof(string));
-            dtBillDetail.Columns.Add("HSNCODE", typeof(string));
-            dtBillDetail.Columns.Add("MRP", typeof(decimal));
-            dtBillDetail.Columns.Add("BILLEDAMOUNT", typeof(decimal));
-            dtBillDetail.Columns.Add("ISOPENITEM", typeof(bool));
-            dtBillDetail.Columns.Add("QUANTITY", typeof(decimal));
-            dtBillDetail.Columns.Add("WEIGHTINKGS", typeof(decimal));
-            dtBillDetail.Columns.Add("DISCOUNT", typeof(decimal));
-            dtBillDetail.Columns.Add("GSTCODE", typeof(string));
-            dtBillDetail.Columns.Add("GSTVALUE", typeof(decimal));
-            dtBillDetail.Columns.Add("CGST", typeof(decimal));
-            dtBillDetail.Columns.Add("SGST", typeof(decimal));
-            dtBillDetail.Columns.Add("CESS", typeof(decimal));
-            dtBillDetail.Columns.Add("CGSTDESC", typeof(decimal));
-            dtBillDetail.Columns.Add("SGSTDESC", typeof(decimal));
-            dtBillDetail.Columns.Add("CESSDESC", typeof(decimal));
-
-            currentBill.BillDetailList.Where(x => !x.IsDeleted).ToList().ForEach(x =>
-            {
-                DataRow dataRow = dtBillDetail.NewRow();
-                dataRow["ITEMNAME"] = x.ItemName;
-                dataRow["ITEMCODE"] = x.ItemCode;
-                dataRow["HSNCODE"] = x.HSNCode;
-                dataRow["MRP"] = x.MRP;
-                dataRow["BILLEDAMOUNT"] = x.BilledAmount;
-                dataRow["ISOPENITEM"] = x.IsOpenItem;
-                dataRow["QUANTITY"] = x.Quantity;
-                dataRow["WEIGHTINKGS"] = x.WeightInKGs;
-                dataRow["DISCOUNT"] = x.Discount;
-                dataRow["GSTCODE"] = x.GSTCode;
-                dataRow["GSTVALUE"] = x.GSTValue;
-                dataRow["CGST"] = x.CGST;
-                dataRow["SGST"] = x.SGST;
-                dataRow["CESS"] = x.CESS;
-                dataRow["CGSTDESC"] = x.CGSTDesc;
-                dataRow["SGSTDESC"] = x.SGSTDesc;
-                dataRow["CESSDESC"] = x.CESSDesc;
-
-                dtBillDetail.Rows.Add(dataRow);
-            });
-
-            return dtBillDetail;
-        }
-
-        private DataTable GetMOPDataTable(Bill currentBill)
-        {
-            DataTable dtMopDetail = new DataTable();
-            dtMopDetail.Columns.Add("MOPNAME", typeof(string));
-            dtMopDetail.Columns.Add("MOPVALUE", typeof(decimal));
-
-            currentBill.MOPValueList.Where(x => x.MOPValue > 0).ToList().ForEach(x =>
-            {
-                DataRow dataRow = dtMopDetail.NewRow();
-                dataRow["MOPNAME"] = x.MOPName;
-                dataRow["MOPVALUE"] = x.MOPValue;
-
-                dtMopDetail.Rows.Add(dataRow);
-            });
-            return dtMopDetail;
-        }
-
     }
 
     public partial class MOPViewModel : BaseViewModel

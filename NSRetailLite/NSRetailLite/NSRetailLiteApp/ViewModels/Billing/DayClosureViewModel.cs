@@ -1,11 +1,15 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DevExpress.Utils.About;
+using DevExpress.XtraReports.UI;
 using Newtonsoft.Json;
+using NSRetailLiteApp.Helpers;
 using NSRetailLiteApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +25,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
         public DayClosureViewModel(ObservableCollection<Denomination> denominations
             , ObservableCollection<MOP> mOPs, ObservableCollection<Refund> refunds
-            , int branchCounterId, int daySequenceId) 
+            , int branchCounterId, int daySequenceId)
         {
             Denominations = denominations;
             MOPs = mOPs;
@@ -81,6 +85,24 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             await DisplayAlert("Completed", "Day closure is completed", "OK");
 
+            DayClosure dayClosure = new();
+            GetAsync("Billing/getdayclosureforreport", ref dayClosure,
+                new Dictionary<string, string?>() {
+                    { "dayClosureID", holder.GenericID.ToString() },
+                    { "counterID", branchCounterId.ToString()}
+                });
+
+            if (holder.Exception != null) return;
+            XtraReport xtraReport = new DayClosureHelper(dayClosure).GetReport();
+            xtraReport.Parameters["Address"].Value = dayClosure.Address;
+            xtraReport.Parameters["Phone"].Value = dayClosure.PhoneNo;
+            xtraReport.Parameters["BranchName"].Value = dayClosure.BranchName;
+            xtraReport.Parameters["CounterName"].Value = dayClosure.CounterName;
+            xtraReport.Parameters["UserName"].Value = dayClosure.UserName;
+            if (!PrintHelper.PrintReport(xtraReport).Result)
+            {
+                DisplayErrorMessage("Print operation failed");
+            }
             await this.Pop();
         }
     }

@@ -44,6 +44,8 @@ namespace NSRetailLiteApp.Models
 
         public HolderClass Holder;
 
+        public DayClosure DayClosure;
+
     }
     
     public partial class Branch : BaseObservableObject

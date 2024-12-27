@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -322,6 +323,21 @@ namespace NSRetailLiteApp.Models
         public decimal _mOPValue;
     }
 
+    public partial class UserMOPBreakDown : BaseObservableObject
+    {
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _userName;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _mopName;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _mopValue;
+    }
+
     public partial class BillOffer : BaseObservableObject
     {
         [JsonIgnore]
@@ -423,6 +439,86 @@ namespace NSRetailLiteApp.Models
         [JsonIgnore]
         [ObservableProperty]
         public ObservableCollection<MOP> _denominations;
+
+    }
+
+    public partial class DayClosure : BaseObservableObject
+    {
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _dayClosureID;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public DateTime _closureDate;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _openingBalance;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _closingBalance;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _closingDifference;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _closedBy;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public decimal _refundAmount;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public DateTime _createdDate;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _completedBills;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _draftBills;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _voidItems;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _address;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _phoneNo;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _branchName;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _counterName;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _userName;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public ObservableCollection<Denomination> _denominations;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public ObservableCollection<MOP> _mopValues;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public ObservableCollection<UserMOPBreakDown> _userWiseMopBreakDown;
 
     }
 }

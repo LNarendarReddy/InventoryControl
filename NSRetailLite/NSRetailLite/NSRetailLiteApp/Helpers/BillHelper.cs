@@ -1,4 +1,6 @@
-﻿using DevExpress.XtraReports.UI;
+﻿using DevExpress.PivotGrid.ServerMode;
+using DevExpress.XtraReports.UI;
+using NSRetailLiteApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -179,14 +181,14 @@ namespace NSRetailLiteApp.Helpers
         private DataTable dtItems;
         private DataTable dtMOP;
 
-        public BillHelper(DataTable _dtItems, DataTable _dtMOP)
+        public BillHelper(Bill currentBill)
         {
-            dtItems = _dtItems;
-            dtMOP = _dtMOP;
+            dtItems = Getbilldetail(currentBill);
+            dtMOP = GetMOPDataTable(currentBill);
 
         }
 
-        public XtraReport GetReport()
+        public XtraReport GetBillPrint()
         { 
             rpt = new XtraReport();
             InitializeComponent();
@@ -579,7 +581,7 @@ namespace NSRetailLiteApp.Helpers
             this.xrTableCell18});
             this.xrTableRow13.Name = "xrTableRow13";
             this.xrTableRow13.StylePriority.UseBorders = true;
-            this.xrTableRow13.Weight = 0.56785711637241709D;
+            this.xrTableRow13.Weight = 1D;
             // 
             // xrTableCell17
             // 
@@ -606,16 +608,18 @@ namespace NSRetailLiteApp.Helpers
             this.xrTableCell18.Text = "xrTableCell18";
             this.xrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             this.xrTableCell18.Weight = 0.5D;
+          
             //// 
             //// xrPictureBox1
             //// 
-            //this.xrPictureBox1.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            //this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource(global::NSRetailPOS.Properties.Resources.Victory_Resized, true);
-            //this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            //this.xrPictureBox1.Name = "xrPictureBox1";
-            //this.xrPictureBox1.SizeF = new System.Drawing.SizeF(275F, 71.875F);
-            //this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage;
-            //this.xrPictureBox1.StylePriority.UseBorders = false;
+            this.xrPictureBox1.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            //this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource()
+
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrPictureBox1.Name = "xrPictureBox1";
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(275F, 71.875F);
+            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage;
+            this.xrPictureBox1.StylePriority.UseBorders = false;
             // 
             // CIN
             // 
@@ -1965,6 +1969,71 @@ namespace NSRetailLiteApp.Helpers
             this.TenderedChange,
             this.IsDoorDelivery,
             this.CustomerGST});
+        }
+
+        private DataTable Getbilldetail(Bill currentBill)
+        {
+            DataTable dtBillDetail = new DataTable();
+            dtBillDetail.Columns.Add("ITEMCODE", typeof(string));
+            dtBillDetail.Columns.Add("ITEMNAME", typeof(string));
+            dtBillDetail.Columns.Add("HSNCODE", typeof(string));
+            dtBillDetail.Columns.Add("MRP", typeof(decimal));
+            dtBillDetail.Columns.Add("BILLEDAMOUNT", typeof(decimal));
+            dtBillDetail.Columns.Add("ISOPENITEM", typeof(bool));
+            dtBillDetail.Columns.Add("QUANTITY", typeof(decimal));
+            dtBillDetail.Columns.Add("WEIGHTINKGS", typeof(decimal));
+            dtBillDetail.Columns.Add("DISCOUNT", typeof(decimal));
+            dtBillDetail.Columns.Add("GSTCODE", typeof(string));
+            dtBillDetail.Columns.Add("GSTVALUE", typeof(decimal));
+            dtBillDetail.Columns.Add("CGST", typeof(decimal));
+            dtBillDetail.Columns.Add("SGST", typeof(decimal));
+            dtBillDetail.Columns.Add("CESS", typeof(decimal));
+            dtBillDetail.Columns.Add("CGSTDESC", typeof(decimal));
+            dtBillDetail.Columns.Add("SGSTDESC", typeof(decimal));
+            dtBillDetail.Columns.Add("CESSDESC", typeof(decimal));
+
+            currentBill.BillDetailList.Where(x => !x.IsDeleted).ToList().ForEach(x =>
+            {
+                DataRow dataRow = dtBillDetail.NewRow();
+                dataRow["ITEMNAME"] = x.ItemName;
+                dataRow["ITEMCODE"] = x.ItemCode;
+                dataRow["HSNCODE"] = x.HSNCode;
+                dataRow["MRP"] = x.MRP;
+                dataRow["BILLEDAMOUNT"] = x.BilledAmount;
+                dataRow["ISOPENITEM"] = x.IsOpenItem;
+                dataRow["QUANTITY"] = x.Quantity;
+                dataRow["WEIGHTINKGS"] = x.WeightInKGs;
+                dataRow["DISCOUNT"] = x.Discount;
+                dataRow["GSTCODE"] = x.GSTCode;
+                dataRow["GSTVALUE"] = x.GSTValue;
+                dataRow["CGST"] = x.CGST;
+                dataRow["SGST"] = x.SGST;
+                dataRow["CESS"] = x.CESS;
+                dataRow["CGSTDESC"] = x.CGSTDesc;
+                dataRow["SGSTDESC"] = x.SGSTDesc;
+                dataRow["CESSDESC"] = x.CESSDesc;
+
+                dtBillDetail.Rows.Add(dataRow);
+            });
+
+            return dtBillDetail;
+        }
+
+        private DataTable GetMOPDataTable(Bill currentBill)
+        {
+            DataTable dtMopDetail = new DataTable();
+            dtMopDetail.Columns.Add("MOPNAME", typeof(string));
+            dtMopDetail.Columns.Add("MOPVALUE", typeof(decimal));
+
+            currentBill.MOPValueList.Where(x => x.MOPValue > 0).ToList().ForEach(x =>
+            {
+                DataRow dataRow = dtMopDetail.NewRow();
+                dataRow["MOPNAME"] = x.MOPName;
+                dataRow["MOPVALUE"] = x.MOPValue;
+
+                dtMopDetail.Rows.Add(dataRow);
+            });
+            return dtMopDetail;
         }
     }
 }
