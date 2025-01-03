@@ -121,8 +121,19 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
         {
             if (cmbBranch.EditValue == null)
                 return;
+            DataTable dt = null;
+            try
+            {
+                SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
+                SplashScreenManager.Default.SetWaitFormDescription("Loading...");
+                dt = countingRepository.GetCountingData(cmbBranch.EditValue);
+                SplashScreenManager.CloseForm();
 
-            DataTable dt = countingRepository.GetCountingData(cmbBranch.EditValue);
+            }
+            catch (Exception ex)
+            {
+                SplashScreenManager.CloseForm();
+            }
             frmCountingData obj = new frmCountingData(dt, cmbBranch.EditValue);
             obj.ShowDialog();
         }
@@ -131,8 +142,19 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
         {
             if (cmbBranch.EditValue == null)
                 return;
+            DataTable dt = null;
+            try
+            {
+                SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
+                SplashScreenManager.Default.SetWaitFormDescription("Loading...");
+                dt = countingRepository.GetCountingData_MRP(cmbBranch.EditValue);
+                SplashScreenManager.CloseForm();
 
-            DataTable dt = countingRepository.GetCountingData_MRP(cmbBranch.EditValue);
+            }
+            catch (Exception ex)
+            {
+                SplashScreenManager.CloseForm();
+            }
             frmCountingData obj = new frmCountingData(dt, cmbBranch.EditValue,true);
             obj.ShowDialog();
         }

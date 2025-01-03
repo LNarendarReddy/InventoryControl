@@ -52,13 +52,14 @@
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
@@ -146,6 +147,7 @@
             this.gridColumn6,
             this.gridColumn7,
             this.gridColumn8,
+            this.gridColumn17,
             this.gridColumn9,
             this.gridColumn10,
             this.gridColumn11,
@@ -160,6 +162,7 @@
             this.gvItems.OptionsBehavior.Editable = false;
             this.gvItems.OptionsView.ShowFooter = true;
             this.gvItems.OptionsView.ShowGroupPanel = false;
+            this.gvItems.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvItems_PopupMenuShowing);
             // 
             // gridColumn1
             // 
@@ -209,7 +212,7 @@
             // 
             // gridColumn6
             // 
-            this.gridColumn6.Caption = "Counted Quantity";
+            this.gridColumn6.Caption = "Physical Quantity";
             this.gridColumn6.FieldName = "COUNTEDQUANTITY";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
@@ -249,8 +252,8 @@
             // 
             // gridColumn9
             // 
-            this.gridColumn9.Caption = "Sales";
-            this.gridColumn9.FieldName = "SALES";
+            this.gridColumn9.Caption = "Sales Between Counting";
+            this.gridColumn9.FieldName = "SALESBETWEEN";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 5;
@@ -261,23 +264,19 @@
             this.gridColumn10.FieldName = "CREFUND";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 6;
+            this.gridColumn10.VisibleIndex = 7;
             // 
             // gridColumn11
             // 
             this.gridColumn11.Caption = "B Refund";
             this.gridColumn11.FieldName = "BREFUND";
             this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 7;
             // 
             // gridColumn12
             // 
             this.gridColumn12.Caption = "Dispatch";
             this.gridColumn12.FieldName = "DISPATCH";
             this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 8;
             // 
             // gridColumn13
             // 
@@ -285,7 +284,7 @@
             this.gridColumn13.FieldName = "FINALQUANTITY";
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 9;
+            this.gridColumn13.VisibleIndex = 8;
             // 
             // gridColumn15
             // 
@@ -293,7 +292,7 @@
             this.gridColumn15.FieldName = "SYSTEMQUANTITY";
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 10;
+            this.gridColumn15.VisibleIndex = 9;
             // 
             // gridColumn14
             // 
@@ -301,7 +300,13 @@
             this.gridColumn14.FieldName = "RECOUNTINGREQUIRED";
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 11;
+            this.gridColumn14.VisibleIndex = 10;
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "ITEMPRICEID";
+            this.gridColumn16.FieldName = "ITEMPRICEID";
+            this.gridColumn16.Name = "gridColumn16";
             // 
             // Root
             // 
@@ -365,11 +370,13 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // gridColumn16
+            // gridColumn17
             // 
-            this.gridColumn16.Caption = "ITEMPRICEID";
-            this.gridColumn16.FieldName = "ITEMPRICEID";
-            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn17.Caption = "Sales After Counting";
+            this.gridColumn17.FieldName = "SALESAFTER";
+            this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.Visible = true;
+            this.gridColumn17.VisibleIndex = 6;
             // 
             // frmCountingData
             // 
@@ -432,5 +439,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
     }
 }

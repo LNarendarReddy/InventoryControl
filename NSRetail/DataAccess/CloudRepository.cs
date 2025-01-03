@@ -199,7 +199,7 @@ namespace DataAccess
             }
         }
 
-        public void DeleteStockCounting(object BranchID, object ItemCodeID)
+        public void DeleteStockCounting(object BranchID, object ItemID)
         {
             try
             {
@@ -209,7 +209,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[CLOUD_USP_D_STOCKCOUNTINGDETAIL]";
                     cmd.Parameters.AddWithValue("@BranchID", BranchID);
-                    cmd.Parameters.AddWithValue("@ItemCodeID", ItemCodeID);
+                    cmd.Parameters.AddWithValue("@ITEMID", ItemID);
                     cmd.ExecuteNonQuery();
                 }
             }

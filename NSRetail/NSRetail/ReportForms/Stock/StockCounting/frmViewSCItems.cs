@@ -61,7 +61,7 @@ namespace NSRetail.ReportForms.Stock.StockCounting
                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
 
-            new CloudRepository().DeleteStockCounting(BranchID, gvItems.GetFocusedRowCellValue("ITEMCODEID"));
+            new CloudRepository().DeleteStockCounting(BranchID, gvItems.GetFocusedRowCellValue("ITEMID"));
             gvItems.DeleteRow(gvItems.FocusedRowHandle);
         }
 

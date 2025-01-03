@@ -242,6 +242,12 @@
     <Compile Include="ReportForms\Stock\StockCounting\frmCountingData.Designer.cs">
       <DependentUpon>frmCountingData.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Stock\StockCounting\frmCountingData_Sales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Stock\StockCounting\frmCountingData_Sales.Designer.cs">
+      <DependentUpon>frmCountingData_Sales.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Stock\StockCounting\frmCountingSheets.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1155,6 +1161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockCounting\frmCountingData.resx">
       <DependentUpon>frmCountingData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Stock\StockCounting\frmCountingData_Sales.resx">
+      <DependentUpon>frmCountingData_Sales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockCounting\frmCountingSheets.resx">
       <DependentUpon>frmCountingSheets.cs</DependentUpon>

@@ -311,13 +311,13 @@ namespace NSRetail.Countning
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            if (gvCounting.FocusedRowHandle < 0 ||
-                XtraMessageBox.Show("Are you sure want to delete item", "Confirm",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                return;
-            new CloudRepository().DeleteStockCounting(gvCounting.GetFocusedRowCellValue("STOCKCOUNTINGDETAILID")
-                , Utility.UserID);
-            gvCounting.DeleteRow(gvCounting.FocusedRowHandle);
+            //if (gvCounting.FocusedRowHandle < 0 ||
+            //    XtraMessageBox.Show("Are you sure want to delete item", "Confirm",
+            //    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            //    return;
+            //new CloudRepository().DeleteStockCounting(gvCounting.GetFocusedRowCellValue("STOCKCOUNTINGDETAILID")
+            //    , Utility.UserID);
+            //gvCounting.DeleteRow(gvCounting.FocusedRowHandle);
         }
 
         private void frmCounting_KeyDown(object sender, KeyEventArgs e)

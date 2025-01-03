@@ -33,11 +33,11 @@ namespace DataAccess
             }
             finally
             {
-                
+
             }
             return dtStockCounting;
         }
-        
+
         public DataTable GetStockCountingDetail(object StockCountingID)
         {
             DataTable dtStockCountingDetail = new DataTable();
@@ -61,7 +61,7 @@ namespace DataAccess
             }
             finally
             {
-                
+
             }
             return dtStockCountingDetail;
         }
@@ -89,7 +89,7 @@ namespace DataAccess
             }
             finally
             {
-                
+
             }
             return dtStockCountingDiff;
         }
@@ -117,7 +117,7 @@ namespace DataAccess
             }
             finally
             {
-                
+
             }
             return dtStockCountingDiff;
         }
@@ -131,7 +131,7 @@ namespace DataAccess
                 {
                     sqlTransaction = SQLCon.Sqlconn().BeginTransaction();
                     cmd.Connection = SQLCon.Sqlconn();
-                    cmd.Transaction =   sqlTransaction;
+                    cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_U_STOCKCOUNTING]";
                     cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
@@ -289,6 +289,33 @@ namespace DataAccess
             return dtStockCounting;
         }
 
+        public DataTable getCountingData_Sales(object BranchID, object ItemID, object FirstCountingDate, object LastCountingDate)
+        {
+            DataTable dtStockCounting = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_COUNTINGDATA_SALES]";
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@ITEMID", ItemID);
+                    cmd.Parameters.AddWithValue("@FIRSTCOUNTINGDATE", FirstCountingDate);
+                    cmd.Parameters.AddWithValue("@LASTCOUNTINGDATE", LastCountingDate);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtStockCounting);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Counting Details", ex);
+            }
+            return dtStockCounting;
+        }
+
         public DataTable DiscardStockCounting(object StockCountingID, object UserID)
         {
             DataTable dtStockCounting = new DataTable();
@@ -302,7 +329,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@STOCKCOUNTINGID", StockCountingID);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
                     int rowaffected = cmd.ExecuteNonQuery();
-                    if(rowaffected ==0)
+                    if (rowaffected == 0)
                         throw new Exception("Error While Discarding Counting Sheet");
                 }
             }
@@ -360,6 +387,26 @@ namespace DataAccess
                 throw new Exception("Error While Retrieving Stock Counting Items", ex);
             }
             return dtStockCounting;
+        }
+
+        public void DeleteStockCounting(object BranchID, object ItemID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_STOCKCOUNTINGDETAIL]";
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    cmd.Parameters.AddWithValue("@ITEMID", ItemID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while deleting stock counting detail");
+            }
         }
     }
 }
