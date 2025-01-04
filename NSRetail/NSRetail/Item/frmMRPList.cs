@@ -209,6 +209,7 @@ namespace NSRetail
             {
                 ITEMCODEID = _ItemCodeID
                 , Immediate = true
+                , GSTID = new ItemCodeRepository().GetGSTID(_ItemCodeID)
                 , UserID = Utility.UserID
                 , MoveStatus = false
             };

@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace DataAccess
 {
@@ -583,6 +584,27 @@ namespace DataAccess
             {
                 
             }
+        }
+
+        public object GetGSTID(object ItemCodeID)
+        {
+            object nextSKUCode = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_ITEMGST]";
+                    cmd.Parameters.AddWithValue("@ITEMCODEID", ItemCodeID);
+                    nextSKUCode = cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return nextSKUCode;
         }
     }
 }

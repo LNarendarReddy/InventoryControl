@@ -33,7 +33,12 @@ namespace NSRetail
         {
             txtMRP.EditValue = _itemMRP.MRP;
             txtSalePrice.EditValue = _itemMRP.SalePrice;
-            cmbGSTCode.EditValue = _itemMRP.GSTID;
+            if (_itemMRP.GSTID != null)
+            {
+                cmbGSTCode.EditValue = _itemMRP.GSTID;
+                cmbGSTCode.Enabled = false;
+            }
+
             chkImmediate.EditValue = _itemMRP.Immediate;
             dtLiveDate.EditValue = _itemMRP.GoLiveDateTime;
 
@@ -43,8 +48,6 @@ namespace NSRetail
                 && itemPriceID > 0;
 
             txtMRP.Enabled = !isEdit;
-            cmbGSTCode.Enabled = !isEdit;
-
             //bool.TryParse(_itemMRP.MoveStatus?.ToString(), out bool isProcessed);
             //chkImmediate.Enabled = 
             //    dtLiveDate.Enabled = isProcessed;
