@@ -158,5 +158,26 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             frmCountingData obj = new frmCountingData(dt, cmbBranch.EditValue,true);
             obj.ShowDialog();
         }
+
+        private void btnLocationData_Click(object sender, EventArgs e)
+        {
+            if (cmbBranch.EditValue == null)
+                return;
+            DataTable dt = null;
+            try
+            {
+                SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
+                SplashScreenManager.Default.SetWaitFormDescription("Loading...");
+                dt = countingRepository.getCountingData_Location(cmbBranch.EditValue);
+                SplashScreenManager.CloseForm();
+
+            }
+            catch (Exception ex)
+            {
+                SplashScreenManager.CloseForm();
+            }
+            frmCountingData_Location obj = new frmCountingData_Location(dt, cmbBranch.EditValue);
+            obj.ShowDialog();
+        }
     }
 }

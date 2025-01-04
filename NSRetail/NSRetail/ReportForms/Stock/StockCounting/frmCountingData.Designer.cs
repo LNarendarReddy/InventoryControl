@@ -45,10 +45,9 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -59,7 +58,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
@@ -151,7 +150,6 @@
             this.gridColumn9,
             this.gridColumn10,
             this.gridColumn11,
-            this.gridColumn12,
             this.gridColumn13,
             this.gridColumn15,
             this.gridColumn14,
@@ -250,6 +248,14 @@
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 4;
             // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "Sales After Counting";
+            this.gridColumn17.FieldName = "SALESAFTER";
+            this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.Visible = true;
+            this.gridColumn17.VisibleIndex = 6;
+            // 
             // gridColumn9
             // 
             this.gridColumn9.Caption = "Sales Between Counting";
@@ -260,23 +266,11 @@
             // 
             // gridColumn10
             // 
-            this.gridColumn10.Caption = "C Refund";
-            this.gridColumn10.FieldName = "CREFUND";
+            this.gridColumn10.Caption = "C Refund Between Counting";
+            this.gridColumn10.FieldName = "CREFUNDBETWEEN";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 7;
-            // 
-            // gridColumn11
-            // 
-            this.gridColumn11.Caption = "B Refund";
-            this.gridColumn11.FieldName = "BREFUND";
-            this.gridColumn11.Name = "gridColumn11";
-            // 
-            // gridColumn12
-            // 
-            this.gridColumn12.Caption = "Dispatch";
-            this.gridColumn12.FieldName = "DISPATCH";
-            this.gridColumn12.Name = "gridColumn12";
             // 
             // gridColumn13
             // 
@@ -284,7 +278,7 @@
             this.gridColumn13.FieldName = "FINALQUANTITY";
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 8;
+            this.gridColumn13.VisibleIndex = 9;
             // 
             // gridColumn15
             // 
@@ -292,7 +286,7 @@
             this.gridColumn15.FieldName = "SYSTEMQUANTITY";
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 9;
+            this.gridColumn15.VisibleIndex = 10;
             // 
             // gridColumn14
             // 
@@ -300,7 +294,7 @@
             this.gridColumn14.FieldName = "RECOUNTINGREQUIRED";
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 10;
+            this.gridColumn14.VisibleIndex = 11;
             // 
             // gridColumn16
             // 
@@ -370,13 +364,13 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // gridColumn17
+            // gridColumn11
             // 
-            this.gridColumn17.Caption = "Sales After Counting";
-            this.gridColumn17.FieldName = "SALESAFTER";
-            this.gridColumn17.Name = "gridColumn17";
-            this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 6;
+            this.gridColumn11.Caption = "C Refund After Counting";
+            this.gridColumn11.FieldName = "CREFUNDAFTER";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 8;
             // 
             // frmCountingData
             // 
@@ -426,8 +420,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraEditors.SimpleButton btnOk;
@@ -440,5 +432,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
     }
 }

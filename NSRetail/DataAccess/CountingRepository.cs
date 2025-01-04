@@ -316,6 +316,30 @@ namespace DataAccess
             return dtStockCounting;
         }
 
+        public DataTable getCountingData_Location(object BranchID)
+        {
+            DataTable dtStockCounting = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_COUNTINGDATA_LOCATION]";
+                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtStockCounting);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Counting Details", ex);
+            }
+            return dtStockCounting;
+        }
+
         public DataTable DiscardStockCounting(object StockCountingID, object UserID)
         {
             DataTable dtStockCounting = new DataTable();
