@@ -145,6 +145,7 @@ namespace NSRetail
             gcSKUCode.Visible = _IsDeal;
             gcItemCode.Visible = _IsDeal;
             gcItemName.Visible = _IsDeal;
+            gcMRP.Visible = _IsDeal;
             gcAppliesto.Visible = !_IsDeal;
             gcCategory.Visible = !_IsDeal;
             gcOfferThresholdPrice.Visible = !_IsDeal;

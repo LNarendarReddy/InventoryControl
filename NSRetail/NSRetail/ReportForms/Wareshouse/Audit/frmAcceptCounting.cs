@@ -11,12 +11,14 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
     public partial class frmAcceptCounting : XtraForm
     {
         object branchID;
+        DataTable dt = null;
 
-        public frmAcceptCounting(string branchName, object branchID)
+        public frmAcceptCounting(string branchName, object branchID, DataTable _dt)
         {
             InitializeComponent();
             this.branchID = branchID;
             txtBranchName.EditValue = branchName;
+            dt = _dt.Copy();
         }
 
         private void frmAcceptCounting_Load(object sender, EventArgs e)
@@ -65,9 +67,9 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 if (XtraMessageBox.Show(message, "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                     return;
 
-                new CountingRepository().AcceptStockCounting(branchID, string.Join(",", includedCategoryIDs), Utility.UserID);
+                new CountingRepository().AcceptStockCounting(branchID, string.Join(",", includedCategoryIDs), Utility.UserID, dt);
                 new CloudRepository().InitiateCounting(branchID, false);
-                XtraMessageBox.Show("Counting accepted succefully");
+                XtraMessageBox.Show("Counting accepted succesfully");
                 Close();
             }
             catch (Exception ex)

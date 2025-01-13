@@ -86,8 +86,12 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
         {
             if (cmbBranch.EditValue == null)
                 return;
-            new frmAcceptCounting(cmbBranch.Text, cmbBranch.EditValue).ShowDialog();
-            (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
+            DataTable dt = new DataTable();
+            if(ValidateMRPData(out dt))
+            {
+                new frmAcceptCounting(cmbBranch.Text, cmbBranch.EditValue, dt).ShowDialog();
+                (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
+            }
         }
 
         public override object GetData()
@@ -140,9 +144,14 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
 
         private void btnMRPData_Click(object sender, EventArgs e)
         {
+            ValidateMRPData(out DataTable dt);
+        }
+
+        private bool ValidateMRPData(out DataTable dt)
+        {
+            dt = new DataTable();
             if (cmbBranch.EditValue == null)
-                return;
-            DataTable dt = null;
+                return false;
             try
             {
                 SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
@@ -155,8 +164,9 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             {
                 SplashScreenManager.CloseForm();
             }
-            frmCountingData obj = new frmCountingData(dt, cmbBranch.EditValue,true);
+            frmCountingData obj = new frmCountingData(dt, cmbBranch.EditValue, true);
             obj.ShowDialog();
+            return obj.isSave;
         }
 
         private void btnLocationData_Click(object sender, EventArgs e)

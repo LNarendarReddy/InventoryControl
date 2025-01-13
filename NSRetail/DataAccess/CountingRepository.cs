@@ -161,6 +161,16 @@ namespace DataAccess
             SqlTransaction sqlTransaction = null;
             try
             {
+
+                List<string> ExcludedColumns = new List<string>()
+                { "ITEMID","SKUCODE", "ITEMCODE", "ITEMNAME", "CATEGORYNAME", 
+                    "SUBCATEGORYNAME","MRP","RECOUNTINGREQUIRED"};
+
+                foreach (string col in ExcludedColumns)
+                {
+                    dt.Columns.Remove(col);
+                }
+
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     sqlTransaction = SQLCon.Sqlconn().BeginTransaction();

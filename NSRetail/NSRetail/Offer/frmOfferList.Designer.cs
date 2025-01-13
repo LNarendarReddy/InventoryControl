@@ -105,6 +105,7 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gcMRP = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).BeginInit();
@@ -210,7 +211,8 @@
             this.gcDelete,
             this.GCBASEOFFERID,
             this.gridColumn3,
-            this.gcOfferExclusion});
+            this.gcOfferExclusion,
+            this.gcMRP});
             this.gvOffer.DetailHeight = 404;
             this.gvOffer.GridControl = this.gcOffer;
             this.gvOffer.Name = "gvOffer";
@@ -710,6 +712,12 @@
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
+            // gcMRP
+            // 
+            this.gcMRP.Caption = "MRP";
+            this.gcMRP.FieldName = "MRP";
+            this.gcMRP.Name = "gcMRP";
+            // 
             // frmOfferList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -795,5 +803,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtDecimal;
         private DevExpress.XtraGrid.Columns.GridColumn gcOfferExclusion;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnExclussion;
+        private DevExpress.XtraGrid.Columns.GridColumn gcMRP;
     }
 }
