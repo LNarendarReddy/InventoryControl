@@ -88,11 +88,11 @@ namespace NSRetailLiteApp.ViewModels.Billing
             DayClosure dayClosure = new();
             GetAsync("Billing/getdayclosureforreport", ref dayClosure,
                 new Dictionary<string, string?>() {
-                    { "dayClosureID", holder.GenericID.ToString() },
-                    { "counterID", branchCounterId.ToString()}
+                    { "dayClosureID", Convert.ToString(holder.GenericID) },
+                    { "counterID", Convert.ToString(branchCounterId) }
                 });
 
-            if (holder.Exception != null) return;
+            if (dayClosure.Exception != null) return;
             XtraReport xtraReport = new DayClosureHelper(dayClosure).GetReport();
             xtraReport.Parameters["Address"].Value = dayClosure.Address;
             xtraReport.Parameters["Phone"].Value = dayClosure.PhoneNo;

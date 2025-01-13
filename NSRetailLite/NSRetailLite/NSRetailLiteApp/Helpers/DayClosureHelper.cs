@@ -148,12 +148,19 @@ namespace NSRetailLiteApp.Helpers
 
         public DayClosureHelper(DayClosure dayClosure) 
         {
-            DataTable dt = GetDayClosure(dayClosure);
-            dtDayClosure = dt;
-            dtDenominations = GetDenominations(dayClosure);
-            dtMOP = GetMOP(dayClosure);
-            dtFooter = dt;
-            dtUserBreakDown = GetUserBreakDown(dayClosure);
+            try
+            {
+                DataTable dt = GetDayClosure(dayClosure);
+                dtDayClosure = dt;
+                dtDenominations = GetDenominations(dayClosure);
+                dtMOP = GetMOP(dayClosure);
+                dtFooter = dt;
+                dtUserBreakDown = GetUserBreakDown(dayClosure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public XtraReport GetReport()
@@ -161,6 +168,8 @@ namespace NSRetailLiteApp.Helpers
 
             rpt= new XtraReport();
             InitializeComponent();
+            rpt.PageWidth = 300;
+            rpt.RollPaper = true;
             rpt.DataSource = dtDayClosure;
             drDenominations.DataSource = dtDenominations;
             drMOP.DataSource = dtMOP;
@@ -1421,12 +1430,13 @@ namespace NSRetailLiteApp.Helpers
             // 
             // xrTableCell51
             // 
-            this.xrTableCell51.Font = new DevExpress.Drawing.DXFont("Arial", 9F, ((DevExpress.Drawing.DXFontStyle)((DevExpress.Drawing.DXFontStyle.Bold | DevExpress.Drawing.DXFontStyle.Underline))));
+            this.xrTableCell51.Font = new DevExpress.Drawing.DXFont("Arial", 9F, 
+                ((DevExpress.Drawing.DXFontStyle)((DevExpress.Drawing.DXFontStyle.Bold | DevExpress.Drawing.DXFontStyle.Underline))));
             this.xrTableCell51.Multiline = true;
             this.xrTableCell51.Name = "xrTableCell51";
             this.xrTableCell51.StylePriority.UseFont = false;
             this.xrTableCell51.StylePriority.UseTextAlignment = false;
-            this.xrTableCell51.Text = "User wise breakdown";
+            this.xrTableCell51.Text = "User Wise Breakdown";
             this.xrTableCell51.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell51.Weight = 3D;
             // 
@@ -1680,7 +1690,7 @@ namespace NSRetailLiteApp.Helpers
             dtMopDetail.Columns.Add("MOPNAME", typeof(string));
             dtMopDetail.Columns.Add("MOPVALUE", typeof(decimal));
 
-            dayClosure.MopValues.Where(x => x.MOPValue > 0).ToList().ForEach(x =>
+            dayClosure.MopValuesList.Where(x => x.MOPValue > 0).ToList().ForEach(x =>
             {
                 DataRow dataRow = dtMopDetail.NewRow();
                 dataRow["MOPNAME"] = x.MOPName;
@@ -1691,15 +1701,15 @@ namespace NSRetailLiteApp.Helpers
             return dtMopDetail;
         }
 
-        private DataTable GetDenominations(DayClosure dayClosure)
+        private DataTable GetDenominations(DayClosure  dayClosure)
         {
             DataTable dtDen = new DataTable();
-            dtDen.Columns.Add("[DENOMINATIONID]", typeof(int));
-            dtDen.Columns.Add("[DISPLAYVALUE]", typeof(string));
-            dtDen.Columns.Add("[CLOSUREVALUE]", typeof(decimal));
-            dtDen.Columns.Add("[MULTIPLIER]", typeof(decimal));
+            dtDen.Columns.Add("DENOMINATIONID", typeof(int));
+            dtDen.Columns.Add("DISPLAYVALUE", typeof(string));
+            dtDen.Columns.Add("CLOSUREVALUE", typeof(decimal));
+            dtDen.Columns.Add("MULTIPLIER", typeof(decimal));
 
-            dayClosure.Denominations.Where(x => x.ClosureValue > 0).ToList().ForEach(x =>
+            dayClosure.DenominationsList.ToList().ForEach(x =>
             {
                 DataRow dataRow = dtDen.NewRow();
                 dataRow["DENOMINATIONID"] = x.DenominationId;
@@ -1714,16 +1724,16 @@ namespace NSRetailLiteApp.Helpers
         private DataTable GetUserBreakDown(DayClosure dayClosure)
         {
             DataTable dtDen = new DataTable();
-            dtDen.Columns.Add("[USERNAME]", typeof(string));
-            dtDen.Columns.Add("[MOPNAME]", typeof(string));
-            dtDen.Columns.Add("[MOPVALUE]", typeof(decimal));
+            dtDen.Columns.Add("USERNAME", typeof(string));
+            dtDen.Columns.Add("MOPNAME", typeof(string));
+            dtDen.Columns.Add("TOTALMOPVALUE", typeof(decimal));
 
-            dayClosure.UserWiseMopBreakDown.Where(x => x.MopValue > 0).ToList().ForEach(x =>
+            dayClosure.UserWiseMopBreakDownList.Where(x => x.MopValue > 0).ToList().ForEach(x =>
             {
                 DataRow dataRow = dtDen.NewRow();
                 dataRow["USERNAME"] = x.UserName;
                 dataRow["MOPNAME"] = x.MopName;
-                dataRow["MOPVALUE"] = x.MopValue;
+                dataRow["TOTALMOPVALUE"] = x.MopValue;
                 dtDen.Rows.Add(dataRow);
             });
             return dtDen;

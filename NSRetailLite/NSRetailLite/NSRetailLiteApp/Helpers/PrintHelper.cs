@@ -27,6 +27,20 @@ namespace NSRetailLiteApp.Helpers
 
                 printed = printService != null &&
                     await printService.PrintAsync(stream, "BillPrintJob");
+
+
+                //narendar test code
+                // Export the report to a PDF file
+                //string resultFile = Path.Combine(FileSystem.Current.AppDataDirectory, report.Name + ".pdf");
+                //report.ExportToPdf(resultFile);
+
+                //await Share.Default.RequestAsync(new ShareFileRequest
+                //{
+                //    Title = "Share PDF file",
+                //    File = new ShareFile(resultFile)
+
+                //});
+                //printed = true;
             }
             catch (Exception ex)
             {

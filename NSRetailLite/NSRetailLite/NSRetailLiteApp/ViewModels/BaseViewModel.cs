@@ -133,6 +133,8 @@ namespace NSRetailLiteApp.ViewModels
                 callingObject = root.Holder.DaySequence as T;
             else if (callingObject.GetType() == typeof(HolderClass))
                 callingObject = root.Holder as T;
+            else if (callingObject.GetType() == typeof(DayClosure))
+                callingObject = root.Holder.DayClosure as T;
         }
 
         private void DisplayErrorMessage(BaseObservableObject callingObject, bool displayAlert = true)

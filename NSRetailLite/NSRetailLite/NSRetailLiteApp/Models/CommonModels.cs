@@ -14,7 +14,7 @@ namespace NSRetailLiteApp.Models
         public HolderClass Holder;
     }
 
-    internal class HolderClass : BaseObservableObject
+    public class HolderClass : BaseObservableObject
     {
         public LoggedInUser User;
 

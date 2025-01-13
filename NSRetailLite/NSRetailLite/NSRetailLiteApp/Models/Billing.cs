@@ -327,7 +327,7 @@ namespace NSRetailLiteApp.Models
     {
         [JsonIgnore]
         [ObservableProperty]
-        public int _userName;
+        public string _userName;
 
         [JsonIgnore]
         [ObservableProperty]
@@ -510,15 +510,15 @@ namespace NSRetailLiteApp.Models
 
         [JsonIgnore]
         [ObservableProperty]
-        public ObservableCollection<Denomination> _denominations;
+        public ObservableCollection<Denomination> _denominationsList;
 
         [JsonIgnore]
         [ObservableProperty]
-        public ObservableCollection<MOP> _mopValues;
+        public ObservableCollection<MOP> _mopValuesList;
 
         [JsonIgnore]
         [ObservableProperty]
-        public ObservableCollection<UserMOPBreakDown> _userWiseMopBreakDown;
+        public ObservableCollection<UserMOPBreakDown> _userWiseMopBreakDownList;
 
     }
 }
