@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DevExpress.Utils.About;
+using DevExpress.XtraReports.UI;
 using Newtonsoft.Json;
+using NSRetailLiteApp.Helpers;
 using NSRetailLiteApp.Models;
 using System;
 using System.Collections.Generic;
@@ -88,8 +91,31 @@ namespace NSRetailLiteApp.ViewModels.Billing
             });
 
             if (holder.Exception != null) return;
+
+            PrintRefundSlip(CurrentBill);
             await Pop();
             await Pop();
+        }
+
+        private async Task PrintRefundSlip(Bill CurrentBill)
+        {
+            XtraReport report = new CRefundHelper(CurrentBill).GetPrint();
+            report.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
+            report.Parameters["CIN"].Value = "U51390AP2022PTC121579";
+            report.Parameters["FSSAI"].Value = "10114004000548";
+            report.Parameters["Address"].Value = HomePageViewModel.User.Address;
+            report.Parameters["BillDate"].Value = DateTime.Now;
+            report.Parameters["BillNumber"].Value = CurrentBill.BillNumber;
+            report.Parameters["BranchName"].Value = HomePageViewModel.User.BranchName;
+            report.Parameters["CounterName"].Value = CurrentBill.CounterName;
+            report.Parameters["Phone"].Value = HomePageViewModel.User.PhoneNo;
+            report.Parameters["UserName"].Value = HomePageViewModel.User.FullName;
+            report.Parameters["IsWithBill"].Value = true;
+
+            if (!PrintHelper.PrintReport(report).Result)
+            {
+                DisplayErrorMessage("Print operation failed");
+            }
         }
     }
 }
