@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using DataAccess;
+using DevExpress.Utils.Menu;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
@@ -97,6 +98,25 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 return;
             GridView gView = gcSKU.MainView as GridView;
             gView.SetMasterRowExpanded(gvSKU.FocusedRowHandle, !gView.GetMasterRowExpanded(gvSKU.FocusedRowHandle));
+        }
+
+        private void gvSKU_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (gvSKU.FocusedRowHandle < 0)
+                return;
+            e.Menu.Items.Add(new DXMenuItem("View transit detail", new EventHandler(ViewTransitDetail_Click)));
+        }
+
+        private void ViewTransitDetail_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new ReportRepository().GetReportData("USP_R_TRANSITDETAILSBYITEMID", 
+                new Dictionary<string, object> { { "BRNACHID", luBranch.EditValue}, 
+                    { "ITEMID", gvSKU.GetFocusedRowCellValue("ITEMID") } });
+
+            frmTransitDetails obj = new frmTransitDetails(dt);
+            obj.ShowInTaskbar = false;
+            obj.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            obj.ShowDialog();
         }
     }
 }

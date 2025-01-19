@@ -118,6 +118,7 @@
             this.gvSKU.Name = "gvSKU";
             this.gvSKU.OptionsView.ShowFooter = true;
             this.gvSKU.OptionsView.ShowGroupPanel = false;
+            this.gvSKU.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvSKU_PopupMenuShowing);
             this.gvSKU.DoubleClick += new System.EventHandler(this.gvSKU_DoubleClick);
             // 
             // btnViewReport

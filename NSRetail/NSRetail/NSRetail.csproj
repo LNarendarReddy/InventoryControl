@@ -278,6 +278,12 @@
     <Compile Include="ReportForms\Stock\StockCounting\ucCountingApprovals.Designer.cs">
       <DependentUpon>ucCountingApprovals.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Stock\StockReports\frmTransitDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Stock\StockReports\frmTransitDetails.Designer.cs">
+      <DependentUpon>frmTransitDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Stock\StockReports\ucStockSummaryByPrice.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1185,6 +1191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockCounting\ucCountingApprovals.resx">
       <DependentUpon>ucCountingApprovals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Stock\StockReports\frmTransitDetails.resx">
+      <DependentUpon>frmTransitDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockReports\ucStockSummaryByPrice.resx">
       <DependentUpon>ucStockSummaryByPrice.cs</DependentUpon>
