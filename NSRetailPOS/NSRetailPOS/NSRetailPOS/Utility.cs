@@ -689,6 +689,8 @@ namespace NSRetailPOS
 
         public object FilterMRPByStock { get; set; }
         public int EnableDraftBills { get; set; }
+
+        public int WarehouseID = 45;
     }
 }
 

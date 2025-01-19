@@ -34,7 +34,7 @@ namespace NSRetailPOS.UI
 
         private void InitialLoad()
         {
-            DataSet dSInitialData = new RefundRepository().GetInitialLoad(Utility.loginInfo.UserID, Utility.branchInfo.BranchID);
+            DataSet dSInitialData = new RefundRepository().GetInitialLoad(Utility.loginInfo.UserID);
             if (dSInitialData != null && dSInitialData.Tables.Count > 0)
             {
                 if (dSInitialData.Tables[0].Rows.Count > 0)
@@ -50,6 +50,7 @@ namespace NSRetailPOS.UI
                 dtRefund = dSInitialData.Tables[1].Copy();
                 gcRefund.DataSource = dtRefund;
                 SNo = dtRefund.Rows.Count + 1;
+                gvRefund.BestFitColumns();
             }
         }
 
@@ -59,7 +60,7 @@ namespace NSRetailPOS.UI
             cmbRFR.Properties.DisplayMember = "REASONNAME";
             cmbRFR.Properties.ValueMember = "REASONID";
 
-            cmbCategory.Properties.DataSource = new ItemRepository().GetCategory();
+            cmbCategory.Properties.DataSource = new  RefundRepository().GetCategory();
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
             cmbCategory.Properties.ValueMember = "CATEGORYID";
 
@@ -75,7 +76,7 @@ namespace NSRetailPOS.UI
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODEID", sluItemCode.EditValue);
             txtItemCode.EditValue = sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODE");
             isOpenItem = Convert.ToBoolean(sluItemCodeView.GetRowCellValue(rowHandle, "ISOPENITEM"));
-            DataTable dtPrices = new ItemRepository().GetMRPList(sluItemCode.EditValue);
+            DataTable dtPrices = new RefundRepository().GetMRPList(sluItemCode.EditValue);
             if (dtPrices.Rows.Count > 1)
             {
                 frmMRPSelection mRPSelection = new frmMRPSelection(dtPrices, txtItemCode.EditValue, sluItemCode.Text)
@@ -129,8 +130,6 @@ namespace NSRetailPOS.UI
             txtMRP.EditValue = null;
             txtQuantity.EditValue = 1;
             txtWeightInKgs.EditValue = 0.00;
-            txtDescription.EditValue = null;
-
             if (focusItemCode)
                 txtItemCode.Focus();
         }
@@ -289,7 +288,7 @@ namespace NSRetailPOS.UI
             gvRefund.SetRowCellValue(e.RowHandle, "TRAYNUMBER", txtTrayNumber.EditValue);
             gvRefund.SetRowCellValue(e.RowHandle, "REASONID", cmbRFR.EditValue);
             gvRefund.SetRowCellValue(e.RowHandle, "REASONNAME", cmbRFR.Text);
-            gvRefund.SetRowCellValue(e.RowHandle, "REFUNDDESCRIPTION", txtDescription.Text);
+            gvRefund.SetRowCellValue(e.RowHandle, "REFUNDDESCRIPTION", txtDescription.EditValue);
         }
 
         private void frmBranchRefund_KeyDown(object sender, KeyEventArgs e)
@@ -355,7 +354,7 @@ namespace NSRetailPOS.UI
         {
             if (cmbCategory.EditValue != null)
             {
-                sluItemCode.Properties.DataSource = new ItemRepository().GetItemCodes(cmbCategory.EditValue);
+                sluItemCode.Properties.DataSource = new RefundRepository().GetItemCodes(cmbCategory.EditValue);
                 sluItemCode.Properties.DisplayMember = "ITEMNAME";
                 sluItemCode.Properties.ValueMember = "ITEMCODEID";
 
@@ -388,7 +387,7 @@ namespace NSRetailPOS.UI
 
         private void SaveBRefund()
         {
-            DataTable dt = new RefundRepository().SaveBRefund(Utility.loginInfo.UserID, Utility.branchInfo.BranchID, cmbCategory.EditValue);
+            DataTable dt = new RefundRepository().SaveBRefund(Utility.loginInfo.UserID, cmbCategory.EditValue);
             if (dt != null && dt.Rows.Count > 0)
             {
                 BRefundID = dt.Rows[0]["BREFUNDID"];
