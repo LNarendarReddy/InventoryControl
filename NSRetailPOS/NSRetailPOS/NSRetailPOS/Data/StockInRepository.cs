@@ -64,21 +64,26 @@ namespace NSRetailPOS.Data
 
         public void AcceptDispatch(object stockDispatchID, DataTable dtDispatchDetail)
         {
+            SqlTransaction transaction = null;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.SqlWHconn();
+                    transaction = SQLCon.SqlWHconn().BeginTransaction();
+                    cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[POS_USP_FINISH_STOCKIN]";
                     cmd.Parameters.AddWithValue("@UserID", Utility.loginInfo.UserID);
                     cmd.Parameters.AddWithValue("@StockDispatchID", stockDispatchID);
                     cmd.Parameters.AddWithValue("@DispatchDetails", dtDispatchDetail);
                     cmd.ExecuteNonQuery();
+                    transaction.Commit();
                 }
             }
             catch (Exception ex)
             {
+                transaction.Rollback();
                 throw new Exception("Error While closing stock in", ex);
             }
             finally

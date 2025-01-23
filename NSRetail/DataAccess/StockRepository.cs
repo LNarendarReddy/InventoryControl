@@ -167,7 +167,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_U_STOCKDISPATCH]";
+                    cmd.CommandText = "[USP_U_STOCKDISPATCH1]";
                     cmd.Parameters.AddWithValue("@STOCKDISPATCHID", ObjStockDispatch.STOCKDISPATCHID);
                     cmd.Parameters.AddWithValue("@TOBRANCHID", ObjStockDispatch.TOBRANCHID);
                     object obj = cmd.ExecuteScalar();
