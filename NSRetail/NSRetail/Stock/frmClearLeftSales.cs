@@ -56,7 +56,7 @@ namespace NSRetail.Stock
                 {
                     { "USERID", Utility.UserID }
                 };
-                DataSet dsItems = new ReportRepository().GetReportDataset("USP_P_LEFTSALEDISPATCH", parameters);                               
+                DataSet dsItems = new ReportRepository().GetReportDatasetWithTransaction("USP_P_LEFTSALEDISPATCH", parameters);                               
 
                 InvokeUIOperation(dsItems);
             }

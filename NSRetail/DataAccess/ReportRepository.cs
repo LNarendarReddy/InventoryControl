@@ -71,6 +71,37 @@ namespace DataAccess
             return dsReportData;
         }
 
+        public DataSet GetReportDatasetWithTransaction(string procedureName, Dictionary<string, object> parameters = null)
+        {
+            SqlTransaction sqlTransaction = null;
+            DataSet dsReportData = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    sqlTransaction = SQLCon.Sqlconn().BeginTransaction();
+                    cmd.Transaction = sqlTransaction;
+                    cmd.CommandTimeout = 1800;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = procedureName;
+                    ProcessParameters(cmd, parameters);
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsReportData);
+                    }
+                    sqlTransaction.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                sqlTransaction.Rollback();
+                throw new Exception($"Error While Retrieving {procedureName}", ex);
+            }
+            return dsReportData;
+        }
+
         public void SaveSupplierIndent(DealerIndent dealerIndent)
         {
             List<string> allowedColumns = new List<string>()
@@ -204,9 +235,9 @@ namespace DataAccess
             }
         }
 
-        public DataTable GetStockSummaryByID(object ItemID , object BranchID)
+        public DataSet GetStockSummaryByID(object ItemID , object BranchID)
         {
-            DataTable dtReportData = new DataTable();
+            DataSet dsReportData = new DataSet();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -218,7 +249,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        da.Fill(dtReportData);
+                        da.Fill(dsReportData);
                     }
                 }
             }
@@ -230,7 +261,7 @@ namespace DataAccess
             {
                 
             }
-            return dtReportData;
+            return dsReportData;
         }
 
         private void ProcessParameters(SqlCommand sqlCommand, Dictionary<string, object> parameters)

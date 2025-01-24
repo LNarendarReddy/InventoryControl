@@ -54,13 +54,18 @@ namespace NSRetail.ReportForms.Stock.StockReports
                     , { "IncludeItem", chkIncludeItem.EditValue }
                 };
                 
-                DataTable dt = reportRepository.GetStockSummaryByID(sluSKUCode.EditValue, cmbBranch.EditValue);
-                if (dt != null && dt.Rows.Count > 0)
+                DataSet ds = reportRepository.GetStockSummaryByID(sluSKUCode.EditValue, cmbBranch.EditValue);
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
                 {
-                    txtQuantity.EditValue = Convert.ToDecimal(!Convert.ToBoolean(dt.Rows[0]["ISOPENITEM"].ToString()) ? dt.Rows[0][0] : dt.Rows[0][1]);
+                    txtQuantity.EditValue = 
+                        Convert.ToDecimal(!Convert.ToBoolean(ds.Tables[0].Rows[0]["ISOPENITEM"].ToString()) ? 
+                        ds.Tables[0].Rows[0][0] : ds.Tables[0].Rows[0][1]);
+                    txtInTransitQuantity.EditValue = 
+                        Convert.ToDecimal(!Convert.ToBoolean(ds.Tables[1].Rows[0]["ISOPENITEM"].ToString()) ?
+                        ds.Tables[1].Rows[0][0] : ds.Tables[1].Rows[0][1]);
                 }
 
-                DataTable dtResult = reportRepository.GetReportData("USP_RPT_ITEMLEDGER2", searchCriteria);
+                DataTable dtResult = reportRepository.GetReportData("USP_RPT_ITEMLEDGER", searchCriteria);
                 int lastRowHandle = 0;
                 if (dtResult.Rows.Count > 0)
                 {
