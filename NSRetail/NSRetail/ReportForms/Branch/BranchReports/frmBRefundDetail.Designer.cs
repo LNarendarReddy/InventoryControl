@@ -55,6 +55,7 @@
             this.BRDID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -155,7 +156,8 @@
             this.gcCPWT,
             this.BRDID,
             this.gridColumn11,
-            this.gcDescription});
+            this.gcDescription,
+            this.gridColumn12});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -255,8 +257,7 @@
             this.gridColumn9.FieldName = "ACCEPTEDQUANTITY";
             this.gridColumn9.MinWidth = 23;
             this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 7;
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Width = 47;
             // 
             // gridColumn10
@@ -265,8 +266,7 @@
             this.gridColumn10.FieldName = "ACCEPTEDWEIGHTKGS";
             this.gridColumn10.MinWidth = 23;
             this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 8;
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Width = 52;
             // 
             // gcReason
@@ -276,7 +276,7 @@
             this.gcReason.FieldName = "REASONID";
             this.gcReason.Name = "gcReason";
             this.gcReason.Visible = true;
-            this.gcReason.VisibleIndex = 9;
+            this.gcReason.VisibleIndex = 7;
             this.gcReason.Width = 54;
             // 
             // cmbReason
@@ -310,7 +310,7 @@
             this.gcSupplier.FieldName = "DEALERID";
             this.gcSupplier.Name = "gcSupplier";
             this.gcSupplier.Visible = true;
-            this.gcSupplier.VisibleIndex = 10;
+            this.gcSupplier.VisibleIndex = 8;
             this.gcSupplier.Width = 239;
             // 
             // cmbSupplier
@@ -333,7 +333,7 @@
             this.gcCPWOT.Name = "gcCPWOT";
             this.gcCPWOT.OptionsColumn.AllowEdit = false;
             this.gcCPWOT.Visible = true;
-            this.gcCPWOT.VisibleIndex = 11;
+            this.gcCPWOT.VisibleIndex = 9;
             this.gcCPWOT.Width = 69;
             // 
             // gcCPWT
@@ -343,7 +343,7 @@
             this.gcCPWT.Name = "gcCPWT";
             this.gcCPWT.OptionsColumn.AllowEdit = false;
             this.gcCPWT.Visible = true;
-            this.gcCPWT.VisibleIndex = 12;
+            this.gcCPWT.VisibleIndex = 10;
             this.gcCPWT.Width = 72;
             // 
             // BRDID
@@ -364,7 +364,13 @@
             this.gcDescription.FieldName = "REFUNDDESCRIPTION";
             this.gcDescription.Name = "gcDescription";
             this.gcDescription.Visible = true;
-            this.gcDescription.VisibleIndex = 13;
+            this.gcDescription.VisibleIndex = 11;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "Category";
+            this.gridColumn12.FieldName = "CATEGORYNAME";
+            this.gridColumn12.Name = "gridColumn12";
             // 
             // Root
             // 
@@ -481,5 +487,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn BRDID;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gcDescription;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
     }
 }

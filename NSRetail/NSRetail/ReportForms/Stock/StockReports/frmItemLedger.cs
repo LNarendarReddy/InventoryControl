@@ -60,9 +60,16 @@ namespace NSRetail.ReportForms.Stock.StockReports
                     txtQuantity.EditValue = 
                         Convert.ToDecimal(!Convert.ToBoolean(ds.Tables[0].Rows[0]["ISOPENITEM"].ToString()) ? 
                         ds.Tables[0].Rows[0][0] : ds.Tables[0].Rows[0][1]);
-                    txtInTransitQuantity.EditValue = 
-                        Convert.ToDecimal(!Convert.ToBoolean(ds.Tables[1].Rows[0]["ISOPENITEM"].ToString()) ?
-                        ds.Tables[1].Rows[0][0] : ds.Tables[1].Rows[0][1]);
+                    if (ds.Tables[1].Rows.Count > 0)
+                    {
+                        txtInTransitQuantity.EditValue =
+                            Convert.ToDecimal(!Convert.ToBoolean(ds.Tables[1].Rows[0]["ISOPENITEM"].ToString()) ?
+                            ds.Tables[1].Rows[0][0] : ds.Tables[1].Rows[0][1]);
+                    }
+                    else
+                    {
+                        txtInTransitQuantity.EditValue = 0;
+                    }
                 }
 
                 DataTable dtResult = reportRepository.GetReportData("USP_RPT_ITEMLEDGER", searchCriteria);

@@ -48,6 +48,7 @@
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,7 +59,6 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
@@ -156,6 +156,8 @@
             this.gridColumn16});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
+            this.gvItems.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "SKUCODE", null, "(Count: {0})")});
             this.gvItems.Name = "gvItems";
             this.gvItems.OptionsBehavior.Editable = false;
             this.gvItems.OptionsView.ShowFooter = true;
@@ -272,6 +274,14 @@
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 7;
             // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "C Refund After Counting";
+            this.gridColumn11.FieldName = "CREFUNDAFTER";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 8;
+            // 
             // gridColumn13
             // 
             this.gridColumn13.Caption = "Final Quantity";
@@ -363,14 +373,6 @@
             this.layoutControlItem3.Size = new System.Drawing.Size(119, 34);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
-            // 
-            // gridColumn11
-            // 
-            this.gridColumn11.Caption = "C Refund After Counting";
-            this.gridColumn11.FieldName = "CREFUNDAFTER";
-            this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 8;
             // 
             // frmCountingData
             // 
