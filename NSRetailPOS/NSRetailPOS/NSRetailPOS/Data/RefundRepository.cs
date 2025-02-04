@@ -307,6 +307,7 @@ namespace NSRetailPOS.Data
                     cmd.Connection = SQLCon.SqlWHconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_REASONFORREFUND]";
+                    cmd.Parameters.AddWithValue("@BRANCHID", Utility.branchInfo.BranchID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtRFR);

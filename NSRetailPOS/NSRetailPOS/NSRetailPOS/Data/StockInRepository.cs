@@ -77,6 +77,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@UserID", Utility.loginInfo.UserID);
                     cmd.Parameters.AddWithValue("@StockDispatchID", stockDispatchID);
                     cmd.Parameters.AddWithValue("@DispatchDetails", dtDispatchDetail);
+                    cmd.Parameters.AddWithValue("@COUNTERID", Utility.branchInfo.BranchCounterID);
                     cmd.ExecuteNonQuery();
                     transaction.Commit();
                 }

@@ -56,6 +56,7 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcDispatchDetail)).BeginInit();
@@ -146,10 +147,12 @@
             this.gridColumn6,
             this.gridColumn7,
             this.gridColumn8,
-            this.gridColumn9});
+            this.gridColumn9,
+            this.gridColumn10});
             this.gvDispatchDetail.GridControl = this.gcDispatchDetail;
             this.gvDispatchDetail.Name = "gvDispatchDetail";
             this.gvDispatchDetail.OptionsView.ShowGroupPanel = false;
+            this.gvDispatchDetail.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gvDispatchDetail_ShowingEditor);
             // 
             // gridColumn1
             // 
@@ -383,6 +386,15 @@
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "Weight In Kgs";
+            this.gridColumn10.FieldName = "WEIGHTINKGS";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 8;
+            // 
             // frmStockInDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,5 +458,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraEditors.DateEdit dtCreatedDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
     }
 }

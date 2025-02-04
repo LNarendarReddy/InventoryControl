@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using DevExpress.XtraEditors;
 using NSRetailPOS.Data;
 
@@ -38,9 +39,19 @@ namespace NSRetailPOS.UI
             dtDispatchDetail.Columns.Remove("GSTCODE");
             dtDispatchDetail.Columns.Remove("TRAYNUMBER");
             dtDispatchDetail.Columns.Remove("DISPATCHQUANTITY");
+            dtDispatchDetail.Columns.Remove("WEIGHTINKGS");
             new StockInRepository().AcceptDispatch(selectedDispatch["STOCKDISPATCHID"], dtDispatchDetail);
             IsSave = true;
             this.Close();
+        }
+
+        private void gvDispatchDetail_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (decimal.TryParse(Convert.ToString(gvDispatchDetail.GetFocusedRowCellValue("WEIGHTINKGS")), out decimal dvalue) && dvalue > 0)
+            {
+                e.Cancel = true;
+                return;
+            }
         }
     }
 }
