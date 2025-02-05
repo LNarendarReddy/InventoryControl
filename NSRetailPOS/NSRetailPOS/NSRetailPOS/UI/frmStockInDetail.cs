@@ -47,7 +47,7 @@ namespace NSRetailPOS.UI
 
         private void gvDispatchDetail_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (decimal.TryParse(Convert.ToString(gvDispatchDetail.GetFocusedRowCellValue("WEIGHTINKGS")), out decimal dvalue) && dvalue > 0)
+            if (bool.TryParse(Convert.ToString(gvDispatchDetail.GetFocusedRowCellValue("ISOPENITEM")), out bool bValue) && bValue)
             {
                 e.Cancel = true;
                 return;

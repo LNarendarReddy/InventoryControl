@@ -43,6 +43,7 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dtApprovedDate = new DevExpress.XtraEditors.DateTimeOffsetEdit();
             this.txtApprovedBy = new DevExpress.XtraEditors.TextEdit();
             this.txtDispatchNumber = new DevExpress.XtraEditors.TextEdit();
@@ -56,7 +57,7 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcDispatchDetail)).BeginInit();
@@ -148,7 +149,8 @@
             this.gridColumn7,
             this.gridColumn8,
             this.gridColumn9,
-            this.gridColumn10});
+            this.gridColumn10,
+            this.gridColumn11});
             this.gvDispatchDetail.GridControl = this.gcDispatchDetail;
             this.gvDispatchDetail.Name = "gvDispatchDetail";
             this.gvDispatchDetail.OptionsView.ShowGroupPanel = false;
@@ -239,6 +241,15 @@
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 7;
             this.gridColumn9.Width = 76;
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "Weight In Kgs";
+            this.gridColumn10.FieldName = "WEIGHTINKGS";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 8;
             // 
             // dtApprovedDate
             // 
@@ -386,14 +397,11 @@
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
-            // gridColumn10
+            // gridColumn11
             // 
-            this.gridColumn10.Caption = "Weight In Kgs";
-            this.gridColumn10.FieldName = "WEIGHTINKGS";
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.OptionsColumn.AllowEdit = false;
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 8;
+            this.gridColumn11.Caption = "ISOPENITEM";
+            this.gridColumn11.FieldName = "ISOPENITEM";
+            this.gridColumn11.Name = "gridColumn11";
             // 
             // frmStockInDetail
             // 
@@ -459,5 +467,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraEditors.DateEdit dtCreatedDate;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
     }
 }

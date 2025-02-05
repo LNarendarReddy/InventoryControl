@@ -110,6 +110,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 dt.Columns.Remove("COSTPRICEWOT");
                 dt.Columns.Remove("COSTPRICEWT");
                 dt.Columns.Remove("REFUNDDESCRIPTION");
+                dt.Columns.Remove("CATEGORYNAME");
                 new POSRepository().AcceptBRefund(CounterID, BRefundID, Utility.UserID, dt);
                 IsSave = true;
                 this.Close();

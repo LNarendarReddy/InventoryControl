@@ -30,7 +30,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
             ContextmenuItems = new Dictionary<string, string>
             { 
-                { "View", "5BEC2D9A-2266-4B3B-A5A0-EE16079109BB" },
+                { "Print", "5BEC2D9A-2266-4B3B-A5A0-EE16079109BB" },
+                { "View Items", ""},
                 //{ "Print to DM", "16D2B49F-BE0F-44A9-844A-F30954158C77" }, 
                 { "Discard", "62146C6B-56F9-4504-BA2D-B07579CB5A63" }, 
                 //{ "Revert", "3FF71395-4024-421A-9CFD-86891245BACD" }, 
@@ -74,11 +75,15 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
                 switch (buttonText)
                 {
-                    case "View":
+                    case "Print":
                         rptDispatch rpt = new rptDispatch(ds.Tables[0], ds.Tables[1]);
                         rpt.Parameters["stReportHeader"].Value = $"BRANCH DISPATCH REPORT({Convert.ToString(drFocusedRow["STATUS"])})";
                         rpt.ShowPrintMarginsWarning = false;
                         rpt.ShowRibbonPreview();
+                        break;
+                    case "View Items":
+                        frmDispatchDetail obj = new frmDispatchDetail(ds.Tables[1]);
+                        obj.ShowDialog();
                         break;
                     case "Print to DM":
                         Utilities.DotMatrixPrintHelper.PrintDispatch(ds);
