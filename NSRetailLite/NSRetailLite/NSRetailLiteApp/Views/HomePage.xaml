@@ -131,7 +131,7 @@
                                 <VerticalStackLayout Grid.Row="0" Grid.Column="3">
                                     <ImageButton 
                                     Margin="0, 5, 0, 2" Source="logout.png" Aspect="Fill" 
-                                    HeightRequest="50" WidthRequest="50" Command="{Binding Path=ChangePasswordCommand}"/>
+                                    HeightRequest="50" WidthRequest="50" Command="{Binding Path=LogoutCommand}"/>
                                     <Label Text="Logout" FontSize="Small" HorizontalTextAlignment="Center"/>
                                 </VerticalStackLayout>
                             </Grid>

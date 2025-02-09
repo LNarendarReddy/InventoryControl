@@ -4,9 +4,11 @@ using Microsoft.Maui.Controls.PlatformConfiguration;
 using NSRetailLiteApp.Models;
 using NSRetailLiteApp.ViewModels.Billing;
 using NSRetailLiteApp.ViewModels.Common;
+using NSRetailLiteApp.ViewModels.ItemDetails;
 using NSRetailLiteApp.ViewModels.StockCounting;
 using NSRetailLiteApp.Views.Billing;
 using NSRetailLiteApp.Views.Common;
+using NSRetailLiteApp.Views.ItemDetails;
 using NSRetailLiteApp.Views.StockCounting;
 using System;
 using System.Collections.Generic;
@@ -277,7 +279,42 @@ namespace NSRetailLiteApp.ViewModels
 
         private async Task ItemDetails()
         {
-            DisplayAlert("Pending module", "Item details", "OK");
+            string eanCode = await Application.Current?.MainPage?.DisplayPromptAsync("Item Detail", "Enter\\scan the EAN Code", "OK");
+            if (string.IsNullOrEmpty(eanCode)) return;
+
+            HolderClass holderClass = new();
+            GetAsync("Item/getItem", ref holderClass, new Dictionary<string, string?>()
+            {
+                { "ItemCode", eanCode }
+            });
+
+            Item item = holderClass.Item;
+
+            if (item == null || item.ItemCodeList == null || !item.ItemCodeList.Any()) return;
+
+            ItemCodeData selectedItemCode;
+
+            if (item.ItemCodeList.Count > 1)
+            {
+                ItemCodeSelectionViewModel itemCodeSelectionViewModel = new ItemCodeSelectionViewModel(item);
+                await base.ShowPopup(item, new ItemCodeSelectionPage(itemCodeSelectionViewModel));
+                selectedItemCode = itemCodeSelectionViewModel.SelectedItemCode;
+            }
+            else
+            {
+                selectedItemCode = item.ItemCodeList[0];
+            }
+
+            if (selectedItemCode == null) return;
+
+            holderClass = new();
+            GetAsync("Item/getItemdata", ref holderClass, new Dictionary<string, string?>()
+            {
+                { "ItemCodeID", selectedItemCode.ItemCodeID },
+                { "BranchID", HomePageViewModel.User.BranchId.ToString() }
+            });
+
+            await RedirectToPage(holderClass, new ItemDetailsPage(new ItemDetailsViewModel(item, holderClass.ItemCode)));
         }
     }
 }

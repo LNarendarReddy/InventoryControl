@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.ItemDetails.ItemDetailsPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" 
+             Title="ItemDetailsPage">
+    <ContentPage.Resources>
+        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverted" />
+    </ContentPage.Resources>
+    
+    <VerticalStackLayout Margin="20">
+        <Grid RowDefinitions="Auto, Auto" RowSpacing="10">
+            <Label Text="{Binding Path=ItemData.SKUCode, StringFormat='SKU Code : {0}'}" Grid.Row="0" FontSize="Medium" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding Path=ItemCodeData.ItemCode, StringFormat='Item Code : {0}'}" Grid.Row="1" FontSize="Medium" HorizontalTextAlignment="Center"/>
+        </Grid>
+        
+        <Button IsEnabled="False" BackgroundColor="Transparent" Text="{Binding Path=ItemData.ItemName}" 
+                FontSize="Large" LineBreakMode="WordWrap"/>
+        
+        <ScrollView Margin="0, 20, 0, 0">
+            <Frame>
+                <VerticalStackLayout>
+                    <Label Text="Item Prices" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                    <CollectionView ItemsSource="{Binding Path=ItemCodeData.ItemPriceList}" SelectionMode="Single"
+                                    SelectedItem="{Binding Path=SelectedItemPrice}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*, Auto, Auto, 10, Auto, Auto, 10, Auto, Auto, *" RowDefinitions="Auto, Auto" Margin="5">
+                                    <Label Text="MRP: " Grid.Column="1" Grid.Row="0"/>
+                                    <Label Text="{Binding Path=MRP}" Grid.Column="2" Grid.Row="0" FontAttributes="Bold"/>
+                                    <Label Text="Sale Price: " Grid.Column="4" Grid.Row="0"/>
+                                    <Label Text="{Binding Path=SalePrice}" Grid.Column="5" Grid.Row="0" FontAttributes="Bold"/>
+                                    <Label Text="Qty: " Grid.Column="7" Grid.Row="0"/>
+                                    <Label Text="{Binding Path=QtyOrWeightInKGs}" Grid.Column="8" Grid.Row="0" FontAttributes="Bold"/>
+                                    <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.ColumnSpan="7" Grid.Row="1" Grid.Column="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+        </ScrollView>
+
+        <ScrollView Margin="0, 20, 0, 0">
+            <Frame>
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Item Offers" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                    <Label Text="(Offer Type Name) || (Offer Code) || (Value)" HorizontalTextAlignment="Center" />
+                    <CollectionView ItemsSource="{Binding Path=ItemCodeData.OfferList}" SelectionMode="Single"
+                                    SelectedItem="{Binding Path=SelectedItemOffer}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*, Auto, 30, Auto, 30, Auto, *" RowDefinitions="Auto, Auto" Margin="5">
+                                    <Label Text="{Binding Path=OfferTypeName}" Grid.Column="1" Grid.Row="0" FontAttributes="Bold"/>
+                                    <Label Text="||" Grid.Column="2" Grid.Row="0" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Path=OfferCode}" Grid.Column="3" Grid.Row="0" FontAttributes="Bold"/>
+                                    <Label Text="||" Grid.Column="4" Grid.Row="0" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Path=OfferValue}" Grid.Column="5" Grid.Row="0" FontAttributes="Bold"/>
+                                    <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.ColumnSpan="5" Grid.Row="1" Grid.Column="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+        </ScrollView>
+        <Frame Margin="0, 20, 0, 0">
+            <VerticalStackLayout>
+                <Label Text="Select Item Price and Item Offer to get the Final price" HorizontalTextAlignment="Center"
+                       IsVisible="{Binding Path=ShowFinalPrice, Converter={StaticResource Key=InvertedBoolConverted}}" />
+                <Label Text="{Binding Path=FinalPrice, StringFormat='Final price : {0}'}" FontAttributes="Bold" FontSize="Large"
+                       IsVisible="{Binding Path=ShowFinalPrice}" HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>

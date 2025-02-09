@@ -22,6 +22,8 @@ namespace NSRetailLiteApp.Models
 
         public Item Item;
 
+        public ItemCodeData ItemCode;
+
         public Branch Branch;
 
         public DaySequence DaySequence;
@@ -123,9 +125,13 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         public ObservableCollection<ItemPrice> _itemPriceList;
 
+        [ObservableProperty]
+        public ObservableCollection<ItemOffer> _OfferList;
+
         public ItemCodeData()
         {
             ItemPriceList = [];
+            OfferList = [];
         }
     }
 
@@ -142,5 +148,20 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         public double _salePrice;
+
+        [ObservableProperty]
+        public double _qtyOrWeightInKGs;
+    }
+
+    public partial class ItemOffer : BaseObservableObject
+    {
+        [ObservableProperty]
+        public string _offerTypeName;
+
+        [ObservableProperty]
+        public string _offerCode;
+
+        [ObservableProperty]
+        public double _offerValue;
     }
 }
