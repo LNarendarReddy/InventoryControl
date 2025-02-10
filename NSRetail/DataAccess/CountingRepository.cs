@@ -423,6 +423,30 @@ namespace DataAccess
             return dtStockCounting;
         }
 
+        public DataTable GetCountingCategoriesByAID(object CountingApprovalID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_COUNTINGCATEGORIESBYAID]";
+                    cmd.Parameters.AddWithValue("@COUNTINGAPPROVALID", CountingApprovalID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Stock Counting Categories", ex);
+            }
+            return dt;
+        }
+
         public void DeleteStockCounting(object BranchID, object ItemID)
         {
             try

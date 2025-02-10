@@ -29,7 +29,8 @@ namespace NSRetail.ReportForms.Stock.StockCounting
             { 
                 { "Sheets", "4347688F-2941-4C5B-964E-5EB024CA49BD" }, 
                 { "Items", "5F640ED7-452B-4248-8D63-CF2FA8F13B0F" }, 
-                {"Item By MRP", "9F8A0CFF-AA25-4EA1-B6C0-5B7E04115262" } 
+                {"Item By MRP", "9F8A0CFF-AA25-4EA1-B6C0-5B7E04115262" },
+                {"Categories", "" }
             };
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
@@ -65,6 +66,10 @@ namespace NSRetail.ReportForms.Stock.StockCounting
                 case "Item By MRP":
                     DataTable dt = new CountingRepository().GetStockCountingItemsByAID(drFocusedRow["COUNTINGAPPROVALID"], true);
                     frmObj = new frmViewSCItems(dt, true, drFocusedRow["BRANCHID"], drFocusedRow["COUNTINGAPPROVALID"]);
+                    break;
+                case "Categories":
+                    DataTable dtCat = new CountingRepository().GetCountingCategoriesByAID(drFocusedRow["COUNTINGAPPROVALID"]);
+                    frmObj = new frmCountingCategories(dtCat);
                     break;
             }
 
