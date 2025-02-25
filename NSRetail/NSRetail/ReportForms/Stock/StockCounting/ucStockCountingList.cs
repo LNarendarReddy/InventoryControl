@@ -86,12 +86,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
         {
             if (cmbBranch.EditValue == null)
                 return;
-            DataTable dt = new DataTable();
-            if(ValidateMRPData(out dt))
-            {
-                new frmAcceptCounting(cmbBranch.Text, cmbBranch.EditValue, dt).ShowDialog();
-                (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
-            }
+            new frmAcceptCounting(cmbBranch.Text, cmbBranch.EditValue).ShowDialog();
+            (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
         }
 
         public override object GetData()
@@ -147,28 +143,6 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             ValidateMRPData(out DataTable dt);
         }
 
-        private bool ValidateMRPData(out DataTable dt)
-        {
-            dt = new DataTable();
-            if (cmbBranch.EditValue == null)
-                return false;
-            try
-            {
-                SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
-                SplashScreenManager.Default.SetWaitFormDescription("Loading...");
-                dt = countingRepository.GetCountingData_MRP(cmbBranch.EditValue);
-                SplashScreenManager.CloseForm();
-
-            }
-            catch (Exception ex)
-            {
-                SplashScreenManager.CloseForm();
-            }
-            frmCountingData obj = new frmCountingData(dt, cmbBranch.EditValue, true);
-            obj.ShowDialog();
-            return obj.isSave;
-        }
-
         private void btnLocationData_Click(object sender, EventArgs e)
         {
             if (cmbBranch.EditValue == null)
@@ -188,6 +162,25 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             }
             frmCountingData_Location obj = new frmCountingData_Location(dt, cmbBranch.EditValue);
             obj.ShowDialog();
+        }
+
+        private bool ValidateMRPData(out DataTable dt)
+        {
+            dt = new DataTable();
+            try
+            {
+                SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
+                SplashScreenManager.Default.SetWaitFormDescription("Loading...");
+                dt = new CountingRepository().GetCountingData_MRP(cmbBranch.EditValue);
+                SplashScreenManager.CloseForm();
+            }
+            catch (Exception ex)
+            {
+                SplashScreenManager.CloseForm();
+            }
+            frmCountingData obj = new frmCountingData(dt, cmbBranch.EditValue, true);
+            obj.ShowDialog();
+            return obj.isSave;
         }
     }
 }

@@ -107,7 +107,6 @@
             this.gcCategory.TabIndex = 5;
             this.gcCategory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCategory});
-            this.gcCategory.Click += new System.EventHandler(this.gcCategory_Click);
             // 
             // gvCategory
             // 

@@ -1,5 +1,8 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
+using NSRetail.Login;
+using NSRetail.ReportForms.Stock.StockCounting;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,12 +16,11 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
         object branchID;
         DataTable dt = null;
 
-        public frmAcceptCounting(string branchName, object branchID, DataTable _dt)
+        public frmAcceptCounting(string branchName, object branchID)
         {
             InitializeComponent();
             this.branchID = branchID;
             txtBranchName.EditValue = branchName;
-            dt = _dt.Copy();
         }
 
         private void frmAcceptCounting_Load(object sender, EventArgs e)
@@ -67,6 +69,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 if (XtraMessageBox.Show(message, "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                     return;
 
+                if(!ValidateMRPData(out dt, string.Join(",", includedCategoryIDs)))
+                    return;
                 new CountingRepository().AcceptStockCounting(branchID, string.Join(",", includedCategoryIDs), Utility.UserID, dt);
                 new CloudRepository().InitiateCounting(branchID, false);
                 XtraMessageBox.Show("Counting accepted succesfully");
@@ -79,14 +83,29 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             }
         }
 
+        private bool ValidateMRPData(out DataTable dt, string includedCategoryIDs)
+        {
+            dt = new DataTable();
+            try
+            {
+                SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
+                SplashScreenManager.Default.SetWaitFormDescription("Loading...");
+                dt = new CountingRepository().GetCountingData_Approval(branchID, includedCategoryIDs);
+                SplashScreenManager.CloseForm();
+
+            }
+            catch (Exception ex)
+            {
+                SplashScreenManager.CloseForm();
+            }
+            frmCountingData obj = new frmCountingData(dt, branchID, true);
+            obj.ShowDialog();
+            return obj.isSave;
+        }
+
         private void gvCategory_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = (bool)gvCategory.GetFocusedRowCellValue("INCOUNTING");
-        }
-
-        private void gcCategory_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
