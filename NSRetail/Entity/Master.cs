@@ -46,7 +46,7 @@ namespace Entity
         public object CATEGORYID { get; set; }
     }
 
-    public class User:EntityBase
+    public class User : EntityBase
     {
         public object USERID { get; set; }
         public object ROLEID { get; set; }
@@ -62,6 +62,7 @@ namespace Entity
         public object GENDER { get; set; }
         public object DOB { get; set; }
         public object CUSERID { get; set; }
+        public object SUBCATEGORYID { get; set; }
     }
 
    public class Dealer:EntityBase

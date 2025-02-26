@@ -48,6 +48,7 @@ namespace NSRetail
                     cmbBranch.EditValue = ObjUser.BRANCHID;
                     cmbCategory.EditValue = ObjUser.CATEGORYID;
                     rgGenderr.SelectedIndex = Convert.ToInt32(ObjUser.GENDER);
+                    cmbSubcategory.EditValue = ObjUser.SUBCATEGORYID;
                 }
             }
             catch (Exception ex)
@@ -74,6 +75,7 @@ namespace NSRetail
                 ObjUser.CATEGORYID = cmbCategory.EditValue;
                 ObjUser.REPORTINGLEADID = cmbReportingLead.EditValue;
                 ObjUser.CUSERID = Utility.UserID;
+                ObjUser.SUBCATEGORYID = cmbSubcategory.EditValue;
                 objUserRep.SaveUser(ObjUser);
                 ObjUser.IsSave = true;
                 this.Close();
@@ -90,6 +92,13 @@ namespace NSRetail
         {
             ObjUser.IsSave = false;
             this.Close();
+        }
+
+        private void cmbCategory_EditValueChanged(object sender, EventArgs e)
+        {
+            cmbSubcategory.Properties.DataSource = new MasterRepository().GetSubCategory(cmbCategory.EditValue);
+            cmbSubcategory.Properties.DisplayMember = "SUBCATEGORYNAME";
+            cmbSubcategory.Properties.ValueMember = "SUBCATEGORYID";
         }
     }
 }

@@ -33,6 +33,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@CNUMBER", ObjUser.CNUMBER);
                     cmd.Parameters.AddWithValue("@GENDER", ObjUser.GENDER);
                     cmd.Parameters.AddWithValue("@CUSERID", ObjUser.CUSERID);
+                    cmd.Parameters.AddWithValue("@SUBCATEGORYID", ObjUser.SUBCATEGORYID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out UserID))

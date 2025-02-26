@@ -25,6 +25,7 @@ namespace NSRetail
             try
             {
                 gcUser.DataSource = objUserRep.GetUser();
+                gvUser.BestFitColumns();
                 gvUser.Columns["USERSTATUS"].FilterInfo = new ColumnFilterInfo("USERSTATUS = 'ACTIVE'");
 
                 AccessUtility.SetStatusByAccess(btnNew);
@@ -71,6 +72,7 @@ namespace NSRetail
                     ObjUser.CNUMBER = gvUser.GetFocusedRowCellValue("CNUMBER");
                     ObjUser.EMAIL = gvUser.GetFocusedRowCellValue("EMAIL");
                     ObjUser.GENDER = gvUser.GetFocusedRowCellValue("GENDER");
+                    ObjUser.SUBCATEGORYID = gvUser.GetFocusedRowCellValue("SUBCATEGORYID");
                     frmUser obj = new frmUser(ObjUser);
                     obj.ShowInTaskbar = false;
                     obj.StartPosition = FormStartPosition.CenterScreen;

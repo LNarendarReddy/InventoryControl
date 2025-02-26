@@ -217,9 +217,9 @@ namespace DataAccess
             }
             return ObjSubCategory;
         }
-        public DataTable GetSubCategory()
+        public DataTable GetSubCategory(object CategoryID = null)
         {
-            return new ReportRepository().GetReportData("USP_R_SUBCATEGORY");
+            return new ReportRepository().GetReportData("USP_R_SUBCATEGORY", new Dictionary<string, object> { { "CATEGORYID", CategoryID } });
         }
 
         public SubCategory DeleteSubCategory(SubCategory ObjSubCategory)
