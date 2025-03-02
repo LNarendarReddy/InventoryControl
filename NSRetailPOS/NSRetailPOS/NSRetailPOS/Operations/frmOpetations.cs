@@ -38,6 +38,10 @@ namespace NSRetailPOS.Operations
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
             reportList.Add(POSReports);
 
+            ReportHolder otherReports = new ReportHolder() { ReportName = "Other Reports" };
+            otherReports.SubCategory.Add(new ReportHolder() { ReportName = "Offer status", SearchCriteriaControl = new ucOfferStatus() });
+            reportList.Add(otherReports);
+
             frmReportPlaceHolder obj = new frmReportPlaceHolder(reportList, "Branch");
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;

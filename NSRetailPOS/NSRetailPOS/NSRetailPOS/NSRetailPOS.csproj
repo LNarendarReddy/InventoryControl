@@ -269,6 +269,12 @@
     <Compile Include="Operations\Reports\ucNonMovingStock.Designer.cs">
       <DependentUpon>ucNonMovingStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\Reports\ucOfferStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operations\Reports\ucOfferStatus.Designer.cs">
+      <DependentUpon>ucOfferStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\Reports\ucSales.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -538,6 +544,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Reports\ucNonMovingStock.resx">
       <DependentUpon>ucNonMovingStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Reports\ucOfferStatus.resx">
+      <DependentUpon>ucOfferStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Reports\ucSales.resx">
       <DependentUpon>ucSales.cs</DependentUpon>
