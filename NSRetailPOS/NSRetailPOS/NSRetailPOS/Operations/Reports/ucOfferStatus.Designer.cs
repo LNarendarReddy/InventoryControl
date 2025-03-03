@@ -75,6 +75,7 @@
             // 
             // txtNoOfDays
             // 
+            this.txtNoOfDays.EnterMoveNextControl = true;
             this.txtNoOfDays.Location = new System.Drawing.Point(641, 10);
             this.txtNoOfDays.Name = "txtNoOfDays";
             this.txtNoOfDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
@@ -87,6 +88,7 @@
             // 
             // cmbOfferSearchType
             // 
+            this.cmbOfferSearchType.EnterMoveNextControl = true;
             this.cmbOfferSearchType.Location = new System.Drawing.Point(357, 10);
             this.cmbOfferSearchType.Name = "cmbOfferSearchType";
             this.cmbOfferSearchType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
