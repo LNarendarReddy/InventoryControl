@@ -8,19 +8,20 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NSRetailLiteApp.ViewModels
 {
     public abstract partial class BaseViewModel : ObservableObject
     {
-
+        
         [ObservableProperty]
         public bool _isLoading;
 
         private static readonly HttpClient httpClient = new()
         {
-            Timeout = new TimeSpan(0, 0, 5)
+            Timeout = new TimeSpan(0, 0, 120)
         };
 
         protected void PostAsync<T>(string path, ref T callingObject, bool displayAlert = true) where T : BaseObservableObject
@@ -44,19 +45,26 @@ namespace NSRetailLiteApp.ViewModels
             finally { IsLoading = false; }
         }
 
-        protected void GetAsync<T>(string path, ref T callingObject, Dictionary<string, string?> values, bool displayAlert = true) where T : BaseObservableObject
+        protected void GetAsync<T>(string path, ref T callingObject, Dictionary<string, string?> values, bool displayAlert = true, int timeOut = 5) where T : BaseObservableObject
         {
             IsLoading = true;
             try
             {
-                HttpResponseMessage responseMessage = httpClient.GetAsync(QueryHelpers.AddQueryString("https://nsoftsol.com:6002/api/" + path, values)).Result;
-                ProcessResponse(responseMessage, ref callingObject, displayAlert);
+                using (var cts = new CancellationTokenSource(timeOut * 1000))
+                {
+                    HttpResponseMessage responseMessage = httpClient.GetAsync(QueryHelpers.AddQueryString("https://nsoftsol.com:6002/api/" + path, values)
+                        , HttpCompletionOption.ResponseContentRead, cts.Token).Result;
+                    ProcessResponse(responseMessage, ref callingObject, displayAlert);
+                }
             }
             catch (Exception ex)
             {
                 ProcessResponse(ex, callingObject);
             }
-            finally { IsLoading = false; }
+            finally 
+            {
+                IsLoading = false; 
+            }
         }
 
         public void ProcessResponse<T>(HttpResponseMessage message, ref T callingObject, bool displayAlert = true

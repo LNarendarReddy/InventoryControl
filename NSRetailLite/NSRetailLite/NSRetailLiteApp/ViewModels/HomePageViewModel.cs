@@ -6,15 +6,19 @@ using NSRetailLiteApp.ViewModels.Billing;
 using NSRetailLiteApp.ViewModels.Common;
 using NSRetailLiteApp.ViewModels.ItemDetails;
 using NSRetailLiteApp.ViewModels.StockCounting;
+using NSRetailLiteApp.ViewModels.StockDispatch.Indent;
 using NSRetailLiteApp.Views.Billing;
 using NSRetailLiteApp.Views.Common;
 using NSRetailLiteApp.Views.ItemDetails;
 using NSRetailLiteApp.Views.StockCounting;
+using NSRetailLiteApp.Views.StockDispatch;
+using NSRetailLiteApp.Views.StockDispatch.ByIndent;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,7 +31,7 @@ namespace NSRetailLiteApp.ViewModels
 
         public static LoggedInUser User { get; private set; }
 
-        public HomePageViewModel(LoggedInUser loggedInUser) 
+        public HomePageViewModel(LoggedInUser loggedInUser)
         {
             LogoutCommand = new AsyncRelayCommand(Logout);
             OpenStockCountingCommand = new AsyncRelayCommand(OpenStockCounting);
@@ -36,6 +40,7 @@ namespace NSRetailLiteApp.ViewModels
             ChangePasswordCommand = new AsyncRelayCommand(ChangePassword);
             CustomerRefundCommand = new AsyncRelayCommand(CustomerRefund);
             ItemDetailsCommand = new AsyncRelayCommand(ItemDetails);
+            StockDispatchCommand = new AsyncRelayCommand(StockDispatch);
 
             _model = loggedInUser;
             User = loggedInUser;
@@ -45,7 +50,7 @@ namespace NSRetailLiteApp.ViewModels
 
         private async Task Logout()
         {
-            if(Application.Current == null || Application.Current.MainPage == null) return;
+            if (Application.Current == null || Application.Current.MainPage == null) return;
 
             bool confirm = await DisplayAlert("Confirm", "Are you sure to logout?", "Yes", "No");
             if (confirm)
@@ -61,8 +66,8 @@ namespace NSRetailLiteApp.ViewModels
             StockCountingModel stockCounting = new();
 
             GetAsync("stockcounting/getcounting", ref stockCounting
-                , new Dictionary<string, string?>() 
-                { 
+                , new Dictionary<string, string?>()
+                {
                     { "UserID", Model.UserId.ToString() },
                     { "isNested", "True" }
                 }, false);
@@ -91,7 +96,7 @@ namespace NSRetailLiteApp.ViewModels
 
                 string location = await Application.Current?.MainPage?.DisplayPromptAsync("Location", "Enter the stock location for counting:", "OK");
 
-                if(string.IsNullOrEmpty(location)) return;
+                if (string.IsNullOrEmpty(location)) return;
 
                 if (!await Application.Current.MainPage.DisplayAlert("Confirm"
                     , $"Are you sure you want to start counting for {branchSelectionViewModel.SelectedBranch.BranchName} in location {location}?"
@@ -107,7 +112,7 @@ namespace NSRetailLiteApp.ViewModels
                     { "StockLocationName", location }
                 }, true);
 
-                if(holderClass.Exception != null) return;
+                if (holderClass.Exception != null) return;
 
                 stockCounting.StockCountingId = holderClass.GenericID;
 
@@ -119,7 +124,7 @@ namespace NSRetailLiteApp.ViewModels
                 }, true);
             }
 
-            if(stockCounting.StockCountingId <= 0)
+            if (stockCounting.StockCountingId <= 0)
             {
                 DisplayErrorMessage("Something went wrong");
                 return;
@@ -156,7 +161,7 @@ namespace NSRetailLiteApp.ViewModels
             int counterId = 0;
 
 #if ANDROID
-            device_id =  Android.Provider.Settings.Secure.GetString(Android.App.Application.Context.ContentResolver, Android.Provider.Settings.Secure.AndroidId);
+            device_id = Android.Provider.Settings.Secure.GetString(Android.App.Application.Context.ContentResolver, Android.Provider.Settings.Secure.AndroidId);
 #endif
 
             HolderClass holder = new();
@@ -316,5 +321,135 @@ namespace NSRetailLiteApp.ViewModels
 
             await RedirectToPage(holderClass, new ItemDetailsPage(new ItemDetailsViewModel(item, holderClass.ItemCode)));
         }
+
+        public IAsyncRelayCommand StockDispatchCommand { get; }
+
+        private async Task StockDispatch()
+        {
+            if (Application.Current == null || Application.Current.MainPage == null) return;
+
+            StockDispatchTypeSelectionPage stockDispatchTypeSelectionPage = new StockDispatchTypeSelectionPage();
+            await ShowPopup(null, stockDispatchTypeSelectionPage);
+            
+            HolderClass holderClass = new();
+            BranchSelectionViewModel branchSelectionViewModel = null;
+
+            if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Indent based Dispatch")
+            {
+                // api/Stockdispatch_v2/getdispatchwithbi
+
+                GetAsync("stockdispatch_v2/getbranch", ref holderClass
+                   , new Dictionary<string, string?>()
+                {
+                    { "UserID", Model.UserId.ToString() }
+                });
+
+                branchSelectionViewModel = new BranchSelectionViewModel(holderClass.Holder.BranchList);
+                await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
+
+                if (branchSelectionViewModel.SelectedBranch == null) return;
+
+                await DisplayAlert("Confirm"
+                    , $"Do you want to run Branch Indent for {branchSelectionViewModel.SelectedBranch.BranchName}? The operation can take some time"
+                    , "Yes", "No");
+
+                GetAsync("Stockdispatch_v2/getbranchindent", ref holderClass, new Dictionary<string, string?>()
+                {
+                    { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() }
+                    , { "CategoryID", "4" }
+                    , { "NoOfDays", "5" }
+                    , { "SubCategoryID", "0" }
+                    , { "ISMobileCall", "true" }
+                }, timeOut: 120);
+
+                await RedirectToPage(holderClass, new StockDispatchByIndentPage(new StockDispatchByIndentViewModel(holderClass.StockDispatch, User.UserId)));
+            }
+            else if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Manual Dispatch")
+            {
+
+                GetAsync("stockdispatch_v2/getbranch", ref holderClass
+                       , new Dictionary<string, string?>()
+                   {
+                    { "UserID", Model.UserId.ToString() }
+                   });
+
+
+                branchSelectionViewModel = new BranchSelectionViewModel(holderClass.Holder.BranchList);
+                await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
+
+                if (branchSelectionViewModel.SelectedBranch == null) return;
+            }
+
+            //StockCountingModel stockCounting = new();
+
+            //GetAsync("stockcounting/getcounting", ref stockCounting
+            //    , new Dictionary<string, string?>()
+            //    {
+            //        { "UserID", Model.UserId.ToString() },
+            //        { "isNested", "True" }
+            //    }, false);
+
+            //if (stockCounting.Exception != null)
+            //{
+            //    if (stockCounting.Exception.Message != "No counting data found")
+            //    {
+            //        DisplayErrorMessage(stockCounting.Exception.Message);
+            //        return;
+            //    }
+
+            //    HolderClass holderClass = new();
+
+            //    GetAsync("stockcounting/getbranch", ref holderClass
+            //        , new Dictionary<string, string?>()
+            //    {
+            //        { "UserID", Model.UserId.ToString() },
+            //        { "isNested", "True" }
+            //    });
+
+            //    BranchSelectionViewModel branchSelectionViewModel = new BranchSelectionViewModel(holderClass.Holder.BranchList);
+            //    await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
+
+            //    if (branchSelectionViewModel.SelectedBranch == null) return;
+
+            //    string location = await Application.Current?.MainPage?.DisplayPromptAsync("Location", "Enter the stock location for counting:", "OK");
+
+            //    if (string.IsNullOrEmpty(location)) return;
+
+            //    if (!await Application.Current.MainPage.DisplayAlert("Confirm"
+            //        , $"Are you sure you want to start counting for {branchSelectionViewModel.SelectedBranch.BranchName} in location {location}?"
+            //        , "Yes", "No")) return;
+
+            //    holderClass = new HolderClass();
+            //    PostAsync("stockcounting/savecounting", ref holderClass
+            //    , new Dictionary<string, string?>()
+            //    {
+            //        { "StockCountingID", "0" },
+            //        { "UserID", Model.UserId.ToString() },
+            //        { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() },
+            //        { "StockLocationName", location }
+            //    }, true);
+
+            //    if (holderClass.Exception != null) return;
+
+            //    stockCounting.StockCountingId = holderClass.GenericID;
+
+            //    GetAsync("stockcounting/getcounting", ref stockCounting
+            //    , new Dictionary<string, string?>()
+            //    {
+            //        { "UserID", Model.UserId.ToString() },
+            //        { "isNested", "True" }
+            //    }, true);
+            //}
+
+            //if (stockCounting.StockCountingId <= 0)
+            //{
+            //    DisplayErrorMessage("Something went wrong");
+            //    return;
+            //}
+
+            //await RedirectToPage(stockCounting, new StockCountingDetailListPage(new StockCountingDetailListViewModel(stockCounting, Model.UserId)));
+
+
+        } 
     }
 }

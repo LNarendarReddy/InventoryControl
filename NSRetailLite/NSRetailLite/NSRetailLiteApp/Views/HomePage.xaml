@@ -28,6 +28,7 @@
                     <Grid Margin="10" RowSpacing="0" Padding="0" RowDefinitions="auto, auto, auto, auto, auto, auto">
                         <Frame Padding="1" Grid.Row="0">
                             <Grid Margin="0" RowDefinitions="auto" ColumnDefinitions="*, auto, 20, auto, 20, auto, *">
+                                
                                 <VerticalStackLayout Grid.Row="0" Grid.Column="1">
                                     <ImageButton Margin="0, 5, 0, 2" Source="stockcounting.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                              Command="{Binding Path=OpenStockCountingCommand}" HorizontalOptions="Center" VerticalOptions="Center"/>
@@ -43,16 +44,28 @@
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </VerticalStackLayout>
+                                
                                 <VerticalStackLayout Grid.Row="0" Grid.Column="3">
-                                    <ImageButton Margin="0, 5, 0, 2" Source="stockdispatch.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
-                                    <Label Text="Stock" FontSize="Small" HorizontalTextAlignment="Center"/>
-                                    <Label Text="Dispatch" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                    <ImageButton Margin="0, 5, 0, 2" Source="stockdispatch.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
+                                                 Command="{Binding Path=StockDispatchCommand}"/>
+                                    <Label Text="Stock" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding StockDispatchCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Text="Dispatch" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding StockDispatchCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
                                 </VerticalStackLayout>
+                                
                                 <VerticalStackLayout Grid.Row="0" Grid.Column="5">
                                     <ImageButton Margin="0, 5, 0, 2" Source="stockentry.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
                                     <Label Text="Stock" FontSize="Small" HorizontalTextAlignment="Center"/>
                                     <Label Text="Entry" FontSize="Small" HorizontalTextAlignment="Center"/>
                                 </VerticalStackLayout>
+                                
                             </Grid>
                         </Frame>
 
