@@ -14,6 +14,7 @@ namespace NSRetailPOS.UI
 {
     public partial class frmPriceCheck : XtraForm
     {
+        ReportRepository reportRepository = new ReportRepository();
         public frmPriceCheck(object itemCodes)
         {
             InitializeComponent();
@@ -70,13 +71,27 @@ namespace NSRetailPOS.UI
         {
             sluItemDataView.GridControl.BindingContext = new BindingContext();
             sluItemDataView.GridControl.DataSource = sluItemData.Properties.DataSource;
+
+            gcUpcomingOffers.DataSource = reportRepository.GetReportData("USP_RPT_OFFER_STATUS", new Dictionary<string, object>
+            {
+                { "BranchIDs", Utility.branchInfo.BranchID }
+                , { "OfferSearchTypeID", 3 }
+                , { "NoOfDays", 0 }
+            });
+
+            gcExpiringOffers.DataSource = reportRepository.GetReportData("USP_RPT_OFFER_STATUS", new Dictionary<string, object>
+            {
+                { "BranchIDs", Utility.branchInfo.BranchID }
+                , { "OfferSearchTypeID", 2 }
+                , { "NoOfDays", 0 }
+            });
         }
 
         private void sluItemData_EditValueChanged(object sender, EventArgs e)
         {
             if (sluItemData.EditValue == null) return;
 
-            DataSet ds = new ReportRepository().GetReportDataset("USP_R_ITEMDATAFORITEMDETAILS", new Dictionary<string, object>() { { "ITEMCODEID", sluItemData.EditValue } });
+            DataSet ds = reportRepository.GetReportDataset("USP_R_ITEMDATAFORITEMDETAILS", new Dictionary<string, object>() { { "ITEMCODEID", sluItemData.EditValue } });
             gcItemPriceList.DataSource = ds.Tables[0];
 
             txtItemCode.EditValue = sluItemDataView.GetRowCellValue(sluItemDataView.FocusedRowHandle, "ITEMCODE");
