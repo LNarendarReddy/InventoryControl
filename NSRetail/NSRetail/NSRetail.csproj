@@ -428,6 +428,12 @@
     <Compile Include="ReportForms\Wareshouse\Audit\ucOfferReport.Designer.cs">
       <DependentUpon>ucOfferReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucOfferStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucOfferStatus.Designer.cs">
+      <DependentUpon>ucOfferStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\Audit\ucOfferThreshold.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1281,6 +1287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucOfferReport.resx">
       <DependentUpon>ucOfferReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucOfferStatus.resx">
+      <DependentUpon>ucOfferStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucOfferThreshold.resx">
       <DependentUpon>ucOfferThreshold.cs</DependentUpon>
