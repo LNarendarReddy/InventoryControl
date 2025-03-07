@@ -258,10 +258,13 @@ namespace NSRetailLiteApp.ViewModels.Billing
             report.Parameters["IsDoorDelivery"].Value = CurrentBill.IsDoorDelivery;
             report.Parameters["CustomerGST"].Value = CurrentBill.CustomerGST;
 
-            if (!PrintHelper.PrintReport(report).Result)
-            {
-                DisplayErrorMessage("Print operation failed");
-            }
+#if ANDROID
+            await PrintHelper.PrintAsync(report);
+#endif
+            //if (!PrintHelper.PrintReport(report).Result)
+            //{
+            //    DisplayErrorMessage("Print operation failed");
+            //}
         }
     }
 

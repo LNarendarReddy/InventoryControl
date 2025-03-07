@@ -99,10 +99,15 @@ namespace NSRetailLiteApp.ViewModels.Billing
             xtraReport.Parameters["BranchName"].Value = dayClosure.BranchName;
             xtraReport.Parameters["CounterName"].Value = dayClosure.CounterName;
             xtraReport.Parameters["UserName"].Value = dayClosure.UserName;
-            if (!PrintHelper.PrintReport(xtraReport).Result)
-            {
-                DisplayErrorMessage("Print operation failed");
-            }
+
+#if ANDROID
+            await PrintHelper.PrintAsync(xtraReport);
+#endif
+
+            //if (!PrintHelper.PrintReport(xtraReport).Result)
+            //{
+            //    DisplayErrorMessage("Print operation failed");
+            //}
             await this.Pop();
         }
     }

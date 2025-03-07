@@ -112,10 +112,14 @@ namespace NSRetailLiteApp.ViewModels.Billing
             report.Parameters["UserName"].Value = HomePageViewModel.User.FullName;
             report.Parameters["IsWithBill"].Value = true;
 
-            if (!PrintHelper.PrintReport(report).Result)
-            {
-                DisplayErrorMessage("Print operation failed");
-            }
+#if ANDROID
+            await PrintHelper.PrintAsync(report);
+#endif
+
+            //if (!PrintHelper.PrintReport(report).Result)
+            //{
+            //    DisplayErrorMessage("Print operation failed");
+            //}
         }
     }
 }
