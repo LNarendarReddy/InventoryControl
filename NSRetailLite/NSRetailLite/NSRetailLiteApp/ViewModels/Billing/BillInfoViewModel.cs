@@ -141,7 +141,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             if (!IsBillOfferApplied) // since bill offer is already checked and applied
             {
-                GetAsync("Billing/getbilloffers", ref holder, new Dictionary<string, string?>
+                holder = await GetAsync("Billing/getbilloffers", holder, new Dictionary<string, string?>
                 {
                     { "BillID", CurrentBill.BillId.ToString() },
                     { "BranchId", HomePageViewModel.User.BranchId.ToString() },
@@ -168,7 +168,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
                         BillOfferPrice = offerItem.ActualSalePrice
                     };
 
-                    PostAsync($"billing/savebilldetail", ref holder
+                    holder = await PostAsync($"billing/savebilldetail", holder
                         , new Dictionary<string, string?>()
                         {
                             { "jsonstring", JsonConvert.SerializeObject(billDetail) }
@@ -198,7 +198,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
             holder = new();
             ObservableCollection<BillDetail> billDetails = CurrentBill.BillDetailList.ToObservableCollection();
             CurrentBill.BillDetailList.Clear(); // no need to resend
-            PostAsync("billing/finishbill", ref holder, new Dictionary<string, string?>
+            holder = await PostAsync("billing/finishbill", holder, new Dictionary<string, string?>
             {
                 { "jsonString", JsonConvert.SerializeObject(CurrentBill) }
             });

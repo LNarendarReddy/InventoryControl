@@ -82,7 +82,7 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
             if (!await DisplayAlert("Confirm", "Are you sure you want to submit stock counting?", "Yes", "No")) return;
 
             StockCountingModel stockCounting = StockCountingModel;
-            PostAsync("stockcounting/updatecounting", ref stockCounting
+            stockCounting = await PostAsync("stockcounting/updatecounting", stockCounting
                 , new Dictionary<string, string?>()
                 {
                     { "StockCountingID", StockCountingModel.StockCountingId.ToString() },
@@ -100,7 +100,7 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
             if (!await DisplayAlert("Confirm", "Are you sure you want to discard stock counting?", "Yes", "No")) return;
 
             StockCountingModel stockCounting = StockCountingModel;
-            PostAsync("stockcounting/discardcounting", ref stockCounting
+            stockCounting = await PostAsync("stockcounting/discardcounting", stockCounting
                 , new Dictionary<string, string?>()
                 {
                     { "StockCountingID", StockCountingModel.StockCountingId.ToString() },
@@ -128,7 +128,7 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
 
             if (!await DisplayAlert("Confirm", confirmMessage, "Yes", "No")) return;
 
-            PostAsync("stockcounting/deletecountingdetail", ref selected
+            selected = await PostAsync("stockcounting/deletecountingdetail", selected
                     , new Dictionary<string, string?>()
                     {
                         { "StockCountingDetailID", selected.StockCountingDetailId.ToString() }
@@ -144,12 +144,12 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
         public void Reload()
         {
             var stockCountingModel = StockCountingModel;
-            GetAsync("stockcounting/getcounting", ref stockCountingModel
+            stockCountingModel = GetAsync("stockcounting/getcounting", stockCountingModel
                 , new Dictionary<string, string?>()
                 {
                     { "UserID", userID.ToString() },
                     { "isNested", "True" }
-                }, true);
+                }, true).Result;
 
             StockCountingModel = stockCountingModel;
             PerformSearch();

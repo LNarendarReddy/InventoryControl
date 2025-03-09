@@ -4,14 +4,7 @@
              x:Class="NSRetailLiteApp.Views.HomePage"
              Title="HomePage">
     <Grid>
-        <ActivityIndicator IsRunning="{Binding Path=IsLoading}" WidthRequest="100"/>
-
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
+        <Grid RowDefinitions="Auto, *">
             <!--<Path Data="M291 0C291 40.5781 275.671 79.4943 248.384 108.187C221.097 136.88 184.089 153 145.5 153C106.911 153 69.9025 136.88 42.616 108.187C15.3294 79.4943 5.82678e-06 40.5781 0 2.31024e-05L145.5 0H291Z"
               Fill="LightPink" Aspect="Fill"/>-->
             <StackLayout>
@@ -153,5 +146,6 @@
                 </ScrollView>
             </StackLayout>
         </Grid>
+        <ActivityIndicator IsRunning="{Binding Path=IsLoading}" WidthRequest="150"/>
     </Grid>
 </ContentPage>

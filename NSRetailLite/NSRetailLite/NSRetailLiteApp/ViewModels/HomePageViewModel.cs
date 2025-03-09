@@ -65,7 +65,7 @@ namespace NSRetailLiteApp.ViewModels
 
             StockCountingModel stockCounting = new();
 
-            GetAsync("stockcounting/getcounting", ref stockCounting
+            stockCounting = await GetAsync("stockcounting/getcounting", stockCounting
                 , new Dictionary<string, string?>()
                 {
                     { "UserID", Model.UserId.ToString() },
@@ -82,7 +82,7 @@ namespace NSRetailLiteApp.ViewModels
 
                 HolderClass holderClass = new();
 
-                GetAsync("stockcounting/getbranch", ref holderClass
+                holderClass = await GetAsync("stockcounting/getbranch", holderClass
                     , new Dictionary<string, string?>()
                 {
                     { "UserID", Model.UserId.ToString() },
@@ -103,7 +103,7 @@ namespace NSRetailLiteApp.ViewModels
                     , "Yes", "No")) return;
 
                 holderClass = new HolderClass();
-                PostAsync("stockcounting/savecounting", ref holderClass
+                holderClass = await PostAsync("stockcounting/savecounting", holderClass
                 , new Dictionary<string, string?>()
                 {
                     { "StockCountingID", "0" },
@@ -116,7 +116,7 @@ namespace NSRetailLiteApp.ViewModels
 
                 stockCounting.StockCountingId = holderClass.GenericID;
 
-                GetAsync("stockcounting/getcounting", ref stockCounting
+                stockCounting = await GetAsync("stockcounting/getcounting", stockCounting
                 , new Dictionary<string, string?>()
                 {
                     { "UserID", Model.UserId.ToString() },
@@ -144,7 +144,7 @@ namespace NSRetailLiteApp.ViewModels
             if (counterId <= 0) return;
 
             DaySequence daySequence = new();
-            GetAsync("billing/getinitialload", ref daySequence
+            daySequence = await GetAsync("billing/getinitialload", daySequence
                 , new Dictionary<string, string?>()
                 {
                     { "userID", Model.UserId.ToString() },
@@ -166,7 +166,7 @@ namespace NSRetailLiteApp.ViewModels
 
             HolderClass holder = new();
 
-            GetAsync("billing/getcounterbyidentifier", ref holder
+            holder = await GetAsync("billing/getcounterbyidentifier", holder
                 , new Dictionary<string, string?>()
                 {
                     { "Identifier", device_id },
@@ -176,7 +176,7 @@ namespace NSRetailLiteApp.ViewModels
             if (holder.Exception != null || holder.GenericID <= 0)
             {
                 Branch branch = new();
-                GetAsync("billing/getcounters", ref branch
+                branch = await GetAsync("billing/getcounters", branch
                     , new Dictionary<string, string?>()
                     {
                         { "BranchID", Model.BranchId.ToString() }
@@ -187,7 +187,7 @@ namespace NSRetailLiteApp.ViewModels
                 if (branchCounterSelectionViewModel.SelectedBranchCounter == null) return counterId;
 
                 holder = new();
-                PostAsync("billing/savecounteridentifier", ref holder
+                holder = await PostAsync("billing/savecounteridentifier", holder
                     , new Dictionary<string, string?>()
                     {
                         { "Identifier", device_id },
@@ -197,7 +197,7 @@ namespace NSRetailLiteApp.ViewModels
                 if (holder.Exception != null) { return counterId; }
 
                 holder = new();
-                GetAsync("billing/getcounterbyidentifier", ref holder
+                holder = await GetAsync("billing/getcounterbyidentifier", holder
                     , new Dictionary<string, string?>()
                     {
                         { "Identifier", device_id }
@@ -231,12 +231,12 @@ namespace NSRetailLiteApp.ViewModels
 
             HolderClass holder = new();
             int counterId = await GetCounterId();
-            GetAsync("Billing/getdayclosure", ref holder, new Dictionary<string, string?>() { { "CounterId", counterId.ToString() } });
+            holder = await GetAsync("Billing/getdayclosure", holder, new Dictionary<string, string?>() { { "CounterId", counterId.ToString() } });
 
             if (holder.Exception != null) return;
 
             DaySequence daySequence = new();
-            GetAsync("billing/getinitialload", ref daySequence
+            daySequence = await GetAsync("billing/getinitialload", daySequence
                 , new Dictionary<string, string?>()
                 {
                     { "userID", Model.UserId.ToString() },
@@ -271,7 +271,7 @@ namespace NSRetailLiteApp.ViewModels
             if (string.IsNullOrEmpty(billnumber)) return;
 
             HolderClass holderClass = new();
-            GetAsync("CRefund/GetBillByNumber", ref holderClass, new Dictionary<string, string?>()
+            holderClass = await GetAsync("CRefund/GetBillByNumber", holderClass, new Dictionary<string, string?>()
             {
                 { "billNumber", billnumber },
                 { "branchCounterId", counterId.ToString() }
@@ -288,7 +288,7 @@ namespace NSRetailLiteApp.ViewModels
             if (string.IsNullOrEmpty(eanCode)) return;
 
             HolderClass holderClass = new();
-            GetAsync("Item/getItem", ref holderClass, new Dictionary<string, string?>()
+            holderClass = await GetAsync("Item/getItem", holderClass, new Dictionary<string, string?>()
             {
                 { "ItemCode", eanCode }
             });
@@ -313,7 +313,7 @@ namespace NSRetailLiteApp.ViewModels
             if (selectedItemCode == null) return;
 
             holderClass = new();
-            GetAsync("Item/getItemdata", ref holderClass, new Dictionary<string, string?>()
+            holderClass = await GetAsync("Item/getItemdata", holderClass, new Dictionary<string, string?>()
             {
                 { "ItemCodeID", selectedItemCode.ItemCodeID },
                 { "BranchID", HomePageViewModel.User.BranchId.ToString() }
@@ -338,7 +338,7 @@ namespace NSRetailLiteApp.ViewModels
             {
                 // api/Stockdispatch_v2/getdispatchwithbi
 
-                GetAsync("stockdispatch_v2/getbranch", ref holderClass
+                holderClass = await GetAsync("stockdispatch_v2/getbranch", holderClass
                    , new Dictionary<string, string?>()
                 {
                     { "UserID", Model.UserId.ToString() }
@@ -349,25 +349,40 @@ namespace NSRetailLiteApp.ViewModels
 
                 if (branchSelectionViewModel.SelectedBranch == null) return;
 
-                await DisplayAlert("Confirm"
+                var confirm = DisplayAlert("Confirm"
                     , $"Do you want to run Branch Indent for {branchSelectionViewModel.SelectedBranch.BranchName}? The operation can take some time"
                     , "Yes", "No");
 
-                GetAsync("Stockdispatch_v2/getbranchindent", ref holderClass, new Dictionary<string, string?>()
-                {
-                    { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() }
-                    , { "CategoryID", "4" }
-                    , { "NoOfDays", "5" }
-                    , { "SubCategoryID", "0" }
-                    , { "ISMobileCall", "true" }
-                }, timeOut: 120);
+                if(!await confirm) return;
+
+                holderClass = await GetAsync("Stockdispatch_v2/getbranchindent", holderClass, new Dictionary<string, string?>()
+                    {
+                        { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() }
+                        , { "CategoryID", "4" }
+                        , { "NoOfDays", "5" }
+                        , { "SubCategoryID", "0" }
+                        , { "ISMobileCall", "true" }
+                    }, timeOut: 120);
+
+                //await confirm.ContinueWith(async continuationAction =>
+                //{
+                //    holderClass = await GetAsync("Stockdispatch_v2/getbranchindent", holderClass, new Dictionary<string, string?>()
+                //    {
+                //        { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() }
+                //        , { "CategoryID", "4" }
+                //        , { "NoOfDays", "5" }
+                //        , { "SubCategoryID", "0" }
+                //        , { "ISMobileCall", "true" }
+                //    }, timeOut: 120);
+                //});
+                
 
                 await RedirectToPage(holderClass, new StockDispatchByIndentPage(new StockDispatchByIndentViewModel(holderClass.StockDispatch, User.UserId)));
             }
             else if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Manual Dispatch")
             {
 
-                GetAsync("stockdispatch_v2/getbranch", ref holderClass
+                holderClass = await GetAsync("stockdispatch_v2/getbranch", holderClass
                        , new Dictionary<string, string?>()
                    {
                     { "UserID", Model.UserId.ToString() }
@@ -379,77 +394,6 @@ namespace NSRetailLiteApp.ViewModels
 
                 if (branchSelectionViewModel.SelectedBranch == null) return;
             }
-
-            //StockCountingModel stockCounting = new();
-
-            //GetAsync("stockcounting/getcounting", ref stockCounting
-            //    , new Dictionary<string, string?>()
-            //    {
-            //        { "UserID", Model.UserId.ToString() },
-            //        { "isNested", "True" }
-            //    }, false);
-
-            //if (stockCounting.Exception != null)
-            //{
-            //    if (stockCounting.Exception.Message != "No counting data found")
-            //    {
-            //        DisplayErrorMessage(stockCounting.Exception.Message);
-            //        return;
-            //    }
-
-            //    HolderClass holderClass = new();
-
-            //    GetAsync("stockcounting/getbranch", ref holderClass
-            //        , new Dictionary<string, string?>()
-            //    {
-            //        { "UserID", Model.UserId.ToString() },
-            //        { "isNested", "True" }
-            //    });
-
-            //    BranchSelectionViewModel branchSelectionViewModel = new BranchSelectionViewModel(holderClass.Holder.BranchList);
-            //    await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
-
-            //    if (branchSelectionViewModel.SelectedBranch == null) return;
-
-            //    string location = await Application.Current?.MainPage?.DisplayPromptAsync("Location", "Enter the stock location for counting:", "OK");
-
-            //    if (string.IsNullOrEmpty(location)) return;
-
-            //    if (!await Application.Current.MainPage.DisplayAlert("Confirm"
-            //        , $"Are you sure you want to start counting for {branchSelectionViewModel.SelectedBranch.BranchName} in location {location}?"
-            //        , "Yes", "No")) return;
-
-            //    holderClass = new HolderClass();
-            //    PostAsync("stockcounting/savecounting", ref holderClass
-            //    , new Dictionary<string, string?>()
-            //    {
-            //        { "StockCountingID", "0" },
-            //        { "UserID", Model.UserId.ToString() },
-            //        { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() },
-            //        { "StockLocationName", location }
-            //    }, true);
-
-            //    if (holderClass.Exception != null) return;
-
-            //    stockCounting.StockCountingId = holderClass.GenericID;
-
-            //    GetAsync("stockcounting/getcounting", ref stockCounting
-            //    , new Dictionary<string, string?>()
-            //    {
-            //        { "UserID", Model.UserId.ToString() },
-            //        { "isNested", "True" }
-            //    }, true);
-            //}
-
-            //if (stockCounting.StockCountingId <= 0)
-            //{
-            //    DisplayErrorMessage("Something went wrong");
-            //    return;
-            //}
-
-            //await RedirectToPage(stockCounting, new StockCountingDetailListPage(new StockCountingDetailListViewModel(stockCounting, Model.UserId)));
-
-
         } 
     }
 }

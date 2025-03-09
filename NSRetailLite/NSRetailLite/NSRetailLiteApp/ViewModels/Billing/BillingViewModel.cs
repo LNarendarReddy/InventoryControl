@@ -60,7 +60,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             HolderClass holder = new();
 
-            GetAsync("billing/getmop", ref holder, []);
+            holder = await GetAsync("billing/getmop", holder, []);
 
             BillInfoViewModel billInfoViewModel = new(CurrentBill, holder.Holder.MOPList, branchCounterId);
             billInfoViewModel.OnBillFinished += BillInfoViewModel_OnBillFinished;
@@ -101,7 +101,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
 
             Item item = new();
 
-            GetAsync("billing/getitem", ref item
+            item = await GetAsync("billing/getitem", item
                 , new Dictionary<string, string?>()
                 {
                     { "ItemCode", inputItemCode }
@@ -131,7 +131,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 WeightInKGs = weightInKGs                
             };
 
-            UpdateBillDetail(billDetail, "save");
+            await UpdateBillDetail(billDetail, "save");
         }
 
         private async Task EditItem(BillDetail billDetail)
@@ -159,7 +159,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
             if (int.TryParse(newQuantity, out int qty))
             {
                 billDetail.Quantity = qty;
-                UpdateBillDetail(billDetail, "save");
+                await UpdateBillDetail(billDetail, "save");
             }
         }
 
@@ -190,7 +190,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 billDetail.Snos.Add(new BillDetailSNo() { BillDetailId = currentBillDetail.BillDetailId, SNo = currentBillDetail.SNO });
             }
 
-            UpdateBillDetail(billDetail, "delete");
+            await UpdateBillDetail(billDetail, "delete");
         }
 
         private void UpdateTotals(Bill bill = null)
@@ -208,7 +208,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
             IsLoading = false;
         }
 
-        private void UpdateBillDetail(BillDetail billDetail, string urlPrefix)
+        private async Task UpdateBillDetail(BillDetail billDetail, string urlPrefix)
         {
             IsLoading = true;
             HolderClass holder = new();
@@ -216,7 +216,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
             billDetail.UserId = HomePageViewModel.User.UserId;
             billDetail.BranchId = HomePageViewModel.User.BranchId;
 
-            PostAsync($"billing/{urlPrefix}billdetail", ref holder
+            holder = await PostAsync($"billing/{urlPrefix}billdetail", holder
                 , new Dictionary<string, string?>()
                 {
                     { "jsonstring", JsonConvert.SerializeObject(billDetail) }

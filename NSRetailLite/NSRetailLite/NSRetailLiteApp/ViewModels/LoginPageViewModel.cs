@@ -33,7 +33,7 @@ namespace NSRetailLiteApp.ViewModels
                 return;
             }
 
-            PostAsync("user/getuserlogin", ref loggedInUserInfo
+            loggedInUserInfo = await PostAsync("user/getuserlogin", loggedInUserInfo
                 , new Dictionary<string, string?>
                     {
                         { "UserName", Model.UserName },

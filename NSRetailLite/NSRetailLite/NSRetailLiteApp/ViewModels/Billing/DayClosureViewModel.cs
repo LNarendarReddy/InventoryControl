@@ -76,7 +76,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
                 return;
 
             HolderClass holder = new();
-            PostAsync("billing/savedayclosure", ref holder, new Dictionary<string, string?>()
+            holder = await PostAsync("billing/savedayclosure", holder, new Dictionary<string, string?>()
             {
                 { "jsonString", JsonConvert.SerializeObject(saveDayClosure) }
             });
@@ -86,7 +86,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
             await DisplayAlert("Completed", "Day closure is completed", "OK");
 
             DayClosure dayClosure = new();
-            GetAsync("Billing/getdayclosureforreport", ref dayClosure,
+            dayClosure = await GetAsync("Billing/getdayclosureforreport", dayClosure,
                 new Dictionary<string, string?>() {
                     { "dayClosureID", Convert.ToString(holder.GenericID) },
                     { "counterID", Convert.ToString(branchCounterId) }

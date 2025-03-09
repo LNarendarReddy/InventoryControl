@@ -5,11 +5,7 @@
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              xmlns:models="clr-namespace:NSRetailLiteApp.Models"
              >
-    <Grid BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid RowDefinitions="Auto, *"  BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
         <Label Text="{Binding Path=ItemCode.ItemCode, Mode=TwoWay}" Margin="0, 20, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" FontSize="Title"/>
         <CollectionView ItemsSource="{Binding Path=ItemCode.ItemPriceList}" SelectedItem="{Binding Path=SelectedItemPrice}" SelectionMode="Single"
                      SelectionChanged="CollectionView_SelectionChanged" Margin="20" Grid.Row="1" VerticalScrollBarVisibility="Always">
@@ -24,23 +20,6 @@
                         </HorizontalStackLayout>
                         <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" />
                     </VerticalStackLayout>
-                    <!--<Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="MRP: " Grid.Row="0" Grid.Column="1"/>
-                        <Label Text="{Binding Path=MRP}" Grid.Row="0" Grid.Column="2" FontAttributes="Bold" />
-                        <Label Text=" Sale price: " Grid.Row="0" Grid.Column="3" Margin="10, 0, 0, 0"/>
-                        <Label Text="{Binding Path=SalePrice}" Grid.Row="0" Grid.Column="4" FontAttributes="Bold" />
-                    </Grid>-->
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

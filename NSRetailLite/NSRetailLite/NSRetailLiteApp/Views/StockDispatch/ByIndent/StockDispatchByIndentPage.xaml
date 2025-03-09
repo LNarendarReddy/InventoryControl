@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NSRetailLiteApp.Views.StockDispatch.ByIndent.StockDispatchByIndentPage"
              xmlns:models="clr-namespace:NSRetailLiteApp.Models">
-    <Grid RowDefinitions="Auto, *, Auto" Margin="10" RowSpacing="5">
+    <Grid RowDefinitions="Auto, Auto, *" Margin="10" RowSpacing="5">
         <Label Text="Branch name" Grid.Row="0" HorizontalTextAlignment="Start"/>
         <Label Text="Indent time" Grid.Row="0" HorizontalTextAlignment="End"/>
-        <Frame Grid.Row="1" Padding="5">
+        <Button Text="Start Dispatch" Grid.Row="1" HorizontalOptions="Center" 
+                Command="{Binding Path=StartDispatchCommand}"/>
+        <Frame Grid.Row="2" Padding="5">
             <CollectionView ItemsSource="{Binding Path=ItemsData}" IsGrouped="True">
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
@@ -56,6 +58,6 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Frame>
-        <Button Text="Manual items" Grid.Row="2" />
+        
     </Grid>
 </ContentPage>

@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using DevExpress.CodeParser;
 using DevExpress.XtraRichEdit.Commands;
+using Newtonsoft.Json;
 using NSRetailLiteApp.Models;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
 
         private readonly int userID;
 
+        public IAsyncRelayCommand StartDispatchCommand { get; }
+
         public StockDispatchByIndentViewModel(StockDispatchModel stockDispatchModel, int UserID)
         {
             StockDispatchModel = stockDispatchModel;
@@ -34,11 +37,27 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
                 .OrderBy(x => x.Name.Length)
                 .ToList().ForEach(ItemsData.Add);
 
-            //AddItemCommand = new AsyncRelayCommand(AddItem);
+            StartDispatchCommand = new AsyncRelayCommand(StartDispatch);
             //SubmitCommand = new AsyncRelayCommand(Submit);
             //DiscardCommand = new AsyncRelayCommand(Discard);
             //EditCommand = new AsyncRelayCommand<StockCountingDetailModel>(Edit);
             //DeleteCommand = new AsyncRelayCommand<StockCountingDetailModel>(Delete);
+        }
+
+        private async Task StartDispatch()
+        {
+            try
+            {
+                if (!await DisplayAlert("Confirm", "Are you sure? this operation cannot be reversed", "Yes", "No"))
+                    return;
+
+                StockDispatchModel = await PostAsync("/Stockdispatch_v2/savebranchindent", _stockDispatchModel
+                       , new Dictionary<string, string?>()
+                       {
+                            { "jsonstring", JsonConvert.SerializeObject(StockDispatchModel) }
+                       });
+            }
+            catch (Exception ex) { DisplayErrorMessage(ex.StackTrace); }
         }
     }
 

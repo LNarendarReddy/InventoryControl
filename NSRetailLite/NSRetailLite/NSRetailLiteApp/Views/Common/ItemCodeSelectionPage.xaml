@@ -5,11 +5,7 @@
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              xmlns:models="clr-namespace:NSRetailLiteApp.Models"
              >
-    <Grid BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid RowDefinitions="Auto, *"  BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
         <Label Text="{Binding Path=Item.ItemName, Mode=TwoWay}" Margin="0, 20, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0"
                FontSize="Title"/>
         <CollectionView ItemsSource="{Binding Path=Item.ItemCodeList}" SelectedItem="{Binding Path=SelectedItemCode}" SelectionMode="Single"

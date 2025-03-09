@@ -5,11 +5,7 @@
              x:Class="NSRetailLiteApp.Views.StockCounting.BranchSelectionPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:models="clr-namespace:NSRetailLiteApp.Models">
-    <Grid BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid RowDefinitions="Auto, *" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
         <SearchBar x:Name="searchBar" Margin="0, 0, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" 
                               SearchCommand="{Binding Path=PerformSearchCommand}"                   
            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
@@ -34,14 +30,6 @@
                         </HorizontalStackLayout>
                         <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" />
                     </VerticalStackLayout>
-                    <!--<Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-                        <Label Text="{Binding Path=BranchName}" Grid.Row="0"/>
-                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="1" />
-                    </Grid>-->
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

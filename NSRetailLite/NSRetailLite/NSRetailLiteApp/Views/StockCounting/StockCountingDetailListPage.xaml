@@ -5,14 +5,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:views="clr-namespace:NSRetailLiteApp.Views.StockCounting"
              Title="StockCountingDetailListPage" x:Name="stockCountingListPage" Loaded="stockCountingListPage_Loaded">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
+    <Grid RowDefinitions="Auto, *, Auto, Auto">
         <SearchBar x:Name="searchBar" Grid.Row="0"
                    SearchCommand="{Binding Path=PerformSearchCommand}"                   
                    SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
@@ -40,20 +33,7 @@
                                 CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
                         </SwipeView.RightItems>
                         
-                        <Grid Padding="10, 5, 10, 5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
+                        <Grid Padding="10, 5, 10, 5" RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto">
                             <Label Text="{Binding Path=SNo, StringFormat='{0}.'}" Margin="0, 0, 5, 0" 
                                     Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Center" VerticalTextAlignment="Center"/>
 
@@ -70,17 +50,8 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Grid Grid.Row="2" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="20"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-            </Grid.RowDefinitions>
+        <Grid Grid.Row="2" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+              RowDefinitions="60" ColumnDefinitions="20, *, *, *, 20">
             <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
                 <ImageButton Source="stockcountingadd.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=AddItemCommand}"/>
                 <Label Text="Add Item" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">

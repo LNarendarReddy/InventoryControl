@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,18 +25,13 @@ namespace NSRetailLiteApp.ViewModels
             Timeout = new TimeSpan(0, 0, 120)
         };
 
-        protected void PostAsync<T>(string path, ref T callingObject, bool displayAlert = true) where T : BaseObservableObject
-        {
-            PostAsync(path, ref callingObject, new Dictionary<string, string?> { { "jsonstring", JsonConvert.SerializeObject(callingObject) } }, displayAlert);
-        }
-
-        protected void PostAsync<T>(string path, ref T callingObject, Dictionary<string, string?> values
+        protected async Task<T> PostAsync<T>(string path, T callingObject, Dictionary<string, string?> values
             , bool displayAlert = true, bool showResponse = false) where T : BaseObservableObject
         {
             IsLoading = true;
             try
             {
-                HttpResponseMessage responseMessage = httpClient.PostAsync(QueryHelpers.AddQueryString("https://nsoftsol.com:6002/api/" + path, values), null).Result;
+                HttpResponseMessage responseMessage = await httpClient.PostAsync(QueryHelpers.AddQueryString("https://nsoftsol.com:6002/api/" + path, values), null);
                 ProcessResponse(responseMessage, ref callingObject, displayAlert, showResponse);
             }
             catch (Exception ex)
@@ -43,17 +39,34 @@ namespace NSRetailLiteApp.ViewModels
                 ProcessResponse(ex, callingObject);
             }
             finally { IsLoading = false; }
+            return callingObject;
         }
 
-        protected void GetAsync<T>(string path, ref T callingObject, Dictionary<string, string?> values, bool displayAlert = true, int timeOut = 5) where T : BaseObservableObject
+        protected async Task<T> PostAsyncAsContent<T>(string path, T callingObject, bool displayAlert = true, bool showResponse = false) where T : BaseObservableObject
+        {
+            IsLoading = true;
+            try
+            {
+                HttpResponseMessage responseMessage = await httpClient.PostAsJsonAsync($"https://nsoftsol.com:6002/api/{path}", callingObject);
+                ProcessResponse(responseMessage, ref callingObject, displayAlert, showResponse);
+            }
+            catch (Exception ex)
+            {
+                ProcessResponse(ex, callingObject);
+            }
+            finally { IsLoading = false; }
+            return callingObject;
+        }
+
+        protected async Task<T> GetAsync<T>(string path, T callingObject, Dictionary<string, string?> values, bool displayAlert = true, int timeOut = 5) where T : BaseObservableObject
         {
             IsLoading = true;
             try
             {
                 using (var cts = new CancellationTokenSource(timeOut * 1000))
                 {
-                    HttpResponseMessage responseMessage = httpClient.GetAsync(QueryHelpers.AddQueryString("https://nsoftsol.com:6002/api/" + path, values)
-                        , HttpCompletionOption.ResponseContentRead, cts.Token).Result;
+                    HttpResponseMessage responseMessage = await httpClient.GetAsync(QueryHelpers.AddQueryString("https://nsoftsol.com:6002/api/" + path, values)
+                        , HttpCompletionOption.ResponseContentRead, cts.Token);
                     ProcessResponse(responseMessage, ref callingObject, displayAlert);
                 }
             }
@@ -65,6 +78,7 @@ namespace NSRetailLiteApp.ViewModels
             {
                 IsLoading = false; 
             }
+            return callingObject;
         }
 
         public void ProcessResponse<T>(HttpResponseMessage message, ref T callingObject, bool displayAlert = true
@@ -85,7 +99,6 @@ namespace NSRetailLiteApp.ViewModels
             callingObject.Exception = exception.InnerException ?? exception;
             DisplayErrorMessage(callingObject, displayAlert);
         }
-
 
         private void ReadResponse<T>(HttpResponseMessage message, ref T callingObject, bool showResponse) where T : BaseObservableObject
         {

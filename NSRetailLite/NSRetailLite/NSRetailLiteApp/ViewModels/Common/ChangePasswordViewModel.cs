@@ -47,7 +47,7 @@ namespace NSRetailLiteApp.ViewModels.Common
         private async Task ChangePassword()
         {
             HolderClass holder = new();
-            PostAsync("user/changepassword", ref holder, new Dictionary<string, string?>()
+            holder = await PostAsync("user/changepassword", holder, new Dictionary<string, string?>()
             {
                 { "UserId", UserData.UserId.ToString() },
                 { "OldPassword", OldPassword },

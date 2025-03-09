@@ -64,7 +64,7 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
             }
                         
             var stockCountingDetailModel = StockCountingDetailModel;
-            PostAsync("stockcounting/savecountingdetail", ref stockCountingDetailModel
+            stockCountingDetailModel = await PostAsync("stockcounting/savecountingdetail", stockCountingDetailModel
                 , new Dictionary<string, string?>()
                 {
                     { "StockCountingID", _stockCountingDetailListViewModel.StockCountingModel.StockCountingId.ToString() },
@@ -91,7 +91,7 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
 
             Item item = new();
 
-            GetAsync("stockcounting/getitem", ref item
+            item = await GetAsync("stockcounting/getitem", item
                 , new Dictionary<string, string?>()
                 {
                     { "ItemCode", StockCountingDetailModel.ItemCode },

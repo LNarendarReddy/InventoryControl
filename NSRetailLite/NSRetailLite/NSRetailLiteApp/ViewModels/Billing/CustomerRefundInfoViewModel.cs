@@ -85,7 +85,7 @@ namespace NSRetailLiteApp.ViewModels.Billing
             });
 
             HolderClass holder = new();
-            PostAsync("CRefund/savecrefund", ref holder, new Dictionary<string, string?>()
+            holder = await PostAsync("CRefund/savecrefund", holder, new Dictionary<string, string?>()
             {
                 {"jsonString", JsonConvert.SerializeObject(CurrentBill) }
             });
