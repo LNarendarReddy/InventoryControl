@@ -17,6 +17,42 @@ namespace NSRetailLiteApp.Models
 
         [JsonIgnore]
         [ObservableProperty]
+        public int _fromBranchId;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _toBranchId;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _toBranchName;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _userId;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _noOfDays;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _subCategoryId;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _categoryId;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _subCategoryName;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public string _categoryName;
+
+        [JsonIgnore]
+        [ObservableProperty]
         public ObservableCollection<BranchIndentDetailModel> _branchIndentDetailList;
 
         [JsonIgnore]
@@ -26,6 +62,11 @@ namespace NSRetailLiteApp.Models
         [JsonIgnore]
         [ObservableProperty]
         public ObservableCollection<StockDispatchDetailModel> _stockDispatachDetailManualList;
+
+        public StockDispatchModel()
+        {
+            _branchIndentDetailList = new ObservableCollection<BranchIndentDetailModel>();
+        }
     }
 
     public partial class StockDispatchDetailModel : BaseObservableObject

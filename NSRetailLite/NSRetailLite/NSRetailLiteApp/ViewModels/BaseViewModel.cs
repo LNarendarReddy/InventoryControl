@@ -135,7 +135,7 @@ namespace NSRetailLiteApp.ViewModels
                 return;
             }
 
-            var jsonSerializer = new JsonSerializer();
+            var jsonSerializer = new Newtonsoft.Json.JsonSerializer();
 
             RootClass root = new RootClass();
             jsonSerializer.Populate(new StringReader(responeMessage), root);
@@ -171,7 +171,7 @@ namespace NSRetailLiteApp.ViewModels
             DisplayAlert("Error", error, "OK");
         }
 
-        protected async Task RedirectToPage(BaseObservableObject callingObject, ContentPage redirectToPage, bool isModal = false)
+        protected async Task RedirectToPage<T>(BaseObservableObject callingObject, T redirectToPage, bool isModal = false) where T : Page
         {
             if (callingObject?.Exception == null && Application.Current != null && Application.Current.MainPage != null)
             {

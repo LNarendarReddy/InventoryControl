@@ -26,10 +26,15 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
 
         public IAsyncRelayCommand StartDispatchCommand { get; }
 
+        public bool AllowStart => (StockDispatchModel?.SubCategoryId ?? 0) != 0;
+
+        public bool IsNew => (StockDispatchModel?.StockDispatchId ?? 0) <= 0;
+
         public StockDispatchByIndentViewModel(StockDispatchModel stockDispatchModel, int UserID)
         {
             StockDispatchModel = stockDispatchModel;
             userID = UserID;
+            StockDispatchModel.UserId = UserID;
 
             StockDispatchModel.BranchIndentDetailList
                 .GroupBy(x => x.SubCategoryName)
@@ -51,11 +56,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
                 if (!await DisplayAlert("Confirm", "Are you sure? this operation cannot be reversed", "Yes", "No"))
                     return;
 
-                StockDispatchModel = await PostAsync("/Stockdispatch_v2/savebranchindent", _stockDispatchModel
-                       , new Dictionary<string, string?>()
-                       {
-                            { "jsonstring", JsonConvert.SerializeObject(StockDispatchModel) }
-                       });
+                StockDispatchModel = await PostAsyncAsContent("Stockdispatch_v2/savebranchindent", StockDispatchModel);
             }
             catch (Exception ex) { DisplayErrorMessage(ex.StackTrace); }
         }

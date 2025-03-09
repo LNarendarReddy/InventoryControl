@@ -328,6 +328,12 @@ namespace NSRetailLiteApp.ViewModels
         {
             if (Application.Current == null || Application.Current.MainPage == null) return;
 
+            if (User.CategoryId == 13)
+            {
+                await DisplayAlert("Error", $"User {User.FullName} with All Category cannot perform stock dispatch", "Ok");
+                return;
+            }
+
             StockDispatchTypeSelectionPage stockDispatchTypeSelectionPage = new StockDispatchTypeSelectionPage();
             await ShowPopup(null, stockDispatchTypeSelectionPage);
             
@@ -349,33 +355,25 @@ namespace NSRetailLiteApp.ViewModels
 
                 if (branchSelectionViewModel.SelectedBranch == null) return;
 
-                var confirm = DisplayAlert("Confirm"
-                    , $"Do you want to run Branch Indent for {branchSelectionViewModel.SelectedBranch.BranchName}? The operation can take some time"
-                    , "Yes", "No");
+                string noOfDays = await Application.Current?.MainPage?.DisplayPromptAsync(
+                    $"{branchSelectionViewModel.SelectedBranch.BranchName}"
+                    , "Enter the no. of Indent days:"
+                    , keyboard:Keyboard.Numeric);
 
-                if(!await confirm) return;
+                if (!int.TryParse(noOfDays, out int _)) return;
+
+                if (!await DisplayAlert("Confirm"
+                    , $"Do you want to run Branch Indent for {branchSelectionViewModel.SelectedBranch.BranchName} for {noOfDays} days? The operation can take some time"
+                    , "Yes", "No")) return;
 
                 holderClass = await GetAsync("Stockdispatch_v2/getbranchindent", holderClass, new Dictionary<string, string?>()
                     {
                         { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() }
-                        , { "CategoryID", "4" }
-                        , { "NoOfDays", "5" }
-                        , { "SubCategoryID", "0" }
+                        , { "CategoryID", User.CategoryId.ToString() }
+                        , { "NoOfDays", noOfDays }
+                        , { "SubCategoryID", User.SubCategoryId.ToString() }
                         , { "ISMobileCall", "true" }
                     }, timeOut: 120);
-
-                //await confirm.ContinueWith(async continuationAction =>
-                //{
-                //    holderClass = await GetAsync("Stockdispatch_v2/getbranchindent", holderClass, new Dictionary<string, string?>()
-                //    {
-                //        { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() }
-                //        , { "CategoryID", "4" }
-                //        , { "NoOfDays", "5" }
-                //        , { "SubCategoryID", "0" }
-                //        , { "ISMobileCall", "true" }
-                //    }, timeOut: 120);
-                //});
-                
 
                 await RedirectToPage(holderClass, new StockDispatchByIndentPage(new StockDispatchByIndentViewModel(holderClass.StockDispatch, User.UserId)));
             }

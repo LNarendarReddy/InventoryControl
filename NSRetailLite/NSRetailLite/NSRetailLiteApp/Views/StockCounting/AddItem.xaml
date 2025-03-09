@@ -33,8 +33,7 @@
         </Grid>
         <Entry Placeholder="Item Name" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockCountingDetailModel.ItemName, Mode=TwoWay}"/>
         <Entry Placeholder="SKU Code" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockCountingDetailModel.SKUCode, Mode=TwoWay}"/>
-        <Entry Placeholder="MRP" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockCountingDetailModel.MRP, Mode=TwoWay}"
-              />
+        <Entry Placeholder="MRP" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockCountingDetailModel.MRP, Mode=TwoWay}" />
         <Entry Placeholder="Sale Price" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockCountingDetailModel.SalePrice, Mode=TwoWay}"/>
 
         <Label Text="Quantity" FontSize="Small"/>

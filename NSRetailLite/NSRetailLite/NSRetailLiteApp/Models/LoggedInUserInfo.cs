@@ -23,7 +23,10 @@ namespace NSRetailLiteApp.Models
         public string _roleName;
 
         [ObservableProperty]
-        public string _categoryId;
+        public int _categoryId;
+
+        [ObservableProperty]
+        public int _subCategoryId;
 
         [ObservableProperty]
         public string _categoryName;

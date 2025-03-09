@@ -1,63 +1,96 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NSRetailLiteApp.Views.StockDispatch.ByIndent.StockDispatchByIndentPage"
-             xmlns:models="clr-namespace:NSRetailLiteApp.Models">
-    <Grid RowDefinitions="Auto, Auto, *" Margin="10" RowSpacing="5">
-        <Label Text="Branch name" Grid.Row="0" HorizontalTextAlignment="Start"/>
-        <Label Text="Indent time" Grid.Row="0" HorizontalTextAlignment="End"/>
-        <Button Text="Start Dispatch" Grid.Row="1" HorizontalOptions="Center" 
-                Command="{Binding Path=StartDispatchCommand}"/>
-        <Frame Grid.Row="2" Padding="5">
-            <CollectionView ItemsSource="{Binding Path=ItemsData}" IsGrouped="True">
-                <CollectionView.GroupHeaderTemplate>
-                    <DataTemplate>
-                        <Grid ColumnDefinitions="Auto, *, Auto, Auto" Padding="20, 0, 20, 0"
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="NSRetailLiteApp.Views.StockDispatch.ByIndent.StockDispatchByIndentPage"
+            xmlns:models="clr-namespace:NSRetailLiteApp.Models"
+            xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+            xmlns:views="clr-namespace:NSRetailLiteApp.Views.StockDispatch.ByIndent">
+    <Page.Title>
+        <MultiBinding StringFormat="{}{0} - ( {1} days )">
+            <Binding Path="StockDispatchModel.ToBranchName"/>
+            <Binding Path="StockDispatchModel.NoOfDays"/>
+        </MultiBinding>
+    </Page.Title>
+    <TabbedPage.Resources>
+        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverted" />
+    </TabbedPage.Resources>
+    <ContentPage Title="Indent">
+        <Grid RowDefinitions="Auto, *" Margin="10" RowSpacing="5">
+            <HorizontalStackLayout Grid.Row="0"  Spacing="20" HorizontalOptions="Center">
+                <Button Text="Start Dispatch" 
+                    Command="{Binding Path=StartDispatchCommand}"
+                    IsEnabled="{Binding Path=AllowStart}"
+                    IsVisible="{Binding Path=IsNew}"/>
+                <Button Text="Submit" 
+                    Command="{Binding Path=StartDispatchCommand}"                    
+                    IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+                <Button Text="Discard" 
+                    Command="{Binding Path=StartDispatchCommand}"
+                    IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+            </HorizontalStackLayout>
+            
+            <Frame Grid.Row="1" Padding="5">
+                <CollectionView ItemsSource="{Binding Path=ItemsData}" IsGrouped="True">
+                    <CollectionView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="Auto, *, Auto, Auto" Padding="20, 0, 20, 0"
                               BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"                              >
-                            <Label Text="{Binding Name}"  FontSize="Title" FontAttributes="Bold" Grid.Column="0" TextColor="White"/>
-                            <Label Text="Count: " FontSize="Title" Grid.Column="2" VerticalTextAlignment="Center" TextColor="White"/>
-                            <Label Text="{Binding Count}" FontSize="Title" FontAttributes="Bold" Grid.Column="3" TextColor="White"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.GroupHeaderTemplate>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:BranchIndentDetailModel">
-                        <SwipeView>
-                            <SwipeView.RightItems>
-                                <SwipeItem IconImageSource="stockcountingdetailedit.png" 
-                                           
-                                           CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
-                                <SwipeItem IconImageSource="stockcountingdetaildiscard.png"                                 
-                                           
-                                           CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
-                            </SwipeView.RightItems>
-
-                            <Grid Padding="5" RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto" RowSpacing="5" ColumnSpacing="10">
-                                <Label FontSize="Subtitle" LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
-                                    <Label.Text>
-                                        <MultiBinding StringFormat="{}{0} - ({1})">
-                                            <Binding Path="ItemName"/>
-                                            <Binding Path="SkuCode"/>
-                                        </MultiBinding>
-                                    </Label.Text>
-                                </Label>
-
-                                <Label Text="{Binding Path=BranchStock, StringFormat='Branch Stock:{0}'}" Grid.Row="1" Grid.Column="0" 
-                                       FontSize="Small" />
-                                <Label Text="{Binding Path=LastDispatchDate, StringFormat='last dispatch: {0:dd/mm/yyyy}'}" Grid.Column="3" Grid.Row="1"/>
-
-                                <Label Text="{Binding Path=AvgSales, StringFormat='Avg sale (6m): {0}'}" Grid.Row="2" Grid.Column="0"/>
-                                <Label Text="{Binding Path=NoOfDaySales, StringFormat='Indent days sale: {0}'}" Grid.Row="2" Grid.Column="3"/>
-
-                                <Label Text="{Binding Path=IndentQuantity}" Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" 
-                                       VerticalTextAlignment="Center"  FontAttributes="Bold" FontSize="Title" />
-                                <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
+                                <Label Text="{Binding Name}"  FontSize="Title" FontAttributes="Bold" Grid.Column="0" TextColor="White"/>
+                                <Label Text="Count: " FontSize="Title" Grid.Column="2" VerticalTextAlignment="Center" TextColor="White"/>
+                                <Label Text="{Binding Count}" FontSize="Title" FontAttributes="Bold" Grid.Column="3" TextColor="White"/>
                             </Grid>
-                        </SwipeView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Frame>
-        
-    </Grid>
-</ContentPage>
+                        </DataTemplate>
+                    </CollectionView.GroupHeaderTemplate>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:BranchIndentDetailModel">
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItem IconImageSource="stockcountingdetailedit.png" CommandParameter="{Binding .}"
+                                               IsVisible="{Binding Path=BindingContext.IsNew, Converter={StaticResource Key=InvertedBoolConverted}
+                                                    , Source={RelativeSource AncestorType={x:Type views:StockDispatchByIndentPage}}}"
+                                               BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                                    <SwipeItem IconImageSource="stockcountingdetaildiscard.png" CommandParameter="{Binding .}" 
+                                               IsVisible="{Binding Path=BindingContext.IsNew, Converter={StaticResource Key=InvertedBoolConverted}
+                                                    , Source={RelativeSource AncestorType={x:Type views:StockDispatchByIndentPage}}}"
+                                               BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                                </SwipeView.RightItems>
+
+                                <Grid Padding="5" RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto" RowSpacing="5" ColumnSpacing="10">
+                                    <Label FontSize="Subtitle" LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} - ({1})">
+                                                <Binding Path="ItemName"/>
+                                                <Binding Path="SkuCode"/>
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+
+                                    <Label Text="{Binding Path=BranchStock, StringFormat='Branch Stock:{0}'}" Grid.Row="1" Grid.Column="0" 
+                                       FontSize="Small" />
+                                    <Label Text="{Binding Path=LastDispatchDate, StringFormat='last dispatch: {0:dd/MM/yyyy}'}" Grid.Column="3" Grid.Row="1"/>
+
+                                    <Label Text="{Binding Path=AvgSales, StringFormat='Avg sale (6m): {0}'}" Grid.Row="2" Grid.Column="0"/>
+                                    <Label Text="{Binding Path=NoOfDaySales, StringFormat='Indent days sale: {0}'}" Grid.Row="2" Grid.Column="3"/>
+
+                                    <Label Text="{Binding Path=IndentQuantity}" Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" 
+                                       VerticalTextAlignment="Center"  FontAttributes="Bold" FontSize="Title" />
+                                    <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
+                                </Grid>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </Grid>
+    </ContentPage>
+    <ContentPage Title="Manual" IsEnabled="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}">
+        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+            <Button Text="Submit" 
+                Command="{Binding Path=StartDispatchCommand}"                    
+                IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+            <Button Text="Discard" 
+                Command="{Binding Path=StartDispatchCommand}"
+                IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+        </HorizontalStackLayout>
+    </ContentPage>
+</TabbedPage>
