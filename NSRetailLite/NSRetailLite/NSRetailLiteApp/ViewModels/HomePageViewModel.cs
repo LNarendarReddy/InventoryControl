@@ -338,60 +338,78 @@ namespace NSRetailLiteApp.ViewModels
             await ShowPopup(null, stockDispatchTypeSelectionPage);
             
             HolderClass holderClass = new();
-            BranchSelectionViewModel branchSelectionViewModel = null;
+            StockDispatchModel stockDispatchModel = null;
 
             if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Indent based Dispatch")
             {
-                // api/Stockdispatch_v2/getdispatchwithbi
-
-                holderClass = await GetAsync("stockdispatch_v2/getbranch", holderClass
+                holderClass = await GetAsync("Stockdispatch_v2/getdispatchwithbi", holderClass
                    , new Dictionary<string, string?>()
                 {
                     { "UserID", Model.UserId.ToString() }
-                });
+                }, displayAlert: false);
 
-                branchSelectionViewModel = new BranchSelectionViewModel(holderClass.Holder.BranchList);
-                await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
+                if (holderClass.StockDispatch == null)
+                {
+                    Branch branch = await GetBranchSelection();
 
-                if (branchSelectionViewModel.SelectedBranch == null) return;
+                    string noOfDays = await Application.Current?.MainPage?.DisplayPromptAsync(
+                        $"{branch.BranchName}"
+                        , "Enter the no. of Indent days:"
+                        , keyboard: Keyboard.Numeric);
 
-                string noOfDays = await Application.Current?.MainPage?.DisplayPromptAsync(
-                    $"{branchSelectionViewModel.SelectedBranch.BranchName}"
-                    , "Enter the no. of Indent days:"
-                    , keyboard:Keyboard.Numeric);
+                    if (!int.TryParse(noOfDays, out int _)) return;
 
-                if (!int.TryParse(noOfDays, out int _)) return;
+                    if (!await DisplayAlert("Confirm"
+                        , $"Do you want to run Branch Indent for {branch.BranchName} for {noOfDays} days? The operation can take some time"
+                        , "Yes", "No")) return;
 
-                if (!await DisplayAlert("Confirm"
-                    , $"Do you want to run Branch Indent for {branchSelectionViewModel.SelectedBranch.BranchName} for {noOfDays} days? The operation can take some time"
-                    , "Yes", "No")) return;
-
-                holderClass = await GetAsync("Stockdispatch_v2/getbranchindent", holderClass, new Dictionary<string, string?>()
+                    holderClass = await GetAsync("Stockdispatch_v2/getbranchindent", holderClass, new Dictionary<string, string?>()
                     {
-                        { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() }
+                        { "BranchID", branch.BranchID.ToString() }
                         , { "CategoryID", User.CategoryId.ToString() }
                         , { "NoOfDays", noOfDays }
                         , { "SubCategoryID", User.SubCategoryId.ToString() }
                         , { "ISMobileCall", "true" }
                     }, timeOut: 120);
+                }
 
-                await RedirectToPage(holderClass, new StockDispatchByIndentPage(new StockDispatchByIndentViewModel(holderClass.StockDispatch, User.UserId)));
+                stockDispatchModel = holderClass.StockDispatch;
             }
             else if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Manual Dispatch")
             {
-
-                holderClass = await GetAsync("stockdispatch_v2/getbranch", holderClass
-                       , new Dictionary<string, string?>()
-                   {
+                holderClass = await GetAsync("Stockdispatch_v2/getdispatchwithbi", holderClass
+                   , new Dictionary<string, string?>()
+                {
                     { "UserID", Model.UserId.ToString() }
-                   });
+                });
 
+                if (holderClass.StockDispatch == null)
+                {
+                    Branch branch = await GetBranchSelection();
+                }
 
-                branchSelectionViewModel = new BranchSelectionViewModel(holderClass.Holder.BranchList);
-                await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
-
-                if (branchSelectionViewModel.SelectedBranch == null) return;
+                stockDispatchModel = holderClass.StockDispatch;
             }
-        } 
+
+            if (stockDispatchModel != null)
+                await RedirectToPage(holderClass
+                    , new StockDispatchByIndentPage(
+                        new StockDispatchByIndentViewModel(holderClass.StockDispatch, User.UserId)));
+        }
+
+        private async Task<Branch> GetBranchSelection()
+        {
+            HolderClass holderClass = new HolderClass();
+            holderClass = await GetAsync("stockdispatch_v2/getbranch", holderClass
+                   , new Dictionary<string, string?>()
+                {
+                    { "UserID", Model.UserId.ToString() }
+                });
+
+            BranchSelectionViewModel branchSelectionViewModel = new BranchSelectionViewModel(holderClass.Holder.BranchList);
+            await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
+
+            return branchSelectionViewModel.SelectedBranch;
+        }
     }
 }

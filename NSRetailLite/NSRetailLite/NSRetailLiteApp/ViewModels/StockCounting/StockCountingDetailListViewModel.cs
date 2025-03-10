@@ -137,19 +137,19 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
             if (selected.Exception == null)
             {
                 //StockCountingModel.CountingDetail.Remove(selected);
-                Reload(); //to refresh serial #s
+                await Reload(); //to refresh serial #s
             }
         }
 
-        public void Reload()
+        public async Task Reload()
         {
             var stockCountingModel = StockCountingModel;
-            stockCountingModel = GetAsync("stockcounting/getcounting", stockCountingModel
+            stockCountingModel = await GetAsync("stockcounting/getcounting", stockCountingModel
                 , new Dictionary<string, string?>()
                 {
                     { "UserID", userID.ToString() },
                     { "isNested", "True" }
-                }, true).Result;
+                }, true);
 
             StockCountingModel = stockCountingModel;
             PerformSearch();

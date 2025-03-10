@@ -22,10 +22,10 @@
                     IsEnabled="{Binding Path=AllowStart}"
                     IsVisible="{Binding Path=IsNew}"/>
                 <Button Text="Submit" 
-                    Command="{Binding Path=StartDispatchCommand}"                    
+                    Command="{Binding Path=SubmitCommand}"                    
                     IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
                 <Button Text="Discard" 
-                    Command="{Binding Path=StartDispatchCommand}"
+                    Command="{Binding Path=DiscardCommand}"
                     IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
             </HorizontalStackLayout>
             
@@ -45,11 +45,14 @@
                         <DataTemplate x:DataType="models:BranchIndentDetailModel">
                             <SwipeView>
                                 <SwipeView.RightItems>
-                                    <SwipeItem IconImageSource="stockcountingdetailedit.png" CommandParameter="{Binding .}"
+                                    <SwipeItem IconImageSource="stockcountingadd.png" 
+                                               Command="{Binding Path=BindingContext.AddIndentQuantityCommand
+                                                    , Source={RelativeSource AncestorType={x:Type views:StockDispatchByIndentPage}}}" 
+                                               CommandParameter="{Binding .}" 
                                                IsVisible="{Binding Path=BindingContext.IsNew, Converter={StaticResource Key=InvertedBoolConverted}
                                                     , Source={RelativeSource AncestorType={x:Type views:StockDispatchByIndentPage}}}"
                                                BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
-                                    <SwipeItem IconImageSource="stockcountingdetaildiscard.png" CommandParameter="{Binding .}" 
+                                    <SwipeItem IconImageSource="stockcountingdetailedit.png" CommandParameter="{Binding .}"
                                                IsVisible="{Binding Path=BindingContext.IsNew, Converter={StaticResource Key=InvertedBoolConverted}
                                                     , Source={RelativeSource AncestorType={x:Type views:StockDispatchByIndentPage}}}"
                                                BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
@@ -86,11 +89,14 @@
     <ContentPage Title="Manual" IsEnabled="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}">
         <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
             <Button Text="Submit" 
-                Command="{Binding Path=StartDispatchCommand}"                    
+                Command="{Binding Path=SubmitCommand}"                    
                 IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
             <Button Text="Discard" 
-                Command="{Binding Path=StartDispatchCommand}"
+                Command="{Binding Path=DiscardCommand}"
                 IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
         </HorizontalStackLayout>
+    </ContentPage>
+    <ContentPage Title="Tray wise">
+        
     </ContentPage>
 </TabbedPage>

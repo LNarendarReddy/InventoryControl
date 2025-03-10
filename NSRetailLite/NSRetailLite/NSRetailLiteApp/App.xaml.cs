@@ -13,9 +13,11 @@ namespace NSRetailLiteApp
             InitializeComponent();
 
             AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
-
+            NavigationPage navigationPage = new NavigationPage(new LoginPage());
+            NavigationPage.SetHasBackButton(navigationPage, false);
+            NavigationPage.SetHasNavigationBar(navigationPage, false);
             //MainPage = new AppShell();
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = navigationPage; //new NavigationPage(new LoginPage());
         }
 
         private void CurrentDomain_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
