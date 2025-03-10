@@ -1,5 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraLayout;
+using DevExpress.XtraReports.UI;
+using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -67,6 +69,14 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             };
 
             return GetReportData("USP_RPT_OFFER_STATUS", parameters);
+        }
+
+        private void btnShowPoster_Click(object sender, EventArgs e)
+        {
+            rptOfferPoster rpt = new rptOfferPoster();
+            rpt.DataSource = ResultGrid.DataSource;
+            rpt.CreateDocument();
+            rpt.ShowRibbonPreview();
         }
     }
 }
