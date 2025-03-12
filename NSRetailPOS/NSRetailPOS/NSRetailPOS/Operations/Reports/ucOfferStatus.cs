@@ -1,8 +1,10 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 using NSRetail.ReportForms;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.ReportControls.ReportBase;
+using NSRetailPOS.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +22,11 @@ namespace NSRetailPOS.Operations.Reports
         public ucOfferStatus()
         {
             InitializeComponent();
+
+            ContextmenuItems = new Dictionary<string, string>
+            {
+                { "Generate Stickers", "" }
+            };
         }
 
         private void cmbOfferSearchType_EditValueChanged(object sender, EventArgs e)
@@ -80,6 +87,31 @@ namespace NSRetailPOS.Operations.Reports
             };
 
             return GetReportData("USP_RPT_OFFER_STATUS", parameters);
+        }
+
+        public override void ActionExecute(string buttonText, DataRow drFocusedRow)
+        {
+            switch (buttonText)
+            {
+                case "Generate Stickers":
+                    DataTable dt = ((DataTable)ResultGrid.DataSource).Clone();
+                    foreach (int i in ResultGridView.GetSelectedRows())
+                    {
+                        dt.ImportRow(ResultGridView.GetDataRow(i));
+                    }
+                    rptOfrPoster rpt = new rptOfrPoster();
+                    DataView dv = dt.Copy().DefaultView;
+                    dv.RowFilter = "OFFERTYPEID IN (1,2,3,4,5) AND AppliesToName = 'ITEM'";
+                    rpt.DataSource = dv.ToTable();
+                    rpt.CreateDocument();
+                    rpt.ShowRibbonPreview();
+                    break;
+            }
+        }
+
+        public override void DataBoundCompleted()
+        {
+            ResultGridView.OptionsSelection.MultiSelect = true;
         }
     }
 }

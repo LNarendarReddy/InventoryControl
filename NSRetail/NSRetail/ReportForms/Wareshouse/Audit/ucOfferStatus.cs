@@ -1,6 +1,10 @@
-﻿using DevExpress.XtraEditors;
+﻿using DataAccess;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Design;
 using DevExpress.XtraLayout;
 using DevExpress.XtraReports.UI;
+using Entity;
+using NSRetail.ReportForms.Stock.StockCounting;
 using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
@@ -19,6 +23,11 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
         public ucOfferStatus()
         {
             InitializeComponent();
+
+            ContextmenuItems = new Dictionary<string, string>
+            {
+                { "Generate Stickers", "" }
+            };
         }
 
         private void cmbOfferSearchType_EditValueChanged(object sender, EventArgs e)
@@ -71,12 +80,29 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             return GetReportData("USP_RPT_OFFER_STATUS", parameters);
         }
 
-        private void btnShowPoster_Click(object sender, EventArgs e)
+        public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
-            rptOfferPoster rpt = new rptOfferPoster();
-            rpt.DataSource = ResultGrid.DataSource;
-            rpt.CreateDocument();
-            rpt.ShowRibbonPreview();
+            switch (buttonText)
+            {
+                case "Generate Stickers":
+                    DataTable dt = ((DataTable)ResultGrid.DataSource).Clone();
+                    foreach (int i in ResultGridView.GetSelectedRows())
+                    {
+                        dt.ImportRow(ResultGridView.GetDataRow(i));
+                    }
+                    rptOfrPoster rpt = new rptOfrPoster();
+                    DataView dv = dt.Copy().DefaultView;
+                    dv.RowFilter = "OFFERTYPEID IN (1,2,3,4,5) AND AppliesToName = 'ITEM'";
+                    rpt.DataSource = dv.ToTable();
+                    rpt.CreateDocument();
+                    rpt.ShowRibbonPreview();
+                    break;
+            }
+        }
+
+        public override void DataBoundCompleted()
+        {
+            ResultGridView.OptionsSelection.MultiSelect = true;
         }
     }
-}
+}   

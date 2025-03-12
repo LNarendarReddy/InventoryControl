@@ -1,5 +1,7 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 using NSRetailPOS.ReportControls.ReportBase;
+using NSRetailPOS.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,14 +23,19 @@ namespace NSRetailPOS.Operations.Reports
             {
                 { "OLDMRP", "Old MRP" }
                 , { "OLDSALEPRICE", "Old Sale Price" }
-                , { "NEWMRP", "New MRP" }
-                , { "NEWSALEPRICE", "New Sale Price" }
+                , { "MRP", "Latest MRP" }
+                , { "SALEPRICE", "Latest Price" }
+            };
+
+            ContextmenuItems = new Dictionary<string, string>
+            {
+                { "Generate Stickers", "" }
             };
 
             dtpFromDate.EditValue = DateTime.Now;
             dtpToDate.EditValue = DateTime.Now;
 
-            SetFocusControls(dtpFromDate, dtpToDate, columnHeaders);
+            SetFocusControls(dtpFromDate, chkAllItems, columnHeaders);
         }
 
         public override object GetData()
@@ -38,8 +45,38 @@ namespace NSRetailPOS.Operations.Reports
                 { "BRANCHID", Utility.branchInfo.BranchID }
                 , { "FROMDATE", dtpFromDate.EditValue }
                 , { "TODATE", dtpToDate.EditValue }
+                , { "AllItems", chkAllItems.EditValue }
             };
             return GetReportData("USP_RPT_ITEMPRICECHANGES", parameters);
+        }
+
+        private void chkAllItems_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpFromDate.Enabled = !chkAllItems.Checked;
+            dtpToDate.Enabled = !chkAllItems.Checked;
+        }
+
+        public override void ActionExecute(string buttonText, DataRow drFocusedRow)
+        {
+            switch (buttonText)
+            {
+                case "Generate Stickers":
+                    DataTable dt = ((DataTable)ResultGrid.DataSource).Clone();
+                    foreach (int i in ResultGridView.GetSelectedRows())
+                    {
+                        dt.ImportRow(ResultGridView.GetDataRow(i));
+                    }
+                    rptPriceSticker rpt = new rptPriceSticker();
+                    rpt.DataSource = dt;
+                    rpt.CreateDocument();
+                    rpt.ShowRibbonPreview();
+                    break;
+            }
+        }
+
+        public override void DataBoundCompleted()
+        {
+            ResultGridView.OptionsSelection.MultiSelect = true;
         }
     }
 }

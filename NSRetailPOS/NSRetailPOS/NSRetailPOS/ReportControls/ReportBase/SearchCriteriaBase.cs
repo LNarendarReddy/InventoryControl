@@ -119,6 +119,7 @@ namespace NSRetailPOS.ReportControls.ReportBase
             };
 
             ButtonColumns = new List<string>();
+            ContextmenuItems = new Dictionary<string, string>();
             IsDataSet = false;
             AllowedRoles = null;
         }
@@ -180,6 +181,8 @@ namespace NSRetailPOS.ReportControls.ReportBase
         public IEnumerable<string> HiddenColumns { get; protected set; }
 
         public IEnumerable<string> ButtonColumns { get; protected set; }
+
+        public Dictionary<string, string> ContextmenuItems { get; protected set; }
 
         public Control FirstControl => firstControl;
 

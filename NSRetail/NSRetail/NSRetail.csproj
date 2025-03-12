@@ -632,11 +632,11 @@
     <Compile Include="Reports\rptCRefund.Designer.cs">
       <DependentUpon>rptCRefund.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\rptOfferrPoster.cs">
+    <Compile Include="Reports\rptOfrPoster.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\rptOfferrPoster.Designer.cs">
-      <DependentUpon>rptOfferrPoster.cs</DependentUpon>
+    <Compile Include="Reports\rptOfrPoster.Designer.cs">
+      <DependentUpon>rptOfrPoster.cs</DependentUpon>
     </Compile>
     <Compile Include="Stock\frmAddProcessing.cs">
       <SubType>Form</SubType>
@@ -1391,8 +1391,8 @@
     <EmbeddedResource Include="Reports\rptCRefund.resx">
       <DependentUpon>rptCRefund.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\rptOfferrPoster.resx">
-      <DependentUpon>rptOfferrPoster.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\rptOfrPoster.resx">
+      <DependentUpon>rptOfrPoster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmAddProcessing.resx">
       <DependentUpon>frmAddProcessing.cs</DependentUpon>
@@ -1724,6 +1724,8 @@
     <None Include="Resources\add_16x163.png" />
     <None Include="Resources\removepivotfield_16x161.png" />
     <None Include="Resources\save_16x161.png" />
+    <None Include="Resources\victorylogo.svg" />
+    <None Include="Resources\victorylogo1.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

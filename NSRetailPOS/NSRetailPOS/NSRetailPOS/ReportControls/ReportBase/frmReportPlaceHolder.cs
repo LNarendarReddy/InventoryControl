@@ -1,4 +1,5 @@
 ﻿using DevExpress.Utils;
+using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
@@ -33,6 +34,8 @@ namespace NSRetail.ReportForms
             tlReport.ChildListFieldName = "SubCategory";
             dpLeft.Text = header + " Reports";
         }
+
+        Dictionary<string, string> contextmenuItems = new Dictionary<string, string>();
 
         ReportHolder selectedReportHolder;
         IOverlaySplashScreenHandle handle;
@@ -116,6 +119,14 @@ namespace NSRetail.ReportForms
                 gcButtonColumn.AppearanceHeader.TextOptions.HAlignment = HorzAlignment.Center;
             }
 
+            contextmenuItems.Clear();
+            foreach (var item in searchCriteria.ContextmenuItems)
+            {
+                string accessIdentifier = item.Value;
+                if (!string.IsNullOrEmpty(accessIdentifier) && !accessIdentifier.Contains("::")) accessIdentifier = $"{accessIdentifier}::Execute";
+                contextmenuItems.Add(item.Key, accessIdentifier);
+            }
+
             if (searchCriteria.Periodicity != null && gvResults.Columns.ColumnByFieldName("PERIODOCITY") != null)
             {
                 GridColumn periodicityColumn = gvResults.Columns.ColumnByFieldName("PERIODOCITY");
@@ -181,6 +192,11 @@ namespace NSRetail.ReportForms
 
             pcSearchCriteria.Controls.Add(selectedReportHolder.SearchCriteriaControl);
             selectedReportHolder.SearchCriteriaControl.Location = new System.Drawing.Point(2, 2);
+
+            lblContextOptions.Text = selectedReportHolder.SearchCriteriaControl.ContextmenuItems.Any()
+                ? $"Right click for options : {string.Join(", ", selectedReportHolder.SearchCriteriaControl.ContextmenuItems.Keys)}"
+                : string.Empty;
+
             dpTop.ClientSize = new System.Drawing.Size(dpTop.Size.Width, selectedReportHolder.SearchCriteriaControl.Height + 45);
             //pcSearchCriteria.Size = new System.Drawing.Size(pcSearchCriteria.Size.Width, selectedReportHolder.SearchCriteriaControl.Height + 40);
             dpTop.ResumeLayout();
@@ -329,6 +345,34 @@ namespace NSRetail.ReportForms
             {
                 e.Visible = (e.Row as ReportHolder).HasAccess;
                 e.Handled = true;
+            }
+        }
+
+        private void gvResults_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.HitInfo.HitTest != DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
+            {
+                return;
+            }
+
+            foreach (var item in contextmenuItems)
+            {
+                DXMenuItem menuItem = new DXMenuItem(item.Key);
+                menuItem.Click += On_Click;
+                menuItem.Tag = item.Key;
+                e.Menu.Items.Add(menuItem);
+            }
+        }
+
+        void On_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                selectedReportHolder.SearchCriteriaControl.ActionExecute(Convert.ToString(((DXMenuItem)sender).Tag), gvResults.GetFocusedDataRow());
+            }
+            catch (Exception ex)
+            {
+                
             }
         }
     }

@@ -56,7 +56,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(765, 42);
+            this.layoutControl1.Size = new System.Drawing.Size(738, 42);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -76,7 +76,7 @@
             // txtNoOfDays
             // 
             this.txtNoOfDays.EnterMoveNextControl = true;
-            this.txtNoOfDays.Location = new System.Drawing.Point(641, 10);
+            this.txtNoOfDays.Location = new System.Drawing.Point(614, 10);
             this.txtNoOfDays.Name = "txtNoOfDays";
             this.txtNoOfDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtNoOfDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
@@ -97,7 +97,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OFFERSEARCHTYPEID", "OFFERSEARCHTYPEID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OFFERSEARCHTYPE", "Search type")});
             this.cmbOfferSearchType.Properties.NullText = "";
-            this.cmbOfferSearchType.Size = new System.Drawing.Size(204, 20);
+            this.cmbOfferSearchType.Size = new System.Drawing.Size(177, 20);
             this.cmbOfferSearchType.StyleController = this.layoutControl1;
             this.cmbOfferSearchType.TabIndex = 1;
             this.cmbOfferSearchType.EditValueChanged += new System.EventHandler(this.cmbOfferSearchType_EditValueChanged);
@@ -112,7 +112,7 @@
             this.layoutControlItem4});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.Root.Size = new System.Drawing.Size(765, 42);
+            this.Root.Size = new System.Drawing.Size(738, 42);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem2
@@ -135,7 +135,7 @@
             this.layoutControlItem6.Control = this.txtNoOfDays;
             this.layoutControlItem6.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.layoutControlItem6.CustomizationFormText = "Item Code";
-            this.layoutControlItem6.Location = new System.Drawing.Point(561, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(534, 0);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(194, 30);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(194, 30);
             this.layoutControlItem6.Name = "layoutControlItem6";
@@ -154,7 +154,7 @@
             this.layoutControlItem4.MinSize = new System.Drawing.Size(50, 25);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem4.Size = new System.Drawing.Size(284, 32);
+            this.layoutControlItem4.Size = new System.Drawing.Size(257, 32);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.Text = "Search type";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(58, 13);
@@ -165,7 +165,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutControl1);
             this.Name = "ucOfferStatus";
-            this.Size = new System.Drawing.Size(765, 42);
+            this.Size = new System.Drawing.Size(738, 42);
             this.Load += new System.EventHandler(this.ucOfferStatus_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

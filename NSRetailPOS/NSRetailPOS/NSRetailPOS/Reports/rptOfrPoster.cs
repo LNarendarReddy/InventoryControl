@@ -4,11 +4,11 @@ using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 
-namespace NSRetail.Reports
+namespace NSRetailPOS.Reports
 {
-    public partial class rptOfferrPoster : DevExpress.XtraReports.UI.XtraReport
+    public partial class rptOfrPoster : DevExpress.XtraReports.UI.XtraReport
     {
-        public rptOfferrPoster()
+        public rptOfrPoster()
         {
             InitializeComponent();
         }

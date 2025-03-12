@@ -391,6 +391,18 @@
     <Compile Include="Reports\rptInvoice.Designer.cs">
       <DependentUpon>rptInvoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptOfrPoster.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptOfrPoster.Designer.cs">
+      <DependentUpon>rptOfrPoster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptPriceSticker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptPriceSticker.Designer.cs">
+      <DependentUpon>rptPriceSticker.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmBarCodePrint.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -628,6 +640,12 @@
     <EmbeddedResource Include="Reports\rptInvoice.resx">
       <DependentUpon>rptInvoice.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptOfrPoster.resx">
+      <DependentUpon>rptOfrPoster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptPriceSticker.resx">
+      <DependentUpon>rptPriceSticker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmBarCodePrint.resx">
       <DependentUpon>frmBarCodePrint.cs</DependentUpon>
     </EmbeddedResource>
@@ -735,6 +753,7 @@
     <None Include="Resources\cancel_16x161.png" />
     <None Include="Resources\delete_16x16.png" />
     <None Include="Resources\delete_16x161.png" />
+    <None Include="Resources\victorylogo1.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />
