@@ -31,7 +31,8 @@ namespace NSRetailPOS.Operations.Reports
 
         private void cmbOfferSearchType_EditValueChanged(object sender, EventArgs e)
         {
-            layoutControlItem6.Visibility = cmbOfferSearchType.EditValue.Equals("2") || cmbOfferSearchType.EditValue.Equals("3")
+            layoutControlItem6.Visibility = cmbOfferSearchType.EditValue.Equals("2") 
+                || cmbOfferSearchType.EditValue.Equals("3") || cmbOfferSearchType.EditValue.Equals("4")
                 ? DevExpress.XtraLayout.Utils.LayoutVisibility.Always : DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             txtNoOfDays.EditValue = 0;
         }
@@ -52,10 +53,11 @@ namespace NSRetailPOS.Operations.Reports
             dtOfferSeatchType.Columns.Add("OFFERSEARCHTYPEID");
             dtOfferSeatchType.Columns.Add("OFFERSEARCHTYPE");
             dtOfferSeatchType.Rows.Add(0, "All");
-            dtOfferSeatchType.Rows.Add(1, "Current Offers");
+            dtOfferSeatchType.Rows.Add(1, "Current");
             dtOfferSeatchType.Rows.Add(2, "Expiring soon");
-            dtOfferSeatchType.Rows.Add(3, "Commencing soon");
-            
+            dtOfferSeatchType.Rows.Add(3, "Upcoming");
+            dtOfferSeatchType.Rows.Add(4, "Expired");
+
             cmbOfferSearchType.Properties.DataSource = dtOfferSeatchType;
             cmbOfferSearchType.Properties.ValueMember = "OFFERSEARCHTYPEID";
             cmbOfferSearchType.Properties.DisplayMember = "OFFERSEARCHTYPE";
