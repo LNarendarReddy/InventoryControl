@@ -124,8 +124,8 @@
 	  <Compile Update="Views\Common\BarcodeScannerPage.xaml.cs">
 	    <DependentUpon>BarcodeScannerPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\StockDispatch\ByIndent\StockDispatchByIndentPage.xaml.cs">
-	    <DependentUpon>StockDispatchByIndentPage.xaml</DependentUpon>
+	  <Compile Update="Views\StockDispatch\StockDispatchPage.xaml.cs">
+	    <DependentUpon>StockDispatchPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -178,17 +178,15 @@
 	  <MauiXaml Update="Views\StockCounting\StockCountingDetailListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\StockDispatch\ByIndent\StockDispatchByIndentPage.xaml">
+	  <MauiXaml Update="Views\StockDispatch\StockDispatchPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StockDispatch\StockDispatchDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StockDispatch\StockDispatchTypeSelectionPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="ViewModels\StockDispatch\Manual\" />
-	  <Folder Include="Views\StockDispatch\Direct\" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">

@@ -61,20 +61,30 @@ namespace NSRetailLiteApp.Models
 
         [JsonIgnore]
         [ObservableProperty]
-        public ObservableCollection<StockDispatchDetailModel> _stockDispatachDetailManualList;
+        public ObservableCollection<StockDispatchDetailModel> _stockDispatchDetailManualList;
 
         public StockDispatchModel()
         {
             BranchIndentDetailList = new ObservableCollection<BranchIndentDetailModel>();
-            StockDispatachDetailManualList = new ObservableCollection<StockDispatchDetailModel>();
+            StockDispatchDetailManualList = new ObservableCollection<StockDispatchDetailModel>();
         }
     }
 
     public partial class StockDispatchDetailModel : BaseObservableObject
     {
+        public static string LastKnownTrayNumber { get; private set; }
+
         [JsonIgnore]
         [ObservableProperty]
         public int _stockDispatchDetailId;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _stockDispatchId;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public int _branchIndentId;
 
         [JsonIgnore]
         [ObservableProperty]
@@ -114,11 +124,26 @@ namespace NSRetailLiteApp.Models
 
         [JsonIgnore]
         [ObservableProperty]
-        public int _quantity;
+        public int _dispatchQuantity;
 
         [JsonIgnore]
         [ObservableProperty]
-        public int _weightInKGs;
+        public double _weightInKGs;
+
+        [JsonIgnore]
+        [ObservableProperty]
+        public bool _isNew;
+
+        partial void OnTrayNumberChanged(string value)
+        {
+            if (string.IsNullOrEmpty(value)) return;
+            LastKnownTrayNumber = value;
+        }
+
+        public StockDispatchDetailModel()
+        {
+            TrayNumber = LastKnownTrayNumber;
+        }
     }
 
     public partial class BranchIndentDetailModel : BaseObservableObject
@@ -161,15 +186,24 @@ namespace NSRetailLiteApp.Models
 
         [JsonIgnore]
         [ObservableProperty]
+        public double _dispatchQuantity;
+
+        [JsonIgnore]
+        [ObservableProperty]
         public DateTime? _lastDispatchDate;
 
         [JsonIgnore]
         [ObservableProperty]
-        public ObservableCollection<StockDispatchDetailModel> _stockDispatachDetailIndentList;
+        public ObservableCollection<StockDispatchDetailModel> _stockDispatchDetailIndentList;
 
         public BranchIndentDetailModel()
         {
-            StockDispatachDetailIndentList = new ObservableCollection<StockDispatchDetailModel>();
+            StockDispatchDetailIndentList = new ObservableCollection<StockDispatchDetailModel>();
+        }
+
+        public void RecalculateDispatchQuantity()
+        {
+            DispatchQuantity = StockDispatchDetailIndentList.Sum(x => x.IsOpenItem ? x.WeightInKGs : x.DispatchQuantity);
         }
     }
 }

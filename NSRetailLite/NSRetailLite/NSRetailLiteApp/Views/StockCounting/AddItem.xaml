@@ -12,11 +12,8 @@
     </ContentPage.Resources>
     
     <VerticalStackLayout Margin="20">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+        <Grid ColumnDefinitions="*, Auto">
+            
             <Entry Placeholder="EAN Code" Margin="0, 0, 0, 10" Text="{Binding Path=StockCountingDetailModel.ItemCode, Mode=TwoWay}"
                    ClearButtonVisibility="WhileEditing" ReturnType="Done"
                    ReturnCommand="{Binding Path=BindingContext.LoadItemCommand, Source={x:Reference AddItemPage}}" Keyboard="Numeric"

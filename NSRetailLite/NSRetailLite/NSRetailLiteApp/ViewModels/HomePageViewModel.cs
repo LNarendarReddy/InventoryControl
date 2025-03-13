@@ -12,7 +12,6 @@ using NSRetailLiteApp.Views.Common;
 using NSRetailLiteApp.Views.ItemDetails;
 using NSRetailLiteApp.Views.StockCounting;
 using NSRetailLiteApp.Views.StockDispatch;
-using NSRetailLiteApp.Views.StockDispatch.ByIndent;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -340,24 +339,25 @@ namespace NSRetailLiteApp.ViewModels
             HolderClass holderClass = new();
             StockDispatchModel stockDispatchModel = null;
 
-            if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Indent based Dispatch")
-            {
-                holderClass = await GetAsync("Stockdispatch_v2/getdispatchwithbi", holderClass
+            holderClass = await GetAsync("Stockdispatch_v2/getdispatchwithbi", holderClass
                    , new Dictionary<string, string?>()
-                {
-                    { "UserID", Model.UserId.ToString() }
-                }, displayAlert: false);
+                    {
+                        { "UserID", Model.UserId.ToString() },
+                        { "IsManualDispatch", (stockDispatchTypeSelectionPage.SelectedDispatchType == "Manual Dispatch").ToString() }
+                    }, displayAlert: false);
 
-                if (holderClass.StockDispatch == null)
-                {
-                    Branch branch = await GetBranchSelection();
+            if (holderClass.StockDispatch == null)
+            {
+                holderClass = new HolderClass(); // reset exception
 
+                Branch branch = await GetBranchSelection();
+
+                if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Indent based Dispatch")
+                {
                     string noOfDays = await Application.Current?.MainPage?.DisplayPromptAsync(
                         $"{branch.BranchName}"
                         , "Enter the no. of Indent days:"
                         , keyboard: Keyboard.Numeric);
-
-                    if (!int.TryParse(noOfDays, out int _)) return;
 
                     if (!await DisplayAlert("Confirm"
                         , $"Do you want to run Branch Indent for {branch.BranchName} for {noOfDays} days? The operation can take some time"
@@ -372,29 +372,27 @@ namespace NSRetailLiteApp.ViewModels
                         , { "ISMobileCall", "true" }
                     }, timeOut: 120);
                 }
-
-                stockDispatchModel = holderClass.StockDispatch;
-            }
-            else if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Manual Dispatch")
-            {
-                holderClass = await GetAsync("Stockdispatch_v2/getdispatchwithbi", holderClass
-                   , new Dictionary<string, string?>()
+                else if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Manual Dispatch")
                 {
-                    { "UserID", Model.UserId.ToString() }
-                });
+                    if (!await DisplayAlert("Confirm"
+                        , $"Do you create a new manual stock dispatch for {branch.BranchName}? The operation can take some time"
+                        , "Yes", "No")) return;
 
-                if (holderClass.StockDispatch == null)
-                {
-                    Branch branch = await GetBranchSelection();
+                    StockDispatchModel model = new StockDispatchModel() 
+                        { 
+                            UserId = Model.UserId 
+                            , ToBranchId = branch.BranchID
+                        };
+                    holderClass.StockDispatch = await PostAsyncAsContent("Stockdispatch_v2/savebranchindent", model);
                 }
-
-                stockDispatchModel = holderClass.StockDispatch;
             }
 
+            stockDispatchModel = holderClass.StockDispatch;
+            
             if (stockDispatchModel != null)
                 await RedirectToPage(holderClass
-                    , new StockDispatchByIndentPage(
-                        new StockDispatchByIndentViewModel(holderClass.StockDispatch, User.UserId)));
+                    , new StockDispatchPage(
+                        new StockDispatchViewModel(holderClass.StockDispatch, User)));
         }
 
         private async Task<Branch> GetBranchSelection()

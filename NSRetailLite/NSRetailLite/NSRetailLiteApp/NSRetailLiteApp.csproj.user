@@ -14,7 +14,10 @@
     <MauiXaml Update="Views\ItemDetails\ItemDetailsPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
-    <MauiXaml Update="Views\StockDispatch\ByIndent\StockDispatchByIndentPage.xaml">
+    <MauiXaml Update="Views\StockDispatch\StockDispatchPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\StockDispatch\StockDispatchDetailPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Views\StockDispatch\StockDispatchTypeSelectionPage.xaml">

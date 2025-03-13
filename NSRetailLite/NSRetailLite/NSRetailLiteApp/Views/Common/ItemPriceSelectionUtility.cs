@@ -17,28 +17,30 @@ namespace NSRetailLiteApp.Views.Common
 
             ItemCodeData selectedItemCode;
 
-            if (item.ItemCodeList.Count > 1)
+            if (item.ItemCodeList.Count == 1)
+            {
+                selectedItemCode = item.ItemCodeList[0];
+            }
+            else
             {
                 ItemCodeSelectionViewModel itemCodeSelectionViewModel = new ItemCodeSelectionViewModel(item);
                 await base.ShowPopup(item, new ItemCodeSelectionPage(itemCodeSelectionViewModel));
                 selectedItemCode = itemCodeSelectionViewModel.SelectedItemCode;
             }
-            else
-            {
-                selectedItemCode = item.ItemCodeList[0];
-            }
 
             if (selectedItemCode == null) return new Tuple<ItemCodeData, ItemPrice>(null, null); ;
 
-            if (selectedItemCode.ItemPriceList.Count > 1)
+            if (selectedItemCode.ItemPriceList.Count == 1)
+            {
+                return new Tuple<ItemCodeData, ItemPrice>(selectedItemCode, selectedItemCode.ItemPriceList[0]);
+            }
+            else
             {
                 ItemPriceSelectionViewModel itemPriceSelectionViewModel = new ItemPriceSelectionViewModel(selectedItemCode);
                 await base.ShowPopup(selectedItemCode, new ItemPriceSelectionPage(itemPriceSelectionViewModel));
 
                 return new Tuple<ItemCodeData, ItemPrice>(selectedItemCode, itemPriceSelectionViewModel.SelectedItemPrice);
             }
-            else 
-                return new Tuple<ItemCodeData, ItemPrice>(selectedItemCode, selectedItemCode.ItemPriceList[0]);
         }
 
         public async Task<string> ScanBarCodeWithCamera()

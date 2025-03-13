@@ -4,6 +4,7 @@ using DevExpress.CodeParser;
 using DevExpress.XtraRichEdit.Commands;
 using Newtonsoft.Json;
 using NSRetailLiteApp.Models;
+using NSRetailLiteApp.Views.StockDispatch;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,15 +14,14 @@ using System.Threading.Tasks;
 
 namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
 {
-    public partial class StockDispatchByIndentViewModel : BaseViewModel
+    public partial class StockDispatchViewModel : BaseViewModel
     {
-
         [ObservableProperty]
         public StockDispatchModel _stockDispatchModel;
 
         public ObservableCollection<ItemGroup> ItemsData { get; } = new ObservableCollection<ItemGroup>();
 
-        private readonly int userID;
+        private readonly LoggedInUser user;
 
         public IAsyncRelayCommand StartDispatchCommand { get; }
         public IAsyncRelayCommand SubmitCommand { get; }
@@ -41,10 +41,16 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
         [ObservableProperty]
         private bool _isNew;
 
-        public StockDispatchByIndentViewModel(StockDispatchModel stockDispatchModel, int UserID)
+        [ObservableProperty]
+        private bool _isManual;
+
+        [ObservableProperty]
+        private string _title;
+
+        public StockDispatchViewModel(StockDispatchModel stockDispatchModel, LoggedInUser User)
         {
             StockDispatchModel = stockDispatchModel;
-            userID = UserID;
+            user = User;
 
             BuildModelData();
 
@@ -94,7 +100,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             holderClass = await PostAsync("Stockdispatch_v2/discarddispatch", holderClass, new Dictionary<string, string?>
             {
                 { "StockDispatchID", StockDispatchModel.StockDispatchId.ToString() },
-                { "UserID", userID.ToString() }
+                { "UserID", user.UserId.ToString() }
             });
 
             if (holderClass?.Exception == null) Pop();
@@ -102,12 +108,31 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
 
         private async Task AddManual()
         {
+            StockDispatchDetailModel stockDispatchDetailModel = new StockDispatchDetailModel()
+            {
+                StockDispatchId = StockDispatchModel.StockDispatchId,
+                IsNew = true,                
+            };
 
+            await RedirectToPage(stockDispatchDetailModel
+                , new StockDispatchDetailPage(
+                    new StockDispatchDetailViewModel(stockDispatchDetailModel, null, StockDispatchModel, user)));
         }
 
         private async Task AddIndentQuantity(BranchIndentDetailModel? selected)
         {
-            
+            if(selected == null) return;
+
+            StockDispatchDetailModel stockDispatchDetailModel = new StockDispatchDetailModel()
+            {
+                ItemCode = selected.SkuCode,
+                StockDispatchId = StockDispatchModel.StockDispatchId,
+                IsNew = true
+            };
+
+            await RedirectToPage(stockDispatchDetailModel
+                , new StockDispatchDetailPage(
+                    new StockDispatchDetailViewModel(stockDispatchDetailModel, selected, StockDispatchModel, user)));
         }
 
         private async Task EditIndentQuantity(BranchIndentDetailModel? selected)
@@ -117,17 +142,56 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
 
         private async Task EditManualQuantity(StockDispatchDetailModel? selected)
         {
+            if (selected == null) return;
 
+            await RedirectToPage(selected
+                , new StockDispatchDetailPage(
+                    new StockDispatchDetailViewModel(selected, null, StockDispatchModel, user)));
         }
 
         private async Task DeleteManualQuantity(StockDispatchDetailModel? selected)
         {
+            if (selected == null) return;
 
+            if (!await DisplayAlert("Confirm Delete",
+                $"Are you sure you want to delete dispatch for item {selected.ItemName} - ({selected.ItemCode})?"
+                , "Yes", "No")) return;
+
+            HolderClass holderClass = new HolderClass();
+            holderClass = await PostAsync("Stockdispatch_v2/deletedispatchdetail", holderClass, new Dictionary<string, string?>
+                                {
+                                    { "StockDispatchDetailID", selected.StockDispatchDetailId.ToString() }
+                                });
+
+            if (holderClass.Exception != null) return;
+
+            BranchIndentDetailModel parent = StockDispatchModel
+                .BranchIndentDetailList.FirstOrDefault(x => 
+                        x.StockDispatchDetailIndentList.Any(y => y.StockDispatchDetailId == selected.StockDispatchDetailId));
+
+            if (parent == null)
+            {
+                StockDispatchModel.StockDispatchDetailManualList.Remove(selected);
+            }
+            else
+            { 
+                parent.StockDispatchDetailIndentList.Remove(selected);
+                parent.RecalculateDispatchQuantity();
+            }
         }
 
         private void BuildModelData()
         {
             if(StockDispatchModel == null) return;
+
+            AllowStart = (StockDispatchModel?.SubCategoryId ?? 0) != 0;
+            IsNew = (StockDispatchModel?.StockDispatchId ?? 0) <= 0;
+            IsManual = !IsNew && StockDispatchModel?.BranchIndentId == 0;
+            string filler = IsManual ? "Manual" : $" {StockDispatchModel.NoOfDays} days"; 
+            Title = $"{StockDispatchModel.ToBranchName} - ( {filler} )";
+            StockDispatchModel.UserId = user.UserId;
+
+            if (StockDispatchModel.BranchIndentDetailList == null) return;
 
             ItemsData.Clear();
             StockDispatchModel.BranchIndentDetailList
@@ -135,10 +199,6 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
                 .Select(x => new ItemGroup(x.Key, x.ToList()))
                 .OrderBy(x => x.Name.Length)
                 .ToList().ForEach(ItemsData.Add);
-
-            AllowStart = (StockDispatchModel?.SubCategoryId ?? 0) != 0;
-            IsNew = (StockDispatchModel?.StockDispatchId ?? 0) <= 0;
-            StockDispatchModel.UserId = userID;
         }
     }
 
