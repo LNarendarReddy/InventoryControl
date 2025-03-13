@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using DevExpress.Maui.Pdf.Internal;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,57 +12,44 @@ namespace NSRetailLiteApp.Models
 {
     public partial class StockDispatchModel : BaseObservableObject
     {
-        [JsonIgnore]
         [ObservableProperty]
-        public int _stockDispatchId;
+        private int _stockDispatchId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _branchIndentId;
+        private int _branchIndentId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _fromBranchId;
+        private int _fromBranchId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _toBranchId;
+        private int _toBranchId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _toBranchName;
+        private string _toBranchName;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _userId;
+        private int _userId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _noOfDays;
+        private int _noOfDays;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _subCategoryId;
+        private int _subCategoryId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _categoryId;
+        private int _categoryId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _subCategoryName;
+        private string _subCategoryName;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _categoryName;
+        private string _categoryName;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public ObservableCollection<BranchIndentDetailModel> _branchIndentDetailList;
+        private ObservableCollection<BranchIndentDetailModel> _branchIndentDetailList;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public ObservableCollection<StockDispatchDetailModel> _stockDispatchDetailManualList;
+        private ObservableCollection<StockDispatchDetailModel> _stockDispatchDetailManualList;
 
         public StockDispatchModel()
         {
@@ -74,65 +62,50 @@ namespace NSRetailLiteApp.Models
     {
         public static string LastKnownTrayNumber { get; private set; }
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _stockDispatchDetailId;
+        private int _stockDispatchDetailId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _stockDispatchId;
+        private int _stockDispatchId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _branchIndentId;
+        private int _branchIndentId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _itemId;
+        private int _itemId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _itemPriceId;
+        private int _itemPriceId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _skuCode;
+        private string _skuCode;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _itemName;
+        private string _itemName;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _itemCode;
+        private string _itemCode;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _trayNumber;
+        private string _trayNumber;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public double _mRP;
+        private double _mRP;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public double _salePrice;
+        private double _salePrice;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public bool _isOpenItem;
+        private bool _isOpenItem;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _dispatchQuantity;
+        private int _dispatchQuantity;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public double _weightInKGs;
+        private double _weightInKGs;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public bool _isNew;
+        private bool _isNew;
 
         partial void OnTrayNumberChanged(string value)
         {
@@ -148,53 +121,47 @@ namespace NSRetailLiteApp.Models
 
     public partial class BranchIndentDetailModel : BaseObservableObject
     {
-        [JsonIgnore]
         [ObservableProperty]
-        public int _branchIndentDetailId;
+        private int _branchIndentDetailId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _itemId;
+        private int _itemId;
                 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _skuCode;
+        private string _skuCode;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _itemName;
+        private string _itemName;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _subCategoryName;
+        private string _subCategoryName;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public double _branchStock;
+        private double _branchStock;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public double _avgSales;
+        private double _avgSales;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public double _noOfDaySales;
+        private double _noOfDaySales;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public double _indentQuantity;
+        private double _indentQuantity;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public double _dispatchQuantity;
+        private double _dispatchQuantity;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public DateTime? _lastDispatchDate;
+        private DateTime? _lastDispatchDate;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public ObservableCollection<StockDispatchDetailModel> _stockDispatchDetailIndentList;
+        private ObservableCollection<StockDispatchDetailModel> _stockDispatchDetailIndentList;
+
+        [ObservableProperty]
+        private bool _isDenominatorVisible;
+
+        [ObservableProperty]
+        private Color _quantityColor;
 
         public BranchIndentDetailModel()
         {
@@ -204,6 +171,24 @@ namespace NSRetailLiteApp.Models
         public void RecalculateDispatchQuantity()
         {
             DispatchQuantity = StockDispatchDetailIndentList.Sum(x => x.IsOpenItem ? x.WeightInKGs : x.DispatchQuantity);
+        }
+
+        partial void OnDispatchQuantityChanged(double value)
+        {
+            IsDenominatorVisible = value > 0;
+
+            if (value == 0)
+            {
+                QuantityColor = System.Drawing.Color.Black.ToMauiColor();
+            }
+            if (value < IndentQuantity)
+            {
+                QuantityColor = System.Drawing.Color.Orange.ToMauiColor();
+            }
+            if (value >= IndentQuantity)
+            {
+                QuantityColor = System.Drawing.Color.Green.ToMauiColor();
+            }            
         }
     }
 }

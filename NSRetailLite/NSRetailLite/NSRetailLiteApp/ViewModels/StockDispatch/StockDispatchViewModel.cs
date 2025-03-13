@@ -137,7 +137,10 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
 
         private async Task EditIndentQuantity(BranchIndentDetailModel? selected)
         {
+            if (selected == null) return;
 
+            await RedirectToPage(selected, new StockDispatchDetailListPage(
+                new StockDispatchDetailListViewModel(selected, StockDispatchModel, user)));
         }
 
         private async Task EditManualQuantity(StockDispatchDetailModel? selected)

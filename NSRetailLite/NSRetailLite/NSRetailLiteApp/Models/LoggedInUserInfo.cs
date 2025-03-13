@@ -11,82 +11,82 @@ namespace NSRetailLiteApp.Models
     public partial class LoggedInUser : BaseObservableObject
     {
         [ObservableProperty]
-        public string _userName;
+        private string _userName;
 
         [ObservableProperty]
-        public string _password;
+        private string _password;
 
         [ObservableProperty]
-        public int _roleId;
+        private int _roleId;
 
         [ObservableProperty]
-        public string _roleName;
+        private string _roleName;
 
         [ObservableProperty]
-        public int _categoryId;
+        private int _categoryId;
 
         [ObservableProperty]
-        public int _subCategoryId;
+        private int _subCategoryId;
 
         [ObservableProperty]
-        public string _categoryName;
+        private string _categoryName;
 
         [ObservableProperty]
-        public string _fullName;
+        private string _fullName;
 
         [ObservableProperty]
-        public int _userId;
+        private int _userId;
 
         [ObservableProperty]
-        public int _branchId;
+        private int _branchId;
 
         [ObservableProperty]
-        public string _branchName;
+        private string _branchName;
 
         [ObservableProperty]
-        public ObservableCollection<FeatureAccessData> _featureAccess;
+        private ObservableCollection<FeatureAccessData> _featureAccess;
 
         [ObservableProperty]
-        public string _appVersion;
+        private string _appVersion;
 
         [ObservableProperty]
-        public string _appURL;
+        private string _appURL;
 
         [ObservableProperty]
-        public decimal? _multiEditThreshold;
+        private decimal? _multiEditThreshold;
 
         [ObservableProperty]
-        public bool _filterMRPByStock;
+        private bool _filterMRPByStock;
 
         [ObservableProperty]
-        public decimal? _enableDraftBills;
+        private decimal? _enableDraftBills;
 
         [ObservableProperty]
-        public string? _address;
+        private string? _address;
 
         [ObservableProperty]
-        public string? _phoneNo;
+        private string? _phoneNo;
     }
 
     public partial class FeatureAccessData : BaseObservableObject
     {
         [ObservableProperty]
-        public int _userId;
+        private int _userId;
 
         [ObservableProperty]
-        public int _featureAccess;
+        private int _featureAccess;
 
         [ObservableProperty]
-        public bool _accessAvailable;
+        private bool _accessAvailable;
 
     }
     
     public partial class BranchCounter : BaseObservableObject
     {
         [ObservableProperty]
-        public int _counterId;
+        private int _counterId;
 
         [ObservableProperty]
-        public string _counterName;
+        private string _counterName;
     }
 }

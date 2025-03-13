@@ -12,7 +12,7 @@
     <ContentPage Title="Indent" x:Name="IndentDipstachContent">
         <Grid RowDefinitions="Auto, *" Margin="10" RowSpacing="5">
             <HorizontalStackLayout Grid.Row="0"  Spacing="20" HorizontalOptions="Center">
-                <Button Text="Start Dispatch" 
+                <Button Text="Proceed to Dispatch" 
                     Command="{Binding Path=StartDispatchCommand}"
                     IsEnabled="{Binding Path=AllowStart}"
                     IsVisible="{Binding Path=IsNew}"/>
@@ -48,6 +48,8 @@
                                                     , Source={RelativeSource AncestorType={x:Type views:StockDispatchPage}}}"
                                                BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
                                     <SwipeItem IconImageSource="stockcountingdetailedit.png" CommandParameter="{Binding .}"
+                                               Command="{Binding Path=BindingContext.EditIndentQuantityCommand
+                                                    , Source={RelativeSource AncestorType={x:Type views:StockDispatchPage}}}" 
                                                IsVisible="{Binding Path=BindingContext.IsNew, Converter={StaticResource Key=InvertedBoolConverted}
                                                     , Source={RelativeSource AncestorType={x:Type views:StockDispatchPage}}}"
                                                BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
@@ -69,10 +71,16 @@
 
                                     <Label Text="{Binding Path=AvgSales, StringFormat='Avg sale (6m): {0}'}" Grid.Row="2" Grid.Column="0"/>
                                     <Label Text="{Binding Path=NoOfDaySales, StringFormat='Indent days sale: {0}'}" Grid.Row="2" Grid.Column="3"/>
-
-                                    <Label Text="{Binding Path=IndentQuantity}" Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" 
-                                       VerticalTextAlignment="Center"  FontAttributes="Bold" FontSize="Title" />
+                                    <VerticalStackLayout Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" VerticalOptions="Center">
+                                        <Label Text="{Binding Path=IndentQuantity}" FontAttributes="Bold" FontSize="Title" 
+                                               TextColor="{Binding Path=QuantityColor}"/>
+                                        <Rectangle HeightRequest="2" BackgroundColor="{Binding Path=QuantityColor}"
+                                               IsVisible="{Binding Path=IsDenominatorVisible}" />
+                                        <Label Text="{Binding Path=DispatchQuantity}" FontAttributes="Bold" FontSize="Title" 
+                                               TextColor="{Binding Path=QuantityColor}" IsVisible="{Binding Path=IsDenominatorVisible}" />
+                                    </VerticalStackLayout>
                                     <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
+
                                 </Grid>
                             </SwipeView>
                         </DataTemplate>

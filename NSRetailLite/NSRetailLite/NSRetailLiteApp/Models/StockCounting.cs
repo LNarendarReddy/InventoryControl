@@ -13,16 +13,16 @@ namespace NSRetailLiteApp.Models
     public partial class StockCountingModel : BaseObservableObject
     {
         [ObservableProperty]
-        public int _stockCountingId;
+        private int _stockCountingId;
 
         [ObservableProperty]
-        public int _branchId;
+        private int _branchId;
 
         [ObservableProperty]
-        public string _branchName;
+        private string _branchName;
 
         [ObservableProperty]
-        public ObservableCollection<StockCountingDetailModel> _countingDetailList;
+        private ObservableCollection<StockCountingDetailModel> _countingDetailList;
 
         public StockCountingModel()
         {
@@ -32,52 +32,40 @@ namespace NSRetailLiteApp.Models
 
     public partial class StockCountingDetailModel : BaseObservableObject
     {
-        [JsonIgnore]
         [ObservableProperty]
-        public int _stockCountingDetailId;
+        private int _stockCountingDetailId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _stockCountingId;
+        private int _stockCountingId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _itemPriceId;
+        private int _itemPriceId;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _itemCode;
+        private string _itemCode;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _sKUCode;
+        private string _sKUCode;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _itemName;
+        private string _itemName;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _mRP;
+        private string _mRP;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public string _salePrice;
+        private string _salePrice;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _quantity;
+        private int _quantity;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public double _weightInKGs;
+        private double _weightInKGs;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public int _sNo;
+        private int _sNo;
 
-        [JsonIgnore]
         [ObservableProperty]
-        public bool _isOpenItem;
+        private bool _isOpenItem;
     }
 }

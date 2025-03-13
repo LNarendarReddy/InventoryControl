@@ -352,6 +352,8 @@ namespace NSRetailLiteApp.ViewModels
 
                 Branch branch = await GetBranchSelection();
 
+                if (branch == null) return;
+
                 if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Indent based Dispatch")
                 {
                     string noOfDays = await Application.Current?.MainPage?.DisplayPromptAsync(
