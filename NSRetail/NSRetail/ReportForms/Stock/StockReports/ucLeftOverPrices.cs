@@ -9,10 +9,6 @@ namespace NSRetail.ReportForms.Stock.StockReports
         {
             InitializeComponent();
 
-            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
-            cmbCategory.Properties.ValueMember = "CATEGORYID";
-            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
-
             SetFocusControls(cmbCategory, cmbCategory, null);
         }
 

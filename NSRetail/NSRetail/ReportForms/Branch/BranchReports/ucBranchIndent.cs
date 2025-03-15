@@ -30,10 +30,6 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             cmbBranch.Properties.ValueMember = "BRANCHID";
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
 
-            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
-            cmbCategory.Properties.ValueMember = "CATEGORYID";
-            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
-
             EditableColumns = new List<string>() { "INDENTQUANTITY" };
 
             txtIndentDays.EditValue = 7;

@@ -62,7 +62,7 @@ namespace NSRetail.ReportForms
         }
 
         private void BgwGetData_DoWork(object sender, DoWorkEventArgs e)
-        {
+         {
             try
             {
                 Stopwatch sw = new Stopwatch();

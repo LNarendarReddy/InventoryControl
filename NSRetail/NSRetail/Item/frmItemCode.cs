@@ -235,15 +235,10 @@ namespace NSRetail
             luGST.Properties.DisplayMember = "GSTCODE";
             luGST.Properties.ValueMember = "GSTID";
 
-            DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
-            dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
-            gluCategory.Properties.DataSource = dvCategory;
+            gluCategory.Properties.DataSource = Utility.GetCategoryListExceptAll();
             gluCategory.Properties.DisplayMember = "CATEGORYNAME";
             gluCategory.Properties.ValueMember = "CATEGORYID";
-            if(dvCategory.Count == 1)
-            {
-                gluCategory.EditValue = dvCategory[0]["CATEGORYID"];
-            }
+            gluCategory.EditValue = Utility.CategoryID;
 
             cmbBrand.Properties.DataSource = Utility.GetBrand();
             cmbBrand.Properties.DisplayMember = "BRANDNAME";

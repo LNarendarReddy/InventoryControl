@@ -39,10 +39,7 @@ namespace NSRetail
             cmbOfferType.Properties.ValueMember = "OFFERTYPEID";
             cmbOfferType.Properties.DisplayMember = "OFFERTYPENAME";
 
-            DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
-            dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
-
-            cmbCategory.Properties.DataSource = dvCategory;
+            cmbCategory.Properties.DataSource = Utility.GetCategoryListExceptAll();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 

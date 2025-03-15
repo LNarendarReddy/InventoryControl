@@ -37,11 +37,6 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 //{ "Revert", "3FF71395-4024-421A-9CFD-86891245BACD" }, 
                 //{ "Clone", "242EC249-1A85-4738-AB6A-733CF36BD522" } 
             };
-            
-            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
-            cmbCategory.Properties.ValueMember = "CATEGORYID";
-            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
-            cmbCategory.EditValue = 13;
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;

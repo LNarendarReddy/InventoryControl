@@ -325,22 +325,20 @@ namespace NSRetail
             cmb.EnterMoveNextControl = true;
         }
 
-        public void BindCategoryLookupedit(Control cntrl)
+        public virtual void BindCategoryLookupedit(Control cntrl)
         {
             LookUpEdit cmb = (LookUpEdit)cntrl;
-            cmb.Properties.DataSource = Utility.GetCategoryList();
+            cmb.Properties.DataSource = Utility.GetCategoryListFilteredByUser();
             cmb.Properties.ValueMember = "CATEGORYID";
             cmb.Properties.DisplayMember = "CATEGORYNAME";
-            cmb.EditValue = 13;
+            cmb.EditValue = Utility.CategoryID;
             cmb.EnterMoveNextControl = true;
         }
 
         public void BindCategoryCheckedComboboxEdit(Control cntrl)
         {
             CheckedComboBoxEdit cmb = (CheckedComboBoxEdit)cntrl;
-            DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
-            dvCategory.RowFilter = "CATEGORYID <> 13";
-            cmb.Properties.DataSource = dvCategory;
+            cmb.Properties.DataSource = Utility.GetCategoryListExceptAll();
             cmb.Properties.ValueMember = "CATEGORYID";
             cmb.Properties.DisplayMember = "CATEGORYNAME";
             cmb.CheckAll();

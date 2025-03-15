@@ -37,9 +37,7 @@ namespace NSRetail
             cmbItemCode.Properties.ValueMember = "ITEMCODEID";
             cmbItemCode.Properties.DisplayMember = "ITEMCODE";
 
-            DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
-            dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
-            gluCategory.Properties.DataSource = dvCategory;
+            gluCategory.Properties.DataSource = Utility.GetCategoryListExceptAll();
             gluCategory.Properties.DisplayMember = "CATEGORYNAME";
             gluCategory.Properties.ValueMember = "CATEGORYID";
         }

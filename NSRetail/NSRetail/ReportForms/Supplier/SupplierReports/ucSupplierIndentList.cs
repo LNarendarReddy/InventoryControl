@@ -36,10 +36,6 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 { "Print && Export", "93DE3B46-DA10-4E5F-8A42-47AE2B390C15" }
             };
 
-            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
-            cmbCategory.Properties.ValueMember = "CATEGORYID";
-            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
-
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
             

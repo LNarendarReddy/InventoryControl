@@ -25,10 +25,6 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 , { "MANUFACTURERNAME", "Manufacturer" }
             };
 
-            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
-            cmbCategory.Properties.ValueMember = "CATEGORYID";
-            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
-
             SetFocusControls(cmbBranch, cmbCategory, columnHeaders);
 
             txtThresholdValue.EditValue = 0;

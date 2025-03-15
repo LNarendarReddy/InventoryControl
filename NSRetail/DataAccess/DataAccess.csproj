@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="CloudRepository.cs" />
     <Compile Include="CountingRepository.cs" />
+    <Compile Include="IndentRepository.cs" />
     <Compile Include="ItemCodeRepository.cs" />
     <Compile Include="MasterRepository.cs" />
     <Compile Include="OfferRepository.cs" />

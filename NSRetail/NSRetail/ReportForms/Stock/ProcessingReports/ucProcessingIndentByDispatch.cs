@@ -28,10 +28,6 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
 
             MandatoryFields = new List<BaseEdit>() { cmbCategory, txtIndentDays };
 
-            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
-            cmbCategory.Properties.ValueMember = "CATEGORYID";
-            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
-
             txtIndentDays.EditValue = 5;
             IsDataSet = true;
             SetFocusControls(cmbCategory, txtIndentDays, columnHeaders);

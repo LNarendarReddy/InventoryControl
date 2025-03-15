@@ -42,9 +42,7 @@ namespace NSRetail.Stock
                 cmbSupplier.Properties.ValueMember = "DEALERID";
                 cmbSupplier.Properties.DisplayMember = "DEALERNAME";
 
-                DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
-                dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
-                cmbCategory.Properties.DataSource = dvCategory;
+                cmbCategory.Properties.DataSource = Utility.GetCategoryListExceptAll();
                 cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
                 cmbCategory.Properties.ValueMember = "CATEGORYID";
 

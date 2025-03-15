@@ -201,6 +201,25 @@ namespace NSRetail
             return dtCatgeory = dtCatgeory ?? new MasterRepository().GetCategory();
         }
 
+        public static DataTable GetCategoryListFilteredByUser()
+        {
+            DataTable dt = Utility.GetCategoryList().Copy();
+            if (Utility.CategoryID != 13)
+            {
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = $"CATEGORYID = {Utility.CategoryID}";
+                return dv.ToTable();
+            }
+            return dt;
+        }
+
+        public static DataTable GetCategoryListExceptAll()
+        {
+            DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
+            dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
+            return dvCategory.ToTable();
+        }
+
         public static DataTable GetBrand(bool refresh = false)
         {
             if (refresh)

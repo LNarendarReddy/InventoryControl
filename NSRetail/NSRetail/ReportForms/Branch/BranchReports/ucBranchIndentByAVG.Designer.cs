@@ -33,11 +33,11 @@
             this.txtIndentDays = new DevExpress.XtraEditors.TextEdit();
             this.cmbCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
+            this.btnSaveIndent = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnPrintToDM = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -56,7 +56,7 @@
             this.layoutControl1.Controls.Add(this.txtIndentDays);
             this.layoutControl1.Controls.Add(this.cmbCategory);
             this.layoutControl1.Controls.Add(this.cmbBranch);
-            this.layoutControl1.Controls.Add(this.btnPrintToDM);
+            this.layoutControl1.Controls.Add(this.btnSaveIndent);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -108,6 +108,18 @@
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 0;
             // 
+            // btnSaveIndent
+            // 
+            this.btnSaveIndent.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveIndent.ImageOptions.Image")));
+            this.btnSaveIndent.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnSaveIndent.Location = new System.Drawing.Point(744, 11);
+            this.btnSaveIndent.Name = "btnSaveIndent";
+            this.btnSaveIndent.Size = new System.Drawing.Size(145, 22);
+            this.btnSaveIndent.StyleController = this.layoutControl1;
+            this.btnSaveIndent.TabIndex = 4;
+            this.btnSaveIndent.Text = "Save Indent";
+            this.btnSaveIndent.Click += new System.EventHandler(this.btnSaveIndent_Click);
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -152,28 +164,15 @@
             this.layoutControlItem3.Text = "No of Days";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(60, 15);
             // 
-            // btnPrintToDM
-            // 
-            this.btnPrintToDM.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintToDM.ImageOptions.Image")));
-            this.btnPrintToDM.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnPrintToDM.Location = new System.Drawing.Point(744, 11);
-            this.btnPrintToDM.Name = "btnPrintToDM";
-            this.btnPrintToDM.Size = new System.Drawing.Size(145, 22);
-            this.btnPrintToDM.StyleController = this.layoutControl1;
-            this.btnPrintToDM.TabIndex = 4;
-            this.btnPrintToDM.Text = "Print to DM";
-            this.btnPrintToDM.Click += new System.EventHandler(this.btnPrintToDM_Click);
-            // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.btnPrintToDM;
+            this.layoutControlItem5.Control = this.btnSaveIndent;
             this.layoutControlItem5.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.layoutControlItem5.CustomizationFormText = "layoutControlItem5";
             this.layoutControlItem5.Location = new System.Drawing.Point(733, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem5.Size = new System.Drawing.Size(157, 35);
-            this.layoutControlItem5.Text = "layoutControlItem5";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
@@ -208,7 +207,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraEditors.SimpleButton btnPrintToDM;
+        private DevExpress.XtraEditors.SimpleButton btnSaveIndent;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
     }
 }

@@ -18,15 +18,10 @@ namespace NSRetail.Master.Classiification
 
         private void frmItemClassification_Load(object sender, EventArgs e)
         {
-            DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
-            dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
-            luCategory.Properties.DataSource = dvCategory;
+            luCategory.Properties.DataSource = Utility.GetCategoryListExceptAll();
             luCategory.Properties.DisplayMember = "CATEGORYNAME";
             luCategory.Properties.ValueMember = "CATEGORYID";
-            if (dvCategory.Count == 1)
-            {
-                luCategory.EditValue = dvCategory[0]["CATEGORYID"];
-            }
+            luCategory.EditValue = Utility.CategoryID;
 
             luCategory.EditValue = itemClassificationObj.CategoryID;
             txtClassificationName.EditValue = itemClassificationObj.ItemClassificationName;

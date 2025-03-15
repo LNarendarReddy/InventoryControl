@@ -39,9 +39,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             cmbDealer.Properties.ValueMember = "DEALERID";
             cmbDealer.Properties.DisplayMember = "DEALERNAME";
 
-            DataView dvCategory = Utility.GetCategoryList().Copy().DefaultView;
-            dvCategory.RowFilter = "CATEGORYNAME <> 'ALL'";
-            cmbCategory.Properties.DataSource = dvCategory;
+            cmbCategory.Properties.DataSource = Utility.GetCategoryListExceptAll();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
 
