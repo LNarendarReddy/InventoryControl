@@ -12,12 +12,20 @@
     </ContentPage.Resources>
 
     <VerticalStackLayout Margin="20">
-        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
-            <Label Text="Tray # : " VerticalTextAlignment="Center" FontSize="Medium"/>
-            <Entry Placeholder="Tray #" Margin="0, 0, 0, 10" FontAttributes="Bold" x:Name="txtTrayNumber"
-                   Text="{Binding Path=StockDispatchDetailModel.TrayNumber, Mode=TwoWay}" FontSize="Medium"
-                   VerticalOptions="End" VerticalTextAlignment="End"/>
-        </HorizontalStackLayout>
+        <Frame Padding="10">
+            <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Spacing="10">
+                <Label Text="Tray # : " VerticalTextAlignment="Center" FontSize="Medium"/>
+                <Picker Title="Select tray #" Margin="0, 0, 0, 10" FontAttributes="Bold" x:Name="cmbTrayNumber"
+                        FontSize="Medium" VerticalOptions="End" VerticalTextAlignment="End"
+                        SelectedItem="{Binding Path=SelectedTrayInfo, Mode=TwoWay}"
+                        ItemsSource="{Binding Path=StockDispatchModel.TrayInfoList}"
+                        ItemDisplayBinding="{Binding Path=TrayNumber}"/>
+                <Button ImageSource="stockcountingadd.png" Command="{Binding Path=AddTrayCommand}"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                <Button ImageSource="stockcountingdiscard.png" Command="{Binding Path=DeleteTrayCommand}"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+            </HorizontalStackLayout>
+        </Frame>
         <Grid ColumnDefinitions="*, Auto">
             <Entry Placeholder="EAN Code" Margin="0, 0, 0, 10" Text="{Binding Path=StockDispatchDetailModel.ItemCode, Mode=TwoWay}"
                ClearButtonVisibility="WhileEditing" ReturnType="Done"

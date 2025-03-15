@@ -6,7 +6,13 @@
     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20" Padding="20"
                          BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
         <Label Text="Select the type of Dispatch you want to perform!" FontSize="Small" LineBreakMode="WordWrap"/>
-        <Button Text="Indent based Dispatch" Clicked="Button_Clicked" FontAttributes="Bold" FontSize="Medium"/>
-        <Button Text="Manual Dispatch" Clicked="Button_Clicked"  FontAttributes="Bold" FontSize="Medium"/>
+        <Button Text="Generate Branch Indent" Clicked="Button_Clicked" FontAttributes="Bold" FontSize="Medium"
+                IsEnabled="{Binding Path=IsCategoryUser}"/>
+        <Button Text="View Branch Indents" Clicked="Button_Clicked" FontAttributes="Bold" FontSize="Medium"
+                IsEnabled="{Binding Path=IsCategoryUser}"/>
+        <Button Text="Indent based Dispatch" Clicked="Button_Clicked" FontAttributes="Bold" FontSize="Medium"
+                IsEnabled="{Binding Path=IsSubCategoryUser}"/>
+        <Button Text="Manual Dispatch" Clicked="Button_Clicked"  FontAttributes="Bold" FontSize="Medium"
+                IsEnabled="{Binding Path=IsSubCategoryUser}"/>
     </VerticalStackLayout>
 </mct:Popup>

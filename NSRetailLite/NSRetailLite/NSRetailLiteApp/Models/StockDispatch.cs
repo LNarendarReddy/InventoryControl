@@ -12,6 +12,8 @@ namespace NSRetailLiteApp.Models
 {
     public partial class StockDispatchModel : BaseObservableObject
     {
+        public static TrayInfo LastKnownTrayNumber { get; set; }
+
         [ObservableProperty]
         private int _stockDispatchId;
 
@@ -51,17 +53,19 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         private ObservableCollection<StockDispatchDetailModel> _stockDispatchDetailManualList;
 
+        [ObservableProperty]
+        private ObservableCollection<TrayInfo> _trayInfoList;
+
         public StockDispatchModel()
         {
             BranchIndentDetailList = new ObservableCollection<BranchIndentDetailModel>();
             StockDispatchDetailManualList = new ObservableCollection<StockDispatchDetailModel>();
+            TrayInfoList = new ObservableCollection<TrayInfo>();
         }
     }
 
     public partial class StockDispatchDetailModel : BaseObservableObject
     {
-        public static string LastKnownTrayNumber { get; private set; }
-
         [ObservableProperty]
         private int _stockDispatchDetailId;
 
@@ -87,7 +91,7 @@ namespace NSRetailLiteApp.Models
         private string _itemCode;
 
         [ObservableProperty]
-        private string _trayNumber;
+        private int _trayInfoId;
 
         [ObservableProperty]
         private double _mRP;
@@ -107,15 +111,9 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         private bool _isNew;
 
-        partial void OnTrayNumberChanged(string value)
-        {
-            if (string.IsNullOrEmpty(value)) return;
-            LastKnownTrayNumber = value;
-        }
-
         public StockDispatchDetailModel()
         {
-            TrayNumber = LastKnownTrayNumber;
+            
         }
     }
 
@@ -132,6 +130,9 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         private string _itemName;
+
+        [ObservableProperty]
+        private int _subCategoryId;
 
         [ObservableProperty]
         private string _subCategoryName;
@@ -190,5 +191,14 @@ namespace NSRetailLiteApp.Models
                 QuantityColor = System.Drawing.Color.Green.ToMauiColor();
             }            
         }
+    }
+
+    public partial class TrayInfo : BaseObservableObject
+    {
+        [ObservableProperty]
+        private int _trayInfoId;
+
+        [ObservableProperty]
+        private int _trayNumber;
     }
 }

@@ -20,7 +20,7 @@ public partial class StockDispatchDetailPage : ContentPage
 
         StockDispatchDetailViewModel.LoadItemCommand.Execute(null);
 
-        if (string.IsNullOrEmpty(StockDispatchDetailViewModel.StockDispatchDetailModel.TrayNumber)) { txtTrayNumber?.Focus(); return; }
+        //if (StockDispatchDetailViewModel.SelectedTrayInfo == null) { cmbTrayNumber?.Focus(); return; }
 
         if (string.IsNullOrEmpty(StockDispatchDetailViewModel.StockDispatchDetailModel.ItemCode)) { txtItemCode?.Focus(); return; }
 

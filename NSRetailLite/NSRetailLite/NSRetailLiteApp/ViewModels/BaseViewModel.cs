@@ -129,10 +129,18 @@ namespace NSRetailLiteApp.ViewModels
                 return;
             }
 
-            if (int.TryParse(responeMessage, out int ID) && callingObject.GetType() == typeof(HolderClass))
+            if (int.TryParse(responeMessage, out int ID))
             {
-                (callingObject as HolderClass).GenericID = ID;
-                return;
+                if (callingObject.GetType() == typeof(HolderClass))
+                {
+                    (callingObject as HolderClass).GenericID = ID;
+                    return;
+                }
+                else if (callingObject is BaseObservableObject)
+                {
+                    callingObject.ReturnId = ID;
+                    return;
+                }
             }
 
             var jsonSerializer = new Newtonsoft.Json.JsonSerializer();

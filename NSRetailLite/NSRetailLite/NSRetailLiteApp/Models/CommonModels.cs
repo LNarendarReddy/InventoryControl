@@ -49,34 +49,36 @@ namespace NSRetailLiteApp.Models
         public DayClosure DayClosure;
 
         public StockDispatchModel StockDispatch;
-
     }
     
     public partial class Branch : BaseObservableObject
     {
         [ObservableProperty]
-        public int _branchID;
+        private int _branchID;
 
         [ObservableProperty]
-        public string _branchName;
+        private string _branchName;
 
         [ObservableProperty]
-        public string _branchCode;
+        private string _branchCode;
 
         [ObservableProperty]
-        public string _address;
+        private string _address;
 
         [ObservableProperty]
-        public string _phoneNo;
+        private string _phoneNo;
 
         [ObservableProperty]
-        public string _landLine;
+        private string _landLine;
 
         [ObservableProperty]
-        public string _emailID;
+        private string _emailID;
 
         [ObservableProperty]
-        public ObservableCollection<BranchCounter> _branchCounterList;
+        private int _branchIndentID;
+
+        [ObservableProperty]
+        private ObservableCollection<BranchCounter> _branchCounterList;
 
         public Branch()
         {
@@ -87,22 +89,22 @@ namespace NSRetailLiteApp.Models
     public partial class Item : BaseObservableObject
     {
         [ObservableProperty]
-        public int _itemID;
+        private int _itemID;
 
         [ObservableProperty]
-        public string _itemName;
+        private string _itemName;
 
         [ObservableProperty]
-        public string _sKUCode;
+        private string _sKUCode;
 
         [ObservableProperty]
-        public bool _isOpenItem;
+        private bool _isOpenItem;
 
         [ObservableProperty]
-        public int _parentItemID;
+        private int _parentItemID;
 
         [ObservableProperty]
-        public ObservableCollection<ItemCodeData> _itemCodeList;
+        private ObservableCollection<ItemCodeData> _itemCodeList;
 
         public Item()
         {
@@ -113,22 +115,22 @@ namespace NSRetailLiteApp.Models
     public partial class ItemCodeData : BaseObservableObject
     {
         [ObservableProperty]
-        public int _itemID;
+        private int _itemID;
 
         [ObservableProperty]
-        public string _itemCodeID;
+        private string _itemCodeID;
 
         [ObservableProperty]
-        public string _itemCode;
+        private string _itemCode;
 
         [ObservableProperty]
-        public string _hSNCode;
+        private string _hSNCode;
 
         [ObservableProperty]
-        public ObservableCollection<ItemPrice> _itemPriceList;
+        private ObservableCollection<ItemPrice> _itemPriceList;
 
         [ObservableProperty]
-        public ObservableCollection<ItemOffer> _OfferList;
+        private ObservableCollection<ItemOffer> _OfferList;
 
         public ItemCodeData()
         {
@@ -140,30 +142,30 @@ namespace NSRetailLiteApp.Models
     public partial class ItemPrice : BaseObservableObject
     {
         [ObservableProperty]
-        public int _itemCodeID;
+        private int _itemCodeID;
 
         [ObservableProperty]
-        public int _itemPriceID;
+        private int _itemPriceID;
 
         [ObservableProperty]
-        public double _mRP;
+        private double _mRP;
 
         [ObservableProperty]
-        public double _salePrice;
+        private double _salePrice;
 
         [ObservableProperty]
-        public double _qtyOrWeightInKGs;
+        private double _qtyOrWeightInKGs;
     }
 
     public partial class ItemOffer : BaseObservableObject
     {
         [ObservableProperty]
-        public string _offerTypeName;
+        private string _offerTypeName;
 
         [ObservableProperty]
-        public string _offerCode;
+        private string _offerCode;
 
         [ObservableProperty]
-        public double _offerValue;
+        private double _offerValue;
     }
 }

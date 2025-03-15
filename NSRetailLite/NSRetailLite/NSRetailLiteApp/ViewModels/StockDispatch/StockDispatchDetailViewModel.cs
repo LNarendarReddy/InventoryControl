@@ -1,9 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Android.Database;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DevExpress.PivotGrid.PivotTable;
 using NSRetailLiteApp.Models;
 using NSRetailLiteApp.Views.Common;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,13 +19,20 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
         [ObservableProperty]
         public StockDispatchDetailModel _stockDispatchDetailModel;
         private readonly BranchIndentDetailModel branchIndentDetailModel;
-        private readonly StockDispatchModel stockDispatchModel;
+        public StockDispatchModel StockDispatchModel { get; }
 
         public IAsyncRelayCommand SaveCommand { get; }
 
         public IAsyncRelayCommand LoadItemCommand { get; }
 
+        public IAsyncRelayCommand AddTrayCommand { get; }
+
+        public IAsyncRelayCommand DeleteTrayCommand { get; }
+
         public LoggedInUser User { get; }
+
+        [ObservableProperty]
+        private TrayInfo _selectedTrayInfo;
 
         public StockDispatchDetailViewModel(StockDispatchDetailModel stockDispatchDetailModel
             , BranchIndentDetailModel branchIndentDetailModel
@@ -31,10 +41,17 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
         {
             StockDispatchDetailModel = stockDispatchDetailModel;
             this.branchIndentDetailModel = branchIndentDetailModel;
-            this.stockDispatchModel = stockDispatchModel;
+            StockDispatchModel = stockDispatchModel;
             User = user;
             SaveCommand = new AsyncRelayCommand(Save);
             LoadItemCommand = new AsyncRelayCommand(LoadItem);
+            AddTrayCommand = new AsyncRelayCommand(AddTray);
+            DeleteTrayCommand = new AsyncRelayCommand(DeleteTray);
+
+            SelectedTrayInfo =
+                StockDispatchModel.TrayInfoList
+                    .FirstOrDefault(x => x.TrayInfoId == StockDispatchDetailModel.TrayInfoId) 
+                        ?? StockDispatchModel.LastKnownTrayNumber;
         }
 
         private async Task Save()
@@ -56,7 +73,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             if (StockDispatchDetailModel.IsOpenItem && StockDispatchDetailModel.WeightInKGs >= 10000)
                 errors.Add("Weight cannot be more than 4 digits");
 
-            if (string.IsNullOrEmpty(StockDispatchDetailModel.TrayNumber))
+            if (SelectedTrayInfo == null)
                 errors.Add("Tray # not entered");
 
             if (errors.Any())
@@ -79,7 +96,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
                     { "DispatchQuantity", StockDispatchDetailModel.DispatchQuantity.ToString() },
                     { "WeightInKgs", StockDispatchDetailModel.WeightInKGs.ToString() },
                     { "UserID", User.UserId.ToString() },
-                    { "TrayNumber", StockDispatchDetailModel.TrayNumber }
+                    { "TrayInfoId", StockDispatchDetailModel.TrayInfoId.ToString() }
                 }, displayAlert: true, showResponse: false);
 
             if (holderClass.Exception != null) return;
@@ -91,14 +108,14 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             StockDispatchDetailModel.IsNew = false;
 
             // find if existing update
-            StockDispatchDetailModel existingUpdate = stockDispatchModel.StockDispatchDetailManualList
+            StockDispatchDetailModel existingUpdate = StockDispatchModel.StockDispatchDetailManualList
                 .FirstOrDefault(x => x.StockDispatchDetailId == StockDispatchDetailModel.StockDispatchDetailId);
             BranchIndentDetailModel existingUpdateParent = null;
 
             if (existingUpdate == null)
             {
                 existingUpdateParent =
-                    stockDispatchModel.BranchIndentDetailList.FirstOrDefault(
+                    StockDispatchModel.BranchIndentDetailList.FirstOrDefault(
                         x => x.StockDispatchDetailIndentList
                         .Any(y => y.StockDispatchDetailId == StockDispatchDetailModel.StockDispatchDetailId));
 
@@ -124,7 +141,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
                 branchIndentDetailModel.RecalculateDispatchQuantity();
             }
             else
-                stockDispatchModel.StockDispatchDetailManualList.Add(StockDispatchDetailModel);
+                StockDispatchModel.StockDispatchDetailManualList.Add(StockDispatchDetailModel);
         }
 
         private async Task LoadItem()
@@ -164,6 +181,53 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             StockDispatchDetailModel.DispatchQuantity = 0;
             StockDispatchDetailModel.WeightInKGs = 0;
             //StockDispatchDetailModel.TrayNumber = string.Empty;
+        }
+
+        private async Task AddTray()
+        {
+            string trayNumber = await Application.Current?.MainPage?.DisplayPromptAsync($"Add Tray #", "Enter the tray #:", keyboard: Keyboard.Numeric);
+            if (trayNumber == null) return;
+
+            TrayInfo trayInfo = new TrayInfo() { TrayNumber = Convert.ToInt32(trayNumber) };
+            trayInfo = await PostAsync("Stockdispatch_v2/savetrayinfo", trayInfo, new Dictionary<string, string?>()
+                            {
+                                { "StockDispatchID", StockDispatchModel.StockDispatchId.ToString() },
+                                { "TrayNumber", trayNumber },
+                                { "UserID", User.UserId.ToString() }
+                            });
+
+            if (trayInfo.Exception != null) return;
+
+            trayInfo.TrayInfoId = trayInfo.ReturnId;
+            StockDispatchModel.TrayInfoList.Add(trayInfo);
+
+            SelectedTrayInfo = trayInfo;
+        }
+
+        private async Task DeleteTray()
+        {
+            if(SelectedTrayInfo == null) return;
+
+            if (!await DisplayAlert("Confirm delete"
+                , $"Are you sure you want to delete tray # {SelectedTrayInfo.TrayNumber}?"
+                , "Yes", "No")) return;
+
+            TrayInfo trayInfo = SelectedTrayInfo;
+            trayInfo = await PostAsync("Stockdispatch_v2/deletetrayinfo", trayInfo, new Dictionary<string, string?>()
+                            {
+                                { "TrayInfoID", trayInfo.TrayInfoId.ToString() },
+                                { "UserID", User.UserId.ToString() }
+                            });
+
+            if (trayInfo.Exception != null) return;
+
+            StockDispatchModel.TrayInfoList.Remove(trayInfo);
+            SelectedTrayInfo = null;
+        }
+
+        partial void OnSelectedTrayInfoChanged(TrayInfo value)
+        {
+            StockDispatchModel.LastKnownTrayNumber = value;
         }
 
         private void ClearData()

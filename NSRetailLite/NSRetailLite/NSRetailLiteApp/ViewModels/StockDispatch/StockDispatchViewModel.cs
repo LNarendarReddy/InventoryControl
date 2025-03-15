@@ -72,7 +72,9 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
                     return;
 
                 StockDispatchModel = await PostAsyncAsContent("Stockdispatch_v2/savebranchindent", StockDispatchModel);
-                BuildModelData();                
+
+                await DisplayAlert("Success", "Branch Indent saved successfully", "OK");
+                await Pop();                
             }
             catch (Exception ex) { DisplayErrorMessage(ex.StackTrace); }
         }
@@ -88,7 +90,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
                 { "StockDispatchID", StockDispatchModel.StockDispatchId.ToString() }
             });
 
-            if (holderClass?.Exception == null) Pop();
+            if (holderClass?.Exception == null) await Pop();
         }
 
         private async Task Discard()
@@ -103,7 +105,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
                 { "UserID", user.UserId.ToString() }
             });
 
-            if (holderClass?.Exception == null) Pop();
+            if (holderClass?.Exception == null) await Pop();
         }
 
         private async Task AddManual()
@@ -187,7 +189,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
         {
             if(StockDispatchModel == null) return;
 
-            AllowStart = (StockDispatchModel?.SubCategoryId ?? 0) != 0;
+            AllowStart = user.SubCategoryId == 0;
             IsNew = (StockDispatchModel?.StockDispatchId ?? 0) <= 0;
             IsManual = !IsNew && StockDispatchModel?.BranchIndentId == 0;
             string filler = IsManual ? "Manual" : $" {StockDispatchModel.NoOfDays} days"; 

@@ -333,83 +333,181 @@ namespace NSRetailLiteApp.ViewModels
                 return;
             }
 
-            StockDispatchTypeSelectionPage stockDispatchTypeSelectionPage = new StockDispatchTypeSelectionPage();
+            StockDispatchTypeSelectionPage stockDispatchTypeSelectionPage = new StockDispatchTypeSelectionPage(
+                new StockDispatch.StockDispatchTypeSelectionViewModel(User));
+
             await ShowPopup(null, stockDispatchTypeSelectionPage);
-            
-            HolderClass holderClass = new();
-            StockDispatchModel stockDispatchModel = null;
 
-            holderClass = await GetAsync("Stockdispatch_v2/getdispatchwithbi", holderClass
-                   , new Dictionary<string, string?>()
-                    {
-                        { "UserID", Model.UserId.ToString() },
-                        { "IsManualDispatch", (stockDispatchTypeSelectionPage.SelectedDispatchType == "Manual Dispatch").ToString() }
-                    }, displayAlert: false);
-
-            if (holderClass.StockDispatch == null)
+            if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Generate Branch Indent")
             {
-                holderClass = new HolderClass(); // reset exception
-
-                Branch branch = await GetBranchSelection();
-
-                if (branch == null) return;
-
-                if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Indent based Dispatch")
-                {
-                    string noOfDays = await Application.Current?.MainPage?.DisplayPromptAsync(
-                        $"{branch.BranchName}"
-                        , "Enter the no. of Indent days:"
-                        , keyboard: Keyboard.Numeric);
-
-                    if (!await DisplayAlert("Confirm"
-                        , $"Do you want to run Branch Indent for {branch.BranchName} for {noOfDays} days? The operation can take some time"
-                        , "Yes", "No")) return;
-
-                    holderClass = await GetAsync("Stockdispatch_v2/getbranchindent", holderClass, new Dictionary<string, string?>()
-                    {
-                        { "BranchID", branch.BranchID.ToString() }
-                        , { "CategoryID", User.CategoryId.ToString() }
-                        , { "NoOfDays", noOfDays }
-                        , { "SubCategoryID", User.SubCategoryId.ToString() }
-                        , { "ISMobileCall", "true" }
-                    }, timeOut: 120);
-                }
-                else if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Manual Dispatch")
-                {
-                    if (!await DisplayAlert("Confirm"
-                        , $"Do you create a new manual stock dispatch for {branch.BranchName}? The operation can take some time"
-                        , "Yes", "No")) return;
-
-                    StockDispatchModel model = new StockDispatchModel() 
-                        { 
-                            UserId = Model.UserId 
-                            , ToBranchId = branch.BranchID
-                        };
-                    holderClass.StockDispatch = await PostAsyncAsContent("Stockdispatch_v2/savebranchindent", model);
-                }
+                await GenerateBranchIndent();
+                return;
             }
-
-            stockDispatchModel = holderClass.StockDispatch;
-            
-            if (stockDispatchModel != null)
-                await RedirectToPage(holderClass
-                    , new StockDispatchPage(
-                        new StockDispatchViewModel(holderClass.StockDispatch, User)));
+            else if (stockDispatchTypeSelectionPage.SelectedDispatchType == "View Branch Indents")
+            {
+                await ViewBranchIndent();
+                return;
+            }
+            else if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Indent based Dispatch")
+            {
+                await IndentBasedDispatch();
+                return;
+            }
+            else if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Manual Dispatch")
+            {
+                await ManualDispatch();
+                return;
+            }
         }
 
-        private async Task<Branch> GetBranchSelection()
+        private async Task<Branch> GetBranchSelection(bool showAllBranches)
         {
             HolderClass holderClass = new HolderClass();
             holderClass = await GetAsync("stockdispatch_v2/getbranch", holderClass
                    , new Dictionary<string, string?>()
                 {
-                    { "UserID", Model.UserId.ToString() }
+                    { "UserID", Model.UserId.ToString() },
+                    { "IsManualDispatch", showAllBranches.ToString() }
                 });
 
             BranchSelectionViewModel branchSelectionViewModel = new BranchSelectionViewModel(holderClass.Holder.BranchList);
             await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
 
             return branchSelectionViewModel.SelectedBranch;
+        }
+
+        private async Task GenerateBranchIndent()
+        {
+            HolderClass holderClass = new HolderClass(); // reset exception
+
+            Branch branch = await GetBranchSelection(User.SubCategoryId == 0);
+
+            if (branch == null) return;
+
+            holderClass = new HolderClass(); // reset exception
+
+            string noOfDays = await Application.Current?.MainPage?.DisplayPromptAsync(
+                        $"{branch.BranchName}"
+                        , "Enter the no. of Indent days:"
+                        , keyboard: Keyboard.Numeric);
+
+            if (string.IsNullOrEmpty(noOfDays)) return;
+
+            if (!await DisplayAlert("Confirm"
+                , $"Do you want to run Branch Indent for {branch.BranchName} for {noOfDays} days? The operation can take some time"
+                , "Yes", "No")) return;
+
+            holderClass = await GetAsync("Stockdispatch_v2/getbranchindent", holderClass, new Dictionary<string, string?>()
+                            {
+                                { "BranchID", branch.BranchID.ToString() }
+                                , { "CategoryID", User.CategoryId.ToString() }
+                                , { "NoOfDays", noOfDays }
+                                , { "SubCategoryID", User.SubCategoryId.ToString() }
+                                , { "ISMobileCall", "true" }
+                            }, timeOut: 120);
+
+            await RedirectToPage(holderClass
+                    , new StockDispatchPage(
+                        new StockDispatchViewModel(holderClass.StockDispatch, User)));
+        }
+
+        private async Task ViewBranchIndent()
+        {
+
+        }
+
+        private async Task IndentBasedDispatch()
+        {
+            HolderClass holderClass = new();
+
+            holderClass = await GetAsync("Stockdispatch_v2/getdispatchwithbi", holderClass
+                   , new Dictionary<string, string?>()
+                    {
+                        { "UserID", Model.UserId.ToString() },
+                        { "IsManualDispatch", false.ToString() }
+                    }, displayAlert: false);
+
+            if (holderClass.StockDispatch == null)
+            {
+                holderClass = new(); // reset exception
+
+                Branch branch = await GetBranchSelection(User.SubCategoryId == 0);
+                if (branch == null) return;
+
+                if (!await DisplayAlert("Confirm"
+                               , $"Do you want to start dispatch for {branch.BranchName}?"
+                            , "Yes", "No")) return;
+
+                StockDispatchModel model = new StockDispatchModel()
+                {
+                    UserId = User.UserId
+                    , ToBranchId = branch.BranchID
+                    , FromBranchId = User.BranchId
+                    , CategoryId = User.CategoryId
+                    , SubCategoryId = User.SubCategoryId
+                    , BranchIndentId = branch.BranchIndentID
+                };
+
+                holderClass.StockDispatch = await PostAsync("Stockdispatch_v2/savedispatch", model, new Dictionary<string, string?>()
+                {
+                    { "StockDispatchID", 0.ToString() },
+                    { "FromBranchID", User.BranchId.ToString() },
+                    { "ToBranchID",  branch.BranchID.ToString() },
+                    { "CategoryId", User.CategoryId.ToString() },
+                    { "SubCategoryId", User.SubCategoryId.ToString() },
+                    { "BranchIndentId", branch.BranchIndentID.ToString() },
+                    { "UserId", User.UserId.ToString() }
+                });
+            }
+
+            await RedirectToPage(holderClass
+                    , new StockDispatchPage(
+                        new StockDispatchViewModel(holderClass.StockDispatch, User)));
+        }
+
+        private async Task ManualDispatch()
+        {
+            HolderClass holderClass = new();
+
+            holderClass = await GetAsync("Stockdispatch_v2/getdispatchwithbi", holderClass
+                   , new Dictionary<string, string?>()
+                    {
+                        { "UserID", Model.UserId.ToString() },
+                        { "IsManualDispatch", true.ToString() }
+                    }, displayAlert: false);
+
+            if (holderClass.StockDispatch == null)
+            {
+                holderClass = new(); // reset exception
+
+                Branch branch = await GetBranchSelection(true);
+                if (branch == null) return;
+
+                if (!await DisplayAlert("Confirm"
+                        , $"Do you create a new manual stock dispatch for {branch.BranchName}?"
+                        , "Yes", "No")) return;
+
+                StockDispatchModel model = new StockDispatchModel()
+                {
+                    UserId = Model.UserId,
+                    ToBranchId = branch.BranchID,
+                    FromBranchId = User.BranchId
+                };
+
+                holderClass.StockDispatch = await PostAsync("Stockdispatch_v2/savedispatch", model, new Dictionary<string, string?>()
+                {
+                    { "StockDispatchID", 0.ToString() },
+                    { "FromBranchID", User.BranchId.ToString() },
+                    { "ToBranchID",  branch.BranchID.ToString() },
+                    { "CategoryId", User.CategoryId.ToString() },
+                    { "SubCategoryId", User.SubCategoryId.ToString() },
+                    { "UserId", User.UserId.ToString() }
+                });
+            }
+
+            await RedirectToPage(holderClass
+                    , new StockDispatchPage(
+                        new StockDispatchViewModel(holderClass.StockDispatch, User)));
         }
     }
 }
