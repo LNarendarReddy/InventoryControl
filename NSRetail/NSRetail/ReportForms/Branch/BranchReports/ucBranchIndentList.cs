@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit.Model;
 using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
             ContextmenuItems = new Dictionary<string, string>
             {
-                {"View Items", "" }
+                {"View Items", "320AFE45-004A-4514-A86B-776C0F85489F" },
+                {"Discard", "E6F25975-53F5-4021-89AA-C7B7CFB4FCFE" }
             };
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
@@ -55,20 +57,32 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
-            switch (buttonText)
+            try
             {
-                case "View Items":
-                    DataTable dtItems = new IndentRepository().GetIndentItems(drFocusedRow["BRANCHINDENTID"], drFocusedRow["STOCKDISPATCHID"]);
+                switch (buttonText)
+                {
+                    case "View Items":
+                        DataTable dtItems = new IndentRepository().GetIndentItems(drFocusedRow["BRANCHINDENTID"], drFocusedRow["STOCKDISPATCHID"]);
 
-                    frmBranchIndentDetail obj = new frmBranchIndentDetail(dtItems)
-                    {
-                        ShowInTaskbar = false,
-                        StartPosition = FormStartPosition.CenterScreen
-                    };
-                    obj.ShowDialog();
-                    break;
+                        frmBranchIndentDetail obj = new frmBranchIndentDetail(dtItems)
+                        {
+                            ShowInTaskbar = false,
+                            StartPosition = FormStartPosition.CenterScreen
+                        };
+                        obj.ShowDialog();
+                        break;
+                    case "Discard":
+                        int rowsAffected = new IndentRepository().DiscardIndent(drFocusedRow["BRANCHINDENTID"], Utility.UserID);
+                        if (rowsAffected == 0)
+                            throw new Exception("Something went wrong");
+                        ResultGridView.DeleteRow(ResultGridView.FocusedRowHandle);
+                        break;
+                }
             }
-
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
         }
 
     }

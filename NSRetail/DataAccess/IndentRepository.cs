@@ -82,5 +82,29 @@ namespace DataAccess
             }
             return dataTable;
         }
+
+        public int DiscardIndent(object BranchIndentID, object UserID)
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_D_BRANCHINDENT]";
+                    cmd.Parameters.AddWithValue("@BRANCHINDENTID", BranchIndentID);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected <= 0)
+                        throw new Exception("Something went wrong");
+                    return rowsAffected;
+               }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
