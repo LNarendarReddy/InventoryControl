@@ -125,7 +125,7 @@ namespace NSRetail
 
         public Dictionary<string, string> SpecificColumnHeaders => specificColumnHeaders;
 
-        public virtual IEnumerable<string> ForceShowColumns { get; }
+        public IEnumerable<string> ForceShowColumns { get; protected set; }
 
         public Dictionary<string, string> GenericColumnHeaders { get; }
 

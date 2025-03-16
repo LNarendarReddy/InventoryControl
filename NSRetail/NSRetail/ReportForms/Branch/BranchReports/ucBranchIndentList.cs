@@ -30,6 +30,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "NOOFDAYS", "No of Indent Days" }
             };
 
+            ForceShowColumns = new List<string>(){ { "BRANCHINDENTID"} };
+
             ContextmenuItems = new Dictionary<string, string>
             {
                 {"View Items", "320AFE45-004A-4514-A86B-776C0F85489F" },

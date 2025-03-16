@@ -64,6 +64,8 @@ namespace NSRetailPOS.ReportControls.ReportBase
                                 BindBranch(child);
                             else if (child.Name.ToLower().Contains("category"))
                                 BindCategoryCheckedComboboxEdit(child);
+                            else if (child.Name.ToLower().Contains("cmbclass"))
+                                BindClassCheckedComboboxEdit(child);
                         }
                         else if (child.GetType() == typeof(SearchLookUpEdit)
                             && child.Name.ToLower().Contains("itemcode"))
@@ -352,6 +354,17 @@ namespace NSRetailPOS.ReportControls.ReportBase
             cmb.Properties.DataSource = dvCategory;
             cmb.Properties.ValueMember = "CATEGORYID";
             cmb.Properties.DisplayMember = "CATEGORYNAME";
+            cmb.CheckAll();
+            AddCheckedComboBoxEnter(cmb);
+            cmb.EnterMoveNextControl = true;
+        }
+
+        public void BindClassCheckedComboboxEdit(Control cntrl)
+        {
+            CheckedComboBoxEdit cmb = (CheckedComboBoxEdit)cntrl;
+            cmb.Properties.DataSource = new ReportRepository().GetReportData("USP_R_ITEMCLASSIFICATION");
+            cmb.Properties.DisplayMember = "CLASSIFICATIONNAME";
+            cmb.Properties.ValueMember = "CLASSIFICATIONID";
             cmb.CheckAll();
             AddCheckedComboBoxEnter(cmb);
             cmb.EnterMoveNextControl = true;
