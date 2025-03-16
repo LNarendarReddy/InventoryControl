@@ -24,9 +24,32 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
         {
             InitializeComponent();
 
+            Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>()
+            {
+                { "OFFERNAME", "Offer Name" },
+                { "OFFERCODE", "Offer Code" },
+                { "STARTDATE", "Start Date" },
+                { "ENDDATE", "End Date" },
+                { "ISACTIVE", "Is Active" },
+                { "OFFERBASETYPE", "Base Type" },
+                { "OFFERTYPENAME", "Offer Type" },
+                { "OFFERVALUE", "Offer value" },
+                { "FINALPRICE", "Final Price" }
+            };
+
+            SetFocusControls(cmbBranch, cmbOfferSearchType, specificColumnHeaders);
+
             ContextmenuItems = new Dictionary<string, string>
             {
                 { "Generate Stickers", "" }
+            };
+            
+            HiddenColumns = new List<string>()
+            {
+                {"SUBCATEGORYNAME" },
+                {"SUBCLASSIFICATIONNAME" },
+                {"OFFERBASETYPE" },
+                {"AppliesToName" }
             };
         }
 
@@ -52,20 +75,6 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             cmbOfferSearchType.Properties.DisplayMember = "OFFERSEARCHTYPE";
             cmbOfferSearchType.EnterMoveNextControl = true;
             cmbOfferSearchType.EditValue = "0";
-
-            Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>()
-            {
-                { "OFFERNAME", "Offer Name" },
-                { "STARTDATE", "Start Date" },
-                { "ENDDATE", "End Date" },
-                { "ISACTIVE", "Is Active" },
-                { "OFFERBASETYPE", "Offer Base Type" },
-                { "OFFERTYPENAME", "Offer Type Name" },
-                { "OFFERVALUE", "Offer value" },
-                { "FINALPRICE", "Final Price" }
-            };
-
-            SetFocusControls(cmbBranch, txtNoOfDays, specificColumnHeaders);
         }
 
         public override object GetData()
@@ -75,6 +84,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 { "BranchIDs", cmbBranch.EditValue }
                 , { "OfferSearchTypeID", cmbOfferSearchType.EditValue }
                 , { "NoOfDays", txtNoOfDays.EditValue }
+                , { "CatIDs", cmbCategory.EditValue }
+                , { "ClassIDs", cmbClass.EditValue }
             };
 
             return GetReportData("USP_RPT_OFFER_STATUS", parameters);

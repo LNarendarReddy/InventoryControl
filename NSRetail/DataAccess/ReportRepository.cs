@@ -34,10 +34,6 @@ namespace DataAccess
                     throw new Exception(ex.Message);
                 throw new Exception($"Error While Retrieving {procedureName}", ex);
             }
-            finally
-            {
-                
-            }
             return dtReportData;
         }
 

@@ -117,10 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="simpleButton1.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAldEVYdFRpdGxlAENsZWFyO0VyYXNlO1JlbW92ZTtCYXJzO1JpYmJvbjuHgINzAAACkklEQVQ4
+        T5WTe0hTYRjG3/I2WyMr/zCJIstMkXCm0SxdMEU2gkphdrG0kGxamhnlJa3MC4VKSeY/2bIpWDjCy5qW
+        Qo0oBGdOZ7qmlmKJEaTOFWb5xE5nMmdBffDwHvj4/b6P85xD9G9rCRE5EJEjES213yTNib30vugUvStI
+        pqGCJBrMl9HAVRkZ805aYSdtRnxpT/ZxbZMserdFpM88Rj0Z8b8FrXESArAoLOzcnh57d85kBExG9OUn
+        m2tixeEWKbtPVJ5b8jfY5UVKjPznRD/M6kqY1XcwN2lAd2GqOSfQJ9IiZwTpNW/+BHPaEqPu/fish7mh
+        AtMNFTA3VmB2tANv4yR4KNr2Nc1vvWSRgIVd1fF7qmbHXsOkLMO08iamlWX4PvQSxqNiDBwRo+9QJG4F
+        ek8wgjSF3hZe9uhAxP2ZkXaYaothqi1h5kz/MxhiwmGQimCQhkMjFuCyl6eGEZyWd1lhbnxpq6J7eBxT
+        iiJMVhcx81tXC3r3hbERQhMRjCsbPLq3cl28GAHbLffwNXX18xEzcprG0fxAhUl5Hszt9dCJBdBJQqAT
+        h6BNGICLa917fDnO3mwTzMnLpfmNNU8HpxjYmuFOHTpFQdCKgpj5ROCPCx5ueh8Xx822NXL259ZVNvZ9
+        WQBXaz8hLFuFwth0dAj5aA72xTl3Xu8mJ0cfK9wh5DPX50VdbTFl1X+chytfjSE06zFCs1RMsqNlOLOS
+        27vR0WEL2z0DWwWc0IQbGQeLNXPn64ZxWzOKnZkq7GIjOKsEP668fw1vtZ89bBVYXiCPL72UFJZS/SEk
+        uQY7ZApsT6xCUIJ81j/munrFuoD5k1Ndncg2ti24EtEqIvIgIk82lme3Bd+9/bL/B/43vwBeirJNSgll
+        KAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="dxValidationProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnCancel.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAB10RVh0VGl0

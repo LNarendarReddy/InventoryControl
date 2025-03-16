@@ -100,5 +100,10 @@ namespace NSRetail
             cmbSubcategory.Properties.DisplayMember = "SUBCATEGORYNAME";
             cmbSubcategory.Properties.ValueMember = "SUBCATEGORYID";
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            cmbSubcategory.EditValue = null;
+        }
     }
 }
