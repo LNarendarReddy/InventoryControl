@@ -96,7 +96,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
                     { "DispatchQuantity", StockDispatchDetailModel.DispatchQuantity.ToString() },
                     { "WeightInKgs", StockDispatchDetailModel.WeightInKGs.ToString() },
                     { "UserID", User.UserId.ToString() },
-                    { "TrayInfoId", StockDispatchDetailModel.TrayInfoId.ToString() }
+                    { "TrayInfoId", StockDispatchDetailModel.TrayInfoId.ToString() },
+                    { "TrayNumber", StockDispatchDetailModel.TrayNumber.ToString() }
                 }, displayAlert: true, showResponse: false);
 
             if (holderClass.Exception != null) return;
@@ -227,7 +228,10 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 
         partial void OnSelectedTrayInfoChanged(TrayInfo value)
         {
+            if(value == null) return;
             StockDispatchModel.LastKnownTrayNumber = value;
+            StockDispatchDetailModel.TrayInfoId = value?.TrayInfoId ?? 0;
+            StockDispatchDetailModel.TrayNumber = value?.TrayNumber ?? 0;
         }
 
         private void ClearData()

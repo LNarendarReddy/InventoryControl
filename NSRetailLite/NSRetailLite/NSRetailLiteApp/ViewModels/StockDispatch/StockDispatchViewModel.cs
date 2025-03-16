@@ -20,6 +20,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
         public StockDispatchModel _stockDispatchModel;
 
         public ObservableCollection<ItemGroup> ItemsData { get; } = new ObservableCollection<ItemGroup>();
+        public ObservableCollection<TrayWiseGroup> TrayWiseData { get; } = new ObservableCollection<TrayWiseGroup>();
 
         private readonly LoggedInUser user;
 
@@ -205,6 +206,21 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
                 .OrderBy(x => x.Name.Length)
                 .ToList().ForEach(ItemsData.Add);
         }
+
+        public void BuildTrayWiseData()
+        {
+            TrayWiseData.Clear();
+            List<StockDispatchDetailModel> allDispatchDetails = new List<StockDispatchDetailModel>();
+
+            allDispatchDetails.AddRange(StockDispatchModel.BranchIndentDetailList.SelectMany(x => x.StockDispatchDetailIndentList));
+            allDispatchDetails.AddRange(StockDispatchModel.StockDispatchDetailManualList);
+
+            allDispatchDetails
+                .GroupBy(x => x.TrayNumber.ToString())
+                .Select(x => new TrayWiseGroup(x.Key, x.ToList()))
+                .OrderBy(x => x.Name.Length)
+                .ToList().ForEach(TrayWiseData.Add);
+        }
     }
 
 
@@ -215,6 +231,20 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
         public ItemGroup(string name, List<BranchIndentDetailModel> branchIndentDetailModels) : base(branchIndentDetailModels)
         {
             Name = name;
+        }
+    }
+
+    public class TrayWiseGroup : ObservableCollection<StockDispatchDetailModel>
+    {
+        public string Name { get; private set; }
+
+        public int PieceCount { get; private set; }
+
+
+        public TrayWiseGroup(string name, List<StockDispatchDetailModel> stockDispatchDetailModels) : base(stockDispatchDetailModels)
+        {
+            Name = name;
+            PieceCount = stockDispatchDetailModels.Sum(x => x.DispatchQuantity);
         }
     }
 }

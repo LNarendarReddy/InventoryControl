@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Core.Extensions;
+using DevExpress.Data.Extensions;
 using NSRetailLiteApp.Models;
 using NSRetailLiteApp.ViewModels.StockDispatch;
 using NSRetailLiteApp.ViewModels.StockDispatch.Indent;
@@ -23,5 +24,21 @@ public partial class StockDispatchPage : TabbedPage
     {
         if (StockDispatchViewModel.IsManual)
             this.CurrentPage = ManualDipstachContent;
+    }
+
+    private void Picker_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (cmbTrayWisePicker.SelectedItem == null) return;
+
+        TrayWiseGroup findGroupToScroll = 
+            StockDispatchViewModel.TrayWiseData.FirstOrDefault(x => x.Name == (cmbTrayWisePicker.SelectedItem as TrayInfo).TrayNumber.ToString());
+
+        if (findGroupToScroll != null) cvTrayWiseData.ScrollTo(findGroupToScroll[0], findGroupToScroll, ScrollToPosition.Center);
+
+    }
+
+    private void ContentPage_Loaded(object sender, EventArgs e)
+    {
+        StockDispatchViewModel.BuildTrayWiseData();
     }
 }

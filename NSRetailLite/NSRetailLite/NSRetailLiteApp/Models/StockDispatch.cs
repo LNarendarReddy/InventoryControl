@@ -94,6 +94,9 @@ namespace NSRetailLiteApp.Models
         private int _trayInfoId;
 
         [ObservableProperty]
+        private int _trayNumber;
+
+        [ObservableProperty]
         private double _mRP;
 
         [ObservableProperty]

@@ -6,7 +6,7 @@
              Title="{Binding Path=BranchIndentDetailModel.Title}">
     <Grid RowDefinitions="Auto, *" Margin="10" RowSpacing="10">
         <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto, *, Auto" ColumnSpacing="20" Margin="20, 0, 20, 0">
-            <Button Text="Add Item" Grid.Column="3" Command="{Binding Path=AddManualCommand}"                    
+            <Button Text="Add Item" Grid.Column="3" Command="{Binding Path=AddCommand}"                    
                     IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
         </Grid>
         <Frame BorderColor="PaleVioletRed" Grid.Row="1">
@@ -16,11 +16,11 @@
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItem IconImageSource="stockcountingdetailedit.png" CommandParameter="{Binding .}"
-                                       Command="{Binding Path=BindingContext.EditManualQuantityCommand
+                                       Command="{Binding Path=BindingContext.EditCommand
                                             , Source={RelativeSource AncestorType={x:Type views:StockDispatchDetailListPage}}}" 
                                        BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
                                 <SwipeItem IconImageSource="stockcountingdiscard.png" 
-                                       Command="{Binding Path=BindingContext.DeleteManualQuantityCommand
+                                       Command="{Binding Path=BindingContext.DiscardCommand
                                             , Source={RelativeSource AncestorType={x:Type views:StockDispatchDetailListPage}}}" 
                                        CommandParameter="{Binding .}" 
                                        BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
@@ -37,9 +37,11 @@
                                 </Label>
 
                                 <Label Text="{Binding Path=ItemCode, StringFormat='Item Code: {0}'}" Grid.Row="1" Grid.Column="0" 
-                                    FontSize="Small" Grid.ColumnSpan="4" HorizontalTextAlignment="Center" />
-                                <Label Text="{Binding Path=MRP, StringFormat='MRP: {0}'}" Grid.Column="0" Grid.Row="2"/>
-
+                                        Grid.ColumnSpan="3" />
+                                <Label Text="{Binding Path=TrayNumber, StringFormat='Tray #: {0}'}" Grid.Row="1" Grid.Column="3"
+                                       HorizontalTextAlignment="End"/>
+                                
+                                <Label Text="{Binding Path=MRP, StringFormat='MRP: {0}'}" Grid.Row="2" Grid.Column="0" />
                                 <Label Text="{Binding Path=SalePrice, StringFormat='Sale price: {0}'}" Grid.Row="2" Grid.Column="3"/>
 
                                 <Label Text="{Binding Path=DispatchQuantity}" Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" 

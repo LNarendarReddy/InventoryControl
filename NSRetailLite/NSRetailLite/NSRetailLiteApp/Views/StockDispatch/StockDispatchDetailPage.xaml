@@ -16,9 +16,9 @@
             <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Spacing="10">
                 <Label Text="Tray # : " VerticalTextAlignment="Center" FontSize="Medium"/>
                 <Picker Title="Select tray #" Margin="0, 0, 0, 10" FontAttributes="Bold" x:Name="cmbTrayNumber"
-                        FontSize="Medium" VerticalOptions="End" VerticalTextAlignment="End"
-                        SelectedItem="{Binding Path=SelectedTrayInfo, Mode=TwoWay}"
+                        FontSize="Medium" VerticalOptions="End" VerticalTextAlignment="End"                        
                         ItemsSource="{Binding Path=StockDispatchModel.TrayInfoList}"
+                        SelectedItem="{Binding Path=SelectedTrayInfo, Mode=TwoWay}"
                         ItemDisplayBinding="{Binding Path=TrayNumber}"/>
                 <Button ImageSource="stockcountingadd.png" Command="{Binding Path=AddTrayCommand}"
                         BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
