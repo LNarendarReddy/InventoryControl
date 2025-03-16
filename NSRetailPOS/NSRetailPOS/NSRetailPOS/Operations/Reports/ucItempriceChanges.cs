@@ -25,6 +25,7 @@ namespace NSRetailPOS.Operations.Reports
                 , { "OLDSALEPRICE", "Old Sale Price" }
                 , { "MRP", "Latest MRP" }
                 , { "SALEPRICE", "Latest Price" }
+                , { "BRANCHSTOCK", "Branch Stock" }
             };
 
             ContextmenuItems = new Dictionary<string, string>
@@ -32,10 +33,12 @@ namespace NSRetailPOS.Operations.Reports
                 { "Generate Stickers", "" }
             };
 
+            HiddenColumns = new List<string>() { "SUBCATEGORYNAME", "SUBCLASSIFICATIONNAME" };
+
             dtpFromDate.EditValue = DateTime.Now;
             dtpToDate.EditValue = DateTime.Now;
 
-            SetFocusControls(dtpFromDate, chkAllItems, columnHeaders);
+            SetFocusControls(cmbCategory, chkAllItems, columnHeaders);
         }
 
         public override object GetData()
@@ -46,6 +49,8 @@ namespace NSRetailPOS.Operations.Reports
                 , { "FROMDATE", dtpFromDate.EditValue }
                 , { "TODATE", dtpToDate.EditValue }
                 , { "AllItems", chkAllItems.EditValue }
+                , { "CatIDs", cmbCategory.EditValue }
+                , { "ClassIDs", cmbClass.EditValue }
             };
             return GetReportData("USP_RPT_ITEMPRICECHANGES", parameters);
         }

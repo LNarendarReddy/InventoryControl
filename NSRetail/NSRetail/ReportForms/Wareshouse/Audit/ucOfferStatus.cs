@@ -34,7 +34,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 { "OFFERBASETYPE", "Base Type" },
                 { "OFFERTYPENAME", "Offer Type" },
                 { "OFFERVALUE", "Offer value" },
-                { "FINALPRICE", "Final Price" }
+                { "FINALPRICE", "Final Price" },
+                { "BRANCHSTOCK", "Branch Stock" }
             };
 
             SetFocusControls(cmbBranch, cmbOfferSearchType, specificColumnHeaders);

@@ -22,7 +22,6 @@ namespace NSRetailPOS.Operations.Reports
         public ucOfferStatus()
         {
             InitializeComponent();
-
             Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>()
             {
                 { "OFFERNAME", "Offer Name" },
@@ -33,7 +32,8 @@ namespace NSRetailPOS.Operations.Reports
                 { "OFFERBASETYPE", "Base Type" },
                 { "OFFERTYPENAME", "Offer Type" },
                 { "OFFERVALUE", "Offer value" },
-                { "FINALPRICE", "Final Price" }
+                { "FINALPRICE", "Final Price" },
+                { "BRANCHSTOCK", "Branch Stock" }
             };
 
             SetFocusControls(cmbBranch, cmbOfferSearchType, specificColumnHeaders);

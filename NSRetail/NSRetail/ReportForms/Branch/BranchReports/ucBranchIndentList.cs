@@ -28,6 +28,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "DISPATCHNUMBER", "Dispatch Number" }
                 , { "INDENTSTATUS", "Indent Status" }
                 , { "NOOFDAYS", "No of Indent Days" }
+                , { "DISPATCHBY", "Dispatch by" }
+
             };
 
             ForceShowColumns = new List<string>(){ { "BRANCHINDENTID"} };

@@ -32,12 +32,12 @@
             this.cmbBranch = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.txtNoOfDays = new DevExpress.XtraEditors.TextEdit();
             this.cmbOfferSearchType = new DevExpress.XtraEditors.LookUpEdit();
+            this.cmbCategory = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.cmbClass = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cmbClass = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.cmbCategory = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -45,12 +45,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNoOfDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbOfferSearchType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbClass.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbClass.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
@@ -75,33 +75,33 @@
             // 
             this.cmbBranch.EditValue = "";
             this.cmbBranch.EnterMoveNextControl = true;
-            this.cmbBranch.Location = new System.Drawing.Point(91, 13);
+            this.cmbBranch.Location = new System.Drawing.Point(89, 13);
             this.cmbBranch.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.cmbBranch.Name = "cmbBranch";
             this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbBranch.Size = new System.Drawing.Size(169, 22);
+            this.cmbBranch.Size = new System.Drawing.Size(171, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 1;
             // 
             // txtNoOfDays
             // 
             this.txtNoOfDays.EnterMoveNextControl = true;
-            this.txtNoOfDays.Location = new System.Drawing.Point(1025, 12);
+            this.txtNoOfDays.Location = new System.Drawing.Point(1023, 12);
             this.txtNoOfDays.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtNoOfDays.Name = "txtNoOfDays";
             this.txtNoOfDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtNoOfDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtNoOfDays.Properties.MaskSettings.Set("mask", "n0");
             this.txtNoOfDays.Properties.UseMaskAsDisplayFormat = true;
-            this.txtNoOfDays.Size = new System.Drawing.Size(50, 22);
+            this.txtNoOfDays.Size = new System.Drawing.Size(52, 22);
             this.txtNoOfDays.StyleController = this.layoutControl1;
             this.txtNoOfDays.TabIndex = 4;
             // 
             // cmbOfferSearchType
             // 
             this.cmbOfferSearchType.EnterMoveNextControl = true;
-            this.cmbOfferSearchType.Location = new System.Drawing.Point(790, 12);
+            this.cmbOfferSearchType.Location = new System.Drawing.Point(788, 12);
             this.cmbOfferSearchType.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbOfferSearchType.Name = "cmbOfferSearchType";
             this.cmbOfferSearchType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -110,10 +110,32 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OFFERSEARCHTYPEID", "OFFERSEARCHTYPEID", 23, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OFFERSEARCHTYPE", "Search type", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbOfferSearchType.Properties.NullText = "";
-            this.cmbOfferSearchType.Size = new System.Drawing.Size(145, 22);
+            this.cmbOfferSearchType.Size = new System.Drawing.Size(147, 22);
             this.cmbOfferSearchType.StyleController = this.layoutControl1;
             this.cmbOfferSearchType.TabIndex = 1;
             this.cmbOfferSearchType.EditValueChanged += new System.EventHandler(this.cmbOfferSearchType_EditValueChanged);
+            // 
+            // cmbCategory
+            // 
+            this.cmbCategory.EnterMoveNextControl = true;
+            this.cmbCategory.Location = new System.Drawing.Point(350, 13);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbCategory.Size = new System.Drawing.Size(123, 22);
+            this.cmbCategory.StyleController = this.layoutControl1;
+            this.cmbCategory.TabIndex = 2;
+            // 
+            // cmbClass
+            // 
+            this.cmbClass.EnterMoveNextControl = true;
+            this.cmbClass.Location = new System.Drawing.Point(563, 13);
+            this.cmbClass.Name = "cmbClass";
+            this.cmbClass.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbClass.Size = new System.Drawing.Size(136, 22);
+            this.cmbClass.StyleController = this.layoutControl1;
+            this.cmbClass.TabIndex = 2;
             // 
             // Root
             // 
@@ -166,28 +188,6 @@
             this.layoutControlItem4.Text = "Search type";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(64, 15);
             // 
-            // cmbClass
-            // 
-            this.cmbClass.EnterMoveNextControl = true;
-            this.cmbClass.Location = new System.Drawing.Point(565, 13);
-            this.cmbClass.Name = "cmbClass";
-            this.cmbClass.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbClass.Size = new System.Drawing.Size(134, 22);
-            this.cmbClass.StyleController = this.layoutControl1;
-            this.cmbClass.TabIndex = 2;
-            // 
-            // cmbCategory
-            // 
-            this.cmbCategory.EnterMoveNextControl = true;
-            this.cmbCategory.Location = new System.Drawing.Point(352, 13);
-            this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbCategory.Size = new System.Drawing.Size(121, 22);
-            this.cmbCategory.StyleController = this.layoutControl1;
-            this.cmbCategory.TabIndex = 2;
-            // 
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.cmbCategory;
@@ -226,12 +226,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNoOfDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbOfferSearchType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbClass.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbClass.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);

@@ -33,6 +33,7 @@ namespace NSRetailPOS.Operations.Reports
 
             SetFocusControls(dtpFromDate, dtpToDate, columnHeaders);
         }
+
         public override object GetData()
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
