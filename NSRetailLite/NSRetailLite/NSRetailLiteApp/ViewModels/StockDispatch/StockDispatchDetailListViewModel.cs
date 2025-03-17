@@ -17,6 +17,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 
         public IAsyncRelayCommand<StockDispatchDetailModel?> EditCommand { get; }
         public IAsyncRelayCommand<StockDispatchDetailModel?> DiscardCommand { get; }
+        public IAsyncRelayCommand BackCommand { get; }
         public IAsyncRelayCommand AddCommand { get; }
 
         public StockDispatchDetailListViewModel(BranchIndentDetailModel branchIndentDetailModel
@@ -32,6 +33,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             EditCommand = new AsyncRelayCommand<StockDispatchDetailModel?>(Edit);
             DiscardCommand = new AsyncRelayCommand<StockDispatchDetailModel?>(Discard);
             AddCommand = new AsyncRelayCommand(Add);
+            BackCommand = new AsyncRelayCommand(Back);
         }
 
         public BranchIndentDetailModel BranchIndentDetailModel { get; }
@@ -79,6 +81,11 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 
             BranchIndentDetailModel.StockDispatchDetailIndentList.Remove(selected);
             BranchIndentDetailModel.RecalculateDispatchQuantity();
+        }
+
+        private async Task Back()
+        {
+            Pop();
         }
     }
 }

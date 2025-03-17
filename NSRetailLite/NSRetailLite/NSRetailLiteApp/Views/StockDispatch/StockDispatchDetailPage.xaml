@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NSRetailLiteApp.Views.StockDispatch.StockDispatchDetailPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"             
-             Title="Add dispatch item"
+             Title="Dispatch item details"
              Loaded="ContentPage_Loaded">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -12,7 +12,7 @@
     </ContentPage.Resources>
 
     <VerticalStackLayout Margin="20">
-        <Frame Padding="10">
+        <Frame Padding="10" IsEnabled="{Binding Path=IsEditable}">
             <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Spacing="10">
                 <Label Text="Tray # : " VerticalTextAlignment="Center" FontSize="Medium"/>
                 <Picker Title="Select tray #" Margin="0, 0, 0, 10" FontAttributes="Bold" x:Name="cmbTrayNumber"
@@ -26,7 +26,7 @@
                         BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
             </HorizontalStackLayout>
         </Frame>
-        <Grid ColumnDefinitions="*, Auto">
+        <Grid ColumnDefinitions="*, Auto" IsEnabled="{Binding Path=IsEditable}">
             <Entry Placeholder="EAN Code" Margin="0, 0, 0, 10" Text="{Binding Path=StockDispatchDetailModel.ItemCode, Mode=TwoWay}"
                ClearButtonVisibility="WhileEditing" ReturnType="Done"
                ReturnCommand="{Binding Path=LoadItemCommand}" Keyboard="Numeric"

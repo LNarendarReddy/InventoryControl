@@ -30,6 +30,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
         public IAsyncRelayCommand DeleteTrayCommand { get; }
 
         public LoggedInUser User { get; }
+        public bool IsEditable { get; }
 
         [ObservableProperty]
         private TrayInfo _selectedTrayInfo;
@@ -37,12 +38,14 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
         public StockDispatchDetailViewModel(StockDispatchDetailModel stockDispatchDetailModel
             , BranchIndentDetailModel branchIndentDetailModel
             , StockDispatchModel stockDispatchModel
-            , LoggedInUser user)
+            , LoggedInUser user
+            , bool isEditable = true)
         {
             StockDispatchDetailModel = stockDispatchDetailModel;
             this.branchIndentDetailModel = branchIndentDetailModel;
             StockDispatchModel = stockDispatchModel;
             User = user;
+            IsEditable = isEditable;
             SaveCommand = new AsyncRelayCommand(Save);
             LoadItemCommand = new AsyncRelayCommand(LoadItem);
             AddTrayCommand = new AsyncRelayCommand(AddTray);
@@ -187,7 +190,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
         private async Task AddTray()
         {
             string trayNumber = await Application.Current?.MainPage?.DisplayPromptAsync($"Add Tray #", "Enter the tray #:", keyboard: Keyboard.Numeric);
-            if (trayNumber == null) return;
+            if (string.IsNullOrEmpty(trayNumber)) return;
 
             TrayInfo trayInfo = new TrayInfo() { TrayNumber = Convert.ToInt32(trayNumber) };
             trayInfo = await PostAsync("Stockdispatch_v2/savetrayinfo", trayInfo, new Dictionary<string, string?>()

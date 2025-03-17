@@ -181,6 +181,9 @@
 	  <MauiXaml Update="Views\StockDispatch\StockDispatchDetailListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\StockDispatch\StockDispatchIndentListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\StockDispatch\StockDispatchPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

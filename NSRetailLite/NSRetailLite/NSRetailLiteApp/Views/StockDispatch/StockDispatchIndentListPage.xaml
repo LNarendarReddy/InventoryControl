@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.StockDispatch.StockDispatchIndentListPage"
+             Title="Indent List">
+    <Frame Padding="5" Margin="5">
+        <CollectionView ItemsSource="{Binding Path=IndentData}" IsGrouped="True">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto, *, Auto, Auto" Padding="20, 0, 20, 0" 
+                          BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"                              >
+                        <Label Text="{Binding Name}"  FontSize="Title" FontAttributes="Bold" Grid.Column="0" TextColor="White"/>
+                        <Label Text="Count: " FontSize="Title" Grid.Column="2" VerticalTextAlignment="Center" TextColor="White"/>
+                        <Label Text="{Binding Count}" FontSize="Title" FontAttributes="Bold" Grid.Column="3" TextColor="White"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Spacing="10" Margin="5">
+                        <Grid ColumnSpacing="10" ColumnDefinitions="Auto, Auto, *, Auto, Auto">
+                            <Label Text="Indent #:" Grid.Column="0"/>
+                            <Label Text="{Binding Path=BranchIndentID}" FontAttributes="Bold" Grid.Column="1"/>
+                            <Label Text="Dispatch By: " Grid.Column="3"/>
+                            <Label Text="{Binding Path=DispatchBy}" FontAttributes="Bold" Grid.Column="4"/>
+                        </Grid>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="Sub Category Name:"/>
+                            <Label Text="{Binding Path=SubCategoryName}" FontAttributes="Bold"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="Status:"/>
+                            <Label Text="{Binding Path=IndentStatus}" FontAttributes="Bold"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="Indent Date:"/>
+                            <Label Text="{Binding Path=IndentDate}" FontAttributes="Bold"/>
+                        </HorizontalStackLayout>
+                        <Rectangle BackgroundColor="PaleVioletRed" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Frame>
+</ContentPage>

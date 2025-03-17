@@ -204,4 +204,41 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         private int _trayNumber;
     }
+
+    public partial class BranchIndent : BaseObservableObject
+    {
+        [ObservableProperty]
+        private int _branchIndentID;
+
+        [ObservableProperty]
+        private int _branchID;
+
+        [ObservableProperty]
+        private int _categoryID;
+
+        [ObservableProperty]
+        private int _subCategoryID;
+
+        [ObservableProperty]
+        private int _stockDispatchID;
+
+        [ObservableProperty]
+        private string _branchName;
+
+        [ObservableProperty]
+        private string _categoryName;
+
+        [ObservableProperty]
+        private string _subCategoryName;
+
+        [ObservableProperty]
+        private string _indentStatus;
+
+        [ObservableProperty]
+        private string _dispatchBy;
+
+        [ObservableProperty]
+        private DateTime? _indentDate;
+    }
+
 }

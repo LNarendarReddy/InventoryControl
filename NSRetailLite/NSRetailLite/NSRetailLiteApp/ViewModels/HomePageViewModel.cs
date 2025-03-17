@@ -413,7 +413,14 @@ namespace NSRetailLiteApp.ViewModels
 
         private async Task ViewBranchIndent()
         {
+            HolderClass holderClass = new HolderClass();
 
+            holderClass = await GetAsync("Stockdispatch_v2/Getbranchindentlist", holderClass, new Dictionary<string, string?>()
+                                    {
+                                        { "CategoryID", User.CategoryId.ToString() }
+                                        , { "ISMobileCall", "true" }
+                                    }, timeOut: 120);
+            await RedirectToPage(holderClass, new StockDispatchIndentListPage(new StockDispatch.StockDispatchIndentListViewModel(holderClass.Holder.BranchIndentList)));
         }
 
         private async Task IndentBasedDispatch()

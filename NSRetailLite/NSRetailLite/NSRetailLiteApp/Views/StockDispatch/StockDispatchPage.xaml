@@ -181,28 +181,38 @@
                 </CollectionView.GroupHeaderTemplate>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:StockDispatchDetailModel">
-                        <Grid Padding="5" RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto" RowSpacing="5" ColumnSpacing="10">
-                            <Label FontSize="Subtitle" LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
-                                <Label.Text>
-                                    <MultiBinding StringFormat="{}{0} - ({1})">
-                                        <Binding Path="ItemName"/>
-                                        <Binding Path="SkuCode"/>
-                                    </MultiBinding>
-                                </Label.Text>
-                            </Label>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItem IconImageSource="stockcountingdetailedit.png" CommandParameter="{Binding .}"
+                                           Command="{Binding Path=BindingContext.EditManualQuantityOnlyCommand
+                                                , Source={RelativeSource AncestorType={x:Type views:StockDispatchPage}}}" 
+                                           IsVisible="{Binding Path=BindingContext.IsNew, Converter={StaticResource Key=InvertedBoolConverted}
+                                                , Source={RelativeSource AncestorType={x:Type views:StockDispatchPage}}}"
+                                           BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>                                
+                            </SwipeView.RightItems>
+                            <Grid Padding="5" RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto" RowSpacing="5" ColumnSpacing="10">
+                                <Label FontSize="Subtitle" LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} - ({1})">
+                                            <Binding Path="ItemName"/>
+                                            <Binding Path="SkuCode"/>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
 
-                            <Label Text="{Binding Path=ItemCode, StringFormat='Item Code: {0}'}" Grid.Row="1" Grid.Column="0" 
+                                <Label Text="{Binding Path=ItemCode, StringFormat='Item Code: {0}'}" Grid.Row="1" Grid.Column="0" 
                                    Grid.ColumnSpan="3" />
-                            <Label Text="{Binding Path=TrayNumber, StringFormat='Tray #: {0}'}" Grid.Row="1" Grid.Column="3" 
+                                <Label Text="{Binding Path=TrayNumber, StringFormat='Tray #: {0}'}" Grid.Row="1" Grid.Column="3" 
                                    HorizontalTextAlignment="End"/>
 
-                            <Label Text="{Binding Path=MRP, StringFormat='MRP: {0}'}" Grid.Row="2" Grid.Column="0" />
-                            <Label Text="{Binding Path=SalePrice, StringFormat='Sale price: {0}'}" Grid.Row="2" Grid.Column="3"/>
+                                <Label Text="{Binding Path=MRP, StringFormat='MRP: {0}'}" Grid.Row="2" Grid.Column="0" />
+                                <Label Text="{Binding Path=SalePrice, StringFormat='Sale price: {0}'}" Grid.Row="2" Grid.Column="3"/>
 
-                            <Label Text="{Binding Path=DispatchQuantity}" Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" 
+                                <Label Text="{Binding Path=DispatchQuantity}" Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" 
                                    VerticalTextAlignment="Center"  FontAttributes="Bold" FontSize="Title" />
-                            <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
-                        </Grid>
+                                <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
+                            </Grid>
+                        </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

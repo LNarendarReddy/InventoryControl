@@ -49,6 +49,8 @@ namespace NSRetailLiteApp.Models
         public DayClosure DayClosure;
 
         public StockDispatchModel StockDispatch;
+
+        public ObservableCollection<BranchIndent> BranchIndentList;
     }
     
     public partial class Branch : BaseObservableObject

@@ -33,6 +33,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
         public IAsyncRelayCommand<BranchIndentDetailModel> EditIndentQuantityCommand { get; }
 
         public IAsyncRelayCommand<StockDispatchDetailModel> EditManualQuantityCommand { get; }
+        
+        public IAsyncRelayCommand<StockDispatchDetailModel> EditManualQuantityOnlyCommand { get; }
 
         public IAsyncRelayCommand<StockDispatchDetailModel> DeleteManualQuantityCommand { get; }
 
@@ -62,6 +64,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             AddIndentQuantityCommand = new AsyncRelayCommand<BranchIndentDetailModel?>(AddIndentQuantity);
             EditIndentQuantityCommand = new AsyncRelayCommand<BranchIndentDetailModel?>(EditIndentQuantity);
             EditManualQuantityCommand = new AsyncRelayCommand<StockDispatchDetailModel?>(EditManualQuantity);
+            EditManualQuantityOnlyCommand = new AsyncRelayCommand<StockDispatchDetailModel?>(EditManualQuantityOnly);
             DeleteManualQuantityCommand = new AsyncRelayCommand<StockDispatchDetailModel?>(DeleteManualQuantity);
         }
 
@@ -155,6 +158,15 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
                     new StockDispatchDetailViewModel(selected, null, StockDispatchModel, user)));
         }
 
+        private async Task EditManualQuantityOnly(StockDispatchDetailModel? selected)
+        {
+            if (selected == null) return;
+
+            await RedirectToPage(selected
+                , new StockDispatchDetailPage(
+                    new StockDispatchDetailViewModel(selected, null, StockDispatchModel, user, false)));
+        }
+
         private async Task DeleteManualQuantity(StockDispatchDetailModel? selected)
         {
             if (selected == null) return;
@@ -203,7 +215,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             StockDispatchModel.BranchIndentDetailList
                 .GroupBy(x => x.SubCategoryName ?? string.Empty)
                 .Select(x => new ItemGroup(x.Key, x.ToList()))
-                .OrderBy(x => x.Name.Length)
+                .OrderBy(x => x.Name.Length).ThenBy(x => x.Name)
                 .ToList().ForEach(ItemsData.Add);
         }
 
@@ -218,7 +230,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             allDispatchDetails
                 .GroupBy(x => x.TrayNumber.ToString())
                 .Select(x => new TrayWiseGroup(x.Key, x.ToList()))
-                .OrderBy(x => x.Name.Length)
+                .OrderBy(x => x.Name)
                 .ToList().ForEach(TrayWiseData.Add);
         }
     }

@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NSRetailLiteApp.Views.StockDispatch.StockDispatchDetailListPage"
              xmlns:views="clr-namespace:NSRetailLiteApp.Views.StockDispatch"
-             Title="{Binding Path=BranchIndentDetailModel.Title}">
+             Title="Stock dispatch list for SKU">
     <Grid RowDefinitions="Auto, *" Margin="10" RowSpacing="10">
         <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto, *, Auto" ColumnSpacing="20" Margin="20, 0, 20, 0">
-            <Button Text="Add Item" Grid.Column="3" Command="{Binding Path=AddCommand}"                    
-                    IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+            <Button Text="Add Item" Grid.Column="3" Command="{Binding Path=AddCommand}" />
         </Grid>
         <Frame BorderColor="PaleVioletRed" Grid.Row="1">
             <CollectionView ItemsSource="{Binding Path=BranchIndentDetailModel.StockDispatchDetailIndentList}">
