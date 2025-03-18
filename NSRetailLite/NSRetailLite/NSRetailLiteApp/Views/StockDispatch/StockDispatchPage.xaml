@@ -8,6 +8,7 @@
             Title="{Binding Path=Title}" Loaded="TabbedPage_Loaded">
     <TabbedPage.Resources>
         <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverted" />
+        <views:ColorChangedConverter x:Key="colorChangedConverter" />
     </TabbedPage.Resources>
     <ContentPage Title="Indent" x:Name="IndentDipstachContent">
         <Grid RowDefinitions="Auto, *" Margin="10" RowSpacing="5">
@@ -77,7 +78,8 @@
                                         <Rectangle HeightRequest="2" BackgroundColor="{Binding Path=QuantityColor}"
                                                IsVisible="{Binding Path=IsDenominatorVisible}" />
                                         <Label Text="{Binding Path=DispatchQuantity}" FontAttributes="Bold" FontSize="Title" 
-                                               TextColor="{Binding Path=QuantityColor}" IsVisible="{Binding Path=IsDenominatorVisible}" />
+                                               TextColor="{Binding Path=QuantityColor}" 
+                                               IsVisible="{Binding Path=IsDenominatorVisible}" />
                                     </VerticalStackLayout>
                                     <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
 

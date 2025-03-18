@@ -183,7 +183,10 @@ namespace NSRetailLiteApp.Models
 
             if (value == 0)
             {
-                QuantityColor = System.Drawing.Color.Black.ToMauiColor();
+                QuantityColor = Application.Current.RequestedTheme == AppTheme.Light 
+                    ? System.Drawing.Color.Black.ToMauiColor()
+                    : System.Drawing.Color.White.ToMauiColor();
+                return;
             }
             if (value < IndentQuantity)
             {
@@ -193,6 +196,11 @@ namespace NSRetailLiteApp.Models
             {
                 QuantityColor = System.Drawing.Color.Green.ToMauiColor();
             }            
+        }
+
+        partial void OnIndentQuantityChanged(double value)
+        {
+            OnDispatchQuantityChanged(DispatchQuantity);
         }
     }
 
