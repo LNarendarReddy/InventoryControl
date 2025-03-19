@@ -164,7 +164,9 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
 
             await RedirectToPage(selected
                 , new StockDispatchDetailPage(
-                    new StockDispatchDetailViewModel(selected, null, StockDispatchModel, user, false)));
+                    new StockDispatchDetailViewModel(selected
+                        , StockDispatchModel.BranchIndentDetailList.FirstOrDefault(x=>x.StockDispatchDetailIndentList.Contains(selected))
+                        , StockDispatchModel, user, false)));
         }
 
         private async Task DeleteManualQuantity(StockDispatchDetailModel? selected)

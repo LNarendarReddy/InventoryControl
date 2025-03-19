@@ -40,6 +40,7 @@ namespace NSRetailLiteApp.ViewModels
             CustomerRefundCommand = new AsyncRelayCommand(CustomerRefund);
             ItemDetailsCommand = new AsyncRelayCommand(ItemDetails);
             StockDispatchCommand = new AsyncRelayCommand(StockDispatch);
+            DispatchRecieveCommand = new AsyncRelayCommand(DispatchReceive);
 
             _model = loggedInUser;
             User = loggedInUser;
@@ -515,6 +516,15 @@ namespace NSRetailLiteApp.ViewModels
             await RedirectToPage(holderClass
                     , new StockDispatchPage(
                         new StockDispatchViewModel(holderClass.StockDispatch, User)));
+        }
+
+        public IAsyncRelayCommand DispatchRecieveCommand { get; }
+
+        private async Task DispatchReceive()
+        {
+            if (Application.Current == null || Application.Current.MainPage == null) return;
+
+            DisplayAlert("Info", "Work in progress", "Ok");
         }
     }
 }

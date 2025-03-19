@@ -105,6 +105,12 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 
             if (holderClass.Exception != null) return;
 
+            // if existing update, recalculate
+            if (branchIndentDetailModel != null)
+            {
+                branchIndentDetailModel.RecalculateDispatchQuantity();
+            }
+
             StockDispatchDetailModel.StockDispatchDetailId = holderClass.GenericID;
             Pop();
 

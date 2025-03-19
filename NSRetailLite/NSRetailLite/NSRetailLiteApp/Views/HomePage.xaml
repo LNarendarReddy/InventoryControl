@@ -8,7 +8,7 @@
             <!--<Path Data="M291 0C291 40.5781 275.671 79.4943 248.384 108.187C221.097 136.88 184.089 153 145.5 153C106.911 153 69.9025 136.88 42.616 108.187C15.3294 79.4943 5.82678e-06 40.5781 0 2.31024e-05L145.5 0H291Z"
               Fill="LightPink" Aspect="Fill"/>-->
             <StackLayout>
-                <Image Source="victorylogo.svg" HeightRequest="150"/>
+                <Image Source="victorylogo.svg" HeightRequest="100"/>
             </StackLayout>
             <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="20" Grid.Row="1">
                 <Label Text="{Binding Path=Model.FullName, StringFormat='Hello {0}!'}" Margin="20, 0, 0, 0" LineBreakMode="WordWrap" FontSize="Title" HorizontalOptions="Center"/>
@@ -20,9 +20,12 @@
                 <ScrollView>
                     <Grid Margin="10" RowSpacing="0" Padding="0" RowDefinitions="auto, auto, auto, auto, auto, auto">
                         <Frame Padding="1" Grid.Row="0">
-                            <Grid Margin="0" RowDefinitions="auto" ColumnDefinitions="*, auto, 20, auto, 20, auto, *">
-                                
-                                <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                            <Grid Margin="0" RowDefinitions="auto" ColumnDefinitions="auto, *, auto, auto, auto, *" ColumnSpacing="20">
+                                <StackLayout Grid.Row="0" Grid.Column="0" Rotation="270" Margin="0, 0, -100, 0">
+                                    <Label Text="Stock" BackgroundColor="{AppThemeBinding Light=SteelBlue, Dark=MediumPurple}"
+                                           HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Medium" TextColor="White"/>
+                                </StackLayout>
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="2">
                                     <ImageButton Margin="0, 5, 0, 2" Source="stockcounting.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                              Command="{Binding Path=OpenStockCountingCommand}" HorizontalOptions="Center" VerticalOptions="Center"/>
                                     <Label Text="Stock" FontSize="Small" HorizontalOptions="Center"                                        
@@ -53,7 +56,7 @@
                                     </Label>
                                 </VerticalStackLayout>
                                 
-                                <VerticalStackLayout Grid.Row="0" Grid.Column="5">
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="4">
                                     <ImageButton Margin="0, 5, 0, 2" Source="stockentry.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
                                     <Label Text="Stock" FontSize="Small" HorizontalTextAlignment="Center"/>
                                     <Label Text="Entry" FontSize="Small" HorizontalTextAlignment="Center"/>
@@ -63,8 +66,12 @@
                         </Frame>
 
                         <Frame Padding="1" Margin="0, 5, 0, 5" Grid.Row="1">
-                            <Grid Margin="0" ColumnDefinitions="*, auto, auto, auto, auto, *" ColumnSpacing="20">
-                                <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                            <Grid Margin="0" ColumnDefinitions="auto, *, auto, auto, auto, *" ColumnSpacing="20">
+                                <StackLayout Grid.Row="0" Grid.Column="0" Rotation="270" Margin="0, 0, -100, 0">
+                                    <Label Text="Billing" BackgroundColor="{AppThemeBinding Light=SteelBlue, Dark=MediumPurple}"
+                                           HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Medium" TextColor="White"/>
+                                </StackLayout>
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="2">
                                     <ImageButton Margin="0, 5, 0, 2" Source="billing.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                              Command="{Binding Path=OpenBillingCommand}"/>
                                     <Label Text="Billing" FontSize="Small" HorizontalTextAlignment="Center">
@@ -73,7 +80,7 @@
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </VerticalStackLayout>
-                                <VerticalStackLayout Grid.Row="0" Grid.Column="2">
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="3">
                                     <ImageButton Margin="0, 5, 0, 2" Source="dayclosure.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                     Command="{Binding Path=DayclosureCommand}"/>
                                     <Label Text="Day" FontSize="Small" HorizontalTextAlignment="Center">
@@ -87,7 +94,7 @@
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </VerticalStackLayout>
-                                <VerticalStackLayout Grid.Row="0" Grid.Column="3">
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="4">
                                     <ImageButton Margin="0, 5, 0, 2" Source="customerrefund.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                                  Command="{Binding Path=CustomerRefundCommand}"/>
                                     <Label Text="Customer" FontSize="Small" HorizontalTextAlignment="Center">
@@ -101,8 +108,31 @@
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </VerticalStackLayout>
-                                <VerticalStackLayout Grid.Row="0" Grid.Column="4">
-                                    <ImageButton Margin="0, 5, 0, 2" Source="itemdetails.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
+                            </Grid>
+                        </Frame>
+
+                        <Frame Padding="1" Grid.Row="2" Margin="0, 5, 0, 5">
+                            <Grid RowDefinitions="auto" ColumnDefinitions="auto, *, auto, auto, *" ColumnSpacing="20">
+                                <StackLayout Grid.Row="0" Grid.Column="0" Rotation="270" Margin="0, 0, -100, 0">
+                                    <Label Text="Operations" BackgroundColor="{AppThemeBinding Light=SteelBlue, Dark=MediumPurple}"
+                                           HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Medium" TextColor="White"/>
+                                </StackLayout>
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="2">
+                                    <ImageButton Margin="0, 5, 0, 2" Source="dispatchreceive.png" Aspect="Fill" HeightRequest="50" WidthRequest="50" 
+                                                 Command="{Binding Path=DispatchRecieveCommand}"/>
+                                    <Label Text="Dispatch" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DispatchRecieveCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Text="recieve" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DispatchRecieveCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="3">
+                                    <ImageButton Margin="0, 5, 0, 2" Source="itemdetails.png" Aspect="Fill" HeightRequest="50" WidthRequest="50" 
                                                  Command="{Binding Path=ItemDetailsCommand}"/>
                                     <Label Text="Item" FontSize="Small" HorizontalTextAlignment="Center">
                                         <Label.GestureRecognizers>
@@ -118,9 +148,14 @@
                             </Grid>
                         </Frame>
 
-                        <Frame Padding="1" Grid.Row="2">
-                            <Grid Grid.Row="1" Margin="0" RowSpacing="0" ColumnDefinitions="*, auto, 10, auto, *" RowDefinitions="auto">
-                                <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                        <Frame Padding="1" Grid.Row="3" Margin="0, 5, 0, 5">
+                            <Grid Margin="0" RowSpacing="0" ColumnDefinitions="auto, *, auto, 10, auto, *" RowDefinitions="auto">
+                                <StackLayout Grid.Row="0" Grid.Column="0" Rotation="270" Margin="0, 0, -100, 0">
+                                    <Label Text="User" BackgroundColor="{AppThemeBinding Light=SteelBlue, Dark=MediumPurple}"
+                                           HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Medium" TextColor="White"/>
+                                </StackLayout>
+                                
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="2">
                                     <ImageButton Margin="0, 5, 0, 2" Source="changepassword.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                                  Command="{Binding Path=ChangePasswordCommand}"/>
                                     <Label Text="Change" FontSize="Small" HorizontalTextAlignment="Center">
@@ -134,7 +169,7 @@
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </VerticalStackLayout>
-                                <VerticalStackLayout Grid.Row="0" Grid.Column="3">
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="4">
                                     <ImageButton 
                                     Margin="0, 5, 0, 2" Source="logout.png" Aspect="Fill" 
                                     HeightRequest="50" WidthRequest="50" Command="{Binding Path=LogoutCommand}"/>
