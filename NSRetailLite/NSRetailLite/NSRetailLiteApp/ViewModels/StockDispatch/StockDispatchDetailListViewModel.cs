@@ -60,7 +60,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 
             await RedirectToPage(selected
                 , new StockDispatchDetailPage(
-                    new StockDispatchDetailViewModel(selected, null, StockDispatchModel, user)));
+                    new StockDispatchDetailViewModel(selected, BranchIndentDetailModel, StockDispatchModel, user)));
         }
 
         private async Task Discard(StockDispatchDetailModel? selected)

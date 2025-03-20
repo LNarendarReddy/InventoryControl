@@ -1,5 +1,4 @@
-﻿using Android.Database;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DevExpress.PivotGrid.PivotTable;
 using NSRetailLiteApp.Models;
