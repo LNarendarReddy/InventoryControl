@@ -17,6 +17,16 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 { "QTYORWGHT", "Quantity or Weight in KG(s)" }
                 , { "BRANDNAME", "Brand" }
                 , { "MANUFACTURERNAME", "Manufacturer" }
+                , { "LATESTCOSTPRICEWOT", "Latest CP W\\O Tax" }
+                , { "LATESTCOSTPRICETAX", "Latest CP Tax" }
+                , { "LATESTCOSTPRICEWT", "Latest CP With Tax" }
+                , { "TOTALLATESTCOSTPRICEWOT", "Total Latest CP W\\O Tax" }
+                , { "TOTALLATESTCOSTPRICEWT", "Total Latest CP With Tax" }
+                , { "AVGCOSTPRICEWOT", "Avg. CP W\\O Tax" }
+                , { "AVGCOSTPRICETAX", "Avg. CP Tax" }
+                , { "AVGCOSTPRICEWT", "Avg. CP With Tax" }
+                , { "TOTALAVGCOSTPRICEWOT", "Total Avg. CP W\\O Tax" }
+                , { "TOTALAVGCOSTPRICEWT", "Toatl Avg. CP With Tax" }
             };
 
             SetFocusControls(dtAsOnDate, cmbItemCode, columnHeaders);
