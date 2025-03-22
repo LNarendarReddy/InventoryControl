@@ -49,7 +49,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             {
                 {"SUBCATEGORYNAME" },
                 {"SUBCLASSIFICATIONNAME" },
-                {"OFFERBASETYPE" },
+                //{"OFFERBASETYPE" },
                 {"AppliesToName" }
             };
         }

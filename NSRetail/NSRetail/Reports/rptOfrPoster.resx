@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="xrTableCell4.ExpressionBindings" xml:space="preserve">
-    <value>Iif([OFFERBASETPYE] = 'Deal', [OFFERTYPENAME], Iif([OFFERTYPEID] = 1, 'Save ' + [OFFERVALUE] + '/- Off on MRP' , Iif([OFFERTYPEID] = 2, 'Save ' + ROUND([OFFERVALUE]) + '% Off on MRP', Iif([OFFERTYPEID] = 3, 'Save : ' + ([MRP] - [OFFERVALUE]) + '/-', 'FINAL PRICE: ' + [OFFERVALUE]))))</value>
+    <value>Iif([OFFERTYPEID] = 4 OR [OFFERTYPEID] = 5, [OFFERTYPENAME], Iif([OFFERTYPEID] = 1, 'Save ' + [OFFERVALUE] + '/- Off on MRP' , Iif([OFFERTYPEID] = 2, 'Save ' + ROUND([OFFERVALUE]) + '% Off on MRP', Iif([OFFERTYPEID] = 3, 'Save : ' + ([MRP] - [OFFERVALUE]) + '/-', 'FINAL PRICE: ' + [OFFERVALUE]))))</value>
   </data>
 </root>
