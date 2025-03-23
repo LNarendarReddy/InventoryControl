@@ -13,7 +13,7 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
     {
         private readonly LoggedInUser loggedInUser;
 
-        public IAsyncRelayCommand<DispatchReceiveDetail> EditReceivedQuantityCommand { get; }
+        public IAsyncRelayCommand<DispatchReceiveDetail?> EditReceivedQuantityCommand { get; }
         public IAsyncRelayCommand SubmitCommand { get; }
 
 
@@ -26,15 +26,15 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
             Title = "Tray #: " + trayNumber;
             TrayNumber = trayNumber;
             this.loggedInUser = loggedInUser;
-            EditReceivedQuantityCommand = new AsyncRelayCommand<DispatchReceiveDetail>(EditReceivedQuantity);
+            EditReceivedQuantityCommand = new AsyncRelayCommand<DispatchReceiveDetail?>(EditReceivedQuantity);
             SubmitCommand = new AsyncRelayCommand(Submit);
         }
 
-        public ObservableCollection<DispatchReceiveDetail> DispatchReceiveDetailList { get; }
+        public ObservableCollection<DispatchReceiveDetail?> DispatchReceiveDetailList { get; }
         public string TrayNumber { get; }
         public string Title { get; }
 
-        private async Task EditReceivedQuantity(DispatchReceiveDetail selected)
+        private async Task EditReceivedQuantity(DispatchReceiveDetail? selected)
         {
             if (selected == null) return;
 
@@ -58,7 +58,7 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
 
         private async Task Submit()
         {
-            if (!await DisplayAlert("Confirm", "Are you sure you want to submit tray items? This operation cannot be undone", "OK")) return;
+            if (!await DisplayAlert("Confirm", "Are you sure you want to submit tray items? This operation cannot be undone", "Yes", "No")) return;
 
             HolderClass holder = new HolderClass();
             await PostAsync("StockDispatch_In/updatetrayinfo", holder, new Dictionary<string, string?>

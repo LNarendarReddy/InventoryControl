@@ -423,7 +423,8 @@ namespace NSRetailLiteApp.ViewModels
                                         { "CategoryID", User.CategoryId.ToString() }
                                         , { "ISMobileCall", "true" }
                                     }, timeOut: 120);
-            await RedirectToPage(holderClass, new StockDispatchIndentListPage(new StockDispatch.StockDispatchIndentListViewModel(holderClass.Holder.BranchIndentList)));
+            await RedirectToPage(holderClass, new StockDispatchIndentListPage(
+                new StockDispatch.StockDispatchIndentListViewModel(holderClass.Holder.BranchIndentList, Model)));
         }
 
         private async Task IndentBasedDispatch()

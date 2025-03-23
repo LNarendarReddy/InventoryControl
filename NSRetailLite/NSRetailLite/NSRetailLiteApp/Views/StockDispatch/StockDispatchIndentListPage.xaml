@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NSRetailLiteApp.Views.StockDispatch.StockDispatchIndentListPage"
+             xmlns:views="clr-namespace:NSRetailLiteApp.Views.StockDispatch"
              Title="Indent List">
     <Frame Padding="5" Margin="5">
         <CollectionView ItemsSource="{Binding Path=IndentData}" IsGrouped="True">
@@ -17,27 +18,34 @@
             </CollectionView.GroupHeaderTemplate>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <VerticalStackLayout Spacing="10" Margin="5">
-                        <Grid ColumnSpacing="10" ColumnDefinitions="Auto, Auto, *, Auto, Auto">
-                            <Label Text="Indent #:" Grid.Column="0"/>
-                            <Label Text="{Binding Path=BranchIndentID}" FontAttributes="Bold" Grid.Column="1"/>
-                            <Label Text="Dispatch By: " Grid.Column="3"/>
-                            <Label Text="{Binding Path=DispatchBy}" FontAttributes="Bold" Grid.Column="4"/>
-                        </Grid>
-                        <HorizontalStackLayout Spacing="10">
-                            <Label Text="Sub Category Name:"/>
-                            <Label Text="{Binding Path=SubCategoryName}" FontAttributes="Bold"/>
-                        </HorizontalStackLayout>
-                        <HorizontalStackLayout Spacing="10">
-                            <Label Text="Status:"/>
-                            <Label Text="{Binding Path=IndentStatus}" FontAttributes="Bold"/>
-                        </HorizontalStackLayout>
-                        <HorizontalStackLayout Spacing="10">
-                            <Label Text="Indent Date:"/>
-                            <Label Text="{Binding Path=IndentDate}" FontAttributes="Bold"/>
-                        </HorizontalStackLayout>
-                        <Rectangle BackgroundColor="PaleVioletRed" />
-                    </VerticalStackLayout>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItem IconImageSource="stockcountingdiscard.png" CommandParameter="{Binding .}" 
+                                       Command="{Binding Path=BindingContext.DiscardCommand, Source={RelativeSource AncestorType={x:Type views:StockDispatchIndentListPage}}}" 
+                                       BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                        </SwipeView.RightItems>
+                        <VerticalStackLayout Spacing="10" Margin="5">
+                            <Grid ColumnSpacing="10" ColumnDefinitions="Auto, Auto, *, Auto, Auto">
+                                <Label Text="Indent #:" Grid.Column="0"/>
+                                <Label Text="{Binding Path=BranchIndentID}" FontAttributes="Bold" Grid.Column="1"/>
+                                <Label Text="Dispatch By: " Grid.Column="3"/>
+                                <Label Text="{Binding Path=DispatchBy}" FontAttributes="Bold" Grid.Column="4"/>
+                            </Grid>
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="Sub Category Name:"/>
+                                <Label Text="{Binding Path=SubCategoryName}" FontAttributes="Bold"/>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="Status:"/>
+                                <Label Text="{Binding Path=IndentStatus}" FontAttributes="Bold"/>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="Indent Date:"/>
+                                <Label Text="{Binding Path=IndentDate}" FontAttributes="Bold"/>
+                            </HorizontalStackLayout>
+                            <Rectangle BackgroundColor="PaleVioletRed" />
+                        </VerticalStackLayout>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
