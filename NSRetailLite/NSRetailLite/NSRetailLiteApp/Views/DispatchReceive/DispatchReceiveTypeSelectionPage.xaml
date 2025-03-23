@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.DispatchReceive.DispatchReceiveTypeSelectionPage"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui">
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20" Padding="20"
+                     BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+        <Label Text="Select the type of action you want to perform!" FontSize="Small" LineBreakMode="WordWrap" />
+        <Button Text="View open dispatches" Clicked="Button_Clicked" FontAttributes="Bold" FontSize="Medium" />
+        <Button Text="Tray wise data" Clicked="Button_Clicked" FontAttributes="Bold" FontSize="Medium" />
+    </VerticalStackLayout>
+</mct:Popup>

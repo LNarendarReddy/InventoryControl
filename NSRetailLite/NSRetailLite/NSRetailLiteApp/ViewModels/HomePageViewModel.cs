@@ -4,11 +4,13 @@ using Microsoft.Maui.Controls.PlatformConfiguration;
 using NSRetailLiteApp.Models;
 using NSRetailLiteApp.ViewModels.Billing;
 using NSRetailLiteApp.ViewModels.Common;
+using NSRetailLiteApp.ViewModels.DispatchReceive;
 using NSRetailLiteApp.ViewModels.ItemDetails;
 using NSRetailLiteApp.ViewModels.StockCounting;
 using NSRetailLiteApp.ViewModels.StockDispatch.Indent;
 using NSRetailLiteApp.Views.Billing;
 using NSRetailLiteApp.Views.Common;
+using NSRetailLiteApp.Views.DispatchReceive;
 using NSRetailLiteApp.Views.ItemDetails;
 using NSRetailLiteApp.Views.StockCounting;
 using NSRetailLiteApp.Views.StockDispatch;
@@ -524,7 +526,38 @@ namespace NSRetailLiteApp.ViewModels
         {
             if (Application.Current == null || Application.Current.MainPage == null) return;
 
-            DisplayAlert("Info", "Work in progress", "Ok");
+            DispatchReceiveTypeSelectionPage dispatchTypeReceiveTypeSelectionPage = new DispatchReceiveTypeSelectionPage();
+
+            await ShowPopup(null, dispatchTypeReceiveTypeSelectionPage);
+
+            if (dispatchTypeReceiveTypeSelectionPage.SelectedDispatchRecieveType == "View open dispatches")
+            {
+                HolderClass holder = new HolderClass();
+                holder = await GetAsync("StockDispatch_In/getdispatchlist", holder, new Dictionary<string, string?>()
+                {
+                    { "BranchID", Model.BranchId.ToString() }                    
+                });
+
+                await RedirectToPage(holder, new DispatchReceiveListPage(
+                    new DispatchReceiveListViewModel(holder.Holder.DispatchList, Model)));
+            }
+            else if (dispatchTypeReceiveTypeSelectionPage.SelectedDispatchRecieveType == "Tray wise data")
+            {
+                string trayNumberString = await Application.Current?.MainPage?.DisplayPromptAsync(
+                    "Tray #", "Enter\\scan the tray #:", "OK", keyboard:Keyboard.Numeric);
+
+                if (string.IsNullOrEmpty(trayNumberString)) return;
+
+                HolderClass holder = new HolderClass();
+                holder = await GetAsync("StockDispatch_In/getdispatchdetailbytraynumber", holder, new Dictionary<string, string?>()
+                {
+                    { "BranchID", Model.BranchId.ToString() }
+                    , { "TrayNumber", trayNumberString }
+                });
+
+                await RedirectToPage(holder, new DispatchReceiveDetailListPage
+                    (new DispatchReceiveDetailListViewModel(holder.Holder.DispatchReceiveDetailList, trayNumberString, Model)));
+            }
         }
     }
 }

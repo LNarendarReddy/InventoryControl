@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.DispatchReceive.DispatchReceiveListPage"
+             xmlns:views="clr-namespace:NSRetailLiteApp.Views.DispatchReceive"
+             Title="Available Dispatches to Receive">
+    <VerticalStackLayout Margin="10">
+        <CollectionView ItemsSource="{Binding Path=CategoryGroupList}" IsGrouped="True">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto, *, Auto, Auto" Padding="20, 0, 20, 0" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
+                        <Label Text="{Binding Name}"  FontSize="Title" FontAttributes="Bold" Grid.Column="0" TextColor="White"/>
+                        <Label Text="Count: " FontSize="Title" Grid.Column="2" VerticalTextAlignment="Center" TextColor="White"/>
+                        <Label Text="{Binding Count}" FontSize="Title" FontAttributes="Bold" Grid.Column="3" TextColor="White"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItem IconImageSource="stockcountingsubmit.png" CommandParameter="{Binding .}" 
+                                       Command="{Binding Path=BindingContext.SubmitCommand, Source={RelativeSource AncestorType={x:Type views:DispatchReceiveListPage}}}" 
+                                       BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                        </SwipeView.RightItems>
+                        <VerticalStackLayout Margin="10">
+                            <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                                <Label Text="Dispath #: " VerticalTextAlignment="Center"/>
+                                <Label FontAttributes="Bold" FontSize="Medium">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} ({1})">
+                                            <Binding Path="DispatchNumber"/>
+                                            <Binding Path="SubCategoryName"/>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </HorizontalStackLayout>
+                            <Grid ColumnDefinitions="Auto, Auto, *, Auto, Auto" Margin="10, 0, 10, 0" ColumnSpacing="10" RowDefinitions="auto, auto" RowSpacing="10">
+                                <Label Text="Total # of trays:" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding Path=TotalTrays}" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+
+                                <Label Text="Pending # of trays:" Grid.Row="0" Grid.Column="3" VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding Path=PendingTrays}" Grid.Row="0" Grid.Column="4" FontAttributes="Bold" FontSize="Medium"
+                                       TextColor="{Binding Path=PendingTraysColor}"/>
+
+                                <Rectangle BackgroundColor="PaleVioletRed" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

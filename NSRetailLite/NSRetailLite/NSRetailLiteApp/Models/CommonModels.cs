@@ -51,8 +51,13 @@ namespace NSRetailLiteApp.Models
         public StockDispatchModel StockDispatch;
 
         public ObservableCollection<BranchIndent> BranchIndentList;
+
+        public ObservableCollection<Dispatch> DispatchList;
+
+        public ObservableCollection<DispatchReceiveDetail> DispatchReceiveDetailList;
+
     }
-    
+
     public partial class Branch : BaseObservableObject
     {
         [ObservableProperty]

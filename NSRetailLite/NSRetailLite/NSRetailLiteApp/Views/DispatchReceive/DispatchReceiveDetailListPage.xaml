@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.DispatchReceive.DispatchReceiveDetailListPage"
+             xmlns:views="clr-namespace:NSRetailLiteApp.Views.DispatchReceive"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="{Binding Path=Title}">
+    <ContentPage.Resources>
+        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverted" />
+    </ContentPage.Resources>
+    <VerticalStackLayout Margin="10" Spacing="10">
+        <Button Text="Submit" HorizontalOptions="Center" Command="{Binding Path=SubmitCommand}"/>
+        <Frame Padding="5">
+            <CollectionView ItemsSource="{Binding Path=DispatchReceiveDetailList}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItem IconImageSource="stockcountingdetailedit.png" CommandParameter="{Binding .}" 
+                                   Command="{Binding Path=BindingContext.EditReceivedQuantityCommand, Source={RelativeSource AncestorType={x:Type views:DispatchReceiveDetailListPage}}}" 
+                                   IsVisible="{Binding Path=BindingContext.IsOpenItem, Converter={StaticResource Key=InvertedBoolConverted}, Source={RelativeSource AncestorType={x:Type views:DispatchReceiveDetailListPage}}}"
+                                   BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                            </SwipeView.RightItems>
+                            <Grid RowDefinitions="auto, auto, auto, auto" ColumnDefinitions="auto, auto, *, auto, auto, auto" 
+                      RowSpacing="5" Margin="0, 0, 0, 5" ColumnSpacing="10">
+                                <Label Text="{Binding Path=ItemName}" FontSize="Medium" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" 
+                           HorizontalTextAlignment="Center"/>
+
+                                <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Spacing="10" HorizontalOptions="Center">
+                                    <Label Text="Item Code:" FontSize="Medium"/>
+                                    <Label Text="{Binding Path=ItemCode}" Grid.Row="1" Grid.Column="1" FontAttributes="Bold" FontSize="Medium"/>
+                                </HorizontalStackLayout>
+
+                                <Label Text="MRP:" Grid.Row="2" Grid.Column="0" FontSize="Medium"/>
+                                <Label Text="{Binding Path=MRP}" Grid.Row="2" Grid.Column="1" FontSize="Medium" FontAttributes="Bold"/>
+
+                                <Label Text="Sale price:" Grid.Row="2" Grid.Column="3" FontSize="Medium"/>
+                                <Label Text="{Binding Path=SalePrice}" Grid.Row="2" Grid.Column="4" FontSize="Medium"/>
+
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="5" Grid.RowSpan="4" VerticalOptions="Center">
+                                    <Label Text="{Binding Path=SentQuantity}" FontSize="Large" FontAttributes="Bold"
+                                   TextColor="{Binding Path=QuantityColor}"/>
+                                    <Rectangle BackgroundColor="{Binding Path=QuantityColor}" HeightRequest="2" 
+                                   IsVisible="{Binding Path=IsDenominatorVisible}" />
+                                    <Label Text="{Binding Path=ReceivedQuantity}" FontSize="Large" TextColor="{Binding Path=QuantityColor}"
+                               IsVisible="{Binding Path=IsDenominatorVisible}" FontAttributes="Bold"/>
+                                </VerticalStackLayout>
+                                <Rectangle BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>
