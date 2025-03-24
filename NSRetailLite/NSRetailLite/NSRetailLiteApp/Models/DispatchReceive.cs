@@ -50,6 +50,27 @@ namespace NSRetailLiteApp.Models
         }
     }
 
+
+    public partial class DispatchReceive : BaseObservableObject
+    {
+        [ObservableProperty]
+        private int _stockDispatchId;
+
+        [ObservableProperty]
+        private string _dispatchNumber;
+
+        [ObservableProperty]
+        private string _trayNumber;
+
+        [ObservableProperty]
+        private ObservableCollection<DispatchReceiveDetail> _dispatchReceiveDetailList;
+
+        public DispatchReceive()
+        {
+            DispatchReceiveDetailList = new ObservableCollection<DispatchReceiveDetail>();
+        }
+    }
+
     public partial class DispatchReceiveDetail : BaseObservableObject
     {
         [ObservableProperty]

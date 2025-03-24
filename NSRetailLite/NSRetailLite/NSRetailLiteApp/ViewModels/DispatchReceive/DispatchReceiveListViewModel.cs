@@ -41,7 +41,16 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
             if (!await DisplayAlert("Confirm", $"Are you sure you want to submit dispatch - {selected.DispatchNumber}?"
                 , "Yes", "No")) return;
 
-            // add submit api
+            // add submit api /api/StockDispatch_In/finishstockin
+
+            await PostAsync("StockDispatch_In/finishstockin", selected, new Dictionary<string, string?>
+            {
+                { "StockDispatchID", selected.StockDispatchId.ToString() },
+                { "CounterID", 0.ToString() },
+                { "UserID", loggedInUser.UserId.ToString() }
+            });
+
+            if (selected.Exception != null) return;
 
             HolderClass holder = new HolderClass();
             holder = await GetAsync("StockDispatch_In/getdispatchlist", holder, new Dictionary<string, string?>()
@@ -58,6 +67,8 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
 
         private void BuildModel()
         {
+            if (DispatchList == null) return;
+
             CategoryGroupList = new ObservableCollection<CategoryGroup>();
             DispatchList.GroupBy(x => x.CategoryName)
                 .Select(x => new CategoryGroup(x.Key, x.ToList()))

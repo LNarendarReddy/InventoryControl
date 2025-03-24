@@ -54,7 +54,9 @@ namespace NSRetailLiteApp.Models
 
         public ObservableCollection<Dispatch> DispatchList;
 
-        public ObservableCollection<DispatchReceiveDetail> DispatchReceiveDetailList;
+        public DispatchReceive DispatchReceive;
+
+        //public ObservableCollection<DispatchReceiveDetail> DispatchReceiveDetailList;
 
     }
 

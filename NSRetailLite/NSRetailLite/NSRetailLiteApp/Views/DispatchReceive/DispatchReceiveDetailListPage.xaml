@@ -9,9 +9,13 @@
         <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverted" />
     </ContentPage.Resources>
     <VerticalStackLayout Margin="10" Spacing="10">
-        <Button Text="Submit" HorizontalOptions="Center" Command="{Binding Path=SubmitCommand}"/>
+        <Grid ColumnDefinitions="auto, auto, *, auto">
+            <Label Text="Dispatch #: " VerticalOptions="Center" Grid.Column="0"/>
+            <Label Text="{Binding Path=DispatchReceive.DispatchNumber}" FontAttributes="Bold" VerticalOptions="Center"  Grid.Column="1"/>
+            <Button Text="Submit" Command="{Binding Path=SubmitCommand}" HorizontalOptions="End"  Grid.Column="3"/>
+        </Grid>
         <Frame Padding="5">
-            <CollectionView ItemsSource="{Binding Path=DispatchReceiveDetailList}" >
+            <CollectionView ItemsSource="{Binding Path=DispatchReceive.DispatchReceiveDetailList}" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <SwipeView>

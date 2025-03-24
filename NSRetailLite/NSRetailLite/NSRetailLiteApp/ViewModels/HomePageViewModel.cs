@@ -540,7 +540,7 @@ namespace NSRetailLiteApp.ViewModels
                 });
 
                 await RedirectToPage(holder, new DispatchReceiveListPage(
-                    new DispatchReceiveListViewModel(holder.Holder.DispatchList, Model)));
+                    new DispatchReceiveListViewModel(holder.Holder?.DispatchList, Model)));
             }
             else if (dispatchTypeReceiveTypeSelectionPage.SelectedDispatchRecieveType == "Tray wise data")
             {
@@ -557,7 +557,7 @@ namespace NSRetailLiteApp.ViewModels
                 });
 
                 await RedirectToPage(holder, new DispatchReceiveDetailListPage
-                    (new DispatchReceiveDetailListViewModel(holder.Holder.DispatchReceiveDetailList, trayNumberString, Model)));
+                    (new DispatchReceiveDetailListViewModel(holder.DispatchReceive, Model)));
             }
         }
     }

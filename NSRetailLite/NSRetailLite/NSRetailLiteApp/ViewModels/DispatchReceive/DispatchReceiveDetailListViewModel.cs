@@ -18,20 +18,21 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
 
 
         public DispatchReceiveDetailListViewModel(
-            ObservableCollection<DispatchReceiveDetail> dispatchReceiveDetailList
-            , string trayNumber
+            Models.DispatchReceive dispatchReceive
             , LoggedInUser loggedInUser) 
         {
-            DispatchReceiveDetailList = dispatchReceiveDetailList;
-            Title = "Tray #: " + trayNumber;
-            TrayNumber = trayNumber;
+            DispatchReceive = dispatchReceive;
+            Title = "Tray #: " + dispatchReceive?.TrayNumber;
+            DispatchReceive = dispatchReceive;
             this.loggedInUser = loggedInUser;
             EditReceivedQuantityCommand = new AsyncRelayCommand<DispatchReceiveDetail?>(EditReceivedQuantity);
             SubmitCommand = new AsyncRelayCommand(Submit);
         }
 
         public ObservableCollection<DispatchReceiveDetail?> DispatchReceiveDetailList { get; }
-        public string TrayNumber { get; }
+
+        public Models.DispatchReceive DispatchReceive { get; }
+
         public string Title { get; }
 
         private async Task EditReceivedQuantity(DispatchReceiveDetail? selected)
@@ -63,8 +64,8 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
             HolderClass holder = new HolderClass();
             await PostAsync("StockDispatch_In/updatetrayinfo", holder, new Dictionary<string, string?>
             {
-                { "StockDispatchID", 0.ToString() },
-                { "TrayNumber", TrayNumber },
+                { "StockDispatchID", DispatchReceive.StockDispatchId.ToString() },
+                { "TrayNumber", DispatchReceive.TrayNumber },
                 { "UserID", loggedInUser.UserId.ToString() }
             });
 
