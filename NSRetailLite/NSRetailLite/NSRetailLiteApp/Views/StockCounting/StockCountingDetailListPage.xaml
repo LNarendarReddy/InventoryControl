@@ -5,77 +5,80 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:views="clr-namespace:NSRetailLiteApp.Views.StockCounting"
              Title="StockCountingDetailListPage" x:Name="stockCountingListPage" Loaded="stockCountingListPage_Loaded">
-    <Grid RowDefinitions="Auto, *, Auto, Auto">
-        <SearchBar x:Name="searchBar" Grid.Row="0"
+    <Grid>
+        <Grid RowDefinitions="Auto, *, Auto, Auto">
+            <SearchBar x:Name="searchBar" Grid.Row="0"
                    SearchCommand="{Binding Path=PerformSearchCommand}"                   
                    SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
                    Placeholder="{Binding Path=StockCountingModel.BranchName, StringFormat='Stock counting for : {0}'}" 
                    PlaceholderColor="White" CancelButtonColor="White">
-            <SearchBar.Behaviors>
-                <toolkit:EventToCommandBehavior
+                <SearchBar.Behaviors>
+                    <toolkit:EventToCommandBehavior
                     Command = "{Binding PerformSearchCommand}"
                     CommandParameter="{Binding Text, Source={x:Reference searchBar}}"
                     EventName="TextChanged" />
-            </SearchBar.Behaviors>
-        </SearchBar>
-        <CollectionView ItemsSource="{Binding Path=FilteredStockCountingDetails}" Grid.Row="1" x:Name="mCollectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItem 
+                </SearchBar.Behaviors>
+            </SearchBar>
+            <CollectionView ItemsSource="{Binding Path=FilteredStockCountingDetails}" Grid.Row="1" x:Name="mCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItem 
                                 IconImageSource="stockcountingdetailedit.png"
                                 Command="{Binding Path=BindingContext.EditCommand, Source={RelativeSource AncestorType={x:Type views:StockCountingDetailListPage}}}"
                                 CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
-                            <SwipeItem 
+                                <SwipeItem 
                                 IconImageSource="stockcountingdetaildiscard.png"                                 
                                 Command="{Binding Path=BindingContext.DeleteCommand, Source={RelativeSource AncestorType={x:Type views:StockCountingDetailListPage}}}"
                                 CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
-                        </SwipeView.RightItems>
-                        
-                        <Grid Padding="10, 5, 10, 5" RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto">
-                            <Label Text="{Binding Path=SNo, StringFormat='{0}.'}" Margin="0, 0, 5, 0" 
+                            </SwipeView.RightItems>
+
+                            <Grid Padding="10, 5, 10, 5" RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto">
+                                <Label Text="{Binding Path=SNo, StringFormat='{0}.'}" Margin="0, 0, 5, 0" 
                                     Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Center" VerticalTextAlignment="Center"/>
 
-                            <Label Text="{Binding Path=ItemCode}" Margin="0, 0, 5, 0" Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand"/>
-                            <Label Text="{Binding Path=MRP, StringFormat='MRP: {0}'}" Margin="0, 0, 10, 0" Grid.Row="0" Grid.Column="2" FontSize="Caption" HorizontalOptions="End"/>
-                            <Label Text="{Binding Path=Quantity, StringFormat='Qty: {0}'}" Margin="0, 0, 10, 0" Grid.Row="0" Grid.Column="3" 
+                                <Label Text="{Binding Path=ItemCode}" Margin="0, 0, 5, 0" Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding Path=MRP, StringFormat='MRP: {0}'}" Margin="0, 0, 10, 0" Grid.Row="0" Grid.Column="2" FontSize="Caption" HorizontalOptions="End"/>
+                                <Label Text="{Binding Path=Quantity, StringFormat='Qty: {0}'}" Margin="0, 0, 10, 0" Grid.Row="0" Grid.Column="3" 
                                HorizontalOptions="End" FontSize="Caption" FontAttributes="Bold"/>
 
-                            <Label Text="{Binding Path=ItemName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" LineBreakMode="TailTruncation" />
-                            <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="2" Grid.ColumnSpan="5"/>                            
-                        </Grid>
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                <Label Text="{Binding Path=ItemName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" LineBreakMode="TailTruncation" />
+                                <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="2" Grid.ColumnSpan="5"/>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-        <Grid Grid.Row="2" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+            <Grid Grid.Row="2" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
               RowDefinitions="60" ColumnDefinitions="20, *, *, *, 20">
-            <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
-                <ImageButton Source="stockcountingadd.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=AddItemCommand}"/>
-                <Label Text="Add Item" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding AddItemCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
-            </VerticalStackLayout>
-            <VerticalStackLayout Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
-                <ImageButton Source="stockcountingsubmit.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=SubmitCommand}"/>
-                <Label Text="Submit" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SubmitCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
-            </VerticalStackLayout>
-            <VerticalStackLayout Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
-                <ImageButton Source="stockcountingdiscard.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=DiscardCommand}"/>
-                <Label Text="Discard" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DiscardCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
-            </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ImageButton Source="stockcountingadd.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=AddItemCommand}"/>
+                    <Label Text="Add Item" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddItemCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ImageButton Source="stockcountingsubmit.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=SubmitCommand}"/>
+                    <Label Text="Submit" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SubmitCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ImageButton Source="stockcountingdiscard.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=DiscardCommand}"/>
+                    <Label Text="Discard" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding DiscardCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </VerticalStackLayout>
+            </Grid>
         </Grid>
+        <ActivityIndicator IsRunning="{Binding Path=IsLoading}" WidthRequest="150"/>
     </Grid>
 </ContentPage>

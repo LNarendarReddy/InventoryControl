@@ -59,7 +59,7 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
                     , { "GetAllDispatches", false.ToString() }
                 });
 
-            if (holder == null || holder.Exception == null) return;
+            if (holder == null || holder.Exception != null) return;
 
             DispatchList = holder.Holder.DispatchList;
             BuildModel();
