@@ -33,6 +33,18 @@ namespace NSRetail.ReportForms.Stock.StockReports
 
             dtAsOnDate.EditValue = DateTime.Today;
             MandatoryFields = new List<BaseEdit> { dtAsOnDate };
+
+            IncludeSettingsCollection = new List<IncludeSettings>()
+            {
+                new IncludeSettings("Latest Cost price & totals", "IncludeLatestCP"
+                    , new List<string>{ "LATESTCOSTPRICEWOT", "LATESTCOSTPRICETAX", "LATESTCOSTPRICEWT", "TOTALLATESTCOSTPRICEWOT", "TOTALLATESTCOSTPRICEWT"
+                    }, true),
+                new IncludeSettings("Avg. Cost price & totals", "IncludeAvgCP"
+                    , new List<string>{ "AVGCOSTPRICEWOT", "AVGCOSTPRICETAX", "AVGCOSTPRICEWT", "TOTALAVGCOSTPRICEWOT", "TOTALAVGCOSTPRICEWT"
+                    }, false),
+                new IncludeSettings("Classification & Sub classification", "IncludeClassification", new List<string>{ "CLASSIFICATIONNAME", "SUBCLASSIFICATIONNAME" }, false),
+                new IncludeSettings("Brand & Manufacturer", "IncludeBrand", new List<string>{ "BRANDNAME", "MANUFACTURERNAME" }, false),
+            };
         }
 
         public override object GetData()

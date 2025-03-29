@@ -296,6 +296,7 @@ namespace NSRetail.Stock
                 rowHandle = Getrowhandle();
                 if (rowHandle >= 0)
                 {
+                    gvSupplierReturns.FocusedRowHandle = rowHandle; // set added row as focused row
                     SaveSupplierReturnsDetail(rowHandle);
                 }
                 ClearItemData();
@@ -303,7 +304,11 @@ namespace NSRetail.Stock
             }
             catch (Exception ex)
             {
-                gvSupplierReturns.DeleteRow(gvSupplierReturns.FocusedRowHandle);
+                // delete row only if it is create
+                if (!int.TryParse(gvSupplierReturns.GetFocusedRowCellValue("SUPPLIERRETURNSDETAILID")?.ToString(), out int id)
+                    || id <= 0)
+                    gvSupplierReturns.DeleteRow(gvSupplierReturns.FocusedRowHandle);
+
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
         }
@@ -426,7 +431,10 @@ namespace NSRetail.Stock
         {
             try
             {
-                if (!supplierReturns.SupplierReturnsID.Equals(0) && supplierReturns.StockEntryID != null && !supplierReturns.StockEntryID.Equals(0))
+                if (supplierReturns.SupplierReturnsID != null 
+                    && !supplierReturns.SupplierReturnsID.Equals(0) 
+                    && supplierReturns.StockEntryID != null 
+                    && !supplierReturns.StockEntryID.Equals(0))
                 {
                     var result = XtraMessageBox.Show("Are sure want to discard return sheet?",
                         "Confirmation!",
