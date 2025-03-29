@@ -53,6 +53,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 
         private void BuildModel()
         {
+            if (BranchIndentList == null) return;
+
             IndentData.Clear();
             BranchIndentList
                 .GroupBy(x => x.BranchName ?? string.Empty)
