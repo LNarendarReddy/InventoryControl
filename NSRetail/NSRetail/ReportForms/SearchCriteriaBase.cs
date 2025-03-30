@@ -24,7 +24,7 @@ namespace NSRetail
         DateEdit todate;
         Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>();
         IEnumerable<string> allowedRoles;
-        List<int> excludedBranches = new List<int> { 91, 92, 97, 100, 103 };
+        protected List<int> excludedBranches = new List<int> { 91, 92, 97, 100, 103 };
 
         private frmReportPlaceHolder frmReportPlaceHolder => ParentForm as frmReportPlaceHolder;
 
@@ -71,6 +71,7 @@ namespace NSRetail
                     break;
                 }
             }
+            ControlBoundCompleted();
             base.OnLoad(e);
         }
 
@@ -360,6 +361,8 @@ namespace NSRetail
         }
 
         public virtual void DataBoundCompleted() { }
+
+        public virtual void ControlBoundCompleted() { }
 
         public void AddCheckedComboBoxEnter(CheckedComboBoxEdit cmb)
         {

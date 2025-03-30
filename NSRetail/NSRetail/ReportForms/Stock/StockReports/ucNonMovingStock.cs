@@ -15,6 +15,9 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 { "STOCKQTYORWGHT", "Stock Qty or Weight in KGs" }
                 , { "BRANDNAME", "Brand" }
                 , { "MANUFACTURERNAME", "Manufacturer" }
+                , { "SALEQTYORWGHT", "Sale Qty or Weight in KGs" }
+                , { "LASTSALEDATE", "Last sale date" }
+                , { "LASTDISPATCHDATE", "Last dispatch date" }
             };
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-30);
@@ -22,6 +25,7 @@ namespace NSRetail.ReportForms.Stock.StockReports
 
             SetFocusControls(cmbBranch, txtCutOff , columnHeaders);
             MandatoryFields = new List<BaseEdit> { cmbBranch, dtpFromDate, dtpToDate };
+            excludedBranches.Add(45); // remove warehouse selection
         }
 
         public override object GetData()
