@@ -55,7 +55,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
                     .FirstOrDefault(x => x.TrayInfoId == StockDispatchDetailModel.TrayInfoId) 
                         ?? 
                 StockDispatchModel.TrayInfoList
-                    .FirstOrDefault(x => x.TrayInfoId == StockDispatchModel.LastKnownTrayNumber.TrayInfoId);
+                    .FirstOrDefault(x => x.TrayInfoId == StockDispatchModel.LastKnownTrayNumber?.TrayInfoId);
         }
 
         private async Task Save()

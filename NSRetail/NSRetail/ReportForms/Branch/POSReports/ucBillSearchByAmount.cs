@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using NSRetail.Reports;
 using System;
@@ -21,8 +22,11 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 { "BILLMODE", "Bill Mode" },
                 { "CUSTOMERNAME", "Customer Name" },
                 { "CUSTOMERNUMBER", "Customer #" },
-                { "BILLCLOSEDBY", "Finished user" },
-                { "BILLCLOSEDDATE", "Finished time" },
+                { "CREATEDBY", "Finished user" },
+                { "CREATEDDATE", "Finished Date" },
+                { "AMOUNT", "Amount" },
+                { "COUNTVALUE", "Count" },
+                { "AVERAGEVALUE", "Average" }
             };
 
             ContextmenuItems = new Dictionary<string, string>
@@ -30,6 +34,21 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 {"Items", "1414895B-9B4D-4413-BC82-D5410EB7DAC9" }, 
                 {"Print" , "4B326209-0095-413D-9DC6-6148E2A516DE" } 
             };
+
+            IncludeSettingsCollection = new List<IncludeSettings>
+            {
+                new IncludeSettings("Date", "IncludeDate", new List<string>() { "CREATEDDATE" }, true),
+                new IncludeSettings("Branch", "IncludeBranch", new List<string>() { "BRANCHNAME" }, true),
+                new IncludeSettings("Counter", "IncludeBranchCounter", new List<string>() { "COUNTERNAME" }, true),
+                new IncludeSettings("Billed by user", "IncludeUser", new List<string>() { "CREATEDBY" }, true),
+                new IncludeSettings("Bill Mode", "IncludeBillMode", new List<string>() { "BILLMODE" }, true),
+                new IncludeSettings("Bill details (bill # & customer info)", "IncludeBillDetails"
+                    , new List<string>() { "BILLNUMBER", "CUSTOMERNAME", "CUSTOMERGST", "CUSTOMERNUMBER"
+                        , "CREATEDTIME" }, true),
+                new IncludeSettings("Payment Mode", "IncludePaymentMode", new List<string>() { "MOPNAME" }, false),
+                new IncludeSettings("Count & Avg.", "IncludeCountAndAvg", new List<string>() { "COUNTVALUE", "AVERAGEVALUE" }, false)
+            };
+
             SetFocusControls(cmbBranch, txtCutOffAmt, specificColumnHeaders);
         }
 
@@ -49,11 +68,19 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 , { "CutOff", txtCutOffAmt.EditValue }
             };
 
-            return GetReportData("USP_RPT_BILLNUMINFO", parameters);
+            return GetReportData("USP_RPT_BILLNUMINFO2", parameters);
         }
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
+            if (!drFocusedRow.Table.Columns.Contains("BRANCHCOUNTERID")
+                || !drFocusedRow.Table.Columns.Contains("BILLID"))
+            {
+                XtraMessageBox.Show("Bill details not available, inlcude bill details and search to proceed"
+                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (buttonText == "Items")
             {
                 DataSet dsItems = new POSRepository().GetBillDetailByID(drFocusedRow["BRANCHCOUNTERID"], drFocusedRow["BILLID"]);
