@@ -18,10 +18,12 @@ namespace NSRetail.ReportForms.Branch.POSReports
             Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>()
             {
                 { "MOPNAME", "Payment Method" },
-                { "CREATEDTIME", "Created time" },
+                { "BILLMOPNAME", "Bill Payment Method" },
+                { "CREATEDTIME", "Finished time" },
                 { "BILLMODE", "Bill Mode" },
                 { "CUSTOMERNAME", "Customer Name" },
                 { "CUSTOMERNUMBER", "Customer #" },
+                { "CUSTOMERGST", "Customer GST" },
                 { "CREATEDBY", "Finished user" },
                 { "CREATEDDATE", "Finished Date" },
                 { "AMOUNT", "Amount" },
@@ -44,7 +46,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 new IncludeSettings("Bill Mode", "IncludeBillMode", new List<string>() { "BILLMODE" }, true),
                 new IncludeSettings("Bill details (bill # & customer info)", "IncludeBillDetails"
                     , new List<string>() { "BILLNUMBER", "CUSTOMERNAME", "CUSTOMERGST", "CUSTOMERNUMBER"
-                        , "CREATEDTIME" }, true),
+                        , "CREATEDTIME", "BILLMOPNAME" }, true),
                 new IncludeSettings("Payment Mode", "IncludePaymentMode", new List<string>() { "MOPNAME" }, false),
                 new IncludeSettings("Count & Avg.", "IncludeCountAndAvg", new List<string>() { "COUNTVALUE", "AVERAGEVALUE" }, false)
             };
