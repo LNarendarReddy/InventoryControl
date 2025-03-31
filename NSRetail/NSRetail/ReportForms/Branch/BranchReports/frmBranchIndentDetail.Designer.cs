@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBranchIndentDetail));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.gcItems = new DevExpress.XtraGrid.GridControl();
             this.gvItems = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -52,7 +53,6 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -81,6 +81,17 @@
             this.layoutControl1.Size = new System.Drawing.Size(1152, 603);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnViewReport
+            // 
+            this.btnViewReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnViewReport.ImageOptions.Image")));
+            this.btnViewReport.Location = new System.Drawing.Point(933, 4);
+            this.btnViewReport.Name = "btnViewReport";
+            this.btnViewReport.Size = new System.Drawing.Size(103, 22);
+            this.btnViewReport.StyleController = this.layoutControl1;
+            this.btnViewReport.TabIndex = 7;
+            this.btnViewReport.Text = "View Report";
+            this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
             // 
             // btnCancel
             // 
@@ -134,6 +145,7 @@
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
+            this.gvItems.OptionsBehavior.Editable = false;
             this.gvItems.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn1
@@ -298,17 +310,6 @@
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
-            // 
-            // btnViewReport
-            // 
-            this.btnViewReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnViewReport.ImageOptions.Image")));
-            this.btnViewReport.Location = new System.Drawing.Point(933, 4);
-            this.btnViewReport.Name = "btnViewReport";
-            this.btnViewReport.Size = new System.Drawing.Size(103, 22);
-            this.btnViewReport.StyleController = this.layoutControl1;
-            this.btnViewReport.TabIndex = 7;
-            this.btnViewReport.Text = "View Report";
-            this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
             // 
             // layoutControlItem2
             // 

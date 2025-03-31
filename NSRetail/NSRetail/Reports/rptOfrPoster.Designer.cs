@@ -134,7 +134,7 @@
             // 
             this.xrPictureBox1.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrPictureBox1.Dpi = 254F;
-            this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource(global::NSRetail.Properties.Resources.victorylogo1, true);
+            this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource(global::NSRetail.Properties.Resources.Victory_Bazars_Logo, true);
             this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(25F, 0F);
             this.xrPictureBox1.Name = "xrPictureBox1";
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(130F, 130F);

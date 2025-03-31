@@ -333,6 +333,16 @@ namespace NSRetail.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Victory_Bazars_Logo {
+            get {
+                object obj = ResourceManager.GetObject("Victory Bazars_Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Victory_Logo {
             get {
                 object obj = ResourceManager.GetObject("Victory Logo", resourceCulture);
