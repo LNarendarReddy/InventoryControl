@@ -9,27 +9,30 @@
         <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverted" />
     </ContentPage.Resources>
     <Grid>
-        <VerticalStackLayout Margin="10" Spacing="10">
-            <Grid ColumnDefinitions="auto, auto, *, auto">
-                <Label Text="Dispatch #: " VerticalOptions="Center" Grid.Column="0"/>
-                <Label Text="{Binding Path=DispatchReceive.DispatchNumber}" FontAttributes="Bold" VerticalOptions="Center"  Grid.Column="1"/>
-                <Button Text="Submit" Command="{Binding Path=SubmitCommand}" HorizontalOptions="End"  Grid.Column="3"/>
-            </Grid>
-            <Frame Padding="5">
-                <CollectionView ItemsSource="{Binding Path=DispatchReceive.DispatchReceiveDetailList}" >
+        <Grid ColumnDefinitions="auto, auto, *, auto" RowDefinitions="auto, *" Margin="10" RowSpacing="10">
+            <Label Text="Dispatch #: " VerticalOptions="Center" Grid.Column="0" Grid.Row="0"/>
+            <Label Text="{Binding Path=DispatchReceive.DispatchNumber}" FontAttributes="Bold" VerticalOptions="Center"  Grid.Column="1" Grid.Row="0"/>
+            <Button Text="Submit" Command="{Binding Path=SubmitCommand}" HorizontalOptions="End"  Grid.Column="3" Grid.Row="0"/>
+            <Frame Padding="5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
+                <CollectionView ItemsSource="{Binding Path=DispatchReceive.DispatchReceiveDetailList}" VerticalScrollBarVisibility="Always" >
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <SwipeView>
                                 <SwipeView.RightItems>
-                                    <SwipeItem IconImageSource="stockcountingdetailedit.png" CommandParameter="{Binding .}" 
-                                   Command="{Binding Path=BindingContext.EditReceivedQuantityCommand, Source={RelativeSource AncestorType={x:Type views:DispatchReceiveDetailListPage}}}" 
-                                   IsVisible="{Binding Path=BindingContext.IsOpenItem, Converter={StaticResource Key=InvertedBoolConverted}, Source={RelativeSource AncestorType={x:Type views:DispatchReceiveDetailListPage}}}"
-                                   BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                                    <SwipeItem IconImageSource="stockcountingdetailedit.png" CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                                               Command="{Binding Path=BindingContext.EditReceivedQuantityCommand, Source={RelativeSource AncestorType={x:Type views:DispatchReceiveDetailListPage}}}" 
+                                               IsVisible="{Binding Path=BindingContext.IsOpenItem, Converter={StaticResource Key=InvertedBoolConverted}, Source={RelativeSource AncestorType={x:Type views:DispatchReceiveDetailListPage}}}" />
                                 </SwipeView.RightItems>
                                 <Grid RowDefinitions="auto, auto, auto, auto" ColumnDefinitions="auto, auto, *, auto, auto, auto" 
                                       RowSpacing="5" Margin="0, 0, 0, 5" ColumnSpacing="10">
-                                    <Label Text="{Binding Path=ItemName}" FontSize="Medium" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" 
-                                           HorizontalTextAlignment="Center"/>
+                                    <Label FontSize="Medium" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" HorizontalTextAlignment="Center">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} ({1})">
+                                                <Binding Path="ItemName"/>
+                                                <Binding Path="SKUCode"/>
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
 
                                     <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Spacing="10" HorizontalOptions="Center">
                                         <Label Text="Item Code:" FontSize="Medium"/>
@@ -43,12 +46,10 @@
                                     <Label Text="{Binding Path=SalePrice}" Grid.Row="2" Grid.Column="4" FontSize="Medium"/>
 
                                     <VerticalStackLayout Grid.Row="0" Grid.Column="5" Grid.RowSpan="4" VerticalOptions="Center">
-                                        <Label Text="{Binding Path=SentQuantity}" FontSize="Large" FontAttributes="Bold"
-                                   TextColor="{Binding Path=QuantityColor}"/>
-                                        <Rectangle BackgroundColor="{Binding Path=QuantityColor}" HeightRequest="2" 
-                                   IsVisible="{Binding Path=IsDenominatorVisible}" />
-                                        <Label Text="{Binding Path=ReceivedQuantity}" FontSize="Large" TextColor="{Binding Path=QuantityColor}"
-                               IsVisible="{Binding Path=IsDenominatorVisible}" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Path=SentQuantity}" FontSize="Large" FontAttributes="Bold" TextColor="{Binding Path=QuantityColor}"/>
+                                        <Rectangle BackgroundColor="{Binding Path=QuantityColor}" HeightRequest="2" IsVisible="{Binding Path=IsDenominatorVisible}" />
+                                        <Label Text="{Binding Path=ReceivedQuantity}" FontSize="Large" TextColor="{Binding Path=QuantityColor}" 
+                                               IsVisible="{Binding Path=IsDenominatorVisible}" FontAttributes="Bold"/>
                                     </VerticalStackLayout>
                                     <Rectangle BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
                                 </Grid>
@@ -57,7 +58,8 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </Frame>
-        </VerticalStackLayout>
+        </Grid>
+
         <ActivityIndicator IsRunning="{Binding Path=IsLoading}" WidthRequest="150"/>
     </Grid>
 </ContentPage>

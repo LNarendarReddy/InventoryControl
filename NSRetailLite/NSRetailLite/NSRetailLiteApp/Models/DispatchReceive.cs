@@ -83,6 +83,9 @@ namespace NSRetailLiteApp.Models
         private string _itemCode;
 
         [ObservableProperty]
+        private string _sKUCode;
+
+        [ObservableProperty]
         private double _mRP;
 
         [ObservableProperty]
