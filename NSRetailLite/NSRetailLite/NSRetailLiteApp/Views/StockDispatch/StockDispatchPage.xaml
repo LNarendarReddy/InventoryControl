@@ -176,15 +176,13 @@
                 <CollectionView ItemsSource="{Binding Path=TrayWiseData}" IsGrouped="True" x:Name="cvTrayWiseData" Grid.Row="1">
                     <CollectionView.GroupHeaderTemplate>
                         <DataTemplate>
-                            <Grid ColumnDefinitions="Auto, *, Auto" Padding="20, 0, 20, 0"
-                              BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"                              >
-                                <Label Text="{Binding Name, StringFormat='Tray #: {0}'}" FontSize="Title" FontAttributes="Bold" Grid.Column="0" TextColor="White"/>
-                                <HorizontalStackLayout Grid.Column="2" Spacing="10">
-                                    <Label Text="Items:" FontSize="Title" TextColor="White"/>
-                                    <Label Text="{Binding Count}" FontSize="Title" FontAttributes="Bold" TextColor="White"/>
-                                    <Label Text="Pieces:" FontSize="Title" TextColor="White"/>
-                                    <Label Text="{Binding PieceCount}" FontSize="Title" FontAttributes="Bold" TextColor="White"/>
-                                </HorizontalStackLayout>
+                            <Grid ColumnDefinitions="Auto, *, Auto, Auto, Auto, Auto" Padding="20, 0, 20, 0" ColumnSpacing="5"
+                                  BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
+                                <Label Text="{Binding Name, StringFormat='Tray #: {0}'}" FontSize="Large" FontAttributes="Bold" Grid.Column="0" TextColor="White"/>
+                                <Label Text="Items:" FontSize="Large" TextColor="White" Grid.Column="2" />
+                                <Label Text="{Binding Count}" FontSize="Large" FontAttributes="Bold" TextColor="White" Grid.Column="3" />
+                                <Label Text="Pieces:" FontSize="Large" TextColor="White" Grid.Column="4" />
+                                <Label Text="{Binding PieceCount}" FontSize="Large" FontAttributes="Bold" TextColor="White" Grid.Column="5" />
                             </Grid>
                         </DataTemplate>
                     </CollectionView.GroupHeaderTemplate>

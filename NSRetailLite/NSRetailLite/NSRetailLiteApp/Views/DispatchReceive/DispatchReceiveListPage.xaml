@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:NSRetailLiteApp.Views.DispatchReceive"
              Title="Available Dispatches to Receive">
     <Grid>
-        <VerticalStackLayout Margin="10">
+        <Grid Margin="10">
             <CollectionView ItemsSource="{Binding Path=CategoryGroupList}" IsGrouped="True">
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
@@ -51,7 +51,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </VerticalStackLayout>
+        </Grid>
         <ActivityIndicator IsRunning="{Binding Path=IsLoading}" WidthRequest="150"/>
     </Grid>
 </ContentPage>

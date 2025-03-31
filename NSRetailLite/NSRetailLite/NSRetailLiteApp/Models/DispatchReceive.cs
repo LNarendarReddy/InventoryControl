@@ -112,6 +112,12 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         private Color _quantityColor;
 
+        [ObservableProperty]
+        private bool _isVerified;
+
+        [ObservableProperty]
+        private Color _textColor;
+
         partial void OnDispatchQuantityChanged(int value)
         {
             SetValues();
@@ -127,17 +133,23 @@ namespace NSRetailLiteApp.Models
             SetValues();
         }
 
+        partial void OnIsVerifiedChanged(bool value)
+        {
+            SetValues();
+        }
+
         private void SetValues()
         {
             SentQuantity = IsOpenItem ? WeightInKGs : DispatchQuantity;
             IsDenominatorVisible = IsOpenItem ? false : DispatchQuantity != ReceivedQuantity;
 
-            QuantityColor = (IsDenominatorVisible 
-                ? System.Drawing.Color.Orange
-                : Application.Current.RequestedTheme == AppTheme.Light
+            System.Drawing.Color normalTextColor = Application.Current.RequestedTheme == AppTheme.Light
                     ? System.Drawing.Color.Black
-                    : System.Drawing.Color.White)
-                    .ToMauiColor();
+                    : System.Drawing.Color.White;
+
+            QuantityColor = (IsDenominatorVisible ? System.Drawing.Color.Orange : normalTextColor).ToMauiColor();
+            TextColor = (IsDenominatorVisible ? System.Drawing.Color.Orange
+                : IsVerified ? System.Drawing.Color.Green : normalTextColor).ToMauiColor();
         }
     }
 }

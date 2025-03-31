@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using NSRetailLiteApp.Models;
 using System;
 using System.Collections.Generic;
@@ -14,26 +15,30 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
         private readonly LoggedInUser loggedInUser;
 
         public IAsyncRelayCommand<DispatchReceiveDetail?> EditReceivedQuantityCommand { get; }
+        public IAsyncRelayCommand<DispatchReceiveDetail?> MarkVerifyCommand { get; }
         public IAsyncRelayCommand SubmitCommand { get; }
+        public int ItemCount { get; private set; }
+        public int DispatchPieceCount { get; private set; }
 
+        [ObservableProperty]
+        private int _receivedPieceCount;
 
         public DispatchReceiveDetailListViewModel(
             Models.DispatchReceive dispatchReceive
             , LoggedInUser loggedInUser) 
         {
             DispatchReceive = dispatchReceive;
-            Title = "Tray #: " + dispatchReceive?.TrayNumber;
-            DispatchReceive = dispatchReceive;
             this.loggedInUser = loggedInUser;
             EditReceivedQuantityCommand = new AsyncRelayCommand<DispatchReceiveDetail?>(EditReceivedQuantity);
+            MarkVerifyCommand = new AsyncRelayCommand<DispatchReceiveDetail?>(MarkVerify);
             SubmitCommand = new AsyncRelayCommand(Submit);
-        }
 
-        public ObservableCollection<DispatchReceiveDetail?> DispatchReceiveDetailList { get; }
+            BuildModel();
+        }
 
         public Models.DispatchReceive DispatchReceive { get; }
 
-        public string Title { get; }
+        public string Title { get; private set; }
 
         private async Task EditReceivedQuantity(DispatchReceiveDetail? selected)
         {
@@ -55,6 +60,7 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
             if (holder.Exception != null) return;
 
             selected.ReceivedQuantity = Convert.ToInt32(newQuantityString);
+            BuildModel();
         }
 
         private async Task Submit()
@@ -72,6 +78,32 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
             if (holder.Exception != null) return;
 
             await Pop();
+        }
+
+        private async Task MarkVerify(DispatchReceiveDetail? selected)
+        {
+            if (selected == null) return;
+
+            HolderClass holder = new HolderClass();
+            await PostAsync("StockDispatch_In/verifystockdispatchdetail", holder, new Dictionary<string, string?>
+            {
+                { "StockDispatchDetailID", selected.StockDispatchDetailId.ToString() },
+                { "IsVerified", (!selected.IsVerified).ToString() }
+            });
+
+            if (holder.Exception != null) return;
+
+            selected.IsVerified = !selected.IsVerified;
+        }
+
+        private void BuildModel()
+        {
+            if(DispatchReceive == null) return;
+
+            Title = "Tray #: " + DispatchReceive.TrayNumber;
+            ItemCount = DispatchReceive.DispatchReceiveDetailList?.Count ?? 0;
+            DispatchPieceCount = DispatchReceive?.DispatchReceiveDetailList?.Sum(x => x.DispatchQuantity) ?? 0;
+            ReceivedPieceCount = DispatchReceive?.DispatchReceiveDetailList?.Sum(x => x.ReceivedQuantity) ?? 0;
         }
     }
 }
