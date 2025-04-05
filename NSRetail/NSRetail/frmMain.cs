@@ -19,6 +19,7 @@ using NSRetail.ReportForms.Stock.TransactionReports;
 using NSRetail.ReportForms.Supplier.SupplierReports;
 using NSRetail.ReportForms.Supplier.SupplierWiseReports;
 using NSRetail.ReportForms.Wareshouse.Audit;
+using NSRetail.ReportForms.Wareshouse.Differences;
 using NSRetail.ReportForms.Wareshouse.Profitability;
 using NSRetail.ReportForms.Wareshouse.StockAndSale;
 using NSRetail.ReportForms.Wareshouse.TaxBreakUp;
@@ -427,6 +428,11 @@ namespace NSRetail
             auditReports.SubCategory.Add(new ReportHolder("CA340805-E65A-4FCA-8BF7-6A75630703E1") { ReportName = "Offer threshold", SearchCriteriaControl = new ucOfferThreshold() });
             auditReports.SubCategory.Add(new ReportHolder("D876AE08-B34A-4BE4-972D-2EFA6044FEFC") { ReportName = "Offer status", SearchCriteriaControl = new ucOfferStatus() });
             reportList.Add(auditReports);
+
+            ReportHolder differenceReports = new ReportHolder("671AB139-0564-4D24-B5B3-F5D859EBEDEC") { ReportName = "Difference Reports" };
+            differenceReports.SubCategory.Add(new ReportHolder("AC133FF5-DDDD-425C-B214-D26AF5E4BF6D") { ReportName = "Indent vs Dispatch", SearchCriteriaControl = new ucIndentDispatchDifferences() });
+            //differenceReports.SubCategory.Add(new ReportHolder("4113BB0C-15C1-463B-938E-4DFA9D12A41C") { ReportName = "Item Margin", SearchCriteriaControl = new ucItemMargin() });
+            reportList.Add(differenceReports);
 
             ReportHolder profitabilityReports = new ReportHolder("25939730-C13A-4939-B49F-0AAABCBBE467") { ReportName = "Profitability Reports" };
             profitabilityReports.SubCategory.Add(new ReportHolder("A4E43E52-34D0-44E8-9FCC-87E72362FB98") { ReportName = "Periodicity", SearchCriteriaControl = new ucProfitabilityPeriodicity() });

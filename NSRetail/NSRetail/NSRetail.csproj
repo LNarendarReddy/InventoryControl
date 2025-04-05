@@ -476,6 +476,12 @@
     <Compile Include="ReportForms\Stock\StockReports\frmItemSummaryDetail.Designer.cs">
       <DependentUpon>frmItemSummaryDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Differences\ucIndentDispatchDifferences.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Differences\ucIndentDispatchDifferences.Designer.cs">
+      <DependentUpon>ucIndentDispatchDifferences.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityTaxWise.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1348,6 +1354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\POSReports\ucBillSearchByAmount.resx">
       <DependentUpon>ucBillSearchByAmount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Differences\ucIndentDispatchDifferences.resx">
+      <DependentUpon>ucIndentDispatchDifferences.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\ucItemMargin.resx">
       <DependentUpon>ucItemMargin.cs</DependentUpon>
