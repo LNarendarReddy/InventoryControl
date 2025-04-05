@@ -22,7 +22,8 @@ namespace DataAccess
                 "NOOFDAYSSALES", 
                 "INDENTQUANTITY", 
                 "LASTDISPATCHDATE", 
-                "SUBCATEGORYID" 
+                "SUBCATEGORYID",
+                "WHSTOCK"
             };
             var columnsToRemove = dt.Columns.Cast<DataColumn>().Select(x => x.ColumnName).Where(x => !allowedcolumns.Contains(x)).ToList();
             columnsToRemove.ForEach(x => dt.Columns.Remove(x));
