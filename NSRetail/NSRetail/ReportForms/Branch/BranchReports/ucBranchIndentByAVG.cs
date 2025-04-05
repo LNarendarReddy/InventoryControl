@@ -29,7 +29,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
             MandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, txtIndentDays };
 
-            HiddenColumns = new List<string>() { "AVGSALES", "NOOFDAYSSALES" };
+            HiddenColumns = new List<string>() { "AVGSALES", "NOOFDAYSSALES", "WHSTOCK" };
 
             cmbBranch.Properties.DataSource = Utility.GetBranchList();
             cmbBranch.Properties.ValueMember = "BRANCHID";
@@ -64,15 +64,25 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
         private void btnSaveIndent_Click(object sender, EventArgs e)
         {
+            if (ResultGrid.DataSource == null) return;
+
             try
             {
+                DataTable indentTable = ((DataTable)ResultGrid.DataSource).Copy();
+
+                if (indentTable.Rows.Count == 0)
+                {
+                    XtraMessageBox.Show("No data to save", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 var result = XtraMessageBox.Show("Are you sure want to save indent?",
                     "Confirm!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (Convert.ToString(result).ToLower() == "yes")
                 {
                     new IndentRepository().SaveBranchIndent(
                     0, Utility.BranchID, cmbBranch.EditValue, cmbCategory.EditValue,
-                    txtIndentDays.EditValue, Utility.UserID, ((DataTable)ResultGrid.DataSource).Copy());
+                    txtIndentDays.EditValue, Utility.UserID, indentTable);
                     XtraMessageBox.Show("Indent saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

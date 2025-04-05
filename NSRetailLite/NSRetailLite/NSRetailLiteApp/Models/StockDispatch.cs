@@ -144,6 +144,9 @@ namespace NSRetailLiteApp.Models
         private double _branchStock;
 
         [ObservableProperty]
+        private double _wHStock;
+
+        [ObservableProperty]
         private double _avgSales;
 
         [ObservableProperty]
