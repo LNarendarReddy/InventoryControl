@@ -47,11 +47,14 @@ namespace NSRetail.ReportForms.Stock.StockCounting
         {
             if (gvItems.FocusedRowHandle < 0)
                 return;
-            if (decimal.TryParse(Convert.ToString(gvItems.GetFocusedRowCellValue("PHYSICALQAUNTITY")), out decimal ivalue) && ivalue > 0)
+            if (e.HitInfo.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
             {
-                e.Menu.Items.Add(new DXMenuItem("View detail", new EventHandler(ViewDetail_Click)));
-                if (ShowPricecolumns)
-                    e.Menu.Items.Add(new DXMenuItem("Delete item", new EventHandler(DeleteItem_Click)));
+                if (decimal.TryParse(Convert.ToString(gvItems.GetFocusedRowCellValue("PHYSICALQAUNTITY")), out decimal ivalue) && ivalue > 0)
+                {
+                    e.Menu.Items.Add(new DXMenuItem("View detail", new EventHandler(ViewDetail_Click)));
+                    if (ShowPricecolumns)
+                        e.Menu.Items.Add(new DXMenuItem("Delete item", new EventHandler(DeleteItem_Click)));
+                }
             }
         }
 

@@ -1,13 +1,8 @@
 ﻿using Entity;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.Remoting.Lifetime;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
@@ -1015,5 +1010,116 @@ namespace DataAccess
             }
             return entries;
         }
+
+        public object SaveTrayInfo(int StockDispatchID, int TrayNumber, int UserID)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                        { "STOCKDISPATCHID", StockDispatchID }
+                        ,{ "TRAYNUMBER", TrayNumber }
+                        ,{ "USERID", UserID}
+                };
+                object obj = new DataRepository().ExecuteScalar("USP_CU_TRAYINFO", true, parameters);
+                string str = Convert.ToString(obj);
+                if (int.TryParse(str, out int Ivalue))
+                    return Ivalue;
+                else
+                    throw new Exception(str);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public DataTable GetTrayInfo(int StockDispatchID, bool IsMobileCall)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                    {
+                        { "STOCKDISPATCHID", StockDispatchID },
+                        { "IsMobileCall", IsMobileCall }
+                    };
+                DataSet ds = new DataRepository().GetDataset("USP_R_TRAYINFO", true, parameters);
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    int Ivalue = 0;
+                    string str = Convert.ToString(ds.Tables[0].Rows[0][0]);
+                    if (int.TryParse(str, out Ivalue))
+                    {
+                        ds.Tables[1].TableName = "TRAYINFO";
+                        return ds.Tables[1];
+                    }
+                    else
+                        throw new Exception(str);
+                }
+                else
+                    throw new Exception("No tray numbers exists");
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public DataTable GetEmptyTrayInfo(int StockDispatchID)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                    {
+                        { "STOCKDISPATCHID", StockDispatchID }
+                    };
+                DataSet ds = new DataRepository().GetDataset("USP_R_SD_EMPTYTRAYS", true, parameters);
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    int Ivalue = 0;
+                    string str = Convert.ToString(ds.Tables[0].Rows[0][0]);
+                    if (int.TryParse(str, out Ivalue))
+                    {
+                        ds.Tables[1].TableName = "TRAYINFO";
+                        return ds.Tables[1];
+                    }
+                    else
+                        throw new Exception(str);
+                }
+                else
+                    throw new Exception("No tray numbers exists");
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public object DeleteTrayInfo(int StockdispatchID, int TrayInfoID, int UserID)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                     { "STOCKDISPATCHID", StockdispatchID}
+                    ,{ "TRAYINFOID", TrayInfoID}
+                    ,{ "USERID", UserID}
+                };
+                object objreturn = new DataRepository().ExecuteScalar("USP_D_TRAYINFO", true, parameters);
+
+                if (!int.TryParse(Convert.ToString(objreturn), out int ivalue))
+                    throw new Exception(Convert.ToString(objreturn));
+                else
+                    return objreturn;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
     }
 }
