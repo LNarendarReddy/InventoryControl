@@ -30,6 +30,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 
         public LoggedInUser User { get; }
         public bool IsEditable { get; }
+        public bool ShowItemScanInCodeSelection { get; }
 
         [ObservableProperty]
         private TrayInfo _selectedTrayInfo;
@@ -38,13 +39,15 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             , BranchIndentDetailModel branchIndentDetailModel
             , StockDispatchModel stockDispatchModel
             , LoggedInUser user
-            , bool isEditable = true)
+            , bool isEditable = true
+            , bool showItemScanInCodeSelection = false)
         {
             StockDispatchDetailModel = stockDispatchDetailModel;
             this.branchIndentDetailModel = branchIndentDetailModel;
             StockDispatchModel = stockDispatchModel;
             User = user;
             IsEditable = isEditable;
+            ShowItemScanInCodeSelection = showItemScanInCodeSelection;
             SaveCommand = new AsyncRelayCommand(Save);
             LoadItemCommand = new AsyncRelayCommand(LoadItem);
             AddTrayCommand = new AsyncRelayCommand(AddTray);
@@ -175,7 +178,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 
             if (item.Exception != null) return;
 
-            Tuple<ItemCodeData, ItemPrice> returnData = await new ItemPriceSelectionUtility().GetSelectedItemPrice(item);
+            Tuple<ItemCodeData, ItemPrice> returnData = await new ItemPriceSelectionUtility().GetSelectedItemPrice(item, ShowItemScanInCodeSelection);
 
             ItemCodeData itemCode = returnData.Item1;
             ItemPrice itemPrice = returnData.Item2;
@@ -226,6 +229,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             TrayInfo trayInfo = SelectedTrayInfo;
             trayInfo = await PostAsync("Stockdispatch_v2/deletetrayinfo", trayInfo, new Dictionary<string, string?>()
                             {
+                                { "StockDispatchID", StockDispatchModel.StockDispatchId.ToString() },
                                 { "TrayInfoID", trayInfo.TrayInfoId.ToString() },
                                 { "UserID", User.UserId.ToString() }
                             });

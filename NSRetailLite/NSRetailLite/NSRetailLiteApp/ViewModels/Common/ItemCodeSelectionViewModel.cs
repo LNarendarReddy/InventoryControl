@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using NSRetailLiteApp.Models;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,28 @@ namespace NSRetailLiteApp.ViewModels.Common
         [ObservableProperty]
         public ItemCodeData _selectedItemCode;
 
-        public ItemCodeSelectionViewModel(Item item)
+        [ObservableProperty]
+        public string _scanItemCode;
+
+        public IRelayCommand ItemCodeScannedCommand { get; }
+
+        public ItemCodeSelectionViewModel(Item item, bool showScanCodeTextBox = false)
         {
             Item = item;
+            ShowScanCodeTextBox = showScanCodeTextBox;
+            ScanItemCode = string.Empty;
+            ItemCodeScannedCommand = new RelayCommand(ItemCodeScanned);
+        }
+
+        public bool ShowScanCodeTextBox { get; }
+
+        private void ItemCodeScanned()
+        {
+            if(string.IsNullOrEmpty(ScanItemCode) || Item == null)  return; 
+
+            ItemCodeData? itemCodeData = Item.ItemCodeList.FirstOrDefault(x => x.ItemCode.Equals(ScanItemCode));
+            if ((itemCodeData == null)) return;
+            SelectedItemCode = itemCodeData;
         }
     }
 }

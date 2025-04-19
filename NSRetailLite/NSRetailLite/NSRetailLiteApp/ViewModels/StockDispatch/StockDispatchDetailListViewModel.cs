@@ -51,7 +51,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 
             await RedirectToPage(stockDispatchDetailModel
                 , new StockDispatchDetailPage(
-                    new StockDispatchDetailViewModel(stockDispatchDetailModel, BranchIndentDetailModel, StockDispatchModel, user)));
+                    new StockDispatchDetailViewModel(stockDispatchDetailModel, BranchIndentDetailModel, StockDispatchModel
+                        , user, showItemScanInCodeSelection: true)));
         }
 
         private async Task Edit(StockDispatchDetailModel? selected)
@@ -60,7 +61,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 
             await RedirectToPage(selected
                 , new StockDispatchDetailPage(
-                    new StockDispatchDetailViewModel(selected, BranchIndentDetailModel, StockDispatchModel, user)));
+                    new StockDispatchDetailViewModel(selected, BranchIndentDetailModel, StockDispatchModel
+                        , user, showItemScanInCodeSelection: true)));
         }
 
         private async Task Discard(StockDispatchDetailModel? selected)

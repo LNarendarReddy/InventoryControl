@@ -122,12 +122,13 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
 
             await RedirectToPage(stockDispatchDetailModel
                 , new StockDispatchDetailPage(
-                    new StockDispatchDetailViewModel(stockDispatchDetailModel, null, StockDispatchModel, user)));
+                    new StockDispatchDetailViewModel(stockDispatchDetailModel, null, StockDispatchModel
+                        , user, showItemScanInCodeSelection: true)));
         }
 
         private async Task AddIndentQuantity(BranchIndentDetailModel? selected)
         {
-            if(selected == null) return;
+            if(selected == null || IsNew) return;
 
             StockDispatchDetailModel stockDispatchDetailModel = new StockDispatchDetailModel()
             {
@@ -138,12 +139,13 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
 
             await RedirectToPage(stockDispatchDetailModel
                 , new StockDispatchDetailPage(
-                    new StockDispatchDetailViewModel(stockDispatchDetailModel, selected, StockDispatchModel, user)));
+                    new StockDispatchDetailViewModel(stockDispatchDetailModel, selected, StockDispatchModel
+                        , user, showItemScanInCodeSelection: true)));
         }
 
         private async Task EditIndentQuantity(BranchIndentDetailModel? selected)
         {
-            if (selected == null) return;
+            if (selected == null || IsNew) return;
 
             await RedirectToPage(selected, new StockDispatchDetailListPage(
                 new StockDispatchDetailListViewModel(selected, StockDispatchModel, user)));
@@ -151,27 +153,28 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
 
         private async Task EditManualQuantity(StockDispatchDetailModel? selected)
         {
-            if (selected == null) return;
+            if (selected == null || IsNew) return;
 
             await RedirectToPage(selected
                 , new StockDispatchDetailPage(
-                    new StockDispatchDetailViewModel(selected, null, StockDispatchModel, user)));
+                    new StockDispatchDetailViewModel(selected, null, StockDispatchModel
+                        , user, showItemScanInCodeSelection: true)));
         }
 
         private async Task EditManualQuantityOnly(StockDispatchDetailModel? selected)
         {
-            if (selected == null) return;
+            if (selected == null || IsNew) return;
 
             await RedirectToPage(selected
                 , new StockDispatchDetailPage(
                     new StockDispatchDetailViewModel(selected
                         , StockDispatchModel.BranchIndentDetailList.FirstOrDefault(x=>x.StockDispatchDetailIndentList.Contains(selected))
-                        , StockDispatchModel, user, false)));
+                        , StockDispatchModel, user, false, showItemScanInCodeSelection: true)));
         }
 
         private async Task DeleteManualQuantity(StockDispatchDetailModel? selected)
         {
-            if (selected == null) return;
+            if (selected == null || IsNew) return;
 
             if (!await DisplayAlert("Confirm Delete",
                 $"Are you sure you want to delete dispatch for item {selected.ItemName} - ({selected.ItemCode})?"
