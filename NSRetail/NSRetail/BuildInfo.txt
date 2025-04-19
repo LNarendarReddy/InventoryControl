@@ -1,9 +1,12 @@
-﻿v3.0.7 (to be deployed)
+﻿v3.0.8 
   -- Tray number logic in stock dispatch
-  -- Tray info added in dispatch list.
+  -- Tray info added in dispatch list (Delete Tray, View items in tray).
   -- Swiping machine integration in warehouse application.
 
-v2.7.7 (to be deployed)
+v3.0.7
+  -- New branch indent added.
+
+v2.7.7
   -- transactions in stock adjustments
 
 v2.7.6

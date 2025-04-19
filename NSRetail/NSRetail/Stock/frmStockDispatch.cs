@@ -234,10 +234,11 @@ namespace NSRetail.Stock
                 ObjStockDispatchDetail.STOCKDISPATCHDETAILID = 0;
                 ObjStockDispatchDetail.STOCKDISPATCHID = ObjStockDispatch.STOCKDISPATCHID;
                 ObjStockDispatchDetail.ITEMPRICEID = ItemPriceID;
-                ObjStockDispatchDetail.TRAYNUMBER = cmbTrayNumber.EditValue;
+                ObjStockDispatchDetail.TRAYNUMBER = cmbTrayNumber.Text;
                 ObjStockDispatchDetail.DISPATCHQUANTITY = txtQuantity.EditValue;
                 ObjStockDispatchDetail.WEIGHTINKGS = txtWeightInKgs.EditValue;
                 ObjStockDispatchDetail.UserID = Utility.UserID;
+                ObjStockDispatchDetail.TRAYINFOID = cmbTrayNumber.EditValue;
                 ObjStockRep.SaveDispatchDetail(ObjStockDispatchDetail);
                 isEventCall = true;
                 RefreshGrid();
@@ -358,7 +359,8 @@ namespace NSRetail.Stock
                 view.SetRowCellValue(e.RowHandle, "SALEPRICE", txtSalePrice.EditValue);
                 view.SetRowCellValue(e.RowHandle, "DISPATCHQUANTITY", txtQuantity.EditValue);
                 view.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
-                view.SetRowCellValue(e.RowHandle, "TRAYNUMBER", cmbTrayNumber.EditValue);
+                view.SetRowCellValue(e.RowHandle, "TRAYNUMBER", cmbTrayNumber.Text);
+                view.SetRowCellValue(e.RowHandle, "TRAYINFOID", cmbTrayNumber.EditValue);
             }
             catch (Exception ex)
             {

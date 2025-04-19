@@ -218,6 +218,12 @@
     <Compile Include="ReportForms\Branch\BranchReports\frmSplitQuantity.Designer.cs">
       <DependentUpon>frmSplitQuantity.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Branch\BranchReports\frmTrayItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Branch\BranchReports\frmTrayItems.Designer.cs">
+      <DependentUpon>frmTrayItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Branch\BranchReports\ucBranchExpenseList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1222,6 +1228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmSplitQuantity.resx">
       <DependentUpon>frmSplitQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmTrayItems.resx">
+      <DependentUpon>frmTrayItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\ucBranchExpenseList.resx">
       <DependentUpon>ucBranchExpenseList.cs</DependentUpon>

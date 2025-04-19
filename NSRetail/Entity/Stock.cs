@@ -26,6 +26,8 @@ namespace Entity
         public object TRAYNUMBER { get; set; }
         public object DISPATCHQUANTITY { get; set; }
         public object WEIGHTINKGS { get; set; }
+
+        public object TRAYINFOID { get; set; }
     }
     public class StockEntry : EntityBase
     {

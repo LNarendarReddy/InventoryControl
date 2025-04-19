@@ -60,6 +60,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@STOCKDISPATCHID", ObjStockDispatchDetail.STOCKDISPATCHID);
                     cmd.Parameters.AddWithValue("@ITEMPRICEID", ObjStockDispatchDetail.ITEMPRICEID);
                     cmd.Parameters.AddWithValue("@TRAYNUMBER", ObjStockDispatchDetail.TRAYNUMBER);
+                    cmd.Parameters.AddWithValue("@TRAYINFOID", ObjStockDispatchDetail.TRAYINFOID);
                     cmd.Parameters.AddWithValue("@DISPATCHQUANTITY", ObjStockDispatchDetail.DISPATCHQUANTITY);
                     cmd.Parameters.AddWithValue("@WEIGHTINKGS", ObjStockDispatchDetail.WEIGHTINKGS);
                     cmd.Parameters.AddWithValue("@USERID", ObjStockDispatchDetail.UserID);
@@ -1135,6 +1136,26 @@ namespace DataAccess
                 else
                     throw new Exception("No tray numbers exists");
 
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public DataTable GetItemsByTray(object TrayInfoID)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                    {
+                        { "TRAYINFOID", TrayInfoID }
+                    };
+                DataTable dt = new DataRepository().GetDataTable("USP_R_DISPATCHITEMSBYTRAY", true, parameters);
+                if (dt.Rows.Count > 0)
+                    return dt;
+                else
+                    throw new Exception("No tray numbers exists");
             }
             catch (Exception)
             {
