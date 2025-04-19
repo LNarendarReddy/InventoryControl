@@ -26,6 +26,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "CREATEDBY", "User Name" }
                 , { "CREATEDDATE", "Created Date" }
                 , { "STATUS", "Status" }
+                , { "INDENTNUMBER", "Branch Indent #" }
             };
 
             ContextmenuItems = new Dictionary<string, string>
