@@ -56,35 +56,40 @@
                                                     , Source={RelativeSource AncestorType={x:Type views:StockDispatchPage}}}"
                                                BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
                                     </SwipeView.RightItems>
+                                    <Frame  BorderColor="Transparent" Padding="0">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="2" CommandParameter="{Binding .}"
+                                                Command="{Binding Path=BindingContext.AddIndentQuantityCommand, Source={RelativeSource AncestorType={x:Type views:StockDispatchPage}}}" />
+                                        </Frame.GestureRecognizers>
+                                        <Grid Padding="5" RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto" RowSpacing="5" ColumnSpacing="10">
+                                            <Label FontSize="Subtitle" LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0} - ({1})">
+                                                        <Binding Path="ItemName"/>
+                                                        <Binding Path="SkuCode"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
 
-                                    <Grid Padding="5" RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto" RowSpacing="5" ColumnSpacing="10">
-                                        <Label FontSize="Subtitle" LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
-                                            <Label.Text>
-                                                <MultiBinding StringFormat="{}{0} - ({1})">
-                                                    <Binding Path="ItemName"/>
-                                                    <Binding Path="SkuCode"/>
-                                                </MultiBinding>
-                                            </Label.Text>
-                                        </Label>
-
-                                        <Label Text="{Binding Path=BranchStock, StringFormat='Branch Stock:{0}'}" Grid.Row="1" Grid.Column="0" 
+                                            <Label Text="{Binding Path=BranchStock, StringFormat='Branch Stock:{0}'}" Grid.Row="1" Grid.Column="0" 
                                        FontSize="Small" />
-                                        <Label Text="{Binding Path=LastDispatchDate, StringFormat='last dispatch: {0:dd/MM/yyyy}'}" Grid.Column="3" Grid.Row="1"/>
+                                            <Label Text="{Binding Path=LastDispatchDate, StringFormat='last dispatch: {0:dd/MM/yyyy}'}" Grid.Column="3" Grid.Row="1"/>
 
-                                        <Label Text="{Binding Path=AvgSales, StringFormat='Avg sale (6m): {0}'}" Grid.Row="2" Grid.Column="0"/>
-                                        <Label Text="{Binding Path=NoOfDaySales, StringFormat='Indent days sale: {0}'}" Grid.Row="2" Grid.Column="3"/>
-                                        <VerticalStackLayout Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" VerticalOptions="Center">
-                                            <Label Text="{Binding Path=IndentQuantity}" FontAttributes="Bold" FontSize="Title" 
+                                            <Label Text="{Binding Path=AvgSales, StringFormat='Avg sale (6m): {0}'}" Grid.Row="2" Grid.Column="0"/>
+                                            <Label Text="{Binding Path=NoOfDaySales, StringFormat='Indent days sale: {0}'}" Grid.Row="2" Grid.Column="3"/>
+                                            <VerticalStackLayout Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" VerticalOptions="Center">
+                                                <Label Text="{Binding Path=IndentQuantity}" FontAttributes="Bold" FontSize="Title" 
                                                TextColor="{Binding Path=QuantityColor}"/>
-                                            <Rectangle HeightRequest="2" BackgroundColor="{Binding Path=QuantityColor}"
+                                                <Rectangle HeightRequest="2" BackgroundColor="{Binding Path=QuantityColor}"
                                                IsVisible="{Binding Path=IsDenominatorVisible}" />
-                                            <Label Text="{Binding Path=DispatchQuantity}" FontAttributes="Bold" FontSize="Title" 
+                                                <Label Text="{Binding Path=DispatchQuantity}" FontAttributes="Bold" FontSize="Title" 
                                                TextColor="{Binding Path=QuantityColor}" 
                                                IsVisible="{Binding Path=IsDenominatorVisible}" />
-                                        </VerticalStackLayout>
-                                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
+                                            </VerticalStackLayout>
+                                            <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
 
-                                    </Grid>
+                                        </Grid>
+                                    </Frame>
                                 </SwipeView>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>

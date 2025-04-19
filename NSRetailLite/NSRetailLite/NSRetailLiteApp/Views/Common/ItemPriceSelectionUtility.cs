@@ -11,7 +11,7 @@ namespace NSRetailLiteApp.Views.Common
 {
     public class ItemPriceSelectionUtility : BaseViewModel
     {
-        public async Task<Tuple<ItemCodeData, ItemPrice>> GetSelectedItemPrice(Item item)
+        public async Task<Tuple<ItemCodeData, ItemPrice>> GetSelectedItemPrice(Item item, bool showItemScanInCodeSelection = false)
         {
             if (item == null || item.ItemCodeList == null || !item.ItemCodeList.Any()) return new Tuple<ItemCodeData, ItemPrice>(null, null);
 
@@ -23,7 +23,7 @@ namespace NSRetailLiteApp.Views.Common
             }
             else
             {
-                ItemCodeSelectionViewModel itemCodeSelectionViewModel = new ItemCodeSelectionViewModel(item);
+                ItemCodeSelectionViewModel itemCodeSelectionViewModel = new ItemCodeSelectionViewModel(item, showItemScanInCodeSelection);
                 await base.ShowPopup(item, new ItemCodeSelectionPage(itemCodeSelectionViewModel));
                 selectedItemCode = itemCodeSelectionViewModel.SelectedItemCode;
             }
