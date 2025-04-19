@@ -326,6 +326,7 @@ namespace NSRetail
             ReportHolder branchReports = new ReportHolder("13CDACA3-DD86-4DC3-A22A-0FA1381D0CA2") { ReportName = "Branch Reports" };
             branchReports.SubCategory.Add(new ReportHolder("16EAA8C7-7C36-4296-A386-F5270AA2992B") { ReportName = "Branch Indent (2M)", SearchCriteriaControl = new ucBranchIndent() });
             branchReports.SubCategory.Add(new ReportHolder("20F8D1C7-EA5A-40E8-833B-EE18D5E23321") { ReportName = "Branch Indent (6M)", SearchCriteriaControl = new ucBranchIndentByAVG() });
+            branchReports.SubCategory.Add(new ReportHolder("20F8D1C7-EA5A-40E8-833B-EE18D5E23321") { ReportName = "Branch Indent (6M + 60% capped)", SearchCriteriaControl = new ucBranchIndentByAVG60Capped() });
             branchReports.SubCategory.Add(new ReportHolder("CB3F9A60-9E1B-4FF8-BFF9-FD8DDD368AD7") { ReportName = "Branch Indent List", SearchCriteriaControl = new ucBranchIndentList() });
             branchReports.SubCategory.Add(new ReportHolder("3F7D220A-A33D-4488-804D-8B7252BD9840") { ReportName = "Dispatch List", SearchCriteriaControl = new ucDispatchList() });
             branchReports.SubCategory.Add(new ReportHolder("C345745A-14F3-45CC-887C-83F1BCB9FBCA") { ReportName = "Dispatch DC List", SearchCriteriaControl = new ucDispatchDCList() });
