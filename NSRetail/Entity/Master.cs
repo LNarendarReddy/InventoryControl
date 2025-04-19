@@ -82,8 +82,8 @@ namespace Entity
         public object COUNTERID { get; set; }
         public object COUNTERNAME { get; set; }
         public object BRANCHID { get; set; }
-
         public object ISMOBILECOUNTER {  get; set; }
+        public object StoreID { get; set; }
     }
     public class MOP : EntityBase
     {

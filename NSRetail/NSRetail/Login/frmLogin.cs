@@ -217,5 +217,6 @@ namespace NSRetail
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
+
     }
 }

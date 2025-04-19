@@ -127,7 +127,7 @@
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.pictureEdit1.Size = new System.Drawing.Size(601, 188);
+            this.pictureEdit1.Size = new System.Drawing.Size(601, 195);
             this.pictureEdit1.StyleController = this.layoutControl2;
             this.pictureEdit1.TabIndex = 4;
             // 
@@ -135,7 +135,7 @@
             // 
             this.btnLogin.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnLogin.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLogin.ImageOptions.SvgImage")));
-            this.btnLogin.Location = new System.Drawing.Point(416, 310);
+            this.btnLogin.Location = new System.Drawing.Point(416, 317);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(128, 36);
@@ -149,7 +149,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(282, 310);
+            this.btnCancel.Location = new System.Drawing.Point(282, 317);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(130, 36);
@@ -161,7 +161,7 @@
             // txtPassword
             // 
             this.txtPassword.EnterMoveNextControl = true;
-            this.txtPassword.Location = new System.Drawing.Point(105, 280);
+            this.txtPassword.Location = new System.Drawing.Point(105, 287);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.PasswordChar = '*';
@@ -176,7 +176,7 @@
             // txtUserName
             // 
             this.txtUserName.EnterMoveNextControl = true;
-            this.txtUserName.Location = new System.Drawing.Point(105, 227);
+            this.txtUserName.Location = new System.Drawing.Point(105, 234);
             this.txtUserName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(435, 22);
@@ -212,7 +212,7 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtUserName;
-            this.layoutControlItem2.Location = new System.Drawing.Point(89, 192);
+            this.layoutControlItem2.Location = new System.Drawing.Point(89, 199);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem2.Size = new System.Drawing.Size(447, 53);
@@ -223,7 +223,7 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.txtPassword;
-            this.layoutControlItem3.Location = new System.Drawing.Point(89, 245);
+            this.layoutControlItem3.Location = new System.Drawing.Point(89, 252);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem3.Size = new System.Drawing.Size(447, 53);
@@ -234,7 +234,7 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnCancel;
-            this.layoutControlItem4.Location = new System.Drawing.Point(270, 298);
+            this.layoutControlItem4.Location = new System.Drawing.Point(270, 305);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(134, 40);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -243,7 +243,7 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnLogin;
-            this.layoutControlItem5.Location = new System.Drawing.Point(404, 298);
+            this.layoutControlItem5.Location = new System.Drawing.Point(404, 305);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(132, 40);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
@@ -252,7 +252,7 @@
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(89, 298);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(89, 305);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(181, 40);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -262,16 +262,16 @@
             this.layoutControlItem1.Control = this.pictureEdit1;
             this.layoutControlItem1.Location = new System.Drawing.Point(12, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(605, 192);
+            this.layoutControlItem1.Size = new System.Drawing.Size(605, 199);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(12, 338);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(12, 345);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(605, 33);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(605, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
@@ -293,7 +293,7 @@
             // emptySpaceItem6
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
-            this.emptySpaceItem6.Location = new System.Drawing.Point(12, 192);
+            this.emptySpaceItem6.Location = new System.Drawing.Point(12, 199);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
             this.emptySpaceItem6.Size = new System.Drawing.Size(77, 146);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
@@ -301,7 +301,7 @@
             // emptySpaceItem7
             // 
             this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(536, 192);
+            this.emptySpaceItem7.Location = new System.Drawing.Point(536, 199);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
             this.emptySpaceItem7.Size = new System.Drawing.Size(81, 146);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);

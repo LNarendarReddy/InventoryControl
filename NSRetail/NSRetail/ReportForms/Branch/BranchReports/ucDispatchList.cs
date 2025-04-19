@@ -34,7 +34,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 { "View Items", ""},
                 //{ "Print to DM", "16D2B49F-BE0F-44A9-844A-F30954158C77" }, 
                 { "Discard", "62146C6B-56F9-4504-BA2D-B07579CB5A63" },
-                { "Revert", "3FF71395-4024-421A-9CFD-86891245BACD" }, 
+                { "Revert", "3FF71395-4024-421A-9CFD-86891245BACD" },
+                { "Show tray info", "" }, 
                 //{ "Clone", "242EC249-1A85-4738-AB6A-733CF36BD522" } 
             };
 
@@ -113,6 +114,12 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
                         break;
+                    case "Show tray info":
+                        DataTable dt = new StockRepository().GetTrayInfoItems(drFocusedRow["STOCKDISPATCHID"]);
+                        frmDispatchtrayinfo trayinfo = new frmDispatchtrayinfo(dt);
+                        trayinfo.ShowDialog();
+                        break;
+
 
                 }
             }

@@ -1,4 +1,9 @@
-﻿v2.7.7 (to be deployed)
+﻿v3.0.7 (to be deployed)
+  -- Tray number logic in stock dispatch
+  -- Tray info added in dispatch list.
+  -- Swiping machine integration in warehouse application.
+
+v2.7.7 (to be deployed)
   -- transactions in stock adjustments
 
 v2.7.6

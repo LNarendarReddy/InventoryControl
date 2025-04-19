@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.Pdf.Native;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPivotGrid.Data;
@@ -75,6 +76,7 @@ namespace NSRetail.Stock
                     gcDispatch.DataSource = ObjStockDispatch.dtDispatch;
                     cmbFromBranch.Enabled = false;
                     cmbCategory.Enabled = false;
+                    BindTrayNumber();
                 }
                 else
                 {
@@ -134,7 +136,7 @@ namespace NSRetail.Stock
                     rpt.ShowRibbonPreview();
                     cmbFromBranch.EditValue = null;
                     cmbToBranch.EditValue = null;
-                    txtTrayNumber.EditValue = null;
+                    cmbTrayNumber.EditValue = null;
                     cmbFromBranch.Enabled = true;
                     if (Utility.Category == "ALL")
                         cmbCategory.Enabled = true;
@@ -232,7 +234,7 @@ namespace NSRetail.Stock
                 ObjStockDispatchDetail.STOCKDISPATCHDETAILID = 0;
                 ObjStockDispatchDetail.STOCKDISPATCHID = ObjStockDispatch.STOCKDISPATCHID;
                 ObjStockDispatchDetail.ITEMPRICEID = ItemPriceID;
-                ObjStockDispatchDetail.TRAYNUMBER = txtTrayNumber.EditValue;
+                ObjStockDispatchDetail.TRAYNUMBER = cmbTrayNumber.EditValue;
                 ObjStockDispatchDetail.DISPATCHQUANTITY = txtQuantity.EditValue;
                 ObjStockDispatchDetail.WEIGHTINKGS = txtWeightInKgs.EditValue;
                 ObjStockDispatchDetail.UserID = Utility.UserID;
@@ -297,6 +299,8 @@ namespace NSRetail.Stock
         {
             try
             {
+                if(cmbCategory.EditValue.Equals(13))
+                    throw new Exception($"Dispatch cannot be created with selected category");
 
                 if (XtraMessageBox.Show($"Are you sure want to save dispatch from {cmbFromBranch.Text} to {cmbToBranch.Text} ?", "Confirm",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
@@ -354,7 +358,7 @@ namespace NSRetail.Stock
                 view.SetRowCellValue(e.RowHandle, "SALEPRICE", txtSalePrice.EditValue);
                 view.SetRowCellValue(e.RowHandle, "DISPATCHQUANTITY", txtQuantity.EditValue);
                 view.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
-                view.SetRowCellValue(e.RowHandle, "TRAYNUMBER", txtTrayNumber.EditValue);
+                view.SetRowCellValue(e.RowHandle, "TRAYNUMBER", cmbTrayNumber.EditValue);
             }
             catch (Exception ex)
             {
@@ -419,7 +423,7 @@ namespace NSRetail.Stock
             ObjStockRep.DiscardStockDispatch(ObjStockDispatch.STOCKDISPATCHID, Utility.UserID);
             cmbFromBranch.EditValue = null;
             cmbToBranch.EditValue = null;
-            txtTrayNumber.EditValue = null;
+            cmbTrayNumber.EditValue = null;
             cmbFromBranch.Enabled = true;
             cmbToBranch.Enabled = true;
             if (Utility.Category != "ALL")
@@ -456,6 +460,53 @@ namespace NSRetail.Stock
             txtQuantity.EditValue = null;
             txtWeightInKgs.EditValue = null;
             cmbItemCode.Focus();
+        }
+
+        private void btnAddTray_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(ObjStockDispatch?.STOCKDISPATCHID) == 0 ||
+                   Convert.ToInt32(cmbToBranch.EditValue) != Convert.ToInt32(ObjStockDispatch.TOBRANCHID))
+                    SaveDispatch();
+
+                frmSingleTextbox obj = new frmSingleTextbox("Tray Number");
+                obj.ShowInTaskbar = false;
+                obj.StartPosition = FormStartPosition.CenterScreen;
+                obj.ShowDialog();
+                if (obj.isSave)
+                {
+                    object TrayInfoID = ObjStockRep.SaveTrayInfo(ObjStockDispatch.STOCKDISPATCHID,
+                        obj.newValue, Utility.UserID);
+                    BindTrayNumber();
+                    cmbTrayNumber.EditValue = TrayInfoID;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
+           
+
+        }
+
+        private void btnDeleteTray_Click(object sender, EventArgs e)
+        {
+            if(cmbTrayNumber.EditValue != null)
+            {
+                ObjStockRep.DeleteTrayInfo(ObjStockDispatch.STOCKDISPATCHID, cmbTrayNumber.EditValue, Utility.UserID);
+                BindTrayNumber();
+                cmbTrayNumber.EditValue = null;
+            }    
+        }
+        
+        private void BindTrayNumber()
+        {
+            DataTable dt = ObjStockRep.GetTrayInfo(ObjStockDispatch.STOCKDISPATCHID, false);
+            cmbTrayNumber.Properties.DataSource = dt;
+            cmbTrayNumber.Properties.ValueMember = "TRAYINFOID";
+            cmbTrayNumber.Properties.DisplayMember = "TRAYNUMBER";
         }
     }
 }

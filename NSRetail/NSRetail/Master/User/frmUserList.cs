@@ -117,7 +117,9 @@ namespace NSRetail
         }
         private void gvUser_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
-            e.Menu.Items.Add(new DXMenuItem("Reset Password", new EventHandler(OnResetPassword_Click)));
+            if (e.HitInfo.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell
+                && gvUser.FocusedRowHandle >= 0)
+                e.Menu.Items.Add(new DXMenuItem("Reset Password", new EventHandler(OnResetPassword_Click)));
         }
         void OnResetPassword_Click(object sender, EventArgs e)
         {

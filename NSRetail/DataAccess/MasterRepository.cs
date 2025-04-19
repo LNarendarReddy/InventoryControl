@@ -353,6 +353,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@BRANCHID", ObjCounter.BRANCHID);
                     cmd.Parameters.AddWithValue("@USERID", ObjCounter.UserID);
                     cmd.Parameters.AddWithValue("@ISMOBILECOUNTER", ObjCounter.ISMOBILECOUNTER);
+                    cmd.Parameters.AddWithValue("@STOREID", ObjCounter.StoreID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out CounterID))

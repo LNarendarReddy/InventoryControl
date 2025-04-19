@@ -11,7 +11,7 @@ namespace DataAccess
 {
     public class DataRepository
     {
-        public DataTable GetDataTable(string procedureName, bool useWHConn, Dictionary<string, object>? parameters = null)
+        public DataTable GetDataTable(string procedureName, bool useWHConn, Dictionary<string, object> parameters = null)
         {
             DataTable dtReportData = new DataTable();
             try
@@ -38,7 +38,7 @@ namespace DataAccess
             return dtReportData;
         }
 
-        public DataSet GetDataset(string procedureName, bool useWHConn, Dictionary<string, object>? parameters = null)
+        public DataSet GetDataset(string procedureName, bool useWHConn, Dictionary<string, object> parameters = null)
         {
             DataSet dsReportData = new DataSet();
             try
@@ -65,10 +65,10 @@ namespace DataAccess
             return dsReportData;
         }
 
-        public DataSet GetDatasetWithTransaction(string procedureName, bool useWHConn, Dictionary<string, object>? parameters = null)
+        public DataSet GetDatasetWithTransaction(string procedureName, bool useWHConn, Dictionary<string, object> parameters = null)
         {
             DataSet dsReportData = new DataSet();
-            SqlTransaction? transaction = null;
+            SqlTransaction transaction = null;
             try
             {
                 using (SqlConnection connection = SQLCon.Sqlconn())
@@ -97,12 +97,12 @@ namespace DataAccess
             return dsReportData;
         }
 
-        public object ExecuteScalar(string procedureName, bool useWHConn, Dictionary<string, object>? parameters = null)
+        public object ExecuteScalar(string procedureName, bool useWHConn, Dictionary<string, object> parameters = null)
         {
-            object? obj = null;
+            object obj = null;
             try
             {
-                using (SqlConnection connection = useWHConn ? SQLCon.SqlWHconn() : SQLCon.SqlCloudconn())
+                using (SqlConnection connection = SQLCon.Sqlconn())
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
@@ -120,10 +120,10 @@ namespace DataAccess
             return obj;
         }
 
-        public object ExecuteScalarWithTransaction(string procedureName, bool useWHConn, Dictionary<string, object>? parameters = null)
+        public object ExecuteScalarWithTransaction(string procedureName, bool useWHConn, Dictionary<string, object> parameters = null)
         {
-            object? obj = null;
-            SqlTransaction? transaction = null;
+            object obj = null;
+            SqlTransaction transaction = null;
             try
             {
                 using (SqlConnection connection = SQLCon.Sqlconn())
@@ -148,7 +148,7 @@ namespace DataAccess
             return obj;
         }
 
-        public int ExecuteNonQuery(string procedureName, bool useWHConn, Dictionary<string, object>? parameters = null, bool UseTransaction = false)
+        public int ExecuteNonQuery(string procedureName, bool useWHConn, Dictionary<string, object> parameters = null, bool UseTransaction = false)
         {
             int rowcount = 0;
             SqlTransaction sqlTransaction = null;
@@ -184,7 +184,7 @@ namespace DataAccess
             return rowcount;
         }
 
-        private void ProcessParameters(SqlCommand sqlCommand, Dictionary<string, object>? parameters)
+        private void ProcessParameters(SqlCommand sqlCommand, Dictionary<string, object> parameters)
         {
             if (parameters == null) return;
 

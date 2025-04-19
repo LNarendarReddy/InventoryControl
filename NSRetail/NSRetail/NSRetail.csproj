@@ -206,6 +206,12 @@
     <Compile Include="ReportForms\Branch\BranchReports\frmDispatchDetail.Designer.cs">
       <DependentUpon>frmDispatchDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Branch\BranchReports\frmDispatchtrayinfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Branch\BranchReports\frmDispatchtrayinfo.Designer.cs">
+      <DependentUpon>frmDispatchtrayinfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Branch\BranchReports\frmSplitQuantity.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1148,6 +1154,12 @@
     <Compile Include="Utilities\frmBuildInfo.Designer.cs">
       <DependentUpon>frmBuildInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\frmSingleTextbox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\frmSingleTextbox.Designer.cs">
+      <DependentUpon>frmSingleTextbox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\GoogleDriveRepository.cs" />
     <Compile Include="Utilities\DeleteMessageUtility.cs" />
     <Compile Include="Utilities\frmSyncStatus.cs">
@@ -1198,6 +1210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmDispatchDetail.resx">
       <DependentUpon>frmDispatchDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmDispatchtrayinfo.resx">
+      <DependentUpon>frmDispatchtrayinfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmSplitQuantity.resx">
       <DependentUpon>frmSplitQuantity.cs</DependentUpon>
@@ -1671,6 +1686,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\frmBuildInfo.resx">
       <DependentUpon>frmBuildInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\frmSingleTextbox.resx">
+      <DependentUpon>frmSingleTextbox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\frmSyncStatus.resx">
       <DependentUpon>frmSyncStatus.cs</DependentUpon>

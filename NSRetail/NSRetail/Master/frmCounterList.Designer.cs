@@ -66,6 +66,7 @@ namespace NSRetail.Master
             this.gcClearHDDSNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnClearHDDSNo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -171,7 +172,6 @@ namespace NSRetail.Master
             this.gcCounter.TabIndex = 4;
             this.gcCounter.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCounter});
-            this.gcCounter.Click += new System.EventHandler(this.gcCounter_Click);
             // 
             // gvCounter
             // 
@@ -191,10 +191,12 @@ namespace NSRetail.Master
             this.gcEdit,
             this.gcDelete,
             this.gcClearHDDSNo,
-            this.gridColumn3});
+            this.gridColumn3,
+            this.gridColumn4});
             this.gvCounter.DetailHeight = 404;
             this.gvCounter.GridControl = this.gcCounter;
             this.gvCounter.Name = "gvCounter";
+            this.gvCounter.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvCounter_PopupMenuShowing);
             // 
             // gridColumn1
             // 
@@ -244,7 +246,7 @@ namespace NSRetail.Master
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 2;
+            this.gridColumn8.VisibleIndex = 3;
             this.gridColumn8.Width = 180;
             // 
             // gridColumn9
@@ -255,7 +257,7 @@ namespace NSRetail.Master
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 3;
+            this.gridColumn9.VisibleIndex = 4;
             this.gridColumn9.Width = 277;
             // 
             // gridColumn10
@@ -286,7 +288,7 @@ namespace NSRetail.Master
             this.gcEdit.Name = "gcEdit";
             this.gcEdit.Tag = "D7371CA4-24FF-44FB-911B-7801FC5180F3::Update";
             this.gcEdit.Visible = true;
-            this.gcEdit.VisibleIndex = 5;
+            this.gcEdit.VisibleIndex = 6;
             this.gcEdit.Width = 56;
             // 
             // btnEdit
@@ -309,7 +311,7 @@ namespace NSRetail.Master
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Tag = "D7371CA4-24FF-44FB-911B-7801FC5180F3::Delete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 6;
+            this.gcDelete.VisibleIndex = 7;
             this.gcDelete.Width = 50;
             // 
             // btnDelete
@@ -331,7 +333,7 @@ namespace NSRetail.Master
             this.gcClearHDDSNo.Name = "gcClearHDDSNo";
             this.gcClearHDDSNo.Tag = "6E68CDA9-E0A0-4084-89DD-99BE86F4BEF1::Execute";
             this.gcClearHDDSNo.Visible = true;
-            this.gcClearHDDSNo.VisibleIndex = 7;
+            this.gcClearHDDSNo.VisibleIndex = 8;
             this.gcClearHDDSNo.Width = 87;
             // 
             // btnClearHDDSNo
@@ -352,7 +354,15 @@ namespace NSRetail.Master
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 4;
+            this.gridColumn3.VisibleIndex = 5;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Store ID";
+            this.gridColumn4.FieldName = "STOREID";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 2;
             // 
             // Root
             // 
@@ -481,5 +491,6 @@ namespace NSRetail.Master
         private DevExpress.XtraGrid.Columns.GridColumn gcClearHDDSNo;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnClearHDDSNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
     }
 }

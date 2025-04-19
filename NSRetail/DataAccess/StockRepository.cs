@@ -332,10 +332,14 @@ namespace DataAccess
 
         public void DiscardStockDispatch(object StockDispatchID, object UserID)
         {
+            SqlTransaction sqlTransaction = null;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    sqlTransaction = SQLCon.Sqlconn().BeginTransaction();
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Transaction = sqlTransaction;
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_DISPATCH]";
@@ -344,11 +348,13 @@ namespace DataAccess
                     int RowsAffected = cmd.ExecuteNonQuery();
                     if (RowsAffected <= 0)
                         throw new Exception("Nothing is deleted");
+                    sqlTransaction.Commit();
                 }
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("Dispatch already completed"))
+                sqlTransaction.Rollback();
+                if (ex.Message.Contains("Dispatch already completed") || ex.Message.Contains("stock still exists"))
                     throw ex;
                 else
                     throw new Exception("Error While Deleting Dispatch");
@@ -1011,7 +1017,7 @@ namespace DataAccess
             return entries;
         }
 
-        public object SaveTrayInfo(int StockDispatchID, int TrayNumber, int UserID)
+        public object SaveTrayInfo(object StockDispatchID, object TrayNumber, int UserID)
         {
             try
             {
@@ -1034,7 +1040,7 @@ namespace DataAccess
             }
         }
 
-        public DataTable GetTrayInfo(int StockDispatchID, bool IsMobileCall)
+        public DataTable GetTrayInfo(object StockDispatchID, bool IsMobileCall)
         {
             try
             {
@@ -1043,22 +1049,30 @@ namespace DataAccess
                         { "STOCKDISPATCHID", StockDispatchID },
                         { "IsMobileCall", IsMobileCall }
                     };
-                DataSet ds = new DataRepository().GetDataset("USP_R_TRAYINFO", true, parameters);
-                if (ds != null && ds.Tables.Count > 0)
-                {
-                    int Ivalue = 0;
-                    string str = Convert.ToString(ds.Tables[0].Rows[0][0]);
-                    if (int.TryParse(str, out Ivalue))
-                    {
-                        ds.Tables[1].TableName = "TRAYINFO";
-                        return ds.Tables[1];
-                    }
-                    else
-                        throw new Exception(str);
-                }
-                else
-                    throw new Exception("No tray numbers exists");
+                return new DataRepository().GetDataTable("USP_R_TRAYINFO", true, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
+        public object DeleteTrayInfo(object StockdispatchID, object TrayInfoID, int UserID)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                     { "STOCKDISPATCHID", StockdispatchID}
+                    ,{ "TRAYINFOID", TrayInfoID}
+                    ,{ "USERID", UserID}
+                };
+                object objreturn = new DataRepository().ExecuteScalar("USP_D_TRAYINFO", true, parameters);
+
+                if (!int.TryParse(Convert.ToString(objreturn), out int ivalue))
+                    throw new Exception(Convert.ToString(objreturn));
+                else
+                    return objreturn;
             }
             catch (Exception)
             {
@@ -1097,29 +1111,35 @@ namespace DataAccess
             }
         }
 
-        public object DeleteTrayInfo(int StockdispatchID, int TrayInfoID, int UserID)
+        public DataTable GetTrayInfoItems(object StockDispatchID)
         {
             try
             {
                 Dictionary<string, object> parameters = new Dictionary<string, object>
+                    {
+                        { "STOCKDISPATCHID", StockDispatchID }
+                    };
+                DataSet ds = new DataRepository().GetDataset("USP_R_SD_TRAYINFO", true, parameters);
+                if (ds != null && ds.Tables.Count > 0)
                 {
-                     { "STOCKDISPATCHID", StockdispatchID}
-                    ,{ "TRAYINFOID", TrayInfoID}
-                    ,{ "USERID", UserID}
-                };
-                object objreturn = new DataRepository().ExecuteScalar("USP_D_TRAYINFO", true, parameters);
-
-                if (!int.TryParse(Convert.ToString(objreturn), out int ivalue))
-                    throw new Exception(Convert.ToString(objreturn));
+                    int Ivalue = 0;
+                    string str = Convert.ToString(ds.Tables[0].Rows[0][0]);
+                    if (int.TryParse(str, out Ivalue))
+                    {
+                        ds.Tables[1].TableName = "TRAYINFO";
+                        return ds.Tables[1];
+                    }
+                    else
+                        throw new Exception(str);
+                }
                 else
-                    return objreturn;
+                    throw new Exception("No tray numbers exists");
+
             }
             catch (Exception)
             {
                 throw;
             }
         }
-
-
     }
 }
