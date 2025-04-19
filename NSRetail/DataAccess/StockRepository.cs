@@ -75,11 +75,10 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error While Saving Dispatch Detail - {ex.Message}");
-            }
-            finally
-            {
-                
+                if (ex.Message.Contains("Tray number no longer exists"))
+                    throw;
+                else
+                    throw new Exception($"Error While Saving Dispatch Detail - {ex.Message}");
             }
             return ObjStockDispatchDetail;
         }
