@@ -61,7 +61,7 @@
                                             <TapGestureRecognizer NumberOfTapsRequired="2" CommandParameter="{Binding .}"
                                                 Command="{Binding Path=BindingContext.AddIndentQuantityCommand, Source={RelativeSource AncestorType={x:Type views:StockDispatchPage}}}" />
                                         </Frame.GestureRecognizers>
-                                        <Grid Padding="5" RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto" RowSpacing="5" ColumnSpacing="10">
+                                        <Grid Padding="5" RowDefinitions="Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto" RowSpacing="5" ColumnSpacing="10">
                                             <Label FontSize="Subtitle" LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
                                                 <Label.Text>
                                                     <MultiBinding StringFormat="{}{0} - ({1})">
@@ -71,9 +71,8 @@
                                                 </Label.Text>
                                             </Label>
 
-                                            <Label Text="{Binding Path=BranchStock, StringFormat='Branch Stock:{0}'}" Grid.Row="1" Grid.Column="0" 
-                                       FontSize="Small" />
-                                            <Label Text="{Binding Path=LastDispatchDate, StringFormat='last dispatch: {0:dd/MM/yyyy}'}" Grid.Column="3" Grid.Row="1"/>
+                                            <Label Text="{Binding Path=BranchStock, StringFormat='Branch Stock:{0}'}" Grid.Row="1" Grid.Column="0" FontSize="Small" />
+                                            <Label Text="{Binding Path=WHStock, StringFormat='WH Stock: {0}'}" Grid.Column="3" Grid.Row="1"/>
 
                                             <Label Text="{Binding Path=AvgSales, StringFormat='Avg sale (6m): {0}'}" Grid.Row="2" Grid.Column="0"/>
                                             <Label Text="{Binding Path=NoOfDaySales, StringFormat='Indent days sale: {0}'}" Grid.Row="2" Grid.Column="3"/>
@@ -86,7 +85,10 @@
                                                TextColor="{Binding Path=QuantityColor}" 
                                                IsVisible="{Binding Path=IsDenominatorVisible}" />
                                             </VerticalStackLayout>
-                                            <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
+                                            <Label Text="{Binding Path=LastDispatchDate, StringFormat='last dispatch: {0:dd/MM/yyyy}'}" 
+                                                   Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" HorizontalOptions="Center"/>
+
+                                            <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" />
 
                                         </Grid>
                                     </Frame>
@@ -202,28 +204,35 @@
                                                 , Source={RelativeSource AncestorType={x:Type views:StockDispatchPage}}}"
                                            BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
                                 </SwipeView.RightItems>
-                                <Grid Padding="5" RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto" RowSpacing="5" ColumnSpacing="10">
-                                    <Label FontSize="Subtitle" LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
-                                        <Label.Text>
-                                            <MultiBinding StringFormat="{}{0} - ({1})">
-                                                <Binding Path="ItemName"/>
-                                                <Binding Path="SkuCode"/>
-                                            </MultiBinding>
-                                        </Label.Text>
-                                    </Label>
+                                <Frame  BorderColor="Transparent" Padding="0">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="2" CommandParameter="{Binding .}"
+                                            Command="{Binding Path=BindingContext.VerifyTrayDispatchCommand, Source={RelativeSource AncestorType={x:Type views:StockDispatchPage}}}" />
+                                    </Frame.GestureRecognizers>
+                                    <Grid Padding="5" RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto, Auto" RowSpacing="5" ColumnSpacing="10">
+                                        <Label FontSize="Subtitle" LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"
+                                               TextColor="{Binding TrayVerifiedColor}">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} - ({1})">
+                                                    <Binding Path="ItemName"/>
+                                                    <Binding Path="SkuCode"/>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
 
-                                    <Label Text="{Binding Path=ItemCode, StringFormat='Item Code: {0}'}" Grid.Row="1" Grid.Column="0" 
-                                   Grid.ColumnSpan="3" />
-                                    <Label Text="{Binding Path=TrayNumber, StringFormat='Tray #: {0}'}" Grid.Row="1" Grid.Column="3" 
-                                   HorizontalTextAlignment="End"/>
+                                        <Label Text="{Binding Path=ItemCode, StringFormat='Item Code: {0}'}" Grid.Row="1" Grid.Column="0" 
+                                   Grid.ColumnSpan="3" TextColor="{Binding TrayVerifiedColor}"/>
+                                        <Label Text="{Binding Path=TrayNumber, StringFormat='Tray #: {0}'}" Grid.Row="1" Grid.Column="3" 
+                                   HorizontalTextAlignment="End" TextColor="{Binding TrayVerifiedColor}"/>
 
-                                    <Label Text="{Binding Path=MRP, StringFormat='MRP: {0}'}" Grid.Row="2" Grid.Column="0" />
-                                    <Label Text="{Binding Path=SalePrice, StringFormat='Sale price: {0}'}" Grid.Row="2" Grid.Column="3"/>
+                                        <Label Text="{Binding Path=MRP, StringFormat='MRP: {0}'}" Grid.Row="2" Grid.Column="0" TextColor="{Binding TrayVerifiedColor}"/>
+                                        <Label Text="{Binding Path=SalePrice, StringFormat='Sale price: {0}'}" Grid.Row="2" Grid.Column="3" TextColor="{Binding TrayVerifiedColor}"/>
 
-                                    <Label Text="{Binding Path=DispatchQuantity}" Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" 
-                                   VerticalTextAlignment="Center"  FontAttributes="Bold" FontSize="Title" />
-                                    <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
-                                </Grid>
+                                        <Label Text="{Binding Path=DispatchQuantity}" Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" 
+                                   VerticalTextAlignment="Center"  FontAttributes="Bold" FontSize="Title" TextColor="{Binding TrayVerifiedColor}"/>
+                                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
+                                    </Grid>
+                                </Frame>
                             </SwipeView>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

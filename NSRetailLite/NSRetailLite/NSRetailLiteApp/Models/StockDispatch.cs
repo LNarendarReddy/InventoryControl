@@ -114,9 +114,23 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         private bool _isNew;
 
+        [ObservableProperty]
+        private bool _isTrayVerified;
+
+        [ObservableProperty]
+        private Color _TrayVerifiedColor;
+
         public StockDispatchDetailModel()
         {
-            
+            OnIsTrayVerifiedChanged(IsTrayVerified);
+        }
+
+        partial void OnIsTrayVerifiedChanged(bool value)
+        {
+            TrayVerifiedColor = (value ? System.Drawing.Color.Green 
+                : Application.Current.RequestedTheme == AppTheme.Light
+                    ? System.Drawing.Color.Black
+                    : System.Drawing.Color.White).ToMauiColor();
         }
     }
 

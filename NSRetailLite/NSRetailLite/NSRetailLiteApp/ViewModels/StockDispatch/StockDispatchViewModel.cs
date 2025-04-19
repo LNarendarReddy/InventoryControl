@@ -25,9 +25,13 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
         private readonly LoggedInUser user;
 
         public IAsyncRelayCommand StartDispatchCommand { get; }
+
         public IAsyncRelayCommand SubmitCommand { get; }
+
         public IAsyncRelayCommand DiscardCommand { get; }
+
         public IAsyncRelayCommand AddManualCommand { get; }
+
         public IAsyncRelayCommand<BranchIndentDetailModel> AddIndentQuantityCommand { get; }
 
         public IAsyncRelayCommand<BranchIndentDetailModel> EditIndentQuantityCommand { get; }
@@ -37,6 +41,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
         public IAsyncRelayCommand<StockDispatchDetailModel> EditManualQuantityOnlyCommand { get; }
 
         public IAsyncRelayCommand<StockDispatchDetailModel> DeleteManualQuantityCommand { get; }
+
+        public IAsyncRelayCommand<StockDispatchDetailModel> VerifyTrayDispatchCommand { get; }
 
         [ObservableProperty]
         private bool _allowStart;
@@ -66,6 +72,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             EditManualQuantityCommand = new AsyncRelayCommand<StockDispatchDetailModel?>(EditManualQuantity);
             EditManualQuantityOnlyCommand = new AsyncRelayCommand<StockDispatchDetailModel?>(EditManualQuantityOnly);
             DeleteManualQuantityCommand = new AsyncRelayCommand<StockDispatchDetailModel?>(DeleteManualQuantity);
+            VerifyTrayDispatchCommand = new AsyncRelayCommand<StockDispatchDetailModel?>(VerifyTrayDispatch);
         }
 
         private async Task StartDispatch()
@@ -76,6 +83,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
                     return;
 
                 StockDispatchModel = await PostAsyncAsContent("Stockdispatch_v2/savebranchindent", StockDispatchModel);
+                
+                if (StockDispatchModel.Exception != null) return;
 
                 await DisplayAlert("Success", "Branch Indent saved successfully", "OK");
                 await Pop();                
@@ -201,6 +210,22 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
                 parent.StockDispatchDetailIndentList.Remove(selected);
                 parent.RecalculateDispatchQuantity();
             }
+        }
+
+        private async Task VerifyTrayDispatch(StockDispatchDetailModel? selected)
+        {
+            if (selected == null || IsNew) return;
+
+            HolderClass holderClass = new HolderClass();
+            holderClass = await PostAsync("Stockdispatch_v2/trayverifystockdispatchdetail", holderClass, new Dictionary<string, string?>
+                                {
+                                    { "StockDispatchDetailID", selected.StockDispatchDetailId.ToString() },
+                                    { "IsTrayVerified", (!selected.IsTrayVerified).ToString() }
+                                });
+
+            if (holderClass.Exception != null) return;
+
+            selected.IsTrayVerified = !selected.IsTrayVerified;
         }
 
         private void BuildModelData()
