@@ -13,10 +13,8 @@ using NSRetailPOS.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.IO.Ports;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -71,8 +69,8 @@ namespace NSRetailPOS
         {
             Utility.ActiveForm = this;
             Utility.ListenSerialPort();
-            lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    " +
-                $"Role : {Utility.loginInfo.RoleName} - {ConfigurationManager.AppSettings["BuildType"]}    ";
+            lblUserinfo.Text = $"Store ID: {GatewayInfo.StoreID}   Loggedin User: {Utility.loginInfo.UserFullName}    " +
+                $"Role : {Utility.loginInfo.RoleName}   ";
             lblVersionInfo.Text = $"App Version {Utility.AppVersion} || DB Version {Utility.DBVersion} ";
             btnCRWithoutBill.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
             txtSplDiscPer.Enabled = Utility.loginInfo.RoleName.Equals("Store Admin");
@@ -121,7 +119,6 @@ namespace NSRetailPOS
 
             lblProgressText.Text = text;
         }
-              
 
         private async Task DoWorkAsync()
         {
@@ -1044,6 +1041,23 @@ namespace NSRetailPOS
                 lblBillOffer.ForeColor = lblBillOffer.ForeColor == Color.LightBlue ? Color.YellowGreen : Color.LightBlue;
                 //lblBillOffer.BackColor = lblBillOffer.BackColor == Color.Black ? Color.FromArgb(50, 50, 50) : Color.Black;
             }
+        }
+
+        private void btnChangeStoreID_Click(object sender, EventArgs e)
+        {
+            frmSingleTextbox frm = new frmSingleTextbox("Enter store ID");
+            frm.ShowDialog();
+            if (frm.isSave)
+            {
+                GatewayInfo.StoreID = Convert.ToString(frm.newValue);
+                lblUserinfo.Text = $"Store ID: {GatewayInfo.StoreID}   Loggedin User: {Utility.loginInfo.UserFullName}    " +
+                $"Role : {Utility.loginInfo.RoleName}   ";
+            }
+        }
+
+        private async void btnTestPayment_Click(object sender, EventArgs e)
+        {
+            await PaymentGatewayHelper.TestPaymentAsync(PaymentMode.Card, GatewayInfo.PaymentUrl, 100);
         }
     }
 }

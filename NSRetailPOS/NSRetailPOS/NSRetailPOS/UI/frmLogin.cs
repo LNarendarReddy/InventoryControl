@@ -65,6 +65,12 @@ namespace NSRetailPOS.UI
                         Utility.branchInfo.FilterMRPByStock = dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"] != DBNull.Value 
                             && bool.Parse(dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"].ToString());
                         Utility.branchInfo.EnableDraftBills = int.Parse(dSUserInfo.Tables[0].Rows[0]["ENABLEDRAFTBILLS"].ToString());
+                        GatewayInfo.ClientID = Convert.ToString(dSUserInfo.Tables[1].Rows[0]["CLIENTID"]);
+                        GatewayInfo. MerchantID = Convert.ToString(dSUserInfo.Tables[1].Rows[0]["MERCHANTID"]);
+                        GatewayInfo.StoreID = Convert.ToString(dSUserInfo.Tables[1].Rows[0]["STOREID"]);
+                        GatewayInfo.SecurityToken = Convert.ToString(dSUserInfo.Tables[1].Rows[0]["SECURITYTOKEN"]);
+                        GatewayInfo.AutoCancelDurationInMinutes = int.Parse(dSUserInfo.Tables[1].Rows[0]["CANCELATIONDURATION"].ToString());
+                        GatewayInfo.PaymentUrl = Convert.ToString(dSUserInfo.Tables[1].Rows[0]["PAYMENTURL"]);
                         if (ISOTP)
                         {
                             frmChangePassword Obj = new frmChangePassword();
