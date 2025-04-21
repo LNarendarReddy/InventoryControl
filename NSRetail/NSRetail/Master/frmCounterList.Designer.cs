@@ -196,7 +196,6 @@ namespace NSRetail.Master
             this.gvCounter.DetailHeight = 404;
             this.gvCounter.GridControl = this.gcCounter;
             this.gvCounter.Name = "gvCounter";
-            this.gvCounter.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvCounter_PopupMenuShowing);
             // 
             // gridColumn1
             // 

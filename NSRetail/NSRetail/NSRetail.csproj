@@ -1180,7 +1180,6 @@
     <Compile Include="Utilities\frmSyncStatus.Designer.cs">
       <DependentUpon>frmSyncStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\PaymentGatewayUtility.cs" />
     <Compile Include="Utilities\SerialPortListener.cs" />
     <Compile Include="Utilities\Utility.cs" />
     <EmbeddedResource Include="Countning\frmCounting.resx">

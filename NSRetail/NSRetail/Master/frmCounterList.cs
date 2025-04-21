@@ -118,41 +118,5 @@ namespace NSRetail.Master
             new frmClearHDDSNo(gvCounter.GetFocusedRowCellValue("BRANCHNAME")
                 , gvCounter.GetFocusedRowCellValue("COUNTERNAME"), gvCounter.GetFocusedRowCellValue("COUNTERID")).ShowDialog();
         }
-
-        private void gvCounter_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
-        {
-            if (e.HitInfo.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell
-                && gvCounter.FocusedRowHandle >= 0)
-            {
-                e.Menu.Items.Add(new DXMenuItem("Test card payment", new EventHandler(OnCard_Click)));
-                e.Menu.Items.Add(new DXMenuItem("Test UPI payment", new EventHandler(OnUPI_Click)));
-            }
-        }
-
-        void OnCard_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                PaymentGatewayUtility.TestPayment(gvCounter.GetDataRow(gvCounter.FocusedRowHandle), PaymentMode.Card);
-            }
-            catch (Exception ex)
-            {
-                ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
-            }
-        }
-
-        void OnUPI_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                PaymentGatewayUtility.TestPayment(gvCounter.GetDataRow(gvCounter.FocusedRowHandle), PaymentMode.UPI);
-            }
-            catch (Exception ex)
-            {
-                ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
-            }
-        }
     }
 }
