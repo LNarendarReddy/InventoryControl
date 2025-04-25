@@ -22,6 +22,8 @@ namespace NSRetail.Utilities
 
         internal static void FetchAndBuildAccessInfo()
         {
+            if (frmMain.skipAccessRefresh) return;
+
             BuildAccessInfo(new ReportRepository().GetReportData("USP_R_USERACCESSINFO", new Dictionary<string, object> { { "UserID", Utility.UserID } }));
         }
 
