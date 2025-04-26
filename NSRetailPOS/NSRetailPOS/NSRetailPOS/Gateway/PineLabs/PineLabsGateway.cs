@@ -247,4 +247,10 @@ namespace NSRetailPOS.Gateway.PineLabs
         public string Tag { get; set; }
         public string value { get; set; }
     }
+
+    enum PaymentMode
+    {
+        Card = 1,
+        UPI = 10
+    }
 }

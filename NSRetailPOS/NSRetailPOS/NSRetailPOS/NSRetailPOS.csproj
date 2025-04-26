@@ -504,6 +504,12 @@
     <Compile Include="UI\frmMRPSelection.Designer.cs">
       <DependentUpon>frmMRPSelection.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\frmMultiPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmMultiPayment.Designer.cs">
+      <DependentUpon>frmMultiPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -713,6 +719,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmMRPSelection.resx">
       <DependentUpon>frmMRPSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmMultiPayment.resx">
+      <DependentUpon>frmMultiPayment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmPayment.resx">
       <DependentUpon>frmPayment.cs</DependentUpon>

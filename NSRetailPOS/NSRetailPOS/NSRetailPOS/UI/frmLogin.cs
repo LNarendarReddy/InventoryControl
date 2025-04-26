@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
+using NSRetailPOS.Gateway;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -65,6 +66,14 @@ namespace NSRetailPOS.UI
                         Utility.branchInfo.FilterMRPByStock = dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"] != DBNull.Value 
                             && bool.Parse(dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"].ToString());
                         Utility.branchInfo.EnableDraftBills = int.Parse(dSUserInfo.Tables[0].Rows[0]["ENABLEDRAFTBILLS"].ToString());
+
+                        string getwayType = "PineLabs";
+                        string baseSettings = "{ \"ClientID\" : \"1013073\", \"MerchantID\": \"29895\", \"SecurityToken\" : \"08b1b2ff-6d0d-4611-a757-394b6972f080\", \"AutoCancelDurationInMinutes\" : \"5\", \"PaymentURL\" : \"https://instore-ism.uat.pinelabs.com/api/CloudBasedIntegration/V1/\"}";
+                        string additionalSettings = "{ \"StoreID\" : \"10737583\" }";
+
+                        // payment gateway
+                        Utility.PaymentGateway = PaymentGatewayBase.Create(getwayType, baseSettings, additionalSettings);
+
                         if (ISOTP)
                         {
                             frmChangePassword Obj = new frmChangePassword();
