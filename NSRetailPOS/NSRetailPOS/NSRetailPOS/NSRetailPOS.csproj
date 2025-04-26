@@ -755,6 +755,7 @@
     <None Include="Resources\delete_16x161.png" />
     <None Include="Resources\victorylogo1.png" />
     <None Include="Resources\Victory Bazars_Logo.jpg" />
+    <None Include="Resources\zoom_16x161.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />
