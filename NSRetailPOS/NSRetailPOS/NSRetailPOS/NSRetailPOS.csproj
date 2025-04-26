@@ -115,6 +115,7 @@
     <Reference Include="NSRetailPOSBlack">
       <HintPath>..\..\..\NSRetailPOSSkinBlack\NSRetailPOSBlack\NSRetailPOSBlack.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System">
       <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
@@ -145,6 +146,7 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
@@ -171,6 +173,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -534,6 +537,12 @@
     <Compile Include="UI\frmRefund.Designer.cs">
       <DependentUpon>frmRefund.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\frmRequestGateway.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmRequestGateway.Designer.cs">
+      <DependentUpon>frmRequestGateway.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmSplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -735,6 +744,9 @@
     <EmbeddedResource Include="UI\frmRefund.resx">
       <DependentUpon>frmRefund.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmRequestGateway.resx">
+      <DependentUpon>frmRequestGateway.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmSplashScreen.resx">
       <DependentUpon>frmSplashScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -799,6 +811,7 @@
     <None Include="Resources\delete_16x161.png" />
     <None Include="Resources\victorylogo1.png" />
     <None Include="Resources\Victory Bazars_Logo.jpg" />
+    <None Include="Resources\download_16x16.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />
