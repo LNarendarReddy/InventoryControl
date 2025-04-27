@@ -805,6 +805,7 @@
     <None Include="Resources\download_16x16.png" />
     <None Include="Resources\download_16x161.png" />
     <None Include="Resources\download_16x162.png" />
+    <None Include="Resources\trash_16x16.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

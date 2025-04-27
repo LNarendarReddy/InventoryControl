@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMultiPayment));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnCancelRequest = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.txtCardRecievedAmount = new DevExpress.XtraEditors.TextEdit();
@@ -86,6 +87,7 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -147,6 +149,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
@@ -160,6 +163,7 @@
             this.layoutControl1.Appearance.Control.Options.UseFont = true;
             this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 12F);
             this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
+            this.layoutControl1.Controls.Add(this.btnCancelRequest);
             this.layoutControl1.Controls.Add(this.groupControl1);
             this.layoutControl1.Controls.Add(this.groupControl2);
             this.layoutControl1.Controls.Add(this.gcMOP);
@@ -183,6 +187,18 @@
             this.layoutControl1.Size = new System.Drawing.Size(900, 606);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnCancelRequest
+            // 
+            this.btnCancelRequest.Enabled = false;
+            this.btnCancelRequest.ImageOptions.Image = global::NSRetailPOS.Properties.Resources.trash_16x16;
+            this.btnCancelRequest.Location = new System.Drawing.Point(166, 563);
+            this.btnCancelRequest.Name = "btnCancelRequest";
+            this.btnCancelRequest.Size = new System.Drawing.Size(202, 23);
+            this.btnCancelRequest.StyleController = this.layoutControl1;
+            this.btnCancelRequest.TabIndex = 16;
+            this.btnCancelRequest.Text = "Cancel Payment Request";
+            this.btnCancelRequest.Click += new System.EventHandler(this.btnCancelRequest_Click);
             // 
             // groupControl1
             // 
@@ -421,9 +437,9 @@
             // 
             this.btnApply.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnApply.ImageOptions.Image")));
             this.btnApply.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnApply.Location = new System.Drawing.Point(648, 563);
+            this.btnApply.Location = new System.Drawing.Point(719, 563);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(101, 23);
+            this.btnApply.Size = new System.Drawing.Size(68, 23);
             this.btnApply.StyleController = this.layoutControl1;
             this.btnApply.TabIndex = 13;
             this.btnApply.Text = "Ok";
@@ -434,9 +450,9 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(759, 563);
+            this.btnCancel.Location = new System.Drawing.Point(797, 563);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(121, 23);
+            this.btnCancel.Size = new System.Drawing.Size(83, 23);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "Cancel";
@@ -659,7 +675,8 @@
             this.layoutControlItem6,
             this.layoutControlItem3,
             this.layoutControlItem15,
-            this.layoutControlItem19});
+            this.layoutControlItem19,
+            this.layoutControlItem21});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 99);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.OptionsItemText.TextToControlDistance = 3;
@@ -718,29 +735,29 @@
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnCancel;
-            this.layoutControlItem7.Location = new System.Drawing.Point(739, 423);
+            this.layoutControlItem7.Location = new System.Drawing.Point(777, 423);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem7.Size = new System.Drawing.Size(131, 33);
+            this.layoutControlItem7.Size = new System.Drawing.Size(93, 33);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnApply;
-            this.layoutControlItem8.Location = new System.Drawing.Point(628, 423);
+            this.layoutControlItem8.Location = new System.Drawing.Point(699, 423);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem8.Size = new System.Drawing.Size(111, 33);
+            this.layoutControlItem8.Size = new System.Drawing.Size(78, 33);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(146, 423);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(358, 423);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(482, 33);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(341, 33);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem9
@@ -813,6 +830,16 @@
             this.layoutControlItem19.Size = new System.Drawing.Size(251, 97);
             this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem19.TextVisible = false;
+            // 
+            // layoutControlItem21
+            // 
+            this.layoutControlItem21.Control = this.btnCancelRequest;
+            this.layoutControlItem21.Location = new System.Drawing.Point(146, 423);
+            this.layoutControlItem21.Name = "layoutControlItem21";
+            this.layoutControlItem21.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem21.Size = new System.Drawing.Size(212, 33);
+            this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem21.TextVisible = false;
             // 
             // layoutControlGroup3
             // 
@@ -955,6 +982,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
@@ -1028,5 +1056,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
+        private DevExpress.XtraEditors.SimpleButton btnCancelRequest;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
     }
 }

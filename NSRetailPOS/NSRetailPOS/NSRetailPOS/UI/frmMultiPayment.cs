@@ -27,7 +27,7 @@ namespace NSRetailPOS.UI
         decimal paidAmount = 0.00M, payableAmount = 0.00M, remainingAmount = 0.00M, billedAmount = 0.00M;
 
         int cashRowHandle = -1, b2bCreditRowHandle = -1, cardRowHandle = -1, upiRowHandle = -1;
-        CancellationToken cancellationToken = new CancellationToken();
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
         public frmMultiPayment(Bill bill, bool canClose = true)
         {
@@ -248,6 +248,12 @@ namespace NSRetailPOS.UI
             UpdateLabels();
         }
 
+        private void btnCancelRequest_Click(object sender, EventArgs e)
+        {
+            cancellationTokenSource.Cancel();
+            btnCancelRequest.Enabled = false;
+        }
+
         private void gvMOP_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter)
@@ -326,12 +332,15 @@ namespace NSRetailPOS.UI
         {
             if (!decimal.TryParse(amountObj.ToString(), out decimal amount) || amount == 0) return 0;
             DisableAllControls();
+            btnCancelRequest.Enabled = true;
             
-            cancellationToken = new CancellationToken();
+            cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken cancellationToken = cancellationTokenSource.Token;
 
             await Utility.PaymentGateway.ReceivePayment(cancellationToken
                 , billObj.BillNumber.ToString(), 1, paymentMode, amount, Utility.loginInfo.UserID);
 
+            btnCancelRequest.Enabled = false;
             EnableAllControls();
             return amount;
         }

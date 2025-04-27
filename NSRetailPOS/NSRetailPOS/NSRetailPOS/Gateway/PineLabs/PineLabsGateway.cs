@@ -32,7 +32,9 @@ namespace NSRetailPOS.Gateway.PineLabs
         protected override async Task<bool> CancelRequest(ICancelRequest cancelRequest)
         {
             StatusUpdate("sending cancel request");
-            HttpResponseMessage responseMessage = await gatewayClient.PostAsJsonAsync(CancelAPI, cancelRequest);
+            var stringPayload = JsonConvert.SerializeObject(cancelRequest);
+            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+            HttpResponseMessage responseMessage = await gatewayClient.PostAsync(CancelAPI, httpContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 ResponseBase cancelResponse = JsonConvert.DeserializeObject<ResponseBase>(await responseMessage.Content.ReadAsStringAsync());
@@ -51,7 +53,7 @@ namespace NSRetailPOS.Gateway.PineLabs
             StatusRequest pineLabsStatusRequest = (StatusRequest)statusRequest;
             PaymentRequest pineLabsPaymentRequest = (PaymentRequest)paymentRequest;
 
-            while (!token.IsCancellationRequested || forceCheckCount < 10)
+            while (!token.IsCancellationRequested)
             {
                 for (int i = 5; i > 0; i--)
                 {
@@ -59,12 +61,10 @@ namespace NSRetailPOS.Gateway.PineLabs
                     await Task.Delay(1000);
                 }
 
-                // keep checking no of failures in case of non-user cancel
-                if (forceCheckCount > 10)
-                    return null;
-
                 StatusUpdate("Checking payment status");
-                HttpResponseMessage responseMessage = await gatewayClient.PostAsJsonAsync(StatusAPI, pineLabsStatusRequest);
+                var stringPayload = JsonConvert.SerializeObject(pineLabsStatusRequest);
+                var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+                HttpResponseMessage responseMessage = await gatewayClient.PostAsync(StatusAPI, httpContent);
                 if(responseMessage.IsSuccessStatusCode)
                 {
                     StatusResponse statusResponse = JsonConvert.DeserializeObject<StatusResponse>(await responseMessage.Content.ReadAsStringAsync());
@@ -75,17 +75,15 @@ namespace NSRetailPOS.Gateway.PineLabs
                     else
                     {
                         StatusUpdate(statusResponse.ResponseMessage);
-                        forceCheckCount++;
                     }
                 }
                 else
                 {
                     StatusUpdate($"Payment status check failed: {await responseMessage.Content.ReadAsStreamAsync()}");
-                    forceCheckCount++; 
                 }
             }
 
-            if (token.IsCancellationRequested)
+            if (token.IsCancellationRequested && forceCheckCount <= 10)
             {
                 StatusUpdate("user cancel initiated");
                 CancelRequest cancelRequest = new CancelRequest();
@@ -104,7 +102,7 @@ namespace NSRetailPOS.Gateway.PineLabs
             return null;
         }
 
-        protected override async Task<IPaymentResponse> SendRequest(IPaymentRequest paymentRequest)
+        protected override async Task<IPaymentResponse> SendRequest(IPaymentRequest paymentRequest, CancellationToken token)
         {
             PaymentRequest pineLabsPaymentRequest = paymentRequest as PaymentRequest;
             StatusUpdate("Sending request to POS");
@@ -131,7 +129,7 @@ namespace NSRetailPOS.Gateway.PineLabs
                         {
                             paymentResponse.PlutusTransactionReferenceID = Convert.ToInt32(existingReference.value);
                             AdditionalInfo existingReferenceValue = paymentResponse.AdditionalInfo.FirstOrDefault(x =>
-                                string.Equals(x.Tag, "Value", StringComparison.OrdinalIgnoreCase));
+                                string.Equals(x.Tag, "Amount", StringComparison.OrdinalIgnoreCase));
                             pineLabsPaymentRequest.Amount = Convert.ToInt32(existingReferenceValue?.value);
 
                             return paymentResponse;
@@ -146,10 +144,11 @@ namespace NSRetailPOS.Gateway.PineLabs
         
         public override async Task<Tuple<IPaymentRequest, IStatusResponse>> ReceivePayment(CancellationToken token, params object[] parameters)
         {
+            IsInProgress = true;
             try
             {
                 IPaymentRequest paymentRequest = GetPaymentRequest(parameters);
-                PaymentResponse paymentResponse = await SendRequest(paymentRequest) as PaymentResponse;
+                PaymentResponse paymentResponse = await SendRequest(paymentRequest, token) as PaymentResponse;
 
                 if (paymentResponse == null) return null;
 
@@ -162,9 +161,13 @@ namespace NSRetailPOS.Gateway.PineLabs
             }
             catch (Exception ex)
             {
-                StatusUpdate(ex.Message);
-                Error(ex);
+                StatusUpdate?.Invoke(ex.Message);
+                Error?.Invoke(ex);
                 return null;
+            }
+            finally
+            {
+                IsInProgress = false;
             }
         }
 
