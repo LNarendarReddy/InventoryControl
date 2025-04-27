@@ -142,14 +142,13 @@ namespace NSRetailPOS.Gateway.PineLabs
             return null;
         }
         
-        public override async Task<Tuple<IPaymentRequest, IStatusResponse>> ReceivePayment(CancellationToken token, params object[] parameters)
+        public override async Task<CompletedTransactionData> ReceivePayment(int mopID, CancellationToken token, params object[] parameters)
         {
             IsInProgress = true;
             try
             {
-                IPaymentRequest paymentRequest = GetPaymentRequest(parameters);
+                PaymentRequest paymentRequest = GetPaymentRequest(parameters) as PaymentRequest;
                 PaymentResponse paymentResponse = await SendRequest(paymentRequest, token) as PaymentResponse;
-
                 if (paymentResponse == null) return null;
 
                 StatusRequest statusRequest = new StatusRequest();
@@ -157,7 +156,15 @@ namespace NSRetailPOS.Gateway.PineLabs
                 statusRequest.PlutusTransactionReferenceID = paymentResponse.PlutusTransactionReferenceID;
                 IStatusResponse statusResponse = await CheckRequestStatus(paymentRequest, statusRequest, token);
                 if (statusResponse == null) return null;
-                return new Tuple<IPaymentRequest, IStatusResponse>(paymentRequest, statusResponse);
+
+                CompletedTransactionData successTransactionData = new CompletedTransactionData()
+                {
+                    Amount = paymentRequest.Amount,
+                    MopID = mopID,
+                    PaymentRequest = paymentRequest,
+                    StatusResponse = statusResponse
+                };
+                return successTransactionData;
             }
             catch (Exception ex)
             {

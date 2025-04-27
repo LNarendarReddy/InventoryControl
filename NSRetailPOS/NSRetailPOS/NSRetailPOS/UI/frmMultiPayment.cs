@@ -5,6 +5,7 @@ using DevExpress.XtraEditors.DXErrorProvider;
 using DevExpress.XtraGrid.Views.Grid;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
+using NSRetailPOS.Gateway;
 using NSRetailPOS.Gateway.PineLabs;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace NSRetailPOS.UI
         private Bill billObj;
         decimal paidAmount = 0.00M, payableAmount = 0.00M, remainingAmount = 0.00M, billedAmount = 0.00M;
 
-        int cashRowHandle = -1, b2bCreditRowHandle = -1, cardRowHandle = -1, upiRowHandle = -1;
+        int cashRowHandle = -1, b2bCreditRowHandle = -1, cardRowHandle = -1, upiRowHandle = -1, cardMopID, upiMopID;
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
         public frmMultiPayment(Bill bill, bool canClose = true)
@@ -59,6 +60,7 @@ namespace NSRetailPOS.UI
 
             txtPaymentValue.ValidateOnEnterKey = true;
             txtPaymentValue.Validating += TxtPaymentValue_Validating;
+            txtPaymentValue.Leave += TxtPaymentValue_Leave;
 
             decimal.TryParse(billObj.Amount.ToString(), out billedAmount);
             payableAmount = billedAmount;
@@ -70,15 +72,28 @@ namespace NSRetailPOS.UI
             cardRowHandle = cardRowHandle < 0 ? gvMOP.LocateByValue("MOPNAME", "Card") : cardRowHandle;
             upiRowHandle = gvMOP.LocateByValue("MOPNAME", "UPI");
 
+            cardMopID = Convert.ToInt32(gvMOP.GetRowCellValue(cardRowHandle, "MOPID"));
+            upiMopID = Convert.ToInt32(gvMOP.GetRowCellValue(upiRowHandle, "MOPID"));
             rgSaleType.EditValue = false;
             rgPaymentModes.EditValue = "CASH";
 
             UpdateLabels();
+            SetReceivedAmounts();
 
             if (Utility.PaymentGateway != null)
             {
                 Utility.PaymentGateway.StatusUpdate = ShowRecieveMessage;
             }
+        }
+
+        private void TxtPaymentValue_Leave(object sender, EventArgs e)
+        {
+            BaseEdit baseEdit = sender as BaseEdit;
+            string textValue = baseEdit?.EditValue != null ? baseEdit.EditValue.ToString() : string.Empty;
+            if (!decimal.TryParse(textValue, out decimal enteredvalue)) return;
+
+            if (gvMOP.FocusedRowHandle == cardRowHandle) SetReceiveValues(cardRowHandle, enteredvalue);
+            if (gvMOP.FocusedRowHandle == upiRowHandle) SetReceiveValues(upiRowHandle, enteredvalue);
         }
 
         private void btnDiscardBill_Click(object sender, EventArgs e)
@@ -203,12 +218,12 @@ namespace NSRetailPOS.UI
 
         private void btnReceiveCard_Click(object sender, EventArgs e)
         {
-            ReceiveAmount(PaymentMode.Card, txtCardRequestAmount.EditValue);
+            ReceiveAmount(cardMopID, PaymentMode.Card, txtCardRequestAmount.EditValue);
         }
 
         private void btnUPIReceive_Click(object sender, EventArgs e)
         {
-            ReceiveAmount(PaymentMode.UPI, txtUPIRequestAmount.EditValue);
+            ReceiveAmount(upiMopID, PaymentMode.UPI, txtUPIRequestAmount.EditValue);
         }
 
         private void TxtPaymentValue_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -220,11 +235,6 @@ namespace NSRetailPOS.UI
             {
                 e.Cancel = true;
             }
-
-            if(!decimal.TryParse(textValue, out decimal enteredvalue)) return;
-
-            if(gvMOP.FocusedRowHandle == cardRowHandle) SetReceiveValues(cardRowHandle, enteredvalue);
-            if(gvMOP.FocusedRowHandle == upiRowHandle) SetReceiveValues(upiRowHandle, enteredvalue);
         }
 
         private void GvMOP_RowStyle(object sender, RowStyleEventArgs e)
@@ -277,8 +287,16 @@ namespace NSRetailPOS.UI
         {
             if (Utility.PaymentGateway == null) return;
 
-            if (rowHandle == cardRowHandle) txtCardRequestAmount.EditValue = amount; 
-            if (rowHandle == upiRowHandle) txtUPIRequestAmount.EditValue = amount;
+            if (rowHandle == cardRowHandle)
+            {
+                decimal.TryParse(txtCardRecievedAmount.EditValue?.ToString(), out decimal cardReceivedAmount);
+                txtCardRequestAmount.EditValue = amount - cardReceivedAmount; 
+            }
+            else if (rowHandle == upiRowHandle)
+            {
+                decimal.TryParse(txtUPIReceiveAmount.EditValue?.ToString(), out decimal upiReceivedAmount);
+                txtUPIRequestAmount.EditValue = amount - upiReceivedAmount;
+            }
             
             EnableDisableReceives();
         }
@@ -291,7 +309,7 @@ namespace NSRetailPOS.UI
             txtCardRequestAmount.Enabled = cardEnabled;
             btnReceiveCard.Enabled = cardEnabled;
 
-            txtUPIRequestAmount.Enabled= upiEnabled;
+            txtUPIRequestAmount.Enabled = upiEnabled;
             btnUPIReceive.Enabled = upiEnabled;
         }
 
@@ -328,21 +346,25 @@ namespace NSRetailPOS.UI
             EnableDisableReceives();
         }
 
-        private async Task<decimal> ReceiveAmount(PaymentMode paymentMode, object amountObj)
+        private async Task ReceiveAmount(int mopID, PaymentMode paymentMode, object amountObj)
         {
-            if (!decimal.TryParse(amountObj.ToString(), out decimal amount) || amount == 0) return 0;
+            if (!decimal.TryParse(amountObj.ToString(), out decimal amount) || amount == 0) return;
             DisableAllControls();
             btnCancelRequest.Enabled = true;
             
             cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = cancellationTokenSource.Token;
 
-            await Utility.PaymentGateway.ReceivePayment(cancellationToken
+             CompletedTransactionData completedTransactionData = await Utility.PaymentGateway.ReceivePayment(mopID, cancellationToken
                 , billObj.BillNumber.ToString(), 1, paymentMode, amount, Utility.loginInfo.UserID);
 
             btnCancelRequest.Enabled = false;
             EnableAllControls();
-            return amount;
+
+            if (completedTransactionData == null) return;
+
+            billObj.CompletedTransactions.Add(completedTransactionData);
+            SetReceivedAmounts();
         }
 
         private void ShowRecieveMessage(string message)
@@ -350,6 +372,18 @@ namespace NSRetailPOS.UI
             txtStatus.Text += $"{DateTime.Now.ToLongTimeString()} - {message} {Environment.NewLine}";
             txtStatus.SelectionStart = Int32.MaxValue;
             txtStatus.ScrollToCaret();
+        }
+
+        private void SetReceivedAmounts()
+        {
+            txtCardRecievedAmount.EditValue = billObj.CompletedTransactions.Where(x => x.MopID == cardMopID).Sum(x => x.Amount);
+            txtUPIReceiveAmount.EditValue = billObj.CompletedTransactions.Where(x => x.MopID == upiMopID).Sum(x => x.Amount);
+
+            decimal.TryParse(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE").ToString(), out decimal cardEnteredAmount);
+            SetReceiveValues(cardRowHandle, cardEnteredAmount);
+
+            decimal.TryParse(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE").ToString(), out decimal upiEnteredAmount);
+            SetReceiveValues(cardRowHandle, upiEnteredAmount);
         }
     }
 }

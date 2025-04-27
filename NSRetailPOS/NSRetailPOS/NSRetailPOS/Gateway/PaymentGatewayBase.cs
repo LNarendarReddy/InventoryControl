@@ -25,7 +25,7 @@ namespace NSRetailPOS.Gateway
 
         protected abstract IPaymentRequest GetPaymentRequest(params object[] parameters);
 
-        public abstract Task<Tuple<IPaymentRequest, IStatusResponse>> ReceivePayment(CancellationToken token, params object[] parameters);
+        public abstract Task<CompletedTransactionData> ReceivePayment(int mopID, CancellationToken token, params object[] parameters);
 
         public static PaymentGatewayBase Create(string gatewayType, string baseSettings, string additionalSettings)
         {
@@ -62,5 +62,16 @@ namespace NSRetailPOS.Gateway
     public interface IStatusResponse
     {
 
+    }
+
+    public class CompletedTransactionData
+    {
+        public IPaymentRequest PaymentRequest { get; set; }
+
+        public IStatusResponse StatusResponse { get; set; }
+
+        public decimal Amount {  get; set; }
+
+        public int MopID { get; set; }
     }
 }
