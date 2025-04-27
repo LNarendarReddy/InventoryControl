@@ -108,7 +108,9 @@ namespace NSRetailPOS.Gateway.PineLabs
         {
             PaymentRequest pineLabsPaymentRequest = paymentRequest as PaymentRequest;
             StatusUpdate("Sending request to POS");
-            HttpResponseMessage responseMessage = await gatewayClient.PostAsJsonAsync(BillingAPI, paymentRequest);
+            var stringPayload = JsonConvert.SerializeObject(pineLabsPaymentRequest);
+            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+            HttpResponseMessage responseMessage = await gatewayClient.PostAsync(BillingAPI, httpContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 StatusUpdate("Processing response");
@@ -173,7 +175,7 @@ namespace NSRetailPOS.Gateway.PineLabs
             paymentRequest.TransactionNumber = parameters[0].ToString();
             paymentRequest.SequenceNumber = Convert.ToInt32(parameters[1]);
             paymentRequest.AllowedPaymentMode = (PaymentMode)parameters[2];
-            paymentRequest.Amount = Convert.ToInt32(Convert.ToDouble(parameters[3]) * 100);
+            paymentRequest.Amount = Convert.ToDecimal(parameters[3]);
             paymentRequest.UserID = parameters[4].ToString();
             return paymentRequest;
         }
@@ -185,15 +187,16 @@ namespace NSRetailPOS.Gateway.PineLabs
             target.SecurityToken = requestBase.SecurityToken;
             target.AutoCancelDurationInMinutes = requestBase.AutoCancelDurationInMinutes;
             target.StoreID = requestBase.StoreID;
+            target.PaymentURL = requestBase.PaymentURL;
         }
     }
 
 
     class RequestBase
     {
-        public string ClientID { get; set; }
+        public int ClientID { get; set; }
 
-        public string MerchantID { get; set; }
+        public int MerchantID { get; set; }
 
         public string SecurityToken { get; set; }
 
@@ -202,7 +205,7 @@ namespace NSRetailPOS.Gateway.PineLabs
         public string PaymentURL { get; set; }
 
         //Store level values
-        public string StoreID { get; set; }
+        public int StoreID { get; set; }
     }
 
     class PaymentRequest : RequestBase, IPaymentRequest
@@ -210,7 +213,7 @@ namespace NSRetailPOS.Gateway.PineLabs
         public string TransactionNumber { get; set; }
         public int SequenceNumber { get; set; }
         public PaymentMode AllowedPaymentMode { get; set; }
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
         public string UserID { get; set; }
     }
 
@@ -221,7 +224,7 @@ namespace NSRetailPOS.Gateway.PineLabs
     
     class CancelRequest : StatusRequest, ICancelRequest
     {
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
     }
 
     class ResponseBase 

@@ -537,12 +537,6 @@
     <Compile Include="UI\frmRefund.Designer.cs">
       <DependentUpon>frmRefund.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\frmRequestGateway.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\frmRequestGateway.Designer.cs">
-      <DependentUpon>frmRequestGateway.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\frmSplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -743,9 +737,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmRefund.resx">
       <DependentUpon>frmRefund.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\frmRequestGateway.resx">
-      <DependentUpon>frmRequestGateway.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmSplashScreen.resx">
       <DependentUpon>frmSplashScreen.cs</DependentUpon>

@@ -1,9 +1,11 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Data.ExpressionEditor;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.DXErrorProvider;
 using DevExpress.XtraGrid.Views.Grid;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
+using NSRetailPOS.Gateway.PineLabs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +13,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,7 +26,8 @@ namespace NSRetailPOS.UI
         private Bill billObj;
         decimal paidAmount = 0.00M, payableAmount = 0.00M, remainingAmount = 0.00M, billedAmount = 0.00M;
 
-        int cashRowHandle = -1, b2bCreditRowHandle = -1;
+        int cashRowHandle = -1, b2bCreditRowHandle = -1, cardRowHandle = -1, upiRowHandle = -1;
+        CancellationToken cancellationToken = new CancellationToken();
 
         public frmMultiPayment(Bill bill, bool canClose = true)
         {
@@ -51,14 +55,10 @@ namespace NSRetailPOS.UI
             txtBilledAmount.EditValue = billObj.Amount;
 
             gcMOP.DataSource = dtMOPs;
-
             gcMOP.Refresh();
 
             txtPaymentValue.ValidateOnEnterKey = true;
             txtPaymentValue.Validating += TxtPaymentValue_Validating;
-
-            rgSaleType.EditValue = false;
-            rgPaymentModes.EditValue = "CASH";
 
             decimal.TryParse(billObj.Amount.ToString(), out billedAmount);
             payableAmount = billedAmount;
@@ -66,9 +66,19 @@ namespace NSRetailPOS.UI
             cashRowHandle = gvMOP.LocateByValue("MOPNAME", "Cash");
             cashRowHandle = cashRowHandle < 0 ? gvMOP.LocateByValue("MOPNAME", "CASH") : cashRowHandle;
             b2bCreditRowHandle = gvMOP.LocateByValue("MOPNAME", "B2B Credit");
+            cardRowHandle = gvMOP.LocateByValue("MOPNAME", "CARD");
+            cardRowHandle = cardRowHandle < 0 ? gvMOP.LocateByValue("MOPNAME", "Card") : cardRowHandle;
+            upiRowHandle = gvMOP.LocateByValue("MOPNAME", "UPI");
+
+            rgSaleType.EditValue = false;
+            rgPaymentModes.EditValue = "CASH";
 
             UpdateLabels();
 
+            if (Utility.PaymentGateway != null)
+            {
+                Utility.PaymentGateway.StatusUpdate = ShowRecieveMessage;
+            }
         }
 
         private void btnDiscardBill_Click(object sender, EventArgs e)
@@ -124,9 +134,14 @@ namespace NSRetailPOS.UI
                 gvMOP.UpdateCurrentRow();
             }
 
-            if (Utility.PaymentGateway != null)
+            if (decimal.TryParse(gvMOP.GetRowCellValue(b2bCreditRowHandle, "MOPVALUE").ToString(), out decimal b2bCreditValue) && b2bCreditValue > 0
+                && (txtCustomerName.EditValue == null || txtCustomerPhone.EditValue == null || txtCustomerGST.EditValue == null))
             {
-                // request gateway
+                XtraMessageBox.Show("Customer Name, number & GST are required for B2B billing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                (txtCustomerGST.EditValue == null ? txtCustomerGST : null)?.Focus();
+                (txtCustomerPhone.EditValue == null ? txtCustomerPhone : null)?.Focus();
+                (txtCustomerName.EditValue == null ? txtCustomerName : null)?.Focus();
+                return;
             }
 
             billObj.IsDoorDelivery = rgSaleType.EditValue;
@@ -147,10 +162,14 @@ namespace NSRetailPOS.UI
                 gvMOP.SetRowCellValue(rowhandle, "MOPVALUE", 0);
             }
 
+            SetReceiveValues(cardRowHandle, 0);
+            SetReceiveValues(upiRowHandle, 0);
+
             if (!rgPaymentModes.Text.Equals("Multiple") && !rgPaymentModes.Text.Equals("CASH"))
             {
                 int rowhandle = gvMOP.LocateByValue("MOPNAME", rgPaymentModes.Text);
                 gvMOP.SetRowCellValue(rowhandle, "MOPVALUE", billObj.Amount);
+                SetReceiveValues(rowhandle, Convert.ToDecimal(billObj.Amount));
             }
         }
 
@@ -167,13 +186,29 @@ namespace NSRetailPOS.UI
             {
                 gvMOP.FocusedColumn = gvMOP.Columns[2];
                 gvMOP.FocusedRowHandle = cashRowHandle;
-                //gvMOP.Focus();
-                //gvMOP.ShowEditor();
             }
-            else
+            else if (Utility.PaymentGateway == null)
             {
                 btnApply.Focus();
             }
+            else if (decimal.TryParse(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE").ToString(), out decimal cardValue) && cardValue > 0)
+            {
+                btnReceiveCard.Focus();
+            }
+            else if (decimal.TryParse(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE").ToString(), out decimal upiValue) && upiValue > 0)
+            {
+                btnUPIReceive.Focus();
+            }
+        }
+
+        private void btnReceiveCard_Click(object sender, EventArgs e)
+        {
+            ReceiveAmount(PaymentMode.Card, txtCardRequestAmount.EditValue);
+        }
+
+        private void btnUPIReceive_Click(object sender, EventArgs e)
+        {
+            ReceiveAmount(PaymentMode.UPI, txtUPIRequestAmount.EditValue);
         }
 
         private void TxtPaymentValue_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -183,8 +218,13 @@ namespace NSRetailPOS.UI
             if (textValue.Length > 4 && XtraMessageBox.Show($"Large number detected, possible barcode scan detected, Do you want to accept the value {textValue}"
                     , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
             {
-                baseEdit.EditValue = null;
+                e.Cancel = true;
             }
+
+            if(!decimal.TryParse(textValue, out decimal enteredvalue)) return;
+
+            if(gvMOP.FocusedRowHandle == cardRowHandle) SetReceiveValues(cardRowHandle, enteredvalue);
+            if(gvMOP.FocusedRowHandle == upiRowHandle) SetReceiveValues(upiRowHandle, enteredvalue);
         }
 
         private void GvMOP_RowStyle(object sender, RowStyleEventArgs e)
@@ -225,6 +265,82 @@ namespace NSRetailPOS.UI
                 return;
             }
             e.Cancel = true;
+        }
+
+        private void SetReceiveValues(int rowHandle, decimal amount)
+        {
+            if (Utility.PaymentGateway == null) return;
+
+            if (rowHandle == cardRowHandle) txtCardRequestAmount.EditValue = amount; 
+            if (rowHandle == upiRowHandle) txtUPIRequestAmount.EditValue = amount;
+            
+            EnableDisableReceives();
+        }
+
+        private void EnableDisableReceives()
+        {
+            bool cardEnabled = decimal.TryParse(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE").ToString(), out decimal cardValue) && cardValue > 0;
+            bool upiEnabled = decimal.TryParse(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE").ToString(), out decimal upiValue) && upiValue > 0;
+
+            txtCardRequestAmount.Enabled = cardEnabled;
+            btnReceiveCard.Enabled = cardEnabled;
+
+            txtUPIRequestAmount.Enabled= upiEnabled;
+            btnUPIReceive.Enabled = upiEnabled;
+        }
+
+        private void DisableAllControls()
+        {
+            txtCustomerName.Enabled = false;
+            txtCustomerPhone.Enabled = false;
+            txtCustomerGST.Enabled = false;
+            rgSaleType.Enabled = false;
+            rgPaymentModes.Enabled = false;
+            gcMOP.Enabled = false;
+            txtCardRequestAmount.Enabled = false;
+            txtUPIRequestAmount.Enabled = false;
+            btnReceiveCard.Enabled = false;
+            btnUPIReceive.Enabled = false;
+            btnDiscardBill.Enabled = false;
+            btnApply.Enabled = false;
+            btnCancel.Enabled = false;
+        }
+
+        private void EnableAllControls()
+        {
+            txtCustomerName.Enabled = true;
+            txtCustomerPhone.Enabled = true;
+            txtCustomerGST.Enabled = true;
+            rgSaleType.Enabled = true;
+            rgPaymentModes.Enabled = true;
+            gcMOP.Enabled = true;
+            btnApply.Enabled = true;
+
+            this.btnCancel.Enabled = canClose;
+            btnDiscardBill.Enabled = !canClose;
+
+            EnableDisableReceives();
+        }
+
+        private async Task<decimal> ReceiveAmount(PaymentMode paymentMode, object amountObj)
+        {
+            if (!decimal.TryParse(amountObj.ToString(), out decimal amount) || amount == 0) return 0;
+            DisableAllControls();
+            
+            cancellationToken = new CancellationToken();
+
+            await Utility.PaymentGateway.ReceivePayment(cancellationToken
+                , billObj.BillNumber.ToString(), 1, paymentMode, amount, Utility.loginInfo.UserID);
+
+            EnableAllControls();
+            return amount;
+        }
+
+        private void ShowRecieveMessage(string message)
+        {
+            txtStatus.Text += $"{DateTime.Now.ToLongTimeString()} - {message} {Environment.NewLine}";
+            txtStatus.SelectionStart = Int32.MaxValue;
+            txtStatus.ScrollToCaret();
         }
     }
 }

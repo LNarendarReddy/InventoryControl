@@ -32,16 +32,16 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.txtCardRecievedAmount = new DevExpress.XtraEditors.TextEdit();
+            this.btnReceiveCard = new DevExpress.XtraEditors.SimpleButton();
+            this.txtCardRequestAmount = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
-            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
+            this.txtStatus = new DevExpress.XtraEditors.MemoEdit();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gcMOP = new DevExpress.XtraGrid.GridControl();
@@ -97,8 +97,8 @@
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCardRecievedAmount.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCardRequestAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
@@ -107,7 +107,7 @@
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
             this.layoutControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStatus.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcMOP)).BeginInit();
@@ -196,9 +196,9 @@
             // 
             // layoutControl2
             // 
-            this.layoutControl2.Controls.Add(this.textEdit1);
-            this.layoutControl2.Controls.Add(this.simpleButton1);
-            this.layoutControl2.Controls.Add(this.textEdit2);
+            this.layoutControl2.Controls.Add(this.txtCardRecievedAmount);
+            this.layoutControl2.Controls.Add(this.btnReceiveCard);
+            this.layoutControl2.Controls.Add(this.txtCardRequestAmount);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl2.Location = new System.Drawing.Point(2, 23);
             this.layoutControl2.Name = "layoutControl2";
@@ -208,32 +208,33 @@
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
-            // textEdit1
+            // txtCardRecievedAmount
             // 
-            this.textEdit1.Location = new System.Drawing.Point(103, 7);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.ReadOnly = true;
-            this.textEdit1.Size = new System.Drawing.Size(133, 20);
-            this.textEdit1.StyleController = this.layoutControl2;
-            this.textEdit1.TabIndex = 0;
+            this.txtCardRecievedAmount.Location = new System.Drawing.Point(103, 7);
+            this.txtCardRecievedAmount.Name = "txtCardRecievedAmount";
+            this.txtCardRecievedAmount.Properties.ReadOnly = true;
+            this.txtCardRecievedAmount.Size = new System.Drawing.Size(133, 20);
+            this.txtCardRecievedAmount.StyleController = this.layoutControl2;
+            this.txtCardRecievedAmount.TabIndex = 0;
             // 
-            // simpleButton1
+            // btnReceiveCard
             // 
-            this.simpleButton1.ImageOptions.Image = global::NSRetailPOS.Properties.Resources.download_16x16;
-            this.simpleButton1.Location = new System.Drawing.Point(172, 37);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(64, 24);
-            this.simpleButton1.StyleController = this.layoutControl2;
-            this.simpleButton1.TabIndex = 2;
-            this.simpleButton1.Text = "Receive";
+            this.btnReceiveCard.ImageOptions.Image = global::NSRetailPOS.Properties.Resources.download_16x16;
+            this.btnReceiveCard.Location = new System.Drawing.Point(172, 37);
+            this.btnReceiveCard.Name = "btnReceiveCard";
+            this.btnReceiveCard.Size = new System.Drawing.Size(64, 24);
+            this.btnReceiveCard.StyleController = this.layoutControl2;
+            this.btnReceiveCard.TabIndex = 2;
+            this.btnReceiveCard.Text = "Receive";
+            this.btnReceiveCard.Click += new System.EventHandler(this.btnReceiveCard_Click);
             // 
-            // textEdit2
+            // txtCardRequestAmount
             // 
-            this.textEdit2.Location = new System.Drawing.Point(103, 37);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(59, 20);
-            this.textEdit2.StyleController = this.layoutControl2;
-            this.textEdit2.TabIndex = 1;
+            this.txtCardRequestAmount.Location = new System.Drawing.Point(103, 37);
+            this.txtCardRequestAmount.Name = "txtCardRequestAmount";
+            this.txtCardRequestAmount.Size = new System.Drawing.Size(59, 20);
+            this.txtCardRequestAmount.StyleController = this.layoutControl2;
+            this.txtCardRequestAmount.TabIndex = 1;
             // 
             // layoutControlGroup1
             // 
@@ -250,7 +251,7 @@
             // 
             // layoutControlItem18
             // 
-            this.layoutControlItem18.Control = this.simpleButton1;
+            this.layoutControlItem18.Control = this.btnReceiveCard;
             this.layoutControlItem18.Location = new System.Drawing.Point(165, 30);
             this.layoutControlItem18.MinSize = new System.Drawing.Size(74, 32);
             this.layoutControlItem18.Name = "layoutControlItem18";
@@ -264,7 +265,7 @@
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.textEdit2;
+            this.layoutControlItem5.Control = this.txtCardRequestAmount;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 30);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(156, 30);
             this.layoutControlItem5.Name = "layoutControlItem7";
@@ -276,7 +277,7 @@
             // 
             // layoutControlItem20
             // 
-            this.layoutControlItem20.Control = this.textEdit1;
+            this.layoutControlItem20.Control = this.txtCardRecievedAmount;
             this.layoutControlItem20.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem20.Name = "layoutControlItem10";
             this.layoutControlItem20.OptionsTableLayoutItem.RowIndex = 1;
@@ -292,11 +293,11 @@
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(364, 93);
             this.groupControl2.TabIndex = 12;
-            this.groupControl2.Text = "Status";
+            this.groupControl2.Text = "Payment status";
             // 
             // layoutControl3
             // 
-            this.layoutControl3.Controls.Add(this.memoEdit1);
+            this.layoutControl3.Controls.Add(this.txtStatus);
             this.layoutControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl3.Location = new System.Drawing.Point(2, 23);
             this.layoutControl3.Name = "layoutControl3";
@@ -305,13 +306,14 @@
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl3";
             // 
-            // memoEdit1
+            // txtStatus
             // 
-            this.memoEdit1.Location = new System.Drawing.Point(4, 4);
-            this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(352, 60);
-            this.memoEdit1.StyleController = this.layoutControl3;
-            this.memoEdit1.TabIndex = 0;
+            this.txtStatus.Location = new System.Drawing.Point(4, 4);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Properties.ReadOnly = true;
+            this.txtStatus.Size = new System.Drawing.Size(352, 60);
+            this.txtStatus.StyleController = this.layoutControl3;
+            this.txtStatus.TabIndex = 0;
             // 
             // layoutControlGroup4
             // 
@@ -326,7 +328,7 @@
             // 
             // layoutControlItem4
             // 
-            this.layoutControlItem4.Control = this.memoEdit1;
+            this.layoutControlItem4.Control = this.txtStatus;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(356, 64);
@@ -574,6 +576,7 @@
             this.btnUPIReceive.StyleController = this.layoutControl31;
             this.btnUPIReceive.TabIndex = 2;
             this.btnUPIReceive.Text = "Receive";
+            this.btnUPIReceive.Click += new System.EventHandler(this.btnUPIReceive_Click);
             // 
             // txtUPIRequestAmount
             // 
@@ -902,8 +905,8 @@
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCardRecievedAmount.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCardRequestAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
@@ -912,7 +915,7 @@
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
             this.layoutControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStatus.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcMOP)).EndInit();
@@ -1013,13 +1016,13 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         private DevExpress.XtraLayout.LayoutControl layoutControl3;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
-        private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private DevExpress.XtraEditors.MemoEdit txtStatus;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraLayout.LayoutControl layoutControl2;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
+        private DevExpress.XtraEditors.TextEdit txtCardRecievedAmount;
+        private DevExpress.XtraEditors.SimpleButton btnReceiveCard;
+        private DevExpress.XtraEditors.TextEdit txtCardRequestAmount;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
