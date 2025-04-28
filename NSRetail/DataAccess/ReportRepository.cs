@@ -67,6 +67,32 @@ namespace DataAccess
             return dsReportData;
         }
 
+        public DataSet GetReportDataset_Cloud(string procedureName, Dictionary<string, object> parameters = null)
+        {
+            DataSet dsReportData = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlCloudConn();
+                    cmd.CommandTimeout = 1800;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = procedureName;
+                    ProcessParameters(cmd, parameters);
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsReportData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error While Retrieving {procedureName}", ex);
+            }
+            return dsReportData;
+        }
+
         public DataSet GetReportDatasetWithTransaction(string procedureName, Dictionary<string, object> parameters = null)
         {
             SqlTransaction sqlTransaction = null;

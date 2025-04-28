@@ -112,7 +112,7 @@ namespace DataAccess
                 , { "PASSWORD", Password }
                 , { "APPVERSION", AppVersion }
             };
-            DataSet dSUser = new ReportRepository().GetReportDataset("USP_R_USERLOGIN", parameters);
+            DataSet dSUser = new ReportRepository().GetReportDataset_Cloud("USP_R_USERLOGIN", parameters);
 
             if (dSUser != null && dSUser.Tables[0].Rows.Count > 0)
             {
@@ -194,6 +194,15 @@ namespace DataAccess
             {
                 throw new Exception($"Error While Saving access date : {ex.Message}");
             }
+        }
+
+        public DataSet GetUserAccess(int UserID)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "USERID", UserID }
+            };
+            return new ReportRepository().GetReportDataset("USP_R_USERACCESS", parameters);
         }
     }
 }

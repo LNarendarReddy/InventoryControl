@@ -56,16 +56,15 @@ namespace NSRetail
                             Utility.ReportingLeadID = Convert.ToInt32(ds.Tables[0].Rows[0]["REPORTINGLEADID"]);
                             Utility.Email = Convert.ToString(ds.Tables[0].Rows[0]["EMAIL"]);
                             Utility.IsOpenCategory = Convert.ToBoolean(ds.Tables[0].Rows[0]["ALLOWOPENITEMS"]);
-                            Utility.dtConnectionInfo = ds.Tables[2];
-                            AccessUtility.BuildAccessInfo(ds.Tables[3]);
-
                             bool IsOTP = Convert.ToBoolean(ds.Tables[0].Rows[0]["ISOTP"]);
 
-                            if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count != 0)
+                            DataSet dsAccess = objUserRep.GetUserAccess(Utility.UserID);
+
+                            if (dsAccess.Tables.Count > 1 && dsAccess.Tables[0].Rows.Count != 0)
                             {
-                                foreach(DataRow dr in ds.Tables[1].Rows)
+                                foreach (DataRow dr in dsAccess.Tables[0].Rows)
                                 {
-                                    switch(Convert.ToInt32(dr["PRINTERTYPEID"]))
+                                    switch (Convert.ToInt32(dr["PRINTERTYPEID"]))
                                     {
                                         case 1:
                                             Utility.DotMatrixPrinter = Convert.ToString(dr["PRINTERNAME"]);
@@ -84,6 +83,9 @@ namespace NSRetail
                                     }
                                 }
                             }
+
+                            Utility.dtConnectionInfo = dsAccess.Tables[1];
+                            AccessUtility.BuildAccessInfo(dsAccess.Tables[2]);
 
                             if (IsOTP)
                             {

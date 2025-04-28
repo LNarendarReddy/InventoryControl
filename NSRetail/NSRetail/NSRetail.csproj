@@ -1215,7 +1215,6 @@
     <EmbeddedResource Include="Offer\frmOfferExclusion.resx">
       <DependentUpon>frmOfferExclusion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmBranchIndentDetail.resx">
       <DependentUpon>frmBranchIndentDetail.cs</DependentUpon>
     </EmbeddedResource>
