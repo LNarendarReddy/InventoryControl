@@ -43,6 +43,11 @@ public partial class StockDispatchPage : TabbedPage
     {
         StockDispatchViewModel.BuildTrayWiseData();
     }
+
+    private void IndentDipstachContent_Loaded(object sender, EventArgs e)
+    {
+        txtIndentSearchCode.Focus();
+    }
 }
 
 public class ColorChangedConverter : IValueConverter

@@ -205,11 +205,11 @@ namespace NSRetailLiteApp.Models
                     : System.Drawing.Color.White.ToMauiColor();
                 return;
             }
-            if (value < IndentQuantity)
+            if (value != IndentQuantity)
             {
                 QuantityColor = System.Drawing.Color.Orange.ToMauiColor();
             }
-            if (value >= IndentQuantity)
+            if (value == IndentQuantity)
             {
                 QuantityColor = System.Drawing.Color.Green.ToMauiColor();
             }            
