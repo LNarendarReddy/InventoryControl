@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using NSRetailLiteApp.Models;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
             BuildModel();
         }
 
-        public ObservableCollection<Dispatch> DispatchList { get; private set; }
+        [ObservableProperty]
+        private ObservableCollection<Dispatch> _dispatchList;
 
         public AsyncRelayCommand<Dispatch> SubmitCommand { get; private set; }
 
@@ -60,7 +62,7 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
                 });
 
             if (holder == null || holder.Exception != null) return;
-
+            await DisplayAlert("Success", "Dispatch receive completed", "Ok");
             DispatchList = holder.Holder.DispatchList;
             BuildModel();
         }
