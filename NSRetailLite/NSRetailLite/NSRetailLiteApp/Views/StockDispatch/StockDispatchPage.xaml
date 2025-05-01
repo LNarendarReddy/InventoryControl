@@ -10,20 +10,20 @@
         <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverted" />
         <views:ColorChangedConverter x:Key="colorChangedConverter" />
     </TabbedPage.Resources>
-    <ContentPage Title="Indent" x:Name="IndentDipstachContent">
+    <ContentPage Title="Indent" x:Name="IndentDipstachContent" Loaded="IndentDipstachContent_Loaded">
         <Grid>
             <Grid RowDefinitions="Auto, *" Margin="10" RowSpacing="5">
                 <HorizontalStackLayout Grid.Row="0"  Spacing="20" HorizontalOptions="Center">
-                    <Button Text="Proceed to Dispatch" 
-                    Command="{Binding Path=StartDispatchCommand}"
-                    IsEnabled="{Binding Path=AllowStart}"
-                    IsVisible="{Binding Path=IsNew}"/>
-                    <Button Text="Submit" 
-                    Command="{Binding Path=SubmitCommand}"                    
-                    IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
-                    <Button Text="Discard" 
-                    Command="{Binding Path=DiscardCommand}"
-                    IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+                    <Button Text="Proceed to Dispatch" Command="{Binding Path=StartDispatchCommand}" IsEnabled="{Binding Path=AllowStart}" IsVisible="{Binding Path=IsNew}"/>
+                    <Entry Placeholder="Scan to search SKU" IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}" ReturnType="Done"
+                           ClearButtonVisibility="WhileEditing" HorizontalOptions="FillAndExpand" FontSize="Medium" Text="{Binding Path=SearchCode, Mode=TwoWay}"
+                           ReturnCommand="{Binding Path=SearchSKUCommand}" x:Name="txtIndentSearchCode">
+                        <Entry.Behaviors>
+                            <toolkit:SelectAllTextBehavior />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Button Text="Submit" Command="{Binding Path=SubmitCommand}" IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
+                    <Button Text="Discard" Command="{Binding Path=DiscardCommand}" IsVisible="{Binding Path=IsNew, Converter={StaticResource Key=InvertedBoolConverted}}"/>
                 </HorizontalStackLayout>
 
                 <Frame Grid.Row="1" Padding="5">

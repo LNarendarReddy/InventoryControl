@@ -26,7 +26,8 @@ namespace NSRetail.ReportForms.Wareshouse.Differences
                 { "PREVWHSTOCK", "Prev. WH Stock" },
                 { "CURBSTOCK", "Current branch Stock" },
                 { "CURWHSTOCK", "Current WH Stock" },                
-                { "DIFF", "Difference" }
+                { "DIFF", "Difference" },
+                { "NOOFDAYS", "# of days" }
             };
 
             SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);

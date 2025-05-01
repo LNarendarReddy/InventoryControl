@@ -195,5 +195,14 @@ namespace DataAccess
                 throw new Exception($"Error While Saving access date : {ex.Message}");
             }
         }
+
+        public DataSet GetUserAccess(int UserID)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "USERID", UserID }
+            };
+            return new ReportRepository().GetReportDataset("USP_R_USERACCESS", parameters);
+        }
     }
 }

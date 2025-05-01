@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DevExpress.PivotGrid.PivotTable;
+using DevExpress.XtraReports.UI;
 using NSRetailLiteApp.Models;
 using NSRetailLiteApp.Views.Common;
 using System;
@@ -31,6 +32,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
         public LoggedInUser User { get; }
         public bool IsEditable { get; }
         public bool ShowItemScanInCodeSelection { get; }
+        public Item? CachedItem { get; private set; }
 
         [ObservableProperty]
         private TrayInfo _selectedTrayInfo;
@@ -40,7 +42,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             , StockDispatchModel stockDispatchModel
             , LoggedInUser user
             , bool isEditable = true
-            , bool showItemScanInCodeSelection = false)
+            , bool showItemScanInCodeSelection = false
+            , Item? cachedItem = null)
         {
             StockDispatchDetailModel = stockDispatchDetailModel;
             this.branchIndentDetailModel = branchIndentDetailModel;
@@ -48,6 +51,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             User = user;
             IsEditable = isEditable;
             ShowItemScanInCodeSelection = showItemScanInCodeSelection;
+            CachedItem = cachedItem;
             SaveCommand = new AsyncRelayCommand(Save);
             LoadItemCommand = new AsyncRelayCommand(LoadItem);
             AddTrayCommand = new AsyncRelayCommand(AddTray);
@@ -168,15 +172,23 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 
             Item item = new() { SKUCode = StockDispatchDetailModel.ItemCode };
 
-            item = await GetAsync("Stockdispatch_v2/getitem", item
-                , new Dictionary<string, string?>()
-                {
+            if (CachedItem == null)
+            {
+                item = await GetAsync("Stockdispatch_v2/getitem", item
+                    , new Dictionary<string, string?>()
+                    {
                     { "ItemCode", StockDispatchDetailModel.ItemCode },
                     { "CategoryID", User.CategoryId.ToString() },
                     { "SubCategoryID", User.SubCategoryId.ToString() }
-                }, displayAlert: true);
+                    }, displayAlert: true);
 
-            if (item.Exception != null) return;
+                if (item.Exception != null) return;
+            }
+            else
+            {
+                item = CachedItem;
+                CachedItem = null;
+            }
 
             Tuple<ItemCodeData, ItemPrice> returnData = await new ItemPriceSelectionUtility().GetSelectedItemPrice(item, ShowItemScanInCodeSelection);
 

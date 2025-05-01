@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Core.Extensions;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DevExpress.CodeParser;
 using DevExpress.XtraRichEdit.Commands;
@@ -32,6 +33,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
 
         public IAsyncRelayCommand AddManualCommand { get; }
 
+        public IAsyncRelayCommand SearchSKUCommand { get; }
+
         public IAsyncRelayCommand<BranchIndentDetailModel> AddIndentQuantityCommand { get; }
 
         public IAsyncRelayCommand<BranchIndentDetailModel> EditIndentQuantityCommand { get; }
@@ -56,6 +59,12 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
         [ObservableProperty]
         private string _title;
 
+        [ObservableProperty]
+        private string _searchCode;
+
+        [ObservableProperty]
+        private Item? _foundItem;
+
         public StockDispatchViewModel(StockDispatchModel stockDispatchModel, LoggedInUser User)
         {
             StockDispatchModel = stockDispatchModel;
@@ -67,6 +76,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             SubmitCommand = new AsyncRelayCommand(Submit);
             DiscardCommand = new AsyncRelayCommand(Discard);
             AddManualCommand = new AsyncRelayCommand(AddManual);
+            SearchSKUCommand = new AsyncRelayCommand(SearchSKU);
             AddIndentQuantityCommand = new AsyncRelayCommand<BranchIndentDetailModel?>(AddIndentQuantity);
             EditIndentQuantityCommand = new AsyncRelayCommand<BranchIndentDetailModel?>(EditIndentQuantity);
             EditManualQuantityCommand = new AsyncRelayCommand<StockDispatchDetailModel?>(EditManualQuantity);
@@ -95,6 +105,19 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
         private async Task Submit()
         {
             if (!await DisplayAlert("Confirm", "Are you sure you want to submit dispatch? this operation cannot be reversed", "Yes", "No"))
+                return;
+
+            List<BranchIndentDetailModel> branchIndents = StockDispatchModel.BranchIndentDetailList.ToList();
+            string stats = $"Review the values before submitting, this operation cannot be reversed {Environment.NewLine}";
+            stats += $"{Environment.NewLine}    * Total indent items : {branchIndents.Count}";
+            stats += $"{Environment.NewLine}    * Added indent items : {branchIndents.Count(x => x.DispatchQuantity > 0)}";
+            stats += $"{Environment.NewLine}    * Added manual items: {StockDispatchModel.StockDispatchDetailManualList.Count()}";
+            stats += Environment.NewLine;
+            stats += $"{Environment.NewLine}    * Total skipped indent items : {branchIndents.Count(x => x.DispatchQuantity == 0)}";
+            stats += $"{Environment.NewLine}    * Skipped items with WH Stock > 0: {branchIndents.Count(x => x.DispatchQuantity == 0 && x.WHStock > 0)}";
+            stats += $"{Environment.NewLine}    * Skipped items with WH Stock = 0: {branchIndents.Count(x => x.DispatchQuantity == 0 && x.WHStock == 0)}";
+
+            if (!await DisplayAlert("Confirm", stats, "Yes", "No"))
                 return;
 
             HolderClass holderClass = new HolderClass();
@@ -149,7 +172,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             await RedirectToPage(stockDispatchDetailModel
                 , new StockDispatchDetailPage(
                     new StockDispatchDetailViewModel(stockDispatchDetailModel, selected, StockDispatchModel
-                        , user, showItemScanInCodeSelection: true)));
+                        , user, showItemScanInCodeSelection: true, cachedItem: FoundItem)));
         }
 
         private async Task EditIndentQuantity(BranchIndentDetailModel? selected)
@@ -228,6 +251,33 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             selected.IsTrayVerified = !selected.IsTrayVerified;
         }
 
+        private async Task SearchSKU()
+        {
+            if(string.IsNullOrEmpty(SearchCode))
+            {
+                FilterByItem(null);
+                return;
+            }
+
+            Item item = new() { SKUCode = SearchCode };
+
+            item = await GetAsync("Stockdispatch_v2/getitem", item
+                , new Dictionary<string, string?>()
+                {
+                    { "ItemCode", SearchCode },
+                    { "CategoryID", user.CategoryId.ToString() },
+                    { "SubCategoryID", user.SubCategoryId.ToString() }
+                }, displayAlert: true);
+
+            if (item.Exception != null)
+            {
+                SearchCode = string.Empty;
+                return;
+            }
+
+            FilterByItem(item, true);
+        }
+
         private void BuildModelData()
         {
             if(StockDispatchModel == null) return;
@@ -241,12 +291,41 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
 
             if (StockDispatchModel.BranchIndentDetailList == null) return;
 
+            FilterByItem(null);
+        }
+
+        private void FilterByItem(Item? item, bool showMessage = false)
+        {
             ItemsData.Clear();
-            StockDispatchModel.BranchIndentDetailList
+            FoundItem = null;
+            List<BranchIndentDetailModel> branchIndents;
+
+            branchIndents = StockDispatchModel.BranchIndentDetailList.Where(x => item == null || x.ItemId == item.ItemID).ToList();
+            if (branchIndents.Count == 0)
+            {
+                if (showMessage)
+                    DisplayAlert("Not found", "Item not found in indent list", "OK");
+                branchIndents = StockDispatchModel.BranchIndentDetailList.ToList();
+                SearchCode = string.Empty;
+            }
+            else
+            {
+                FoundItem = item;
+            }
+
+            branchIndents
                 .GroupBy(x => x.SubCategoryName ?? string.Empty)
                 .Select(x => new ItemGroup(x.Key, x.ToList()))
                 .OrderBy(x => x.Name.Length).ThenBy(x => x.Name)
                 .ToList().ForEach(ItemsData.Add);
+        }
+
+        partial void OnSearchCodeChanged(string value)
+        {
+            if (string.IsNullOrEmpty(value) && FoundItem != null)
+            {
+                FilterByItem(null);
+            }
         }
 
         public void BuildTrayWiseData()

@@ -9,7 +9,7 @@
         <Label Text="{Binding Path=Item.ItemName, Mode=TwoWay}" Margin="0, 10, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0"
                FontSize="Title"/>
         <Entry Placeholder="Scan code or select below" Grid.Row="1" x:Name="txtScanItemCode" 
-               ReturnCommand="{Binding Path=ItemCodeScannedCommand}" ReturnType="Send" ClearButtonVisibility="WhileEditing"
+               ReturnCommand="{Binding Path=ItemCodeScannedCommand}" ReturnType="Done" ClearButtonVisibility="WhileEditing"
                FontSize="Medium" Margin="0, 20, 0, 0" HorizontalOptions="Center" HorizontalTextAlignment="Center"
                Text="{Binding Path=ScanItemCode, Mode=TwoWay}" IsVisible="{Binding Path=ShowScanCodeTextBox}" />
         <CollectionView ItemsSource="{Binding Path=Item.ItemCodeList}" SelectedItem="{Binding Path=SelectedItemCode, Mode=TwoWay}" SelectionMode="Single"

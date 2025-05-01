@@ -41,6 +41,8 @@ namespace NSRetail
             InitializeComponent();
         }
 
+        public static bool skipAccessRefresh = false;
+
         public event EventHandler RefreshBaseLineData;
 
         protected override void OnLoad(EventArgs e)
@@ -551,7 +553,10 @@ namespace NSRetail
             SQLCon.ChangeConnection(e.Item.Name);
             lblUserName.Caption = $"Logged In User : {Utility.FullName}   " +
                 $"Version : {Utility.AppVersion} {Utility.VersionDate} - {ConfigurationManager.AppSettings["BuildType"]} - {e.Item.Caption}";
+            
+            skipAccessRefresh = e.Item.Name != "NSRetail";
             bbiRefreshData_ItemClick(sender, e);
+            skipAccessRefresh = false;
         }
 
         private void FillFinYears()

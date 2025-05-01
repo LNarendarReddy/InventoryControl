@@ -38,7 +38,12 @@ namespace NSRetailLiteApp.ViewModels.Common
             if(string.IsNullOrEmpty(ScanItemCode) || Item == null)  return; 
 
             ItemCodeData? itemCodeData = Item.ItemCodeList.FirstOrDefault(x => x.ItemCode.Equals(ScanItemCode));
-            if ((itemCodeData == null)) return;
+            if (itemCodeData == null)
+            {
+                DisplayAlert("Error", "Item code not found in SKU", "OK");
+                ScanItemCode = string.Empty;
+                return;
+            }
             SelectedItemCode = itemCodeData;
         }
     }
