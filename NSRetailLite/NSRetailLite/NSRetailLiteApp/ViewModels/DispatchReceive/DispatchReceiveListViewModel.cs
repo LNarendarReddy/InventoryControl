@@ -28,7 +28,8 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
 
         public AsyncRelayCommand<Dispatch> SubmitCommand { get; private set; }
 
-        public ObservableCollection<CategoryGroup> CategoryGroupList { get; private set; }
+        [ObservableProperty]
+        public ObservableCollection<CategoryGroup> _categoryGroupList;
 
         private async Task Submit(Dispatch selected)
         {
@@ -45,12 +46,12 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
 
             // add submit api /api/StockDispatch_In/finishstockin
 
-            await PostAsync("StockDispatch_In/finishstockin", selected, new Dictionary<string, string?>
+            selected = await PostAsync("StockDispatch_In/finishstockin", selected, new Dictionary<string, string?>
             {
                 { "StockDispatchID", selected.StockDispatchId.ToString() },
                 { "CounterID", 0.ToString() },
                 { "UserID", loggedInUser.UserId.ToString() }
-            });
+            }, displayAlert: true);
 
             if (selected.Exception != null) return;
 
@@ -62,7 +63,7 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
                 });
 
             if (holder == null || holder.Exception != null) return;
-            await DisplayAlert("Success", "Dispatch receive completed", "Ok");
+            DisplayAlert("Success", "Dispatch receive completed", "Ok");
             DispatchList = holder.Holder.DispatchList;
             BuildModel();
         }
