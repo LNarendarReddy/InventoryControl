@@ -1,6 +1,6 @@
 ﻿namespace NSRetailPOS.UI
 {
-    partial class frmMultiPayment
+    partial class frmUnifiedPayment
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMultiPayment));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUnifiedPayment));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnCancelRequest = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
@@ -381,6 +381,7 @@
             this.gvMOP.OptionsCustomization.AllowSort = false;
             this.gvMOP.OptionsView.ShowGroupPanel = false;
             this.gvMOP.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.GvMOP_RowStyle);
+            this.gvMOP.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gvMOP_ShowingEditor);
             this.gvMOP.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvMOP_CellValueChanged);
             this.gvMOP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvMOP_KeyDown);
             // 
@@ -532,6 +533,9 @@
             this.txtCustomerPhone.EnterMoveNextControl = true;
             this.txtCustomerPhone.Location = new System.Drawing.Point(142, 41);
             this.txtCustomerPhone.Name = "txtCustomerPhone";
+            this.txtCustomerPhone.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtCustomerPhone.Properties.MaskSettings.Set("mask", "d");
+            this.txtCustomerPhone.Properties.UseMaskAsDisplayFormat = true;
             this.txtCustomerPhone.Size = new System.Drawing.Size(117, 24);
             this.txtCustomerPhone.StyleController = this.layoutControl1;
             this.txtCustomerPhone.TabIndex = 0;

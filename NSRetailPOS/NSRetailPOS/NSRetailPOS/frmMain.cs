@@ -389,7 +389,7 @@ namespace NSRetailPOS
                 }
             }
 
-            frmMultiPayment paymentForm = new frmMultiPayment(billObj, canClose);
+            frmUnifiedPayment paymentForm = new frmUnifiedPayment(billObj, canClose);
             paymentForm.ShowDialog();
             DataSet nextBillDetails = null;
 

@@ -20,7 +20,7 @@ using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
 {
-    public partial class frmMultiPayment : DevExpress.XtraEditors.XtraForm
+    public partial class frmUnifiedPayment : DevExpress.XtraEditors.XtraForm
     {
         BillingRepository billingRepository = new BillingRepository();
         public bool IsPaid = false, IsDiscarded = false, canClose = true;
@@ -30,7 +30,7 @@ namespace NSRetailPOS.UI
         int cashRowHandle = -1, b2bCreditRowHandle = -1, cardRowHandle = -1, upiRowHandle = -1, cardMopID, upiMopID;
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
-        public frmMultiPayment(Bill bill, bool canClose = true)
+        public frmUnifiedPayment(Bill bill, bool canClose = true)
         {
             InitializeComponent();
             billObj = bill;
@@ -54,6 +54,7 @@ namespace NSRetailPOS.UI
             rgPaymentModes.Properties.Items.ToList().ForEach(x => x.Value = x.Description);
 
             txtBilledAmount.EditValue = billObj.Amount;
+            txtItemQuantity.EditValue = billObj.Quantity;
 
             gcMOP.DataSource = dtMOPs;
             gcMOP.Refresh();
