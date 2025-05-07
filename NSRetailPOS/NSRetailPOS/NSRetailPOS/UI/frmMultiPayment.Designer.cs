@@ -235,6 +235,7 @@
             // 
             // btnReceiveCard
             // 
+            this.btnReceiveCard.Enabled = false;
             this.btnReceiveCard.ImageOptions.Image = global::NSRetailPOS.Properties.Resources.download_16x16;
             this.btnReceiveCard.Location = new System.Drawing.Point(172, 37);
             this.btnReceiveCard.Name = "btnReceiveCard";
@@ -246,6 +247,7 @@
             // 
             // txtCardRequestAmount
             // 
+            this.txtCardRequestAmount.Enabled = false;
             this.txtCardRequestAmount.Location = new System.Drawing.Point(103, 37);
             this.txtCardRequestAmount.Name = "txtCardRequestAmount";
             this.txtCardRequestAmount.Size = new System.Drawing.Size(59, 20);
@@ -585,6 +587,7 @@
             // 
             // btnUPIReceive
             // 
+            this.btnUPIReceive.Enabled = false;
             this.btnUPIReceive.ImageOptions.Image = global::NSRetailPOS.Properties.Resources.download_16x162;
             this.btnUPIReceive.Location = new System.Drawing.Point(172, 37);
             this.btnUPIReceive.Name = "btnUPIReceive";
@@ -596,6 +599,7 @@
             // 
             // txtUPIRequestAmount
             // 
+            this.txtUPIRequestAmount.Enabled = false;
             this.txtUPIRequestAmount.Location = new System.Drawing.Point(103, 37);
             this.txtUPIRequestAmount.Name = "txtUPIRequestAmount";
             this.txtUPIRequestAmount.Size = new System.Drawing.Size(59, 20);
@@ -916,6 +920,7 @@
             // 
             // frmMultiPayment
             // 
+            this.AcceptButton = this.btnApply;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 606);

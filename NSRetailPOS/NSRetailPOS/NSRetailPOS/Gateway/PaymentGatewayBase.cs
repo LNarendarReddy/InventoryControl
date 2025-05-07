@@ -29,6 +29,9 @@ namespace NSRetailPOS.Gateway
 
         public static PaymentGatewayBase Create(string gatewayType, string baseSettings, string additionalSettings)
         {
+            if (string.IsNullOrEmpty(baseSettings) || string.IsNullOrEmpty(additionalSettings)) return null;
+
+
             PaymentGatewayBase gateway = null;
             switch (gatewayType)
             {

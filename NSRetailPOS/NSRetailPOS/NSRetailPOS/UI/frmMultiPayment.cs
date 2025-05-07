@@ -84,6 +84,8 @@ namespace NSRetailPOS.UI
             {
                 Utility.PaymentGateway.StatusUpdate = ShowRecieveMessage;
             }
+
+            Utility.SetGridFormatting(gvMOP);
         }
 
         private void TxtPaymentValue_Leave(object sender, EventArgs e)
@@ -114,7 +116,7 @@ namespace NSRetailPOS.UI
                 return;
             }
 
-            if (txtCustomerPhone.EditValue != null && txtCustomerPhone.EditValue.ToString().Length != 10)
+            if (!string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString()) && txtCustomerPhone.EditValue.ToString().Length != 10)
             {
                 XtraMessageBox.Show("Customer number should be 10 digits", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 txtCustomerPhone.Focus();
@@ -138,6 +140,23 @@ namespace NSRetailPOS.UI
                 return;
             }
 
+            if (decimal.TryParse(gvMOP.GetRowCellValue(b2bCreditRowHandle, "MOPVALUE").ToString(), out decimal b2bCreditValue) && b2bCreditValue > 0
+                && (txtCustomerName.EditValue == null || txtCustomerPhone.EditValue == null || txtCustomerGST.EditValue == null))
+            {
+                XtraMessageBox.Show("Customer Name, number & GST are required for B2B billing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                (txtCustomerGST.EditValue == null ? txtCustomerGST : null)?.Focus();
+                (txtCustomerPhone.EditValue == null ? txtCustomerPhone : null)?.Focus();
+                (txtCustomerName.EditValue == null ? txtCustomerName : null)?.Focus();
+                return;
+            }
+
+            gcMOP.Refresh();
+            billObj.IsDoorDelivery = rgSaleType.EditValue;
+            billObj.CustomerName = txtCustomerName.EditValue;
+            billObj.CustomerNumber = txtCustomerPhone.EditValue;
+            billObj.CustomerGST = txtCustomerGST.EditValue;
+            billObj.PaymentMode = rgPaymentModes.EditValue;
+
             if (decimal.TryParse(gvMOP.GetRowCellValue(cashRowHandle, "MOPVALUE").ToString(), out decimal cashValue) && cashValue > 0)
             {
                 billObj.Rounding = billObj.PaymentMode.Equals("CASH") ? Math.Round(billedAmount) - billedAmount : 0.00M;
@@ -149,22 +168,7 @@ namespace NSRetailPOS.UI
                 gvMOP.UpdateCurrentRow();
             }
 
-            if (decimal.TryParse(gvMOP.GetRowCellValue(b2bCreditRowHandle, "MOPVALUE").ToString(), out decimal b2bCreditValue) && b2bCreditValue > 0
-                && (txtCustomerName.EditValue == null || txtCustomerPhone.EditValue == null || txtCustomerGST.EditValue == null))
-            {
-                XtraMessageBox.Show("Customer Name, number & GST are required for B2B billing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                (txtCustomerGST.EditValue == null ? txtCustomerGST : null)?.Focus();
-                (txtCustomerPhone.EditValue == null ? txtCustomerPhone : null)?.Focus();
-                (txtCustomerName.EditValue == null ? txtCustomerName : null)?.Focus();
-                return;
-            }
-
-            billObj.IsDoorDelivery = rgSaleType.EditValue;
-            billObj.CustomerName = txtCustomerName.EditValue;
-            billObj.CustomerNumber = txtCustomerPhone.EditValue;
-            billObj.CustomerGST = txtCustomerGST.EditValue;
-            billObj.PaymentMode = rgPaymentModes.EditValue;
-            billObj.dtMopValues = gvMOP.DataSource as DataTable;
+            billObj.dtMopValues = (gvMOP.DataSource as DataView).Table;
 
             IsPaid = true;
             Close();
