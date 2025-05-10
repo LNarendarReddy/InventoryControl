@@ -155,7 +155,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             await RedirectToPage(stockDispatchDetailModel
                 , new StockDispatchDetailPage(
                     new StockDispatchDetailViewModel(stockDispatchDetailModel, null, StockDispatchModel
-                        , user, showItemScanInCodeSelection: true)));
+                        , user, showItemScanInCodeSelection: true, popAfterSave: false)));
         }
 
         private async Task AddIndentQuantity(BranchIndentDetailModel? selected)

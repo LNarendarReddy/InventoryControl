@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DevExpress.Drawing.Internal.Fonts.Interop;
 using DevExpress.PivotGrid.PivotTable;
 using DevExpress.XtraReports.UI;
 using NSRetailLiteApp.Models;
@@ -19,6 +20,10 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
         [ObservableProperty]
         public StockDispatchDetailModel _stockDispatchDetailModel;
         private readonly BranchIndentDetailModel branchIndentDetailModel;
+        private readonly bool popAfterSave;
+
+        public event Action SaveComplete;
+
         public StockDispatchModel StockDispatchModel { get; }
 
         public IAsyncRelayCommand SaveCommand { get; }
@@ -43,7 +48,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             , LoggedInUser user
             , bool isEditable = true
             , bool showItemScanInCodeSelection = false
-            , Item? cachedItem = null)
+            , Item? cachedItem = null
+            , bool popAfterSave = true)
         {
             StockDispatchDetailModel = stockDispatchDetailModel;
             this.branchIndentDetailModel = branchIndentDetailModel;
@@ -52,6 +58,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             IsEditable = isEditable;
             ShowItemScanInCodeSelection = showItemScanInCodeSelection;
             CachedItem = cachedItem;
+            this.popAfterSave = popAfterSave;
             SaveCommand = new AsyncRelayCommand(Save);
             LoadItemCommand = new AsyncRelayCommand(LoadItem);
             AddTrayCommand = new AsyncRelayCommand(AddTray);
@@ -100,7 +107,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             holderClass = await PostAsync("Stockdispatch_v2/savedispatchdetail", holderClass
                 , new Dictionary<string, string?>()
                 {
-                    { "StockDispatchID", StockDispatchDetailModel.StockDispatchId.ToString() },
+                    { "StockDispatchID", StockDispatchModel.StockDispatchId.ToString() },
                     { "StockDispatchDetailID", StockDispatchDetailModel.StockDispatchDetailId.ToString() },
                     { "BranchIndentDetailID", (branchIndentDetailModel?.BranchIndentDetailId ?? 0).ToString()},
                     { "ItemPriceID", StockDispatchDetailModel.ItemPriceId.ToString() },
@@ -120,7 +127,9 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             }
 
             StockDispatchDetailModel.StockDispatchDetailId = holderClass.GenericID;
-            Pop();
+            
+            if (popAfterSave)
+                Pop();
 
             if (!StockDispatchDetailModel.IsNew) return;
             StockDispatchDetailModel.IsNew = false;
@@ -129,7 +138,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             StockDispatchDetailModel existingUpdate = StockDispatchModel.StockDispatchDetailManualList
                 .FirstOrDefault(x => x.StockDispatchDetailId == StockDispatchDetailModel.StockDispatchDetailId);
             BranchIndentDetailModel existingUpdateParent = null;
-
+            
             if (existingUpdate == null)
             {
                 existingUpdateParent =
@@ -148,18 +157,27 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             if (existingUpdate != null)
             {
                 existingUpdate.DispatchQuantity += StockDispatchDetailModel.DispatchQuantity;
+                existingUpdate.IsTrayVerified = false;
                 existingUpdateParent?.RecalculateDispatchQuantity();
-                return;
-            }
-
-            // if not existing update, add item
-            if (branchIndentDetailModel != null)
-            {
-                branchIndentDetailModel.StockDispatchDetailIndentList.Add(StockDispatchDetailModel);
-                branchIndentDetailModel.RecalculateDispatchQuantity();
             }
             else
-                StockDispatchModel.StockDispatchDetailManualList.Add(StockDispatchDetailModel);
+            {
+                // if not existing update, add item
+                if (branchIndentDetailModel != null)
+                {
+                    branchIndentDetailModel.StockDispatchDetailIndentList.Add(StockDispatchDetailModel);
+                    branchIndentDetailModel.RecalculateDispatchQuantity();
+                }
+                else
+                    StockDispatchModel.StockDispatchDetailManualList.Add(StockDispatchDetailModel);
+            }
+
+            if (!popAfterSave)
+            {
+                DisplayAlert("success", "Save completed successfully", "OK");
+                StockDispatchDetailModel = new StockDispatchDetailModel();
+                SaveComplete?.Invoke();
+            }
         }
 
         private async Task LoadItem()

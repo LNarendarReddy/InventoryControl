@@ -9,6 +9,12 @@ public partial class StockDispatchDetailPage : ContentPage
 		InitializeComponent();
         StockDispatchDetailViewModel = stockDispatchDetailViewModel;
         BindingContext = stockDispatchDetailViewModel;
+        stockDispatchDetailViewModel.SaveComplete += StockDispatchDetailViewModel_SaveComplete;
+    }
+
+    private void StockDispatchDetailViewModel_SaveComplete()
+    {
+        txtItemCode.Focus();
     }
 
     public StockDispatchDetailViewModel StockDispatchDetailViewModel { get; }
