@@ -380,11 +380,11 @@ namespace NSRetailPOS
                     dtBillDetails = billObj.dtBillDetails.Copy();
                     dtBillDetails.DefaultView.RowFilter = "DELETEDDATE IS NULL";
                     dtBillDetails = dtBillDetails.DefaultView.ToTable();
+                    canClose = false;
 
                     if (actualSalePrice > 0)
                     {
                         XtraMessageBox.Show("Bill amount updated, please verify amount", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        canClose = false;
                     }
                 }
             }
