@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
+using NSRetailPOS.Gateway;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -65,6 +66,14 @@ namespace NSRetailPOS.UI
                         Utility.branchInfo.FilterMRPByStock = dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"] != DBNull.Value 
                             && bool.Parse(dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"].ToString());
                         Utility.branchInfo.EnableDraftBills = int.Parse(dSUserInfo.Tables[0].Rows[0]["ENABLEDRAFTBILLS"].ToString());
+
+                        string getwayType = "PineLabs";
+                        string baseSettings = string.Empty;
+                        string additionalSettings = string.Empty;
+
+                        // payment gateway
+                        Utility.PaymentGateway = PaymentGatewayBase.Create(getwayType, baseSettings, additionalSettings);
+
                         if (ISOTP)
                         {
                             frmChangePassword Obj = new frmChangePassword();

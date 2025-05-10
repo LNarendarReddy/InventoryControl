@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrePayment));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnDiscardBill = new DevExpress.XtraEditors.SimpleButton();
             this.btnApply = new DevExpress.XtraEditors.SimpleButton();
@@ -143,9 +143,9 @@
             this.rgPaymentModes.Size = new System.Drawing.Size(552, 91);
             this.rgPaymentModes.StyleController = this.layoutControl1;
             this.rgPaymentModes.TabIndex = 5;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Select mode of payment";
-            this.dxValidationProvider1.SetValidationRule(this.rgPaymentModes, conditionValidationRule1);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Select mode of payment";
+            this.dxValidationProvider1.SetValidationRule(this.rgPaymentModes, conditionValidationRule2);
             // 
             // txtBilledAmt
             // 
