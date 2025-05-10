@@ -189,7 +189,12 @@ namespace NSRetailPOS.UI
             {
                 int rowhandle = gvMOP.LocateByValue("MOPNAME", rgPaymentModes.Text);
                 gvMOP.SetRowCellValue(rowhandle, "MOPVALUE", billObj.Amount);
+                gvMOP.FocusedRowHandle = rowhandle;
                 SetReceiveValues(rowhandle, Convert.ToDecimal(billObj.Amount));
+            }
+            else
+            {
+                gvMOP.FocusedRowHandle = cashRowHandle;
             }
         }
 
