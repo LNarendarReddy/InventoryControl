@@ -68,8 +68,24 @@ namespace NSRetailPOS
             billObj.TenderedChange = dsBillDetails.Tables["BILL"].Rows[0]["TENDEREDCHANGE"];
             billObj.IsDoorDelivery = dsBillDetails.Tables["BILL"].Rows[0]["ISDOORDELIVERY"];
             billObj.dtBillDetails = dsBillDetails.Tables["BILLDETAILS"];
-            if (dsBillDetails.Tables.Count > 2)
+
+            if (dsBillDetails.Tables.Count >= 2)
+            {
+                foreach (DataRow drTransactionData in dsBillDetails.Tables["PGW_TRANSACTIONDATA"].Rows)
+                {
+                    CompletedTransactionData completedTransactionData = new CompletedTransactionData()
+                    {
+                        Amount = Convert.ToDecimal(drTransactionData["AMOUNT"]),
+                        MopID = Convert.ToInt32(drTransactionData["MOPID"])                        
+                    };
+
+                    billObj.CompletedTransactions.Add(completedTransactionData);
+                }
+            }
+
+            if (dsBillDetails.Tables.Count == 3)
                 billObj.dtMopValues = dsBillDetails.Tables["MOPDETAILS"];
+
             return billObj;
         }
 

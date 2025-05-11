@@ -21,12 +21,17 @@ namespace NSRetailPOS.Gateway.PineLabs
 
         public override string GatewayTpye => "PineLabs";
 
-        public PineLabsGateway(string baseSettings, string additionalSettings) 
+        public int PaymentGatewayID { get; }
+        public string AdditionalSettings { get; }
+
+        public PineLabsGateway(int paymentGatewayID, string baseSettings, string additionalSettings) 
         {
             requestBase = JsonConvert.DeserializeObject<RequestBase>(baseSettings);
             RequestBase additionalPayLoad = JsonConvert.DeserializeObject<RequestBase>(additionalSettings);
             requestBase.StoreID = additionalPayLoad.StoreID;
             gatewayClient = new HttpClient() { BaseAddress = new Uri(requestBase.PaymentURL) };
+            PaymentGatewayID = paymentGatewayID;
+            AdditionalSettings = additionalSettings;
         }
 
         protected override async Task<bool> CancelRequest(ICancelRequest cancelRequest)
@@ -142,7 +147,7 @@ namespace NSRetailPOS.Gateway.PineLabs
             return null;
         }
         
-        public override async Task<CompletedTransactionData> ReceivePayment(int mopID, CancellationToken token, params object[] parameters)
+        public override async Task<CompletedTransactionData> ReceivePayment(int billID, int mopID, CancellationToken token, params object[] parameters)
         {
             IsInProgress = true;
             try
@@ -161,8 +166,11 @@ namespace NSRetailPOS.Gateway.PineLabs
                 {
                     Amount = paymentRequest.Amount,
                     MopID = mopID,
+                    BillID = billID,
                     PaymentRequest = paymentRequest,
-                    StatusResponse = statusResponse
+                    StatusResponse = statusResponse,
+                    PaymentGatewayID = PaymentGatewayID,
+                    AdditionalSettings = AdditionalSettings
                 };
                 return successTransactionData;
             }

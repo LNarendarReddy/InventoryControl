@@ -1,4 +1,5 @@
 ﻿using NSRetailPOS.Entity;
+using NSRetailPOS.Gateway;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -70,6 +71,7 @@ namespace NSRetailPOS.Data
                     {
                         dsInitialLoad.Tables[1].TableName = "BILL";
                         dsInitialLoad.Tables[2].TableName = "BILLDETAILS";
+                        dsInitialLoad.Tables[3].TableName = "PGW_TRANSACTIONDATA";
                     }
                 }
             }
@@ -121,6 +123,7 @@ namespace NSRetailPOS.Data
 
                     dsNextBill.Tables[0].TableName = "BILL";
                     dsNextBill.Tables[1].TableName = "BILLDETAILS";
+                    dsNextBill.Tables[1].TableName = "PGW_TRANSACTIONDATA";
                 }
             }
             catch (Exception ex)
@@ -188,6 +191,7 @@ namespace NSRetailPOS.Data
 
                     dsNextBill.Tables[0].TableName = "BILL";
                     dsNextBill.Tables[1].TableName = "BILLDETAILS";
+                    dsNextBill.Tables[1].TableName = "PGW_TRANSACTIONDATA";
                 }
             }
             catch (Exception ex)
@@ -306,6 +310,7 @@ namespace NSRetailPOS.Data
 
                     dsBillDetails.Tables[0].TableName = "BILL";
                     dsBillDetails.Tables[1].TableName = "BILLDETAILS";
+                    dsBillDetails.Tables[1].TableName = "PGW_TRANSACTIONDATA";
                 }
             }
             catch (Exception ex)
@@ -338,7 +343,8 @@ namespace NSRetailPOS.Data
 
                     dsBillDetails.Tables[0].TableName = "BILL";
                     dsBillDetails.Tables[1].TableName = "BILLDETAILS";
-                    dsBillDetails.Tables[2].TableName = "MOPDETAILS";
+                    dsBillDetails.Tables[2].TableName = "PGW_TRANSACTIONDATA";
+                    dsBillDetails.Tables[3].TableName = "MOPDETAILS";
                 }
             }
             catch (Exception ex)
@@ -564,6 +570,41 @@ namespace NSRetailPOS.Data
                 SQLCon.Sqlconn().Close();
             }
             return dtBillDetails;
+        }
+
+        public int SaveCompletedTransactionData(CompletedTransactionData completedTransactionData)
+        {
+            int pgwTransactionDataID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_C_PGW_TRANSACTIONDATA]";
+                    cmd.Parameters.AddWithValue("@BillID", completedTransactionData.BillID);
+                    cmd.Parameters.AddWithValue("@MopID", completedTransactionData.MopID);
+                    cmd.Parameters.AddWithValue("@Amount", completedTransactionData.Amount);
+                    cmd.Parameters.AddWithValue("@PaymentRequest", completedTransactionData.PaymentRequest);
+                    cmd.Parameters.AddWithValue("@PaymentResponse", completedTransactionData.StatusResponse);
+                    cmd.Parameters.AddWithValue("@PaymentGatewayID", completedTransactionData.PaymentGatewayID);
+                    cmd.Parameters.AddWithValue("@AdditionalConfig", completedTransactionData.AdditionalSettings);
+
+                    object objReturn = cmd.ExecuteScalar();
+                    pgwTransactionDataID = Convert.ToInt32(objReturn);
+
+                    completedTransactionData.CompletedTransactionDataID = pgwTransactionDataID;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While saving completed transaction data - " + ex.Message, ex);
+            }
+            finally
+            {
+                SQLCon.Sqlconn().Close();
+            }
+            return pgwTransactionDataID;
         }
     }
 }

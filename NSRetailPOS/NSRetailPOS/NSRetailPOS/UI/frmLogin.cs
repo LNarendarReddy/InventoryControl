@@ -67,12 +67,17 @@ namespace NSRetailPOS.UI
                             && bool.Parse(dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"].ToString());
                         Utility.branchInfo.EnableDraftBills = int.Parse(dSUserInfo.Tables[0].Rows[0]["ENABLEDRAFTBILLS"].ToString());
 
-                        string getwayType = "PineLabs";
-                        string baseSettings = string.Empty;
-                        string additionalSettings = string.Empty;
+                        if (dSUserInfo.Tables[1].Columns.Contains("PAYMENTGATEWAYINFOID")
+                            && dSUserInfo.Tables[1].Columns["PAYMENTGATEWAYINFOID"] != null)
+                        {
+                            int paymentGatewayID = Convert.ToInt32(dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYINFOID"]);
+                            string getwayType = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYINFOTYPE"].ToString();
+                            string baseSettings = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYCONFIGDATA"].ToString();
+                            string additionalSettings = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYADDITIONALCONFIG"].ToString();
 
-                        // payment gateway
-                        Utility.PaymentGateway = PaymentGatewayBase.Create(getwayType, baseSettings, additionalSettings);
+                            // payment gateway
+                            Utility.PaymentGateway = PaymentGatewayBase.Create(getwayType, paymentGatewayID, baseSettings, additionalSettings);
+                        }
 
                         if (ISOTP)
                         {

@@ -25,9 +25,9 @@ namespace NSRetailPOS.Gateway
 
         protected abstract IPaymentRequest GetPaymentRequest(params object[] parameters);
 
-        public abstract Task<CompletedTransactionData> ReceivePayment(int mopID, CancellationToken token, params object[] parameters);
+        public abstract Task<CompletedTransactionData> ReceivePayment(int billID, int mopID, CancellationToken token, params object[] parameters);
 
-        public static PaymentGatewayBase Create(string gatewayType, string baseSettings, string additionalSettings)
+        public static PaymentGatewayBase Create(string gatewayType, int paymentGatewayID, string baseSettings, string additionalSettings)
         {
             if (string.IsNullOrEmpty(baseSettings) || string.IsNullOrEmpty(additionalSettings)) return null;
 
@@ -36,7 +36,7 @@ namespace NSRetailPOS.Gateway
             switch (gatewayType)
             {
                 case "PineLabs":
-                    gateway = new PineLabsGateway(baseSettings, additionalSettings);
+                    gateway = new PineLabsGateway(paymentGatewayID, baseSettings, additionalSettings);
                     break;
             }
             return gateway;
@@ -76,5 +76,13 @@ namespace NSRetailPOS.Gateway
         public decimal Amount {  get; set; }
 
         public int MopID { get; set; }
+
+        public int BillID { get; set; }
+
+        public string AdditionalSettings { get; set; }
+
+        public int PaymentGatewayID { get; set; }
+
+        public int CompletedTransactionDataID { get; set; }
     }
 }

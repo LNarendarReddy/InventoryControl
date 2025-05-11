@@ -365,7 +365,8 @@ namespace NSRetailPOS.UI
             cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = cancellationTokenSource.Token;
 
-             CompletedTransactionData completedTransactionData = await Utility.PaymentGateway.ReceivePayment(mopID, cancellationToken
+             CompletedTransactionData completedTransactionData = await Utility.PaymentGateway.ReceivePayment(
+                 Convert.ToInt32(billObj.BillID), mopID, cancellationToken
                 , billObj.BillNumber.ToString(), 1, paymentMode, amount, Utility.loginInfo.UserID);
 
             btnCancelRequest.Enabled = false;
@@ -373,7 +374,9 @@ namespace NSRetailPOS.UI
 
             if (completedTransactionData == null) return;
 
+            billingRepository.SaveCompletedTransactionData(completedTransactionData);
             billObj.CompletedTransactions.Add(completedTransactionData);
+
             SetReceivedAmounts();
         }
 
