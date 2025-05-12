@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NSRetailPOS.Gateway;
+using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace NSRetailPOS.Entity
@@ -37,6 +39,14 @@ namespace NSRetailPOS.Entity
         public DataTable dtMopValues { get; set; }
 
         public object PaymentMode { get; set; }
+
+        public List<CompletedTransactionData> CompletedTransactions { get; set; }
+
+        public Bill()
+        {
+            CompletedTransactions = new List<CompletedTransactionData>();
+        }
+
         public object Clone()
         {
             Bill clonedBillObj = new Bill();
