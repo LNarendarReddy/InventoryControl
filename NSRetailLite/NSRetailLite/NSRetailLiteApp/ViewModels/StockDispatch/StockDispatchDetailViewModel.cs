@@ -91,7 +91,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             if (StockDispatchDetailModel.IsOpenItem && StockDispatchDetailModel.WeightInKGs >= 10000)
                 errors.Add("Weight cannot be more than 4 digits");
 
-            if (SelectedTrayInfo == null)
+            if (SelectedTrayInfo == null || StockDispatchDetailModel.TrayInfoId <= 0)
                 errors.Add("Tray # not entered");
 
             if (errors.Any())
@@ -131,7 +131,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             if (popAfterSave)
                 Pop();
 
-            if (!StockDispatchDetailModel.IsNew) return;
+            if (popAfterSave && !StockDispatchDetailModel.IsNew) return;
             StockDispatchDetailModel.IsNew = false;
 
             // find if existing update
@@ -176,6 +176,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             {
                 DisplayAlert("success", "Save completed successfully", "OK");
                 StockDispatchDetailModel = new StockDispatchDetailModel();
+                OnSelectedTrayInfoChanged(SelectedTrayInfo);
                 SaveComplete?.Invoke();
             }
         }
@@ -206,6 +207,13 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             {
                 item = CachedItem;
                 CachedItem = null;
+            }
+
+            if (branchIndentDetailModel != null && branchIndentDetailModel.ItemId != item.ItemID)
+            {
+                DisplayAlert("Error", "Wrong parent detected, please reopen the item", "OK");
+                await Pop();
+                return;
             }
 
             Tuple<ItemCodeData, ItemPrice> returnData = await new ItemPriceSelectionUtility().GetSelectedItemPrice(item, ShowItemScanInCodeSelection);
