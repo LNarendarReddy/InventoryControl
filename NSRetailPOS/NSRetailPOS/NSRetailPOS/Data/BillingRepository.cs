@@ -123,7 +123,7 @@ namespace NSRetailPOS.Data
 
                     dsNextBill.Tables[0].TableName = "BILL";
                     dsNextBill.Tables[1].TableName = "BILLDETAILS";
-                    dsNextBill.Tables[1].TableName = "PGW_TRANSACTIONDATA";
+                    dsNextBill.Tables[2].TableName = "PGW_TRANSACTIONDATA";
                 }
             }
             catch (Exception ex)
@@ -191,7 +191,7 @@ namespace NSRetailPOS.Data
 
                     dsNextBill.Tables[0].TableName = "BILL";
                     dsNextBill.Tables[1].TableName = "BILLDETAILS";
-                    dsNextBill.Tables[1].TableName = "PGW_TRANSACTIONDATA";
+                    dsNextBill.Tables[2].TableName = "PGW_TRANSACTIONDATA";
                 }
             }
             catch (Exception ex)
@@ -310,7 +310,7 @@ namespace NSRetailPOS.Data
 
                     dsBillDetails.Tables[0].TableName = "BILL";
                     dsBillDetails.Tables[1].TableName = "BILLDETAILS";
-                    dsBillDetails.Tables[1].TableName = "PGW_TRANSACTIONDATA";
+                    dsBillDetails.Tables[2].TableName = "PGW_TRANSACTIONDATA";
                 }
             }
             catch (Exception ex)
