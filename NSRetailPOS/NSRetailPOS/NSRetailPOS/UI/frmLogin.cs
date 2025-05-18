@@ -68,9 +68,10 @@ namespace NSRetailPOS.UI
                         Utility.branchInfo.EnableDraftBills = int.Parse(dSUserInfo.Tables[0].Rows[0]["ENABLEDRAFTBILLS"].ToString());
 
                         if (dSUserInfo.Tables[1].Columns.Contains("PAYMENTGATEWAYINFOID")
-                            && dSUserInfo.Tables[1].Columns["PAYMENTGATEWAYINFOID"] != null)
+                            && dSUserInfo.Tables[1].Columns["PAYMENTGATEWAYINFOID"] != null
+                            && int.TryParse(dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYINFOID"].ToString(), out int paymentGatewayID)
+                            && paymentGatewayID > 0)
                         {
-                            int paymentGatewayID = Convert.ToInt32(dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYINFOID"]);
                             string getwayType = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYINFOTYPE"].ToString();
                             string baseSettings = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYCONFIGDATA"].ToString();
                             string additionalSettings = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYADDITIONALCONFIG"].ToString();

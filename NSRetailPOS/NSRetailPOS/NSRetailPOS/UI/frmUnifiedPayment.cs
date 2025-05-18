@@ -391,7 +391,10 @@ namespace NSRetailPOS.UI
 
         private void SetReceivedAmounts()
         {
-            if (billObj.CompletedTransactions == null || !billObj.CompletedTransactions.Any()) return;
+            if (Utility.PaymentGateway == null ||
+                billObj.CompletedTransactions == null 
+                || !billObj.CompletedTransactions.Any()) 
+                    return;
 
             txtCardRecievedAmount.EditValue = billObj.CompletedTransactions.Where(x => x.MopID == cardMopID).Sum(x => x.Amount);
             txtUPIReceiveAmount.EditValue = billObj.CompletedTransactions.Where(x => x.MopID == upiMopID).Sum(x => x.Amount);
