@@ -440,6 +440,12 @@
     <Compile Include="ReportForms\Wareshouse\Audit\ucCostPriceAudit.Designer.cs">
       <DependentUpon>ucCostPriceAudit.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucDeletedItemPrices.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucDeletedItemPrices.Designer.cs">
+      <DependentUpon>ucDeletedItemPrices.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\Audit\ucDeletedItemCodes.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1340,6 +1346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucCostPriceAudit.resx">
       <DependentUpon>ucCostPriceAudit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucDeletedItemPrices.resx">
+      <DependentUpon>ucDeletedItemPrices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucDeletedItemCodes.resx">
       <DependentUpon>ucDeletedItemCodes.cs</DependentUpon>

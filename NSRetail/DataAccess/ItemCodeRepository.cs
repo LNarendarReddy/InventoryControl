@@ -606,5 +606,27 @@ namespace DataAccess
             }
             return nextSKUCode;
         }
+
+        public void UnDeleteItemPrice(object ItemPriceID, object UserID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_UD_ITEMPRICE]";
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    if (!int.TryParse(objReturn?.ToString(), out int value))
+                        throw new Exception(objReturn.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error while un-deleting item code : {ex.Message}", ex);
+            }
+        }
     }
 }
