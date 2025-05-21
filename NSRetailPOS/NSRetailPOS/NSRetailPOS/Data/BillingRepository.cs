@@ -158,6 +158,7 @@ namespace NSRetailPOS.Data
 
                     dsNextBill.Tables[0].TableName = "BILL";
                     dsNextBill.Tables[1].TableName = "BILLDETAILS";
+                    dsNextBill.Tables[2].TableName = "PGW_TRANSACTIONDATA";
                 }
             }
             catch (Exception ex)

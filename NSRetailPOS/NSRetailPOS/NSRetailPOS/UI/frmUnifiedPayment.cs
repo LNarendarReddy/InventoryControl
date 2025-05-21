@@ -264,6 +264,7 @@ namespace NSRetailPOS.UI
         
         private void gvMOP_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
+            gcMOP.RefreshDataSource();
             gvMOP.RefreshData();
             decimal.TryParse(gvMOP.Columns["MOPVALUE"].SummaryItem.SummaryValue.ToString(), out paidAmount);
             remainingAmount = payableAmount - paidAmount;
