@@ -171,6 +171,8 @@ namespace NSRetailPOS.UI
                 gvMOP.UpdateCurrentRow();
             }
 
+            gcMOP.RefreshDataSource();
+
             billObj.dtMopValues = (gvMOP.DataSource as DataView).Table;
 
             IsPaid = true;
