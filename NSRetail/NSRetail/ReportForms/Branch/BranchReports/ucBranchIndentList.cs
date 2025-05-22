@@ -29,7 +29,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "INDENTSTATUS", "Indent Status" }
                 , { "NOOFDAYS", "No of Indent Days" }
                 , { "DISPATCHBY", "Dispatch by" }
-
+                , { "INDENTMETHOD", "Indent method" }
             };
 
             ForceShowColumns = new List<string>(){ { "BRANCHINDENTID"} };
@@ -76,6 +76,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                         obj.ShowDialog();
                         break;
                     case "Discard":
+                        if (XtraMessageBox.Show("Are you sure you want to Discard indent?", "Confirm Discard", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                            != DialogResult.Yes) break;
                         int rowsAffected = new IndentRepository().DiscardIndent(drFocusedRow["BRANCHINDENTID"], Utility.UserID);
                         if (rowsAffected == 0)
                             throw new Exception("Something went wrong");

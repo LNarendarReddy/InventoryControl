@@ -13,7 +13,7 @@ namespace DataAccess
     public class IndentRepository
     {
         public void SaveBranchIndent(int BranchIndentID, int FromBranchID, object ToBranchID, 
-            object CategotyID, object NoOfDays, int UserID, DataTable dt)
+            object CategotyID, object NoOfDays, string indentMethod, int UserID, DataTable dt)
         {
             List<string> allowedcolumns = new List<string>() 
             {   "ITEMID", 
@@ -41,6 +41,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@CATEGORYID", CategotyID);
                     cmd.Parameters.AddWithValue("@NOOFDAYS", NoOfDays);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
+                    cmd.Parameters.AddWithValue("@IndentMethod", indentMethod);
                     cmd.Parameters.AddWithValue("@dtDetail", dt);
                     object obj = cmd.ExecuteScalar();
                     string str = Convert.ToString(obj);

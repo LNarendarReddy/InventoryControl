@@ -82,7 +82,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 {
                     new IndentRepository().SaveBranchIndent(
                     0, Utility.BranchID, cmbBranch.EditValue, cmbCategory.EditValue,
-                    txtIndentDays.EditValue, Utility.UserID, indentTable);
+                    txtIndentDays.EditValue, "6M sale days AVG", Utility.UserID, indentTable);
                     XtraMessageBox.Show("Indent saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
