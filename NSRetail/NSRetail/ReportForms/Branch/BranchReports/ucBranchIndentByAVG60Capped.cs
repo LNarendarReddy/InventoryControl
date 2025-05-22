@@ -65,32 +65,30 @@ namespace NSRetail.ReportForms.Branch.BranchReports
         {
             if (ResultGrid.DataSource == null) return;
 
-            XtraMessageBox.Show("Not supported"); return;
+            try
+            {
+                DataTable indentTable = ((DataTable)ResultGrid.DataSource).Copy();
 
-            //try
-            //{
-            //    DataTable indentTable = ((DataTable)ResultGrid.DataSource).Copy();
+                if (indentTable.Rows.Count == 0)
+                {
+                    XtraMessageBox.Show("No data to save", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-            //    if (indentTable.Rows.Count == 0)
-            //    {
-            //        XtraMessageBox.Show("No data to save", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        return;
-            //    }
-
-            //    var result = XtraMessageBox.Show("Are you sure want to save indent?",
-            //        "Confirm!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //    if (Convert.ToString(result).ToLower() == "yes")
-            //    {
-            //        new IndentRepository().SaveBranchIndent(
-            //        0, Utility.BranchID, cmbBranch.EditValue, cmbCategory.EditValue,
-            //        txtIndentDays.EditValue, Utility.UserID, indentTable);
-            //        XtraMessageBox.Show("Indent saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    ErrorManagement.ErrorMgmt.ShowError(ex);
-            //}
+                var result = XtraMessageBox.Show("Are you sure want to save indent?",
+                    "Confirm!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Convert.ToString(result).ToLower() == "yes")
+                {
+                    new IndentRepository().SaveBranchIndent(
+                    0, Utility.BranchID, cmbBranch.EditValue, cmbCategory.EditValue,
+                    txtIndentDays.EditValue, "6M AVG with 60% Cap", Utility.UserID, indentTable);
+                    XtraMessageBox.Show("Indent saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
         }
     }
 }
