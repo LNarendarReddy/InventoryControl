@@ -469,6 +469,7 @@
             this.rgPaymentModes.StyleController = this.layoutControl1;
             this.rgPaymentModes.TabIndex = 8;
             this.rgPaymentModes.SelectedIndexChanged += new System.EventHandler(this.rgPaymentModes_SelectedIndexChanged);
+            this.rgPaymentModes.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.rgPaymentModes_EditValueChanging);
             this.rgPaymentModes.Leave += new System.EventHandler(this.rgPaymentModes_Leave);
             // 
             // rgSaleType
@@ -922,7 +923,7 @@
             this.layoutControlItem1.Text = "Sale type";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(110, 16);
             // 
-            // frmMultiPayment
+            // frmUnifiedPayment
             // 
             this.AcceptButton = this.btnApply;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -930,7 +931,7 @@
             this.ClientSize = new System.Drawing.Size(900, 606);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
-            this.Name = "frmMultiPayment";
+            this.Name = "frmUnifiedPayment";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Payment - ";

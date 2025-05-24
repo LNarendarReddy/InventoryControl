@@ -1,4 +1,5 @@
-﻿using NSRetailPOS.Entity;
+﻿using Newtonsoft.Json;
+using NSRetailPOS.Entity;
 using NSRetailPOS.Gateway;
 using System;
 using System.Data;
@@ -586,10 +587,10 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@BillID", completedTransactionData.BillID);
                     cmd.Parameters.AddWithValue("@MopID", completedTransactionData.MopID);
                     cmd.Parameters.AddWithValue("@Amount", completedTransactionData.Amount);
-                    cmd.Parameters.AddWithValue("@PaymentRequest", completedTransactionData.PaymentRequest);
-                    cmd.Parameters.AddWithValue("@PaymentResponse", completedTransactionData.StatusResponse);
+                    cmd.Parameters.AddWithValue("@PaymentRequest", JsonConvert.SerializeObject(completedTransactionData.PaymentRequest));
+                    cmd.Parameters.AddWithValue("@PaymentResponse", JsonConvert.SerializeObject(completedTransactionData.StatusResponse));
                     cmd.Parameters.AddWithValue("@PaymentGatewayID", completedTransactionData.PaymentGatewayID);
-                    cmd.Parameters.AddWithValue("@AdditionalConfig", completedTransactionData.AdditionalSettings);
+                    cmd.Parameters.AddWithValue("@AdditionalConfig", JsonConvert.SerializeObject(completedTransactionData.AdditionalSettings));
 
                     object objReturn = cmd.ExecuteScalar();
                     pgwTransactionDataID = Convert.ToInt32(objReturn);

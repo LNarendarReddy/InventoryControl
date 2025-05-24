@@ -25,7 +25,8 @@ namespace NSRetailPOS.UI
         BillingRepository billingRepository = new BillingRepository();
         public bool IsPaid = false, IsDiscarded = false, canClose = true;
         private Bill billObj;
-        decimal paidAmount = 0.00M, payableAmount = 0.00M, remainingAmount = 0.00M, billedAmount = 0.00M;
+        decimal paidAmount = 0.00M, payableAmount = 0.00M, remainingAmount = 0.00M, billedAmount = 0.00M
+            , cardReceivedAmount = 0.00M, upiReceivedAmount = 0.00M;
 
         int cashRowHandle = -1, b2bCreditRowHandle = -1, cardRowHandle = -1, upiRowHandle = -1, cardMopID, upiMopID;
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
@@ -80,6 +81,27 @@ namespace NSRetailPOS.UI
 
             UpdateLabels();
             SetReceivedAmounts();
+
+            bool cardReceived = cardReceivedAmount > 0;
+            bool upiReceived = upiReceivedAmount > 0;
+
+            if (cardReceived && upiReceived)
+            {
+                rgPaymentModes.EditValue = "Multiple";
+                gvMOP.SetRowCellValue(cardRowHandle, "MOPVALUE", cardReceivedAmount);
+                gvMOP.SetRowCellValue(upiRowHandle, "MOPVALUE", upiReceivedAmount);
+            }
+            else if (cardReceived)
+            {
+                rgPaymentModes.EditValue = "CARD";
+                gvMOP.SetRowCellValue(cardRowHandle, "MOPVALUE", billedAmount);
+            }
+            else if (upiReceived)
+            {
+                rgPaymentModes.EditValue = "UPI";
+
+                gvMOP.SetRowCellValue(upiRowHandle, "MOPVALUE", billedAmount);
+            }
 
             if (Utility.PaymentGateway != null)
             {
@@ -171,7 +193,33 @@ namespace NSRetailPOS.UI
             gcMOP.EndUpdate();
             gcMOP.RefreshDataSource();
 
+            if (Utility.PaymentGateway != null)
+            {
+                if (decimal.TryParse(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE")?.ToString(), out decimal cardEnteredValue)
+                    && cardEnteredValue != cardReceivedAmount)
+                {
+                    XtraMessageBox.Show("Card amount is not matching with card received amount", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (decimal.TryParse(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE")?.ToString(), out decimal upiEnteredValue)
+                    && upiEnteredValue != upiReceivedAmount)
+                {
+                    XtraMessageBox.Show("UPI amount is not matching with UPI received amount", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             billObj.dtMopValues = gcMOP.DataSource as DataTable;
+
+            // force refresh values
+            int i = 0;
+            foreach (DataRow dr in billObj.dtMopValues.Rows)
+            {
+                int rowHandle = gvMOP.GetRowHandle(i);
+                dr["MOPVALUE"] = gvMOP.GetRowCellValue(rowHandle, "MOPVALUE");
+                i++;
+            }
 
             IsPaid = true;
             Close();
@@ -179,13 +227,20 @@ namespace NSRetailPOS.UI
 
         private void rgPaymentModes_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             for (int rowhandle = 0; rowhandle < gvMOP.RowCount; rowhandle++)
             {
-                gvMOP.SetRowCellValue(rowhandle, "MOPVALUE", 0);
-            }
+                object setValue;
 
-            SetReceiveValues(cardRowHandle, 0);
-            SetReceiveValues(upiRowHandle, 0);
+                if (rowhandle == cardRowHandle)
+                    setValue = txtCardRecievedAmount.EditValue;
+                else if (rowhandle == upiRowHandle)
+                    setValue = txtUPIReceiveAmount.EditValue;
+                else
+                    setValue = 0;
+
+                gvMOP.SetRowCellValue(rowhandle, "MOPVALUE", setValue ?? 0);
+            }
 
             if (!rgPaymentModes.Text.Equals("Multiple") && !rgPaymentModes.Text.Equals("CASH"))
             {
@@ -255,18 +310,57 @@ namespace NSRetailPOS.UI
                 gvMOP.ShowEditor();
         }
 
+        private void rgPaymentModes_EditValueChanging(object sender, ChangingEventArgs e)
+        {
+            if (cardReceivedAmount > 0 && upiReceivedAmount > 0 && e.NewValue.ToString() != "Multiple")
+            {
+                XtraMessageBox.Show("Only multiple payment mode allowed");
+                e.Cancel = true;
+                return;
+            }
+
+            if (e.NewValue.ToString() == "Multiple")
+            {
+                // if multiple allow  it
+                return;
+            }
+
+            if (cardReceivedAmount > 0 && e.NewValue.ToString() != "CARD")
+            {
+                XtraMessageBox.Show("Only multiple or card payment mode allowed");
+                e.Cancel = true;
+            }
+            else if (upiReceivedAmount > 0 && e.NewValue.ToString() != "UPI")
+            {
+                XtraMessageBox.Show("Only multiple or UPI payment mode allowed");
+                e.Cancel = true;
+            }
+        }
+
         private void UpdateLabels()
         {
             txtPaidAmount.EditValue = paidAmount;
             decimal roundedRemaining = remainingAmount < 0.00m ? 0 : Math.Round(remainingAmount);
             txtRemainingAmount.EditValue = $"{Math.Round(remainingAmount)} ( Rounded value : {roundedRemaining} )";
         }
-        
+
         private void gvMOP_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             gcMOP.RefreshDataSource();
             gvMOP.RefreshData();
+            
+            paidAmount = 0;
+
             decimal.TryParse(gvMOP.Columns["MOPVALUE"].SummaryItem.SummaryValue.ToString(), out paidAmount);
+
+            if (Utility.PaymentGateway != null)
+            {
+                paidAmount -= Convert.ToDecimal(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE"));
+                paidAmount -= Convert.ToDecimal(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE"));
+
+                paidAmount += cardReceivedAmount + upiReceivedAmount;
+            }
+            
             remainingAmount = payableAmount - paidAmount;
             UpdateLabels();
         }
@@ -302,13 +396,11 @@ namespace NSRetailPOS.UI
 
             if (rowHandle == cardRowHandle)
             {
-                decimal.TryParse(txtCardRecievedAmount.EditValue?.ToString(), out decimal cardReceivedAmount);
-                txtCardRequestAmount.EditValue = amount - cardReceivedAmount; 
+                txtCardRequestAmount.EditValue = amount > cardReceivedAmount ? amount - cardReceivedAmount : 0;
             }
             else if (rowHandle == upiRowHandle)
             {
-                decimal.TryParse(txtUPIReceiveAmount.EditValue?.ToString(), out decimal upiReceivedAmount);
-                txtUPIRequestAmount.EditValue = amount - upiReceivedAmount;
+                txtUPIRequestAmount.EditValue = amount > upiReceivedAmount ? amount - upiReceivedAmount : 0;
             }
             
             EnableDisableReceives();
@@ -316,8 +408,8 @@ namespace NSRetailPOS.UI
 
         private void EnableDisableReceives()
         {
-            bool cardEnabled = decimal.TryParse(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE").ToString(), out decimal cardValue) && cardValue > 0;
-            bool upiEnabled = decimal.TryParse(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE").ToString(), out decimal upiValue) && upiValue > 0;
+            bool cardEnabled = decimal.TryParse(txtCardRequestAmount.EditValue?.ToString(), out decimal cardValue) && cardValue > 0;
+            bool upiEnabled = decimal.TryParse(txtUPIRequestAmount.EditValue?.ToString(), out decimal upiValue) && upiValue > 0;
 
             txtCardRequestAmount.Enabled = cardEnabled;
             btnReceiveCard.Enabled = cardEnabled;
@@ -368,9 +460,9 @@ namespace NSRetailPOS.UI
             cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = cancellationTokenSource.Token;
 
-             CompletedTransactionData completedTransactionData = await Utility.PaymentGateway.ReceivePayment(
-                 Convert.ToInt32(billObj.BillID), mopID, cancellationToken
-                , billObj.BillNumber.ToString(), 1, paymentMode, amount, Utility.loginInfo.UserID);
+            CompletedTransactionData completedTransactionData = await Utility.PaymentGateway.ReceivePayment(
+                Convert.ToInt32(billObj.BillID), mopID, cancellationToken
+               , billObj.BillNumber.ToString(), 1, paymentMode, amount, Utility.loginInfo.UserID);
 
             btnCancelRequest.Enabled = false;
             EnableAllControls();
@@ -397,14 +489,18 @@ namespace NSRetailPOS.UI
                 || !billObj.CompletedTransactions.Any()) 
                     return;
 
-            txtCardRecievedAmount.EditValue = billObj.CompletedTransactions.Where(x => x.MopID == cardMopID).Sum(x => x.Amount);
-            txtUPIReceiveAmount.EditValue = billObj.CompletedTransactions.Where(x => x.MopID == upiMopID).Sum(x => x.Amount);
+            cardReceivedAmount = billObj.CompletedTransactions.Where(x => x.MopID == cardMopID).Sum(x => x.Amount);
+            upiReceivedAmount = billObj.CompletedTransactions.Where(x => x.MopID == upiMopID).Sum(x => x.Amount);
+            txtCardRecievedAmount.EditValue = cardReceivedAmount;
+            txtUPIReceiveAmount.EditValue = upiReceivedAmount;
 
             decimal.TryParse(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE").ToString(), out decimal cardEnteredAmount);
             SetReceiveValues(cardRowHandle, cardEnteredAmount);
 
             decimal.TryParse(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE").ToString(), out decimal upiEnteredAmount);
-            SetReceiveValues(cardRowHandle, upiEnteredAmount);
+            SetReceiveValues(upiRowHandle, upiEnteredAmount);
+
+            gvMOP_CellValueChanged(null, null);
         }
     }
 }

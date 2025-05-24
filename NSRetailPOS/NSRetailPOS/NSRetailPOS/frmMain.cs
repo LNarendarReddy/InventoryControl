@@ -224,133 +224,6 @@ namespace NSRetailPOS
             }
         }
 
-        //private void btnCloseBill_Click(object sender, EventArgs e)
-        //{
-        //    if (!btnCloseBill.Enabled) return;
-
-        //    DataTable dtBillDetails = billObj.dtBillDetails.Copy();
-        //    dtBillDetails.DefaultView.RowFilter = "DELETEDDATE IS NULL";
-        //    dtBillDetails = dtBillDetails.DefaultView.ToTable();
-
-        //    if (dtBillDetails.Rows.Count == 0)
-        //    {
-        //        XtraMessageBox.Show("No items to bill", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-
-        //    frmPrePayment paymentForm = new frmPrePayment(billObj);
-        //    paymentForm.ShowDialog();
-        //    DataSet nextBillDetails = null;
-
-        //    if (paymentForm.IsDiscarded)
-        //    {
-        //        nextBillDetails = billingRepository.DiscardBill(Utility.loginInfo.UserID, daySequenceID, billObj.BillID);
-        //        LoadBillData(nextBillDetails);
-        //        return;
-        //    }
-
-        //    if (!paymentForm.IsPaid) { return; }
-
-        //    try
-        //    {
-        //        DataTable dtBillOffers = billingRepository.GetBillOffers(billObj.BillID);
-        //        if (dtBillOffers != null && dtBillOffers.Rows.Count == 1)
-        //        {
-        //            double actualSalePrice = Convert.ToDouble(dtBillOffers.Rows[0]["ACTUALSALEPRICE"]);
-        //            if (XtraMessageBox.Show($"Add item {dtBillOffers.Rows[0]["ITEMNAME"]} ({dtBillOffers.Rows[0]["SKUCODE"]}) for Rs.{actualSalePrice} to the bill?",
-        //                "Add free item", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-        //            {
-        //                SaveBillDetail(dtBillOffers.Rows[0]["ITEMPRICEID"], 1, 0, -1, true, actualSalePrice);
-
-        //                //refresh bill details
-        //                dtBillDetails = billObj.dtBillDetails.Copy();
-        //                dtBillDetails.DefaultView.RowFilter = "DELETEDDATE IS NULL";
-        //                dtBillDetails = dtBillDetails.DefaultView.ToTable();
-
-        //                if (actualSalePrice > 0)
-        //                {
-        //                    XtraMessageBox.Show("Bill amount updated, please verify amount", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-        //                    frmPrePayment frmPayment = new frmPrePayment(billObj, false);
-        //                    frmPayment.ShowDialog();
-
-        //                    if (frmPayment.IsDiscarded)
-        //                    {
-        //                        nextBillDetails = billingRepository.DiscardBill(Utility.loginInfo.UserID, daySequenceID, billObj.BillID);
-        //                        LoadBillData(nextBillDetails);
-        //                        return;
-        //                    }
-
-        //                    if (!frmPayment.IsPaid)
-        //                        return;
-        //                }
-        //            }
-        //        }
-
-        //        nextBillDetails = billingRepository.FinishBill(Utility.loginInfo.UserID, daySequenceID, billObj);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-
-        //    try
-        //    {
-        //        // use this object for printing
-        //        Bill oldBillObj = billObj.Clone() as Bill;
-        //        DataView dv = oldBillObj.dtMopValues.DefaultView;
-        //        dv.RowFilter = "MOPVALUE > 0";
-        //        rptBill rpt = new rptBill(dtBillDetails, dv.ToTable());
-        //        rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
-        //        rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
-        //        rpt.Parameters["FSSAI"].Value = "10114004000548";
-        //        rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
-        //        rpt.Parameters["BillDate"].Value = DateTime.Now;
-        //        rpt.Parameters["BillNumber"].Value = oldBillObj.BillNumber;
-        //        rpt.Parameters["CustomerName"].Value = oldBillObj.CustomerName;
-        //        rpt.Parameters["CustomerNumber"].Value = oldBillObj.CustomerNumber;
-        //        rpt.Parameters["CustomerGST"].Value = oldBillObj.CustomerGST;
-        //        rpt.Parameters["TenderedCash"].Value = oldBillObj.TenderedCash;
-        //        rpt.Parameters["TenderedChange"].Value = oldBillObj.TenderedChange;
-        //        rpt.Parameters["IsDoorDelivery"].Value = oldBillObj.IsDoorDelivery;
-        //        rpt.Parameters["BranchName"].Value = Utility.branchInfo.BranchName;
-        //        rpt.Parameters["CounterName"].Value = Utility.branchInfo.BranchCounterName;
-        //        rpt.Parameters["Phone"].Value = Utility.branchInfo.PhoneNumber;
-        //        rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
-        //        rpt.Parameters["RoundingFactor"].Value = oldBillObj.Rounding;
-        //        rpt.Parameters["IsDuplicate"].Value = false;
-        //        Utility.PrintReport(rpt);
-        //        this.BringToFront();
-
-        //        if(Utility.branchInfo.BranchID.Equals(103) || Utility.branchInfo.BranchID.Equals(105))
-        //        {
-        //            Utility.PrintReport(rpt);
-        //            this.BringToFront();
-        //        }
-
-        //        try
-        //        {
-        //            if (dv.ToTable().Select("MOPID=1").Count() > 0)
-        //            {
-        //                DefaultPrinter printer = new DefaultPrinter();
-        //                printer.OpenPrinter("");
-        //                printer.Print($"{(char)27}{(char)112}{(char)0}{(char)25}{(char)250}");
-        //                printer.Close();
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            throw new Exception("Printer does not support cash drawer : " + ex.Message);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        XtraMessageBox.Show($"Printing Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //    LoadBillData(nextBillDetails);
-        //}
-
         private void btnCloseBill_Click(object sender, EventArgs e)
         {
             if (!btnCloseBill.Enabled) return;
@@ -522,7 +395,7 @@ namespace NSRetailPOS
         {
             billObj = Utility.GetBill(dsBillInfo);
 
-            this.Text = $"NSRetail POS (v.Beta 24-05) - {billObj.BillNumber}";
+            this.Text = $"NSRetail POS (v.Beta 25-05) - {billObj.BillNumber}";
 
             //txtLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
             //txtLastBilledQuantity.Text = billObj.LastBilledQuantity.ToString();
@@ -540,11 +413,6 @@ namespace NSRetailPOS
 
             txtItemCode.Focus();
             lblBillOfferContainer.Visibility = LayoutVisibility.Never;
-        }
-
-        private void txtItemCode_Leave(object sender, EventArgs e)
-        {
-            
         }
 
         private void txtItemCode_KeyDown(object sender, KeyEventArgs e)
@@ -1015,7 +883,7 @@ namespace NSRetailPOS
         public void ReceiveBarCode(string data)
         {            
             txtItemCode.Text = data;
-            txtItemCode_Leave(txtItemCode, new EventArgs());
+            //txtItemCode_Leave(txtItemCode, new EventArgs());
         }
 
         private void gvBilling_ShowingEditor(object sender, CancelEventArgs e)
@@ -1059,7 +927,6 @@ namespace NSRetailPOS
                 ItemPriceID = gvBilling.GetFocusedRowCellValue("ITEMPRICEID")
             };
 
-          
             if (new frmExtraDiscount(billDetailObj).ShowDialog() == DialogResult.OK)
             {
                 UpdateBillDetails(billDetailObj.dtBillDetails, billDetailObj.ItemPriceID);
@@ -1081,15 +948,6 @@ namespace NSRetailPOS
         private void btnLogout_Click(object sender, EventArgs e)
         {            
             this.Close();                 
-        }
-
-        private void gvBilling_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
-        {
-            //if(gvBilling.GetRowCellValue(e.RowHandle, "DELETEDDATE") != DBNull.Value)
-            //{
-            //    e.Appearance.Font = new Font(e.Appearance.Font.Name, e.Appearance.Font.Size, FontStyle.Strikeout);
-            //    e.Appearance.BackColor = Color.Maroon;
-            //}
         }
 
         int totalQuantity = 0;
