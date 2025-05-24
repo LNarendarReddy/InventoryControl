@@ -301,6 +301,24 @@ namespace NSRetailPOS.UI
                     , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
             {
                 e.Cancel = true;
+                return;
+            }
+
+            if (Utility.PaymentGateway != null)
+            {
+                decimal.TryParse(textValue, out decimal enteredValue);
+
+                if (gvMOP.FocusedRowHandle == cardRowHandle && enteredValue < cardReceivedAmount)
+                {
+                    baseEdit.EditValue = cardReceivedAmount;
+                    XtraMessageBox.Show($"Card value cannot be less than {cardReceivedAmount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                if (gvMOP.FocusedRowHandle == upiRowHandle && enteredValue < upiReceivedAmount)
+                {
+                    baseEdit.EditValue = upiReceivedAmount;
+                    XtraMessageBox.Show($"UPI value cannot be less than {upiReceivedAmount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -336,7 +354,7 @@ namespace NSRetailPOS.UI
                 e.Cancel = true;
             }
         }
-
+                
         private void UpdateLabels()
         {
             txtPaidAmount.EditValue = paidAmount;

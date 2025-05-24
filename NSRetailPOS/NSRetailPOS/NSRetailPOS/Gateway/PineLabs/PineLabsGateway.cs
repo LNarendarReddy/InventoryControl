@@ -159,6 +159,7 @@ namespace NSRetailPOS.Gateway.PineLabs
                 StatusRequest statusRequest = new StatusRequest();
                 CopyValues(statusRequest);
                 statusRequest.PlutusTransactionReferenceID = paymentResponse.PlutusTransactionReferenceID;
+
                 IStatusResponse statusResponse = await CheckRequestStatus(paymentRequest, statusRequest, token);
                 if (statusResponse == null) return null;
 
@@ -195,6 +196,7 @@ namespace NSRetailPOS.Gateway.PineLabs
             paymentRequest.AllowedPaymentMode = (PaymentMode)parameters[2];
             paymentRequest.Amount = Convert.ToDecimal(parameters[3]);
             paymentRequest.UserID = parameters[4].ToString();
+            paymentRequest.AutoCancelDurationInMinutes = paymentRequest.AllowedPaymentMode == PaymentMode.UPI ? 5 : 3;
             return paymentRequest;
         }
 
