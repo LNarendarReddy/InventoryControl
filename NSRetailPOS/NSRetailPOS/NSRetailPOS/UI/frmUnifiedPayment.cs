@@ -110,8 +110,6 @@ namespace NSRetailPOS.UI
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            gcMOP.RefreshDataSource();
-
             if (Convert.ToBoolean(rgSaleType.EditValue) && (txtCustomerName.EditValue == null || txtCustomerPhone.EditValue == null))
             {
                 XtraMessageBox.Show("Customer Name and number are required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -153,7 +151,6 @@ namespace NSRetailPOS.UI
                 return;
             }
 
-            gcMOP.Refresh();
             billObj.IsDoorDelivery = rgSaleType.EditValue;
             billObj.CustomerName = txtCustomerName.EditValue;
             billObj.CustomerNumber = txtCustomerPhone.EditValue;
@@ -171,9 +168,10 @@ namespace NSRetailPOS.UI
                 gvMOP.UpdateCurrentRow();
             }
 
+            gcMOP.EndUpdate();
             gcMOP.RefreshDataSource();
 
-            billObj.dtMopValues = (gvMOP.DataSource as DataView).Table;
+            billObj.dtMopValues = gcMOP.DataSource as DataTable;
 
             IsPaid = true;
             Close();
