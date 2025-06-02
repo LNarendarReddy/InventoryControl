@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
+using NSRetailPOS.Gateway;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -65,6 +66,20 @@ namespace NSRetailPOS.UI
                         Utility.branchInfo.FilterMRPByStock = dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"] != DBNull.Value 
                             && bool.Parse(dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"].ToString());
                         Utility.branchInfo.EnableDraftBills = int.Parse(dSUserInfo.Tables[0].Rows[0]["ENABLEDRAFTBILLS"].ToString());
+
+                        if (dSUserInfo.Tables[1].Columns.Contains("PAYMENTGATEWAYINFOID")
+                            && dSUserInfo.Tables[1].Columns["PAYMENTGATEWAYINFOID"] != null
+                            && int.TryParse(dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYINFOID"].ToString(), out int paymentGatewayID)
+                            && paymentGatewayID > 0)
+                        {
+                            string getwayType = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYINFOTYPE"].ToString();
+                            string baseSettings = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYCONFIGDATA"].ToString();
+                            string additionalSettings = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYADDITIONALCONFIG"].ToString();
+
+                            // payment gateway
+                            Utility.PaymentGateway = PaymentGatewayBase.Create(getwayType, paymentGatewayID, baseSettings, additionalSettings);
+                        }
+
                         if (ISOTP)
                         {
                             frmChangePassword Obj = new frmChangePassword();
