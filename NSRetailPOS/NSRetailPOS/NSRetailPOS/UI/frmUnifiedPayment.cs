@@ -30,6 +30,7 @@ namespace NSRetailPOS.UI
 
         int cashRowHandle = -1, b2bCreditRowHandle = -1, cardRowHandle = -1, upiRowHandle = -1, cardMopID, upiMopID;
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        DataTable dtMOPs;
 
         public frmUnifiedPayment(Bill bill, bool canClose = true)
         {
@@ -44,7 +45,7 @@ namespace NSRetailPOS.UI
 
         private void frmMultiPayment_Load(object sender, EventArgs e)
         {
-            DataTable dtMOPs = billingRepository.GetMOPs();
+            dtMOPs = billingRepository.GetMOPs();
 
             foreach (DataRow drMOP in dtMOPs.Rows)
             {
@@ -210,7 +211,7 @@ namespace NSRetailPOS.UI
                 }
             }
 
-            billObj.dtMopValues = gcMOP.DataSource as DataTable;
+            billObj.dtMopValues = dtMOPs;
 
             // force refresh values
             int i = 0;
