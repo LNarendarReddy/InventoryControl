@@ -163,6 +163,7 @@ namespace NSRetailPOS.Gateway.PineLabs
                 IStatusResponse statusResponse = await CheckRequestStatus(paymentRequest, statusRequest, token);
                 if (statusResponse == null) return null;
 
+                paymentRequest.Amount = paymentRequest.Amount / 100;
                 StatusUpdate($"Payment receive completed for amount : {paymentRequest.Amount}");
 
                 CompletedTransactionData successTransactionData = new CompletedTransactionData()
