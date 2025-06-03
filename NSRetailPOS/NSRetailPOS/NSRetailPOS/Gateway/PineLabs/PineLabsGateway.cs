@@ -163,6 +163,8 @@ namespace NSRetailPOS.Gateway.PineLabs
                 IStatusResponse statusResponse = await CheckRequestStatus(paymentRequest, statusRequest, token);
                 if (statusResponse == null) return null;
 
+                StatusUpdate($"Payment receive completed for amount : {paymentRequest.Amount}");
+
                 CompletedTransactionData successTransactionData = new CompletedTransactionData()
                 {
                     Amount = paymentRequest.Amount,
@@ -194,7 +196,7 @@ namespace NSRetailPOS.Gateway.PineLabs
             paymentRequest.TransactionNumber = parameters[0].ToString();
             paymentRequest.SequenceNumber = Convert.ToInt32(parameters[1]);
             paymentRequest.AllowedPaymentMode = (PaymentMode)parameters[2];
-            paymentRequest.Amount = Convert.ToDecimal(parameters[3]);
+            paymentRequest.Amount = Convert.ToDecimal(parameters[3]) * 100; //multiply by 100
             paymentRequest.UserID = parameters[4].ToString();
             paymentRequest.AutoCancelDurationInMinutes = paymentRequest.AllowedPaymentMode == PaymentMode.UPI ? 5 : 3;
             return paymentRequest;
