@@ -32,6 +32,7 @@ namespace WarehouseCloudSync.Data
             , { "REASONFORREFUND",  new EntityMapping("USP_CU_REASONFORREFUND", "@RFR") }
             , { "STOCKSUMMARY",  new EntityMapping("USP_CU_STOCKSUMMARY", "@Stock") }
             , { "OFFEREXCLUSION",  new EntityMapping("USP_CU_OFFEREXCLUSION", "@OfferItemExclusion") }
+            , { "PAYMENTGATEWAYINFO",  new EntityMapping("USP_CU_PAYMENTGATEWAYINFO", "@PGW") }
         };
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)
