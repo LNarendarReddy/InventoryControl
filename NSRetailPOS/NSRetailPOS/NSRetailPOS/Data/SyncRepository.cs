@@ -31,6 +31,7 @@ namespace NSRetailPOS.Data
             , { "TBLCATEGORY",  new EntityMapping("USP_CU_TBLCATEGORY", "@Category") }
             , { "REASONFORREFUND",  new EntityMapping("USP_CU_REASONFORREFUND", "@RFR") }
             , { "OFFEREXCLUSION",  new EntityMapping("USP_CU_OFFEREXCLUSION", "@OfferItemExclusion") }
+            , { "PAYMENTGATEWAYINFO",  new EntityMapping("POS_USP_CU_PAYMENTGATEWAYINFO", "@PAYMENTGATEWAYINFO") }
         };
 
         public void SaveData(string entityName, DataTable dtEntityWiseData)
