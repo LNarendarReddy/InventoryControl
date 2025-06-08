@@ -49,7 +49,7 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
 
             if (string.IsNullOrEmpty(newQuantityString)) return;
 
-            if(!int.TryParse(newQuantityString, out int newQuantityValue) || newQuantityValue <= 0)
+            if(!int.TryParse(newQuantityString, out int newQuantityValue) || newQuantityValue < 0)
             {
                 DisplayAlert("Error", $"Invalid value {newQuantityString}", "Ok");
                 return;
