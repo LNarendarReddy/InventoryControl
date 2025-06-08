@@ -628,5 +628,30 @@ namespace DataAccess
                 throw new Exception($"Error while un-deleting item code : {ex.Message}", ex);
             }
         }
+
+        public DataTable GetStockByBranch(object ItemPriceID)
+        {
+            DataTable dtItems = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_STOCKBYBRANCH]";
+                    cmd.Parameters.AddWithValue("@ITEMPRICEID", ItemPriceID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtItems);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving stock by branch", ex);
+            }
+            
+            return dtItems;
+        }
     }
 }

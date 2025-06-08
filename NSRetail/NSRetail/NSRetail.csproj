@@ -506,6 +506,12 @@
     <Compile Include="ReportForms\Wareshouse\Differences\ucIndentDispatchDifferences.Designer.cs">
       <DependentUpon>ucIndentDispatchDifferences.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Profitability\frmBranchWiseStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Profitability\frmBranchWiseStock.Designer.cs">
+      <DependentUpon>frmBranchWiseStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityTaxWise.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1400,6 +1406,9 @@
     <EmbeddedResource Include="ReportForms\Wareshouse\Differences\ucIndentDispatchDifferences.resx">
       <DependentUpon>ucIndentDispatchDifferences.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\frmBranchWiseStock.resx">
+      <DependentUpon>frmBranchWiseStock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\ucItemMargin.resx">
       <DependentUpon>ucItemMargin.cs</DependentUpon>
     </EmbeddedResource>
@@ -1800,6 +1809,7 @@
     <None Include="Resources\victorylogo.svg" />
     <None Include="Resources\victorylogo1.png" />
     <None Include="Resources\Victory Bazars_Logo.jpg" />
+    <None Include="Resources\delete_16x164.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />
