@@ -100,7 +100,12 @@ namespace NSRetailPOS.Operations.Reports
                 , { "ClassIDs", cmbClass.EditValue }
             };
 
-            return GetReportData("USP_RPT_OFFER_STATUS", parameters);
+            DataTable dtResult = GetReportData("USP_RPT_OFFER_STATUS", parameters) as DataTable;
+
+            if (dtResult != null && dtResult.Columns.Contains("BRANCHSTOCK"))
+                dtResult.Columns.Remove("BRANCHSTOCK");
+
+            return dtResult;
         }
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)

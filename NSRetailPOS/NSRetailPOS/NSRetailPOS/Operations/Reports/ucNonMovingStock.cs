@@ -3,6 +3,7 @@ using NSRetailPOS.Data;
 using NSRetailPOS.ReportControls.ReportBase;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace NSRetailPOS.Operations.Reports
 {
@@ -42,7 +43,12 @@ namespace NSRetailPOS.Operations.Reports
                 , { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")}
                 , { "CategoryID", cmbCategory.EditValue }
                 , { "CutOff", txtCutOff.EditValue } }; 
-            return GetReportData("USP_RPT_NONMOVINGSTOCK", parameters);
+            DataTable dtResult = GetReportData("USP_RPT_NONMOVINGSTOCK", parameters) as DataTable;
+
+            if (dtResult != null && dtResult.Columns.Contains("STOCKQTYORWGHT"))
+                dtResult.Columns.Remove("STOCKQTYORWGHT");
+
+            return dtResult;
         }
     }
 }

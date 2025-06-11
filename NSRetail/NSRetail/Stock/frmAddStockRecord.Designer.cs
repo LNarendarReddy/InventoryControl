@@ -244,6 +244,7 @@
             // 
             // txtHSNCode
             // 
+            this.txtHSNCode.Enabled = false;
             this.txtHSNCode.EnterMoveNextControl = true;
             this.txtHSNCode.Location = new System.Drawing.Point(628, 432);
             this.txtHSNCode.Name = "txtHSNCode";

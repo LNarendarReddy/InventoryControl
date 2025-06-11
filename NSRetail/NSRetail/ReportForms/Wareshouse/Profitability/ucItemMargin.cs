@@ -1,6 +1,9 @@
 ﻿using DataAccess;
+using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Wareshouse.Profitability
 {
@@ -47,7 +50,16 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 new IncludeSettings("Classification", "IncludeClassification", new List<string>() { "CLASSIFICATIONNAME" }),
                 new IncludeSettings("Sub-Classification", "IncludeSubClassification", new List<string>() { "SUBCLASSIFICATIONNAME" }),
                 new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" }), 
-                new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
+                new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" }),
+                new IncludeSettings("Include WOT margins", "IncludeMarginWOT", new List<string>{ "MRPMARGINWOT", "MRPMARGINWOTPER", "ACTUALMARGINWOT"
+                    , "ACTUALMARGINWOTPER", "ACTUALPRICEWOT", "MRPWOT", "SALEPRICEWOT" }),
+                new IncludeSettings("Include deleted prices", "IncludeDeleted", new List<string>{ "IPDELETEDBY", "IPDELETEDDATE" }),
+            };
+
+            ContextmenuItems = new Dictionary<string, string>
+            {
+                { "Branch wise stock", "" },
+                { "Delete MRP", "" }
             };
         }
 
@@ -61,6 +73,35 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
             };
 
             return GetReportData("USP_RPT_ITEM_MARGIN", parameters);
+        }
+
+        public override void ActionExecute(string buttonText, DataRow drFocusedRow)
+        {
+            try
+            {
+                switch (buttonText)
+                {
+                    case "Branch wise stock":
+                        new frmBranchWiseStock(drFocusedRow["ITEMPRICEID"]).ShowDialog();
+                        break;
+                    case "Delete MRP":
+                        if (drFocusedRow.Table.Columns.Contains("IPDELETEDDATE") && drFocusedRow["IPDELETEDDATE"] != null)
+                        {
+                            XtraMessageBox.Show("Item price already deleted", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            return;
+                        }
+
+                        if (XtraMessageBox.Show("Are you sure you want to delete?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+
+                        new ItemCodeRepository().DeleteItemPrice(drFocusedRow["ITEMPRICEID"], Utility.UserID);
+                        XtraMessageBox.Show("Item price deleted, please refresh report", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
         }
     }
 }
