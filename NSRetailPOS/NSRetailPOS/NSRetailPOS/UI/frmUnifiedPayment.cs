@@ -215,11 +215,21 @@ namespace NSRetailPOS.UI
 
             // force refresh values
             int i = 0;
+            bool atleastOnevalueFound = false;
+
             foreach (DataRow dr in billObj.dtMopValues.Rows)
             {
                 int rowHandle = gvMOP.GetRowHandle(i);
                 dr["MOPVALUE"] = gvMOP.GetRowCellValue(rowHandle, "MOPVALUE");
                 i++;
+                if (decimal.TryParse(dr["MOPVALUE"]?.ToString(), out decimal value) && value > 0)
+                    atleastOnevalueFound = true;
+            }
+
+            if(!atleastOnevalueFound)
+            {
+                XtraMessageBox.Show("Payment mode blank found, please contact administrator", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
             }
 
             IsPaid = true;
@@ -228,6 +238,8 @@ namespace NSRetailPOS.UI
 
         private void rgPaymentModes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtCardRequestAmount.EditValue = null;
+            txtUPIRequestAmount.EditValue = null;
 
             for (int rowhandle = 0; rowhandle < gvMOP.RowCount; rowhandle++)
             {
