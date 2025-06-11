@@ -52,7 +52,13 @@ namespace NSRetailPOS.Operations.Reports
                 , { "CatIDs", cmbCategory.EditValue }
                 , { "ClassIDs", cmbClass.EditValue }
             };
-            return GetReportData("USP_RPT_ITEMPRICECHANGES", parameters);
+
+            DataTable dtResult = GetReportData("USP_RPT_ITEMPRICECHANGES", parameters) as DataTable;
+
+            if (dtResult != null && dtResult.Columns.Contains("BRANCHSTOCK"))
+                dtResult.Columns.Remove("BRANCHSTOCK");
+
+            return dtResult;
         }
 
         private void chkAllItems_CheckedChanged(object sender, EventArgs e)
