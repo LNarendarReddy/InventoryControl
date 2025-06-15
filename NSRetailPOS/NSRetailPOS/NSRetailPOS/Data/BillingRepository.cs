@@ -119,6 +119,15 @@ namespace NSRetailPOS.Data
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dsNextBill);
+
+                        if (dsNextBill.Tables.Count == 1
+                            && dsNextBill.Tables[0].Columns.Count == 1
+                            && dsNextBill.Tables[0].Rows.Count == 1)
+                        {
+                            // probably validation, throw it
+                            throw new Exception(dsNextBill.Tables[0].Rows[0][0].ToString());
+                        }
+
                         transaction.Commit();
                     }
 
