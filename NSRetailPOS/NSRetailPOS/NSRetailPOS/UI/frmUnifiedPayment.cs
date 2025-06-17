@@ -493,7 +493,8 @@ namespace NSRetailPOS.UI
 
             CompletedTransactionData completedTransactionData = await Utility.PaymentGateway.ReceivePayment(
                 Convert.ToInt32(billObj.BillID), mopID, cancellationToken
-               , billObj.BillNumber.ToString(), 1, paymentMode, amount, Utility.loginInfo.UserID);
+               , $"{billObj.BillNumber}-{billObj.CompletedTransactions.Count + 1}"
+               , 1, paymentMode, amount, Utility.loginInfo.UserID);
 
             btnCancelRequest.Enabled = false;
             EnableAllControls();
