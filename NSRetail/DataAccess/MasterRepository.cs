@@ -1011,5 +1011,10 @@ namespace DataAccess
                     throw new Exception("Error While Deleteing manufacturer", ex);
             }
         }
+
+        public DataTable GetUQCData()
+        {
+            return new ReportRepository().GetReportData("USP_R_UQCDATA");
+        }
     }
 }

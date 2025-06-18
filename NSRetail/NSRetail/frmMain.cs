@@ -451,6 +451,7 @@ namespace NSRetail
             taxReports.SubCategory.Add(new ReportHolder("D2658E11-DB33-42CE-89D1-1DA6AE616E3C") { ReportName = "Tax Wise sales", SearchCriteriaControl = new ucTaxWiseSales() });
             taxReports.SubCategory.Add(new ReportHolder("A39E96F4-F704-4587-B042-E83AC1B57290") { ReportName = "Tax Wise Returns", SearchCriteriaControl = new ucTaxwiseReturns() });
             taxReports.SubCategory.Add(new ReportHolder("36D2C1F5-8890-47F0-B2EE-4AD94F2ECFA3") { ReportName = "Tax break-up payment mode wise", SearchCriteriaControl = new ucTaxBreakUpPaymentWise() });
+            taxReports.SubCategory.Add(new ReportHolder("C4DE504D-91F7-4D2C-B98B-88C522A9E197") { ReportName = "HSN Wise sales", SearchCriteriaControl = new ucHSNWiseSale() });
             reportList.Add(taxReports);
 
             ShowReportForm(reportList, "Warehouse");

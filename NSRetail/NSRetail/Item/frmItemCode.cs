@@ -103,6 +103,7 @@ namespace NSRetail
                 itemObj.SubClassificationID = cmbSubClassification.EditValue;
                 itemObj.BrandID = cmbBrand.EditValue;
                 itemObj.ManufacturerID = cmbManufacturer.EditValue;
+                itemObj.UQCID = cmbUQC.EditValue;
 
                 new ItemCodeRepository().SaveItemCode(itemObj);
 
@@ -138,7 +139,7 @@ namespace NSRetail
                     gvItemCode.SetRowCellValue(itemCodeRowHandle, "SKUCODE", itemObj.SKUCode);
                     gvItemCode.SetRowCellValue(itemCodeRowHandle, "CATEGORYNAME", itemObj.CategoryName);
                     gvItemCode.SetRowCellValue(itemCodeRowHandle, "SUBCATEGORYNAME", itemObj.SubCategoryName);
-
+                    
                     //DataRow drItemCode = dtItemCodeList.Rows[itemCodeRowHandle];
                     //drItemCode["ITEMID"] = itemObj.ItemID;
                     //drItemCode["ITEMNAME"] = itemObj.ItemName;
@@ -268,6 +269,10 @@ namespace NSRetail
             cmbSubClassification.Properties.DisplayMember = "SUBCLASSIFICATIONNAME";
             cmbSubClassification.Properties.ValueMember = "SUBCLASSIFICATIONID";
 
+            cmbUQC.Properties.DataSource = Utility.GetUQCData();
+            cmbUQC.Properties.DisplayMember = "QUANTITY";
+            cmbUQC.Properties.ValueMember = "UQCID";
+
             sluFreeItem.Properties.DataSource = Utility.GetItemCodeListFiltered();
             sluFreeItem.Properties.DisplayMember = "ITEMNAME";
             sluFreeItem.Properties.ValueMember = "ITEMCODEID";
@@ -348,6 +353,7 @@ namespace NSRetail
             cmbSubClassification.EditValue = null;
             cmbBrand.EditValue = null;
             cmbManufacturer.EditValue = null;
+            cmbUQC.EditValue = null;
             isEditMode = false;
         }
 
@@ -405,6 +411,7 @@ namespace NSRetail
             cmbSubClassification.EditValue = dtItemDetails.Rows[0]["SUBCLASSIFICATIONID"];
             cmbBrand.EditValue = dtItemDetails.Rows[0]["BRANDID"];
             cmbManufacturer.EditValue = dtItemDetails.Rows[0]["MANUFACTURERID"];
+            cmbUQC.EditValue = dtItemDetails.Rows[0]["UQCID"];
 
             DataTable dtItemCodePrices = dsItemDetails.Tables["ITEMCODEPRICES"];
             DataRow selectedPrice = dtItemCodePrices.Rows[0];

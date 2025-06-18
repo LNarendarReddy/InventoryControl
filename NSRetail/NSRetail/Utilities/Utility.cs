@@ -32,6 +32,7 @@ namespace NSRetail
         private static DataTable dtSubCatgeory;
         private static DataTable dtBrand;
         private static DataTable dtManufacturer;
+        private static DataTable dtUQC;
 
         private static List<GSTInfo> gstInfoList;
         public static DataTable dtConnectionInfo;
@@ -54,8 +55,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "3.1.5";
-        public static string VersionDate = "(08-06-2025)";
+        public static string AppVersion = "3.1.6";
+        public static string VersionDate = "(18-06-2025)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -244,6 +245,16 @@ namespace NSRetail
             return gstInfoList;
         }
 
+        public static DataTable GetUQCData()
+        {
+            if (dtUQC == null)
+            {
+                FillUQCBaseLine();
+            }
+
+            return dtUQC;
+        }
+
         public static void FillBaseLine()
         {
             dtGST = null;
@@ -251,11 +262,18 @@ namespace NSRetail
             dtCatgeory = null;
             dtSubCatgeory = null;
             dtBranchListIncludingDeleted = null;
+            dtUQC = null;
 
+            FillUQCBaseLine();
             FillItemBaseline();
             GetGSTBaseline();
             FillParentItemBaseline();
             AccessUtility.FetchAndBuildAccessInfo();
+        }
+
+        private static void FillUQCBaseLine()
+        {
+            dtUQC = new MasterRepository().GetUQCData();
         }
 
         public static void PrintBarCode(object ItemCode, object ItemName, 
