@@ -18,15 +18,15 @@ namespace BackupUploadAPI
 
         public static async Task Upload(string localPath, string remotePath)
         {
-            //// victory account
-            //string key = Utility.Decrypt("rtvOKSkGkto9Vigl6T78F4J2Ho8QXn7nHabO9HG6qOxqIpuvr+QO1FllQLXioqEik4ToI0FA33hV67QJlRndoQJhSymVXUJuesAQF6AMIWQ=")
-            //  , appId = Utility.Decrypt("VKWCC6efz906q5aWM/e6Wg==")
-            //  , appValue = Utility.Decrypt("taKC2YKSWI77QcU6abVbCA==");
+            // victory account
+            string key = Utility.Decrypt("rtvOKSkGkto9Vigl6T78F4J2Ho8QXn7nHabO9HG6qOxqIpuvr+QO1FllQLXioqEik4ToI0FA33hV67QJlRndoQJhSymVXUJuesAQF6AMIWQ=")
+             , appId = Utility.Decrypt("VKWCC6efz906q5aWM/e6Wg==")
+             , appValue = Utility.Decrypt("taKC2YKSWI77QcU6abVbCA==");
 
-            // sls enterprise
-            string key = Utility.Decrypt("9FG/G0MQZHU/ZpWj7uno+VeAYwQxGDlGMt9Yz5wYAm7H2Tkq8Qq6RGAthvK7GeHTrgdmClaO+7vkji7HO/7R8fezjkQFdETjXAHP+y/RC+s=")
-              , appId = Utility.Decrypt("rkNrpSlDlz+Qo3dNaS+r1Q==")
-              , appValue = Utility.Decrypt("4XE8ypW7vSP8Jamdz2MGCg==");
+            // // sls enterprise
+            // string key = Utility.Decrypt("9FG/G0MQZHU/ZpWj7uno+VeAYwQxGDlGMt9Yz5wYAm7H2Tkq8Qq6RGAthvK7GeHTrgdmClaO+7vkji7HO/7R8fezjkQFdETjXAHP+y/RC+s=")
+            //   , appId = Utility.Decrypt("rkNrpSlDlz+Qo3dNaS+r1Q==")
+            //   , appValue = Utility.Decrypt("4XE8ypW7vSP8Jamdz2MGCg==");
 
             using (var dbx = new DropboxClient(key, appId, appValue))
             {
