@@ -41,7 +41,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODOCITY" },true)
                 , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME" })
                 , new IncludeSettings("Item Price details", "IncludeItemPrice", new List<string>{ "ITEMCODE", "MRP", "SALEPRICE", "SALEPRICEWOT", "SALEPRICETAX", "HSNCODE" })
-                , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ },true)
+                , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)
                 , new IncludeSettings("Counter", "IncludeCounter", new List<string>{ "COUNTERNAME" })
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
@@ -87,13 +87,6 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             {
                 colSaleQuantity.Visible = IncludeSettingsCollection.First(x => x.ParameterName == "IncludeItem").Included ||
                     IncludeSettingsCollection.First(x => x.ParameterName == "IncludeItemPrice").Included;
-            }
-
-            GridColumn colBranchName = ResultGridView.Columns["BRANCHNAME"];
-            if(colBranchName != null)
-            {
-                colBranchName.Visible = IncludeSettingsCollection.First(x => x.ParameterName == "IncludeBranch").Included ||
-                    IncludeSettingsCollection.First(x => x.ParameterName == "IncludeStock").Included;
             }
         }
     }
