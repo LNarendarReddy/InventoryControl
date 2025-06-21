@@ -67,6 +67,7 @@ namespace NSRetail.Master
                     ObjCounter.BRANCHID = gvCounter.GetFocusedRowCellValue("BRANCHID");
                     ObjCounter.ISMOBILECOUNTER = gvCounter.GetFocusedRowCellValue("ISMOBILECOUNTER");
                     ObjCounter.StoreID = gvCounter.GetFocusedRowCellValue("STOREID");
+                    ObjCounter.ClientID = gvCounter.GetFocusedRowCellValue("CLIENTID");
                     frmCounter obj = new frmCounter(ObjCounter);
                     obj.ShowInTaskbar = false;
                     obj.StartPosition = FormStartPosition.CenterScreen;

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DevExpress.XtraGrid.Columns;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NSRetail.ReportForms.Stock.TransactionReports
 {
@@ -37,14 +39,16 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
                 new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODOCITY" },true)
-                , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "SALEPRICE", "SALEPRICEWOT", "SALEPRICETAX", "SALEQUANTITY", "HSNCODE" })
+                , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME" })
+                , new IncludeSettings("Item Price details", "IncludeItemPrice", new List<string>{ "ITEMCODE", "MRP", "SALEPRICE", "SALEPRICEWOT", "SALEPRICETAX", "HSNCODE" })
                 , new IncludeSettings("Branch", "IncludeBranch", new List<string>{ "BRANCHNAME" },true)
                 , new IncludeSettings("Counter", "IncludeCounter", new List<string>{ "COUNTERNAME" })
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
                 , new IncludeSettings("Classification", "IncludeClassification", new List<string>{ "CLASSIFICATIONNAME" })
                 , new IncludeSettings("Sub Classification", "IncludeSubClassification", new List<string>{ "SUBCLASSIFICATIONNAME" })
-                , new IncludeSettings("Stock & Is offer", "IncludeStock", new List<string>{ "ISOFFER", "WHSTOCK", "BRANCHSTOCK", "OFFERCODE", "BASEOFFERCODE" })
+                , new IncludeSettings("Stock", "IncludeStock", new List<string>{ "WHSTOCK", "BRANCHSTOCK" })
+                , new IncludeSettings("Is offer", "IncludeOffer", new List<string>{ "ISOFFER", "OFFERCODE", "BASEOFFERCODE" })
                 , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })                
                 , new IncludeSettings("Bill details", "IncludeBillDetails", new List<string>
                     { "BILLCREATEDBY", "BILLNUMBER", "CREATEDTIME", "ISDOORDELIVERY", "CUSTOMERNAME", "CUSTOMERNUMBER", "CUSTOMERGST" })
@@ -76,5 +80,14 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             return GetReportData("USP_RPT_SALES", parameters);
         }
 
+        public override void DataBoundCompleted()
+        {
+            GridColumn colSaleQuantity = ResultGridView.Columns["SALEQUANTITY"];
+            if (colSaleQuantity != null)
+            {
+                colSaleQuantity.Visible = IncludeSettingsCollection.First(x => x.ParameterName == "IncludeItem").Included ||
+                    IncludeSettingsCollection.First(x => x.ParameterName == "IncludeItemPrice").Included;
+            }
+        }
     }
 }

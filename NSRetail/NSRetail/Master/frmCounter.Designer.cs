@@ -34,6 +34,8 @@ namespace NSRetail.Master
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtClientID = new DevExpress.XtraEditors.TextEdit();
+            this.txtStoreID = new DevExpress.XtraEditors.TextEdit();
             this.chkIsMobileCounter = new DevExpress.XtraEditors.CheckEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -46,11 +48,14 @@ namespace NSRetail.Master
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.txtStoreID = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtClientID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStoreID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsMobileCounter.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCounterName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
@@ -61,9 +66,10 @@ namespace NSRetail.Master
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStoreID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -80,6 +86,7 @@ namespace NSRetail.Master
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
             this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
+            this.layoutControl1.Controls.Add(this.txtClientID);
             this.layoutControl1.Controls.Add(this.txtStoreID);
             this.layoutControl1.Controls.Add(this.chkIsMobileCounter);
             this.layoutControl1.Controls.Add(this.btnCancel);
@@ -93,17 +100,33 @@ namespace NSRetail.Master
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(680, 34, 650, 400);
             this.layoutControl1.OptionsFocus.EnableAutoTabOrder = false;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(503, 143);
+            this.layoutControl1.Size = new System.Drawing.Size(453, 219);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtClientID
+            // 
+            this.txtClientID.Location = new System.Drawing.Point(115, 143);
+            this.txtClientID.Name = "txtClientID";
+            this.txtClientID.Size = new System.Drawing.Size(318, 22);
+            this.txtClientID.StyleController = this.layoutControl1;
+            this.txtClientID.TabIndex = 6;
+            // 
+            // txtStoreID
+            // 
+            this.txtStoreID.Location = new System.Drawing.Point(115, 109);
+            this.txtStoreID.Name = "txtStoreID";
+            this.txtStoreID.Size = new System.Drawing.Size(318, 22);
+            this.txtStoreID.StyleController = this.layoutControl1;
+            this.txtStoreID.TabIndex = 5;
             // 
             // chkIsMobileCounter
             // 
             this.chkIsMobileCounter.EnterMoveNextControl = true;
-            this.chkIsMobileCounter.Location = new System.Drawing.Point(8, 110);
+            this.chkIsMobileCounter.Location = new System.Drawing.Point(8, 189);
             this.chkIsMobileCounter.Name = "chkIsMobileCounter";
             this.chkIsMobileCounter.Properties.Caption = "Is Mobile Counter";
-            this.chkIsMobileCounter.Size = new System.Drawing.Size(123, 20);
+            this.chkIsMobileCounter.Size = new System.Drawing.Size(128, 20);
             this.chkIsMobileCounter.StyleController = this.layoutControl1;
             this.chkIsMobileCounter.TabIndex = 2;
             // 
@@ -112,10 +135,10 @@ namespace NSRetail.Master
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(395, 110);
+            this.btnCancel.Location = new System.Drawing.Point(361, 189);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 22);
+            this.btnCancel.Size = new System.Drawing.Size(84, 22);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
@@ -125,10 +148,10 @@ namespace NSRetail.Master
             // 
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSave.Location = new System.Drawing.Point(274, 110);
+            this.btnSave.Location = new System.Drawing.Point(259, 189);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(109, 22);
+            this.btnSave.Size = new System.Drawing.Size(90, 22);
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
@@ -140,7 +163,7 @@ namespace NSRetail.Master
             this.txtCounterName.Location = new System.Drawing.Point(103, 42);
             this.txtCounterName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtCounterName.Name = "txtCounterName";
-            this.txtCounterName.Size = new System.Drawing.Size(392, 22);
+            this.txtCounterName.Size = new System.Drawing.Size(342, 22);
             this.txtCounterName.StyleController = this.layoutControl1;
             this.txtCounterName.TabIndex = 1;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -161,7 +184,7 @@ namespace NSRetail.Master
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHNAME", "BRANCHNAME", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHCODE", "BRANCHCODE", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbBranch.Properties.NullText = "";
-            this.cmbBranch.Size = new System.Drawing.Size(392, 22);
+            this.cmbBranch.Size = new System.Drawing.Size(342, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 0;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -182,10 +205,10 @@ namespace NSRetail.Master
             this.emptySpaceItem2,
             this.layoutControlItem3,
             this.layoutControlItem2,
-            this.layoutControlItem4});
+            this.layoutControlGroup1});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(503, 143);
+            this.Root.Size = new System.Drawing.Size(453, 219);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -196,45 +219,45 @@ namespace NSRetail.Master
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 34);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem1.Size = new System.Drawing.Size(499, 34);
+            this.layoutControlItem1.Size = new System.Drawing.Size(449, 34);
             this.layoutControlItem1.Text = "Counter Name";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(83, 16);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnSave;
-            this.layoutControlItem7.Location = new System.Drawing.Point(266, 102);
+            this.layoutControlItem7.Location = new System.Drawing.Point(251, 181);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem7.Size = new System.Drawing.Size(121, 37);
+            this.layoutControlItem7.Size = new System.Drawing.Size(102, 34);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnCancel;
-            this.layoutControlItem8.Location = new System.Drawing.Point(387, 102);
+            this.layoutControlItem8.Location = new System.Drawing.Point(353, 181);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem8.Size = new System.Drawing.Size(112, 37);
+            this.layoutControlItem8.Size = new System.Drawing.Size(96, 34);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(135, 102);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(140, 181);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(131, 37);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(111, 34);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.chkIsMobileCounter;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 102);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 181);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem3.Size = new System.Drawing.Size(135, 37);
+            this.layoutControlItem3.Size = new System.Drawing.Size(140, 34);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -244,25 +267,37 @@ namespace NSRetail.Master
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(499, 34);
+            this.layoutControlItem2.Size = new System.Drawing.Size(449, 34);
             this.layoutControlItem2.Text = "Branch";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(83, 16);
             // 
-            // txtStoreID
+            // layoutControlGroup1
             // 
-            this.txtStoreID.Location = new System.Drawing.Point(103, 76);
-            this.txtStoreID.Name = "txtStoreID";
-            this.txtStoreID.Size = new System.Drawing.Size(392, 22);
-            this.txtStoreID.StyleController = this.layoutControl1;
-            this.txtStoreID.TabIndex = 5;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem4,
+            this.layoutControlItem5});
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 68);
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(449, 113);
+            this.layoutControlGroup1.Text = "PineLabs Payment Gateway configuration";
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.txtClientID;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 34);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem5.Size = new System.Drawing.Size(425, 34);
+            this.layoutControlItem5.Text = "Clent ID";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(83, 16);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtStoreID;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 68);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem4.Size = new System.Drawing.Size(499, 34);
+            this.layoutControlItem4.Size = new System.Drawing.Size(425, 34);
             this.layoutControlItem4.Text = "Store ID";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(83, 16);
             // 
@@ -271,7 +306,7 @@ namespace NSRetail.Master
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(503, 143);
+            this.ClientSize = new System.Drawing.Size(453, 219);
             this.Controls.Add(this.layoutControl1);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmCounter";
@@ -279,6 +314,8 @@ namespace NSRetail.Master
             this.Load += new System.EventHandler(this.frmCounter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtClientID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStoreID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsMobileCounter.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCounterName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
@@ -289,9 +326,10 @@ namespace NSRetail.Master
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStoreID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -314,5 +352,8 @@ namespace NSRetail.Master
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraEditors.TextEdit txtStoreID;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraEditors.TextEdit txtClientID;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
     }
 }

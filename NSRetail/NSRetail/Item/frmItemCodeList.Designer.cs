@@ -84,6 +84,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemList)).BeginInit();
@@ -270,7 +271,8 @@
             this.gridColumn18,
             this.gridColumn19,
             this.gridColumn20,
-            this.gridColumn21});
+            this.gridColumn21,
+            this.gridColumn22});
             this.gvItemList.DetailHeight = 404;
             this.gvItemList.GridControl = this.gcItemList;
             this.gvItemList.Name = "gvItemList";
@@ -729,6 +731,12 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 685);
             // 
+            // gridColumn22
+            // 
+            this.gridColumn22.Caption = "UQC";
+            this.gridColumn22.FieldName = "UQCNAME";
+            this.gridColumn22.Name = "gridColumn22";
+            // 
             // frmItemCodeList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -823,5 +831,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
     }
 }

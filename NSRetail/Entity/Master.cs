@@ -84,6 +84,7 @@ namespace Entity
         public object BRANCHID { get; set; }
         public object ISMOBILECOUNTER {  get; set; }
         public object StoreID { get; set; }
+        public object ClientID { get; set; }
     }
     public class MOP : EntityBase
     {

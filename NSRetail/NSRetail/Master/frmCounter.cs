@@ -36,6 +36,7 @@ namespace NSRetail.Master
                 cmbBranch.EditValue = ObjCounter.BRANCHID;
                 chkIsMobileCounter.EditValue = ObjCounter.ISMOBILECOUNTER;
                 txtStoreID.EditValue = ObjCounter.StoreID;
+                txtClientID.EditValue = ObjCounter.ClientID;
             }
         }
 
@@ -50,6 +51,7 @@ namespace NSRetail.Master
                 ObjCounter.UserID = Utility.UserID;
                 ObjCounter.ISMOBILECOUNTER = chkIsMobileCounter.EditValue;
                 ObjCounter.StoreID = txtStoreID.EditValue;
+                ObjCounter.ClientID = txtClientID.EditValue;
                 objMasterRep.SaveCounter(ObjCounter);
                 ObjCounter.IsSave = true;
                 this.Close();
