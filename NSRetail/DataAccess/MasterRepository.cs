@@ -354,6 +354,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@USERID", ObjCounter.UserID);
                     cmd.Parameters.AddWithValue("@ISMOBILECOUNTER", ObjCounter.ISMOBILECOUNTER);
                     cmd.Parameters.AddWithValue("@STOREID", ObjCounter.StoreID);
+                    cmd.Parameters.AddWithValue("@ClientID", ObjCounter.ClientID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out CounterID))
