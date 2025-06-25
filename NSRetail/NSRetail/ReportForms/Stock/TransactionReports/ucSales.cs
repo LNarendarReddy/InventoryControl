@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraGrid.Columns;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,6 +76,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , { "Periodicity", cmbPeriodicity.EditValue }
                 , { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")}
                 , { "CategoryID", cmbCategory.EditValue }
+                , { "UnmaskCustomerPhone", AccessUtility.HasAccess("825FBF84-8FEB-4B5F-AB33-561A4751A76A::Execute") }
             };
 
             return GetReportData("USP_RPT_SALES", parameters);

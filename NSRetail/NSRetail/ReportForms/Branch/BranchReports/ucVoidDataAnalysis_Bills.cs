@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using Entity;
 using NSRetail.ReportForms.Branch.POSReports;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -60,6 +61,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 { "BranchID", cmbBranch.EditValue }
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
+                , { "UnmaskCustomerPhone", AccessUtility.HasAccess("A8D53F2A-3D03-427C-8EC6-52FE3CE4656E::Execute")}
             };
 
             return GetReportData("USP_RPT_VOIDDATAANALYSIS_Bills", parameters);

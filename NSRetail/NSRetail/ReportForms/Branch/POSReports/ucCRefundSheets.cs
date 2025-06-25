@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using NSRetail.Reports;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,6 +54,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 { "BRANCHID", cmbBranch.EditValue }
                 , { "FromDate", dtFromDate.EditValue }
                 , { "ToDate", dtToDate.EditValue }
+                , { "UnmaskCustomerPhone", AccessUtility.HasAccess("191D866C-E1A0-491D-9671-7A7DA216D72A::Execute")}
             };
             return GetReportData("USP_R_CREFUNDSHEETS", parameters);
         }
