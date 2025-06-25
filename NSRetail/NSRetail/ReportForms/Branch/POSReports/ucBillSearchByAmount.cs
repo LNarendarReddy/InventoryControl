@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using NSRetail.Reports;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -68,6 +69,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
                 , { "CutOff", txtCutOffAmt.EditValue }
+                , { "UnmaskCustomerPhone", AccessUtility.HasAccess("41EA5157-D4F5-44CD-808D-47208F1B81D9::Execute")}
             };
 
             return GetReportData("USP_RPT_BILLNUMINFO2", parameters);
