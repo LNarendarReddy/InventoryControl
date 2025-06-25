@@ -395,7 +395,7 @@ namespace NSRetailPOS
         {
             billObj = Utility.GetBill(dsBillInfo);
 
-            this.Text = $"NSRetail POS (v.Beta 15-06) - {billObj.BillNumber}";
+            this.Text = $"NSRetail POS - {billObj.BillNumber}";
 
             //txtLastBilledAmount.Text = billObj.LastBilledAmount.ToString();
             //txtLastBilledQuantity.Text = billObj.LastBilledQuantity.ToString();
