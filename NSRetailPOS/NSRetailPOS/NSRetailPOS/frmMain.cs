@@ -237,8 +237,32 @@ namespace NSRetailPOS
                 XtraMessageBox.Show("No items to bill", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
-            frmPrePayment paymentForm = new frmPrePayment(billObj);
+
+            bool canClose = true;
+
+            DataTable dtBillOffers = billingRepository.GetBillOffers(billObj.BillID);
+            if (dtBillOffers != null && dtBillOffers.Rows.Count == 1)
+            {
+                double actualSalePrice = Convert.ToDouble(dtBillOffers.Rows[0]["ACTUALSALEPRICE"]);
+                if (XtraMessageBox.Show($"Add item {dtBillOffers.Rows[0]["ITEMNAME"]} ({dtBillOffers.Rows[0]["SKUCODE"]}) for Rs.{actualSalePrice} to the bill?",
+                    "Add free item", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    SaveBillDetail(dtBillOffers.Rows[0]["ITEMPRICEID"], 1, 0, -1, true, actualSalePrice);
+
+                    //refresh bill details
+                    dtBillDetails = billObj.dtBillDetails.Copy();
+                    dtBillDetails.DefaultView.RowFilter = "DELETEDDATE IS NULL";
+                    dtBillDetails = dtBillDetails.DefaultView.ToTable();
+                    canClose = false;
+
+                    if (actualSalePrice > 0)
+                    {
+                        XtraMessageBox.Show("Bill amount updated, please verify amount", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+
+            frmUnifiedPayment paymentForm = new frmUnifiedPayment(billObj, canClose);
             paymentForm.ShowDialog();
             DataSet nextBillDetails = null;
 
@@ -253,40 +277,6 @@ namespace NSRetailPOS
 
             try
             {
-                DataTable dtBillOffers = billingRepository.GetBillOffers(billObj.BillID);
-                if (dtBillOffers != null && dtBillOffers.Rows.Count == 1)
-                {
-                    double actualSalePrice = Convert.ToDouble(dtBillOffers.Rows[0]["ACTUALSALEPRICE"]);
-                    if (XtraMessageBox.Show($"Add item {dtBillOffers.Rows[0]["ITEMNAME"]} ({dtBillOffers.Rows[0]["SKUCODE"]}) for Rs.{actualSalePrice} to the bill?",
-                        "Add free item", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        SaveBillDetail(dtBillOffers.Rows[0]["ITEMPRICEID"], 1, 0, -1, true, actualSalePrice);
-
-                        //refresh bill details
-                        dtBillDetails = billObj.dtBillDetails.Copy();
-                        dtBillDetails.DefaultView.RowFilter = "DELETEDDATE IS NULL";
-                        dtBillDetails = dtBillDetails.DefaultView.ToTable();
-
-                        if (actualSalePrice > 0)
-                        {
-                            XtraMessageBox.Show("Bill amount updated, please verify amount", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                            frmPrePayment frmPayment = new frmPrePayment(billObj, false);
-                            frmPayment.ShowDialog();
-                            
-                            if (frmPayment.IsDiscarded)
-                            {
-                                nextBillDetails = billingRepository.DiscardBill(Utility.loginInfo.UserID, daySequenceID, billObj.BillID);
-                                LoadBillData(nextBillDetails);
-                                return;
-                            }
-
-                            if (!frmPayment.IsPaid)
-                                return;
-                        }
-                    }
-                }
-
                 nextBillDetails = billingRepository.FinishBill(Utility.loginInfo.UserID, daySequenceID, billObj);
             }
             catch (Exception ex)
@@ -323,7 +313,7 @@ namespace NSRetailPOS
                 Utility.PrintReport(rpt);
                 this.BringToFront();
 
-                if(Utility.branchInfo.BranchID.Equals(103) || Utility.branchInfo.BranchID.Equals(105))
+                if (Utility.branchInfo.BranchID.Equals(103) || Utility.branchInfo.BranchID.Equals(105))
                 {
                     Utility.PrintReport(rpt);
                     this.BringToFront();
@@ -423,11 +413,6 @@ namespace NSRetailPOS
 
             txtItemCode.Focus();
             lblBillOfferContainer.Visibility = LayoutVisibility.Never;
-        }
-
-        private void txtItemCode_Leave(object sender, EventArgs e)
-        {
-            
         }
 
         private void txtItemCode_KeyDown(object sender, KeyEventArgs e)
@@ -898,7 +883,7 @@ namespace NSRetailPOS
         public void ReceiveBarCode(string data)
         {            
             txtItemCode.Text = data;
-            txtItemCode_Leave(txtItemCode, new EventArgs());
+            //txtItemCode_Leave(txtItemCode, new EventArgs());
         }
 
         private void gvBilling_ShowingEditor(object sender, CancelEventArgs e)
@@ -942,7 +927,6 @@ namespace NSRetailPOS
                 ItemPriceID = gvBilling.GetFocusedRowCellValue("ITEMPRICEID")
             };
 
-          
             if (new frmExtraDiscount(billDetailObj).ShowDialog() == DialogResult.OK)
             {
                 UpdateBillDetails(billDetailObj.dtBillDetails, billDetailObj.ItemPriceID);
@@ -964,15 +948,6 @@ namespace NSRetailPOS
         private void btnLogout_Click(object sender, EventArgs e)
         {            
             this.Close();                 
-        }
-
-        private void gvBilling_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
-        {
-            //if(gvBilling.GetRowCellValue(e.RowHandle, "DELETEDDATE") != DBNull.Value)
-            //{
-            //    e.Appearance.Font = new Font(e.Appearance.Font.Name, e.Appearance.Font.Size, FontStyle.Strikeout);
-            //    e.Appearance.BackColor = Color.Maroon;
-            //}
         }
 
         int totalQuantity = 0;

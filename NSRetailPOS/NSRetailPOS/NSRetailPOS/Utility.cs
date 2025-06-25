@@ -5,6 +5,7 @@ using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
+using NSRetailPOS.Gateway;
 using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
 using System;
@@ -31,6 +32,8 @@ namespace NSRetailPOS
     {
         public static LoginInfo loginInfo = new LoginInfo();
         public static BranchInfo branchInfo = new BranchInfo();
+        public static PaymentGatewayBase PaymentGateway = null;
+
         static SerialPort _serialPort = new SerialPort();
 
         private static DataTable dtGST;
@@ -45,9 +48,9 @@ namespace NSRetailPOS
         public static event EventHandler ItemOrCodeChanged;
         public static Form ActiveForm;
 
-        public static string AppVersion = "1.8.0";
+        public static string AppVersion = "1.8.1";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(11-06-2025)";
+        public static string VersionDate = "(25-06-2025)";
 
         public static Bill GetBill(DataSet dsBillDetails)
         {
@@ -65,12 +68,26 @@ namespace NSRetailPOS
             billObj.TenderedChange = dsBillDetails.Tables["BILL"].Rows[0]["TENDEREDCHANGE"];
             billObj.IsDoorDelivery = dsBillDetails.Tables["BILL"].Rows[0]["ISDOORDELIVERY"];
             billObj.dtBillDetails = dsBillDetails.Tables["BILLDETAILS"];
-            if (dsBillDetails.Tables.Count > 2)
+
+            if (dsBillDetails.Tables.Count >= 2)
+            {
+                foreach (DataRow drTransactionData in dsBillDetails.Tables["PGW_TRANSACTIONDATA"].Rows)
+                {
+                    CompletedTransactionData completedTransactionData = new CompletedTransactionData()
+                    {
+                        Amount = Convert.ToDecimal(drTransactionData["AMOUNT"]),
+                        MopID = Convert.ToInt32(drTransactionData["MOPID"])                        
+                    };
+
+                    billObj.CompletedTransactions.Add(completedTransactionData);
+                }
+            }
+
+            if (dsBillDetails.Tables.Count == 3)
                 billObj.dtMopValues = dsBillDetails.Tables["MOPDETAILS"];
+
             return billObj;
         }
-
-        public delegate void NextPrimeDelegate();
 
         public static async Task<bool> StartSync(bool isOverlayShown, bool forceFullSync = false)
         {

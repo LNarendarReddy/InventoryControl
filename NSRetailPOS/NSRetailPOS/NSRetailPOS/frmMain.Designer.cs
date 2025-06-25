@@ -501,7 +501,6 @@
             this.txtItemCode.Click += new System.EventHandler(this.txtItemCode_Click);
             this.txtItemCode.Enter += new System.EventHandler(this.txtItemCode_Enter);
             this.txtItemCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtItemCode_KeyDown);
-            this.txtItemCode.Leave += new System.EventHandler(this.txtItemCode_Leave);
             // 
             // btnDayClosure
             // 
@@ -632,7 +631,6 @@
             this.gvBilling.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn4, DevExpress.Data.ColumnSortOrder.Descending)});
             this.gvBilling.CustomDrawFooter += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(this.gvBilling_CustomDrawFooter);
-            this.gvBilling.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gvBilling_RowStyle);
             this.gvBilling.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gvBilling_CustomSummaryCalculate);
             this.gvBilling.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gvBilling_ShowingEditor);
             this.gvBilling.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvBilling_CellValueChanged);

@@ -22,6 +22,7 @@ namespace NSRetailPOS.Data
             , { "STOCKDISPATCHDETAIL",  new EntityMapping("USP_CU_STOCKDISPATCHDETAIL", "@StockDispatchDetail") }
             , { "USER",  new EntityMapping("USP_CU_USER", "@User") }
             , { "POS_DAYSEQUENCE",  new EntityMapping("USP_CU_POS_DAYSEQUENCE", "@DaySequence") }
+            , { "POS_PGW_TRANSACTIONDATA",  new EntityMapping("USP_CU_POS_PGW_TRANSACTIONDATA", "@DATA", true) }
         };
         public DataTable GetEntityWiseData(object EntityName, object SyncDate, object BranchID)
         {
