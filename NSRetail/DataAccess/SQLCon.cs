@@ -31,7 +31,7 @@ namespace DataAccess
                     string Password = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}pwd"].ToString());
 
                     ObjCon = new SqlConnection();
-                    string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 2000";
+                    string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 30000";
                     ObjCon.ConnectionString = str;
                     ObjCon.Open();
                 }
