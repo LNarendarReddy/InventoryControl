@@ -612,7 +612,113 @@ GO
 --UPDATE POS_BRANCHCOUNTER SET PAYMENTGATEWAYID = 1, PAYMENTGATEWAYADDITIONALCONFIG = '{ "StoreID" : "10737583", "ClientID" : "1013073" }'
 --GO
 
-UPDATE TBLCONFIG SET CONFIGVALUE = '1.7.1' WHERE CONFIGID = 1
+
+/****** Object:  StoredProcedure [dbo].[POS_USP_R_LOAD]    Script Date: 15-06-2025 10:38:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[POS_USP_R_LOAD]        
+@UserID INT, @BranchCounterID INT        
+AS        
+BEGIN        
+	DECLARE @DaySequenceID INT        
+        
+	SELECT TOP 1 @DaySequenceID = DAYSEQUENCEID FROM POS_DAYSEQUENCE ORDER BY OPENDATE DESC         
+        
+	IF ISNULL(@DaySequenceID, 0) = 0 OR (SELECT OPENDATE FROM POS_DAYSEQUENCE WHERE DAYSEQUENCEID = @DaySequenceID) <> CAST(GETDATE() AS DATE)        
+	BEGIN        
+		INSERT INTO POS_DAYSEQUENCE(OPENDATE, BRANCHCOUNTERID, CREATEDATE)        
+		SELECT CAST(GETDATE() AS DATE), @BranchCounterID, GETDATE()        
+        
+		SET @DaySequenceID = SCOPE_IDENTITY()        
+	END        
+	ELSE IF (SELECT ISCLOSED FROM POS_DAYSEQUENCE WHERE DAYSEQUENCEID = @DaySequenceID) = 1        
+	BEGIN         
+		SELECT 'Billing closed'        
+		RETURN        
+	END        
+        
+	DECLARE @LastBillNum VARCHAR(30)        
+	SELECT @LastBillNum = LASTUSEDBILLNUM FROM POS_DAYSEQUENCE WHERE DAYSEQUENCEID = @DaySequenceID        
+        
+	IF ISNULL(@LastBillNum, '') = ''        
+	BEGIN        
+		
+		IF GETDATE() > '2025-07-01'
+		BEGIN
+			SELECT @LastBillNum = BC.COUNTERNAME  + '/' + FORMAT(GETDATE(), 'yyMMdd') + '/000'        
+			FROM POS_BRANCHCOUNTER BC WHERE BC.COUNTERID = @BranchCounterID   
+		END
+		ELSE
+		BEGIN
+			SELECT @LastBillNum = BC.COUNTERNAME  + '/' + FORMAT(GETDATE(), 'yyyyMMdd') + '/0000'        
+			FROM POS_BRANCHCOUNTER BC WHERE BC.COUNTERID = @BranchCounterID      
+		END
+        
+		UPDATE POS_DAYSEQUENCE        
+		SET LASTUSEDBILLNUM = @LastBillNum,
+		UPDATEDATE = GETDATE()
+		WHERE DAYSEQUENCEID = @DaySequenceID        
+	END        
+         
+	SELECT @DaySequenceID AS DAYSEQUENCEID 
+	EXEC POS_USP_R_GETNEXTBILL @UserID, @DaySequenceID        
+      
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[POS_USP_R_GETNEXTBILL]    Script Date: 15-06-2025 10:32:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[POS_USP_R_GETNEXTBILL]    
+ @UserID INT    
+ , @DaySequenceID INT    
+AS    
+BEGIN    
+	DECLARE @BillID INT, @BillStatus INT   
+	
+	SELECT @BillID = OPENBILLID, @BillStatus = PB.BILLSTATUS        
+	FROM 
+		POS_DAYSEQUENCE DS
+		INNER JOIN POS_BILL PB ON PB.BILLID = DS.OPENBILLID
+	WHERE DAYSEQUENCEID = @DaySequenceID AND PB.DELETEDDATE IS NULL  
+
+	IF ISNULL(@BillID, 0) = 0 OR @BillStatus <> 0 
+	BEGIN
+		DECLARE @BillNumber VARCHAR(30)    
+		SELECT @BillNumber = DS.LASTUSEDBILLNUM FROM POS_DAYSEQUENCE DS WHERE DS.DAYSEQUENCEID = @DaySequenceID     
+    
+		IF GETDATE() > '2025-07-01'
+		BEGIN
+			SELECT @BillNumber = LEFT(@BillNumber, LEN(@BillNumber) - 3) + RIGHT('00' + CAST((CAST(RIGHT(@BillNumber, 3) AS INT) + 1) as VARCHAR(5)), 3)  
+		END
+		ELSE
+		BEGIN
+			SELECT @BillNumber = LEFT(@BillNumber, LEN(@BillNumber) - 4) + RIGHT('000' + CAST((CAST(RIGHT(@BillNumber, 4) AS INT) + 1) as VARCHAR(5)), 4)  
+		END
+		
+    
+		INSERT INTO POS_BILL(BILLNUMBER, BILLSTATUS, CREATEDBY, CREATEDDATE)    
+		SELECT @BillNumber, 0, @UserID, GETDATE()    
+      
+		SET @BillID = SCOPE_IDENTITY()  
+		
+		UPDATE POS_DAYSEQUENCE    
+		SET LASTUSEDBILLNUM = @BillNumber
+			, OPENBILLID = @BillID    
+			,UPDATEDATE = GETDATE()
+		WHERE DAYSEQUENCEID = @DaySequenceID  
+	END
+
+	EXEC POS_USP_R_BILL @BillID, @DaySequenceID    
+END    
+GO
+
+
+UPDATE TBLCONFIG SET CONFIGVALUE = '1.7.2' WHERE CONFIGID = 1
 GO
 
 
