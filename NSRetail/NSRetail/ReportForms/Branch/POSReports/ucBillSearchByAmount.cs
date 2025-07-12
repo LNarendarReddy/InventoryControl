@@ -104,7 +104,13 @@ namespace NSRetail.ReportForms.Branch.POSReports
                     , { "BranchCounterID", drFocusedRow["BRANCHCOUNTERID"] }
                 };
                 DataSet dsBillDetails = new ReportRepository().GetReportDataset("USP_RPT_POS_BILL_PRINT", parameters);
+
+                frmBillOverrideOptions overrideOptions = new frmBillOverrideOptions(dsBillDetails.Tables[0].Rows[0]["CUSTOMERNAME"], dsBillDetails.Tables[0].Rows[0]["CUSTOMERNUMBER"]);
+                if (overrideOptions.ShowDialog() != DialogResult.OK) return;
                 
+                dsBillDetails.Tables[0].Rows[0]["CUSTOMERNAME"] = overrideOptions.CustomerName;
+                dsBillDetails.Tables[0].Rows[0]["CUSTOMERNUMBER"] = overrideOptions.CustomerNumber;
+
                 rptBill rpt = new rptBill(dsBillDetails.Tables[1], dsBillDetails.Tables[2]);
                 rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
                 rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";

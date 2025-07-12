@@ -75,6 +75,7 @@ namespace Entity
         public object PANNUMBER { get; set; }
         public object EMAILID { get; set; }
         public object STATEID { get;set; }
+        public object VendorCode { get; set; }
     }
 
     public class Counter:EntityBase

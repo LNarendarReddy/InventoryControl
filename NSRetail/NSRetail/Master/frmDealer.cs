@@ -39,6 +39,7 @@ namespace NSRetail.Master
                 txtEmail.EditValue = ObjDealer.EMAILID;
                 txtGSTIN.EditValue = ObjDealer.GSTIN;
                 txtPanNumber.EditValue = ObjDealer.PANNUMBER;
+                txtVendorCode.EditValue = ObjDealer.VendorCode;
                 cmbState.EditValue = ObjDealer.STATEID;
             }
         }
@@ -55,6 +56,7 @@ namespace NSRetail.Master
                 ObjDealer.EMAILID = txtEmail.EditValue;
                 ObjDealer.GSTIN = txtGSTIN.EditValue;
                 ObjDealer.PANNUMBER = txtPanNumber.EditValue;
+                ObjDealer.VendorCode = txtVendorCode.EditValue;
                 ObjDealer.STATEID = cmbState.EditValue;
                 ObjDealer.UserID = Utility.UserID;
                 objMasterRep.SaveDealer(ObjDealer);

@@ -270,6 +270,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@PHONENO", ObjDealer.PHONENO);
                     cmd.Parameters.AddWithValue("@GSTIN", ObjDealer.GSTIN);
                     cmd.Parameters.AddWithValue("@PANNUMBER", ObjDealer.PANNUMBER);
+                    cmd.Parameters.AddWithValue("@VENDORCODE", ObjDealer.VendorCode);
                     cmd.Parameters.AddWithValue("@EMAILID", ObjDealer.EMAILID);
                     cmd.Parameters.AddWithValue("@USERID", ObjDealer.UserID);
                     object objReturn = cmd.ExecuteScalar();

@@ -69,6 +69,7 @@ namespace NSRetail.Master
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcDealer)).BeginInit();
@@ -189,7 +190,8 @@ namespace NSRetail.Master
             this.gridColumn10,
             this.gridColumn11,
             this.gcEdit,
-            this.gcDelete});
+            this.gcDelete,
+            this.gridColumn12});
             this.gvDealer.DetailHeight = 404;
             this.gvDealer.GridControl = this.gcDealer;
             this.gvDealer.Name = "gvDealer";
@@ -222,7 +224,7 @@ namespace NSRetail.Master
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 1;
+            this.gridColumn5.VisibleIndex = 2;
             this.gridColumn5.Width = 117;
             // 
             // gridColumn14
@@ -234,7 +236,7 @@ namespace NSRetail.Master
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 3;
+            this.gridColumn14.VisibleIndex = 4;
             this.gridColumn14.Width = 87;
             // 
             // cmbState
@@ -256,7 +258,7 @@ namespace NSRetail.Master
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 2;
+            this.gridColumn6.VisibleIndex = 3;
             this.gridColumn6.Width = 117;
             // 
             // gridColumn7
@@ -267,7 +269,7 @@ namespace NSRetail.Master
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 4;
+            this.gridColumn7.VisibleIndex = 5;
             this.gridColumn7.Width = 117;
             // 
             // gridColumn3
@@ -278,7 +280,7 @@ namespace NSRetail.Master
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 5;
+            this.gridColumn3.VisibleIndex = 6;
             this.gridColumn3.Width = 87;
             // 
             // gridColumn4
@@ -289,7 +291,7 @@ namespace NSRetail.Master
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 6;
+            this.gridColumn4.VisibleIndex = 7;
             this.gridColumn4.Width = 87;
             // 
             // gridColumn8
@@ -338,7 +340,7 @@ namespace NSRetail.Master
             this.gcEdit.Name = "gcEdit";
             this.gcEdit.Tag = "0DF3A103-9ECD-465D-9968-DCBF9A23C626::Update";
             this.gcEdit.Visible = true;
-            this.gcEdit.VisibleIndex = 7;
+            this.gcEdit.VisibleIndex = 8;
             this.gcEdit.Width = 43;
             // 
             // btnEdit
@@ -361,7 +363,7 @@ namespace NSRetail.Master
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Tag = "0DF3A103-9ECD-465D-9968-DCBF9A23C626::Delete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 8;
+            this.gcDelete.VisibleIndex = 9;
             this.gcDelete.Width = 44;
             // 
             // btnDelete
@@ -444,6 +446,14 @@ namespace NSRetail.Master
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "Vendor Code";
+            this.gridColumn12.FieldName = "VENDORCODE";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 1;
+            // 
             // frmDealerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -503,5 +513,6 @@ namespace NSRetail.Master
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbState;
         private DevExpress.XtraEditors.SimpleButton btnViewReport;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
     }
 }

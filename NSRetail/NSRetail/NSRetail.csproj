@@ -254,6 +254,12 @@
     <Compile Include="ReportForms\Branch\BranchReports\ucVoidItems.Designer.cs">
       <DependentUpon>ucVoidItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Branch\POSReports\frmBillOverrideOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Branch\POSReports\frmBillOverrideOptions.Designer.cs">
+      <DependentUpon>frmBillOverrideOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Branch\POSReports\ucCRefundSheets.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1263,6 +1269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\ucVoidItems.resx">
       <DependentUpon>ucVoidItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Branch\POSReports\frmBillOverrideOptions.resx">
+      <DependentUpon>frmBillOverrideOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\POSReports\ucCRefundSheets.resx">
       <DependentUpon>ucCRefundSheets.cs</DependentUpon>
