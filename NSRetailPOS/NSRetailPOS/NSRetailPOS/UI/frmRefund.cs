@@ -15,6 +15,8 @@ namespace NSRetailPOS.UI
     public partial class frmRefund : XtraForm, IBarcodeReceiver
     {
         object billID;
+        DataTable dtBillDetails;
+        DataTable dtRefundDetails;
 
         public frmRefund()
         {
@@ -41,8 +43,10 @@ namespace NSRetailPOS.UI
 
                 txtCustomerName.Enabled = string.IsNullOrEmpty(txtCustomerName.EditValue?.ToString());
                 txtCustomerPhone.Enabled = string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString());
+                dtBillDetails = ds.Tables["BILLDETAILS"];
+                dtRefundDetails = ds.Tables["BILLDETAILS"].Clone();
 
-                gcBillDetails.DataSource = ds.Tables["BILLDETAILS"];
+                gcBillDetails.DataSource = dtRefundDetails;
             }
             catch (Exception ex)
             {
@@ -233,6 +237,32 @@ namespace NSRetailPOS.UI
             {
                 XtraMessageBox.Show(ex.Message);
             }
+        }
+
+        private void txtItemCode_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtItemCode.EditValue?.ToString())) return;
+            DataView dvTemp = dtBillDetails.Copy().DefaultView;
+            dvTemp.RowFilter = $"ITEMCODE = '{txtItemCode.EditValue}'";
+            
+            if(dvTemp.Count == 0)
+            {
+                XtraMessageBox.Show("Item not found in bill");
+                return;
+            }
+
+            DataView dvCheck = dtRefundDetails.Copy().DefaultView;
+            dvCheck.RowFilter = $"ITEMCODE = '{txtItemCode.EditValue}'";
+
+            if (dvCheck.Count > 0)
+            {
+                XtraMessageBox.Show("Item already displayed");
+                return;
+            }
+
+            dtRefundDetails.ImportRow(dvTemp[0].Row);
+            txtItemCode.EditValue = null;
+            txtItemCode.Focus();
         }
     }
 }
