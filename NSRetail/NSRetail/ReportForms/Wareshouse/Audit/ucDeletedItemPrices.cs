@@ -19,6 +19,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
                 , { "CREATEDTIME", "Created Time" }
                 , { "UPDATEDATE", "Updated Time" }
                 , { "BRANDNAME", "Brand" }
+                , { "GSTCODE", "GST Code" }
                 , { "MANUFACTURERNAME", "Manufacturer" }                
             };
 
