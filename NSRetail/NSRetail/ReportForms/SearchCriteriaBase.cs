@@ -25,6 +25,7 @@ namespace NSRetail
         Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>();
         IEnumerable<string> allowedRoles;
         protected List<int> excludedBranches = new List<int> { 91, 92, 97, 100, 103 };
+        protected List<int> excludedCategory = new List<int> { 18 };
 
         private frmReportPlaceHolder frmReportPlaceHolder => ParentForm as frmReportPlaceHolder;
 
@@ -345,6 +346,9 @@ namespace NSRetail
             cmb.Properties.ValueMember = "CATEGORYID";
             cmb.Properties.DisplayMember = "CATEGORYNAME";
             cmb.CheckAll();
+            List<int> categoryIDs = cmb.EditValue.ToString().Split(',').Select(x => int.Parse(x)).ToList();
+            excludedCategory.Where(x => categoryIDs.Contains(x)).ToList().ForEach(x => categoryIDs.Remove(x));
+            cmb.EditValue = string.Join(",", categoryIDs);
             AddCheckedComboBoxEnter(cmb);
             cmb.EnterMoveNextControl = true;
         }

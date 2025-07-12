@@ -27,13 +27,14 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "SCHEMEPERCENTAGE", "Scheme %" },
                 { "BRANDNAME", "Brand" },
                 { "MANUFACTURERNAME", "Manufacturer" },
+                { "GSTIN", "Supplier GSTIN" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
                 new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODOCITY" },true)
                 , new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP", "COSTPRICEWOT", "COSTPRICEWT", "COSTPRICETAX", "PURCHASEQUANTITY" })
-                , new IncludeSettings("Supplier", "IncludeSupplier", new List<string>{ "DEALERNAME", "SUPPLIERINVOICENO" },true)
+                , new IncludeSettings("Supplier", "IncludeSupplier", new List<string>{ "DEALERNAME", "SUPPLIERINVOICENO", "GSTIN" },true)
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
                 , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NSRetail.Utilities;
+using System;
 using System.Collections.Generic;
 
 namespace NSRetail.ReportForms.Branch
@@ -73,6 +74,7 @@ namespace NSRetail.ReportForms.Branch
                 , { "Periodicity", cmbPeriodicity.EditValue }
                 , { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")}
                 , { "CategoryID", cmbCategory.EditValue }
+                , { "UnmaskCustomerPhone", AccessUtility.HasAccess("A8D53F2A-3D03-427C-8EC6-52FE3CE4656E::Execute")}
             };
 
             return GetReportData("USP_RPT_VOIDITEMS", parameters);

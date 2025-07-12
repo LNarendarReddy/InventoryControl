@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -44,6 +45,63 @@ namespace NSRetail
         public static bool skipAccessRefresh = false;
 
         public event EventHandler RefreshBaseLineData;
+
+        public Timer UpTime = new Timer() { Interval = 1000 };
+        public Timer SyncTime = new Timer() { Interval = 1000 };
+
+        private int syncTimeCounter;
+        private int upTimeCounter;
+        private int upTimeExceededCounter;
+        private bool messageBoxOpen = false;
+        private readonly int syncInterval = 2 * 60 * 60;
+        private readonly int maxUpTime = 8 * 60 * 60;
+
+        public void BeginTimer()
+        {
+            syncTimeCounter = syncInterval;
+            UpTime.Tick += UpTime_Tick;
+            SyncTime.Tick += SyncTime_Tick;
+            UpTime.Start();
+            SyncTime.Start();
+        }
+
+        private void SyncTime_Tick(object sender, EventArgs e)
+        {
+            syncTimeCounter--;
+            if (syncTimeCounter <= 0)
+            {
+                skipAccessRefresh = true;
+                Utility.FillBaseLine();
+                skipAccessRefresh = false;
+                syncTimeCounter = syncInterval;
+            }
+
+            TimeSpan timeSpan = TimeSpan.FromSeconds(syncTimeCounter);
+            lblSyncTime.Caption = $"Next app sync in : {timeSpan}";
+            lblSyncTime.ItemAppearance.Normal.ForeColor = syncTimeCounter < 600 ? Color.Red : Color.Empty;
+        }
+
+        private void UpTime_Tick(object sender, EventArgs e)
+        {
+            upTimeCounter++;
+            TimeSpan timeSpan = TimeSpan.FromSeconds(upTimeCounter);
+            lblUpTime.Caption = $"Total up time : {timeSpan}";
+            if (upTimeCounter > maxUpTime)
+            {
+                lblUpTime.ItemAppearance.Normal.ForeColor = Color.Red;
+                if (upTimeExceededCounter <= 0)
+                {
+                    upTimeExceededCounter = 2 * 60;
+                    if (!messageBoxOpen)
+                    {
+                        messageBoxOpen = true;
+                        XtraMessageBox.Show($"Application running for last {timeSpan}, please relaunch for uninterrupted usage", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        messageBoxOpen = false;
+                    }
+                }
+                upTimeExceededCounter--;
+            }
+        }
 
         protected override void OnLoad(EventArgs e)
         {
@@ -218,6 +276,7 @@ namespace NSRetail
             //AccessUtility.SetStatusByAccess(rpOperations, rpReports, rpOffers, rpUserAccess, rpAdmin, rpItemExtras);
             AccessUtility.SetStatusByAccess(ribbonControl1);
             SplashScreenManager.CloseForm();
+            syncTimeCounter = syncInterval;
         }
 
         private void btnSubCategory_ItemClick(object sender, ItemClickEventArgs e)
@@ -283,6 +342,7 @@ namespace NSRetail
             //AccessUtility.SetStatusByAccess(rpOperations, rpReports, rpOffers, rpUserAccess, rpAdmin, rpItemExtras);
             AccessUtility.SetStatusByAccess(ribbonControl1);
             FillFinYears();
+            BeginTimer();
         }
 
         private void bbiItemSummary_ItemClick(object sender, ItemClickEventArgs e)

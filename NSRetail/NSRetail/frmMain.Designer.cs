@@ -91,6 +91,10 @@
             this.bbiClearLeftSales = new DevExpress.XtraBars.BarButtonItem();
             this.bbiBuildInfo = new DevExpress.XtraBars.BarButtonItem();
             this.bbiRoles = new DevExpress.XtraBars.BarButtonItem();
+            this.btnBrand = new DevExpress.XtraBars.BarButtonItem();
+            this.btnManufacturer = new DevExpress.XtraBars.BarButtonItem();
+            this.lblSyncTime = new DevExpress.XtraBars.BarStaticItem();
+            this.lblUpTime = new DevExpress.XtraBars.BarStaticItem();
             this.rpOperations = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -120,8 +124,6 @@
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.btnBrand = new DevExpress.XtraBars.BarButtonItem();
-            this.btnManufacturer = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
@@ -195,9 +197,11 @@
             this.bbiBuildInfo,
             this.bbiRoles,
             this.btnBrand,
-            this.btnManufacturer});
+            this.btnManufacturer,
+            this.lblSyncTime,
+            this.lblUpTime});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 77;
+            this.ribbonControl1.MaxItemId = 79;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -803,6 +807,38 @@
             this.bbiRoles.Tag = "D1366B69-A667-4502-AB56-D6206ABE8B0E";
             this.bbiRoles.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRoles_ItemClick);
             // 
+            // btnBrand
+            // 
+            resources.ApplyResources(this.btnBrand, "btnBrand");
+            this.btnBrand.Id = 75;
+            this.btnBrand.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBrand.ImageOptions.SvgImage")));
+            this.btnBrand.Name = "btnBrand";
+            this.btnBrand.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBrand_ItemClick);
+            // 
+            // btnManufacturer
+            // 
+            resources.ApplyResources(this.btnManufacturer, "btnManufacturer");
+            this.btnManufacturer.Id = 76;
+            this.btnManufacturer.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnManufacturer.ImageOptions.SvgImage")));
+            this.btnManufacturer.Name = "btnManufacturer";
+            this.btnManufacturer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnManufacturer_ItemClick);
+            // 
+            // lblSyncTime
+            // 
+            resources.ApplyResources(this.lblSyncTime, "lblSyncTime");
+            this.lblSyncTime.Id = 77;
+            this.lblSyncTime.ItemAppearance.Normal.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("lblSyncTime.ItemAppearance.Normal.FontStyleDelta")));
+            this.lblSyncTime.ItemAppearance.Normal.Options.UseFont = true;
+            this.lblSyncTime.Name = "lblSyncTime";
+            // 
+            // lblUpTime
+            // 
+            resources.ApplyResources(this.lblUpTime, "lblUpTime");
+            this.lblUpTime.Id = 78;
+            this.lblUpTime.ItemAppearance.Normal.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("lblUpTime.ItemAppearance.Normal.FontStyleDelta")));
+            this.lblUpTime.ItemAppearance.Normal.Options.UseFont = true;
+            this.lblUpTime.Name = "lblUpTime";
+            // 
             // rpOperations
             // 
             this.rpOperations.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -1026,6 +1062,8 @@
             // 
             this.ribbonStatusBar1.ItemLinks.Add(this.lblUserName);
             this.ribbonStatusBar1.ItemLinks.Add(this.lblVersion);
+            this.ribbonStatusBar1.ItemLinks.Add(this.lblSyncTime);
+            this.ribbonStatusBar1.ItemLinks.Add(this.lblUpTime);
             resources.ApplyResources(this.ribbonStatusBar1, "ribbonStatusBar1");
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
@@ -1034,22 +1072,6 @@
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
-            // 
-            // btnBrand
-            // 
-            resources.ApplyResources(this.btnBrand, "btnBrand");
-            this.btnBrand.Id = 75;
-            this.btnBrand.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.btnBrand.Name = "btnBrand";
-            this.btnBrand.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBrand_ItemClick);
-            // 
-            // btnManufacturer
-            // 
-            resources.ApplyResources(this.btnManufacturer, "btnManufacturer");
-            this.btnManufacturer.Id = 76;
-            this.btnManufacturer.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
-            this.btnManufacturer.Name = "btnManufacturer";
-            this.btnManufacturer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnManufacturer_ItemClick);
             // 
             // frmMain
             // 
@@ -1168,6 +1190,8 @@
         private DevExpress.XtraBars.BarButtonItem bbiRoles;
         private DevExpress.XtraBars.BarButtonItem btnBrand;
         private DevExpress.XtraBars.BarButtonItem btnManufacturer;
+        private DevExpress.XtraBars.BarStaticItem lblSyncTime;
+        private DevExpress.XtraBars.BarStaticItem lblUpTime;
     }
 }
 

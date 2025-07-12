@@ -22,6 +22,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "STOCKENTRYID", "Stock Entry ID" }
                 , { "SUPPLIERINVOICENO", "Invoice Number" }
                 , { "DEALERNAME", "Supplier" }
+                , { "GSTIN", "Supplier GSTIN" }
                 , { "CATEGORYNAME", "Category" }
                 , { "INVOICEDATE", "Invoice Date" }
                 , { "CREATEDBY", "User Name" }
