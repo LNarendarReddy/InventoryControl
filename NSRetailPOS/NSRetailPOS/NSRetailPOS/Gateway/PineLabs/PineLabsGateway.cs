@@ -30,6 +30,7 @@ namespace NSRetailPOS.Gateway.PineLabs
             RequestBase additionalPayLoad = JsonConvert.DeserializeObject<RequestBase>(additionalSettings);
             requestBase.StoreID = additionalPayLoad.StoreID;
             requestBase.ClientID = additionalPayLoad.ClientID;
+            IsValid = additionalPayLoad.StoreID != 0 && additionalPayLoad.ClientID != 0;
             gatewayClient = new HttpClient() { BaseAddress = new Uri(requestBase.PaymentURL) };
             PaymentGatewayID = paymentGatewayID;
             AdditionalSettings = additionalSettings;

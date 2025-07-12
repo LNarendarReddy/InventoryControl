@@ -456,5 +456,24 @@ namespace DataAccess
                 
             }
         }
+
+        public object GetBranchExpenseImage(object branchExpenseID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_BRANCHEXPENSE_IMAGE]";
+                    cmd.Parameters.AddWithValue("@BranchExpenseID", branchExpenseID);
+                    return cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error While getting Branch expense image - {ex.Message}");
+            }
+        }
     }
 }

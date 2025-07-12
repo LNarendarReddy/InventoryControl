@@ -15,6 +15,8 @@ namespace NSRetailPOS.Gateway
 
         public bool IsInProgress { get; protected set; }
 
+        public bool IsValid { get; protected set; }
+
         public abstract string GatewayTpye { get; }
 
         protected abstract Task<bool> CancelRequest(ICancelRequest cancelRequest);
@@ -31,7 +33,6 @@ namespace NSRetailPOS.Gateway
         {
             if (string.IsNullOrEmpty(baseSettings) || string.IsNullOrEmpty(additionalSettings)) return null;
 
-
             PaymentGatewayBase gateway = null;
             switch (gatewayType)
             {
@@ -39,6 +40,8 @@ namespace NSRetailPOS.Gateway
                     gateway = new PineLabsGateway(paymentGatewayID, baseSettings, additionalSettings);
                     break;
             }
+
+            gateway = gateway != null && gateway.IsValid ? gateway : null;
             return gateway;
         }
     }

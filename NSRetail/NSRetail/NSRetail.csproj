@@ -212,6 +212,12 @@
     <Compile Include="ReportForms\Branch\BranchReports\frmDispatchtrayinfo.Designer.cs">
       <DependentUpon>frmDispatchtrayinfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Branch\BranchReports\frmImageViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Branch\BranchReports\frmImageViewer.Designer.cs">
+      <DependentUpon>frmImageViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Branch\BranchReports\frmSplitQuantity.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1248,6 +1254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmDispatchtrayinfo.resx">
       <DependentUpon>frmDispatchtrayinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmImageViewer.resx">
+      <DependentUpon>frmImageViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\BranchReports\frmSplitQuantity.resx">
       <DependentUpon>frmSplitQuantity.cs</DependentUpon>

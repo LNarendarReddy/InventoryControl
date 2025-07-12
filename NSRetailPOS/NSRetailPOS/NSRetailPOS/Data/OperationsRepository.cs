@@ -25,6 +25,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@BranchID", Utility.branchInfo.BranchID);
                     cmd.Parameters.AddWithValue("@Description", branchExpense.Description);
                     cmd.Parameters.AddWithValue("@Amount", branchExpense.Amount);
+                    cmd.Parameters.AddWithValue("@BillImage", branchExpense.BillImage);
                     cmd.Parameters.AddWithValue("@UserID", Utility.loginInfo.UserID);
                     object procValue = cmd.ExecuteScalar();
 
@@ -63,6 +64,25 @@ namespace NSRetailPOS.Data
             catch (Exception ex)
             {
                 throw new Exception($"Error While Deleting Branch expense - {ex.Message}");
+            }
+        }
+
+        public object GetBranchExpenseImage(object branchExpenseID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlWHconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_BRANCHEXPENSE_IMAGE]";
+                    cmd.Parameters.AddWithValue("@BranchExpenseID", branchExpenseID);
+                    return cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error While getting Branch expense image - {ex.Message}");
             }
         }
     }

@@ -149,5 +149,7 @@ namespace NSRetailPOS.Entity
         public object BranchExpenseTypeID { get; set; }
 
         public object Amount { get;set; }
+
+        public object BillImage { get; set; }
     }
 }

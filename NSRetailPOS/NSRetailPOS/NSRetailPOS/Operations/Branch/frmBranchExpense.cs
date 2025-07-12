@@ -32,6 +32,9 @@ namespace NSRetailPOS.Operations.Branch
             cmbExpenseType.Properties.DataSource = new ReportRepository().GetReportData("USP_R_BRANCHEXPENSETYPE");
             cmbExpenseType.Properties.DisplayMember = "BRANCHEXPENSETYPENAME";
             cmbExpenseType.Properties.ValueMember = "BRANCHEXPENSETYPEID";
+
+            _branchExpense.BillImage = new OperationsRepository().GetBranchExpenseImage(_branchExpense.BranchExpenseID);
+            picBillImage.EditValue = _branchExpense.BillImage;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -55,6 +58,7 @@ namespace NSRetailPOS.Operations.Branch
             _branchExpense.Description = txtDescription.EditValue;
             _branchExpense.Amount = txtAmount.EditValue;
             _branchExpense.BranchExpenseTypeID = cmbExpenseType.EditValue;
+            _branchExpense.BillImage = picBillImage.EditValue;
 
             try
             {

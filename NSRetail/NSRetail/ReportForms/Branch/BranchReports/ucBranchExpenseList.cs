@@ -1,5 +1,7 @@
-﻿using DevExpress.XtraEditors;
+﻿using DataAccess;
+using DevExpress.XtraEditors;
 using Entity;
+using NSRetail.ReportForms.Branch.POSReports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +30,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             };
 
             MandatoryFields = new List<BaseEdit>() { cmbBranch, dtFromDate, dtToDate };
+            ContextmenuItems = new Dictionary<string, string> { { "Bill Image", string.Empty } };
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;
@@ -45,6 +48,17 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             };
 
             return GetReportData("USP_R_BRANCHEXPENSE", parameters);
+        }
+
+        public override void ActionExecute(string buttonText, DataRow drFocusedRow)
+        {
+            switch (buttonText)
+            {
+                case "Bill Image":
+                    object image = new POSRepository().GetBranchExpenseImage(drFocusedRow["BRANCHEXPENSEID"]);
+                    new frmImageViewer(image) { Text = "Bill Image" }.ShowDialog();
+                    break;
+            }
         }
     }
 }
