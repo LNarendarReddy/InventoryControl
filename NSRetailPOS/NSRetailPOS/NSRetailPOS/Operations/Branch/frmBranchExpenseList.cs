@@ -103,5 +103,10 @@ namespace NSRetailPOS.Operations.Branch
         {
             RefreshList();
         }
+
+        private void btnViewImage_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            new frmImageViewer(new OperationsRepository().GetBranchExpenseImage(gvExpenses.GetFocusedRowCellValue("BRANCHEXPENSEID"))).ShowDialog();
+        }
     }
 }

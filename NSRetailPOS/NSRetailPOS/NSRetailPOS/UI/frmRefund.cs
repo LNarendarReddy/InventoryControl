@@ -244,8 +244,11 @@ namespace NSRetailPOS.UI
             if (string.IsNullOrEmpty(txtItemCode.EditValue?.ToString())) return;
             DataView dvTemp = dtBillDetails.Copy().DefaultView;
             dvTemp.RowFilter = $"ITEMCODE = '{txtItemCode.EditValue}'";
-            
-            if(dvTemp.Count == 0)
+         
+            txtItemCode.SelectAll();
+            txtItemCode.Focus();
+
+            if (dvTemp.Count == 0)
             {
                 XtraMessageBox.Show("Item not found in bill");
                 return;

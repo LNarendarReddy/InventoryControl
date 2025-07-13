@@ -33,7 +33,9 @@ namespace NSRetailPOS.Operations.Branch
             cmbExpenseType.Properties.DisplayMember = "BRANCHEXPENSETYPENAME";
             cmbExpenseType.Properties.ValueMember = "BRANCHEXPENSETYPEID";
 
-            _branchExpense.BillImage = new OperationsRepository().GetBranchExpenseImage(_branchExpense.BranchExpenseID);
+            if (!string.IsNullOrEmpty(_branchExpense.BranchExpenseID?.ToString()))
+                _branchExpense.BillImage = new OperationsRepository().GetBranchExpenseImage(_branchExpense.BranchExpenseID);
+            
             picBillImage.EditValue = _branchExpense.BillImage;
         }
 

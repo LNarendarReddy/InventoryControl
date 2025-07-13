@@ -223,6 +223,12 @@
     <Compile Include="Operations\Branch\frmBranchExpenseList.Designer.cs">
       <DependentUpon>frmBranchExpenseList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\Branch\frmImageViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Branch\frmImageViewer.Designer.cs">
+      <DependentUpon>frmImageViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\frmOpetations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -570,6 +576,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Branch\frmBranchExpenseList.resx">
       <DependentUpon>frmBranchExpenseList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Branch\frmImageViewer.resx">
+      <DependentUpon>frmImageViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\frmOpetations.resx">
       <DependentUpon>frmOpetations.cs</DependentUpon>
