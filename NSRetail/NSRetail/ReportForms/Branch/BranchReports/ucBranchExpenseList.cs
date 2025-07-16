@@ -30,7 +30,12 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             };
 
             MandatoryFields = new List<BaseEdit>() { cmbBranch, dtFromDate, dtToDate };
-            ContextmenuItems = new Dictionary<string, string> { { "Bill Image", string.Empty } };
+            ContextmenuItems = new Dictionary<string, string> 
+            {
+                { "Expense Image", string.Empty } ,
+                { "Edit", string.Empty },
+                { "Delete", string.Empty }
+            };
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtToDate.EditValue = DateTime.Now;
@@ -54,9 +59,50 @@ namespace NSRetail.ReportForms.Branch.BranchReports
         {
             switch (buttonText)
             {
-                case "Bill Image":
+                case "Expense Image":
                     object image = new POSRepository().GetBranchExpenseImage(drFocusedRow["BRANCHEXPENSEID"]);
-                    new frmImageViewer(image) { Text = "Bill Image" }.ShowDialog();
+                    new frmImageViewer(image) { Text = "Expense Image" }.ShowDialog();
+                    break;
+
+                case "Edit":
+                    BranchExpense branchExpense = new BranchExpense
+                    {
+                        Description = drFocusedRow["EXPENSEDESC"],
+                        BranchExpenseID = drFocusedRow["BRANCHEXPENSEID"],
+                        BranchExpenseTypeID = drFocusedRow["BRANCHEXPENSETYPEID"],
+                        Amount = drFocusedRow["AMOUNT"],
+                        BranchID = drFocusedRow["BRANCHID"],
+                        CreatedDate = drFocusedRow["CREATEDDATE"]
+                    };
+
+                    new frmBranchExpense(branchExpense).ShowDialog();
+
+                    if (branchExpense.IsSave)
+                        XtraMessageBox.Show("Refresh grid to get updated values", "Refresh", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+
+                case "Delete":
+                    BranchExpense branchExpenseToDelete = new BranchExpense
+                    {
+                        BranchExpenseID = drFocusedRow["BRANCHEXPENSEID"],
+                        UserID = Utility.UserID
+                    };
+
+                    if (XtraMessageBox.Show("Are you sure to delete expense?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                        != DialogResult.Yes) return;
+
+                    try
+                    {
+                        new ReportRepository().DeleteBranchExpense(branchExpenseToDelete);
+                        XtraMessageBox.Show("Branch expense deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    if (branchExpenseToDelete.IsSave)
+                        XtraMessageBox.Show("Refresh grid to get updated values", "Refresh", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
             }
         }

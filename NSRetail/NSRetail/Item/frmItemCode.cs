@@ -104,6 +104,7 @@ namespace NSRetail
                 itemObj.BrandID = cmbBrand.EditValue;
                 itemObj.ManufacturerID = cmbManufacturer.EditValue;
                 itemObj.UQCID = cmbUQC.EditValue;
+                itemObj.VendorSKUCode = txtVendorSKUCode.EditValue;
 
                 new ItemCodeRepository().SaveItemCode(itemObj);
 
@@ -412,6 +413,7 @@ namespace NSRetail
             cmbBrand.EditValue = dtItemDetails.Rows[0]["BRANDID"];
             cmbManufacturer.EditValue = dtItemDetails.Rows[0]["MANUFACTURERID"];
             cmbUQC.EditValue = dtItemDetails.Rows[0]["UQCID"];
+            txtVendorSKUCode.EditValue = dtItemDetails.Rows[0]["VENDORSKUCODE"];
 
             DataTable dtItemCodePrices = dsItemDetails.Tables["ITEMCODEPRICES"];
             DataRow selectedPrice = dtItemCodePrices.Rows[0];

@@ -8,7 +8,7 @@ namespace Entity
         public bool IsSave { get; set; }
         public object Description { get; set; }
         public object CreatedBy { get; set; }
-        public object CreatedBDate { get; set; }
+        public object CreatedDate { get; set; }
         public object UpdatedBy { get; set; }
         public object UpdatedDate { get; set; }
         public object UserID { get; set; }

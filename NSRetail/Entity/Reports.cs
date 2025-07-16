@@ -38,4 +38,17 @@ namespace Entity
         public object Status { get; set; }
         
     }
+
+    public class BranchExpense : EntityBase
+    {
+        public object BranchExpenseID { get; set; }
+
+        public object BranchExpenseTypeID { get; set; }
+
+        public object Amount { get; set; }
+
+        public object BillImage { get; set; }
+
+        public object BranchID { get; set; }
+    }
 }

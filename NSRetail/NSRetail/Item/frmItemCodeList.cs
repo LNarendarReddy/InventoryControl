@@ -125,7 +125,6 @@ namespace NSRetail
             }
         }
 
-
         #endregion
 
         protected override bool ProcessDialogKey(Keys keyData)

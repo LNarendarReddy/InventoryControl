@@ -57,6 +57,8 @@ namespace Entity
         public object ManufacturerID { get; set; }
 
         public object UQCID { get; set; }
+
+        public object VendorSKUCode { get; set; }
     }
 
     public class ItemNewCode : EntityBase

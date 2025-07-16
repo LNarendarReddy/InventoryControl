@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule15 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemCode));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemCode));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
@@ -44,6 +43,7 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule11 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule12 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule13 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule14 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.cmbManufacturer = new DevExpress.XtraEditors.LookUpEdit();
             this.cmbBrand = new DevExpress.XtraEditors.LookUpEdit();
@@ -51,16 +51,26 @@
             this.cmbClassification = new DevExpress.XtraEditors.LookUpEdit();
             this.sluFreeItem = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtCostPriceWOT = new DevExpress.XtraEditors.TextEdit();
             this.luUOM = new DevExpress.XtraEditors.LookUpEdit();
             this.luSubCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.sluParentItem = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gvParentItem = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chkIsOpenItem = new DevExpress.XtraEditors.CheckEdit();
             this.tsCreateNew = new DevExpress.XtraEditors.ToggleSwitch();
             this.btnAddSKU = new DevExpress.XtraEditors.SimpleButton();
             this.sluSKUCode = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gvItemSKU = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtSalePrice = new DevExpress.XtraEditors.TextEdit();
             this.txtMRP = new DevExpress.XtraEditors.TextEdit();
             this.txtCostPriceWT = new DevExpress.XtraEditors.TextEdit();
@@ -72,6 +82,7 @@
             this.txtItemName = new DevExpress.XtraEditors.TextEdit();
             this.txtItemCode = new DevExpress.XtraEditors.TextEdit();
             this.gluCategory = new DevExpress.XtraEditors.LookUpEdit();
+            this.cmbUQC = new DevExpress.XtraEditors.LookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -85,6 +96,7 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -102,18 +114,8 @@
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxItemValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cmbUQC = new DevExpress.XtraEditors.LookUpEdit();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtVendorSKUCode = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbManufacturer.Properties)).BeginInit();
@@ -140,6 +142,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gluCategory.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbUQC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
@@ -153,6 +156,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
@@ -170,12 +174,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxItemValidationProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbUQC.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVendorSKUCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.txtVendorSKUCode);
             this.layoutControl1.Controls.Add(this.cmbManufacturer);
             this.layoutControl1.Controls.Add(this.cmbBrand);
             this.layoutControl1.Controls.Add(this.cmbSubClassification);
@@ -227,10 +232,10 @@
             this.cmbManufacturer.Size = new System.Drawing.Size(274, 22);
             this.cmbManufacturer.StyleController = this.layoutControl1;
             this.cmbManufacturer.TabIndex = 9;
-            conditionValidationRule15.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule15.ErrorText = "Mandatory";
-            conditionValidationRule15.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.cmbManufacturer, conditionValidationRule15);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.cmbManufacturer, conditionValidationRule1);
             // 
             // cmbBrand
             // 
@@ -247,10 +252,10 @@
             this.cmbBrand.Size = new System.Drawing.Size(272, 22);
             this.cmbBrand.StyleController = this.layoutControl1;
             this.cmbBrand.TabIndex = 8;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.cmbBrand, conditionValidationRule1);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Mandatory";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.cmbBrand, conditionValidationRule2);
             // 
             // cmbSubClassification
             // 
@@ -268,10 +273,10 @@
             this.cmbSubClassification.Size = new System.Drawing.Size(274, 22);
             this.cmbSubClassification.StyleController = this.layoutControl1;
             this.cmbSubClassification.TabIndex = 7;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.cmbSubClassification, conditionValidationRule2);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Mandatory";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.cmbSubClassification, conditionValidationRule3);
             // 
             // cmbClassification
             // 
@@ -290,10 +295,10 @@
             this.cmbClassification.Size = new System.Drawing.Size(272, 22);
             this.cmbClassification.StyleController = this.layoutControl1;
             this.cmbClassification.TabIndex = 6;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "Mandatory";
-            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.cmbClassification, conditionValidationRule3);
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "Mandatory";
+            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.cmbClassification, conditionValidationRule4);
             this.cmbClassification.EditValueChanged += new System.EventHandler(this.cmbClassification_EditValueChanged);
             // 
             // sluFreeItem
@@ -323,6 +328,34 @@
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "ITEMCODEID";
+            this.gridColumn5.FieldName = "ITEMCODEID";
+            this.gridColumn5.MinWidth = 23;
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Width = 87;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Item EAN / SKU Code";
+            this.gridColumn6.FieldName = "ITEMCODE";
+            this.gridColumn6.MinWidth = 23;
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 0;
+            this.gridColumn6.Width = 87;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Item Name";
+            this.gridColumn7.FieldName = "ITEMNAME";
+            this.gridColumn7.MinWidth = 23;
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 1;
+            this.gridColumn7.Width = 87;
+            // 
             // txtCostPriceWOT
             // 
             this.txtCostPriceWOT.EnterMoveNextControl = true;
@@ -338,9 +371,9 @@
             this.txtCostPriceWOT.Size = new System.Drawing.Size(270, 22);
             this.txtCostPriceWOT.StyleController = this.layoutControl1;
             this.txtCostPriceWOT.TabIndex = 16;
-            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule4.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtCostPriceWOT, conditionValidationRule4);
+            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule5.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtCostPriceWOT, conditionValidationRule5);
             this.txtCostPriceWOT.EditValueChanged += new System.EventHandler(this.txtCostPriceWOT_EditValueChanged);
             // 
             // luUOM
@@ -411,6 +444,34 @@
             this.gvParentItem.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gvParentItem.OptionsView.ShowGroupPanel = false;
             // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "ITEMID";
+            this.gridColumn13.FieldName = "ITEMID";
+            this.gridColumn13.MinWidth = 23;
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.Width = 87;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "SKU Code";
+            this.gridColumn14.FieldName = "SKUCODE";
+            this.gridColumn14.MinWidth = 23;
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 0;
+            this.gridColumn14.Width = 87;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "Item Name";
+            this.gridColumn15.FieldName = "ITEMNAME";
+            this.gridColumn15.MinWidth = 23;
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 1;
+            this.gridColumn15.Width = 87;
+            // 
             // chkIsOpenItem
             // 
             this.chkIsOpenItem.Enabled = false;
@@ -466,10 +527,10 @@
             this.sluSKUCode.Size = new System.Drawing.Size(533, 22);
             this.sluSKUCode.StyleController = this.layoutControl1;
             this.sluSKUCode.TabIndex = 1;
-            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule5.ErrorText = "Value cannot be Empty";
-            conditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.sluSKUCode, conditionValidationRule5);
+            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule6.ErrorText = "Value cannot be Empty";
+            conditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.sluSKUCode, conditionValidationRule6);
             // 
             // gvItemSKU
             // 
@@ -483,6 +544,42 @@
             this.gvItemSKU.Name = "gvItemSKU";
             this.gvItemSKU.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gvItemSKU.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "ITEMID";
+            this.gridColumn1.FieldName = "ITEMID";
+            this.gridColumn1.MinWidth = 23;
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Width = 87;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "SKU Code";
+            this.gridColumn2.FieldName = "SKUCODE";
+            this.gridColumn2.MinWidth = 23;
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            this.gridColumn2.Width = 87;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Item Name";
+            this.gridColumn3.FieldName = "ITEMNAME";
+            this.gridColumn3.MinWidth = 23;
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 1;
+            this.gridColumn3.Width = 87;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Description";
+            this.gridColumn4.FieldName = "DESCRIPTION";
+            this.gridColumn4.MinWidth = 23;
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Width = 87;
             // 
             // txtSalePrice
             // 
@@ -499,9 +596,9 @@
             this.txtSalePrice.Size = new System.Drawing.Size(270, 22);
             this.txtSalePrice.StyleController = this.layoutControl1;
             this.txtSalePrice.TabIndex = 14;
-            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule6.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtSalePrice, conditionValidationRule6);
+            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule7.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtSalePrice, conditionValidationRule7);
             // 
             // txtMRP
             // 
@@ -518,9 +615,9 @@
             this.txtMRP.Size = new System.Drawing.Size(270, 22);
             this.txtMRP.StyleController = this.layoutControl1;
             this.txtMRP.TabIndex = 13;
-            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule7.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtMRP, conditionValidationRule7);
+            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule8.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtMRP, conditionValidationRule8);
             // 
             // txtCostPriceWT
             // 
@@ -537,9 +634,9 @@
             this.txtCostPriceWT.Size = new System.Drawing.Size(270, 22);
             this.txtCostPriceWT.StyleController = this.layoutControl1;
             this.txtCostPriceWT.TabIndex = 15;
-            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule8.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtCostPriceWT, conditionValidationRule8);
+            conditionValidationRule9.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule9.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtCostPriceWT, conditionValidationRule9);
             this.txtCostPriceWT.EditValueChanged += new System.EventHandler(this.txtCostPriceWT_EditValueChanged);
             // 
             // luGST
@@ -557,9 +654,9 @@
             this.luGST.Size = new System.Drawing.Size(270, 22);
             this.luGST.StyleController = this.layoutControl1;
             this.luGST.TabIndex = 17;
-            conditionValidationRule9.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule9.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.luGST, conditionValidationRule9);
+            conditionValidationRule10.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule10.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.luGST, conditionValidationRule10);
             this.luGST.EditValueChanged += new System.EventHandler(this.luGST_EditValueChanged);
             // 
             // chkIsEAN
@@ -611,9 +708,9 @@
             this.txtHSNCode.Size = new System.Drawing.Size(273, 22);
             this.txtHSNCode.StyleController = this.layoutControl1;
             this.txtHSNCode.TabIndex = 3;
-            conditionValidationRule10.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule10.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtHSNCode, conditionValidationRule10);
+            conditionValidationRule11.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule11.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtHSNCode, conditionValidationRule11);
             // 
             // txtItemName
             // 
@@ -624,10 +721,10 @@
             this.txtItemName.Size = new System.Drawing.Size(674, 22);
             this.txtItemName.StyleController = this.layoutControl1;
             this.txtItemName.TabIndex = 2;
-            conditionValidationRule11.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule11.ErrorText = "Value cannot be empty";
-            conditionValidationRule11.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.User1;
-            this.dxItemValidationProvider.SetValidationRule(this.txtItemName, conditionValidationRule11);
+            conditionValidationRule12.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule12.ErrorText = "Value cannot be empty";
+            conditionValidationRule12.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.User1;
+            this.dxItemValidationProvider.SetValidationRule(this.txtItemName, conditionValidationRule12);
             // 
             // txtItemCode
             // 
@@ -643,9 +740,9 @@
             this.txtItemCode.Size = new System.Drawing.Size(604, 22);
             this.txtItemCode.StyleController = this.layoutControl1;
             this.txtItemCode.TabIndex = 0;
-            conditionValidationRule12.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule12.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtItemCode, conditionValidationRule12);
+            conditionValidationRule13.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule13.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtItemCode, conditionValidationRule13);
             // 
             // gluCategory
             // 
@@ -665,11 +762,22 @@
             this.gluCategory.Size = new System.Drawing.Size(272, 22);
             this.gluCategory.StyleController = this.layoutControl1;
             this.gluCategory.TabIndex = 4;
-            conditionValidationRule13.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule13.ErrorText = "Mandatory";
-            conditionValidationRule13.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.gluCategory, conditionValidationRule13);
+            conditionValidationRule14.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule14.ErrorText = "Mandatory";
+            conditionValidationRule14.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.gluCategory, conditionValidationRule14);
             this.gluCategory.EditValueChanged += new System.EventHandler(this.gluCategory_EditValueChanged);
+            // 
+            // cmbUQC
+            // 
+            this.cmbUQC.Location = new System.Drawing.Point(133, 172);
+            this.cmbUQC.Name = "cmbUQC";
+            this.cmbUQC.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbUQC.Properties.NullText = "";
+            this.cmbUQC.Size = new System.Drawing.Size(273, 22);
+            this.cmbUQC.StyleController = this.layoutControl1;
+            this.cmbUQC.TabIndex = 24;
             // 
             // Root
             // 
@@ -736,7 +844,8 @@
             this.layoutControlItem5,
             this.layoutControlItem4,
             this.layoutControlItem17,
-            this.layoutControlItem25});
+            this.layoutControlItem25,
+            this.layoutControlItem26});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
@@ -814,6 +923,16 @@
             this.layoutControlItem17.Size = new System.Drawing.Size(401, 34);
             this.layoutControlItem17.Text = "Parent Item";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(104, 15);
+            // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.Control = this.cmbUQC;
+            this.layoutControlItem25.Location = new System.Drawing.Point(0, 134);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem25.Size = new System.Drawing.Size(401, 34);
+            this.layoutControlItem25.Text = "UQC";
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlGroup2
             // 
@@ -986,118 +1105,23 @@
             this.layoutControlItem24.Text = "Manufacturer";
             this.layoutControlItem24.TextSize = new System.Drawing.Size(104, 15);
             // 
-            // layoutControlItem25
+            // txtVendorSKUCode
             // 
-            this.layoutControlItem25.Control = this.cmbUQC;
-            this.layoutControlItem25.Location = new System.Drawing.Point(0, 134);
-            this.layoutControlItem25.Name = "layoutControlItem25";
-            this.layoutControlItem25.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem25.Size = new System.Drawing.Size(802, 34);
-            this.layoutControlItem25.Text = "UQC";
-            this.layoutControlItem25.TextSize = new System.Drawing.Size(104, 15);
+            this.txtVendorSKUCode.Location = new System.Drawing.Point(534, 172);
+            this.txtVendorSKUCode.Name = "txtVendorSKUCode";
+            this.txtVendorSKUCode.Size = new System.Drawing.Size(273, 22);
+            this.txtVendorSKUCode.StyleController = this.layoutControl1;
+            this.txtVendorSKUCode.TabIndex = 25;
             // 
-            // cmbUQC
+            // layoutControlItem26
             // 
-            this.cmbUQC.Location = new System.Drawing.Point(133, 172);
-            this.cmbUQC.Name = "cmbUQC";
-            this.cmbUQC.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbUQC.Properties.NullText = "";
-            this.cmbUQC.Size = new System.Drawing.Size(674, 22);
-            this.cmbUQC.StyleController = this.layoutControl1;
-            this.cmbUQC.TabIndex = 24;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "ITEMCODEID";
-            this.gridColumn5.FieldName = "ITEMCODEID";
-            this.gridColumn5.MinWidth = 23;
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Width = 87;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Item EAN / SKU Code";
-            this.gridColumn6.FieldName = "ITEMCODE";
-            this.gridColumn6.MinWidth = 23;
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 0;
-            this.gridColumn6.Width = 87;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Item Name";
-            this.gridColumn7.FieldName = "ITEMNAME";
-            this.gridColumn7.MinWidth = 23;
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 1;
-            this.gridColumn7.Width = 87;
-            // 
-            // gridColumn13
-            // 
-            this.gridColumn13.Caption = "ITEMID";
-            this.gridColumn13.FieldName = "ITEMID";
-            this.gridColumn13.MinWidth = 23;
-            this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.Width = 87;
-            // 
-            // gridColumn14
-            // 
-            this.gridColumn14.Caption = "SKU Code";
-            this.gridColumn14.FieldName = "SKUCODE";
-            this.gridColumn14.MinWidth = 23;
-            this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 0;
-            this.gridColumn14.Width = 87;
-            // 
-            // gridColumn15
-            // 
-            this.gridColumn15.Caption = "Item Name";
-            this.gridColumn15.FieldName = "ITEMNAME";
-            this.gridColumn15.MinWidth = 23;
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 1;
-            this.gridColumn15.Width = 87;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "ITEMID";
-            this.gridColumn1.FieldName = "ITEMID";
-            this.gridColumn1.MinWidth = 23;
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Width = 87;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "SKU Code";
-            this.gridColumn2.FieldName = "SKUCODE";
-            this.gridColumn2.MinWidth = 23;
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
-            this.gridColumn2.Width = 87;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Item Name";
-            this.gridColumn3.FieldName = "ITEMNAME";
-            this.gridColumn3.MinWidth = 23;
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
-            this.gridColumn3.Width = 87;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "Description";
-            this.gridColumn4.FieldName = "DESCRIPTION";
-            this.gridColumn4.MinWidth = 23;
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Width = 87;
+            this.layoutControlItem26.Control = this.txtVendorSKUCode;
+            this.layoutControlItem26.Location = new System.Drawing.Point(401, 134);
+            this.layoutControlItem26.Name = "layoutControlItem26";
+            this.layoutControlItem26.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem26.Size = new System.Drawing.Size(401, 34);
+            this.layoutControlItem26.Text = "Vendor SKU Code";
+            this.layoutControlItem26.TextSize = new System.Drawing.Size(104, 15);
             // 
             // frmItemCode
             // 
@@ -1140,6 +1164,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtItemName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gluCategory.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbUQC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
@@ -1153,6 +1178,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
@@ -1170,8 +1196,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxItemValidationProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbUQC.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVendorSKUCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1248,5 +1274,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
         private DevExpress.XtraEditors.LookUpEdit cmbUQC;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
+        private DevExpress.XtraEditors.TextEdit txtVendorSKUCode;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem26;
     }
 }
