@@ -518,6 +518,12 @@
     <Compile Include="ReportForms\Stock\StockReports\frmItemSummaryDetail.Designer.cs">
       <DependentUpon>frmItemSummaryDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Differences\ucDispatchVsIndentSufficiency.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Differences\ucDispatchVsIndentSufficiency.Designer.cs">
+      <DependentUpon>ucDispatchVsIndentSufficiency.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\Differences\ucIndentDispatchDifferences.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1435,6 +1441,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\POSReports\ucBillSearchByAmount.resx">
       <DependentUpon>ucBillSearchByAmount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Differences\ucDispatchVsIndentSufficiency.resx">
+      <DependentUpon>ucDispatchVsIndentSufficiency.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Differences\ucIndentDispatchDifferences.resx">
       <DependentUpon>ucIndentDispatchDifferences.cs</DependentUpon>

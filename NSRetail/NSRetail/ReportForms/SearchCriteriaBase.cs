@@ -116,6 +116,8 @@ namespace NSRetail
                 , {"QTYORWGHTINKGS", "Qty or Weight in KG(s)"}
                 , {"PARENTITEMNAME", "Parent Item Name"}
                 , {"PARENTSKUCODE", "Parent SKU Code"}
+                , {"BRANDNAME", "Brand"}
+                , {"MANUFACTURERNAME", "Manufacturer"}
             };
 
             ButtonColumns = new List<string>();
