@@ -58,7 +58,7 @@ namespace NSRetailPOS.UI
             txtBilledAmount.EditValue = billObj.Amount;
             txtItemQuantity.EditValue = billObj.Quantity;
 
-            gcMOP.DataSource = dtMOPs;
+            gcMOP.DataSource = dtMOPs.Copy();
             gcMOP.Refresh();
 
             txtPaymentValue.ValidateOnEnterKey = true;
@@ -180,9 +180,11 @@ namespace NSRetailPOS.UI
             billObj.CustomerGST = txtCustomerGST.EditValue;
             billObj.PaymentMode = rgPaymentModes.EditValue;
 
+            decimal rounding = 0;
             if (decimal.TryParse(gvMOP.GetRowCellValue(cashRowHandle, "MOPVALUE").ToString(), out decimal cashValue) && cashValue > 0)
             {
-                billObj.Rounding = billObj.PaymentMode.Equals("CASH") ? Math.Round(billedAmount) - billedAmount : 0.00M;
+                rounding = billObj.PaymentMode.Equals("CASH") ? Math.Round(billedAmount) - billedAmount : 0.00M;
+                billObj.Rounding = rounding;
                 billObj.TenderedCash = cashValue;
                 billObj.TenderedChange = remainingAmount + Math.Round(billedAmount) - billedAmount;
                 gvMOP.FocusedRowHandle = cashRowHandle;
@@ -215,7 +217,7 @@ namespace NSRetailPOS.UI
 
             // force refresh values
             int i = 0;
-            bool atleastOnevalueFound = false;
+            decimal totalPaid = 0;
 
             foreach (DataRow dr in billObj.dtMopValues.Rows)
             {
@@ -223,12 +225,14 @@ namespace NSRetailPOS.UI
                 dr["MOPVALUE"] = gvMOP.GetRowCellValue(rowHandle, "MOPVALUE");
                 i++;
                 if (decimal.TryParse(dr["MOPVALUE"]?.ToString(), out decimal value) && value > 0)
-                    atleastOnevalueFound = true;
+                {
+                    totalPaid += value;
+                }
             }
 
-            if(!atleastOnevalueFound)
+            if (totalPaid < payableAmount + rounding)
             {
-                XtraMessageBox.Show("Payment mode blank found, please contact administrator", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                XtraMessageBox.Show("Payment mode mismatch detected, please retry operation of if the issue persists, contact administrator", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
