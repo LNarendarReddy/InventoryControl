@@ -86,6 +86,7 @@ namespace NSRetail
                 {"BRANCHNAME", "Branch" }
                 , {"ITEMNAME", "Item Name"}
                 , {"SKUCODE", "SKU Code"}
+                , {"GSTCODE", "GST Code"}
                 , {"ITEMCODE", "Item Code"}
                 , {"ISOPENITEM", "Is open item"}
                 , {"CATEGORYNAME", "Category"}

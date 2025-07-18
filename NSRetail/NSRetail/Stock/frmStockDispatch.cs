@@ -123,6 +123,7 @@ namespace NSRetail.Stock
                         MessageBoxButtons.YesNo,MessageBoxIcon.Question) != DialogResult.Yes)
                         return;
                     ObjStockDispatch.TOBRANCHID = cmbToBranch.EditValue;
+                    ObjStockDispatch.Description = txtNotes.EditValue;
                     ObjStockRep.UpdateDispatch(ObjStockDispatch);
                     DataSet ds = ObjStockRep.GetDispatch(ObjStockDispatch.STOCKDISPATCHID);
 
@@ -316,6 +317,7 @@ namespace NSRetail.Stock
                 ObjStockDispatch.TOBRANCHID = cmbToBranch.EditValue;
                 ObjStockDispatch.CATEGORYID = cmbCategory.EditValue;
                 ObjStockDispatch.UserID = Utility.UserID;
+                ObjStockDispatch.Description = txtNotes.EditValue;
                 ObjStockRep.SaveDispatch(ObjStockDispatch);
                 cmbFromBranch.Enabled = false;
                 cmbCategory.Enabled = false;

@@ -29,6 +29,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             txtDescription.EditValue = _branchExpense.Description;
             txtAmount.EditValue = _branchExpense.Amount;
             cmbExpenseType.EditValue = _branchExpense.BranchExpenseTypeID;
+            dtpExpenseDate.EditValue = _branchExpense.CreatedDate;
+            Text += $" : {_branchExpense.Branch}";
 
             cmbExpenseType.Properties.DataSource = new ReportRepository().GetReportData("USP_R_BRANCHEXPENSETYPE");
             cmbExpenseType.Properties.DisplayMember = "BRANCHEXPENSETYPENAME";
@@ -66,6 +68,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             _branchExpense.BranchExpenseTypeID = cmbExpenseType.EditValue;
             _branchExpense.BillImage = picBillImage.EditValue;
             _branchExpense.UserID = Utility.UserID;
+            _branchExpense.CreatedDate = dtpExpenseDate.EditValue;
 
             try
             {

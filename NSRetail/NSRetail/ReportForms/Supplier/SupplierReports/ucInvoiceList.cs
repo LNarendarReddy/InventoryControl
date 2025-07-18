@@ -34,6 +34,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             ContextmenuItems = new Dictionary<string, string>
             {
                 { "View", "3A365A22-5334-4667-8782-A83825298BF6" },
+                { "Edit", "DED7050B-F5CF-4944-8880-008A87F1D987" },
                 { "Revert", "7CE473E7-514B-4BC9-B07E-2B26B5AA44F2" },
                 { "Clone", "50C463EA-A4BE-49A8-8484-B2C73186A373" }
             };
@@ -115,6 +116,12 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                                     "Information",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
+                        }
+                        break;
+                    case "Edit":
+                        if (new frmStockEntryEdit(drFocusedRow["STOCKENTRYID"]).ShowDialog() == DialogResult.OK)
+                        {
+                            XtraMessageBox.Show("Refresh data to get updated values", "Refresh", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         break;
                 }

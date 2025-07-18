@@ -22,6 +22,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@FROMBRANCHID", ObjStockDispatch.FROMBRANCHID);
                     cmd.Parameters.AddWithValue("@TOBRANCHID", ObjStockDispatch.TOBRANCHID);
                     cmd.Parameters.AddWithValue("@CATEGORYID", ObjStockDispatch.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@NOTES", ObjStockDispatch.Description);
                     cmd.Parameters.AddWithValue("@USERID", ObjStockDispatch.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
@@ -111,6 +112,7 @@ namespace DataAccess
                             objStockDispatch.FROMBRANCHID = ds.Tables[0].Rows[0]["FROMBRANCHID"];
                             objStockDispatch.TOBRANCHID = ds.Tables[0].Rows[0]["TOBRANCHID"];
                             objStockDispatch.CATEGORYID = ds.Tables[0].Rows[0]["CATEGORYID"];
+                            objStockDispatch.Description = ds.Tables[0].Rows[0]["NOTES"];
                             objStockDispatch.dtDispatch = ds.Tables[1].Copy();
                         }
                     }
@@ -165,6 +167,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_U_STOCKDISPATCH]";
                     cmd.Parameters.AddWithValue("@STOCKDISPATCHID", ObjStockDispatch.STOCKDISPATCHID);
                     cmd.Parameters.AddWithValue("@TOBRANCHID", ObjStockDispatch.TOBRANCHID);
+                    cmd.Parameters.AddWithValue("@NOTES", ObjStockDispatch.Description);
                     object obj = cmd.ExecuteScalar();
                     if(!int.TryParse(Convert.ToString(obj), out int id))
                         throw new Exception(Convert.ToString(obj));
@@ -1160,6 +1163,44 @@ namespace DataAccess
             {
                 throw;
             }
+        }
+
+        public StockEntry SavePartialInvoiceData(StockEntry ObjStockEntry)
+        {
+            int StockEntryID = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_PU_STOCKENTRY]";
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", ObjStockEntry.STOCKENTRYID);
+                    cmd.Parameters.AddWithValue("@SUPPLIERID", ObjStockEntry.SUPPLIERID);
+                    cmd.Parameters.AddWithValue("@SUPPLIERINVOICENO", ObjStockEntry.SUPPLIERINVOICENO);
+                    cmd.Parameters.AddWithValue("@INVOICEDATE", ObjStockEntry.InvoiceDate);
+                    cmd.Parameters.AddWithValue("@USERID", ObjStockEntry.UserID);
+                    object objReturn = cmd.ExecuteScalar();
+                    string str = Convert.ToString(objReturn);
+                    if (!int.TryParse(str, out StockEntryID))
+                        throw new Exception(str);
+                    else
+                        ObjStockEntry.STOCKENTRYID = objReturn;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("Invoice Number Already Exists"))
+                    throw ex;
+                else
+                    throw new Exception("Error While Saving Stock Invoice");
+            }
+            finally
+            {
+
+            }
+            return ObjStockEntry;
         }
     }
 }

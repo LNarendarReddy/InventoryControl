@@ -314,6 +314,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@Amount", branchExpense.Amount);
                     cmd.Parameters.AddWithValue("@BillImage", branchExpense.BillImage);
                     cmd.Parameters.AddWithValue("@UserID", branchExpense.UserID);
+                    cmd.Parameters.AddWithValue("@CreatedDate", branchExpense.CreatedDate);
                     object procValue = cmd.ExecuteScalar();
 
                     string str = Convert.ToString(procValue);

@@ -42,7 +42,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 { "CUSTOMERNUMBER", "Customer Phone #" },
                 { "BRANDNAME", "Brand" },
                 { "MANUFACTURERNAME", "Manufacturer" },
-
+                { "DISPATCHNUMBER", "Dispatch #" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
@@ -74,6 +74,11 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             {
                 IncludeSettingsCollection.Add(new IncludeSettings("Customer & Bill details", "IncludeCustomerDetails"
                     , new List<string> { "CUSTOMERNAME", "CUSTOMERNUMBER", "BILLNUMBER" }));
+            }
+
+            if (ReportType == "D")
+            {
+                IncludeSettingsCollection.Add(new IncludeSettings("Dispatch #", "IncludeDispatchNumber", new List<string> { "DISPATCHNUMBER" }));
             }
 
             SetFocusControls(cmbPeriodicity,  cmbItemCode, specificColumnHeaders);

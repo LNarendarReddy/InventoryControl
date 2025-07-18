@@ -33,8 +33,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             ContextmenuItems = new Dictionary<string, string> 
             {
                 { "Expense Image", string.Empty } ,
-                { "Edit", string.Empty },
-                { "Delete", string.Empty }
+                { "Edit", "2CA0BFD7-6A3D-4E7C-9A1E-1ADCCEB827F0::Update" },
+                { "Delete", "2CA0BFD7-6A3D-4E7C-9A1E-1ADCCEB827F0::Delete" }
             };
 
             dtFromDate.EditValue = DateTime.Now.AddDays(-7);
@@ -72,7 +72,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                         BranchExpenseTypeID = drFocusedRow["BRANCHEXPENSETYPEID"],
                         Amount = drFocusedRow["AMOUNT"],
                         BranchID = drFocusedRow["BRANCHID"],
-                        CreatedDate = drFocusedRow["CREATEDDATE"]
+                        CreatedDate = drFocusedRow["CREATEDDATE"],
+                        Branch = drFocusedRow["BRANCHNAME"]
                     };
 
                     new frmBranchExpense(branchExpense).ShowDialog();

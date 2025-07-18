@@ -50,5 +50,6 @@ namespace Entity
         public object BillImage { get; set; }
 
         public object BranchID { get; set; }
+        public object Branch { get; set; }
     }
 }

@@ -31,20 +31,20 @@ namespace NSRetail.Stock
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockDispatch));
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule10 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule9 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnDeleteTray = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddTray = new DevExpress.XtraEditors.SimpleButton();
@@ -115,7 +115,8 @@ namespace NSRetail.Stock
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.dxValidationProvider2 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.txtNotes = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
@@ -158,6 +159,8 @@ namespace NSRetail.Stock
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNotes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -174,6 +177,7 @@ namespace NSRetail.Stock
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
             this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
+            this.layoutControl1.Controls.Add(this.txtNotes);
             this.layoutControl1.Controls.Add(this.btnDeleteTray);
             this.layoutControl1.Controls.Add(this.btnAddTray);
             this.layoutControl1.Controls.Add(this.bntDiscardDispatch);
@@ -229,7 +233,7 @@ namespace NSRetail.Stock
             // 
             this.bntDiscardDispatch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bntDiscardDispatch.ImageOptions.Image")));
             this.bntDiscardDispatch.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.bntDiscardDispatch.Location = new System.Drawing.Point(864, 139);
+            this.bntDiscardDispatch.Location = new System.Drawing.Point(864, 171);
             this.bntDiscardDispatch.Name = "bntDiscardDispatch";
             this.bntDiscardDispatch.Size = new System.Drawing.Size(137, 22);
             this.bntDiscardDispatch.StyleController = this.layoutControl1;
@@ -286,7 +290,7 @@ namespace NSRetail.Stock
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(1013, 139);
+            this.btnCancel.Location = new System.Drawing.Point(1013, 171);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(126, 22);
@@ -309,10 +313,10 @@ namespace NSRetail.Stock
             this.txtWeightInKgs.Size = new System.Drawing.Size(206, 20);
             this.txtWeightInKgs.StyleController = this.layoutControl1;
             this.txtWeightInKgs.TabIndex = 9;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider2.SetValidationRule(this.txtWeightInKgs, conditionValidationRule1);
+            conditionValidationRule10.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule10.ErrorText = "Mandatory";
+            conditionValidationRule10.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider2.SetValidationRule(this.txtWeightInKgs, conditionValidationRule10);
             this.txtWeightInKgs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
             // txtItemName
@@ -325,21 +329,21 @@ namespace NSRetail.Stock
             this.txtItemName.Size = new System.Drawing.Size(206, 20);
             this.txtItemName.StyleController = this.layoutControl1;
             this.txtItemName.TabIndex = 5;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider2.SetValidationRule(this.txtItemName, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider2.SetValidationRule(this.txtItemName, conditionValidationRule1);
             // 
             // gcDispatch
             // 
             this.gcDispatch.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.gcDispatch.Location = new System.Drawing.Point(4, 169);
+            this.gcDispatch.Location = new System.Drawing.Point(4, 201);
             this.gcDispatch.MainView = this.gvDispatch;
             this.gcDispatch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcDispatch.Name = "gcDispatch";
             this.gcDispatch.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDelete});
-            this.gcDispatch.Size = new System.Drawing.Size(1139, 546);
+            this.gcDispatch.Size = new System.Drawing.Size(1139, 514);
             this.gcDispatch.TabIndex = 12;
             this.gcDispatch.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvDispatch});
@@ -511,9 +515,9 @@ namespace NSRetail.Stock
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -528,7 +532,7 @@ namespace NSRetail.Stock
             // 
             this.btnDispatch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDispatch.ImageOptions.Image")));
             this.btnDispatch.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnDispatch.Location = new System.Drawing.Point(726, 139);
+            this.btnDispatch.Location = new System.Drawing.Point(726, 171);
             this.btnDispatch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDispatch.Name = "btnDispatch";
             this.btnDispatch.Size = new System.Drawing.Size(126, 22);
@@ -551,10 +555,10 @@ namespace NSRetail.Stock
             this.txtQuantity.Size = new System.Drawing.Size(157, 20);
             this.txtQuantity.StyleController = this.layoutControl1;
             this.txtQuantity.TabIndex = 8;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "Mandatory";
-            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider2.SetValidationRule(this.txtQuantity, conditionValidationRule3);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Mandatory";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider2.SetValidationRule(this.txtQuantity, conditionValidationRule2);
             this.txtQuantity.EditValueChanged += new System.EventHandler(this.txtQuantity_EditValueChanged);
             this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
@@ -574,10 +578,10 @@ namespace NSRetail.Stock
             this.txtSalePrice.Size = new System.Drawing.Size(206, 20);
             this.txtSalePrice.StyleController = this.layoutControl1;
             this.txtSalePrice.TabIndex = 7;
-            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule4.ErrorText = "Mandatory";
-            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider2.SetValidationRule(this.txtSalePrice, conditionValidationRule4);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Mandatory";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider2.SetValidationRule(this.txtSalePrice, conditionValidationRule3);
             // 
             // txtMRP
             // 
@@ -595,10 +599,10 @@ namespace NSRetail.Stock
             this.txtMRP.Size = new System.Drawing.Size(157, 20);
             this.txtMRP.StyleController = this.layoutControl1;
             this.txtMRP.TabIndex = 6;
-            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule5.ErrorText = "Mandatory";
-            conditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider2.SetValidationRule(this.txtMRP, conditionValidationRule5);
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "Mandatory";
+            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider2.SetValidationRule(this.txtMRP, conditionValidationRule4);
             // 
             // cmbToBranch
             // 
@@ -616,10 +620,10 @@ namespace NSRetail.Stock
             this.cmbToBranch.Size = new System.Drawing.Size(184, 20);
             this.cmbToBranch.StyleController = this.layoutControl1;
             this.cmbToBranch.TabIndex = 1;
-            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule6.ErrorText = "Mandatory";
-            conditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbToBranch, conditionValidationRule6);
+            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule5.ErrorText = "Mandatory";
+            conditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbToBranch, conditionValidationRule5);
             // 
             // cmbFromBranch
             // 
@@ -637,10 +641,10 @@ namespace NSRetail.Stock
             this.cmbFromBranch.Size = new System.Drawing.Size(184, 20);
             this.cmbFromBranch.StyleController = this.layoutControl1;
             this.cmbFromBranch.TabIndex = 0;
-            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule7.ErrorText = "Mandatory";
-            conditionValidationRule7.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbFromBranch, conditionValidationRule7);
+            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule6.ErrorText = "Mandatory";
+            conditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbFromBranch, conditionValidationRule6);
             // 
             // cmbItemCode
             // 
@@ -655,10 +659,10 @@ namespace NSRetail.Stock
             this.cmbItemCode.Size = new System.Drawing.Size(157, 20);
             this.cmbItemCode.StyleController = this.layoutControl1;
             this.cmbItemCode.TabIndex = 4;
-            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule8.ErrorText = "Mandatory";
-            conditionValidationRule8.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider2.SetValidationRule(this.cmbItemCode, conditionValidationRule8);
+            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule7.ErrorText = "Mandatory";
+            conditionValidationRule7.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider2.SetValidationRule(this.cmbItemCode, conditionValidationRule7);
             this.cmbItemCode.EditValueChanged += new System.EventHandler(this.cmbItemCode_EditValueChanged);
             // 
             // cmbLookupView
@@ -783,9 +787,9 @@ namespace NSRetail.Stock
             this.cmbTrayNumber.Size = new System.Drawing.Size(72, 20);
             this.cmbTrayNumber.StyleController = this.layoutControl1;
             this.cmbTrayNumber.TabIndex = 3;
-            conditionValidationRule9.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule9.ErrorText = "Mandatory";
-            this.dxValidationProvider2.SetValidationRule(this.cmbTrayNumber, conditionValidationRule9);
+            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule8.ErrorText = "Mandatory";
+            this.dxValidationProvider2.SetValidationRule(this.cmbTrayNumber, conditionValidationRule8);
             // 
             // Root
             // 
@@ -800,7 +804,8 @@ namespace NSRetail.Stock
             this.layoutControlItem9,
             this.layoutControlItem8,
             this.emptySpaceItem1,
-            this.layoutControlItem16});
+            this.layoutControlItem16,
+            this.layoutControlItem19});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(1147, 719);
@@ -809,9 +814,9 @@ namespace NSRetail.Stock
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.gcDispatch;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 165);
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 197);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(1143, 550);
+            this.layoutControlItem10.Size = new System.Drawing.Size(1143, 518);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
@@ -998,7 +1003,7 @@ namespace NSRetail.Stock
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnCancel;
-            this.layoutControlItem9.Location = new System.Drawing.Point(1005, 131);
+            this.layoutControlItem9.Location = new System.Drawing.Point(1005, 163);
             this.layoutControlItem9.MaxSize = new System.Drawing.Size(138, 34);
             this.layoutControlItem9.MinSize = new System.Drawing.Size(138, 34);
             this.layoutControlItem9.Name = "layoutControlItem9";
@@ -1011,7 +1016,7 @@ namespace NSRetail.Stock
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnDispatch;
-            this.layoutControlItem8.Location = new System.Drawing.Point(718, 131);
+            this.layoutControlItem8.Location = new System.Drawing.Point(718, 163);
             this.layoutControlItem8.MaxSize = new System.Drawing.Size(138, 34);
             this.layoutControlItem8.MinSize = new System.Drawing.Size(138, 34);
             this.layoutControlItem8.Name = "layoutControlItem8";
@@ -1024,7 +1029,7 @@ namespace NSRetail.Stock
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 131);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 163);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(718, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -1032,7 +1037,7 @@ namespace NSRetail.Stock
             // layoutControlItem16
             // 
             this.layoutControlItem16.Control = this.bntDiscardDispatch;
-            this.layoutControlItem16.Location = new System.Drawing.Point(856, 131);
+            this.layoutControlItem16.Location = new System.Drawing.Point(856, 163);
             this.layoutControlItem16.MaxSize = new System.Drawing.Size(149, 34);
             this.layoutControlItem16.MinSize = new System.Drawing.Size(149, 34);
             this.layoutControlItem16.Name = "layoutControlItem16";
@@ -1042,13 +1047,23 @@ namespace NSRetail.Stock
             this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem16.TextVisible = false;
             // 
-            // simpleButton1
+            // txtNotes
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(0, 0);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton1.TabIndex = 1;
-            this.simpleButton1.Text = "simpleButton1";
+            this.txtNotes.Location = new System.Drawing.Point(106, 139);
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.Size = new System.Drawing.Size(1033, 20);
+            this.txtNotes.StyleController = this.layoutControl1;
+            this.txtNotes.TabIndex = 18;
+            // 
+            // layoutControlItem19
+            // 
+            this.layoutControlItem19.Control = this.txtNotes;
+            this.layoutControlItem19.Location = new System.Drawing.Point(0, 131);
+            this.layoutControlItem19.Name = "layoutControlItem19";
+            this.layoutControlItem19.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem19.Size = new System.Drawing.Size(1143, 32);
+            this.layoutControlItem19.Text = "Notes";
+            this.layoutControlItem19.TextSize = new System.Drawing.Size(86, 14);
             // 
             // frmStockDispatch
             // 
@@ -1056,7 +1071,6 @@ namespace NSRetail.Stock
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1147, 719);
-            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.layoutControl1);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmStockDispatch";
@@ -1104,6 +1118,8 @@ namespace NSRetail.Stock
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNotes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1179,7 +1195,8 @@ namespace NSRetail.Stock
         private DevExpress.XtraEditors.SimpleButton btnAddTray;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
+        private DevExpress.XtraEditors.TextEdit txtNotes;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
     }
 }
