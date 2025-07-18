@@ -38,6 +38,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!dxValidationProvider1.Validate()) return;
+
             StockEntry stockEntry = new StockEntry()
             {
                 STOCKENTRYID = stockEntryID,
