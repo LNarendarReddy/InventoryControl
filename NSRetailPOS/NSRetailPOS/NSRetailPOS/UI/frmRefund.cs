@@ -250,7 +250,18 @@ namespace NSRetailPOS.UI
 
             if (dvTemp.Count == 0)
             {
+                dvTemp.RowFilter = $"SKUCODE = '{txtItemCode.EditValue}'";
+            }
+
+            if (dvTemp.Count == 0)
+            {
                 XtraMessageBox.Show("Item not found in bill");
+                return;
+            }
+
+            if (dvTemp.Count > 1)
+            {
+                XtraMessageBox.Show("More than one item found for the give item code, please use long itemcode to identify the correct return item");
                 return;
             }
 

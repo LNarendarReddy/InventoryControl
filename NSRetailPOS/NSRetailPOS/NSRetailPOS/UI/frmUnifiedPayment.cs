@@ -23,7 +23,7 @@ namespace NSRetailPOS.UI
     public partial class frmUnifiedPayment : DevExpress.XtraEditors.XtraForm
     {
         BillingRepository billingRepository = new BillingRepository();
-        public bool IsPaid = false, IsDiscarded = false, canClose = true;
+        public bool IsPaid = false, IsDiscarded = false, canClose = true, isCashOnly = false;
         private Bill billObj;
         decimal paidAmount = 0.00M, payableAmount = 0.00M, remainingAmount = 0.00M, billedAmount = 0.00M
             , cardReceivedAmount = 0.00M, upiReceivedAmount = 0.00M;
@@ -157,7 +157,7 @@ namespace NSRetailPOS.UI
                 return;
             }
 
-            if (Math.Round(remainingAmount) > 0.00M)
+            if (remainingAmount > 0.00M)
             {
                 XtraMessageBox.Show($"Bill cannot be closed. Pending balance to be paid {remainingAmount}"
                     , "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -183,12 +183,13 @@ namespace NSRetailPOS.UI
             decimal rounding = 0;
             if (decimal.TryParse(gvMOP.GetRowCellValue(cashRowHandle, "MOPVALUE").ToString(), out decimal cashValue) && cashValue > 0)
             {
-                rounding = billObj.PaymentMode.Equals("CASH") ? Math.Round(billedAmount) - billedAmount : 0.00M;
+                rounding = billObj.PaymentMode.Equals("CASH") ? Math.Round(billedAmount, MidpointRounding.AwayFromZero) - billedAmount : 0.00M;
+                rounding = rounding > 0 ? 1 - rounding : rounding;
                 billObj.Rounding = rounding;
                 billObj.TenderedCash = cashValue;
-                billObj.TenderedChange = remainingAmount + Math.Round(billedAmount) - billedAmount;
+                billObj.TenderedChange = remainingAmount;
                 gvMOP.FocusedRowHandle = cashRowHandle;
-                gvMOP.SetRowCellValue(cashRowHandle, "MOPVALUE", cashValue + Math.Round(remainingAmount));
+                gvMOP.SetRowCellValue(cashRowHandle, "MOPVALUE", cashValue + remainingAmount);
                 gvMOP.CloseEditor();
                 gvMOP.UpdateCurrentRow();
             }
@@ -230,7 +231,7 @@ namespace NSRetailPOS.UI
                 }
             }
 
-            if (totalPaid < payableAmount + rounding)
+            if (totalPaid < payableAmount + (rounding > 0 ? 1 - rounding : rounding))
             {
                 XtraMessageBox.Show("Payment mode mismatch detected, please retry operation of if the issue persists, contact administrator", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
@@ -244,6 +245,8 @@ namespace NSRetailPOS.UI
         {
             txtCardRequestAmount.EditValue = null;
             txtUPIRequestAmount.EditValue = null;
+
+            isCashOnly = rgPaymentModes.Text.Equals("CASH");
 
             for (int rowhandle = 0; rowhandle < gvMOP.RowCount; rowhandle++)
             {
@@ -375,8 +378,9 @@ namespace NSRetailPOS.UI
         private void UpdateLabels()
         {
             txtPaidAmount.EditValue = paidAmount;
-            decimal roundedRemaining = remainingAmount < 0.00m ? 0 : Math.Round(remainingAmount);
-            txtRemainingAmount.EditValue = $"{Math.Round(remainingAmount)} ( Rounded value : {roundedRemaining} )";
+            decimal roundedRemaining = remainingAmount < 0.00m ? 0 : remainingAmount;
+            remainingAmount = isCashOnly ? Math.Round(remainingAmount, MidpointRounding.AwayFromZero) : remainingAmount;
+            txtRemainingAmount.EditValue = $"{remainingAmount} ( Rounded value : {roundedRemaining} )";
         }
 
         private void gvMOP_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -396,7 +400,7 @@ namespace NSRetailPOS.UI
                 paidAmount += cardReceivedAmount + upiReceivedAmount;
             }
             
-            remainingAmount = payableAmount - paidAmount;
+            remainingAmount = (isCashOnly ? Math.Round(payableAmount, MidpointRounding.AwayFromZero) : payableAmount) - paidAmount;
             UpdateLabels();
         }
 
@@ -514,7 +518,7 @@ namespace NSRetailPOS.UI
         private void ShowRecieveMessage(string message)
         {
             txtStatus.Text += $"{DateTime.Now.ToLongTimeString()} - {message} {Environment.NewLine}";
-            txtStatus.SelectionStart = Int32.MaxValue;
+            txtStatus.SelectionStart = int.MaxValue;
             txtStatus.ScrollToCaret();
         }
 
