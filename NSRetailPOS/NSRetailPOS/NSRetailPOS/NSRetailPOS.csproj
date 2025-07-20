@@ -117,7 +117,7 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -441,6 +441,18 @@
     <Compile Include="Reports\rptOfrPoster.Designer.cs">
       <DependentUpon>rptOfrPoster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptOfrPosterA2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptOfrPosterA2.Designer.cs">
+      <DependentUpon>rptOfrPosterA2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptOfrPosterA4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptOfrPosterA4.Designer.cs">
+      <DependentUpon>rptOfrPosterA4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptPriceSticker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -695,6 +707,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptOfrPoster.resx">
       <DependentUpon>rptOfrPoster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptOfrPosterA2.resx">
+      <DependentUpon>rptOfrPosterA2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptOfrPosterA4.resx">
+      <DependentUpon>rptOfrPosterA4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptPriceSticker.resx">
       <DependentUpon>rptPriceSticker.cs</DependentUpon>

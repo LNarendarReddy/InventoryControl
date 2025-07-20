@@ -78,6 +78,7 @@ namespace NSRetailPOS.Operations.Reports
                         dt.ImportRow(ResultGridView.GetDataRow(i));
                     }
                     rptPriceSticker rpt = new rptPriceSticker();
+                    rpt.Parameters["nowDate"].Value = "PRINTED DATE: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
                     rpt.DataSource = dt;
                     rpt.CreateDocument();
                     rpt.ShowRibbonPreview();

@@ -6,11 +6,12 @@ using System.Drawing;
 
 namespace NSRetailPOS.Reports
 {
-    public partial class rptOfrPoster : DevExpress.XtraReports.UI.XtraReport
+    public partial class rptOfrPosterA4 : DevExpress.XtraReports.UI.XtraReport
     {
-        public rptOfrPoster()
+        public rptOfrPosterA4()
         {
             InitializeComponent();
         }
+
     }
 }

@@ -119,6 +119,7 @@ namespace NSRetailPOS.Operations.Reports
                         dt.ImportRow(ResultGridView.GetDataRow(i));
                     }
                     rptOfrPoster rpt = new rptOfrPoster();
+                    rpt.Parameters["nowDate"].Value = "PRINTED DATE: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
                     DataView dv = dt.Copy().DefaultView;
                     dv.RowFilter = "OFFERTYPEID IN (1,2,3,4,5) AND AppliesToName = 'ITEM'";
                     rpt.DataSource = dv.ToTable();
