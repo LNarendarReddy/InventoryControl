@@ -283,6 +283,12 @@
     <Compile Include="Operations\Item\frmMRPList.designer.cs">
       <DependentUpon>frmMRPList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\Reports\frmPrintSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Reports\frmPrintSettings.Designer.cs">
+      <DependentUpon>frmPrintSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\Reports\ucBranchIndent.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -619,6 +625,9 @@
     <EmbeddedResource Include="Operations\Item\frmMRPList.resx">
       <DependentUpon>frmMRPList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Reports\frmPrintSettings.resx">
+      <DependentUpon>frmPrintSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operations\Reports\ucBranchIndent.resx">
       <DependentUpon>ucBranchIndent.cs</DependentUpon>
     </EmbeddedResource>
@@ -834,6 +843,7 @@
     <None Include="Resources\download_16x162.png" />
     <None Include="Resources\trash_16x16.png" />
     <None Include="Resources\zoom_16x161.png" />
+    <None Include="Resources\Victory_Bazars_Logo_New.jpg" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

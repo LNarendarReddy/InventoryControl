@@ -37,14 +37,14 @@
             this.btnBranchRefund = new DevExpress.XtraBars.BarButtonItem();
             this.btnItem = new DevExpress.XtraBars.BarButtonItem();
             this.btnSupplierReturns = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiBranchExpenses = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.bbiBranchExpenses = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,6 +126,14 @@
             this.btnSupplierReturns.Name = "btnSupplierReturns";
             this.btnSupplierReturns.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSupplierReturns_ItemClick);
             // 
+            // bbiBranchExpenses
+            // 
+            this.bbiBranchExpenses.Caption = "Branch Expenses";
+            this.bbiBranchExpenses.Id = 9;
+            this.bbiBranchExpenses.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiBranchExpenses.ImageOptions.SvgImage")));
+            this.bbiBranchExpenses.Name = "bbiBranchExpenses";
+            this.bbiBranchExpenses.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBranchExpenses_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -152,6 +160,12 @@
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Stock";
             // 
+            // ribbonPageGroup5
+            // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.bbiBranchExpenses);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "Branch Expenses";
+            // 
             // ribbonPageGroup1
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.bbiReports);
@@ -171,20 +185,6 @@
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(1295, 22);
             // 
-            // ribbonPageGroup5
-            // 
-            this.ribbonPageGroup5.ItemLinks.Add(this.bbiBranchExpenses);
-            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.Text = "Branch Expenses";
-            // 
-            // bbiBranchExpenses
-            // 
-            this.bbiBranchExpenses.Caption = "Branch Expenses";
-            this.bbiBranchExpenses.Id = 9;
-            this.bbiBranchExpenses.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiBranchExpenses.ImageOptions.SvgImage")));
-            this.bbiBranchExpenses.Name = "bbiBranchExpenses";
-            this.bbiBranchExpenses.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBranchExpenses_ItemClick);
-            // 
             // frmOpetations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,7 +192,7 @@
             this.ClientSize = new System.Drawing.Size(1295, 648);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
-            this.IconOptions.ShowIcon = false;
+            this.IconOptions.Image = global::NSRetailPOS.Properties.Resources.Victory_Bazars_Logo_New;
             this.IsMdiContainer = true;
             this.Name = "frmOpetations";
             this.Ribbon = this.ribbon;

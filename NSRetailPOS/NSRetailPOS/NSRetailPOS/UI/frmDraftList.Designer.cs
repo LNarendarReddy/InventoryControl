@@ -202,7 +202,10 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(622, 324);
             this.Controls.Add(this.layoutControl1);
+            this.IconOptions.ShowIcon = false;
             this.Name = "frmDraftList";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Draft bills";
             this.Load += new System.EventHandler(this.frmDraftList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

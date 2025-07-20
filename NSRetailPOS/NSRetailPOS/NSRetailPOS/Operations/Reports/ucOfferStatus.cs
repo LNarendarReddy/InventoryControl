@@ -1,18 +1,9 @@
-﻿using DevExpress.XtraEditors;
-using DevExpress.XtraReports.UI;
-using NSRetail.ReportForms;
-using NSRetailPOS.Data;
-using NSRetailPOS.Entity;
+﻿using DevExpress.XtraReports.UI;
 using NSRetailPOS.ReportControls.ReportBase;
 using NSRetailPOS.Reports;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.Operations.Reports
@@ -118,13 +109,25 @@ namespace NSRetailPOS.Operations.Reports
                     {
                         dt.ImportRow(ResultGridView.GetDataRow(i));
                     }
-                    rptOfrPoster rpt = new rptOfrPoster();
-                    rpt.Parameters["nowDate"].Value = "PRINTED DATE: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
-                    DataView dv = dt.Copy().DefaultView;
-                    dv.RowFilter = "OFFERTYPEID IN (1,2,3,4,5) AND AppliesToName = 'ITEM'";
-                    rpt.DataSource = dv.ToTable();
-                    rpt.CreateDocument();
-                    rpt.ShowRibbonPreview();
+
+                    frmPrintSettings frm = new frmPrintSettings();
+                    frm.ShowDialog();
+                    if (frm.DialogResult == DialogResult.OK)
+                    {
+                        XtraReport rpt = null;
+                        if (frm.printSetting.Equals(0))
+                            rpt = new rptOfrPoster();
+                        else if (frm.printSetting.Equals(1))
+                            rpt = new rptOfrPosterA2();
+                        else if (frm.printSetting.Equals(2))
+                            rpt = new rptOfrPosterA4();
+                        rpt.Parameters["nowDate"].Value = "PRINTED DATE: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
+                        DataView dv = dt.Copy().DefaultView;
+                        dv.RowFilter = "OFFERTYPEID IN (1,2,3,4,5) AND AppliesToName = 'ITEM'";
+                        rpt.DataSource = dv.ToTable();
+                        rpt.CreateDocument();
+                        rpt.ShowRibbonPreview();
+                    }
                     break;
             }
         }

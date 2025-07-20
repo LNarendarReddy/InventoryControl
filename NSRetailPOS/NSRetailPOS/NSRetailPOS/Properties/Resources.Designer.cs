@@ -203,6 +203,16 @@ namespace NSRetailPOS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Victory_Bazars_Logo_New {
+            get {
+                object obj = ResourceManager.GetObject("Victory_Bazars_Logo_New", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Victory_Resized {
             get {
                 object obj = ResourceManager.GetObject("Victory_Resized", resourceCulture);

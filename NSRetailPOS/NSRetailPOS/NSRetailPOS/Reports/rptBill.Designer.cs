@@ -449,7 +449,7 @@
             // xrPictureBox1
             // 
             this.xrPictureBox1.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource(global::NSRetailPOS.Properties.Resources.Victory_Resized, true);
+            this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource(global::NSRetailPOS.Properties.Resources.Victory_Bazars_Logo_New, true);
             this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrPictureBox1.Name = "xrPictureBox1";
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(275F, 71.875F);
