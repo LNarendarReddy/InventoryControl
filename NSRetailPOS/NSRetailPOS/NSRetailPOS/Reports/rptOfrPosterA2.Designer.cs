@@ -214,7 +214,7 @@
             this.cellMRP.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.cellMRP.Dpi = 254F;
             this.cellMRP.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'VB Price\' + Char(13) + Char(10) +\'₹\'+ [FINALPRICE] + \'/-\'")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'VB Price\' + Char(13) + Char(10) +\'₹\'+ [FINALPRICE]")});
             this.cellMRP.Font = new System.Drawing.Font("Arial Black", 26F, System.Drawing.FontStyle.Bold);
             this.cellMRP.Multiline = true;
             this.cellMRP.Name = "cellMRP";
@@ -230,7 +230,7 @@
             this.cellSalePrice.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.cellSalePrice.Dpi = 254F;
             this.cellSalePrice.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'MRP\' + Char(13) + Char(10) + \'₹\'+ToStr([MRP]) + \'/-\'")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'MRP\' + Char(13) + Char(10) + \'₹\'+ToStr([MRP])")});
             this.cellSalePrice.Font = new System.Drawing.Font("Arial Black", 26F, System.Drawing.FontStyle.Bold);
             this.cellSalePrice.Multiline = true;
             this.cellSalePrice.Name = "cellSalePrice";
