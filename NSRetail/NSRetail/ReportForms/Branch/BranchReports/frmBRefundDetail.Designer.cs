@@ -56,6 +56,7 @@
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcReturnsID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -98,6 +99,7 @@
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(108, 26);
+            this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -110,6 +112,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(108, 26);
+            this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Accept";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -155,7 +158,8 @@
             this.BRDID,
             this.gridColumn11,
             this.gcDescription,
-            this.gridColumn12});
+            this.gridColumn12,
+            this.gcReturnsID});
             this.gvItems.DetailHeight = 404;
             this.gvItems.GridControl = this.gcItems;
             this.gvItems.Name = "gvItems";
@@ -362,13 +366,21 @@
             this.gcDescription.FieldName = "REFUNDDESCRIPTION";
             this.gcDescription.Name = "gcDescription";
             this.gcDescription.Visible = true;
-            this.gcDescription.VisibleIndex = 11;
+            this.gcDescription.VisibleIndex = 13;
             // 
             // gridColumn12
             // 
             this.gridColumn12.Caption = "Category";
             this.gridColumn12.FieldName = "CATEGORYNAME";
             this.gridColumn12.Name = "gridColumn12";
+            // 
+            // gcReturnsID
+            // 
+            this.gcReturnsID.Caption = "Returns ID";
+            this.gcReturnsID.FieldName = "SUPPLIERRETURNSID";
+            this.gcReturnsID.Name = "gcReturnsID";
+            this.gcReturnsID.Visible = true;
+            this.gcReturnsID.VisibleIndex = 11;
             // 
             // Root
             // 
@@ -486,5 +498,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gcDescription;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gcReturnsID;
     }
 }

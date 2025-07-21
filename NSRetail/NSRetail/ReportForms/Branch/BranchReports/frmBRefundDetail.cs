@@ -1,16 +1,8 @@
 ﻿using DataAccess;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
-using DevExpress.XtraReports.Design;
-using DevExpress.XtraReports.UI;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Branch.BranchReports
@@ -28,7 +20,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             gcItems.DataSource = dtItems;
             CounterID = _CounterID;
             BRefundID = _BRefundID;
-            gcSupplier.Visible = gcCPWOT.Visible = gcCPWT.Visible = 
+            gcReturnsID.Visible = gcSupplier.Visible = gcCPWOT.Visible = gcCPWT.Visible = 
                 CategoryID.Equals(3) || CategoryID.Equals(4) || CategoryID.Equals(13);
             gvItems.PopupMenuShowing += gvItems_PopupMenuShowing;
         }
@@ -111,6 +103,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 dt.Columns.Remove("COSTPRICEWT");
                 dt.Columns.Remove("REFUNDDESCRIPTION");
                 dt.Columns.Remove("CATEGORYNAME");
+                dt.Columns.Remove("SUPPLIERRETURNSID");
                 new POSRepository().AcceptBRefund(CounterID, BRefundID, Utility.UserID, dt);
                 IsSave = true;
                 this.Close();
