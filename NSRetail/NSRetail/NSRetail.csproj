@@ -1873,6 +1873,7 @@
     <None Include="Resources\victorylogo1.png" />
     <None Include="Resources\Victory Bazars_Logo.jpg" />
     <None Include="Resources\delete_16x164.png" />
+    <None Include="Resources\Victory_Bazars_Logo_New.jpg" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

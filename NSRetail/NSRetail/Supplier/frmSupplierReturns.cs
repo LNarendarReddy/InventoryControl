@@ -46,13 +46,10 @@ namespace NSRetail.Stock
                 cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
                 cmbCategory.Properties.ValueMember = "CATEGORYID";
 
-                cmbReasongrid.DataSource = new SupplierRepository().GetReason();
-                cmbReasongrid.ValueMember = "REASONID";
-                cmbReasongrid.DisplayMember = "REASONNAME";
-
-                cmbReason.Properties.DataSource = new SupplierRepository().GetReason();
-                cmbReason.Properties.ValueMember = "REASONID";
-                cmbReason.Properties.DisplayMember = "REASONNAME";
+                DataTable dataTable  = new SupplierRepository().GetReason();
+                cmbReasongrid.DataSource = cmbReason.Properties.DataSource = dataTable;
+                cmbReasongrid.ValueMember = cmbReason.Properties.ValueMember = "REASONID";
+                cmbReasongrid.DisplayMember = cmbReason.Properties.DisplayMember = "REASONNAME";
 
                 cmbCategory.EditValue = Utility.CategoryID;
                 cmbCategory.Enabled = false;

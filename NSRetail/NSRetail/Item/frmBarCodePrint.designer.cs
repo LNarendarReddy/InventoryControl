@@ -588,8 +588,10 @@
             this.CancelButton = this.brnCancel;
             this.ClientSize = new System.Drawing.Size(620, 236);
             this.Controls.Add(this.layoutControl1);
+            this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmBarCodePrint";
+            this.ShowInTaskbar = false;
             this.Text = "Print BarCode";
             this.Load += new System.EventHandler(this.frmBarCodePrint_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

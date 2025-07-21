@@ -1032,7 +1032,7 @@
             this.xrControlStyle1});
             this.Version = "21.2";
             this.Watermark.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("rptDispatchDC.Watermark.ImageSource"));
-            this.Watermark.ImageTransparency = 200;
+            this.Watermark.ImageTransparency = 240;
             this.Watermark.ImageViewMode = DevExpress.XtraPrinting.Drawing.ImageViewMode.Stretch;
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
