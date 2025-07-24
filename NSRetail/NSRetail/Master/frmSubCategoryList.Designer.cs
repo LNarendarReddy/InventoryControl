@@ -57,6 +57,7 @@
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gcInstantDispatchEnabled = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -177,7 +178,8 @@
             this.gridColumn10,
             this.gridColumn11,
             this.gcEdit,
-            this.gcDelete});
+            this.gcDelete,
+            this.gcInstantDispatchEnabled});
             this.gvSubCategory.DetailHeight = 404;
             this.gvSubCategory.GridControl = this.gcSubCategory;
             this.gvSubCategory.Name = "gvSubCategory";
@@ -220,7 +222,7 @@
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 1;
-            this.gridColumn6.Width = 210;
+            this.gridColumn6.Width = 125;
             // 
             // gridColumn8
             // 
@@ -230,7 +232,7 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 2;
+            this.gridColumn8.VisibleIndex = 3;
             this.gridColumn8.Width = 187;
             // 
             // gridColumn9
@@ -241,7 +243,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 3;
+            this.gridColumn9.VisibleIndex = 4;
             this.gridColumn9.Width = 187;
             // 
             // gridColumn10
@@ -272,8 +274,8 @@
             this.gcEdit.Name = "gcEdit";
             this.gcEdit.Tag = "CA6B5A04-8407-4D34-A581-8B27DED930CC::Update";
             this.gcEdit.Visible = true;
-            this.gcEdit.VisibleIndex = 4;
-            this.gcEdit.Width = 117;
+            this.gcEdit.VisibleIndex = 5;
+            this.gcEdit.Width = 89;
             // 
             // btnEdit
             // 
@@ -295,8 +297,8 @@
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Tag = "CA6B5A04-8407-4D34-A581-8B27DED930CC::Delete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 5;
-            this.gcDelete.Width = 117;
+            this.gcDelete.VisibleIndex = 6;
+            this.gcDelete.Width = 97;
             // 
             // btnDelete
             // 
@@ -307,6 +309,16 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
+            // 
+            // gcInstantDispatchEnabled
+            // 
+            this.gcInstantDispatchEnabled.Caption = "Instant Dispatch Enabled";
+            this.gcInstantDispatchEnabled.FieldName = "INSTANTDISPATCHENABLED";
+            this.gcInstantDispatchEnabled.Name = "gcInstantDispatchEnabled";
+            this.gcInstantDispatchEnabled.OptionsColumn.AllowEdit = false;
+            this.gcInstantDispatchEnabled.Visible = true;
+            this.gcInstantDispatchEnabled.VisibleIndex = 2;
+            this.gcInstantDispatchEnabled.Width = 108;
             // 
             // Root
             // 
@@ -388,6 +400,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(955, 549);
             this.Controls.Add(this.layoutControl1);
+            this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmSubCategoryList";
             this.Text = "Sub Category List";
@@ -434,5 +447,6 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraEditors.SimpleButton btnViewReport;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraGrid.Columns.GridColumn gcInstantDispatchEnabled;
     }
 }

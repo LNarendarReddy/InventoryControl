@@ -55,8 +55,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "3.2.6";
-        public static string VersionDate = "(20-07-2025)";
+        public static string AppVersion = "3.2.7";
+        public static string VersionDate = "(24-07-2025)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -79,7 +79,7 @@ namespace NSRetail
             cs.Write(input, 0, input.Length);
             cs.Close();
             return ms.ToArray();
-        }
+        }   
         private static byte[] Decrypt(byte[] input)
         {
             PasswordDeriveBytes pdb = new PasswordDeriveBytes("NSoftSol", new byte[] { 0x43, 0x87, 0x23, 0x72, 0x45, 0x56, 0x68, 0x14, 0x62, 0x84 });
@@ -113,7 +113,7 @@ namespace NSRetail
             //    dtItemCodeFiltered = dsItemBaseline.Tables["ITEMCODESFILTERED"];
 
         }
-
+         
         private static void FillParentItemBaseline()
         {
             dtParentItemList = new ItemCodeRepository().GetParentItems(CategoryID);

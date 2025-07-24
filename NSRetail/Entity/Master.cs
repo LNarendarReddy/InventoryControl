@@ -44,6 +44,7 @@ namespace Entity
         public object SUBCATEGORYID { get; set; }
         public object SUBCATEGORYNAME { get; set; }
         public object CATEGORYID { get; set; }
+        public object InstantDispatchEnabled { get; set; }
     }
 
     public class User : EntityBase

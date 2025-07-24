@@ -194,6 +194,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SUBCATEGORYID", ObjSubCategory.SUBCATEGORYID);
                     cmd.Parameters.AddWithValue("@SUBCATEGORYNAME", ObjSubCategory.SUBCATEGORYNAME);
                     cmd.Parameters.AddWithValue("@CATEGORYID", ObjSubCategory.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@INSTANTDISPATCHENABLED", ObjSubCategory.InstantDispatchEnabled);
                     cmd.Parameters.AddWithValue("@USERID", ObjSubCategory.UserID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);

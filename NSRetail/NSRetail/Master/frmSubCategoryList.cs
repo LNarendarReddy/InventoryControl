@@ -4,13 +4,6 @@ using Entity;
 using ErrorManagement;
 using NSRetail.Utilities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.Master
@@ -70,6 +63,7 @@ namespace NSRetail.Master
                     ObjSubCategory.SUBCATEGORYID = gvSubCategory.GetFocusedRowCellValue("SUBCATEGORYID");
                     ObjSubCategory.SUBCATEGORYNAME = gvSubCategory.GetFocusedRowCellValue("SUBCATEGORYNAME");
                     ObjSubCategory.CATEGORYID = gvSubCategory.GetFocusedRowCellValue("CATEGORYID");
+                    ObjSubCategory.InstantDispatchEnabled = gvSubCategory.GetFocusedRowCellValue("INSTANTDISPATCHENABLED");
                     frmSubCategory obj = new frmSubCategory(ObjSubCategory);
                     obj.ShowInTaskbar = false;
                     obj.StartPosition = FormStartPosition.CenterScreen;

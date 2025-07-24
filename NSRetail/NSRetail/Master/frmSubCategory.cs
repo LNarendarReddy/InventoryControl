@@ -1,16 +1,7 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
 using Entity;
 using ErrorManagement;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail.Master
 {
@@ -34,6 +25,7 @@ namespace NSRetail.Master
                 this.Text = "Edit Sub Category";
                 txtsubCategoryName.EditValue = ObjSubCategory.SUBCATEGORYNAME;
                 cmbCategory.EditValue = ObjSubCategory.CATEGORYID;
+                chkInstantDispatchEnabled.EditValue = ObjSubCategory.InstantDispatchEnabled;
             }
         }
 
@@ -45,6 +37,7 @@ namespace NSRetail.Master
                     return;
                 ObjSubCategory.SUBCATEGORYNAME = txtsubCategoryName.EditValue;
                 ObjSubCategory. CATEGORYID = cmbCategory.EditValue;
+                ObjSubCategory.InstantDispatchEnabled = chkInstantDispatchEnabled.EditValue;
                 ObjSubCategory.UserID = Utility.UserID;
                 objMasterRep.SaveSubCategory(ObjSubCategory);
                 ObjSubCategory.IsSave = true;
