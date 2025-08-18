@@ -376,7 +376,7 @@ namespace NSRetail.Stock
             if (IsLoading)
             {
                 CalculateReadOnlyFields();
-                return;
+                return;     
             }
 
             if (Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
@@ -424,7 +424,11 @@ namespace NSRetail.Stock
                     appliedGST = cGST + sGST + cess;
                 }
                 else
-                    appliedGST = iGST = Math.Round(finalPriceToConsider * gstInfo.IGST / 100, 2);
+                {
+                    iGST = Math.Round(finalPriceToConsider * gstInfo.IGST / 100, 2);
+                    cess = Math.Round(finalPriceToConsider * gstInfo.CESS / 100, 2);
+                    appliedGST = iGST + cess;
+                }
             }
 
             decimal finalPrice = Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) ? finaPriceWT : finalPriceWOT + appliedGST;

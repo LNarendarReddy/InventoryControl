@@ -119,6 +119,7 @@ namespace NSRetail
                 , {"PARENTSKUCODE", "Parent SKU Code"}
                 , {"BRANDNAME", "Brand"}
                 , {"MANUFACTURERNAME", "Manufacturer"}
+                , {"VENDORSKUCODE", "Vendor SKU"}
             };
 
             ButtonColumns = new List<string>();
