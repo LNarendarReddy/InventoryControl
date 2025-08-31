@@ -151,6 +151,9 @@ namespace NSRetailPOS.Gateway.PineLabs
         
         public override async Task<CompletedTransactionData> ReceivePayment(int billID, int mopID, CancellationToken token, params object[] parameters)
         {
+            // Avoid parallel requests
+            if(IsInProgress) return null;
+
             IsInProgress = true;
             try
             {

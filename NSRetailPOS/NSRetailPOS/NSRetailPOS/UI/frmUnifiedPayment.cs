@@ -493,6 +493,13 @@ namespace NSRetailPOS.UI
         private async Task ReceiveAmount(int mopID, PaymentMode paymentMode, object amountObj)
         {
             if (!decimal.TryParse(amountObj.ToString(), out decimal amount) || amount == 0) return;
+
+            if (Utility.PaymentGateway.IsInProgress)
+            {
+                XtraMessageBox.Show("Request in progress", "multiple requests", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return;
+            }
+
             DisableAllControls();
             btnCancelRequest.Enabled = true;
             
