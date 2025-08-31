@@ -38,14 +38,15 @@
             this.picViewer.Location = new System.Drawing.Point(0, 0);
             this.picViewer.Name = "picViewer";
             this.picViewer.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.picViewer.Size = new System.Drawing.Size(352, 487);
+            this.picViewer.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.picViewer.Size = new System.Drawing.Size(495, 487);
             this.picViewer.TabIndex = 0;
             // 
             // frmImageViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(352, 487);
+            this.ClientSize = new System.Drawing.Size(495, 487);
             this.Controls.Add(this.picViewer);
             this.IconOptions.ShowIcon = false;
             this.Name = "frmImageViewer";

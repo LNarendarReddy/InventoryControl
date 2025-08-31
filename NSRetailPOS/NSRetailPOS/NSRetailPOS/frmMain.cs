@@ -240,29 +240,9 @@ namespace NSRetailPOS
 
             bool canClose = true;
 
-            DataTable dtBillOffers = billingRepository.GetBillOffers(billObj.BillID);
-            if (dtBillOffers != null && dtBillOffers.Rows.Count == 1)
-            {
-                double actualSalePrice = Convert.ToDouble(dtBillOffers.Rows[0]["ACTUALSALEPRICE"]);
-                if (XtraMessageBox.Show($"Add item {dtBillOffers.Rows[0]["ITEMNAME"]} ({dtBillOffers.Rows[0]["SKUCODE"]}) for Rs.{actualSalePrice} to the bill?",
-                    "Add free item", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    SaveBillDetail(dtBillOffers.Rows[0]["ITEMPRICEID"], 1, 0, -1, true, actualSalePrice);
+            HandleBillOffers(billObj,ref dtBillDetails, ref canClose);
 
-                    //refresh bill details
-                    dtBillDetails = billObj.dtBillDetails.Copy();
-                    dtBillDetails.DefaultView.RowFilter = "DELETEDDATE IS NULL";
-                    dtBillDetails = dtBillDetails.DefaultView.ToTable();
-                    canClose = false;
-
-                    if (actualSalePrice > 0)
-                    {
-                        XtraMessageBox.Show("Bill amount updated, please verify amount", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-            }
-
-            frmUnifiedPayment paymentForm = new frmUnifiedPayment(billObj, canClose);
+            frmUnifiedPayment paymentForm = new(billObj, canClose);
             paymentForm.ShowDialog();
             DataSet nextBillDetails = null;
 
@@ -339,6 +319,80 @@ namespace NSRetailPOS
                 XtraMessageBox.Show($"Printing Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LoadBillData(nextBillDetails);
+        }
+
+
+        private void HandleBillOffers(Bill billObj, ref DataTable dtBillDetails, ref bool canClose)
+        {
+            DataTable dtBillOffers = billingRepository.GetBillOffers(billObj.BillID);
+
+            if (dtBillOffers == null || dtBillOffers.Rows.Count == 0)
+                return;
+
+            DataRow selectedOffer = null;
+
+            if (dtBillOffers.Rows.Count == 1)
+            {
+                DataRow offerRow = dtBillOffers.Rows[0];
+                double actualSalePrice = Convert.ToDouble(offerRow["ACTUALSALEPRICE"]);
+
+                var result = XtraMessageBox.Show(
+                    $"Add item {offerRow["ITEMNAME"]} ({offerRow["SKUCODE"]}) for Rs.{actualSalePrice} to the bill?",
+                    "Add free item",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    selectedOffer = offerRow;
+                }
+            }
+            else // more than one offer
+            {
+                using (var billOfferSelection = new frmBillOfferSelection(dtBillOffers)
+                {
+                    StartPosition = FormStartPosition.CenterScreen
+                })
+                {
+                    billOfferSelection.ShowDialog();
+                    if (billOfferSelection.IsItemSelected)
+                    {
+                        DataRow[] matches = dtBillOffers.Select($"ITEMPRICEID = {billOfferSelection.SelectedItemPriceID}");
+                        if (matches.Length > 0)
+                        {
+                            selectedOffer = matches[0];
+                        }
+                    }
+                }
+            }
+
+            if (selectedOffer != null)
+            {
+                ApplySelectedOffer(selectedOffer, billObj, ref dtBillDetails, ref canClose);
+            }
+        }
+
+        private void ApplySelectedOffer(DataRow offerRow, Bill billObj, ref DataTable dtBillDetails, ref bool canClose)
+        {
+            double actualSalePrice = Convert.ToDouble(offerRow["ACTUALSALEPRICE"]);
+
+            SaveBillDetail(offerRow["ITEMPRICEID"], 1, 0, -1, true, actualSalePrice);
+
+            // Refresh bill details
+            dtBillDetails = billObj.dtBillDetails.Copy();
+            dtBillDetails.DefaultView.RowFilter = "DELETEDDATE IS NULL";
+            dtBillDetails = dtBillDetails.DefaultView.ToTable();
+
+            canClose = false;
+
+            if (actualSalePrice > 0)
+            {
+                XtraMessageBox.Show(
+                    "Bill amount updated, please verify amount",
+                    "Verification",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
         }
 
         private void SaveBillDetail(object itemPriceID, object quantity, object weightInKgs, object billDetailID

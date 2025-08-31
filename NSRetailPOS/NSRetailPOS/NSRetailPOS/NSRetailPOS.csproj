@@ -40,6 +40,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,6 +50,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>vLogo_Small_1.ico</ApplicationIcon>
@@ -471,6 +473,12 @@
     <Compile Include="UI\frmBarCodePrint.designer.cs">
       <DependentUpon>frmBarCodePrint.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\frmBillOfferSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmBillOfferSelection.Designer.cs">
+      <DependentUpon>frmBillOfferSelection.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmBranchRefund.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -728,6 +736,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmBarCodePrint.resx">
       <DependentUpon>frmBarCodePrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmBillOfferSelection.resx">
+      <DependentUpon>frmBillOfferSelection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmBranchRefund.resx">
       <DependentUpon>frmBranchRefund.cs</DependentUpon>

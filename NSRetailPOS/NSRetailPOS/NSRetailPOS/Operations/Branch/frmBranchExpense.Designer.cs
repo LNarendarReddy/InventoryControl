@@ -32,6 +32,7 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.picBillImage = new DevExpress.XtraEditors.PictureEdit();
             this.cmbExpenseType = new DevExpress.XtraEditors.LookUpEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -44,11 +45,11 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.picBillImage = new DevExpress.XtraEditors.PictureEdit();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBillImage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbExpenseType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
@@ -59,9 +60,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBillImage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -79,6 +79,17 @@
             this.layoutControl1.Size = new System.Drawing.Size(491, 482);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // picBillImage
+            // 
+            this.picBillImage.Location = new System.Drawing.Point(92, 108);
+            this.picBillImage.Name = "picBillImage";
+            this.picBillImage.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.ByteArray;
+            this.picBillImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.picBillImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.picBillImage.Size = new System.Drawing.Size(387, 328);
+            this.picBillImage.StyleController = this.layoutControl1;
+            this.picBillImage.TabIndex = 6;
             // 
             // cmbExpenseType
             // 
@@ -221,17 +232,6 @@
             this.layoutControlItem5.Text = "Expense Type";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(68, 13);
             // 
-            // picBillImage
-            // 
-            this.picBillImage.Location = new System.Drawing.Point(92, 108);
-            this.picBillImage.Name = "picBillImage";
-            this.picBillImage.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.ByteArray;
-            this.picBillImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.picBillImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.picBillImage.Size = new System.Drawing.Size(387, 328);
-            this.picBillImage.StyleController = this.layoutControl1;
-            this.picBillImage.TabIndex = 6;
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.picBillImage;
@@ -251,11 +251,12 @@
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
             this.Name = "frmBranchExpense";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Branch Expense";
             this.Load += new System.EventHandler(this.frmBranchExpense_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picBillImage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbExpenseType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).EndInit();
@@ -266,9 +267,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBillImage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
