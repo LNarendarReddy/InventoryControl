@@ -20,6 +20,9 @@ namespace NSRetailLiteApp.ViewModels
         [ObservableProperty]
         public bool _isLoading;
 
+        const string URL = "https://nsoftsol.com:6002/api/";
+        //const string URL = "https://nsoftsolcf.com/api/";
+
         private static readonly HttpClient httpClient = new()
         {
             Timeout = new TimeSpan(0, 0, 120)
@@ -31,7 +34,7 @@ namespace NSRetailLiteApp.ViewModels
             IsLoading = true;
             try
             {
-                HttpResponseMessage responseMessage = await httpClient.PostAsync(QueryHelpers.AddQueryString("https://nsoftsol.com:6002/api/" + path, values), null);
+                HttpResponseMessage responseMessage = await httpClient.PostAsync(QueryHelpers.AddQueryString($"{URL}{path}", values), null);
                 ProcessResponse(responseMessage, ref callingObject, displayAlert, showResponse);
             }
             catch (Exception ex)
@@ -47,7 +50,7 @@ namespace NSRetailLiteApp.ViewModels
             IsLoading = true;
             try
             {
-                HttpResponseMessage responseMessage = await httpClient.PostAsJsonAsync($"https://nsoftsol.com:6002/api/{path}", callingObject);
+                HttpResponseMessage responseMessage = await httpClient.PostAsJsonAsync($"{URL}{path}", callingObject);
                 ProcessResponse(responseMessage, ref callingObject, displayAlert, showResponse);
             }
             catch (Exception ex)
@@ -65,7 +68,7 @@ namespace NSRetailLiteApp.ViewModels
             {
                 using (var cts = new CancellationTokenSource(timeOut * 1000))
                 {
-                    HttpResponseMessage responseMessage = await httpClient.GetAsync(QueryHelpers.AddQueryString("https://nsoftsol.com:6002/api/" + path, values)
+                    HttpResponseMessage responseMessage = await httpClient.GetAsync(QueryHelpers.AddQueryString($"{URL}{path}", values)
                         , HttpCompletionOption.ResponseContentRead, cts.Token);
                     ProcessResponse(responseMessage, ref callingObject, displayAlert);
                 }
