@@ -10,7 +10,6 @@ using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -18,8 +17,6 @@ using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Management;
-using System.Net;
-using System.Net.Sockets;
 using System.Printing;
 using System.Security.Cryptography;
 using System.Text;
@@ -48,9 +45,9 @@ namespace NSRetailPOS
         public static event EventHandler ItemOrCodeChanged;
         public static Form ActiveForm;
 
-        public static string AppVersion = "1.8.4";
+        public static string AppVersion = "1.8.5";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(19-07-2025)";
+        public static string VersionDate = "(01-09-2025)";
 
         public static Bill GetBill(DataSet dsBillDetails)
         {
