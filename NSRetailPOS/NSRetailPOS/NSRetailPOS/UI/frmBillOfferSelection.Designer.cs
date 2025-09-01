@@ -32,8 +32,8 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.gcMRPList = new DevExpress.XtraGrid.GridControl();
-            this.gvMRPList = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcBillOfferList = new DevExpress.XtraGrid.GridControl();
+            this.gvBillOfferList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -48,8 +48,8 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcMRPList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvMRPList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcBillOfferList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvBillOfferList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
@@ -74,7 +74,7 @@
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
             this.layoutControl1.Controls.Add(this.btnOk);
             this.layoutControl1.Controls.Add(this.btnCancel);
-            this.layoutControl1.Controls.Add(this.gcMRPList);
+            this.layoutControl1.Controls.Add(this.gcBillOfferList);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -109,23 +109,23 @@
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // gcMRPList
+            // gcBillOfferList
             // 
-            this.gcMRPList.Location = new System.Drawing.Point(4, 4);
-            this.gcMRPList.MainView = this.gvMRPList;
-            this.gcMRPList.Name = "gcMRPList";
-            this.gcMRPList.Size = new System.Drawing.Size(805, 236);
-            this.gcMRPList.TabIndex = 0;
-            this.gcMRPList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvMRPList});
+            this.gcBillOfferList.Location = new System.Drawing.Point(4, 4);
+            this.gcBillOfferList.MainView = this.gvBillOfferList;
+            this.gcBillOfferList.Name = "gcBillOfferList";
+            this.gcBillOfferList.Size = new System.Drawing.Size(805, 236);
+            this.gcBillOfferList.TabIndex = 0;
+            this.gcBillOfferList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvBillOfferList});
             // 
-            // gvMRPList
+            // gvBillOfferList
             // 
-            this.gvMRPList.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.gvMRPList.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvMRPList.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F);
-            this.gvMRPList.Appearance.Row.Options.UseFont = true;
-            this.gvMRPList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvBillOfferList.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.gvBillOfferList.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvBillOfferList.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F);
+            this.gvBillOfferList.Appearance.Row.Options.UseFont = true;
+            this.gvBillOfferList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3,
@@ -133,13 +133,13 @@
             this.gridColumn5,
             this.gridColumn6,
             this.gridColumn7});
-            this.gvMRPList.GridControl = this.gcMRPList;
-            this.gvMRPList.Name = "gvMRPList";
-            this.gvMRPList.OptionsBehavior.Editable = false;
-            this.gvMRPList.OptionsCustomization.AllowFilter = false;
-            this.gvMRPList.OptionsFilter.InHeaderSearchMode = DevExpress.XtraGrid.Views.Grid.GridInHeaderSearchMode.Disabled;
-            this.gvMRPList.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
-            this.gvMRPList.OptionsView.ShowGroupPanel = false;
+            this.gvBillOfferList.GridControl = this.gcBillOfferList;
+            this.gvBillOfferList.Name = "gvBillOfferList";
+            this.gvBillOfferList.OptionsBehavior.Editable = false;
+            this.gvBillOfferList.OptionsCustomization.AllowFilter = false;
+            this.gvBillOfferList.OptionsFilter.InHeaderSearchMode = DevExpress.XtraGrid.Views.Grid.GridInHeaderSearchMode.Disabled;
+            this.gvBillOfferList.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
+            this.gvBillOfferList.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn1
             // 
@@ -214,7 +214,7 @@
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.gcMRPList;
+            this.layoutControlItem1.Control = this.gcBillOfferList;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(809, 240);
@@ -262,8 +262,8 @@
             this.Text = "Bill Offer Selection";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcMRPList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvMRPList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcBillOfferList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvBillOfferList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
@@ -278,8 +278,8 @@
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraGrid.GridControl gcMRPList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvMRPList;
+        private DevExpress.XtraGrid.GridControl gcBillOfferList;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvBillOfferList;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;

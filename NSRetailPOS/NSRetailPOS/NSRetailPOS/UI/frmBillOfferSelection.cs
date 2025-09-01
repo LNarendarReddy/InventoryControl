@@ -7,13 +7,14 @@ namespace NSRetailPOS.UI
         public bool IsItemSelected { get; set; }
         public object SelectedItemPriceID
         {
-            get => gvMRPList.GetFocusedRowCellValue("ITEMPRICEID");
+            get => gvBillOfferList.GetFocusedRowCellValue("ITEMPRICEID");
             set;
         }
         public frmBillOfferSelection(DataTable data)
         {
             InitializeComponent();
-            gcMRPList.DataSource = data;
+            gcBillOfferList.DataSource = data;
+            gvBillOfferList.BestFitColumns();
         }
 
         private void btnOk_Click(object sender, System.EventArgs e)
