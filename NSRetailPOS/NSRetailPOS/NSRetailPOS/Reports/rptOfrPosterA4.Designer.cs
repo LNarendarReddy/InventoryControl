@@ -130,8 +130,9 @@
             this.xrTableCell2.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrTableCell2.Dpi = 254F;
             this.xrTableCell2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([OFFERTYPEID] = 4 OR [OFFERTYPEID] = 5, [OFFERTYPENAME], Iif([OFFERTYPEID] = " +
-                    "3,\'FIXED PRICE\' , \'SAVE\'))")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([OFFERTYPEID] = 4 OR [OFFERTYPEID] = 5 OR [OFFERTYPEID] = 1007 OR [OFFERTYPEI" +
+                    "D] = 1008 OR [OFFERTYPEID] = 1009 , [OFFERTYPENAME], Iif([OFFERTYPEID] = 3,\'FIXE" +
+                    "D PRICE\' , \'SAVE\'))")});
             this.xrTableCell2.Font = new System.Drawing.Font("Cambria", 80F, System.Drawing.FontStyle.Bold);
             this.xrTableCell2.Multiline = true;
             this.xrTableCell2.Name = "xrTableCell2";
