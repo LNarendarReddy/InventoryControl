@@ -16,8 +16,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.SqlWHconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_ITEMCODES]";
-                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
+                    cmd.CommandText = "[USP_R_ITEMCODES_STOCKENTRY_BRANCH]";
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dsItemCodes);

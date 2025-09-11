@@ -45,9 +45,9 @@ namespace NSRetailPOS
         public static event EventHandler ItemOrCodeChanged;
         public static Form ActiveForm;
 
-        public static string AppVersion = "1.8.5";
+        public static string AppVersion = "1.8.7";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(02-09-2025)";
+        public static string VersionDate = "(11-09-2025)";
 
         public static Bill GetBill(DataSet dsBillDetails)
         {
@@ -508,7 +508,6 @@ namespace NSRetailPOS
             XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-
         public static bool ValidateTimeZone()
         {
             bool _return = false;
@@ -531,14 +530,25 @@ namespace NSRetailPOS
         {
             if (e.KeyCode != Keys.Enter && e.KeyCode != Keys.Tab)
                 return;
+
             BaseEdit baseEdit = sender as BaseEdit;
             string textValue = baseEdit.EditValue != null ? baseEdit.EditValue.ToString() : string.Empty;
-            if (textValue.Length > 4 && XtraMessageBox.Show($"Large number detected, possible barcode scan detected, Do you want to accept the value {textValue}"
-                    , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+
+            // Extract part before decimal point
+            string integerPart = textValue.Split('.')[0];
+
+            if (integerPart.Length > 4 &&
+                XtraMessageBox.Show(
+                    $"Large number detected, possible barcode scan detected, Do you want to accept the value {textValue}",
+                    "Confirm",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2) != DialogResult.Yes)
             {
                 baseEdit.EditValue = null;
             }
         }
+
 
         public static string WriteToPort(string message)
         {
@@ -580,9 +590,7 @@ namespace NSRetailPOS
         {
             DataSet dsItemBaseline = new ItemCodeRepository().GetItemCodes(Utility.loginInfo.CategoryID);
             dtItemSKUList = dsItemBaseline.Tables["ITEMS"];
-            DataView dv = dsItemBaseline.Tables["ITEMCODES"].DefaultView;
-            dv.RowFilter = "CATEGORYID = 16 OR CATEGORYID = 17";
-            dtItemCodeList = dv.ToTable();
+            dtItemCodeList = dsItemBaseline.Tables["ITEMCODES"];
             dtNonEAN = dsItemBaseline.Tables["ITEMCODES"];
             dtItemCodeFiltered = dsItemBaseline.Tables["ITEMCODES"];
         }

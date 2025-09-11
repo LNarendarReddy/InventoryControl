@@ -65,6 +65,7 @@ namespace NSRetail
                     XtraMessageBox.Show("Deal value is required", "Mandatory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtOfferValue.Focus();
                     return;
+
                 }
 
                 if (cmbFreeItemCode.Enabled && cmbFreeItemCode.EditValue == null)
@@ -141,24 +142,25 @@ namespace NSRetail
                 txtOfferValue.Enabled = true;
             }
             else
-            {
-                cmbFreeItemCode.Enabled = true;
-                
+            {   
                 if (cmbOfferType.EditValue.Equals(1004))
                 {
                     layoutControlItem14.Text = "Bill Value";
                     txtOfferValue.Enabled = true;
                     txtFreeItemPrice.Enabled = true;
+                    cmbFreeItemCode.Enabled = true;
                 }
                 else if (cmbOfferType.EditValue.Equals(1005))
                 {
                     layoutControlItem14.Text = "Bill Value of sub items";
-                    txtOfferValue.Enabled = true;                    
+                    txtOfferValue.Enabled = true;
+                    cmbFreeItemCode.Enabled = true;
                 }
                 else if (cmbOfferType.EditValue.Equals(1006))
                 {
                     txtNumberOfItems.Enabled = true;
                     txtFreeItemPrice.Enabled = true;
+                    cmbFreeItemCode.Enabled = true;
                 }
             }
         }

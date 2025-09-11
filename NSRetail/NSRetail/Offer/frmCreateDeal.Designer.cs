@@ -30,12 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCreateDeal));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.txtFreeItemPrice = new DevExpress.XtraEditors.TextEdit();
             this.txtNumberOfItems = new DevExpress.XtraEditors.TextEdit();
             this.txtOfferValue = new DevExpress.XtraEditors.TextEdit();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -65,13 +67,12 @@
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.txtFreeItemPrice = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFreeItemPrice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberOfItems.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOfferValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbOfferType.Properties)).BeginInit();
@@ -95,10 +96,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFreeItemPrice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -137,6 +137,26 @@
             this.layoutControl1.Size = new System.Drawing.Size(736, 226);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(484, 140);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(240, 14);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 11;
+            this.labelControl1.Text = "(Set 0 as price for free or discounted price value)";
+            // 
+            // txtFreeItemPrice
+            // 
+            this.txtFreeItemPrice.Location = new System.Drawing.Point(125, 140);
+            this.txtFreeItemPrice.Name = "txtFreeItemPrice";
+            this.txtFreeItemPrice.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtFreeItemPrice.Properties.MaskSettings.Set("mask", "n2");
+            this.txtFreeItemPrice.Properties.UseMaskAsDisplayFormat = true;
+            this.txtFreeItemPrice.Size = new System.Drawing.Size(347, 20);
+            this.txtFreeItemPrice.StyleController = this.layoutControl1;
+            this.txtFreeItemPrice.TabIndex = 10;
             // 
             // txtNumberOfItems
             // 
@@ -210,9 +230,9 @@
             this.cmbOfferType.Size = new System.Drawing.Size(228, 20);
             this.cmbOfferType.StyleController = this.layoutControl1;
             this.cmbOfferType.TabIndex = 4;
-            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule6.ErrorText = "This value is not valid";
-            this.dxValidationProvider1.SetValidationRule(this.cmbOfferType, conditionValidationRule6);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "This value is not valid";
+            this.dxValidationProvider1.SetValidationRule(this.cmbOfferType, conditionValidationRule1);
             this.cmbOfferType.EditValueChanged += new System.EventHandler(this.cmbOfferType_EditValueChanged);
             // 
             // dtpEndDate
@@ -229,9 +249,9 @@
             this.dtpEndDate.Size = new System.Drawing.Size(246, 20);
             this.dtpEndDate.StyleController = this.layoutControl1;
             this.dtpEndDate.TabIndex = 3;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "This value is not valid";
-            this.dxValidationProvider1.SetValidationRule(this.dtpEndDate, conditionValidationRule1);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "This value is not valid";
+            this.dxValidationProvider1.SetValidationRule(this.dtpEndDate, conditionValidationRule2);
             // 
             // dtpStartDate
             // 
@@ -247,9 +267,9 @@
             this.dtpStartDate.Size = new System.Drawing.Size(228, 20);
             this.dtpStartDate.StyleController = this.layoutControl1;
             this.dtpStartDate.TabIndex = 2;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "This value is not valid";
-            this.dxValidationProvider1.SetValidationRule(this.dtpStartDate, conditionValidationRule2);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "This value is not valid";
+            this.dxValidationProvider1.SetValidationRule(this.dtpStartDate, conditionValidationRule3);
             // 
             // txtOfferName
             // 
@@ -262,9 +282,9 @@
             this.txtOfferName.Size = new System.Drawing.Size(246, 20);
             this.txtOfferName.StyleController = this.layoutControl1;
             this.txtOfferName.TabIndex = 1;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "This value is not valid";
-            this.dxValidationProvider1.SetValidationRule(this.txtOfferName, conditionValidationRule3);
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "This value is not valid";
+            this.dxValidationProvider1.SetValidationRule(this.txtOfferName, conditionValidationRule4);
             // 
             // txtOfferCode
             // 
@@ -277,9 +297,9 @@
             this.txtOfferCode.Size = new System.Drawing.Size(228, 20);
             this.txtOfferCode.StyleController = this.layoutControl1;
             this.txtOfferCode.TabIndex = 0;
-            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule4.ErrorText = "This value is not valid";
-            this.dxValidationProvider1.SetValidationRule(this.txtOfferCode, conditionValidationRule4);
+            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule5.ErrorText = "This value is not valid";
+            this.dxValidationProvider1.SetValidationRule(this.txtOfferCode, conditionValidationRule5);
             // 
             // cmbFreeItemCode
             // 
@@ -493,17 +513,6 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(483, 54);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // txtFreeItemPrice
-            // 
-            this.txtFreeItemPrice.Location = new System.Drawing.Point(125, 140);
-            this.txtFreeItemPrice.Name = "txtFreeItemPrice";
-            this.txtFreeItemPrice.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtFreeItemPrice.Properties.MaskSettings.Set("mask", "n2");
-            this.txtFreeItemPrice.Properties.UseMaskAsDisplayFormat = true;
-            this.txtFreeItemPrice.Size = new System.Drawing.Size(347, 20);
-            this.txtFreeItemPrice.StyleController = this.layoutControl1;
-            this.txtFreeItemPrice.TabIndex = 10;
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.txtFreeItemPrice;
@@ -513,15 +522,6 @@
             this.layoutControlItem7.Size = new System.Drawing.Size(472, 32);
             this.layoutControlItem7.Text = "Free\\Disc Item Price";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(101, 14);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(484, 140);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(240, 14);
-            this.labelControl1.StyleController = this.layoutControl1;
-            this.labelControl1.TabIndex = 11;
-            this.labelControl1.Text = "(Set 0 as price for free or discounted price value)";
             // 
             // layoutControlItem8
             // 
@@ -546,6 +546,7 @@
             this.Load += new System.EventHandler(this.frmAddDeal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtFreeItemPrice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberOfItems.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOfferValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbOfferType.Properties)).EndInit();
@@ -569,10 +570,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFreeItemPrice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
