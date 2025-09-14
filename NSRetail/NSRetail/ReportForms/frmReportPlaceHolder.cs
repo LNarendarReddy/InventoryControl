@@ -185,6 +185,7 @@ namespace NSRetail.ReportForms
 
         private void tlReport_SelectionChanged(object sender, EventArgs e)
         {
+            dpTop.SuspendLayout();
             pcSearchCriteria.Controls.Clear();
             btnSearch.Enabled = false;
             btnReport.Enabled = false;
@@ -204,6 +205,8 @@ namespace NSRetail.ReportForms
                 ? $"Right click for options : {string.Join(", ", selectedReportHolder.SearchCriteriaControl.ContextmenuItems.Keys)}"
                 : string.Empty;
 
+            dpTop.ClientSize = new System.Drawing.Size(dpTop.Size.Width, selectedReportHolder.SearchCriteriaControl.Height + 46);
+            dpTop.ResumeLayout();
             btnSearch.Enabled = true;
             btnReport.Enabled = true;            
             dpTop.Text = $"{dpTop.Text} for {selectedReportHolder.ReportName}";

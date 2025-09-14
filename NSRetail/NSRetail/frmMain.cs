@@ -503,6 +503,7 @@ namespace NSRetail
             profitabilityReports.SubCategory.Add(new ReportHolder("A4E43E52-34D0-44E8-9FCC-87E72362FB98") { ReportName = "Periodicity", SearchCriteriaControl = new ucProfitabilityPeriodicity() });
             profitabilityReports.SubCategory.Add(new ReportHolder("4113BB0C-15C1-463B-938E-4DFA9D12A41C") { ReportName = "Item Margin", SearchCriteriaControl = new ucItemMargin() });
             profitabilityReports.SubCategory.Add(new ReportHolder("019FFF15-A38E-411F-8A8A-5CBAB422856A") { ReportName = "Purchases vs Sales", SearchCriteriaControl = new ucPurchasesVsSales() });
+            profitabilityReports.SubCategory.Add(new ReportHolder("4940D2A8-3DED-4285-A90E-7D4E7ADD1243") { ReportName = "Dispatches vs Sales", SearchCriteriaControl = new ucDispatchVsSales() });
             reportList.Add(profitabilityReports);
 
             ReportHolder stockandsalereports = new ReportHolder("D436829B-9B91-46F7-99D7-48CBD753D832") { ReportName = "Stock and Sales", SearchCriteriaControl = new ucStockAndSales() };

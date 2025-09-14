@@ -548,6 +548,12 @@
     <Compile Include="ReportForms\Wareshouse\Profitability\ucProfitabilityTaxWise.Designer.cs">
       <DependentUpon>ucProfitabilityTaxWise.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucDispatchVsSales.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Profitability\ucDispatchVsSales.Designer.cs">
+      <DependentUpon>ucDispatchVsSales.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\Profitability\ucPurchasesVsSales.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1471,6 +1477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\TransactionReports\ucSaleByMOP.resx">
       <DependentUpon>ucSaleByMOP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\ucDispatchVsSales.resx">
+      <DependentUpon>ucDispatchVsSales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Profitability\ucPurchasesVsSales.resx">
       <DependentUpon>ucPurchasesVsSales.cs</DependentUpon>
