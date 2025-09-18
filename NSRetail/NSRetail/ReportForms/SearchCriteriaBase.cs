@@ -198,16 +198,17 @@ namespace NSRetail
             todate = _todate;
             cmbPeriodicity = cmb;
             DataTable dtPeriodicity = new DataTable();
-            dtPeriodicity.Columns.Add("Periodicityvalue", typeof(string));
+            dtPeriodicity.Columns.Add("Periodicity", typeof(string));
+            dtPeriodicity.Columns.Add("PeriodicityDescription", typeof(string));
 
-            if(includeHourly) dtPeriodicity.Rows.Add(new []{ "Hourly" });
-            dtPeriodicity.Rows.Add(new []{ "Daily" });
-            dtPeriodicity.Rows.Add(new []{ "Monthly"});
-            dtPeriodicity.Rows.Add(new []{ "Yearly"});
+            if (includeHourly) dtPeriodicity.Rows.Add(new []{ "Hourly", "Hourly" });
+            dtPeriodicity.Rows.Add(new []{ "Daily", "Daily" });
+            dtPeriodicity.Rows.Add(new []{ "Monthly", "Monthly" });
+            dtPeriodicity.Rows.Add(new []{ "Yearly", "Fin Yearly" });
 
             cmbPeriodicity.Properties.DataSource = dtPeriodicity;
-            cmbPeriodicity.Properties.ValueMember = "Periodicityvalue";
-            cmbPeriodicity.Properties.DisplayMember = "Periodicityvalue";
+            cmbPeriodicity.Properties.ValueMember = "Periodicity";
+            cmbPeriodicity.Properties.DisplayMember = "PeriodicityDescription";
             cmbPeriodicity.EditValueChanged += cmbPeriodicity_EditValueChanged;
             cmbPeriodicity.EditValue = "Daily";
 
@@ -269,13 +270,13 @@ namespace NSRetail
                 if (fromdate.EditValue != null)
                 {
                     DateTime fromDateValue = (DateTime)fromdate.EditValue;
-                    fromdate.EditValue = DateTime.Parse($"{fromDateValue.Year}-01-01");
+                    fromdate.EditValue = DateTime.Parse($"{fromDateValue.Year}-04-01");
                 }
 
                 if (todate.EditValue != null)
                 {
                     DateTime toDateValue = (DateTime)todate.EditValue;
-                    todate.EditValue = DateTime.Parse($"{toDateValue.Year}-12-31");                    
+                    todate.EditValue = DateTime.Parse($"{toDateValue.Year}-03-31");                    
                 }
             }
 
