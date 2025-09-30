@@ -64,7 +64,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
         {
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
-            SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, true);
+            SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, includeHourly: true, includeFinYearly: true);
         }
         public override object GetData()
         {

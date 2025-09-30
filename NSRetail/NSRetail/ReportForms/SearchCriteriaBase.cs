@@ -192,7 +192,8 @@ namespace NSRetail
 
         public virtual void ActionExecute(string buttonText, DataRow drFocusedRow) { }
 
-        protected void SetPeriodicty(LookUpEdit cmb,DateEdit _fromdate, DateEdit _todate, bool includeHourly = false)
+        protected void SetPeriodicty(LookUpEdit cmb,DateEdit _fromdate, DateEdit _todate, bool includeHourly = false
+            , bool includeFinYearly = false)
         {
             fromdate = _fromdate;
             todate = _todate;
@@ -204,7 +205,9 @@ namespace NSRetail
             if (includeHourly) dtPeriodicity.Rows.Add(new []{ "Hourly", "Hourly" });
             dtPeriodicity.Rows.Add(new []{ "Daily", "Daily" });
             dtPeriodicity.Rows.Add(new []{ "Monthly", "Monthly" });
-            dtPeriodicity.Rows.Add(new []{ "Yearly", "Fin Yearly" });
+            dtPeriodicity.Rows.Add(new []{ "Yearly", "Calendar Year" });
+
+            if(includeFinYearly) dtPeriodicity.Rows.Add(new []{ "Fin. Yearly", "Financial Year" });
 
             cmbPeriodicity.Properties.DataSource = dtPeriodicity;
             cmbPeriodicity.Properties.ValueMember = "Periodicity";
@@ -228,11 +231,13 @@ namespace NSRetail
                 SetDateFormats("MMMM");
             else if (lookUpEdit.EditValue.Equals("Yearly"))
                 SetDateFormats("yyyy");
+            else if (lookUpEdit.EditValue.Equals("Fin. Yearly"))
+                SetDateFormats("yyyy", true);
             else
                 SetDateFormats("d");
         }
 
-        protected void SetDateFormats(string formatstring)
+        protected void SetDateFormats(string formatstring, bool finYear = false)
         {
             fromdate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             fromdate.Properties.DisplayFormat.FormatString = formatstring;
@@ -270,13 +275,15 @@ namespace NSRetail
                 if (fromdate.EditValue != null)
                 {
                     DateTime fromDateValue = (DateTime)fromdate.EditValue;
-                    fromdate.EditValue = DateTime.Parse($"{fromDateValue.Year}-04-01");
+                    string month = finYear ? "04-01" : "01-01";
+                    fromdate.EditValue = DateTime.Parse($"{fromDateValue.Year}-{month}");
                 }
 
                 if (todate.EditValue != null)
                 {
                     DateTime toDateValue = (DateTime)todate.EditValue;
-                    todate.EditValue = DateTime.Parse($"{toDateValue.Year}-03-31");                    
+                    string month = finYear ? "03-31" : "12-31";
+                    todate.EditValue = DateTime.Parse($"{toDateValue.Year}-{month}");                    
                 }
             }
 
