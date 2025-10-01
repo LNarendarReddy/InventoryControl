@@ -2,7 +2,9 @@
 using DevExpress.Utils.Text.Internal;
 using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
+using Entity;
 using NSRetail.Reports;
+using NSRetail.Stock;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -37,6 +39,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 { "Edit", "DED7050B-F5CF-4944-8880-008A87F1D987" },
                 { "Revert", "7CE473E7-514B-4BC9-B07E-2B26B5AA44F2" },
                 { "Clone", "50C463EA-A4BE-49A8-8484-B2C73186A373" },
+                { "Verify and Submit", "6B8301F8-D835-4F21-9ED2-F6939EAF1552" },
                 { "Dispatch to branch", "A3F813DC-3E42-407A-A3B8-1CC84ADC684C" },
             };
                 
@@ -68,7 +71,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
         {
             try
             {
-                if (drFocusedRow["STATUS"].ToString() == "Draft")
+                if (drFocusedRow["STATUS"].ToString() == "Draft" && buttonText != "Verify and Submit")
                 {
                     XtraMessageBox.Show("Draft bills cannot be viewed, printed or reverted. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
@@ -125,11 +128,25 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                             XtraMessageBox.Show("Refresh data to get updated values", "Refresh", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         break;
-                    case "Dispatch to branch":
-                        if (new frmStockEntryEdit(drFocusedRow["STOCKENTRYID"]).ShowDialog() == DialogResult.OK)
+                    case "Verify and Submit":
+
+                        if (drFocusedRow["STATUS"].ToString() != "Draft")
                         {
-                            XtraMessageBox.Show("Refresh data to get updated values", "Refresh", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            XtraMessageBox.Show("Submitted bills cannot be viewed, printed, reverted or reverified. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            return;
                         }
+                        StockEntry stockEntry = new StockEntry()
+                        {
+                            STOCKENTRYID = drFocusedRow["STOCKENTRYID"]
+                        };
+                        frmStockEntry frmStockEntry = new frmStockEntry(stockEntry);
+                        frmStockEntry.ShowInTaskbar = false;
+                        frmStockEntry.IconOptions.ShowIcon = false;
+                        frmStockEntry.StartPosition = FormStartPosition.CenterScreen;
+                        frmStockEntry.ShowDialog();
+                        break;
+                    case "Dispatch to branch":
+                            XtraMessageBox.Show("Not yet implemented", "Unknown", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
                 }
             }

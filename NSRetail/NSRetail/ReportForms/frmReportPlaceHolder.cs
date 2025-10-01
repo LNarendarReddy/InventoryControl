@@ -389,9 +389,9 @@ namespace NSRetail.ReportForms
 
             foreach (var item in contextmenuItems)
             {
-                if(!AccessUtility.HasAccess(item.Value)) return;
-
+                if(!AccessUtility.HasAccess(item.Value)) continue;
                 DXMenuItem menuItem = new DXMenuItem(item.Key);
+
                 menuItem.Click += On_Click;
                 menuItem.Tag = item.Key;
                 e.Menu.Items.Add(menuItem);

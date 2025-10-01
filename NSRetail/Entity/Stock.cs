@@ -51,6 +51,8 @@ namespace Entity
 
         public bool CalculateIGST = false;
         public DataTable dtStockEntry { get; set; }
+
+        public object SourceBranchID { get; set; }
     }
     public class StockEntryDetail : EntityBase
     {

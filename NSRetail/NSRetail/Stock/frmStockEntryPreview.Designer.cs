@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule14 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockEntryPreview));
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
@@ -42,8 +43,11 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule10 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule11 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule12 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule13 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.cmbCategory = new DevExpress.XtraEditors.LookUpEdit();
+            this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
+            this.txtCessValue = new DevExpress.XtraEditors.TextEdit();
+            this.txtTaxValue = new DevExpress.XtraEditors.TextEdit();
             this.txtFinalPrice = new DevExpress.XtraEditors.TextEdit();
             this.txtNetPrice = new DevExpress.XtraEditors.TextEdit();
             this.txtGSTValue = new DevExpress.XtraEditors.TextEdit();
@@ -62,7 +66,6 @@
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -78,13 +81,19 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.txtTaxValue = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtCessValue = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCessValue.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaxValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFinalPrice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNetPrice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTValue.Properties)).BeginInit();
@@ -102,7 +111,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
@@ -118,15 +126,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTaxValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCessValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.cmbCategory);
+            this.layoutControl1.Controls.Add(this.cmbBranch);
             this.layoutControl1.Controls.Add(this.txtCessValue);
             this.layoutControl1.Controls.Add(this.txtTaxValue);
             this.layoutControl1.Controls.Add(this.txtFinalPrice);
@@ -150,32 +162,82 @@
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(999, 184, 650, 400);
             this.layoutControl1.OptionsFocus.EnableAutoTabOrder = false;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(693, 432);
+            this.layoutControl1.Size = new System.Drawing.Size(693, 512);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // cmbCategory
+            // 
+            this.cmbCategory.Location = new System.Drawing.Point(468, 411);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbCategory.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYID", "CategoryID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYNAME", "CATEGORYNAME")});
+            this.cmbCategory.Properties.NullText = "";
+            this.cmbCategory.Properties.ShowHeader = false;
+            this.cmbCategory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.cmbCategory.Size = new System.Drawing.Size(197, 22);
+            this.cmbCategory.StyleController = this.layoutControl1;
+            this.cmbCategory.TabIndex = 18;
+            // 
+            // cmbBranch
+            // 
+            this.cmbBranch.Location = new System.Drawing.Point(144, 411);
+            this.cmbBranch.Name = "cmbBranch";
+            this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHNAME", "Branch Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHID", "BRANCHID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.cmbBranch.Properties.NullText = "";
+            this.cmbBranch.Properties.ShowHeader = false;
+            this.cmbBranch.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.cmbBranch.Size = new System.Drawing.Size(196, 22);
+            this.cmbBranch.StyleController = this.layoutControl1;
+            this.cmbBranch.TabIndex = 17;
+            // 
+            // txtCessValue
+            // 
+            this.txtCessValue.Enabled = false;
+            this.txtCessValue.Location = new System.Drawing.Point(468, 196);
+            this.txtCessValue.Name = "txtCessValue";
+            this.txtCessValue.Size = new System.Drawing.Size(197, 22);
+            this.txtCessValue.StyleController = this.layoutControl1;
+            this.txtCessValue.TabIndex = 16;
+            // 
+            // txtTaxValue
+            // 
+            this.txtTaxValue.Enabled = false;
+            this.txtTaxValue.Location = new System.Drawing.Point(144, 196);
+            this.txtTaxValue.Name = "txtTaxValue";
+            this.txtTaxValue.Size = new System.Drawing.Size(196, 22);
+            this.txtTaxValue.StyleController = this.layoutControl1;
+            this.txtTaxValue.TabIndex = 15;
             // 
             // txtFinalPrice
             // 
             this.txtFinalPrice.Enabled = false;
-            this.txtFinalPrice.Location = new System.Drawing.Point(452, 332);
+            this.txtFinalPrice.Location = new System.Drawing.Point(468, 332);
             this.txtFinalPrice.Name = "txtFinalPrice";
             this.txtFinalPrice.Properties.DisplayFormat.FormatString = "n2";
             this.txtFinalPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtFinalPrice.Properties.EditFormat.FormatString = "n2";
             this.txtFinalPrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtFinalPrice.Size = new System.Drawing.Size(213, 22);
+            this.txtFinalPrice.Size = new System.Drawing.Size(197, 22);
             this.txtFinalPrice.StyleController = this.layoutControl1;
             this.txtFinalPrice.TabIndex = 12;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtFinalPrice, conditionValidationRule1);
+            conditionValidationRule14.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule14.ErrorText = "Mandatory";
+            conditionValidationRule14.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtFinalPrice, conditionValidationRule14);
             // 
             // txtNetPrice
             // 
             this.txtNetPrice.Enabled = false;
             this.txtNetPrice.EnterMoveNextControl = true;
-            this.txtNetPrice.Location = new System.Drawing.Point(452, 230);
+            this.txtNetPrice.Location = new System.Drawing.Point(468, 230);
             this.txtNetPrice.Name = "txtNetPrice";
             this.txtNetPrice.Properties.DisplayFormat.FormatString = "n2";
             this.txtNetPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -184,19 +246,19 @@
             this.txtNetPrice.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtNetPrice.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtNetPrice.Properties.MaskSettings.Set("mask", "n2");
-            this.txtNetPrice.Size = new System.Drawing.Size(213, 22);
+            this.txtNetPrice.Size = new System.Drawing.Size(197, 22);
             this.txtNetPrice.StyleController = this.layoutControl1;
             this.txtNetPrice.TabIndex = 6;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtNetPrice, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtNetPrice, conditionValidationRule1);
             // 
             // txtGSTValue
             // 
             this.txtGSTValue.Enabled = false;
             this.txtGSTValue.EnterMoveNextControl = true;
-            this.txtGSTValue.Location = new System.Drawing.Point(128, 230);
+            this.txtGSTValue.Location = new System.Drawing.Point(144, 230);
             this.txtGSTValue.Name = "txtGSTValue";
             this.txtGSTValue.Properties.DisplayFormat.FormatString = "n2";
             this.txtGSTValue.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -205,19 +267,19 @@
             this.txtGSTValue.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtGSTValue.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtGSTValue.Properties.MaskSettings.Set("mask", "n2");
-            this.txtGSTValue.Size = new System.Drawing.Size(212, 22);
+            this.txtGSTValue.Size = new System.Drawing.Size(196, 22);
             this.txtGSTValue.StyleController = this.layoutControl1;
             this.txtGSTValue.TabIndex = 5;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "Mandatory";
-            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtGSTValue, conditionValidationRule3);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Mandatory";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtGSTValue, conditionValidationRule2);
             // 
             // txtTotalPriceWT
             // 
             this.txtTotalPriceWT.Enabled = false;
             this.txtTotalPriceWT.EnterMoveNextControl = true;
-            this.txtTotalPriceWT.Location = new System.Drawing.Point(452, 162);
+            this.txtTotalPriceWT.Location = new System.Drawing.Point(468, 162);
             this.txtTotalPriceWT.Name = "txtTotalPriceWT";
             this.txtTotalPriceWT.Properties.DisplayFormat.FormatString = "n2";
             this.txtTotalPriceWT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -226,19 +288,19 @@
             this.txtTotalPriceWT.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtTotalPriceWT.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtTotalPriceWT.Properties.MaskSettings.Set("mask", "n2");
-            this.txtTotalPriceWT.Size = new System.Drawing.Size(213, 22);
+            this.txtTotalPriceWT.Size = new System.Drawing.Size(197, 22);
             this.txtTotalPriceWT.StyleController = this.layoutControl1;
             this.txtTotalPriceWT.TabIndex = 4;
-            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule4.ErrorText = "Mandatory";
-            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtTotalPriceWT, conditionValidationRule4);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Mandatory";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtTotalPriceWT, conditionValidationRule3);
             // 
             // txtTotalPriceWOT
             // 
             this.txtTotalPriceWOT.Enabled = false;
             this.txtTotalPriceWOT.EnterMoveNextControl = true;
-            this.txtTotalPriceWOT.Location = new System.Drawing.Point(128, 162);
+            this.txtTotalPriceWOT.Location = new System.Drawing.Point(144, 162);
             this.txtTotalPriceWOT.Name = "txtTotalPriceWOT";
             this.txtTotalPriceWOT.Properties.DisplayFormat.FormatString = "n2";
             this.txtTotalPriceWOT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -246,20 +308,20 @@
             this.txtTotalPriceWOT.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtTotalPriceWOT.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtTotalPriceWOT.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.txtTotalPriceWOT.Size = new System.Drawing.Size(212, 22);
+            this.txtTotalPriceWOT.Size = new System.Drawing.Size(196, 22);
             this.txtTotalPriceWOT.StyleController = this.layoutControl1;
             this.txtTotalPriceWOT.TabIndex = 3;
-            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule5.ErrorText = "Mandatory";
-            conditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtTotalPriceWOT, conditionValidationRule5);
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "Mandatory";
+            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtTotalPriceWOT, conditionValidationRule4);
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(540, 378);
+            this.btnCancel.Location = new System.Drawing.Point(540, 457);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(137, 36);
             this.btnCancel.StyleController = this.layoutControl1;
@@ -271,7 +333,7 @@
             // 
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnSave.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSave.ImageOptions.SvgImage")));
-            this.btnSave.Location = new System.Drawing.Point(391, 378);
+            this.btnSave.Location = new System.Drawing.Point(391, 457);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(137, 36);
             this.btnSave.StyleController = this.layoutControl1;
@@ -283,7 +345,7 @@
             // 
             this.cmbSupplier.Enabled = false;
             this.cmbSupplier.EnterMoveNextControl = true;
-            this.cmbSupplier.Location = new System.Drawing.Point(128, 49);
+            this.cmbSupplier.Location = new System.Drawing.Point(144, 49);
             this.cmbSupplier.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbSupplier.Name = "cmbSupplier";
             this.cmbSupplier.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -295,18 +357,18 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTIN", "GSTIN", 23, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ADDRESS", "ADDRESS", 23, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbSupplier.Properties.NullText = "";
-            this.cmbSupplier.Size = new System.Drawing.Size(537, 22);
+            this.cmbSupplier.Size = new System.Drawing.Size(521, 22);
             this.cmbSupplier.StyleController = this.layoutControl1;
             this.cmbSupplier.TabIndex = 0;
-            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule6.ErrorText = "Mandatory";
-            conditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbSupplier, conditionValidationRule6);
+            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule5.ErrorText = "Mandatory";
+            conditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbSupplier, conditionValidationRule5);
             // 
             // txtTCS
             // 
             this.txtTCS.EnterMoveNextControl = true;
-            this.txtTCS.Location = new System.Drawing.Point(128, 332);
+            this.txtTCS.Location = new System.Drawing.Point(144, 332);
             this.txtTCS.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtTCS.Name = "txtTCS";
             this.txtTCS.Properties.DisplayFormat.FormatString = "n2";
@@ -315,55 +377,55 @@
             this.txtTCS.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtTCS.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtTCS.Properties.MaskSettings.Set("mask", "n2");
-            this.txtTCS.Size = new System.Drawing.Size(212, 22);
+            this.txtTCS.Size = new System.Drawing.Size(196, 22);
             this.txtTCS.StyleController = this.layoutControl1;
             this.txtTCS.TabIndex = 11;
-            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule7.ErrorText = "Mandatory";
-            conditionValidationRule7.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtTCS, conditionValidationRule7);
+            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule6.ErrorText = "Mandatory";
+            conditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtTCS, conditionValidationRule6);
             this.txtTCS.EditValueChanged += new System.EventHandler(this.txtExpenses_EditValueChanged);
             // 
             // txtInvoiceNumber
             // 
             this.txtInvoiceNumber.Enabled = false;
             this.txtInvoiceNumber.EnterMoveNextControl = true;
-            this.txtInvoiceNumber.Location = new System.Drawing.Point(128, 83);
+            this.txtInvoiceNumber.Location = new System.Drawing.Point(144, 83);
             this.txtInvoiceNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtInvoiceNumber.Name = "txtInvoiceNumber";
             this.txtInvoiceNumber.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtInvoiceNumber.Size = new System.Drawing.Size(212, 22);
+            this.txtInvoiceNumber.Size = new System.Drawing.Size(196, 22);
             this.txtInvoiceNumber.StyleController = this.layoutControl1;
             this.txtInvoiceNumber.TabIndex = 1;
-            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule8.ErrorText = "Mandatory";
-            conditionValidationRule8.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtInvoiceNumber, conditionValidationRule8);
+            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule7.ErrorText = "Mandatory";
+            conditionValidationRule7.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtInvoiceNumber, conditionValidationRule7);
             // 
             // dtpInvoice
             // 
             this.dtpInvoice.EditValue = null;
             this.dtpInvoice.Enabled = false;
             this.dtpInvoice.EnterMoveNextControl = true;
-            this.dtpInvoice.Location = new System.Drawing.Point(452, 83);
+            this.dtpInvoice.Location = new System.Drawing.Point(468, 83);
             this.dtpInvoice.Margin = new System.Windows.Forms.Padding(2);
             this.dtpInvoice.Name = "dtpInvoice";
             this.dtpInvoice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpInvoice.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpInvoice.Size = new System.Drawing.Size(213, 22);
+            this.dtpInvoice.Size = new System.Drawing.Size(197, 22);
             this.dtpInvoice.StyleController = this.layoutControl1;
             this.dtpInvoice.TabIndex = 2;
-            conditionValidationRule9.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule9.ErrorText = "Mandatory";
-            conditionValidationRule9.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.dtpInvoice, conditionValidationRule9);
+            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule8.ErrorText = "Mandatory";
+            conditionValidationRule8.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.dtpInvoice, conditionValidationRule8);
             // 
             // txtExpenses
             // 
             this.txtExpenses.EnterMoveNextControl = true;
-            this.txtExpenses.Location = new System.Drawing.Point(128, 264);
+            this.txtExpenses.Location = new System.Drawing.Point(144, 264);
             this.txtExpenses.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtExpenses.Name = "txtExpenses";
             this.txtExpenses.Properties.DisplayFormat.FormatString = "n2";
@@ -372,19 +434,19 @@
             this.txtExpenses.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtExpenses.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtExpenses.Properties.MaskSettings.Set("mask", "n2");
-            this.txtExpenses.Size = new System.Drawing.Size(212, 22);
+            this.txtExpenses.Size = new System.Drawing.Size(196, 22);
             this.txtExpenses.StyleController = this.layoutControl1;
             this.txtExpenses.TabIndex = 7;
-            conditionValidationRule10.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule10.ErrorText = "Mandatory";
-            conditionValidationRule10.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtExpenses, conditionValidationRule10);
+            conditionValidationRule9.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule9.ErrorText = "Mandatory";
+            conditionValidationRule9.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtExpenses, conditionValidationRule9);
             this.txtExpenses.EditValueChanged += new System.EventHandler(this.txtExpenses_EditValueChanged);
             // 
             // txtDiscountPer
             // 
             this.txtDiscountPer.EnterMoveNextControl = true;
-            this.txtDiscountPer.Location = new System.Drawing.Point(128, 298);
+            this.txtDiscountPer.Location = new System.Drawing.Point(144, 298);
             this.txtDiscountPer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtDiscountPer.Name = "txtDiscountPer";
             this.txtDiscountPer.Properties.DisplayFormat.FormatString = "n2";
@@ -393,19 +455,19 @@
             this.txtDiscountPer.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtDiscountPer.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtDiscountPer.Properties.MaskSettings.Set("mask", "n2");
-            this.txtDiscountPer.Size = new System.Drawing.Size(212, 22);
+            this.txtDiscountPer.Size = new System.Drawing.Size(196, 22);
             this.txtDiscountPer.StyleController = this.layoutControl1;
             this.txtDiscountPer.TabIndex = 9;
-            conditionValidationRule11.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule11.ErrorText = "Mandatory";
-            conditionValidationRule11.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtDiscountPer, conditionValidationRule11);
+            conditionValidationRule10.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule10.ErrorText = "Mandatory";
+            conditionValidationRule10.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtDiscountPer, conditionValidationRule10);
             this.txtDiscountPer.EditValueChanged += new System.EventHandler(this.txtExpenses_EditValueChanged);
             // 
             // txtDiscountFlat
             // 
             this.txtDiscountFlat.EnterMoveNextControl = true;
-            this.txtDiscountFlat.Location = new System.Drawing.Point(452, 298);
+            this.txtDiscountFlat.Location = new System.Drawing.Point(468, 298);
             this.txtDiscountFlat.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtDiscountFlat.Name = "txtDiscountFlat";
             this.txtDiscountFlat.Properties.DisplayFormat.FormatString = "n2";
@@ -414,19 +476,19 @@
             this.txtDiscountFlat.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtDiscountFlat.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtDiscountFlat.Properties.MaskSettings.Set("mask", "n2");
-            this.txtDiscountFlat.Size = new System.Drawing.Size(213, 22);
+            this.txtDiscountFlat.Size = new System.Drawing.Size(197, 22);
             this.txtDiscountFlat.StyleController = this.layoutControl1;
             this.txtDiscountFlat.TabIndex = 10;
-            conditionValidationRule12.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule12.ErrorText = "Mandatory";
-            conditionValidationRule12.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtDiscountFlat, conditionValidationRule12);
+            conditionValidationRule11.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule11.ErrorText = "Mandatory";
+            conditionValidationRule11.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtDiscountFlat, conditionValidationRule11);
             this.txtDiscountFlat.EditValueChanged += new System.EventHandler(this.txtExpenses_EditValueChanged);
             // 
             // txtTransport
             // 
             this.txtTransport.EnterMoveNextControl = true;
-            this.txtTransport.Location = new System.Drawing.Point(452, 264);
+            this.txtTransport.Location = new System.Drawing.Point(468, 264);
             this.txtTransport.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtTransport.Name = "txtTransport";
             this.txtTransport.Properties.DisplayFormat.FormatString = "n2";
@@ -435,13 +497,13 @@
             this.txtTransport.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtTransport.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtTransport.Properties.MaskSettings.Set("mask", "n2");
-            this.txtTransport.Size = new System.Drawing.Size(213, 22);
+            this.txtTransport.Size = new System.Drawing.Size(197, 22);
             this.txtTransport.StyleController = this.layoutControl1;
             this.txtTransport.TabIndex = 8;
-            conditionValidationRule13.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule13.ErrorText = "Mandatory";
-            conditionValidationRule13.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtTransport, conditionValidationRule13);
+            conditionValidationRule12.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule12.ErrorText = "Mandatory";
+            conditionValidationRule12.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtTransport, conditionValidationRule12);
             this.txtTransport.EditValueChanged += new System.EventHandler(this.txtExpenses_EditValueChanged);
             // 
             // Root
@@ -451,22 +513,23 @@
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem8,
             this.layoutControlItem9,
-            this.emptySpaceItem2,
             this.layoutControlGroup1,
-            this.layoutControlGroup2});
+            this.layoutControlGroup2,
+            this.layoutControlGroup3,
+            this.emptySpaceItem1});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(693, 432);
+            this.Root.Size = new System.Drawing.Size(693, 512);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnSave;
-            this.layoutControlItem8.Location = new System.Drawing.Point(375, 362);
+            this.layoutControlItem8.Location = new System.Drawing.Point(375, 441);
             this.layoutControlItem8.MaxSize = new System.Drawing.Size(149, 48);
             this.layoutControlItem8.MinSize = new System.Drawing.Size(149, 48);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem8.Size = new System.Drawing.Size(149, 50);
+            this.layoutControlItem8.Size = new System.Drawing.Size(149, 51);
             this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
@@ -474,23 +537,15 @@
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnCancel;
-            this.layoutControlItem9.Location = new System.Drawing.Point(524, 362);
+            this.layoutControlItem9.Location = new System.Drawing.Point(524, 441);
             this.layoutControlItem9.MaxSize = new System.Drawing.Size(149, 48);
             this.layoutControlItem9.MinSize = new System.Drawing.Size(149, 48);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem9.Size = new System.Drawing.Size(149, 50);
+            this.layoutControlItem9.Size = new System.Drawing.Size(149, 51);
             this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
-            // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 362);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(375, 50);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup1
             // 
@@ -514,7 +569,7 @@
             this.layoutControlItem1.Size = new System.Drawing.Size(649, 34);
             this.layoutControlItem1.Text = "Supplier";
             this.layoutControlItem1.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem11
             // 
@@ -527,7 +582,7 @@
             this.layoutControlItem11.Size = new System.Drawing.Size(324, 34);
             this.layoutControlItem11.Text = "Invoice Number";
             this.layoutControlItem11.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem14
             // 
@@ -539,7 +594,7 @@
             this.layoutControlItem14.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem14.Size = new System.Drawing.Size(325, 34);
             this.layoutControlItem14.Text = "Invoice Date";
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlGroup2
             // 
@@ -569,7 +624,7 @@
             this.layoutControlItem10.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem10.Size = new System.Drawing.Size(324, 34);
             this.layoutControlItem10.Text = "Total Price WOT";
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem12
             // 
@@ -579,7 +634,7 @@
             this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem12.Size = new System.Drawing.Size(325, 34);
             this.layoutControlItem12.Text = "Total Price WT";
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem2
             // 
@@ -591,7 +646,7 @@
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem2.Size = new System.Drawing.Size(324, 34);
             this.layoutControlItem2.Text = "TCS";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem6
             // 
@@ -603,7 +658,7 @@
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem6.Size = new System.Drawing.Size(325, 34);
             this.layoutControlItem6.Text = "Transport";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem13
             // 
@@ -613,7 +668,7 @@
             this.layoutControlItem13.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem13.Size = new System.Drawing.Size(324, 34);
             this.layoutControlItem13.Text = "GST Value";
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem15
             // 
@@ -623,7 +678,7 @@
             this.layoutControlItem15.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem15.Size = new System.Drawing.Size(325, 34);
             this.layoutControlItem15.Text = "Net Price";
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem5
             // 
@@ -635,7 +690,7 @@
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem5.Size = new System.Drawing.Size(324, 34);
             this.layoutControlItem5.Text = "Expenses";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem4
             // 
@@ -647,7 +702,7 @@
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem4.Size = new System.Drawing.Size(324, 34);
             this.layoutControlItem4.Text = "Discount %";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem7
             // 
@@ -657,7 +712,7 @@
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem7.Size = new System.Drawing.Size(325, 34);
             this.layoutControlItem7.Text = "Final Price";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem3
             // 
@@ -669,16 +724,7 @@
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem3.Size = new System.Drawing.Size(325, 34);
             this.layoutControlItem3.Text = "Discount Flat";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(88, 15);
-            // 
-            // txtTaxValue
-            // 
-            this.txtTaxValue.Enabled = false;
-            this.txtTaxValue.Location = new System.Drawing.Point(128, 196);
-            this.txtTaxValue.Name = "txtTaxValue";
-            this.txtTaxValue.Size = new System.Drawing.Size(212, 22);
-            this.txtTaxValue.StyleController = this.layoutControl1;
-            this.txtTaxValue.TabIndex = 15;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem16
             // 
@@ -688,16 +734,7 @@
             this.layoutControlItem16.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem16.Size = new System.Drawing.Size(324, 34);
             this.layoutControlItem16.Text = "Tax Value";
-            this.layoutControlItem16.TextSize = new System.Drawing.Size(88, 15);
-            // 
-            // txtCessValue
-            // 
-            this.txtCessValue.Enabled = false;
-            this.txtCessValue.Location = new System.Drawing.Point(452, 196);
-            this.txtCessValue.Name = "txtCessValue";
-            this.txtCessValue.Size = new System.Drawing.Size(213, 22);
-            this.txtCessValue.StyleController = this.layoutControl1;
-            this.txtCessValue.TabIndex = 16;
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(104, 15);
             // 
             // layoutControlItem17
             // 
@@ -707,20 +744,62 @@
             this.layoutControlItem17.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem17.Size = new System.Drawing.Size(325, 34);
             this.layoutControlItem17.Text = "Cess Value";
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(88, 15);
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(104, 15);
+            // 
+            // layoutControlGroup3
+            // 
+            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem18,
+            this.layoutControlItem19});
+            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 362);
+            this.layoutControlGroup3.Name = "layoutControlGroup3";
+            this.layoutControlGroup3.Size = new System.Drawing.Size(673, 79);
+            this.layoutControlGroup3.Text = "Dispatch Details";
+            // 
+            // layoutControlItem18
+            // 
+            this.layoutControlItem18.Control = this.cmbBranch;
+            this.layoutControlItem18.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem18.Name = "layoutControlItem18";
+            this.layoutControlItem18.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem18.Size = new System.Drawing.Size(324, 34);
+            this.layoutControlItem18.Text = "Dispatch to Branch";
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(104, 15);
+            // 
+            // layoutControlItem19
+            // 
+            this.layoutControlItem19.Control = this.cmbCategory;
+            this.layoutControlItem19.Location = new System.Drawing.Point(324, 0);
+            this.layoutControlItem19.Name = "layoutControlItem19";
+            this.layoutControlItem19.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem19.Size = new System.Drawing.Size(325, 34);
+            this.layoutControlItem19.Text = "Category";
+            this.layoutControlItem19.TextSize = new System.Drawing.Size(104, 15);
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 441);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(375, 51);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmStockEntryPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(693, 432);
+            this.ClientSize = new System.Drawing.Size(693, 512);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmStockEntryPreview";
             this.Text = "Stock Entry Preview";
             this.Load += new System.EventHandler(this.frmStockEntryPreview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCessValue.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaxValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFinalPrice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNetPrice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTValue.Properties)).EndInit();
@@ -738,7 +817,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
@@ -754,11 +832,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTaxValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCessValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -779,7 +859,6 @@
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
@@ -805,5 +884,11 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
         private DevExpress.XtraEditors.TextEdit txtCessValue;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
+        private DevExpress.XtraEditors.LookUpEdit cmbBranch;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraEditors.LookUpEdit cmbCategory;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
     }
 }

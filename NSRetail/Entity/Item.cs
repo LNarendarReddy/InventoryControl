@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entity
+﻿namespace Entity
 {    
     public class Item : EntityBase
     {        
@@ -88,6 +81,17 @@ namespace Entity
         public object Immediate { get; set; }
         public object GoLiveDateTime { get; set; }
         public object MoveStatus { get; set; }
+    }
+
+    public class ItemGST : EntityBase
+    {
+        public object ITEMID { get; set; }
+        public object SKUCODE { get; set; }
+        public object ItemName { get; set; }
+        public object GSTID { get; set; }
+        public object GSTCode { get; set; }
+        public object Immediate { get; set; }
+        public object GoLiveDateTime { get; set; }
     }
 }
 

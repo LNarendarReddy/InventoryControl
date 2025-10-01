@@ -62,6 +62,7 @@
             this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -85,7 +86,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnChangeGST = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemList)).BeginInit();
@@ -478,6 +479,14 @@
             this.gridColumn22.FieldName = "UQCNAME";
             this.gridColumn22.Name = "gridColumn22";
             // 
+            // gridColumn23
+            // 
+            this.gridColumn23.Caption = "GST Code";
+            this.gridColumn23.FieldName = "GSTCODE";
+            this.gridColumn23.Name = "gridColumn23";
+            this.gridColumn23.Visible = true;
+            this.gridColumn23.VisibleIndex = 9;
+            // 
             // Root
             // 
             this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 8F);
@@ -616,7 +625,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportSKU),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCode),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemPrice),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCostPrice)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCostPrice),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnChangeGST)});
             this.pmItemList.Manager = this.barManager1;
             this.pmItemList.Name = "pmItemList";
             // 
@@ -700,8 +710,9 @@
             this.btnExportSKU,
             this.btnExportItemCode,
             this.btnExportItemPrice,
-            this.btnExportItemCostPrice});
-            this.barManager1.MaxItemId = 7;
+            this.btnExportItemCostPrice,
+            this.btnChangeGST});
+            this.barManager1.MaxItemId = 8;
             // 
             // barDockControlTop
             // 
@@ -739,13 +750,14 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 685);
             // 
-            // gridColumn23
+            // btnChangeGST
             // 
-            this.gridColumn23.Caption = "GST Code";
-            this.gridColumn23.FieldName = "GSTCODE";
-            this.gridColumn23.Name = "gridColumn23";
-            this.gridColumn23.Visible = true;
-            this.gridColumn23.VisibleIndex = 9;
+            this.btnChangeGST.Caption = "Change GST";
+            this.btnChangeGST.Id = 7;
+            this.btnChangeGST.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnChangeGST.ImageOptions.Image")));
+            this.btnChangeGST.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnChangeGST.ImageOptions.LargeImage")));
+            this.btnChangeGST.Name = "btnChangeGST";
+            this.btnChangeGST.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChangeGST_ItemClick);
             // 
             // frmItemCodeList
             // 
@@ -843,5 +855,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
+        private DevExpress.XtraBars.BarButtonItem btnChangeGST;
     }
 }

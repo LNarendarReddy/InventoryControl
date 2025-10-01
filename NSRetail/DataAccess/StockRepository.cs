@@ -585,6 +585,7 @@ namespace DataAccess
                             objStockEntry.DISCOUNTFLAT = ds.Tables[0].Rows[0]["DISCOUNT"];
                             objStockEntry.EXPENSES = ds.Tables[0].Rows[0]["EXPENSES"];
                             objStockEntry.TRANSPORT = ds.Tables[0].Rows[0]["TRANSPORT"];
+                            objStockEntry.SourceBranchID = ds.Tables[0].Rows[0]["SOURCEBRANCHID"];
                             objStockEntry.dtStockEntry = ds.Tables[1].Copy();
                         }
                     }
@@ -647,6 +648,9 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@DISCOUNTFLAT", ObjStockEntry.DISCOUNTFLAT);
                     cmd.Parameters.AddWithValue("@EXPENSES", ObjStockEntry.EXPENSES);
                     cmd.Parameters.AddWithValue("@TRANSPORT", ObjStockEntry.TRANSPORT);
+                    cmd.Parameters.AddWithValue("@SOURCEBRANCHID", ObjStockEntry.SourceBranchID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", ObjStockEntry.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@USERID", ObjStockEntry.UserID);
                     object obj = cmd.ExecuteScalar();
                     if (!int.TryParse(Convert.ToString(obj), out int id))
                         throw new Exception(Convert.ToString(obj));

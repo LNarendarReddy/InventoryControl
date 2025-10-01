@@ -146,6 +146,12 @@
     <Compile Include="Countning\frmSliceCountingAddItems.Designer.cs">
       <DependentUpon>frmSliceCountingAddItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Item\frmChangeGTST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\frmChangeGTST.Designer.cs">
+      <DependentUpon>frmChangeGTST.cs</DependentUpon>
+    </Compile>
     <Compile Include="Item\frmExport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1250,6 +1256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Countning\frmSliceCountingAddItems.resx">
       <DependentUpon>frmSliceCountingAddItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Item\frmChangeGTST.resx">
+      <DependentUpon>frmChangeGTST.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Item\frmExport.resx">
       <DependentUpon>frmExport.cs</DependentUpon>

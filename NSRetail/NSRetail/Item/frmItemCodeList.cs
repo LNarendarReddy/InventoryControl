@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DataAccess;
+﻿using DataAccess;
+using DevExpress.Utils.Gesture;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
@@ -19,6 +10,16 @@ using ErrorManagement;
 using NSRetail;
 using NSRetail.Login;
 using NSRetail.Utilities;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace NSRetail
 {
@@ -389,6 +390,28 @@ namespace NSRetail
                 throw ex;
             }
             return stddetail;
+        }
+
+        private void btnChangeGST_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ItemGST itemGST = new ItemGST()
+            {
+                ITEMID = gvItemList.GetFocusedRowCellValue("ITEMID"),
+                SKUCODE = gvItemList.GetFocusedRowCellValue("SKUCODE"),
+                ItemName = gvItemList.GetFocusedRowCellValue("ITEMNAME"),
+                GSTID = gvItemList.GetFocusedRowCellValue("GSTID"),
+                UserID = Utility.UserID
+            };
+
+            frmChangeGST frm = new frmChangeGST(itemGST);
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.ShowDialog();
+            if (frm.ItemGSTobj.IsSave)
+            {
+                gvItemList.SetFocusedRowCellValue("GSTCODE", itemGST.GSTCode);
+                gvItemList.SetFocusedRowCellValue("GSTID", itemGST.GSTID);
+
+            }
         }
     }
 }

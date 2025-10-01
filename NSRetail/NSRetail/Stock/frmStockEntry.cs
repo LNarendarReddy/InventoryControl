@@ -17,9 +17,16 @@ namespace NSRetail.Stock
         StockRepository ObjStockRep = new StockRepository();
         StockEntry ObjStockEntry = null;
         StockEntryDetail ObjStockEntryDetail = null;
+
         public frmStockEntry()
         {
             InitializeComponent();
+        }
+
+        public frmStockEntry(StockEntry _ObjStockEntry)
+        {
+            InitializeComponent();
+            ObjStockEntry = _ObjStockEntry;
         }
 
         private void frmStockEntry_Load(object sender, EventArgs e)
@@ -84,8 +91,10 @@ namespace NSRetail.Stock
                     ObjStockEntry.SUPPLIERINVOICENO = txtInvoiceNumber.EditValue;
                     ObjStockEntry.InvoiceDate = dtpInvoice.EditValue;
 
-                    frmStockEntryPreview obj = new frmStockEntryPreview(ObjStockEntry);
-                    obj.ShowInTaskbar = false;
+                    frmStockEntryPreview obj = new frmStockEntryPreview(ObjStockEntry)
+                    {
+                        ShowInTaskbar = false
+                    };
                     obj.IconOptions.ShowIcon = false;
                     obj.WindowState = FormWindowState.Normal;
                     obj.StartPosition = FormStartPosition.CenterScreen;

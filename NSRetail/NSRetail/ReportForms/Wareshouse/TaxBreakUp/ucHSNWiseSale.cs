@@ -51,7 +51,7 @@ namespace NSRetail.ReportForms.Wareshouse.TaxBreakUp
                 , { "ToDate", dtpToDate.EditValue }
             };
 
-            return GetReportData("USP_RPT_HSN_WISE_SALE", parameters);
+            return GetReportData("USP_RPT_HSN_WISE_SALE1", parameters);
         }
     }
 }

@@ -1,17 +1,9 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
-using DevExpress.XtraReports.UI;
 using Entity;
 using ErrorManagement;
-using NSRetail.Reports;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.Stock
@@ -28,6 +20,17 @@ namespace NSRetail.Stock
 
         private void frmStockEntryPreview_Load(object sender, EventArgs e)
         {
+            DataTable dtBranch = Utility.GetBranchList();
+            DataView dvBranch = dtBranch.Copy().DefaultView;
+            dvBranch.RowFilter = "ISWAREHOUSE = 0";
+            cmbBranch.Properties.DataSource = dvBranch;
+            cmbBranch.Properties.ValueMember = "BRANCHID";
+            cmbBranch.Properties.DisplayMember = "BRANCHNAME";
+
+            cmbCategory.Properties.DataSource = Utility.GetCategoryList();
+            cmbCategory.Properties.ValueMember = "CATEGORYID";
+            cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+
             DataTable dtSupplier = new MasterRepository().GetDealer();
             cmbSupplier.Properties.DataSource = dtSupplier;
             cmbSupplier.Properties.ValueMember = "DEALERID";
@@ -47,6 +50,12 @@ namespace NSRetail.Stock
             txtDiscountPer.EditValue = 0.00;
             txtTCS.EditValue = 0.00;
             txtTransport.EditValue = 0.00;
+
+            if(ObjStockEntry.SourceBranchID != null)
+            {
+                cmbBranch.EditValue = ObjStockEntry.SourceBranchID;
+                cmbBranch.Enabled = false;  
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -60,12 +69,28 @@ namespace NSRetail.Stock
                         XtraMessageBox.Show("Are you sure want to save invoice?", "Confirm",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                         return;
+
+                    if (cmbBranch.EditValue != null)
+                    {
+                        if (XtraMessageBox.Show($"Are you sure want to dispatch this invoice to {cmbBranch.Text}", "Confirm",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                            return;
+
+                        if(cmbCategory.EditValue == null)
+                        {
+                            XtraMessageBox.Show("Category mandatory for branch invoices");
+                            return;
+                        }
+                    }
+
                     ObjStockEntry.DISCOUNTPER = txtDiscountPer.EditValue;
                     ObjStockEntry.DISCOUNTFLAT = txtDiscountFlat.EditValue;
                     ObjStockEntry.TCS = txtTCS.EditValue;
                     ObjStockEntry.TRANSPORT = txtTransport.EditValue;
                     ObjStockEntry.EXPENSES = txtExpenses.EditValue;
-                    
+                    ObjStockEntry.UserID = Utility.UserID;
+                    ObjStockEntry.CATEGORYID = cmbCategory.EditValue;
+                    ObjStockEntry.SourceBranchID = cmbBranch.EditValue;
                     ObjStockRep.UpdateInvoice(ObjStockEntry);
                     ObjStockEntry.IsSave = true;
                     this.Close();

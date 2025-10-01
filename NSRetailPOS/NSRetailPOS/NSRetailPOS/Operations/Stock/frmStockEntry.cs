@@ -254,6 +254,8 @@ namespace NSRetailPOS.Operations.Stock
                 ObjStockEntry.InvoiceDate = dtpInvoice.EditValue;
                 ObjStockEntry.CATEGORYID = Utility.loginInfo.CategoryID;
                 ObjStockEntry.UserID = Utility.loginInfo.UserID;
+                ObjStockEntry.IsBranchInvoice = true;
+                ObjStockEntry.SourceBranchID = Utility.branchInfo.BranchID;
                 ObjStockRep.SaveInvoice(ObjStockEntry);
                 cmbSupplier.Enabled = false;
                 dtpInvoice.Enabled = false;

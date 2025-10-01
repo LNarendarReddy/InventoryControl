@@ -99,5 +99,10 @@ namespace NSRetail
             dtLiveDate.Enabled = !chkImmediate.Checked;
             dtLiveDate.EditValue = null;
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

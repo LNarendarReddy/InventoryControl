@@ -38,6 +38,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@CATEGORYID", ObjStockEntry.CATEGORYID);
                     cmd.Parameters.AddWithValue("@USERID", ObjStockEntry.UserID);
                     cmd.Parameters.AddWithValue("@IsBranchInvoice", true);
+                    cmd.Parameters.AddWithValue("SourceBranchID", ObjStockEntry.SourceBranchID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out StockEntryID))
@@ -155,6 +156,7 @@ namespace NSRetailPOS.Data
                             objStockEntry.DISCOUNTFLAT = ds.Tables[0].Rows[0]["DISCOUNT"];
                             objStockEntry.EXPENSES = ds.Tables[0].Rows[0]["EXPENSES"];
                             objStockEntry.TRANSPORT = ds.Tables[0].Rows[0]["TRANSPORT"];
+                            objStockEntry.SourceBranchID = ds.Tables[0].Rows[0]["SOURCEBRANCHID"];
                             objStockEntry.dtStockEntry = ds.Tables[1].Copy();
                         }
                     }

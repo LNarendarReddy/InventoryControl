@@ -446,6 +446,38 @@ namespace DataAccess
             return retVal;
         }
 
+        public int SaveItemGST(ItemGST itemGST)
+        {
+            SqlTransaction sqlTransaction = null;
+            int retVal = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    sqlTransaction = cmd.Connection.BeginTransaction();
+                    cmd.Transaction = sqlTransaction;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_SKU_GST]";
+                    cmd.Parameters.AddWithValue("@ITEMID", itemGST.ITEMID);
+                    cmd.Parameters.AddWithValue("@GSTID", itemGST.GSTID);
+                    cmd.Parameters.AddWithValue("@USERID", itemGST.UserID);
+                    cmd.Parameters.AddWithValue("@Immediate", itemGST.Immediate);
+                    cmd.Parameters.AddWithValue("@GoLiveDate", itemGST.GoLiveDateTime);
+                    object objReturn = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(objReturn), out retVal))
+                        throw new Exception(Convert.ToString(objReturn));
+                    sqlTransaction?.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                sqlTransaction.Rollback();
+                throw new Exception($"Error while updating GST: {ex.Message}", ex);
+            }
+            return retVal;
+        }
+
         public DataTable ExportItemList(object ExportType)
         {
             DataTable dtItems = new DataTable();

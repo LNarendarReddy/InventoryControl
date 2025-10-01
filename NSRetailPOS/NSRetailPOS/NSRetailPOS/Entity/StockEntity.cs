@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 
 namespace NSRetailPOS.Entity
 {
@@ -41,6 +36,10 @@ namespace NSRetailPOS.Entity
 
         public bool CalculateIGST = false;
         public DataTable dtStockEntry { get; set; }
+
+        public bool IsBranchInvoice { get; set; }
+
+        public object SourceBranchID { get; set; }
     }
     public class StockEntryDetail : EntityBase
     {
