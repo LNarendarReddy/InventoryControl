@@ -51,7 +51,7 @@ namespace NSRetail.Stock
             txtTCS.EditValue = 0.00;
             txtTransport.EditValue = 0.00;
 
-            if(ObjStockEntry.SourceBranchID != null)
+            if(ObjStockEntry.SourceBranchID != null && Convert.ToInt32(ObjStockEntry.SourceBranchID) > 0)
             {
                 cmbBranch.EditValue = ObjStockEntry.SourceBranchID;
                 cmbBranch.Enabled = false;  
