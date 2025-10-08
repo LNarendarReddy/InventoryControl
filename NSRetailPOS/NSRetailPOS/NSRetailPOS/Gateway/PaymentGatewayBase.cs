@@ -29,6 +29,11 @@ namespace NSRetailPOS.Gateway
 
         public abstract Task<CompletedTransactionData> ReceivePayment(int billID, int mopID, CancellationToken token, params object[] parameters);
 
+        public virtual CompletedTransactionData ForceReceivePayment(int billID, int mopID, params object[] parameters)
+        {
+            return null;
+        }
+
         public static PaymentGatewayBase Create(string gatewayType, int paymentGatewayID, string baseSettings, string additionalSettings)
         {
             if (string.IsNullOrEmpty(baseSettings) || string.IsNullOrEmpty(additionalSettings)) return null;

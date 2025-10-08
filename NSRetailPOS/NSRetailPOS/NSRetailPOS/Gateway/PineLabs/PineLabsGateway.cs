@@ -18,6 +18,7 @@ namespace NSRetailPOS.Gateway.PineLabs
         public const string BillingAPI = "UploadBilledTransaction";
         public const string StatusAPI = "GetCloudBasedTxnStatus";
         public const string CancelAPI = "CancelTransaction";
+        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
         public override string GatewayTpye => "PineLabs";
 
@@ -157,6 +158,7 @@ namespace NSRetailPOS.Gateway.PineLabs
             IsInProgress = true;
             try
             {
+                await _semaphore.WaitAsync();
                 PaymentRequest paymentRequest = GetPaymentRequest(parameters) as PaymentRequest;
                 PaymentResponse paymentResponse = await SendRequest(paymentRequest, token) as PaymentResponse;
                 if (paymentResponse == null) return null;
@@ -192,7 +194,29 @@ namespace NSRetailPOS.Gateway.PineLabs
             finally
             {
                 IsInProgress = false;
+                _semaphore.Release();
             }
+        }
+
+        public override CompletedTransactionData ForceReceivePayment(int billID, int mopID, params object[] parameters)
+        {
+            CompletedTransactionData completedTransactionData = new()
+            {
+                Amount = decimal.Parse(parameters[0].ToString()),
+                BillID = billID,
+                MopID = mopID,
+                AdditionalSettings = AdditionalSettings,
+                PaymentGatewayID = PaymentGatewayID,
+                StatusResponse = new StatusResponse() 
+                { 
+                    ResponseMessage = "Force added missing payment",
+                    TransactionData =
+                    [
+                        new() { Tag = "RRN", value = parameters[1].ToString() } 
+                    ]
+                }
+            };
+            return completedTransactionData;
         }
 
         protected override IPaymentRequest GetPaymentRequest(params object[] parameters)

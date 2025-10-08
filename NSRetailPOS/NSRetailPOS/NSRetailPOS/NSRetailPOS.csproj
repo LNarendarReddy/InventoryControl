@@ -467,6 +467,12 @@
     <Compile Include="Reports\rptPriceSticker.Designer.cs">
       <DependentUpon>rptPriceSticker.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\frmAddMissingPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmAddMissingPayment.Designer.cs">
+      <DependentUpon>frmAddMissingPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmBarCodePrint.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -734,6 +740,9 @@
     <EmbeddedResource Include="Reports\rptPriceSticker.resx">
       <DependentUpon>rptPriceSticker.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmAddMissingPayment.resx">
+      <DependentUpon>frmAddMissingPayment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmBarCodePrint.resx">
       <DependentUpon>frmBarCodePrint.cs</DependentUpon>
     </EmbeddedResource>
@@ -855,6 +864,10 @@
     <None Include="Resources\trash_16x16.png" />
     <None Include="Resources\zoom_16x161.png" />
     <None Include="Resources\Victory_Bazars_Logo_New.jpg" />
+    <None Include="Resources\existlink_16x16.png" />
+    <None Include="Resources\add_16x16.png" />
+    <None Include="Resources\add_16x161.png" />
+    <None Include="Resources\cancel_16x162.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

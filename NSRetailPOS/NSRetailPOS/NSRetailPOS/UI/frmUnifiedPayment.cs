@@ -1,26 +1,20 @@
-﻿using DevExpress.Data.ExpressionEditor;
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraEditors.DXErrorProvider;
 using DevExpress.XtraGrid.Views.Grid;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.Gateway;
 using NSRetailPOS.Gateway.PineLabs;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
 {
-    public partial class frmUnifiedPayment : DevExpress.XtraEditors.XtraForm
+    public partial class frmUnifiedPayment : XtraForm
     {
         BillingRepository billingRepository = new BillingRepository();
         public bool IsPaid = false, IsDiscarded = false, canClose = true, isCashOnly = false;
@@ -107,9 +101,12 @@ namespace NSRetailPOS.UI
             if (Utility.PaymentGateway != null)
             {
                 Utility.PaymentGateway.StatusUpdate = ShowRecieveMessage;
+                btnAddMissingPayment.Enabled = true;
             }
 
             Utility.SetGridFormatting(gvMOP);
+
+            btnAddMissingPayment.Enabled = Utility.PaymentGateway != null && Utility.loginInfo.RoleName.Equals("Store Admin");
         }
 
         private void TxtPaymentValue_Leave(object sender, EventArgs e)
@@ -348,6 +345,16 @@ namespace NSRetailPOS.UI
                 gvMOP.ShowEditor();
         }
 
+        private void btnLinkPayment_Click(object sender, EventArgs e)
+        {
+            frmAddMissingPayment frmAddMissingPayment = new(Convert.ToInt32(billObj.BillID), cardMopID, upiMopID);
+            frmAddMissingPayment.ShowDialog();
+
+            if (frmAddMissingPayment.DialogResult != DialogResult.OK) return;
+
+            CompleteTransaction(frmAddMissingPayment.CompletedTransactionData);
+        }
+
         private void rgPaymentModes_EditValueChanging(object sender, ChangingEventArgs e)
         {
             if (cardReceivedAmount > 0 && upiReceivedAmount > 0 && e.NewValue.ToString() != "Multiple")
@@ -514,12 +521,7 @@ namespace NSRetailPOS.UI
             btnCancelRequest.Enabled = false;
             EnableAllControls();
 
-            if (completedTransactionData == null) return;
-
-            billingRepository.SaveCompletedTransactionData(completedTransactionData);
-            billObj.CompletedTransactions.Add(completedTransactionData);
-
-            SetReceivedAmounts();
+            CompleteTransaction(completedTransactionData);
         }
 
         private void ShowRecieveMessage(string message)
@@ -548,6 +550,24 @@ namespace NSRetailPOS.UI
             SetReceiveValues(upiRowHandle, upiEnteredAmount);
 
             gvMOP_CellValueChanged(null, null);
+
+            // complete billing if it is single payment and amount is received
+            if(billedAmount == paidAmount && 
+                (rgPaymentModes.Text.Equals("card", StringComparison.OrdinalIgnoreCase)
+                    || rgPaymentModes.Text.Equals("UPI", StringComparison.OrdinalIgnoreCase)))
+            {
+                btnApply_Click(null, null);
+            }
+        }
+
+        private void CompleteTransaction(CompletedTransactionData completedTransactionData)
+        {
+            if (completedTransactionData == null) return;
+
+            billingRepository.SaveCompletedTransactionData(completedTransactionData);
+            billObj.CompletedTransactions.Add(completedTransactionData);
+
+            SetReceivedAmounts();
         }
     }
 }
