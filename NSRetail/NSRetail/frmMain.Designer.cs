@@ -95,6 +95,7 @@
             this.btnManufacturer = new DevExpress.XtraBars.BarButtonItem();
             this.lblSyncTime = new DevExpress.XtraBars.BarStaticItem();
             this.lblUpTime = new DevExpress.XtraBars.BarStaticItem();
+            this.btnImportDiscountSaleItems = new DevExpress.XtraBars.BarButtonItem();
             this.rpOperations = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -199,9 +200,10 @@
             this.btnBrand,
             this.btnManufacturer,
             this.lblSyncTime,
-            this.lblUpTime});
+            this.lblUpTime,
+            this.btnImportDiscountSaleItems});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 79;
+            this.ribbonControl1.MaxItemId = 80;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -839,6 +841,14 @@
             this.lblUpTime.ItemAppearance.Normal.Options.UseFont = true;
             this.lblUpTime.Name = "lblUpTime";
             // 
+            // btnImportDiscountSaleItems
+            // 
+            resources.ApplyResources(this.btnImportDiscountSaleItems, "btnImportDiscountSaleItems");
+            this.btnImportDiscountSaleItems.Id = 79;
+            this.btnImportDiscountSaleItems.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnImportDiscountSaleItems.ImageOptions.SvgImage")));
+            this.btnImportDiscountSaleItems.Name = "btnImportDiscountSaleItems";
+            this.btnImportDiscountSaleItems.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImportDiscountSaleItems_ItemClick);
+            // 
             // rpOperations
             // 
             this.rpOperations.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -879,6 +889,7 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.btnCounting);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnStockAdjustment);
             this.ribbonPageGroup3.ItemLinks.Add(this.bbiSliceCounting);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnImportDiscountSaleItems);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             resources.ApplyResources(this.ribbonPageGroup3, "ribbonPageGroup3");
             // 
@@ -1193,6 +1204,7 @@
         private DevExpress.XtraBars.BarButtonItem btnManufacturer;
         private DevExpress.XtraBars.BarStaticItem lblSyncTime;
         private DevExpress.XtraBars.BarStaticItem lblUpTime;
+        private DevExpress.XtraBars.BarButtonItem btnImportDiscountSaleItems;
     }
 }
 

@@ -1206,5 +1206,41 @@ namespace DataAccess
             }
             return ObjStockEntry;
         }
+
+        public DataSet ValidateDiscountedItems(DataTable dataTable)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                    {
+                        { "data", dataTable }
+                    };
+                return new DataRepository().GetDataset("USP_P_DISCOUNTSALECODES", true, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void SaveDiscountedItems(DataTable dataTable, object UserId, object BranchID)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                    {
+                        { "data", dataTable },
+                        { "USERID", UserId },
+                        { "BRANCHID", BranchID }
+                    };
+                 object objReturn = new DataRepository().ExecuteScalarWithTransaction("USP_IMP_DISCOUNTSALECODES", true, parameters);
+                if (!int.TryParse(Convert.ToString(objReturn), out int ivalue))
+                    throw new Exception(Convert.ToString(objReturn));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

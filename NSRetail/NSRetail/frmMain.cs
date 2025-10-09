@@ -683,5 +683,14 @@ namespace NSRetail
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.ShowDialog();
         }
+
+        private void btnImportDiscountSaleItems_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmCreateDiscountedItems obj = new frmCreateDiscountedItems();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
+        }
     }
 }

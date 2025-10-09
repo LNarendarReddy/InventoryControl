@@ -752,6 +752,12 @@
     <Compile Include="Stock\frmClearLeftSales.Designer.cs">
       <DependentUpon>frmClearLeftSales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stock\frmCreateDiscountedItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmCreateDiscountedItems.Designer.cs">
+      <DependentUpon>frmCreateDiscountedItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stock\frmDraftStockEntries.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1558,6 +1564,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmClearLeftSales.resx">
       <DependentUpon>frmClearLeftSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmCreateDiscountedItems.resx">
+      <DependentUpon>frmCreateDiscountedItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmDraftStockEntries.resx">
       <DependentUpon>frmDraftStockEntries.cs</DependentUpon>

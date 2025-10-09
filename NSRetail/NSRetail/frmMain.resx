@@ -1899,6 +1899,29 @@
   <data name="lblUpTime.ItemAppearance.Normal.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Bold</value>
   </data>
+  <data name="btnImportDiscountSaleItems.Caption" xml:space="preserve">
+    <value>Import Discount Sale Items</value>
+  </data>
+  <data name="btnImportDiscountSaleItems.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
+        NS4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAB1E
+        ZXZFeHByZXNzLlV0aWxzLlN2Zy5TdmdJbWFnZQEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADrAgAAAu+7
+        vzw/eG1sIHZlcnNpb249JzEuMCcgZW5jb2Rpbmc9J1VURi04Jz8+DQo8c3ZnIHg9IjBweCIgeT0iMHB4
+        IiB2aWV3Qm94PSIwIDAgMzIgMzIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3Jn
+        LzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNw
+        YWNlPSJwcmVzZXJ2ZSIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAw
+        IDMyIDMyIj4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5SZWR7ZmlsbDojRDExQzFDO30KCS5C
+        bGFja3tmaWxsOiM3MjcyNzI7fQoJLkJsdWV7ZmlsbDojMTE3N0Q3O30KCS5HcmVlbntmaWxsOiMwMzlD
+        MjM7fQoJLlllbGxvd3tmaWxsOiNGRkIxMTU7fQoJLldoaXRle2ZpbGw6I0ZGRkZGRjt9Cgkuc3Qwe29w
+        YWNpdHk6MC41O30KCS5zdDF7b3BhY2l0eTowLjc1O30KCS5zdDJ7b3BhY2l0eTowLjI1O30KPC9zdHls
+        ZT4NCiAgPGcgaWQ9IkltcG9ydCI+DQogICAgPHBhdGggZD0iTTEwLDEySDZWNmg0VjEyeiBNMjIsMTd2
+        MXY5YzAsMC42LTAuNCwxLTEsMUgxYy0wLjYsMC0xLTAuNC0xLTFWN2MwLTAuNiwwLjQtMSwxLTFoM3Y4
+        aDE0TDIyLDE3eiBNMTgsMThINCAgIHY2aDE0VjE4eiIgY2xhc3M9IkJsYWNrIiAvPg0KICAgIDxwb2x5
+        Z29uIHBvaW50cz0iMzAsNiAyMiw2IDIyLDIgMTQsOCAyMiwxNCAyMiwxMCAzMCwxMCAgIiBjbGFzcz0i
+        R3JlZW4iIC8+DQogIDwvZz4NCjwvc3ZnPgs=
+</value>
+  </data>
   <data name="ribbonControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -3001,6 +3024,12 @@
   </data>
   <data name="&gt;&gt;lblUpTime.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.BarStaticItem, DevExpress.XtraBars.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;btnImportDiscountSaleItems.Name" xml:space="preserve">
+    <value>btnImportDiscountSaleItems</value>
+  </data>
+  <data name="&gt;&gt;btnImportDiscountSaleItems.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;rpOperations.Name" xml:space="preserve">
     <value>rpOperations</value>
