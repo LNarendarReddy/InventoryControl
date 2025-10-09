@@ -242,15 +242,19 @@ namespace NSRetailPOS.UI
         private void txtItemCode_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtItemCode.EditValue?.ToString())) return;
+
+            string enteredCode = txtItemCode.EditValue.ToString();
+
             DataView dvTemp = dtBillDetails.Copy().DefaultView;
-            dvTemp.RowFilter = $"ITEMCODE = '{txtItemCode.EditValue}'";
-         
+            dvTemp.RowFilter = $"ITEMCODE = '{enteredCode}'";
+
             txtItemCode.SelectAll();
             txtItemCode.Focus();
 
+            // If not found by ITEMCODE, check SKUCODE
             if (dvTemp.Count == 0)
             {
-                dvTemp.RowFilter = $"SKUCODE = '{txtItemCode.EditValue}'";
+                dvTemp.RowFilter = $"SKUCODE = '{enteredCode}'";
             }
 
             if (dvTemp.Count == 0)
@@ -259,22 +263,85 @@ namespace NSRetailPOS.UI
                 return;
             }
 
+            // ---- CASE 1: More than one row found ----
             if (dvTemp.Count > 1)
             {
-                XtraMessageBox.Show("More than one item found for the give item code, please use long itemcode to identify the correct return item");
-                return;
+                // Check if all EANs (ITEMCODE) are the same
+                var distinctEANs = dvTemp.ToTable(true, "ITEMCODE").AsEnumerable()
+                    .Select(r => r["ITEMCODE"].ToString())
+                    .Distinct()
+                    .ToList();
+
+                if (distinctEANs.Count > 1)
+                {
+                    // Multiple EANs under same SKU → force user to scan full EAN
+                    XtraMessageBox.Show("Multiple EAN codes found for this SKU. Please scan the full EAN code to identify the correct item.");
+                    return;
+                }
+                else
+                {
+                    // Same EAN, but check if multiple MRPs exist
+                    var distinctMRPs = dvTemp.ToTable(true, "MRP").AsEnumerable()
+                        .Select(r => Convert.ToDecimal(r["MRP"]))
+                        .Distinct()
+                        .ToList();
+
+                    if (distinctMRPs.Count > 1)
+                    {
+                        // Show popup for MRP selection
+                        using (FrmSelectMRP frm = new FrmSelectMRP(dvTemp))
+                        {
+                            if (frm.ShowDialog() == DialogResult.OK && frm.SelectedRow != null)
+                            {
+                                DataRow selectedRow = frm.SelectedRow;
+
+                                // Prevent duplicates
+                                DataView dvCheck = dtRefundDetails.Copy().DefaultView;
+                                dvCheck.RowFilter = $"ITEMCODE = '{selectedRow["ITEMCODE"]}' AND MRP = {selectedRow["MRP"]}";
+                                if (dvCheck.Count > 0)
+                                {
+                                    XtraMessageBox.Show("Item with selected MRP already displayed");
+                                    return;
+                                }
+
+                                dtRefundDetails.ImportRow(selectedRow);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // All MRPs same → just add directly
+                        DataRow selectedRow = dvTemp[0].Row;
+
+                        DataView dvCheck = dtRefundDetails.Copy().DefaultView;
+                        dvCheck.RowFilter = $"ITEMCODE = '{selectedRow["ITEMCODE"]}'";
+                        if (dvCheck.Count > 0)
+                        {
+                            XtraMessageBox.Show("Item already displayed");
+                            return;
+                        }
+
+                        dtRefundDetails.ImportRow(selectedRow);
+                    }
+                }
             }
-
-            DataView dvCheck = dtRefundDetails.Copy().DefaultView;
-            dvCheck.RowFilter = $"ITEMCODE = '{txtItemCode.EditValue}'";
-
-            if (dvCheck.Count > 0)
+            else
             {
-                XtraMessageBox.Show("Item already displayed");
-                return;
+                // ---- CASE 2: Single row match ----
+                DataRow selectedRow = dvTemp[0].Row;
+
+                DataView dvCheck = dtRefundDetails.Copy().DefaultView;
+                dvCheck.RowFilter = $"ITEMCODE = '{selectedRow["ITEMCODE"]}'";
+                if (dvCheck.Count > 0)
+                {
+                    XtraMessageBox.Show("Item already displayed");
+                    return;
+                }
+
+                dtRefundDetails.ImportRow(selectedRow);
             }
 
-            dtRefundDetails.ImportRow(dvTemp[0].Row);
+            // Reset input
             txtItemCode.EditValue = null;
             txtItemCode.Focus();
         }
