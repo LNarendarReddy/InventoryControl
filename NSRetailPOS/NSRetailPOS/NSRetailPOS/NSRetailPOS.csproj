@@ -545,6 +545,12 @@
     <Compile Include="UI\frmMRPSelection.Designer.cs">
       <DependentUpon>frmMRPSelection.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\FrmSelectMRP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmSelectMRP.Designer.cs">
+      <DependentUpon>FrmSelectMRP.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmUnifiedPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -778,6 +784,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmMRPSelection.resx">
       <DependentUpon>frmMRPSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmSelectMRP.resx">
+      <DependentUpon>FrmSelectMRP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmUnifiedPayment.resx">
       <DependentUpon>frmUnifiedPayment.cs</DependentUpon>
