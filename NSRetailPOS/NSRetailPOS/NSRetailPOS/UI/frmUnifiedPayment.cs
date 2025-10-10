@@ -180,9 +180,9 @@ namespace NSRetailPOS.UI
             decimal rounding = 0;
             if (decimal.TryParse(gvMOP.GetRowCellValue(cashRowHandle, "MOPVALUE").ToString(), out decimal cashValue) && cashValue > 0)
             {
-                rounding = billObj.PaymentMode.Equals("CASH") ? Math.Round(billedAmount, MidpointRounding.AwayFromZero) - billedAmount : 0.00M;
-                rounding = rounding > 0 ? 1 - rounding : rounding;
-                billObj.Rounding = rounding;
+                decimal tempRrounding = billObj.PaymentMode.Equals("CASH") ? Math.Round(billedAmount, MidpointRounding.AwayFromZero) - billedAmount : 0.00M;
+                rounding = tempRrounding > 0 ? 1 - tempRrounding : tempRrounding;
+                billObj.Rounding = tempRrounding;
                 billObj.TenderedCash = cashValue;
                 billObj.TenderedChange = remainingAmount;
                 gvMOP.FocusedRowHandle = cashRowHandle;
