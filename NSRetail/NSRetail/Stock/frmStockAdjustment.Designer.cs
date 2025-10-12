@@ -49,6 +49,7 @@
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.cmbSKUCode = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -69,7 +70,6 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtComment.Properties)).BeginInit();
@@ -176,6 +176,7 @@
             this.gridColumn8.Caption = "Item Code";
             this.gridColumn8.FieldName = "ITEMCODE";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.OptionsColumn.ReadOnly = true;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 0;
@@ -185,6 +186,7 @@
             this.gridColumn9.Caption = "MRP";
             this.gridColumn9.FieldName = "MRP";
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.OptionsColumn.ReadOnly = true;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 1;
@@ -194,6 +196,7 @@
             this.gridColumn10.Caption = "Sale Price";
             this.gridColumn10.FieldName = "SALEPRICE";
             this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.OptionsColumn.ReadOnly = true;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 2;
@@ -205,6 +208,7 @@
             this.gridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn11.FieldName = "CREATEDDATE";
             this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.OptionsColumn.ReadOnly = true;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 4;
@@ -216,6 +220,7 @@
             this.gridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn12.FieldName = "DELETEDDATE";
             this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.OptionsColumn.ReadOnly = true;
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 5;
@@ -225,6 +230,7 @@
             this.gridColumn15.Caption = "In-Transit Stock";
             this.gridColumn15.FieldName = "INTRANSITSTOCK";
             this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.OptionsColumn.AllowEdit = false;
             this.gridColumn15.Visible = true;
             this.gridColumn15.VisibleIndex = 6;
             // 
@@ -233,6 +239,7 @@
             this.gridColumn13.Caption = "System stock";
             this.gridColumn13.FieldName = "SYSTEMSTOCK";
             this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.OptionsColumn.ReadOnly = true;
             this.gridColumn13.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SYSTEMSTOCK", "{0:0.##}")});
@@ -248,6 +255,15 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PHYSICALSTOCK", "{0:0.##}")});
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 8;
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "GST Code";
+            this.gridColumn16.FieldName = "GSTCODE";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.OptionsColumn.AllowEdit = false;
+            this.gridColumn16.Visible = true;
+            this.gridColumn16.VisibleIndex = 3;
             // 
             // btnCancel
             // 
@@ -482,14 +498,6 @@
             this.layoutControlItem4.Size = new System.Drawing.Size(834, 60);
             this.layoutControlItem4.Text = "Comment";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(61, 15);
-            // 
-            // gridColumn16
-            // 
-            this.gridColumn16.Caption = "GST Code";
-            this.gridColumn16.FieldName = "GSTCODE";
-            this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 3;
             // 
             // frmStockAdjustment
             // 

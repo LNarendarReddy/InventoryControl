@@ -1207,13 +1207,14 @@ namespace DataAccess
             return ObjStockEntry;
         }
 
-        public DataSet ValidateDiscountedItems(DataTable dataTable)
+        public DataSet ValidateDiscountedItems(DataTable dataTable, object branchid)
         {
             try
             {
                 Dictionary<string, object> parameters = new Dictionary<string, object>
                     {
-                        { "data", dataTable }
+                        { "data", dataTable },
+                        { "BRANCHID", branchid }
                     };
                 return new DataRepository().GetDataset("USP_P_DISCOUNTSALECODES", true, parameters);
             }

@@ -29,6 +29,13 @@ namespace NSRetail.Stock
 
         private void btnImport_Click(object sender, System.EventArgs e)
         {
+            if (cmbBranch.EditValue == null)
+            {
+                XtraMessageBox.Show("Please select branch.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cmbBranch.Focus();
+                return;
+            }
+
             XtraOpenFileDialog xtraOpenFileDialog1 = new XtraOpenFileDialog();
             xtraOpenFileDialog1.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
             xtraOpenFileDialog1.Filter = "excel files (*.xls,*.xlsx)|*.xls,*.xlsx";
@@ -58,7 +65,7 @@ namespace NSRetail.Stock
                             }
                         }
 
-                        DataSet ds = new StockRepository().ValidateDiscountedItems(dtTemp);
+                        DataSet ds = new StockRepository().ValidateDiscountedItems(dtTemp, cmbBranch.EditValue);
 
                         if (ds != null && ds.Tables.Count > 0)
                         {
