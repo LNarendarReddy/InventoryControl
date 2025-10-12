@@ -126,10 +126,11 @@ namespace NSRetail.Stock
             try
             {
                 DataTable dt = gcItems.DataSource as DataTable;
+                dt.AcceptChanges();
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     DataTable dtTemp = dt.Copy();
-                    List<string> allowedColumns = new List<string> { "ITEMCODE", "MRP", "OLDSALEPRICE", "NEWSALEPRICE", "QUANTITY" };
+                    List<string> allowedColumns = new List<string> { "ITEMCODE", "MRP", "OLDSALEPRICE", "NEWSALEPRICE", "QUANTITY", "WEIGHTINKGS" };
 
                     dtTemp.Columns.Cast<DataColumn>().Where(x => !allowedColumns.Contains(x.ColumnName))
                         .ToList().ForEach(x => dtTemp.Columns.Remove(x));

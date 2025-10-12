@@ -4,6 +4,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
 using Entity;
 using ErrorManagement;
+using NSRetail.Master;
 using NSRetail.Reports;
 using System;
 using System.Data;
@@ -17,16 +18,18 @@ namespace NSRetail.Stock
         StockRepository ObjStockRep = new StockRepository();
         StockEntry ObjStockEntry = null;
         StockEntryDetail ObjStockEntryDetail = null;
+        public XtraForm parent = null;
 
         public frmStockEntry()
         {
             InitializeComponent();
         }
 
-        public frmStockEntry(StockEntry _ObjStockEntry)
+        public frmStockEntry(StockEntry _ObjStockEntry, XtraForm _parent = null)
         {
             InitializeComponent();
             ObjStockEntry = _ObjStockEntry;
+            this.parent = _parent;
         }
 
         private void frmStockEntry_Load(object sender, EventArgs e)

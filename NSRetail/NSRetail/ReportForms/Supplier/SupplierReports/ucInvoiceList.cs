@@ -139,7 +139,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                         {
                             STOCKENTRYID = drFocusedRow["STOCKENTRYID"]
                         };
-                        frmStockEntry frmStockEntry = new frmStockEntry(stockEntry);
+                        frmStockEntry frmStockEntry = new frmStockEntry(stockEntry, (XtraForm)this.Parent.Parent.Parent.Parent.Parent.Parent);
                         frmStockEntry.ShowInTaskbar = false;
                         frmStockEntry.IconOptions.ShowIcon = false;
                         frmStockEntry.StartPosition = FormStartPosition.CenterScreen;

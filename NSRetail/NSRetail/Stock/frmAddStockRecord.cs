@@ -20,8 +20,7 @@ namespace NSRetail.Stock
         bool IsEditMode = false;
 
         frmStockEntry frmparent = null;
-        public frmAddStockRecord(StockEntry _ObjStockEntry,frmStockEntry _frmparent,
-            StockEntryDetail _ObjStockEntryDetail)
+        public frmAddStockRecord(StockEntry _ObjStockEntry, frmStockEntry _frmparent, StockEntryDetail _ObjStockEntryDetail)
         {
             InitializeComponent();
             ObjStockEntry = _ObjStockEntry;
@@ -32,7 +31,10 @@ namespace NSRetail.Stock
         {
             try
             {
-                ((frmMain)frmparent.MdiParent).RefreshBaseLineData += FrmStockDispatch_RefreshBaseLineData;
+                if (frmparent.MdiParent != null)
+                    ((frmMain)frmparent.MdiParent).RefreshBaseLineData += FrmStockDispatch_RefreshBaseLineData;
+                else
+                    ((frmMain)frmparent.parent).RefreshBaseLineData += FrmStockDispatch_RefreshBaseLineData;
 
                 txtQuantity.ConfirmBarCodeScan();
 
