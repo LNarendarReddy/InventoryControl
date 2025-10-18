@@ -158,6 +158,12 @@
     <Compile Include="Item\frmExport.Designer.cs">
       <DependentUpon>frmExport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Item\frmMBQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\frmMBQ.Designer.cs">
+      <DependentUpon>frmMBQ.cs</DependentUpon>
+    </Compile>
     <Compile Include="Item\frmMRP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1269,6 +1275,9 @@
     <EmbeddedResource Include="Item\frmExport.resx">
       <DependentUpon>frmExport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Item\frmMBQ.resx">
+      <DependentUpon>frmMBQ.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Item\frmMRP.resx">
       <DependentUpon>frmMRP.cs</DependentUpon>
     </EmbeddedResource>
@@ -1901,6 +1910,9 @@
     <None Include="Resources\Victory Bazars_Logo.jpg" />
     <None Include="Resources\delete_16x164.png" />
     <None Include="Resources\Victory_Bazars_Logo_New.jpg" />
+    <None Include="Resources\apply_16x161.png" />
+    <None Include="Resources\apply_16x162.png" />
+    <None Include="Resources\save_16x162.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

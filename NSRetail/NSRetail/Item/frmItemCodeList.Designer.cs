@@ -81,12 +81,13 @@
             this.btnExportItemCode = new DevExpress.XtraBars.BarButtonItem();
             this.btnExportItemPrice = new DevExpress.XtraBars.BarButtonItem();
             this.btnExportItemCostPrice = new DevExpress.XtraBars.BarButtonItem();
+            this.btnChangeGST = new DevExpress.XtraBars.BarButtonItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.btnChangeGST = new DevExpress.XtraBars.BarButtonItem();
+            this.btnMinimumBaseQuantity = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemList)).BeginInit();
@@ -626,7 +627,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCode),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemPrice),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCostPrice),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnChangeGST)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnChangeGST),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnMinimumBaseQuantity)});
             this.pmItemList.Manager = this.barManager1;
             this.pmItemList.Name = "pmItemList";
             // 
@@ -696,6 +698,15 @@
             this.btnExportItemCostPrice.Name = "btnExportItemCostPrice";
             this.btnExportItemCostPrice.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportItemCostPrice_ItemClick);
             // 
+            // btnChangeGST
+            // 
+            this.btnChangeGST.Caption = "Change GST";
+            this.btnChangeGST.Id = 7;
+            this.btnChangeGST.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnChangeGST.ImageOptions.Image")));
+            this.btnChangeGST.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnChangeGST.ImageOptions.LargeImage")));
+            this.btnChangeGST.Name = "btnChangeGST";
+            this.btnChangeGST.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChangeGST_ItemClick);
+            // 
             // barManager1
             // 
             this.barManager1.DockControls.Add(this.barDockControlTop);
@@ -711,8 +722,9 @@
             this.btnExportItemCode,
             this.btnExportItemPrice,
             this.btnExportItemCostPrice,
-            this.btnChangeGST});
-            this.barManager1.MaxItemId = 8;
+            this.btnChangeGST,
+            this.btnMinimumBaseQuantity});
+            this.barManager1.MaxItemId = 9;
             // 
             // barDockControlTop
             // 
@@ -750,14 +762,13 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 685);
             // 
-            // btnChangeGST
+            // btnMinimumBaseQuantity
             // 
-            this.btnChangeGST.Caption = "Change GST";
-            this.btnChangeGST.Id = 7;
-            this.btnChangeGST.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnChangeGST.ImageOptions.Image")));
-            this.btnChangeGST.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnChangeGST.ImageOptions.LargeImage")));
-            this.btnChangeGST.Name = "btnChangeGST";
-            this.btnChangeGST.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChangeGST_ItemClick);
+            this.btnMinimumBaseQuantity.Caption = "Min. Base Quantity";
+            this.btnMinimumBaseQuantity.Id = 8;
+            this.btnMinimumBaseQuantity.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnMinimumBaseQuantity.ImageOptions.SvgImage")));
+            this.btnMinimumBaseQuantity.Name = "btnMinimumBaseQuantity";
+            this.btnMinimumBaseQuantity.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMinimumBaseQuantity_ItemClick);
             // 
             // frmItemCodeList
             // 
@@ -856,5 +867,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
         private DevExpress.XtraBars.BarButtonItem btnChangeGST;
+        private DevExpress.XtraBars.BarButtonItem btnMinimumBaseQuantity;
     }
 }

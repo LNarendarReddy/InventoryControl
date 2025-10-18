@@ -413,5 +413,17 @@ namespace NSRetail
 
             }
         }
+
+        private void btnMinimumBaseQuantity_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Item selectedItem = new Item()
+            {
+                ItemID = gvItemList.GetFocusedRowCellValue("ITEMID"),
+                SKUCode = gvItemList.GetFocusedRowCellValue("SKUCODE"),
+                ItemName = gvItemList.GetFocusedRowCellValue("ITEMNAME")                
+            };
+
+            new frmMBQ(selectedItem).ShowDialog();
+        }
     }
 }
