@@ -48,6 +48,7 @@ namespace WarehouseCloudSync.Data
                 {
                     cmd.Connection = SqlCon.SqlCloudconn();
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 3600;
                     cmd.CommandText = entityMapping[entityName].ProcedureName;
                     cmd.Parameters.AddWithValue(entityMapping[entityName].ParameterName, dtEntityWiseData);
                     cmd.ExecuteNonQuery();

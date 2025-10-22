@@ -320,11 +320,14 @@ namespace DataAccess
         }
         public void DeleteOfferBranch(object OfferBranchID, object UserID, bool isBaseOffer = false)
         {
+            SqlTransaction sqlTransaction = null;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    sqlTransaction = SQLCon.Sqlconn().BeginTransaction();
                     cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_D_OFFERBRANCH]";
                     cmd.Parameters.AddWithValue("@OfferBranchID", OfferBranchID);
@@ -333,15 +336,13 @@ namespace DataAccess
                     int rowsaffected = cmd.ExecuteNonQuery();
                     if (rowsaffected <= 0)
                         throw new Exception("Error while deleting offer branch");
+                    sqlTransaction.Commit();
                 }
             }
             catch (Exception ex)
             {
+                sqlTransaction.Rollback();
                 throw ex;
-            }
-            finally
-            {
-                
             }
         }
         public DataTable GetOfferItem(object OfferID)
