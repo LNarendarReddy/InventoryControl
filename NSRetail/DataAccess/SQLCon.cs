@@ -23,7 +23,6 @@ namespace DataAccess
                     return ObjCon;
                 }
                 else
-           
                 {
                     string ServerName = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}ServerName"].ToString());
                     string DBName = SelectedDBName ?? Decrypt(ConfigurationManager.AppSettings[$"{BuildType}DBName"].ToString());

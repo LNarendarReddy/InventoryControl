@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.CodeParser;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using NSRetailPOS.Data;
@@ -22,7 +23,7 @@ namespace NSRetailPOS.UI
         decimal paidAmount = 0.00M, payableAmount = 0.00M, remainingAmount = 0.00M, billedAmount = 0.00M
             , cardReceivedAmount = 0.00M, upiReceivedAmount = 0.00M;
 
-        int cashRowHandle = -1, b2bCreditRowHandle = -1, cardRowHandle = -1, upiRowHandle = -1, cardMopID, upiMopID;
+        int cashRowHandle = -1, b2bCreditRowHandle = -1, cardRowHandle = -1, upiRowHandle = -1, cardMopID, upiMopID, b2cCreditRowHandle = -1;
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         DataTable dtMOPs;
 
@@ -40,6 +41,19 @@ namespace NSRetailPOS.UI
         private void frmMultiPayment_Load(object sender, EventArgs e)
         {
             dtMOPs = billingRepository.GetMOPs();
+
+            if (!Utility.branchInfo.BranchID.Equals(45))
+            {
+                foreach (DataRow drMOP in dtMOPs.Rows)
+                {
+                    if (drMOP["MOPNAME"].Equals("B2C Credit"))
+                    {
+                        drMOP.Delete();
+                        dtMOPs.AcceptChanges();
+                        break;
+                    }
+                }
+            }
 
             foreach (DataRow drMOP in dtMOPs.Rows)
             {
@@ -65,6 +79,7 @@ namespace NSRetailPOS.UI
             cashRowHandle = gvMOP.LocateByValue("MOPNAME", "Cash");
             cashRowHandle = cashRowHandle < 0 ? gvMOP.LocateByValue("MOPNAME", "CASH") : cashRowHandle;
             b2bCreditRowHandle = gvMOP.LocateByValue("MOPNAME", "B2B Credit");
+            b2cCreditRowHandle = gvMOP.LocateByValue("MOPNAME", "B2C Credit");
             cardRowHandle = gvMOP.LocateByValue("MOPNAME", "CARD");
             cardRowHandle = cardRowHandle < 0 ? gvMOP.LocateByValue("MOPNAME", "Card") : cardRowHandle;
             upiRowHandle = gvMOP.LocateByValue("MOPNAME", "UPI");
@@ -130,7 +145,8 @@ namespace NSRetailPOS.UI
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            if (Convert.ToBoolean(rgSaleType.EditValue) && (txtCustomerName.EditValue == null || txtCustomerPhone.EditValue == null))
+            if (Convert.ToBoolean(rgSaleType.EditValue) && 
+                (string.IsNullOrEmpty(txtCustomerName.EditValue?.ToString()) || string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString())))
             {
                 XtraMessageBox.Show("Customer Name and number are required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 (txtCustomerName.EditValue == null ? txtCustomerName : txtCustomerPhone).Focus();
@@ -144,16 +160,6 @@ namespace NSRetailPOS.UI
                 return;
             }
 
-            if (rgPaymentModes.EditValue.Equals("B2B Credit")
-                && (txtCustomerName.EditValue == null || txtCustomerPhone.EditValue == null || txtCustomerGST.EditValue == null))
-            {
-                XtraMessageBox.Show("Customer Name, number & GST are required for B2B billing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                (txtCustomerGST.EditValue == null ? txtCustomerGST : null)?.Focus();
-                (txtCustomerPhone.EditValue == null ? txtCustomerPhone : null)?.Focus();
-                (txtCustomerName.EditValue == null ? txtCustomerName : null)?.Focus();
-                return;
-            }
-
             if (remainingAmount > 0.00M)
             {
                 XtraMessageBox.Show($"Bill cannot be closed. Pending balance to be paid {remainingAmount}"
@@ -161,15 +167,7 @@ namespace NSRetailPOS.UI
                 return;
             }
 
-            if (decimal.TryParse(gvMOP.GetRowCellValue(b2bCreditRowHandle, "MOPVALUE").ToString(), out decimal b2bCreditValue) && b2bCreditValue > 0
-                && (txtCustomerName.EditValue == null || txtCustomerPhone.EditValue == null || txtCustomerGST.EditValue == null))
-            {
-                XtraMessageBox.Show("Customer Name, number & GST are required for B2B billing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                (txtCustomerGST.EditValue == null ? txtCustomerGST : null)?.Focus();
-                (txtCustomerPhone.EditValue == null ? txtCustomerPhone : null)?.Focus();
-                (txtCustomerName.EditValue == null ? txtCustomerName : null)?.Focus();
-                return;
-            }
+            if(!ValidateCreditFields()) return;
 
             billObj.IsDoorDelivery = rgSaleType.EditValue;
             billObj.CustomerName = txtCustomerName.EditValue;
@@ -568,6 +566,36 @@ namespace NSRetailPOS.UI
             billObj.CompletedTransactions.Add(completedTransactionData);
 
             SetReceivedAmounts();
+        }
+
+        private bool ValidateCreditFields()
+        {
+            if ((!decimal.TryParse(gvMOP.GetRowCellValue(b2bCreditRowHandle, "MOPVALUE").ToString(), out decimal b2bCreditValue) || b2bCreditValue == 0)
+                && (!decimal.TryParse(gvMOP.GetRowCellValue(b2cCreditRowHandle, "MOPVALUE").ToString(), out decimal b2cCreditValue) || b2cCreditValue == 0))
+                return true;
+
+            if (string.IsNullOrEmpty(txtCustomerName.EditValue?.ToString())
+               || string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString()))
+            {
+                XtraMessageBox.Show("Customer Name & number are required for credit billing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                (string.IsNullOrEmpty(txtCustomerName.EditValue?.ToString()) ? txtCustomerName : null)?.Focus();
+                (string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString()) ? txtCustomerPhone : null)?.Focus();
+                return false;
+            }
+
+            if (b2bCreditValue == 0) return true;
+
+            string gstNumber = txtCustomerGST.EditValue?.ToString();
+            if (string.IsNullOrEmpty(gstNumber) || gstNumber.Length != 15
+                || !int.TryParse(gstNumber.Substring(0, 2), out int stateCode) || stateCode == 0)
+            {
+                XtraMessageBox.Show("Customer GST is not valid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtCustomerGST.SelectAll();
+                txtCustomerGST.Focus();
+                return false;
+            }
+
+            return true;
         }
     }
 }

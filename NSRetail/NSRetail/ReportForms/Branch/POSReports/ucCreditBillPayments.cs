@@ -22,6 +22,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 { "CUSTOMERNAME", "Customer name" },
                 { "CUSTOMERNUMBER", "Customer #" },
                 { "CUSTOMERGST", "Customer GST #" },
+                { "MOPNAME", "Credit Type" },
                 { "MOPVALUE", "Credit Amount" },
                 { "STATUSTEXT", "Status" },
                 { "STATUSCHANGEDBY", "Status changed by" },
