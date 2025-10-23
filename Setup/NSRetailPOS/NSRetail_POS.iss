@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "NSRetailPOS"
-#define MyAppVersion "1.8.9 || 1.7.4 (22-10-2025)"
+#define MyAppVersion "1.9.0 || 1.7.4 (22-10-2025)"
 #define MyAppPublisher "N SOFT SOLUTIONS"
 #define MyAppURL "http://www.nsretailsolutions.com/"
 #define MyAppExeName "NSRetailPOS.exe"

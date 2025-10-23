@@ -570,8 +570,8 @@ namespace NSRetailPOS.UI
 
         private bool ValidateCreditFields()
         {
-            if ((!decimal.TryParse(gvMOP.GetRowCellValue(b2bCreditRowHandle, "MOPVALUE").ToString(), out decimal b2bCreditValue) || b2bCreditValue == 0)
-                && (!decimal.TryParse(gvMOP.GetRowCellValue(b2cCreditRowHandle, "MOPVALUE").ToString(), out decimal b2cCreditValue) || b2cCreditValue == 0))
+            if ((!decimal.TryParse(gvMOP.GetRowCellValue(b2bCreditRowHandle, "MOPVALUE")?.ToString(), out decimal b2bCreditValue) || b2bCreditValue == 0)
+                && (!decimal.TryParse(gvMOP.GetRowCellValue(b2cCreditRowHandle, "MOPVALUE")?.ToString(), out decimal b2cCreditValue) || b2cCreditValue == 0))
                 return true;
 
             if (string.IsNullOrEmpty(txtCustomerName.EditValue?.ToString())
