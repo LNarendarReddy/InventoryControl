@@ -55,8 +55,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "3.3.6";
-        public static string VersionDate = "(22-10-2025)";
+        public static string AppVersion = "3.3.7";
+        public static string VersionDate = "(23-10-2025)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
