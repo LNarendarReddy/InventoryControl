@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="xrTableCell54.Text" xml:space="preserve">
+    <value>Exchange within 3 days with original bill only. Not applicable on fruits, vegetables, bakery (below 15 days shelf), frozen, personal care, undergarments, opened or damaged items. Warranty items to be serviced at brand centers. Exchange time: 9 AM–5 PM. Ravulapalem jurisdiction applies.</value>
+  </data>
 </root>
