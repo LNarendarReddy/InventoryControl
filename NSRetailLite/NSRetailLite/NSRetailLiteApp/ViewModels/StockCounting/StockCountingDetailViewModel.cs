@@ -114,7 +114,7 @@ namespace NSRetailLiteApp.ViewModels.StockCounting
             StockCountingDetailModel.MRP = "MRP : " + itemPrice.MRP.ToString();
             StockCountingDetailModel.SalePrice = "Sale price : " + itemPrice.SalePrice.ToString();
             StockCountingDetailModel.IsOpenItem = item.IsOpenItem;
-            StockCountingDetailModel.Quantity = 0;
+            StockCountingDetailModel.Quantity = item.IsOpenItem ? 0 : 1;
             StockCountingDetailModel.WeightInKGs = 0;
         }
 

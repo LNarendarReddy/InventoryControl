@@ -74,7 +74,7 @@ namespace NSRetailLiteApp.ViewModels.DispatchReceive
 
             CategoryGroupList = new ObservableCollection<CategoryGroup>();
             DispatchList.GroupBy(x => x.CategoryName)
-                .Select(x => new CategoryGroup(x.Key, x.ToList()))
+                .Select(x => new CategoryGroup(x.Key, x.OrderByDescending(y => y.PendingTrays).ToList()))
                 .OrderBy(x => x.Name)
                 .ToList()
                 .ForEach(CategoryGroupList.Add);

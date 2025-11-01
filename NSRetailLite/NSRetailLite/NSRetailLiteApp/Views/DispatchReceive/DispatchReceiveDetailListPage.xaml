@@ -10,9 +10,19 @@
     </ContentPage.Resources>
     <Grid>
         <Grid RowDefinitions="auto, auto, *" Margin="10" RowSpacing="5">
-            
             <Label Text="{Binding Path=DispatchReceive.DispatchNumber}" FontAttributes="Bold" VerticalOptions="Center" Grid.Row="0"
                    FontSize="Large" HorizontalTextAlignment="Center"/>
+            <SearchBar x:Name="searchBar" Grid.Row="0" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                    SearchCommand="{Binding Path=PerformSearchCommand}"                   
+                    SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+                    Placeholder="{Binding Path=DispatchReceive.DispatchNumber, StringFormat='search items in : {0}'}" 
+                    PlaceholderColor="White" CancelButtonColor="White">
+                <SearchBar.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                         Command = "{Binding PerformSearchCommand}" CommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+                         EventName="TextChanged" />
+                </SearchBar.Behaviors>
+            </SearchBar>
             <Grid Grid.Row="1" ColumnDefinitions="auto, *, auto" RowDefinitions="auto, auto, auto" Margin="10">
                 <Label Text="{Binding Path=ItemCount, StringFormat='Items count: {0}'}" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
                 <Label Text="{Binding Path=DispatchPieceCount, StringFormat='Dispatch Pieces : {0}'}" FontSize="Medium" Grid.Row="1" Grid.Column="0"/>
@@ -20,7 +30,8 @@
                 <Button Text="Submit" Command="{Binding Path=SubmitCommand}" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" VerticalOptions="Center"/>
             </Grid>
             <Frame Padding="5" Grid.Row="2">
-                <CollectionView ItemsSource="{Binding Path=DispatchReceive.DispatchReceiveDetailList}">
+
+                <CollectionView ItemsSource="{Binding Path=FilteredDispatchReceiveDetailList}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <SwipeView>

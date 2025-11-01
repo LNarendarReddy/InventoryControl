@@ -6,7 +6,7 @@ namespace NSRetailLiteApp
     public partial class App : Application
     {
 
-        public static string Version = "0.0.4.5";
+        public static string Version = "0.0.4.6";
 
         public App()
         {
@@ -24,6 +24,21 @@ namespace NSRetailLiteApp
         {
             //Current?.MainPage?.DisplayAlert("Error", e.Exception.Message, "OK");
             //Current?.MainPage?.DisplayAlert("Error", e.Exception.StackTrace, "OK");
+        }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            var window = base.CreateWindow(activationState);
+
+#if ANDROID
+            window.Created += (s, e) =>
+            {
+                var nativeWindow = window.Handler?.PlatformView as Android.App.Activity;
+                nativeWindow?.Window?.SetSoftInputMode(Android.Views.SoftInput.AdjustResize);
+            };
+#endif
+
+            return window;
         }
     }
 }

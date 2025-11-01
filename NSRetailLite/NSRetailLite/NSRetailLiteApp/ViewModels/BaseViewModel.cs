@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Maui.Views;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
@@ -209,7 +211,8 @@ namespace NSRetailLiteApp.ViewModels
             {
                 if (string.IsNullOrEmpty(cancel))
                 {
-                    await Application.Current.MainPage.DisplayAlert(caption, message, accept);
+                    await ShowSnackBarAsync(caption, message);
+                    //await Application.Current.MainPage.DisplayAlert(caption, message, accept);
                     return true;
                 }
                 else
@@ -219,6 +222,26 @@ namespace NSRetailLiteApp.ViewModels
             }
 
             return false;
+        }
+
+        protected async Task ShowSnackBarAsync(string caption, string message)
+        {
+            var snackbarOptions = new SnackbarOptions
+            {
+                BackgroundColor = caption.Equals("error", StringComparison.InvariantCultureIgnoreCase) 
+                || caption.Equals("not allowed", StringComparison.InvariantCultureIgnoreCase) ? Colors.OrangeRed : Colors.SteelBlue,
+                TextColor = Colors.White,                
+                CornerRadius = new CornerRadius(10),
+                CharacterSpacing = 0,
+                ActionButtonTextColor = Colors.White,                
+            };
+
+            var snackbar = Snackbar.Make(
+                message: $"{caption} : {message}",                
+                duration: TimeSpan.FromSeconds(3),
+                visualOptions: snackbarOptions);
+
+            await snackbar.Show();
         }
 
         protected async Task Pop(bool isModal = false)
