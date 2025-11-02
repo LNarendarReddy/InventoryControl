@@ -86,6 +86,7 @@ namespace NSRetail
             upTimeCounter++;
             TimeSpan timeSpan = TimeSpan.FromSeconds(upTimeCounter);
             lblUpTime.Caption = $"Total up time : {timeSpan}";
+            FillUserCaption();
             if (upTimeCounter > maxUpTime)
             {
                 lblUpTime.ItemAppearance.Normal.ForeColor = Color.Red;
@@ -342,6 +343,7 @@ namespace NSRetail
             //AccessUtility.SetStatusByAccess(rpOperations, rpReports, rpOffers, rpUserAccess, rpAdmin, rpItemExtras);
             AccessUtility.SetStatusByAccess(ribbonControl1);
             FillFinYears();
+            FillConnectionTypeInfo();
             BeginTimer();
         }
 
@@ -616,8 +618,7 @@ namespace NSRetail
             this.MdiChildren.ToList().ForEach(x => x.Close());
 
             SQLCon.ChangeConnection(e.Item.Name);
-            lblUserName.Caption = $"Logged In User : {Utility.FullName}   " +
-                $"Version : {Utility.AppVersion} {Utility.VersionDate} - {ConfigurationManager.AppSettings["BuildType"]} - {e.Item.Caption}";
+            FillUserCaption();
             
             skipAccessRefresh = e.Item.Name != "NSRetail";
             bbiRefreshData_ItemClick(sender, e);
@@ -633,8 +634,32 @@ namespace NSRetail
                 puFinYear.ItemLinks.Add(barButtonItem);
             }
 
-            lblUserName.Caption = $"Logged In User : {Utility.FullName}   " +
-               $"Version : {Utility.AppVersion} {Utility.VersionDate} - {ConfigurationManager.AppSettings["BuildType"]} - {Utility.dtConnectionInfo.Rows[0]["DISPLAYNAME"]}";
+            FillUserCaption();
+        }
+
+        private void FillConnectionTypeInfo()
+        {
+            foreach (DataRow drConnType in Utility.GetConnectionTypes().Rows)
+            {
+                BarButtonItem barButtonItem = new BarButtonItem() { Name = drConnType["Connection Config"].ToString(), Caption = drConnType["Connection Type"].ToString() };
+                barButtonItem.ItemClick += ConnTypeChanged;
+                puSwitchConnection.ItemLinks.Add(barButtonItem);
+            }
+
+            FillUserCaption();
+        }
+
+        private void ConnTypeChanged(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
+            SQLCon.TryConn(Utility.DisplayStatus, e.Item.Name);
+            FillUserCaption();
+            SplashScreenManager.CloseForm();
+        }
+
+        private void FillUserCaption()
+        {
+            lblUserName.Caption = $"Logged In User : {Utility.FullName}   Version : {Utility.AppVersion} {Utility.VersionDate} - {SQLCon.BuildType} - {SQLCon.DBName}";
         }
 
         private void bbiAddProcessing_ItemClick(object sender, ItemClickEventArgs e)

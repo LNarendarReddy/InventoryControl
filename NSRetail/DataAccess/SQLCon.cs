@@ -2,19 +2,23 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DataAccess
 {
     public static class SQLCon
     {
         static SqlConnection ObjCon = new SqlConnection();
-        static string BuildType = Convert.ToString(ConfigurationManager.AppSettings["BuildType"]);
+        public static string BuildType = Convert.ToString(ConfigurationManager.AppSettings["BuildType"]);
         private static string SelectedDBName = null;
+        public static string DBName { get; private set; }
 
-        public static SqlConnection Sqlconn()
+        public static SqlConnection Sqlconn(int timeout = 1024)
         {             
             try
             {
@@ -30,13 +34,94 @@ namespace DataAccess
                     string Password = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}pwd"].ToString());
 
                     ObjCon = new SqlConnection();
-                    string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 30000";
+                    string str = $"Data Source = {ServerName}; Initial Catalog = {DBName}; User Id = {UserName}; Password = {Password}; Pooling = True; Connect Timeout = {timeout}; Max Pool Size = 30000";
                     ObjCon.ConnectionString = str;
                     ObjCon.Open();
+                    SQLCon.DBName = DBName;
                 }
             }
             catch (Exception ex) { throw ex; }
             return ObjCon;
+        }
+
+        public static void TryConn(Action<string> action, string connType = "Auto")
+        {
+            ClearConn(action);
+
+            if (connType == "Auto")
+            {
+                if (CheckConn("ProdLAN", action)) return;
+                if (CheckConn("ProdWAN", action)) return;
+            }
+            else
+            {
+                CheckConn(connType, action);
+            }
+        }
+
+        private static bool CheckConn(string connType, Action<string> action)
+        {
+            action.Invoke($"Checking {connType} sql connection");
+            int timeout = 3000;
+            bool isSuccess = false;
+            BuildType = connType;
+            Stopwatch sw = new Stopwatch();
+            try
+            {
+                bool connectSuccess = false;
+                // Try to open the connection, if anything goes wrong, make sure we set connectSuccess = false
+                Thread t = new Thread(delegate ()
+                {
+                    try
+                    {
+                        sw.Start();
+                        Sqlconn(3);
+                        connectSuccess = true;
+                    }
+                    catch { }
+                });
+
+                // Make sure it's marked as a background thread so it'll get cleaned up automatically
+                t.IsBackground = true;
+                t.Start();
+
+                // Keep trying to join the thread until we either succeed or the timeout value has been exceeded
+                while (timeout > sw.ElapsedMilliseconds)
+                    if (t.Join(1))
+                        break;
+
+                // If we didn't connect successfully, throw an exception
+                if (!connectSuccess)
+                    throw new Exception("Timed out while trying to connect.");
+
+                isSuccess = true;
+                action.Invoke($"{connType} sql connection successful");
+            }
+            catch 
+            {
+                action.Invoke($"{connType} sql connection failed");
+            }
+            finally
+            {
+                // clear connection as we created with timeout of 3 secs
+                ClearConn(action);
+            }
+
+            return isSuccess;
+        }
+
+        private static void ClearConn(Action<string> action)
+        {
+            action.Invoke("Clearing existing sql connection");
+
+            if (ObjCon?.State == ConnectionState.Open)
+            {
+                ObjCon.Close();
+                ObjCon.Dispose();
+                ObjCon = null;
+            }
+
+            action.Invoke("Sql connection cleared");
         }
 
         public static SqlConnection SqlCloudConn()
@@ -54,7 +139,7 @@ namespace DataAccess
                 }
                 else
                 {
-                    string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 200";
+                    string str = $"Data Source = {ServerName}; Initial Catalog = {DBName}; User Id = {UserName}; Password = {Password}; Pooling = True; Connect Timeout = 1024; Max Pool Size = 200";
                     ObjCloudCon.ConnectionString = str;
                     ObjCloudCon.Open();
                 }

@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraSplashScreen;
 using Entity;
 using NSRetail.Reports;
 using NSRetail.Utilities;
@@ -55,8 +56,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "3.3.8";
-        public static string VersionDate = "(23-10-2025)";
+        public static string AppVersion = "3.3.9";
+        public static string VersionDate = "(02-11-2025)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -420,6 +421,23 @@ namespace NSRetail
             dtReturnStatus.Rows.Add(2, "Rejected");
         
             return dtReturnStatus;
+        }
+
+        public static DataTable GetConnectionTypes()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Connection Type", typeof(string));
+            dt.Columns.Add("Connection Config", typeof(string));
+            dt.Rows.Add("Auto", "Auto");
+            dt.Rows.Add("Internal", "ProdLAN");
+            dt.Rows.Add("External", "ProdWAN");
+
+            return dt;
+        }
+
+        public static void DisplayStatus(string message)
+        {
+            SplashScreenManager.Default?.SetWaitFormDescription(message);
         }
     }
 }

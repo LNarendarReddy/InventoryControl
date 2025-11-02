@@ -57,7 +57,7 @@ namespace NSRetail
                 != DialogResult.Yes)
                 return;
 
-            DataTable dtIndentLimit = (DataTable)gcIndentLimits.DataSource;
+            DataTable dtIndentLimit = ((DataTable)gcIndentLimits.DataSource).GetChanges();
 
             List<string> allowedColums = new List<string>()
             {

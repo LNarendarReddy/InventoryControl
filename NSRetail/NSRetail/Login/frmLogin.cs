@@ -20,11 +20,22 @@ namespace NSRetail
         {
             InitializeComponent();
         }
-
+        
         private async void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
+                if (luConnType.EditValue.Equals("Auto"))
+                {
+                    SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
+                    SQLCon.TryConn(Utility.DisplayStatus);
+                    SplashScreenManager.CloseForm();
+                }
+                else
+                {
+                    SQLCon.BuildType = luConnType.EditValue.ToString();
+                }
+
                 if (txtUserName.Text.ToLower() == "admin" && txtPassword.Text == "776986")
                 {
                     this.Hide();
@@ -196,22 +207,28 @@ namespace NSRetail
             try
             {
                 RegistryKey RGkey = Registry.CurrentUser.OpenSubKey(@"Software\NSRetail", true);
-                if (RGkey != null)
+                if (RGkey == null) return;
+
+                if (!string.IsNullOrEmpty(Convert.ToString(RGkey.GetValue("LastUser")))
+                    //&& !string.IsNullOrEmpty(Convert.ToString(RGkey.GetValue("PasswordString")))
+                    )
                 {
-                    if (!string.IsNullOrEmpty(Convert.ToString(RGkey.GetValue("LastUser")))
-                        //&& !string.IsNullOrEmpty(Convert.ToString(RGkey.GetValue("PasswordString")))
-                        )
-                    {
-                        txtUserName.EditValue = RGkey.GetValue("LastUser");
-                        //txtPassword.EditValue = RGkey.GetValue("PasswordString");
-                        //btnLogin_Click(null, null);
-                    }
-                    else
-                    {
-                        txtUserName.EditValue = RGkey.GetValue("LastUser");
-                        //txtPassword.EditValue = RGkey.GetValue("PasswordString");
-                    }
+                    txtUserName.EditValue = RGkey.GetValue("LastUser");
+                    //txtPassword.EditValue = RGkey.GetValue("PasswordString");
+                    //btnLogin_Click(null, null);
                 }
+                else
+                {
+                    txtUserName.EditValue = RGkey.GetValue("LastUser");
+                    //txtPassword.EditValue = RGkey.GetValue("PasswordString");
+                }
+
+
+                luConnType.Properties.DataSource = Utility.GetConnectionTypes();
+                luConnType.Properties.ValueMember = "Connection Config";
+                luConnType.Properties.DisplayMember = "Connection Type";
+
+                luConnType.EditValue = "Auto";
             }
             catch (Exception ex)
             {

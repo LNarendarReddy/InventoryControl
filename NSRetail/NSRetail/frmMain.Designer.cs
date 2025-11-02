@@ -125,10 +125,16 @@
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.bbiChangeConection = new DevExpress.XtraBars.BarButtonItem();
+            this.puSwitchConnection = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.puSwitchConnection)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -201,9 +207,11 @@
             this.btnManufacturer,
             this.lblSyncTime,
             this.lblUpTime,
-            this.btnImportDiscountSaleItems});
+            this.btnImportDiscountSaleItems,
+            this.barButtonItem1,
+            this.bbiChangeConection});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 80;
+            this.ribbonControl1.MaxItemId = 83;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -215,7 +223,8 @@
             this.rpItemExtras});
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1,
-            this.repositoryItemLookUpEdit1});
+            this.repositoryItemLookUpEdit1,
+            this.repositoryItemLookUpEdit2});
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // btnBranch
@@ -878,6 +887,7 @@
             this.ribbonPageGroup5.ItemLinks.Add(this.skinDropDownButtonItem1);
             this.ribbonPageGroup5.ItemLinks.Add(this.btnLogout);
             this.ribbonPageGroup5.ItemLinks.Add(this.bbiChangeFY);
+            this.ribbonPageGroup5.ItemLinks.Add(this.bbiChangeConection);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             resources.ApplyResources(this.ribbonPageGroup5, "ribbonPageGroup5");
             // 
@@ -1084,6 +1094,33 @@
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
             // 
+            // barButtonItem1
+            // 
+            resources.ApplyResources(this.barButtonItem1, "barButtonItem1");
+            this.barButtonItem1.Id = 80;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // repositoryItemLookUpEdit2
+            // 
+            resources.ApplyResources(this.repositoryItemLookUpEdit2, "repositoryItemLookUpEdit2");
+            this.repositoryItemLookUpEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("repositoryItemLookUpEdit2.Buttons"))))});
+            this.repositoryItemLookUpEdit2.Name = "repositoryItemLookUpEdit2";
+            // 
+            // bbiChangeConection
+            // 
+            this.bbiChangeConection.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
+            resources.ApplyResources(this.bbiChangeConection, "bbiChangeConection");
+            this.bbiChangeConection.DropDownControl = this.puSwitchConnection;
+            this.bbiChangeConection.Id = 82;
+            this.bbiChangeConection.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
+            this.bbiChangeConection.Name = "bbiChangeConection";
+            // 
+            // puSwitchConnection
+            // 
+            this.puSwitchConnection.Name = "puSwitchConnection";
+            this.puSwitchConnection.Ribbon = this.ribbonControl1;
+            // 
             // frmMain
             // 
             resources.ApplyResources(this, "$this");
@@ -1103,6 +1140,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.puSwitchConnection)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1205,6 +1244,10 @@
         private DevExpress.XtraBars.BarStaticItem lblSyncTime;
         private DevExpress.XtraBars.BarStaticItem lblUpTime;
         private DevExpress.XtraBars.BarButtonItem btnImportDiscountSaleItems;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem bbiChangeConection;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
+        private DevExpress.XtraBars.PopupMenu puSwitchConnection;
     }
 }
 
