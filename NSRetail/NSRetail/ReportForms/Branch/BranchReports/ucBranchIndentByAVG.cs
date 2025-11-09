@@ -1,14 +1,10 @@
 ﻿using DataAccess;
-using DevExpress.Charts.Native;
-using DevExpress.XtraBars.Docking2010.Views.WindowsUI;
 using DevExpress.XtraEditors;
 using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Windows.Forms;
-using static Dropbox.Api.TeamLog.TimeUnit;
 
 namespace NSRetail.ReportForms.Branch.BranchReports
 {
@@ -68,9 +64,9 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
             try
             {
-                DataTable indentTable = ((DataTable)ResultGrid.DataSource).Copy();
+                DataTable indentTable = GetFilteredData();
 
-                if (indentTable.Rows.Count == 0)
+                if (indentTable == null || indentTable.Rows.Count == 0)
                 {
                     XtraMessageBox.Show("No data to save", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;

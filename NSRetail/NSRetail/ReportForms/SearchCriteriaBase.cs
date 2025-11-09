@@ -2,6 +2,7 @@
 using DevExpress.PivotGrid.PivotTable;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraLayout;
 using Entity;
@@ -409,6 +410,19 @@ namespace NSRetail
                 }));
             }
             catch (Exception ex){}
+        }
+
+        protected DataTable GetFilteredData()
+        {
+            if(ResultGridView == null) return null;
+
+            ColumnView view = ResultGridView;
+
+            DataTable dtFilteredData = (view.DataSource as DataView).ToTable().Clone();
+            for (int i = 0; i < view.DataRowCount; i++)
+                dtFilteredData.ImportRow(((DataRowView)view.GetRow(i)).Row);
+
+            return dtFilteredData;
         }
     }
 }
