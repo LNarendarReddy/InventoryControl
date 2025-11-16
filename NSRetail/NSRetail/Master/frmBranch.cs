@@ -26,6 +26,11 @@ namespace NSRetail
             cmbSupervisor.Properties.DataSource = objUserRep.GetUser();
             cmbSupervisor.Properties.ValueMember = "USERID";
             cmbSupervisor.Properties.DisplayMember = "USERNAME";
+
+            luGrade.Properties.DataSource = new ReportRepository().GetReportData("USP_R_BRANCHGRADE");
+            luGrade.Properties.ValueMember = "BRANCHGRADEID";
+            luGrade.Properties.DisplayMember = "GRADE";
+
             if (Convert.ToInt32(ObjBranch.BRANCHID) > 0)
             {
                 this.Text = "Edit Branch";
@@ -39,6 +44,8 @@ namespace NSRetail
                 chkIsWarehouse.EditValue = ObjBranch.ISWAREHOUSE;
                 chkEnableDraftBills.EditValue = ObjBranch.ENABLEDRAFTBILLS;
                 chkIsWarehouse.Enabled = false;
+                luGrade.EditValue = ObjBranch.BRANCHGRADEID;
+                cmbState.EditValue = ObjBranch.STATEID;
             }
         }
 
@@ -64,6 +71,7 @@ namespace NSRetail
                 ObjBranch.ISWAREHOUSE = chkIsWarehouse.EditValue;
                 ObjBranch.ENABLEDRAFTBILLS = chkEnableDraftBills.EditValue;
                 ObjBranch.SUPERVISERID = cmbSupervisor.EditValue;
+                ObjBranch.BRANCHGRADEID = luGrade.EditValue;
                 ObjBranch.UserID = Utility.UserID;
                 objMasterRep.SaveBranch(ObjBranch);
                 ObjBranch.IsSave = true;

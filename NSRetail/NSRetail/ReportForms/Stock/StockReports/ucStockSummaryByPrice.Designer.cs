@@ -29,31 +29,35 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.btnImportMBQ = new DevExpress.XtraEditors.SimpleButton();
             this.cmbItemCode = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbBranch = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.cmbCategory = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cmbCategory = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnImportMBQ);
             this.layoutControl1.Controls.Add(this.cmbItemCode);
             this.layoutControl1.Controls.Add(this.cmbBranch);
             this.layoutControl1.Controls.Add(this.cmbCategory);
@@ -61,20 +65,46 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(808, 45);
+            this.layoutControl1.Size = new System.Drawing.Size(936, 45);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // Root
+            // 
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem2,
+            this.layoutControlItem1,
+            this.layoutControlItem3,
+            this.layoutControlItem4});
+            this.Root.Name = "Root";
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.Root.Size = new System.Drawing.Size(936, 45);
+            this.Root.TextVisible = false;
+            // 
+            // btnImportMBQ
+            // 
+            this.btnImportMBQ.ImageOptions.Image = global::NSRetail.Properties.Resources.download_16x16;
+            this.btnImportMBQ.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnImportMBQ.Location = new System.Drawing.Point(835, 11);
+            this.btnImportMBQ.Name = "btnImportMBQ";
+            this.btnImportMBQ.Size = new System.Drawing.Size(90, 22);
+            this.btnImportMBQ.StyleController = this.layoutControl1;
+            this.btnImportMBQ.TabIndex = 5;
+            this.btnImportMBQ.Text = "Import MBQ";
+            this.btnImportMBQ.Click += new System.EventHandler(this.btnImportMBQ_Click);
             // 
             // cmbItemCode
             // 
             this.cmbItemCode.EnterMoveNextControl = true;
-            this.cmbItemCode.Location = new System.Drawing.Point(538, 10);
+            this.cmbItemCode.Location = new System.Drawing.Point(611, 10);
             this.cmbItemCode.Name = "cmbItemCode";
             this.cmbItemCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbItemCode.Properties.NullText = "";
             this.cmbItemCode.Properties.PopupView = this.searchLookUpEdit1View;
-            this.cmbItemCode.Size = new System.Drawing.Size(260, 22);
+            this.cmbItemCode.Size = new System.Drawing.Size(213, 22);
             this.cmbItemCode.StyleController = this.layoutControl1;
             this.cmbItemCode.TabIndex = 4;
             // 
@@ -115,28 +145,27 @@
             // 
             // cmbBranch
             // 
+            this.cmbBranch.EditValue = "";
             this.cmbBranch.EnterMoveNextControl = true;
             this.cmbBranch.Location = new System.Drawing.Point(80, 11);
             this.cmbBranch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbBranch.Name = "cmbBranch";
             this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbBranch.Size = new System.Drawing.Size(159, 22);
+            this.cmbBranch.Size = new System.Drawing.Size(197, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 1;
             // 
-            // Root
+            // cmbCategory
             // 
-            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.Root.GroupBordersVisible = false;
-            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem2,
-            this.layoutControlItem1,
-            this.layoutControlItem3});
-            this.Root.Name = "Root";
-            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.Root.Size = new System.Drawing.Size(808, 45);
-            this.Root.TextVisible = false;
+            this.cmbCategory.EditValue = "";
+            this.cmbCategory.Location = new System.Drawing.Point(357, 10);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbCategory.Size = new System.Drawing.Size(175, 22);
+            this.cmbCategory.StyleController = this.layoutControl1;
+            this.cmbCategory.TabIndex = 1;
             // 
             // layoutControlItem2
             // 
@@ -146,7 +175,7 @@
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(240, 35);
+            this.layoutControlItem2.Size = new System.Drawing.Size(278, 35);
             this.layoutControlItem2.Text = "Branch";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(57, 15);
             // 
@@ -155,32 +184,32 @@
             this.layoutControlItem1.Control = this.cmbCategory;
             this.layoutControlItem1.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.layoutControlItem1.CustomizationFormText = "Category";
-            this.layoutControlItem1.Location = new System.Drawing.Point(240, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(278, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem1.Size = new System.Drawing.Size(219, 35);
+            this.layoutControlItem1.Size = new System.Drawing.Size(254, 35);
             this.layoutControlItem1.Text = "Category";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(57, 15);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.cmbItemCode;
-            this.layoutControlItem3.Location = new System.Drawing.Point(459, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(532, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem3.Size = new System.Drawing.Size(339, 35);
+            this.layoutControlItem3.Size = new System.Drawing.Size(292, 35);
             this.layoutControlItem3.Text = "Item Code";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(57, 15);
             // 
-            // cmbCategory
+            // layoutControlItem4
             // 
-            this.cmbCategory.Location = new System.Drawing.Point(319, 10);
-            this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbCategory.Size = new System.Drawing.Size(140, 22);
-            this.cmbCategory.StyleController = this.layoutControl1;
-            this.cmbCategory.TabIndex = 1;
+            this.layoutControlItem4.Control = this.btnImportMBQ;
+            this.layoutControlItem4.Location = new System.Drawing.Point(824, 0);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem4.Size = new System.Drawing.Size(102, 35);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
             // 
             // ucStockSummaryByPrice
             // 
@@ -189,17 +218,18 @@
             this.Controls.Add(this.layoutControl1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucStockSummaryByPrice";
-            this.Size = new System.Drawing.Size(808, 45);
+            this.Size = new System.Drawing.Size(936, 45);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -218,5 +248,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraEditors.CheckedComboBoxEdit cmbCategory;
+        private DevExpress.XtraEditors.SimpleButton btnImportMBQ;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
     }
 }

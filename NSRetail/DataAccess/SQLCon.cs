@@ -44,19 +44,21 @@ namespace DataAccess
             return ObjCon;
         }
 
-        public static void TryConn(Action<string> action, string connType = "Auto")
+        public static bool TryConn(Action<string> action, string connType = "Auto")
         {
             ClearConn(action);
 
             if (connType == "Auto")
             {
-                if (CheckConn("ProdLAN", action)) return;
-                if (CheckConn("ProdWAN", action)) return;
+                if (CheckConn("ProdLAN", action)) return true;
+                if (CheckConn("ProdWAN", action)) return true;
             }
             else
             {
-                CheckConn(connType, action);
+                if(CheckConn(connType, action)) return true;
             }
+
+            return false;
         }
 
         private static bool CheckConn(string connType, Action<string> action)

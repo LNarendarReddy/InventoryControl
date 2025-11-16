@@ -45,6 +45,7 @@
     <Reference Include="DevExpress.Data.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Dialogs.v21.2.Core, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v21.2.Core, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v21.2.Core, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v21.2.Drawing, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
@@ -68,6 +69,7 @@
     <Reference Include="DevExpress.XtraPrinting.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v21.2.Extensions, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Dropbox.Api, Version=6.37.0.0, Culture=neutral, PublicKeyToken=310f0e82fbb45d01, processorArchitecture=MSIL">
       <HintPath>..\packages\Dropbox.Api.6.37.0\lib\netstandard2.0\Dropbox.Api.dll</HintPath>
@@ -157,6 +159,12 @@
     </Compile>
     <Compile Include="Item\frmExport.Designer.cs">
       <DependentUpon>frmExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Item\frmImportMBQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\frmImportMBQ.Designer.cs">
+      <DependentUpon>frmImportMBQ.cs</DependentUpon>
     </Compile>
     <Compile Include="Item\frmMBQ.cs">
       <SubType>Form</SubType>
@@ -1275,6 +1283,9 @@
     <EmbeddedResource Include="Item\frmExport.resx">
       <DependentUpon>frmExport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Item\frmImportMBQ.resx">
+      <DependentUpon>frmImportMBQ.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Item\frmMBQ.resx">
       <DependentUpon>frmMBQ.cs</DependentUpon>
     </EmbeddedResource>
@@ -1913,6 +1924,11 @@
     <None Include="Resources\apply_16x161.png" />
     <None Include="Resources\apply_16x162.png" />
     <None Include="Resources\save_16x162.png" />
+    <None Include="Resources\download_16x16.png" />
+    <None Include="Resources\download_16x161.png" />
+    <None Include="Resources\article_16x163.png" />
+    <None Include="Resources\download_16x162.png" />
+    <None Include="Resources\removepivotfield_16x162.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

@@ -1,6 +1,11 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
+using ErrorManagement;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Stock.StockReports
 {
@@ -45,6 +50,11 @@ namespace NSRetail.ReportForms.Stock.StockReports
             };
 
             return GetReportData("USP_RPT_STOCKSUMMARY", parameters);
+        }
+
+        private void btnImportMBQ_Click(object sender, System.EventArgs e)
+        {
+            new frmImportMBQ().ShowDialog();
         }
     }
 }

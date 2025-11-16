@@ -28,8 +28,16 @@ namespace NSRetail
                 if (luConnType.EditValue.Equals("Auto"))
                 {
                     SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
-                    SQLCon.TryConn(Utility.DisplayStatus);
+                    bool success = SQLCon.TryConn(Utility.DisplayStatus);
                     SplashScreenManager.CloseForm();
+
+                    if(!success)
+                    {
+                        string message = "Unable to connect to WH from both LAN and WAN connecions." + Environment.NewLine;
+                        message += "Please verify the internet connection, if the connection still exists but slow, use WAN(External) network.";
+                        XtraMessageBox.Show(message, "Network issue?", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        luConnType.EditValue = "ProdWAN";
+                    }
                 }
                 else
                 {

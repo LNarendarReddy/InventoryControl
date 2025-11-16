@@ -173,6 +173,16 @@ namespace NSRetail.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap article_16x163 {
+            get {
+                object obj = ResourceManager.GetObject("article_16x163", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cancel_16x16 {
             get {
                 object obj = ResourceManager.GetObject("cancel_16x16", resourceCulture);
@@ -253,6 +263,36 @@ namespace NSRetail.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap download_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("download_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_16x161 {
+            get {
+                object obj = ResourceManager.GetObject("download_16x161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_16x162 {
+            get {
+                object obj = ResourceManager.GetObject("download_16x162", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap export_16x16 {
             get {
                 object obj = ResourceManager.GetObject("export_16x16", resourceCulture);
@@ -326,6 +366,16 @@ namespace NSRetail.Properties {
         internal static System.Drawing.Bitmap removepivotfield_16x161 {
             get {
                 object obj = ResourceManager.GetObject("removepivotfield_16x161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap removepivotfield_16x162 {
+            get {
+                object obj = ResourceManager.GetObject("removepivotfield_16x162", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

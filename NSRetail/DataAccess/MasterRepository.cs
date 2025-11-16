@@ -30,6 +30,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ISWAREHOUSE", ObjBranch.ISWAREHOUSE);
                     cmd.Parameters.AddWithValue("@EnableDraftBills", ObjBranch.ENABLEDRAFTBILLS);
                     cmd.Parameters.AddWithValue("@SUPERVISORID", ObjBranch.SUPERVISERID);
+                    cmd.Parameters.AddWithValue("@BRANCHGRADEID", ObjBranch.BRANCHGRADEID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     int BRanchID;

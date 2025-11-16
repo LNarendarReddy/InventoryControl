@@ -70,6 +70,7 @@
             this.gcDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -111,7 +112,7 @@
             this.layoutControl1.Controls.Add(this.gcBranch);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1160, 330, 650, 400);
             this.layoutControl1.Root = this.Root;
@@ -137,7 +138,7 @@
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCancel.Location = new System.Drawing.Point(1084, 5);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 26);
             this.btnCancel.StyleController = this.layoutControl1;
@@ -150,7 +151,7 @@
             this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
             this.btnNew.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnNew.Location = new System.Drawing.Point(969, 5);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(111, 26);
             this.btnNew.StyleController = this.layoutControl1;
@@ -161,10 +162,10 @@
             // 
             // gcBranch
             // 
-            this.gcBranch.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcBranch.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gcBranch.Location = new System.Drawing.Point(5, 35);
             this.gcBranch.MainView = this.gvBranch;
-            this.gcBranch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcBranch.Margin = new System.Windows.Forms.Padding(4);
             this.gcBranch.Name = "gcBranch";
             this.gcBranch.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEdit,
@@ -204,10 +205,12 @@
             this.gridColumn21,
             this.gcEdit,
             this.gcDelete,
-            this.gridColumn12});
+            this.gridColumn12,
+            this.gridColumn13});
             this.gvBranch.DetailHeight = 404;
             this.gvBranch.GridControl = this.gcBranch;
             this.gvBranch.Name = "gvBranch";
+            this.gvBranch.OptionsView.ShowGroupPanel = false;
             this.gvBranch.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvBranch_PopupMenuShowing);
             // 
             // gridColumn1
@@ -254,13 +257,15 @@
             // 
             // gridColumn7
             // 
+            this.gridColumn7.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn7.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn7.Caption = "Address";
             this.gridColumn7.FieldName = "ADDRESS";
             this.gridColumn7.MinWidth = 24;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 3;
+            this.gridColumn7.VisibleIndex = 4;
             this.gridColumn7.Width = 129;
             // 
             // gridColumn18
@@ -272,7 +277,7 @@
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.OptionsColumn.AllowEdit = false;
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 4;
+            this.gridColumn18.VisibleIndex = 5;
             this.gridColumn18.Width = 87;
             // 
             // cmbState
@@ -294,7 +299,7 @@
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 5;
+            this.gridColumn3.VisibleIndex = 6;
             this.gridColumn3.Width = 129;
             // 
             // gridColumn6
@@ -305,7 +310,7 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 6;
+            this.gridColumn6.VisibleIndex = 7;
             this.gridColumn6.Width = 87;
             // 
             // gridColumn14
@@ -316,7 +321,7 @@
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 7;
+            this.gridColumn14.VisibleIndex = 8;
             this.gridColumn14.Width = 87;
             // 
             // gridColumn17
@@ -390,7 +395,7 @@
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 8;
+            this.gridColumn19.VisibleIndex = 9;
             this.gridColumn19.Width = 87;
             // 
             // gridColumn20
@@ -401,7 +406,7 @@
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.OptionsColumn.AllowEdit = false;
             this.gridColumn20.Visible = true;
-            this.gridColumn20.VisibleIndex = 9;
+            this.gridColumn20.VisibleIndex = 10;
             this.gridColumn20.Width = 87;
             // 
             // gridColumn21
@@ -411,7 +416,7 @@
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.OptionsColumn.AllowEdit = false;
             this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 10;
+            this.gridColumn21.VisibleIndex = 11;
             // 
             // gcEdit
             // 
@@ -423,7 +428,7 @@
             this.gcEdit.Name = "gcEdit";
             this.gcEdit.Tag = "AC3A8088-8296-4494-B11F-29D031071E2D::Update";
             this.gcEdit.Visible = true;
-            this.gcEdit.VisibleIndex = 12;
+            this.gcEdit.VisibleIndex = 13;
             this.gcEdit.Width = 74;
             // 
             // btnEdit
@@ -446,7 +451,7 @@
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Tag = "AC3A8088-8296-4494-B11F-29D031071E2D::Delete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 13;
+            this.gcDelete.VisibleIndex = 14;
             this.gcDelete.Width = 76;
             // 
             // btnDelete
@@ -467,7 +472,19 @@
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 11;
+            this.gridColumn12.VisibleIndex = 12;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn13.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn13.Caption = "Grade";
+            this.gridColumn13.FieldName = "GRADE";
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.OptionsColumn.ReadOnly = true;
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 3;
             // 
             // Root
             // 
@@ -546,7 +563,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1201, 646);
             this.Controls.Add(this.layoutControl1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmBranchList";
             this.Text = "Branch List";
             this.Load += new System.EventHandler(this.frmBranch_Load);
@@ -606,5 +623,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
     }
 }
