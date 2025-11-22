@@ -51,19 +51,17 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "SerialNumber", txtSerialNumber.EditValue }
                 , { "CategoryID", Utility.CategoryID }
             };
-            return GetReportData("USP_RPT_BREFUNDSHEET", parameters);
+            return GetReportData("USP_RPT_BREFUNDSHEET_1", parameters);
         }
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
-            DataTable dtItems = new POSRepository().GetBRefundDetail(drFocusedRow["BREFUNDID"], drFocusedRow["COUNTERID"]);
+            DataTable dtItems = new POSRepository().GetBRefundDetail(drFocusedRow["BRID"]);
 
             switch (buttonText)
             {
                 case "View":
-                    frmBRefundDetail obj = new frmBRefundDetail(dtItems,
-                drFocusedRow["COUNTERID"], drFocusedRow["BREFUNDID"], drFocusedRow["CATEGORYID"],
-                Convert.ToBoolean(drFocusedRow["IsAcceptedID"]))
+                    frmBRefundDetail obj = new frmBRefundDetail(dtItems, drFocusedRow["BRID"], Convert.ToBoolean(drFocusedRow["IsAcceptedID"]))
                     {
                         ShowInTaskbar = false,
                         StartPosition = FormStartPosition.CenterScreen
@@ -94,3 +92,4 @@ namespace NSRetail.ReportForms.Branch.BranchReports
         }
     }
 }
+ 

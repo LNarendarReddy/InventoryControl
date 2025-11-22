@@ -17,7 +17,7 @@ namespace NSRetailPOS.UI
 {
     public partial class frmBranchRefund : XtraForm
     {
-        object BRefundID = null;
+        object BRID = null;
         object BRefundNumber = null;
         DataRow drSelectedPrice;
         bool isItemScanned;
@@ -39,10 +39,10 @@ namespace NSRetailPOS.UI
             {
                 if (dSInitialData.Tables[0].Rows.Count > 0)
                 {
-                    BRefundID = dSInitialData.Tables[0].Rows[0]["BREFUNDID"];
+                    BRID = dSInitialData.Tables[0].Rows[0]["BRID"];
                     BRefundNumber = dSInitialData.Tables[0].Rows[0]["BREFUNDNUMBER"];
                     cmbCategory.EditValue = dSInitialData.Tables[0].Rows[0]["CATEGORYID"];
-                    this.Text = $"Branch Refund-{BRefundID}";
+                    this.Text = $"Branch Refund-{BRefundNumber}";
                     cmbCategory.Enabled = false;
                 }
                 else
@@ -179,25 +179,25 @@ namespace NSRetailPOS.UI
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            object BRDetailID = gvRefund.GetFocusedRowCellValue("BREFUNDDETAILID");
+            object BRDID = gvRefund.GetFocusedRowCellValue("BRDID");
             SNo = Convert.ToInt32(gvRefund.GetFocusedRowCellValue("SNO"));
             DataTable dtSNos = new DataTable();
-            dtSNos.Columns.Add("BREFUNDDETAILID", typeof(int));
+            dtSNos.Columns.Add("BRDID", typeof(int));
             dtSNos.Columns.Add("SNO", typeof(int));
 
             for (int curRowHandle = gvRefund.FocusedRowHandle - 1; curRowHandle >= 0; curRowHandle--)
             {
                 gvRefund.SetRowCellValue(curRowHandle, "SNO", SNo);
-                dtSNos.Rows.Add(gvRefund.GetRowCellValue(curRowHandle, "BREFUNDDETAILID"), SNo);
+                dtSNos.Rows.Add(gvRefund.GetRowCellValue(curRowHandle, "BRDID"), SNo);
                 SNo++;
             }
 
-            new RefundRepository().DeleteBRefundDetail(BRDetailID, Utility.loginInfo.UserID, dtSNos);
+            new RefundRepository().DeleteBRefundDetail(BRDID, Utility.loginInfo.UserID, dtSNos);
             gvRefund.DeleteRow(gvRefund.FocusedRowHandle);
             txtItemCode.Focus();
         }
         
-        private void txtQuantity_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter)
                 return;
@@ -237,14 +237,15 @@ namespace NSRetailPOS.UI
             rowHandle = Getrowhandle();
             if (rowHandle >= 0)
             {
-                if (!int.TryParse(Convert.ToString(BRefundID), out int id) || id <= 0)
+                if (!int.TryParse(Convert.ToString(BRID), out int id) || id <= 0)
                     SaveBRefund();
                 SaveRefundDetail(rowHandle);
             }
             else
             {
                 //something went wrong
-                XtraMessageBox.Show("Something went wrong, please contact IT support", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Something went wrong, please contact IT support", 
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 CheckBRefundID();
             }
             ClearItemData();
@@ -264,7 +265,9 @@ namespace NSRetailPOS.UI
                 object val1 = desc1.GetValue(row);
                 object val2 = desc2.GetValue(row);
                 object val3 = desc3.GetValue(row);
-                if (val1.Equals(drSelectedPrice["ITEMPRICEID"]) && val2.Equals(cmbRFR.EditValue) && val3.Equals(Convert.ToInt32(txtTrayNumber.EditValue)))
+                if (val1.Equals(drSelectedPrice["ITEMPRICEID"]) 
+                    && val2.Equals(cmbRFR.EditValue) 
+                    && val3.Equals(Convert.ToInt32(txtTrayNumber.EditValue)))
                 {
                     rowHandle = gvRefund.GetRowHandle(source.IndexOf(row));
                     break;
@@ -275,8 +278,8 @@ namespace NSRetailPOS.UI
 
         private void gvRefund_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
-            gvRefund.SetRowCellValue(e.RowHandle, "BREFUNDDETAILID", -1);
-            gvRefund.SetRowCellValue(e.RowHandle, "BREFUNDID", BRefundID);
+            gvRefund.SetRowCellValue(e.RowHandle, "BRDID", -1);
+            gvRefund.SetRowCellValue(e.RowHandle, "BRID", BRID);
             gvRefund.SetRowCellValue(e.RowHandle, "ITEMPRICEID", drSelectedPrice["ITEMPRICEID"]);
             gvRefund.SetRowCellValue(e.RowHandle, "SNO", SNo++);
             gvRefund.SetRowCellValue(e.RowHandle, "ITEMNAME", sluItemCode.Text);
@@ -323,8 +326,8 @@ namespace NSRetailPOS.UI
 
             CheckBRefundID();
 
-            object NewBRefundNumber = new RefundRepository().FinishBRefund(BRefundID);
-            rptBRefund rpt = new rptBRefund(dtRefund);
+            object NewBRefundNumber = new RefundRepository().FinishBRefund(BRID);
+            rptBRefund rpt = new(dtRefund);
             rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;
             rpt.Parameters["BillDate"].Value = DateTime.Now;
             rpt.Parameters["BillNumber"].Value = NewBRefundNumber;
@@ -367,7 +370,7 @@ namespace NSRetailPOS.UI
         {
             try
             {
-                new RefundRepository().DiscardBRefund(BRefundID, Utility.loginInfo.UserID);
+                new RefundRepository().DiscardBRefund(BRID, Utility.loginInfo.UserID);
                 XtraMessageBox.Show("Branch return sheet discarded successfully, re-open sheet for new return");
                 this.Close();
             }
@@ -379,7 +382,7 @@ namespace NSRetailPOS.UI
 
         private void CheckBRefundID()
         {
-            if (BRefundID == null || !int.TryParse(Convert.ToString(BRefundID), out int tempBRefundID) || tempBRefundID <= 0)
+            if (BRID == null || !int.TryParse(Convert.ToString(BRID), out int tempBRefundID) || tempBRefundID <= 0)
             {
                 throw new Exception("Error while saving BRefund - ID empty, please contact IT support");
             }
@@ -390,10 +393,10 @@ namespace NSRetailPOS.UI
             DataTable dt = new RefundRepository().SaveBRefund(Utility.loginInfo.UserID, cmbCategory.EditValue);
             if (dt != null && dt.Rows.Count > 0)
             {
-                BRefundID = dt.Rows[0]["BREFUNDID"];
+                BRID = dt.Rows[0]["BRID"];
                 BRefundNumber = dt.Rows[0]["BREFUNDNUMBER"];
                 cmbCategory.EditValue = dt.Rows[0]["CATEGORYID"];
-                this.Text = $"Branch Refund-{BRefundID}";
+                this.Text = $"Branch Refund-{BRID}";
                 cmbCategory.Enabled = false;
             }
             else
@@ -411,9 +414,9 @@ namespace NSRetailPOS.UI
             // refresh BREFUNDID just before going for save so that in case of first create,
             // BRefundID will be null, in quantity leave SaveRefund() will be called but the 
             // already initialized row will still have BRefundID as old value null
-            drDetail["BREFUNDID"] = BRefundID;
-            int BRefundDetailID = new RefundRepository().SaveBRefundDetail(drDetail);
-            drDetail["BREFUNDDETAILID"] = BRefundDetailID;
+            drDetail["BRID"] = BRID;
+            int BRDID = new RefundRepository().SaveBRefundDetail(drDetail);
+            drDetail["BRDID"] = BRDID;
         }
 
         private void gvRefund_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)

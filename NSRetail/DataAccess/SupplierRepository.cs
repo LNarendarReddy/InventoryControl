@@ -477,7 +477,7 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_U_SPLIT_BRQUANTITY]";
+                    cmd.CommandText = "[USP_U_SPLIT_BRQUANTITY_1]";
                     cmd.Parameters.AddWithValue("@BRDID", BRDID);
                     cmd.Parameters.AddWithValue("@BASEQUANTITY", BASEQUANTITY);
                     cmd.Parameters.AddWithValue("@BASEREASON", BASEREASON);

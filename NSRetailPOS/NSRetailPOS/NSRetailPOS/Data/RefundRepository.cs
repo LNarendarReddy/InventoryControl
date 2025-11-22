@@ -126,21 +126,18 @@ namespace NSRetailPOS.Data
 
         public DataSet GetInitialLoad(object userID)
         {
-            DataSet dSInitialLoad = new DataSet();
+            DataSet dSInitialLoad = new();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.SqlWHconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[POS_USP_R_BREFUND]";
+                    cmd.CommandText = "[POS_USP_R_BREFUND_1]";
                     cmd.Parameters.AddWithValue("@USERID", userID);
                     cmd.Parameters.AddWithValue("@BRANCHID", Utility.branchInfo.BranchID);
-                    cmd.Parameters.AddWithValue("@COUNTERID",  Utility.branchInfo.BranchCounterID);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dSInitialLoad);
-                    }
+                    using SqlDataAdapter da = new(cmd);
+                    da.Fill(dSInitialLoad);
                 }
             }
             catch (Exception ex)
@@ -157,21 +154,20 @@ namespace NSRetailPOS.Data
         public DataTable SaveBRefund(object userId, object categoryID)
         {
             SqlTransaction transaction = null;
-            DataTable dt = new DataTable();
+            DataTable dt = new();
             try
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmd = new())
                 {
                     cmd.Connection = SQLCon.SqlWHconn();
                     transaction = SQLCon.SqlWHconn().BeginTransaction();
                     cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[POS_USP_CU_BREFUND]";
+                    cmd.CommandText = "[POS_USP_CU_BREFUND_1]";
                     cmd.Parameters.AddWithValue("@USERID", userId);
                     cmd.Parameters.AddWithValue("@BRANCHID", Utility.branchInfo.BranchID);
                     cmd.Parameters.AddWithValue("@CATEGORYID", categoryID);
-                    cmd.Parameters.AddWithValue("@COUNTERID", Utility.branchInfo.BranchCounterID);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    using (SqlDataAdapter da = new(cmd))
                     {
                         da.Fill(dt);
                     }
@@ -196,15 +192,15 @@ namespace NSRetailPOS.Data
             int BRefundDetailID = 0;
             try
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmd = new())
                 {
                     cmd.Connection = SQLCon.SqlWHconn();
                     transaction = SQLCon.SqlWHconn().BeginTransaction();
                     cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[POS_USP_CU_BREFUNDDETAIL]";
-                    cmd.Parameters.AddWithValue("@BREFUNDDETAILID", drDetail["BREFUNDDETAILID"]);
-                    cmd.Parameters.AddWithValue("@BREFUNDID", drDetail["BREFUNDID"]);
+                    cmd.CommandText = "[POS_USP_CU_BREFUNDDETAIL_1]";
+                    cmd.Parameters.AddWithValue("@BRDID", drDetail["BRDID"]);
+                    cmd.Parameters.AddWithValue("@BRID", drDetail["BRID"]);
                     cmd.Parameters.AddWithValue("@ITEMPRICEID", drDetail["ITEMPRICEID"]);
                     cmd.Parameters.AddWithValue("@QUANTITY", drDetail["QUANTITY"]);
                     cmd.Parameters.AddWithValue("@WEIGHTINKGS", drDetail["WEIGHTINKGS"]);
@@ -212,7 +208,6 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@TRAYNUMBER", drDetail["TRAYNUMBER"]);
                     cmd.Parameters.AddWithValue("@REASONID", drDetail["REASONID"]);
                     cmd.Parameters.AddWithValue("@REFUNDDESCRIPTION", drDetail["REFUNDDESCRIPTION"]);
-                    cmd.Parameters.AddWithValue("@COUNTERID", Utility.branchInfo.BranchCounterID);
                     object objReturn = cmd.ExecuteScalar();
 
                     if (!int.TryParse(objReturn.ToString(), out BRefundDetailID))
@@ -232,22 +227,21 @@ namespace NSRetailPOS.Data
             return BRefundDetailID;
         }
 
-        public void DeleteBRefundDetail(object BRefundDetailID, object userID, DataTable dtSnos)
+        public void DeleteBRefundDetail(object BRDID, object userID, DataTable dtSnos)
         {
             SqlTransaction transaction = null;
             try
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmd = new())
                 {
                     cmd.Connection = SQLCon.SqlWHconn();
                     transaction = SQLCon.SqlWHconn().BeginTransaction();
                     cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[POS_USP_D_BREFUNDDETAIL]";
-                    cmd.Parameters.AddWithValue("@BREFUNDDETAILID", BRefundDetailID);
+                    cmd.CommandText = "[POS_USP_D_BREFUNDDETAIL_1]";
+                    cmd.Parameters.AddWithValue("@BRDID", BRDID);
                     cmd.Parameters.AddWithValue("@USERID", userID);
                     cmd.Parameters.AddWithValue("@SNos", dtSnos);
-                    cmd.Parameters.AddWithValue("@COUNTERID", Utility.branchInfo.BranchCounterID);
                     cmd.ExecuteNonQuery();
                     transaction?.Commit();
                 }
@@ -263,21 +257,20 @@ namespace NSRetailPOS.Data
             }
         }
 
-        public string FinishBRefund(object BRefundID)
+        public string FinishBRefund(object BRID)
         {
             SqlTransaction transaction = null;
             string BRefundNumber = string.Empty;
             try
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmd = new())
                 {
                     cmd.Connection = SQLCon.SqlWHconn();
                     transaction = SQLCon.SqlWHconn().BeginTransaction();
                     cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[POS_USP_FINISHBREFUND]";
-                    cmd.Parameters.AddWithValue("@BREFUNDID", BRefundID);
-                    cmd.Parameters.AddWithValue("@COUNTERID", Utility.branchInfo.BranchCounterID);
+                    cmd.CommandText = "[POS_USP_FINISHBREFUND_1]";
+                    cmd.Parameters.AddWithValue("@BRID", BRID);
                     cmd.Parameters.AddWithValue("@FROMBRANCHID", Utility.branchInfo.BranchID);
                     cmd.Parameters.AddWithValue("@TOBRANCHID", Utility.branchInfo.WarehouseID);
                     object objReturn = cmd.ExecuteScalar();
@@ -325,21 +318,20 @@ namespace NSRetailPOS.Data
             return dtRFR;
         }
 
-        public void DiscardBRefund(object BrefundID, object userId)
+        public void DiscardBRefund(object BRID, object userId)
         {
             SqlTransaction transaction = null;
             try
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmd = new())
                 {
                     cmd.Connection = SQLCon.SqlWHconn();
                     transaction = SQLCon.SqlWHconn().BeginTransaction();
                     cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[POS_USP_D_BREFUND]";
-                    cmd.Parameters.AddWithValue("@BREFUNDID", BrefundID);
+                    cmd.CommandText = "[POS_USP_D_BREFUND_1]";
+                    cmd.Parameters.AddWithValue("@BRID", BRID);
                     cmd.Parameters.AddWithValue("@USERID", userId);
-                    cmd.Parameters.AddWithValue("@COUNTERID", Utility.branchInfo.BranchCounterID);
                     int rowaffected = cmd.ExecuteNonQuery();
                     if (rowaffected <= 0)
                         throw new Exception("Error while discarding branch return sheet");

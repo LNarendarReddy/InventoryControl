@@ -37,7 +37,7 @@ namespace DataAccess
             }
             return dtBRefund;
         }
-        public DataTable GetBRefundDetail(object BRefundID,object CounterID)
+        public DataTable GetBRefundDetail(object BRID)
         {
             DataTable dtBRefundDetail = new DataTable();
             try
@@ -46,9 +46,8 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_BREFUNDDETAIL]";
-                    cmd.Parameters.AddWithValue("@BREFUNDID", BRefundID);
-                    cmd.Parameters.AddWithValue("@COUNTERID", CounterID);
+                    cmd.CommandText = "[USP_R_BREFUNDDETAIL_1]";
+                    cmd.Parameters.AddWithValue("@BRID", BRID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtBRefundDetail);
@@ -285,7 +284,7 @@ namespace DataAccess
             }
             return dtbillDetail;
         }
-        public void AcceptBRefund(object CounterID, object BRefundID,object UserID ,DataTable dtBRefundDetail)
+        public void AcceptBRefund(object BRID,object UserID ,DataTable dtBRefundDetail)
         {
             SqlTransaction sqlTransaction = null;
             try
@@ -296,10 +295,9 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_U_BREFUND]";
+                    cmd.CommandText = "[USP_U_BREFUND_1]";
                     cmd.Parameters.AddWithValue("@dtbrd", dtBRefundDetail);
-                    cmd.Parameters.AddWithValue("@COUNTERID", CounterID);
-                    cmd.Parameters.AddWithValue("@BREFUNDID", BRefundID);
+                    cmd.Parameters.AddWithValue("@BRID", BRID);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
                     object objReturn = cmd.ExecuteScalar();
                     if(!int.TryParse(Convert.ToString(objReturn), out int id))

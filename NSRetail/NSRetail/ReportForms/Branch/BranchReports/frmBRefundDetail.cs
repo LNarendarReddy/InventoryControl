@@ -9,19 +9,16 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 {
     public partial class frmBRefundDetail : DevExpress.XtraEditors.XtraForm
     {
-        object CounterID = null, BRefundID = null;
+        object BRID = null;
         public bool IsSave = false;
         SupplierRepository SupplierRepository = new SupplierRepository();
-        public frmBRefundDetail(DataTable dtItems,object _CounterID,object _BRefundID, object CategoryID, bool IsAccepted = false)
+        public frmBRefundDetail(DataTable dtItems,object _BRID, bool IsAccepted = false)
         {
             InitializeComponent();
             btnSave.Enabled = !IsAccepted;
             gvItems.OptionsBehavior.Editable = !IsAccepted;
             gcItems.DataSource = dtItems;
-            CounterID = _CounterID;
-            BRefundID = _BRefundID;
-            gcReturnsID.Visible = gcSupplier.Visible = gcCPWOT.Visible = gcCPWT.Visible = 
-                CategoryID.Equals(3) || CategoryID.Equals(4) || CategoryID.Equals(13);
+            BRID = _BRID;
             gvItems.PopupMenuShowing += gvItems_PopupMenuShowing;
         }
 
@@ -52,16 +49,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                         gvItems.GetRowCellValue(e.RowHandle, "REASONID"),
                         Utility.UserID);
 
-                    gcItems.DataSource = new POSRepository().GetBRefundDetail(BRefundID, CounterID);
+                    gcItems.DataSource = new POSRepository().GetBRefundDetail(BRID);
 
-                }
-                else if (gvItems.FocusedColumn == gcSupplier)
-                {
-                    SupplierRepository.UpdateSupplierCostPrice(
-                        gvItems.GetRowCellValue(e.RowHandle, "BRDID"),
-                        gvItems.GetRowCellValue(e.RowHandle, "DEALERID"),
-                        gvItems.GetRowCellValue(e.RowHandle, "ITEMCOSTPRICEID"),
-                        Utility.UserID);
                 }
                 else if (gvItems.FocusedColumn == gcDescription)
                 {
@@ -98,13 +87,9 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 dt.Columns.Remove("ITEMNAME");
                 dt.Columns.Remove("MRP");
                 dt.Columns.Remove("SALEPRICE");
-                dt.Columns.Remove("DELETEDDATE");
-                dt.Columns.Remove("COSTPRICEWOT");
-                dt.Columns.Remove("COSTPRICEWT");
                 dt.Columns.Remove("REFUNDDESCRIPTION");
                 dt.Columns.Remove("CATEGORYNAME");
-                dt.Columns.Remove("SUPPLIERRETURNSID");
-                new POSRepository().AcceptBRefund(CounterID, BRefundID, Utility.UserID, dt);
+                new POSRepository().AcceptBRefund(BRID, Utility.UserID, dt);
                 IsSave = true;
                 this.Close();
             }
@@ -146,7 +131,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                         splitQuantity.DevidedQuantity, splitQuantity.DevidedReason,
                         Utility.UserID, gvItems.RowCount + 1);
 
-                gcItems.DataSource = new POSRepository().GetBRefundDetail(BRefundID, CounterID);
+                gcItems.DataSource = new POSRepository().GetBRefundDetail(BRID);
             }
         }
     }

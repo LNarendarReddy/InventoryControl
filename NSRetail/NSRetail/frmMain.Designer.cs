@@ -856,6 +856,7 @@
             this.btnImportDiscountSaleItems.Id = 79;
             this.btnImportDiscountSaleItems.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnImportDiscountSaleItems.ImageOptions.SvgImage")));
             this.btnImportDiscountSaleItems.Name = "btnImportDiscountSaleItems";
+            this.btnImportDiscountSaleItems.Tag = "A27823B1-DA97-4DFF-AAE7-E2B2352ACBA6";
             this.btnImportDiscountSaleItems.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImportDiscountSaleItems_ItemClick);
             // 
             // barButtonItem1
