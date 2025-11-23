@@ -48,7 +48,8 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 new IncludeSettings("Bill details (bill # & customer info)", "IncludeBillDetails"
                     , new List<string>() { "BILLNUMBER", "CUSTOMERNAME", "CUSTOMERGST", "CUSTOMERNUMBER"
                         , "CREATEDTIME", "BILLMOPNAME" }, true),
-                new IncludeSettings("Payment Mode", "IncludePaymentMode", new List<string>() { "MOPNAME" }, false),
+                new IncludeSettings("Payment Mode", "IncludePaymentMode", new List<string>() 
+                    { "Cash", "Card", "PayTM", "Sodexo", "UPI", "BharathPay", "B2BCredit", "B2CCredit", "Diff." }, false),
                 new IncludeSettings("Count & Avg.", "IncludeCountAndAvg", new List<string>() { "COUNTVALUE", "AVERAGEVALUE" }, false)
             };
 
@@ -72,7 +73,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 , { "UnmaskCustomerPhone", AccessUtility.HasAccess("41EA5157-D4F5-44CD-808D-47208F1B81D9::Execute")}
             };
 
-            return GetReportData("USP_RPT_BILLNUMINFO2", parameters);
+            return GetReportData("USP_RPT_BILLNUMINFO", parameters);
         }
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
