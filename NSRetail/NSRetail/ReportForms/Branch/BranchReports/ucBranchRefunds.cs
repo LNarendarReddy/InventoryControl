@@ -80,7 +80,6 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                     rpt.Parameters["BillNumber"].Value = drFocusedRow["BREFUNDNUMBER"];
                     rpt.Parameters["Phone"].Value = "NA";
                     rpt.Parameters["UserName"].Value = drFocusedRow["CREATEDBY"];
-                    rpt.Parameters["CounterName"].Value = drFocusedRow["COUNTERNAME"];
                     rpt.ShowPrintStatusDialog = false;
                     rpt.ShowPrintMarginsWarning = false;
                     rpt.ShowPreviewMarginLines = false;
