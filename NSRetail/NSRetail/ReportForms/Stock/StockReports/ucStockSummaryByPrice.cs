@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using ErrorManagement;
+using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -37,6 +38,8 @@ namespace NSRetail.ReportForms.Stock.StockReports
             };
 
             SetFocusControls(cmbBranch, cmbItemCode, columnHeaders);
+
+            btnImportMBQ.Enabled = AccessUtility.HasAccess("D2883DFC-597C-4E46-943D-84FC26541F25::Execute");
         }
 
         public override object GetData()
