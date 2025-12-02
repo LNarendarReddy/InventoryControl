@@ -173,6 +173,12 @@ namespace NSRetail
         private void frmLogin_Load(object sender, EventArgs e)
         {
             txtUserName.Focus();
+
+            luConnType.Properties.DataSource = Utility.GetConnectionTypes();
+            luConnType.Properties.ValueMember = "Connection Config";
+            luConnType.Properties.DisplayMember = "Connection Type";
+
+            luConnType.EditValue = "Auto";
         }
 
         private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
@@ -232,11 +238,7 @@ namespace NSRetail
                 }
 
 
-                luConnType.Properties.DataSource = Utility.GetConnectionTypes();
-                luConnType.Properties.ValueMember = "Connection Config";
-                luConnType.Properties.DisplayMember = "Connection Type";
-
-                luConnType.EditValue = "Auto";
+                
             }
             catch (Exception ex)
             {
