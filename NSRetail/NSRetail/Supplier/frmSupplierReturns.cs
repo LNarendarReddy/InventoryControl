@@ -51,6 +51,10 @@ namespace NSRetail.Stock
                 cmbReasongrid.ValueMember = cmbReason.Properties.ValueMember = "REASONID";
                 cmbReasongrid.DisplayMember = cmbReason.Properties.DisplayMember = "REASONNAME";
 
+                cmbFromBranch.Properties.DataSource = Utility.GetBranchList();
+                cmbFromBranch.Properties.ValueMember = "BRANCHID";
+                cmbFromBranch.Properties.DisplayMember = "BRANCHNAME";
+
                 cmbCategory.EditValue = Utility.CategoryID;
                 cmbCategory.Enabled = false;
             }
@@ -73,8 +77,9 @@ namespace NSRetail.Stock
         {
             try
             {
-                Loadinvoicenumbers();
                 InitialLoad();
+                BindSupplierItems();
+                Loadinvoicenumbers();
             }
             catch (Exception ex)
             {
@@ -83,9 +88,15 @@ namespace NSRetail.Stock
             }
         }
 
-        private void cmbStockEntry_EditValueChanged(object sender, EventArgs e)
+        private void cmbFromBranch_EditValueChanged(object sender, EventArgs e)
         {
             InitialLoad();
+            BindSupplierItems();
+        }
+
+        private void cmbStockEntry_EditValueChanged(object sender, EventArgs e)
+        {
+            
         }
 
         private void cmbCategory_EditValueChanged(object sender, EventArgs e)
@@ -109,11 +120,14 @@ namespace NSRetail.Stock
         {
             try
             {
-                if (cmbSupplier.EditValue == null || cmbCategory.EditValue == null)
+                if (cmbSupplier.EditValue == null || 
+                    cmbCategory.EditValue == null || 
+                    cmbFromBranch.EditValue == null)
                     return;
                 supplierReturns.SupplierID = cmbSupplier.EditValue;
                 supplierReturns.CategoryID = cmbCategory.EditValue;
                 supplierReturns.StockEntryID = cmbStockEntry.EditValue;
+                supplierReturns.BranchID = cmbFromBranch.EditValue;
                 supplierRepository.GetInitialLoad(supplierReturns);
                 gcSupplierReturns.DataSource = supplierReturns.dtSupplierReturns;
                
@@ -123,7 +137,26 @@ namespace NSRetail.Stock
                 throw ex;
             }
 ;        }
-        
+
+        private void BindSupplierItems()
+        {
+            try
+            {
+                if (cmbSupplier.EditValue == null ||
+                    cmbCategory.EditValue == null ||
+                    cmbFromBranch.EditValue == null)
+                    return;
+                gcSupplierItems.DataSource = supplierRepository.GetSupplierItems(
+                    cmbSupplier.EditValue, cmbFromBranch.EditValue, cmbCategory.EditValue );
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+;
+        }
+
         private void ClearItemData(bool focusItemCode = true)
         {
             txtItemCode.EditValue = null;
@@ -273,21 +306,20 @@ namespace NSRetail.Stock
                 }
                 else
                 {
-
+                    decimal quantity = 0;
                     if (isOpenItem)
                     {
-                        decimal weightinKGS = Convert.ToDecimal(txtWeightInKgs.EditValue) +
-                            Convert.ToDecimal(gvSupplierReturns.GetRowCellValue(rowHandle, "WEIGHTINKGS"));
-                        if (weightinKGS > 0)
-                            gvSupplierReturns.SetRowCellValue(rowHandle, "WEIGHTINKGS", weightinKGS);
+                        quantity = Convert.ToDecimal(txtWeightInKgs.EditValue) +
+                            Convert.ToDecimal(gvSupplierReturns.GetRowCellValue(rowHandle, "QUANTITY"));
                     }
                     else
                     {
-                        int newQuantity = Convert.ToInt32(txtQuantity.EditValue) +
+                        quantity = Convert.ToDecimal(txtQuantity.EditValue) +
                         Convert.ToInt32(gvSupplierReturns.GetRowCellValue(rowHandle, "QUANTITY"));
-                        if (newQuantity > 0)
-                            gvSupplierReturns.SetRowCellValue(rowHandle, "QUANTITY", newQuantity);
                     }
+
+                    if (quantity > 0)
+                        gvSupplierReturns.SetRowCellValue(rowHandle, "QUANTITY", quantity);
                 }
                 isEventCall = false;
                 gvSupplierReturns.GridControl.BindingContext = new BindingContext();
@@ -340,6 +372,7 @@ namespace NSRetail.Stock
                 supplierReturns.SupplierID = cmbSupplier.EditValue;
                 supplierReturns.CategoryID = cmbCategory.EditValue;
                 supplierReturns.StockEntryID = cmbStockEntry.EditValue;
+                supplierReturns.BranchID = cmbFromBranch.EditValue;
                 supplierReturns.UserID = Utility.UserID;
                 supplierRepository.SaveSupplierReturns(supplierReturns);
             }
@@ -352,7 +385,7 @@ namespace NSRetail.Stock
         private void SaveSupplierReturnsDetail(int rowHandle)
         {
             DataRow drDetail = (gvSupplierReturns.GetRow(rowHandle) as DataRowView).Row;
-            object SupplierReturnsDetailID = supplierRepository.SaveSupplierReturnsDetail(drDetail,Utility.UserID, Utility.BranchID);
+            object SupplierReturnsDetailID = supplierRepository.SaveSupplierReturnsDetail(drDetail,Utility.UserID);
             drDetail["SUPPLIERRETURNSDETAILID"] = SupplierReturnsDetailID;
         }
         
@@ -455,5 +488,6 @@ namespace NSRetail.Stock
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
         }
+
     }
 }

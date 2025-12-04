@@ -108,6 +108,7 @@ namespace Entity
         public object SupplierID { get; set; }
         public object CategoryID { get; set; }
         public object StockEntryID { get; set; }
+        public object BranchID { get; set; }
         public DataTable dtSupplierReturns { get; set; }
     }
     public class SupplierReturnsDetail : EntityBase

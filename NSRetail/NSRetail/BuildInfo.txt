@@ -1,4 +1,13 @@
-﻿v3.4.5
+﻿v3.4.6
+  completed
+		o	Added source branch in supplier returns
+		o	Stock will deducted from selected source branch on generating supplier return debit note
+		o	Populating supplier items on selecting branch and supplier in supplier returns screen
+  pending
+		o	Item Ledger needs to be updated as per supplier returns logic
+		o	Moving items from supplier items to returns in supplier returns screen
+
+v3.4.5
   Completed
 	•Implemented new branch refunds logic.
 		o	All Damage, Expired, and Arrival Damage items across categories will now be added to the Damage & Wastage branch.

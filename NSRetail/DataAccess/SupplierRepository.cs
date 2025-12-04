@@ -24,6 +24,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SupplierID", supplierReturns.SupplierID);
                     cmd.Parameters.AddWithValue("@CategoryID", supplierReturns.CategoryID);
                     cmd.Parameters.AddWithValue("@StockEntryID", supplierReturns.StockEntryID);
+                    cmd.Parameters.AddWithValue("@BranchID", supplierReturns.BranchID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);
@@ -33,7 +34,8 @@ namespace DataAccess
                         supplierReturns.SupplierReturnsID = ds.Tables[0].Rows.Count > 0 ? ds.Tables[0].Rows[0]["SUPPLIERRETURNSID"] : 0;
                         supplierReturns.SupplierID = ds.Tables[0].Rows.Count > 0 ? ds.Tables[0].Rows[0]["SUPPLIERID"] : 0;
                         supplierReturns.CategoryID = ds.Tables[0].Rows.Count > 0 ? ds.Tables[0].Rows[0]["CATEGORYID"] : 0;
-                        supplierReturns. StockEntryID = ds.Tables[0].Rows.Count > 0 ? ds.Tables[0].Rows[0]["STOCKENTRYID"] : 0;
+                        supplierReturns.StockEntryID = ds.Tables[0].Rows.Count > 0 ? ds.Tables[0].Rows[0]["STOCKENTRYID"] : 0;
+                        supplierReturns.BranchID = ds.Tables[0].Rows.Count > 0 ? ds.Tables[0].Rows[0]["BRANCHID"] : 0;
                     }
                     if (ds.Tables.Count > 1)
                         supplierReturns.dtSupplierReturns = ds.Tables[1];
@@ -59,6 +61,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SupplierID", supplierReturns.SupplierID);
                     cmd.Parameters.AddWithValue("@CategoryID", supplierReturns.CategoryID);
                     cmd.Parameters.AddWithValue("@StockEntryID", supplierReturns.StockEntryID);
+                    cmd.Parameters.AddWithValue("@BranchID", supplierReturns.BranchID);
                     cmd.Parameters.AddWithValue("@UserID", supplierReturns.UserID);
                     supplierReturns.SupplierReturnsID = cmd.ExecuteScalar();
                 }
@@ -74,7 +77,7 @@ namespace DataAccess
             return supplierReturns;
         }
 
-        public object SaveSupplierReturnsDetail(DataRow drNew,object UserID, object BranchID)
+        public object SaveSupplierReturnsDetail(DataRow drNew,object UserID)
         {
             object SupplierReturnsDetailID = null;
             try
@@ -88,9 +91,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SupplierReturnsID", drNew["SUPPLIERRETURNSID"]);
                     cmd.Parameters.AddWithValue("@ItemCostPriceID", drNew["ITEMCOSTPRICEID"]);
                     cmd.Parameters.AddWithValue("@Quantity", drNew["QUANTITY"]);
-                    cmd.Parameters.AddWithValue("@WeightInKGS", drNew["WEIGHTINKGS"]);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
-                    cmd.Parameters.AddWithValue("@BranchID", BranchID);
                     cmd.Parameters.AddWithValue("@ReasonID", drNew["REASONID"]);
                     object obj = cmd.ExecuteScalar();
                     if (int.TryParse(Convert.ToString(obj), out int ivaue))
@@ -521,6 +522,32 @@ namespace DataAccess
                 else
                     throw new Exception("Error while discarding supplier returns");
             }
+        }
+
+        public DataTable GetSupplierItems(object SupplierID, object BranchID, object CategoryID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_SUPPLIERITEMS_BY_BRANCHSTOCK]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERID", SupplierID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving supplier items");
+            }
+            return dt;
         }
     }
 }
