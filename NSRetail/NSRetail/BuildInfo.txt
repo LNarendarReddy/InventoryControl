@@ -1,4 +1,24 @@
-﻿v3.0.8 
+﻿v3.4.5
+  Completed
+	•Implemented new branch refunds logic.
+		o	All Damage, Expired, and Arrival Damage items across categories will now be added to the Damage & Wastage branch.
+		o	For all Damage, Expired, and Arrival Damage child items, their weights will be rolled up to the parent item under the Damage & Wastage branch.
+		o	All categories of Not for Sale and Wrong Dispatch items will now be added to the RVP Warehouse.
+		o	All Not for Sale and Wrong Dispatch child item quantities will be added to the corresponding parent item under the RVP Warehouse.
+		o	Added a new reason type: Arrival Damage.
+	•Implemented updated Supplier Returns logic:
+		o	Once all items are entered, the user must click "Initiate Credit Note".
+		o	The sheet will then be saved with the status Credit Note Initiated.
+		o	After the supplier return is physically received, the user will update the return status, enter the return value, and generate the credit note.
+		o	When Supplier Returns are submitted or Credit Note is initiated, stock will be deducted from the Damage & Wastage branch.
+		o	Supplier Returns will be allowed only when sufficient stock exists under the Damage & Wastage branch.
+  Pending
+		•	Display Damage & Wastage branch stock in the Supplier Returns screen so that users can search and add items to the supplier return sheet.
+		•	Add a source selection option (Damage & Wastage Branch / RVP Warehouse) to make supplier returns dynamic and flexible.
+		•	Item Ledger needs to be updated as per supplier returns logic
+
+
+v3.0.8 
   -- Tray number logic in stock dispatch
   -- Tray info added in dispatch list (Delete Tray, View items in tray).
   -- Swiping machine integration in warehouse application.
