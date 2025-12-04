@@ -137,30 +137,16 @@ namespace DataAccess
         {
             try
             {
+
                 if (dt.Rows.Count == 0)
                     return;
-                dt.Columns.Remove("SNO");
-                dt.Columns.Remove("SUPPLIERRETURNSID");
-                dt.Columns.Remove("ITEMCOSTPRICEID");
-                dt.Columns.Remove("ITEMCODE");
-                dt.Columns.Remove("ITEMNAME");
-                dt.Columns.Remove("MRP");
-                dt.Columns.Remove("SALEPRICE");
-                dt.Columns.Remove("QUANTITY");
-                dt.Columns.Remove("COSTPRICE");
-                dt.Columns.Remove("TOTALCOSTPRICE");
-                dt.Columns.Remove("SELECTED");
-                dt.Columns.Remove("BRANCHNAME");
-                dt.Columns.Remove("CREATEDBY");
-                dt.Columns.Remove("BRAPPOVEDDATE");
-                dt.Columns.Remove("UPDATEDBY");
-                dt.Columns.Remove("UPDATEDDATE");
-                dt.Columns.Remove("REFUNDTYPE");
-                dt.Columns.Remove("BRCREATEDDATE");
-                dt.Columns.Remove("REASONID");
-                dt.Columns.Remove("BREFUNDNUMBER");
-                dt.Columns.Remove("HSNCODE");
-                dt.Columns.Remove("GSTCODE");
+
+                List<string> allowedcolumns = new List<string>()
+                    {   "SUPPLIERRETURNSDETAILID",
+                        "RETURNSTATUS",
+                    };
+                var columnsToRemove = dt.Columns.Cast<DataColumn>().Select(x => x.ColumnName).Where(x => !allowedcolumns.Contains(x)).ToList();
+                columnsToRemove.ForEach(x => dt.Columns.Remove(x));
 
                 using (SqlCommand cmd = new SqlCommand())
                 {
@@ -181,61 +167,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 if (ex.Message.Contains("Few items are not freezed"))
-                    throw ex;
-                else
-                    throw new Exception("Error while updating supplier returns detail");
-            }
-        }
-
-        public void InitiateCreditNote(object SupplierReturnsID, object UserID, DataTable dt)
-        {
-            try
-            {
-                if (dt.Rows.Count == 0)
-                    return;
-
-                dt.Columns.Remove("SNO");
-                dt.Columns.Remove("SUPPLIERRETURNSID");
-                dt.Columns.Remove("ITEMCOSTPRICEID");
-                dt.Columns.Remove("ITEMCODE");
-                dt.Columns.Remove("ITEMNAME");
-                dt.Columns.Remove("MRP");
-                dt.Columns.Remove("SALEPRICE");
-                dt.Columns.Remove("QUANTITY");
-                dt.Columns.Remove("COSTPRICE");
-                dt.Columns.Remove("TOTALCOSTPRICE");
-                dt.Columns.Remove("SELECTED");
-                dt.Columns.Remove("RETURNSTATUS");
-                dt.Columns.Remove("BRANCHNAME");
-                dt.Columns.Remove("CREATEDBY");
-                dt.Columns.Remove("BRAPPOVEDDATE");
-                dt.Columns.Remove("UPDATEDBY");
-                dt.Columns.Remove("UPDATEDDATE");
-                dt.Columns.Remove("REFUNDTYPE");
-                dt.Columns.Remove("BRCREATEDDATE");
-                dt.Columns.Remove("REASONID");
-                dt.Columns.Remove("BREFUNDNUMBER");
-                dt.Columns.Remove("HSNCODE");
-                dt.Columns.Remove("GSTCODE");
-
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = SQLCon.Sqlconn();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_INITIATECN]";
-                    cmd.Parameters.AddWithValue("@SupplierReturnsID", SupplierReturnsID);
-                    cmd.Parameters.AddWithValue("@UserID", UserID);
-                    cmd.Parameters.AddWithValue("@dtids", dt);
-                    object objreturn = cmd.ExecuteScalar();
-                    if (objreturn != null)
-                    {
-                        throw new Exception(Convert.ToString(objreturn));
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.Contains("initiating credit note"))
                     throw ex;
                 else
                     throw new Exception("Error while updating supplier returns detail");
@@ -418,7 +349,7 @@ namespace DataAccess
             return dt;
         }
 
-        public void FreezeSupplierReturns(object SupplierReturnsID, object UserID)
+        public void InitiateCreditNote(object SupplierReturnsID, object UserID)
         {
             try
             {
@@ -426,7 +357,7 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_U_FREEZESUPPLIERRETURNS]";
+                    cmd.CommandText = "[USP_U_INITIATECREDITNOTE]";
                     cmd.Parameters.AddWithValue("@SUPPLIERRETURNSID", SupplierReturnsID);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
                     object obj = cmd.ExecuteScalar();
@@ -436,11 +367,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while freezing supplier returns", ex);
-            }
-            finally
-            {
-                
+                throw new Exception("Error while generating credit note", ex);
             }
         }
 

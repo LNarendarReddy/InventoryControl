@@ -1,24 +1,13 @@
 ﻿using DataAccess;
-using DevExpress.Pdf.Native;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
-using DevExpress.XtraRichEdit.Layout;
-using Entity;
 using ErrorManagement;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail.Supplier
 {
-    public partial class frmViewReturnDetail : DevExpress.XtraEditors.XtraForm
+    public partial class frmViewReturnDetail : XtraForm
     {
         public frmViewReturnDetail(DataTable dtItems, object SupplierName, object SupplierReturnsID)
         {
@@ -51,9 +40,9 @@ namespace NSRetail.Supplier
 
         private void gvSupplierReturns_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
-            if (gvSupplierReturns.FocusedRowHandle < 0)
-                return;
-            e.Menu.Items.Add(new DXMenuItem("Move/Transfer", new EventHandler(OnMove_Click)));
+            //if (gvSupplierReturns.FocusedRowHandle < 0)
+            //    return;
+            //e.Menu.Items.Add(new DXMenuItem("Move/Transfer", new EventHandler(OnMove_Click)));
         }
 
         void OnMove_Click(object sender, EventArgs e)

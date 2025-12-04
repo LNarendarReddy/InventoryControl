@@ -40,20 +40,14 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSelect = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcReturnstatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbReturnStatus = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbReason = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -156,18 +150,12 @@
             this.gridColumn7,
             this.gridColumn8,
             this.gridColumn9,
-            this.gridColumn10,
             this.gridColumn12,
             this.gridColumn14,
             this.gridColumn15,
             this.gcSelect,
             this.gcReturnstatus,
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3,
             this.gridColumn6,
-            this.gridColumn16,
-            this.gridColumn17,
             this.gridColumn19,
             this.gridColumn20});
             this.gvSupplierReturns.GridControl = this.gcSupplierReturns;
@@ -233,27 +221,17 @@
             this.gridColumn9.VisibleIndex = 4;
             this.gridColumn9.Width = 65;
             // 
-            // gridColumn10
-            // 
-            this.gridColumn10.Caption = "Sale Price";
-            this.gridColumn10.FieldName = "SALEPRICE";
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.OptionsColumn.AllowEdit = false;
-            this.gridColumn10.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 5;
-            this.gridColumn10.Width = 76;
-            // 
             // gridColumn12
             // 
             this.gridColumn12.Caption = "Quantity";
             this.gridColumn12.FieldName = "QUANTITY";
             this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn12.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QUANTITY", "{0:0.##}")});
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 7;
+            this.gridColumn12.VisibleIndex = 6;
             this.gridColumn12.Width = 64;
             // 
             // gridColumn14
@@ -275,7 +253,7 @@
             this.gridColumn15.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTALCOSTPRICE", "{0:0.##}")});
             this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 8;
+            this.gridColumn15.VisibleIndex = 7;
             this.gridColumn15.Width = 106;
             // 
             // gcSelect
@@ -287,8 +265,6 @@
             this.gcSelect.Name = "gcSelect";
             this.gcSelect.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "SELECTED", "", ((short)(1)))});
-            this.gcSelect.Visible = true;
-            this.gcSelect.VisibleIndex = 15;
             this.gcSelect.Width = 124;
             // 
             // gcReturnstatus
@@ -299,6 +275,8 @@
             this.gcReturnstatus.Name = "gcReturnstatus";
             this.gcReturnstatus.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "RETURNSTATUS", "", ((short)(2)))});
+            this.gcReturnstatus.Visible = true;
+            this.gcReturnstatus.VisibleIndex = 9;
             this.gcReturnstatus.Width = 149;
             // 
             // cmbReturnStatus
@@ -312,33 +290,6 @@
             this.cmbReturnStatus.Name = "cmbReturnStatus";
             this.cmbReturnStatus.ShowHeader = false;
             // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Branch";
-            this.gridColumn1.FieldName = "BRANCHNAME";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 9;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Refund Type";
-            this.gridColumn2.FieldName = "REFUNDTYPE";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 10;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Refund Date";
-            this.gridColumn3.FieldName = "BRCREATEDDATE";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.OptionsColumn.AllowEdit = false;
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 13;
-            // 
             // gridColumn6
             // 
             this.gridColumn6.Caption = "Reason";
@@ -347,7 +298,7 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 11;
+            this.gridColumn6.VisibleIndex = 8;
             // 
             // cmbReason
             // 
@@ -357,29 +308,12 @@
             this.cmbReason.Name = "cmbReason";
             this.cmbReason.NullText = "";
             // 
-            // gridColumn16
-            // 
-            this.gridColumn16.Caption = "BR Number";
-            this.gridColumn16.FieldName = "BREFUNDNUMBER";
-            this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.OptionsColumn.AllowEdit = false;
-            this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 12;
-            // 
-            // gridColumn17
-            // 
-            this.gridColumn17.Caption = "Approved Date";
-            this.gridColumn17.FieldName = "BRAPPOVEDDATE";
-            this.gridColumn17.Name = "gridColumn17";
-            this.gridColumn17.OptionsColumn.AllowEdit = false;
-            this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 14;
-            // 
             // gridColumn19
             // 
             this.gridColumn19.Caption = "HSN Code";
             this.gridColumn19.FieldName = "HSNCODE";
             this.gridColumn19.Name = "gridColumn19";
+            this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.Visible = true;
             this.gridColumn19.VisibleIndex = 2;
             // 
@@ -388,8 +322,9 @@
             this.gridColumn20.Caption = "GST Code";
             this.gridColumn20.FieldName = "GSTCODE";
             this.gridColumn20.Name = "gridColumn20";
+            this.gridColumn20.OptionsColumn.AllowEdit = false;
             this.gridColumn20.Visible = true;
-            this.gridColumn20.VisibleIndex = 6;
+            this.gridColumn20.VisibleIndex = 5;
             // 
             // Root
             // 
@@ -489,7 +424,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
@@ -502,12 +436,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcSelect;
         private DevExpress.XtraGrid.Columns.GridColumn gcReturnstatus;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbReturnStatus;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbReason;
         private DevExpress.XtraEditors.TextEdit txtReturnValue;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;

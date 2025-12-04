@@ -1,25 +1,15 @@
 ﻿using DataAccess;
-using DevExpress.CodeParser;
 using DevExpress.Data;
-using DevExpress.Pdf.Native.BouncyCastle.Asn1.X509;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
-using Entity;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Management.Instrumentation;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail
 {
-    public partial class frmViewReturnItems : DevExpress.XtraEditors.XtraForm
+    public partial class frmViewReturnItems : XtraForm
     {
         object SupplierReturnsID = null;
         public bool cNGenerated = false;
@@ -42,6 +32,7 @@ namespace NSRetail
             {
                 gcSelect.Visible = false;
                 gcReturnstatus.Visible = true;
+                gcReturnstatus.OptionsColumn.AllowEdit = true;
             }
             if (!_cNInitiated)
             {
@@ -54,8 +45,8 @@ namespace NSRetail
                 btnGenerateCreditNote.Text = "Generate Credit Note";
                 btnGenerateCreditNote.Enabled = false;
                 txtReturnValue.Enabled = false;
+                gcReturnstatus.OptionsColumn.AllowEdit = false;
             }
-            gcReturnstatus.OptionsColumn.AllowEdit = false;
         }
 
         private void btnGenerateCreditNote_Click(object sender, EventArgs e) 
@@ -66,15 +57,6 @@ namespace NSRetail
                 return;
             try
             {
-                if (btnGenerateCreditNote.Text == "Initiate Credit Note")
-                {
-                    DataView dv = (gcSupplierReturns.DataSource as DataTable).Copy().DefaultView;
-                    dv.RowFilter = "SELECTED = 1";
-                    new SupplierRepository().InitiateCreditNote(SupplierReturnsID, Utility.UserID, dv.ToTable());
-                    cNInitiated = true;
-                }
-                else
-                {
                     if (txtReturnValue.EditValue == null)
                     {
                         XtraMessageBox.Show("Return value is mandatory");
@@ -83,7 +65,6 @@ namespace NSRetail
                     new SupplierRepository().UpdateSupplierReturns(SupplierReturnsID, Utility.UserID, 
                         (gcSupplierReturns.DataSource as DataTable).Copy(), txtReturnValue.EditValue);
                     cNGenerated = true;
-                }
                 Close();
             }
             catch (Exception ex)

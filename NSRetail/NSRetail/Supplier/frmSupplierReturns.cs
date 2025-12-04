@@ -100,9 +100,9 @@ namespace NSRetail.Stock
 
         private void Loadinvoicenumbers()
         {
-            cmbStockEntry.Properties.DataSource = new SupplierRepository().GetInvoiceNumbers(cmbSupplier.EditValue);
-            cmbStockEntry.Properties.ValueMember = "STOCKENTRYID";
-            cmbStockEntry.Properties.DisplayMember = "SUPPLIERINVOICENO";
+            //cmbStockEntry.Properties.DataSource = new SupplierRepository().GetInvoiceNumbers(cmbSupplier.EditValue);
+            //cmbStockEntry.Properties.ValueMember = "STOCKENTRYID";
+            //cmbStockEntry.Properties.DisplayMember = "SUPPLIERINVOICENO";
         }
 
         private void InitialLoad()
@@ -139,6 +139,8 @@ namespace NSRetail.Stock
         
         private void txtItemCode_Leave(object sender, EventArgs e)
         {
+            if(string.IsNullOrEmpty(Convert.ToString(txtItemCode.EditValue)))
+                return;
             int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
 
             if (rowHandle < 0)
@@ -164,6 +166,7 @@ namespace NSRetail.Stock
             }
             else
             {
+                XtraMessageBox.Show("Item does not exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ClearItemData(false);
             }
 
@@ -400,14 +403,14 @@ namespace NSRetail.Stock
             SaveSupplierReturnsDetail(e.RowHandle);
         }
 
-        private void btnFreeze_Click(object sender, EventArgs e)
+        private void btnInitiateCreditNote_Click(object sender, EventArgs e)
         {
             try
             {
                 if (gvSupplierReturns.RowCount == 0)
                     return;
-                supplierRepository.FreezeSupplierReturns(supplierReturns.SupplierReturnsID, Utility.UserID);
-                XtraMessageBox.Show("Return sheet submitted successfully.",
+                supplierRepository.InitiateCreditNote(supplierReturns.SupplierReturnsID, Utility.UserID);
+                XtraMessageBox.Show("Create Note Initiated Successfully",
                         "Information!",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
