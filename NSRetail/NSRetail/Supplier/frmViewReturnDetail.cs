@@ -17,11 +17,6 @@ namespace NSRetail.Supplier
             gcSupplierReturns.DataSource = dtItems;
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            gcSupplierReturns.ShowRibbonPrintPreview();
-        }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();

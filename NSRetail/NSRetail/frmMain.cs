@@ -477,7 +477,7 @@ namespace NSRetail
             supplierReports.SubCategory.Add(new ReportHolder("F01FA427-4A85-4600-B27A-5A31278D8FA5") { ReportName = "Invoice List", SearchCriteriaControl = new ucInvoiceList() });
             supplierReports.SubCategory.Add(new ReportHolder("7A2064BB-F6AE-4E4C-8DE2-2EC267F71134") { ReportName = "Indent", SearchCriteriaControl = new ucDealerIndent() });
             supplierReports.SubCategory.Add(new ReportHolder("8A514101-90D5-4240-940C-AA49D85A5BDC") { ReportName = "Indent List", SearchCriteriaControl = new ucSupplierIndentList() });
-            supplierReports.SubCategory.Add(new ReportHolder("65627E0A-E8A2-4D6B-9FB4-6CBFD9EDC296") { ReportName = "Returns Sheets", SearchCriteriaControl = new ucSupplierReturnsList() });
+            supplierReports.SubCategory.Add(new ReportHolder("65627E0A-E8A2-4D6B-9FB4-6CBFD9EDC296") { ReportName = "Debit Notes", SearchCriteriaControl = new ucSupplierReturnsList() });
             reportList.Add(supplierReports);
 
             ShowReportForm(reportList, "Supplier");

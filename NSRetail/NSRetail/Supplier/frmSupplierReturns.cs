@@ -1,7 +1,10 @@
 ﻿using DataAccess;
 using DevExpress.Pdf.Native.BouncyCastle.Asn1.X509;
 using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 using Entity;
+using NSRetail.Reports;
+using NSRetail.Supplier;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,11 +49,6 @@ namespace NSRetail.Stock
                 cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
                 cmbCategory.Properties.ValueMember = "CATEGORYID";
 
-                DataTable dataTable  = new SupplierRepository().GetReason();
-                cmbReasongrid.DataSource = cmbReason.Properties.DataSource = dataTable;
-                cmbReasongrid.ValueMember = cmbReason.Properties.ValueMember = "REASONID";
-                cmbReasongrid.DisplayMember = cmbReason.Properties.DisplayMember = "REASONNAME";
-
                 cmbFromBranch.Properties.DataSource = Utility.GetBranchList();
                 cmbFromBranch.Properties.ValueMember = "BRANCHID";
                 cmbFromBranch.Properties.DisplayMember = "BRANCHNAME";
@@ -78,7 +76,6 @@ namespace NSRetail.Stock
             try
             {
                 InitialLoad();
-                BindSupplierItems();
                 Loadinvoicenumbers();
             }
             catch (Exception ex)
@@ -91,7 +88,6 @@ namespace NSRetail.Stock
         private void cmbFromBranch_EditValueChanged(object sender, EventArgs e)
         {
             InitialLoad();
-            BindSupplierItems();
         }
 
         private void cmbStockEntry_EditValueChanged(object sender, EventArgs e)
@@ -137,25 +133,6 @@ namespace NSRetail.Stock
                 throw ex;
             }
 ;        }
-
-        private void BindSupplierItems()
-        {
-            try
-            {
-                if (cmbSupplier.EditValue == null ||
-                    cmbCategory.EditValue == null ||
-                    cmbFromBranch.EditValue == null)
-                    return;
-                gcSupplierItems.DataSource = supplierRepository.GetSupplierItems(
-                    cmbSupplier.EditValue, cmbFromBranch.EditValue, cmbCategory.EditValue );
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-;
-        }
 
         private void ClearItemData(bool focusItemCode = true)
         {
@@ -247,10 +224,6 @@ namespace NSRetail.Stock
                 txtWeightInKgs.Enabled = false;
                 txtQuantity.Enabled = true;
             }
-            if (!isItemScanned)
-            {
-                cmbReason.Focus();
-            }
         }
         
         private void txtItemCode_Click(object sender, EventArgs e)
@@ -262,107 +235,42 @@ namespace NSRetail.Stock
         {
             txtItemCode.SelectAll();
         }
-        
+
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            try
+            if (e.KeyChar != (char)Keys.Enter)
+                return;
+
+            if (sluItemCode.EditValue == null || drSelectedPrice == null || txtQuantity.EditValue == null)
             {
-                if (e.KeyChar != (char)Keys.Enter)
-                    return;
-
-                if (sluItemCode.EditValue == null || drSelectedPrice == null || txtQuantity.EditValue == null
-                    || txtQuantity.EditValue.Equals(0))
-                {
-                    txtItemCode.Focus();
-                    return;
-                }
-
-                if (!dxValidationProvider1.Validate())
-                    return;
-
-                if (supplierReturns.SupplierReturnsID.Equals(0))
-                {
-                    InitialLoad();
-                    if(supplierReturns.SupplierReturnsID.Equals(0))
-                    {
-                        var result = XtraMessageBox.Show("You are about save a new return sheet for selected supplier. Do you want to continue?",
-                            "Confirmation!",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question);
-                        if(!Convert.ToString(result).ToLower().Equals("yes"))
-                            return;
-                    }
-                    SaveSupplierReturns();
-                }
-
-                gvSupplierReturns.GridControl.BindingContext = new BindingContext();
-                gvSupplierReturns.GridControl.DataSource = supplierReturns.dtSupplierReturns;
-                isEventCall = true;
-
-                int rowHandle = Getrowhandle();
-                if (rowHandle < 0)
-                {
-                    gvSupplierReturns.AddNewRow();
-                }
-                else
-                {
-                    decimal quantity = 0;
-                    if (isOpenItem)
-                    {
-                        quantity = Convert.ToDecimal(txtWeightInKgs.EditValue) +
-                            Convert.ToDecimal(gvSupplierReturns.GetRowCellValue(rowHandle, "QUANTITY"));
-                    }
-                    else
-                    {
-                        quantity = Convert.ToDecimal(txtQuantity.EditValue) +
-                        Convert.ToInt32(gvSupplierReturns.GetRowCellValue(rowHandle, "QUANTITY"));
-                    }
-
-                    if (quantity > 0)
-                        gvSupplierReturns.SetRowCellValue(rowHandle, "QUANTITY", quantity);
-                }
-                isEventCall = false;
-                gvSupplierReturns.GridControl.BindingContext = new BindingContext();
-                gvSupplierReturns.GridControl.DataSource = supplierReturns.dtSupplierReturns;
-
-                rowHandle = Getrowhandle();
-                if (rowHandle >= 0)
-                {
-                    gvSupplierReturns.FocusedRowHandle = rowHandle; // set added row as focused row
-                    SaveSupplierReturnsDetail(rowHandle);
-                }
-                ClearItemData();
-                gvSupplierReturns.FocusedRowHandle = rowHandle;
+                txtItemCode.Focus();
+                return;
             }
-            catch (Exception ex)
+
+            if (Convert.ToDecimal(txtQuantity.EditValue) <= 0)
             {
-                // delete row only if it is create
-                if (!int.TryParse(gvSupplierReturns.GetFocusedRowCellValue("SUPPLIERRETURNSDETAILID")?.ToString(), out int id)
-                    || id <= 0)
-                    gvSupplierReturns.DeleteRow(gvSupplierReturns.FocusedRowHandle);
+                txtItemCode.Focus();
+                return;
+            }
 
-                ErrorManagement.ErrorMgmt.ShowError(ex);
-            }
-        }
-        
-        private int Getrowhandle()
-        {
-            int rowHandle = -1;
-            IList source = (IList)ListBindingHelper.GetList(gcSupplierReturns.DataSource, gcSupplierReturns.DataMember);
-            PropertyDescriptorCollection coll = ListBindingHelper.GetListItemProperties(gcSupplierReturns.DataSource);
-            PropertyDescriptor desc1 = coll["ITEMCOSTPRICEID"];
-            PropertyDescriptor desc2 = coll["REASONID"];
-            foreach (object row in source)
+            if (!dxValidationProvider1.Validate())
+                return;
+
+            SupplierRowModel model = new SupplierRowModel
             {
-                object val1 = desc1.GetValue(row);
-                object val2 = desc2.GetValue(row);
-                if (val1.Equals(drSelectedPrice["ITEMCOSTPRICEID"]) && val2.Equals(cmbReason.EditValue))
-                {
-                    rowHandle = gvSupplierReturns.GetRowHandle(source.IndexOf(row));
-                    break;
-                }
-            }
-            return rowHandle;
+                ItemCostPriceID = Convert.ToInt32(drSelectedPrice["ITEMCOSTPRICEID"]),
+                ItemCode = txtItemCode.Text,
+                ItemName = sluItemCode.Text,
+                MRP = Convert.ToDecimal(drSelectedPrice["MRP"]),
+                CostPrice = Convert.ToDecimal(drSelectedPrice["COSTPRICEWT"]),
+                Quantity = isOpenItem
+                            ? Convert.ToDecimal(txtWeightInKgs.EditValue)
+                            : Convert.ToDecimal(txtQuantity.EditValue),
+            };
+
+            InsertOrUpdateRowFromPopup(model);
+
+            ClearItemData();
         }
         
         private void SaveSupplierReturns()
@@ -387,22 +295,6 @@ namespace NSRetail.Stock
             DataRow drDetail = (gvSupplierReturns.GetRow(rowHandle) as DataRowView).Row;
             object SupplierReturnsDetailID = supplierRepository.SaveSupplierReturnsDetail(drDetail,Utility.UserID);
             drDetail["SUPPLIERRETURNSDETAILID"] = SupplierReturnsDetailID;
-        }
-        
-        private void gvSupplierReturns_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
-        {
-            gvSupplierReturns.SetRowCellValue(e.RowHandle, "SNO", gvSupplierReturns.RowCount + 1);
-            gvSupplierReturns.SetRowCellValue(e.RowHandle, "SUPPLIERRETURNSDETAILID", -1);
-            gvSupplierReturns.SetRowCellValue(e.RowHandle, "SUPPLIERRETURNSID", supplierReturns.SupplierReturnsID);
-            gvSupplierReturns.SetRowCellValue(e.RowHandle, "ITEMCOSTPRICEID", drSelectedPrice["ITEMCOSTPRICEID"]);
-            gvSupplierReturns.SetRowCellValue(e.RowHandle, "ITEMCODE", txtItemCode.EditValue);
-            gvSupplierReturns.SetRowCellValue(e.RowHandle, "ITEMNAME", sluItemCode.Text);
-            gvSupplierReturns.SetRowCellValue(e.RowHandle, "MRP", drSelectedPrice["MRP"]);
-            gvSupplierReturns.SetRowCellValue(e.RowHandle, "SALEPRICE", drSelectedPrice["SALEPRICE"]);
-            gvSupplierReturns.SetRowCellValue(e.RowHandle, "COSTPRICE", drSelectedPrice["COSTPRICEWT"]);
-            gvSupplierReturns.SetRowCellValue(e.RowHandle, "QUANTITY", txtQuantity.EditValue);
-            gvSupplierReturns.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", txtWeightInKgs.EditValue);
-            gvSupplierReturns.SetRowCellValue(e.RowHandle, "REASONID", cmbReason.EditValue);
         }
         
         private void txtQuantity_Enter(object sender, EventArgs e)
@@ -436,16 +328,17 @@ namespace NSRetail.Stock
             SaveSupplierReturnsDetail(e.RowHandle);
         }
 
-        private void btnInitiateCreditNote_Click(object sender, EventArgs e)
+        private void btnGenerateDebitNote_Click(object sender, EventArgs e)
         {
             try
             {
                 if (gvSupplierReturns.RowCount == 0)
                     return;
-                supplierRepository.InitiateCreditNote(supplierReturns.SupplierReturnsID, Utility.UserID);
+                supplierRepository.GenerateDebitNote(supplierReturns.SupplierReturnsID, Utility.UserID);
                 XtraMessageBox.Show("Create Note Initiated Successfully",
                         "Information!",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                SupplierHelper.ShowSupplierDebitNote(supplierReturns.SupplierReturnsID);
                 this.Close();
             }
             catch (Exception ex)
@@ -487,6 +380,131 @@ namespace NSRetail.Stock
             {
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
+        }
+
+        private void btnSelectSupplierItems_Click(object sender, EventArgs e)
+        {
+            if (cmbSupplier.EditValue == null ||
+                    cmbCategory.EditValue == null ||
+                    cmbFromBranch.EditValue == null)
+                return;
+            DataTable dt = supplierRepository.GetSupplierItems(
+                cmbSupplier.EditValue, cmbFromBranch.EditValue, cmbCategory.EditValue);
+            frmSupplierItemsByBranchStock obj = new frmSupplierItemsByBranchStock(dt);
+            obj.RowSelected += OnPopupRowSelected;
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog(this);
+        }
+
+        private void OnPopupRowSelected(SupplierRowModel selected)
+        {
+            InsertOrUpdateRowFromPopup(selected);
+        }
+
+        private void InsertOrUpdateRowFromPopup(SupplierRowModel model)
+        {
+            int rowHandle = -1;
+            bool isNewRow = false;
+            decimal oldQuantity = 0;
+
+            try
+            {
+                if (model == null || model.Quantity <= 0)
+                    return;
+
+                if (supplierReturns.SupplierReturnsID.Equals(0))
+                {
+                    InitialLoad();
+
+                    if (supplierReturns.SupplierReturnsID.Equals(0))
+                    {
+                        var result = XtraMessageBox.Show(
+                            "You are about save a new return sheet for selected supplier. Do you want to continue?",
+                            "Confirmation!",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question);
+
+                        if (result != DialogResult.Yes)
+                            return;
+                    }
+
+                    SaveSupplierReturns();
+                }
+
+                gvSupplierReturns.GridControl.BindingContext = new BindingContext();
+                gvSupplierReturns.GridControl.DataSource = supplierReturns.dtSupplierReturns;
+                isEventCall = true;
+
+                rowHandle = FindExistingRow(model.ItemCostPriceID);
+
+                if (rowHandle < 0)
+                {
+                    gvSupplierReturns.AddNewRow();
+                    rowHandle = gvSupplierReturns.FocusedRowHandle;
+                    isNewRow = true;
+
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "SNO", gvSupplierReturns.RowCount + 1);
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "SUPPLIERRETURNSDETAILID", -1);
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "SUPPLIERRETURNSID", supplierReturns.SupplierReturnsID);
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "ITEMCOSTPRICEID", model.ItemCostPriceID);
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "ITEMCODE", model.ItemCode);
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "ITEMNAME", model.ItemName);
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "MRP", model.MRP);
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "COSTPRICE", model.CostPrice);
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "QUANTITY", model.Quantity);
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "TOTALCOSTPRICE",model.Quantity * model.CostPrice);
+                }
+                else
+                {
+                    oldQuantity = Convert.ToDecimal(gvSupplierReturns.GetRowCellValue(rowHandle, "QUANTITY"));
+                    decimal newQty = oldQuantity + model.Quantity;
+
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "QUANTITY", newQty);
+
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "TOTALCOSTPRICE",
+                        newQty * model.CostPrice);
+                }
+
+                isEventCall = false;
+                gvSupplierReturns.GridControl.BindingContext = new BindingContext();
+                gvSupplierReturns.GridControl.DataSource = supplierReturns.dtSupplierReturns;
+
+                rowHandle = FindExistingRow(model.ItemCostPriceID);
+                if (rowHandle >= 0)
+                {
+                    gvSupplierReturns.FocusedRowHandle = rowHandle;
+                    SaveSupplierReturnsDetail(rowHandle);
+                }
+            }
+            catch (Exception ex)
+            {
+                // ROLLBACK LOGIC
+                if (isNewRow && rowHandle >= 0)
+                {
+                    gvSupplierReturns.DeleteRow(rowHandle);
+                }
+                else if (!isNewRow && rowHandle >= 0)
+                {
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "QUANTITY", oldQuantity);
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "TOTALCOSTPRICE",
+                        oldQuantity * model.CostPrice);
+                }
+
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
+        }
+
+        private int FindExistingRow(int itemCostPriceId)
+        {
+            for (int i = 0; i < gvSupplierReturns.RowCount; i++)
+            {
+                int id = Convert.ToInt32(gvSupplierReturns.GetRowCellValue(i, "ITEMCOSTPRICEID"));
+                if (id == itemCostPriceId)
+                    return i;
+            }
+            return -1;
         }
 
     }

@@ -1,42 +1,35 @@
-﻿v3.4.7 — Supplier Returns Enhancements
-  Completed
-		o	Added a new Supplier Items screen to display items linked to the selected supplier.
-		o	Only items that have available stock in the selected branch will be shown.
-		o	Results can be filtered by category for easier navigation.
-		o	The new screen can now be accessed directly from the Supplier Returns module.
-		o	Users can select a Return Reason (available at the bottom of the screen) and choose an item to add to the Supplier Returns sheet.
-  Pending
-		o	Implementing Item Ledger updates to fully support the Supplier Returns workflow.
-		o	A new popup may be added to allow users to edit item quantities and select the reason before adding them to the return sheet(test the flow and confirm the behaviour).
+﻿v3.4.8 — Supplier Returns Enhancements
+  -- Renamed all Credit Note terminology to Debit Note across the module.
+  -- Implemented the new Debit Note print format as per the approved template.
+  -- Added a Print option in the Supplier Returns List and updated "Generate CN" to "Map Credit Note".
+  -- Added a new “Return Quantity” column in the Supplier Items list for more accurate returns.
+  -- Updated Debit Note statuses to use standard terms: Draft, Open, Partially Closed, Closed (replacing old CN-initiated/generated labels).
+
+v3.4.7 — Supplier Returns Enhancements
+  -- Added a new Supplier Items screen to display items linked to the selected supplier.
+  -- Only items that have available stock in the selected branch will be shown.
+  -- Results can be filtered by category for easier navigation.
+  -- The new screen can now be accessed directly from the Supplier Returns module.
+  -- Users can select a Return Reason (available at the bottom of the screen) and choose an item to add to the Supplier Returns sheet.
+
 v3.4.6
-  completed
-		o	Added source branch in supplier returns
-		o	Stock will deducted from selected source branch on generating supplier return debit note
-		o	Populating supplier items on selecting branch and supplier in supplier returns screen
-  pending
-		o	Item Ledger needs to be updated as per supplier returns logic
-		o	Moving items from supplier items to returns in supplier returns screen
+  -- Added source branch in supplier returns
+  -- Stock will deducted from selected source branch on generating supplier return debit note
+  -- Populating supplier items on selecting branch and supplier in supplier returns screen
 
 v3.4.5
-  Completed
-	•Implemented new branch refunds logic.
+  -- Implemented new branch refunds logic.
 		o	All Damage, Expired, and Arrival Damage items across categories will now be added to the Damage & Wastage branch.
 		o	For all Damage, Expired, and Arrival Damage child items, their weights will be rolled up to the parent item under the Damage & Wastage branch.
 		o	All categories of Not for Sale and Wrong Dispatch items will now be added to the RVP Warehouse.
 		o	All Not for Sale and Wrong Dispatch child item quantities will be added to the corresponding parent item under the RVP Warehouse.
 		o	Added a new reason type: Arrival Damage.
-	•Implemented updated Supplier Returns logic:
+  -- Implemented updated Supplier Returns logic:
 		o	Once all items are entered, the user must click "Initiate Credit Note".
 		o	The sheet will then be saved with the status Credit Note Initiated.
 		o	After the supplier return is physically received, the user will update the return status, enter the return value, and generate the credit note.
 		o	When Supplier Returns are submitted or Credit Note is initiated, stock will be deducted from the Damage & Wastage branch.
 		o	Supplier Returns will be allowed only when sufficient stock exists under the Damage & Wastage branch.
-  Pending
-		•	Display Damage & Wastage branch stock in the Supplier Returns screen so that users can search and add items to the supplier return sheet.
-		•	Add a source selection option (Damage & Wastage Branch / RVP Warehouse) to make supplier returns dynamic and flexible.
-		•	Item Ledger needs to be updated as per supplier returns logic
-
-
 v3.0.8 
   -- Tray number logic in stock dispatch
   -- Tray info added in dispatch list (Delete Tray, View items in tray).

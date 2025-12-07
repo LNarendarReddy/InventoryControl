@@ -754,6 +754,12 @@
     <Compile Include="Reports\rptOfrPoster.Designer.cs">
       <DependentUpon>rptOfrPoster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptSupplierDebitNote.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptSupplierDebitNote.Designer.cs">
+      <DependentUpon>rptSupplierDebitNote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stock\frmAddProcessing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1224,6 +1230,12 @@
     <Compile Include="ReportForms\Stock\StockReports\frmStockSummary.Designer.cs">
       <DependentUpon>frmStockSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="Supplier\frmSupplierItemsByBranchStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Supplier\frmSupplierItemsByBranchStock.Designer.cs">
+      <DependentUpon>frmSupplierItemsByBranchStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Supplier\frmSupplierReturns.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1242,6 +1254,7 @@
     <Compile Include="Supplier\frmViewReturnItems.Designer.cs">
       <DependentUpon>frmViewReturnItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Supplier\SupplierHelper.cs" />
     <Compile Include="Utilities\AccessUtility.cs" />
     <Compile Include="Utilities\DotMatrixPrintHelper.cs" />
     <Compile Include="Utilities\DotMatrixPrinter.cs" />
@@ -1579,6 +1592,9 @@
     <EmbeddedResource Include="Reports\rptOfrPoster.resx">
       <DependentUpon>rptOfrPoster.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptSupplierDebitNote.resx">
+      <DependentUpon>rptSupplierDebitNote.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmAddProcessing.resx">
       <DependentUpon>frmAddProcessing.cs</DependentUpon>
     </EmbeddedResource>
@@ -1820,6 +1836,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockReports\frmStockSummary.resx">
       <DependentUpon>frmStockSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Supplier\frmSupplierItemsByBranchStock.resx">
+      <DependentUpon>frmSupplierItemsByBranchStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmSupplierReturns.resx">
       <DependentUpon>frmSupplierReturns.cs</DependentUpon>

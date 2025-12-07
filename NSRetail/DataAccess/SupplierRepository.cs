@@ -92,7 +92,6 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ItemCostPriceID", drNew["ITEMCOSTPRICEID"]);
                     cmd.Parameters.AddWithValue("@Quantity", drNew["QUANTITY"]);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
-                    cmd.Parameters.AddWithValue("@ReasonID", drNew["REASONID"]);
                     object obj = cmd.ExecuteScalar();
                     if (int.TryParse(Convert.ToString(obj), out int ivaue))
                         SupplierReturnsDetailID = obj;
@@ -350,15 +349,16 @@ namespace DataAccess
             return dt;
         }
 
-        public void InitiateCreditNote(object SupplierReturnsID, object UserID)
+        public DataSet GenerateDebitNote(object SupplierReturnsID, object UserID)
         {
+            DataSet ds = new DataSet();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_U_INITIATECREDITNOTE]";
+                    cmd.CommandText = "[USP_U_GENERATEDEBITNOTE]";
                     cmd.Parameters.AddWithValue("@SUPPLIERRETURNSID", SupplierReturnsID);
                     cmd.Parameters.AddWithValue("@USERID", UserID);
                     object obj = cmd.ExecuteScalar();
@@ -368,9 +368,11 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while generating credit note", ex);
+                throw new Exception("Error while generating debit note", ex);
             }
+            return ds;
         }
+
 
         public DataTable ViewSupplierReturnItems(object SupplierReturnsID)
         {
@@ -548,6 +550,30 @@ namespace DataAccess
                 throw new Exception("Error while retrieving supplier items");
             }
             return dt;
+        }
+
+        public DataSet GetDebitNote(object SupplierReturnsID)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_SUPPLIERDEBITNOTE]";
+                    cmd.Parameters.AddWithValue("@SupplierReturnsID", SupplierReturnsID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(ds);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving debit note");
+            }
+            return ds;
         }
     }
 }

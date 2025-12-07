@@ -12,9 +12,7 @@ namespace NSRetail
     public partial class frmViewReturnItems : XtraForm
     {
         object SupplierReturnsID = null;
-        public bool cNGenerated = false;
-        public bool cNInitiated = false;
-        public frmViewReturnItems(DataTable dtItems, object SupplierName, object _SupplierReturnsID, bool _cNInitiated, bool _cnGenerated)
+        public frmViewReturnItems(DataTable dtItems, object SupplierName, object _SupplierReturnsID, bool _IsOpen)
         {
             InitializeComponent();
 
@@ -26,30 +24,16 @@ namespace NSRetail
             this.Text = $"{Text} - {SupplierName} - {SupplierReturnsID}";
             gvSupplierReturns.ViewCaption = $"Credit Note : {SupplierName}-{SupplierReturnsID}";
             gcSupplierReturns.DataSource = dtItems;
-            cNGenerated = _cnGenerated;
-            cNInitiated = _cNInitiated;
-            if (cNInitiated || cNGenerated)
+            if (_IsOpen)
             {
-                gcSelect.Visible = false;
                 gcReturnstatus.Visible = true;
                 gcReturnstatus.OptionsColumn.AllowEdit = true;
-            }
-            if (!_cNInitiated)
-            {
-                btnGenerateCreditNote.Text = "Initiate Credit Note";
-                txtReturnValue.Enabled = false;
-            }
-
-            if (_cnGenerated)
-            {
-                btnGenerateCreditNote.Text = "Generate Credit Note";
-                btnGenerateCreditNote.Enabled = false;
-                txtReturnValue.Enabled = false;
-                gcReturnstatus.OptionsColumn.AllowEdit = false;
+                btnCreditNoteMapping.Enabled = true;
+                txtReturnValue.Enabled = true;
             }
         }
 
-        private void btnGenerateCreditNote_Click(object sender, EventArgs e) 
+        private void btnCreditNoteMapping_Click(object sender, EventArgs e) 
         {
             if (gvSupplierReturns.RowCount == 0 ||
                 XtraMessageBox.Show("Are you sure want to continue?", "Confirm",
@@ -64,18 +48,12 @@ namespace NSRetail
                     }
                     new SupplierRepository().UpdateSupplierReturns(SupplierReturnsID, Utility.UserID, 
                         (gcSupplierReturns.DataSource as DataTable).Copy(), txtReturnValue.EditValue);
-                    cNGenerated = true;
                 Close();
             }
             catch (Exception ex)
             {
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
-        }
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            gcSupplierReturns.ShowRibbonPrintPreview();
         }
 
         private void frmViewReturnItems_KeyDown(object sender, KeyEventArgs e)
