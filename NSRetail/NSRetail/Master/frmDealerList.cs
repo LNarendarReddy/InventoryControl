@@ -79,7 +79,8 @@ namespace NSRetail.Master
                     ObjDealer.GSTIN = gvDealer.GetFocusedRowCellValue("GSTIN");
                     ObjDealer.PANNUMBER = gvDealer.GetFocusedRowCellValue("PANNUMBER");
                     ObjDealer.VendorCode = gvDealer.GetFocusedRowCellValue("VENDORCODE");
-                    frmDealer obj = new frmDealer(ObjDealer);
+                    DataTable dt = new SupplierRepository().GetSupplierItems(ObjDealer.DEALERID);
+                    frmDealer obj = new frmDealer(ObjDealer, dt);
                     obj.ShowInTaskbar = false;
                     obj.StartPosition = FormStartPosition.CenterScreen;
                     obj.IconOptions.ShowIcon = false;

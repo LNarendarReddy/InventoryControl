@@ -1,4 +1,12 @@
-﻿v3.4.8 — Supplier Returns Enhancements
+﻿v3.4.9 — Supplier & SKU Mapping Enhancements
+  -- Updated Item–Supplier mapping to use SKU instead of Item Price.
+  -- Added a Supplier Item List section in the Supplier master screen.
+  -- Introduced a Delete option to unlink items from suppliers with safety validations.
+  -- Updated all Supplier-related screens and reports to be SKU-based.
+  -- Implemented automatic SKU–Supplier mapping during Stock Entry if an unmapped item is detected.
+  -- Updated logic and UI in affected modules: Supplier Items Report, Supplier Returns Screen, Supplier-wise Item Margin, Purchase vs Sales Report, Supplier-wise Branch Refunds, Customer Refunds, Sales & Dispatches.
+
+v3.4.8 — Supplier Returns Enhancements
   -- Renamed all Credit Note terminology to Debit Note across the module.
   -- Implemented the new Debit Note print format as per the approved template.
   -- Added a Print option in the Supplier Returns List and updated "Generate CN" to "Map Credit Note".
