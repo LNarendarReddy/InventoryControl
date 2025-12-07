@@ -1,4 +1,14 @@
-﻿v3.4.6
+﻿v3.4.7 — Supplier Returns Enhancements
+  Completed
+		o	Added a new Supplier Items screen to display items linked to the selected supplier.
+		o	Only items that have available stock in the selected branch will be shown.
+		o	Results can be filtered by category for easier navigation.
+		o	The new screen can now be accessed directly from the Supplier Returns module.
+		o	Users can select a Return Reason (available at the bottom of the screen) and choose an item to add to the Supplier Returns sheet.
+  Pending
+		o	Implementing Item Ledger updates to fully support the Supplier Returns workflow.
+		o	A new popup may be added to allow users to edit item quantities and select the reason before adding them to the return sheet(test the flow and confirm the behaviour).
+v3.4.6
   completed
 		o	Added source branch in supplier returns
 		o	Stock will deducted from selected source branch on generating supplier return debit note
