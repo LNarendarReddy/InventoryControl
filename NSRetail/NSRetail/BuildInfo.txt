@@ -1,4 +1,15 @@
-﻿v3.4.9 — Supplier & SKU Mapping Enhancements
+﻿v3.5.0 — Supplier Returns & Return Sheets Improvements
+  -- Fixed the Discard option issue in Operations → Supplier Returns.
+  -- Resolved category validation in Supplier Returns to prevent adding items from unauthorized categories (e.g., Kiran when General is selected).
+  -- Enabled users with all-category access to select any category in Supplier Returns.
+  -- Restored proper handling of supplier return reasons to ensure correct printing and serial generation for non-damaged / non-expired (Purchase Return) items.
+  -- Added the ability to unlink supplier items in Supplier Metadata.
+  -- Introduced the Discard option in Supplier Return Sheets.
+  -- Updated Supplier Return Sheets by renaming Proposed Value to DN/DC Value, Accepted Value to CN Value, and adding a Pending Value column.
+  -- Corrected supplier return sheet date behavior to avoid creation with old dates when a branch is selected.
+  -- Removed visibility of old supplier return sheets from Return Sheets.
+
+v3.4.9 — Supplier & SKU Mapping Enhancements
   -- Updated Item–Supplier mapping to use SKU instead of Item Price.
   -- Added a Supplier Item List section in the Supplier master screen.
   -- Introduced a Delete option to unlink items from suppliers with safety validations.

@@ -91,6 +91,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SupplierReturnsID", drNew["SUPPLIERRETURNSID"]);
                     cmd.Parameters.AddWithValue("@ItemCostPriceID", drNew["ITEMCOSTPRICEID"]);
                     cmd.Parameters.AddWithValue("@Quantity", drNew["QUANTITY"]);
+                    cmd.Parameters.AddWithValue("@ReasonID", drNew["REASONID"]);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     object obj = cmd.ExecuteScalar();
                     if (int.TryParse(Convert.ToString(obj), out int ivaue))

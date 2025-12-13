@@ -46,12 +46,13 @@ namespace NSRetail.Supplier
 
             var item = new SupplierRowModel
             {
-                ItemCostPriceID = Convert.ToInt32(gvSupplierItems.GetRowCellValue(rowHandle,"ITEMCOSTPRICEID")),
+                ItemCostPriceID = Convert.ToInt32(gvSupplierItems.GetRowCellValue(rowHandle, "ITEMCOSTPRICEID")),
                 ItemCode = gvSupplierItems.GetRowCellValue(rowHandle, "ITEMCODE")?.ToString(),
                 ItemName = gvSupplierItems.GetRowCellValue(rowHandle, "ITEMNAME")?.ToString(),
                 MRP = Convert.ToDecimal(gvSupplierItems.GetRowCellValue(rowHandle, "MRP")),
                 CostPrice = Convert.ToDecimal(gvSupplierItems.GetRowCellValue(rowHandle, "COSTPRICEWT")),
-                Quantity = Convert.ToDecimal(gvSupplierItems.GetRowCellValue(rowHandle, "RETURNQUANTITY"))
+                Quantity = Convert.ToDecimal(gvSupplierItems.GetRowCellValue(rowHandle, "RETURNQUANTITY")),
+                ReasonID = 2
             };
 
             RowSelected?.Invoke(item);
@@ -67,5 +68,7 @@ namespace NSRetail.Supplier
         public decimal MRP { get; set; }
         public decimal CostPrice { get; set; }
         public decimal Quantity { get; set; }
+
+        public int ReasonID { get; set; }
     }
 }

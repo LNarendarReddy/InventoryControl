@@ -56,8 +56,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "3.4.9";
-        public static string VersionDate = "(08-12-2025)";
+        public static string AppVersion = "3.5.0";
+        public static string VersionDate = "(13-12-2025)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -108,11 +108,6 @@ namespace NSRetail
             dtItemCodeList = dsItemBaseline.Tables["ITEMCODES"];
             dtNonEAN = dsItemBaseline.Tables["ITEMCODES"];
             dtItemCodeFiltered = dsItemBaseline.Tables["ITEMCODES"];
-
-            //dtNonEAN = dsItemBaseline.Tables["NONEAN"];
-            //if (dsItemBaseline.Tables.Count > 3)
-            //    dtItemCodeFiltered = dsItemBaseline.Tables["ITEMCODESFILTERED"];
-
         }
          
         private static void FillParentItemBaseline()
@@ -205,8 +200,8 @@ namespace NSRetail
 
         public static DataTable GetCategoryListFilteredByUser()
         {
-            DataTable dt = Utility.GetCategoryList().Copy();
-            if (Utility.CategoryID != 13)
+            DataTable dt = GetCategoryList().Copy();
+            if (CategoryID != 13)
             {
                 DataView dv = dt.DefaultView;
                 dv.RowFilter = $"CATEGORYID = {Utility.CategoryID}";

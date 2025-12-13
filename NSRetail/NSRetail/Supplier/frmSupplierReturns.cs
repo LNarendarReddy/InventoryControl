@@ -45,17 +45,22 @@ namespace NSRetail.Stock
                 cmbSupplier.Properties.ValueMember = "DEALERID";
                 cmbSupplier.Properties.DisplayMember = "DEALERNAME";
 
-                cmbCategory.Properties.DataSource = Utility.GetCategoryListExceptAll();
-                cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
-                cmbCategory.Properties.ValueMember = "CATEGORYID";
-
                 cmbFromBranch.Properties.DataSource = Utility.GetBranchList();
                 cmbFromBranch.Properties.ValueMember = "BRANCHID";
                 cmbFromBranch.Properties.DisplayMember = "BRANCHNAME";
 
+                cmbCategory.Properties.DataSource = Utility.GetCategoryList();
+                cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+                cmbCategory.Properties.ValueMember = "CATEGORYID";
+
                 cmbCategory.EditValue = Utility.CategoryID;
-                cmbCategory.Enabled = false;
-            }
+                cmbCategory.Enabled = Utility.CategoryID.Equals(13);
+
+                DataTable dataTable = new SupplierRepository().GetReason();
+                cmbReasongrid.DataSource = cmbReason.Properties.DataSource = dataTable;
+                cmbReasongrid.ValueMember = cmbReason.Properties.ValueMember = "REASONID";
+                cmbReasongrid.DisplayMember = cmbReason.Properties.DisplayMember = "REASONNAME";
+            } 
             catch (Exception ex)
             {
                 ErrorManagement.ErrorMgmt.ShowError(ex);
@@ -103,6 +108,7 @@ namespace NSRetail.Stock
 
             sluItemCodeView.GridControl.BindingContext = new BindingContext();
             sluItemCodeView.GridControl.DataSource = sluItemCode.Properties.DataSource;
+            InitialLoad();
         }
 
         private void Loadinvoicenumbers()
@@ -259,6 +265,7 @@ namespace NSRetail.Stock
             SupplierRowModel model = new SupplierRowModel
             {
                 ItemCostPriceID = Convert.ToInt32(drSelectedPrice["ITEMCOSTPRICEID"]),
+                ReasonID = Convert.ToInt32(cmbReasongrid),
                 ItemCode = txtItemCode.Text,
                 ItemName = sluItemCode.Text,
                 MRP = Convert.ToDecimal(drSelectedPrice["MRP"]),
@@ -324,8 +331,11 @@ namespace NSRetail.Stock
 
         private void gvSupplierReturns_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            if (e.Column.FieldName != "QUANTITY" || isEventCall) return;
-            SaveSupplierReturnsDetail(e.RowHandle);
+            if (isEventCall)
+                return;
+
+            if (e.Column.FieldName == "QUANTITY" || e.Column.FieldName == "REASONID")
+                SaveSupplierReturnsDetail(e.RowHandle);
         }
 
         private void btnGenerateDebitNote_Click(object sender, EventArgs e)
@@ -357,10 +367,7 @@ namespace NSRetail.Stock
         {
             try
             {
-                if (supplierReturns.SupplierReturnsID != null 
-                    && !supplierReturns.SupplierReturnsID.Equals(0) 
-                    && supplierReturns.StockEntryID != null 
-                    && !supplierReturns.StockEntryID.Equals(0))
+                if (supplierReturns.SupplierReturnsID == null ||supplierReturns.SupplierReturnsID.Equals(0))
                 {
                     var result = XtraMessageBox.Show("Are sure want to discard return sheet?",
                         "Confirmation!",
@@ -368,11 +375,10 @@ namespace NSRetail.Stock
                     if (!Convert.ToString(result).ToLower().Equals("yes"))
                         return;
                     supplierRepository.DiscardSupplierReturns(supplierReturns.SupplierReturnsID, Utility.UserID);
-                    XtraMessageBox.Show("Return sheet discarded successfully.",
-                        "Information!",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("Return sheet discarded successfully.","Information!",MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cmbSupplier.EditValue = null;
                     cmbStockEntry.EditValue = null;
+                    cmbFromBranch.EditValue = null;
                     gcSupplierReturns.DataSource = null;
                 }
             }
@@ -437,7 +443,7 @@ namespace NSRetail.Stock
                 gvSupplierReturns.GridControl.DataSource = supplierReturns.dtSupplierReturns;
                 isEventCall = true;
 
-                rowHandle = FindExistingRow(model.ItemCostPriceID);
+                rowHandle = FindExistingRow(model.ItemCostPriceID, model.ReasonID);
 
                 if (rowHandle < 0)
                 {
@@ -455,6 +461,7 @@ namespace NSRetail.Stock
                     gvSupplierReturns.SetRowCellValue(rowHandle, "COSTPRICE", model.CostPrice);
                     gvSupplierReturns.SetRowCellValue(rowHandle, "QUANTITY", model.Quantity);
                     gvSupplierReturns.SetRowCellValue(rowHandle, "TOTALCOSTPRICE",model.Quantity * model.CostPrice);
+                    gvSupplierReturns.SetRowCellValue(rowHandle, "REASONID", model.ReasonID);
                 }
                 else
                 {
@@ -471,7 +478,7 @@ namespace NSRetail.Stock
                 gvSupplierReturns.GridControl.BindingContext = new BindingContext();
                 gvSupplierReturns.GridControl.DataSource = supplierReturns.dtSupplierReturns;
 
-                rowHandle = FindExistingRow(model.ItemCostPriceID);
+                rowHandle = FindExistingRow(model.ItemCostPriceID, model.ReasonID);
                 if (rowHandle >= 0)
                 {
                     gvSupplierReturns.FocusedRowHandle = rowHandle;
@@ -496,16 +503,21 @@ namespace NSRetail.Stock
             }
         }
 
-        private int FindExistingRow(int itemCostPriceId)
+        private int FindExistingRow(int itemCostPriceId, Object reasonId)
         {
             for (int i = 0; i < gvSupplierReturns.RowCount; i++)
             {
                 int id = Convert.ToInt32(gvSupplierReturns.GetRowCellValue(i, "ITEMCOSTPRICEID"));
+                
                 if (id == itemCostPriceId)
                     return i;
             }
             return -1;
         }
 
+        private void gcSupplierReturns_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
