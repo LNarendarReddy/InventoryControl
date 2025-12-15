@@ -268,6 +268,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@DEALERID", ObjDealer.DEALERID);
                     cmd.Parameters.AddWithValue("@DEALERNAME", ObjDealer.DEALERNAME);
                     cmd.Parameters.AddWithValue("@ADDRESS", ObjDealer.ADDRESS);
+                    cmd.Parameters.AddWithValue("@SHIPPINGADDRESS", ObjDealer.SHIPPINGADDRESS);
                     cmd.Parameters.AddWithValue("@STATEID", ObjDealer.STATEID);
                     cmd.Parameters.AddWithValue("@PHONENO", ObjDealer.PHONENO);
                     cmd.Parameters.AddWithValue("@GSTIN", ObjDealer.GSTIN);

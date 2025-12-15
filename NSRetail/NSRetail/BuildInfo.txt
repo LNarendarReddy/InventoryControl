@@ -1,4 +1,10 @@
-﻿v3.5.0 — Supplier Returns & Return Sheets Improvements
+﻿v3.5.1 — Supplier Returns & Return Sheets Improvements
+  -- Fixed the issue where the Discard option was not working in Operations → Supplier Returns.
+  -- Updated Billing Address behavior to default to the vendor address while still allowing manual changes when required.
+  -- Cleared old supplier return draft sheets to prevent outdated records from appearing.
+  -- Given option to print debit note in purcharse return and Damage & Expiry formats.
+
+v3.5.0 — Supplier Returns & Return Sheets Improvements
   -- Fixed the Discard option issue in Operations → Supplier Returns.
   -- Resolved category validation in Supplier Returns to prevent adding items from unauthorized categories (e.g., Kiran when General is selected).
   -- Enabled users with all-category access to select any category in Supplier Returns.

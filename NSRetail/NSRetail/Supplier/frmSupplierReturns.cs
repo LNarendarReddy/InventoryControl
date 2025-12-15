@@ -55,11 +55,7 @@ namespace NSRetail.Stock
 
                 cmbCategory.EditValue = Utility.CategoryID;
                 cmbCategory.Enabled = Utility.CategoryID.Equals(13);
-
-                DataTable dataTable = new SupplierRepository().GetReason();
-                cmbReasongrid.DataSource = cmbReason.Properties.DataSource = dataTable;
-                cmbReasongrid.ValueMember = cmbReason.Properties.ValueMember = "REASONID";
-                cmbReasongrid.DisplayMember = cmbReason.Properties.DisplayMember = "REASONNAME";
+                rgPrintType.SelectedIndex = 0;
             } 
             catch (Exception ex)
             {
@@ -348,7 +344,8 @@ namespace NSRetail.Stock
                 XtraMessageBox.Show("Create Note Initiated Successfully",
                         "Information!",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                SupplierHelper.ShowSupplierDebitNote(supplierReturns.SupplierReturnsID);
+                ClearItemData();
+                SupplierHelper.ShowSupplierDebitNote(supplierReturns.SupplierReturnsID, rgPrintType.EditValue.Equals(1));
                 this.Close();
             }
             catch (Exception ex)
@@ -367,20 +364,19 @@ namespace NSRetail.Stock
         {
             try
             {
-                if (supplierReturns.SupplierReturnsID == null ||supplierReturns.SupplierReturnsID.Equals(0))
-                {
-                    var result = XtraMessageBox.Show("Are sure want to discard return sheet?",
-                        "Confirmation!",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (!Convert.ToString(result).ToLower().Equals("yes"))
-                        return;
-                    supplierRepository.DiscardSupplierReturns(supplierReturns.SupplierReturnsID, Utility.UserID);
-                    XtraMessageBox.Show("Return sheet discarded successfully.","Information!",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    cmbSupplier.EditValue = null;
-                    cmbStockEntry.EditValue = null;
-                    cmbFromBranch.EditValue = null;
-                    gcSupplierReturns.DataSource = null;
-                }
+                if (supplierReturns.SupplierReturnsID == null || supplierReturns.SupplierReturnsID.Equals(0))
+                    return;
+                var result = XtraMessageBox.Show("Are sure want to discard return sheet?",
+                    "Confirmation!",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (!Convert.ToString(result).ToLower().Equals("yes"))
+                    return;
+                supplierRepository.DiscardSupplierReturns(supplierReturns.SupplierReturnsID, Utility.UserID);
+                XtraMessageBox.Show("Return sheet discarded successfully.", "Information!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cmbSupplier.EditValue = null;
+                cmbStockEntry.EditValue = null;
+                cmbFromBranch.EditValue = null;
+                gcSupplierReturns.DataSource = null;
             }
             catch (Exception ex)
             {

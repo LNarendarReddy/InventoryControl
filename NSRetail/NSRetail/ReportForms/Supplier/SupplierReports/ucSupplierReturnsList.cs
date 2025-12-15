@@ -32,9 +32,10 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             };
 
             ContextmenuItems = new Dictionary<string, string>
-            { 
-                { "Print", "9B101F20-1E08-44A0-BE65-A8FA5D197574" },
+            {
                 { "Map Credit Note", "00D6561B-C2D3-4D6C-A88A-BC14B519925F" },
+                { "Print Purchase Return", "9B101F20-1E08-44A0-BE65-A8FA5D197574" },
+                { "Print Damage Expiry", "C4A8F6E2-1B9D-4A3F-9C7E-6D2B5A8F0E41" },
                 { "Discard", "8F3C9A6E-4C21-4F3D-B6E2-9C7A4B1D5F92" }
             };
 
@@ -79,13 +80,21 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     obj.ShowDialog();
                     (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
                     break;
-                case "Print":
+                case "Print Purchase Return":
                     if(drFocusedRow["STATUS"].Equals("Draft"))
                     {
-                        MessageBox.Show("Cannot print debit note for Draft status.", "NS Retail", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show("Cannot print for Draft status.", "NS Retail", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
-                    SupplierHelper.ShowSupplierDebitNote(drFocusedRow["SUPPLIERRETURNSID"]);
+                    SupplierHelper.ShowSupplierDebitNote(drFocusedRow["SUPPLIERRETURNSID"], true);
+                    break;
+                case "Print Damage Expiry":
+                    if (drFocusedRow["STATUS"].Equals("Draft"))
+                    {
+                        XtraMessageBox.Show("Cannot print for Draft status.", "NS Retail", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    SupplierHelper.ShowSupplierDebitNote(drFocusedRow["SUPPLIERRETURNSID"], false);
                     break;
                 case "Discard":
                     if (drFocusedRow["STATUS"].Equals("Partially Closed") || drFocusedRow["STATUS"].Equals("Closed"))
@@ -96,16 +105,15 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     try
                     {
                         if (drFocusedRow["SUPPLIERRETURNSID"] == null || drFocusedRow["SUPPLIERRETURNSID"].Equals(0))
-                        {
-                            var result = XtraMessageBox.Show("Are sure want to discard return sheet?",
-                                "Confirmation!",
-                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (!Convert.ToString(result).ToLower().Equals("yes"))
-                                return;
-                            new SupplierRepository().DiscardSupplierReturns(drFocusedRow["SUPPLIERRETURNSID"], Utility.UserID);
-                            XtraMessageBox.Show("Return sheet discarded successfully.", "Information!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
-                        }
+                            return;
+                        var result = XtraMessageBox.Show("Are sure want to discard return sheet?",
+                            "Confirmation!",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (!Convert.ToString(result).ToLower().Equals("yes"))
+                            return;
+                        new SupplierRepository().DiscardSupplierReturns(drFocusedRow["SUPPLIERRETURNSID"], Utility.UserID);
+                        XtraMessageBox.Show("Return sheet discarded successfully.", "Information!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
                     }
                     catch (Exception ex)
                     {

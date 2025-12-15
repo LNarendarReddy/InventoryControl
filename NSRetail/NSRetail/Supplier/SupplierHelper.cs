@@ -8,7 +8,7 @@ namespace NSRetail.Supplier
 {
     public class SupplierHelper
     {
-        public static void ShowSupplierDebitNote(object supplierReturnsId)
+        public static void ShowSupplierDebitNote(object supplierReturnsId, bool isPurchaseReturn)
         {
             DataSet ds = new SupplierRepository().GetDebitNote(supplierReturnsId);
 
@@ -21,15 +21,15 @@ namespace NSRetail.Supplier
 
             DateTime dcDate = Convert.ToDateTime(hdr["DCDate"]);
             string fy = GetFinancialYear(dcDate);
-            string dcNoFormatted = $"DC No.FPR-{hdr["SUPPLIERRETURNSID"]}/{fy}";
+            string dcNoFormatted = $"DC No.DN-{hdr["SUPPLIERRETURNSID"]}/{fy}";
             rpt.Parameters["DCNo"].Value = dcNoFormatted;
-
             rpt.Parameters["WHGSTIN"].Value = hdr["WHGSTIN"];
             rpt.Parameters["WHAddress"].Value = hdr["WHAddress"];
             rpt.Parameters["SupplierAddress"].Value = hdr["SupplierAddress"];
+            rpt.Parameters["ShippingAddress"].Value = hdr["SHIPPINGADDRESS"];
             rpt.Parameters["SupplierGSTIN"].Value = hdr["SupplierGSTIN"];
             rpt.Parameters["UserName"].Value = hdr["USERNAME"];
-
+            rpt.Parameters["isPurchaseReturn"].Value = isPurchaseReturn;
             rpt.DataSource = ds.Tables[1];
             rpt. ShowRibbonPreview();
         }

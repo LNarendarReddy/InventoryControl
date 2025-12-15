@@ -72,6 +72,7 @@ namespace Entity
         public object DEALERID { get; set; }
         public object DEALERNAME { get; set; }
         public object ADDRESS { get; set; }
+        public object SHIPPINGADDRESS { get; set; }
         public object PHONENO { get; set; }
         public object GSTIN { get; set; }
         public object PANNUMBER { get; set; }

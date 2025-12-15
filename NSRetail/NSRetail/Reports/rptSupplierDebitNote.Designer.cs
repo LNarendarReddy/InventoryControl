@@ -103,6 +103,8 @@
             this.xrTableRow15 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell34 = new DevExpress.XtraReports.UI.XRTableCell();
             this.UserName = new DevExpress.XtraReports.Parameters.Parameter();
+            this.ShippingAddress = new DevExpress.XtraReports.Parameters.Parameter();
+            this.isPurchaseReturn = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
@@ -215,7 +217,7 @@
             // xrTableCell10
             // 
             this.xrTableCell10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[TOTALCOSTPRICE]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif(?isPurchaseReturn,[TOTALCOSTPRICE] ,0.00 ) ")});
             this.xrTableCell10.Multiline = true;
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.StylePriority.UseTextAlignment = false;
@@ -463,7 +465,7 @@
             // xrTableCell16
             // 
             this.xrTableCell16.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?SupplierAddress")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?ShippingAddress")});
             this.xrTableCell16.Font = new System.Drawing.Font("Calibri", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.xrTableCell16.Multiline = true;
             this.xrTableCell16.Name = "xrTableCell16";
@@ -523,6 +525,8 @@
             this.xrTableCell19.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell19.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif(?isPurchaseReturn =true, \'PURCHASE RETURN\' ,\'DAMAGE & EXPIRY\')")});
             this.xrTableCell19.Font = new System.Drawing.Font("Calibri", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.xrTableCell19.Multiline = true;
             this.xrTableCell19.Name = "xrTableCell19";
@@ -743,7 +747,7 @@
             // xrTableCell33
             // 
             this.xrTableCell33.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([TOTALCOSTPRICE])")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif(?isPurchaseReturn,sumSum([TOTALCOSTPRICE]) ,0.00 ) ")});
             this.xrTableCell33.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell33.Multiline = true;
             this.xrTableCell33.Name = "xrTableCell33";
@@ -839,6 +843,8 @@
             // xrTableCell34
             // 
             this.xrTableCell34.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrTableCell34.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "!?isPurchaseReturn")});
             this.xrTableCell34.Font = new System.Drawing.Font("Book Antiqua", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.xrTableCell34.Multiline = true;
             this.xrTableCell34.Name = "xrTableCell34";
@@ -855,6 +861,20 @@
             this.UserName.Description = "UserName";
             this.UserName.Name = "UserName";
             this.UserName.Visible = false;
+            // 
+            // ShippingAddress
+            // 
+            this.ShippingAddress.Description = "ShippingAddress";
+            this.ShippingAddress.Name = "ShippingAddress";
+            this.ShippingAddress.Visible = false;
+            // 
+            // isPurchaseReturn
+            // 
+            this.isPurchaseReturn.Description = "isPurchaseReturn";
+            this.isPurchaseReturn.Name = "isPurchaseReturn";
+            this.isPurchaseReturn.Type = typeof(bool);
+            this.isPurchaseReturn.ValueInfo = "False";
+            this.isPurchaseReturn.Visible = false;
             // 
             // rptSupplierDebitNote
             // 
@@ -877,7 +897,9 @@
             this.WHAddress,
             this.SupplierAddress,
             this.SupplierGSTIN,
-            this.UserName});
+            this.UserName,
+            this.ShippingAddress,
+            this.isPurchaseReturn});
             this.Version = "21.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
@@ -963,5 +985,7 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell40;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow16;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell41;
+        private DevExpress.XtraReports.Parameters.Parameter ShippingAddress;
+        private DevExpress.XtraReports.Parameters.Parameter isPurchaseReturn;
     }
 }

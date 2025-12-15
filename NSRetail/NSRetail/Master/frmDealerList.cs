@@ -73,6 +73,7 @@ namespace NSRetail.Master
                     ObjDealer.DEALERID = gvDealer.GetFocusedRowCellValue("DEALERID");
                     ObjDealer.DEALERNAME = gvDealer.GetFocusedRowCellValue("DEALERNAME");
                     ObjDealer.ADDRESS = gvDealer.GetFocusedRowCellValue("ADDRESS");
+                    ObjDealer.SHIPPINGADDRESS = gvDealer.GetFocusedRowCellValue("SHIPPINGADDRESS");
                     ObjDealer.STATEID = gvDealer.GetFocusedRowCellValue("STATEID");
                     ObjDealer.PHONENO = gvDealer.GetFocusedRowCellValue("PHONENO");
                     ObjDealer.EMAILID = gvDealer.GetFocusedRowCellValue("EMAILID");

@@ -30,7 +30,8 @@ namespace NSRetail.Master
             {
                 this.Text = "Edit Supplier";
                 txtDelearName.EditValue = ObjDealer.DEALERNAME;
-                txtAddress.EditValue = ObjDealer. ADDRESS;
+                txtAddress.EditValue = ObjDealer.ADDRESS;
+                txtShippingAddress.EditValue = ObjDealer.SHIPPINGADDRESS;
                 txtPhoneNumber.EditValue = ObjDealer.PHONENO;
                 txtEmail.EditValue = ObjDealer.EMAILID;
                 txtGSTIN.EditValue = ObjDealer.GSTIN;
@@ -48,6 +49,7 @@ namespace NSRetail.Master
                     return;
                 ObjDealer.DEALERNAME = txtDelearName.EditValue;
                 ObjDealer.ADDRESS = txtAddress.EditValue;
+                ObjDealer.SHIPPINGADDRESS = txtShippingAddress.EditValue;
                 ObjDealer.PHONENO = txtPhoneNumber.EditValue;
                 ObjDealer.EMAILID = txtEmail.EditValue;
                 ObjDealer.GSTIN = txtGSTIN.EditValue;
@@ -97,6 +99,19 @@ namespace NSRetail.Master
             }
             gvSupplierItems.DeleteRow(rowHandle);
             gvSupplierItems.RefreshData();
+        }
+
+        private void chkSameAsBillingAddress_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSameAsBillingAddress.Checked)
+            {
+                txtShippingAddress.EditValue = txtAddress.EditValue;
+                txtShippingAddress.Enabled = false;
+            }
+            else
+            {
+                txtShippingAddress.Enabled = true;
+            }
         }
     }
 }
