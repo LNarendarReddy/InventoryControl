@@ -44,6 +44,7 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbReason = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -141,12 +142,14 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4,
-            this.gridColumn8});
+            this.gridColumn8,
+            this.gridColumn11});
             this.gvSupplierItems.GridControl = this.gcSupplierItems;
             this.gvSupplierItems.Name = "gvSupplierItems";
             this.gvSupplierItems.OptionsMenu.EnableGroupPanelMenu = false;
             this.gvSupplierItems.OptionsView.ShowFooter = true;
             this.gvSupplierItems.OptionsView.ShowGroupPanel = false;
+            this.gvSupplierItems.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gvSupplierItems_RowStyle);
             this.gvSupplierItems.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvSupplierItems_KeyDown);
             // 
             // gridColumn5
@@ -233,6 +236,12 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 6;
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "IsAdded";
+            this.gridColumn11.FieldName = "IsAdded";
+            this.gridColumn11.Name = "gridColumn11";
             // 
             // cmbReason
             // 
@@ -347,5 +356,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
     }
 }

@@ -98,7 +98,7 @@ namespace NSRetail.Stock
 
         private void cmbCategory_EditValueChanged(object sender, EventArgs e)
         {
-            sluItemCode.Properties.DataSource = new ItemCodeRepository().GetItemCodeByCategory(Utility.CategoryID);
+            sluItemCode.Properties.DataSource = new ItemCodeRepository().GetItemCodeByCategory(cmbCategory.EditValue);
             sluItemCode.Properties.ValueMember = "ITEMCODEID";
             sluItemCode.Properties.DisplayMember = "ITEMNAME";
 
@@ -391,7 +391,7 @@ namespace NSRetail.Stock
                     cmbFromBranch.EditValue == null)
                 return;
             DataTable dt = supplierRepository.GetSupplierItems(
-                cmbSupplier.EditValue, cmbFromBranch.EditValue, cmbCategory.EditValue);
+                cmbSupplier.EditValue, cmbFromBranch.EditValue, cmbCategory.EditValue, supplierReturns.SupplierReturnsID);
             frmSupplierItemsByBranchStock obj = new frmSupplierItemsByBranchStock(dt);
             obj.RowSelected += OnPopupRowSelected;
             obj.ShowInTaskbar = false;

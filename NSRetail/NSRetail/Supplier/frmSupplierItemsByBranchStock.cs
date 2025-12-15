@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using NSRetail.ReportForms.Supplier.SupplierReports;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace NSRetail.Supplier
@@ -31,6 +32,7 @@ namespace NSRetail.Supplier
         {
             if (e.KeyCode == Keys.Enter)
             {
+                gvSupplierItems.SetFocusedRowCellValue("IsAdded", 1);
                 gvSupplierItems.PostEditor();
                 gvSupplierItems.UpdateCurrentRow();
                 gvSupplierItems.CloseEditor();
@@ -56,6 +58,21 @@ namespace NSRetail.Supplier
             };
 
             RowSelected?.Invoke(item);
+        }
+
+        private void gvSupplierItems_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        {
+            if (e.RowHandle < 0) return; // Ignore header / group rows
+
+            var view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+            var isAdded = view.GetRowCellValue(e.RowHandle, "IsAdded");
+
+            if (isAdded != null && isAdded.ToString() == "1")
+            {
+                e.Appearance.BackColor = Color.LightGreen;
+                e.Appearance.ForeColor = Color.Black;
+                e.HighPriority = true;
+            }
         }
 
     }

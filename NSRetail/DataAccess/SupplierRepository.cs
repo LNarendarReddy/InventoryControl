@@ -527,7 +527,7 @@ namespace DataAccess
             }
         }
 
-        public DataTable GetSupplierItems(object SupplierID, object BranchID, object CategoryID)
+        public DataTable GetSupplierItems(object SupplierID, object BranchID, object CategoryID, object supplierReturnsId)
         {
             DataTable dt = new DataTable();
             try
@@ -540,6 +540,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SUPPLIERID", SupplierID);
                     cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
                     cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
+                    cmd.Parameters.AddWithValue("@SUPPLIERRETURNSID", supplierReturnsId);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
