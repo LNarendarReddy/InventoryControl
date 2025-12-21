@@ -1,4 +1,7 @@
-﻿v3.5.3 — Project Settings
+﻿v3.5.4 — Bill value by group changes
+  -- Bill value by group can now give a free item with a discounted price. for ex: 2026 offer
+
+v3.5.3 — Project Settings
   -- Project font settings changed.
 
 v3.5.2 — Supplier Returns & Return Sheets Improvements

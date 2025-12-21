@@ -142,25 +142,23 @@ namespace NSRetail
                 txtOfferValue.Enabled = true;
             }
             else
-            {   
+            {
+                txtFreeItemPrice.Enabled = true;
+                cmbFreeItemCode.Enabled = true;
+
                 if (cmbOfferType.EditValue.Equals(1004))
                 {
                     layoutControlItem14.Text = "Bill Value";
                     txtOfferValue.Enabled = true;
-                    txtFreeItemPrice.Enabled = true;
-                    cmbFreeItemCode.Enabled = true;
                 }
                 else if (cmbOfferType.EditValue.Equals(1005))
                 {
                     layoutControlItem14.Text = "Bill Value of sub items";
                     txtOfferValue.Enabled = true;
-                    cmbFreeItemCode.Enabled = true;
                 }
                 else if (cmbOfferType.EditValue.Equals(1006))
                 {
                     txtNumberOfItems.Enabled = true;
-                    txtFreeItemPrice.Enabled = true;
-                    cmbFreeItemCode.Enabled = true;
                 }
             }
         }
