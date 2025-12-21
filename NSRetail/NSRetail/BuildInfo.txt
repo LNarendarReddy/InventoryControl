@@ -1,4 +1,9 @@
-﻿v3.5.4 — Bill value by group changes
+﻿v3.5.5 — Supplier SKU Mapping & Return Calculation Fixes
+  -- Fixed an issue where items deleted from supplier mapping were still appearing in the supplier items list.
+  -- Supplier SKU mapping is now available via the Map SKU button, select item and press enter to map with supplier.
+  -- Total cost price now updates automatically when the quantity is changed in the grid.
+
+v3.5.4 — Bill value by group changes
   -- Bill value by group can now give a free item with a discounted price. for ex: 2026 offer
 
 v3.5.3 — Project Settings

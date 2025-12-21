@@ -299,7 +299,21 @@ namespace NSRetail.Stock
             object SupplierReturnsDetailID = supplierRepository.SaveSupplierReturnsDetail(drDetail,Utility.UserID);
             drDetail["SUPPLIERRETURNSDETAILID"] = SupplierReturnsDetailID;
         }
-        
+
+        private void UpdateTotalPrice(int rowHandle)
+        {
+            var rowView = gvSupplierReturns.GetRow(rowHandle) as DataRowView;
+            if (rowView == null) return;
+
+            decimal quantity = Convert.ToDecimal(rowView["QUANTITY"] ?? 0);
+            decimal costPrice = Convert.ToDecimal(rowView["COSTPRICE"] ?? 0);
+
+            decimal totalPrice = quantity * costPrice;
+
+            rowView["TOTALCOSTPRICE"] = totalPrice;
+        }
+
+
         private void txtQuantity_Enter(object sender, EventArgs e)
         {
             TextEdit textedit = sender as TextEdit;
@@ -330,8 +344,11 @@ namespace NSRetail.Stock
             if (isEventCall)
                 return;
 
-            if (e.Column.FieldName == "QUANTITY" || e.Column.FieldName == "REASONID")
+            if (e.Column.FieldName == "QUANTITY")
+            {
+                UpdateTotalPrice(e.RowHandle);
                 SaveSupplierReturnsDetail(e.RowHandle);
+            }
         }
 
         private void btnGenerateDebitNote_Click(object sender, EventArgs e)

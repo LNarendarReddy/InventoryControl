@@ -615,5 +615,59 @@ namespace DataAccess
                 return rowsaffected > 0;
             }
         }
+
+        public DataTable GetItemsForSupplierSKUMapping(object SupplierID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_ITEMSFORSUPPLIERSKUMAPPING]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERID", SupplierID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving supplier items");
+            }
+            return dt;
+        }
+
+        public object SupplierSKUMap(object SupplierId, object ItemId,  object UserID)
+        {
+            object id = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_SUPPLIERSKUMAP]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERID", SupplierId);
+                    cmd.Parameters.AddWithValue("@ITEMID", ItemId);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object obj = cmd.ExecuteScalar();
+                    if (int.TryParse(Convert.ToString(obj), out int ivaue))
+                        id = obj;
+                    else
+                        throw new Exception(Convert.ToString(obj));
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("Select item does not contain"))
+                    throw;
+                else
+                    throw new Exception("Error while mapping item with supplier");
+            }
+            return id;
+        }
     }
 }
