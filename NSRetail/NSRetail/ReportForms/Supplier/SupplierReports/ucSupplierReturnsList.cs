@@ -66,20 +66,28 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             switch (buttonText)
             {
                 case "Map Credit Note":
-                    DataTable dt = new SupplierRepository().GetSupplierReturnsforCN(drFocusedRow["SUPPLIERRETURNSID"]);
-                        
-                    frmViewReturnItems obj = 
-                        new frmViewReturnItems(dt, 
-                            drFocusedRow["DEALERNAME"], 
+
+                    DataTable dt = new SupplierRepository()
+                        .GetSupplierReturnsforCN(drFocusedRow["SUPPLIERRETURNSID"]);
+
+                    frmViewReturnItems obj = new frmViewReturnItems(
+                            dt,
+                            drFocusedRow["DEALERNAME"],
                             drFocusedRow["SUPPLIERRETURNSID"],
-                            drFocusedRow["STATUS"].Equals("Open") || drFocusedRow["STATUS"].Equals("Partially Closed"));
+                            drFocusedRow["STATUS"],              // UI state
+                            drFocusedRow["ACCEPTEDVALUE"],       // ReturnValue
+                            drFocusedRow["CreditNoteId"],        // ✅ CN Id (data)
+                            drFocusedRow["CN Number"]             // CN Number
+                        );
 
                     obj.ShowInTaskbar = false;
                     obj.StartPosition = FormStartPosition.CenterScreen;
                     obj.IconOptions.ShowIcon = false;
                     obj.ShowDialog();
+
                     (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
                     break;
+
                 case "Print Purchase Return":
                     if(drFocusedRow["STATUS"].Equals("Draft"))
                     {

@@ -134,7 +134,7 @@ namespace DataAccess
             }
         }
 
-        public void UpdateSupplierReturns(object SupplierReturnsID, object UserID, DataTable dt,object ReturnValue)
+        public void UpdateSupplierReturns(object SupplierReturnsID, object UserID, DataTable dt, object ReturnValue, object creditNoteId, object status)
         {
             try
             {
@@ -158,6 +158,8 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     cmd.Parameters.AddWithValue("@dt", dt);
                     cmd.Parameters.AddWithValue("@RETURNVALUE", ReturnValue);
+                    cmd.Parameters.AddWithValue("@CreditNoteId", creditNoteId);
+                    cmd.Parameters.AddWithValue("@STATUS", status);
                     object objreturn = cmd.ExecuteScalar();
                     if (objreturn != null)
                     {
@@ -165,12 +167,13 @@ namespace DataAccess
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("Few items are not freezed"))
-                    throw ex;
-                else
-                    throw new Exception("Error while updating supplier returns detail");
+                throw new Exception("Error while updating supplier returns detail", ex);
             }
         }
 

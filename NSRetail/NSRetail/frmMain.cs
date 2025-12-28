@@ -24,10 +24,10 @@ using NSRetail.ReportForms.Wareshouse.Profitability;
 using NSRetail.ReportForms.Wareshouse.StockAndSale;
 using NSRetail.ReportForms.Wareshouse.TaxBreakUp;
 using NSRetail.Stock;
+using NSRetail.Supplier;
 using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -478,6 +478,7 @@ namespace NSRetail
             supplierReports.SubCategory.Add(new ReportHolder("7A2064BB-F6AE-4E4C-8DE2-2EC267F71134") { ReportName = "Indent", SearchCriteriaControl = new ucDealerIndent() });
             supplierReports.SubCategory.Add(new ReportHolder("8A514101-90D5-4240-940C-AA49D85A5BDC") { ReportName = "Indent List", SearchCriteriaControl = new ucSupplierIndentList() });
             supplierReports.SubCategory.Add(new ReportHolder("65627E0A-E8A2-4D6B-9FB4-6CBFD9EDC296") { ReportName = "Debit Notes", SearchCriteriaControl = new ucSupplierReturnsList() });
+            supplierReports.SubCategory.Add(new ReportHolder("C4A9F2B7-8D6E-4E3A-9B51-2F7C6D8A0E94") { ReportName = "Credit Notes", SearchCriteriaControl = new ucCreditNoteList() });
             reportList.Add(supplierReports);
 
             ShowReportForm(reportList, "Supplier");
@@ -715,6 +716,14 @@ namespace NSRetail
             obj.ShowInTaskbar = false;
             obj.IconOptions.ShowIcon = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
+            obj.ShowDialog();
+        }
+
+        private void btnCreditNote_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmCreditNote obj = new frmCreditNote();
+            obj.ShowInTaskbar = false;
+            obj.IconOptions.ShowIcon = false;
             obj.ShowDialog();
         }
     }

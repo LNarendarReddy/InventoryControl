@@ -394,6 +394,12 @@
     <Compile Include="ReportForms\Supplier\SupplierReports\frmStockEntryEdit.Designer.cs">
       <DependentUpon>frmStockEntryEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Supplier\SupplierReports\ucCreditNoteList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Supplier\SupplierReports\ucCreditNoteList.Designer.cs">
+      <DependentUpon>ucCreditNoteList.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1194,6 +1200,12 @@
     <Compile Include="Stock\frmStockSlippage.Designer.cs">
       <DependentUpon>frmStockSlippage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Supplier\frmCreditNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Supplier\frmCreditNote.Designer.cs">
+      <DependentUpon>frmCreditNote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Supplier\frmDealerIndent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1229,6 +1241,12 @@
     </Compile>
     <Compile Include="ReportForms\Stock\StockReports\frmStockSummary.Designer.cs">
       <DependentUpon>frmStockSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier\frmMapCreditNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Supplier\frmMapCreditNote.Designer.cs">
+      <DependentUpon>frmMapCreditNote.cs</DependentUpon>
     </Compile>
     <Compile Include="Supplier\frmSupplierItemsByBranchStock.cs">
       <SubType>Form</SubType>
@@ -1419,6 +1437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierReports\frmStockEntryEdit.resx">
       <DependentUpon>frmStockEntryEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Supplier\SupplierReports\ucCreditNoteList.resx">
+      <DependentUpon>ucCreditNoteList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.resx">
       <DependentUpon>ucSupplierItemMargin.cs</DependentUpon>
@@ -1825,6 +1846,9 @@
     <EmbeddedResource Include="Stock\frmStockSlippage.resx">
       <DependentUpon>frmStockSlippage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Supplier\frmCreditNote.resx">
+      <DependentUpon>frmCreditNote.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmDealerIndent.resx">
       <DependentUpon>frmDealerIndent.cs</DependentUpon>
     </EmbeddedResource>
@@ -1842,6 +1866,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockReports\frmStockSummary.resx">
       <DependentUpon>frmStockSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Supplier\frmMapCreditNote.resx">
+      <DependentUpon>frmMapCreditNote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmSupplierItemsByBranchStock.resx">
       <DependentUpon>frmSupplierItemsByBranchStock.cs</DependentUpon>

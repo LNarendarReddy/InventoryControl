@@ -3,8 +3,10 @@ using DevExpress.Data;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
+using NSRetail.Supplier;
 using System;
 using System.Data;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Forms;
 
 namespace NSRetail
@@ -12,50 +14,62 @@ namespace NSRetail
     public partial class frmViewReturnItems : XtraForm
     {
         object SupplierReturnsID = null;
-        public frmViewReturnItems(DataTable dtItems, object SupplierName, object _SupplierReturnsID, bool _IsOpen)
+        private int? _selectedCreditNoteId = null;
+
+        public frmViewReturnItems(DataTable dtItems,object supplierName,object supplierReturnsId,
+            object status,object returnValue,object creditNoteId,object cnNumber)
         {
             InitializeComponent();
 
-            cmbReturnStatus.DataSource = Utility.Returnstatus();
-            cmbReturnStatus.DisplayMember = "RETURNSTATUSNAME";
-            cmbReturnStatus.ValueMember = "RETURNSTATUSID";
+            SupplierReturnsID = supplierReturnsId;
 
-            SupplierReturnsID = _SupplierReturnsID;
-            this.Text = $"{Text} - {SupplierName} - {SupplierReturnsID}";
-            gvSupplierReturns.ViewCaption = $"Credit Note : {SupplierName}-{SupplierReturnsID}";
+            if (creditNoteId == DBNull.Value)
+                _selectedCreditNoteId = null;
+            else
+                _selectedCreditNoteId = Convert.ToInt32(creditNoteId);
+
+            this.Text = $"{Text} - {supplierName} - {SupplierReturnsID}";
+            gvSupplierReturns.ViewCaption =
+                $"Credit Note : {supplierName}-{SupplierReturnsID}";
+
             gcSupplierReturns.DataSource = dtItems;
-            if (_IsOpen)
-            {
-                gcReturnstatus.Visible = true;
-                gcReturnstatus.OptionsColumn.AllowEdit = true;
-                btnCreditNoteMapping.Enabled = true;
-                txtReturnValue.Enabled = true;
-            }
-        }
 
-        private void btnCreditNoteMapping_Click(object sender, EventArgs e) 
+            txtReturnValue.EditValue = returnValue;
+            txtCNNumber.EditValue = cnNumber;
+
+            ApplyUIStateByStatus(Convert.ToString(status));
+        }
+        private void ApplyUIStateByStatus(string status)
         {
-            if (gvSupplierReturns.RowCount == 0 ||
-                XtraMessageBox.Show("Are you sure want to continue?", "Confirm",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                return;
-            try
+            switch (status)
             {
-                    if (txtReturnValue.EditValue == null)
-                    {
-                        XtraMessageBox.Show("Return value is mandatory");
-                        return;
-                    }
-                    new SupplierRepository().UpdateSupplierReturns(SupplierReturnsID, Utility.UserID, 
-                        (gcSupplierReturns.DataSource as DataTable).Copy(), txtReturnValue.EditValue);
-                Close();
-            }
-            catch (Exception ex)
-            {
-                ErrorManagement.ErrorMgmt.ShowError(ex);
+                case "Open":
+                    gcReturnstatus.Visible = true;
+                    gcReturnstatus.OptionsColumn.AllowEdit = true;
+                    btnCreditNoteMapping.Enabled = true;
+                    txtReturnValue.Enabled = true;
+                    break;
+
+                case "Partially Closed":
+                    gcReturnstatus.Visible = true;
+                    gcReturnstatus.OptionsColumn.AllowEdit = true;
+                    btnCreditNoteMapping.Enabled = false; // 🔒 no remap
+                    txtReturnValue.Enabled = true;
+                    break;
+
+                case "Closed":
+                    DisableAllEditing();
+                    break;
             }
         }
-
+        private void DisableAllEditing()
+        {
+            gcReturnstatus.OptionsColumn.AllowEdit = false;
+            btnCreditNoteMapping.Enabled = false;
+            txtReturnValue.Enabled = false;
+            btnPartiallyCloseDN.Enabled = false;
+            btnCloseDN.Enabled = false;
+        }
         private void frmViewReturnItems_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Escape)
@@ -109,6 +123,11 @@ namespace NSRetail
 
         private void frmViewReturnItems_Load(object sender, EventArgs e)
         {
+
+            cmbReturnStatus.DataSource = Utility.Returnstatus();
+            cmbReturnStatus.DisplayMember = "RETURNSTATUSNAME";
+            cmbReturnStatus.ValueMember = "RETURNSTATUSID";
+
             cmbReason.DataSource = new SupplierRepository().GetReason();
             cmbReason.ValueMember = "REASONID";
             cmbReason.DisplayMember = "REASONNAME";
@@ -117,6 +136,89 @@ namespace NSRetail
         private void gcSupplierReturns_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCreditNoteMapping_Click(object sender, EventArgs e)
+        {
+            using (frmMapCreditNote frm = new frmMapCreditNote(SupplierReturnsID))
+            {
+                frm.StartPosition = FormStartPosition.CenterParent;
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    // Populate Return Value
+                    txtReturnValue.EditValue = frm.SelectedCreditValue;
+
+                    txtCNNumber.EditValue = frm.SelectedCNNumber;
+
+                    // Store selected CN ID
+                    _selectedCreditNoteId = frm.SelectedCreditNoteId;
+                }
+            }
+        }
+
+        private bool ValidateCreditNoteForClose()
+        {
+            if (_selectedCreditNoteId == null || _selectedCreditNoteId == 0)
+            {
+                XtraMessageBox.Show("Credit Note is mandatory");
+                return false;
+            }
+
+            if (txtReturnValue.EditValue == null)
+            {
+                XtraMessageBox.Show("CN Value is mandatory");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Convert.ToString(txtReturnValue.EditValue)))
+            {
+                XtraMessageBox.Show("CN Number is mandatory");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void btnCloseDN_Click(object sender, EventArgs e)
+        {
+            if (!ValidateCreditNoteForClose())
+                return;
+
+            UpdateSupplierReturnsWithStatus(3); // Closed
+        }
+
+        private void UpdateSupplierReturnsWithStatus(int status)
+        {
+            if (gvSupplierReturns.RowCount == 0 ||
+                XtraMessageBox.Show("Are you sure want to continue?", "Confirm",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                new SupplierRepository().UpdateSupplierReturns(
+                    SupplierReturnsID,
+                    Utility.UserID,
+                    (gcSupplierReturns.DataSource as DataTable).Copy(),
+                    txtReturnValue.EditValue,
+                    _selectedCreditNoteId,
+                    status
+                );
+
+                Close();
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
+        }
+
+        private void btnPartiallyCloseDN_Click(object sender, EventArgs e)
+        {
+            if (!ValidateCreditNoteForClose())
+                return;
+            UpdateSupplierReturnsWithStatus(2); // Partially Closed
         }
     }
 }

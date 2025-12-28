@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BaseOffer.cs" />
     <Compile Include="Counting.cs" />
+    <Compile Include="CreditNote.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Master.cs" />
     <Compile Include="Offer.cs" />

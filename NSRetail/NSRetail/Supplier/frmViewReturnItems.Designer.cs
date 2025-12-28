@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtCNNumber = new DevExpress.XtraEditors.TextEdit();
+            this.btnPartiallyCloseDN = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCloseDN = new DevExpress.XtraEditors.SimpleButton();
             this.txtReturnValue = new DevExpress.XtraEditors.TextEdit();
             this.btnCreditNoteMapping = new DevExpress.XtraEditors.SimpleButton();
             this.gcSupplierReturns = new DevExpress.XtraGrid.GridControl();
@@ -51,10 +54,14 @@
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCNNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReturnValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSupplierReturns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSupplierReturns)).BeginInit();
@@ -63,12 +70,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.txtCNNumber);
+            this.layoutControl1.Controls.Add(this.btnPartiallyCloseDN);
+            this.layoutControl1.Controls.Add(this.btnCloseDN);
             this.layoutControl1.Controls.Add(this.txtReturnValue);
             this.layoutControl1.Controls.Add(this.btnCreditNoteMapping);
             this.layoutControl1.Controls.Add(this.gcSupplierReturns);
@@ -81,10 +94,41 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // txtCNNumber
+            // 
+            this.txtCNNumber.Enabled = false;
+            this.txtCNNumber.EnterMoveNextControl = true;
+            this.txtCNNumber.Location = new System.Drawing.Point(337, 15);
+            this.txtCNNumber.Name = "txtCNNumber";
+            this.txtCNNumber.Size = new System.Drawing.Size(145, 22);
+            this.txtCNNumber.StyleController = this.layoutControl1;
+            this.txtCNNumber.TabIndex = 1;
+            // 
+            // btnPartiallyCloseDN
+            // 
+            this.btnPartiallyCloseDN.Location = new System.Drawing.Point(864, 15);
+            this.btnPartiallyCloseDN.Name = "btnPartiallyCloseDN";
+            this.btnPartiallyCloseDN.Size = new System.Drawing.Size(107, 22);
+            this.btnPartiallyCloseDN.StyleController = this.layoutControl1;
+            this.btnPartiallyCloseDN.TabIndex = 3;
+            this.btnPartiallyCloseDN.Text = "Partially Close DN";
+            this.btnPartiallyCloseDN.Click += new System.EventHandler(this.btnPartiallyCloseDN_Click);
+            // 
+            // btnCloseDN
+            // 
+            this.btnCloseDN.Location = new System.Drawing.Point(981, 15);
+            this.btnCloseDN.Name = "btnCloseDN";
+            this.btnCloseDN.Size = new System.Drawing.Size(107, 22);
+            this.btnCloseDN.StyleController = this.layoutControl1;
+            this.btnCloseDN.TabIndex = 4;
+            this.btnCloseDN.Text = "Close DN";
+            this.btnCloseDN.Click += new System.EventHandler(this.btnCloseDN_Click);
+            // 
             // txtReturnValue
             // 
             this.txtReturnValue.Enabled = false;
-            this.txtReturnValue.Location = new System.Drawing.Point(793, 12);
+            this.txtReturnValue.EnterMoveNextControl = true;
+            this.txtReturnValue.Location = new System.Drawing.Point(94, 15);
             this.txtReturnValue.Name = "txtReturnValue";
             this.txtReturnValue.Properties.DisplayFormat.FormatString = "n2";
             this.txtReturnValue.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -93,31 +137,31 @@
             this.txtReturnValue.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtReturnValue.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtReturnValue.Properties.MaskSettings.Set("mask", "n2");
-            this.txtReturnValue.Size = new System.Drawing.Size(150, 22);
+            this.txtReturnValue.Size = new System.Drawing.Size(154, 22);
             this.txtReturnValue.StyleController = this.layoutControl1;
-            this.txtReturnValue.TabIndex = 13;
+            this.txtReturnValue.TabIndex = 0;
             // 
             // btnCreditNoteMapping
             // 
             this.btnCreditNoteMapping.Enabled = false;
-            this.btnCreditNoteMapping.Location = new System.Drawing.Point(947, 12);
+            this.btnCreditNoteMapping.Location = new System.Drawing.Point(492, 15);
             this.btnCreditNoteMapping.Name = "btnCreditNoteMapping";
-            this.btnCreditNoteMapping.Size = new System.Drawing.Size(144, 22);
+            this.btnCreditNoteMapping.Size = new System.Drawing.Size(114, 22);
             this.btnCreditNoteMapping.StyleController = this.layoutControl1;
-            this.btnCreditNoteMapping.TabIndex = 11;
+            this.btnCreditNoteMapping.TabIndex = 2;
             this.btnCreditNoteMapping.Text = "Map Credit Note";
             this.btnCreditNoteMapping.Click += new System.EventHandler(this.btnCreditNoteMapping_Click);
             // 
             // gcSupplierReturns
             // 
-            this.gcSupplierReturns.Location = new System.Drawing.Point(12, 38);
+            this.gcSupplierReturns.Location = new System.Drawing.Point(15, 47);
             this.gcSupplierReturns.MainView = this.gvSupplierReturns;
             this.gcSupplierReturns.Name = "gcSupplierReturns";
             this.gcSupplierReturns.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmbReturnStatus,
             this.cmbReason});
-            this.gcSupplierReturns.Size = new System.Drawing.Size(1079, 585);
-            this.gcSupplierReturns.TabIndex = 10;
+            this.gcSupplierReturns.Size = new System.Drawing.Size(1073, 573);
+            this.gcSupplierReturns.TabIndex = 5;
             this.gcSupplierReturns.TabStop = false;
             this.gcSupplierReturns.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvSupplierReturns});
@@ -310,8 +354,11 @@
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlItem2,
-            this.emptySpaceItem1,
-            this.layoutControlItem4});
+            this.layoutControlItem4,
+            this.emptySpaceItem2,
+            this.layoutControlItem3,
+            this.layoutControlItem6,
+            this.layoutControlItem5});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1103, 635);
             this.Root.TextVisible = false;
@@ -319,37 +366,73 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gcSupplierReturns;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 26);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1083, 589);
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1083, 583);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnCreditNoteMapping;
-            this.layoutControlItem2.Location = new System.Drawing.Point(935, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(477, 0);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(124, 32);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(124, 32);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(148, 26);
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem2.Size = new System.Drawing.Size(124, 32);
+            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(698, 26);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtReturnValue;
-            this.layoutControlItem4.Location = new System.Drawing.Point(698, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(237, 26);
-            this.layoutControlItem4.Text = "Return Value";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(71, 15);
+            this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem4.Size = new System.Drawing.Size(243, 32);
+            this.layoutControlItem4.Text = "CN Value";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(67, 15);
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(601, 0);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(248, 32);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.btnCloseDN;
+            this.layoutControlItem3.Location = new System.Drawing.Point(966, 0);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem3.Size = new System.Drawing.Size(117, 32);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.txtCNNumber;
+            this.layoutControlItem6.Location = new System.Drawing.Point(243, 0);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem6.Size = new System.Drawing.Size(234, 32);
+            this.layoutControlItem6.Text = "CN Number";
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(67, 15);
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.btnPartiallyCloseDN;
+            this.layoutControlItem5.Location = new System.Drawing.Point(849, 0);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem5.Size = new System.Drawing.Size(117, 32);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
             // 
             // frmViewReturnItems
             // 
@@ -364,6 +447,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmViewReturnItems_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtCNNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReturnValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSupplierReturns)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSupplierReturns)).EndInit();
@@ -372,8 +456,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -396,7 +483,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.SimpleButton btnCreditNoteMapping;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gcSelect;
         private DevExpress.XtraGrid.Columns.GridColumn gcReturnstatus;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cmbReturnStatus;
@@ -405,5 +491,12 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraEditors.SimpleButton btnPartiallyCloseDN;
+        private DevExpress.XtraEditors.SimpleButton btnCloseDN;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.TextEdit txtCNNumber;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
     }
 }

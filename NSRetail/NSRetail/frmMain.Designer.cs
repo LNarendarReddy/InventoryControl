@@ -129,6 +129,7 @@
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.btnCreditNote = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puSwitchConnection)).BeginInit();
@@ -209,9 +210,10 @@
             this.lblUpTime,
             this.btnImportDiscountSaleItems,
             this.barButtonItem1,
-            this.bbiChangeConection});
+            this.bbiChangeConection,
+            this.btnCreditNote});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 83;
+            this.ribbonControl1.MaxItemId = 84;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -927,6 +929,7 @@
             // ribbonPageGroup15
             // 
             this.ribbonPageGroup15.ItemLinks.Add(this.btnSupplierReturns);
+            this.ribbonPageGroup15.ItemLinks.Add(this.btnCreditNote);
             this.ribbonPageGroup15.Name = "ribbonPageGroup15";
             resources.ApplyResources(this.ribbonPageGroup15, "ribbonPageGroup15");
             // 
@@ -1122,6 +1125,14 @@
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
             // 
+            // btnCreditNote
+            // 
+            resources.ApplyResources(this.btnCreditNote, "btnCreditNote");
+            this.btnCreditNote.Id = 83;
+            this.btnCreditNote.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
+            this.btnCreditNote.Name = "btnCreditNote";
+            this.btnCreditNote.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCreditNote_ItemClick);
+            // 
             // frmMain
             // 
             resources.ApplyResources(this, "$this");
@@ -1249,6 +1260,7 @@
         private DevExpress.XtraBars.BarButtonItem bbiChangeConection;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private DevExpress.XtraBars.PopupMenu puSwitchConnection;
+        private DevExpress.XtraBars.BarButtonItem btnCreditNote;
     }
 }
 
