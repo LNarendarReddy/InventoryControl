@@ -1,19 +1,11 @@
 ﻿using DataAccess;
-using DevExpress.Pdf.Native.BouncyCastle.Asn1.X509;
 using DevExpress.XtraEditors;
-using DevExpress.XtraReports.UI;
 using Entity;
-using NSRetail.Reports;
 using NSRetail.Supplier;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail.Stock
@@ -261,7 +253,6 @@ namespace NSRetail.Stock
             SupplierRowModel model = new SupplierRowModel
             {
                 ItemCostPriceID = Convert.ToInt32(drSelectedPrice["ITEMCOSTPRICEID"]),
-                ReasonID = Convert.ToInt32(cmbReasongrid),
                 ItemCode = txtItemCode.Text,
                 ItemName = sluItemCode.Text,
                 MRP = Convert.ToDecimal(drSelectedPrice["MRP"]),
@@ -312,7 +303,6 @@ namespace NSRetail.Stock
 
             rowView["TOTALCOSTPRICE"] = totalPrice;
         }
-
 
         private void txtQuantity_Enter(object sender, EventArgs e)
         {

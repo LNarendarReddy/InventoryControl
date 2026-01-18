@@ -50,9 +50,9 @@ namespace DataAccess
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Error while deleting credit note");
+                throw new Exception("Error while deleting credit note", ex);
             }
         }
 
@@ -134,7 +134,7 @@ namespace DataAccess
             return dt;
         }
 
-        public DataTable GetCreditNotesForMapping(object supplierReturnsId)
+        public DataTable GetCreditNotesForMapping(object SupplierRefId, string refType)
         {
             DataTable dt = new DataTable();
             try
@@ -144,9 +144,8 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "usp_R_CreditNotes_ForMapping";
-
-                    cmd.Parameters.AddWithValue("@SupplierReturnsId", supplierReturnsId);
-
+                    cmd.Parameters.AddWithValue("@SupplierRefId", SupplierRefId);
+                    cmd.Parameters.AddWithValue("@ReferenceType", refType);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
@@ -155,13 +154,61 @@ namespace DataAccess
             }
             catch (SqlException ex)
             {
+                
                 throw new Exception(ex.Message);
             }
 
             return dt;
         }
 
+        public DataTable GetMappedCreditNotes(object SupplierRefId, string referenceType)
+        {
+            var dt = new DataTable();
 
+            try
+            {
+                using (var con = SQLCon.Sqlconn())
+                using (var cmd = new SqlCommand("USP_R_SUPPLIERRETURNS_CREDITNOTES", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@SupplierRefId", SqlDbType.Int).Value = SupplierRefId;
+                    cmd.Parameters.Add("@ReferenceType", SqlDbType.VarChar, 50).Value = referenceType;
+
+                    using (var da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+
+            return dt;
+        }
+
+        public void DeleteCreditNoteMapping(object mapID, string mapType, object userId)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "USP_D_CREDITNOTEMAP";
+                    cmd.Parameters.AddWithValue("@MAPID", mapID);
+                    cmd.Parameters.AddWithValue("@MAPTYPE", mapType);
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while deleting credit note", ex);
+            }
+        }
 
     }
 }

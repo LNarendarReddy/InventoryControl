@@ -12,12 +12,14 @@ namespace NSRetail.Supplier
 
         public string SelectedCNNumber { get; private set; }
 
-        private object _supplierReturnsId;
+        private object _supplierRefId;
+        private string _refType;
 
-        public frmMapCreditNote(object supplierReturnsId)
+        public frmMapCreditNote(object supplierRefId, string refType)
         {
             InitializeComponent();
-            _supplierReturnsId = supplierReturnsId;
+            _supplierRefId = supplierRefId;
+            _refType = refType;
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -33,8 +35,7 @@ namespace NSRetail.Supplier
 
         private void frmMapCreditNote_Load(object sender, EventArgs e)
         {
-            gcCreditNotes.DataSource = new CreditNoteRepository().GetCreditNotesForMapping(_supplierReturnsId);
-
+            gcCreditNotes.DataSource = new CreditNoteRepository().GetCreditNotesForMapping(_supplierRefId, _refType);
             gvCreditNotes.Focus();
         }
 

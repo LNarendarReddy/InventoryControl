@@ -34,6 +34,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             ContextmenuItems = new Dictionary<string, string>
             {
                 { "Map Credit Note", "00D6561B-C2D3-4D6C-A88A-BC14B519925F" },
+                { "View Credit Note Mapping", "6F3C2D9A-8B4E-4C6F-A1D9-2F7C9B3E4A12" },
                 { "Print Purchase Return", "9B101F20-1E08-44A0-BE65-A8FA5D197574" },
                 { "Print Damage Expiry", "C4A8F6E2-1B9D-4A3F-9C7E-6D2B5A8F0E41" },
                 { "Discard", "8F3C9A6E-4C21-4F3D-B6E2-9C7A4B1D5F92" }
@@ -74,10 +75,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                             dt,
                             drFocusedRow["DEALERNAME"],
                             drFocusedRow["SUPPLIERRETURNSID"],
-                            drFocusedRow["STATUS"],              // UI state
-                            drFocusedRow["ACCEPTEDVALUE"],       // ReturnValue
-                            drFocusedRow["CreditNoteId"],        // ✅ CN Id (data)
-                            drFocusedRow["CN Number"]             // CN Number
+                            drFocusedRow["STATUS"],
+                            drFocusedRow["ACCEPTEDVALUE"]
                         );
 
                     obj.ShowInTaskbar = false;
@@ -103,6 +102,14 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                         return;
                     }
                     SupplierHelper.ShowSupplierDebitNote(drFocusedRow["SUPPLIERRETURNSID"], false);
+                    break;
+                case "View Credit Note Mapping":
+                    DataTable dtCN = new CreditNoteRepository().GetMappedCreditNotes(drFocusedRow["SUPPLIERRETURNSID"], "SR");
+                    frmViewCreditNoteMapping frmCNM = new frmViewCreditNoteMapping(dtCN);
+                    frmCNM.ShowInTaskbar = false;
+                    frmCNM.StartPosition = FormStartPosition.CenterScreen;
+                    frmCNM.IconOptions.ShowIcon = false;
+                    frmCNM.ShowDialog();
                     break;
                 case "Discard":
                     if (drFocusedRow["STATUS"].Equals("Partially Closed") || drFocusedRow["STATUS"].Equals("Closed"))

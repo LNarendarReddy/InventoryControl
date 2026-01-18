@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using Entity;
 using ErrorManagement;
+using NSRetail.Supplier;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -12,6 +13,8 @@ namespace NSRetail.Stock
     {
         StockEntry ObjStockEntry = null;
         StockRepository ObjStockRep = new StockRepository();
+        private int? _selectedCreditNoteId = null;
+
         public frmStockEntryPreview(StockEntry _ObjStockEntry)
         {
             InitializeComponent();
@@ -56,6 +59,30 @@ namespace NSRetail.Stock
                 cmbBranch.EditValue = ObjStockEntry.SourceBranchID;
                 cmbBranch.Enabled = false;  
             }
+
+            // Enable credit note mapping button
+            btnCreditNoteMapping.Enabled = true;
+            btnCreditNoteMapping.Click += BtnCreditNoteMapping_Click;
+        }
+
+        private void BtnCreditNoteMapping_Click(object sender, EventArgs e)
+        {
+            using (frmMapCreditNote frm = new frmMapCreditNote(ObjStockEntry.STOCKENTRYID, "SE"))
+            {
+                frm.StartPosition = FormStartPosition.CenterParent;
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    // Populate Return Value
+                    txtReturnValue.EditValue = frm.SelectedCreditValue;
+
+                    // Populate CN Number
+                    txtCNNumber.EditValue = frm.SelectedCNNumber;
+
+                    // Store selected CN ID
+                    _selectedCreditNoteId = frm.SelectedCreditNoteId;
+                }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -91,6 +118,7 @@ namespace NSRetail.Stock
                     ObjStockEntry.UserID = Utility.UserID;
                     ObjStockEntry.CATEGORYID = cmbCategory.EditValue;
                     ObjStockEntry.SourceBranchID = cmbBranch.EditValue;
+                    ObjStockEntry.CreditNoteId = _selectedCreditNoteId;
                     ObjStockRep.UpdateInvoice(ObjStockEntry);
                     ObjStockEntry.IsSave = true;
                     this.Close();

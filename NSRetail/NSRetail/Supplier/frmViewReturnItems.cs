@@ -15,18 +15,15 @@ namespace NSRetail
     {
         object SupplierReturnsID = null;
         private int? _selectedCreditNoteId = null;
+        private string _status;
 
-        public frmViewReturnItems(DataTable dtItems,object supplierName,object supplierReturnsId,
-            object status,object returnValue,object creditNoteId,object cnNumber)
+        public frmViewReturnItems(DataTable dtItems,object supplierName,object supplierReturnsId,object status,object returnValue)
         {
             InitializeComponent();
 
-            SupplierReturnsID = supplierReturnsId;
+            _status = Convert.ToString(status);
 
-            if (creditNoteId == DBNull.Value)
-                _selectedCreditNoteId = null;
-            else
-                _selectedCreditNoteId = Convert.ToInt32(creditNoteId);
+            SupplierReturnsID = supplierReturnsId;
 
             this.Text = $"{Text} - {supplierName} - {SupplierReturnsID}";
             gvSupplierReturns.ViewCaption =
@@ -35,7 +32,6 @@ namespace NSRetail
             gcSupplierReturns.DataSource = dtItems;
 
             txtReturnValue.EditValue = returnValue;
-            txtCNNumber.EditValue = cnNumber;
 
             ApplyUIStateByStatus(Convert.ToString(status));
         }
@@ -53,7 +49,7 @@ namespace NSRetail
                 case "Partially Closed":
                     gcReturnstatus.Visible = true;
                     gcReturnstatus.OptionsColumn.AllowEdit = true;
-                    btnCreditNoteMapping.Enabled = false; // 🔒 no remap
+                    btnCreditNoteMapping.Enabled = true;
                     txtReturnValue.Enabled = true;
                     break;
 
@@ -133,14 +129,9 @@ namespace NSRetail
             cmbReason.DisplayMember = "REASONNAME";
         }
 
-        private void gcSupplierReturns_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCreditNoteMapping_Click(object sender, EventArgs e)
         {
-            using (frmMapCreditNote frm = new frmMapCreditNote(SupplierReturnsID))
+            using (frmMapCreditNote frm = new frmMapCreditNote(SupplierReturnsID, "SR"))
             {
                 frm.StartPosition = FormStartPosition.CenterParent;
 
@@ -159,22 +150,25 @@ namespace NSRetail
 
         private bool ValidateCreditNoteForClose()
         {
-            if (_selectedCreditNoteId == null || _selectedCreditNoteId == 0)
-            {
-                XtraMessageBox.Show("Credit Note is mandatory");
-                return false;
-            }
-
             if (txtReturnValue.EditValue == null)
             {
                 XtraMessageBox.Show("CN Value is mandatory");
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(Convert.ToString(txtReturnValue.EditValue)))
+            if (_status.Equals("open", StringComparison.OrdinalIgnoreCase))
             {
-                XtraMessageBox.Show("CN Number is mandatory");
-                return false;
+                if (_selectedCreditNoteId == null || _selectedCreditNoteId == 0)
+                {
+                    XtraMessageBox.Show("Credit Note is mandatory");
+                    return false;
+                }
+
+                if (string.IsNullOrWhiteSpace(Convert.ToString(txtReturnValue.EditValue)))
+                {
+                    XtraMessageBox.Show("CN Number is mandatory");
+                    return false;
+                }
             }
 
             return true;
@@ -216,7 +210,7 @@ namespace NSRetail
 
         private void btnPartiallyCloseDN_Click(object sender, EventArgs e)
         {
-            if (!ValidateCreditNoteForClose())
+             if (!ValidateCreditNoteForClose())
                 return;
             UpdateSupplierReturnsWithStatus(2); // Partially Closed
         }

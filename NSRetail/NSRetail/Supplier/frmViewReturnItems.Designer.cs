@@ -165,7 +165,6 @@
             this.gcSupplierReturns.TabStop = false;
             this.gcSupplierReturns.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvSupplierReturns});
-            this.gcSupplierReturns.Click += new System.EventHandler(this.gcSupplierReturns_Click);
             // 
             // gvSupplierReturns
             // 
@@ -277,6 +276,8 @@
             // gridColumn15
             // 
             this.gridColumn15.Caption = "Total CP Value";
+            this.gridColumn15.DisplayFormat.FormatString = "n2";
+            this.gridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn15.FieldName = "TOTALCOSTPRICE";
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.OptionsColumn.AllowEdit = false;

@@ -53,6 +53,7 @@ namespace Entity
         public DataTable dtStockEntry { get; set; }
 
         public object SourceBranchID { get; set; }
+        public object CreditNoteId { get; set; }
     }
     public class StockEntryDetail : EntityBase
     {
