@@ -1,17 +1,14 @@
 ﻿using DataAccess;
-using DevExpress.PivotGrid.PivotTable;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraLayout;
-using Entity;
 using NSRetail.ReportForms;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Security.RightsManagement;
 using System.Windows.Forms;
 
 namespace NSRetail

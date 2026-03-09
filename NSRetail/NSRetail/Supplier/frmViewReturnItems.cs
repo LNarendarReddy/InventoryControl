@@ -6,7 +6,6 @@ using DevExpress.XtraGrid.Views.Grid;
 using NSRetail.Supplier;
 using System;
 using System.Data;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Forms;
 
 namespace NSRetail
@@ -16,11 +15,13 @@ namespace NSRetail
         object SupplierReturnsID = null;
         private int? _selectedCreditNoteId = null;
         private string _status;
+        private string _supplierName;
 
         public frmViewReturnItems(DataTable dtItems,object supplierName,object supplierReturnsId,object status,object returnValue)
         {
             InitializeComponent();
 
+            _supplierName = Convert.ToString(supplierName);
             _status = Convert.ToString(status);
 
             SupplierReturnsID = supplierReturnsId;
@@ -31,8 +32,6 @@ namespace NSRetail
 
             gcSupplierReturns.DataSource = dtItems;
 
-            txtReturnValue.EditValue = returnValue;
-
             ApplyUIStateByStatus(Convert.ToString(status));
         }
         private void ApplyUIStateByStatus(string status)
@@ -42,15 +41,11 @@ namespace NSRetail
                 case "Open":
                     gcReturnstatus.Visible = true;
                     gcReturnstatus.OptionsColumn.AllowEdit = true;
-                    btnCreditNoteMapping.Enabled = true;
-                    txtReturnValue.Enabled = true;
                     break;
 
                 case "Partially Closed":
                     gcReturnstatus.Visible = true;
                     gcReturnstatus.OptionsColumn.AllowEdit = true;
-                    btnCreditNoteMapping.Enabled = true;
-                    txtReturnValue.Enabled = true;
                     break;
 
                 case "Closed":
@@ -61,9 +56,6 @@ namespace NSRetail
         private void DisableAllEditing()
         {
             gcReturnstatus.OptionsColumn.AllowEdit = false;
-            btnCreditNoteMapping.Enabled = false;
-            txtReturnValue.Enabled = false;
-            btnPartiallyCloseDN.Enabled = false;
             btnCloseDN.Enabled = false;
         }
         private void frmViewReturnItems_KeyDown(object sender, KeyEventArgs e)
@@ -129,44 +121,13 @@ namespace NSRetail
             cmbReason.DisplayMember = "REASONNAME";
         }
 
-        private void btnCreditNoteMapping_Click(object sender, EventArgs e)
-        {
-            using (frmMapCreditNote frm = new frmMapCreditNote(SupplierReturnsID, "SR"))
-            {
-                frm.StartPosition = FormStartPosition.CenterParent;
-
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    // Populate Return Value
-                    txtReturnValue.EditValue = frm.SelectedCreditValue;
-
-                    txtCNNumber.EditValue = frm.SelectedCNNumber;
-
-                    // Store selected CN ID
-                    _selectedCreditNoteId = frm.SelectedCreditNoteId;
-                }
-            }
-        }
-
         private bool ValidateCreditNoteForClose()
         {
-            if (txtReturnValue.EditValue == null)
-            {
-                XtraMessageBox.Show("CN Value is mandatory");
-                return false;
-            }
-
             if (_status.Equals("open", StringComparison.OrdinalIgnoreCase))
             {
                 if (_selectedCreditNoteId == null || _selectedCreditNoteId == 0)
                 {
                     XtraMessageBox.Show("Credit Note is mandatory");
-                    return false;
-                }
-
-                if (string.IsNullOrWhiteSpace(Convert.ToString(txtReturnValue.EditValue)))
-                {
-                    XtraMessageBox.Show("CN Number is mandatory");
                     return false;
                 }
             }
@@ -179,11 +140,6 @@ namespace NSRetail
             if (!ValidateCreditNoteForClose())
                 return;
 
-            UpdateSupplierReturnsWithStatus(3); // Closed
-        }
-
-        private void UpdateSupplierReturnsWithStatus(int status)
-        {
             if (gvSupplierReturns.RowCount == 0 ||
                 XtraMessageBox.Show("Are you sure want to continue?", "Confirm",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
@@ -195,9 +151,7 @@ namespace NSRetail
                     SupplierReturnsID,
                     Utility.UserID,
                     (gcSupplierReturns.DataSource as DataTable).Copy(),
-                    txtReturnValue.EditValue,
-                    _selectedCreditNoteId,
-                    status
+                    3 // Status ID for Closed
                 );
 
                 Close();
@@ -206,13 +160,6 @@ namespace NSRetail
             {
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
-        }
-
-        private void btnPartiallyCloseDN_Click(object sender, EventArgs e)
-        {
-             if (!ValidateCreditNoteForClose())
-                return;
-            UpdateSupplierReturnsWithStatus(2); // Partially Closed
         }
     }
 }

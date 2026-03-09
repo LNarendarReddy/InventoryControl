@@ -1,4 +1,8 @@
-﻿v3.5.7 — Supplier Returns & Credit Note Enhancements
+﻿v3.5.8 — Supplier Returns & Credit Note Enhancements
+-- Added validations while mapping credit notes to debit notes.
+-- Added additional columns in credit notes and debit notes.
+
+v3.5.7 — Supplier Returns & Credit Note Enhancements
 -- Integrated credit note mapping in Stock Entry and debit notes with auto-population of CN Value and CN Number.
 -- CreditNote form with edit/create modes and automatic data loading based on credit note ID.
 

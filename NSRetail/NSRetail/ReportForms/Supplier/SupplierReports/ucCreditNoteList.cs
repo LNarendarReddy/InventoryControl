@@ -29,7 +29,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
 
             ContextmenuItems = new Dictionary<string, string>
             {
-                //{ "View", "8F6C3E2D-4B7A-4A9E-BF2C-9E3A1D6C5F42" },
+                { "View Mappings", "8F6C3E2D-4B7A-4A9E-BF2C-9E3A1D6C5F42" },
                 { "Edit", "A3F8C6E2-9B4D-4A71-9F2B-6C1D8F5A4E9A" },
                 { "Delete", "A9E3D4F6-2C7B-4F81-9B5E-6D0C8A1F27E4" }
             };
@@ -60,11 +60,10 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
         {
             try
             {
-                if (buttonText == "View")
+                if (buttonText == "View Mappings")
                 {
-                    frmCreditNote frm = new frmCreditNote(
-                        Convert.ToInt32(drFocusedRow["CreditNoteId"])
-                    );
+                    DataTable dataTable = new SupplierRepository().GetCreditNoteMappings(drFocusedRow["CreditNoteId"]);
+                    frmViewDNMappings frm = new frmViewDNMappings(dataTable);
                     frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                     frm.ShowDialog();
                 }
@@ -89,7 +88,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     var idObj = drFocusedRow["CreditNoteId"];
                     if (idObj == null || idObj == DBNull.Value) return;
 
-                    if (XtraMessageBox.Show("Are you sure you want to discard this credit note?", 
+                    if (XtraMessageBox.Show("Are you sure you want to discard this credit note?",
                             "Confirm", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.Yes)
                         return;
 

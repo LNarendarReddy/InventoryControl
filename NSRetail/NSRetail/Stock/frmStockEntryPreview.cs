@@ -67,7 +67,7 @@ namespace NSRetail.Stock
 
         private void BtnCreditNoteMapping_Click(object sender, EventArgs e)
         {
-            using (frmMapCreditNote frm = new frmMapCreditNote(ObjStockEntry.STOCKENTRYID, "SE"))
+            using (frmSelectCreditNote frm = new frmSelectCreditNote(ObjStockEntry.STOCKENTRYID, "SE"))
             {
                 frm.StartPosition = FormStartPosition.CenterParent;
 

@@ -12,6 +12,7 @@ namespace NSRetail.Supplier
         {
             InitializeComponent();
             gcCreditNotes.DataSource = dataTable;
+            gvCreditNotes.BestFitColumns();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

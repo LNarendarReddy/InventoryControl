@@ -134,7 +134,7 @@ namespace DataAccess
             }
         }
 
-        public void UpdateSupplierReturns(object SupplierReturnsID, object UserID, DataTable dt, object ReturnValue, object creditNoteId, object status)
+        public void UpdateSupplierReturns(object SupplierReturnsID, object UserID, DataTable dt, object status)
         {
             try
             {
@@ -157,8 +157,6 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SupplierReturnsID", SupplierReturnsID);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     cmd.Parameters.AddWithValue("@dt", dt);
-                    cmd.Parameters.AddWithValue("@RETURNVALUE", ReturnValue);
-                    cmd.Parameters.AddWithValue("@CreditNoteId", creditNoteId);
                     cmd.Parameters.AddWithValue("@STATUS", status);
                     object objreturn = cmd.ExecuteScalar();
                     if (objreturn != null)
@@ -671,6 +669,83 @@ namespace DataAccess
                     throw new Exception("Error while mapping item with supplier");
             }
             return id;
+        }
+
+        public DataTable GetCNMappingValues(object supplierReturnsId, object creditNoteId)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_SR_CN_MAPPINGVALUES]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERRETURNSID", supplierReturnsId);
+                    cmd.Parameters.AddWithValue("@CREDITNOTEID", creditNoteId);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving mapping values", ex);
+            }
+            return dt;
+        }
+
+        public object MapCreditNote(object supplierReturnsId, object creditNoteId,object cnValueToBeMapped, object UserID)
+        {
+            object id = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_SR_CN_MAPPING]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERRETURNSID", supplierReturnsId);
+                    cmd.Parameters.AddWithValue("@CREDITNOTEID", creditNoteId);
+                    cmd.Parameters.AddWithValue("@CNVALUETOBEMAPPED", cnValueToBeMapped);
+                    cmd.Parameters.AddWithValue("@USERID", UserID);
+                    object obj = cmd.ExecuteScalar();
+                    if (int.TryParse(Convert.ToString(obj), out int ivaue))
+                        id = obj;
+                    else
+                        throw new Exception(Convert.ToString(obj));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while mapping credit note", ex);
+            }
+            return id;
+        }
+
+        public DataTable GetCreditNoteMappings(object creditNoteId)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[usp_R_CreditNote_Mappings]";
+                    cmd.Parameters.AddWithValue("@CREDITNOTEID", creditNoteId);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving credit note mappings", ex);
+            }
+            return dt;
         }
     }
 }

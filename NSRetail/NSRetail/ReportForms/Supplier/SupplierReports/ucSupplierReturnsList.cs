@@ -33,6 +33,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
 
             ContextmenuItems = new Dictionary<string, string>
             {
+                { "View Items", "F6A1E4C7-8B23-4F9D-A2C1-9E7B5D6A3F10" },
                 { "Map Credit Note", "00D6561B-C2D3-4D6C-A88A-BC14B519925F" },
                 { "View Credit Note Mapping", "6F3C2D9A-8B4E-4C6F-A1D9-2F7C9B3E4A12" },
                 { "Print Purchase Return", "9B101F20-1E08-44A0-BE65-A8FA5D197574" },
@@ -66,8 +67,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
         {
             switch (buttonText)
             {
-                case "Map Credit Note":
-
+                case "View Items":
                     DataTable dt = new SupplierRepository()
                         .GetSupplierReturnsforCN(drFocusedRow["SUPPLIERRETURNSID"]);
 
@@ -86,7 +86,12 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
 
                     (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
                     break;
-
+                case "Map Credit Note":
+                    frmMapCreditNote frm = new frmMapCreditNote(drFocusedRow["SUPPLIERRETURNSID"], "SR", drFocusedRow["DEALERNAME"].ToString());
+                    frm.StartPosition = FormStartPosition.CenterParent;
+                    frm.ShowDialog();
+                    (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
+                    break;
                 case "Print Purchase Return":
                     if(drFocusedRow["STATUS"].Equals("Draft"))
                     {

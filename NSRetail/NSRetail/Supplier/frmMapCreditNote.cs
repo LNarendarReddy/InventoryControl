@@ -1,73 +1,71 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
+using Dropbox.Api.Files;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace NSRetail.Supplier
 {
     public partial class frmMapCreditNote : DevExpress.XtraEditors.XtraForm
     {
-        public int SelectedCreditNoteId { get; private set; }
-        public decimal SelectedCreditValue { get; private set; }
-
-        public string SelectedCNNumber { get; private set; }
-
-        private object _supplierRefId;
-        private string _refType;
-
-        public frmMapCreditNote(object supplierRefId, string refType)
+        private string supplerName;
+        private string refType;
+        private object supplierReturnsID;
+        public frmMapCreditNote(object _supplierReturnsID, string _refType, string _supplierName )
         {
             InitializeComponent();
-            _supplierRefId = supplierRefId;
-            _refType = refType;
+            refType = _refType;
+            supplerName = _supplierName;
+            supplierReturnsID = _supplierReturnsID;
+            DataTable dataTable = new SupplierRepository().GetCNMappingValues(supplierReturnsID, null);
+            txtTotalDNValue.EditValue = dataTable.Rows[0]["TOTALDNVALUE"];
+            txtMappedDNValue.EditValue = dataTable.Rows[0]["MAPPEDDNVALUE"];
+            txtBalanceDNValue.EditValue = dataTable.Rows[0]["BALANCEDNVALUETOBEMAPPED"];
+            txtSupplierName.EditValue = supplerName;
+            this.Text = $"Map Credit Note - {supplerName} : {supplierReturnsID}";
         }
 
-        private void btnSelect_Click(object sender, EventArgs e)
+        private void btnSelectCreditNote_Click(object sender, System.EventArgs e)
         {
-            SelectCreditNote();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-        private void frmMapCreditNote_Load(object sender, EventArgs e)
-        {
-            gcCreditNotes.DataSource = new CreditNoteRepository().GetCreditNotesForMapping(_supplierRefId, _refType);
-            gvCreditNotes.Focus();
-        }
-
-        private void frmMapCreditNote_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
+            using (frmSelectCreditNote frm = new frmSelectCreditNote(supplierReturnsID, refType))
             {
-                SelectCreditNote();
-                e.Handled = true;
+                frm.StartPosition = FormStartPosition.CenterParent;
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    DataTable dataTable = new SupplierRepository().GetCNMappingValues(supplierReturnsID, frm.SelectedCreditNoteId);
+                    txtTotalDNValue.EditValue = dataTable.Rows[0]["TOTALDNVALUE"];
+                    txtMappedDNValue.EditValue = dataTable.Rows[0]["MAPPEDDNVALUE"];
+                    txtBalanceDNValue.EditValue = dataTable.Rows[0]["BALANCEDNVALUETOBEMAPPED"];
+
+                    txtCreditNoteNumber.EditValue = frm.SelectedCreditNoteId;
+                    txtTotalCNValue.EditValue = dataTable.Rows[0]["TOTALCNVALUE"];
+                    txtMappedCNValue.EditValue = dataTable.Rows[0]["MAPPEDCNVALUE"];
+                    txtBalanceCNValue.EditValue = dataTable.Rows[0]["BALANCECNVALUECANBEMAPPED"];
+
+                    txtCNValueTobeMapped.EditValue = dataTable.Rows[0]["BALANCECNVALUECANBEMAPPED"];
+                }
             }
         }
 
-        private void SelectCreditNote()
+        private void btnSave_Click(object sender, System.EventArgs e)
         {
-            if (gvCreditNotes.FocusedRowHandle < 0)
+            try
             {
-                XtraMessageBox.Show("Please select a credit note");
-                return;
+                new SupplierRepository().MapCreditNote(
+                    supplierReturnsID, txtCreditNoteNumber.EditValue, 
+                    txtCNValueTobeMapped.EditValue, Utility.UserID);
+                this.Close();
             }
-
-            SelectedCreditNoteId =
-                Convert.ToInt32(gvCreditNotes.GetFocusedRowCellValue("CreditNoteId"));
-
-            SelectedCreditValue =
-                Convert.ToDecimal(gvCreditNotes.GetFocusedRowCellValue("CreditValue"));
-
-            SelectedCNNumber =
-                Convert.ToString(gvCreditNotes.GetFocusedRowCellValue("CNNumber"));
-
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
         }
 
+        private void btnCancel_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
