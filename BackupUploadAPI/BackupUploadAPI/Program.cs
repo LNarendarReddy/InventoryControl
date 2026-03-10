@@ -32,6 +32,13 @@ namespace BackupUploadAPI
             { 
                 Console.WriteLine($"Error while uploading : {ex.Message}");
                 Console.WriteLine($"Stack trace : {ex.StackTrace}");
+
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine(Environment.NewLine);
+                    Console.WriteLine($"inner exception : {ex.InnerException.Message}");
+                    Console.WriteLine($"Stack trace : {ex.InnerException.StackTrace}");
+                }
             }
             
             //string folderID = GoogleDriveRepository.GetfolderID(ConfigurationManager.AppSettings[$"{backuptype}Target"]);

@@ -32,6 +32,7 @@ namespace BackupUploadAPI
             {
                 using (var fileStream = File.Open(localPath, FileMode.Open))
                 {
+                    Console.WriteLine("Starting upload");
                     await Upload(dbx, remotePath + "/" + Path.GetFileName(localPath), fileStream);
                 }
             }
@@ -41,11 +42,13 @@ namespace BackupUploadAPI
         {
             if (stream.Length <= ChunkSize)
             {
+                Console.WriteLine("Small file upload");
                 await client.Files.UploadAsync(remotePath, body: stream);
                 Console.WriteLine($"Upload status - 100 %");
             }
             else
             {
+                Console.WriteLine("chunk based upload");
                 await ChunkUpload(client, remotePath, stream);
             }
         }
