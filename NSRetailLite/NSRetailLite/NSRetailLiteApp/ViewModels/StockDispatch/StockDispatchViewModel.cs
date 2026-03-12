@@ -23,8 +23,6 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
         public ObservableCollection<ItemGroup> ItemsData { get; } = new ObservableCollection<ItemGroup>();
         public ObservableCollection<TrayWiseGroup> TrayWiseData { get; } = new ObservableCollection<TrayWiseGroup>();
 
-        private readonly LoggedInUser user;
-
         public IAsyncRelayCommand StartDispatchCommand { get; }
 
         public IAsyncRelayCommand SubmitCommand { get; }
@@ -65,10 +63,9 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
         [ObservableProperty]
         private Item? _foundItem;
 
-        public StockDispatchViewModel(StockDispatchModel stockDispatchModel, LoggedInUser User)
+        public StockDispatchViewModel(StockDispatchModel stockDispatchModel)
         {
             StockDispatchModel = stockDispatchModel;
-            user = User;
 
             BuildModelData();
 
@@ -138,7 +135,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             holderClass = await PostAsync("Stockdispatch_v2/discarddispatch", holderClass, new Dictionary<string, string?>
             {
                 { "StockDispatchID", StockDispatchModel.StockDispatchId.ToString() },
-                { "UserID", user.UserId.ToString() }
+                { "UserID", HomePageViewModel.User.UserId.ToString() }
             });
 
             if (holderClass?.Exception == null) await Pop();
@@ -155,7 +152,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             await RedirectToPage(stockDispatchDetailModel
                 , new StockDispatchDetailPage(
                     new StockDispatchDetailViewModel(stockDispatchDetailModel, null, StockDispatchModel
-                        , user, showItemScanInCodeSelection: true, popAfterSave: false)));
+                        , showItemScanInCodeSelection: true, popAfterSave: false)));
         }
 
         private async Task AddIndentQuantity(BranchIndentDetailModel? selected)
@@ -172,7 +169,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             await RedirectToPage(stockDispatchDetailModel
                 , new StockDispatchDetailPage(
                     new StockDispatchDetailViewModel(stockDispatchDetailModel, selected, StockDispatchModel
-                        , user, showItemScanInCodeSelection: true, cachedItem: FoundItem)));
+                        , showItemScanInCodeSelection: true, cachedItem: FoundItem)));
         }
 
         private async Task EditIndentQuantity(BranchIndentDetailModel? selected)
@@ -180,7 +177,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             if (selected == null || IsNew) return;
 
             await RedirectToPage(selected, new StockDispatchDetailListPage(
-                new StockDispatchDetailListViewModel(selected, StockDispatchModel, user)));
+                new StockDispatchDetailListViewModel(selected, StockDispatchModel)));
         }
 
         private async Task EditManualQuantity(StockDispatchDetailModel? selected)
@@ -190,7 +187,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
             await RedirectToPage(selected
                 , new StockDispatchDetailPage(
                     new StockDispatchDetailViewModel(selected, null, StockDispatchModel
-                        , user, showItemScanInCodeSelection: true)));
+                        , showItemScanInCodeSelection: true)));
         }
 
         private async Task EditManualQuantityOnly(StockDispatchDetailModel? selected)
@@ -201,7 +198,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
                 , new StockDispatchDetailPage(
                     new StockDispatchDetailViewModel(selected
                         , StockDispatchModel.BranchIndentDetailList.FirstOrDefault(x=>x.StockDispatchDetailIndentList.Contains(selected))
-                        , StockDispatchModel, user, false, showItemScanInCodeSelection: true)));
+                        , StockDispatchModel, false, showItemScanInCodeSelection: true)));
         }
 
         private async Task DeleteManualQuantity(StockDispatchDetailModel? selected)
@@ -265,8 +262,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
                 , new Dictionary<string, string?>()
                 {
                     { "ItemCode", SearchCode },
-                    { "CategoryID", user.CategoryId.ToString() },
-                    { "SubCategoryID", user.SubCategoryId.ToString() }
+                    { "CategoryID", HomePageViewModel.User.CategoryId.ToString() },
+                    { "SubCategoryID", HomePageViewModel.User.SubCategoryId.ToString() }
                 }, displayAlert: true);
 
             if (item.Exception != null)
@@ -282,12 +279,12 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch.Indent
         {
             if(StockDispatchModel == null) return;
 
-            AllowStart = user.SubCategoryId == 0;
+            AllowStart = HomePageViewModel.User.SubCategoryId == 0;
             IsNew = (StockDispatchModel?.StockDispatchId ?? 0) <= 0;
             IsManual = !IsNew && StockDispatchModel?.BranchIndentId == 0;
             string filler = IsManual ? "Manual" : $" {StockDispatchModel.NoOfDays} days"; 
             Title = $"{StockDispatchModel.ToBranchName} - ( {filler} )";
-            StockDispatchModel.UserId = user.UserId;
+            StockDispatchModel.UserId = HomePageViewModel.User.UserId;
 
             if (StockDispatchModel.BranchIndentDetailList == null) return;
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.StockEntry.InvoiceDetailsPage"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui">
+    <VerticalStackLayout Padding="20" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+        <Label Text="{Binding Path=StockEntryModel.SupplierName}" 
+               VerticalOptions="Center" HorizontalOptions="Center" FontSize="Title"/>
+        <Label Text="{Binding Path=StockEntryModel.SupplierIndentNo}" VerticalOptions="Center" 
+               HorizontalOptions="Center" FontSize="Large"/>
+        <Label Text="{Binding Path=StockEntryModel.CategoryName}" VerticalOptions="Center" 
+               HorizontalOptions="Center" FontSize="Large"/>
+        <Entry Placeholder="Enter invoice #" Text="{Binding Path=StockEntryModel.SupplierInvoiceNo}"
+               FontSize="Medium" x:Name="txtSupplierInvoiceNo" Loaded="txtSupplierInvoiceNo_Loaded"/>
+        <DatePicker Date="{Binding Path=StockEntryModel.InvoiceDate}"
+                    FontSize="Medium"/>
+        <Button Text="Save" WidthRequest="120" Margin="0, 20, 0, 0" Command="{Binding Path=SaveCommand}"/>
+    </VerticalStackLayout>
+</mct:Popup>

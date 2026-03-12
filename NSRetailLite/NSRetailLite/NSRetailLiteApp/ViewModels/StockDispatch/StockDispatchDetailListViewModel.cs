@@ -13,20 +13,17 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 {
     public class StockDispatchDetailListViewModel : BaseViewModel
     {
-        private readonly LoggedInUser user;
-
         public IAsyncRelayCommand<StockDispatchDetailModel?> EditCommand { get; }
         public IAsyncRelayCommand<StockDispatchDetailModel?> DiscardCommand { get; }
         public IAsyncRelayCommand BackCommand { get; }
         public IAsyncRelayCommand AddCommand { get; }
 
         public StockDispatchDetailListViewModel(BranchIndentDetailModel branchIndentDetailModel
-            , StockDispatchModel stockDispatchModel
-            , LoggedInUser user)
+            , StockDispatchModel stockDispatchModel)
         {
             BranchIndentDetailModel = branchIndentDetailModel;
             StockDispatchModel = stockDispatchModel;
-            this.user = user;
+            
             //SaveCommand = new AsyncRelayCommand(Save);
             //LoadItemCommand = new AsyncRelayCommand(LoadItem);
 
@@ -52,7 +49,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             await RedirectToPage(stockDispatchDetailModel
                 , new StockDispatchDetailPage(
                     new StockDispatchDetailViewModel(stockDispatchDetailModel, BranchIndentDetailModel, StockDispatchModel
-                        , user, showItemScanInCodeSelection: true)));
+                        , showItemScanInCodeSelection: true)));
         }
 
         private async Task Edit(StockDispatchDetailModel? selected)
@@ -62,7 +59,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             await RedirectToPage(selected
                 , new StockDispatchDetailPage(
                     new StockDispatchDetailViewModel(selected, BranchIndentDetailModel, StockDispatchModel
-                        , user, showItemScanInCodeSelection: true)));
+                        , showItemScanInCodeSelection: true)));
         }
 
         private async Task Discard(StockDispatchDetailModel? selected)

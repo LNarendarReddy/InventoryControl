@@ -8,12 +8,14 @@ using NSRetailLiteApp.ViewModels.DispatchReceive;
 using NSRetailLiteApp.ViewModels.ItemDetails;
 using NSRetailLiteApp.ViewModels.StockCounting;
 using NSRetailLiteApp.ViewModels.StockDispatch.Indent;
+using NSRetailLiteApp.ViewModels.StockEntry;
 using NSRetailLiteApp.Views.Billing;
 using NSRetailLiteApp.Views.Common;
 using NSRetailLiteApp.Views.DispatchReceive;
 using NSRetailLiteApp.Views.ItemDetails;
 using NSRetailLiteApp.Views.StockCounting;
 using NSRetailLiteApp.Views.StockDispatch;
+using NSRetailLiteApp.Views.StockEntry;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -42,6 +44,7 @@ namespace NSRetailLiteApp.ViewModels
             CustomerRefundCommand = new AsyncRelayCommand(CustomerRefund);
             ItemDetailsCommand = new AsyncRelayCommand(ItemDetails);
             StockDispatchCommand = new AsyncRelayCommand(StockDispatch);
+            StockEntryCommand = new AsyncRelayCommand(StockEntry);
             DispatchRecieveCommand = new AsyncRelayCommand(DispatchReceive);
 
             _model = loggedInUser;
@@ -255,7 +258,6 @@ namespace NSRetailLiteApp.ViewModels
                         , daySequence.DaySequenceId)));
         }
 
-
         public IAsyncRelayCommand ChangePasswordCommand { get; }
 
         private async Task ChangePassword()
@@ -411,7 +413,7 @@ namespace NSRetailLiteApp.ViewModels
 
             await RedirectToPage(holderClass
                     , new StockDispatchPage(
-                        new StockDispatchViewModel(holderClass.StockDispatch, User)));
+                        new StockDispatchViewModel(holderClass.StockDispatch)));
         }
 
         private async Task ViewBranchIndent()
@@ -473,7 +475,7 @@ namespace NSRetailLiteApp.ViewModels
 
             await RedirectToPage(holderClass
                     , new StockDispatchPage(
-                        new StockDispatchViewModel(holderClass.StockDispatch, User)));
+                        new StockDispatchViewModel(holderClass.StockDispatch)));
         }
 
         private async Task ManualDispatch()
@@ -518,7 +520,7 @@ namespace NSRetailLiteApp.ViewModels
 
             await RedirectToPage(holderClass
                     , new StockDispatchPage(
-                        new StockDispatchViewModel(holderClass.StockDispatch, User)));
+                        new StockDispatchViewModel(holderClass.StockDispatch)));
         }
 
         public IAsyncRelayCommand DispatchRecieveCommand { get; }
@@ -560,5 +562,65 @@ namespace NSRetailLiteApp.ViewModels
                     (new DispatchReceiveDetailListViewModel(holder.DispatchReceive, Model)));
             }
         }
+
+        public IAsyncRelayCommand StockEntryCommand { get; }
+
+        private async Task StockEntry()
+        {
+            if (Application.Current == null || Application.Current.MainPage == null) return;
+
+            HolderClass holderClass = new();
+            holderClass = await GetAsync("stockentry_v2/getinvoice", holderClass, new Dictionary<string, string?>() { { "UserID", User.UserId.ToString() } }, false);
+
+            if (holderClass.StockEntry != null)
+            {
+                StockEntryModel stockEntry = holderClass.StockEntry;
+                await RedirectToPage(stockEntry, new StockEntryDetailListPage(new StockEntryDetailListViewModel(stockEntry)));
+                return;
+            }
+
+            holderClass = new();
+            holderClass = await GetAsync("stockentry_v2/getsupplier", holderClass, new Dictionary<string, string?>() { { "searchKey", "invalid" } });
+
+            SupplierSelectionViewModel supplierSelectionViewModel = new(holderClass.Holder.SupplierList);
+            await ShowPopup(holderClass, new SupplierSelectionPage(supplierSelectionViewModel));
+
+            if (supplierSelectionViewModel.SelectedSupplier == null) return;
+
+            holderClass = new();
+            holderClass = await GetAsync("stockentry_v2/getcategory", holderClass, []);
+
+            CategorySelectionViewModel categorySelectionViewModel = new(holderClass.Holder.CategoryList);
+            await ShowPopup(holderClass, new CategorySelectionPage(categorySelectionViewModel));
+
+            if (categorySelectionViewModel.SelectedCategory == null) return;
+
+            holderClass = new();
+            holderClass = await GetAsync("stockentry_v2/getindentlist", holderClass, new Dictionary<string, string?>()
+                { 
+                    { "SupplierID", supplierSelectionViewModel.SelectedSupplier.SupplierId.ToString() },
+                    { "CategoryID", categorySelectionViewModel.SelectedCategory.CategoryID.ToString() }
+                });
+
+            SupplierIndentSelectionViewModel supplierIndentSelectionViewModel = new(holderClass.Holder.SupplierIndentList);
+            await ShowPopup(holderClass, new SupplierIndentSelectionPage(supplierIndentSelectionViewModel));
+
+            if (supplierIndentSelectionViewModel.SelectedSupplierIndent == null) return;
+
+            StockEntryModel stockEntryModel = new()
+            {
+                SupplierId = supplierSelectionViewModel.SelectedSupplier.SupplierId,
+                SupplierName = supplierSelectionViewModel.SelectedSupplier.SupplierName.ToString(),
+                CategoryId = categorySelectionViewModel.SelectedCategory.CategoryID,
+                CategoryName = categorySelectionViewModel.SelectedCategory.CategoryName,
+                SupplierIndentId = supplierIndentSelectionViewModel.SelectedSupplierIndent.SupplierIndentId,
+                SupplierIndentNo = supplierIndentSelectionViewModel.SelectedSupplierIndent.SupplierIndentNo,
+                InvoiceDate = DateTime.Today
+            };
+
+            holderClass = new HolderClass();
+            StockEntryViewModel stockEntryViewModel = new(stockEntryModel, User);
+            await ShowPopup(holderClass, new InvoiceDetailsPage(stockEntryViewModel));
+        }        
     }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="NSRetailLiteApp.Views.Common.CategorySelectionPage"
+             xmlns:models="clr-namespace:NSRetailLiteApp.Models">
+    <Grid RowDefinitions="Auto, *" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+        <SearchBar x:Name="searchBar" Margin="0, 0, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" 
+                          SearchCommand="{Binding Path=PerformSearchCommand}"                   
+       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+       Placeholder="Search Category" PlaceholderColor="White" CancelButtonColor="White">
+            <SearchBar.Behaviors>
+                <toolkit:EventToCommandBehavior Command = "{Binding PerformSearchCommand}" 
+                                                CommandParameter="{Binding Text, Source={x:Reference searchBar}}" EventName="TextChanged" />
+            </SearchBar.Behaviors>
+        </SearchBar>
+        <CollectionView ItemsSource="{Binding Path=FilteredCategories}" SelectedItem="{Binding Path=SelectedCategory}" SelectionMode="Single"
+          SelectionChanged="CollectionView_SelectionChanged" Margin="20" VerticalScrollBarVisibility="Always" Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type models:Category}">
+                    <VerticalStackLayout  Margin="5, 15, 0, 5" VerticalOptions="CenterAndExpand" x:Name="templateRoot">
+                        <Label 
+                            Text="{Binding Path=BindingContext.CategoryName, Source={x:Reference templateRoot}}" 
+                            HorizontalTextAlignment="Start" FontAttributes="Bold" Padding="2, 0, 0, 0"/>
+                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</mct:Popup>

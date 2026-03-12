@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace NSRetailLiteApp.ViewModels
 {
-    public partial class BranchSelectionViewModel : BaseViewModel
+    public partial class SupplierSelectionViewModel : BaseViewModel
     {
         [ObservableProperty]
-        public ObservableCollection<Branch> _branches;
+        public ObservableCollection<Supplier> _suppliers;
 
         [ObservableProperty]
-        public ObservableCollection<Branch> _filteredBranches;
+        public ObservableCollection<Supplier> _filteredSuppliers;
 
         [ObservableProperty]
-        public Branch _selectedBranch;
+        public Supplier _selectedSupplier;
 
-        public BranchSelectionViewModel(ObservableCollection<Branch> branches)
+        public SupplierSelectionViewModel(ObservableCollection<Supplier> suppliers)
         {
-            _branches = branches;
-            _filteredBranches = branches;
+            _suppliers = suppliers;
+            _filteredSuppliers = suppliers;
         }
 
         [RelayCommand]
@@ -32,14 +32,14 @@ namespace NSRetailLiteApp.ViewModels
         {
             if (string.IsNullOrEmpty(search))
             {
-                FilteredBranches = Branches;
+                FilteredSuppliers = Suppliers;
                 return;
             }
 
             search = search.ToLower();
-            FilteredBranches
-            = new ObservableCollection<Branch>(
-                    Branches.Where(x => x.BranchName.Contains(search, StringComparison.CurrentCultureIgnoreCase)));
+            FilteredSuppliers
+                = new ObservableCollection<Supplier>(
+                    Suppliers.Where(x => x.SupplierName.Contains(search, StringComparison.CurrentCultureIgnoreCase)));
         }
     }
 }

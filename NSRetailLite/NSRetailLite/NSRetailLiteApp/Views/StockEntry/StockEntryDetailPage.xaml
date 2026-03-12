@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.StockEntry.StockEntryDetailPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"             
+             Title="Add invoice item"
+             x:Name="StockEntryDetail" Loaded="StockEntryDetail_Loaded">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid ColumnDefinitions="*">
+        <VerticalStackLayout Margin="20" VerticalOptions="FillAndExpand">
+            <Grid ColumnDefinitions="*, Auto">
+
+                <Entry Placeholder="EAN Code" Margin="0, 0, 0, 10" Text="{Binding Path=StockEntryDetailModel.ItemCode, Mode=TwoWay}"
+               ClearButtonVisibility="WhileEditing" ReturnType="Done"
+               ReturnCommand="{Binding Path=BindingContext.LoadItemCommand, Source={x:Reference StockEntryDetail}}" Keyboard="Numeric"
+               x:Name="txtItemCode" Grid.Column="0" Loaded="txtItemCode_Loaded">
+                    <Entry.Behaviors>
+                        <toolkit:SelectAllTextBehavior />
+                        <toolkit:EventToCommandBehavior
+                    EventName="Completed"
+                    Command="{Binding Path=BindingContext.LoadItemCommand, Source={x:Reference StockEntryDetail}}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <!--<ImageButton Source="camera.png" Command="{Binding Path=BindingContext.ScanCommand, Source={x:Reference AddItemPage}}" 
+                     Margin="10, 0, 0, 0" WidthRequest="40" Grid.Column="1"/>-->
+            </Grid>
+            <Entry Placeholder="Item Name" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockEntryDetailModel.ItemName, Mode=TwoWay}"/>
+            <Entry Placeholder="SKU Code" Margin="0, 0, 0, 10" IsReadOnly="True" Text="{Binding Path=StockEntryDetailModel.SKUCode, Mode=TwoWay}"/>
+            <Entry Placeholder="MRP" Text="{Binding Path=StockEntryDetailModel.MRP, Mode=TwoWay}" Grid.Column="0" x:Name="txtMRP"/>
+
+            <Grid HorizontalOptions="FillAndExpand" Margin="0, 0, 0, 10" ColumnDefinitions="auto, *, auto, *" ColumnSpacing="5">
+                <Label Text="Quantity" FontSize="Small" VerticalTextAlignment="Center" Grid.Column="0"/>
+                <Entry Text="{Binding Path=StockEntryDetailModel.Quantity, Mode=TwoWay}" Grid.Column="1" Placeholder="Qty" x:Name="txtQuantity"
+                       Keyboard="Numeric" IsEnabled="{Binding Path=StockEntryDetailModel.IsOpenItem, Converter={StaticResource InvertedBoolConverter}}">
+                    <Entry.Behaviors>
+                        <toolkit:NumericValidationBehavior 
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            ValidStyle="{StaticResource ValidEntryStyle}"
+                            Flags="ValidateOnValueChanged" 
+                            MaximumDecimalPlaces="0" MaximumValue="9999"/>
+                        <toolkit:SelectAllTextBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Label Text="Weight in KG(s)" FontSize="Small" VerticalTextAlignment="Center" Grid.Column="2"/>
+                <Entry Text="{Binding Path=StockEntryDetailModel.WeightInKGs, Mode=TwoWay}"  Keyboard="Numeric" x:Name="txtWeightInKGs"
+                       IsEnabled="{Binding Path=StockEntryDetailModel.IsOpenItem}" Grid.Column="3" Placeholder="Wght">
+                    <Entry.Behaviors>
+                        <toolkit:NumericValidationBehavior 
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            ValidStyle="{StaticResource ValidEntryStyle}"
+                            Flags="ValidateOnValueChanged" 
+                            MaximumDecimalPlaces="2" MaximumValue="9999.99"/>
+                        <toolkit:SelectAllTextBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </Grid>
+            <Button Text="Save" WidthRequest="120" Command="{Binding Path=SaveCommand}" />
+            <!--toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference txtItemCode}"-->
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

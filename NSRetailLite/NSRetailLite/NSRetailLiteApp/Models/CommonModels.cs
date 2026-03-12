@@ -50,6 +50,8 @@ namespace NSRetailLiteApp.Models
 
         public StockDispatchModel StockDispatch;
 
+        public StockEntryModel StockEntry;
+
         public ObservableCollection<BranchIndent> BranchIndentList;
 
         public ObservableCollection<Dispatch> DispatchList;
@@ -57,6 +59,12 @@ namespace NSRetailLiteApp.Models
         public DispatchReceive DispatchReceive;
 
         //public ObservableCollection<DispatchReceiveDetail> DispatchReceiveDetailList;
+
+        public ObservableCollection<Supplier> SupplierList;
+
+        public ObservableCollection<Category> CategoryList;
+
+        public ObservableCollection<SupplierIndent> SupplierIndentList;
 
     }
 
@@ -176,5 +184,14 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         private double _offerValue;
+    }
+
+    public partial class Category : BaseObservableObject
+    {
+        [ObservableProperty]
+        private int _categoryID;
+
+        [ObservableProperty]
+        private string _categoryName;
     }
 }

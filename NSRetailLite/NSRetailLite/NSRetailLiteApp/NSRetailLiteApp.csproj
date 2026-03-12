@@ -126,8 +126,14 @@
 	  <Compile Update="Views\Common\BarcodeScannerPage.xaml.cs">
 	    <DependentUpon>BarcodeScannerPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Common\CategorySelectionPage.xaml.cs">
+	    <DependentUpon>CategorySelectionPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\StockDispatch\StockDispatchPage.xaml.cs">
 	    <DependentUpon>StockDispatchPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\StockEntry\SupplierSelectionPage.xaml.cs">
+	    <DependentUpon>SupplierSelectionPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -151,6 +157,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Common\BranchCounterSelectionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Common\CategorySelectionPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Common\ChangePasswordPage.xaml">
@@ -202,6 +211,21 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StockDispatch\StockDispatchTypeSelectionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StockEntry\InvoiceDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StockEntry\StockEntryDetailListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StockEntry\StockEntryDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StockEntry\SupplierIndentSelectionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StockEntry\SupplierSelectionPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

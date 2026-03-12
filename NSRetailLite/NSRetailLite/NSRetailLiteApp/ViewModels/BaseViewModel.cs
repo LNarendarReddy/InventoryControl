@@ -171,6 +171,8 @@ namespace NSRetailLiteApp.ViewModels
                 callingObject = root.Holder.DayClosure as T;
             else if (callingObject.GetType() == typeof(StockDispatchModel))
                 callingObject = root.Holder.StockDispatch as T;
+            else if (callingObject.GetType() == typeof(StockEntryModel))
+                callingObject = root.Holder.StockEntry as T;
         }
 
         private void DisplayErrorMessage(BaseObservableObject callingObject, bool displayAlert = true)

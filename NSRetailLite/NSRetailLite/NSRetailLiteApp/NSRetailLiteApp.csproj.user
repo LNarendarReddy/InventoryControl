@@ -11,6 +11,9 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
+    <MauiXaml Update="Views\Common\CategorySelectionPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\DispatchReceive\DispatchReceiveDetailListPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
@@ -36,6 +39,21 @@
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Views\StockDispatch\StockDispatchTypeSelectionPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\StockEntry\InvoiceDetailsPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\StockEntry\StockEntryDetailListPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\StockEntry\StockEntryDetailPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\StockEntry\SupplierIndentSelectionPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\StockEntry\SupplierSelectionPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
   </ItemGroup>

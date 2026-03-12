@@ -22,6 +22,6 @@ public partial class AddItem : ContentPage
 
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
-        txtItemCode.Focus();
+        txtItemCode.Focus();        
     }
 }

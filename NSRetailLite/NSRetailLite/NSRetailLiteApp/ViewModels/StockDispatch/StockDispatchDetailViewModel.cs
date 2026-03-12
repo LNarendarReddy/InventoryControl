@@ -34,9 +34,10 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
 
         public IAsyncRelayCommand DeleteTrayCommand { get; }
 
-        public LoggedInUser User { get; }
         public bool IsEditable { get; }
+
         public bool ShowItemScanInCodeSelection { get; }
+
         public Item? CachedItem { get; private set; }
 
         [ObservableProperty]
@@ -45,7 +46,6 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
         public StockDispatchDetailViewModel(StockDispatchDetailModel stockDispatchDetailModel
             , BranchIndentDetailModel branchIndentDetailModel
             , StockDispatchModel stockDispatchModel
-            , LoggedInUser user
             , bool isEditable = true
             , bool showItemScanInCodeSelection = false
             , Item? cachedItem = null
@@ -54,7 +54,6 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
             StockDispatchDetailModel = stockDispatchDetailModel;
             this.branchIndentDetailModel = branchIndentDetailModel;
             StockDispatchModel = stockDispatchModel;
-            User = user;
             IsEditable = isEditable;
             ShowItemScanInCodeSelection = showItemScanInCodeSelection;
             CachedItem = cachedItem;
@@ -113,7 +112,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
                     { "ItemPriceID", StockDispatchDetailModel.ItemPriceId.ToString() },
                     { "DispatchQuantity", StockDispatchDetailModel.DispatchQuantity.ToString() },
                     { "WeightInKgs", StockDispatchDetailModel.WeightInKGs.ToString() },
-                    { "UserID", User.UserId.ToString() },
+                    { "UserID", HomePageViewModel.User.UserId.ToString() },
                     { "TrayInfoId", StockDispatchDetailModel.TrayInfoId.ToString() },
                     { "TrayNumber", StockDispatchDetailModel.TrayNumber.ToString() }
                 }, displayAlert: true, showResponse: false);
@@ -197,8 +196,8 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
                     , new Dictionary<string, string?>()
                     {
                     { "ItemCode", StockDispatchDetailModel.ItemCode },
-                    { "CategoryID", User.CategoryId.ToString() },
-                    { "SubCategoryID", User.SubCategoryId.ToString() }
+                    { "CategoryID", HomePageViewModel.User.CategoryId.ToString() },
+                    { "SubCategoryID", HomePageViewModel.User.SubCategoryId.ToString() }
                     }, displayAlert: true);
 
                 if (item.Exception != null) return;
@@ -245,7 +244,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
                             {
                                 { "StockDispatchID", StockDispatchModel.StockDispatchId.ToString() },
                                 { "TrayNumber", trayNumber },
-                                { "UserID", User.UserId.ToString() }
+                                { "UserID", HomePageViewModel.User.UserId.ToString() }
                             });
 
             if (trayInfo.Exception != null) return;
@@ -269,7 +268,7 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
                             {
                                 { "StockDispatchID", StockDispatchModel.StockDispatchId.ToString() },
                                 { "TrayInfoID", trayInfo.TrayInfoId.ToString() },
-                                { "UserID", User.UserId.ToString() }
+                                { "UserID", HomePageViewModel.User.UserId.ToString() }
                             });
 
             if (trayInfo.Exception != null) return;

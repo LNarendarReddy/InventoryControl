@@ -57,9 +57,18 @@
                                 </VerticalStackLayout>
                                 
                                 <VerticalStackLayout Grid.Row="0" Grid.Column="4">
-                                    <ImageButton Margin="0, 5, 0, 2" Source="stockentry.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"/>
-                                    <Label Text="Stock" FontSize="Small" HorizontalTextAlignment="Center"/>
-                                    <Label Text="Entry" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                    <ImageButton Margin="0, 5, 0, 2" Source="stockentry.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
+                                                 Command="{Binding Path=StockEntryCommand}"/>
+                                    <Label Text="Stock" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding StockEntryCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Text="Entry" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding StockEntryCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
                                 </VerticalStackLayout>
                                 
                             </Grid>

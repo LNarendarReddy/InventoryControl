@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="NSRetailLiteApp.Views.StockEntry.SupplierSelectionPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:NSRetailLiteApp.Models">
+    <Grid RowDefinitions="Auto, *" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+        <SearchBar x:Name="searchBar" Margin="0, 0, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" 
+                              SearchCommand="{Binding Path=PerformSearchCommand}"                   
+           SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+           Placeholder="Search suppliers" PlaceholderColor="White" CancelButtonColor="White">
+            <SearchBar.Behaviors>
+                <toolkit:EventToCommandBehavior
+            Command = "{Binding PerformSearchCommand}"
+            CommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+            EventName="TextChanged" />
+            </SearchBar.Behaviors>
+        </SearchBar>
+        <CollectionView ItemsSource="{Binding Path=FilteredSuppliers}" SelectedItem="{Binding Path=SelectedSupplier}" SelectionMode="Single"
+              SelectionChanged="CollectionView_SelectionChanged" Margin="20" VerticalScrollBarVisibility="Always" Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type models:Supplier}">
+                    <VerticalStackLayout  Margin="5, 15, 0, 5" VerticalOptions="CenterAndExpand" x:Name="templateRoot">
+                        <HorizontalStackLayout Margin="5, 0, 5, 0" HorizontalOptions="Start">
+                            <Label 
+                                Text="{Binding Path=BindingContext.SupplierName, Source={x:Reference templateRoot}}" 
+                                HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                            <Label Text="{Binding Path=BindingContext.GSTIN, Source={x:Reference templateRoot}, StringFormat='  ( {0} )'}" />
+                        </HorizontalStackLayout>
+                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</mct:Popup>

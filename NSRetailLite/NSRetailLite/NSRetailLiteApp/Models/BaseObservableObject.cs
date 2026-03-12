@@ -14,7 +14,7 @@ namespace NSRetailLiteApp.Models
     {
         [JsonIgnore]
         [ObservableProperty]
-        public Exception _exception;
+        public Exception? _exception;
 
         [JsonIgnore]
         [ObservableProperty]
