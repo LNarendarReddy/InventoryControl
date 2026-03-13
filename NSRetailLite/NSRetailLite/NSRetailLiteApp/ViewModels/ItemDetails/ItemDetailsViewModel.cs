@@ -1,7 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Core.Extensions;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using NSRetailLiteApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,41 +14,77 @@ namespace NSRetailLiteApp.ViewModels.ItemDetails
     public partial class ItemDetailsViewModel : BaseViewModel
     {
         [ObservableProperty]
-        public Item _itemData;
+        private Item _itemData;
 
         [ObservableProperty]
-        public ItemCodeData _itemCodeData;
+        private ItemPrice _selectedItemPrice;
 
         [ObservableProperty]
-        public ItemPrice _selectedItemPrice;
+        private ItemOffer _selectedItemOffer;
 
         [ObservableProperty]
-        public ItemOffer _selectedItemOffer;
+        private ObservableCollection<ItemOffer> _filteredItemOfferList;
 
         [ObservableProperty]
-        public double _finalPrice;
+        private double _finalPrice;
 
         [ObservableProperty]
-        public bool _showFinalPrice;
+        private double? _totalQuantity;
 
-        public ItemDetailsViewModel(Item itemData, ItemCodeData itemCodeData)
+        [ObservableProperty]
+        private bool _showFinalPrice;
+
+        [ObservableProperty]
+        private string _itemCode;
+
+        public Branch SelectedBranch { get; }
+
+        public IAsyncRelayCommand LoadItemCommand { get; }
+
+        public ItemDetailsViewModel(Branch selectedBranch)
         {
-            ItemData = itemData;
-            ItemCodeData = itemCodeData;
+            LoadItemCommand = new AsyncRelayCommand(LoadItem);
+            SelectedBranch = selectedBranch;
+        }
+
+        private async Task LoadItem()
+        {
+            if (string.IsNullOrEmpty(ItemCode)) return;
+
+            Item item = new();
+            item = await GetAsync("item/getitem", item
+                , new Dictionary<string, string?>()
+                {
+                    { "ItemCode", ItemCode },
+                    {"BranchId", SelectedBranch.BranchID.ToString() }
+                }, displayAlert: true);
+
+            ItemData = item;
+            FillData();
         }
 
         partial void OnSelectedItemPriceChanged(ItemPrice value)
         {
-            RefreshFinalPrice();
+            FillData();            
         }
 
         partial void OnSelectedItemOfferChanged(ItemOffer value)
         {
-            RefreshFinalPrice();
+            FillData();
         }
 
-        private void RefreshFinalPrice()
+        private void FillData()
         {
+            TotalQuantity = ItemData?.ItemPriceList.Sum(x => x.QtyOrWeightInKGs);
+            FilteredItemOfferList = [];
+
+            if (ItemData == null) return;
+
+            if (SelectedItemPrice != null && ItemData.ItemOfferList != null)
+                FilteredItemOfferList = ItemData.ItemOfferList
+                    .Where(x => x.ItemCodeId == SelectedItemPrice.ItemCodeID)
+                    .ToObservableCollection();
+
             ShowFinalPrice = SelectedItemPrice != null && SelectedItemOffer != null;
 
             if(!ShowFinalPrice) return;
@@ -66,5 +105,16 @@ namespace NSRetailLiteApp.ViewModels.ItemDetails
                     break;
             }
         }
+
+//        holderClass = new ();
+//            holderClass = await GetAsync("Item/getItemdata", holderClass, new Dictionary<string, string?>()
+//            {
+//                { "ItemCodeID", selectedItemCode.ItemCodeID
+//    },
+//                { "BranchID", HomePageViewModel.User.BranchId.ToString()
+//},
+//                { "useWHConnection", true.ToString() }
+//            });
+
     }
 }

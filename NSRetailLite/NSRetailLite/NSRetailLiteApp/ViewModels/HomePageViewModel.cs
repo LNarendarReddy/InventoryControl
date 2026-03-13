@@ -288,42 +288,23 @@ namespace NSRetailLiteApp.ViewModels
 
         private async Task ItemDetails()
         {
-            string eanCode = await Application.Current?.MainPage?.DisplayPromptAsync("Item Detail", "Enter\\scan the EAN Code", "OK");
-            if (string.IsNullOrEmpty(eanCode)) return;
-
             HolderClass holderClass = new();
-            holderClass = await GetAsync("Item/getItem", holderClass, new Dictionary<string, string?>()
-            {
-                { "ItemCode", eanCode }
-            });
+            holderClass = await GetAsync("item/getbranch", holderClass, new Dictionary<string, string?>() { { "UserID", Model.UserId.ToString() } });
 
-            Item item = holderClass.Item;
-
-            if (item == null || item.ItemCodeList == null || !item.ItemCodeList.Any()) return;
-
-            ItemCodeData selectedItemCode;
-
-            if (item.ItemCodeList.Count > 1)
-            {
-                ItemCodeSelectionViewModel itemCodeSelectionViewModel = new ItemCodeSelectionViewModel(item);
-                await base.ShowPopup(item, new ItemCodeSelectionPage(itemCodeSelectionViewModel));
-                selectedItemCode = itemCodeSelectionViewModel.SelectedItemCode;
-            }
+            Branch? branch = null;
+            if (holderClass?.Holder?.BranchList != null && holderClass.Holder.BranchList.Count == 1)
+                branch = holderClass.Holder.BranchList[0];
             else
             {
-                selectedItemCode = item.ItemCodeList[0];
+                BranchSelectionViewModel branchSelectionViewModel = new(holderClass.Holder.BranchList);
+                await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
+
+                branch = branchSelectionViewModel.SelectedBranch;
             }
 
-            if (selectedItemCode == null) return;
+            if (branch == null) return;
 
-            holderClass = new();
-            holderClass = await GetAsync("Item/getItemdata", holderClass, new Dictionary<string, string?>()
-            {
-                { "ItemCodeID", selectedItemCode.ItemCodeID },
-                { "BranchID", HomePageViewModel.User.BranchId.ToString() }
-            });
-
-            await RedirectToPage(holderClass, new ItemDetailsPage(new ItemDetailsViewModel(item, holderClass.ItemCode)));
+            await RedirectToPage(holderClass, new ItemDetailsPage(new ItemDetailsViewModel(branch)));
         }
 
         public IAsyncRelayCommand StockDispatchCommand { get; }

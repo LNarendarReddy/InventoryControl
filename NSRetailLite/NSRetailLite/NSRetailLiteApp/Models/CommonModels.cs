@@ -123,6 +123,12 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         private ObservableCollection<ItemCodeData> _itemCodeList;
 
+        [ObservableProperty]
+        private ObservableCollection<ItemPrice> _itemPriceList;
+
+        [ObservableProperty]
+        private ObservableCollection<ItemOffer> _itemOfferList;
+
         public Item()
         {
             ItemCodeList = [];
@@ -162,6 +168,9 @@ namespace NSRetailLiteApp.Models
         private int _itemCodeID;
 
         [ObservableProperty]
+        private string _itemCode;
+
+        [ObservableProperty]
         private int _itemPriceID;
 
         [ObservableProperty]
@@ -184,6 +193,9 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         private double _offerValue;
+
+        [ObservableProperty]
+        private int _itemCodeId;
     }
 
     public partial class Category : BaseObservableObject
