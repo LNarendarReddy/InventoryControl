@@ -400,6 +400,12 @@
     <Compile Include="ReportForms\Supplier\SupplierReports\ucCreditNoteList.Designer.cs">
       <DependentUpon>ucCreditNoteList.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Supplier\SupplierReports\ucDealerIndentByMBQ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Supplier\SupplierReports\ucDealerIndentByMBQ.Designer.cs">
+      <DependentUpon>ucDealerIndentByMBQ.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1452,6 +1458,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierReports\ucCreditNoteList.resx">
       <DependentUpon>ucCreditNoteList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Supplier\SupplierReports\ucDealerIndentByMBQ.resx">
+      <DependentUpon>ucDealerIndentByMBQ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierWiseReports\ucSupplierItemMargin.resx">
       <DependentUpon>ucSupplierItemMargin.cs</DependentUpon>
