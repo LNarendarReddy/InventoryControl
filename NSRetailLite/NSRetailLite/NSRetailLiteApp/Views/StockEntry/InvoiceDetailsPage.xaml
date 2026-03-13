@@ -6,10 +6,12 @@
     <VerticalStackLayout Padding="20" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
         <Label Text="{Binding Path=StockEntryModel.SupplierName}" 
                VerticalOptions="Center" HorizontalOptions="Center" FontSize="Title"/>
+        <Label Text="{Binding Path=StockEntryModel.SupplierGSTIN, StringFormat='( {0} )'}" 
+               VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium" />
         <Label Text="{Binding Path=StockEntryModel.SupplierIndentNo}" VerticalOptions="Center" 
                HorizontalOptions="Center" FontSize="Large"/>
-        <Label Text="{Binding Path=StockEntryModel.CategoryName}" VerticalOptions="Center" 
-               HorizontalOptions="Center" FontSize="Large"/>
+        <Label Text="{Binding Path=StockEntryModel.CategoryName, StringFormat='( {0} )'}" VerticalOptions="Center" 
+               HorizontalOptions="Center" FontSize="Caption"/>
         <Entry Placeholder="Enter invoice #" Text="{Binding Path=StockEntryModel.SupplierInvoiceNo}"
                FontSize="Medium" x:Name="txtSupplierInvoiceNo" Loaded="txtSupplierInvoiceNo_Loaded"/>
         <DatePicker Date="{Binding Path=StockEntryModel.InvoiceDate}"

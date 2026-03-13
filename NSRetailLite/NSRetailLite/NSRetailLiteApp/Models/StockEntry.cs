@@ -44,6 +44,9 @@ namespace NSRetailLiteApp.Models
         private string _supplierName;
 
         [ObservableProperty]
+        private string _supplierGSTIN;
+
+        [ObservableProperty]
         private int _categoryId;
 
         [ObservableProperty]

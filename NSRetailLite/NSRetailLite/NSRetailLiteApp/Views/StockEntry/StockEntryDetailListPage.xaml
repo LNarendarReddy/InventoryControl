@@ -12,18 +12,35 @@
     </ContentPage.Resources>
     <Grid>
         <Grid RowDefinitions="Auto, *, Auto, Auto">
-            <SearchBar x:Name="searchBar" Grid.Row="0"
+            <VerticalStackLayout Grid.Row="0" Spacing="5">
+                <SearchBar x:Name="searchBar" 
                SearchCommand="{Binding Path=PerformSearchCommand}"                   
                SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
-               Placeholder="{Binding Path=StockEntryModel.SupplierInvoiceNo, StringFormat='Invoice # : {0}'}" 
+               Placeholder="{Binding Path=StockEntryModel.SupplierName}" 
                PlaceholderColor="White" CancelButtonColor="White">
-                <SearchBar.Behaviors>
-                    <toolkit:EventToCommandBehavior
-                Command = "{Binding PerformSearchCommand}"
-                CommandParameter="{Binding Text, Source={x:Reference searchBar}}"
-                EventName="TextChanged" />
-                </SearchBar.Behaviors>
-            </SearchBar>
+                    <SearchBar.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                                Command = "{Binding PerformSearchCommand}"
+                                CommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+                                EventName="TextChanged" />  
+                    </SearchBar.Behaviors>
+                </SearchBar>
+                <Border Margin="10, 0, 10, 0" Padding="5" StrokeThickness="3" Stroke="PaleVioletRed">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    
+                    <Grid  ColumnDefinitions="auto, auto, auto, *, auto" HorizontalOptions="FillAndExpand">
+                        <Label Text="Invoice #: " VerticalTextAlignment="Center" FontSize="Subtitle" Grid.Column="0"/>
+                        <Label Text="{Binding Path=StockEntryModel.SupplierInvoiceNo}" FontAttributes="Bold"  
+                           VerticalTextAlignment="Center" FontSize="Subtitle" Grid.Column="1"/>
+                        <Label Text="{Binding Path=StockEntryModel.InvoiceDate, StringFormat=' ( {0:d} )'}" 
+                           VerticalTextAlignment="Center" FontSize="Subtitle" Grid.Column="2"/>
+                        <Button Text="Edit Invoice #" HorizontalOptions="End" Grid.Column="3" Command="{Binding Path=EditInvoiceNoCommand}"/>
+                    </Grid>
+                </Border>
+                <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Margin="10, 0, 10, 0" />
+            </VerticalStackLayout>
             <CollectionView ItemsSource="{Binding Path=FilteredStockEntryDetails}" Grid.Row="1" x:Name="mCollectionView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

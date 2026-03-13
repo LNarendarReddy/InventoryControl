@@ -5,7 +5,7 @@
              x:Class="NSRetailLiteApp.Views.StockEntry.SupplierIndentSelectionPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
               xmlns:models="clr-namespace:NSRetailLiteApp.Models">
-    <Grid RowDefinitions="Auto, *" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+    <Grid RowDefinitions="Auto, Auto, *" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
         <SearchBar x:Name="searchBar" Margin="0, 0, 0, 0" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" 
                           SearchCommand="{Binding Path=PerformSearchCommand}"                   
        SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
@@ -17,8 +17,9 @@
         EventName="TextChanged" />
             </SearchBar.Behaviors>
         </SearchBar>
+        <Button Text="Skip" Grid.Column="1" x:Name="btnSkip" Clicked="btnSkip_Clicked" Margin="5" Grid.Row="1" HorizontalOptions="Center"/>
         <CollectionView ItemsSource="{Binding Path=FilteredSupplierIndents}" SelectedItem="{Binding Path=SelectedSupplierIndent}" SelectionMode="Single"
-          SelectionChanged="CollectionView_SelectionChanged" Margin="20" VerticalScrollBarVisibility="Always" Grid.Row="1">
+          SelectionChanged="CollectionView_SelectionChanged" Margin="20" VerticalScrollBarVisibility="Always" Grid.Row="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type models:SupplierIndent}">
                     <VerticalStackLayout  Margin="5, 15, 0, 5" VerticalOptions="CenterAndExpand" x:Name="templateRoot">

@@ -17,16 +17,14 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
         [ObservableProperty]
         private StockEntryModel _stockEntryModel;
 
-        private readonly LoggedInUser user;
         public IAsyncRelayCommand SaveCommand { get; }
 
         public event EventHandler SaveComplete;
 
-        public StockEntryViewModel(StockEntryModel stockEntryModel, LoggedInUser User)
+        public StockEntryViewModel(StockEntryModel stockEntryModel)
         {
             _stockEntryModel = stockEntryModel;
-            user = User;
-            StockEntryModel.UserID = user.UserId;
+            StockEntryModel.UserID = HomePageViewModel.User.UserId;
             SaveCommand = new AsyncRelayCommand(Save);            
         }
 
@@ -48,9 +46,12 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
                     , "OK");
                 return;
             }
-            if (!await DisplayAlert("Confirm"
-                       , $"Do you create a new invoice for {StockEntryModel.SupplierInvoiceNo} ({StockEntryModel.SupplierName})?"
-                       , "Yes", "No")) return;
+
+            string message = StockEntryModel.StockEntryId > 0
+                ? $"Are you sure you want to save?"
+                : $"Are you sure you want to create invoice for {StockEntryModel.SupplierInvoiceNo} ({StockEntryModel.SupplierName})?";
+
+            if (!await DisplayAlert("Confirm", message , "Yes", "No")) return;
 
             var stockEntryModel = StockEntryModel;
             stockEntryModel = await PostAsyncAsContent("StockEntry_v2/saveinvoice", stockEntryModel, displayAlert: true, showResponse: false);
@@ -61,8 +62,12 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
                 return;
             }
 
-            stockEntryModel.StockEntryId = stockEntryModel.ReturnId;
-            await RedirectToPage(stockEntryModel, new StockEntryDetailListPage(new StockEntryDetailListViewModel(stockEntryModel)));
+            if (StockEntryModel.StockEntryId == 0)
+            {
+                stockEntryModel.StockEntryId = stockEntryModel.ReturnId;
+                await RedirectToPage(stockEntryModel, new StockEntryDetailListPage(new StockEntryDetailListViewModel(stockEntryModel)));
+            }
+
             SaveComplete?.Invoke(this, new EventArgs());
         }
     }

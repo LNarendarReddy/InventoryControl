@@ -19,4 +19,9 @@ public partial class SupplierIndentSelectionPage : Popup
     {
         this.CloseAsync();
     }
+
+    private void btnSkip_Clicked(object sender, EventArgs e)
+    {
+        this.CloseAsync();
+    }
 }

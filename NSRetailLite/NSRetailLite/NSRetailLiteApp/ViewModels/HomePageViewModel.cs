@@ -580,7 +580,9 @@ namespace NSRetailLiteApp.ViewModels
             }
 
             holderClass = new();
-            holderClass = await GetAsync("stockentry_v2/getsupplier", holderClass, new Dictionary<string, string?>() { { "searchKey", "invalid" } });
+            holderClass = await GetAsync("stockentry_v2/getsupplier", holderClass, new Dictionary<string, string?>() { { "searchKey", "invalid" } }, true);
+
+            if (holderClass.Exception != null) return;
 
             SupplierSelectionViewModel supplierSelectionViewModel = new(holderClass.Holder.SupplierList);
             await ShowPopup(holderClass, new SupplierSelectionPage(supplierSelectionViewModel));
@@ -588,7 +590,9 @@ namespace NSRetailLiteApp.ViewModels
             if (supplierSelectionViewModel.SelectedSupplier == null) return;
 
             holderClass = new();
-            holderClass = await GetAsync("stockentry_v2/getcategory", holderClass, []);
+            holderClass = await GetAsync("stockentry_v2/getcategory", holderClass, [], true);
+
+            if (holderClass.Exception != null) return;
 
             CategorySelectionViewModel categorySelectionViewModel = new(holderClass.Holder.CategoryList);
             await ShowPopup(holderClass, new CategorySelectionPage(categorySelectionViewModel));
@@ -600,26 +604,31 @@ namespace NSRetailLiteApp.ViewModels
                 { 
                     { "SupplierID", supplierSelectionViewModel.SelectedSupplier.SupplierId.ToString() },
                     { "CategoryID", categorySelectionViewModel.SelectedCategory.CategoryID.ToString() }
-                });
+                }, true);
+
+            if (holderClass.Exception != null) return;
 
             SupplierIndentSelectionViewModel supplierIndentSelectionViewModel = new(holderClass.Holder.SupplierIndentList);
             await ShowPopup(holderClass, new SupplierIndentSelectionPage(supplierIndentSelectionViewModel));
-
-            if (supplierIndentSelectionViewModel.SelectedSupplierIndent == null) return;
 
             StockEntryModel stockEntryModel = new()
             {
                 SupplierId = supplierSelectionViewModel.SelectedSupplier.SupplierId,
                 SupplierName = supplierSelectionViewModel.SelectedSupplier.SupplierName.ToString(),
                 CategoryId = categorySelectionViewModel.SelectedCategory.CategoryID,
-                CategoryName = categorySelectionViewModel.SelectedCategory.CategoryName,
-                SupplierIndentId = supplierIndentSelectionViewModel.SelectedSupplierIndent.SupplierIndentId,
-                SupplierIndentNo = supplierIndentSelectionViewModel.SelectedSupplierIndent.SupplierIndentNo,
+                CategoryName = categorySelectionViewModel.SelectedCategory.CategoryName,                
+                SupplierGSTIN = supplierSelectionViewModel.SelectedSupplier.GSTIN,
                 InvoiceDate = DateTime.Today
             };
 
+            if (supplierIndentSelectionViewModel.SelectedSupplierIndent != null)
+            {
+                stockEntryModel.SupplierIndentId = supplierIndentSelectionViewModel.SelectedSupplierIndent.SupplierIndentId;
+                stockEntryModel.SupplierIndentNo = supplierIndentSelectionViewModel.SelectedSupplierIndent.SupplierIndentNo;
+            }
+
             holderClass = new HolderClass();
-            StockEntryViewModel stockEntryViewModel = new(stockEntryModel, User);
+            StockEntryViewModel stockEntryViewModel = new(stockEntryModel);
             await ShowPopup(holderClass, new InvoiceDetailsPage(stockEntryViewModel));
         }        
     }

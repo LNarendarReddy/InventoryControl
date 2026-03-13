@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging.Messages;
+using DevExpress.Drawing.Internal.Fonts.Interop;
 using NSRetailLiteApp.Models;
 using NSRetailLiteApp.Views.StockEntry;
 using System;
@@ -8,7 +10,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Google.Crypto.Tink.Shaded.Protobuf;
 
 namespace NSRetailLiteApp.ViewModels.StockEntry
 {
@@ -26,6 +27,8 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
 
         public IAsyncRelayCommand DiscardStockEntryCommand { get; }
 
+        public IAsyncRelayCommand EditInvoiceNoCommand { get; }
+
         public IAsyncRelayCommand<StockEntryDetailModel> EditStockEntryDetailCommand { get; }
 
         public IAsyncRelayCommand<StockEntryDetailModel> DeleteStockEntryDetailCommand { get; }
@@ -41,6 +44,32 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
             DiscardStockEntryCommand = new AsyncRelayCommand(DiscardStockEntry);
             EditStockEntryDetailCommand = new AsyncRelayCommand<StockEntryDetailModel>(EditStockEntryDetail);
             DeleteStockEntryDetailCommand = new AsyncRelayCommand<StockEntryDetailModel>(DeleteStockEntryDetail);
+
+            EditInvoiceNoCommand = new AsyncRelayCommand(EditInvoiceNo);
+        }
+
+        private async Task EditInvoiceNo()
+        {
+            StockEntryModel stockEntryModel = new()
+            {
+                SupplierId = StockEntryModel.SupplierId,
+                SupplierName = StockEntryModel.SupplierName,
+                CategoryId = StockEntryModel.CategoryId,
+                CategoryName = StockEntryModel.CategoryName,
+                SupplierIndentId = StockEntryModel.SupplierIndentId,
+                SupplierIndentNo = StockEntryModel.SupplierIndentNo,
+                SupplierGSTIN = StockEntryModel.SupplierGSTIN,
+                InvoiceDate = StockEntryModel.InvoiceDate,
+                StockEntryId = StockEntryModel.StockEntryId
+            };
+            var stockEntryViewModel = new StockEntryViewModel(stockEntryModel);
+            stockEntryViewModel.SaveComplete += StockEntryViewModel_SaveComplete;
+            await ShowPopup(stockEntryModel, new InvoiceDetailsPage(stockEntryViewModel));
+        }
+
+        private void StockEntryViewModel_SaveComplete(object? sender, EventArgs e)
+        {
+            Reload();
         }
 
         [RelayCommand]
