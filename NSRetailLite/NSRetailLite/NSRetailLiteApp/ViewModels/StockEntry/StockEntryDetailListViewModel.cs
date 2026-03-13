@@ -60,7 +60,8 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
                 SupplierIndentNo = StockEntryModel.SupplierIndentNo,
                 SupplierGSTIN = StockEntryModel.SupplierGSTIN,
                 InvoiceDate = StockEntryModel.InvoiceDate,
-                StockEntryId = StockEntryModel.StockEntryId
+                StockEntryId = StockEntryModel.StockEntryId,
+                SupplierInvoiceNo = StockEntryModel.SupplierInvoiceNo
             };
             var stockEntryViewModel = new StockEntryViewModel(stockEntryModel);
             stockEntryViewModel.SaveComplete += StockEntryViewModel_SaveComplete;
@@ -151,6 +152,7 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
             if (!await DisplayAlert("Confirm", "Are you sure you want to submit stock invoice entry?", "Yes", "No")) return;
 
             StockEntryModel stockEntry = StockEntryModel;
+            stockEntry.UserID = HomePageViewModel.User.UserId;
             stockEntry = await PostAsync("StockEntry_v2/updateinvoice", stockEntry
                 , new Dictionary<string, string?>() { { "StockEntryID", stockEntry.StockEntryId.ToString() } }
                 , displayAlert: true, showResponse: true);
@@ -175,7 +177,7 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
         {
             var stockEntryModel = StockEntryModel;
             stockEntryModel = await GetAsync("stockentry_v2/getinvoice", stockEntryModel, new Dictionary<string, string?>() { { "UserID", HomePageViewModel.User.UserId.ToString() } }, true);
-
+            stockEntryModel.UserID = HomePageViewModel.User.UserId;
             StockEntryModel = stockEntryModel;
             PerformSearch();
         }
