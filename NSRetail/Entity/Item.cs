@@ -52,6 +52,10 @@
         public object UQCID { get; set; }
 
         public object VendorSKUCode { get; set; }
+
+        public object SeasonalityIDs { get; set; }
+
+        public object RefundPathID { get; set; }
     }
 
     public class ItemNewCode : EntityBase

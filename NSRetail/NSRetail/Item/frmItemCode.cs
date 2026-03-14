@@ -105,6 +105,8 @@ namespace NSRetail
                 itemObj.ManufacturerID = cmbManufacturer.EditValue;
                 itemObj.UQCID = cmbUQC.EditValue;
                 itemObj.VendorSKUCode = txtVendorSKUCode.EditValue;
+                itemObj.SeasonalityIDs = cmbSeasonality.EditValue;
+                itemObj.RefundPathID = cmbRefundPath.EditValue;
 
                 new ItemCodeRepository().SaveItemCode(itemObj);
 
@@ -274,6 +276,14 @@ namespace NSRetail
             cmbUQC.Properties.DisplayMember = "QUANTITY";
             cmbUQC.Properties.ValueMember = "UQCID";
 
+            cmbRefundPath.Properties.DataSource = Utility.GetRefundPathData();
+            cmbRefundPath.Properties.DisplayMember = "REFUNDPATHTEXT";
+            cmbRefundPath.Properties.ValueMember = "REFUNDPATHID";
+
+            cmbSeasonality.Properties.DataSource = Utility.GetSeasonalityData();
+            cmbSeasonality.Properties.DisplayMember = "SEASON";
+            cmbSeasonality.Properties.ValueMember = "SEASONALITYID"; 
+
             sluFreeItem.Properties.DataSource = Utility.GetItemCodeListFiltered();
             sluFreeItem.Properties.DisplayMember = "ITEMNAME";
             sluFreeItem.Properties.ValueMember = "ITEMCODEID";
@@ -414,6 +424,9 @@ namespace NSRetail
             cmbManufacturer.EditValue = dtItemDetails.Rows[0]["MANUFACTURERID"];
             cmbUQC.EditValue = dtItemDetails.Rows[0]["UQCID"];
             txtVendorSKUCode.EditValue = dtItemDetails.Rows[0]["VENDORSKUCODE"];
+
+            cmbSeasonality.SetEditValue(dtItemDetails.Rows[0]["SEASONALITYIDS"]);
+            cmbRefundPath.EditValue = dtItemDetails.Rows[0]["REFUNDPATHID"];
 
             DataTable dtItemCodePrices = dsItemDetails.Tables["ITEMCODEPRICES"];
             DataRow selectedPrice = dtItemCodePrices.Rows[0];

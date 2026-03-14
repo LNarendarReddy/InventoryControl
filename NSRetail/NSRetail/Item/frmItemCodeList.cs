@@ -151,7 +151,7 @@ namespace NSRetail
                 ((frmMain)this.MdiParent).RefreshBaseLineData += FrmItemCodeList_RefreshBaseLineData;
 
                 AccessUtility.SetStatusByAccess(btnNew, btnEdit, btnDelete, btnVisualize, btnMRPList);
-                AccessUtility.SetStatusByAccess(bbiEdit, bbiMRP, bbiVisualize);
+                AccessUtility.SetStatusByAccess(bbiEdit, bbiMRP, bbiVisualize, btnChangeGST, btnMinimumBaseQuantity, bbiVisualize);
             }
             catch (Exception ex)
             {

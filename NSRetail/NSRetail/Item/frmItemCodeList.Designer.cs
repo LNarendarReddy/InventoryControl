@@ -714,6 +714,7 @@
             this.btnMinimumBaseQuantity.Id = 8;
             this.btnMinimumBaseQuantity.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnMinimumBaseQuantity.ImageOptions.SvgImage")));
             this.btnMinimumBaseQuantity.Name = "btnMinimumBaseQuantity";
+            this.btnMinimumBaseQuantity.Tag = "A7F3D9C2-5B8E-4F1A-9C6D-2E8B7F4A1D93";
             this.btnMinimumBaseQuantity.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMinimumBaseQuantity_ItemClick);
             // 
             // barManager1

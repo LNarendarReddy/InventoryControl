@@ -137,6 +137,8 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ManufacturerID", itemObj.ManufacturerID);
                     cmd.Parameters.AddWithValue("@UQCID", itemObj.UQCID);
                     cmd.Parameters.AddWithValue("@VendorSKUCode", itemObj.VendorSKUCode);
+                    cmd.Parameters.AddWithValue("@SeasonalityIDs", itemObj.SeasonalityIDs);
+                    cmd.Parameters.AddWithValue("@RefundPathID", itemObj.RefundPathID);
                     object objReturn = cmd.ExecuteScalar();
 
                     string str = Convert.ToString(objReturn.ToString().Split(',')[0]);

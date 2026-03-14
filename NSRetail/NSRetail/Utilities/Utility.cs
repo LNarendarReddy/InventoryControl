@@ -34,6 +34,8 @@ namespace NSRetail
         private static DataTable dtBrand;
         private static DataTable dtManufacturer;
         private static DataTable dtUQC;
+        private static DataTable dtSeasonality;
+        private static DataTable dtRefundPath;
 
         private static List<GSTInfo> gstInfoList;
         public static DataTable dtConnectionInfo;
@@ -251,6 +253,26 @@ namespace NSRetail
             return dtUQC;
         }
 
+        public static DataTable GetSeasonalityData()
+        {
+            if (dtSeasonality == null)
+            {
+                FillSeasonalityBaseLine();
+            }
+
+            return dtSeasonality;
+        }
+
+        public static DataTable GetRefundPathData()
+        {
+            if (dtRefundPath == null)
+            {
+                FillRefundPathBaseLine();
+            }
+
+            return dtRefundPath;
+        }
+
         public static void FillBaseLine()
         {
             dtGST = null;
@@ -259,6 +281,9 @@ namespace NSRetail
             dtSubCatgeory = null;
             dtBranchListIncludingDeleted = null;
             dtUQC = null;
+            dtSeasonality = null;
+            dtRefundPath = null;
+
 
             FillUQCBaseLine();
             FillItemBaseline();
@@ -267,11 +292,23 @@ namespace NSRetail
             AccessUtility.FetchAndBuildAccessInfo();
             GetBrand(true);
             GetManufacturer(true);
+            FillSeasonalityBaseLine();
+            FillRefundPathBaseLine();
         }
 
         private static void FillUQCBaseLine()
         {
             dtUQC = new MasterRepository().GetUQCData();
+        }
+
+        private static void FillSeasonalityBaseLine()
+        {
+            dtSeasonality = new ReportRepository().GetReportData("USP_R_SEASONALITY");
+        }
+
+        private static void FillRefundPathBaseLine()
+        {
+            dtRefundPath = new ReportRepository().GetReportData("USP_R_REFUNDPATH");
         }
 
         public static void PrintBarCode(object ItemCode, object ItemName, 
