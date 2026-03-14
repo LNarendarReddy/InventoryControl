@@ -1,4 +1,9 @@
-﻿v3.5.8 — Supplier Returns & Credit Note Enhancements
+﻿v3.5.9 
+-- Supplier Indent By MBQ report
+-- Seasonality and refund path (RTV\NRTV) in Item 
+-- Bug fixes in MBQ permissions
+
+v3.5.8 — Supplier Returns & Credit Note Enhancements
 -- Added validations while mapping credit notes to debit notes.
 -- Added additional columns in credit notes and debit notes.
 
