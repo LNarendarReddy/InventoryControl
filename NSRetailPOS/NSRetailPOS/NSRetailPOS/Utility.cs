@@ -64,6 +64,7 @@ namespace NSRetailPOS
             billObj.TenderedCash = dsBillDetails.Tables["BILL"].Rows[0]["TENDEREDCASH"];
             billObj.TenderedChange = dsBillDetails.Tables["BILL"].Rows[0]["TENDEREDCHANGE"];
             billObj.IsDoorDelivery = dsBillDetails.Tables["BILL"].Rows[0]["ISDOORDELIVERY"];
+            billObj.IsIGSTBill = dsBillDetails.Tables["BILL"].Rows[0]["ISIGSTBILL"];
             billObj.dtBillDetails = dsBillDetails.Tables["BILLDETAILS"];
 
             if (dsBillDetails.Tables.Count >= 2)
@@ -80,7 +81,7 @@ namespace NSRetailPOS
                 }
             }
 
-            if (dsBillDetails.Tables.Count == 3)
+            if (dsBillDetails.Tables.Count == 4)
                 billObj.dtMopValues = dsBillDetails.Tables["MOPDETAILS"];
 
             return billObj;

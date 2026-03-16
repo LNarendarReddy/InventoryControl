@@ -219,6 +219,12 @@
     <Compile Include="Operations\Branch\frmBranchExpense.Designer.cs">
       <DependentUpon>frmBranchExpense.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\Branch\frmLiquidationList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Branch\frmLiquidationList.Designer.cs">
+      <DependentUpon>frmLiquidationList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\Branch\frmBranchExpenseList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -611,6 +617,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Branch\frmBranchExpense.resx">
       <DependentUpon>frmBranchExpense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Branch\frmLiquidationList.resx">
+      <DependentUpon>frmLiquidationList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Branch\frmBranchExpenseList.resx">
       <DependentUpon>frmBranchExpenseList.cs</DependentUpon>

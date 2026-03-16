@@ -38,6 +38,7 @@
             this.btnItem = new DevExpress.XtraBars.BarButtonItem();
             this.btnSupplierReturns = new DevExpress.XtraBars.BarButtonItem();
             this.bbiBranchExpenses = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiLiquidation = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -61,9 +62,10 @@
             this.btnBranchRefund,
             this.btnItem,
             this.btnSupplierReturns,
-            this.bbiBranchExpenses});
+            this.bbiBranchExpenses,
+            this.bbiLiquidation});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 10;
+            this.ribbon.MaxItemId = 11;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -134,6 +136,15 @@
             this.bbiBranchExpenses.Name = "bbiBranchExpenses";
             this.bbiBranchExpenses.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiBranchExpenses_ItemClick);
             // 
+            // bbiLiquidation
+            // 
+            this.bbiLiquidation.Caption = "Liquidation";
+            this.bbiLiquidation.Id = 10;
+            this.bbiLiquidation.ImageOptions.Image = global::NSRetailPOS.Properties.Resources.switchtimescalesto_16x16;
+            this.bbiLiquidation.ImageOptions.LargeImage = global::NSRetailPOS.Properties.Resources.switchtimescalesto_32x321;
+            this.bbiLiquidation.Name = "bbiLiquidation";
+            this.bbiLiquidation.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiLiquidation_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -163,8 +174,9 @@
             // ribbonPageGroup5
             // 
             this.ribbonPageGroup5.ItemLinks.Add(this.bbiBranchExpenses);
+            this.ribbonPageGroup5.ItemLinks.Add(this.bbiLiquidation);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.Text = "Branch Expenses";
+            this.ribbonPageGroup5.Text = "Branch";
             // 
             // ribbonPageGroup1
             // 
@@ -224,5 +236,6 @@
         private DevExpress.XtraBars.BarButtonItem btnSupplierReturns;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.BarButtonItem bbiBranchExpenses;
+        private DevExpress.XtraBars.BarButtonItem bbiLiquidation;
     }
 }

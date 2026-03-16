@@ -40,6 +40,8 @@ namespace NSRetailPOS.Entity
 
         public object PaymentMode { get; set; }
 
+        public object IsIGSTBill { get; set; }
+
         public List<CompletedTransactionData> CompletedTransactions { get; set; }
 
         public Bill()

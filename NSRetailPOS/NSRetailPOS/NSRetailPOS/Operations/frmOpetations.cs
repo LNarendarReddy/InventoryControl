@@ -107,5 +107,10 @@ namespace NSRetailPOS.Operations
         {
             new frmBranchExpenseList() { MdiParent = this }.Show();
         }
+
+        private void bbiLiquidation_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }

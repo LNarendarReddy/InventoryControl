@@ -10,7 +10,7 @@ namespace NSRetailPOS.Data
 
         Dictionary<string, EntityMapping> entityMapping = new Dictionary<string, EntityMapping>()
         {
-              { "POS_BILL",  new EntityMapping("USP_CU_POS_BILL", "@Bills", true) }
+              { "POS_BILL",  new EntityMapping("USP_CU_POS_BILL_V2", "@Bills", true) }
             , { "POS_BILLDETAIL",  new EntityMapping("USP_CU_POS_BILLDETAIL", "@BillDetails", true) }
             , { "POS_BILLMOPDETAIL",  new EntityMapping("USP_CU_POS_BILLMOPDETAIL", "@BillMopDetails", true) }
             , { "POS_CREFUND",  new EntityMapping("USP_CU_POS_CREFUND", "@CRefundDetails", true) }

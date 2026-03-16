@@ -131,6 +131,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 rpt.Parameters["Phone"].Value = dsBillDetails.Tables[0].Rows[0]["PHONENO"];
                 rpt.Parameters["UserName"].Value = dsBillDetails.Tables[0].Rows[0]["CREATEDBY"];
                 rpt.Parameters["RoundingFactor"].Value = dsBillDetails.Tables[0].Rows[0]["ROUNDING"];
+                rpt.Parameters["IsIGSTBill"].Value = dsBillDetails.Tables[0].Rows[0]["IsIGSTBill"];
                 rpt.Parameters["IsDuplicate"].Value = true;
                 rpt.ShowRibbonPreview();
             }

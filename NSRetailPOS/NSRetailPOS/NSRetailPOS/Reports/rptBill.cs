@@ -9,7 +9,7 @@ namespace NSRetailPOS.Reports
 {
     public partial class rptBill : DevExpress.XtraReports.UI.XtraReport
     {
-        public rptBill(DataTable dtItems,DataTable dtMOP)
+        public rptBill(DataTable dtItems, DataTable dtMOP)
         {
             InitializeComponent();
             drFooter.DataSource = dtItems;
@@ -17,6 +17,5 @@ namespace NSRetailPOS.Reports
             drGST.DataSource = dtItems;
             drMOP.DataSource = dtMOP;
         }
-
     }
 }

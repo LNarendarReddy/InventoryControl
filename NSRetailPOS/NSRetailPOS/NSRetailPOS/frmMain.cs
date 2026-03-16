@@ -267,11 +267,13 @@ namespace NSRetailPOS
 
             try
             {
-                // use this object for printing
-                Bill oldBillObj = billObj.Clone() as Bill;
+                // use this object for printing                
+                DataSet dsLastBillDetails = new BillingRepository().GetLastBill(daySequenceID, billObj.BillID);
+                Bill oldBillObj = Utility.GetBill(dsLastBillDetails);
+
                 DataView dv = oldBillObj.dtMopValues.DefaultView;
                 dv.RowFilter = "MOPVALUE > 0";
-                rptBill rpt = new rptBill(dtBillDetails, dv.ToTable());
+                rptBill rpt = new rptBill(oldBillObj.dtBillDetails, dv.ToTable());
                 rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
                 rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
                 rpt.Parameters["FSSAI"].Value = "10114004000548";
@@ -290,6 +292,7 @@ namespace NSRetailPOS
                 rpt.Parameters["UserName"].Value = Utility.loginInfo.UserFullName;
                 rpt.Parameters["RoundingFactor"].Value = oldBillObj.Rounding;
                 rpt.Parameters["IsDuplicate"].Value = false;
+                rpt.Parameters["IsIGSTBill"].Value = oldBillObj.IsIGSTBill;
                 Utility.PrintReport(rpt);
                 this.BringToFront();
 
