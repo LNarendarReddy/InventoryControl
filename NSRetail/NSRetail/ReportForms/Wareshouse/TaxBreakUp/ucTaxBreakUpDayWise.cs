@@ -32,7 +32,7 @@ namespace NSRetail.ReportForms.Wareshouse.TaxBreakUp
                 , { "ToDate", dtToDate.EditValue }
             };
                         
-            return GetReportData("USP_RPT_TAXBREAKUP_DAYWISE", parameters);
+            return GetReportData("USP_RPT_TAXBREAKUP_DAYWISE_V2", parameters);
         }
     }
 }

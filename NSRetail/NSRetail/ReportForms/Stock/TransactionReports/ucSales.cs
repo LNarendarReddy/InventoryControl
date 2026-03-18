@@ -53,7 +53,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("Is offer", "IncludeOffer", new List<string>{ "ISOFFER", "OFFERCODE", "BASEOFFERCODE" })
                 , new IncludeSettings("Tax wise", "IncludeTax", new List<string>{ "GSTCODE" })                
                 , new IncludeSettings("Bill details", "IncludeBillDetails", new List<string>
-                    { "BILLCREATEDBY", "BILLNUMBER", "CREATEDTIME", "ISDOORDELIVERY", "CUSTOMERNAME", "CUSTOMERNUMBER", "CUSTOMERGST" })
+                    { "BILLCREATEDBY", "BILLNUMBER", "CREATEDTIME", "ISDOORDELIVERY", "CUSTOMERNAME", "CUSTOMERNUMBER", "CUSTOMERGST", "IsIGSTBill" })
                 , new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" })
                 , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
             };

@@ -1,4 +1,8 @@
-﻿v3.5.9 
+﻿v3.6.0 
+-- IGST bill supporting report changes
+
+
+v3.5.9 
 -- Supplier Indent By MBQ report
 -- Seasonality and refund path (RTV\NRTV) in Item 
 -- Bug fixes in MBQ permissions
