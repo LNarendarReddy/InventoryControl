@@ -270,6 +270,8 @@ namespace NSRetailPOS
                 // use this object for printing                
                 DataSet dsLastBillDetails = new BillingRepository().GetLastBill(daySequenceID, billObj.BillID);
                 Bill oldBillObj = Utility.GetBill(dsLastBillDetails);
+                oldBillObj.dtBillDetails.DefaultView.RowFilter = "DELETEDDATE IS NULL";
+                oldBillObj.dtBillDetails = dtBillDetails.DefaultView.ToTable();
 
                 DataView dv = oldBillObj.dtMopValues.DefaultView;
                 dv.RowFilter = "MOPVALUE > 0";
