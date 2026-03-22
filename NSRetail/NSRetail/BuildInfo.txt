@@ -1,6 +1,5 @@
-﻿v3.6.0 
--- IGST bill supporting report changes
-
+﻿v3.6.0 (un-released)
+-- IGST bill supporting report changes 
 
 v3.5.9 
 -- Supplier Indent By MBQ report

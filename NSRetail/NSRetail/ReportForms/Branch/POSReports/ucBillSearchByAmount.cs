@@ -118,7 +118,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
                 rpt.Parameters["FSSAI"].Value = "10114004000548";
                 rpt.Parameters["Address"].Value = dsBillDetails.Tables[0].Rows[0]["ADDRESS"];
-                rpt.Parameters["BillDate"].Value = dsBillDetails.Tables[0].Rows[0]["CREATEDDATE"];
+                rpt.Parameters["BillDate"].Value = dsBillDetails.Tables[0].Rows[0]["BILLCLOSEDDATE"];
                 rpt.Parameters["BillNumber"].Value = dsBillDetails.Tables[0].Rows[0]["BILLNUMBER"];
                 rpt.Parameters["CustomerName"].Value = dsBillDetails.Tables[0].Rows[0]["CUSTOMERNAME"];
                 rpt.Parameters["CustomerNumber"].Value = dsBillDetails.Tables[0].Rows[0]["CUSTOMERNUMBER"];
