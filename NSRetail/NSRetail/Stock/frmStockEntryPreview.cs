@@ -13,12 +13,13 @@ namespace NSRetail.Stock
     {
         StockEntry ObjStockEntry = null;
         StockRepository ObjStockRep = new StockRepository();
-        private int? _selectedCreditNoteId = null;
+        DataTable dtCN;
 
         public frmStockEntryPreview(StockEntry _ObjStockEntry)
         {
             InitializeComponent();
             ObjStockEntry = _ObjStockEntry;
+            dtCN = buildCNDatatable();
         }
 
         private void frmStockEntryPreview_Load(object sender, EventArgs e)
@@ -50,39 +51,21 @@ namespace NSRetail.Stock
             txtNetPrice.EditValue = ObjStockEntry.SumFinalPrice;
             txtExpenses.EditValue = 0.00;
             txtDiscountFlat.EditValue = 0.00;
-            txtDiscountPer.EditValue = 0.00;
             txtTCS.EditValue = 0.00;
             txtTransport.EditValue = 0.00;
-
-            if(ObjStockEntry.SourceBranchID != null && Convert.ToInt32(ObjStockEntry.SourceBranchID) > 0)
+            txtPackingCharges.EditValue = 0.00;
+            txtCreditValue.EditValue = 0.00;
+            gcCreditNotes.DataSource = dtCN;
+            if (ObjStockEntry.SourceBranchID != null && 
+                Convert.ToInt32(ObjStockEntry.SourceBranchID) > 0 &&
+                Convert.ToInt32(ObjStockEntry.SourceBranchID) != 45)
             {
                 cmbBranch.EditValue = ObjStockEntry.SourceBranchID;
-                cmbBranch.Enabled = false;  
+                cmbBranch.Enabled = false;
             }
 
             // Enable credit note mapping button
             btnCreditNoteMapping.Enabled = true;
-            btnCreditNoteMapping.Click += BtnCreditNoteMapping_Click;
-        }
-
-        private void BtnCreditNoteMapping_Click(object sender, EventArgs e)
-        {
-            using (frmSelectCreditNote frm = new frmSelectCreditNote(ObjStockEntry.STOCKENTRYID, "SE"))
-            {
-                frm.StartPosition = FormStartPosition.CenterParent;
-
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    // Populate Return Value
-                    txtReturnValue.EditValue = frm.SelectedCreditValue;
-
-                    // Populate CN Number
-                    txtCNNumber.EditValue = frm.SelectedCNNumber;
-
-                    // Store selected CN ID
-                    _selectedCreditNoteId = frm.SelectedCreditNoteId;
-                }
-            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -103,22 +86,22 @@ namespace NSRetail.Stock
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                             return;
 
-                        if(cmbCategory.EditValue == null)
+                        if (cmbCategory.EditValue == null)
                         {
                             XtraMessageBox.Show("Category mandatory for branch invoices");
                             return;
                         }
                     }
-
-                    ObjStockEntry.DISCOUNTPER = txtDiscountPer.EditValue;
                     ObjStockEntry.DISCOUNTFLAT = txtDiscountFlat.EditValue;
                     ObjStockEntry.TCS = txtTCS.EditValue;
                     ObjStockEntry.TRANSPORT = txtTransport.EditValue;
                     ObjStockEntry.EXPENSES = txtExpenses.EditValue;
+                    ObjStockEntry.PackingCharges = txtPackingCharges.EditValue;
                     ObjStockEntry.UserID = Utility.UserID;
                     ObjStockEntry.CATEGORYID = cmbCategory.EditValue;
                     ObjStockEntry.SourceBranchID = cmbBranch.EditValue;
-                    ObjStockEntry.CreditNoteId = _selectedCreditNoteId;
+                    ObjStockEntry.dtCreditNote = dtCN;
+                    ObjStockEntry.Notes = txtNotes.EditValue;
                     ObjStockRep.UpdateInvoice(ObjStockEntry);
                     ObjStockEntry.IsSave = true;
                     this.Close();
@@ -141,15 +124,123 @@ namespace NSRetail.Stock
             try
             {
                 TextEdit txt = sender as TextEdit;
-                decimal.TryParse(Convert.ToString(txtNetPrice.EditValue), out decimal NetPrice);
-                decimal.TryParse(Convert.ToString(txtTCS.EditValue), out decimal TCS);
-                decimal.TryParse(Convert.ToString(txtTransport .EditValue), out decimal Transport);
-                decimal.TryParse(Convert.ToString(txtDiscountPer.EditValue), out decimal DiscountPer);
-                decimal.TryParse(Convert.ToString(txtDiscountFlat.EditValue), out decimal DiscountFlat);
+                decimal.TryParse(Convert.ToString(txtNetPrice.EditValue), out decimal netPrice);
+                decimal.TryParse(Convert.ToString(txtTransport.EditValue), out decimal transport);
+                decimal.TryParse(Convert.ToString(txtCreditValue.EditValue), out decimal creditValue);
+                decimal.TryParse(Convert.ToString(txtDiscountFlat.EditValue), out decimal discountFlat);
+                decimal.TryParse(Convert.ToString(txtPackingCharges.EditValue), out decimal packingCharges);
+                decimal.TryParse(Convert.ToString(txtTCS.EditValue), out decimal tcs);
                 decimal.TryParse(Convert.ToString(txtExpenses.EditValue), out decimal Expenses);
-                txtFinalPrice.EditValue = NetPrice + TCS + Transport + Expenses - DiscountFlat - ((NetPrice * DiscountPer) / 100); ;
+                lblFinalPrice.Text = "Final Price: " + Convert.ToString(netPrice +
+                    (ObjStockEntry.LorryFrightMode.Equals(1) ? transport : -transport) +
+                    Expenses + packingCharges + tcs - creditValue - discountFlat);
             }
-            catch (Exception ex){}
+            catch (Exception ex) { }
+        }
+
+        private void btnCreditNoteMapping_Click_1(object sender, EventArgs e)
+        {
+            using (frmSelectCreditNote frm = new frmSelectCreditNote(ObjStockEntry.STOCKENTRYID, "SE", ObjStockEntry.SUPPLIERID))
+            {
+                frm.StartPosition = FormStartPosition.CenterParent;
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    // Check if credit note ID already exists
+                    bool creditNoteExists = false;
+                    foreach (DataRow row in dtCN.Rows)
+                    {
+                        if (Convert.ToInt32(row["CreditNoteId"]) == frm.SelectedCreditNoteId)
+                        {
+                            creditNoteExists = true;
+                            break;
+                        }
+                    }
+
+                    if (creditNoteExists)
+                    {
+                        XtraMessageBox.Show("This credit note is already mapped to this invoice.", "Information",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    DataRow newRow = dtCN.NewRow();
+                    newRow["CreditNoteId"] = frm.SelectedCreditNoteId;
+                    newRow["CNNumber"] = frm.SelectedCNNumber;
+                    newRow["CreditValue"] = frm.SelectedCreditValue;
+                    newRow["AdjustmentType"] = frm.SelectedAdjustmentType;
+                    dtCN.Rows.Add(newRow);
+
+                    // Calculate sum of credit values
+                    decimal creditValueSum = 0;
+                    foreach (DataRow row in dtCN.Rows)
+                    {
+                        if (decimal.TryParse(Convert.ToString(row["CreditValue"]), out decimal creditValue))
+                        {
+                            creditValueSum += creditValue;
+                        }
+                    }
+                    // Update UI with sum
+                    txtCreditValue.EditValue = creditValueSum;
+
+                    // Refresh grid data source
+                    gcCreditNotes.RefreshDataSource();
+                }
+            }
+        }
+
+        private DataTable buildCNDatatable()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("CreditNoteId", typeof(int));
+            dt.Columns.Add("CNNumber", typeof(string));
+            dt.Columns.Add("CreditValue", typeof(decimal));
+            dt.Columns.Add("AdjustmentType", typeof(string));
+            return dt;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int focusedRowHandle = gvCreditNotes.FocusedRowHandle;
+                
+                if (focusedRowHandle < 0)
+                {
+                    XtraMessageBox.Show("Please select a row to delete.", "Information", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (XtraMessageBox.Show("Are you sure you want to delete this credit note?", "Confirm",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
+
+                // Delete row from DataTable
+                DataRow rowToDelete = dtCN.Rows[focusedRowHandle];
+                dtCN.Rows.Remove(rowToDelete);
+
+                // Refresh grid
+                gcCreditNotes.RefreshDataSource();
+
+                // Recalculate sum of credit values
+                decimal creditValueSum = 0;
+                foreach (DataRow row in dtCN.Rows)
+                {
+                    if (decimal.TryParse(Convert.ToString(row["CreditValue"]), out decimal creditValue))
+                    {
+                        creditValueSum += creditValue;
+                    }
+                }
+
+                // Update UI with new sum
+                txtCreditValue.EditValue = creditValueSum;
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
         }
     }
 }

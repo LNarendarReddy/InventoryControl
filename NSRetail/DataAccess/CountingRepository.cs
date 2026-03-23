@@ -31,10 +31,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Retrieving Stock Counting List", ex);
             }
-            finally
-            {
-
-            }
             return dtStockCounting;
         }
 
@@ -58,10 +54,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error While Retrieving Stock Counting Detail", ex);
-            }
-            finally
-            {
-
             }
             return dtStockCountingDetail;
         }
@@ -87,10 +79,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Retrieving Stock Counting Difference", ex);
             }
-            finally
-            {
-
-            }
             return dtStockCountingDiff;
         }
 
@@ -114,10 +102,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error While Retrieving Stock Counting Not Entered", ex);
-            }
-            finally
-            {
-
             }
             return dtStockCountingDiff;
         }
@@ -147,12 +131,7 @@ namespace DataAccess
             catch (Exception ex)
             {
                 sqlTransaction.Rollback();
-                if (ex.Message.Contains("Pending sheets") ||
-                    ex.Message.Contains("No Counting") ||
-                    ex.Message.Contains("Multiple categories"))
-                    throw ex;
-                else
-                    throw new Exception("Error While Accepting Stock Counting", ex);
+                throw new Exception("Error While Accepting Stock Counting", ex);
             }
         }
 
@@ -163,7 +142,7 @@ namespace DataAccess
             {
 
                 List<string> ExcludedColumns = new List<string>()
-                { "ITEMID","SKUCODE", "ITEMCODE", "ITEMNAME", "CATEGORYNAME", 
+                { "ITEMID","SKUCODE", "ITEMCODE", "ITEMNAME", "CATEGORYNAME",
                     "SUBCATEGORYNAME","MRP","RECOUNTINGREQUIRED"};
 
                 foreach (string col in ExcludedColumns)
@@ -192,12 +171,7 @@ namespace DataAccess
             catch (Exception ex)
             {
                 sqlTransaction.Rollback();
-                if (ex.Message.Contains("Pending sheets") ||
-                    ex.Message.Contains("No Counting") ||
-                    ex.Message.Contains("Multiple categories"))
-                    throw ex;
-                else
-                    throw new Exception("Error While Accepting Stock Counting", ex);
+                throw new Exception("Error While Accepting Stock Counting", ex);
             }
         }
 
@@ -488,7 +462,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while deleting stock counting detail");
+                throw new Exception("Error while deleting stock counting detail", ex);
             }
         }
     }

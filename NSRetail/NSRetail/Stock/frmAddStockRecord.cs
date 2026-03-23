@@ -1,7 +1,10 @@
 ﻿using DataAccess;
+using DevExpress.Office.NumberConverters;
 using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using Entity;
 using ErrorManagement;
+using NSRetail.Login;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -46,20 +49,18 @@ namespace NSRetail.Stock
                 cmbLookupView.GridControl.BindingContext = new BindingContext();
                 cmbLookupView.GridControl.DataSource = cmbItemCode.Properties.DataSource;
 
-                sluFreeItem.Properties.DataSource = Utility.GetItemCodeList();
-                sluFreeItem.Properties.ValueMember = "ITEMCODEID";
-                sluFreeItem.Properties.DisplayMember = "ITEMNAME";
-
                 cmbGST.Properties.DataSource = Utility.GetGSTInfoList();
                 cmbGST.Properties.ValueMember = "GSTID";
                 cmbGST.Properties.DisplayMember = "GSTCODE";
 
-                bool enabled = Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE);
-                txtCostPriceWOT.Enabled = !enabled;
-                txtCostPriceWT.Enabled = enabled;
+                bool enabled = ObjStockEntry.PriceEntryMethod.Equals(2);
+                txtGrossCPWOTax.Enabled = !enabled;
+                txtGrossCPWTax.Enabled = enabled;
 
                 if (int.TryParse(Convert.ToString(ObjStockEntryDetail.STOCKENTRYDETAILID), out int Ivalue) && Ivalue > 0)
                 {
+                    cmbItemCode.Enabled = false;
+                    txtItemName.Enabled = false;
                     IsEditMode = true;
                     IsLoading = true;
                     cmbItemCode.EditValue = ObjStockEntryDetail.ITEMCODEID;
@@ -68,9 +69,10 @@ namespace NSRetail.Stock
                     txtWeightInKGs.EditValue = ObjStockEntryDetail.WEIGHTINKGS;
                     txtMRP.EditValue = ObjStockEntryDetail.MRP;
                     txtSalePrice.EditValue = ObjStockEntryDetail.SALEPRICE;
-                    txtCostPriceWOT.EditValue = ObjStockEntryDetail.COSTPRICEWOT;
-                    txtCostPriceWT.EditValue = ObjStockEntryDetail.COSTPRICEWT;
-                    txtFreeQuantity.EditValue = ObjStockEntryDetail.FreeItemMRPID;
+                    txtGrossCPWOTax.EditValue = ObjStockEntryDetail.GROSSCOSTPRICEWOT;
+                    txtGrossCPWTax.EditValue = ObjStockEntryDetail.GROSSCOSTPRICEWT;
+                    txtNetCostPriceWOT.EditValue = ObjStockEntryDetail.COSTPRICEWOT;
+                    txtNetCostPriceWT.EditValue = ObjStockEntryDetail.COSTPRICEWT;
                     txtDiscountPer.EditValue = ObjStockEntryDetail.DiscountPercentage;
                     txtDiscountFlat.EditValue = ObjStockEntryDetail.DiscountFlat;
                     txtSchemePer.EditValue = ObjStockEntryDetail.SchemePercentage;
@@ -85,8 +87,11 @@ namespace NSRetail.Stock
                     txtTotalPriceWT.EditValue = ObjStockEntryDetail.TotalPriceWT;
                     txtAppliedDiscount.EditValue = ObjStockEntryDetail.AppliedDiscount;
                     txtAppliedScheme.EditValue = ObjStockEntryDetail.AppliedScheme;
+                    txtFinalPriceWithOutTax.EditValue = ObjStockEntryDetail.FinalPriceWOTax;
                     txtFinalPrice.EditValue = ObjStockEntryDetail.FinalPrice;
+                    chkFreeItem.EditValue = Convert.ToBoolean(ObjStockEntryDetail.IsFreeItem);
                     IsLoading = false;
+                    ViewCostPriceList();
                 }
                 else
                 {
@@ -94,7 +99,6 @@ namespace NSRetail.Stock
                     txtDiscountPer.EditValue = 0.00;
                     txtSchemePer.EditValue = 0.00;
                     txtSchemeFlat.EditValue = 0.00;
-                    txtFreeQuantity.EditValue = 0.00;
                 }
             }
             catch (Exception ex)
@@ -115,33 +119,34 @@ namespace NSRetail.Stock
             cmbGST.Properties.ValueMember = "GSTID";
             cmbGST.Properties.DisplayMember = "GSTCODE";
 
-            sluFreeItem.Properties.DataSource = Utility.GetItemCodeList();
-            sluFreeItem.Properties.ValueMember = "ITEMCODEID";
-            sluFreeItem.Properties.DisplayMember = "ITEMNAME";
-
             cmbItemCode.EditValue = selectedItemValue;
             cmbGST.EditValue = selectedGSTValue;
-            sluFreeItem.EditValue = selectedItemValue;
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!dxValidationProvider1.Validate() 
-                    || txtQuantity.EditValue == null || Convert.ToInt32(txtQuantity.EditValue) <= 0)
+                if (!dxValidationProvider1.Validate())
+                    return;
+
+                if ((IsOpenItem ? txtWeightInKGs.EditValue : txtQuantity.EditValue) == null ||
+                        Convert.ToInt32(IsOpenItem ? txtWeightInKGs.EditValue : txtQuantity.EditValue) <= 0)
                     return;
 
                 if (decimal.TryParse(Convert.ToString(txtMRP.EditValue), out decimal MRP) &&
-                    decimal.TryParse(Convert.ToString(txtCostPriceWT.EditValue), out decimal CostPriceWT) &&
-                    decimal.TryParse(Convert.ToString(txtCostPriceWOT.EditValue), out decimal CostPriceWOT) &&
+                    decimal.TryParse(Convert.ToString(txtGrossCPWTax.EditValue), out decimal CostPriceWT) &&
+                    decimal.TryParse(Convert.ToString(txtGrossCPWOTax.EditValue), out decimal CostPriceWOT) &&
                     decimal.TryParse(Convert.ToString(txtSalePrice.EditValue), out decimal salePrice))
                 {
                     string message = string.Empty;
 
                     message = MRP < salePrice ? "MRP cannot be less than sale price" : message;
                     message = salePrice < CostPriceWT ? "Cost Price cannot be greater than sale price" : message;
-                    message = CostPriceWOT == 0 ? "Cost price with out tax cannot be zero" : message;
-                    message = CostPriceWT == 0 ? "Cost price with tax cannot be zero" : message;
+                    if (!chkFreeItem.Checked)
+                    {
+                        message = CostPriceWOT == 0 ? "Cost price with out tax cannot be zero" : message;
+                        message = CostPriceWT == 0 ? "Cost price with tax cannot be zero" : message;
+                    }
 
                     if (!string.IsNullOrEmpty(message))
                     {
@@ -150,14 +155,6 @@ namespace NSRetail.Stock
                     }
                 }
 
-                if (sluFreeItem.EditValue!= null)
-                {
-                    if (txtFreeQuantity.EditValue == null)
-                    {
-                        XtraMessageBox.Show("Free Quantity is Mandatory!");
-                        return;
-                    }
-                }
                 if (Convert.ToInt32(ObjStockEntry.STOCKENTRYID) == 0)
                     frmparent.SaveInvoice();
                 if (!IsEditMode)
@@ -169,8 +166,10 @@ namespace NSRetail.Stock
                 ObjStockEntryDetail.SKUCODE = ((DataRowView)cmbItemCode.GetSelectedDataRow())["SKUCODE"];
                 ObjStockEntryDetail.ITEMCODE = cmbItemCode.Text;
                 ObjStockEntryDetail.ITEMNAME = txtItemName.EditValue;
-                ObjStockEntryDetail.COSTPRICEWT = txtCostPriceWT.EditValue;
-                ObjStockEntryDetail.COSTPRICEWOT = txtCostPriceWOT.EditValue;
+                ObjStockEntryDetail.GROSSCOSTPRICEWT = txtGrossCPWTax.EditValue;
+                ObjStockEntryDetail.GROSSCOSTPRICEWOT = txtGrossCPWOTax.EditValue;
+                ObjStockEntryDetail.COSTPRICEWT = txtNetCostPriceWT.EditValue;
+                ObjStockEntryDetail.COSTPRICEWOT = txtNetCostPriceWOT.EditValue;
                 ObjStockEntryDetail.MRP = txtMRP.EditValue;
                 ObjStockEntryDetail.SALEPRICE = txtSalePrice.EditValue;
                 ObjStockEntryDetail.QUANTITY = txtQuantity.EditValue;
@@ -181,18 +180,19 @@ namespace NSRetail.Stock
                 ObjStockEntryDetail.DiscountFlat = txtDiscountFlat.EditValue;
                 ObjStockEntryDetail.SchemePercentage = txtSchemePer.EditValue;
                 ObjStockEntryDetail.SchemeFlat = txtSchemeFlat.EditValue;
-                ObjStockEntryDetail.FreeQuantity = txtFreeQuantity.EditValue;
                 ObjStockEntryDetail.TotalPriceWT = txtTotalPriceWT.EditValue;
                 ObjStockEntryDetail.TotalPriceWOT = txtTotalPriceWOT.EditValue;
                 ObjStockEntryDetail.AppliedDiscount = txtAppliedDiscount.EditValue;
                 ObjStockEntryDetail.AppliedScheme = txtAppliedScheme.EditValue;
                 ObjStockEntryDetail.AppliedGST = txtAppliedGST.EditValue;
+                ObjStockEntryDetail.FinalPriceWOTax = txtFinalPriceWithOutTax.EditValue;
                 ObjStockEntryDetail.FinalPrice = txtFinalPrice.EditValue;
                 ObjStockEntryDetail.CGST = txtCGST.EditValue;
                 ObjStockEntryDetail.SGST = txtSGST.EditValue;
                 ObjStockEntryDetail.IGST = txtIGST.EditValue;
                 ObjStockEntryDetail.CESS = txtCESS.EditValue;
                 ObjStockEntryDetail.HSNCODE = txtHSNCode.EditValue;
+                ObjStockEntryDetail.IsFreeItem = Convert.ToBoolean(chkFreeItem.CheckState);
                 ObjStockRep.SaveInvoiceDetail(ObjStockEntryDetail);
                 frmparent.RefreshGrid(ObjStockEntryDetail);
                 ObjStockEntryDetail.STOCKENTRYDETAILID = 0;
@@ -202,8 +202,10 @@ namespace NSRetail.Stock
                 txtSalePrice.EditValue = null;
                 txtQuantity.EditValue = null;
                 txtWeightInKGs.EditValue = null;
-                txtCostPriceWOT.EditValue = null;
-                txtCostPriceWT.EditValue = null;
+                txtGrossCPWOTax.EditValue = null;
+                txtGrossCPWTax.EditValue = null;
+                txtNetCostPriceWOT.EditValue = null;
+                txtNetCostPriceWT.EditValue = null;
                 txtTotalPriceWT.EditValue = null;
                 txtTotalPriceWOT.EditValue = null;
                 cmbGST.EditValue = null;
@@ -212,13 +214,17 @@ namespace NSRetail.Stock
                 txtDiscountFlat.EditValue = 0.00;
                 txtSchemePer.EditValue = 0.00;
                 txtSchemeFlat.EditValue = 0.00;
-                txtFreeQuantity.EditValue = 0.00;
                 txtCGST.EditValue = 0.00;
                 txtSGST.EditValue = 0.00;
                 txtIGST.EditValue = 0.00;
                 txtCESS.EditValue = 0.00;
+                txtAppliedGST.EditValue = 0.00;
+                txtFinalPriceWithOutTax.EditValue = 0.00;
+                txtFinalPrice.EditValue = 0.00;
                 txtHSNCode.EditValue = null;
                 IsEditMode = false;
+                chkFreeItem.EditValue = false;
+
                 cmbItemCode.Focus();
             }
             catch (Exception ex)
@@ -250,36 +256,17 @@ namespace NSRetail.Stock
                         return;
                     }
                     IsLoading = true;
-
                     txtItemName.EditValue = cmbLookupView.GetRowCellValue(rowhandle, "ITEMNAME");
                     txtHSNCode.EditValue = cmbLookupView.GetRowCellValue(rowhandle, "HSNCODE");
-                    DataTable dtCPList = ObjItemRep.GetCostPriceList(cmbItemCode.EditValue);
-                    if (dtCPList.Rows.Count > 1)
-                    {
-                        frmCostPriceList obj = new frmCostPriceList(dtCPList);
-                        obj.ShowDialog();
-                        
-                        if (obj._IsSave)
-                        {
-                            cmbGST.EditValue = obj.drSelected["GSTID"];
-                            txtMRP.EditValue = obj.drSelected["MRP"];
-                            txtSalePrice.EditValue = obj.drSelected["SALEPRICE"];
-                            ItemPriceID = obj.drSelected["ITEMPRICEID"];
-                            txtCostPriceWOT.EditValue = obj.drSelected["COSTPRICEWOT"] == DBNull.Value ? 0.00 : obj.drSelected["COSTPRICEWOT"];
-                            txtCostPriceWT.EditValue = obj.drSelected["COSTPRICEWT"] == DBNull.Value ? 0.00 : obj.drSelected["COSTPRICEWT"];
-                        }
-                    }
-                    else if (dtCPList.Rows.Count > 0)
-                    {
-                        cmbGST.EditValue = dtCPList.Rows[0]["GSTID"];
-                        txtMRP.EditValue = dtCPList.Rows[0]["MRP"];
-                        txtSalePrice.EditValue = dtCPList.Rows[0]["SALEPRICE"];
-                        ItemPriceID = dtCPList.Rows[0]["ITEMPRICEID"];
-                        txtCostPriceWOT.EditValue = dtCPList.Rows[0]["COSTPRICEWOT"] == DBNull.Value ? 0.00 : dtCPList.Rows[0]["COSTPRICEWOT"];
-                        txtCostPriceWT.EditValue = dtCPList.Rows[0]["COSTPRICEWT"] == DBNull.Value ? 0.00 : dtCPList.Rows[0]["COSTPRICEWT"];
-                    }
 
-                    txtQuantity.EditValue = 1;
+                    if (IsOpenItem)
+                        txtWeightInKGs.EditValue = 1;
+                    else
+                        txtQuantity.EditValue = 1;
+
+                    
+                    ViewCostPriceList();
+
                     CalculateReadOnlyFields();
                     IsLoading = false;
                     SendKeys.Send("{ENTER}");
@@ -291,23 +278,88 @@ namespace NSRetail.Stock
                 ErrorMgmt.Errorlog.Error(ex);
             }
         }
+        private void ViewCostPriceList(bool skipCPCheck = false)
+        {
+            //Check if in edit mode and if cost prices are not zero, skip dialog
+            if (int.TryParse(Convert.ToString(ObjStockEntryDetail.STOCKENTRYDETAILID), out int detailID) &&
+                detailID > 0 && !skipCPCheck)
+            {
+                decimal grossCPWOT = ObjStockEntryDetail.GROSSCOSTPRICEWOT != null ?
+                    Convert.ToDecimal(ObjStockEntryDetail.GROSSCOSTPRICEWOT) : 0;
+                decimal grossCPWT = ObjStockEntryDetail.GROSSCOSTPRICEWT != null ?
+                    Convert.ToDecimal(ObjStockEntryDetail.GROSSCOSTPRICEWT) : 0;
+
+                // If both cost prices are not zero, skip the dialog
+                if (grossCPWOT != 0 || grossCPWT != 0)
+                {
+                    return;
+                }
+            }
+
+            DataTable dtCPList = null;
+            try
+            {
+                SplashScreenManager.ShowForm(null, typeof(frmProgress), true, true, false);
+                dtCPList = ObjItemRep.GetCostPriceList(cmbItemCode.EditValue);
+                SplashScreenManager.CloseForm();
+            }
+            catch (Exception ex)
+            {
+                SplashScreenManager.CloseForm();
+                throw ex;
+            }
+
+            if (dtCPList.Rows.Count == 0)
+                throw new Exception("No cost prices exists under selected itemcode");
+
+            if (dtCPList.Rows.Count > 1 || skipCPCheck)
+            {
+                frmCostPriceList obj = new frmCostPriceList(dtCPList);
+                obj.ShowDialog();
+
+                if (obj._IsSave)
+                {
+                    cmbGST.EditValue = obj.drSelected["GSTID"];
+                    txtMRP.EditValue = obj.drSelected["MRP"];
+                    txtSalePrice.EditValue = obj.drSelected["SALEPRICE"];
+                    ItemPriceID = obj.drSelected["ITEMPRICEID"];
+                    txtGrossCPWOTax.EditValue = obj.drSelected["GROSSCOSTPRICEWOT"] == DBNull.Value ? 0.00 : obj.drSelected["GROSSCOSTPRICEWOT"];
+                    txtGrossCPWTax.EditValue = obj.drSelected["GROSSCOSTPRICEWT"] == DBNull.Value ? 0.00 : obj.drSelected["GROSSCOSTPRICEWT"];
+                    txtNetCostPriceWOT.EditValue = obj.drSelected["COSTPRICEWOT"] == DBNull.Value ? 0.00 : obj.drSelected["COSTPRICEWOT"];
+                    txtNetCostPriceWT.EditValue = obj.drSelected["COSTPRICEWT"] == DBNull.Value ? 0.00 : obj.drSelected["COSTPRICEWT"];
+                }
+            }
+            else if (dtCPList.Rows.Count > 0)
+            {
+                cmbGST.EditValue = dtCPList.Rows[0]["GSTID"];
+                txtMRP.EditValue = dtCPList.Rows[0]["MRP"];
+                txtSalePrice.EditValue = dtCPList.Rows[0]["SALEPRICE"];
+                ItemPriceID = dtCPList.Rows[0]["ITEMPRICEID"];
+                txtGrossCPWOTax.EditValue = dtCPList.Rows[0]["GROSSCOSTPRICEWOT"] == DBNull.Value ? 0.00 : dtCPList.Rows[0]["GROSSCOSTPRICEWOT"];
+                txtGrossCPWTax.EditValue = dtCPList.Rows[0]["GROSSCOSTPRICEWT"] == DBNull.Value ? 0.00 : dtCPList.Rows[0]["GROSSCOSTPRICEWT"];
+                txtNetCostPriceWOT.EditValue = dtCPList.Rows[0]["COSTPRICEWOT"] == DBNull.Value ? 0.00 : dtCPList.Rows[0]["COSTPRICEWOT"];
+                txtNetCostPriceWT.EditValue = dtCPList.Rows[0]["COSTPRICEWT"] == DBNull.Value ? 0.00 : dtCPList.Rows[0]["COSTPRICEWT"];
+            }
+        }
         private void txtQuantity_EditValueChanged(object sender, EventArgs e)
         {
             try
             {
-                
-                if (string.IsNullOrEmpty(Convert.ToString(txtQuantity.EditValue))) return;
+                var value = IsOpenItem ? txtWeightInKGs.EditValue : txtQuantity.EditValue;
+                if (value == null || !decimal.TryParse(value.ToString(), out var result) || result <= 0)
+                    return;
+
                 if (!IsLoading)
                 {
-                    if (Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
+                    if (ObjStockEntry.PriceEntryMethod.Equals(2))
                         txtCostPriceWT_EditValueChanged(null, null);
                     else
                         txtCostPriceWOT_EditValueChanged(null, null);
                 }
                 else
                 {
-                    txtTotalPriceWOT.EditValue = txtCostPriceWOT.EditValue;
-                    txtTotalPriceWT.EditValue = txtCostPriceWT.EditValue;
+                    txtTotalPriceWOT.EditValue = txtGrossCPWOTax.EditValue;
+                    txtTotalPriceWT.EditValue = txtGrossCPWTax.EditValue;
                 }
             
             }
@@ -327,14 +379,15 @@ namespace NSRetail.Stock
                     return; 
                 }
 
-                if (txtCostPriceWOT.EditValue != null && 
-                    !Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) 
+                if (txtGrossCPWOTax.EditValue != null && 
+                    ObjStockEntry.PriceEntryMethod.Equals(1)
                     && cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
                 {
                     decimal cpWOT = 0;
-                    if (decimal.TryParse(Convert.ToString(txtCostPriceWOT.EditValue), out cpWOT))
+                    if (decimal.TryParse(Convert.ToString(txtGrossCPWOTax.EditValue), out cpWOT))
                     {
-                        txtCostPriceWT.EditValue = Math.Round(cpWOT + (cpWOT * gstInfo.TAXPercent), 4);
+                        txtNetCostPriceWOT.EditValue = cpWOT;
+                        txtGrossCPWTax.EditValue = Math.Round(cpWOT + (cpWOT * gstInfo.TAXPercent), 4);
                         CalculateReadOnlyFields();
                     }
                 }
@@ -355,14 +408,15 @@ namespace NSRetail.Stock
                     return;
                 }
 
-                if (txtCostPriceWT.EditValue != null 
-                    && Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) 
+                if (txtGrossCPWTax.EditValue != null 
+                    && ObjStockEntry.PriceEntryMethod.Equals(2)
                     && cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
                 {
                     decimal cpWT = 0;
-                    if (decimal.TryParse(Convert.ToString(txtCostPriceWT.EditValue), out cpWT))
+                    if (decimal.TryParse(Convert.ToString(txtGrossCPWTax.EditValue), out cpWT))
                     {
-                        txtCostPriceWOT.EditValue = Math.Round(cpWT  / (1 + gstInfo.TAXPercent), 4);
+                        txtNetCostPriceWT.EditValue = cpWT;
+                        txtGrossCPWOTax.EditValue = Math.Round(cpWT  / (1 + gstInfo.TAXPercent), 4);
                         CalculateReadOnlyFields();
                     }
                 }
@@ -381,76 +435,99 @@ namespace NSRetail.Stock
                 return;     
             }
 
-            if (Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE))
+            if (ObjStockEntry.PriceEntryMethod.Equals(2))
                 txtCostPriceWT_EditValueChanged(null, null);
             else
                 txtCostPriceWOT_EditValueChanged(null, null);
         }
         private void CalculateReadOnlyFields()
         {
-            
-            decimal Quantity = Convert.ToDecimal((IsOpenItem ? txtWeightInKGs : txtQuantity).EditValue);
-            decimal totalPriceWT = Math.Round(Convert.ToDecimal(txtCostPriceWT.EditValue) * Quantity, 2);
-            decimal totalPriceWOT = Math.Round((Convert.ToDecimal(txtCostPriceWOT.EditValue)) * Quantity, 2);
+            decimal quantity = Convert.ToDecimal((IsOpenItem ? txtWeightInKGs : txtQuantity).EditValue);
+            if (quantity <= 0) return;
+
+            decimal grossCPWT = Convert.ToDecimal(txtGrossCPWTax.EditValue);
+            decimal grossCPWOT = Convert.ToDecimal(txtGrossCPWOTax.EditValue);
+
+            decimal totalPriceWT = Math.Round(grossCPWT * quantity, 2);
+            decimal totalPriceWOT = Math.Round(grossCPWOT * quantity, 2);
+
             decimal discountPer = txtDiscountPer.EditValue != null ? Convert.ToDecimal(txtDiscountPer.EditValue) : 0;
-            decimal discountFlat = txtDiscountPer.EditValue != null && discountPer == 0 && txtDiscountFlat.EditValue != null
-                ? Convert.ToDecimal(txtDiscountFlat.EditValue) : 0;             
+            decimal discountFlat = (discountPer == 0 && txtDiscountFlat.EditValue != null)
+                ? Convert.ToDecimal(txtDiscountFlat.EditValue) : 0;
+
             decimal schemePer = txtSchemePer.EditValue != null ? Convert.ToDecimal(txtSchemePer.EditValue) : 0;
-            decimal schemeFlat = txtSchemeFlat.EditValue != null && schemePer == 0 && txtSchemeFlat.EditValue != null
+            decimal schemeFlat = (schemePer == 0 && txtSchemeFlat.EditValue != null)
                 ? Convert.ToDecimal(txtSchemeFlat.EditValue) : 0;
-            decimal appliedDiscount = discountFlat > 0
-                    ? discountFlat
-                    : discountPer > 0
-                        ? Math.Round(totalPriceWOT * (discountPer / 100), 4)
-                        : 0;
-            decimal appliedScheme = schemeFlat > 0
-                    ? schemeFlat
-                    : schemePer > 0
-                        ? Math.Round(totalPriceWOT * (schemePer / 100), 4)
-                        : 0;
-            decimal finalPriceWOT = totalPriceWOT - appliedDiscount - appliedScheme;
-            decimal finaPriceWT = totalPriceWT - appliedDiscount - appliedScheme;
-            decimal appliedGST = 0.0M;
-            decimal cGST = 0.0M;
-            decimal sGST = 0.0M;
-            decimal iGST = 0.0M;
-            decimal cess = 0.0M;
+
+            // 👉 Calculate per-unit discount & scheme
+            decimal discountPerUnit = discountFlat > 0
+                ? discountFlat / quantity
+                : discountPer > 0
+                    ? Math.Round(grossCPWOT * (discountPer / 100), 4)
+                    : 0;
+
+            decimal schemePerUnit = schemeFlat > 0
+                ? schemeFlat / quantity
+                : schemePer > 0
+                    ? Math.Round(grossCPWOT * (schemePer / 100), 4)
+                    : 0;
+
+            // 👉 Net CP without tax (per unit)
+            decimal netCPWOT = grossCPWOT - discountPerUnit - schemePerUnit;
+
+            decimal cGST = 0.0M, sGST = 0.0M, iGST = 0.0M, cess = 0.0M;
+            decimal appliedGSTPerUnit = 0.0M;
+
             if (cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
             {
-                decimal finalPriceToConsider = Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) ? finaPriceWT : finalPriceWOT;
                 if (!ObjStockEntry.CalculateIGST)
                 {
-                    cGST = Math.Round(finalPriceToConsider * gstInfo.CGST / 100, 2);
-                    sGST = Math.Round(finalPriceToConsider * gstInfo.SGST / 100, 2);
-                    cess = Math.Round(finalPriceToConsider * gstInfo.CESS / 100, 2);
-                    appliedGST = cGST + sGST + cess;
+                    cGST = Math.Round(netCPWOT * gstInfo.CGST / 100, 4);
+                    sGST = Math.Round(netCPWOT * gstInfo.SGST / 100, 4);
+                    cess = Math.Round(netCPWOT * gstInfo.CESS / 100, 4);
+                    appliedGSTPerUnit = cGST + sGST + cess;
                 }
                 else
                 {
-                    iGST = Math.Round(finalPriceToConsider * gstInfo.IGST / 100, 2);
-                    cess = Math.Round(finalPriceToConsider * gstInfo.CESS / 100, 2);
-                    appliedGST = iGST + cess;
+                    iGST = Math.Round(netCPWOT * gstInfo.IGST / 100, 4);
+                    cess = Math.Round(netCPWOT * gstInfo.CESS / 100, 4);
+                    appliedGSTPerUnit = iGST + cess;
                 }
             }
 
-            decimal finalPrice = Convert.ToBoolean(ObjStockEntry.TAXINCLUSIVE) ? finaPriceWT : finalPriceWOT + appliedGST;
+            // 👉 Net CP with tax (per unit)
+            decimal netCPWT = netCPWOT + appliedGSTPerUnit;
 
-            txtCGST.EditValue = cGST;
-            txtSGST.EditValue = sGST;
-            txtIGST.EditValue = iGST;
-            txtCESS.EditValue = cess;
+            // 👉 Final totals
+            decimal finalPriceWOTax = Math.Round(netCPWOT * quantity, 2);
+            decimal finalPrice = Math.Round(netCPWT * quantity, 2);
+            decimal appliedDiscount = Math.Round(discountPerUnit * quantity, 2);
+            decimal appliedScheme = Math.Round(schemePerUnit * quantity, 2);
+            decimal appliedGST = Math.Round(appliedGSTPerUnit * quantity, 2);
+
+            // 👉 Assign values
+            txtNetCostPriceWOT.EditValue = Math.Round(netCPWOT, 4);
+            txtNetCostPriceWT.EditValue = Math.Round(netCPWT, 4);
+
+            txtCGST.EditValue = Math.Round(cGST * quantity, 2);
+            txtSGST.EditValue = Math.Round(sGST * quantity, 2);
+            txtIGST.EditValue = Math.Round(iGST * quantity, 2);
+            txtCESS.EditValue = Math.Round(cess * quantity, 2);
+
             txtTotalPriceWT.EditValue = totalPriceWT;
             txtTotalPriceWOT.EditValue = totalPriceWOT;
             txtAppliedDiscount.EditValue = appliedDiscount;
             txtAppliedScheme.EditValue = appliedScheme;
-            txtFinalPrice.EditValue = finalPrice;
             txtAppliedGST.EditValue = appliedGST;
+            txtFinalPriceWithOutTax.EditValue = finalPriceWOTax;
+            txtFinalPrice.EditValue = finalPrice;
         }
         private void txtDiscountValue_EditValueChanged(object sender, EventArgs e)
         {
             if (!IsLoading)
             {
-                (sender == txtDiscountPer && txtDiscountPer.EditValue != null && Convert.ToDecimal(txtDiscountPer.EditValue) > 0
+                (sender == txtDiscountPer && txtDiscountPer.EditValue != null 
+                    && Convert.ToDecimal(txtDiscountPer.EditValue) > 0
                  ? txtDiscountFlat : txtDiscountPer).EditValue = 0.00;
             }
 
@@ -466,10 +543,13 @@ namespace NSRetail.Stock
 
             CalculateReadOnlyFields();
         }
-        private void sluFreeItem_EditValueChanged(object sender, EventArgs e)
+        private void btnViewCostPrices_Click(object sender, EventArgs e)
         {
-            txtFreeQuantity.Enabled = sluFreeItem.EditValue != null;
+            ViewCostPriceList(true);
+            if(ObjStockEntry.PriceEntryMethod.Equals(1))
+                txtGrossCPWOTax.Focus();
+            else
+                txtGrossCPWTax.Focus();
         }
-
     }
 }

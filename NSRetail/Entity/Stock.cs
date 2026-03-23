@@ -33,8 +33,8 @@ namespace Entity
     {
         public object STOCKENTRYID { get; set; }
         public object SUPPLIERID { get; set; }
+        public object SUPPLIERNAME { get; set; }
         public object SUPPLIERINVOICENO { get; set; }
-        public object TAXINCLUSIVE { get; set; }
         public object InvoiceDate { get; set; }
         public object CATEGORYID { get; set; }
         public object TCS { get; set; }
@@ -51,9 +51,16 @@ namespace Entity
 
         public bool CalculateIGST = false;
         public DataTable dtStockEntry { get; set; }
-
         public object SourceBranchID { get; set; }
         public object CreditNoteId { get; set; }
+        public object SupplierIndentId { get; set; }
+
+        public object InvoiceType { get; set; }
+        public object PriceEntryMethod { get; set; }
+        public object LorryFrightMode { get; set; }
+        public object PackingCharges { get; set; }
+        public object Notes { get; set; }
+        public DataTable dtCreditNote { get; set; }
     }
     public class StockEntryDetail : EntityBase
     {
@@ -67,6 +74,8 @@ namespace Entity
         public object SKUCODE { get; set; }
         public object QUANTITY { get; set; }
         public object WEIGHTINKGS { get; set; }
+        public object GROSSCOSTPRICEWT { get; set; }
+        public object GROSSCOSTPRICEWOT { get; set; }
         public object COSTPRICEWT { get; set; }
         public object COSTPRICEWOT { get; set; }
         public object MRP { get; set; }
@@ -95,12 +104,14 @@ namespace Entity
         
         public object AppliedGST { get; set; }
 
+        public object FinalPriceWOTax { get; set; }
         public object FinalPrice { get; set; }
         public object CGST { get; set; }
         public object SGST { get; set; }
         public object IGST { get; set; }
         public object CESS { get; set; }
         public object HSNCODE { get; set; }
+        public object IsFreeItem { get; set; }
 
     }
     public class SupplierReturns : EntityBase

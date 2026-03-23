@@ -117,7 +117,6 @@ namespace NSRetail.Stock
                     if (XtraMessageBox.Show($"Are you sure want to submit dispatch from {cmbFromBranch.Text} to {cmbToBranch.Text} ?", "Confirm",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                         return;
-
                     if (!dxValidationProvider1.Validate() || 
                         XtraMessageBox.Show("Are you sure want to save dispatch?","Confirm",
                         MessageBoxButtons.YesNo,MessageBoxIcon.Question) != DialogResult.Yes)

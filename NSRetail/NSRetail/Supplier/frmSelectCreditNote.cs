@@ -9,17 +9,19 @@ namespace NSRetail.Supplier
     {
         public int SelectedCreditNoteId { get; private set; }
         public decimal SelectedCreditValue { get; private set; }
-
         public string SelectedCNNumber { get; private set; }
+        public string SelectedAdjustmentType { get; private set; }
 
         private object _supplierRefId;
         private string _refType;
+        private object _supplierId;
 
-        public frmSelectCreditNote(object supplierRefId, string refType)
+        public frmSelectCreditNote(object supplierRefId, string refType, object supplierId)
         {
             InitializeComponent();
             _supplierRefId = supplierRefId;
             _refType = refType;
+            _supplierId = supplierId;
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -36,6 +38,7 @@ namespace NSRetail.Supplier
         private void frmMapCreditNote_Load(object sender, EventArgs e)
         {
             gcCreditNotes.DataSource = new CreditNoteRepository().GetCreditNotesForMapping(_supplierRefId, _refType);
+            gvCreditNotes.BestFitColumns();
             gvCreditNotes.Focus();
         }
 
@@ -58,16 +61,28 @@ namespace NSRetail.Supplier
 
             SelectedCreditNoteId =
                 Convert.ToInt32(gvCreditNotes.GetFocusedRowCellValue("CreditNoteId"));
-
-            SelectedCreditValue =
-                Convert.ToDecimal(gvCreditNotes.GetFocusedRowCellValue("CreditValue"));
-
+            
             SelectedCNNumber =
                 Convert.ToString(gvCreditNotes.GetFocusedRowCellValue("CNNumber"));
+
+            SelectedCreditValue =
+                Convert.ToDecimal(gvCreditNotes.GetFocusedRowCellValue("BalanceCNValueCanBeMapped"));
+
+            SelectedAdjustmentType =
+                Convert.ToString(gvCreditNotes.GetFocusedRowCellValue("AdjustmentType"));
 
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
+        private void btnNEWCN_Click(object sender, EventArgs e)
+        {
+            frmCreditNote frmCreditNote = new frmCreditNote((int)_supplierId, (int)_supplierRefId);
+            if (frmCreditNote.ShowDialog() == DialogResult.OK)
+            {
+                gcCreditNotes.DataSource = new CreditNoteRepository().GetCreditNotesForMapping(_supplierRefId, _refType);
+                gvCreditNotes.FocusedRowHandle = gvCreditNotes.LocateByValue("CreditNoteId", frmCreditNote.CreditNoteId);
+            }
+        }
     }
 }

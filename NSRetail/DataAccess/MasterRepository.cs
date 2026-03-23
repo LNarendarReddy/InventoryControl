@@ -48,10 +48,6 @@ namespace DataAccess
                 else
                     throw new Exception("Error While Saving Branch");
             }
-            finally
-            {
-                
-            }
             return ObjBranch;
         }
         public DataTable GetBranch(bool UsedInReport = false, bool IncludeDeleted = false)
@@ -93,10 +89,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Deleteing Branch", ex);
             }
-            finally
-            {
-                
-            }
             return ObjBranch;
         }
         public Category SaveCategory(Category ObjCategory)
@@ -127,10 +119,6 @@ namespace DataAccess
                     throw new Exception("Category Already Exists!!");
                 else
                     throw new Exception("Error While Saving Category");
-            }
-            finally
-            {
-                
             }
             return ObjCategory;
         }
@@ -175,10 +163,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Deleteing Category", ex);
             }
-            finally
-            {
-                
-            }
             return ObjCategory;
         }
 
@@ -213,10 +197,6 @@ namespace DataAccess
                 else
                     throw new Exception("Error While Saving Sub Category");
             }
-            finally
-            {
-                
-            }
             return ObjSubCategory;
         }
         public DataTable GetSubCategory(object CategoryID = null)
@@ -248,10 +228,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error While Deleteing Sub Category");
-            }
-            finally
-            {
-                
             }
             return ObjSubCategory;
         }
@@ -291,10 +267,6 @@ namespace DataAccess
                     throw new Exception("Dealer Already Exists!!");
                 else
                     throw new Exception("Error While Saving Dealer");
-            }
-            finally
-            {
-                
             }
             return ObjDealer;
         }
@@ -336,10 +308,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Deleteing Dealer");
             }
-            finally
-            {
-                
-            }
             return ObjDealer;
         }
         public Counter SaveCounter(Counter ObjCounter)
@@ -375,10 +343,6 @@ namespace DataAccess
                 else
                     throw new Exception("Error While Saving Counter");
             }
-            finally
-            {
-                
-            }
             return ObjCounter;
         }
         public DataTable GetCounter()
@@ -410,10 +374,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Deleteing Counter");
             }
-            finally
-            {
-                
-            }
             return ObjCounter;
         }
         public MOP SaveMOP(MOP ObjMOP)
@@ -444,10 +404,6 @@ namespace DataAccess
                 else
                     throw new Exception("Error While Saving MOP");
             }
-            finally
-            {
-                
-            }
             return ObjMOP;
         }
         public DataTable GetMOP()
@@ -477,10 +433,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error While Deleteing MOP");
-            }
-            finally
-            {
-                
             }
             return ObjMOP;
         }
@@ -514,10 +466,6 @@ namespace DataAccess
                 else
                     throw new Exception("Error While Saving UOM");
             }
-            finally
-            {
-                
-            }
             return ObjUOM;
         }
         public DataTable GetUOM()
@@ -548,10 +496,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error While Deleteing UOM");
-            }
-            finally
-            {
-                
             }
             return ObjUOM;
         }
@@ -588,10 +532,6 @@ namespace DataAccess
                 else
                     throw new Exception("Error While Saving GST");
             }
-            finally
-            {
-                
-            }
             return ObjGST;
         }
 
@@ -624,10 +564,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error While Deleteing GST");
-            }
-            finally
-            {
-                
             }
             return ObjGST;
         }
@@ -666,10 +602,6 @@ namespace DataAccess
                 else
                     throw new Exception("Error While Saving Printer");
             }
-            finally
-            {
-                
-            }
             return ObjPrinterSettings;
         }
 
@@ -699,10 +631,6 @@ namespace DataAccess
             {
                  throw new Exception("Error While Clearing cache", ex);
             }
-            finally
-            {
-                
-            }
         }
 
         public void SaveItemClassification(ItemClassification itemClassification)
@@ -726,9 +654,9 @@ namespace DataAccess
                     itemClassification.IsSave = true;
                 }
             }
-            finally
+            catch (Exception ex)
             {
-                
+                throw new Exception("Error While Saving Item Classification " ,ex);
             }
         }
 
@@ -753,9 +681,9 @@ namespace DataAccess
                     itemSubClassification.IsSave = true;
                 }
             }
-            finally
+            catch (Exception ex)
             {
-                
+                throw new Exception("Error While Saving Item Sub Classification ", ex);
             }
         }
 
@@ -778,10 +706,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                
             }
         }
 
@@ -807,7 +731,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Deleteing Item Classification " + ex.Message);
+                throw new Exception("Error While Deleteing Item Classification " , ex);
             }
             return itemClassification;
         }
@@ -834,11 +758,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Deleteing Item Sub Classification " + ex.Message);
-            }
-            finally
-            {
-                
+                throw new Exception("Error While Deleteing Item Sub Classification " ,ex);
             }
             return itemSubClassification;
         }
@@ -861,10 +781,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("There are few sheets"))
-                    throw ex;
-                else
-                    throw new Exception("Error While performing action");
+                throw new Exception("Error While performing action", ex);
             }
         }
 
@@ -887,10 +804,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("There are few dispatches"))
-                    throw ex;
-                else
-                    throw new Exception("Error While performing action");
+                throw new Exception("Error While performing action", ex);
             }
         }
 
@@ -925,7 +839,7 @@ namespace DataAccess
                 if (ex.Message.Contains("UC_TBLBRAND_BRANDNAME"))
                     throw new Exception("Brand Already Exists!!");
                 else
-                    throw new Exception("Error While Saving Brand");
+                    throw new Exception("Error While Saving Brand", ex);
             }
         }
 
@@ -986,7 +900,7 @@ namespace DataAccess
                 if (ex.Message.Contains("UC_TBLMANUFACTURER_MANUFACTURERNAME"))
                     throw new Exception("Manufacturer Already Exists!!");
                 else
-                    throw new Exception("Error While Saving manufacturer");
+                    throw new Exception("Error While Saving manufacturer", ex);
             }
         }
 

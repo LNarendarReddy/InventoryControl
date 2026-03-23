@@ -35,10 +35,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Retrieving Item codes List", ex);
             }
-            finally
-            {
-                
-            }
             return dsItemCodes;
         }
 
@@ -67,10 +63,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Retrieving Item code details", ex);
             }
-            finally
-            {
-                
-            }
             return dsItemCode;
         }
 
@@ -94,10 +86,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error While Retrieving Item code list", ex);
-            }
-            finally
-            {
-                
             }
             return dt;
         }
@@ -153,10 +141,6 @@ namespace DataAccess
             {
                 throw ex;
             }
-            finally
-            {
-                
-            }
             return itemObj;
         }
 
@@ -187,10 +171,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Retrieving Item code details", ex);
             }
-            finally
-            {
-                
-            }
             return dsItemVisualizer;
         }
 
@@ -213,10 +193,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error While Retrieving Item codes List", ex);
-            }
-            finally
-            {
-                
             }
             return dtItemCodes;
         }
@@ -242,10 +218,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Retrieving MRP List", ex);
             }
-            finally
-            {
-                
-            }
             return dtItemCodes;
         }
 
@@ -269,10 +241,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Retrieving Item List", ex);
             }
-            finally
-            {
-                
-            }
             return dtItem;
         }
 
@@ -292,10 +260,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                
             }
             return nextSKUCode;
         }
@@ -322,10 +286,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Retrieving Parent Item List", ex);
             }
-            finally
-            {
-                
-            }
             return dtParentItems;
         }
 
@@ -338,7 +298,7 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_COSTPRICELIST]";
+                    cmd.CommandText = "[USP_R_COSTPRICELIST_v2]";
                     cmd.Parameters.AddWithValue("@ITEMCODEID", ITEMCODEID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
@@ -349,10 +309,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error While Retrieving Cost Price List", ex);
-            }
-            finally
-            {
-                
             }
             return dtItemCodes;
         }
@@ -377,10 +333,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error While Retrieving Offers", ex);
-            }
-            finally
-            {
-                
             }
             return dtOffers;
         }
@@ -501,10 +453,6 @@ namespace DataAccess
             {
                 throw new Exception("Error While Retrieving Items", ex);
             }
-            finally
-            {
-                
-            }
             return dtItems;
         }
 
@@ -527,10 +475,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error While Retrieving Item Price List", ex);
-            }
-            finally
-            {
-                
             }
             return dtItems;
         }
@@ -561,10 +505,6 @@ namespace DataAccess
             {
                 throw ex;
             }
-            finally
-            {
-                
-            }
         }
 
         public void DeleteBranchItemPrice(object ItemPriceID, object UserID)
@@ -587,10 +527,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error while deleting itemprice", ex);
-            }
-            finally
-            {
-                
             }
         }
 
@@ -615,10 +551,6 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception("Error while deleting item code", ex);
-            }
-            finally
-            {
-                
             }
         }
 
