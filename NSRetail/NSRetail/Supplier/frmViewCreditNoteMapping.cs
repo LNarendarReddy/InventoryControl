@@ -8,11 +8,13 @@ namespace NSRetail.Supplier
 {
     public partial class frmViewCreditNoteMapping : DevExpress.XtraEditors.XtraForm
     {
-        public frmViewCreditNoteMapping(DataTable dataTable)
+        private string _refType;
+        public frmViewCreditNoteMapping(DataTable dataTable, string refType)
         {
             InitializeComponent();
             gcCreditNotes.DataSource = dataTable;
             gvCreditNotes.BestFitColumns();
+            _refType = refType;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -32,7 +34,7 @@ namespace NSRetail.Supplier
                 if (rowHandle < 0)
                     return;
 
-                object mapId =  gvCreditNotes.GetFocusedRowCellValue("SUPPLIERRETURNSCREDITNOTEMAPID");
+                object mapId =  gvCreditNotes.GetFocusedRowCellValue("MAPID");
 
                 if (mapId == null || mapId == DBNull.Value)
                 {
@@ -49,7 +51,7 @@ namespace NSRetail.Supplier
                     return;
                 }
 
-                new CreditNoteRepository().DeleteCreditNoteMapping(mapId, "SR", Utility.UserID);
+                new CreditNoteRepository().DeleteCreditNoteMapping(mapId, _refType, Utility.UserID);
 
                 XtraMessageBox.Show("Credit note mapping deleted successfully.");
 

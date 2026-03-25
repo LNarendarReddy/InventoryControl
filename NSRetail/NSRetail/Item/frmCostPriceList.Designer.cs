@@ -41,6 +41,8 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSupplier = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcInvoiceDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -70,7 +72,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(772, 112, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(927, 399);
+            this.layoutControl1.Size = new System.Drawing.Size(1075, 498);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -79,7 +81,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(810, 371);
+            this.btnCancel.Location = new System.Drawing.Point(958, 470);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(115, 26);
@@ -92,7 +94,7 @@
             // 
             this.btnOk.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnOk.ImageOptions.Image")));
             this.btnOk.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnOk.Location = new System.Drawing.Point(688, 371);
+            this.btnOk.Location = new System.Drawing.Point(836, 470);
             this.btnOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(118, 26);
@@ -108,10 +110,11 @@
             this.gcCPList.MainView = this.gvCPList;
             this.gcCPList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcCPList.Name = "gcCPList";
-            this.gcCPList.Size = new System.Drawing.Size(923, 365);
+            this.gcCPList.Size = new System.Drawing.Size(1071, 464);
             this.gcCPList.TabIndex = 4;
             this.gcCPList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCPList});
+            this.gcCPList.Click += new System.EventHandler(this.gcCPList_Click);
             // 
             // gvCPList
             // 
@@ -126,7 +129,9 @@
             this.gridColumn2,
             this.gridColumn7,
             this.gcSupplier,
-            this.gcInvoiceDate});
+            this.gcInvoiceDate,
+            this.gridColumn5,
+            this.gridColumn6});
             this.gvCPList.DetailHeight = 404;
             this.gvCPList.FixedLineWidth = 3;
             this.gvCPList.GridControl = this.gcCPList;
@@ -136,71 +141,123 @@
             // 
             // gridColumn4
             // 
-            this.gridColumn4.Caption = "CP W/O Tax";
+            this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gridColumn4.Caption = "Net CP W/O Tax";
             this.gridColumn4.FieldName = "COSTPRICEWOT";
             this.gridColumn4.MinWidth = 23;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 0;
+            this.gridColumn4.VisibleIndex = 4;
             this.gridColumn4.Width = 117;
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "CP With Tax";
+            this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gridColumn3.Caption = "Net CP With Tax";
             this.gridColumn3.FieldName = "COSTPRICEWT";
             this.gridColumn3.MinWidth = 23;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
+            this.gridColumn3.VisibleIndex = 5;
             this.gridColumn3.Width = 117;
             // 
             // gridColumn1
             // 
+            this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.gridColumn1.Caption = "MRP";
             this.gridColumn1.FieldName = "MRP";
             this.gridColumn1.MinWidth = 23;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 2;
+            this.gridColumn1.VisibleIndex = 0;
             this.gridColumn1.Width = 117;
             // 
             // gridColumn2
             // 
+            this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.gridColumn2.Caption = "Sale Price";
             this.gridColumn2.FieldName = "SALEPRICE";
             this.gridColumn2.MinWidth = 23;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 3;
+            this.gridColumn2.VisibleIndex = 1;
             this.gridColumn2.Width = 117;
             // 
             // gridColumn7
             // 
+            this.gridColumn7.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.gridColumn7.Caption = "GST Code";
             this.gridColumn7.FieldName = "GSTCODE";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 4;
+            this.gridColumn7.VisibleIndex = 6;
             // 
             // gcSupplier
             // 
+            this.gcSupplier.AppearanceCell.Options.UseTextOptions = true;
+            this.gcSupplier.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gcSupplier.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcSupplier.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.gcSupplier.Caption = "Supplier";
             this.gcSupplier.FieldName = "DEALERNAME";
             this.gcSupplier.MinWidth = 23;
             this.gcSupplier.Name = "gcSupplier";
             this.gcSupplier.Visible = true;
-            this.gcSupplier.VisibleIndex = 5;
+            this.gcSupplier.VisibleIndex = 7;
             this.gcSupplier.Width = 310;
             // 
             // gcInvoiceDate
             // 
+            this.gcInvoiceDate.AppearanceCell.Options.UseTextOptions = true;
+            this.gcInvoiceDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gcInvoiceDate.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcInvoiceDate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.gcInvoiceDate.Caption = "Invoice Date";
             this.gcInvoiceDate.FieldName = "INVOICEDATE";
             this.gcInvoiceDate.MinWidth = 23;
             this.gcInvoiceDate.Name = "gcInvoiceDate";
             this.gcInvoiceDate.Visible = true;
-            this.gcInvoiceDate.VisibleIndex = 6;
+            this.gcInvoiceDate.VisibleIndex = 8;
             this.gcInvoiceDate.Width = 117;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gridColumn5.Caption = "Gross CP With Tax";
+            this.gridColumn5.FieldName = "GROSSCOSTPRICEWT";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 3;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.gridColumn6.Caption = "Gross CP W/O Tax";
+            this.gridColumn6.FieldName = "GROSSCOSTPRICEWOT";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 2;
             // 
             // Root
             // 
@@ -215,7 +272,7 @@
             this.emptySpaceItem1});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.Root.Size = new System.Drawing.Size(927, 399);
+            this.Root.Size = new System.Drawing.Size(1075, 498);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -223,14 +280,14 @@
             this.layoutControlItem1.Control = this.gcCPList;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(927, 369);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1075, 468);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnOk;
-            this.layoutControlItem2.Location = new System.Drawing.Point(686, 369);
+            this.layoutControlItem2.Location = new System.Drawing.Point(834, 468);
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(122, 30);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(122, 30);
             this.layoutControlItem2.Name = "layoutControlItem2";
@@ -242,7 +299,7 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnCancel;
-            this.layoutControlItem3.Location = new System.Drawing.Point(808, 369);
+            this.layoutControlItem3.Location = new System.Drawing.Point(956, 468);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(119, 30);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(119, 30);
             this.layoutControlItem3.Name = "layoutControlItem3";
@@ -254,9 +311,9 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 369);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 468);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(686, 30);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(834, 30);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmCostPriceList
@@ -265,8 +322,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(927, 399);
+            this.ClientSize = new System.Drawing.Size(1075, 498);
             this.Controls.Add(this.layoutControl1);
+            this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmCostPriceList";
             this.Text = "Cost Price List";
@@ -302,5 +360,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcSupplier;
         private DevExpress.XtraGrid.Columns.GridColumn gcInvoiceDate;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }

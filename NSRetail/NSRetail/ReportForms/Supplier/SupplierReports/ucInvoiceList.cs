@@ -5,6 +5,7 @@ using DevExpress.XtraReports.UI;
 using Entity;
 using NSRetail.Reports;
 using NSRetail.Stock;
+using NSRetail.Supplier;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -35,16 +36,18 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
 
             ContextmenuItems = new Dictionary<string, string>
             {
-                { "View", "3A365A22-5334-4667-8782-A83825298BF6" },
+                { "View Items", "3A365A22-5334-4667-8782-A83825298BF6" },
+                { "Print", "3F9A7C21-8E6D-4B2F-A5D9-1C7E9F4B2A6C" },
                 { "Edit", "DED7050B-F5CF-4944-8880-008A87F1D987" },
                 { "Revert", "7CE473E7-514B-4BC9-B07E-2B26B5AA44F2" },
                 { "Clone", "50C463EA-A4BE-49A8-8484-B2C73186A373" },
                 { "Verify and Submit", "6B8301F8-D835-4F21-9ED2-F6939EAF1552" },
                 { "Dispatch to branch", "A3F813DC-3E42-407A-A3B8-1CC84ADC684C" },
+                { "View Credit Note Mapping", "B4F924ED-7C53-4A78-9D6C-2F95B6EE5A9E" }
             };
                 
 
-            HiddenColumns = new List<string>() { "TAXINCLUSIVE", "TCS", "DISCOUNTPER", "DISCOUNT", "EXPENSES", "TRANSPORT" };
+            HiddenColumns = new List<string>() { "CATEGORYNAME", "CREATEDBY", "CREATEDDATE", "GSTIN" };
 
             cmbDealer.Properties.DataSource = new MasterRepository().GetDealer(true);
             cmbDealer.Properties.DisplayMember = "DEALERNAME";
@@ -64,14 +67,29 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
             };
-            return GetReportData("USP_R_INVOICELIST", parameters);
+            return GetReportData("USP_R_INVOICELIST_v2", parameters);
         }
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
             try
             {
-                if (drFocusedRow["STATUS"].ToString() == "Draft" && buttonText != "Verify and Submit")
+                if (buttonText == "View Items")
+                {
+                    DataSet ds = new StockRepository().GetInvoice(drFocusedRow["STOCKENTRYID"]);
+                    if (ds != null && ds.Tables.Count > 1)
+                    {
+                        frmInvoiceItems frm = new frmInvoiceItems(ds.Tables[1]);
+                        frm.ShowInTaskbar = false;
+                        frm.StartPosition = FormStartPosition.CenterScreen;
+                        frm.IconOptions.ShowIcon = false;
+                        frm.ShowDialog();
+                    }
+                    return;
+                }
+
+                if ((drFocusedRow["STATUS"].ToString() == "Draft" || drFocusedRow["STATUS"].ToString() == "Submitted via Mobile")
+                && buttonText != "Verify and Submit")
                 {
                     XtraMessageBox.Show("Draft bills cannot be viewed, printed or reverted. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
@@ -79,16 +97,16 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
 
                 switch (buttonText)
                 {
-                    case "View":
-                        DataSet ds = new StockRepository().GetInvoice(drFocusedRow["STOCKENTRYID"]);
-                        if (ds == null || ds.Tables.Count < 2 || ds.Tables[0].Rows.Count <= 0)
+                    case "Print":
+                        DataSet dsprint = new StockRepository().GetInvoice(drFocusedRow["STOCKENTRYID"]);
+                        if (dsprint == null || dsprint.Tables.Count < 2 || dsprint.Tables[0].Rows.Count <= 0)
                         {
                             XtraMessageBox.Show("No data returned from database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             return;
                         }
-                        if (ds != null && ds.Tables.Count > 1)
+                        if (dsprint != null && dsprint.Tables.Count > 1)
                         {
-                            rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);
+                            rptInvoice rpt = new rptInvoice(dsprint.Tables[0], dsprint.Tables[1]);
                             rpt.ShowPrintMarginsWarning = false;
                             rpt.ShowRibbonPreview();
                         }
@@ -100,11 +118,15 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                         }
                         else
                         {
-                            new StockRepository().RevertStockEntry(drFocusedRow["STOCKENTRYID"], Utility.UserID);
-                            XtraMessageBox.Show("Invoice successfully reverted", "Information",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
-                            drFocusedRow["STATUS"] = "Reverted";
+                            DialogResult result = XtraMessageBox.Show("Are you sure you want to revert this invoice?", "Confirm Revert", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result == DialogResult.Yes)
+                            {
+                                new StockRepository().RevertStockEntry(drFocusedRow["STOCKENTRYID"], Utility.UserID);
+                                XtraMessageBox.Show("Invoice successfully reverted", "Information",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                                drFocusedRow["STATUS"] = "Reverted";
+                            }
                         }
                         break;
                     case "Clone":
@@ -130,11 +152,12 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                         break;
                     case "Verify and Submit":
 
-                        if (drFocusedRow["STATUS"].ToString() != "Draft")
+                        if (drFocusedRow["STATUS"].ToString() != "Draft" && drFocusedRow["STATUS"].ToString() != "Submitted via Mobile")
                         {
-                            XtraMessageBox.Show("Submitted bills cannot be viewed, printed, reverted or reverified. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            XtraMessageBox.Show("Draft bills cannot be viewed, printed or reverted. The operation is cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             return;
                         }
+
                         StockEntry stockEntry = new StockEntry()
                         {
                             STOCKENTRYID = drFocusedRow["STOCKENTRYID"]
@@ -146,7 +169,15 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                         frmStockEntry.ShowDialog();
                         break;
                     case "Dispatch to branch":
-                            XtraMessageBox.Show("Not yet implemented", "Unknown", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        XtraMessageBox.Show("Not yet implemented", "Unknown", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
+                    case "View Credit Note Mapping":
+                        DataTable dtCN = new CreditNoteRepository().GetMappedCreditNotes(drFocusedRow["STOCKENTRYID"], "SE");
+                        frmViewCreditNoteMapping frmCNM = new frmViewCreditNoteMapping(dtCN, "SE");
+                        frmCNM.ShowInTaskbar = false;
+                        frmCNM.StartPosition = FormStartPosition.CenterScreen;
+                        frmCNM.IconOptions.ShowIcon = false;
+                        frmCNM.ShowDialog();
                         break;
                 }
             }

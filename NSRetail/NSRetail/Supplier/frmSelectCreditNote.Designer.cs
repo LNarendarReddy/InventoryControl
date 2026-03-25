@@ -39,6 +39,8 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.btnNEWCN = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcCreditNotes)).BeginInit();
@@ -48,10 +50,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnNEWCN);
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.btnSelect);
             this.layoutControl1.Controls.Add(this.gcCreditNotes);
@@ -114,7 +118,8 @@
             this.layoutControlItem1,
             this.layoutControlItem2,
             this.layoutControlItem3,
-            this.emptySpaceItem1});
+            this.emptySpaceItem1,
+            this.layoutControlItem4});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(891, 440);
             this.Root.TextVisible = false;
@@ -157,10 +162,30 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 394);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(666, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(546, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // frmMapCreditNote
+            // btnNEWCN
+            // 
+            this.btnNEWCN.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNEWCN.ImageOptions.Image")));
+            this.btnNEWCN.Location = new System.Drawing.Point(558, 406);
+            this.btnNEWCN.Name = "btnNEWCN";
+            this.btnNEWCN.Size = new System.Drawing.Size(116, 22);
+            this.btnNEWCN.StyleController = this.layoutControl1;
+            this.btnNEWCN.TabIndex = 7;
+            this.btnNEWCN.Text = "New Credit Note";
+            this.btnNEWCN.Click += new System.EventHandler(this.btnNEWCN_Click);
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.btnNEWCN;
+            this.layoutControlItem4.Location = new System.Drawing.Point(546, 394);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(120, 26);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
+            // 
+            // frmSelectCreditNote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -169,7 +194,7 @@
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
             this.KeyPreview = true;
-            this.Name = "frmMapCreditNote";
+            this.Name = "frmSelectCreditNote";
             this.Text = "Map Credit Note";
             this.Load += new System.EventHandler(this.frmMapCreditNote_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMapCreditNote_KeyDown);
@@ -182,6 +207,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -198,5 +224,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraEditors.SimpleButton btnNEWCN;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
     }
 }

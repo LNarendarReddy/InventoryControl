@@ -110,7 +110,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     break;
                 case "View Credit Note Mapping":
                     DataTable dtCN = new CreditNoteRepository().GetMappedCreditNotes(drFocusedRow["SUPPLIERRETURNSID"], "SR");
-                    frmViewCreditNoteMapping frmCNM = new frmViewCreditNoteMapping(dtCN);
+                    frmViewCreditNoteMapping frmCNM = new frmViewCreditNoteMapping(dtCN, "SR");
                     frmCNM.ShowInTaskbar = false;
                     frmCNM.StartPosition = FormStartPosition.CenterScreen;
                     frmCNM.IconOptions.ShowIcon = false;

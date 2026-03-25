@@ -258,7 +258,6 @@
             this.Detail1,
             this.ReportHeader1,
             this.ReportFooter});
-            this.drItems.Expanded = false;
             this.drItems.Level = 0;
             this.drItems.Name = "drItems";
             // 
@@ -266,7 +265,6 @@
             // 
             this.Detail1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable3});
-            this.Detail1.Expanded = false;
             this.Detail1.HeightF = 44F;
             this.Detail1.Name = "Detail1";
             // 
@@ -363,7 +361,6 @@
             // 
             this.ReportHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable1});
-            this.ReportHeader1.Expanded = false;
             this.ReportHeader1.HeightF = 40F;
             this.ReportHeader1.Name = "ReportHeader1";
             // 
@@ -452,7 +449,6 @@
             this.ReportFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel1,
             this.xrTable4});
-            this.ReportFooter.Expanded = false;
             this.ReportFooter.HeightF = 81F;
             this.ReportFooter.Name = "ReportFooter";
             // 

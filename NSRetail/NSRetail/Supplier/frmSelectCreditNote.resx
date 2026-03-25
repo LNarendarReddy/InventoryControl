@@ -118,6 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnNEWCN.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAbdEVYdFRpdGxlAEFkZDtQbHVzO0JhcnM7UmliYm9uO5UGMy8AAAOESURBVDhPVZNrTNtlFMbP
+        WOLc/CD60Q/OmJjMW12YMZvJYnRedgmLhrEyncGocyrOzQLryrjJms0OXBkbEB1NKpMp49LSsv0pULZU
+        kLRSKbdCGbSlpVD+sJbeoWAe83+dJn54kpPznt9zng/npcnoKgkiog1ElJJTaXghr86skKqsA1K1LXRG
+        PRiQqgasuT/+Xp5deuNpItoozDqiqySIpmJJBqftydp0qqZfKasfWq/v9aBjfBHWhSj+5KMwTCzhep8X
+        sp9s4S++7zpORA8JzAOWNmx/Xbzpq+r+DqXegZH7CdgCKzAvJtDrj6PPH4dl6Z+e1R9FuWYcX1aZ9Fuf
+        2/nIg9S08XOlqapCO46R4AoM7gg4VwTZFw14LaeBKftiJwwzURg9UYyFkqjUO/CJwlDBkmRKG54/UWNe
+        H/DH0GQPonUiBO1kmIHmQSf+GHKxWjcVgfZeCC0TIVj5BCS1luS+zy6J6Ki8s1bVNY3GkQDqBwNoGA6g
+        0b7MoHl+GWvrf7H6pj2EX8eW2fsvo0HUm9wQF2mU9H6Z0dZsXUBNP4/Dcu6/2IJ8fAiRePJ/PbGcww8W
+        Hi1Di8gq7RilzJLuJbV5AYoeHxuwDLsxMDKDwTEvZvkwgpEVOFw8Rifn4HAu4M1vbqLi7jxUFh6ZxZ0B
+        erfAEFbe8ULeNcsM5hYjbKs/GAe/nEAssYZoIolIIolwPIm3JE24YPShvMeH92RcgPZLdMPn9FP4lvPi
+        yPlO7DnVyIbezm3G3P0YM3snvwX7z2hxoKANH1824ZxhFsVtTuw92WqjN47fqD55zYpSzgOF0YfLpnlc
+        +c3P0jjnQgjFVlnsq71+1q+440MJN4Ov62zY/dG1chKll6TtlbQni3QuFOhcOKt3o+iWmxnwwRgCkRWW
+        qPi2B4Xtbpxtd0OmdeJA/u21Z3Yfe0k4pIdfOaqqzijtQaHejdNaF6RtThwq49hmAT7yXTdkOhekgrRO
+        ZJTdxY6s6ioi2iIYpGx5/KnUlz9QG9ILuyFtncZprRNlnAcXurw43+1FGTeDPI0TkqZ7OFhsxI6sultE
+        lCqwxK+BnfPm1CcfE2XU1L76aXNSrOjDiet25GumkaeZRs7PdhxW9GHXsabYtn3yXCJ6VGD8Asuv41+T
+        FCHS1l05O589WHlVlKkaEonVvEis9r94qM62Lf3SlSfSPtxORJuFTyTAgv4GIC6U12WuRcwAAAAASUVO
+        RK5CYII=
+</value>
+  </data>
   <data name="btnCancel.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACN0RVh0VGl0

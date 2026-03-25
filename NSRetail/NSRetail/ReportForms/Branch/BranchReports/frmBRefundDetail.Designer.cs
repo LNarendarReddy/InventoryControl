@@ -46,10 +46,10 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcReason = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbReason = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.cmbSupplier = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.BRDID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbSupplier = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -259,7 +259,7 @@
             // 
             // gcReason
             // 
-            this.gcReason.Caption = "REASONID";
+            this.gcReason.Caption = "Reason";
             this.gcReason.ColumnEdit = this.cmbReason;
             this.gcReason.FieldName = "REASONID";
             this.gcReason.Name = "gcReason";
@@ -278,19 +278,6 @@
             this.cmbReason.Name = "cmbReason";
             this.cmbReason.NullText = "";
             this.cmbReason.ShowHeader = false;
-            // 
-            // cmbSupplier
-            // 
-            this.cmbSupplier.AutoHeight = false;
-            this.cmbSupplier.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbSupplier.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERID", "DEALERID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERNAME", "DEALERNAME")});
-            this.cmbSupplier.Name = "cmbSupplier";
-            this.cmbSupplier.NullText = "";
-            this.cmbSupplier.ShowHeader = false;
-            this.cmbSupplier.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             // 
             // BRDID
             // 
@@ -311,6 +298,19 @@
             this.gcDescription.Name = "gcDescription";
             this.gcDescription.Visible = true;
             this.gcDescription.VisibleIndex = 8;
+            // 
+            // cmbSupplier
+            // 
+            this.cmbSupplier.AutoHeight = false;
+            this.cmbSupplier.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbSupplier.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERID", "DEALERID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERNAME", "DEALERNAME")});
+            this.cmbSupplier.Name = "cmbSupplier";
+            this.cmbSupplier.NullText = "";
+            this.cmbSupplier.ShowHeader = false;
+            this.cmbSupplier.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             // 
             // Root
             // 

@@ -1,25 +1,13 @@
 ﻿using DataAccess;
-using DevExpress.Utils.Gesture;
-using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraReports.UI;
-using DevExpress.XtraSplashScreen;
 using Entity;
 using ErrorManagement;
-using NSRetail;
-using NSRetail.Login;
 using NSRetail.Utilities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail

@@ -27,7 +27,7 @@ namespace NSRetail.Supplier
 
         private void btnSelectCreditNote_Click(object sender, System.EventArgs e)
         {
-            using (frmSelectCreditNote frm = new frmSelectCreditNote(supplierReturnsID, refType))
+            using (frmSelectCreditNote frm = new frmSelectCreditNote(supplierReturnsID, refType, null))
             {
                 frm.StartPosition = FormStartPosition.CenterParent;
 

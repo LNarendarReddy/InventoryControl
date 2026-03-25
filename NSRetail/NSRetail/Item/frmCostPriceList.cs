@@ -17,6 +17,7 @@ namespace NSRetail
             gcCPList.DataSource = _dtCP;
             gcSupplier.Visible = !IsSupplierReturns;
             gcInvoiceDate.Visible = !IsSupplierReturns;
+            gvCPList.BestFitColumns();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -33,6 +34,11 @@ namespace NSRetail
                 this.Close();
             }
             catch (Exception) { }
+        }
+
+        private void gcCPList_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

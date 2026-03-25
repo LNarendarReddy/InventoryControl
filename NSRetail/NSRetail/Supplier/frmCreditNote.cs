@@ -9,14 +9,25 @@ namespace NSRetail.Supplier
     public partial class frmCreditNote : XtraForm
     {
         private int _creditNoteId = 0;
+        private int _supplierID;
+        private int _stockEntryId;
+        public int CreditNoteId => _creditNoteId;
 
         public frmCreditNote()
         {
             InitializeComponent();
         }
 
-        public frmCreditNote(int creditNoteId) : this()
+        public frmCreditNote(int supplierID, int stockEntryId) 
         {
+            InitializeComponent();
+            _supplierID = supplierID;
+            _stockEntryId = stockEntryId;
+        }
+
+        public frmCreditNote(int creditNoteId)
+        {
+            InitializeComponent();
             _creditNoteId = creditNoteId;
         }
 
@@ -25,6 +36,18 @@ namespace NSRetail.Supplier
             SetMandatoryValidation();
             SetNumericMask();
             LoadLookups();
+
+            if (_supplierID > 0)
+            {
+                cmbSupplier.EditValue = _supplierID;
+                cmbSupplier.Enabled = false;
+            }
+
+            if (_stockEntryId > 0)
+            {
+                cmbPurchaseInvoiceNumber.EditValue = _stockEntryId;
+                cmbPurchaseInvoiceNumber.Enabled = false;
+            }
 
             if (_creditNoteId > 0)
                 LoadCreditNote();
@@ -128,7 +151,7 @@ namespace NSRetail.Supplier
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
-
+                DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
@@ -151,7 +174,6 @@ namespace NSRetail.Supplier
         {
             cmbPurchaseInvoiceNumber.Properties.DataSource =
                 new CreditNoteRepository().GetPurchaseInvoices(cmbSupplier.EditValue);
-
             cmbPurchaseInvoiceNumber.EditValue = null;
         }
 

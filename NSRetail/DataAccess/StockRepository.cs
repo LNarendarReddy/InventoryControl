@@ -35,10 +35,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("Stock dispatch disabled"))
-                    throw ex;
-                else
-                    throw new Exception("Error While Saving Dispatch");
+                throw new Exception("Error While Saving Dispatch", ex);
             }
             finally
             {
@@ -76,10 +73,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("Tray number no longer exists"))
-                    throw;
-                else
-                    throw new Exception($"Error While Saving Dispatch Detail - {ex.Message}");
+                throw new Exception($"Error While Saving Dispatch Detail", ex);
             }
             return ObjStockDispatchDetail;
         }
@@ -450,11 +444,10 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_CU_STOCKENTRY]";
+                    cmd.CommandText = "[USP_CU_STOCKENTRY_v2]";
                     cmd.Parameters.AddWithValue("@STOCKENTRYID", ObjStockEntry.STOCKENTRYID);
                     cmd.Parameters.AddWithValue("@SUPPLIERID", ObjStockEntry.SUPPLIERID);
                     cmd.Parameters.AddWithValue("@SUPPLIERINVOICENO", ObjStockEntry.SUPPLIERINVOICENO);
-                    cmd.Parameters.AddWithValue("@TAXINCLUSIVE", ObjStockEntry.TAXINCLUSIVE);
                     cmd.Parameters.AddWithValue("@INVOICEDATE", ObjStockEntry.InvoiceDate);
                     cmd.Parameters.AddWithValue("@TCS", ObjStockEntry.TCS);
                     cmd.Parameters.AddWithValue("@DISCOUNTPER", ObjStockEntry.DISCOUNTPER);
@@ -463,6 +456,9 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@TRANSPORT", ObjStockEntry.TRANSPORT);
                     cmd.Parameters.AddWithValue("@CATEGORYID", ObjStockEntry.CATEGORYID);
                     cmd.Parameters.AddWithValue("@USERID", ObjStockEntry.UserID);
+                    cmd.Parameters.AddWithValue("@InvoiceType", ObjStockEntry.InvoiceType);
+                    cmd.Parameters.AddWithValue("@PriceEntryMethod", ObjStockEntry.PriceEntryMethod);
+                    cmd.Parameters.AddWithValue("@LorryFrightMode", ObjStockEntry.LorryFrightMode);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out StockEntryID))
@@ -470,18 +466,10 @@ namespace DataAccess
                     else
                         ObjStockEntry.STOCKENTRYID = objReturn;
                 }
-
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("Invoice Number Already Exists"))
-                    throw ex;
-                else
-                    throw new Exception("Error While Saving Stock Invoice");
-            }
-            finally
-            {
-                
+                throw new Exception("Error While Saving Stock Invoice", ex);
             }
             return ObjStockEntry;
         }
@@ -496,19 +484,19 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_CU_STOCKENTRYDETAIL1]";
+                    cmd.CommandText = "[USP_CU_STOCKENTRYDETAIL_v2]";
                     cmd.Parameters.AddWithValue("@STOCKENTRYDETAILID", ObjStockEntryDetail.STOCKENTRYDETAILID);
                     cmd.Parameters.AddWithValue("@STOCKENTRYID", ObjStockEntryDetail.STOCKENTRYID);
                     cmd.Parameters.AddWithValue("@ITEMCODEID", ObjStockEntryDetail.ITEMCODEID);
-                    cmd.Parameters.AddWithValue("@COSTPRICEWT", ObjStockEntryDetail.COSTPRICEWT);
-                    cmd.Parameters.AddWithValue("@COSTPRICEWOT", ObjStockEntryDetail.COSTPRICEWOT);
-                    cmd.Parameters.AddWithValue("@MRP", ObjStockEntryDetail.MRP);
-                    cmd.Parameters.AddWithValue("@SALEPRICE", ObjStockEntryDetail.SALEPRICE);
                     cmd.Parameters.AddWithValue("@QUANTITY", ObjStockEntryDetail.QUANTITY);
                     cmd.Parameters.AddWithValue("@WEIGHTINKGS", ObjStockEntryDetail.WEIGHTINKGS);
-                    cmd.Parameters.AddWithValue("@USERID", ObjStockEntryDetail.UserID);
+                    cmd.Parameters.AddWithValue("@MRP", ObjStockEntryDetail.MRP);
+                    cmd.Parameters.AddWithValue("@SALEPRICE", ObjStockEntryDetail.SALEPRICE);
+                    cmd.Parameters.AddWithValue("@COSTPRICEWT", ObjStockEntryDetail.COSTPRICEWT);
+                    cmd.Parameters.AddWithValue("@COSTPRICEWOT", ObjStockEntryDetail.COSTPRICEWOT);
+                    cmd.Parameters.AddWithValue("@INVOICECPWITHTAX", ObjStockEntryDetail.GROSSCOSTPRICEWT);
+                    cmd.Parameters.AddWithValue("@INVOICECPWITHOUTTAX", ObjStockEntryDetail.GROSSCOSTPRICEWOT);
                     cmd.Parameters.AddWithValue("@GSTID", ObjStockEntryDetail.GSTID);
-                    cmd.Parameters.AddWithValue("@FREEQUANTITY", ObjStockEntryDetail.FreeQuantity);
                     cmd.Parameters.AddWithValue("@DISCOUNTFLAT", ObjStockEntryDetail.DiscountFlat);
                     cmd.Parameters.AddWithValue("@DISCOUNTPERCENTAGE", ObjStockEntryDetail.DiscountPercentage);
                     cmd.Parameters.AddWithValue("@SCHEMEPERCENTAGE", ObjStockEntryDetail.SchemePercentage);
@@ -518,12 +506,15 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@APPLIEDDISCOUNT", ObjStockEntryDetail.AppliedDiscount);
                     cmd.Parameters.AddWithValue("@APPLIEDSCHEME", ObjStockEntryDetail.AppliedScheme);
                     cmd.Parameters.AddWithValue("@APPLIEDDGST", ObjStockEntryDetail.AppliedGST);
+                    cmd.Parameters.AddWithValue("@FINALPRICEWOTAX", ObjStockEntryDetail.FinalPriceWOTax);
                     cmd.Parameters.AddWithValue("@FINALPRICE", ObjStockEntryDetail.FinalPrice);
                     cmd.Parameters.AddWithValue("@CGST", ObjStockEntryDetail.CGST);
                     cmd.Parameters.AddWithValue("@SGST", ObjStockEntryDetail.SGST);
                     cmd.Parameters.AddWithValue("@IGST", ObjStockEntryDetail.IGST);
                     cmd.Parameters.AddWithValue("@CESS", ObjStockEntryDetail.CESS);
                     cmd.Parameters.AddWithValue("@HSNCODE", ObjStockEntryDetail.HSNCODE);
+                    cmd.Parameters.AddWithValue("@USERID", ObjStockEntryDetail.UserID);
+                    cmd.Parameters.AddWithValue("@ISFREEITEM", ObjStockEntryDetail.IsFreeItem);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
@@ -543,9 +534,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("MRP already exists"))
-                    throw ex;
-                throw new Exception("Error While Saving Invoice Detail");
+                throw new Exception("Error While Saving Invoice Detail", ex);
             }
             return ObjStockEntryDetail;
         }
@@ -559,7 +548,7 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_STOCKENTRYDTAFT]";
+                    cmd.CommandText = "[USP_R_STOCKENTRYDTAFT_v2]";
                     cmd.Parameters.AddWithValue("@CATEGORYID", objStockEntry.CATEGORYID);
                     cmd.Parameters.AddWithValue("@USERID", objStockEntry.UserID);
                     cmd.Parameters.AddWithValue("@STOCKENTRYID", objStockEntry.STOCKENTRYID);
@@ -578,14 +567,16 @@ namespace DataAccess
                             objStockEntry.STOCKENTRYID = iValue;
                             objStockEntry.SUPPLIERID = ds.Tables[0].Rows[0]["SUPPLIERID"];
                             objStockEntry.SUPPLIERINVOICENO = ds.Tables[0].Rows[0]["SUPPLIERINVOICENO"];
-                            objStockEntry.TAXINCLUSIVE = ds.Tables[0].Rows[0]["TAXINCLUSIVEVALUE"];
+                            objStockEntry.SUPPLIERNAME = ds.Tables[0].Rows[0]["SUPPLIERNAME"];
                             objStockEntry.InvoiceDate = ds.Tables[0].Rows[0]["INVOICEDATE"];
                             objStockEntry.TCS = ds.Tables[0].Rows[0]["TCS"];
-                            objStockEntry.DISCOUNTPER = ds.Tables[0].Rows[0]["DISCOUNTPER"];
                             objStockEntry.DISCOUNTFLAT = ds.Tables[0].Rows[0]["DISCOUNT"];
                             objStockEntry.EXPENSES = ds.Tables[0].Rows[0]["EXPENSES"];
                             objStockEntry.TRANSPORT = ds.Tables[0].Rows[0]["TRANSPORT"];
                             objStockEntry.SourceBranchID = ds.Tables[0].Rows[0]["SOURCEBRANCHID"];
+                            objStockEntry.InvoiceType = ds.Tables[0].Rows[0]["InvoiceType"];
+                            objStockEntry.PriceEntryMethod = ds.Tables[0].Rows[0]["PriceEntryMethod"];
+                            objStockEntry.LorryFrightMode = ds.Tables[0].Rows[0]["LorryFrightMode"];
                             objStockEntry.dtStockEntry = ds.Tables[1].Copy();
                         }
                     }
@@ -629,6 +620,9 @@ namespace DataAccess
 
         public void UpdateInvoice(StockEntry ObjStockEntry)
         {
+            ObjStockEntry.dtCreditNote.Columns.Remove("CNNumber");
+            ObjStockEntry.dtCreditNote.Columns.Remove("AdjustmentType");
+
             SqlTransaction sqlTransaction = null;
             try
             {
@@ -638,19 +632,22 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.Transaction = sqlTransaction;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_U_STOCKENTRY]";
+                    cmd.CommandText = "[USP_U_STOCKENTRY_v2]";
                     cmd.Parameters.AddWithValue("@STOCKENTRYID", ObjStockEntry.STOCKENTRYID);
                     cmd.Parameters.AddWithValue("@SUPPLIERID", ObjStockEntry.SUPPLIERID);
                     cmd.Parameters.AddWithValue("@SUPPLIERINVOICENO", ObjStockEntry.SUPPLIERINVOICENO);
                     cmd.Parameters.AddWithValue("@INVOICEDATE", ObjStockEntry.InvoiceDate);
                     cmd.Parameters.AddWithValue("@TCS", ObjStockEntry.TCS);
-                    cmd.Parameters.AddWithValue("@DISCOUNTPER", ObjStockEntry.DISCOUNTPER);
                     cmd.Parameters.AddWithValue("@DISCOUNTFLAT", ObjStockEntry.DISCOUNTFLAT);
                     cmd.Parameters.AddWithValue("@EXPENSES", ObjStockEntry.EXPENSES);
                     cmd.Parameters.AddWithValue("@TRANSPORT", ObjStockEntry.TRANSPORT);
+                    cmd.Parameters.AddWithValue("@PackingCharges", ObjStockEntry.PackingCharges);
                     cmd.Parameters.AddWithValue("@SOURCEBRANCHID", ObjStockEntry.SourceBranchID);
                     cmd.Parameters.AddWithValue("@CATEGORYID", ObjStockEntry.CATEGORYID);
                     cmd.Parameters.AddWithValue("@USERID", ObjStockEntry.UserID);
+                    cmd.Parameters.AddWithValue("@SupplierIndentID", ObjStockEntry.SupplierIndentId);
+                    cmd.Parameters.AddWithValue("@Notes", ObjStockEntry.Notes);
+                    cmd.Parameters.AddWithValue("@dtcreditnotes", ObjStockEntry.dtCreditNote);
                     object obj = cmd.ExecuteScalar();
                     if (!int.TryParse(Convert.ToString(obj), out int id))
                         throw new Exception(Convert.ToString(obj));
@@ -703,7 +700,7 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_STOCKENTRY]";
+                    cmd.CommandText = "[USP_R_STOCKENTRY_v2]";
                     cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
@@ -798,12 +795,13 @@ namespace DataAccess
             stockEntryDetail.STOCKENTRYDETAILID = dataTable.Rows[0]["STOCKENTRYDETAILID"];
             stockEntryDetail.ITEMID = dataTable.Rows[0]["ITEMID"];
             stockEntryDetail.ITEMCODEID = dataTable.Rows[0]["ITEMCODEID"];
-            stockEntryDetail.ITEMPRICEID = dataTable.Rows[0]["ITEMPRICEID"];
             stockEntryDetail.SKUCODE = dataTable.Rows[0]["SKUCODE"];
             stockEntryDetail.ITEMCODE = dataTable.Rows[0]["ITEMCODE"];
             stockEntryDetail.ITEMNAME = dataTable.Rows[0]["ITEMNAME"];
-            stockEntryDetail.COSTPRICEWT = dataTable.Rows[0]["COSTPRICEWT"];
-            stockEntryDetail.COSTPRICEWOT = dataTable.Rows[0]["COSTPRICEWOT"];
+            stockEntryDetail.COSTPRICEWT = dataTable.Rows[0]["CPWITHTAX"];
+            stockEntryDetail.COSTPRICEWOT = dataTable.Rows[0]["CPWITHOUTTAX"];
+            stockEntryDetail.GROSSCOSTPRICEWT = dataTable.Rows[0]["INVOICECPWITHTAX"];
+            stockEntryDetail.GROSSCOSTPRICEWOT = dataTable.Rows[0]["INVOICECPWITHOUTTAX"];
             stockEntryDetail.GSTID = dataTable.Rows[0]["GSTID"];
             stockEntryDetail.MRP = dataTable.Rows[0]["MRP"];
             stockEntryDetail.SALEPRICE = dataTable.Rows[0]["SALEPRICE"];
@@ -819,12 +817,14 @@ namespace DataAccess
             stockEntryDetail.AppliedDiscount = dataTable.Rows[0]["APPLIEDDISCOUNT"];
             stockEntryDetail.AppliedScheme = dataTable.Rows[0]["APPLIEDSCHEME"];
             stockEntryDetail.AppliedGST = dataTable.Rows[0]["APPLIEDDGST"];
+            stockEntryDetail.FinalPriceWOTax = dataTable.Rows[0]["FINALPRICEWOTAX"];
             stockEntryDetail.FinalPrice = dataTable.Rows[0]["FINALPRICE"];
             stockEntryDetail.CGST = dataTable.Rows[0]["CGST"];
             stockEntryDetail.SGST = dataTable.Rows[0]["SGST"];
             stockEntryDetail.IGST = dataTable.Rows[0]["IGST"];
             stockEntryDetail.CESS = dataTable.Rows[0]["CESS"];
             stockEntryDetail.HSNCODE = dataTable.Rows[0]["HSNCODE"];
+            stockEntryDetail.IsFreeItem = dataTable.Rows[0]["ISFREEITEM"];
         }
         
         public DataTable GetCurrentStock(object FROMBRANCHID,object TOBRANCHID,object ITEMCODEID,object PARENTITEMID)

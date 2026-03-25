@@ -49,7 +49,6 @@
             this.txtGSTIN = new DevExpress.XtraEditors.TextEdit();
             this.btnAddItem = new DevExpress.XtraEditors.SimpleButton();
             this.dtpInvoice = new DevExpress.XtraEditors.DateEdit();
-            this.chkTaxInclusive = new DevExpress.XtraEditors.CheckEdit();
             this.txtInvoiceNumber = new DevExpress.XtraEditors.TextEdit();
             this.gcStockEntry = new DevExpress.XtraGrid.GridControl();
             this.gvStockEntry = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -66,7 +65,6 @@
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -86,6 +84,10 @@
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gridColumn32 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn33 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn34 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn35 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveInvoice = new DevExpress.XtraEditors.SimpleButton();
             this.cmbSupplier = new DevExpress.XtraEditors.LookUpEdit();
@@ -99,18 +101,16 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.dxValidationProvider2 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.gridColumn32 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTIN.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpInvoice.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpInvoice.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkTaxInclusive.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInvoiceNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcStockEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvStockEntry)).BeginInit();
@@ -127,9 +127,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider2)).BeginInit();
             this.SuspendLayout();
@@ -154,7 +154,6 @@
             this.layoutControl1.Controls.Add(this.txtGSTIN);
             this.layoutControl1.Controls.Add(this.btnAddItem);
             this.layoutControl1.Controls.Add(this.dtpInvoice);
-            this.layoutControl1.Controls.Add(this.chkTaxInclusive);
             this.layoutControl1.Controls.Add(this.txtInvoiceNumber);
             this.layoutControl1.Controls.Add(this.gcStockEntry);
             this.layoutControl1.Controls.Add(this.btnCancel);
@@ -247,17 +246,6 @@
             this.dtpInvoice.StyleController = this.layoutControl1;
             this.dtpInvoice.TabIndex = 3;
             // 
-            // chkTaxInclusive
-            // 
-            this.chkTaxInclusive.EnterMoveNextControl = true;
-            this.chkTaxInclusive.Location = new System.Drawing.Point(8, 72);
-            this.chkTaxInclusive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.chkTaxInclusive.Name = "chkTaxInclusive";
-            this.chkTaxInclusive.Properties.Caption = "Tax Inclusive";
-            this.chkTaxInclusive.Size = new System.Drawing.Size(436, 18);
-            this.chkTaxInclusive.StyleController = this.layoutControl1;
-            this.chkTaxInclusive.TabIndex = 4;
-            // 
             // txtInvoiceNumber
             // 
             this.txtInvoiceNumber.EnterMoveNextControl = true;
@@ -310,7 +298,6 @@
             this.gridColumn14,
             this.gridColumn15,
             this.gridColumn16,
-            this.gridColumn25,
             this.gridColumn23,
             this.gridColumn22,
             this.gridColumn21,
@@ -328,7 +315,10 @@
             this.gridColumn31,
             this.gridColumn30,
             this.gridColumn18,
-            this.gridColumn32});
+            this.gridColumn32,
+            this.gridColumn33,
+            this.gridColumn34,
+            this.gridColumn35});
             this.gvStockEntry.DetailHeight = 404;
             this.gvStockEntry.GridControl = this.gcStockEntry;
             this.gvStockEntry.IndicatorWidth = 40;
@@ -388,7 +378,7 @@
             // 
             // gridColumn11
             // 
-            this.gridColumn11.Caption = "EAN CODE";
+            this.gridColumn11.Caption = "EAN Code";
             this.gridColumn11.FieldName = "ITEMCODE";
             this.gridColumn11.MinWidth = 23;
             this.gridColumn11.Name = "gridColumn11";
@@ -399,7 +389,7 @@
             // 
             // gridColumn12
             // 
-            this.gridColumn12.Caption = "ITEMNAME";
+            this.gridColumn12.Caption = "Item Name";
             this.gridColumn12.FieldName = "ITEMNAME";
             this.gridColumn12.MinWidth = 23;
             this.gridColumn12.Name = "gridColumn12";
@@ -410,24 +400,24 @@
             // 
             // gridColumn24
             // 
-            this.gridColumn24.Caption = "COSTPRICEWT";
-            this.gridColumn24.FieldName = "COSTPRICEWT";
+            this.gridColumn24.Caption = "CP With Tax";
+            this.gridColumn24.FieldName = "CPWITHTAX";
             this.gridColumn24.MinWidth = 23;
             this.gridColumn24.Name = "gridColumn24";
             this.gridColumn24.OptionsColumn.AllowEdit = false;
             this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 3;
+            this.gridColumn24.VisibleIndex = 11;
             this.gridColumn24.Width = 139;
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "COSTPRICEWOT";
-            this.gridColumn1.FieldName = "COSTPRICEWOT";
+            this.gridColumn1.Caption = "CP W/O Tax";
+            this.gridColumn1.FieldName = "CPWITHOUTTAX";
             this.gridColumn1.MinWidth = 23;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 4;
+            this.gridColumn1.VisibleIndex = 10;
             this.gridColumn1.Width = 145;
             // 
             // gridColumn13
@@ -438,7 +428,7 @@
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 5;
+            this.gridColumn13.VisibleIndex = 3;
             this.gridColumn13.Width = 122;
             // 
             // gridColumn14
@@ -452,13 +442,13 @@
             // 
             // gridColumn15
             // 
-            this.gridColumn15.Caption = "QUANTITY";
+            this.gridColumn15.Caption = "Quantity";
             this.gridColumn15.FieldName = "QUANTITY";
             this.gridColumn15.MinWidth = 23;
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.OptionsColumn.AllowEdit = false;
             this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 6;
+            this.gridColumn15.VisibleIndex = 4;
             this.gridColumn15.Width = 122;
             // 
             // gridColumn16
@@ -469,17 +459,8 @@
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.OptionsColumn.AllowEdit = false;
             this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 7;
+            this.gridColumn16.VisibleIndex = 5;
             this.gridColumn16.Width = 122;
-            // 
-            // gridColumn25
-            // 
-            this.gridColumn25.Caption = "Free Qnty";
-            this.gridColumn25.FieldName = "FREEQUANTITY";
-            this.gridColumn25.MinWidth = 23;
-            this.gridColumn25.Name = "gridColumn25";
-            this.gridColumn25.OptionsColumn.AllowEdit = false;
-            this.gridColumn25.Width = 87;
             // 
             // gridColumn23
             // 
@@ -527,7 +508,7 @@
             this.gridColumn19.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTALPRICEWT", "{0:0.##}")});
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 8;
+            this.gridColumn19.VisibleIndex = 12;
             this.gridColumn19.Width = 87;
             // 
             // gridColumn17
@@ -540,7 +521,7 @@
             this.gridColumn17.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTALPRICEWOT", "{0:0.##}")});
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 9;
+            this.gridColumn17.VisibleIndex = 13;
             this.gridColumn17.Width = 87;
             // 
             // gridColumn5
@@ -551,7 +532,7 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 10;
+            this.gridColumn5.VisibleIndex = 8;
             this.gridColumn5.Width = 87;
             // 
             // gridColumn4
@@ -562,7 +543,7 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 11;
+            this.gridColumn4.VisibleIndex = 9;
             this.gridColumn4.Width = 87;
             // 
             // gridColumn29
@@ -575,7 +556,7 @@
             this.gridColumn29.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CGST", "{0:0.##}")});
             this.gridColumn29.Visible = true;
-            this.gridColumn29.VisibleIndex = 12;
+            this.gridColumn29.VisibleIndex = 14;
             this.gridColumn29.Width = 87;
             // 
             // gridColumn28
@@ -588,7 +569,7 @@
             this.gridColumn28.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SGST", "{0:0.##}")});
             this.gridColumn28.Visible = true;
-            this.gridColumn28.VisibleIndex = 13;
+            this.gridColumn28.VisibleIndex = 15;
             this.gridColumn28.Width = 87;
             // 
             // gridColumn27
@@ -600,8 +581,6 @@
             this.gridColumn27.OptionsColumn.AllowEdit = false;
             this.gridColumn27.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "IGST", "{0:0.##}")});
-            this.gridColumn27.Visible = true;
-            this.gridColumn27.VisibleIndex = 14;
             this.gridColumn27.Width = 87;
             // 
             // gridColumn26
@@ -613,8 +592,6 @@
             this.gridColumn26.OptionsColumn.AllowEdit = false;
             this.gridColumn26.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CESS", "{0:0.##}")});
-            this.gridColumn26.Visible = true;
-            this.gridColumn26.VisibleIndex = 15;
             this.gridColumn26.Width = 87;
             // 
             // gridColumn3
@@ -636,7 +613,7 @@
             this.gridColumn2.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "FINALPRICE", "{0:0.##}")});
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 16;
+            this.gridColumn2.VisibleIndex = 17;
             this.gridColumn2.Width = 87;
             // 
             // gridColumn31
@@ -649,13 +626,15 @@
             // 
             // gridColumn30
             // 
+            this.gridColumn30.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn30.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn30.Caption = "Edit";
             this.gridColumn30.ColumnEdit = this.btnEdit;
             this.gridColumn30.MinWidth = 23;
             this.gridColumn30.Name = "gridColumn30";
             this.gridColumn30.Visible = true;
-            this.gridColumn30.VisibleIndex = 17;
-            this.gridColumn30.Width = 87;
+            this.gridColumn30.VisibleIndex = 18;
+            this.gridColumn30.Width = 47;
             // 
             // btnEdit
             // 
@@ -676,8 +655,8 @@
             this.gridColumn18.MinWidth = 23;
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 18;
-            this.gridColumn18.Width = 106;
+            this.gridColumn18.VisibleIndex = 19;
+            this.gridColumn18.Width = 52;
             // 
             // btnDelete
             // 
@@ -688,6 +667,41 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
+            // 
+            // gridColumn32
+            // 
+            this.gridColumn32.Caption = "ITEMCOSTPRICEID";
+            this.gridColumn32.FieldName = "ITEMCOSTPRICEID";
+            this.gridColumn32.Name = "gridColumn32";
+            // 
+            // gridColumn33
+            // 
+            this.gridColumn33.Caption = "Gross CP With Tax";
+            this.gridColumn33.FieldName = "INVOICECPWITHTAX";
+            this.gridColumn33.Name = "gridColumn33";
+            this.gridColumn33.OptionsColumn.AllowEdit = false;
+            this.gridColumn33.Visible = true;
+            this.gridColumn33.VisibleIndex = 7;
+            // 
+            // gridColumn34
+            // 
+            this.gridColumn34.Caption = "Gross CP W/O Tax";
+            this.gridColumn34.FieldName = "INVOICECPWITHOUTTAX";
+            this.gridColumn34.Name = "gridColumn34";
+            this.gridColumn34.OptionsColumn.AllowEdit = false;
+            this.gridColumn34.Visible = true;
+            this.gridColumn34.VisibleIndex = 6;
+            // 
+            // gridColumn35
+            // 
+            this.gridColumn35.Caption = "Net Price WO Tax";
+            this.gridColumn35.FieldName = "FINALPRICEWOTAX";
+            this.gridColumn35.Name = "gridColumn35";
+            this.gridColumn35.OptionsColumn.AllowEdit = false;
+            this.gridColumn35.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "FINALPRICEWOTAX", "{0:0.##}")});
+            this.gridColumn35.Visible = true;
+            this.gridColumn35.VisibleIndex = 16;
             // 
             // btnCancel
             // 
@@ -755,9 +769,9 @@
             this.layoutControlItem7,
             this.layoutControlItem12,
             this.layoutControlItem14,
-            this.layoutControlItem13,
             this.layoutControlItem2,
-            this.layoutControlItem3});
+            this.layoutControlItem3,
+            this.emptySpaceItem1});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.Root.Size = new System.Drawing.Size(1129, 555);
@@ -862,16 +876,6 @@
             this.layoutControlItem14.Text = "Invoice Date";
             this.layoutControlItem14.TextSize = new System.Drawing.Size(75, 14);
             // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.chkTaxInclusive;
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 64);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem13.Size = new System.Drawing.Size(448, 30);
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem13.TextVisible = false;
-            // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnDraftInvoice;
@@ -896,11 +900,13 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // gridColumn32
+            // emptySpaceItem1
             // 
-            this.gridColumn32.Caption = "ITEMCOSTPRICEID";
-            this.gridColumn32.FieldName = "ITEMCOSTPRICEID";
-            this.gridColumn32.Name = "gridColumn32";
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 64);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(448, 30);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmStockEntry
             // 
@@ -908,6 +914,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1129, 555);
             this.Controls.Add(this.layoutControl1);
+            this.IconOptions.ShowIcon = false;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmStockEntry";
@@ -919,7 +926,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTIN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpInvoice.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpInvoice.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkTaxInclusive.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInvoiceNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcStockEntry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvStockEntry)).EndInit();
@@ -936,9 +942,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider2)).EndInit();
             this.ResumeLayout(false);
@@ -969,14 +975,12 @@
         private DevExpress.XtraEditors.LookUpEdit cmbSupplier;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
-        private DevExpress.XtraEditors.CheckEdit chkTaxInclusive;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider2;
         private DevExpress.XtraEditors.DateEdit dtpInvoice;
         private DevExpress.XtraEditors.SimpleButton btnAddItem;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
@@ -993,7 +997,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn29;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn28;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn27;
@@ -1010,5 +1013,9 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn32;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn33;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn34;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn35;
     }
 }

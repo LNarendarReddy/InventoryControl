@@ -95,7 +95,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while retrieving stock counting");
+                throw new Exception("Error while retrieving stock counting", ex);
             }
             finally
             {
@@ -127,10 +127,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("Stock counting not enabled"))
-                    throw ex;
-                else
-                    throw new Exception("Error while saving stock counting");
+                throw new Exception("Error while saving stock counting", ex);
             }
             finally
             {
@@ -164,10 +161,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("Counting sheet already submitted") || ex.Message.Contains("Stock counting not enabled"))
-                    throw ex;
-                else
-                    throw new Exception("Error while saving stock counting detail");
+                throw new Exception("Error while saving stock counting detail", ex);
             }
             finally
             {
@@ -191,7 +185,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while deleting stock counting detail");
+                throw new Exception("Error while deleting stock counting detail", ex);
             }
             finally
             {
@@ -215,7 +209,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while deleting stock counting detail");
+                throw new Exception("Error while deleting stock counting detail", ex);
             }
             finally
             {
@@ -240,7 +234,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while submitting stock counting");
+                throw new Exception("Error while submitting stock counting", ex);
             }
             finally
             {
@@ -266,7 +260,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while discarding counting");
+                throw new Exception("Error while discarding counting", ex);
             }
             finally
             {
@@ -292,7 +286,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while discarding counting");
+                throw new Exception("Error while discarding counting", ex);
             }
             finally
             {

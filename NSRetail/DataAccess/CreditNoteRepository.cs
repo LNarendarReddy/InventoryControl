@@ -28,9 +28,9 @@ namespace DataAccess
                     creditNote.CreditNoteId = cmd.ExecuteScalar();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Error while saving credit note");
+                throw new Exception("Error while saving credit note", ex);
             }
 
             return creditNote;
@@ -76,7 +76,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while retrieving credit note");
+                throw new Exception("Error while retrieving credit note", ex);
             }
 
             return dt;
@@ -99,9 +99,9 @@ namespace DataAccess
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Error while retrieving credit note adjustment types");
+                throw new Exception("Error while retrieving credit note adjustment types", ex);
             }
 
             return dt;
@@ -126,9 +126,9 @@ namespace DataAccess
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Error while retrieving purchase invoices");
+                throw new Exception("Error while retrieving purchase invoices", ex);
             }
 
             return dt;
@@ -154,7 +154,6 @@ namespace DataAccess
             }
             catch (SqlException ex)
             {
-                
                 throw new Exception(ex.Message);
             }
 
@@ -183,7 +182,7 @@ namespace DataAccess
             }
             catch (SqlException ex)
             {
-                throw;
+                throw ex;
             }
 
             return dt;
