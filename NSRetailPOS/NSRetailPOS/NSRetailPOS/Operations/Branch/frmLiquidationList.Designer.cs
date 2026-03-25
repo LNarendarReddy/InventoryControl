@@ -45,12 +45,22 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.btnAddExpense = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAddLiquidation = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.gcExpenses = new DevExpress.XtraGrid.GridControl();
             this.gvExpenses = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -59,8 +69,6 @@
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnViewImage = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.dtpToDate = new DevExpress.XtraEditors.DateEdit();
             this.dtpFromDate = new DevExpress.XtraEditors.DateEdit();
@@ -71,6 +79,8 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcExpenses)).BeginInit();
@@ -93,7 +103,7 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.btnAddExpense);
+            this.layoutControl1.Controls.Add(this.btnAddLiquidation);
             this.layoutControl1.Controls.Add(this.btnRefresh);
             this.layoutControl1.Controls.Add(this.gcExpenses);
             this.layoutControl1.Controls.Add(this.dtpToDate);
@@ -106,17 +116,17 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // btnAddExpense
+            // btnAddLiquidation
             // 
-            this.btnAddExpense.ImageOptions.Image = global::NSRetailPOS.Properties.Resources.addgroupfooter_16x16;
-            this.btnAddExpense.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnAddExpense.Location = new System.Drawing.Point(775, 16);
-            this.btnAddExpense.Name = "btnAddExpense";
-            this.btnAddExpense.Size = new System.Drawing.Size(89, 22);
-            this.btnAddExpense.StyleController = this.layoutControl1;
-            this.btnAddExpense.TabIndex = 3;
-            this.btnAddExpense.Text = "Add Expense";
-            this.btnAddExpense.Click += new System.EventHandler(this.btnAddExpense_Click);
+            this.btnAddLiquidation.ImageOptions.Image = global::NSRetailPOS.Properties.Resources.addgroupfooter_16x16;
+            this.btnAddLiquidation.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnAddLiquidation.Location = new System.Drawing.Point(765, 16);
+            this.btnAddLiquidation.Name = "btnAddLiquidation";
+            this.btnAddLiquidation.Size = new System.Drawing.Size(99, 22);
+            this.btnAddLiquidation.StyleController = this.layoutControl1;
+            this.btnAddLiquidation.TabIndex = 3;
+            this.btnAddLiquidation.Text = "Add Liquidation";
+            this.btnAddLiquidation.Click += new System.EventHandler(this.btnAddExpense_Click);
             // 
             // btnRefresh
             // 
@@ -147,39 +157,125 @@
             // gvExpenses
             // 
             this.gvExpenses.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn11,
+            this.gridColumn10,
+            this.gridColumn9,
             this.gridColumn1,
             this.gridColumn2,
+            this.gridColumn15,
+            this.gridColumn14,
+            this.gridColumn13,
+            this.gridColumn12,
+            this.gridColumn18,
+            this.gridColumn17,
+            this.gridColumn16,
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5,
             this.gridColumn6,
             this.gridColumn7,
             this.gridColumn8,
-            this.gridColumn9,
-            this.gridColumn10});
+            this.gridColumn19,
+            this.gridColumn20});
             this.gvExpenses.GridControl = this.gcExpenses;
             this.gvExpenses.Name = "gvExpenses";
             this.gvExpenses.OptionsView.ShowGroupPanel = false;
             // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "LIQUIDATIONID";
+            this.gridColumn11.FieldName = "LIQUIDATIONID";
+            this.gridColumn11.Name = "gridColumn11";
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "Category";
+            this.gridColumn10.FieldName = "CATEGORYNAME";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 0;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "Sub-category";
+            this.gridColumn9.FieldName = "SUBCATEGORYNAME";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 1;
+            // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Description";
-            this.gridColumn1.FieldName = "EXPENSEDESC";
+            this.gridColumn1.Caption = "SKU Code";
+            this.gridColumn1.FieldName = "SKUCODE";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
+            this.gridColumn1.VisibleIndex = 2;
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Amount";
-            this.gridColumn2.FieldName = "AMOUNT";
+            this.gridColumn2.Caption = "Item Name";
+            this.gridColumn2.FieldName = "ITEMNAME";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 2;
+            this.gridColumn2.VisibleIndex = 3;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "Item Code";
+            this.gridColumn15.FieldName = "ITEMCODE";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 4;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "MRP";
+            this.gridColumn14.FieldName = "MRP";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 5;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "Sale price";
+            this.gridColumn13.FieldName = "SALEPRICE";
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 6;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "Qty or Wght In KG(s)";
+            this.gridColumn12.FieldName = "QTYORWGHTINKGS";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 7;
+            // 
+            // gridColumn18
+            // 
+            this.gridColumn18.Caption = "STATUS";
+            this.gridColumn18.FieldName = "STATUS";
+            this.gridColumn18.Name = "gridColumn18";
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "Status";
+            this.gridColumn17.FieldName = "STATUSTEXT";
+            this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.Visible = true;
+            this.gridColumn17.VisibleIndex = 8;
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "Stock Move";
+            this.gridColumn16.FieldName = "STOCKMOVED";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.Visible = true;
+            this.gridColumn16.VisibleIndex = 9;
             // 
             // gridColumn3
             // 
@@ -189,7 +285,7 @@
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 3;
+            this.gridColumn3.VisibleIndex = 10;
             // 
             // gridColumn4
             // 
@@ -199,27 +295,27 @@
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 4;
+            this.gridColumn4.VisibleIndex = 11;
             // 
             // gridColumn5
             // 
-            this.gridColumn5.Caption = "Updated By";
-            this.gridColumn5.FieldName = "UPDATEDBY";
+            this.gridColumn5.Caption = "Approved By";
+            this.gridColumn5.FieldName = "APPROVEDBY";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.OptionsColumn.ReadOnly = true;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 5;
+            this.gridColumn5.VisibleIndex = 12;
             // 
             // gridColumn6
             // 
-            this.gridColumn6.Caption = "Updated date";
-            this.gridColumn6.FieldName = "UPDATEDDATE";
+            this.gridColumn6.Caption = "Approved date";
+            this.gridColumn6.FieldName = "APPROVEDDATE";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.OptionsColumn.ReadOnly = true;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 6;
+            this.gridColumn6.VisibleIndex = 13;
             // 
             // gridColumn7
             // 
@@ -229,7 +325,7 @@
             this.gridColumn7.ColumnEdit = this.btnEdit;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 8;
+            this.gridColumn7.VisibleIndex = 14;
             // 
             // btnEdit
             // 
@@ -249,7 +345,7 @@
             this.gridColumn8.ColumnEdit = this.btnDelete;
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 9;
+            this.gridColumn8.VisibleIndex = 15;
             // 
             // btnDelete
             // 
@@ -260,26 +356,6 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // gridColumn9
-            // 
-            this.gridColumn9.Caption = "Expense Type";
-            this.gridColumn9.FieldName = "BRANCHEXPENSETYPENAME";
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.OptionsColumn.AllowEdit = false;
-            this.gridColumn9.OptionsColumn.ReadOnly = true;
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 0;
-            // 
-            // gridColumn10
-            // 
-            this.gridColumn10.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn10.Caption = "View Image";
-            this.gridColumn10.ColumnEdit = this.btnViewImage;
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 7;
             // 
             // btnViewImage
             // 
@@ -365,7 +441,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(484, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(275, 34);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(265, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
@@ -392,16 +468,28 @@
             // 
             // layoutControlItem6
             // 
-            this.layoutControlItem6.Control = this.btnAddExpense;
-            this.layoutControlItem6.Location = new System.Drawing.Point(759, 0);
-            this.layoutControlItem6.MaxSize = new System.Drawing.Size(101, 34);
-            this.layoutControlItem6.MinSize = new System.Drawing.Size(101, 34);
+            this.layoutControlItem6.Control = this.btnAddLiquidation;
+            this.layoutControlItem6.Location = new System.Drawing.Point(749, 0);
+            this.layoutControlItem6.MaxSize = new System.Drawing.Size(111, 34);
+            this.layoutControlItem6.MinSize = new System.Drawing.Size(111, 34);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem6.Size = new System.Drawing.Size(101, 34);
+            this.layoutControlItem6.Size = new System.Drawing.Size(111, 34);
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
+            // 
+            // gridColumn19
+            // 
+            this.gridColumn19.Caption = "ITEMCODEID";
+            this.gridColumn19.FieldName = "ITEMCODEID";
+            this.gridColumn19.Name = "gridColumn19";
+            // 
+            // gridColumn20
+            // 
+            this.gridColumn20.Caption = "ITEMPRICEID";
+            this.gridColumn20.FieldName = "ITEMPRICEID";
+            this.gridColumn20.Name = "gridColumn20";
             // 
             // frmLiquidationList
             // 
@@ -454,7 +542,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraEditors.SimpleButton btnAddExpense;
+        private DevExpress.XtraEditors.SimpleButton btnAddLiquidation;
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
@@ -463,8 +551,18 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEdit;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnViewImage;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
     }
 }

@@ -213,6 +213,12 @@
     <Compile Include="Helpers\DefaultPrinter.cs" />
     <Compile Include="IBarcodeReceiver.cs" />
     <Compile Include="LoggerUtility.cs" />
+    <Compile Include="Operations\Branch\frmLiquidation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Branch\frmLiquidation.Designer.cs">
+      <DependentUpon>frmLiquidation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\Branch\frmBranchExpense.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -614,6 +620,9 @@
     <Compile Include="Utility.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Branch\frmLiquidation.resx">
+      <DependentUpon>frmLiquidation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Branch\frmBranchExpense.resx">
       <DependentUpon>frmBranchExpense.cs</DependentUpon>

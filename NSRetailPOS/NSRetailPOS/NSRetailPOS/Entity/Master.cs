@@ -152,4 +152,27 @@ namespace NSRetailPOS.Entity
 
         public object BillImage { get; set; }
     }
+
+    public class Liquidation : EntityBase
+    {
+        public object LiquidationID { get; set; }
+
+        public object ItemPriceID { get; set; }
+        
+        public object ItemCodeID { get; set; }
+
+        public object SKUCode { get; set; }
+
+        public object ItemName { get; set; }
+
+        public object ItemCode { get; set; }
+
+        public object MRP { get; set; }
+
+        public object SalePrice { get; set; }
+
+        public object QtyOrWghtInKGs { get; set; }
+
+        public object Status { get; set; }
+    }
 }

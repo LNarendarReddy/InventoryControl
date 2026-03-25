@@ -110,7 +110,7 @@ namespace NSRetailPOS.Operations
 
         private void bbiLiquidation_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            new frmLiquidationList() { MdiParent = this }.Show();
         }
     }
 }

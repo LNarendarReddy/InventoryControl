@@ -570,6 +570,16 @@ namespace NSRetailPOS.UI
 
         private bool ValidateCreditFields()
         {
+            string gstNumber = txtCustomerGST.EditValue?.ToString();
+
+            if (!Utility.IsValidGstin(gstNumber))
+            {
+                XtraMessageBox.Show("Customer GST is not valid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtCustomerGST.SelectAll();
+                txtCustomerGST.Focus();
+                return false;
+            }
+
             if ((!decimal.TryParse(gvMOP.GetRowCellValue(b2bCreditRowHandle, "MOPVALUE")?.ToString(), out decimal b2bCreditValue) || b2bCreditValue == 0)
                 && (!decimal.TryParse(gvMOP.GetRowCellValue(b2cCreditRowHandle, "MOPVALUE")?.ToString(), out decimal b2cCreditValue) || b2cCreditValue == 0))
                 return true;
@@ -585,9 +595,9 @@ namespace NSRetailPOS.UI
 
             if (b2bCreditValue == 0) return true;
 
-            string gstNumber = txtCustomerGST.EditValue?.ToString();
+            
             if (string.IsNullOrEmpty(gstNumber) || gstNumber.Length != 15
-                || !int.TryParse(gstNumber.Substring(0, 2), out int stateCode) || stateCode == 0)
+                || !Utility.IsValidGstin(gstNumber))
             {
                 XtraMessageBox.Show("Customer GST is not valid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 txtCustomerGST.SelectAll();

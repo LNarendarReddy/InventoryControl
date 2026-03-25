@@ -397,6 +397,7 @@ namespace NSRetail
             branchReports.SubCategory.Add(new ReportHolder("E9379B7D-94A5-452F-AB66-26BFC0EC1A86") { ReportName = "Branch Refund sheets", SearchCriteriaControl = new ucBranchRefunds() });
             branchReports.SubCategory.Add(new ReportHolder("691353C7-AB84-4B5E-B771-48514728780F") { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
             branchReports.SubCategory.Add(new ReportHolder("2CA0BFD7-6A3D-4E7C-9A1E-1ADCCEB827F0") { ReportName = "Expenses", SearchCriteriaControl = new ucBranchExpenseList() });
+            branchReports.SubCategory.Add(new ReportHolder("0A2C10E9-6796-423A-969D-4BBEAC172B1D") { ReportName = "Liquidation", SearchCriteriaControl = new ucLiquidationList() });
             reportList.Add(branchReports);
 
             ReportHolder POSReports = new ReportHolder("B5304348-4CB3-45A7-BA77-EB6597A080EE") { ReportName = "POS Reports" };

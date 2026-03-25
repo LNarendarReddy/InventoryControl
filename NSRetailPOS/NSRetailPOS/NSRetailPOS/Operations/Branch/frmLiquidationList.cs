@@ -22,54 +22,53 @@ namespace NSRetailPOS.Operations.Branch
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            BranchExpense branchExpense = new BranchExpense
+            Liquidation liquidation = new()
             {
-                Description = gvExpenses.GetFocusedRowCellValue("EXPENSEDESC")
-                , BranchExpenseID = gvExpenses.GetFocusedRowCellValue("BRANCHEXPENSEID")
-                , BranchExpenseTypeID = gvExpenses.GetFocusedRowCellValue("BRANCHEXPENSETYPEID")
-                , Amount = gvExpenses.GetFocusedRowCellValue("AMOUNT")
-                , CreatedDate = gvExpenses.GetFocusedRowCellValue("CREATEDDATE")
+                Description = gvExpenses.GetFocusedRowCellValue("DESCRIPTION"),
+                LiquidationID = gvExpenses.GetFocusedRowCellValue("LIQUIDATIONID"),
+                ItemPriceID = gvExpenses.GetFocusedRowCellValue("ITEMPRICEID"),
+                QtyOrWghtInKGs = gvExpenses.GetFocusedRowCellValue("QTYORWGHTINKGS"),
+                ItemCodeID = gvExpenses.GetFocusedRowCellValue("ITEMCODEID"),
+                ItemCode = gvExpenses.GetFocusedRowCellValue("ITEMCODE"),
+                SKUCode = gvExpenses.GetFocusedRowCellValue("SKUCODE"),
+                ItemName = gvExpenses.GetFocusedRowCellValue("ITEMNAME"),
+                MRP = gvExpenses.GetFocusedRowCellValue("MRP"),
+                SalePrice = gvExpenses.GetFocusedRowCellValue("SALEPRICE")
             };
 
-            if(((DateTime)branchExpense.CreatedDate).Date != DateTime.Today)
-            {
-                XtraMessageBox.Show("Only today's expenses can be edited", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
+            new frmLiquidation(liquidation).ShowDialog();
 
-            new frmBranchExpense(branchExpense).ShowDialog();
-
-            if (branchExpense.IsSave) RefreshList();
+            if (liquidation.IsSave) RefreshList();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            BranchExpense branchExpense = new BranchExpense
+            Liquidation liquidation = new()
             {
-                BranchExpenseID = gvExpenses.GetFocusedRowCellValue("BRANCHEXPENSEID")
-                , CreatedDate = gvExpenses.GetFocusedRowCellValue("CREATEDDATE")
+                LiquidationID = gvExpenses.GetFocusedRowCellValue("LIQUIDATIONID"),
+                Status = gvExpenses.GetFocusedRowCellValue("STATUS")
             };
 
-            if (((DateTime)branchExpense.CreatedDate).Date != DateTime.Today)
+            if (liquidation.Status.ToString() != "0" )
             {
-                XtraMessageBox.Show("Only today's expenses can be deleted", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                XtraMessageBox.Show("Only created status liquidations can be deleted", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
-            if (XtraMessageBox.Show("Are you sure to delete expense?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            if (XtraMessageBox.Show("Are you sure to delete liquidation?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 != DialogResult.Yes) return;
 
             try
             {
-                new OperationsRepository().DeleteBranchExpense(branchExpense);
-                XtraMessageBox.Show("Branch expense deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new OperationsRepository().DeleteLiquidation(liquidation);
+                XtraMessageBox.Show("Liquidation deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            if (branchExpense.IsSave) RefreshList();
+            if (liquidation.IsSave) RefreshList();
         }
 
         private void frmBranchExpenses_Load(object sender, EventArgs e)
@@ -82,15 +81,15 @@ namespace NSRetailPOS.Operations.Branch
 
         private void btnAddExpense_Click(object sender, EventArgs e)
         {
-            BranchExpense branchExpense = new BranchExpense();
-            new frmBranchExpense(branchExpense).ShowDialog();
+            Liquidation liquidation = new Liquidation();
+            new frmLiquidation(liquidation).ShowDialog();
 
-            if(branchExpense.IsSave) RefreshList();
+            if (liquidation.IsSave) RefreshList();
         }
 
         private void RefreshList()
         {
-            gcExpenses.DataSource = new ReportRepository().GetReportData("USP_R_BRANCHEXPENSE",
+            gcExpenses.DataSource = new ReportRepository().GetReportData("USP_R_LIQUIDATION",
                 new Dictionary<string, object>
                 {
                     { "BranchIDs", Utility.branchInfo.BranchID }

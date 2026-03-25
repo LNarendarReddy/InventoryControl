@@ -20,6 +20,7 @@ using System.Management;
 using System.Printing;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -685,6 +686,20 @@ namespace NSRetailPOS
             report.ShowPrintMarginsWarning = false;
             report.ShowPreviewMarginLines = false;
             report.Print();
+        }
+
+        public static bool IsValidGstin(string gstin)
+        {
+            if (string.IsNullOrEmpty(gstin))
+            {
+                return true;
+            }
+
+            string GstinPattern = @"^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$";
+
+            // Use Regex.IsMatch to check if the input string matches the pattern
+            // The input should be converted to uppercase as per GSTIN rules
+            return Regex.IsMatch(gstin.Trim().ToUpper(), GstinPattern);
         }
     }
     
