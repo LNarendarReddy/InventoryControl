@@ -119,10 +119,7 @@ namespace NSRetail.Stock
                     obj.ShowDialog();
                     if (ObjStockEntry.IsSave)
                     {
-                        DataSet ds = ObjStockRep.GetInvoice(ObjStockEntry.STOCKENTRYID);
-                        rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);
-                        rpt.ShowPrintMarginsWarning = false;
-                        rpt.ShowRibbonPreview();
+                        int seid = Convert.ToInt32(ObjStockEntry.STOCKENTRYID);
                         cmbSupplier.EditValue = null;
                         txtInvoiceNumber.EditValue = null;
                         dtpInvoice.EditValue = DateTime.Now;
@@ -134,6 +131,10 @@ namespace NSRetail.Stock
                         gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
                         gvStockEntry.BestFitColumns();
                         cmbSupplier.Focus();
+                        DataSet ds = ObjStockRep.GetInvoice(seid);
+                        rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);
+                        rpt.ShowPrintMarginsWarning = false;
+                        rpt.ShowRibbonPreview();
                     }
                 }
             }

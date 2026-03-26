@@ -710,11 +710,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Retreiving Invoice");
-            }
-            finally
-            {
-
+                throw new Exception("Error While Retreiving Invoice", ex);
             }
             return ds;
         }

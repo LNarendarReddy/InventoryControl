@@ -250,6 +250,7 @@ namespace NSRetail.Stock
 
                     txtQuantity.Enabled = !IsOpenItem;
                     txtWeightInKGs.Enabled = IsOpenItem;
+                    txtHSNCode.EditValue = cmbLookupView.GetRowCellValue(rowhandle, "HSNCODE");
 
                     if (int.TryParse(Convert.ToString(ObjStockEntryDetail.STOCKENTRYDETAILID), out int IValue) &&  IValue > 0)
                     {
@@ -257,7 +258,6 @@ namespace NSRetail.Stock
                     }
                     IsLoading = true;
                     txtItemName.EditValue = cmbLookupView.GetRowCellValue(rowhandle, "ITEMNAME");
-                    txtHSNCode.EditValue = cmbLookupView.GetRowCellValue(rowhandle, "HSNCODE");
 
                     if (IsOpenItem)
                         txtWeightInKGs.EditValue = 1;
