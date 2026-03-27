@@ -8,13 +8,16 @@ namespace NSRetailPOS.Operations.Stock
     {
         public DataRow drSelected = null;
         public bool _IsSave = false;
-        public frmCostPriceList(DataTable _dtCP)
+        public frmCostPriceList(DataTable _dtCP, bool IsSupplierReturns = false)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.ShowInTaskbar = false;
             this.IconOptions.ShowIcon = false;
             gcCPList.DataSource = _dtCP;
+            gcSupplier.Visible = !IsSupplierReturns;
+            gcInvoiceDate.Visible = !IsSupplierReturns;
+            gvCPList.BestFitColumns();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -32,5 +35,6 @@ namespace NSRetailPOS.Operations.Stock
             }
             catch (Exception) { }
         }
+
     }
 }

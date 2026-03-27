@@ -1,5 +1,10 @@
-﻿v3.6.0 (un-released)
+﻿v3.6.1
+-- Stock entry additional enhancements
+
+v3.6.0
 -- IGST bill supporting report changes 
+-- Stockentry enhancements to support additional fields
+-- Invoice list changes to support additional fields and filters
 
 v3.5.9 
 -- Supplier Indent By MBQ report

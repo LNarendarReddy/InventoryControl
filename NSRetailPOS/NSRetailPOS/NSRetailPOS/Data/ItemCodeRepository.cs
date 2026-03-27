@@ -290,7 +290,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.SqlWHconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_R_COSTPRICELIST]";
+                    cmd.CommandText = "[USP_R_COSTPRICELIST_v2]";
                     cmd.Parameters.AddWithValue("@ITEMCODEID", ITEMCODEID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {

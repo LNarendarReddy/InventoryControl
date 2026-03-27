@@ -99,7 +99,7 @@ namespace NSRetail.Stock
                     ObjStockEntry.PackingCharges = txtPackingCharges.EditValue;
                     ObjStockEntry.UserID = Utility.UserID;
                     ObjStockEntry.CATEGORYID = cmbCategory.EditValue;
-                    ObjStockEntry.SourceBranchID = cmbBranch.EditValue;
+                    ObjStockEntry.DispatchBranchID = cmbBranch.EditValue;
                     ObjStockEntry.dtCreditNote = dtCN;
                     ObjStockEntry.Notes = txtNotes.EditValue;
                     ObjStockRep.UpdateInvoice(ObjStockEntry);

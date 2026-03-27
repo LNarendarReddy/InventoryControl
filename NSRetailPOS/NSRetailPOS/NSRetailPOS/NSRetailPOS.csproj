@@ -175,10 +175,14 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TFSErrorManagement">
+      <HintPath>ErrorManagement\TFSErrorManagement.dll</HintPath>
+    </Reference>
     <Reference Include="UIAutomationClient" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\CreditNoteRepository.cs" />
     <Compile Include="Data\OperationsRepository.cs" />
     <Compile Include="Data\SupplierRepository.cs" />
     <Compile Include="Data\ItemCodeRepository.cs" />
@@ -187,6 +191,7 @@
     <Compile Include="Data\StockRepository.cs" />
     <Compile Include="DropboxRepository.cs" />
     <Compile Include="Entity\BillDetail.cs" />
+    <Compile Include="Entity\CreditNote.cs" />
     <Compile Include="Entity\SupplierReturns.cs" />
     <Compile Include="Entity\Item.cs" />
     <Compile Include="Entity\Master.cs" />
@@ -242,6 +247,18 @@
     </Compile>
     <Compile Include="Operations\Branch\frmImageViewer.Designer.cs">
       <DependentUpon>frmImageViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\CreditNotes\frmCreditNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\CreditNotes\frmCreditNote.Designer.cs">
+      <DependentUpon>frmCreditNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\CreditNotes\frmSelectCreditNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\CreditNotes\frmSelectCreditNote.Designer.cs">
+      <DependentUpon>frmSelectCreditNote.cs</DependentUpon>
     </Compile>
     <Compile Include="Operations\frmOpetations.cs">
       <SubType>Form</SubType>
@@ -374,6 +391,12 @@
     </Compile>
     <Compile Include="Operations\Stock\frmDraftStockEntries.Designer.cs">
       <DependentUpon>frmDraftStockEntries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\Stock\frmInvoiceSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Stock\frmInvoiceSettings.Designer.cs">
+      <DependentUpon>frmInvoiceSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Operations\Stock\frmStockEntry.cs">
       <SubType>Form</SubType>
@@ -636,6 +659,12 @@
     <EmbeddedResource Include="Operations\Branch\frmImageViewer.resx">
       <DependentUpon>frmImageViewer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operations\CreditNotes\frmCreditNote.resx">
+      <DependentUpon>frmCreditNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\CreditNotes\frmSelectCreditNote.resx">
+      <DependentUpon>frmSelectCreditNote.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operations\frmOpetations.resx">
       <DependentUpon>frmOpetations.cs</DependentUpon>
     </EmbeddedResource>
@@ -701,6 +730,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Stock\frmDraftStockEntries.resx">
       <DependentUpon>frmDraftStockEntries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Stock\frmInvoiceSettings.resx">
+      <DependentUpon>frmInvoiceSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Stock\frmStockEntry.resx">
       <DependentUpon>frmStockEntry.cs</DependentUpon>

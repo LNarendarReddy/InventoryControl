@@ -52,6 +52,7 @@ namespace Entity
         public bool CalculateIGST = false;
         public DataTable dtStockEntry { get; set; }
         public object SourceBranchID { get; set; }
+        public object DispatchBranchID { get; set; }
         public object CreditNoteId { get; set; }
         public object SupplierIndentId { get; set; }
 

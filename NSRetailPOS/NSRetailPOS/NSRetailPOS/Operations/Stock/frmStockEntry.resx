@@ -200,7 +200,7 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="DevExpress.Data.v21.2" name="DevExpress.Data.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="editorButtonImageOptions1.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="editorButtonImageOptions15.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
         NS4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAB1E
@@ -220,7 +220,7 @@
         MCwxNnogICBNMTYsMjJ2NGg0TDE2LDIyeiIgY2xhc3M9IkJsdWUiIC8+DQo8L3N2Zz4L
 </value>
   </data>
-  <data name="editorButtonImageOptions2.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="editorButtonImageOptions16.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
         NS4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAB1E
@@ -258,6 +258,24 @@
         YHnlTfq3ZtNrSOJu/hpcpfnc25yFw5CAY30C/YXrGTQZ6c1NxZ7+OvbVKzkVk/gvEPl1bOJPp1ckcTo2
         mVOxSZyMkRJnW57AiWUJtOjF0xIdT3N0PEei4m7/c4zyW8oHIdrycC/9RzHhZJYjjPgbpxkalshGQkEA
         AAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="btnSaveInvoice.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABJ0RVh0VGl0
+        bGUAU2F2ZSBBcztTYXZllVno+wAAAsFJREFUOE91k0tPU1EUha+K8lTUX+APcGIUFQhgIwIWKKUtlEdp
+        KBBLCy2FlkIplAajIM8YRRxoQlAkSBAUBJSBjxETBkYRNWFAYoA+bMurpQS6zL4CNqAnWZObtb6z7977
+        MACYf4lhmMPmjreob5uAqXUctS1jqGkeg+HOKKoaR6C/9YpMAQeCfoAAU9sE/ne0DUNkCiTjIbqNYZgj
+        fgpgGCbY2PyaNbvWN+Fc97JyrHnxa9WLcvMgAYLYUmXa9ncybQdEUgMEeXrwc3RIySyDoWmEBTj8gvbV
+        DdhWNqAyDRAghC01v6Idnb2T4OdUwr7sgc3lxvyCHfpbL+EjwOpOeMXLhq3LHpQY+wkQRoCjUk0L7naP
+        IzVTA6vTjc9zdkx9mmf/c9vn27uVgpZlD5ZcHiiq+whwggDHJKomtD4aQZKgBAv2NUx/t+D99Bw05kFs
+        bftgXaHgBiwuCrux6HTjRuVTApwkQGC28jaauoYQz5Pjp3UVUzOLmJz6AVXdc2xube8EPVh0ktxYcLhR
+        qH1CgNMECBLLb6Lh3gA43EJcSZQhJkGKSI4YAqkZ6XlmpEvqwZfUIy3XBF6OCQUVPZBpuvcqCBYV1qOu
+        vQ/Kmi4oDA8gN3QiV96AeL4CyRlqVlyhGkmCUkTEZVHwDMMwp6h/BAjh59eiqrEHIplx37r8PdeFaqSI
+        dbjMkbDd91s4JpQnqYa24TH4Ej1rtrlolB7YnB52KqR4XjGSMyoQEZvNdt8fEMYVa6Gue4jkTA0LoICF
+        5CCtY8nhRlxiAZKE5TgfLaZUuD/geKKwDIrq+0hIU8I4/A1VL2ahG5iFpv8rVM9moOz9gihOHjjJxTgX
+        KTpQQXDU1bwP0dfyweEWgVc3AW7NG8TrRhFTOoyLRX1/FJOFS7G5OHsh9SP1zR9AD4l2OnxnLLuiLu8X
+        fQ+lB7cL+A1yk1d7Gx3p4AAAAABJRU5ErkJggg==
 </value>
   </data>
   <metadata name="dxValidationProvider2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

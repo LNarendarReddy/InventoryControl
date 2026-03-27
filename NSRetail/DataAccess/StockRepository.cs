@@ -459,6 +459,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@InvoiceType", ObjStockEntry.InvoiceType);
                     cmd.Parameters.AddWithValue("@PriceEntryMethod", ObjStockEntry.PriceEntryMethod);
                     cmd.Parameters.AddWithValue("@LorryFrightMode", ObjStockEntry.LorryFrightMode);
+                    cmd.Parameters.AddWithValue("@SourceBranchID", ObjStockEntry.SourceBranchID);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out StockEntryID))
@@ -642,7 +643,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@EXPENSES", ObjStockEntry.EXPENSES);
                     cmd.Parameters.AddWithValue("@TRANSPORT", ObjStockEntry.TRANSPORT);
                     cmd.Parameters.AddWithValue("@PackingCharges", ObjStockEntry.PackingCharges);
-                    cmd.Parameters.AddWithValue("@SOURCEBRANCHID", ObjStockEntry.SourceBranchID);
+                    cmd.Parameters.AddWithValue("@DispatchBranchId", ObjStockEntry.DispatchBranchID);
                     cmd.Parameters.AddWithValue("@CATEGORYID", ObjStockEntry.CATEGORYID);
                     cmd.Parameters.AddWithValue("@USERID", ObjStockEntry.UserID);
                     cmd.Parameters.AddWithValue("@SupplierIndentID", ObjStockEntry.SupplierIndentId);
