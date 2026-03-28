@@ -297,7 +297,7 @@ namespace NSRetail.Stock
                 ObjStockEntry.InvoiceDate = dtpInvoice.EditValue;
                 ObjStockEntry.CATEGORYID = Utility.CategoryID;
                 ObjStockEntry.UserID = Utility.UserID;
-                ObjStockEntry.SourceBranchID = Utility.BranchID;
+                ObjStockEntry.SourceBranchID = ObjStockEntry.SourceBranchID ?? Utility.BranchID;
                 ObjStockRep.SaveInvoice(ObjStockEntry);
             }
             catch (Exception ex)
