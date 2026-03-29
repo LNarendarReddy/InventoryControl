@@ -260,13 +260,16 @@ namespace NSRetail.Stock
                     txtItemName.EditValue = cmbLookupView.GetRowCellValue(rowhandle, "ITEMNAME");
 
                     if (IsOpenItem)
-                        txtWeightInKGs.EditValue = 1;
+                        txtWeightInKGs.EditValue = 1.00;
                     else
                         txtQuantity.EditValue = 1;
 
                     
                     ViewCostPriceList();
 
+                    
+                    
+                    
                     CalculateReadOnlyFields();
                     IsLoading = false;
                     SendKeys.Send("{ENTER}");
@@ -443,7 +446,25 @@ namespace NSRetail.Stock
         private void CalculateReadOnlyFields()
         {
             decimal quantity = Convert.ToDecimal((IsOpenItem ? txtWeightInKGs : txtQuantity).EditValue);
-            if (quantity <= 0) return;
+            
+            // If quantity is 0 or less, set all calculated values to zero
+            if (quantity <= 0)
+            {
+                txtNetCostPriceWOT.EditValue = 0;
+                txtNetCostPriceWT.EditValue = 0;
+                txtCGST.EditValue = 0;
+                txtSGST.EditValue = 0;
+                txtIGST.EditValue = 0;
+                txtCESS.EditValue = 0;
+                txtTotalPriceWT.EditValue = 0;
+                txtTotalPriceWOT.EditValue = 0;
+                txtAppliedDiscount.EditValue = 0;
+                txtAppliedScheme.EditValue = 0;
+                txtAppliedGST.EditValue = 0;
+                txtFinalPriceWithOutTax.EditValue = 0;
+                txtFinalPrice.EditValue = 0;
+                return;
+            }
 
             decimal grossCPWT = Convert.ToDecimal(txtGrossCPWTax.EditValue);
             decimal grossCPWOT = Convert.ToDecimal(txtGrossCPWOTax.EditValue);

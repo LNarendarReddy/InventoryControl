@@ -485,6 +485,7 @@
             this.gridColumn18.Caption = "Net Price WO Tax";
             this.gridColumn18.FieldName = "FINALPRICEWOTAX";
             this.gridColumn18.Name = "gridColumn18";
+            this.gridColumn18.OptionsColumn.AllowEdit = false;
             this.gridColumn18.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "FINALPRICEWOTAX", "{0:0.##}")});
             this.gridColumn18.Visible = true;

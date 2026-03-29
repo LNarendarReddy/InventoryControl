@@ -106,6 +106,9 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.dxValidationProvider2 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn36 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn37 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTIN.Properties)).BeginInit();
@@ -318,7 +321,10 @@
             this.gridColumn32,
             this.gridColumn33,
             this.gridColumn34,
-            this.gridColumn35});
+            this.gridColumn35,
+            this.gridColumn25,
+            this.gridColumn36,
+            this.gridColumn37});
             this.gvStockEntry.DetailHeight = 404;
             this.gvStockEntry.GridControl = this.gcStockEntry;
             this.gvStockEntry.IndicatorWidth = 40;
@@ -908,6 +914,24 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(448, 30);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // gridColumn25
+            // 
+            this.gridColumn25.Caption = "HSNCODE";
+            this.gridColumn25.FieldName = "HSNCODE";
+            this.gridColumn25.Name = "gridColumn25";
+            // 
+            // gridColumn36
+            // 
+            this.gridColumn36.Caption = "GSTCODE";
+            this.gridColumn36.FieldName = "GSTCODE";
+            this.gridColumn36.Name = "gridColumn36";
+            // 
+            // gridColumn37
+            // 
+            this.gridColumn37.Caption = "ISFREEITEM";
+            this.gridColumn37.FieldName = "ISFREEITEM";
+            this.gridColumn37.Name = "gridColumn37";
+            // 
             // frmStockEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1017,5 +1041,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn34;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn35;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn36;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn37;
     }
 }

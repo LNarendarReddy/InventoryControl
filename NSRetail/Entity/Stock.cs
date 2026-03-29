@@ -112,7 +112,8 @@ namespace Entity
         public object IGST { get; set; }
         public object CESS { get; set; }
         public object HSNCODE { get; set; }
-        public object IsFreeItem { get; set; }
+        public object GSTCODE { get; set; }
+        public bool IsFreeItem { get; set; }
 
     }
     public class SupplierReturns : EntityBase

@@ -173,6 +173,7 @@ namespace NSRetail.Stock
             try
             {
                 GridView view = sender as GridView;
+                view.SetRowCellValue(e.RowHandle, "STOCKENTRYID", ObjStockEntryDetail.STOCKENTRYID);
                 view.SetRowCellValue(e.RowHandle, "STOCKENTRYDETAILID", ObjStockEntryDetail.STOCKENTRYDETAILID);
                 view.SetRowCellValue(e.RowHandle, "ITEMID", ObjStockEntryDetail.ITEMID);
                 view.SetRowCellValue(e.RowHandle, "ITEMCODEID", ObjStockEntryDetail.ITEMCODEID);
@@ -187,7 +188,6 @@ namespace NSRetail.Stock
                 view.SetRowCellValue(e.RowHandle, "SALEPRICE", ObjStockEntryDetail.SALEPRICE);
                 view.SetRowCellValue(e.RowHandle, "QUANTITY", ObjStockEntryDetail.QUANTITY);
                 view.SetRowCellValue(e.RowHandle, "WEIGHTINKGS", ObjStockEntryDetail.WEIGHTINKGS);
-                view.SetRowCellValue(e.RowHandle, "FREEQUANTITY", ObjStockEntryDetail.FreeQuantity);
                 view.SetRowCellValue(e.RowHandle, "DISCOUNTFLAT", ObjStockEntryDetail.DiscountFlat);
                 view.SetRowCellValue(e.RowHandle, "DISCOUNTPERCENTAGE", ObjStockEntryDetail.DiscountPercentage);
                 view.SetRowCellValue(e.RowHandle, "SCHEMEPERCENTAGE", ObjStockEntryDetail.SchemePercentage);
@@ -204,7 +204,10 @@ namespace NSRetail.Stock
                 view.SetRowCellValue(e.RowHandle, "IGST", ObjStockEntryDetail.IGST);
                 view.SetRowCellValue(e.RowHandle, "CESS", ObjStockEntryDetail.CESS);
                 view.SetRowCellValue(e.RowHandle, "GSTID", ObjStockEntryDetail.GSTID);
+                view.SetRowCellValue(e.RowHandle, "HSNCODE", ObjStockEntryDetail.HSNCODE);
+                view.SetRowCellValue(e.RowHandle, "GSTCODE", ObjStockEntryDetail.GSTCODE);
                 view.SetRowCellValue(e.RowHandle, "ISFREEITEM", ObjStockEntryDetail.IsFreeItem);
+                view.UpdateCurrentRow();
             }
             catch (Exception ex)
             {
@@ -240,6 +243,7 @@ namespace NSRetail.Stock
                 int rowhandle = gvStockEntry.LocateByValue("STOCKENTRYDETAILID", ObjStockEntryDetail.STOCKENTRYDETAILID);
                 if (rowhandle >= 0)
                 {
+                    gvStockEntry.SetRowCellValue(rowhandle, "STOCKENTRYID", ObjStockEntryDetail.STOCKENTRYID);
                     gvStockEntry.SetRowCellValue(rowhandle, "STOCKENTRYDETAILID", ObjStockEntryDetail.STOCKENTRYDETAILID);
                     gvStockEntry.SetRowCellValue(rowhandle, "ITEMID", ObjStockEntryDetail.ITEMID);
                     gvStockEntry.SetRowCellValue(rowhandle, "ITEMCODEID", ObjStockEntryDetail.ITEMCODEID);
@@ -254,15 +258,15 @@ namespace NSRetail.Stock
                     gvStockEntry.SetRowCellValue(rowhandle, "SALEPRICE", ObjStockEntryDetail.SALEPRICE);
                     gvStockEntry.SetRowCellValue(rowhandle, "QUANTITY", ObjStockEntryDetail.QUANTITY);
                     gvStockEntry.SetRowCellValue(rowhandle, "WEIGHTINKGS", ObjStockEntryDetail.WEIGHTINKGS);
-                    gvStockEntry.SetRowCellValue(rowhandle, "FREEQUANTITY", ObjStockEntryDetail.FreeQuantity);
                     gvStockEntry.SetRowCellValue(rowhandle, "DISCOUNTFLAT", ObjStockEntryDetail.DiscountFlat);
                     gvStockEntry.SetRowCellValue(rowhandle, "DISCOUNTPERCENTAGE", ObjStockEntryDetail.DiscountPercentage);
-                    gvStockEntry.SetRowCellValue(rowhandle, "SCHEMEPERCENTAGE", ObjStockEntryDetail.SchemePercentage);
                     gvStockEntry.SetRowCellValue(rowhandle, "SCHEMEFLAT", ObjStockEntryDetail.SchemeFlat);
+                    gvStockEntry.SetRowCellValue(rowhandle, "SCHEMEPERCENTAGE", ObjStockEntryDetail.SchemePercentage);
                     gvStockEntry.SetRowCellValue(rowhandle, "TOTALPRICEWT", ObjStockEntryDetail.TotalPriceWT);
                     gvStockEntry.SetRowCellValue(rowhandle, "TOTALPRICEWOT", ObjStockEntryDetail.TotalPriceWOT);
                     gvStockEntry.SetRowCellValue(rowhandle, "APPLIEDDISCOUNT", ObjStockEntryDetail.AppliedDiscount);
                     gvStockEntry.SetRowCellValue(rowhandle, "APPLIEDSCHEME", ObjStockEntryDetail.AppliedScheme);
+                    gvStockEntry.SetRowCellValue(rowhandle, "GSTID", ObjStockEntryDetail.GSTID);
                     gvStockEntry.SetRowCellValue(rowhandle, "APPLIEDDGST", ObjStockEntryDetail.AppliedGST);
                     gvStockEntry.SetRowCellValue(rowhandle, "FINALPRICEWOTAX", ObjStockEntryDetail.FinalPriceWOTax);
                     gvStockEntry.SetRowCellValue(rowhandle, "FINALPRICE", ObjStockEntryDetail.FinalPrice);
@@ -270,7 +274,8 @@ namespace NSRetail.Stock
                     gvStockEntry.SetRowCellValue(rowhandle, "SGST", ObjStockEntryDetail.SGST);
                     gvStockEntry.SetRowCellValue(rowhandle, "IGST", ObjStockEntryDetail.IGST);
                     gvStockEntry.SetRowCellValue(rowhandle, "CESS", ObjStockEntryDetail.CESS);
-                    gvStockEntry.SetRowCellValue(rowhandle, "GSTID", ObjStockEntryDetail.GSTID);
+                    gvStockEntry.SetRowCellValue(rowhandle, "HSNCODE", ObjStockEntryDetail.HSNCODE);
+                    gvStockEntry.SetRowCellValue(rowhandle, "GSTCODE", ObjStockEntryDetail.GSTCODE);
                     gvStockEntry.SetRowCellValue(rowhandle, "ISFREEITEM", ObjStockEntryDetail.IsFreeItem);
                     gvStockEntry.FocusedRowHandle = rowhandle;
                 }
@@ -363,7 +368,9 @@ namespace NSRetail.Stock
             ObjStockEntryDetail.IGST = gvStockEntry.GetFocusedRowCellValue("IGST");
             ObjStockEntryDetail.CESS = gvStockEntry.GetFocusedRowCellValue("CESS");
             ObjStockEntryDetail.GSTID = gvStockEntry.GetFocusedRowCellValue("GSTID");
-            ObjStockEntryDetail.IsFreeItem = gvStockEntry.GetFocusedRowCellValue("ISFREEITEM");
+            ObjStockEntryDetail.HSNCODE = gvStockEntry.GetFocusedRowCellValue("HSNCODE");
+            ObjStockEntryDetail.GSTCODE = gvStockEntry.GetFocusedRowCellValue("GSTCODE");
+            ObjStockEntryDetail.IsFreeItem = Convert.ToBoolean(gvStockEntry.GetFocusedRowCellValue("ISFREEITEM"));
             new frmAddStockRecord(ObjStockEntry, this, ObjStockEntryDetail).ShowDialog();
         }
 
@@ -426,10 +433,10 @@ namespace NSRetail.Stock
 
             dtpInvoice.EditValue = DateTime.Now;
             ObjStockEntry.dtStockEntry = new DataTable();
+            ObjStockEntry.dtStockEntry.Columns.Add("STOCKENTRYID", typeof(int));
             ObjStockEntry.dtStockEntry.Columns.Add("STOCKENTRYDETAILID", typeof(int));
             ObjStockEntry.dtStockEntry.Columns.Add("ITEMID", typeof(int));
             ObjStockEntry.dtStockEntry.Columns.Add("ITEMCODEID", typeof(int));
-            ObjStockEntry.dtStockEntry.Columns.Add("ITEMPRICEID", typeof(int));
             ObjStockEntry.dtStockEntry.Columns.Add("SKUCODE", typeof(string));
             ObjStockEntry.dtStockEntry.Columns.Add("ITEMCODE", typeof(string));
             ObjStockEntry.dtStockEntry.Columns.Add("ITEMNAME", typeof(string));
@@ -449,14 +456,16 @@ namespace NSRetail.Stock
             ObjStockEntry.dtStockEntry.Columns.Add("TOTALPRICEWOT", typeof(decimal));
             ObjStockEntry.dtStockEntry.Columns.Add("APPLIEDDISCOUNT", typeof(decimal));
             ObjStockEntry.dtStockEntry.Columns.Add("APPLIEDSCHEME", typeof(decimal));
+            ObjStockEntry.dtStockEntry.Columns.Add("GSTID", typeof(int));
             ObjStockEntry.dtStockEntry.Columns.Add("APPLIEDDGST", typeof(decimal));
             ObjStockEntry.dtStockEntry.Columns.Add("FINALPRICEWOTAX", typeof(decimal));
             ObjStockEntry.dtStockEntry.Columns.Add("FINALPRICE", typeof(decimal));
-            ObjStockEntry.dtStockEntry.Columns.Add("SGST", typeof(decimal));
             ObjStockEntry.dtStockEntry.Columns.Add("CGST", typeof(decimal));
+            ObjStockEntry.dtStockEntry.Columns.Add("SGST", typeof(decimal));
             ObjStockEntry.dtStockEntry.Columns.Add("IGST", typeof(decimal));
             ObjStockEntry.dtStockEntry.Columns.Add("CESS", typeof(decimal));
-            ObjStockEntry.dtStockEntry.Columns.Add("GSTID", typeof(int));
+            ObjStockEntry.dtStockEntry.Columns.Add("HSNCODE", typeof(string));
+            ObjStockEntry.dtStockEntry.Columns.Add("GSTCODE", typeof(string));
             ObjStockEntry.dtStockEntry.Columns.Add("ISFREEITEM", typeof(bool));
             gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
             gvStockEntry.BestFitColumns();
