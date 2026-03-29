@@ -1666,12 +1666,12 @@
         SDh2MmgxNFYxNHoiIGNsYXNzPSJCbGFjayIgLz4NCiAgICA8L2c+DQogIDwvZz4NCjwvc3ZnPgs=
 </value>
   </data>
-  <metadata name="puFinYear.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="bbiChangeFY.Caption" xml:space="preserve">
     <value>Change Fin. year</value>
   </data>
+  <metadata name="puFinYear.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="bbiChangeFY.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
@@ -1925,12 +1925,12 @@
   <data name="barButtonItem1.Caption" xml:space="preserve">
     <value>Switch connection</value>
   </data>
-  <metadata name="puSwitchConnection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>123, 17</value>
-  </metadata>
   <data name="bbiChangeConection.Caption" xml:space="preserve">
     <value>Switch Connection</value>
   </data>
+  <metadata name="puSwitchConnection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>123, 17</value>
+  </metadata>
   <data name="bbiChangeConection.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
@@ -1963,7 +1963,7 @@
   <data name="btnCreditNote.Caption" xml:space="preserve">
     <value>Credit Note</value>
   </data>
-  <data name="barButtonItem2.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnCreditNote.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
         NS4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAB1E
@@ -1979,6 +1979,41 @@
         MjksNkgzQzIuNCw2LDIsNi41LDIsN3Y1djR2OWMwLDAuNSwwLjQsMSwxLDFoMjZjMC42LDAsMS0wLjUs
         MS0xdi05di00VjdDMzAsNi41LDI5LjYsNiwyOSw2eiBNMjgsMjRINHYtOCAgIGgyNFYyNHogTTQsMTJW
         OGgyNHY0SDR6IiBjbGFzcz0iQmxhY2siIC8+DQogIDwvZz4NCjwvc3ZnPgs=
+</value>
+  </data>
+  <data name="bbiLiquidation.Caption" xml:space="preserve">
+    <value>Liquidation</value>
+  </data>
+  <data name="barButtonItem2.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
+        NS4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAB1E
+        ZXZFeHByZXNzLlV0aWxzLlN2Zy5TdmdJbWFnZQEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACoBQAAAu+7
+        vzw/eG1sIHZlcnNpb249JzEuMCcgZW5jb2Rpbmc9J1VURi04Jz8+DQo8c3ZnIHg9IjBweCIgeT0iMHB4
+        IiB2aWV3Qm94PSIwIDAgMzIgMzIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3Jn
+        LzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNw
+        YWNlPSJwcmVzZXJ2ZSIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAw
+        IDMyIDMyIj4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5SZWR7ZmlsbDojRDExQzFDO30KCS5C
+        bGFja3tmaWxsOiM3MjcyNzI7fQoJLkJsdWV7ZmlsbDojMTE3N0Q3O30KCS5HcmVlbntmaWxsOiMwMzlD
+        MjM7fQoJLlllbGxvd3tmaWxsOiNGRkIxMTU7fQoJLldoaXRle2ZpbGw6I0ZGRkZGRjt9Cgkuc3Qwe29w
+        YWNpdHk6MC41O30KCS5zdDF7b3BhY2l0eTowLjc1O30KCS5zdDJ7b3BhY2l0eTowLjI1O30KPC9zdHls
+        ZT4NCiAgPGcgaWQ9IlRpbWVTY2FsZXMiPg0KICAgIDxnIGNsYXNzPSJzdDAiPg0KICAgICAgPHBhdGgg
+        ZD0iTTIwLDE0LjhWMTRoLTR2NGgwQzE3LDE2LjYsMTguNCwxNS41LDIwLDE0Ljh6IiBjbGFzcz0iQmxh
+        Y2siIC8+DQogICAgICA8cmVjdCB4PSIxNiIgeT0iOCIgd2lkdGg9IjQiIGhlaWdodD0iNCIgY2xhc3M9
+        IkJsYWNrIiAvPg0KICAgICAgPHJlY3QgeD0iMTAiIHk9IjgiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGNs
+        YXNzPSJCbGFjayIgLz4NCiAgICAgIDxyZWN0IHg9IjIyIiB5PSI4IiB3aWR0aD0iNCIgaGVpZ2h0PSI0
+        IiBjbGFzcz0iQmxhY2siIC8+DQogICAgICA8cmVjdCB4PSI0IiB5PSI4IiB3aWR0aD0iNCIgaGVpZ2h0
+        PSI0IiBjbGFzcz0iQmxhY2siIC8+DQogICAgICA8cmVjdCB4PSIxMCIgeT0iMjAiIHdpZHRoPSI0IiBo
+        ZWlnaHQ9IjQiIGNsYXNzPSJCbGFjayIgLz4NCiAgICAgIDxyZWN0IHg9IjQiIHk9IjIwIiB3aWR0aD0i
+        NCIgaGVpZ2h0PSI0IiBjbGFzcz0iQmxhY2siIC8+DQogICAgICA8cmVjdCB4PSI0IiB5PSIxNCIgd2lk
+        dGg9IjQiIGhlaWdodD0iNCIgY2xhc3M9IkJsYWNrIiAvPg0KICAgIDwvZz4NCiAgICA8cGF0aCBkPSJN
+        MTQsMThoLTR2LTRoNFYxOHogTTMyLDI0YzAsNC40LTMuNiw4LTgsOHMtOC0zLjYtOC04czMuNi04LDgt
+        OFMzMiwxOS42LDMyLDI0eiBNMzAsMjRjMC0zLjMtMi43LTYtNi02ICAgcy02LDIuNy02LDZzMi43LDYs
+        Niw2UzMwLDI3LjMsMzAsMjR6IiBjbGFzcz0iUmVkIiAvPg0KICAgIDxwYXRoIGQ9Ik0xNC44LDI4SDFj
+        LTAuNiwwLTEtMC40LTEtMVYzYzAtMC42LDAuNC0xLDEtMWgyOGMwLjYsMCwxLDAuNCwxLDF2MTNjLTAu
+        Ni0wLjUtMS4zLTAuOS0yLTEuMlY2SDJ2MjBoMTIuMiAgIEMxNC4zLDI2LjcsMTQuNiwyNy40LDE0Ljgs
+        Mjh6IE0yOCwyNHYyaC00aC0ydi0ydi00aDJ2NEgyOHoiIGNsYXNzPSJCbGFjayIgLz4NCiAgPC9nPg0K
+        PC9zdmc+Cw==
 </value>
   </data>
   <data name="ribbonControl1.Location" type="System.Drawing.Point, System.Drawing">
@@ -2039,6 +2074,15 @@
   </data>
   <data name="rpReports.Text" xml:space="preserve">
     <value>Reports</value>
+  </data>
+  <data name="ribbonPageGroup8.Text" xml:space="preserve">
+    <value>Offers</value>
+  </data>
+  <data name="ribbonPageGroup7.Text" xml:space="preserve">
+    <value>Deals</value>
+  </data>
+  <data name="ribbonPageGroup18.Text" xml:space="preserve">
+    <value>Liquidation</value>
   </data>
   <data name="rpOffers.Text" xml:space="preserve">
     <value>Offer &amp; Deals</value>
@@ -2108,23 +2152,11 @@
   <data name="&gt;&gt;ribbonControl1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="puFinYear.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="puSwitchConnection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>123, 17</value>
-  </metadata>
   <data name="ribbonPageGroup20.Text" xml:space="preserve">
     <value>Item</value>
   </data>
   <data name="ribbonPageGroup19.Text" xml:space="preserve">
     <value>Warehouse Reports</value>
-  </data>
-  <data name="ribbonPageGroup8.Text" xml:space="preserve">
-    <value>Offers</value>
-  </data>
-  <data name="ribbonPageGroup7.Text" xml:space="preserve">
-    <value>Deals</value>
   </data>
   <data name="ribbonPageGroup1.Text" xml:space="preserve">
     <value>Branch</value>
@@ -3120,6 +3152,12 @@
   <data name="&gt;&gt;puSwitchConnection.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.PopupMenu, DevExpress.XtraBars.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
+  <data name="&gt;&gt;btnCreditNote.Name" xml:space="preserve">
+    <value>btnCreditNote</value>
+  </data>
+  <data name="&gt;&gt;btnCreditNote.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
   <data name="&gt;&gt;rpOperations.Name" xml:space="preserve">
     <value>rpOperations</value>
   </data>
@@ -3294,10 +3332,16 @@
   <data name="&gt;&gt;ribbonPage2.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.Ribbon.RibbonPage, DevExpress.XtraBars.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="&gt;&gt;btnCreditNote.Name" xml:space="preserve">
-    <value>btnCreditNote</value>
+  <data name="&gt;&gt;ribbonPageGroup18.Name" xml:space="preserve">
+    <value>ribbonPageGroup18</value>
   </data>
-  <data name="&gt;&gt;btnCreditNote.Type" xml:space="preserve">
+  <data name="&gt;&gt;ribbonPageGroup18.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.Ribbon.RibbonPageGroup, DevExpress.XtraBars.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;bbiLiquidation.Name" xml:space="preserve">
+    <value>bbiLiquidation</value>
+  </data>
+  <data name="&gt;&gt;bbiLiquidation.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

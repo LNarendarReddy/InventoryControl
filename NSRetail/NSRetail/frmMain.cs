@@ -728,5 +728,10 @@ namespace NSRetail
             obj.IconOptions.ShowIcon = false;
             obj.ShowDialog();
         }
+
+        private void bbiLiquidation_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new frmLiquidation() { MdiParent = this }.Show();
+        }
     }
 }

@@ -771,5 +771,36 @@ namespace DataAccess
                 throw ex;
             }
         }
+
+        public void UpdateLiquidation(object liquidationID, object status, object statusDescription
+            , object liquidationSalePrice, object UserID, int rowHandle, Action<string, int> infoReader)
+        {
+            SqlTransaction transaction = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                using (SqlConnection connection = SQLCon.Sqlconn())
+                {
+                    transaction = connection.BeginTransaction();
+                    cmd.Transaction = transaction;
+                    cmd.Connection = connection;
+                    connection.InfoMessage += (sender, e) => infoReader.Invoke(e.Message, rowHandle);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_LIQUIDATION]";
+                    cmd.Parameters.AddWithValue("@LiquidationID", liquidationID);
+                    cmd.Parameters.AddWithValue("@Status", status);
+                    cmd.Parameters.AddWithValue("@LiquidationSalePrice", liquidationSalePrice);
+                    cmd.Parameters.AddWithValue("@StatusDescription", statusDescription);
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                transaction?.Rollback();
+                throw new Exception("Error While udpating liquidation - " + ex.Message, ex);
+            }
+        }
     }
 }
