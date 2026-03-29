@@ -1,4 +1,7 @@
-﻿v3.6.1
+﻿v3.6.3
+-- Stock entry issue fixes
+
+v3.6.1
 -- Stock entry additional enhancements
 
 v3.6.0
