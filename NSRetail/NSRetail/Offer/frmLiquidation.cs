@@ -171,7 +171,7 @@ namespace NSRetail
             foreach (int rowId in gvLiquidation.GetSelectedRows())
             {
                 double curMRP = double.Parse(gvLiquidation.GetRowCellValue(rowId, "MRP")?.ToString());
-                double liquidationSalePrice = rgDiscount.EditValue.ToString() == "FixedRate" ? value : curMRP - (value % curMRP);
+                double liquidationSalePrice = rgDiscount.EditValue.ToString() == "FixedRate" ? value : curMRP - (value * curMRP / 100);
                 gvLiquidation.SetRowCellValue(rowId, "LIQUIDATIONSALEPRICE", liquidationSalePrice);
             }
         }
