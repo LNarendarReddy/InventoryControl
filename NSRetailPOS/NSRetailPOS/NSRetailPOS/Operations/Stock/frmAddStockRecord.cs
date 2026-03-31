@@ -129,8 +129,8 @@ namespace NSRetailPOS.Operations.Stock
                     return;
 
                 if (decimal.TryParse(Convert.ToString(txtMRP.EditValue), out decimal MRP) &&
-                    decimal.TryParse(Convert.ToString(txtGrossCPWTax.EditValue), out decimal CostPriceWT) &&
-                    decimal.TryParse(Convert.ToString(txtGrossCPWOTax.EditValue), out decimal CostPriceWOT) &&
+                    decimal.TryParse(Convert.ToString(txtNetCostPriceWT.EditValue), out decimal CostPriceWT) &&
+                    decimal.TryParse(Convert.ToString(txtNetCostPriceWOT.EditValue), out decimal CostPriceWOT) &&
                     decimal.TryParse(Convert.ToString(txtSalePrice.EditValue), out decimal salePrice))
                 {
                     string message = string.Empty;

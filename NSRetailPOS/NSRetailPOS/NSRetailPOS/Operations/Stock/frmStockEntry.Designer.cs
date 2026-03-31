@@ -30,18 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockEntry));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions15 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject57 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject58 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject59 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject60 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions16 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject61 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject62 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject63 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject64 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnLoadDraft = new DevExpress.XtraEditors.SimpleButton();
             this.btnDraftInvoice = new DevExpress.XtraEditors.SimpleButton();
@@ -106,6 +106,9 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.dxValidationProvider2 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn36 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn37 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTIN.Properties)).BeginInit();
@@ -208,9 +211,9 @@
             // txtGSTIN
             // 
             this.txtGSTIN.Enabled = false;
-            this.txtGSTIN.Location = new System.Drawing.Point(658, 7);
+            this.txtGSTIN.Location = new System.Drawing.Point(660, 7);
             this.txtGSTIN.Name = "txtGSTIN";
-            this.txtGSTIN.Size = new System.Drawing.Size(475, 20);
+            this.txtGSTIN.Size = new System.Drawing.Size(473, 20);
             this.txtGSTIN.StyleController = this.layoutControl1;
             this.txtGSTIN.TabIndex = 1;
             // 
@@ -230,30 +233,30 @@
             // 
             this.dtpInvoice.EditValue = null;
             this.dtpInvoice.EnterMoveNextControl = true;
-            this.dtpInvoice.Location = new System.Drawing.Point(658, 37);
+            this.dtpInvoice.Location = new System.Drawing.Point(660, 37);
             this.dtpInvoice.Margin = new System.Windows.Forms.Padding(2);
             this.dtpInvoice.Name = "dtpInvoice";
             this.dtpInvoice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpInvoice.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpInvoice.Size = new System.Drawing.Size(475, 20);
+            this.dtpInvoice.Size = new System.Drawing.Size(473, 20);
             this.dtpInvoice.StyleController = this.layoutControl1;
             this.dtpInvoice.TabIndex = 3;
             // 
             // txtInvoiceNumber
             // 
             this.txtInvoiceNumber.EnterMoveNextControl = true;
-            this.txtInvoiceNumber.Location = new System.Drawing.Point(92, 37);
+            this.txtInvoiceNumber.Location = new System.Drawing.Point(94, 37);
             this.txtInvoiceNumber.Name = "txtInvoiceNumber";
             this.txtInvoiceNumber.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtInvoiceNumber.Size = new System.Drawing.Size(471, 20);
+            this.txtInvoiceNumber.Size = new System.Drawing.Size(469, 20);
             this.txtInvoiceNumber.StyleController = this.layoutControl1;
             this.txtInvoiceNumber.TabIndex = 2;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "Mandatory";
-            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtInvoiceNumber, conditionValidationRule3);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtInvoiceNumber, conditionValidationRule1);
             // 
             // gcStockEntry
             // 
@@ -310,7 +313,10 @@
             this.gridColumn32,
             this.gridColumn33,
             this.gridColumn34,
-            this.gridColumn35});
+            this.gridColumn35,
+            this.gridColumn25,
+            this.gridColumn36,
+            this.gridColumn37});
             this.gvStockEntry.GridControl = this.gcStockEntry;
             this.gvStockEntry.IndicatorWidth = 34;
             this.gvStockEntry.Name = "gvStockEntry";
@@ -583,9 +589,9 @@
             // btnEdit
             // 
             this.btnEdit.AutoHeight = false;
-            editorButtonImageOptions15.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions15.SvgImage")));
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
             this.btnEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions15, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject57, serializableAppearanceObject58, serializableAppearanceObject59, serializableAppearanceObject60, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_ButtonClick);
@@ -604,9 +610,9 @@
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions16.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions16.SvgImage")));
+            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject61, serializableAppearanceObject62, serializableAppearanceObject63, serializableAppearanceObject64, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -681,7 +687,7 @@
             // cmbSupplier
             // 
             this.cmbSupplier.EnterMoveNextControl = true;
-            this.cmbSupplier.Location = new System.Drawing.Point(92, 7);
+            this.cmbSupplier.Location = new System.Drawing.Point(94, 7);
             this.cmbSupplier.Name = "cmbSupplier";
             this.cmbSupplier.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -692,13 +698,13 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTIN", "GSTIN"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ADDRESS", "ADDRESS", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbSupplier.Properties.NullText = "";
-            this.cmbSupplier.Size = new System.Drawing.Size(471, 20);
+            this.cmbSupplier.Size = new System.Drawing.Size(469, 20);
             this.cmbSupplier.StyleController = this.layoutControl1;
             this.cmbSupplier.TabIndex = 0;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbSupplier, conditionValidationRule1);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Mandatory";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbSupplier, conditionValidationRule2);
             this.cmbSupplier.EditValueChanged += new System.EventHandler(this.cmbSupplier_EditValueChanged);
             // 
             // Root
@@ -856,6 +862,24 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(435, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // gridColumn25
+            // 
+            this.gridColumn25.Caption = "HSNCODE";
+            this.gridColumn25.FieldName = "HSNCODE";
+            this.gridColumn25.Name = "gridColumn25";
+            // 
+            // gridColumn36
+            // 
+            this.gridColumn36.Caption = "GSTCODE";
+            this.gridColumn36.FieldName = "GSTCODE";
+            this.gridColumn36.Name = "gridColumn36";
+            // 
+            // gridColumn37
+            // 
+            this.gridColumn37.Caption = "ISFREEITEM";
+            this.gridColumn37.FieldName = "ISFREEITEM";
+            this.gridColumn37.Name = "gridColumn37";
+            // 
             // frmStockEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -964,5 +988,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn34;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn35;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn36;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn37;
     }
 }

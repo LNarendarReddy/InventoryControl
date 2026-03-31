@@ -282,9 +282,8 @@ namespace NSRetail.Stock
                 else
                 {
                     gvStockEntry.AddNewRow();
-                    gvStockEntry.UpdateCurrentRow();
                 }
-
+                gvStockEntry.UpdateCurrentRow();
             }
             catch (Exception ex)
             {

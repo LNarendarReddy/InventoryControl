@@ -91,8 +91,6 @@ namespace Entity
 
         public object SchemeFlat { get; set; }
 
-        public object FreeQuantity { get; set; }
-
         public object FreeItemMRPID { get; set; }
         
         public object TotalPriceWT { get; set; }

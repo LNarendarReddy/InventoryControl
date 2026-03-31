@@ -77,8 +77,6 @@ namespace NSRetailPOS.Entity
 
         public object SchemeFlat { get; set; }
 
-        public object FreeQuantity { get; set; }
-
         public object FreeItemMRPID { get; set; }
 
         public object TotalPriceWT { get; set; }
@@ -98,6 +96,8 @@ namespace NSRetailPOS.Entity
         public object IGST { get; set; }
         public object CESS { get; set; }
         public object HSNCODE { get; set; }
+
+        public object GSTCODE { get; set; }
         public object IsFreeItem { get; set; }
 
     }

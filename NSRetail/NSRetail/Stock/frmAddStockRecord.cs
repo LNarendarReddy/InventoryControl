@@ -134,8 +134,8 @@ namespace NSRetail.Stock
                     return;
 
                 if (decimal.TryParse(Convert.ToString(txtMRP.EditValue), out decimal MRP) &&
-                    decimal.TryParse(Convert.ToString(txtGrossCPWTax.EditValue), out decimal CostPriceWT) &&
-                    decimal.TryParse(Convert.ToString(txtGrossCPWOTax.EditValue), out decimal CostPriceWOT) &&
+                    decimal.TryParse(Convert.ToString(txtNetCostPriceWT.EditValue), out decimal CostPriceWT) &&
+                    decimal.TryParse(Convert.ToString(txtNetCostPriceWOT.EditValue), out decimal CostPriceWOT) &&
                     decimal.TryParse(Convert.ToString(txtSalePrice.EditValue), out decimal salePrice))
                 {
                     string message = string.Empty;
@@ -446,8 +446,8 @@ namespace NSRetail.Stock
         private void CalculateReadOnlyFields()
         {
             decimal quantity = Convert.ToDecimal((IsOpenItem ? txtWeightInKGs : txtQuantity).EditValue);
-            
-            // If quantity is 0 or less, set all calculated values to zero
+
+            // If quantity is 0 or less, reset all values
             if (quantity <= 0)
             {
                 txtNetCostPriceWOT.EditValue = 0;
@@ -480,7 +480,7 @@ namespace NSRetail.Stock
             decimal schemeFlat = (schemePer == 0 && txtSchemeFlat.EditValue != null)
                 ? Convert.ToDecimal(txtSchemeFlat.EditValue) : 0;
 
-            // 👉 Calculate per-unit discount & scheme
+            // Per-unit discount & scheme
             decimal discountPerUnit = discountFlat > 0
                 ? discountFlat / quantity
                 : discountPer > 0
@@ -493,14 +493,16 @@ namespace NSRetail.Stock
                     ? Math.Round(grossCPWOT * (schemePer / 100), 4)
                     : 0;
 
-            // 👉 Net CP without tax (per unit)
+            // Net CP without tax (per unit)
             decimal netCPWOT = grossCPWOT - discountPerUnit - schemePerUnit;
 
             decimal cGST = 0.0M, sGST = 0.0M, iGST = 0.0M, cess = 0.0M;
             decimal appliedGSTPerUnit = 0.0M;
+            decimal netCPWT = netCPWOT;
 
             if (cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
             {
+                // GST breakup (based on net CP WOT)
                 if (!ObjStockEntry.CalculateIGST)
                 {
                     cGST = Math.Round(netCPWOT * gstInfo.CGST / 100, 4);
@@ -514,21 +516,21 @@ namespace NSRetail.Stock
                     cess = Math.Round(netCPWOT * gstInfo.CESS / 100, 4);
                     appliedGSTPerUnit = iGST + cess;
                 }
+
+                // IMPORTANT: Net CP WITH TAX using same formula as Gross
+                netCPWT = Math.Round(netCPWOT * (1 + gstInfo.TAXPercent), 4);
             }
 
-            // 👉 Net CP with tax (per unit)
-            decimal netCPWT = netCPWOT + appliedGSTPerUnit;
-
-            // 👉 Final totals
+            // Final totals
             decimal finalPriceWOTax = Math.Round(netCPWOT * quantity, 2);
             decimal finalPrice = Math.Round(netCPWT * quantity, 2);
             decimal appliedDiscount = Math.Round(discountPerUnit * quantity, 2);
             decimal appliedScheme = Math.Round(schemePerUnit * quantity, 2);
             decimal appliedGST = Math.Round(appliedGSTPerUnit * quantity, 2);
 
-            // 👉 Assign values
+            // Assign values
             txtNetCostPriceWOT.EditValue = Math.Round(netCPWOT, 4);
-            txtNetCostPriceWT.EditValue = Math.Round(netCPWT, 4);
+            txtNetCostPriceWT.EditValue = netCPWT;
 
             txtCGST.EditValue = Math.Round(cGST * quantity, 2);
             txtSGST.EditValue = Math.Round(sGST * quantity, 2);
@@ -537,9 +539,11 @@ namespace NSRetail.Stock
 
             txtTotalPriceWT.EditValue = totalPriceWT;
             txtTotalPriceWOT.EditValue = totalPriceWOT;
+
             txtAppliedDiscount.EditValue = appliedDiscount;
             txtAppliedScheme.EditValue = appliedScheme;
             txtAppliedGST.EditValue = appliedGST;
+
             txtFinalPriceWithOutTax.EditValue = finalPriceWOTax;
             txtFinalPrice.EditValue = finalPrice;
         }

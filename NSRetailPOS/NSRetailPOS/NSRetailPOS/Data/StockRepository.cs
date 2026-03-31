@@ -321,7 +321,6 @@ namespace NSRetailPOS.Data
             stockEntryDetail.SALEPRICE = dataTable.Rows[0]["SALEPRICE"];
             stockEntryDetail.QUANTITY = dataTable.Rows[0]["QUANTITY"];
             stockEntryDetail.WEIGHTINKGS = dataTable.Rows[0]["WEIGHTINKGS"];
-            stockEntryDetail.FreeQuantity = dataTable.Rows[0]["FREEQUANTITY"];
             stockEntryDetail.DiscountFlat = dataTable.Rows[0]["DISCOUNTFLAT"];
             stockEntryDetail.DiscountPercentage = dataTable.Rows[0]["DISCOUNTPERCENTAGE"];
             stockEntryDetail.SchemePercentage = dataTable.Rows[0]["SCHEMEPERCENTAGE"];
