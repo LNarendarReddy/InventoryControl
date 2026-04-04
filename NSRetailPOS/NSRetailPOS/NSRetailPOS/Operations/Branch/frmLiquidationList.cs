@@ -22,6 +22,12 @@ namespace NSRetailPOS.Operations.Branch
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (gvExpenses.GetFocusedRowCellValue("STATUS").ToString() != "0")
+            {
+                XtraMessageBox.Show("Cannot edit approved\\rejected liquidations", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             Liquidation liquidation = new()
             {
                 Description = gvExpenses.GetFocusedRowCellValue("DESCRIPTION"),
@@ -81,7 +87,7 @@ namespace NSRetailPOS.Operations.Branch
 
         private void btnAddExpense_Click(object sender, EventArgs e)
         {
-            Liquidation liquidation = new Liquidation();
+            Liquidation liquidation = new();
             new frmLiquidation(liquidation).ShowDialog();
 
             if (liquidation.IsSave) RefreshList();
@@ -103,9 +109,32 @@ namespace NSRetailPOS.Operations.Branch
             RefreshList();
         }
 
-        private void btnViewImage_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void btnPrint_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            new frmImageViewer(new OperationsRepository().GetBranchExpenseImage(gvExpenses.GetFocusedRowCellValue("BRANCHEXPENSEID"))).ShowDialog();
+            if (gvExpenses.GetFocusedRowCellValue("STATUS").ToString() != "1")
+            {
+                XtraMessageBox.Show("Only approved liquidations can be printed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            string itemName = gvExpenses.GetFocusedRowCellValue("ITEMNAME").ToString();
+            string liquidationItemCode = gvExpenses.GetFocusedRowCellValue("LIQUIDATIONITEMCODE").ToString();
+            int qty = Convert.ToInt32(decimal.Parse(gvExpenses.GetFocusedRowCellValue("QTYORWGHTINKGS").ToString()));
+
+            if (XtraMessageBox.Show($"Do you want to print {qty} sticker(s) of {itemName} ({liquidationItemCode})"
+                , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                != DialogResult.Yes)
+            {
+                return;
+            }
+
+            Utility.PrintBarCode(
+                liquidationItemCode, itemName
+                , gvExpenses.GetFocusedRowCellValue("LIQUIDATIONSALEPRICE").ToString()
+                , qty, gvExpenses.GetFocusedRowCellValue("MRP")
+                , string.Empty, string.Empty
+                , gvExpenses.GetFocusedRowCellValue("CATEGORYID")
+                , gvExpenses.GetFocusedRowCellValue("ISOPENITEM"));
         }
     }
 }

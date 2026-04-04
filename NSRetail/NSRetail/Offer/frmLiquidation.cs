@@ -127,6 +127,7 @@ namespace NSRetail
                 , { "ToDate", DateTime.Now.ToString("yyyy-MM-dd") }
                 , { "ShowStock", true }
                 , { "ShowAll", false }
+                , { "ShowCostPrice", true }
             };
 
             DataTable liquidationData = new ReportRepository().GetReportData("USP_R_LIQUIDATION", parameters);

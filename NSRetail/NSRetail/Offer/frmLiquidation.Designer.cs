@@ -82,6 +82,9 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStatusReason.Properties)).BeginInit();
@@ -221,7 +224,10 @@
             this.gridColumn15,
             this.gridColumn16,
             this.gridColumn17,
-            this.gridColumn18});
+            this.gridColumn18,
+            this.gridColumn20,
+            this.gridColumn21,
+            this.gridColumn22});
             this.gvLiquidation.GridControl = this.gcLiquidation;
             this.gvLiquidation.Name = "gvLiquidation";
             this.gvLiquidation.OptionsBehavior.ReadOnly = true;
@@ -697,6 +703,30 @@
             this.emptySpaceItem4.Size = new System.Drawing.Size(512, 54);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // gridColumn20
+            // 
+            this.gridColumn20.Caption = "Cost price WOT";
+            this.gridColumn20.FieldName = "COSTPRICEWOT";
+            this.gridColumn20.Name = "gridColumn20";
+            this.gridColumn20.Visible = true;
+            this.gridColumn20.VisibleIndex = 19;
+            // 
+            // gridColumn21
+            // 
+            this.gridColumn21.Caption = "Margin WOT";
+            this.gridColumn21.FieldName = "MARGIN";
+            this.gridColumn21.Name = "gridColumn21";
+            this.gridColumn21.Visible = true;
+            this.gridColumn21.VisibleIndex = 20;
+            // 
+            // gridColumn22
+            // 
+            this.gridColumn22.Caption = "Margin WOT %";
+            this.gridColumn22.FieldName = "MARGINPER";
+            this.gridColumn22.Name = "gridColumn22";
+            this.gridColumn22.Visible = true;
+            this.gridColumn22.VisibleIndex = 21;
+            // 
             // frmLiquidation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -794,5 +824,8 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
         private DevExpress.Utils.ToolTipController toolTipController1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
     }
 }

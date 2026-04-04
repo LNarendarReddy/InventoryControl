@@ -117,7 +117,7 @@ namespace NSRetailPOS
                     ReportText(isOverlayShown, $"{entityName} down sync started");
                      DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(
                         entityName,
-                        forceFullSync ? "01-01-1900" : entityRow["SYNCDATE"]
+                        forceFullSync ? new DateTime(1900, 01, 01) : entityRow["SYNCDATE"]
                         , branchInfo.BranchID);
                     ReportText(isOverlayShown, $"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
                     if (dtEntityWiseData?.Rows.Count > 0)

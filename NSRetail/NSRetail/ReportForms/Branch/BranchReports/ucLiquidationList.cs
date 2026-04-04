@@ -27,7 +27,12 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "APPROVEDBY", "Approved by" }
                 , { "APPROVEDDATE", "Approved Date" }
                 , { "RUNNINGSALE", "Running sale" }
+                , { "LIQUIDATIONSALEPRICE", "Liq. sale price" }
                 , { "STOCKPROCESSED", "Processed" }
+                , { "STATUSCHANGEDBY", "Status changed by" }
+                , { "STATUSCHANGEDDATE", "Status changed Date" }
+                , { "MARGIN", "Margin WOT" }
+                , { "MARGINPER", "Margin WOT %" }
             };
 
             MandatoryFields = new List<BaseEdit>() { cmbBranch, dtFromDate, dtToDate };
@@ -47,6 +52,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "FromDate", dtFromDate.EditValue }
                 , { "ToDate", dtToDate.EditValue }
                 , { "ShowStock", true }
+                , { "ShowCostPrice", true }
             };
 
             return GetReportData("USP_R_LIQUIDATION", parameters);

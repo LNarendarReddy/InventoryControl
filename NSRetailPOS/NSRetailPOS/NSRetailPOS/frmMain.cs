@@ -169,10 +169,15 @@ namespace NSRetailPOS
                     return;
                 }
                 DataTable dtPrices = itemRepository.GetMRPList(sluItemCode.EditValue);
+                DataView dvPrices = new DataView(dtPrices);
+
+                if (txtItemCode.EditValue.ToString().StartsWith("V"))
+                    dvPrices.RowFilter = "ISSTOCKAVAILABLE = 'Yes'";
+
                 drSelectedPrice = null;
-                if (dtPrices.Rows.Count > 1)
+                if (dvPrices.Count > 1)
                 {
-                    frmMRPSelection mRPSelection = new frmMRPSelection(dtPrices, txtItemCode.EditValue, sluItemCode.Text)
+                    frmMRPSelection mRPSelection = new frmMRPSelection(dvPrices.ToTable(), txtItemCode.EditValue, sluItemCode.Text)
                     { StartPosition = FormStartPosition.CenterScreen };
                     mRPSelection.ShowDialog();
                     if (!mRPSelection._IsSave)
@@ -183,11 +188,11 @@ namespace NSRetailPOS
 
                     drSelectedPrice = (mRPSelection.drSelected as DataRowView)?.Row;
                 }
-                else if (dtPrices.Rows.Count == 1)
+                else if (dvPrices.Count == 1)
                 {
-                    drSelectedPrice = dtPrices.Rows[0];
+                    drSelectedPrice = dvPrices[0].Row;
                 }
-                else if (dtPrices.Rows.Count == 0)
+                else if (dtPrices.DefaultView.Count == 0)
                 {
                     XtraMessageBox.Show("Item code or stock not found for the scan. please contact administrator");
                     ClearItemData();
