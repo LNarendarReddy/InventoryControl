@@ -53,7 +53,7 @@ namespace NSRetail.ReportForms.Wareshouse.Profitability
                 , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
             };
 
-            SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate);
+            SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, includeFinYearly: true);
             SetFocusControls(cmbPeriodicity, dtpToDate, specificColumnHeaders);
         }
 

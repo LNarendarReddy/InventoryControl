@@ -1,4 +1,7 @@
-﻿v3.6.3
+﻿v3.6.5
+-- Added Financial year in profitability report
+
+v3.6.3
 -- Stock entry issue fixes
 
 v3.6.1

@@ -793,7 +793,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@StatusDescription", statusDescription);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     cmd.ExecuteNonQuery();
-                    transaction.Commit();
+                    transaction.Commit();                    
                 }
             }
             catch (Exception ex)
