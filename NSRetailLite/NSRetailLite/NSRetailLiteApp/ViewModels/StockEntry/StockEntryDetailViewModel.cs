@@ -50,10 +50,10 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
             if (StockEntryDetailModel.IsOpenItem && StockEntryDetailModel.WeightInKGs <= 0)
                 errors.Add("Weight cannot be empty");
 
-            if (!StockEntryDetailModel.IsOpenItem && StockEntryDetailModel.Quantity > 9999)
-                errors.Add("Quantity cannot be more than 4 digits");
+            if (!StockEntryDetailModel.IsOpenItem && StockEntryDetailModel.Quantity > 99999)
+                errors.Add("Quantity cannot be more than 5 digits");
 
-            if (StockEntryDetailModel.IsOpenItem && StockEntryDetailModel.WeightInKGs >= 10000)
+            if (StockEntryDetailModel.IsOpenItem && StockEntryDetailModel.WeightInKGs > 9999.99)
                 errors.Add("Weight cannot be more than 4 digits");
 
             if (errors.Any())
