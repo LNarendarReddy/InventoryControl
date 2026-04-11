@@ -92,11 +92,14 @@ namespace DataAccess
 
         public Item SaveItemCode(Item itemObj)
         {
+            SqlTransaction transaction = null;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.Sqlconn();
+                    transaction = cmd.Connection.BeginTransaction();
+                    cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_ITEMCODE]";
                     cmd.Parameters.AddWithValue("@ItemCodeID", itemObj.ItemCodeID);
@@ -135,10 +138,12 @@ namespace DataAccess
 
                     itemObj.ItemCodeID = itemCodeID;
                     itemObj.ItemID = objReturn.ToString().Split(',')[1];
+                    transaction?.Commit();
                 }
             }
             catch (Exception ex)
             {
+                transaction?.Rollback();
                 throw ex;
             }
             return itemObj;
