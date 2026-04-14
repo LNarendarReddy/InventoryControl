@@ -63,84 +63,152 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             return GetReportData("USP_R_SUPPLIERRETURNS", parameters);
         }
 
-        public override void ActionExecute(string buttonText, DataRow drFocusedRow)
+        public override void ActionExecute(string buttonText, DataRow dr)
         {
+            if (dr == null) return;
+
+            var id = dr["SUPPLIERRETURNSID"];
+            var status = dr["STATUS"]?.ToString();
+            var dealerName = dr["DEALERNAME"]?.ToString();
+            var acceptedValue = dr["ACCEPTEDVALUE"];
+
             switch (buttonText)
             {
                 case "View Items":
-                    DataTable dt = new SupplierRepository()
-                        .GetSupplierReturnsforCN(drFocusedRow["SUPPLIERRETURNSID"]);
-
-                    frmViewReturnItems obj = new frmViewReturnItems(
-                            dt,
-                            drFocusedRow["DEALERNAME"],
-                            drFocusedRow["SUPPLIERRETURNSID"],
-                            drFocusedRow["STATUS"],
-                            drFocusedRow["ACCEPTEDVALUE"]
-                        );
-
-                    obj.ShowInTaskbar = false;
-                    obj.StartPosition = FormStartPosition.CenterScreen;
-                    obj.IconOptions.ShowIcon = false;
-                    obj.ShowDialog();
-
-                    (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
+                    ViewItems(id, dealerName, status, acceptedValue);
                     break;
+
                 case "Map Credit Note":
-                    frmMapCreditNote frm = new frmMapCreditNote(drFocusedRow["SUPPLIERRETURNSID"], "SR", drFocusedRow["DEALERNAME"].ToString());
-                    frm.StartPosition = FormStartPosition.CenterParent;
-                    frm.ShowDialog();
-                    (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
+                    if (IsWriteOff(status, "Cannot map credit notes to write off debit note."))
+                        return;
+
+                    MapCreditNote(id, dealerName);
                     break;
+
                 case "Print Purchase Return":
-                    if(drFocusedRow["STATUS"].Equals("Draft"))
-                    {
-                        XtraMessageBox.Show("Cannot print for Draft status.", "NS Retail", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                    SupplierHelper.ShowSupplierDebitNote(drFocusedRow["SUPPLIERRETURNSID"], true);
+                    if (ValidatePrint(status)) return;
+                    SupplierHelper.ShowSupplierDebitNote(id, true);
                     break;
+
                 case "Print Damage Expiry":
-                    if (drFocusedRow["STATUS"].Equals("Draft"))
-                    {
-                        XtraMessageBox.Show("Cannot print for Draft status.", "NS Retail", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                    SupplierHelper.ShowSupplierDebitNote(drFocusedRow["SUPPLIERRETURNSID"], false);
+                    if (ValidatePrint(status)) return;
+                    SupplierHelper.ShowSupplierDebitNote(id, false);
                     break;
+
                 case "View Credit Note Mapping":
-                    DataTable dtCN = new CreditNoteRepository().GetMappedCreditNotes(drFocusedRow["SUPPLIERRETURNSID"], "SR");
-                    frmViewCreditNoteMapping frmCNM = new frmViewCreditNoteMapping(dtCN, "SR");
-                    frmCNM.ShowInTaskbar = false;
-                    frmCNM.StartPosition = FormStartPosition.CenterScreen;
-                    frmCNM.IconOptions.ShowIcon = false;
-                    frmCNM.ShowDialog();
-                    break;
-                case "Discard":
-                    if (drFocusedRow["STATUS"].Equals("Partially Closed") || drFocusedRow["STATUS"].Equals("Closed"))
-                    {
-                        MessageBox.Show("Cannot discard debit note which closed.", "NS Retail", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (IsWriteOff(status, "Cannot view credit note mappings of write off debit note."))
                         return;
-                    }
-                    try
-                    {
-                        if (drFocusedRow["SUPPLIERRETURNSID"] == null || drFocusedRow["SUPPLIERRETURNSID"].Equals(0))
-                            return;
-                        var result = XtraMessageBox.Show("Are sure want to discard return sheet?",
-                            "Confirmation!",
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (!Convert.ToString(result).ToLower().Equals("yes"))
-                            return;
-                        new SupplierRepository().DiscardSupplierReturns(drFocusedRow["SUPPLIERRETURNSID"], Utility.UserID);
-                        XtraMessageBox.Show("Return sheet discarded successfully.", "Information!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
-                    }
-                    catch (Exception ex)
-                    {
-                        ErrorManagement.ErrorMgmt.ShowError(ex);
-                    }
+
+                    ViewCreditNoteMapping(id);
+                    break;
+
+                case "Discard":
+                    DiscardReturn(dr, id, status);
                     break;
             }
+        }
+        private void ViewItems(object id, string dealerName, string status, object acceptedValue)
+        {
+            var dt = new SupplierRepository().GetSupplierReturnsforCN(id);
+
+            var form = new frmViewReturnItems(dt, dealerName, id, status, acceptedValue)
+            {
+                ShowInTaskbar = false,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+
+            form.IconOptions.ShowIcon = false;
+            form.ShowDialog();
+
+            RefreshParent();
+        }
+        private void MapCreditNote(object id, string dealerName)
+        {
+            var frm = new frmMapCreditNote(id, "SR", dealerName)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+
+            frm.ShowDialog();
+            RefreshParent();
+        }
+        private void ViewCreditNoteMapping(object id)
+        {
+            var dt = new CreditNoteRepository().GetMappedCreditNotes(id, "SR");
+
+            var frm = new frmViewCreditNoteMapping(dt, "SR")
+            {
+                ShowInTaskbar = false,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+
+            frm.IconOptions.ShowIcon = false;
+            frm.ShowDialog();
+        }
+        private void DiscardReturn(DataRow dr, object id, string status)
+        {
+            if (status == "Partially Closed" || status == "Closed" || status == "Write Off")
+            {
+                ShowInfo("Cannot discard debit note which closed or write off.");
+                return;
+            }
+
+            if (id == null || id.Equals(0)) return;
+
+            var result = XtraMessageBox.Show(
+                "Are sure want to discard return sheet?",
+                "Confirmation!",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes) return;
+
+            try
+            {
+                new SupplierRepository().DiscardSupplierReturns(id, Utility.UserID);
+                ShowInfo("Return sheet discarded successfully.");
+                RefreshParent();
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
+        }
+        private bool IsWriteOff(string status, string message)
+        {
+            if (status == "Write Off")
+            {
+                ShowInfo(message);
+                return true;
+            }
+            return false;
+        }
+
+        private bool ValidatePrint(string status)
+        {
+            if (status == "Write Off")
+            {
+                ShowInfo("Cannot print of write off debit note.");
+                return true;
+            }
+
+            if (status == "Draft")
+            {
+                ShowInfo("Cannot print for Draft status.");
+                return true;
+            }
+
+            return false;
+        }
+
+        private void ShowInfo(string message)
+        {
+            XtraMessageBox.Show(message, "NS Retail", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void RefreshParent()
+        {
+            (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
         }
     }
 }

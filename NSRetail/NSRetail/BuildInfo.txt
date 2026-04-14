@@ -1,4 +1,7 @@
-﻿v3.6.8
+﻿v3.6.9
+-- Added write off stock in the form of debit note to Victiry Supplier
+
+v3.6.8
 -- Added Createdby and CreatedDate columns in stock entry items
 
 v3.6.7

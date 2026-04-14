@@ -39,16 +39,13 @@ namespace NSRetail
             switch (status)
             {
                 case "Open":
-                    gcReturnstatus.Visible = true;
-                    gcReturnstatus.OptionsColumn.AllowEdit = true;
-                    break;
-
                 case "Partially Closed":
                     gcReturnstatus.Visible = true;
                     gcReturnstatus.OptionsColumn.AllowEdit = true;
                     break;
 
                 case "Closed":
+                case "Write Off":
                     DisableAllEditing();
                     break;
             }
@@ -57,6 +54,7 @@ namespace NSRetail
         {
             gcReturnstatus.OptionsColumn.AllowEdit = false;
             btnCloseDN.Enabled = false;
+            btnWriteOffStock.Enabled = false;
         }
         private void frmViewReturnItems_KeyDown(object sender, KeyEventArgs e)
         {
@@ -135,11 +133,8 @@ namespace NSRetail
             return true;
         }
 
-        private void btnCloseDN_Click(object sender, EventArgs e)
+        private void CloseDebitNote(object status)
         {
-            if (!ValidateCreditNoteForClose())
-                return;
-
             if (gvSupplierReturns.RowCount == 0 ||
                 XtraMessageBox.Show("Are you sure want to continue?", "Confirm",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
@@ -151,7 +146,7 @@ namespace NSRetail
                     SupplierReturnsID,
                     Utility.UserID,
                     (gcSupplierReturns.DataSource as DataTable).Copy(),
-                    3 // Status ID for Closed
+                    status // Status ID for Closed
                 );
 
                 Close();
@@ -160,6 +155,18 @@ namespace NSRetail
             {
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
+        }
+
+        private void btnCloseDN_Click(object sender, EventArgs e)
+        {
+            if (!ValidateCreditNoteForClose())
+                return;
+            CloseDebitNote(3);
+        }
+
+        private void btbWriteOffStock_Click(object sender, EventArgs e)
+        {
+            CloseDebitNote(4);
         }
     }
 }

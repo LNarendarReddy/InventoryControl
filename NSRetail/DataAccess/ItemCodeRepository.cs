@@ -77,6 +77,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_ITEMCODEBYCATEGORY]";
                     cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
+
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
