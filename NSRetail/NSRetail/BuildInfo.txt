@@ -1,4 +1,10 @@
-﻿v3.6.5
+﻿v3.6.7
+-- Disabled GST on Item price
+
+v3.6.6
+-- Enabled GST on Item price
+
+v3.6.5
 -- Added Financial year in profitability report
 
 v3.6.3
