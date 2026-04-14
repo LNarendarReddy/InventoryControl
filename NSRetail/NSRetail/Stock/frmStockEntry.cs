@@ -277,6 +277,8 @@ namespace NSRetail.Stock
                     gvStockEntry.SetRowCellValue(rowhandle, "HSNCODE", ObjStockEntryDetail.HSNCODE);
                     gvStockEntry.SetRowCellValue(rowhandle, "GSTCODE", ObjStockEntryDetail.GSTCODE);
                     gvStockEntry.SetRowCellValue(rowhandle, "ISFREEITEM", ObjStockEntryDetail.IsFreeItem);
+                    gvStockEntry.SetRowCellValue(rowhandle, "CREATEDBY", ObjStockEntryDetail.CreatedBy);
+                    gvStockEntry.SetRowCellValue(rowhandle, "ISFREEITEM", ObjStockEntryDetail.CreatedDate);
                     gvStockEntry.FocusedRowHandle = rowhandle;
                 }
                 else
@@ -466,6 +468,8 @@ namespace NSRetail.Stock
             ObjStockEntry.dtStockEntry.Columns.Add("HSNCODE", typeof(string));
             ObjStockEntry.dtStockEntry.Columns.Add("GSTCODE", typeof(string));
             ObjStockEntry.dtStockEntry.Columns.Add("ISFREEITEM", typeof(bool));
+            ObjStockEntry.dtStockEntry.Columns.Add("CREATEDBY", typeof(string));
+            ObjStockEntry.dtStockEntry.Columns.Add("CREATEDDATE", typeof(DateTime));
             gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
             gvStockEntry.BestFitColumns();
 

@@ -30,18 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStockEntry));
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnLoadDraft = new DevExpress.XtraEditors.SimpleButton();
             this.btnDraftInvoice = new DevExpress.XtraEditors.SimpleButton();
@@ -88,6 +88,11 @@
             this.gridColumn33 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn34 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn35 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn36 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn37 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn38 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn39 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveInvoice = new DevExpress.XtraEditors.SimpleButton();
             this.cmbSupplier = new DevExpress.XtraEditors.LookUpEdit();
@@ -106,9 +111,7 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.dxValidationProvider2 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn36 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn37 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dtpCreatedDate = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTIN.Properties)).BeginInit();
@@ -135,6 +138,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpCreatedDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpCreatedDate.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -259,10 +264,10 @@
             this.txtInvoiceNumber.Size = new System.Drawing.Size(463, 20);
             this.txtInvoiceNumber.StyleController = this.layoutControl1;
             this.txtInvoiceNumber.TabIndex = 2;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtInvoiceNumber, conditionValidationRule1);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Mandatory";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtInvoiceNumber, conditionValidationRule3);
             // 
             // gcStockEntry
             // 
@@ -273,7 +278,8 @@
             this.gcStockEntry.Name = "gcStockEntry";
             this.gcStockEntry.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDelete,
-            this.btnEdit});
+            this.btnEdit,
+            this.dtpCreatedDate});
             this.gcStockEntry.Size = new System.Drawing.Size(1121, 453);
             this.gcStockEntry.TabIndex = 11;
             this.gcStockEntry.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -324,7 +330,9 @@
             this.gridColumn35,
             this.gridColumn25,
             this.gridColumn36,
-            this.gridColumn37});
+            this.gridColumn37,
+            this.gridColumn38,
+            this.gridColumn39});
             this.gvStockEntry.DetailHeight = 404;
             this.gvStockEntry.GridControl = this.gcStockEntry;
             this.gvStockEntry.IndicatorWidth = 40;
@@ -338,6 +346,7 @@
             // gridColumn6
             // 
             this.gridColumn6.Caption = "STOCKENTRYDETAILID";
+            this.gridColumn6.ColumnEdit = this.dtpCreatedDate;
             this.gridColumn6.FieldName = "STOCKENTRYDETAILID";
             this.gridColumn6.MinWidth = 23;
             this.gridColumn6.Name = "gridColumn6";
@@ -645,9 +654,9 @@
             // btnEdit
             // 
             this.btnEdit.AutoHeight = false;
-            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
+            editorButtonImageOptions3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions3.SvgImage")));
             this.btnEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_ButtonClick);
@@ -667,9 +676,9 @@
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
+            editorButtonImageOptions4.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions4.SvgImage")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -708,6 +717,39 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "FINALPRICEWOTAX", "{0:0.##}")});
             this.gridColumn35.Visible = true;
             this.gridColumn35.VisibleIndex = 16;
+            // 
+            // gridColumn25
+            // 
+            this.gridColumn25.Caption = "HSNCODE";
+            this.gridColumn25.FieldName = "HSNCODE";
+            this.gridColumn25.Name = "gridColumn25";
+            // 
+            // gridColumn36
+            // 
+            this.gridColumn36.Caption = "GSTCODE";
+            this.gridColumn36.FieldName = "GSTCODE";
+            this.gridColumn36.Name = "gridColumn36";
+            // 
+            // gridColumn37
+            // 
+            this.gridColumn37.Caption = "ISFREEITEM";
+            this.gridColumn37.FieldName = "ISFREEITEM";
+            this.gridColumn37.Name = "gridColumn37";
+            // 
+            // gridColumn38
+            // 
+            this.gridColumn38.Caption = "Created By";
+            this.gridColumn38.FieldName = "CREATEDBY";
+            this.gridColumn38.Name = "gridColumn38";
+            this.gridColumn38.OptionsColumn.AllowEdit = false;
+            // 
+            // gridColumn39
+            // 
+            this.gridColumn39.Caption = "Created Date";
+            this.gridColumn39.ColumnEdit = this.dtpCreatedDate;
+            this.gridColumn39.FieldName = "CREATEDDATE";
+            this.gridColumn39.Name = "gridColumn39";
+            this.gridColumn39.OptionsColumn.AllowEdit = false;
             // 
             // btnCancel
             // 
@@ -753,10 +795,10 @@
             this.cmbSupplier.Size = new System.Drawing.Size(463, 20);
             this.cmbSupplier.StyleController = this.layoutControl1;
             this.cmbSupplier.TabIndex = 0;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbSupplier, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbSupplier, conditionValidationRule1);
             this.cmbSupplier.EditValueChanged += new System.EventHandler(this.cmbSupplier_EditValueChanged);
             // 
             // Root
@@ -914,23 +956,19 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(448, 30);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // gridColumn25
+            // dtpCreatedDate
             // 
-            this.gridColumn25.Caption = "HSNCODE";
-            this.gridColumn25.FieldName = "HSNCODE";
-            this.gridColumn25.Name = "gridColumn25";
-            // 
-            // gridColumn36
-            // 
-            this.gridColumn36.Caption = "GSTCODE";
-            this.gridColumn36.FieldName = "GSTCODE";
-            this.gridColumn36.Name = "gridColumn36";
-            // 
-            // gridColumn37
-            // 
-            this.gridColumn37.Caption = "ISFREEITEM";
-            this.gridColumn37.FieldName = "ISFREEITEM";
-            this.gridColumn37.Name = "gridColumn37";
+            this.dtpCreatedDate.AutoHeight = false;
+            this.dtpCreatedDate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpCreatedDate.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpCreatedDate.DisplayFormat.FormatString = "G";
+            this.dtpCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtpCreatedDate.EditFormat.FormatString = "G";
+            this.dtpCreatedDate.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtpCreatedDate.MaskSettings.Set("mask", "G");
+            this.dtpCreatedDate.Name = "dtpCreatedDate";
             // 
             // frmStockEntry
             // 
@@ -971,6 +1009,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpCreatedDate.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpCreatedDate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1044,5 +1084,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn36;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn37;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn38;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn39;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dtpCreatedDate;
     }
 }

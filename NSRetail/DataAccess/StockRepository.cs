@@ -822,6 +822,8 @@ namespace DataAccess
             stockEntryDetail.HSNCODE = dataTable.Rows[0]["HSNCODE"];
             stockEntryDetail.GSTCODE = dataTable.Rows[0]["GSTCODE"];
             stockEntryDetail.IsFreeItem = Convert.ToBoolean(dataTable.Rows[0]["ISFREEITEM"]);
+            stockEntryDetail.CreatedBy = Convert.ToString(dataTable.Rows[0]["CREATEDBY"]);
+            stockEntryDetail.CreatedDate = Convert.ToDateTime(dataTable.Rows[0]["CREATEDDATE"]);
         }
         
         public DataTable GetCurrentStock(object FROMBRANCHID,object TOBRANCHID,object ITEMCODEID,object PARENTITEMID)
