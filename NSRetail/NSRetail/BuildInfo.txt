@@ -1,4 +1,7 @@
-﻿v3.6.7
+﻿v3.6.8
+-- Added Createdby and CreatedDate columns in stock entry items
+
+v3.6.7
 -- Disabled GST on Item price
 
 v3.6.6
