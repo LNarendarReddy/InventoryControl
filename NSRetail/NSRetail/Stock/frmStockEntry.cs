@@ -278,7 +278,7 @@ namespace NSRetail.Stock
                     gvStockEntry.SetRowCellValue(rowhandle, "GSTCODE", ObjStockEntryDetail.GSTCODE);
                     gvStockEntry.SetRowCellValue(rowhandle, "ISFREEITEM", ObjStockEntryDetail.IsFreeItem);
                     gvStockEntry.SetRowCellValue(rowhandle, "CREATEDBY", ObjStockEntryDetail.CreatedBy);
-                    gvStockEntry.SetRowCellValue(rowhandle, "ISFREEITEM", ObjStockEntryDetail.CreatedDate);
+                    gvStockEntry.SetRowCellValue(rowhandle, "CREATEDDATE", ObjStockEntryDetail.CreatedDate);
                     gvStockEntry.FocusedRowHandle = rowhandle;
                 }
                 else
