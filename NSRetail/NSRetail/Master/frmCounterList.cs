@@ -66,11 +66,13 @@ namespace NSRetail.Master
                     ObjCounter.COUNTERNAME = gvCounter.GetFocusedRowCellValue("COUNTERNAME");
                     ObjCounter.BRANCHID = gvCounter.GetFocusedRowCellValue("BRANCHID");
                     ObjCounter.ISMOBILECOUNTER = gvCounter.GetFocusedRowCellValue("ISMOBILECOUNTER");
-                    ObjCounter.StoreID = gvCounter.GetFocusedRowCellValue("STOREID");
-                    ObjCounter.ClientID = gvCounter.GetFocusedRowCellValue("CLIENTID");
-                    frmCounter obj = new frmCounter(ObjCounter);
-                    obj.ShowInTaskbar = false;
-                    obj.StartPosition = FormStartPosition.CenterScreen;
+                    ObjCounter.PAYMENTGATEWAYINFOID = gvCounter.GetFocusedRowCellValue("PAYMENTGATEWAYINFOID");
+                    ObjCounter.PAYMENTGATEWAYADDITIONALCONFIG = gvCounter.GetFocusedRowCellValue("PAYMENTGATEWAYADDITIONALCONFIG");
+                    frmCounter obj = new frmCounter(ObjCounter)
+                    {
+                        ShowInTaskbar = false,
+                        StartPosition = FormStartPosition.CenterScreen
+                    };
                     obj.IconOptions.ShowIcon = false;
                     obj.ShowDialog();
                     if (ObjCounter.IsSave)

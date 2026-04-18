@@ -33,6 +33,11 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 , { "STATUSCHANGEDDATE", "Status changed Date" }
                 , { "MARGIN", "Margin WOT" }
                 , { "MARGINPER", "Margin WOT %" }
+                , { "REFUNDPATHTEXT", "Refund Path"}
+                , { "LIQUIDATIONREASONTEXT", "Liq. Reason"}
+                , { "MANUFACTUREDATE", "Mfg. Date"}
+                , { "EXPIRYDATE", "Exp. Date"}
+                , { "EXPIRINGINDAYS", "Exp. in days"}
             };
 
             MandatoryFields = new List<BaseEdit>() { cmbBranch, dtFromDate, dtToDate };

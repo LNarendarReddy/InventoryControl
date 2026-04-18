@@ -81,14 +81,19 @@ namespace Entity
         public object VendorCode { get; set; }
     }
 
-    public class Counter:EntityBase
+    public class Counter : EntityBase
     {
         public object COUNTERID { get; set; }
         public object COUNTERNAME { get; set; }
         public object BRANCHID { get; set; }
         public object ISMOBILECOUNTER {  get; set; }
-        public object StoreID { get; set; }
-        public object ClientID { get; set; }
+        public object PAYMENTGATEWAYINFOID { get; set; }
+        public object PAYMENTGATEWAYADDITIONALCONFIG { get; set; }
+
+        /// <summary>
+        /// Placeholder object
+        /// </summary>
+        public IPaymentGateway PaymentGatewayInstance { get; set; }
     }
     public class MOP : EntityBase
     {

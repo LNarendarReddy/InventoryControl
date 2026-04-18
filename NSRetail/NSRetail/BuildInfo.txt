@@ -1,4 +1,8 @@
-﻿v3.7.0
+﻿v3.7.1
+-- Liquidation changes
+-- BharatPe integration support in Branch Counter
+
+v3.7.0
 -- Issue fix in Stock entry refresh grid function
 
 v3.6.9
