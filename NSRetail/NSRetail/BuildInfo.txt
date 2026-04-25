@@ -1,4 +1,12 @@
-﻿v3.7.1
+﻿v3.7.2
+-- Introduced "UnDelete" option for Dealers to restore deleted dealers
+-- Added Status column and filter for active dealers in Dealer List
+-- Context menu for undeleting inactive dealers with grid refresh and focus on restored dealer
+-- Implemented CancelWriteOff method in SupplierRepository with transaction handling
+-- Added "Cancel Write Off" action in Supplier Returns List with user confirmation
+-- Concurrent update detection in Branch Refund to notify users of data change
+
+v3.7.1
 -- Liquidation changes
 -- BharatPe integration support in Branch Counter
 
@@ -92,7 +100,7 @@ v3.4.9 — Supplier & SKU Mapping Enhancements
 v3.4.8 — Supplier Returns Enhancements
   -- Renamed all Credit Note terminology to Debit Note across the module.
   -- Implemented the new Debit Note print format as per the approved template.
-  -- Added a Print option in the Supplier Returns List and updated "Generate CN" to "Map Credit Note".
+  -- Added a Print option in the Supplier Returns List and updated "Generate CN" to "Map Credit Note".`
   -- Added a new “Return Quantity” column in the Supplier Items list for more accurate returns.
   -- Updated Debit Note statuses to use standard terms: Draft, Open, Partially Closed, Closed (replacing old CN-initiated/generated labels).
 
