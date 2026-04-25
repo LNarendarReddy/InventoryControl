@@ -747,5 +747,30 @@ namespace DataAccess
             }
             return dt;
         }
+
+        public void CancelWriteOff(object id, int userID)
+        {
+            SqlTransaction sqlTransaction = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    sqlTransaction = SQLCon.Sqlconn().BeginTransaction();
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.Transaction = sqlTransaction;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_CU_SR_CANCEL_WRITE_OFF]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERRETURNSID", id);
+                    cmd.Parameters.AddWithValue("@USERID", userID);
+                    cmd.ExecuteNonQuery();
+                    sqlTransaction?.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                sqlTransaction?.Rollback();
+                throw new Exception("Error while cancelling write off", ex);
+            }
+        }
     }
 }

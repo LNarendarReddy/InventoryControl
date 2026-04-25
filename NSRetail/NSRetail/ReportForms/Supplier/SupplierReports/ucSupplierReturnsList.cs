@@ -38,7 +38,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 { "View Credit Note Mapping", "6F3C2D9A-8B4E-4C6F-A1D9-2F7C9B3E4A12" },
                 { "Print Purchase Return", "9B101F20-1E08-44A0-BE65-A8FA5D197574" },
                 { "Print Damage Expiry", "C4A8F6E2-1B9D-4A3F-9C7E-6D2B5A8F0E41" },
-                { "Discard", "8F3C9A6E-4C21-4F3D-B6E2-9C7A4B1D5F92" }
+                { "Discard", "8F3C9A6E-4C21-4F3D-B6E2-9C7A4B1D5F92" },
+                { "Cancel Write Off", "8F3C2A17-6D4E-4B91-A5F8-9C72E1D6B4FA" }
             };
 
             cmbSupplier.Properties.DataSource = new MasterRepository().GetDealer(true);
@@ -105,8 +106,43 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 case "Discard":
                     DiscardReturn(dr, id, status);
                     break;
+
+                case "Cancel Write Off":
+                    CancelWriteOff(dr, id, status);
+                    break;
             }
         }
+
+        private void CancelWriteOff(DataRow dr, object id, string status)
+        {
+            if (status != "Write Off")
+            {
+                ShowInfo("Cannot cancel write off status of closed debit notes.");
+                return;
+            }
+
+            if (id == null || id.Equals(0)) return;
+
+            var result = XtraMessageBox.Show(
+                "Are sure want to cancel write off?",
+                "Confirmation!",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes) return;
+
+            try
+            {
+                new SupplierRepository().CancelWriteOff(id, Utility.UserID);
+                ShowInfo("Write off cancelled successfully.");
+                RefreshParent();
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
+        }
+
         private void ViewItems(object id, string dealerName, string status, object acceptedValue)
         {
             var dt = new SupplierRepository().GetSupplierReturnsforCN(id);
