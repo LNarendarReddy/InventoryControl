@@ -1,5 +1,7 @@
 ﻿using DataAccess;
+using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
 using Entity;
 using ErrorManagement;
 using NSRetail.Utilities;
@@ -35,6 +37,7 @@ namespace NSRetail.Master
 
                 AccessUtility.SetStatusByAccess(btnNew);
                 AccessUtility.SetStatusByAccess(gcEdit, gcDelete);
+                gvDealer.Columns["STATUS"].FilterInfo = new ColumnFilterInfo("STATUS = 'ACTIVE'");
             }
             catch (Exception ex)
             {
@@ -125,6 +128,42 @@ namespace NSRetail.Master
         private void btnViewReport_Click(object sender, EventArgs e)
         {
             gcDealer.ShowRibbonPrintPreview();
+        }
+
+        private void gvDealer_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
+        {
+            if (e.HitInfo.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
+            {
+                if (gvDealer.GetFocusedRowCellValue("STATUS").Equals("In-Active"))
+                    e.Menu.Items.Add(new DXMenuItem("UnDelete", new EventHandler(On_Click)));
+
+            }
+        }
+
+        void On_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvDealer.FocusedRowHandle >= 0)
+                {
+                    object dealerID = gvDealer.GetFocusedRowCellValue("DEALERID");
+                    new MasterRepository().UnDeleteDealer(dealerID, Utility.UserID);
+                    XtraMessageBox.Show("Dealer undeleted successfully");
+                    gcDealer.DataSource = objMasterRep.GetDealer();
+                    gvDealer.BestFitColumns();
+                    
+                    int rowHandle = gvDealer.LocateByValue("DEALERID", dealerID);
+                    if (rowHandle >= 0)
+                    {
+                        gvDealer.FocusedRowHandle = rowHandle;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                ErrorMgmt.Errorlog.Error(ex);
+            }
         }
     }
 }

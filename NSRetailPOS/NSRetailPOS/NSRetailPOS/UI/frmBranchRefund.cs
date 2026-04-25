@@ -326,6 +326,17 @@ namespace NSRetailPOS.UI
 
             CheckBRefundID();
 
+            int currentrowcount = dtRefund.Rows.Count;
+            InitialLoad();
+            int newcount = dtRefund.Rows.Count;
+            if (newcount != currentrowcount)
+            {
+                // need to show a message to user that data has changed as another user has updated the data, please verify and save again
+                XtraMessageBox.Show("Data has been updated by another user, please verify the data and save again", "Data Updated",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             object NewBRefundNumber = new RefundRepository().FinishBRefund(BRID);
             rptBRefund rpt = new(dtRefund);
             rpt.Parameters["Address"].Value = Utility.branchInfo.BranchAddress;

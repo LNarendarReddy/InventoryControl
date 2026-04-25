@@ -310,6 +310,28 @@ namespace DataAccess
             }
             return ObjDealer;
         }
+        
+        public void UnDeleteDealer(object dealerID, object userId)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_UD_DEALER]";
+                    cmd.Parameters.AddWithValue("@DEALERID", dealerID);
+                    cmd.Parameters.AddWithValue("@USERID", userId);
+                    int result = cmd.ExecuteNonQuery();
+                    if(result == 0)throw new Exception("Error While UnDeleteing Dealer");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public Counter SaveCounter(Counter ObjCounter)
         {
             int CounterID = 0;
