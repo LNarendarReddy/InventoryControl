@@ -28,6 +28,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "STATUS", "Status" }
                 , { "SUPPLIERINDENTNO", "Indent #" }
                 , { "MOBILENO", "Mobile #" }
+                , { "SUPPLIERINDENTTYPE", "Indent Type" }
             };
 
             ContextmenuItems = new Dictionary<string, string>

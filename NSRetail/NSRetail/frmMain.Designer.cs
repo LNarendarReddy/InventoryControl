@@ -100,6 +100,7 @@
             this.bbiChangeConection = new DevExpress.XtraBars.BarButtonItem();
             this.puSwitchConnection = new DevExpress.XtraBars.PopupMenu(this.components);
             this.btnCreditNote = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiLiquidation = new DevExpress.XtraBars.BarButtonItem();
             this.rpOperations = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -112,6 +113,7 @@
             this.rpOffers = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup18 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpAdmin = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -130,8 +132,6 @@
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup18 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.bbiLiquidation = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puFinYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puSwitchConnection)).BeginInit();
@@ -216,7 +216,7 @@
             this.btnCreditNote,
             this.bbiLiquidation});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 85;
+            this.ribbonControl1.MaxItemId = 86;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -892,6 +892,15 @@
             this.btnCreditNote.Name = "btnCreditNote";
             this.btnCreditNote.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCreditNote_ItemClick);
             // 
+            // bbiLiquidation
+            // 
+            resources.ApplyResources(this.bbiLiquidation, "bbiLiquidation");
+            this.bbiLiquidation.Id = 84;
+            this.bbiLiquidation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiLiquidation.ImageOptions.SvgImage")));
+            this.bbiLiquidation.Name = "bbiLiquidation";
+            this.bbiLiquidation.Tag = "E0BC4301-79EA-4E24-B407-4CBA824C274B";
+            this.bbiLiquidation.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiLiquidation_ItemClick);
+            // 
             // rpOperations
             // 
             this.rpOperations.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -999,6 +1008,12 @@
             this.ribbonPageGroup7.ItemLinks.Add(this.btnDealList);
             this.ribbonPageGroup7.Name = "ribbonPageGroup7";
             resources.ApplyResources(this.ribbonPageGroup7, "ribbonPageGroup7");
+            // 
+            // ribbonPageGroup18
+            // 
+            this.ribbonPageGroup18.ItemLinks.Add(this.bbiLiquidation);
+            this.ribbonPageGroup18.Name = "ribbonPageGroup18";
+            resources.ApplyResources(this.ribbonPageGroup18, "ribbonPageGroup18");
             // 
             // rpAdmin
             // 
@@ -1136,21 +1151,6 @@
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             resources.ApplyResources(this.ribbonPage2, "ribbonPage2");
-            // 
-            // ribbonPageGroup18
-            // 
-            this.ribbonPageGroup18.ItemLinks.Add(this.bbiLiquidation);
-            this.ribbonPageGroup18.Name = "ribbonPageGroup18";
-            resources.ApplyResources(this.ribbonPageGroup18, "ribbonPageGroup18");
-            // 
-            // bbiLiquidation
-            // 
-            resources.ApplyResources(this.bbiLiquidation, "bbiLiquidation");
-            this.bbiLiquidation.Id = 84;
-            this.bbiLiquidation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
-            this.bbiLiquidation.Name = "bbiLiquidation";
-            this.bbiLiquidation.Tag = "E0BC4301-79EA-4E24-B407-4CBA824C274B";
-            this.bbiLiquidation.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiLiquidation_ItemClick);
             // 
             // frmMain
             // 

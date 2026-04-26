@@ -124,7 +124,7 @@ namespace DataAccess
             return dsReportData;
         }
 
-        public void SaveSupplierIndent(DealerIndent dealerIndent)
+        public void SaveSupplierIndent(DealerIndent dealerIndent, string indentType)
         {
             List<string> allowedColumns = new List<string>()
             {
@@ -155,6 +155,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@dtDetail", dealerIndent.dtSupplierIndent);
                     cmd.Parameters.AddWithValue("@ISAPPROVED", dealerIndent.IsApproved);
                     cmd.Parameters.AddWithValue("@MOBILENO", dealerIndent.MobileNo);
+                    cmd.Parameters.AddWithValue("@IndentType", indentType);
 
                     var columnsToRemove = dealerIndent.dtSupplierIndent.Columns.Cast<DataColumn>().Select(x => x.ColumnName).Where(x => !allowedColumns.Contains(x)).ToList();
                     columnsToRemove.ForEach(x => dealerIndent.dtSupplierIndent.Columns.Remove(x));

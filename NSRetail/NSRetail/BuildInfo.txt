@@ -1,4 +1,7 @@
-﻿v3.7.2
+﻿V3.7.3
+-- Supplier Indent By MBQ save 
+
+v3.7.2
 -- Introduced "UnDelete" option for Dealers to restore deleted dealers
 -- Added Status column and filter for active dealers in Dealer List
 -- Context menu for undeleting inactive dealers with grid refresh and focus on restored dealer

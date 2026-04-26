@@ -100,7 +100,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     UserID = Utility.UserID,
                     dtSupplierIndent = DotMatrixPrintHelper.GetDataTableWYSIWYG(ResultGridView, true)
                 };
-                new ReportRepository().SaveSupplierIndent(dealerIndent);
+                new ReportRepository().SaveSupplierIndent(dealerIndent, "Indent (Original)");
                 XtraMessageBox.Show("Indent saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 resultsGrid.DataSource = null;
             }

@@ -63,7 +63,10 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
         {
             try
             {
-                if (!ValidateMandatoryFields()) return;
+                if (!ValidateMandatoryFields()
+                    || XtraMessageBox.Show("Are you sure you want to save?"
+                        , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) 
+                    return;
 
                 if (ResultGridView?.RowCount == 0)
                 { 
@@ -71,17 +74,24 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     return; 
                 }
 
-                GridControl resultsGrid = ResultGrid;
+                DataTable dtDetails = DotMatrixPrintHelper.GetDataTableWYSIWYG(ResultGridView, true).Copy();
+                dtDetails.Columns["RecentMRP"].ColumnName = "MRP";
+                dtDetails.Columns["RecentCostPriceWT"].ColumnName = "COSTPRICEWT";
+                dtDetails.Columns["WHStock"].ColumnName = "WAREHOUSEQUANTITY";
+                dtDetails.Columns["MBQDesiredQuantity"].ColumnName = "REQUIREDBRANCHSTOCK";
+                dtDetails.Columns["CalculatedIndent"].ColumnName = "REQUIREDITEMINDENT";
+                dtDetails.Columns["DesiredIndent"].ColumnName = "DESIREDINDENT";                                
+
                 DealerIndent dealerIndent = new DealerIndent
                 {
                     supplierID = cmbDealer.EditValue,
                     CategoryID = cmbCategory.EditValue,
                     UserID = Utility.UserID,
-                    dtSupplierIndent = DotMatrixPrintHelper.GetDataTableWYSIWYG(ResultGridView, true)
+                    dtSupplierIndent = dtDetails
                 };
-                new ReportRepository().SaveSupplierIndent(dealerIndent);
+                new ReportRepository().SaveSupplierIndent(dealerIndent, "Indent By MBQ");
                 XtraMessageBox.Show("Indent saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                resultsGrid.DataSource = null;
+                ResultGrid.DataSource = null;
             }
             catch (Exception ex)
             {

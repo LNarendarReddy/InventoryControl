@@ -141,7 +141,7 @@ namespace NSRetail
         {
             dealerIndent.IsApproved = status;
             dealerIndent.MobileNo = txtMobileNo.EditValue;
-            new ReportRepository().SaveSupplierIndent(dealerIndent);
+            new ReportRepository().SaveSupplierIndent(dealerIndent, string.Empty);
             dealerIndent.IsSave = true;
             XtraMessageBox.Show("Saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
