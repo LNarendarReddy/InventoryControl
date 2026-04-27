@@ -283,6 +283,11 @@ namespace DataAccess
 
             return dtDealer;
         }
+
+        public DataTable GetDealerForMeta()
+        {
+            return new ReportRepository().GetReportData("USP_R_DEALER_METADATA");
+        }
         public Dealer DeleteDealer (Dealer ObjDealer)
         {
             int DealerID = 0;

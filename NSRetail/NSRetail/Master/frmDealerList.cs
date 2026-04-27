@@ -33,7 +33,7 @@ namespace NSRetail.Master
                 cmbState.DataSource = objMasterRep.GetStates();
                 cmbState.DisplayMember = "STATENAME";
                 cmbState.ValueMember = "STATEID";
-                gcDealer.DataSource = objMasterRep.GetDealer();
+                gcDealer.DataSource = objMasterRep.GetDealerForMeta();
 
                 AccessUtility.SetStatusByAccess(btnNew);
                 AccessUtility.SetStatusByAccess(gcEdit, gcDelete);
