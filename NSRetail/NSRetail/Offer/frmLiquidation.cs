@@ -115,6 +115,8 @@ namespace NSRetail
             txtValue.Enabled = enabled;
             luBranch.Enabled = enabled;
 
+            AccessUtility.SetStatusByAccess(btnSave, btnApprove, btnReject);
+
             gvLiquidation.LayoutChanged();
         }
 
