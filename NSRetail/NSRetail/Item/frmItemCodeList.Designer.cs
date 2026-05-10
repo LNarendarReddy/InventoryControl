@@ -63,6 +63,8 @@
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -88,8 +90,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemList)).BeginInit();
@@ -280,7 +281,8 @@
             this.gridColumn22,
             this.gridColumn23,
             this.gridColumn24,
-            this.gridColumn25});
+            this.gridColumn25,
+            this.gridColumn26});
             this.gvItemList.DetailHeight = 404;
             this.gvItemList.GridControl = this.gcItemList;
             this.gvItemList.Name = "gvItemList";
@@ -491,6 +493,18 @@
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.Visible = true;
             this.gridColumn23.VisibleIndex = 9;
+            // 
+            // gridColumn24
+            // 
+            this.gridColumn24.Caption = "Seasonality";
+            this.gridColumn24.FieldName = "SEASONALITY";
+            this.gridColumn24.Name = "gridColumn24";
+            // 
+            // gridColumn25
+            // 
+            this.gridColumn25.Caption = "Refund path";
+            this.gridColumn25.FieldName = "REFUNDPATH";
+            this.gridColumn25.Name = "gridColumn25";
             // 
             // Root
             // 
@@ -776,17 +790,11 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 685);
             // 
-            // gridColumn24
+            // gridColumn26
             // 
-            this.gridColumn24.Caption = "Seasonality";
-            this.gridColumn24.FieldName = "SEASONALITY";
-            this.gridColumn24.Name = "gridColumn24";
-            // 
-            // gridColumn25
-            // 
-            this.gridColumn25.Caption = "Refund path";
-            this.gridColumn25.FieldName = "REFUNDPATH";
-            this.gridColumn25.Name = "gridColumn25";
+            this.gridColumn26.Caption = "Is DSD";
+            this.gridColumn26.FieldName = "ISDSD";
+            this.gridColumn26.Name = "gridColumn26";
             // 
             // frmItemCodeList
             // 
@@ -888,5 +896,6 @@
         private DevExpress.XtraBars.BarButtonItem btnMinimumBaseQuantity;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
     }
 }

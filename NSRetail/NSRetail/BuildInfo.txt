@@ -1,4 +1,13 @@
-﻿V3.7.3
+﻿
+V3.7.5
+-- Generate supplier indent from Branch indent IsDSD
+-- issue fix in branch counter create\edit w.r.t Payment gateway settings
+
+V3.7.4
+-- 
+
+
+V3.7.3
 -- Supplier Indent By MBQ save 
 
 v3.7.2

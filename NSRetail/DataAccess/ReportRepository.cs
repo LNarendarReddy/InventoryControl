@@ -131,7 +131,7 @@ namespace DataAccess
                 "SUPPLIERINDENTDETAILID"
                 , "SUPPLIERINDENTID"
                 , "ITEMID"
-                , "WAREHOUSEQUANTITY"
+                , "BRANCHQUANTITY"
                 , "REQUIREDBRANCHSTOCK"
                 , "REQUIREDITEMINDENT"
                 , "DESIREDINDENT"
@@ -141,6 +141,18 @@ namespace DataAccess
 
             try
             {
+                var columnsToRemove = dealerIndent.dtSupplierIndent.Columns.Cast<DataColumn>().Select(x => x.ColumnName).Where(x => !allowedColumns.Contains(x)).ToList();
+                columnsToRemove.ForEach(x => dealerIndent.dtSupplierIndent.Columns.Remove(x));
+
+                dealerIndent.dtSupplierIndent.Columns["SUPPLIERINDENTDETAILID"].SetOrdinal(0);
+                dealerIndent.dtSupplierIndent.Columns["ITEMID"].SetOrdinal(1);
+                dealerIndent.dtSupplierIndent.Columns["MRP"].SetOrdinal(2);
+                dealerIndent.dtSupplierIndent.Columns["COSTPRICEWT"].SetOrdinal(3);
+                dealerIndent.dtSupplierIndent.Columns["BRANCHQUANTITY"].SetOrdinal(4);
+                dealerIndent.dtSupplierIndent.Columns["REQUIREDBRANCHSTOCK"].SetOrdinal(5);
+                dealerIndent.dtSupplierIndent.Columns["REQUIREDITEMINDENT"].SetOrdinal(6);
+                dealerIndent.dtSupplierIndent.Columns["DESIREDINDENT"].SetOrdinal(7);
+
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = SQLCon.Sqlconn();
@@ -156,9 +168,8 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@ISAPPROVED", dealerIndent.IsApproved);
                     cmd.Parameters.AddWithValue("@MOBILENO", dealerIndent.MobileNo);
                     cmd.Parameters.AddWithValue("@IndentType", indentType);
-
-                    var columnsToRemove = dealerIndent.dtSupplierIndent.Columns.Cast<DataColumn>().Select(x => x.ColumnName).Where(x => !allowedColumns.Contains(x)).ToList();
-                    columnsToRemove.ForEach(x => dealerIndent.dtSupplierIndent.Columns.Remove(x));
+                    cmd.Parameters.AddWithValue("@BranchID", dealerIndent.BranchID);
+                    
                     int RowsAfftected = cmd.ExecuteNonQuery();
 
                     if (RowsAfftected <= 0)

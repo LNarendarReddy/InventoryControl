@@ -18,6 +18,9 @@ namespace Entity
         public int IsApproved { get; set; }
         public object IndentNo { get; set; }
         public object MobileNo { get; set; }
+        public object BranchID { get; set; }
+        public object BranchName { get; set; }
+        public object BranchAddress { get; set; }
         public DataTable dtSupplierIndent { get; set; }
     }
 

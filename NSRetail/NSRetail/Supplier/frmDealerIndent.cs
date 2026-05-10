@@ -30,6 +30,7 @@ namespace NSRetail
             txtIndentDays.EditValue = dealerIndent.IndentDays;
             txtSafetyDays.EditValue = dealerIndent.SafetyDays;
             gcSupplierIndent.DataSource = dealerIndent.dtSupplierIndent;
+            txtBranch.EditValue = dealerIndent.BranchName;
 
             sluItemCode.Properties.DataSource = Utility.GetItemCodeList();
             sluItemCode.Properties.ValueMember = "ITEMCODEID";

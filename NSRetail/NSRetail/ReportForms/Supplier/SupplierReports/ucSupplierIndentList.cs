@@ -37,6 +37,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 { "Print && Export", "93DE3B46-DA10-4E5F-8A42-47AE2B390C15" }
             };
 
+            HiddenColumns = new List<string> { "ADDRESS" };
+
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
             
@@ -68,6 +70,9 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     dealerIndent.IndentNo = drFocusedRow["SUPPLIERINDENTNO"];
                     dealerIndent.MobileNo = drFocusedRow["MOBILENO"];
                     dealerIndent.Status = drFocusedRow["STATUS"];
+                    dealerIndent.BranchID = drFocusedRow["BRANCHID"];
+                    dealerIndent.BranchName = drFocusedRow["BRANCHNAME"];
+                    dealerIndent.BranchAddress = drFocusedRow["ADDRESS"];
                     dealerIndent.UserID = Utility.UserID;
                     dealerIndent.dtSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
                     frmDealerIndent frmDealerIndentobj = new frmDealerIndent(dealerIndent,
@@ -97,6 +102,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     rpt.Parameters["MobileNo"].Value = drFocusedRow["MOBILENO"];
                     rpt.Parameters["UserName"].Value = drFocusedRow["CREATEDBY"];
                     rpt.Parameters["IndentStatus"].Value = drFocusedRow["STATUS"];
+                    rpt.Parameters["BranchName"].Value = drFocusedRow["BRANCHNAME"];
+                    rpt.Parameters["BranchAddress"].Value = drFocusedRow["ADDRESS"];
                     rpt.ShowRibbonPreview();
                     break;
             }

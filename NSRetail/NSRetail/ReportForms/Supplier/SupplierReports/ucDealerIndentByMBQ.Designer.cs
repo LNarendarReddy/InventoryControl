@@ -99,7 +99,6 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERNAME", "Dealer Name")});
             this.cmbDealer.Properties.NullText = "";
             this.cmbDealer.Size = new System.Drawing.Size(533, 22);
-            this.cmbDealer.StyleController = this.layoutControl1;
             this.cmbDealer.TabIndex = 0;
             // 
             // Root

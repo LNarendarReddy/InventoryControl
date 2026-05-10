@@ -36,6 +36,9 @@
             this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow5 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow6 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -72,6 +75,8 @@
             this.IndentNo = new DevExpress.XtraReports.Parameters.Parameter();
             this.MobileNo = new DevExpress.XtraReports.Parameters.Parameter();
             this.IndentStatus = new DevExpress.XtraReports.Parameters.Parameter();
+            this.BranchName = new DevExpress.XtraReports.Parameters.Parameter();
+            this.BranchAddress = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -82,7 +87,7 @@
             // 
             this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable4});
-            this.TopMargin.HeightF = 95F;
+            this.TopMargin.HeightF = 122.3333F;
             this.TopMargin.Name = "TopMargin";
             // 
             // xrTable4
@@ -94,8 +99,9 @@
             this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow4,
             this.xrTableRow5,
+            this.xrTableRow7,
             this.xrTableRow6});
-            this.xrTable4.SizeF = new System.Drawing.SizeF(777F, 82F);
+            this.xrTable4.SizeF = new System.Drawing.SizeF(777F, 109.3333F);
             this.xrTable4.StylePriority.UseFont = false;
             this.xrTable4.StylePriority.UseTextAlignment = false;
             this.xrTable4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
@@ -133,6 +139,42 @@
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.Text = "xrTableCell11";
             this.xrTableCell11.Weight = 1D;
+            // 
+            // xrTableRow7
+            // 
+            this.xrTableRow7.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrTableRow7.BorderWidth = 1F;
+            this.xrTableRow7.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell18,
+            this.xrTableCell19});
+            this.xrTableRow7.Name = "xrTableRow7";
+            this.xrTableRow7.StylePriority.UseBorders = false;
+            this.xrTableRow7.StylePriority.UseBorderWidth = false;
+            this.xrTableRow7.Weight = 1D;
+            // 
+            // xrTableCell18
+            // 
+            this.xrTableCell18.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'Destination: \' + ?BranchName")});
+            this.xrTableCell18.Multiline = true;
+            this.xrTableCell18.Name = "xrTableCell18";
+            this.xrTableCell18.StylePriority.UseTextAlignment = false;
+            this.xrTableCell18.Text = "xrTableCell18";
+            this.xrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell18.Weight = 0.35655296846092743D;
+            // 
+            // xrTableCell19
+            // 
+            this.xrTableCell19.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?BranchAddress")});
+            this.xrTableCell19.Font = new System.Drawing.Font("Arial", 10F);
+            this.xrTableCell19.Multiline = true;
+            this.xrTableCell19.Name = "xrTableCell19";
+            this.xrTableCell19.StylePriority.UseFont = false;
+            this.xrTableCell19.StylePriority.UseTextAlignment = false;
+            this.xrTableCell19.Text = "xrTableCell19";
+            this.xrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrTableCell19.Weight = 0.64344703153907246D;
             // 
             // xrTableRow6
             // 
@@ -468,6 +510,20 @@
             this.IndentStatus.Name = "IndentStatus";
             this.IndentStatus.Visible = false;
             // 
+            // BranchName
+            // 
+            this.BranchName.Description = "BranchName";
+            this.BranchName.Name = "BranchName";
+            this.BranchName.ValueInfo = "0";
+            this.BranchName.Visible = false;
+            // 
+            // BranchAddress
+            // 
+            this.BranchAddress.Description = "BranchAddress";
+            this.BranchAddress.Name = "BranchAddress";
+            this.BranchAddress.ValueInfo = "0";
+            this.BranchAddress.Visible = false;
+            // 
             // rptDealerIndent
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -477,7 +533,7 @@
             this.ReportFooter,
             this.PageHeader});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(25, 25, 95, 50);
+            this.Margins = new System.Drawing.Printing.Margins(25, 25, 122, 50);
             this.PageHeight = 1169;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
@@ -489,7 +545,9 @@
             this.CreatedDate,
             this.IndentNo,
             this.MobileNo,
-            this.IndentStatus});
+            this.IndentStatus,
+            this.BranchName,
+            this.BranchAddress});
             this.Version = "21.2";
             this.Watermark.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("rptDealerIndent.Watermark.ImageSource"));
             this.Watermark.ImageTransparency = 240;
@@ -521,30 +579,35 @@
         private DevExpress.XtraReports.UI.XRTable xrTable3;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow3;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
-        private DevExpress.XtraReports.UI.XRTable xrTable4;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow4;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow5;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
         private DevExpress.XtraReports.Parameters.Parameter SupplierName;
         private DevExpress.XtraReports.Parameters.Parameter UserName;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow6;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
         private DevExpress.XtraReports.Parameters.Parameter IndentID;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell13;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell14;
         private DevExpress.XtraReports.Parameters.Parameter ApprovedUser;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
         private DevExpress.XtraReports.Parameters.Parameter CreatedDate;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell16;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell17;
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
         private DevExpress.XtraReports.Parameters.Parameter IndentNo;
         private DevExpress.XtraReports.Parameters.Parameter MobileNo;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell21;
         private DevExpress.XtraReports.Parameters.Parameter IndentStatus;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo2;
+        private DevExpress.XtraReports.UI.XRTable xrTable4;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow4;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow5;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow7;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow6;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell21;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
+        private DevExpress.XtraReports.Parameters.Parameter BranchName;
+        private DevExpress.XtraReports.Parameters.Parameter BranchAddress;
     }
 }

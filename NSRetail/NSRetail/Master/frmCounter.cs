@@ -25,7 +25,10 @@ namespace NSRetail.Master
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";
             cmbBranch.Properties.ValueMember = "BRANCHID";
 
-            luPaymentGateway.Properties.DataSource = objDataRep.GetDataTable("USP_R_PAYMENTGATEWAYINFO", true);
+            DataTable dtPaymentGateways = objDataRep.GetDataTable("USP_R_PAYMENTGATEWAYINFO", true);
+            DataRow drEmpty = dtPaymentGateways.NewRow();
+            dtPaymentGateways.Rows.InsertAt(drEmpty, 0);
+            luPaymentGateway.Properties.DataSource = dtPaymentGateways;
             luPaymentGateway.Properties.DisplayMember = "PAYMENTGATEWAYINFONAME";
             luPaymentGateway.Properties.ValueMember = "PAYMENTGATEWAYINFOID";
 
