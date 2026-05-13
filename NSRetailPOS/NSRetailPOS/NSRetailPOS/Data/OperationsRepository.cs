@@ -59,6 +59,9 @@ namespace NSRetailPOS.Data
                 cmd.Parameters.AddWithValue("@BranchID", Utility.branchInfo.BranchID);
                 cmd.Parameters.AddWithValue("@Description", liquidation.Description);
                 cmd.Parameters.AddWithValue("@QtyOrWghtInKGs", liquidation.QtyOrWghtInKGs);
+                cmd.Parameters.AddWithValue("@ReasonID", liquidation.ReasonID);
+                cmd.Parameters.AddWithValue("@MfgDate", liquidation.ManufactureDate);
+                cmd.Parameters.AddWithValue("@ExpiryDate", liquidation.ExpiryDate);
                 cmd.Parameters.AddWithValue("@UserID", Utility.loginInfo.UserID);
                 object procValue = cmd.ExecuteScalar();
 

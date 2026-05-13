@@ -39,6 +39,10 @@ namespace NSRetailPOS.Operations.Branch
 
             Utility.SetGridFormatting(sluItemCodeView);
 
+            luReason.Properties.DataSource = new ReportRepository().GetReportData("USP_R_LIQUIDATIONREASON");
+            luReason.Properties.DisplayMember = "LIQUIDATIONREASONTEXT";
+            luReason.Properties.ValueMember = "LIQUIDATIONREASONID";
+
             int.TryParse(_liquidation?.LiquidationID?.ToString(), out _liquidationId);
             Text = _liquidationId > 0 ? $"Edit Liquidation - {_liquidation.ItemCode}" : "Add liquidation";
 
@@ -58,6 +62,10 @@ namespace NSRetailPOS.Operations.Branch
             drSelectedPrice = dtItemPrice.NewRow();
             drSelectedPrice["ITEMPRICEID"] = _liquidation.ItemPriceID;
 
+            luReason.EditValue = _liquidation.ReasonID;
+            dtpExpiryDate.EditValue = _liquidation.ExpiryDate;
+            dtpMfgDate.EditValue = _liquidation.ManufactureDate;
+
             _isLoading = false;
         }
 
@@ -75,6 +83,9 @@ namespace NSRetailPOS.Operations.Branch
             _liquidation.Description = txtNotes.EditValue;
             _liquidation.QtyOrWghtInKGs = txtQty.EditValue;
             _liquidation.ItemPriceID = drSelectedPrice["ITEMPRICEID"];
+            _liquidation.ReasonID = luReason.EditValue;
+            _liquidation.ManufactureDate = dtpMfgDate.EditValue;
+            _liquidation.ExpiryDate = dtpExpiryDate.EditValue;
 
             try
             {
@@ -91,6 +102,10 @@ namespace NSRetailPOS.Operations.Branch
                 _liquidation = new();
                 txtQty.EditValue = 1;
                 txtNotes.EditValue = null;
+                luReason.EditValue = null;
+                dtpMfgDate.EditValue = null;
+                dtpExpiryDate.EditValue = null;
+
                 sluItemCode.Focus();
                 sluItemCode.ShowPopup();
             }
@@ -148,6 +163,10 @@ namespace NSRetailPOS.Operations.Branch
                 txtQty.EditValue = 1;
                 txtQty.Focus();
                 txtQty.SelectAll();
+
+                luReason.EditValue = null;
+                dtpMfgDate.EditValue = null;
+                dtpExpiryDate.EditValue = null;
             }
             catch (Exception ex)
             {

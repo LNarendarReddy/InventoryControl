@@ -174,5 +174,11 @@ namespace NSRetailPOS.Entity
         public object QtyOrWghtInKGs { get; set; }
 
         public object Status { get; set; }
+
+        public object ReasonID { get; set; }
+
+        public object ManufactureDate { get; set; }
+
+        public object ExpiryDate { get; set; }
     }
 }

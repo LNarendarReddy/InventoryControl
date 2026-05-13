@@ -39,7 +39,10 @@ namespace NSRetailPOS.Operations.Branch
                 SKUCode = gvExpenses.GetFocusedRowCellValue("SKUCODE"),
                 ItemName = gvExpenses.GetFocusedRowCellValue("ITEMNAME"),
                 MRP = gvExpenses.GetFocusedRowCellValue("MRP"),
-                SalePrice = gvExpenses.GetFocusedRowCellValue("SALEPRICE")
+                SalePrice = gvExpenses.GetFocusedRowCellValue("SALEPRICE"),
+                ReasonID = gvExpenses.GetFocusedRowCellValue("LIQUIDATIONREASONID"),
+                ManufactureDate = gvExpenses.GetFocusedRowCellValue("MANUFACTUREDATE"),
+                ExpiryDate = gvExpenses.GetFocusedRowCellValue("EXPIRYDATE")
             };
 
             new frmLiquidation(liquidation).ShowDialog();
