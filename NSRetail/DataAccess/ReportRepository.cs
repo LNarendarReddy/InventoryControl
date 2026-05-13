@@ -131,7 +131,7 @@ namespace DataAccess
                 "SUPPLIERINDENTDETAILID"
                 , "SUPPLIERINDENTID"
                 , "ITEMID"
-                , "BRANCHQUANTITY"
+                , "BranchQuantity"
                 , "REQUIREDBRANCHSTOCK"
                 , "REQUIREDITEMINDENT"
                 , "DESIREDINDENT"
@@ -148,7 +148,7 @@ namespace DataAccess
                 dealerIndent.dtSupplierIndent.Columns["ITEMID"].SetOrdinal(1);
                 dealerIndent.dtSupplierIndent.Columns["MRP"].SetOrdinal(2);
                 dealerIndent.dtSupplierIndent.Columns["COSTPRICEWT"].SetOrdinal(3);
-                dealerIndent.dtSupplierIndent.Columns["BRANCHQUANTITY"].SetOrdinal(4);
+                dealerIndent.dtSupplierIndent.Columns["BranchQuantity"].SetOrdinal(4);
                 dealerIndent.dtSupplierIndent.Columns["REQUIREDBRANCHSTOCK"].SetOrdinal(5);
                 dealerIndent.dtSupplierIndent.Columns["REQUIREDITEMINDENT"].SetOrdinal(6);
                 dealerIndent.dtSupplierIndent.Columns["DESIREDINDENT"].SetOrdinal(7);

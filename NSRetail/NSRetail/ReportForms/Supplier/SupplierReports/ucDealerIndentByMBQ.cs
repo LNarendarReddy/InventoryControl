@@ -77,7 +77,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 DataTable dtDetails = DotMatrixPrintHelper.GetDataTableWYSIWYG(ResultGridView, true).Copy();
                 dtDetails.Columns["RecentMRP"].ColumnName = "MRP";
                 dtDetails.Columns["RecentCostPriceWT"].ColumnName = "COSTPRICEWT";
-                dtDetails.Columns["WHStock"].ColumnName = "WAREHOUSEQUANTITY";
+                //dtDetails.Columns["WHStock"].ColumnName = "WAREHOUSEQUANTITY";
                 dtDetails.Columns["MBQDesiredQuantity"].ColumnName = "REQUIREDBRANCHSTOCK";
                 dtDetails.Columns["CalculatedIndent"].ColumnName = "REQUIREDITEMINDENT";
                 dtDetails.Columns["DesiredIndent"].ColumnName = "DESIREDINDENT";                                
