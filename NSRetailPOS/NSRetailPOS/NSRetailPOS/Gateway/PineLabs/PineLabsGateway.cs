@@ -20,7 +20,7 @@ namespace NSRetailPOS.Gateway.PineLabs
         public const string CancelAPI = "CancelTransaction";
         private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
-        public override string GatewayTpye => "PineLabs";
+        public override string GatewayType => "PineLabs";
 
         public int PaymentGatewayID { get; }
         public string AdditionalSettings { get; }
@@ -219,7 +219,7 @@ namespace NSRetailPOS.Gateway.PineLabs
             return completedTransactionData;
         }
 
-        protected override IPaymentRequest GetPaymentRequest(params object[] parameters)
+        protected IPaymentRequest GetPaymentRequest(params object[] parameters)
         {
             PaymentRequest paymentRequest = new PaymentRequest();
             CopyValues(paymentRequest);

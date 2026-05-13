@@ -17,7 +17,7 @@ namespace NSRetailPOS.Gateway
 
         public bool IsValid { get; protected set; }
 
-        public abstract string GatewayTpye { get; }
+        public abstract string GatewayType { get; }
 
         protected abstract Task<bool> CancelRequest(ICancelRequest cancelRequest);
 
@@ -25,7 +25,7 @@ namespace NSRetailPOS.Gateway
 
         protected abstract Task<IPaymentResponse> SendRequest(IPaymentRequest paymentRequest, CancellationToken token);
 
-        protected abstract IPaymentRequest GetPaymentRequest(params object[] parameters);
+        //protected abstract IPaymentRequest GetPaymentRequest(params object[] parameters);
 
         public abstract Task<CompletedTransactionData> ReceivePayment(int billID, int mopID, CancellationToken token, params object[] parameters);
 
@@ -43,6 +43,9 @@ namespace NSRetailPOS.Gateway
             {
                 case "PineLabs":
                     gateway = new PineLabsGateway(paymentGatewayID, baseSettings, additionalSettings);
+                    break;
+                case "BharathPe":
+                    gateway = new BharathPeGateway(paymentGatewayID, baseSettings, additionalSettings);
                     break;
             }
 

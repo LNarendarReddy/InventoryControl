@@ -197,6 +197,7 @@
     <Compile Include="Entity\Master.cs" />
     <Compile Include="Entity\StockDispatch.cs" />
     <Compile Include="Entity\StockEntity.cs" />
+    <Compile Include="Gateway\BharathPeGateway.cs" />
     <Compile Include="Gateway\PaymentGatewayBase.cs" />
     <Compile Include="Gateway\PineLabs\PineLabsGateway.cs" />
     <Compile Include="GoogleDriveRepository.cs" />
