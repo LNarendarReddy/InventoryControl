@@ -129,6 +129,7 @@ namespace NSRetail.Master
             // 
             // txtSetting2
             // 
+            this.txtSetting2.EnterMoveNextControl = true;
             this.txtSetting2.Location = new System.Drawing.Point(139, 177);
             this.txtSetting2.Name = "txtSetting2";
             this.txtSetting2.Size = new System.Drawing.Size(294, 22);
@@ -137,6 +138,7 @@ namespace NSRetail.Master
             // 
             // txtSetting1
             // 
+            this.txtSetting1.EnterMoveNextControl = true;
             this.txtSetting1.Location = new System.Drawing.Point(139, 143);
             this.txtSetting1.Name = "txtSetting1";
             this.txtSetting1.Size = new System.Drawing.Size(294, 22);
