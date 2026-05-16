@@ -1,4 +1,7 @@
 ﻿
+V3.7.6
+-- Minor issues in Supplier indent workflows because of IsDSD changes
+
 V3.7.5
 -- Generate supplier indent from Branch indent IsDSD
 -- issue fix in branch counter create\edit w.r.t Payment gateway settings

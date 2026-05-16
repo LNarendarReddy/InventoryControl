@@ -168,7 +168,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                     BranchID = cmbBranch.EditValue
                 };
 
-                dealerIndent.dtSupplierIndent.Columns["BRANCHSTOCK"].ColumnName = "BRANCHQUANTITY";
+                dealerIndent.dtSupplierIndent.Columns["BRANCHSTOCK"].ColumnName = "BranchQuantity";
                 dealerIndent.dtSupplierIndent.Columns["DesiredQuantity"].ColumnName = "REQUIREDBRANCHSTOCK";
                 dealerIndent.dtSupplierIndent.Columns["INDENTQUANTITY"].ColumnName = "REQUIREDITEMINDENT";
 
