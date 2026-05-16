@@ -70,26 +70,29 @@ namespace NSRetail.Master
                 ObjCounter.BRANCHID = cmbBranch.EditValue;
                 ObjCounter.UserID = Utility.UserID;
                 ObjCounter.ISMOBILECOUNTER = chkIsMobileCounter.EditValue;
-                ObjCounter.PAYMENTGATEWAYINFOID = luPaymentGateway.EditValue;
-
-                switch (luPaymentGateway.GetColumnValue("PAYMENTGATEWAYINFOTYPE").ToString().ToLower())
+                if (luPaymentGateway.EditValue != null)
                 {
-                    case "pinelabs":
-                        PineLabsPaymentGateway pineLabsPaymentGateway = new PineLabsPaymentGateway()
-                        {
-                            ClientID = txtSetting1.EditValue,
-                            StoreID = txtSetting2.EditValue
-                        };
-                        ObjCounter.PAYMENTGATEWAYADDITIONALCONFIG = JsonConvert.SerializeObject(pineLabsPaymentGateway);
-                        break;
-                    case "bharathpe":
-                        BharathPePaymentGateway bharathPePaymentGateway = new BharathPePaymentGateway()
-                        {
-                            UserName = txtSetting1.EditValue,
-                            Password = txtSetting2.EditValue
-                        };
-                        ObjCounter.PAYMENTGATEWAYADDITIONALCONFIG = JsonConvert.SerializeObject(bharathPePaymentGateway);
-                        break;
+                    ObjCounter.PAYMENTGATEWAYINFOID = luPaymentGateway.EditValue;
+
+                    switch (luPaymentGateway.GetColumnValue("PAYMENTGATEWAYINFOTYPE").ToString().ToLower())
+                    {
+                        case "pinelabs":
+                            PineLabsPaymentGateway pineLabsPaymentGateway = new PineLabsPaymentGateway()
+                            {
+                                ClientID = txtSetting1.EditValue,
+                                StoreID = txtSetting2.EditValue
+                            };
+                            ObjCounter.PAYMENTGATEWAYADDITIONALCONFIG = JsonConvert.SerializeObject(pineLabsPaymentGateway);
+                            break;
+                        case "bharathpe":
+                            BharathPePaymentGateway bharathPePaymentGateway = new BharathPePaymentGateway()
+                            {
+                                UserName = txtSetting1.EditValue,
+                                Password = txtSetting2.EditValue
+                            };
+                            ObjCounter.PAYMENTGATEWAYADDITIONALCONFIG = JsonConvert.SerializeObject(bharathPePaymentGateway);
+                            break;
+                    }
                 }
 
                 objMasterRep.SaveCounter(ObjCounter);
