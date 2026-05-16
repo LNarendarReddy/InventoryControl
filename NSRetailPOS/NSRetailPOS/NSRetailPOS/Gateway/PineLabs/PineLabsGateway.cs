@@ -241,6 +241,11 @@ namespace NSRetailPOS.Gateway.PineLabs
             target.StoreID = requestBase.StoreID;
             target.PaymentURL = requestBase.PaymentURL;
         }
+
+        public override Task<CompletedTransactionData> VerifyPayment(int billID, int mopID, params object[] parameters)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

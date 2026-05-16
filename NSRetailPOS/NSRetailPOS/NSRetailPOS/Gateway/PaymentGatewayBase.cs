@@ -1,8 +1,5 @@
 ﻿using NSRetailPOS.Gateway.PineLabs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,6 +25,8 @@ namespace NSRetailPOS.Gateway
         //protected abstract IPaymentRequest GetPaymentRequest(params object[] parameters);
 
         public abstract Task<CompletedTransactionData> ReceivePayment(int billID, int mopID, CancellationToken token, params object[] parameters);
+
+        public abstract Task<CompletedTransactionData> VerifyPayment(int billID, int mopID, params object[] parameters);
 
         public virtual CompletedTransactionData ForceReceivePayment(int billID, int mopID, params object[] parameters)
         {

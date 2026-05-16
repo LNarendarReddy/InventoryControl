@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraRichEdit.Model;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.Gateway;
@@ -121,7 +122,7 @@ namespace NSRetailPOS.UI
 
             Utility.SetGridFormatting(gvMOP);
 
-            btnAddMissingPayment.Enabled = Utility.PaymentGateway != null && Utility.loginInfo.RoleName.Equals("Store Admin");
+            //btnAddMissingPayment.Enabled = Utility.PaymentGateway != null && Utility.loginInfo.RoleName.Equals("Store Admin");
         }
 
         private void TxtPaymentValue_Leave(object sender, EventArgs e)
@@ -345,7 +346,9 @@ namespace NSRetailPOS.UI
 
         private void btnLinkPayment_Click(object sender, EventArgs e)
         {
-            frmAddMissingPayment frmAddMissingPayment = new(Convert.ToInt32(billObj.BillID), cardMopID, upiMopID);
+            frmAddMissingPayment frmAddMissingPayment = 
+                new(Convert.ToInt32(billObj.BillID), cardMopID, upiMopID, 
+                billObj.GatewayTransactionReferences.LastOrDefault());
             frmAddMissingPayment.ShowDialog();
 
             if (frmAddMissingPayment.DialogResult != DialogResult.OK) return;
@@ -495,6 +498,12 @@ namespace NSRetailPOS.UI
             EnableDisableReceives();
         }
 
+        private string GenerateTansactionReference()
+        {
+            string transactionReference = $"{billObj.BillNumber}-{billObj.GatewayTransactionReferences.Count + 1}";
+            billObj.GatewayTransactionReferences.Add(transactionReference);
+            return transactionReference;
+        }
         private async Task ReceiveAmount(int mopID, PaymentMode paymentMode, object amountObj)
         {
             if (!decimal.TryParse(amountObj.ToString(), out decimal amount) || amount == 0) return;
@@ -511,10 +520,17 @@ namespace NSRetailPOS.UI
             cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = cancellationTokenSource.Token;
 
-            CompletedTransactionData completedTransactionData = await Utility.PaymentGateway.ReceivePayment(
-                Convert.ToInt32(billObj.BillID), mopID, cancellationToken
-               , $"{billObj.BillNumber}-{billObj.CompletedTransactions.Count + 1}"
-               , 1, paymentMode, amount, Utility.loginInfo.UserID);
+            CompletedTransactionData completedTransactionData = await Utility.PaymentGateway.ReceivePayment
+                (
+                    Convert.ToInt32(billObj.BillID), 
+                    mopID, 
+                    cancellationToken,
+                    GenerateTansactionReference(), 
+                    1, 
+                    paymentMode, 
+                    amount, 
+                    Utility.loginInfo.UserID
+                );
 
             btnCancelRequest.Enabled = false;
             EnableAllControls();

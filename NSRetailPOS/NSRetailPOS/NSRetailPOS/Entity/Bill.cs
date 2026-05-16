@@ -43,10 +43,12 @@ namespace NSRetailPOS.Entity
         public object IsIGSTBill { get; set; }
 
         public List<CompletedTransactionData> CompletedTransactions { get; set; }
+        public List<string> GatewayTransactionReferences { get; set; }
 
         public Bill()
         {
-            CompletedTransactions = new List<CompletedTransactionData>();
+            CompletedTransactions = [];
+            GatewayTransactionReferences = [];
         }
 
         public object Clone()
