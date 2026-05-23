@@ -73,7 +73,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     dealerIndent.BranchID = drFocusedRow["BRANCHID"];
                     dealerIndent.BranchName = drFocusedRow["BRANCHNAME"];
                     dealerIndent.BranchAddress = drFocusedRow["ADDRESS"];
-                    dealerIndent.UserID = Utility.UserID;
+                    dealerIndent.IndentType = drFocusedRow["SUPPLIERINDENTTYPE"];
+                    dealerIndent.UserID = Utility.UserID;                    
                     dealerIndent.dtSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
                     frmDealerIndent frmDealerIndentobj = new frmDealerIndent(dealerIndent,
                         Convert.ToString(drFocusedRow["DEALERNAME"]));

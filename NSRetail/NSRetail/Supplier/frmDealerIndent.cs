@@ -140,9 +140,12 @@ namespace NSRetail
 
         private void SaveSupplierIndent(int status)
         {
+            if (XtraMessageBox.Show("Are you sure you want to reject this supplier indent?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                != DialogResult.Yes) return;
+
             dealerIndent.IsApproved = status;
             dealerIndent.MobileNo = txtMobileNo.EditValue;
-            new ReportRepository().SaveSupplierIndent(dealerIndent, string.Empty);
+            new ReportRepository().SaveSupplierIndent(dealerIndent);
             dealerIndent.IsSave = true;
             XtraMessageBox.Show("Saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();

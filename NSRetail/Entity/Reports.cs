@@ -22,6 +22,8 @@ namespace Entity
         public object BranchName { get; set; }
         public object BranchAddress { get; set; }
         public DataTable dtSupplierIndent { get; set; }
+
+        public object IndentType { get; set; }
     }
 
     public class CreditBillPayment : EntityBase

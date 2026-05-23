@@ -87,9 +87,10 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     supplierID = cmbDealer.EditValue,
                     CategoryID = cmbCategory.EditValue,
                     UserID = Utility.UserID,
-                    dtSupplierIndent = dtDetails
+                    dtSupplierIndent = dtDetails,
+                    IndentType = "Indent By MBQ"
                 };
-                new ReportRepository().SaveSupplierIndent(dealerIndent, "Indent By MBQ");
+                new ReportRepository().SaveSupplierIndent(dealerIndent);
                 XtraMessageBox.Show("Indent saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ResultGrid.DataSource = null;
             }

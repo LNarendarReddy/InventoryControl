@@ -165,7 +165,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                     SafetyDays = 0,
                     UserID = Utility.UserID,
                     dtSupplierIndent = GetFilteredData(),
-                    BranchID = cmbBranch.EditValue
+                    BranchID = cmbBranch.EditValue,
+                    IndentType = "DSD Indent by MBQ"
                 };
 
                 dealerIndent.dtSupplierIndent.Columns["BRANCHSTOCK"].ColumnName = "BranchQuantity";
@@ -177,8 +178,8 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
                 foreach (DataRow dr in dealerIndent.dtSupplierIndent.Rows)
                     dr["DESIREDINDENT"] = dr["REQUIREDITEMINDENT"];
-
-                new ReportRepository().SaveSupplierIndent(dealerIndent, "DSD Indent by MBQ");
+                
+                new ReportRepository().SaveSupplierIndent(dealerIndent);
                 XtraMessageBox.Show("Supplier Indent generated successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ResultGrid.DataSource = null;
             }
