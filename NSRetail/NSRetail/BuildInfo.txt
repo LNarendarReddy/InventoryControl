@@ -1,4 +1,13 @@
 ﻿
+V3.7.8
+-- Bug fixes
+	-- Filtered MBQ save issue fix
+	-- Import MBQ issue fix
+	-- Supplier indent add item, reject indent issue fixes
+
+V3.7.7
+-- ??
+
 V3.7.6
 -- Minor issues in Supplier indent workflows because of IsDSD changes
 

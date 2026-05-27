@@ -3,12 +3,7 @@ using DevExpress.XtraEditors;
 using Entity;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetail
@@ -33,22 +28,34 @@ namespace NSRetail
                 return;
             }
 
-            foreach(int rowHandle in gvIndentLimits.GetSelectedRows())
+            int prevRowHandle = gvIndentLimits.FocusedRowHandle;
+
+            foreach (int rowHandle in gvIndentLimits.GetSelectedRows())
             {
+                gvIndentLimits.FocusedRowHandle = rowHandle;
                 gvIndentLimits.SetRowCellValue(rowHandle, "THRESHOLD", txtThreshold.EditValue);
                 gvIndentLimits.SetRowCellValue(rowHandle, "DESIREDQUANTITY", txtDesiredQty.EditValue);
+                gvIndentLimits.UpdateCurrentRow();
             }
+
+            gvIndentLimits.FocusedRowHandle = prevRowHandle;
         }
 
         private void btnApplyToAll_Click(object sender, EventArgs e)
         {
             if (!ValidateInput()) return;
 
+            int prevRowHandle = gvIndentLimits.FocusedRowHandle;
+
             for (int rowHandle = 0; rowHandle < gvIndentLimits.DataRowCount; rowHandle++)
             {
+                gvIndentLimits.FocusedRowHandle = rowHandle;
                 gvIndentLimits.SetRowCellValue(rowHandle, "THRESHOLD", txtThreshold.EditValue);
                 gvIndentLimits.SetRowCellValue(rowHandle, "DESIREDQUANTITY", txtDesiredQty.EditValue);
+                gvIndentLimits.UpdateCurrentRow();
             }
+
+            gvIndentLimits.FocusedRowHandle = prevRowHandle;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -56,8 +63,14 @@ namespace NSRetail
             if (XtraMessageBox.Show("Are you sure you want to save?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 != DialogResult.Yes)
                 return;
-
+            
             DataTable dtIndentLimit = ((DataTable)gcIndentLimits.DataSource).GetChanges();
+            
+            if(dtIndentLimit == null)
+            {
+                XtraMessageBox.Show("No changes found to save", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             List<string> allowedColums = new List<string>()
             {

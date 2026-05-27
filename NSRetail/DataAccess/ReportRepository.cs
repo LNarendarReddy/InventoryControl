@@ -124,7 +124,7 @@ namespace DataAccess
             return dsReportData;
         }
 
-        public void SaveSupplierIndent(DealerIndent dealerIndent, string indentType)
+        public void SaveSupplierIndent(DealerIndent dealerIndent)
         {
             List<string> allowedColumns = new List<string>()
             {
@@ -167,7 +167,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@dtDetail", dealerIndent.dtSupplierIndent);
                     cmd.Parameters.AddWithValue("@ISAPPROVED", dealerIndent.IsApproved);
                     cmd.Parameters.AddWithValue("@MOBILENO", dealerIndent.MobileNo);
-                    cmd.Parameters.AddWithValue("@IndentType", indentType);
+                    cmd.Parameters.AddWithValue("@IndentType", dealerIndent.IndentType);
                     cmd.Parameters.AddWithValue("@BranchID", dealerIndent.BranchID);
                     
                     int RowsAfftected = cmd.ExecuteNonQuery();

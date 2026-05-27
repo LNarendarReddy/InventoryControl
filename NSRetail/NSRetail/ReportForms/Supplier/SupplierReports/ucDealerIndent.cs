@@ -98,9 +98,10 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     IndentDays = txtIndentDays.EditValue,
                     SafetyDays = txtSafetyDays.EditValue,
                     UserID = Utility.UserID,
+                    IndentType = "Indent (Original)",
                     dtSupplierIndent = DotMatrixPrintHelper.GetDataTableWYSIWYG(ResultGridView, true)
                 };
-                new ReportRepository().SaveSupplierIndent(dealerIndent, "Indent (Original)");
+                new ReportRepository().SaveSupplierIndent(dealerIndent);
                 XtraMessageBox.Show("Indent saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 resultsGrid.DataSource = null;
             }
