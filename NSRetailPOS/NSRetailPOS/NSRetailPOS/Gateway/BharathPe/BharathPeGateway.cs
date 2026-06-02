@@ -375,6 +375,7 @@ namespace NSRetailPOS.Gateway
             {
                 await _semaphore.WaitAsync();
 
+                
                 RequestSettings paymentRequest =
                     GetPaymentRequest(parameters) as RequestSettings;
 

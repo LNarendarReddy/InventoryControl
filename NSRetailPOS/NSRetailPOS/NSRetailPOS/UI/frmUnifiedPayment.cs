@@ -117,8 +117,13 @@ namespace NSRetailPOS.UI
             if (Utility.PaymentGateway != null)
             {
                 Utility.PaymentGateway.StatusUpdate = ShowRecieveMessage;
-                btnAddMissingPayment.Enabled = true;
+                // Enable only if both Card and UPI have been received
+                //btnAddMissingPayment.Enabled = true;
             }
+            //else
+            //{
+            //    btnAddMissingPayment.Enabled = false;
+            //}
 
             Utility.SetGridFormatting(gvMOP);
 
@@ -269,12 +274,23 @@ namespace NSRetailPOS.UI
             {
                 gvMOP.FocusedRowHandle = cashRowHandle;
             }
-        }
 
-        private void rgPaymentModes_Leave(object sender, EventArgs e)
-        {
-            
+            if ((rgPaymentModes.Text.Equals("CARD") || rgPaymentModes.Text.Equals("UPI")) &&
+                Utility.PaymentGateway != null)
+            {
+                // Handle card and UPI payment specific logic here
+                btnAddMissingPayment.Enabled = true;
+            }
+            else
+            {
+                btnAddMissingPayment.Enabled = false;
+            }
+
         }
+        private void rgPaymentModes_Leave(object sender, EventArgs e)
+                {
+
+                }
 
         private void gcMOP_Enter(object sender, EventArgs e)
         {
@@ -496,6 +512,13 @@ namespace NSRetailPOS.UI
             btnDiscardBill.Enabled = !canClose;
 
             EnableDisableReceives();
+
+            // Enable "Add missing payment" button when payment request completes or is canceled
+            // Only if both Card and UPI have been received
+            if (Utility.PaymentGateway != null)
+            {
+                btnAddMissingPayment.Enabled = true;
+            }
         }
 
         private string GenerateTansactionReference()
@@ -504,6 +527,7 @@ namespace NSRetailPOS.UI
             billObj.GatewayTransactionReferences.Add(transactionReference);
             return transactionReference;
         }
+
         private async Task ReceiveAmount(int mopID, PaymentMode paymentMode, object amountObj)
         {
             if (!decimal.TryParse(amountObj.ToString(), out decimal amount) || amount == 0) return;
@@ -516,6 +540,7 @@ namespace NSRetailPOS.UI
 
             DisableAllControls();
             btnCancelRequest.Enabled = true;
+            btnAddMissingPayment.Enabled = false;
             
             cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = cancellationTokenSource.Token;
@@ -548,9 +573,9 @@ namespace NSRetailPOS.UI
         private void SetReceivedAmounts()
         {
             if (Utility.PaymentGateway == null ||
-                billObj.CompletedTransactions == null 
-                || !billObj.CompletedTransactions.Any()) 
-                    return;
+                billObj.CompletedTransactions == null
+                || !billObj.CompletedTransactions.Any())
+                return;
 
             cardReceivedAmount = billObj.CompletedTransactions.Where(x => x.MopID == cardMopID).Sum(x => x.Amount);
             upiReceivedAmount = billObj.CompletedTransactions.Where(x => x.MopID == upiMopID).Sum(x => x.Amount);
@@ -566,11 +591,17 @@ namespace NSRetailPOS.UI
             gvMOP_CellValueChanged(null, null);
 
             // complete billing if it is single payment and amount is received
-            if(billedAmount == paidAmount && 
+            if (billedAmount == paidAmount &&
                 (rgPaymentModes.Text.Equals("card", StringComparison.OrdinalIgnoreCase)
                     || rgPaymentModes.Text.Equals("UPI", StringComparison.OrdinalIgnoreCase)))
             {
                 btnApply_Click(null, null);
+            }
+
+            // Update "Add missing payment" button state based on received amounts
+            if (Utility.PaymentGateway != null)
+            {
+                btnAddMissingPayment.Enabled = true;
             }
         }
 
