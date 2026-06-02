@@ -79,16 +79,16 @@ namespace NSRetail.Master
                         case "pinelabs":
                             PineLabsPaymentGateway pineLabsPaymentGateway = new PineLabsPaymentGateway()
                             {
-                                ClientID = txtSetting1.EditValue,
-                                StoreID = txtSetting2.EditValue
+                                ClientID = txtSetting1.EditValue != null ? Convert.ToString(txtSetting1.EditValue).Trim() : txtSetting1.EditValue,
+                                StoreID = txtSetting2.EditValue != null ? Convert.ToString(txtSetting2.EditValue).Trim() : txtSetting2.EditValue,
                             };
                             ObjCounter.PAYMENTGATEWAYADDITIONALCONFIG = JsonConvert.SerializeObject(pineLabsPaymentGateway);
                             break;
                         case "bharathpe":
                             BharathPePaymentGateway bharathPePaymentGateway = new BharathPePaymentGateway()
                             {
-                                UserName = txtSetting1.EditValue,
-                                Password = txtSetting2.EditValue
+                                UserName = txtSetting1.EditValue != null ? Convert.ToString(txtSetting1.EditValue).Trim() : txtSetting1.EditValue,
+                                Password = txtSetting2.EditValue != null ? Convert.ToString(txtSetting2.EditValue).Trim() : txtSetting2.EditValue
                             };
                             ObjCounter.PAYMENTGATEWAYADDITIONALCONFIG = JsonConvert.SerializeObject(bharathPePaymentGateway);
                             break;
