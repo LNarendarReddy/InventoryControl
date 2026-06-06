@@ -31,6 +31,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@EnableDraftBills", ObjBranch.ENABLEDRAFTBILLS);
                     cmd.Parameters.AddWithValue("@SUPERVISORID", ObjBranch.SUPERVISERID);
                     cmd.Parameters.AddWithValue("@BRANCHGRADEID", ObjBranch.BRANCHGRADEID);
+                    cmd.Parameters.AddWithValue("@BRANCHZONE", ObjBranch.BRANCHZONE);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     int BRanchID;
@@ -250,6 +251,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@GSTIN", ObjDealer.GSTIN);
                     cmd.Parameters.AddWithValue("@PANNUMBER", ObjDealer.PANNUMBER);
                     cmd.Parameters.AddWithValue("@VENDORCODE", ObjDealer.VendorCode);
+                    cmd.Parameters.AddWithValue("@AUTORUNFREQID", ObjDealer.AUTORUNFREQID);
                     cmd.Parameters.AddWithValue("@EMAILID", ObjDealer.EMAILID);
                     cmd.Parameters.AddWithValue("@USERID", ObjDealer.UserID);
                     object objReturn = cmd.ExecuteScalar();

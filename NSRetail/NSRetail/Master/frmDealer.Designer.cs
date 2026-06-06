@@ -90,6 +90,8 @@ namespace NSRetail.Master
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.cmbAutoRunFreq = new DevExpress.XtraEditors.LookUpEdit();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkSameAsBillingAddress.Properties)).BeginInit();
@@ -124,6 +126,8 @@ namespace NSRetail.Master
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbAutoRunFreq.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -144,6 +148,7 @@ namespace NSRetail.Master
             this.layoutControl1.Appearance.DisabledLayoutGroupCaption.Options.UseFont = true;
             this.layoutControl1.Appearance.DisabledLayoutItem.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.layoutControl1.Appearance.DisabledLayoutItem.Options.UseFont = true;
+            this.layoutControl1.Controls.Add(this.cmbAutoRunFreq);
             this.layoutControl1.Controls.Add(this.chkSameAsBillingAddress);
             this.layoutControl1.Controls.Add(this.txtShippingAddress);
             this.layoutControl1.Controls.Add(this.btnMapSKU);
@@ -184,7 +189,7 @@ namespace NSRetail.Master
             this.txtShippingAddress.Location = new System.Drawing.Point(128, 294);
             this.txtShippingAddress.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtShippingAddress.Name = "txtShippingAddress";
-            this.txtShippingAddress.Size = new System.Drawing.Size(341, 155);
+            this.txtShippingAddress.Size = new System.Drawing.Size(341, 119);
             this.txtShippingAddress.StyleController = this.layoutControl1;
             this.txtShippingAddress.TabIndex = 4;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -335,7 +340,7 @@ namespace NSRetail.Master
             // cmbState
             // 
             this.cmbState.EnterMoveNextControl = true;
-            this.cmbState.Location = new System.Drawing.Point(128, 461);
+            this.cmbState.Location = new System.Drawing.Point(128, 425);
             this.cmbState.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbState.Name = "cmbState";
             this.cmbState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -355,7 +360,7 @@ namespace NSRetail.Master
             // txtPanNumber
             // 
             this.txtPanNumber.EnterMoveNextControl = true;
-            this.txtPanNumber.Location = new System.Drawing.Point(128, 605);
+            this.txtPanNumber.Location = new System.Drawing.Point(128, 569);
             this.txtPanNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPanNumber.Name = "txtPanNumber";
             this.txtPanNumber.Size = new System.Drawing.Size(341, 24);
@@ -409,7 +414,7 @@ namespace NSRetail.Master
             // txtGSTIN
             // 
             this.txtGSTIN.EnterMoveNextControl = true;
-            this.txtGSTIN.Location = new System.Drawing.Point(128, 569);
+            this.txtGSTIN.Location = new System.Drawing.Point(128, 533);
             this.txtGSTIN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtGSTIN.Name = "txtGSTIN";
             this.txtGSTIN.Size = new System.Drawing.Size(341, 24);
@@ -423,7 +428,7 @@ namespace NSRetail.Master
             // txtEmail
             // 
             this.txtEmail.EnterMoveNextControl = true;
-            this.txtEmail.Location = new System.Drawing.Point(128, 533);
+            this.txtEmail.Location = new System.Drawing.Point(128, 497);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(341, 24);
@@ -437,7 +442,7 @@ namespace NSRetail.Master
             // txtPhoneNumber
             // 
             this.txtPhoneNumber.EnterMoveNextControl = true;
-            this.txtPhoneNumber.Location = new System.Drawing.Point(128, 497);
+            this.txtPhoneNumber.Location = new System.Drawing.Point(128, 461);
             this.txtPhoneNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(341, 24);
@@ -501,7 +506,8 @@ namespace NSRetail.Master
             this.layoutControlItem3,
             this.layoutControlItem5,
             this.layoutControlItem12,
-            this.layoutControlItem14});
+            this.layoutControlItem14,
+            this.layoutControlItem15});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
@@ -531,7 +537,7 @@ namespace NSRetail.Master
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.cmbState;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 427);
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 391);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem9.Size = new System.Drawing.Size(468, 36);
@@ -541,7 +547,7 @@ namespace NSRetail.Master
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtPhoneNumber;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 463);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 427);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem2.Size = new System.Drawing.Size(468, 36);
@@ -551,7 +557,7 @@ namespace NSRetail.Master
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtGSTIN;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 535);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 499);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem4.Size = new System.Drawing.Size(468, 36);
@@ -571,7 +577,7 @@ namespace NSRetail.Master
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.txtEmail;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 499);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 463);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem3.Size = new System.Drawing.Size(468, 36);
@@ -581,7 +587,7 @@ namespace NSRetail.Master
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.txtPanNumber;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 571);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 535);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem5.Size = new System.Drawing.Size(468, 36);
@@ -594,7 +600,7 @@ namespace NSRetail.Master
             this.layoutControlItem12.Location = new System.Drawing.Point(0, 260);
             this.layoutControlItem12.Name = "layoutControlItem12";
             this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem12.Size = new System.Drawing.Size(468, 167);
+            this.layoutControlItem12.Size = new System.Drawing.Size(468, 131);
             this.layoutControlItem12.Text = "Shipping Address";
             this.layoutControlItem12.TextSize = new System.Drawing.Size(103, 17);
             // 
@@ -672,6 +678,30 @@ namespace NSRetail.Master
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
+            // cmbAutoRunFreq
+            // 
+            this.cmbAutoRunFreq.Location = new System.Drawing.Point(128, 605);
+            this.cmbAutoRunFreq.Name = "cmbAutoRunFreq";
+            this.cmbAutoRunFreq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbAutoRunFreq.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ENUMID", "ENUMID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ENUMVALUE", "Auto Run Freq.")});
+            this.cmbAutoRunFreq.Properties.NullText = "";
+            this.cmbAutoRunFreq.Size = new System.Drawing.Size(341, 24);
+            this.cmbAutoRunFreq.StyleController = this.layoutControl1;
+            this.cmbAutoRunFreq.TabIndex = 14;
+            // 
+            // layoutControlItem15
+            // 
+            this.layoutControlItem15.Control = this.cmbAutoRunFreq;
+            this.layoutControlItem15.Location = new System.Drawing.Point(0, 571);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem15.Size = new System.Drawing.Size(468, 36);
+            this.layoutControlItem15.Text = "Auto-run Freq.";
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(103, 17);
+            // 
             // frmDealer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -718,6 +748,8 @@ namespace NSRetail.Master
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbAutoRunFreq.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -769,5 +801,7 @@ namespace NSRetail.Master
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraEditors.CheckEdit chkSameAsBillingAddress;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
+        private DevExpress.XtraEditors.LookUpEdit cmbAutoRunFreq;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
     }
 }

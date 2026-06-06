@@ -32,6 +32,7 @@ namespace Entity
         public object ENABLEDRAFTBILLS { get; set; }
         public object BRANCHGRADEID { get; set; }
         public object GRADE { get; set; }
+        public object BRANCHZONE { get; set; }
     }
 
     public class Category : EntityBase
@@ -79,6 +80,7 @@ namespace Entity
         public object EMAILID { get; set; }
         public object STATEID { get;set; }
         public object VendorCode { get; set; }
+        public object AUTORUNFREQID { get; set; }
     }
 
     public class Counter : EntityBase

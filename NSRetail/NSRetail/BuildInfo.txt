@@ -1,4 +1,13 @@
-﻿
+﻿V3.7.9
+-- New fields in various screens
+-- Item -> New Item additional details screeen
+	-- Supplier indent type = FT\NFT
+	-- Inner & Outer case quantity
+	-- Product Rank
+-- Branch - New Branch Zone field
+-- Supplier - Auto run frequency field
+
+
 V3.7.8
 -- Bug fixes
 	-- Filtered MBQ save issue fix

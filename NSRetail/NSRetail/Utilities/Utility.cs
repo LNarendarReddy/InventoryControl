@@ -36,6 +36,7 @@ namespace NSRetail
         private static DataTable dtUQC;
         private static DataTable dtSeasonality;
         private static DataTable dtRefundPath;
+        private static DataTable dtEnumList;
 
         private static List<GSTInfo> gstInfoList;
         public static DataTable dtConnectionInfo;
@@ -58,8 +59,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "3.7.8";
-        public static string VersionDate = "(23-05-2026)";
+        public static string AppVersion = "3.7.9";
+        public static string VersionDate = "(06-06-2026)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -131,7 +132,7 @@ namespace NSRetail
 
         public static DataTable GetGSTBaseline()
         {
-            if(dtGST == null)
+            if (dtGST == null)
             {
                 FillGSTBaseLine();
             }
@@ -141,7 +142,7 @@ namespace NSRetail
 
         public static DataTable GetItemSKUList()
         {
-            if(dtItemSKUList == null)
+            if (dtItemSKUList == null)
             {
                 FillItemBaseline();
             }
@@ -273,6 +274,18 @@ namespace NSRetail
             return dtRefundPath;
         }
 
+        public static DataTable GetEnumList(string enumType)
+        {
+            if (dtEnumList == null)
+            {
+                FillEnumList();
+            }
+
+            DataView dvEnum = dtEnumList.Copy().DefaultView;
+            dvEnum.RowFilter = $"ENUMTYPE = '{enumType}'";
+            return dvEnum.ToTable();
+        }
+
         public static void FillBaseLine()
         {
             dtGST = null;
@@ -283,7 +296,7 @@ namespace NSRetail
             dtUQC = null;
             dtSeasonality = null;
             dtRefundPath = null;
-
+            dtEnumList = null;
 
             FillUQCBaseLine();
             FillItemBaseline();
@@ -294,6 +307,7 @@ namespace NSRetail
             GetManufacturer(true);
             FillSeasonalityBaseLine();
             FillRefundPathBaseLine();
+            FillEnumList();
         }
 
         private static void FillUQCBaseLine()
@@ -309,6 +323,11 @@ namespace NSRetail
         private static void FillRefundPathBaseLine()
         {
             dtRefundPath = new ReportRepository().GetReportData("USP_R_REFUNDPATH");
+        }
+
+        private static void FillEnumList()
+        {
+            dtEnumList = new ReportRepository().GetReportData("USP_R_ENUMLIST");
         }
 
         public static void PrintBarCode(object ItemCode, object ItemName, 

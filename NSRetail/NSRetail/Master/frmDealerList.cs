@@ -83,6 +83,7 @@ namespace NSRetail.Master
                     ObjDealer.GSTIN = gvDealer.GetFocusedRowCellValue("GSTIN");
                     ObjDealer.PANNUMBER = gvDealer.GetFocusedRowCellValue("PANNUMBER");
                     ObjDealer.VendorCode = gvDealer.GetFocusedRowCellValue("VENDORCODE");
+                    ObjDealer.AUTORUNFREQID = gvDealer.GetFocusedRowCellValue("AUTORUNFREQID");
                     DataTable dt = new SupplierRepository().GetSupplierItems(ObjDealer.DEALERID);
                     frmDealer obj = new frmDealer(ObjDealer, dt);
                     obj.ShowInTaskbar = false;
@@ -91,7 +92,7 @@ namespace NSRetail.Master
                     obj.ShowDialog();
                     if (ObjDealer.IsSave)
                     {
-                        gcDealer.DataSource = objMasterRep.GetDealer();
+                        gcDealer.DataSource = objMasterRep.GetDealerForMeta();
                         Utility.Setfocus(gvDealer, "DEALERID", ObjDealer.DEALERID);
                     }
 

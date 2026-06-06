@@ -28,6 +28,11 @@ namespace NSRetail.Master
             cmbState.Properties.DataSource = objMasterRep.GetStates();
             cmbState.Properties.ValueMember = "STATEID";
             cmbState.Properties.DisplayMember = "STATENAME";
+
+            cmbAutoRunFreq.Properties.DataSource = Utility.GetEnumList("Weekly");
+            cmbAutoRunFreq.Properties.ValueMember = "ENUMID";
+            cmbAutoRunFreq.Properties.DisplayMember = "ENUMVALUE";
+
             if (Convert.ToInt32(ObjDealer.DEALERID) > 0)
             {
                 this.Text = "Edit Supplier";
@@ -40,6 +45,7 @@ namespace NSRetail.Master
                 txtPanNumber.EditValue = ObjDealer.PANNUMBER;
                 txtVendorCode.EditValue = ObjDealer.VendorCode;
                 cmbState.EditValue = ObjDealer.STATEID;
+                cmbAutoRunFreq.EditValue = ObjDealer.AUTORUNFREQID;
             }
         }
 
@@ -58,6 +64,7 @@ namespace NSRetail.Master
                 ObjDealer.PANNUMBER = txtPanNumber.EditValue;
                 ObjDealer.VendorCode = txtVendorCode.EditValue;
                 ObjDealer.STATEID = cmbState.EditValue;
+                ObjDealer.AUTORUNFREQID = cmbAutoRunFreq.EditValue;
                 ObjDealer.UserID = Utility.UserID;
                 objMasterRep.SaveDealer(ObjDealer);
                 ObjDealer.IsSave = true;

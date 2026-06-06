@@ -221,6 +221,12 @@
     <Compile Include="Item\frmImportMBQ.Designer.cs">
       <DependentUpon>frmImportMBQ.cs</DependentUpon>
     </Compile>
+    <Compile Include="Item\frmItemAdditionalFields.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\frmItemAdditionalFields.Designer.cs">
+      <DependentUpon>frmItemAdditionalFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Item\frmMBQ.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1426,6 +1432,9 @@
     <EmbeddedResource Include="Item\frmImportMBQ.resx">
       <DependentUpon>frmImportMBQ.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Item\frmItemAdditionalFields.resx">
+      <DependentUpon>frmItemAdditionalFields.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Item\frmMBQ.resx">
       <DependentUpon>frmMBQ.cs</DependentUpon>
     </EmbeddedResource>
@@ -2118,6 +2127,10 @@
     <None Include="Resources\apply_16x165.png" />
     <None Include="Resources\cancel_16x162.png" />
     <None Include="Resources\apply_16x166.png" />
+    <None Include="Resources\fieldheaderspivottable_16x16.png" />
+    <None Include="Resources\fieldheaderspivottable_32x32.png" />
+    <None Include="Resources\save_16x164.png" />
+    <None Include="Resources\cancel_16x163.png" />
     <Content Include="vLogo_Small_1.ico" />
   </ItemGroup>
   <ItemGroup />

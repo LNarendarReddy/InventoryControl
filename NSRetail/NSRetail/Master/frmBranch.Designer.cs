@@ -69,6 +69,8 @@
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.txtBranchZone = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.luGrade.Properties)).BeginInit();
@@ -98,6 +100,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBranchZone.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -114,6 +118,7 @@
             this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
             this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 8F);
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
+            this.layoutControl1.Controls.Add(this.txtBranchZone);
             this.layoutControl1.Controls.Add(this.luGrade);
             this.layoutControl1.Controls.Add(this.cmbState);
             this.layoutControl1.Controls.Add(this.cmbSupervisor);
@@ -296,7 +301,7 @@
             this.txtBranchName.Location = new System.Drawing.Point(100, 41);
             this.txtBranchName.Margin = new System.Windows.Forms.Padding(4);
             this.txtBranchName.Name = "txtBranchName";
-            this.txtBranchName.Size = new System.Drawing.Size(517, 20);
+            this.txtBranchName.Size = new System.Drawing.Size(207, 20);
             this.txtBranchName.StyleController = this.layoutControl1;
             this.txtBranchName.TabIndex = 3;
             conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -360,7 +365,8 @@
             this.layoutControlItem9,
             this.layoutControlItem11,
             this.layoutControlItem12,
-            this.layoutControlItem13});
+            this.layoutControlItem13,
+            this.layoutControlItem14});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
             this.Root.Size = new System.Drawing.Size(626, 276);
@@ -382,7 +388,7 @@
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(620, 32);
+            this.layoutControlItem2.Size = new System.Drawing.Size(310, 32);
             this.layoutControlItem2.Text = "Branch Name";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(79, 14);
             // 
@@ -502,6 +508,24 @@
             this.layoutControlItem13.Text = "Branch Grade";
             this.layoutControlItem13.TextSize = new System.Drawing.Size(79, 14);
             // 
+            // txtBranchZone
+            // 
+            this.txtBranchZone.Location = new System.Drawing.Point(410, 41);
+            this.txtBranchZone.Name = "txtBranchZone";
+            this.txtBranchZone.Size = new System.Drawing.Size(207, 20);
+            this.txtBranchZone.StyleController = this.layoutControl1;
+            this.txtBranchZone.TabIndex = 13;
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.txtBranchZone;
+            this.layoutControlItem14.Location = new System.Drawing.Point(310, 32);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem14.Size = new System.Drawing.Size(310, 32);
+            this.layoutControlItem14.Text = "Zone";
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(79, 14);
+            // 
             // frmBranch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -542,6 +566,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBranchZone.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -578,5 +604,7 @@
         private DevExpress.XtraEditors.SpinEdit chkEnableDraftBills;
         private DevExpress.XtraEditors.LookUpEdit luGrade;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
+        private DevExpress.XtraEditors.TextEdit txtBranchZone;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
     }
 }

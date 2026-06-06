@@ -46,6 +46,7 @@ namespace NSRetail
                 chkIsWarehouse.Enabled = false;
                 luGrade.EditValue = ObjBranch.BRANCHGRADEID;
                 cmbState.EditValue = ObjBranch.STATEID;
+                txtBranchZone.EditValue = ObjBranch.BRANCHZONE;
             }
         }
 
@@ -72,6 +73,7 @@ namespace NSRetail
                 ObjBranch.ENABLEDRAFTBILLS = chkEnableDraftBills.EditValue;
                 ObjBranch.SUPERVISERID = cmbSupervisor.EditValue;
                 ObjBranch.BRANCHGRADEID = luGrade.EditValue;
+                ObjBranch.BRANCHZONE = txtBranchZone.EditValue;
                 ObjBranch.UserID = Utility.UserID;
                 objMasterRep.SaveBranch(ObjBranch);
                 ObjBranch.IsSave = true;

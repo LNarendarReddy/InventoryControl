@@ -65,6 +65,7 @@
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -85,12 +86,12 @@
             this.btnExportItemCostPrice = new DevExpress.XtraBars.BarButtonItem();
             this.btnChangeGST = new DevExpress.XtraBars.BarButtonItem();
             this.btnMinimumBaseQuantity = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiAdditionalFields = new DevExpress.XtraBars.BarButtonItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemList)).BeginInit();
@@ -506,6 +507,12 @@
             this.gridColumn25.FieldName = "REFUNDPATH";
             this.gridColumn25.Name = "gridColumn25";
             // 
+            // gridColumn26
+            // 
+            this.gridColumn26.Caption = "Is DSD";
+            this.gridColumn26.FieldName = "ISDSD";
+            this.gridColumn26.Name = "gridColumn26";
+            // 
             // Root
             // 
             this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 8F);
@@ -646,7 +653,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemPrice),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCostPrice),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnChangeGST),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnMinimumBaseQuantity)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnMinimumBaseQuantity),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiAdditionalFields)});
             this.pmItemList.Manager = this.barManager1;
             this.pmItemList.Name = "pmItemList";
             // 
@@ -735,6 +743,16 @@
             this.btnMinimumBaseQuantity.Tag = "A7F3D9C2-5B8E-4F1A-9C6D-2E8B7F4A1D93";
             this.btnMinimumBaseQuantity.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMinimumBaseQuantity_ItemClick);
             // 
+            // bbiAdditionalFields
+            // 
+            this.bbiAdditionalFields.Caption = "Additional Fields";
+            this.bbiAdditionalFields.Id = 9;
+            this.bbiAdditionalFields.ImageOptions.Image = global::NSRetail.Properties.Resources.fieldheaderspivottable_16x16;
+            this.bbiAdditionalFields.ImageOptions.LargeImage = global::NSRetail.Properties.Resources.fieldheaderspivottable_32x32;
+            this.bbiAdditionalFields.Name = "bbiAdditionalFields";
+            this.bbiAdditionalFields.Tag = "39D5A8E8-F1AB-47A3-B092-EE5A391A1D82";
+            this.bbiAdditionalFields.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiAdditionalFields_ItemClick);
+            // 
             // barManager1
             // 
             this.barManager1.DockControls.Add(this.barDockControlTop);
@@ -751,8 +769,9 @@
             this.btnExportItemPrice,
             this.btnExportItemCostPrice,
             this.btnChangeGST,
-            this.btnMinimumBaseQuantity});
-            this.barManager1.MaxItemId = 9;
+            this.btnMinimumBaseQuantity,
+            this.bbiAdditionalFields});
+            this.barManager1.MaxItemId = 10;
             // 
             // barDockControlTop
             // 
@@ -789,12 +808,6 @@
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 685);
-            // 
-            // gridColumn26
-            // 
-            this.gridColumn26.Caption = "Is DSD";
-            this.gridColumn26.FieldName = "ISDSD";
-            this.gridColumn26.Name = "gridColumn26";
             // 
             // frmItemCodeList
             // 
@@ -897,5 +910,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
+        private DevExpress.XtraBars.BarButtonItem bbiAdditionalFields;
     }
 }

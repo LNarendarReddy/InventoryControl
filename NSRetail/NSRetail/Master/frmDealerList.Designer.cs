@@ -72,6 +72,7 @@ namespace NSRetail.Master
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcDealer)).BeginInit();
@@ -195,7 +196,8 @@ namespace NSRetail.Master
             this.gcDelete,
             this.gridColumn12,
             this.gridColumn13,
-            this.gridColumn15});
+            this.gridColumn15,
+            this.gridColumn16});
             this.gvDealer.DetailHeight = 404;
             this.gvDealer.GridControl = this.gcDealer;
             this.gvDealer.Name = "gvDealer";
@@ -343,7 +345,7 @@ namespace NSRetail.Master
             this.gcEdit.Name = "gcEdit";
             this.gcEdit.Tag = "0DF3A103-9ECD-465D-9968-DCBF9A23C626::Update";
             this.gcEdit.Visible = true;
-            this.gcEdit.VisibleIndex = 9;
+            this.gcEdit.VisibleIndex = 10;
             this.gcEdit.Width = 43;
             // 
             // btnEdit
@@ -366,7 +368,7 @@ namespace NSRetail.Master
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Tag = "0DF3A103-9ECD-465D-9968-DCBF9A23C626::Delete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 10;
+            this.gcDelete.VisibleIndex = 11;
             this.gcDelete.Width = 44;
             // 
             // btnDelete
@@ -394,7 +396,7 @@ namespace NSRetail.Master
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 7;
+            this.gridColumn13.VisibleIndex = 8;
             // 
             // gridColumn15
             // 
@@ -403,7 +405,7 @@ namespace NSRetail.Master
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.OptionsColumn.AllowEdit = false;
             this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 8;
+            this.gridColumn15.VisibleIndex = 9;
             // 
             // Root
             // 
@@ -475,6 +477,14 @@ namespace NSRetail.Master
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "Auto-Run Freq.";
+            this.gridColumn16.FieldName = "AUTORUNFREQTXT";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.Visible = true;
+            this.gridColumn16.VisibleIndex = 7;
+            // 
             // frmDealerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -537,5 +547,6 @@ namespace NSRetail.Master
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
     }
 }
