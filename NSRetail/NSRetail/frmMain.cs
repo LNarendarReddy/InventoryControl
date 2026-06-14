@@ -733,5 +733,10 @@ namespace NSRetail
         {
             new frmLiquidation() { MdiParent = this }.Show();
         }
+
+        private void bbiSupplierIndent_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new frmGenerateSupplierIndent().ShowDialog();
+        }
     }
 }

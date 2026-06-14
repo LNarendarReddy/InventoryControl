@@ -141,17 +141,17 @@ namespace DataAccess
 
             try
             {
-                var columnsToRemove = dealerIndent.dtSupplierIndent.Columns.Cast<DataColumn>().Select(x => x.ColumnName).Where(x => !allowedColumns.Contains(x)).ToList();
-                columnsToRemove.ForEach(x => dealerIndent.dtSupplierIndent.Columns.Remove(x));
+                var columnsToRemove = dealerIndent.dsSupplierIndent.Tables[0].Columns.Cast<DataColumn>().Select(x => x.ColumnName).Where(x => !allowedColumns.Contains(x)).ToList();
+                columnsToRemove.ForEach(x => dealerIndent.dsSupplierIndent.Tables[0].Columns.Remove(x));
 
-                dealerIndent.dtSupplierIndent.Columns["SUPPLIERINDENTDETAILID"].SetOrdinal(0);
-                dealerIndent.dtSupplierIndent.Columns["ITEMID"].SetOrdinal(1);
-                dealerIndent.dtSupplierIndent.Columns["MRP"].SetOrdinal(2);
-                dealerIndent.dtSupplierIndent.Columns["COSTPRICEWT"].SetOrdinal(3);
-                dealerIndent.dtSupplierIndent.Columns["BranchQuantity"].SetOrdinal(4);
-                dealerIndent.dtSupplierIndent.Columns["REQUIREDBRANCHSTOCK"].SetOrdinal(5);
-                dealerIndent.dtSupplierIndent.Columns["REQUIREDITEMINDENT"].SetOrdinal(6);
-                dealerIndent.dtSupplierIndent.Columns["DESIREDINDENT"].SetOrdinal(7);
+                dealerIndent.dsSupplierIndent.Tables[0].Columns["SUPPLIERINDENTDETAILID"].SetOrdinal(0);
+                dealerIndent.dsSupplierIndent.Tables[0].Columns["ITEMID"].SetOrdinal(1);
+                dealerIndent.dsSupplierIndent.Tables[0].Columns["MRP"].SetOrdinal(2);
+                dealerIndent.dsSupplierIndent.Tables[0].Columns["COSTPRICEWT"].SetOrdinal(3);
+                dealerIndent.dsSupplierIndent.Tables[0].Columns["BranchQuantity"].SetOrdinal(4);
+                dealerIndent.dsSupplierIndent.Tables[0].Columns["REQUIREDBRANCHSTOCK"].SetOrdinal(5);
+                dealerIndent.dsSupplierIndent.Tables[0].Columns["REQUIREDITEMINDENT"].SetOrdinal(6);
+                dealerIndent.dsSupplierIndent.Tables[0].Columns["DESIREDINDENT"].SetOrdinal(7);
 
                 using (SqlCommand cmd = new SqlCommand())
                 {
@@ -164,7 +164,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@INDENTDAYS", dealerIndent.IndentDays);
                     cmd.Parameters.AddWithValue("@SAFETYDAYS", dealerIndent.SafetyDays);
                     cmd.Parameters.AddWithValue("@USERID", dealerIndent.UserID);
-                    cmd.Parameters.AddWithValue("@dtDetail", dealerIndent.dtSupplierIndent);
+                    cmd.Parameters.AddWithValue("@dtDetail", dealerIndent.dsSupplierIndent.Tables[0]);
                     cmd.Parameters.AddWithValue("@ISAPPROVED", dealerIndent.IsApproved);
                     cmd.Parameters.AddWithValue("@MOBILENO", dealerIndent.MobileNo);
                     cmd.Parameters.AddWithValue("@IndentType", dealerIndent.IndentType);
@@ -217,9 +217,9 @@ namespace DataAccess
             return dtReportData;
         }
 
-        public DataTable GetSupplierIndentDetail(object SupplierIndentID)
+        public DataSet GetSupplierIndentDetail(object SupplierIndentID)
         {
-            DataTable dtReportData = new DataTable();
+            DataSet dsReportData = new DataSet();
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -230,9 +230,13 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SUPPLIERINDENTID", SupplierIndentID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        da.Fill(dtReportData);
+                        da.Fill(dsReportData);
                     }
                 }
+
+                dsReportData.Relations.Add(new DataRelation("FT - Branch Details"
+                    , dsReportData.Tables[0].Columns["SUPPLIERINDENTDETAILID"]
+                    , dsReportData.Tables[1].Columns["SUPPLIERINDENTDETAILID"]));
             }
             catch (Exception ex)
             {
@@ -242,7 +246,7 @@ namespace DataAccess
             {
                 
             }
-            return dtReportData;
+            return dsReportData;
         }
 
         public void DeleteSupplierIndentDetail(object SupplierIndentDetailID,object @UserID)

@@ -56,8 +56,6 @@
         public object SeasonalityIDs { get; set; }
 
         public object RefundPathID { get; set; }
-        
-        public object IsDSD { get; set; }
     }
 
     public class ItemNewCode : EntityBase

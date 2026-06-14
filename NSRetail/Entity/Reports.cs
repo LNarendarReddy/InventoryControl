@@ -21,7 +21,7 @@ namespace Entity
         public object BranchID { get; set; }
         public object BranchName { get; set; }
         public object BranchAddress { get; set; }
-        public DataTable dtSupplierIndent { get; set; }
+        public DataSet dsSupplierIndent { get; set; }
 
         public object IndentType { get; set; }
     }

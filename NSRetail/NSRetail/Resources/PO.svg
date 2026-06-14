@@ -1,0 +1,87 @@
+<svg width="512" height="512" viewBox="0 0 512 512"
+     xmlns="http://www.w3.org/2000/svg">
+
+	<defs>
+		<style>
+			.stroke {
+			fill: none;
+			stroke: #7DD3FC;
+			stroke-width: 10;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			}
+
+			.accent {
+			fill: #38BDF8;
+			}
+
+			.fill {
+			fill: #0F172A;
+			}
+
+			.text {
+			fill: #E0F2FE;
+			font-family: Arial, sans-serif;
+			font-weight: bold;
+			}
+		</style>
+	</defs>
+
+	<!-- Purchase Order Document -->
+	<path class="stroke"
+		  d="M140 70H350L420 140V410
+           C420 421 411 430 400 430
+           H140C129 430 120 421 120 410
+           V90C120 79 129 70 140 70Z"/>
+
+	<!-- Fold -->
+	<path class="stroke"
+		  d="M350 70V120C350 131 359 140 370 140H420"/>
+
+	<!-- Header Lines -->
+	<line class="stroke" x1="170" y1="180" x2="280" y2="180"/>
+	<line class="stroke" x1="170" y1="210" x2="250" y2="210"/>
+
+	<!-- Shopping Cart -->
+	<g transform="translate(285 165)">
+		<path class="stroke" d="M10 10H65L55 45H20Z"/>
+		<circle class="stroke" cx="25" cy="60" r="8"/>
+		<circle class="stroke" cx="52" cy="60" r="8"/>
+	</g>
+
+	<!-- Table -->
+	<rect x="160" y="245" width="210" height="100" class="stroke"/>
+	<line class="stroke" x1="160" y1="280" x2="370" y2="280"/>
+	<line class="stroke" x1="240" y1="245" x2="240" y2="345"/>
+	<line class="stroke" x1="305" y1="245" x2="305" y2="345"/>
+
+	<!-- Dollar Circle -->
+	<circle cx="290" cy="385" r="30" class="accent"/>
+	<text x="290" y="397" text-anchor="middle"
+		  font-size="34" class="text">$</text>
+
+	<!-- Shopping Bag -->
+	<g transform="translate(70 300)">
+		<path d="M0 40H90L95 140H-5Z"
+			  fill="none"
+			  stroke="#7DD3FC"
+			  stroke-width="10"/>
+
+		<path class="stroke"
+			  d="M20 40C20 5 70 5 70 40"/>
+
+		<circle cx="30" cy="60" r="4" fill="#7DD3FC"/>
+		<circle cx="60" cy="60" r="4" fill="#7DD3FC"/>
+
+		<line class="stroke" x1="30" y1="60" x2="30" y2="40"/>
+		<line class="stroke" x1="60" y1="60" x2="60" y2="40"/>
+
+		<!-- Tag -->
+		<path d="M18 78L40 60L55 75L33 95Z"
+			  fill="#38BDF8"
+			  stroke="#7DD3FC"
+			  stroke-width="4"/>
+		<circle cx="39" cy="72" r="3" fill="#E0F2FE"/>
+	</g>
+
+</svg>

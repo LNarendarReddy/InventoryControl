@@ -29,7 +29,7 @@ namespace NSRetail
             btnSave.Text = Utility.Role == "Admin" ? "Approve" : "Save";
             txtIndentDays.EditValue = dealerIndent.IndentDays;
             txtSafetyDays.EditValue = dealerIndent.SafetyDays;
-            gcSupplierIndent.DataSource = dealerIndent.dtSupplierIndent;
+            gcSupplierIndent.DataSource = dealerIndent.dsSupplierIndent.Tables[0];
             txtBranch.EditValue = dealerIndent.BranchName;
 
             sluItemCode.Properties.DataSource = Utility.GetItemCodeList();
@@ -119,8 +119,8 @@ namespace NSRetail
             {
                 new SupplierRepository().AddSupplierIndentDetail(dealerIndent.SupplierIndentID, drSelectedPrice["ITEMPRICEID"], txtQtyOrWghtInKGs.EditValue, Utility.UserID);
 
-                dealerIndent.dtSupplierIndent = new ReportRepository().GetSupplierIndentDetail(dealerIndent.SupplierIndentID);
-                gcSupplierIndent.DataSource = dealerIndent.dtSupplierIndent;
+                dealerIndent.dsSupplierIndent = new ReportRepository().GetSupplierIndentDetail(dealerIndent.SupplierIndentID);
+                gcSupplierIndent.DataSource = dealerIndent.dsSupplierIndent.Tables[0];
                 ClearItemData(true);
             }
             catch (Exception ex) { ErrorMgmt.ShowError(ex); }

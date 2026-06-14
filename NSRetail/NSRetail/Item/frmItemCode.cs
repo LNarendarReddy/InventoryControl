@@ -107,7 +107,6 @@ namespace NSRetail
                 itemObj.VendorSKUCode = txtVendorSKUCode.EditValue;
                 itemObj.SeasonalityIDs = cmbSeasonality.EditValue;
                 itemObj.RefundPathID = cmbRefundPath.EditValue;
-                itemObj.IsDSD = chkIsDSD.EditValue;
 
                 new ItemCodeRepository().SaveItemCode(itemObj);
 
@@ -367,7 +366,6 @@ namespace NSRetail
             cmbManufacturer.EditValue = null;
             cmbUQC.EditValue = null;
             isEditMode = false;
-            chkIsDSD.EditValue = false;
         }
 
         private void txtItemCode_Properties_Leave(object sender, EventArgs e)
@@ -429,7 +427,6 @@ namespace NSRetail
 
             cmbSeasonality.SetEditValue(dtItemDetails.Rows[0]["SEASONALITYIDS"]);
             cmbRefundPath.EditValue = dtItemDetails.Rows[0]["REFUNDPATHID"];
-            chkIsDSD.EditValue = dtItemDetails.Rows[0]["ISDSD"];
 
             DataTable dtItemCodePrices = dsItemDetails.Tables["ITEMCODEPRICES"];
             DataRow selectedPrice = dtItemCodePrices.Rows[0];

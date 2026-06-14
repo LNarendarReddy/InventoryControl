@@ -82,12 +82,15 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 dtDetails.Columns["CalculatedIndent"].ColumnName = "REQUIREDITEMINDENT";
                 dtDetails.Columns["DesiredIndent"].ColumnName = "DESIREDINDENT";                                
 
+                DataSet ds = new DataSet();
+                ds.Tables.Add(dtDetails);
+
                 DealerIndent dealerIndent = new DealerIndent
                 {
                     supplierID = cmbDealer.EditValue,
                     CategoryID = cmbCategory.EditValue,
                     UserID = Utility.UserID,
-                    dtSupplierIndent = dtDetails,
+                    dsSupplierIndent = ds,
                     IndentType = "Indent By MBQ"
                 };
                 new ReportRepository().SaveSupplierIndent(dealerIndent);

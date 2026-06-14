@@ -65,7 +65,6 @@
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -282,8 +281,7 @@
             this.gridColumn22,
             this.gridColumn23,
             this.gridColumn24,
-            this.gridColumn25,
-            this.gridColumn26});
+            this.gridColumn25});
             this.gvItemList.DetailHeight = 404;
             this.gvItemList.GridControl = this.gcItemList;
             this.gvItemList.Name = "gvItemList";
@@ -506,12 +504,6 @@
             this.gridColumn25.Caption = "Refund path";
             this.gridColumn25.FieldName = "REFUNDPATH";
             this.gridColumn25.Name = "gridColumn25";
-            // 
-            // gridColumn26
-            // 
-            this.gridColumn26.Caption = "Is DSD";
-            this.gridColumn26.FieldName = "ISDSD";
-            this.gridColumn26.Name = "gridColumn26";
             // 
             // Root
             // 
@@ -909,7 +901,6 @@
         private DevExpress.XtraBars.BarButtonItem btnMinimumBaseQuantity;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
         private DevExpress.XtraBars.BarButtonItem bbiAdditionalFields;
     }
 }

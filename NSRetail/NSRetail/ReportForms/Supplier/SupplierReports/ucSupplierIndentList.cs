@@ -75,7 +75,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     dealerIndent.BranchAddress = drFocusedRow["ADDRESS"];
                     dealerIndent.IndentType = drFocusedRow["SUPPLIERINDENTTYPE"];
                     dealerIndent.UserID = Utility.UserID;                    
-                    dealerIndent.dtSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
+                    dealerIndent.dsSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
                     frmDealerIndent frmDealerIndentobj = new frmDealerIndent(dealerIndent,
                         Convert.ToString(drFocusedRow["DEALERNAME"]));
                     frmDealerIndentobj.ShowInTaskbar = false;
@@ -92,9 +92,9 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                         drFocusedRow["STATUS"] = "DRAFT";
                     break;
                 case "Print && Export":
-                    DataTable dtSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
-                    dtSupplierIndent.DefaultView.RowFilter = "DESIREDINDENT > 0";
-                    rptDealerIndent rpt = new rptDealerIndent(dtSupplierIndent);
+                    DataSet dsSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
+                    dsSupplierIndent.Tables[0].DefaultView.RowFilter = "DESIREDINDENT > 0";
+                    rptDealerIndent rpt = new rptDealerIndent(dsSupplierIndent.Tables[0]);
                     rpt.Parameters["IndentID"].Value = drFocusedRow["SUPPLIERINDENTID"];
                     rpt.Parameters["SupplierName"].Value = drFocusedRow["DEALERNAME"];
                     rpt.Parameters["ApprovedUser"].Value = drFocusedRow["APPROVEDBY"];

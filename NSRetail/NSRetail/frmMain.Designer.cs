@@ -101,6 +101,7 @@
             this.puSwitchConnection = new DevExpress.XtraBars.PopupMenu(this.components);
             this.btnCreditNote = new DevExpress.XtraBars.BarButtonItem();
             this.bbiLiquidation = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiSupplierIndent = new DevExpress.XtraBars.BarButtonItem();
             this.rpOperations = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -214,9 +215,10 @@
             this.barButtonItem1,
             this.bbiChangeConection,
             this.btnCreditNote,
-            this.bbiLiquidation});
+            this.bbiLiquidation,
+            this.bbiSupplierIndent});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 86;
+            this.ribbonControl1.MaxItemId = 87;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -901,6 +903,14 @@
             this.bbiLiquidation.Tag = "E0BC4301-79EA-4E24-B407-4CBA824C274B";
             this.bbiLiquidation.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiLiquidation_ItemClick);
             // 
+            // bbiSupplierIndent
+            // 
+            resources.ApplyResources(this.bbiSupplierIndent, "bbiSupplierIndent");
+            this.bbiSupplierIndent.Id = 86;
+            this.bbiSupplierIndent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiSupplierIndent.ImageOptions.SvgImage")));
+            this.bbiSupplierIndent.Name = "bbiSupplierIndent";
+            this.bbiSupplierIndent.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSupplierIndent_ItemClick);
+            // 
             // rpOperations
             // 
             this.rpOperations.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -950,6 +960,7 @@
             // 
             this.ribbonPageGroup15.ItemLinks.Add(this.btnSupplierReturns);
             this.ribbonPageGroup15.ItemLinks.Add(this.btnCreditNote);
+            this.ribbonPageGroup15.ItemLinks.Add(this.bbiSupplierIndent);
             this.ribbonPageGroup15.Name = "ribbonPageGroup15";
             resources.ApplyResources(this.ribbonPageGroup15, "ribbonPageGroup15");
             // 
@@ -1282,6 +1293,7 @@
         private DevExpress.XtraBars.BarButtonItem btnCreditNote;
         private DevExpress.XtraBars.BarButtonItem bbiLiquidation;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup18;
+        private DevExpress.XtraBars.BarButtonItem bbiSupplierIndent;
     }
 }
 

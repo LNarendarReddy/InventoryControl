@@ -148,7 +148,8 @@ namespace DataAccess
             return obj;
         }
 
-        public int ExecuteNonQuery(string procedureName, bool useWHConn, Dictionary<string, object> parameters = null, bool UseTransaction = false)
+        public int ExecuteNonQuery(string procedureName, bool useWHConn, Dictionary<string, object> parameters = null
+            , bool UseTransaction = false, Action<string> infoReader = null)
         {
             int rowcount = 0;
             SqlTransaction sqlTransaction = null;
@@ -166,6 +167,10 @@ namespace DataAccess
                     cmd.CommandTimeout = 1800;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = procedureName;
+
+                    if (infoReader != null)
+                        sqlConnection.InfoMessage += (sender, e) => infoReader.Invoke(e.Message);
+
                     ProcessParameters(cmd, parameters);
                     rowcount = cmd.ExecuteNonQuery();
                     sqlTransaction?.Commit();

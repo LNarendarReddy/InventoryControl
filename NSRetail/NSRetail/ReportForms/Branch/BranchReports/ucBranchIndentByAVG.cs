@@ -157,6 +157,9 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                 if (XtraMessageBox.Show("Are you sure want to generate supplier indent?",
                     "Confirm!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
 
+                DataSet ds = new DataSet();
+                ds.Tables.Add(indentTable);
+
                 DealerIndent dealerIndent = new DealerIndent
                 {
                     supplierID = cmbDealer.EditValue,
@@ -164,19 +167,19 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                     IndentDays = txtIndentDays.EditValue,
                     SafetyDays = 0,
                     UserID = Utility.UserID,
-                    dtSupplierIndent = GetFilteredData(),
+                    dsSupplierIndent = ds,
                     BranchID = cmbBranch.EditValue,
                     IndentType = "DSD Indent by MBQ"
                 };
 
-                dealerIndent.dtSupplierIndent.Columns["BRANCHSTOCK"].ColumnName = "BranchQuantity";
-                dealerIndent.dtSupplierIndent.Columns["DesiredQuantity"].ColumnName = "REQUIREDBRANCHSTOCK";
-                dealerIndent.dtSupplierIndent.Columns["INDENTQUANTITY"].ColumnName = "REQUIREDITEMINDENT";
+                dealerIndent.dsSupplierIndent.Tables[0].Columns["BRANCHSTOCK"].ColumnName = "BranchQuantity";
+                dealerIndent.dsSupplierIndent.Tables[0].Columns["DesiredQuantity"].ColumnName = "REQUIREDBRANCHSTOCK";
+                dealerIndent.dsSupplierIndent.Tables[0].Columns["INDENTQUANTITY"].ColumnName = "REQUIREDITEMINDENT";
 
-                dealerIndent.dtSupplierIndent.Columns.Add("DESIREDINDENT", typeof(decimal));
-                dealerIndent.dtSupplierIndent.Columns.Add("SUPPLIERINDENTDETAILID", typeof(int));
+                dealerIndent.dsSupplierIndent.Tables[0].Columns.Add("DESIREDINDENT", typeof(decimal));
+                dealerIndent.dsSupplierIndent.Tables[0].Columns.Add("SUPPLIERINDENTDETAILID", typeof(int));
 
-                foreach (DataRow dr in dealerIndent.dtSupplierIndent.Rows)
+                foreach (DataRow dr in dealerIndent.dsSupplierIndent.Tables[0].Rows)
                     dr["DESIREDINDENT"] = dr["REQUIREDITEMINDENT"];
                 
                 new ReportRepository().SaveSupplierIndent(dealerIndent);

@@ -90,6 +90,9 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     return; 
                 }
 
+                DataSet ds = new DataSet();
+                ds.Tables.Add(DotMatrixPrintHelper.GetDataTableWYSIWYG(ResultGridView, true));
+
                 GridControl resultsGrid = ResultGrid;
                 DealerIndent dealerIndent = new DealerIndent
                 {
@@ -99,7 +102,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     SafetyDays = txtSafetyDays.EditValue,
                     UserID = Utility.UserID,
                     IndentType = "Indent (Original)",
-                    dtSupplierIndent = DotMatrixPrintHelper.GetDataTableWYSIWYG(ResultGridView, true)
+                    dsSupplierIndent = ds
                 };
                 new ReportRepository().SaveSupplierIndent(dealerIndent);
                 XtraMessageBox.Show("Indent saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
