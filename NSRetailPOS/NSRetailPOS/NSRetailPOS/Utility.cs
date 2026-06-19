@@ -46,9 +46,9 @@ namespace NSRetailPOS
         public static event EventHandler ItemOrCodeChanged;
         public static Form ActiveForm;
 
-        public static string AppVersion = "1.9.7";
+        public static string AppVersion = "1.9.8";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(02-06-2026)";
+        public static string VersionDate = "(19-06-2026)";
 
         public static Bill GetBill(DataSet dsBillDetails)
         {
@@ -92,7 +92,6 @@ namespace NSRetailPOS
         {
             try
             {
-                LoggerUtility.InitializeLogger();
                 DateTime syncStartTime = DateTime.Now.AddMinutes(-5);
                 
                 ReportText(false, $"POS sync started at {syncStartTime.ToLongTimeString()}");

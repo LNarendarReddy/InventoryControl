@@ -50,7 +50,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                     , new List<string>() { "BILLNUMBER", "CUSTOMERNAME", "CUSTOMERGST", "CUSTOMERNUMBER"
                         , "CREATEDTIME", "BILLMOPNAME" }, true),
                 new IncludeSettings("Payment Mode", "IncludePaymentMode", new List<string>() 
-                    { "PAYMENTMODE", "Cash", "Card", "PayTM", "Sodexo", "UPI", "BharathPay", "B2BCredit", "B2CCredit", "Diff." }, false),
+                    { "PAYMENTMODE", "Cash", "Card", "PayTM", "Sodexo", "UPI", "BharathPay", "B2BCredit", "B2CCredit", "QRPay", "Diff." }, false),
                 new IncludeSettings("Count & Avg.", "IncludeCountAndAvg", new List<string>() { "COUNTVALUE", "AVERAGEVALUE" }, false)
             };
 

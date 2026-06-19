@@ -7,7 +7,9 @@ namespace NSRetailPOS.Gateway
 {
     public abstract class PaymentGatewayBase
     {
-        public Action<string> StatusUpdate;
+        public delegate void StatusUpdateHandler(string message, bool status = true);
+        public StatusUpdateHandler StatusUpdate;
+
         public Action<Exception> Error;
 
         public bool IsInProgress { get; protected set; }
