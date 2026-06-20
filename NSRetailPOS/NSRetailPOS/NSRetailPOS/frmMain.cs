@@ -4,9 +4,11 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
 using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraSplashScreen;
+using Newtonsoft.Json;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.Helpers;
+using NSRetailPOS.Logging;
 using NSRetailPOS.Operations;
 using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
@@ -275,6 +277,7 @@ namespace NSRetailPOS
                 // use this object for printing                
                 DataSet dsLastBillDetails = new BillingRepository().GetLastBill(daySequenceID, billObj.BillID);
                 Bill oldBillObj = Utility.GetBill(dsLastBillDetails);
+                AppLog.Info($"Bill {billObj.BillID} finished by user {Utility.loginInfo.UserID}. Bill details: {JsonConvert.SerializeObject(oldBillObj)}");
                 oldBillObj.dtBillDetails.DefaultView.RowFilter = "DELETEDDATE IS NULL";
                 oldBillObj.dtBillDetails = dtBillDetails.DefaultView.ToTable();
 

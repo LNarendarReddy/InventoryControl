@@ -15,7 +15,7 @@ namespace NSRetailPOS.Logging
             Log.Warning(message);
         }
 
-        public static void Error(Exception ex, string message)
+        public static void Error(Exception ex, string message = "")
         {
             Log.Error(ex, message);
         }
