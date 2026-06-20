@@ -91,7 +91,7 @@ namespace NSRetail.Stock
                 {
                     SplashScreenManager.CloseOverlayForm(handle);
                     ErrorMgmt.ShowError(ex);
-                    ErrorMgmt.Errorlog.Error(ex);
+                    AppLog.Error(ex);
                 }
             }
         }

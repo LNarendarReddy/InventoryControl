@@ -1,7 +1,7 @@
 ﻿using Serilog;
 using System;
 
-namespace NSRetailPOS.Logging
+namespace ErrorManagement
 {
     public static class AppLog
     {

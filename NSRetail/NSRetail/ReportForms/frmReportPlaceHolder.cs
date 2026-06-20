@@ -407,7 +407,7 @@ namespace NSRetail.ReportForms
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
     }

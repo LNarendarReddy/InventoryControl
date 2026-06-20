@@ -113,8 +113,6 @@ namespace Entity
         public object GSTCODE { get; set; }
 
         public bool IsFreeItem { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
 
     }
     public class SupplierReturns : EntityBase

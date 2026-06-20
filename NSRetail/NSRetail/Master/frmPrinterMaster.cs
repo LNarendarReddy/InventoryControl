@@ -60,7 +60,7 @@ namespace NSRetail
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void frmPrinterMaster_Load(object sender, EventArgs e)
@@ -96,7 +96,7 @@ namespace NSRetail
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void btnDetect_Click(object sender, EventArgs e)
@@ -113,7 +113,7 @@ namespace NSRetail
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
 

@@ -4,6 +4,7 @@ using DevExpress.XtraReports.UI;
 using ErrorManagement;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
+using NSRetailPOS.Logging;
 using NSRetailPOS.Reports;
 using System;
 using System.Data;
@@ -138,7 +139,7 @@ namespace NSRetailPOS.Operations.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
 
@@ -161,7 +162,7 @@ namespace NSRetailPOS.Operations.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
 
@@ -209,7 +210,7 @@ namespace NSRetailPOS.Operations.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
 
@@ -387,7 +388,7 @@ namespace NSRetailPOS.Operations.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
 

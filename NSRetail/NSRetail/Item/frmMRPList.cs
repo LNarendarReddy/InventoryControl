@@ -83,7 +83,7 @@ namespace NSRetail
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
 
@@ -131,7 +131,7 @@ namespace NSRetail
         //        {
         //            gvMRPList.DeleteRow(gvMRPList.FocusedRowHandle);
         //        }
-        //        ErrorMgmt.Errorlog.Error(ex);
+        //        AppLog.Error(ex);
         //    }
         //}
 

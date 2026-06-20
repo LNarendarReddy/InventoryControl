@@ -3,6 +3,7 @@ using DevExpress.XtraSplashScreen;
 using ErrorManagement;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
+using NSRetailPOS.Logging;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -225,7 +226,7 @@ namespace NSRetailPOS.Operations.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void btnCancel_Click(object sender, EventArgs e)
@@ -270,7 +271,7 @@ namespace NSRetailPOS.Operations.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void ViewCostPriceList(bool skipCPCheck = false)
@@ -361,7 +362,7 @@ namespace NSRetailPOS.Operations.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void txtCostPriceWOT_EditValueChanged(object sender, EventArgs e)
@@ -390,7 +391,7 @@ namespace NSRetailPOS.Operations.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void txtCostPriceWT_EditValueChanged(object sender, EventArgs e)
@@ -419,7 +420,7 @@ namespace NSRetailPOS.Operations.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void cmbGST_EditValueChanged(object sender, EventArgs e)
