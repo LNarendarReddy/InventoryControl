@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using DevExpress.UserSkins;
 using DevExpress.Skins;
-using DevExpress.LookAndFeel;
-using DevExpress.XtraSplashScreen;
-using System.Reflection;
-using System.ComponentModel;
 using ErrorManagement;
 
 namespace NSRetail
@@ -20,6 +14,8 @@ namespace NSRetail
         [STAThread]
         static void Main()
         {
+            Logger.Configure();
+
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
             SkinManager.EnableMdiFormSkins();

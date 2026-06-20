@@ -5,7 +5,6 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using Entity;
 using ErrorManagement;
-using log4net.Core;
 using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
@@ -65,7 +64,7 @@ namespace NSRetail
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void frmCreateOfferList_KeyDown(object sender, KeyEventArgs e)
@@ -102,7 +101,7 @@ namespace NSRetail
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void cmbItemCode_EditValueChanged(object sender, EventArgs e)
@@ -183,7 +182,7 @@ namespace NSRetail
                 {
                     SplashScreenManager.CloseOverlayForm(handle);
                     ErrorMgmt.ShowError(ex);
-                    ErrorMgmt.Errorlog.Error(ex);
+                    AppLog.Error(ex);
                 }
             }
         }

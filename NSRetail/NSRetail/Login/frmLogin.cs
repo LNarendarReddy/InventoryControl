@@ -161,7 +161,7 @@ namespace NSRetail
                     }
                 }
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
 
@@ -212,7 +212,7 @@ namespace NSRetail
             }
             catch (Exception ex){
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
 
@@ -243,7 +243,7 @@ namespace NSRetail
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
 

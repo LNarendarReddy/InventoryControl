@@ -1,6 +1,6 @@
-﻿using System;
-using log4net;
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
+using Serilog;
+using System;
 using System.Windows.Forms;
 
 
@@ -8,8 +8,6 @@ namespace ErrorManagement
 {
     public static class ErrorMgmt
     {
-        public static readonly ILog Errorlog = LogManager.GetLogger("Errorlog");
-
         public static Form MainFormInsance { get; set; }
 
         /// <summary>
@@ -17,6 +15,8 @@ namespace ErrorManagement
         /// </summary>
         public static void ShowError(Exception ex)
         {
+            AppLog.Error(ex, ex.Message);
+
             if(Form.ActiveForm != null && Form.ActiveForm.InvokeRequired)
             {
                 Form.ActiveForm.BeginInvoke((Action)(() => ShowError(ex)));
@@ -31,9 +31,6 @@ namespace ErrorManagement
 
             try
             {
-                //XtraMessageBox.Show(ex.Message + (ex.InnerException != null ? $" - {ex.InnerException.Message}" : string.Empty)
-                //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 new frmErrorDetails(ex) { Owner = MainFormInsance }.ShowDialog();
             }
             catch (Exception) { throw ex; }

@@ -96,7 +96,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             catch (Exception ex)
             {
                 ErrorManagement.ErrorMgmt.ShowError(ex);
-                ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
+                ErrorManagement.AppLog.Error(ex);
             }
         }
 

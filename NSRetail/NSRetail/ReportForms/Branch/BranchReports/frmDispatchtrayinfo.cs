@@ -52,7 +52,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
 
@@ -69,7 +69,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
     }

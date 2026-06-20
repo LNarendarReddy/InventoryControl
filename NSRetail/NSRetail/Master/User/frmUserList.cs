@@ -34,7 +34,7 @@ namespace NSRetail
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void btnNew_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace NSRetail
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -108,7 +108,7 @@ namespace NSRetail
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void btnViewReport_Click(object sender, EventArgs e)
@@ -135,7 +135,7 @@ namespace NSRetail
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
 

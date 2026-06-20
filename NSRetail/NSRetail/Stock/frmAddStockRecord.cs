@@ -230,7 +230,7 @@ namespace NSRetail.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void btnCancel_Click(object sender, EventArgs e)
@@ -278,7 +278,7 @@ namespace NSRetail.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void ViewCostPriceList(bool skipCPCheck = false)
@@ -369,7 +369,7 @@ namespace NSRetail.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void txtCostPriceWOT_EditValueChanged(object sender, EventArgs e)
@@ -398,7 +398,7 @@ namespace NSRetail.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void txtCostPriceWT_EditValueChanged(object sender, EventArgs e)
@@ -427,7 +427,7 @@ namespace NSRetail.Stock
             catch (Exception ex)
             {
                 ErrorMgmt.ShowError(ex);
-                ErrorMgmt.Errorlog.Error(ex);
+                AppLog.Error(ex);
             }
         }
         private void cmbGST_EditValueChanged(object sender, EventArgs e)

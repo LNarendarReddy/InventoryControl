@@ -66,7 +66,7 @@ namespace NSRetail.ReportForms.Stock.StockReports
             {
                 SplashScreenManager.CloseOverlayForm(handle);
                 ErrorManagement.ErrorMgmt.ShowError(ex);
-                ErrorManagement.ErrorMgmt.Errorlog.Error(ex);
+                ErrorManagement.AppLog.Error(ex);
             }
             SplashScreenManager.CloseOverlayForm(handle);
         }
