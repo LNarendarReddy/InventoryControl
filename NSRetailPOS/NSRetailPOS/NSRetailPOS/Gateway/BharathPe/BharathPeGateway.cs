@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NSRetailPOS.Gateway.BharathPe;
 using NSRetailPOS.Gateway.PineLabs;
+using NSRetailPOS.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,15 +91,17 @@ namespace NSRetailPOS.Gateway
 
                 requestClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenValue);
 
-                StatusUpdate("Sending payment request");
-
                 string jsonPayload = JsonConvert.SerializeObject(paymentRequest);
+                
+                StatusUpdate($"Sending payment request - payload : {jsonPayload}");
 
                 var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = await requestClient.PostAsync(BuildJourneyUrl(InitiateJourney),content);
 
                 string responseString = await response.Content.ReadAsStringAsync();
+
+                AppLog.Info($"Initiate Transaction Response : {responseString}");
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -111,6 +114,7 @@ namespace NSRetailPOS.Gateway
                 // request level failure
                 if (paymentResponse?.statusCode != "100")
                 {
+                    StatusUpdate($"{paymentResponse?.data?.errorMessage} " + $"({paymentResponse?.data?.errorCode})");
                     StatusUpdate(paymentResponse?.message ?? "Request failed");
                     return null;
                 }
@@ -148,6 +152,7 @@ namespace NSRetailPOS.Gateway
             catch (Exception ex)
             {
                 StatusUpdate(ex.Message);
+                AppLog.Error(ex, "Error while sending request");
                 return null;
             }
         }
@@ -175,7 +180,7 @@ namespace NSRetailPOS.Gateway
 
                 string responseString =
                     await response.Content.ReadAsStringAsync();
-
+                AppLog.Info($"Check status response : {responseString}");
                 if (!response.IsSuccessStatusCode)
                 {
                     StatusUpdate($"HTTP Error : {responseString}");
@@ -205,17 +210,17 @@ namespace NSRetailPOS.Gateway
         {
             BharatPeStatusRequest request =
                 statusRequest as BharatPeStatusRequest;
+            StatusUpdate($"Status check initiated for {request.referenceId} and {request.userName}");
 
             while (!token.IsCancellationRequested)
             {
                 for (int i = 5; i > 0; i--)
                 {
-                    StatusUpdate($"Checking status in {i} seconds");
+                    StatusUpdate($"Checking status in {i} seconds", i == 5);
                     await Task.Delay(1000);
                 }
 
-                BharatPeStatusResponse statusResponse =
-                    await CheckSingleStatus(request);
+                BharatPeStatusResponse statusResponse = await CheckSingleStatus(request);
 
                 if (statusResponse == null)
                     continue;
@@ -232,7 +237,6 @@ namespace NSRetailPOS.Gateway
                     case "7":
                         StatusUpdate("Payment approved");
                         return statusResponse;
-
                     case "3":
                     case "4":
                     case "5":
@@ -263,7 +267,6 @@ namespace NSRetailPOS.Gateway
         {
             try
             {
-                StatusUpdate("Cancelling transaction");
 
                 string tokenValue = await GetAccessToken();
 
@@ -274,6 +277,8 @@ namespace NSRetailPOS.Gateway
                     JsonConvert.SerializeObject(cancelRequest),
                     Encoding.UTF8,
                     "application/json");
+
+                StatusUpdate($"Cancelling transaction {JsonConvert.SerializeObject(cancelRequest)}");
 
                 HttpResponseMessage response =
                     await requestClient.PostAsync(
@@ -375,7 +380,6 @@ namespace NSRetailPOS.Gateway
             {
                 await _semaphore.WaitAsync();
 
-                
                 RequestSettings paymentRequest =
                     GetPaymentRequest(parameters) as RequestSettings;
 
@@ -409,7 +413,7 @@ namespace NSRetailPOS.Gateway
             }
             catch (Exception ex)
             {
-                StatusUpdate?.Invoke(ex.Message);
+                StatusUpdate?.Invoke(ex.ToString());
                 Error?.Invoke(ex);
                 return null;
             }
@@ -490,6 +494,60 @@ namespace NSRetailPOS.Gateway
             }
 
             return null;
+        }
+
+        private BharatPeStatusResponse GetMockSuccessResponse(IPaymentRequest request)
+        {
+            RequestSettings requestSettings = request as RequestSettings;
+            return new BharatPeStatusResponse
+            {
+                statusCode = "100",
+                message = "Mock Success",
+                data = new BharatPeStatusData
+                {
+                    referenceId = requestSettings.referenceId,
+                    transactions = new List<BharatPeTransaction>
+            {
+                new BharatPeTransaction
+                {
+                    statusCode = "2",
+                    transactionStatus = "Approved",
+                    amount = requestSettings.transactionAmount,
+                    retrievalReferenceNumber = $"RRN-{DateTime.Now:HHmmss}",
+                    approvalCode = "123456",
+                    cardType = "VISA",
+                    transactionId = Guid.NewGuid().ToString()
+                }
+            }
+                }
+            };
+        }
+
+        private BharatPeStatusResponse GetMockFailureResponse(IPaymentRequest request)
+        {
+            RequestSettings requestSettings = request as RequestSettings;
+            return new BharatPeStatusResponse
+            {
+                statusCode = "100",
+                message = "Mock Failure",
+                data = new BharatPeStatusData
+                {
+                    referenceId = requestSettings.referenceId,
+                    transactions = new List<BharatPeTransaction>
+            {
+                new BharatPeTransaction
+                {
+                    statusCode = "3",
+                    transactionStatus = "Declined",
+                    amount = requestSettings.transactionAmount,
+                    retrievalReferenceNumber = $"RRN-{DateTime.Now:HHmmss}",
+                    approvalCode = "123456",
+                    cardType = "VISA",
+                    transactionId = Guid.NewGuid().ToString()
+                }
+            }
+                }
+            };
         }
     }
 }

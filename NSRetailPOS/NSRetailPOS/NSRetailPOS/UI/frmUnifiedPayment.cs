@@ -3,10 +3,12 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraRichEdit.Model;
+using Newtonsoft.Json;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.Gateway;
 using NSRetailPOS.Gateway.PineLabs;
+using NSRetailPOS.Logging;
 using System;
 using System.Data;
 using System.Linq;
@@ -116,7 +118,7 @@ namespace NSRetailPOS.UI
 
             if (Utility.PaymentGateway != null)
             {
-                Utility.PaymentGateway.StatusUpdate = ShowRecieveMessage;
+                Utility.PaymentGateway.StatusUpdate = ShowReceiveMessage;
                 // Enable only if both Card and UPI have been received
                 //btnAddMissingPayment.Enabled = true;
             }
@@ -287,6 +289,7 @@ namespace NSRetailPOS.UI
             }
 
         }
+
         private void rgPaymentModes_Leave(object sender, EventArgs e)
                 {
 
@@ -362,14 +365,129 @@ namespace NSRetailPOS.UI
 
         private void btnLinkPayment_Click(object sender, EventArgs e)
         {
-            frmAddMissingPayment frmAddMissingPayment = 
-                new(Convert.ToInt32(billObj.BillID), cardMopID, upiMopID, 
-                billObj.GatewayTransactionReferences.LastOrDefault());
+            try
+            {
+                if (AreCompletedTransactionsMatched())
+                    return;
+
+                OpenAddMissingPayment();
+            }
+            catch (Exception ex)
+            {
+                AppLog.Error(ex, "Error while processing Add Missing Payment");
+
+                XtraMessageBox.Show(
+                    $"Error while processing Add Missing Payment.{Environment.NewLine}{ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private bool AreCompletedTransactionsMatched()
+        {
+            if (billObj.CompletedTransactions == null ||
+                !billObj.CompletedTransactions.Any())
+            {
+                AppLog.Info("No completed transactions found");
+                return false;
+            }
+
+            AppLog.Info($"Completed transactions found. Count: {billObj.CompletedTransactions.Count}");
+
+            // Populate Card/UPI received amounts and request amounts
+            SetReceivedAmounts();
+
+            decimal enteredCardAmount =
+                Convert.ToDecimal(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE") ?? 0);
+
+            decimal enteredUPIAmount =
+                Convert.ToDecimal(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE") ?? 0);
+
+            AppLog.Info($"Received Card Amount : {cardReceivedAmount}");
+            AppLog.Info($"Entered Card Amount  : {enteredCardAmount}");
+
+            AppLog.Info($"Received UPI Amount  : {upiReceivedAmount}");
+            AppLog.Info($"Entered UPI Amount   : {enteredUPIAmount}");
+
+            bool cardMatched = cardReceivedAmount == enteredCardAmount;
+            bool upiMatched = upiReceivedAmount == enteredUPIAmount;
+
+            AppLog.Info($"Card Matched : {cardMatched}");
+            AppLog.Info($"UPI Matched  : {upiMatched}");
+
+            if (!cardMatched || !upiMatched)
+            {
+                AppLog.Info("Completed transactions do not match entered amounts. Add Missing Payment will be opened.");
+                return false;
+            }
+
+            AppLog.Info("Card and UPI transactions already match entered amounts. Skipping Add Missing Payment.");
+
+            XtraMessageBox.Show(
+                "Transaction is already completed and payment amounts have been populated. " +
+                "Please verify the amounts and close the bill properly.",
+                "Payment Already Completed",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            return true;
+        }
+
+        private void OpenAddMissingPayment()
+        {
+            var pendingPayment = GetPendingPaymentDetails();
+
+            frmAddMissingPayment frmAddMissingPayment =
+                new frmAddMissingPayment(
+                    Convert.ToInt32(billObj.BillID),
+                    cardMopID,
+                    upiMopID,
+                    billObj.GatewayTransactionReferences.LastOrDefault(),
+                    pendingPayment?.MopID,
+                    pendingPayment?.Amount);
+
             frmAddMissingPayment.ShowDialog();
 
-            if (frmAddMissingPayment.DialogResult != DialogResult.OK) return;
+            if (frmAddMissingPayment.DialogResult != DialogResult.OK)
+            {
+                AppLog.Info("Add Missing Payment cancelled by user");
+                return;
+            }
+
+            AppLog.Info("CompleteTransaction is invoked from Add Missed Payment as response null from gateway");
+
+            AppLog.Info(
+                $"Missed Payment Response: " +
+                $"{JsonConvert.SerializeObject(frmAddMissingPayment.CompletedTransactionData)}");
 
             CompleteTransaction(frmAddMissingPayment.CompletedTransactionData);
+        }
+
+        private (int MopID, decimal Amount)? GetPendingPaymentDetails()
+        {
+            decimal enteredCardAmount =
+                Convert.ToDecimal(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE") ?? 0);
+
+            decimal enteredUPIAmount =
+                Convert.ToDecimal(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE") ?? 0);
+
+            decimal pendingCardAmount = enteredCardAmount - cardReceivedAmount;
+            decimal pendingUPIAmount = enteredUPIAmount - upiReceivedAmount;
+
+            AppLog.Info(
+                $"Pending Card Amount: {pendingCardAmount}, " +
+                $"Pending UPI Amount: {pendingUPIAmount}");
+
+            // Priority 1 : Card
+            if (pendingCardAmount > 0)
+                return (cardMopID, pendingCardAmount);
+
+            // Priority 2 : UPI
+            if (pendingUPIAmount > 0)
+                return (upiMopID, pendingUPIAmount);
+
+            return null;
         }
 
         private void rgPaymentModes_EditValueChanging(object sender, ChangingEventArgs e)
@@ -556,15 +674,19 @@ namespace NSRetailPOS.UI
                     amount, 
                     Utility.loginInfo.UserID
                 );
-
+            AppLog.Info($"Receive Payment Response: {JsonConvert.SerializeObject(completedTransactionData)}");
             btnCancelRequest.Enabled = false;
             EnableAllControls();
 
             CompleteTransaction(completedTransactionData);
         }
 
-        private void ShowRecieveMessage(string message)
+        private void ShowReceiveMessage(string message, bool log)
         {
+            if (log)
+            {
+                AppLog.Info(message);
+            }
             txtStatus.Text += $"{DateTime.Now.ToLongTimeString()} - {message} {Environment.NewLine}";
             txtStatus.SelectionStart = int.MaxValue;
             txtStatus.ScrollToCaret();
@@ -576,7 +698,7 @@ namespace NSRetailPOS.UI
                 billObj.CompletedTransactions == null
                 || !billObj.CompletedTransactions.Any())
                 return;
-
+            AppLog.Info("Started setting received amounts");
             cardReceivedAmount = billObj.CompletedTransactions.Where(x => x.MopID == cardMopID).Sum(x => x.Amount);
             upiReceivedAmount = billObj.CompletedTransactions.Where(x => x.MopID == upiMopID).Sum(x => x.Amount);
             txtCardRecievedAmount.EditValue = cardReceivedAmount;
@@ -588,6 +710,8 @@ namespace NSRetailPOS.UI
             decimal.TryParse(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE").ToString(), out decimal upiEnteredAmount);
             SetReceiveValues(upiRowHandle, upiEnteredAmount);
 
+            AppLog.Info("Completed setting received amounts");
+
             gvMOP_CellValueChanged(null, null);
 
             // complete billing if it is single payment and amount is received
@@ -595,9 +719,11 @@ namespace NSRetailPOS.UI
                 (rgPaymentModes.Text.Equals("card", StringComparison.OrdinalIgnoreCase)
                     || rgPaymentModes.Text.Equals("UPI", StringComparison.OrdinalIgnoreCase)))
             {
+                AppLog.Info("Payments matched bill will get closed");
                 btnApply_Click(null, null);
             }
 
+            AppLog.Info("Payments not matched bill remains open");
             // Update "Add missing payment" button state based on received amounts
             if (Utility.PaymentGateway != null)
             {
@@ -608,9 +734,11 @@ namespace NSRetailPOS.UI
         private void CompleteTransaction(CompletedTransactionData completedTransactionData)
         {
             if (completedTransactionData == null) return;
-
             billingRepository.SaveCompletedTransactionData(completedTransactionData);
+            AppLog.Info("Saved completed transactions to DB");
+
             billObj.CompletedTransactions.Add(completedTransactionData);
+            AppLog.Info("Added completed transactions to list for local memory");
 
             SetReceivedAmounts();
         }

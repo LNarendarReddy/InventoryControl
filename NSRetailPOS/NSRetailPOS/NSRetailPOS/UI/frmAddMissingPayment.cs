@@ -14,13 +14,20 @@ namespace NSRetailPOS.UI
         public int BillID { get; }
         public string ReferenceId { get; }
 
-        public frmAddMissingPayment(int billID, int cardMopID, int upiMopID, string referenceId = null)
+        public frmAddMissingPayment(int billID, int cardMopID, int upiMopID, string referenceId = null, 
+            int? selectedMOPid = null, decimal? amount = null)
         {
             InitializeComponent();
             BillID = billID;
             rgPaymentMode.Properties.Items.Add(new RadioGroupItem() { Description = "Card", Value = cardMopID });
             rgPaymentMode.Properties.Items.Add(new RadioGroupItem() { Description = "UPI", Value = upiMopID });
             ReferenceId = referenceId;
+            
+            if (selectedMOPid.HasValue)
+                rgPaymentMode.EditValue = selectedMOPid.Value;
+
+            if (amount.HasValue && amount.Value > 0)
+                txtAmount.EditValue = amount.Value;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

@@ -12,8 +12,8 @@ namespace NSRetailPOS.Gateway.BharathPe
     {
         public AuthSettings AuthSettings { get; set; }
         public RequestSettings RequestSettings { get; set; }
-        public string AuthURI = "https://tauth.mod91.io/realms/mif/protocol/openid-connect/token";
-        public string RequestURI = "https://thermes.mod91.io/mif/v1/process?";
+        public string AuthURI = "";
+        public string RequestURI = "";
 
         public BharatPePaymentGateway()
         {
@@ -50,6 +50,7 @@ namespace NSRetailPOS.Gateway.BharathPe
         public string additionalAmount { get; set; }
         public string transactionType { get; set; }
         public string referenceId { get; set; }
+        public int printCopy { get; set; } = 1;
     }
 
     public class AuthTokenResponse

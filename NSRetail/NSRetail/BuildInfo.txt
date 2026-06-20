@@ -1,4 +1,7 @@
-﻿V3.7.9
+﻿V3.8.0
+-- QR Pay included in Bills Report
+
+V3.7.9
 -- New fields in various screens
 -- Item -> New Item additional details screeen
 	-- Supplier indent type = FT\NFT
