@@ -34,7 +34,8 @@ namespace NSRetail.Supplier
                 {
                     { "SupplierID", luSupplier.EditValue }
                     , { "CategoryID", luCategory.EditValue }
-                    , { "IndentDays", txtIndentDays.EditValue }
+                    , { "SafetyDays", txtSafetyDays.EditValue }
+                    , { "ManufacturerID", luManufacturer.EditValue }
                     , { "IndentItemSelectionType", luIndentType.EditValue }
                     , { "BranchID", luBranch.EditValue }
                     , { "UserID", Utility.UserID }
@@ -65,7 +66,7 @@ namespace NSRetail.Supplier
 
             luSupplier.Enabled = enabled;
             luCategory.Enabled = enabled;
-            txtIndentDays.Enabled = enabled;
+            txtSafetyDays.Enabled = enabled;
             luIndentType.Enabled = enabled;
             luBranch.Enabled = enabled;
             luIndentType_EditValueChanged(null, null);
@@ -89,7 +90,11 @@ namespace NSRetail.Supplier
             luBranch.Properties.DisplayMember = "BRANCHNAME";
             luBranch.Properties.ValueMember = "BRANCHID";
 
-            txtIndentDays.EditValue = 14;
+            luManufacturer.Properties.DataSource = Utility.GetManufacturer();
+            luManufacturer.Properties.DisplayMember = "MANUFACTURERNAME";
+            luManufacturer.Properties.ValueMember = "MANUFACTURERID";
+
+            txtSafetyDays.EditValue = 0;
             luIndentType_EditValueChanged(null, null);
         }
 

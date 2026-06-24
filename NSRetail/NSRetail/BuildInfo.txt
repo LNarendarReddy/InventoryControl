@@ -1,4 +1,9 @@
-﻿V3.8.0
+﻿V3.8.1
+-- New Generate supplier indent option in main screen
+-- Permissions for supplier indent screen
+-- Supplier indent report changes, added PO instructions and Note
+
+V3.8.0
 -- QR Pay included in Bills Report
 
 V3.7.9

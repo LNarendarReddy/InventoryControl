@@ -909,6 +909,7 @@
             this.bbiSupplierIndent.Id = 86;
             this.bbiSupplierIndent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiSupplierIndent.ImageOptions.SvgImage")));
             this.bbiSupplierIndent.Name = "bbiSupplierIndent";
+            this.bbiSupplierIndent.Tag = "9DF23181-840A-4D97-897E-C728F6E9ABE2::Execute";
             this.bbiSupplierIndent.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSupplierIndent_ItemClick);
             // 
             // rpOperations
