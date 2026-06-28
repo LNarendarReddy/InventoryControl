@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
 using Entity;
+using NSRetail.Stock;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -129,6 +130,11 @@ namespace NSRetail.Supplier
             txtLog.AppendText(text);
             txtLog.SelectionStart = int.MaxValue;
             txtLog.ScrollToCaret();
+        }
+
+        private void btnPickList_Click(object sender, EventArgs e)
+        {
+            new frmGeneratePickList().ShowDialog();
         }
     }
 }
