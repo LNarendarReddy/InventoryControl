@@ -66,6 +66,10 @@ namespace NSRetailLiteApp.Models
 
         public ObservableCollection<SupplierIndent> SupplierIndentList;
 
+        public ObservableCollection<PickListItemModel> PickListItemList;
+
+        public ObservableCollection<PickListTrayModel> PickListTrayList;
+
     }
 
     public partial class Branch : BaseObservableObject
@@ -93,6 +97,9 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         private int _branchIndentID;
+
+        [ObservableProperty]
+        private int _pickListID;
 
         [ObservableProperty]
         private ObservableCollection<BranchCounter> _branchCounterList;

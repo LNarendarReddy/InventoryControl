@@ -26,6 +26,12 @@
     <MauiXaml Update="Views\ItemDetails\ItemDetailsPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Views\Picklist\AddTrayPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\Picklist\PickListItemPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\StockDispatch\StockDispatchDetailListPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

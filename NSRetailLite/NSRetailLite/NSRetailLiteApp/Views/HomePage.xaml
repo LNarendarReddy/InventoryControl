@@ -20,7 +20,7 @@
                 <ScrollView>
                     <Grid Margin="10" RowSpacing="0" Padding="0" RowDefinitions="auto, auto, auto, auto, auto, auto">
                         <Frame Padding="1" Grid.Row="0">
-                            <Grid Margin="0" RowDefinitions="auto" ColumnDefinitions="auto, *, auto, auto, auto, *" ColumnSpacing="20">
+                            <Grid Margin="0" RowDefinitions="auto" ColumnDefinitions="auto, *, auto, auto, auto, auto, *" ColumnSpacing="20">
                                 <StackLayout Grid.Row="0" Grid.Column="0" Rotation="270" Margin="0, 0, -100, 0">
                                     <Label Text="Stock" BackgroundColor="{AppThemeBinding Light=SteelBlue, Dark=MediumPurple}"
                                            HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Medium" TextColor="White"/>
@@ -70,7 +70,22 @@
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </VerticalStackLayout>
-                                
+
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="5">
+                                    <ImageButton Margin="0, 5, 0, 2" Source="picklistarrange.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
+                                                Command="{Binding Path=ArrangePickListCommand}"/>
+                                    <Label Text="Arrange" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ArrangePickListCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Text="Pick list" FontSize="Small" HorizontalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ArrangePickListCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </VerticalStackLayout>
+
                             </Grid>
                         </Frame>
 

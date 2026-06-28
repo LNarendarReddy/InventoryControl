@@ -86,6 +86,23 @@ namespace NSRetailLiteApp.ViewModels
             return callingObject;
         }
 
+        protected async Task<T> DeleteAsync<T>(string path, T callingObject, Dictionary<string, string?> values
+            , bool displayAlert = true, bool showResponse = false) where T : BaseObservableObject
+        {
+            IsLoading = true;
+            try
+            {
+                HttpResponseMessage responseMessage = await httpClient.DeleteAsync(QueryHelpers.AddQueryString($"{URL}{path}", values));
+                ProcessResponse(responseMessage, ref callingObject, displayAlert, showResponse);
+            }
+            catch (Exception ex)
+            {
+                ProcessResponse(ex, callingObject);
+            }
+            finally { IsLoading = false; }
+            return callingObject;
+        }
+
         public void ProcessResponse<T>(HttpResponseMessage message, ref T callingObject, bool displayAlert = true
             , bool showResponse = false) where T : BaseObservableObject
         {

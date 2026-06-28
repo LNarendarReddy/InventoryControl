@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls.PlatformConfiguration;
 using NSRetailLiteApp.Models;
 using NSRetailLiteApp.ViewModels.Billing;
 using NSRetailLiteApp.ViewModels.Common;
@@ -13,17 +12,10 @@ using NSRetailLiteApp.Views.Billing;
 using NSRetailLiteApp.Views.Common;
 using NSRetailLiteApp.Views.DispatchReceive;
 using NSRetailLiteApp.Views.ItemDetails;
+using NSRetailLiteApp.Views.Picklist;
 using NSRetailLiteApp.Views.StockCounting;
 using NSRetailLiteApp.Views.StockDispatch;
 using NSRetailLiteApp.Views.StockEntry;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.ServiceModel.Channels;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NSRetailLiteApp.ViewModels
 {
@@ -46,6 +38,7 @@ namespace NSRetailLiteApp.ViewModels
             StockDispatchCommand = new AsyncRelayCommand(StockDispatch);
             StockEntryCommand = new AsyncRelayCommand(StockEntry);
             DispatchRecieveCommand = new AsyncRelayCommand(DispatchReceive);
+            ArrangePickListCommand = new AsyncRelayCommand(ArrangePickList);
 
             _model = loggedInUser;
             User = loggedInUser;
@@ -611,6 +604,38 @@ namespace NSRetailLiteApp.ViewModels
             holderClass = new HolderClass();
             StockEntryViewModel stockEntryViewModel = new(stockEntryModel);
             await ShowPopup(holderClass, new InvoiceDetailsPage(stockEntryViewModel));
-        }        
+        }
+
+        public IAsyncRelayCommand ArrangePickListCommand { get; }
+
+        private async Task ArrangePickList()
+        {
+            HolderClass holderClass = new HolderClass();
+            holderClass = await GetAsync("picklist/getbranchlist", holderClass
+                   , new Dictionary<string, string?>()
+                        {
+                            { "CategoryID", Model.CategoryId.ToString() }
+                        });
+
+            if (holderClass.Exception != null) return;
+
+            BranchSelectionViewModel branchSelectionViewModel = new BranchSelectionViewModel(holderClass.Holder.BranchList);
+            await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
+
+            if(branchSelectionViewModel.SelectedBranch == null) return;
+
+            holderClass = new();
+            holderClass = await GetAsync("picklist/getitemdata", holderClass, new Dictionary<string, string?>()
+                {
+                    { "PicklistID", branchSelectionViewModel.SelectedBranch.PickListID.ToString() }
+                }, true);
+
+            await RedirectToPage(holderClass, new PickListItemPage(
+                new PickList.PickListItemViewModel(
+                    branchSelectionViewModel.SelectedBranch
+                    , holderClass.Holder?.PickListItemList, User)));
+
+            //return branchSelectionViewModel.SelectedBranch;
+        }
     }
 }
