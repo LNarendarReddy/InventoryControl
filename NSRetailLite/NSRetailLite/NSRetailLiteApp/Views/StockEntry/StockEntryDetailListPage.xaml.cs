@@ -4,8 +4,6 @@ namespace NSRetailLiteApp.Views.StockEntry;
 
 public partial class StockEntryDetailListPage : ContentPage
 {
-    bool firstTimeLoad = true;
-
 	public StockEntryDetailListPage(StockEntryDetailListViewModel stockEntryDetailListViewModel)
 	{
 		InitializeComponent();
@@ -18,12 +16,6 @@ public partial class StockEntryDetailListPage : ContentPage
 
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
-        if (firstTimeLoad)
-        {
-            firstTimeLoad = false;
-            return;
-        }
-        
         StockEntryDetailListViewModel.Reload();
     }
 }

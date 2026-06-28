@@ -12,7 +12,7 @@
             <StackLayout>
                 <Image Source="victorylogo.svg" HeightRequest="150" />
             </StackLayout>
-            <Grid Margin="20" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto" Grid.Row="1">
+            <Grid Margin="20" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto" Grid.Row="1">
                 <Label Text="Welcome!" FontSize="Title" HorizontalTextAlignment="Center" Grid.Row="1" />
                 <Label Text="Enter your credentials" FontSize="Subtitle" Grid.Row="2" HorizontalTextAlignment="Center" />
                 <Frame Grid.Row="3" HorizontalOptions="FillAndExpand" Padding="0" BorderColor="SteelBlue" CornerRadius="30" Margin="0, 20, 0, 0">
@@ -37,6 +37,7 @@
                 </Frame>
                 <Button Text="Login" BackgroundColor="SteelBlue" Grid.Row="6" HorizontalOptions="Center" WidthRequest="120"
                 Command="{Binding Path=LoginCommand}" Margin="0, 20, 0, 0"/>
+                <Label Text="{Binding Path=VersionString}" Margin="0, 20, 0, 0" Grid.Row="7" HorizontalOptions="Center" FontSize="Caption"/>
             </Grid>
         </Grid>
         <ActivityIndicator IsRunning="{Binding Path=IsLoading}" WidthRequest="150" HeightRequest="150" VerticalOptions="Center"/>

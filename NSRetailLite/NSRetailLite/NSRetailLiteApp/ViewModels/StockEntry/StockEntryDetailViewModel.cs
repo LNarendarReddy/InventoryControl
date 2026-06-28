@@ -29,12 +29,21 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
         public event SetFocus FocusQuantity;
         public event SetFocus FocusWeight;
 
+        private double forceQuantity = 0;
+        private readonly StockEntryModel? stockEntryModel;
 
-        public StockEntryDetailViewModel(StockEntryDetailModel stockEntryDetailModel)
+        public StockEntryDetailViewModel(StockEntryDetailModel stockEntryDetailModel, StockEntryModel? stockEntryModel)
         {
             StockEntryDetailModel = stockEntryDetailModel;
+            this.stockEntryModel = stockEntryModel;
             SaveCommand = new AsyncRelayCommand(Save);
             LoadItemCommand = new AsyncRelayCommand(LoadItem);
+
+            if (StockEntryDetailModel.ItemCodeID <= 0)
+            {
+                forceQuantity = StockEntryDetailModel.Quantity; // remember quantity to force it back
+                LoadItemCommand.Execute(null);
+            }
         }
 
         private async Task Save()
@@ -56,6 +65,9 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
             if (StockEntryDetailModel.IsOpenItem && StockEntryDetailModel.WeightInKGs > 9999.99)
                 errors.Add("Weight cannot be more than 4 digits");
 
+            if (stockEntryModel?.SupplierIndentId > 0 && StockEntryDetailModel.Quantity > StockEntryDetailModel.IndentQuantity)
+                errors.Add($"Quantity cannot be greater than the value in supplier indent of {StockEntryDetailModel.IndentQuantity}");
+
             if (errors.Any())
             {
                 await DisplayAlert("Error"
@@ -70,16 +82,24 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
             stockEntryDetailModel = await PostAsyncAsContent("StockEntry_v2/saveinvoicedetail", stockEntryDetailModel
                 , displayAlert: true, showResponse: true);
 
-            if (stockEntryDetailModel.Exception == null)
+            if (stockEntryDetailModel.Exception != null) return;
+
+            if (stockEntryModel?.SupplierIndentId > 0)
             {
-                ClearData();
-                SaveComplete?.Invoke();
+                Pop();
+                return;
             }
+
+            ClearData();
+            SaveComplete?.Invoke();
         }
 
         private async Task LoadItem()
         {
-            if (string.IsNullOrEmpty(StockEntryDetailModel.ItemCode))
+            string searchCode = !string.IsNullOrEmpty(StockEntryDetailModel.ItemCode) ?
+                StockEntryDetailModel.ItemCode : StockEntryDetailModel.SKUCode;
+
+            if (string.IsNullOrEmpty(searchCode))
             {
                 ClearData();
                 return;
@@ -90,7 +110,7 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
             item = await GetAsync("StockEntry_v2/getitembycode", item
                 , new Dictionary<string, string?>()
                 {
-                    { "ItemCode", StockEntryDetailModel.ItemCode }
+                    { "ItemCode", searchCode }
                 }, displayAlert: true);
 
             if (item.Exception != null) return;
@@ -108,8 +128,10 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
             StockEntryDetailModel.ItemName = item.ItemName;
             StockEntryDetailModel.MRP = itemPrice?.MRP;
             StockEntryDetailModel.IsOpenItem = item.IsOpenItem;
-            StockEntryDetailModel.Quantity = 0;
+            StockEntryDetailModel.Quantity = forceQuantity;
             StockEntryDetailModel.WeightInKGs = 0;
+
+            forceQuantity = 0; //reset force quantity in cases of item change
 
             if (itemPrice == null)
             {

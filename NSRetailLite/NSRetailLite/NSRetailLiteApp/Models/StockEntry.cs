@@ -110,5 +110,16 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         private int _userID;
+
+        [ObservableProperty]
+        private bool _itemCodePending = true;
+
+        [ObservableProperty]
+        private double _indentQuantity;
+
+        partial void OnItemCodeIDChanged(int value)
+        {
+            ItemCodePending = value == 0;
+        }
     }
 }

@@ -61,6 +61,9 @@
                                 Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Center" VerticalTextAlignment="Center"/>
 
                                 <Label Text="{Binding Path=ItemCode}" Margin="0, 0, 5, 0" Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand"/>
+                                <ImageButton Source="redwarning.png" Margin="0, 0, 5, 0" Grid.Row="0" Grid.Column="1" MaximumWidthRequest="16" MaximumHeightRequest="16" HorizontalOptions="Start" 
+                                             Command="{Binding Path=BindingContext.EditStockEntryDetailCommand, Source={RelativeSource AncestorType={x:Type views:StockEntryDetailListPage}}}"
+                                             CommandParameter="{Binding .}" IsVisible="{Binding Path=ItemCodePending}"/>
                                 <Label Text="{Binding Path=MRP, StringFormat='MRP: {0}'}" Margin="0, 0, 10, 0" Grid.Row="0" Grid.Column="2" FontSize="Caption" HorizontalOptions="End"/>
                                 <Label Text="{Binding Path=Quantity, StringFormat='Qty: {0}'}" Margin="0, 0, 10, 0" Grid.Row="0" Grid.Column="3" 
                                        HorizontalOptions="End" FontSize="Caption" FontAttributes="Bold" 

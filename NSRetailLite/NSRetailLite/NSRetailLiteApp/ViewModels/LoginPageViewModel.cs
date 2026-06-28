@@ -15,6 +15,8 @@ namespace NSRetailLiteApp.ViewModels
         [ObservableProperty]
         public LoggedInUser _model;
 
+        public string VersionString => $"( v{App.Version} - {App.VersionDate} )";
+
         public LoginPageViewModel() { Model = new LoggedInUser(); }
 
         [RelayCommand]

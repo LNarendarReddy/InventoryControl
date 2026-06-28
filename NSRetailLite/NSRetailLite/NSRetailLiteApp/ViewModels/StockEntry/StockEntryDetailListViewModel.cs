@@ -120,7 +120,7 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
         {
             if (model == null) return;
 
-            await RedirectToPage(StockEntryModel, new StockEntryDetailPage(new StockEntryDetailViewModel(model)), false);
+            await RedirectToPage(StockEntryModel, new StockEntryDetailPage(new StockEntryDetailViewModel(model, StockEntryModel)), false);
         }
 
         private async Task DiscardStockEntry()
@@ -149,6 +149,12 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
                 return;
             }
 
+            if (StockEntryModel.StockEntryDetailList.Any(x => x.ItemCodePending))
+            {
+                DisplayErrorMessage("One or more items do not have item code and MRP entered");
+                return;
+            }
+
             if (!await DisplayAlert("Confirm", "Are you sure you want to submit stock invoice entry?", "Yes", "No")) return;
 
             StockEntryModel stockEntry = StockEntryModel;
@@ -168,7 +174,7 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
             try
             {
                 StockEntryDetailModel stockEntryDetailModel = new() { StockEntryId = StockEntryModel.StockEntryId };
-                await RedirectToPage(StockEntryModel, new StockEntryDetailPage(new StockEntryDetailViewModel(stockEntryDetailModel)), false);
+                await RedirectToPage(StockEntryModel, new StockEntryDetailPage(new StockEntryDetailViewModel(stockEntryDetailModel, null)), false);
             }
             catch (Exception ex) { DisplayErrorMessage(ex.StackTrace); }
         }
@@ -176,7 +182,11 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
         public async Task Reload()
         {
             var stockEntryModel = StockEntryModel;
-            stockEntryModel = await GetAsync("stockentry_v2/getinvoice", stockEntryModel, new Dictionary<string, string?>() { { "UserID", HomePageViewModel.User.UserId.ToString() } }, true);
+            stockEntryModel = await GetAsync("stockentry_v2/getinvoice", stockEntryModel, new Dictionary<string, string?>() 
+                { 
+                    { "UserID", HomePageViewModel.User.UserId.ToString() },
+                    { "StockEntryID", stockEntryModel.StockEntryId.ToString() },
+                }, true);
             stockEntryModel.UserID = HomePageViewModel.User.UserId;
             StockEntryModel = stockEntryModel;
             PerformSearch();
