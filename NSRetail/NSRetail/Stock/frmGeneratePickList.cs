@@ -26,15 +26,20 @@ namespace NSRetail.Stock
             luCategory.Properties.DataSource = Utility.GetCategoryListExceptAll();
             luCategory.Properties.ValueMember = "CATEGORYID";
             luCategory.Properties.DisplayMember = "CATEGORYNAME";
+
+            luSupplier.Properties.DataSource = new MasterRepository().GetDealer();
+            luSupplier.Properties.ValueMember = "DEALERID";
+            luSupplier.Properties.DisplayMember = "DEALERNAME";
         }
 
         private void btnGeneratePickList_Click(object sender, EventArgs e)
         {
-            if(luCategory.EditValue == null) return; 
+            if (!dxValidationProvider1.Validate()) return;
 
             gcPickList.DataSource = new ReportRepository().GetReportData("USP_RPT_PICKLIST", new Dictionary<string, object>()
             {
-                { "CategoryID", luCategory.EditValue }
+                { "CategoryID", luCategory.EditValue },
+                { "SupplierID", luSupplier.EditValue }
             });
 
             gcPickList.BestFit();
