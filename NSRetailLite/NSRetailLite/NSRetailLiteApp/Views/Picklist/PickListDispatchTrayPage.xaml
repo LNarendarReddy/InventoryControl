@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.Picklist.PickListDispatchTrayPage"
+             xmlns:models="clr-namespace:NSRetailLiteApp.Models"
+             xmlns:views="clr-namespace:NSRetailLiteApp.Views.Picklist"
+             Title="{Binding Path=Branch.BranchName}">
+    <VerticalStackLayout Spacing="10" Margin="0, 10, 0, 0">
+        <Button Text="Submit" HorizontalOptions="Center" Command="{Binding Path=SubmitCommand}"/>
+        <CollectionView ItemsSource="{Binding Path=PickListTrayModels}">
+            <CollectionView.ItemTemplate x:DataType="models:PickListTrayModel">
+                <DataTemplate x:DataType="models:PickListTrayModel">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItem IconImageSource="view.png" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.ViewTrayCommand
+                , Source={RelativeSource AncestorType={x:Type views:PickListDispatchTrayPage}}}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                        </SwipeView.RightItems>
+                        <Frame  BorderColor="Transparent" Padding="0">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" CommandParameter="{Binding .}"
+                                        Command="{Binding Path=BindingContext.VerifyTrayCommand, Source={RelativeSource AncestorType={x:Type views:PickListDispatchTrayPage}}}" />
+                            </Frame.GestureRecognizers>
+                            
+                            <Grid Padding="5" RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto, Auto" RowSpacing="5" ColumnSpacing="10">
+                                <Label FontSize="Subtitle" LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Path=TrayNumber}" 
+                                       TextColor="{Binding TrayVerifiedColor}"/>
+                                <Label Text="{Binding Path=ItemCount, StringFormat='Items: {0}'}" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="End" 
+                                       TextColor="{Binding TrayVerifiedColor}"/>
+                                <Label Text="{Binding Path=PieceCount, StringFormat='Pieces: {0}'}" Grid.Row="0" Grid.Column="2" TextColor="{Binding TrayVerifiedColor}"/>
+                                <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" />
+                            </Grid>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

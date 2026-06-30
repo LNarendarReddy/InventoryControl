@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSRetailLiteApp.Views.Picklist.PickListDispatchTrayDetailsPage"
+             xmlns:models="clr-namespace:NSRetailLiteApp.Models"
+             Title="{Binding Path=PickListTrayModel.TrayNumber, StringFormat='Tray #: {0}'}">
+    <VerticalStackLayout>
+        <CollectionView ItemsSource="{Binding Path=PickListTrayModel.PickListItemList}">
+            <CollectionView.ItemTemplate x:DataType="models:PickListItemModel">
+                <DataTemplate x:DataType="models:PickListItemModel">
+                    <Grid Padding="5" RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, Auto, Auto" RowSpacing="5" ColumnSpacing="10">
+
+                        <Label FontSize="Subtitle" LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Path=ItemName}" />
+                        <Label Text="{Binding Path=ItemCode}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
+                        <Label Text="{Binding Path=MRP, StringFormat='MRP: {0}'}" Grid.Row="1" Grid.Column="2" HorizontalTextAlignment="End" />
+                        <Label Text="{Binding Path=Quantity, StringFormat='Quantity: {0}'}" Grid.Row="1" Grid.Column="3" />
+                        <Rectangle HeightRequest="2" BackgroundColor="PaleVioletRed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

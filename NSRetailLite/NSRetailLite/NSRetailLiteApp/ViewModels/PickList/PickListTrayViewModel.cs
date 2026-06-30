@@ -27,7 +27,7 @@ namespace NSRetailLiteApp.ViewModels.PickList
             this.pickListId = pickListId;
             PickListItemModel = pickListItemModel;
             this.user = user;
-            PickedQuantity = pickListItemModel.Quantity;
+            PickedQuantity = pickListItemModel.AvailableQuantity;
             SaveCommand = new AsyncRelayCommand(Save);
         }
 

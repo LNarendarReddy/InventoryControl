@@ -5,6 +5,7 @@ using NSRetailLiteApp.ViewModels.Billing;
 using NSRetailLiteApp.ViewModels.Common;
 using NSRetailLiteApp.ViewModels.DispatchReceive;
 using NSRetailLiteApp.ViewModels.ItemDetails;
+using NSRetailLiteApp.ViewModels.PickList;
 using NSRetailLiteApp.ViewModels.StockCounting;
 using NSRetailLiteApp.ViewModels.StockDispatch.Indent;
 using NSRetailLiteApp.ViewModels.StockEntry;
@@ -337,6 +338,11 @@ namespace NSRetailLiteApp.ViewModels
                 await ManualDispatch();
                 return;
             }
+            else if (stockDispatchTypeSelectionPage.SelectedDispatchType == "Flow-through Dispatch")
+            {
+                await FlowThroughDispatch();
+                return;
+            }
         }
 
         private async Task<Branch> GetBranchSelection(bool showAllBranches)
@@ -497,6 +503,35 @@ namespace NSRetailLiteApp.ViewModels
                         new StockDispatchViewModel(holderClass.StockDispatch)));
         }
 
+        private async Task FlowThroughDispatch()
+        {
+            HolderClass holderClass = new();
+
+            holderClass = await GetAsync("picklist/getbranchlistfordispatch", holderClass
+                   , new Dictionary<string, string?>()
+                    {
+                        { "CategoryID", Model.CategoryId.ToString() }
+                    }, displayAlert: true);
+
+            BranchSelectionViewModel branchSelectionViewModel = new(holderClass.Holder?.BranchList);
+            await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
+
+            if (branchSelectionViewModel.SelectedBranch == null) return;
+
+            holderClass = new();
+            holderClass = await GetAsync("picklist/gettraysfordispatch", holderClass, new Dictionary<string, string?>()
+            {
+                { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() },
+                { "CategoryID", Model.CategoryId.ToString() }
+            });
+
+            if (holderClass.Exception != null) return;
+
+            await RedirectToPage(holderClass
+                    , new PickListDispatchTrayPage(
+                        new PickListDispatchTrayViewModel(branchSelectionViewModel.SelectedBranch, holderClass.Holder.PickListTrayList, User)));
+        }
+
         public IAsyncRelayCommand DispatchRecieveCommand { get; }
 
         private async Task DispatchReceive()
@@ -611,10 +646,21 @@ namespace NSRetailLiteApp.ViewModels
         private async Task ArrangePickList()
         {
             HolderClass holderClass = new HolderClass();
+            holderClass = await GetAsync("picklist/getsupplierlist", holderClass, new Dictionary<string, string?>() { { "categoryID", Model.CategoryId.ToString() } }, true);
+
+            if (holderClass.Exception != null) return;
+
+            SupplierSelectionViewModel supplierSelectionViewModel = new(holderClass.Holder.SupplierList);
+            await ShowPopup(holderClass, new SupplierSelectionPage(supplierSelectionViewModel));
+
+            if (supplierSelectionViewModel.SelectedSupplier == null) return;
+
+            holderClass = new();
             holderClass = await GetAsync("picklist/getbranchlist", holderClass
                    , new Dictionary<string, string?>()
                         {
-                            { "CategoryID", Model.CategoryId.ToString() }
+                            { "CategoryID", Model.CategoryId.ToString() },
+                            { "SupplierID", supplierSelectionViewModel.SelectedSupplier.SupplierId.ToString() },
                         });
 
             if (holderClass.Exception != null) return;
@@ -623,19 +669,9 @@ namespace NSRetailLiteApp.ViewModels
             await ShowPopup(holderClass, new BranchSelectionPage(branchSelectionViewModel));
 
             if(branchSelectionViewModel.SelectedBranch == null) return;
-
-            holderClass = new();
-            holderClass = await GetAsync("picklist/getitemdata", holderClass, new Dictionary<string, string?>()
-                {
-                    { "PicklistID", branchSelectionViewModel.SelectedBranch.PickListID.ToString() }
-                }, true);
-
+            
             await RedirectToPage(holderClass, new PickListItemPage(
-                new PickList.PickListItemViewModel(
-                    branchSelectionViewModel.SelectedBranch
-                    , holderClass.Holder?.PickListItemList, User)));
-
-            //return branchSelectionViewModel.SelectedBranch;
+                new PickList.PickListItemViewModel(branchSelectionViewModel.SelectedBranch, User)));
         }
     }
 }

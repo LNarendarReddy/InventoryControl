@@ -31,4 +31,8 @@ public partial class PickListItemPage : TabbedPage
         if (findGroupToScroll != null) cvTrayWiseData.ScrollTo(findGroupToScroll[0], findGroupToScroll, ScrollToPosition.Center);
     }
 
+    private void ContentPage_Loaded_1(object sender, EventArgs e)
+    {
+        pickListItemViewModel.LoadAvailableItems();
+    }
 }

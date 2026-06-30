@@ -5,10 +5,10 @@
             xmlns:models="clr-namespace:NSRetailLiteApp.Models"
             xmlns:views="clr-namespace:NSRetailLiteApp.Views.Picklist"
             Title="{Binding Path=Title}">
-    <ContentPage Title="Available items">
+    <ContentPage Title="Available items" Appearing="ContentPage_Loaded_1">
         <Grid>
             <VerticalStackLayout>
-                <Button Text="Submit" Margin="10" HorizontalOptions="Center"/>
+                <Button Text="Submit" Margin="10" HorizontalOptions="Center" Command="{Binding Path=SubmitCommand}"/>
                 <CollectionView ItemsSource="{Binding Path=PickListItemsModel}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:PickListItemModel">

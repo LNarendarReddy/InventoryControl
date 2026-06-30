@@ -22,17 +22,15 @@ namespace NSRetailLiteApp.ViewModels.PickList
 
         private readonly LoggedInUser loggedInUser;
 
-        public ObservableCollection<PickListItemModel>? PickListItemsModel { get; }
+        public ObservableCollection<PickListItemModel> PickListItemsModel { get; }
 
         public ObservableCollection<TrayWiseGroup> TrayWiseData { get; }
 
-        public PickListItemViewModel(Branch selectedBranch
-            , ObservableCollection<PickListItemModel>? pickListItemsModel 
-            , LoggedInUser loggedInUser) 
+        public PickListItemViewModel(Branch selectedBranch, LoggedInUser loggedInUser) 
         {
             Branch = selectedBranch;
             this.loggedInUser = loggedInUser;
-            PickListItemsModel = pickListItemsModel;
+            PickListItemsModel = [];
 
             Title = $"{Branch.BranchName} ( {Branch.BranchCode} )";
             SubmitCommand = new AsyncRelayCommand(Submit);
@@ -47,32 +45,19 @@ namespace NSRetailLiteApp.ViewModels.PickList
 
         public IAsyncRelayCommand<PickListItemModel> DeleteItemDetailCommand { get; }
 
-
         private async Task Submit()
         {
-            if (!await DisplayAlert("Confirm", "Are you sure you want to submit dispatch? this operation cannot be reversed", "Yes", "No"))
+            if (!await DisplayAlert("Confirm", "Are you sure you want to submit picklist tray data? this operation cannot be reversed", "Yes", "No"))
                 return;
 
-            //List<BranchIndentDetailModel> branchIndents = StockDispatchModel.BranchIndentDetailList.ToList();
-            //string stats = $"Review the values before submitting, this operation cannot be reversed {Environment.NewLine}";
-            //stats += $"{Environment.NewLine}    * Total indent items : {branchIndents.Count}";
-            //stats += $"{Environment.NewLine}    * Added indent items : {branchIndents.Count(x => x.DispatchQuantity > 0)}";
-            //stats += $"{Environment.NewLine}    * Added manual items: {StockDispatchModel.StockDispatchDetailManualList.Count()}";
-            //stats += Environment.NewLine;
-            //stats += $"{Environment.NewLine}    * Total skipped indent items : {branchIndents.Count(x => x.DispatchQuantity == 0)}";
-            //stats += $"{Environment.NewLine}    * Skipped items with WH Stock > 0: {branchIndents.Count(x => x.DispatchQuantity == 0 && x.WHStock > 0)}";
-            //stats += $"{Environment.NewLine}    * Skipped items with WH Stock = 0: {branchIndents.Count(x => x.DispatchQuantity == 0 && x.WHStock == 0)}";
+            HolderClass holderClass = new HolderClass();
+            holderClass = await PostAsync("picklist/submitpicklist", holderClass, new Dictionary<string, string?>
+            {
+                { "PickListID", Branch.PickListID.ToString() },
+                { "userID", loggedInUser.UserId.ToString() }
+            });
 
-            //if (!await DisplayAlert("Confirm", stats, "Yes", "No"))
-            //    return;
-
-            //HolderClass holderClass = new HolderClass();
-            //holderClass = await PostAsync("Stockdispatch_v2/updatedispatch", holderClass, new Dictionary<string, string?>
-            //{
-            //    { "StockDispatchID", StockDispatchModel.StockDispatchId.ToString() }
-            //});
-
-            //if (holderClass?.Exception == null) await Pop();
+            if (holderClass?.Exception == null) await Pop();
         }
 
         private async Task AddTrayQuantity(PickListItemModel? selected)
@@ -99,10 +84,13 @@ namespace NSRetailLiteApp.ViewModels.PickList
             }
 
             TrayWiseData.Where(x => x.Contains(selected)).ToList().ForEach(x => x.Remove(selected));
+            var removableTrays = TrayWiseData.Where(x => x.Count == 0).ToList();
+            removableTrays.ForEach(x => TrayWiseData.Remove(x));
         }
 
         public async Task LoadTrayWiseData()
         {
+            IsLoading = true;
             HolderClass holderClass = new();
             holderClass = await GetAsync("picklist/gettraywisedata", holderClass, new Dictionary<string, string?>()
                 {
@@ -113,6 +101,21 @@ namespace NSRetailLiteApp.ViewModels.PickList
 
             TrayWiseData.Clear();
             holderClass.Holder.PickListTrayList.ToList().ForEach(x => TrayWiseData.Add(new TrayWiseGroup(x.TrayNumber, x.PickListItemList?.ToList() ?? [])));
+            IsLoading = false;
+        }
+
+        public async Task LoadAvailableItems()
+        {
+            IsLoading = true;
+            HolderClass holderClass = new();
+            holderClass = await GetAsync("picklist/getitemdata", holderClass, new Dictionary<string, string?>()
+                {
+                    { "PicklistID", Branch.PickListID.ToString() }
+                }, true);
+
+            PickListItemsModel.Clear();
+            holderClass.Holder.PickListItemList.ForEach(PickListItemsModel.Add);
+            IsLoading = false;
         }
 
         public class TrayWiseGroup : ObservableCollection<PickListItemModel>

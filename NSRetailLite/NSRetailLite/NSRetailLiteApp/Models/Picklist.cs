@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using DevExpress.Maui.Pdf.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -45,6 +46,26 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         private string _trayNumber;
+
+        [ObservableProperty]
+        private int _itemCount;
+
+        [ObservableProperty]
+        private int _pieceCount;
+
+        [ObservableProperty]
+        private bool _isTrayVerified;
+
+        [ObservableProperty]
+        private Color _TrayVerifiedColor;
+
+        partial void OnIsTrayVerifiedChanged(bool value)
+        {
+            TrayVerifiedColor = (value ? System.Drawing.Color.Green
+                : Application.Current.RequestedTheme == AppTheme.Light
+                    ? System.Drawing.Color.Black
+                    : System.Drawing.Color.White).ToMauiColor();
+        }
 
         [ObservableProperty]
         private ObservableCollection<PickListItemModel> _pickListItemList;
