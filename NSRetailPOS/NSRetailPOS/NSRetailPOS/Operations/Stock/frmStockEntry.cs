@@ -9,6 +9,7 @@ using NSRetailPOS.Reports;
 using System;
 using System.Data;
 using System.Windows.Forms;
+using AppLog = NSRetailPOS.Logging.AppLog;
 using GridView = DevExpress.XtraGrid.Views.Grid.GridView;
 
 namespace NSRetailPOS.Operations.Stock

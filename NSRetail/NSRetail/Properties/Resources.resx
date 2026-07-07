@@ -200,10 +200,10 @@
     <value>..\Resources\addchartpane_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="victorylogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\victorylogo.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>..\Resources\victorylogo.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v22.2, Version=22.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="PO" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PO.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>..\Resources\PO.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v22.2, Version=22.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="Victory Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Victory Logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

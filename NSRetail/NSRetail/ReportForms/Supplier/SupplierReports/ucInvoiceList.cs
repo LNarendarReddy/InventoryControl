@@ -39,8 +39,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 { "View Items", "3A365A22-5334-4667-8782-A83825298BF6" },
                 { "Print", "3F9A7C21-8E6D-4B2F-A5D9-1C7E9F4B2A6C" },
                 { "Edit", "DED7050B-F5CF-4944-8880-008A87F1D987" },
-                { "Revert", "7CE473E7-514B-4BC9-B07E-2B26B5AA44F2" },
-                { "Clone", "50C463EA-A4BE-49A8-8484-B2C73186A373" },
+                //{ "Revert", "7CE473E7-514B-4BC9-B07E-2B26B5AA44F2" },
+                //{ "Clone", "50C463EA-A4BE-49A8-8484-B2C73186A373" },
                 { "Verify and Submit", "6B8301F8-D835-4F21-9ED2-F6939EAF1552" },
                 { "Dispatch to branch", "A3F813DC-3E42-407A-A3B8-1CC84ADC684C" },
                 { "View Credit Note Mapping", "B4F924ED-7C53-4A78-9D6C-2F95B6EE5A9E" }

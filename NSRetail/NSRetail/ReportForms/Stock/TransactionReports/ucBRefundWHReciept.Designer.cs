@@ -1,6 +1,6 @@
 ﻿namespace NSRetail.ReportForms.Stock.TransactionReports
 {
-    partial class ucBranchTransactions
+    partial class ucBRefundWHReciept
     {
         /// <summary> 
         /// Required designer variable.
@@ -79,7 +79,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
             this.layoutControl1.Size = new System.Drawing.Size(1226, 44);
-            this.layoutControl1.TabIndex = 1;
+            this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // dtpFromDate
@@ -279,14 +279,14 @@
             this.layoutControlItem6.Text = "Item Code";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(58, 15);
             // 
-            // ucBranchTransactions
+            // ucBRefundWHReciept
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutControl1);
-            this.Name = "ucBranchTransactions";
+            this.Name = "ucBRefundWHReciept";
             this.Size = new System.Drawing.Size(1226, 44);
-            this.Load += new System.EventHandler(this.ucDispatches_Load);
+            this.Load += new System.EventHandler(this.ucBRefundWHReciept_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtpFromDate.Properties.CalendarTimeProperties)).EndInit();
@@ -315,19 +315,19 @@
         private DevExpress.XtraEditors.DateEdit dtpFromDate;
         private DevExpress.XtraEditors.DateEdit dtpToDate;
         private DevExpress.XtraEditors.LookUpEdit cmbPeriodicity;
-        private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraEditors.CheckedComboBoxEdit cmbBranch;
         private DevExpress.XtraEditors.SearchLookUpEdit cmbItemCode;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit cmbCategory;
+        private DevExpress.XtraLayout.LayoutControlGroup Root;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraEditors.CheckedComboBoxEdit cmbCategory;
     }
 }

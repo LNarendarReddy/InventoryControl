@@ -267,7 +267,7 @@
             // xrTableCell2
             // 
             this.xrTableCell2.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
-            this.xrTableCell2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell2.Font = new DevExpress.Drawing.DXFont("Arial", 10F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableCell2.Multiline = true;
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.StylePriority.UseBorders = false;
@@ -286,7 +286,7 @@
             // 
             this.xrTableCell5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?Address + \' Ph : \' + ?Phone")});
-            this.xrTableCell5.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell5.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableCell5.Multiline = true;
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.StylePriority.UseFont = false;
@@ -304,7 +304,7 @@
             // 
             this.xrTableCell61.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'CIN :\' + ?CIN")});
-            this.xrTableCell61.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell61.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableCell61.Multiline = true;
             this.xrTableCell61.Name = "xrTableCell61";
             this.xrTableCell61.StylePriority.UseFont = false;
@@ -324,7 +324,7 @@
             // 
             this.xrTableCell12.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'GSTIN-\' + ?GSTIN")});
-            this.xrTableCell12.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell12.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableCell12.Multiline = true;
             this.xrTableCell12.Name = "xrTableCell12";
             this.xrTableCell12.StylePriority.UseFont = false;
@@ -337,7 +337,7 @@
             // 
             this.xrTableCell58.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'FSSAI-\' + ?FSSAI")});
-            this.xrTableCell58.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell58.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableCell58.Multiline = true;
             this.xrTableCell58.Name = "xrTableCell58";
             this.xrTableCell58.StylePriority.UseFont = false;
@@ -358,7 +358,7 @@
             this.xrTableCell14.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
             this.xrTableCell14.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif(?IsDuplicate = false,\'TAX INVOICE\' ,\'TAX INVOICE (DUPLICATE)\' )")});
-            this.xrTableCell14.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell14.Font = new DevExpress.Drawing.DXFont("Arial", 9F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableCell14.Multiline = true;
             this.xrTableCell14.Name = "xrTableCell14";
             this.xrTableCell14.StylePriority.UseBorders = false;
@@ -378,7 +378,7 @@
             // xrTableCell60
             // 
             this.xrTableCell60.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrTableCell60.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell60.Font = new DevExpress.Drawing.DXFont("Arial", 9F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableCell60.Multiline = true;
             this.xrTableCell60.Name = "xrTableCell60";
             this.xrTableCell60.StylePriority.UseBorders = false;
@@ -397,7 +397,7 @@
             // 
             this.xrTableCell15.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'Bill No : \' + ?BillNumber")});
-            this.xrTableCell15.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell15.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableCell15.Multiline = true;
             this.xrTableCell15.Name = "xrTableCell15";
             this.xrTableCell15.StylePriority.UseFont = false;
@@ -420,7 +420,7 @@
             // 
             this.xrTableCell17.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'Date : \' + ?BillDate")});
-            this.xrTableCell17.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell17.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableCell17.Multiline = true;
             this.xrTableCell17.Name = "xrTableCell17";
             this.xrTableCell17.StylePriority.UseFont = false;
@@ -433,7 +433,7 @@
             // 
             this.xrTableCell18.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'User : \' + ?UserName")});
-            this.xrTableCell18.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell18.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableCell18.Multiline = true;
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StylePriority.UseFont = false;
@@ -543,7 +543,7 @@
             // 
             // xrTable3
             // 
-            this.xrTable3.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTable3.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1F);
             this.xrTable3.Name = "xrTable3";
             this.xrTable3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
@@ -645,7 +645,7 @@
             // 
             // xrTable4
             // 
-            this.xrTable4.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTable4.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(0F, 3F);
             this.xrTable4.Name = "xrTable4";
             this.xrTable4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
@@ -666,7 +666,7 @@
             this.xrTableCell25,
             this.xrTableCell48,
             this.xrTableCell27});
-            this.xrTableRow9.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableRow9.Font = new DevExpress.Drawing.DXFont("Arial", 8F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableRow9.Name = "xrTableRow9";
             this.xrTableRow9.StylePriority.UseBorderDashStyle = false;
             this.xrTableRow9.StylePriority.UseBorders = false;
@@ -720,7 +720,7 @@
             this.xrTableCell4,
             this.xrTableCell47,
             this.xrTableCell50});
-            this.xrTableRow21.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableRow21.Font = new DevExpress.Drawing.DXFont("Arial", 8F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableRow21.Name = "xrTableRow21";
             this.xrTableRow21.StylePriority.UseBorderDashStyle = false;
             this.xrTableRow21.StylePriority.UseBorders = false;
@@ -764,7 +764,7 @@
             this.xrTableCell51,
             this.xrTableCell52,
             this.xrTableCell53});
-            this.xrTableRow22.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableRow22.Font = new DevExpress.Drawing.DXFont("Arial", 8F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableRow22.Name = "xrTableRow22";
             this.xrTableRow22.StylePriority.UseBorderDashStyle = false;
             this.xrTableRow22.StylePriority.UseBorders = false;
@@ -810,7 +810,7 @@
             // 
             // xrTable1
             // 
-            this.xrTable1.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Bold);
+            this.xrTable1.Font = new DevExpress.Drawing.DXFont("Arial", 7F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
@@ -893,7 +893,7 @@
             // 
             // xrTable11
             // 
-            this.xrTable11.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Bold);
+            this.xrTable11.Font = new DevExpress.Drawing.DXFont("Arial", 7F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTable11.LocationFloat = new DevExpress.Utils.PointFloat(0F, 2F);
             this.xrTable11.Name = "xrTable11";
             this.xrTable11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
@@ -961,7 +961,7 @@
             this.xrTableRow14.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
             this.xrTableRow14.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell30});
-            this.xrTableRow14.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableRow14.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableRow14.Name = "xrTableRow14";
             this.xrTableRow14.StylePriority.UseBorders = false;
             this.xrTableRow14.StylePriority.UseFont = false;
@@ -986,7 +986,7 @@
             this.xrTableCell28,
             this.xrTableCell24,
             this.xrTableCell29});
-            this.xrTableRow8.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableRow8.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableRow8.Name = "xrTableRow8";
             this.xrTableRow8.StylePriority.UseBorders = false;
             this.xrTableRow8.StylePriority.UseFont = false;
@@ -1082,7 +1082,7 @@
             this.xrTableCell40,
             this.xrTableCell41,
             this.xrTableCell42});
-            this.xrTableRow15.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableRow15.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableRow15.Name = "xrTableRow15";
             this.xrTableRow15.StylePriority.UseBorders = false;
             this.xrTableRow15.StylePriority.UseFont = false;
@@ -1181,7 +1181,7 @@
             this.xrTableCell35,
             this.xrTableCell36,
             this.xrTableCell37});
-            this.xrTableRow16.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableRow16.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableRow16.Name = "xrTableRow16";
             this.xrTableRow16.StylePriority.UseFont = false;
             this.xrTableRow16.Weight = 0.9230769230769228D;
@@ -1272,7 +1272,7 @@
             // 
             // xrTable9
             // 
-            this.xrTable9.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTable9.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTable9.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrTable9.Name = "xrTable9";
             this.xrTable9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
@@ -1331,7 +1331,7 @@
             // 
             // xrTable8
             // 
-            this.xrTable8.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTable8.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTable8.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrTable8.Name = "xrTable8";
             this.xrTable8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
@@ -1400,7 +1400,7 @@
             // 
             // xrTable12
             // 
-            this.xrTable12.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTable12.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTable12.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrTable12.Name = "xrTable12";
             this.xrTable12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
@@ -1519,7 +1519,7 @@
             // 
             this.xrTableCell68.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'* * Saved Rs. \' + sumSum([DISCOUNT]) + \' /- On MRP * *\'")});
-            this.xrTableCell68.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell68.Font = new DevExpress.Drawing.DXFont("Arial", 10F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableCell68.Multiline = true;
             this.xrTableCell68.Name = "xrTableCell68";
             this.xrTableCell68.StylePriority.UseFont = false;
@@ -1539,7 +1539,7 @@
             // 
             this.xrTableCell67.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrBarCode1});
-            this.xrTableCell67.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell67.Font = new DevExpress.Drawing.DXFont("Arial", 10F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableCell67.Multiline = true;
             this.xrTableCell67.Name = "xrTableCell67";
             this.xrTableCell67.StylePriority.UseFont = false;
@@ -1568,7 +1568,7 @@
             // 
             // xrTableCell69
             // 
-            this.xrTableCell69.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell69.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableCell69.Multiline = true;
             this.xrTableCell69.Name = "xrTableCell69";
             this.xrTableCell69.StylePriority.UseFont = false;
@@ -1586,7 +1586,7 @@
             // 
             // xrTableCell70
             // 
-            this.xrTableCell70.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell70.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableCell70.Multiline = true;
             this.xrTableCell70.Name = "xrTableCell70";
             this.xrTableCell70.StylePriority.UseFont = false;
@@ -1604,7 +1604,7 @@
             // 
             // xrTableCell45
             // 
-            this.xrTableCell45.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell45.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableCell45.Multiline = true;
             this.xrTableCell45.Name = "xrTableCell45";
             this.xrTableCell45.StylePriority.UseFont = false;
@@ -1622,7 +1622,7 @@
             // 
             // xrTableCell54
             // 
-            this.xrTableCell54.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell54.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableCell54.Multiline = true;
             this.xrTableCell54.Name = "xrTableCell54";
             this.xrTableCell54.StylePriority.UseFont = false;
@@ -1640,7 +1640,7 @@
             // 
             // xrTableCell57
             // 
-            this.xrTableCell57.Font = new System.Drawing.Font("Arial", 7F);
+            this.xrTableCell57.Font = new DevExpress.Drawing.DXFont("Arial", 7F);
             this.xrTableCell57.Multiline = true;
             this.xrTableCell57.Name = "xrTableCell57";
             this.xrTableCell57.StylePriority.UseFont = false;
@@ -1729,8 +1729,8 @@
             this.drMOP,
             this.drFooter});
             this.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Dash;
-            this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(15, 9, 10, 7);
+            this.Font = new DevExpress.Drawing.DXFont("Arial", 9.75F);
+            this.Margins = new DevExpress.Drawing.DXMargins(15, 9, 10, 7);
             this.PageWidth = 300;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {

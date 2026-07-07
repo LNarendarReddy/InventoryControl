@@ -437,6 +437,7 @@ namespace NSRetail
             transactionreports.SubCategory.Add(new ReportHolder("209ADE22-1126-4169-8733-4EF32533EC41") { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
             transactionreports.SubCategory.Add(new ReportHolder("4CD45D75-C4DA-4A84-B533-4383D60D4097") { ReportName = "Customer Refunds", SearchCriteriaControl = new ucBranchTransactions("C") });
             transactionreports.SubCategory.Add(new ReportHolder("0E1F8A05-8676-48D6-8B4A-132D2DDAE578") { ReportName = "Branch Refunds", SearchCriteriaControl = new ucBranchTransactions("B") });
+            transactionreports.SubCategory.Add(new ReportHolder("C9F5D2E8-7A41-4F3B-B86E-9D1A2E7C5F14") { ReportName = "WH Branch Refunds Receipts", SearchCriteriaControl = new ucBRefundWHReciept() });
             transactionreports.SubCategory.Add(new ReportHolder("DF7845F3-FE41-41B7-A302-C63C5E4AF514") { ReportName = "Supplier Refunds", SearchCriteriaControl = new ucSupplierRefunds() });
 
             transactionreports.SubCategory.Add(new ReportHolder("BDD489E4-BDE8-4C20-B5BC-E483A944879B") { ReportName = "Day sale by Payment Method", SearchCriteriaControl = new ucSaleByMOP() });

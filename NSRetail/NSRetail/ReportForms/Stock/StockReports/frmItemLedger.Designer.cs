@@ -36,16 +36,17 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtInTransitQuantity = new DevExpress.XtraEditors.TextEdit();
             this.peMatched = new DevExpress.XtraEditors.PictureEdit();
             this.chkIncludeItem = new DevExpress.XtraEditors.CheckEdit();
             this.txtQuantity = new DevExpress.XtraEditors.TextEdit();
             this.gcItems = new DevExpress.XtraGrid.GridControl();
             this.gvItems = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcTransactionDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcCredit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcDebit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcTransactionType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcBrance = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcRunningBal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSKUCode = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -64,6 +65,7 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chkIncludeBranch = new DevExpress.XtraEditors.CheckEdit();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -74,26 +76,26 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.txtInTransitQuantity = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtInTransitQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.peMatched.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeItem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluSKUCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeBranch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
@@ -104,11 +106,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtInTransitQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -136,6 +136,14 @@
             this.layoutControl1.Size = new System.Drawing.Size(1271, 644);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtInTransitQuantity
+            // 
+            this.txtInTransitQuantity.Location = new System.Drawing.Point(464, 42);
+            this.txtInTransitQuantity.Name = "txtInTransitQuantity";
+            this.txtInTransitQuantity.Size = new System.Drawing.Size(183, 22);
+            this.txtInTransitQuantity.StyleController = this.layoutControl1;
+            this.txtInTransitQuantity.TabIndex = 11;
             // 
             // peMatched
             // 
@@ -182,16 +190,19 @@
             // 
             this.gvItems.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn6,
-            this.gridColumn7,
-            this.gridColumn8,
-            this.gridColumn9,
-            this.gridColumn10,
+            this.gcTransactionDate,
+            this.gcCredit,
+            this.gcDebit,
+            this.gcTransactionType,
             this.gcBrance,
             this.gcRunningBal,
             this.gcSKUCode,
             this.gcItemName,
             this.gridColumn11});
             this.gvItems.GridControl = this.gcItems;
+            this.gvItems.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CREDIT", null, "Credit : {0}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DEBIT", null, "Debit : {0}")});
             this.gvItems.Name = "gvItems";
             this.gvItems.OptionsBehavior.Editable = false;
             this.gvItems.OptionsView.ShowFooter = true;
@@ -204,43 +215,43 @@
             this.gridColumn6.FieldName = "TRANSACTIONID";
             this.gridColumn6.Name = "gridColumn6";
             // 
-            // gridColumn7
+            // gcTransactionDate
             // 
-            this.gridColumn7.Caption = "Transaction Date";
-            this.gridColumn7.FieldName = "TRANSACTIONDATE";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            this.gcTransactionDate.Caption = "Transaction Date";
+            this.gcTransactionDate.FieldName = "TRANSACTIONDATE";
+            this.gcTransactionDate.Name = "gcTransactionDate";
+            this.gcTransactionDate.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "TRANSACTIONDATE", "Count : {0}")});
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 0;
+            this.gcTransactionDate.Visible = true;
+            this.gcTransactionDate.VisibleIndex = 0;
             // 
-            // gridColumn8
+            // gcCredit
             // 
-            this.gridColumn8.Caption = "Credit";
-            this.gridColumn8.FieldName = "CREDIT";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            this.gcCredit.Caption = "Credit";
+            this.gcCredit.FieldName = "CREDIT";
+            this.gcCredit.Name = "gcCredit";
+            this.gcCredit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CREDIT", "SUM={0:0.##}")});
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 1;
+            this.gcCredit.Visible = true;
+            this.gcCredit.VisibleIndex = 1;
             // 
-            // gridColumn9
+            // gcDebit
             // 
-            this.gridColumn9.Caption = "Debit";
-            this.gridColumn9.FieldName = "DEBIT";
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            this.gcDebit.Caption = "Debit";
+            this.gcDebit.FieldName = "DEBIT";
+            this.gcDebit.Name = "gcDebit";
+            this.gcDebit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DEBIT", "SUM={0:0.##}")});
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 2;
+            this.gcDebit.Visible = true;
+            this.gcDebit.VisibleIndex = 2;
             // 
-            // gridColumn10
+            // gcTransactionType
             // 
-            this.gridColumn10.Caption = "Transaction Type";
-            this.gridColumn10.FieldName = "TRANSACTIONTYPE";
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 4;
+            this.gcTransactionType.Caption = "Transaction Type";
+            this.gcTransactionType.FieldName = "TRANSACTIONTYPE";
+            this.gcTransactionType.Name = "gcTransactionType";
+            this.gcTransactionType.Visible = true;
+            this.gcTransactionType.VisibleIndex = 4;
             // 
             // gcBrance
             // 
@@ -437,6 +448,19 @@
             conditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.None;
             this.dxValidationProvider1.SetValidationRule(this.chkIncludeBranch, conditionValidationRule5);
             // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.btnViewReport;
+            this.layoutControlItem7.Location = new System.Drawing.Point(1123, 34);
+            this.layoutControlItem7.MaxSize = new System.Drawing.Size(144, 34);
+            this.layoutControlItem7.MinSize = new System.Drawing.Size(144, 34);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem7.Size = new System.Drawing.Size(144, 38);
+            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -552,19 +576,6 @@
             this.layoutControlItem10.Text = "Stock matched?";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(110, 15);
             // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.btnViewReport;
-            this.layoutControlItem7.Location = new System.Drawing.Point(1123, 34);
-            this.layoutControlItem7.MaxSize = new System.Drawing.Size(144, 34);
-            this.layoutControlItem7.MinSize = new System.Drawing.Size(144, 34);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem7.Size = new System.Drawing.Size(144, 38);
-            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
-            // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnShow;
@@ -577,14 +588,6 @@
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // txtInTransitQuantity
-            // 
-            this.txtInTransitQuantity.Location = new System.Drawing.Point(464, 42);
-            this.txtInTransitQuantity.Name = "txtInTransitQuantity";
-            this.txtInTransitQuantity.Size = new System.Drawing.Size(183, 22);
-            this.txtInTransitQuantity.StyleController = this.layoutControl1;
-            this.txtInTransitQuantity.TabIndex = 11;
             // 
             // layoutControlItem12
             // 
@@ -607,6 +610,7 @@
             this.Load += new System.EventHandler(this.frmItemLedger_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtInTransitQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.peMatched.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeItem.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).EndInit();
@@ -620,6 +624,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.sluSKUCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncludeBranch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
@@ -630,11 +635,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtInTransitQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -665,10 +668,10 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gvItems;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gcTransactionDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gcCredit;
+        private DevExpress.XtraGrid.Columns.GridColumn gcDebit;
+        private DevExpress.XtraGrid.Columns.GridColumn gcTransactionType;
         private DevExpress.XtraGrid.Columns.GridColumn gcBrance;
         private DevExpress.XtraGrid.Columns.GridColumn gcRunningBal;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;

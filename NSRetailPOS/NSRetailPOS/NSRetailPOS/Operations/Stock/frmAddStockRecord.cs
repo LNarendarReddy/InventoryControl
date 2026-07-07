@@ -7,6 +7,7 @@ using NSRetailPOS.Logging;
 using System;
 using System.Data;
 using System.Windows.Forms;
+using AppLog = NSRetailPOS.Logging.AppLog;
 
 namespace NSRetailPOS.Operations.Stock
 {

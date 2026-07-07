@@ -78,7 +78,7 @@
             this.xrLabel5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'PKD:\' + ?PackedDate"),
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif(?IsOpenCategory,true ,false )")});
-            this.xrLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.xrLabel5.Font = new DevExpress.Drawing.DXFont("Microsoft Sans Serif", 7F);
             this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(123.6859F, 67.50624F);
             this.xrLabel5.Multiline = true;
             this.xrLabel5.Name = "xrLabel5";
@@ -92,7 +92,7 @@
             // 
             // xrTable1
             // 
-            this.xrTable1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
+            this.xrTable1.Font = new DevExpress.Drawing.DXFont("Microsoft Sans Serif", 7F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(5.575657F, 82.46687F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -126,7 +126,7 @@
             this.xrLabel3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ItemCode]"),
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "WidthF", "Iif(?IsOpenCategory, 118 , 192)\n")});
-            this.xrLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.xrLabel3.Font = new DevExpress.Drawing.DXFont("Microsoft Sans Serif", 7F);
             this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(5.575628F, 67.50624F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -142,7 +142,7 @@
             // 
             this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ItemName]")});
-            this.xrLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.xrLabel2.Font = new DevExpress.Drawing.DXFont("Microsoft Sans Serif", 7F);
             this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(5.575657F, 21.72749F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -156,7 +156,7 @@
             // 
             // xrLabel1
             // 
-            this.xrLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.xrLabel1.Font = new DevExpress.Drawing.DXFont("Microsoft Sans Serif", 8F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(5.57563F, 8.73536F);
             this.xrLabel1.Multiline = true;
             this.xrLabel1.Name = "xrLabel1";
@@ -218,8 +218,8 @@
             this.TopMargin,
             this.BottomMargin,
             this.rptDetail});
-            this.Font = new System.Drawing.Font("Arial", 9F);
-            this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
+            this.Font = new DevExpress.Drawing.DXFont("Arial", 9F);
+            this.Margins = new DevExpress.Drawing.DXMargins(0, 0, 0, 0);
             this.PageHeight = 100;
             this.PageWidth = 400;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;

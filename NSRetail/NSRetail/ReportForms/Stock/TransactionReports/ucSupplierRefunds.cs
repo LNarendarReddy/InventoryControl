@@ -1,14 +1,7 @@
 ﻿using DevExpress.XtraEditors;
-using DevExpress.XtraReports.Wizards;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail.ReportForms.Stock.TransactionReports
 {
@@ -19,8 +12,6 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             InitializeComponent();
             Dictionary<string, string> specificColumnHeaders = new Dictionary<string, string>()
             {
-                { "BREFUNDNUMBER", "Branch Refund #" },
-                { "RETURNSTATUS", "Refund Status" },
                 { "CREATEDBY", "Refund By" },
                 { "CREATEDDATE", "Refund Date" },
                 { "BRANDNAME", "Brand" },
@@ -29,16 +20,26 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
 
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
-                new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODOCITY" },true)
-                //, new IncludeSettings("Item details", "IncludeItem", new List<string>{ "SKUCODE", "ITEMNAME", "ITEMCODE", "MRP",
-                //    "QUANTITY","RETURNSTATUS", "CREATEDBY", "CREATEDDATE" })
+                new IncludeSettings("Date", "IncludeDate", new List<string>{ "PERIODOCITY" }, true)
+
+                , new IncludeSettings("Item details", "IncludeItem", new List<string>{
+                    "SKUCODE", "VENDORSKUCODE", "ITEMNAME", "ITEMCODE", "HSNCODE", "MRP", "GSTCODE",
+                    "QUANTITY" })
+
                 , new IncludeSettings("Category", "IncludeCategory", new List<string>{ "CATEGORYNAME" })
+
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
-                , new IncludeSettings("Reason", "IncludeReason", new List<string>{ "Reason" })
-                , new IncludeSettings("BRefund Number", "IncludeBRefundNumber", new List<string>{ "BREFUNDNUMBER" })
-                , new IncludeSettings("SRefund Number", "IncludeSRefundNumber", new List<string>{ "Supplier Returns #", "Supplier Name" })
+
                 , new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" })
-                , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
+
+                , new IncludeSettings("Manufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
+
+                , new IncludeSettings("Return Number", "IncludeRefundNumber", new List<string> { "SUPPLIERRETURNSNO" })
+                
+                , new IncludeSettings("Supplier", "IncludeSupplier", new List<string> { "SupplierName" })
+
+                , new IncludeSettings("User Details", "IncludeUserDetails", new List<string> { "CreatedBy", "CreatedDate" })
+
             };
 
             SetFocusControls(cmbPeriodicity, cmbItemCode, specificColumnHeaders);
@@ -49,7 +50,27 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
 
+            cmbReportMode.Properties.DataSource = GetSupplierReturnType();
+            cmbReportMode.Properties.DisplayMember = "Text";
+            cmbReportMode.Properties.ValueMember = "Value";
+            cmbReportMode.EditValue = 0;
+
             SetPeriodicty(cmbPeriodicity, dtpFromDate, dtpToDate, true);
+
+
+        }
+
+        private DataTable GetSupplierReturnType()
+        {
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("Value", typeof(int));
+            dt.Columns.Add("Text", typeof(string));
+
+            dt.Rows.Add(0, "Supplier Returns");
+            dt.Rows.Add(1, "Write-off/Nullify Only");
+
+            return dt;
         }
 
         public override object GetData()
@@ -59,12 +80,13 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
             {
                 { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
+                , { "BranchID", cmbBranch.EditValue }
                 , { "Periodicity", cmbPeriodicity.EditValue }
                 , { "ITEMID", searchLookUpEdit1View.GetRowCellValue(rowhandle, "ITEMID")}
-                , { "CategoryID", cmbCategory.EditValue }
+                , { "ReportMode", cmbReportMode.EditValue}
             };
 
-            return GetReportData("USP_RPT_SUPPLIERREFUNDS", parameters);
+            return GetReportData("USP_RPT_SUPPLIER_RETURNS_REGISTER", parameters);
         }
     }
 }

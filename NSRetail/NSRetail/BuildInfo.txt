@@ -1,4 +1,12 @@
-﻿v3.8.2
+﻿v3.8.3
+-- Fixed Item Ledger transaction calculation issues.
+-- Aligned Stock Dispatch transaction reports with Item Ledger.
+-- Updated Branch Refund Transaction Report as a Store Branch Refund Register and aligned it with Item Ledger.
+-- Added Warehouse/Damage & Wastage Branch Refund Receipt Report to track items received at destination branches.
+-- Updated Supplier Returns Transaction Report to align with the revised Supplier Returns process and Item Ledger.
+-- Added an option to process Supplier Returns or Write-off/Nullify stock from the Supplier Returns screen.
+
+v3.8.2
 -- Generate picklist screen inside generate supplier indent added
 
 V3.8.1

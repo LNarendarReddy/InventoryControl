@@ -38,40 +38,41 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="DevExpress.BonusSkins.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Charts.v21.2.Core, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.CodeParser.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.Desktop.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.DataAccess.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Dialogs.v21.2.Core, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Images.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Office.v21.2.Core, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Pdf.v21.2.Core, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Pdf.v21.2.Drawing, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.PivotGrid.v21.2.Core, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v21.2.Core, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.RichEdit.v21.2.Core, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.RichEdit.v21.2.Export, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Sparkline.v21.2.Core, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v21.2.UI, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpo.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraBars.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraCharts.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraCharts.v21.2.UI, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraCharts.v21.2.Wizard, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraDialogs.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGauges.v21.2.Core, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGrid.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraPivotGrid.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraPrinting.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v21.2.Extensions, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraRichEdit.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraTreeList.v21.2, Version=21.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.BonusSkins.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v22.2.Core, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.Desktop.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Drawing.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Dialogs.v22.2.Core, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v22.2, Version=22.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v22.2.Core, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v22.2.Core, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v22.2.Drawing, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v22.2.Core, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v22.2.Core, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v22.2.Core, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v22.2.Export, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v22.2.Core, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v22.2.UI, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v22.2.UI, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v22.2.Wizard, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraDialogs.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v22.2.Core, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPivotGrid.v22.2, Version=22.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v22.2.Extensions, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v22.2, Version=22.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Dropbox.Api, Version=6.37.0.0, Culture=neutral, PublicKeyToken=310f0e82fbb45d01, processorArchitecture=MSIL">
       <HintPath>..\packages\Dropbox.Api.6.37.0\lib\netstandard2.0\Dropbox.Api.dll</HintPath>
     </Reference>
@@ -457,6 +458,12 @@
     </Compile>
     <Compile Include="ReportForms\Stock\ProcessingReports\ucBulkProcessing.Designer.cs">
       <DependentUpon>ucBulkProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Stock\TransactionReports\ucBRefundWHReciept.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Stock\TransactionReports\ucBRefundWHReciept.Designer.cs">
+      <DependentUpon>ucBRefundWHReciept.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Stock\TransactionReports\ucSupplierRefunds.cs">
       <SubType>UserControl</SubType>
@@ -1561,6 +1568,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\ProcessingReports\ucBulkProcessing.resx">
       <DependentUpon>ucBulkProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Stock\TransactionReports\ucBRefundWHReciept.resx">
+      <DependentUpon>ucBRefundWHReciept.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\TransactionReports\ucSupplierRefunds.resx">
       <DependentUpon>ucSupplierRefunds.cs</DependentUpon>

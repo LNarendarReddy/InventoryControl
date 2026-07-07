@@ -11,7 +11,7 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
         private Dictionary<string, string> procedures = new Dictionary<string, string>()
         {
             { "D","USP_RPT_DISPATCH"}
-            ,{ "B","USP_RPT_BREFUND"}
+            ,{ "B","USP_RPT_STORE_BREFUND_REGISTER"}
             ,{ "C","USP_RPT_CREFUND"}
         };
         public ucBranchTransactions(string _ReportType)
@@ -56,12 +56,11 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
                 , new IncludeSettings("SubCategory", "IncludeSubCategory", new List<string>{ "SUBCATEGORYNAME" })
                 , new IncludeSettings("Brand", "IncludeBrand", new List<string>{ "BRANDNAME" })
                 , new IncludeSettings("SubManufacturer", "IncludeManufacturer", new List<string>{ "MANUFACTURERNAME" })
-                //, new IncludeSettings("Tray Number", "IncludeTrayNumber", new List<string>{ "TRAYNUMBER" })
             };
 
             if (ReportType == "B")
             {
-                IncludeSettingsCollection.Add(new IncludeSettings("Reason", "IncludeReason", new List<string> { "Reason" }));
+                IncludeSettingsCollection.Add(new IncludeSettings("Reason", "IncludeReason", new List<string> { "Reason", "DestinationBranch" }));
                 IncludeSettingsCollection.Add(new IncludeSettings("Refund Number", "IncludeRefundNumber", new List<string> { "BREFUNDNUMBER" }));
             }
 

@@ -82,7 +82,7 @@
             this.xrLabel1.Dpi = 254F;
             this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?nowDate")});
-            this.xrLabel1.Font = new System.Drawing.Font("Cambria", 16F, System.Drawing.FontStyle.Bold);
+            this.xrLabel1.Font = new DevExpress.Drawing.DXFont("Cambria", 16F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(1909.5F, 119.125F);
             this.xrLabel1.Multiline = true;
             this.xrLabel1.Name = "xrLabel1";
@@ -118,7 +118,7 @@
             this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell2});
             this.xrTableRow1.Dpi = 254F;
-            this.xrTableRow1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            this.xrTableRow1.Font = new DevExpress.Drawing.DXFont("Arial", 18F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableRow1.Name = "xrTableRow1";
             this.xrTableRow1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 254F);
             this.xrTableRow1.StylePriority.UseFont = false;
@@ -133,7 +133,7 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([OFFERTYPEID] = 4 OR [OFFERTYPEID] = 5 OR [OFFERTYPEID] = 1007 OR [OFFERTYPEI" +
                     "D] = 1008 OR [OFFERTYPEID] = 1009 , [OFFERTYPENAME], Iif([OFFERTYPEID] = 3,\'FIXE" +
                     "D PRICE\' , \'SAVE\'))\n")});
-            this.xrTableCell2.Font = new System.Drawing.Font("Cambria", 60F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell2.Font = new DevExpress.Drawing.DXFont("Cambria", 60F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableCell2.Multiline = true;
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 254F);
@@ -150,7 +150,7 @@
             this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell4});
             this.xrTableRow2.Dpi = 254F;
-            this.xrTableRow2.Font = new System.Drawing.Font("Arial", 16F);
+            this.xrTableRow2.Font = new DevExpress.Drawing.DXFont("Arial", 16F);
             this.xrTableRow2.Name = "xrTableRow2";
             this.xrTableRow2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 254F);
             this.xrTableRow2.StylePriority.UseFont = false;
@@ -163,7 +163,7 @@
             this.xrTableCell4.Dpi = 254F;
             this.xrTableCell4.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", resources.GetString("xrTableCell4.ExpressionBindings"))});
-            this.xrTableCell4.Font = new System.Drawing.Font("Arial Black", 100F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell4.Font = new DevExpress.Drawing.DXFont("Arial Black", 100F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableCell4.Multiline = true;
             this.xrTableCell4.Name = "xrTableCell4";
             this.xrTableCell4.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 254F);
@@ -187,7 +187,7 @@
             this.xrTableCell7.Dpi = 254F;
             this.xrTableCell7.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ITEMNAME]")});
-            this.xrTableCell7.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell7.Font = new DevExpress.Drawing.DXFont("Arial", 20F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableCell7.Multiline = true;
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 254F);
@@ -216,7 +216,7 @@
             this.cellMRP.Dpi = 254F;
             this.cellMRP.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'VB Price\' + Char(13) + Char(10) +\'₹\'+ [FINALPRICE]")});
-            this.cellMRP.Font = new System.Drawing.Font("Arial Black", 26F, System.Drawing.FontStyle.Bold);
+            this.cellMRP.Font = new DevExpress.Drawing.DXFont("Arial Black", 26F, DevExpress.Drawing.DXFontStyle.Bold);
             this.cellMRP.Multiline = true;
             this.cellMRP.Name = "cellMRP";
             this.cellMRP.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 254F);
@@ -232,7 +232,7 @@
             this.cellSalePrice.Dpi = 254F;
             this.cellSalePrice.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'MRP\' + Char(13) + Char(10) + \'₹\'+ToStr([MRP])")});
-            this.cellSalePrice.Font = new System.Drawing.Font("Arial Black", 26F, System.Drawing.FontStyle.Bold);
+            this.cellSalePrice.Font = new DevExpress.Drawing.DXFont("Arial Black", 26F, DevExpress.Drawing.DXFontStyle.Bold);
             this.cellSalePrice.Multiline = true;
             this.cellSalePrice.Name = "cellSalePrice";
             this.cellSalePrice.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 254F);
@@ -259,7 +259,7 @@
             this.xrTableCell1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Iif([OFFERTYPEID] = 4 OR [OFFERTYPEID] = 5 OR [OFFERTYPEID] = 3,TRUE, FALSE)\n"),
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'*ANY MRP*\'")});
-            this.xrTableCell1.Font = new System.Drawing.Font("Arial Black", 26F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell1.Font = new DevExpress.Drawing.DXFont("Arial Black", 26F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrTableCell1.Multiline = true;
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 254F);
@@ -294,8 +294,8 @@
             this.TopMargin,
             this.BottomMargin});
             this.Dpi = 254F;
-            this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(0, 0, 5, 5);
+            this.Font = new DevExpress.Drawing.DXFont("Arial", 9.75F);
+            this.Margins = new DevExpress.Drawing.DXMargins(0, 0, 5, 5);
             this.PageHeight = 2970;
             this.PageWidth = 2100;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
