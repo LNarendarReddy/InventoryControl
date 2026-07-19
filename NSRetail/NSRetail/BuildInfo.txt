@@ -1,4 +1,10 @@
-﻿v3.8.3
+﻿v3.8.4
+-- Added "Average cost price" report in warehouse reports
+-- Increased inner case qty and outer case qty length to 4 digits i.e, 0~9999
+-- Added vendor SKU code in supplier indent view
+-- Added FT\NFT\DSD type and supplier address fields in supplier indent print report
+
+v3.8.3
 -- Fixed Item Ledger transaction calculation issues.
 -- Aligned Stock Dispatch transaction reports with Item Ledger.
 -- Updated Branch Refund Transaction Report as a Store Branch Refund Register and aligned it with Item Ledger.

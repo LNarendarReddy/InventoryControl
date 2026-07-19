@@ -418,7 +418,7 @@ namespace NSRetail.ReportForms
         {
             SubCategory = new List<ReportHolder>();
 
-            if (!accessIdentifier.Contains("::")) 
+            if (!string.IsNullOrEmpty(accessIdentifier) && !accessIdentifier.Contains("::")) 
                 accessIdentifier = $"{accessIdentifier}::View";
 
             AccessIdentifier = accessIdentifier;

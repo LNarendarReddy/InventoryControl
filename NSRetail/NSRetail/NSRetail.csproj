@@ -40,8 +40,8 @@
     <Reference Include="Accessibility" />
     <Reference Include="DevExpress.BonusSkins.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v22.2.Core, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.CodeParser.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.Desktop.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />    
+    <Reference Include="DevExpress.Data.Desktop.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />    
     <Reference Include="DevExpress.Drawing.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
@@ -614,6 +614,12 @@
     </Compile>
     <Compile Include="ReportForms\Wareshouse\Audit\ucOfferThreshold.Designer.cs">
       <DependentUpon>ucOfferThreshold.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucAvgCostPrice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucAvgCostPrice.Designer.cs">
+      <DependentUpon>ucAvgCostPrice.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Wareshouse\Audit\ucSalePriceAudit.cs">
       <SubType>UserControl</SubType>
@@ -1649,6 +1655,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucOfferThreshold.resx">
       <DependentUpon>ucOfferThreshold.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucAvgCostPrice.resx">
+      <DependentUpon>ucAvgCostPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucSalePriceAudit.resx">
       <DependentUpon>ucSalePriceAudit.cs</DependentUpon>

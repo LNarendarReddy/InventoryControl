@@ -37,7 +37,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 { "Print && Export", "93DE3B46-DA10-4E5F-8A42-47AE2B390C15" }
             };
 
-            HiddenColumns = new List<string> { "ADDRESS" };
+            HiddenColumns = new List<string> { "BRANCHADDRESS", "SUPPLIERADDRESS" };
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
@@ -104,7 +104,9 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     rpt.Parameters["UserName"].Value = drFocusedRow["CREATEDBY"];
                     rpt.Parameters["IndentStatus"].Value = drFocusedRow["STATUS"];
                     rpt.Parameters["BranchName"].Value = drFocusedRow["BRANCHNAME"];
-                    rpt.Parameters["BranchAddress"].Value = drFocusedRow["ADDRESS"];
+                    rpt.Parameters["BranchAddress"].Value = drFocusedRow["BRANCHADDRESS"];
+                    rpt.Parameters["SupplierAddress"].Value = drFocusedRow["SUPPLIERADDRESS"];
+                    rpt.Parameters["ItemSelection"].Value = drFocusedRow["ItemSelection"];
                     rpt.ShowRibbonPreview();
                     break;
             }
