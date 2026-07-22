@@ -66,7 +66,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             // dtpAvgCPDate
             // 
             this.dtpAvgCPDate.EditValue = null;
-            this.dtpAvgCPDate.Location = new System.Drawing.Point(80, 11);
+            this.dtpAvgCPDate.Location = new System.Drawing.Point(81, 11);
             this.dtpAvgCPDate.Name = "dtpAvgCPDate";
             this.dtpAvgCPDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -74,20 +74,20 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpAvgCPDate.Properties.MaskSettings.Set("mask", "MM/yyyy");
             this.dtpAvgCPDate.Properties.UseMaskAsDisplayFormat = true;
-            this.dtpAvgCPDate.Size = new System.Drawing.Size(111, 22);
+            this.dtpAvgCPDate.Size = new System.Drawing.Size(110, 22);
             this.dtpAvgCPDate.StyleController = this.layoutControl1;
             this.dtpAvgCPDate.TabIndex = 5;
             // 
             // sluSKUCode
             // 
             this.sluSKUCode.EditValue = "";
-            this.sluSKUCode.Location = new System.Drawing.Point(272, 11);
+            this.sluSKUCode.Location = new System.Drawing.Point(273, 11);
             this.sluSKUCode.Name = "sluSKUCode";
             this.sluSKUCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sluSKUCode.Properties.NullText = "";
             this.sluSKUCode.Properties.PopupView = this.searchLookUpEdit1View;
-            this.sluSKUCode.Size = new System.Drawing.Size(328, 22);
+            this.sluSKUCode.Size = new System.Drawing.Size(327, 22);
             this.sluSKUCode.StyleController = this.layoutControl1;
             this.sluSKUCode.TabIndex = 4;
             // 
@@ -152,8 +152,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem1.Size = new System.Drawing.Size(409, 35);
-            this.layoutControlItem1.Text = "Item Code";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(57, 15);
+            this.layoutControlItem1.Text = "SKU Code";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(58, 15);
             // 
             // layoutControlItem2
             // 
@@ -163,7 +163,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
             this.layoutControlItem2.Size = new System.Drawing.Size(192, 35);
             this.layoutControlItem2.Text = "Date";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(57, 15);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(58, 15);
             // 
             // ucAvgCostPrice
             // 

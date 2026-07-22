@@ -1,4 +1,8 @@
-﻿v3.8.4
+﻿v3.8.5
+-- Fixed issue in supplier indent view 
+-- Changed Item code search to SKU based search in Avg. Cost price report
+
+v3.8.4
 -- Added "Average cost price" report in warehouse reports
 -- Increased inner case qty and outer case qty length to 4 digits i.e, 0~9999
 -- Added vendor SKU code in supplier indent view

@@ -23,7 +23,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
 
             sluSKUCode.Properties.DataSource = Utility.GetItemCodeList();
             sluSKUCode.Properties.DisplayMember = "ITEMNAME";
-            sluSKUCode.Properties.ValueMember = "ITEMCODEID";
+            sluSKUCode.Properties.ValueMember = "ITEMID";
 
             SetFocusControls(sluSKUCode,sluSKUCode, columnHeaders);
         }
@@ -32,7 +32,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                { "ItemCodeID", sluSKUCode.EditValue },
+                { "ItemID", sluSKUCode.EditValue },
                 { "AvgCPDate", dtpAvgCPDate.EditValue }
             };
 
