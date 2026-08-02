@@ -1,16 +1,12 @@
 ﻿using DataAccess;
-using DevExpress.XtraEditors;
-using DevExpress.XtraPivotGrid;
 using DevExpress.XtraPrinting;
+using DevExpress.XtraReports.UI;
+using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NSRetail.Stock
 {
@@ -64,6 +60,12 @@ namespace NSRetail.Stock
 
             link.CreateDocument();
             link.ShowPreviewDialog();
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            rptPickList pickList = new rptPickList(luSupplier.Text, luCategory.Text, (DataTable)gcPickList.DataSource);
+            pickList.ShowRibbonPreview();
         }
     }
 }

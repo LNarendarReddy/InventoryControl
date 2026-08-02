@@ -28,6 +28,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "STATUS", "Status" }
                 , { "SUPPLIERINDENTNO", "Indent #" }
                 , { "MOBILENO", "Mobile #" }
+                , { "STATUSTEXT", "Status" }
                 , { "SUPPLIERINDENTTYPE", "Indent Type" }
             };
 
@@ -37,7 +38,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 { "Print && Export", "93DE3B46-DA10-4E5F-8A42-47AE2B390C15" }
             };
 
-            HiddenColumns = new List<string> { "BRANCHADDRESS", "SUPPLIERADDRESS" };
+            HiddenColumns = new List<string> { "BRANCHADDRESS", "SUPPLIERADDRESS", "STATUS" };
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
@@ -82,14 +83,17 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     frmDealerIndentobj.IconOptions.ShowIcon = false;
                     frmDealerIndentobj.StartPosition = FormStartPosition.CenterScreen;
                     frmDealerIndentobj.ShowDialog();
-                    if (dealerIndent.IsSave && (dealerIndent.IsApproved == 1 || dealerIndent.IsApproved == 2))
+                    if (dealerIndent.IsSave)
                     {
-                        drFocusedRow["STATUS"] = dealerIndent.IsApproved == 1 ? "APPROVED" : "REJECTED";
-                        drFocusedRow["APPROVEDBY"] = Utility.FullName;
-                        drFocusedRow["APPROVEDDATE"] = DateTime.Now;
+                        drFocusedRow["STATUSTEXT"] = ((IndentStatus)dealerIndent.IsApproved).ToString();
+                        if (dealerIndent.IsApproved == (int)IndentStatus.Approved 
+                            || dealerIndent.IsApproved == (int)IndentStatus.Rejected 
+                            || dealerIndent.IsApproved == (int)IndentStatus.Closed)
+                        {
+                            drFocusedRow["APPROVEDBY"] = Utility.FullName;
+                            drFocusedRow["APPROVEDDATE"] = DateTime.Now;
+                        }
                     }
-                    else if (dealerIndent.IsSave)
-                        drFocusedRow["STATUS"] = "DRAFT";
                     break;
                 case "Print && Export":
                     DataSet dsSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);

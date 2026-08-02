@@ -38,7 +38,7 @@ namespace DataAccess
             return dtReportData;
         }
 
-        public DataSet GetDataset(string procedureName, bool useWHConn, Dictionary<string, object> parameters = null)
+        public DataSet GetDataset(string procedureName, bool useWHConn, Dictionary<string, object> parameters = null, Action<string> infoReader = null)
         {
             DataSet dsReportData = new DataSet();
             try
@@ -51,6 +51,9 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = procedureName;
                     ProcessParameters(cmd, parameters);
+
+                    if (infoReader != null)
+                        connection.InfoMessage += (sender, e) => infoReader.Invoke(e.Message);
 
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {

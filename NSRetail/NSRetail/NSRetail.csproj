@@ -40,8 +40,8 @@
     <Reference Include="Accessibility" />
     <Reference Include="DevExpress.BonusSkins.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v22.2.Core, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.CodeParser.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />    
-    <Reference Include="DevExpress.Data.Desktop.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />    
+    <Reference Include="DevExpress.CodeParser.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.Desktop.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Drawing.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v22.2, Version=22.2.15.0, Culture=neutral, processorArchitecture=MSIL" />
@@ -855,6 +855,12 @@
     <Compile Include="Reports\rptOfrPoster.Designer.cs">
       <DependentUpon>rptOfrPoster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptPickList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptPickList.Designer.cs">
+      <DependentUpon>rptPickList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptSupplierDebitNote.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1403,6 +1409,12 @@
     <Compile Include="Supplier\frmViewDNMappings.Designer.cs">
       <DependentUpon>frmViewDNMappings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Supplier\frmViewGeneratedSupplierIndent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Supplier\frmViewGeneratedSupplierIndent.Designer.cs">
+      <DependentUpon>frmViewGeneratedSupplierIndent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Supplier\frmViewReturnItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1771,6 +1783,9 @@
     <EmbeddedResource Include="Reports\rptOfrPoster.resx">
       <DependentUpon>rptOfrPoster.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptPickList.resx">
+      <DependentUpon>rptPickList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptSupplierDebitNote.resx">
       <DependentUpon>rptSupplierDebitNote.cs</DependentUpon>
     </EmbeddedResource>
@@ -2051,6 +2066,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmViewDNMappings.resx">
       <DependentUpon>frmViewDNMappings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Supplier\frmViewGeneratedSupplierIndent.resx">
+      <DependentUpon>frmViewGeneratedSupplierIndent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmViewReturnItems.resx">
       <DependentUpon>frmViewReturnItems.cs</DependentUpon>

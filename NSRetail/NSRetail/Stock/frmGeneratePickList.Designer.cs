@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding1 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
             DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding2 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
             DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding3 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
             DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding4 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.luSupplier = new DevExpress.XtraEditors.LookUpEdit();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.gcPickList = new DevExpress.XtraPivotGrid.PivotGridControl();
             this.pivotGridField1 = new DevExpress.XtraPivotGrid.PivotGridField();
@@ -50,11 +51,13 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.luSupplier = new DevExpress.XtraEditors.LookUpEdit();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.btnPrintNew = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.luSupplier.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcPickList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.luCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
@@ -63,13 +66,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.luSupplier.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnPrintNew);
             this.layoutControl1.Controls.Add(this.luSupplier);
             this.layoutControl1.Controls.Add(this.btnPrint);
             this.layoutControl1.Controls.Add(this.gcPickList);
@@ -83,9 +87,27 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // luSupplier
+            // 
+            this.luSupplier.Location = new System.Drawing.Point(362, 16);
+            this.luSupplier.Name = "luSupplier";
+            this.luSupplier.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.luSupplier.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERID", "DEALERID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERNAME", "Supplier Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTIN", "Supplier GSTIN")});
+            this.luSupplier.Properties.NullText = "";
+            this.luSupplier.Size = new System.Drawing.Size(377, 22);
+            this.luSupplier.StyleController = this.layoutControl1;
+            this.luSupplier.TabIndex = 8;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "The value is mandatory";
+            this.dxValidationProvider1.SetValidationRule(this.luSupplier, conditionValidationRule1);
+            // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(1184, 16);
+            this.btnPrint.Location = new System.Drawing.Point(1074, 16);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(87, 22);
             this.btnPrint.StyleController = this.layoutControl1;
@@ -104,7 +126,6 @@
             this.gcPickList.Name = "gcPickList";
             this.gcPickList.OptionsData.DataProcessingEngine = DevExpress.XtraPivotGrid.PivotDataProcessingEngine.Optimized;
             this.gcPickList.OptionsPrint.PageSettings.Landscape = true;
-            this.gcPickList.OptionsPrint.PageSettings.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
             this.gcPickList.OptionsPrint.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
             this.gcPickList.OptionsView.ShowDataHeaders = false;
             this.gcPickList.OptionsView.ShowFilterHeaders = false;
@@ -157,7 +178,7 @@
             // 
             // btnGeneratePickList
             // 
-            this.btnGeneratePickList.Location = new System.Drawing.Point(1058, 16);
+            this.btnGeneratePickList.Location = new System.Drawing.Point(948, 16);
             this.btnGeneratePickList.Name = "btnGeneratePickList";
             this.btnGeneratePickList.Size = new System.Drawing.Size(114, 22);
             this.btnGeneratePickList.StyleController = this.layoutControl1;
@@ -175,7 +196,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYID", "CategoryID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CATEGORYNAME", "Category")});
             this.luCategory.Properties.NullText = "";
-            this.luCategory.Size = new System.Drawing.Size(244, 22);
+            this.luCategory.Size = new System.Drawing.Size(212, 22);
             this.luCategory.StyleController = this.layoutControl1;
             this.luCategory.TabIndex = 4;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -192,7 +213,8 @@
             this.layoutControlItem3,
             this.emptySpaceItem1,
             this.layoutControlItem4,
-            this.layoutControlItem5});
+            this.layoutControlItem5,
+            this.layoutControlItem6});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1287, 563);
             this.Root.TextVisible = false;
@@ -203,14 +225,14 @@
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem1.Size = new System.Drawing.Size(317, 34);
+            this.layoutControlItem1.Size = new System.Drawing.Size(285, 34);
             this.layoutControlItem1.Text = "Category";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(49, 15);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnGeneratePickList;
-            this.layoutControlItem2.Location = new System.Drawing.Point(1042, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(932, 0);
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(126, 34);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(126, 34);
             this.layoutControlItem2.Name = "layoutControlItem2";
@@ -232,15 +254,15 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(937, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(735, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(105, 34);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(197, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnPrint;
-            this.layoutControlItem4.Location = new System.Drawing.Point(1168, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(1058, 0);
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(99, 34);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(99, 34);
             this.layoutControlItem4.Name = "layoutControlItem4";
@@ -250,33 +272,37 @@
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // luSupplier
-            // 
-            this.luSupplier.Location = new System.Drawing.Point(394, 16);
-            this.luSupplier.Name = "luSupplier";
-            this.luSupplier.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.luSupplier.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERID", "DEALERID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEALERNAME", "Supplier Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTIN", "Supplier GSTIN")});
-            this.luSupplier.Properties.NullText = "";
-            this.luSupplier.Size = new System.Drawing.Size(547, 22);
-            this.luSupplier.StyleController = this.layoutControl1;
-            this.luSupplier.TabIndex = 8;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "The value is mandatory";
-            this.dxValidationProvider1.SetValidationRule(this.luSupplier, conditionValidationRule1);
-            // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.luSupplier;
-            this.layoutControlItem5.Location = new System.Drawing.Point(317, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(285, 0);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(123, 34);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem5.Size = new System.Drawing.Size(620, 34);
+            this.layoutControlItem5.Size = new System.Drawing.Size(450, 34);
+            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.Text = "Supplier";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(49, 15);
+            // 
+            // btnPrintNew
+            // 
+            this.btnPrintNew.Location = new System.Drawing.Point(1173, 16);
+            this.btnPrintNew.Name = "btnPrintNew";
+            this.btnPrintNew.Size = new System.Drawing.Size(98, 22);
+            this.btnPrintNew.StyleController = this.layoutControl1;
+            this.btnPrintNew.TabIndex = 9;
+            this.btnPrintNew.Text = "Print (new)";
+            this.btnPrintNew.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.btnPrintNew;
+            this.layoutControlItem6.Location = new System.Drawing.Point(1157, 0);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem6.Size = new System.Drawing.Size(110, 34);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem6.TextVisible = false;
             // 
             // frmGeneratePickList
             // 
@@ -292,6 +318,7 @@
             this.Load += new System.EventHandler(this.frmGeneratePickList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.luSupplier.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcPickList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.luCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
@@ -300,9 +327,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.luSupplier.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -327,5 +354,7 @@
         private DevExpress.XtraEditors.LookUpEdit luSupplier;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
+        private DevExpress.XtraEditors.SimpleButton btnPrintNew;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
     }
 }

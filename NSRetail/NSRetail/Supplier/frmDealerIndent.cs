@@ -21,6 +21,7 @@ namespace NSRetail
             txtMobileNo.EditValue = _dealerIndent.MobileNo;
             lcgIndentDetails.Text = $"Indent details - {_dealerIndent.IndentNo}";
             btnReject.Enabled = Utility.Role.ToLower() == "admin";
+            btnClose.Enabled = _dealerIndent.Status.Equals((int)IndentStatus.Draft) || _dealerIndent.Status.Equals((int)IndentStatus.Approved);
         }
 
         private void frmDealerIndent_Load(object sender, EventArgs e)
@@ -41,7 +42,7 @@ namespace NSRetail
         {
             try
             {
-                SaveSupplierIndent(Utility.Role.ToLower() == "admin" ? 1 :0);
+                SaveSupplierIndent(Utility.Role.ToLower() == "admin" ? IndentStatus.Approved : IndentStatus.Draft);
             }
             catch (Exception ex)
             {
@@ -130,7 +131,7 @@ namespace NSRetail
         {
             try
             {
-                SaveSupplierIndent(2);
+                SaveSupplierIndent(IndentStatus.Rejected);
             }
             catch (Exception ex)
             {
@@ -138,17 +139,29 @@ namespace NSRetail
             }
         }
 
-        private void SaveSupplierIndent(int status)
+        private void SaveSupplierIndent(IndentStatus status)
         {
-            if (XtraMessageBox.Show("Are you sure you want to reject this supplier indent?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            if (XtraMessageBox.Show($"Are you sure you want to {status} this supplier indent?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 != DialogResult.Yes) return;
 
-            dealerIndent.IsApproved = status;
+            dealerIndent.IsApproved = (int)status;
             dealerIndent.MobileNo = txtMobileNo.EditValue;
             new ReportRepository().SaveSupplierIndent(dealerIndent);
             dealerIndent.IsSave = true;
             XtraMessageBox.Show("Saved successfully!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveSupplierIndent(IndentStatus.Closed);
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+            }
         }
     }
 }

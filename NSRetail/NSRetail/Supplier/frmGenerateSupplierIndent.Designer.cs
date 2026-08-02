@@ -34,11 +34,11 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnPickList = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.btnPickList = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.btnGenerate = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.luManufacturer = new DevExpress.XtraEditors.LookUpEdit();
@@ -61,8 +61,8 @@
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.luManufacturer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLog.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.luBranch.Properties)).BeginInit();
@@ -101,6 +101,16 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnPickList
+            // 
+            this.btnPickList.Location = new System.Drawing.Point(16, 389);
+            this.btnPickList.Name = "btnPickList";
+            this.btnPickList.Size = new System.Drawing.Size(161, 22);
+            this.btnPickList.StyleController = this.layoutControl1;
+            this.btnPickList.TabIndex = 12;
+            this.btnPickList.Text = "Generate PickList";
+            this.btnPickList.Click += new System.EventHandler(this.btnPickList_Click);
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -128,16 +138,6 @@
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(173, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // btnPickList
-            // 
-            this.btnPickList.Location = new System.Drawing.Point(16, 389);
-            this.btnPickList.Name = "btnPickList";
-            this.btnPickList.Size = new System.Drawing.Size(161, 22);
-            this.btnPickList.StyleController = this.layoutControl1;
-            this.btnPickList.TabIndex = 12;
-            this.btnPickList.Text = "Generate PickList";
-            this.btnPickList.Click += new System.EventHandler(this.btnPickList_Click);
             // 
             // layoutControlItem10
             // 
@@ -396,8 +396,8 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.luManufacturer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLog.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.luBranch.Properties)).EndInit();

@@ -1,4 +1,7 @@
-﻿v3.8.5
+﻿v3.8.6
+-- Supplier indent changes to support picklist one to many and other things
+
+v3.8.5
 -- Fixed issue in supplier indent view 
 -- Changed Item code search to SKU based search in Avg. Cost price report
 

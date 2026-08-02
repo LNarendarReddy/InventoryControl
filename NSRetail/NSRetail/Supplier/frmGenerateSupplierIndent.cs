@@ -30,7 +30,8 @@ namespace NSRetail.Supplier
         {
             SetEnabled(false);
             AppendStatus("============ Begin Generation ============");
-            new DataRepository().ExecuteNonQuery("USP_G_SUPPLIERINDENT",
+            DataSet dsSupplierTemp =
+                new DataRepository().GetDataset("USP_G_SUPPLIERINDENT",
                 true, new Dictionary<string, object>
                 {
                     { "SupplierID", luSupplier.EditValue }
@@ -40,7 +41,12 @@ namespace NSRetail.Supplier
                     , { "IndentItemSelectionType", luIndentType.EditValue }
                     , { "BranchID", luBranch.EditValue }
                     , { "UserID", Utility.UserID }
-                }, true, AppendStatus);
+                }, AppendStatus);
+
+            DatasetReadComplete(dsSupplierTemp);
+
+            dsSupplierTemp.Relations.Add("FT - Branch details", dsSupplierTemp.Tables[0].Columns["ITEMID"], dsSupplierTemp.Tables[1].Columns["ITEMID"]);
+
             AppendStatus(string.Empty);
             AppendStatus("============ Completed ============");
             AppendStatus(string.Empty);
@@ -53,6 +59,9 @@ namespace NSRetail.Supplier
                 this.Invoke(new Action(() => Worker_RunWorkerCompleted(sender, e)));
                 return;
             }
+
+            btnGenerate.Enabled = true;
+            btnPickList.Enabled = true;
 
             SetEnabled(true);
         }
@@ -71,6 +80,18 @@ namespace NSRetail.Supplier
             luIndentType.Enabled = enabled;
             luBranch.Enabled = enabled;
             luIndentType_EditValueChanged(null, null);
+        }
+
+        private void DatasetReadComplete(DataSet dataSet)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => DatasetReadComplete(dataSet)));
+                return;
+            }
+
+            new frmViewGeneratedSupplierIndent(dataSet, luSupplier.EditValue, luCategory.EditValue
+                , txtSafetyDays.EditValue, luManufacturer.EditValue, luIndentType.EditValue, luBranch.EditValue).ShowDialog();
         }
 
         private void frmGenerateSupplierIndent_Load(object sender, EventArgs e)
@@ -108,6 +129,9 @@ namespace NSRetail.Supplier
                 XtraMessageBox.Show("Branch is required for direct store dispatch indent generation", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            btnGenerate.Enabled = false;
+            btnPickList.Enabled = false;
 
             worker.RunWorkerAsync();
         }

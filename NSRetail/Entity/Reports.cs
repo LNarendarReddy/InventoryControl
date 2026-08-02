@@ -15,6 +15,7 @@ namespace Entity
         public object IndentDays { get; set; }
         public object SafetyDays { get; set; }
         public object Status { get; set; }
+        public object StatusText { get; set; }
         public int IsApproved { get; set; }
         public object IndentNo { get; set; }
         public object MobileNo { get; set; }
@@ -24,6 +25,15 @@ namespace Entity
         public DataSet dsSupplierIndent { get; set; }
 
         public object IndentType { get; set; }
+    }
+
+
+    public enum IndentStatus
+    {
+        Draft = 14,
+        Approved = 15,
+        Rejected = 17,
+        Closed = 16
     }
 
     public class CreditBillPayment : EntityBase
