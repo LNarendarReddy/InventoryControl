@@ -30,6 +30,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "INVOICEDATE", "Invoice Date" }
                 , { "CREATEDBY", "User Name" }
                 , { "CREATEDDATE", "Created Date" }
+                , { "SUBMITTEDDATE", "Submitted Date" }
                 , { "FINALPRICE", "Net Amount" }
                 , { "STATUS", "Status" }
             };

@@ -205,6 +205,8 @@
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DEBIT", null, "Debit : {0}")});
             this.gvItems.Name = "gvItems";
             this.gvItems.OptionsBehavior.Editable = false;
+            this.gvItems.OptionsSelection.MultiSelect = true;
+            this.gvItems.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gvItems.OptionsView.ShowFooter = true;
             this.gvItems.OptionsView.ShowGroupPanel = false;
             this.gvItems.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gvItems_CustomDrawCell);
