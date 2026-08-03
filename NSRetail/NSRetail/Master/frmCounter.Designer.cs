@@ -31,8 +31,8 @@ namespace NSRetail.Master
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCounter));
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.luPaymentGateway = new DevExpress.XtraEditors.LookUpEdit();
             this.txtSetting2 = new DevExpress.XtraEditors.TextEdit();
@@ -105,7 +105,7 @@ namespace NSRetail.Master
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(680, 34, 650, 400);
             this.layoutControl1.OptionsFocus.EnableAutoTabOrder = false;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(453, 253);
+            this.layoutControl1.Size = new System.Drawing.Size(453, 270);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -130,7 +130,7 @@ namespace NSRetail.Master
             // txtSetting2
             // 
             this.txtSetting2.EnterMoveNextControl = true;
-            this.txtSetting2.Location = new System.Drawing.Point(139, 177);
+            this.txtSetting2.Location = new System.Drawing.Point(139, 178);
             this.txtSetting2.Name = "txtSetting2";
             this.txtSetting2.Size = new System.Drawing.Size(294, 22);
             this.txtSetting2.StyleController = this.layoutControl1;
@@ -139,7 +139,7 @@ namespace NSRetail.Master
             // txtSetting1
             // 
             this.txtSetting1.EnterMoveNextControl = true;
-            this.txtSetting1.Location = new System.Drawing.Point(139, 143);
+            this.txtSetting1.Location = new System.Drawing.Point(139, 144);
             this.txtSetting1.Name = "txtSetting1";
             this.txtSetting1.Size = new System.Drawing.Size(294, 22);
             this.txtSetting1.StyleController = this.layoutControl1;
@@ -148,7 +148,7 @@ namespace NSRetail.Master
             // chkIsMobileCounter
             // 
             this.chkIsMobileCounter.EnterMoveNextControl = true;
-            this.chkIsMobileCounter.Location = new System.Drawing.Point(8, 223);
+            this.chkIsMobileCounter.Location = new System.Drawing.Point(8, 225);
             this.chkIsMobileCounter.Name = "chkIsMobileCounter";
             this.chkIsMobileCounter.Properties.Caption = "Is Mobile Counter";
             this.chkIsMobileCounter.Size = new System.Drawing.Size(128, 20);
@@ -160,7 +160,7 @@ namespace NSRetail.Master
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(361, 223);
+            this.btnCancel.Location = new System.Drawing.Point(361, 225);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(84, 22);
@@ -173,7 +173,7 @@ namespace NSRetail.Master
             // 
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSave.Location = new System.Drawing.Point(259, 223);
+            this.btnSave.Location = new System.Drawing.Point(259, 225);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(90, 22);
@@ -191,10 +191,10 @@ namespace NSRetail.Master
             this.txtCounterName.Size = new System.Drawing.Size(318, 22);
             this.txtCounterName.StyleController = this.layoutControl1;
             this.txtCounterName.TabIndex = 1;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtCounterName, conditionValidationRule1);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Mandatory";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.txtCounterName, conditionValidationRule3);
             // 
             // cmbBranch
             // 
@@ -212,10 +212,10 @@ namespace NSRetail.Master
             this.cmbBranch.Size = new System.Drawing.Size(318, 22);
             this.cmbBranch.StyleController = this.layoutControl1;
             this.cmbBranch.TabIndex = 0;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbBranch, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider1.SetValidationRule(this.cmbBranch, conditionValidationRule1);
             // 
             // Root
             // 
@@ -234,7 +234,7 @@ namespace NSRetail.Master
             this.layoutControlItem4});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(453, 253);
+            this.Root.Size = new System.Drawing.Size(453, 270);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -252,38 +252,38 @@ namespace NSRetail.Master
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnSave;
-            this.layoutControlItem7.Location = new System.Drawing.Point(251, 215);
+            this.layoutControlItem7.Location = new System.Drawing.Point(251, 217);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem7.Size = new System.Drawing.Size(102, 34);
+            this.layoutControlItem7.Size = new System.Drawing.Size(102, 49);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnCancel;
-            this.layoutControlItem8.Location = new System.Drawing.Point(353, 215);
+            this.layoutControlItem8.Location = new System.Drawing.Point(353, 217);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem8.Size = new System.Drawing.Size(96, 34);
+            this.layoutControlItem8.Size = new System.Drawing.Size(96, 49);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(140, 215);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(140, 217);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(111, 34);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(111, 49);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.chkIsMobileCounter;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 215);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 217);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem3.Size = new System.Drawing.Size(140, 34);
+            this.layoutControlItem3.Size = new System.Drawing.Size(140, 49);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -304,7 +304,7 @@ namespace NSRetail.Master
             this.lciSetting2});
             this.lcgPaymentGatewayConfig.Location = new System.Drawing.Point(0, 102);
             this.lcgPaymentGatewayConfig.Name = "lcgPaymentGatewayConfig";
-            this.lcgPaymentGatewayConfig.Size = new System.Drawing.Size(449, 113);
+            this.lcgPaymentGatewayConfig.Size = new System.Drawing.Size(449, 115);
             this.lcgPaymentGatewayConfig.Text = "PineLabs Payment Gateway configuration";
             // 
             // lciSetting1
@@ -339,11 +339,12 @@ namespace NSRetail.Master
             // 
             // frmCounter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(453, 253);
+            this.ClientSize = new System.Drawing.Size(453, 270);
             this.Controls.Add(this.layoutControl1);
+            this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmCounter";
             this.Text = "Counter";

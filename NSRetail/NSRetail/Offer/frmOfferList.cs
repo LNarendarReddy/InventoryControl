@@ -102,6 +102,7 @@ namespace NSRetail
             offer.NumberOfItems = gvOffer.GetFocusedRowCellValue("NUMBEROFITEMS");
             offer.FreeItemPriceID = gvOffer.GetFocusedRowCellValue("FREEITEMPRICEID");
             offer.OfferThresholdPrice = gvOffer.GetFocusedRowCellValue("OFFERTHRESHOLDPRICE");
+            offer.NumberOfFreeItems = gvOffer.GetFocusedRowCellValue("NUMBEROFFREEITEMS");
             if (ShowCreateForm())
                 UpdateGridRow(gvOffer.FocusedRowHandle, true);
         }
@@ -150,6 +151,7 @@ namespace NSRetail
             gcCategory.Visible = !_IsDeal;
             gcOfferThresholdPrice.Visible = !_IsDeal;
             gcNoOfItems.Visible = true;
+            gcNoOfFreeItems.Visible = _IsDeal;
 
             gcDelete.VisibleIndex = gvOffer.VisibleColumns.Count;
             gcViewBranches.VisibleIndex = gvOffer.VisibleColumns.Count - 1;
@@ -157,10 +159,10 @@ namespace NSRetail
             if (_IsDeal)
             {
                 gcViewItems.Visible = true;
-                gcOfferExclusion.Visible = _IsDeal;
-                gcOfferExclusion.VisibleIndex = gvOffer.VisibleColumns.Count - 2;
-                gcViewItems.VisibleIndex = gvOffer.VisibleColumns.Count - 3;
-                gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count - 4;
+                //gcOfferExclusion.Visible = _IsDeal;
+                //gcOfferExclusion.VisibleIndex = gvOffer.VisibleColumns.Count - 2;
+                gcViewItems.VisibleIndex = gvOffer.VisibleColumns.Count - 2;
+                gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count - 3;
 
                 gcOfferName.Caption = "Deal Name";
                 gcOfferType.Caption = "Deal Type";

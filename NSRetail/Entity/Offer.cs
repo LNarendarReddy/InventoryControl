@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entity
+﻿namespace Entity
 {
     public class Offer : EntityBase
     {
@@ -40,6 +34,7 @@ namespace Entity
         ///     in case of deals, free\discounted item price will be stored here, the value is 0 for free
         /// </summary>
         public object OfferThresholdPrice { get; set; }
+        public object NumberOfFreeItems { get; set; }
     }
 }
 

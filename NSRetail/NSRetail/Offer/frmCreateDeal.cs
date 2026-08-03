@@ -43,6 +43,7 @@ namespace NSRetail
                 cmbFreeItemCode.EditValue = offer.FreeItemPriceID;
                 txtNumberOfItems.EditValue = offer.NumberOfItems;
                 txtFreeItemPrice.EditValue = offer.OfferThresholdPrice;
+                txtNumberOfFreeItems.EditValue = offer.NumberOfFreeItems;
 
                 txtOfferCode.Enabled = false;
                 txtOfferName.Enabled = false;
@@ -82,6 +83,13 @@ namespace NSRetail
                     return;
                 }
 
+                if (txtNumberOfFreeItems.Enabled && txtNumberOfFreeItems.EditValue == null)
+                {
+                    XtraMessageBox.Show("Number of free items is required", "Mandatory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNumberOfFreeItems.Focus();
+                    return;
+                }
+
                 if (txtFreeItemPrice.Enabled && txtFreeItemPrice.EditValue == null)
                 {
                     XtraMessageBox.Show("Free item price is required", "Mandatory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -112,6 +120,7 @@ namespace NSRetail
                 offer.NumberOfItems = txtNumberOfItems.EditValue;
                 offer.UserID = Utility.UserID;
                 offer.OfferThresholdPrice = txtFreeItemPrice.EditValue;
+                offer.NumberOfFreeItems = txtNumberOfFreeItems.EditValue;
                 offer.OfferID = new OfferRepository().SaveOffer(offer);
                 this.IsSave = true;
                 this.Close();
@@ -159,6 +168,7 @@ namespace NSRetail
                 else if (cmbOfferType.EditValue.Equals(1006))
                 {
                     txtNumberOfItems.Enabled = true;
+                    txtNumberOfFreeItems.Enabled = true;
                 }
             }
         }
@@ -173,6 +183,8 @@ namespace NSRetail
             txtOfferValue.EditValue = null;
             txtFreeItemPrice.Enabled = false;
             txtFreeItemPrice.EditValue = null;
+            txtNumberOfFreeItems.EditValue = null;
+            txtNumberOfFreeItems.Enabled = false;
         }
     }
 }

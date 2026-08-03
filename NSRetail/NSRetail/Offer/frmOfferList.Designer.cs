@@ -96,6 +96,8 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcOfferExclusion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnExclussion = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gcMRP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcNoOfFreeItems = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnViewReport = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
@@ -105,7 +107,6 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gcMRP = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcOffer)).BeginInit();
@@ -148,14 +149,14 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1270, 398, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1233, 760);
+            this.layoutControl1.Size = new System.Drawing.Size(1233, 811);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // gcOffer
             // 
             this.gcOffer.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.gcOffer.Location = new System.Drawing.Point(8, 48);
+            this.gcOffer.Location = new System.Drawing.Point(8, 51);
             this.gcOffer.MainView = this.gvOffer;
             this.gcOffer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcOffer.Name = "gcOffer";
@@ -166,7 +167,7 @@
             this.btnViewItems,
             this.txtDecimal,
             this.btnExclussion});
-            this.gcOffer.Size = new System.Drawing.Size(1217, 704);
+            this.gcOffer.Size = new System.Drawing.Size(1217, 752);
             this.gcOffer.TabIndex = 4;
             this.gcOffer.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvOffer});
@@ -212,8 +213,9 @@
             this.GCBASEOFFERID,
             this.gridColumn3,
             this.gcOfferExclusion,
-            this.gcMRP});
-            this.gvOffer.DetailHeight = 404;
+            this.gcMRP,
+            this.gcNoOfFreeItems});
+            this.gvOffer.DetailHeight = 431;
             this.gvOffer.GridControl = this.gcOffer;
             this.gvOffer.Name = "gvOffer";
             this.gvOffer.OptionsView.ShowFooter = true;
@@ -484,7 +486,7 @@
             this.gcViewBranches.MinWidth = 23;
             this.gcViewBranches.Name = "gcViewBranches";
             this.gcViewBranches.Visible = true;
-            this.gcViewBranches.VisibleIndex = 11;
+            this.gcViewBranches.VisibleIndex = 12;
             this.gcViewBranches.Width = 80;
             // 
             // btnViewBranches
@@ -531,7 +533,7 @@
             this.gcEdit.MinWidth = 23;
             this.gcEdit.Name = "gcEdit";
             this.gcEdit.Visible = true;
-            this.gcEdit.VisibleIndex = 10;
+            this.gcEdit.VisibleIndex = 11;
             this.gcEdit.Width = 64;
             // 
             // btnEdit
@@ -591,8 +593,6 @@
             this.gcOfferExclusion.Caption = "Offer Exclusion";
             this.gcOfferExclusion.ColumnEdit = this.btnExclussion;
             this.gcOfferExclusion.Name = "gcOfferExclusion";
-            this.gcOfferExclusion.Visible = true;
-            this.gcOfferExclusion.VisibleIndex = 12;
             // 
             // btnExclussion
             // 
@@ -604,12 +604,28 @@
             this.btnExclussion.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnExclussion.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnExclussion_ButtonClick);
             // 
+            // gcMRP
+            // 
+            this.gcMRP.Caption = "MRP";
+            this.gcMRP.FieldName = "MRP";
+            this.gcMRP.Name = "gcMRP";
+            this.gcMRP.OptionsColumn.AllowEdit = false;
+            // 
+            // gcNoOfFreeItems
+            // 
+            this.gcNoOfFreeItems.Caption = "No Of Free Items";
+            this.gcNoOfFreeItems.FieldName = "NUMBEROFFREEITEMS";
+            this.gcNoOfFreeItems.Name = "gcNoOfFreeItems";
+            this.gcNoOfFreeItems.OptionsColumn.AllowEdit = false;
+            this.gcNoOfFreeItems.Visible = true;
+            this.gcNoOfFreeItems.VisibleIndex = 10;
+            // 
             // btnViewReport
             // 
             this.btnViewReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnViewReport.ImageOptions.SvgImage")));
             this.btnViewReport.Location = new System.Drawing.Point(870, 8);
             this.btnViewReport.Name = "btnViewReport";
-            this.btnViewReport.Size = new System.Drawing.Size(115, 36);
+            this.btnViewReport.Size = new System.Drawing.Size(115, 39);
             this.btnViewReport.StyleController = this.layoutControl1;
             this.btnViewReport.TabIndex = 7;
             this.btnViewReport.Text = "View Report";
@@ -623,7 +639,7 @@
             this.btnCancel.Location = new System.Drawing.Point(1115, 8);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 36);
+            this.btnCancel.Size = new System.Drawing.Size(110, 39);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
@@ -636,7 +652,7 @@
             this.btnNew.Location = new System.Drawing.Point(989, 8);
             this.btnNew.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(122, 36);
+            this.btnNew.Size = new System.Drawing.Size(122, 39);
             this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 5;
             this.btnNew.Text = "New";
@@ -656,15 +672,15 @@
             this.layoutControlItem2});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.Root.Size = new System.Drawing.Size(1233, 760);
+            this.Root.Size = new System.Drawing.Size(1233, 811);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gcOffer;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 40);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 43);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1221, 708);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1221, 756);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -672,10 +688,10 @@
             // 
             this.lcnewbutton.Control = this.btnNew;
             this.lcnewbutton.Location = new System.Drawing.Point(981, 0);
-            this.lcnewbutton.MaxSize = new System.Drawing.Size(126, 40);
-            this.lcnewbutton.MinSize = new System.Drawing.Size(126, 40);
+            this.lcnewbutton.MaxSize = new System.Drawing.Size(126, 43);
+            this.lcnewbutton.MinSize = new System.Drawing.Size(126, 43);
             this.lcnewbutton.Name = "lcnewbutton";
-            this.lcnewbutton.Size = new System.Drawing.Size(126, 40);
+            this.lcnewbutton.Size = new System.Drawing.Size(126, 43);
             this.lcnewbutton.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lcnewbutton.TextSize = new System.Drawing.Size(0, 0);
             this.lcnewbutton.TextVisible = false;
@@ -684,10 +700,10 @@
             // 
             this.layoutControlItem3.Control = this.btnCancel;
             this.layoutControlItem3.Location = new System.Drawing.Point(1107, 0);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(114, 40);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(114, 40);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(114, 43);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(114, 43);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(114, 40);
+            this.layoutControlItem3.Size = new System.Drawing.Size(114, 43);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -697,33 +713,27 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(862, 40);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(862, 43);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnViewReport;
             this.layoutControlItem2.Location = new System.Drawing.Point(862, 0);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(119, 40);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(119, 40);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(119, 43);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(119, 43);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(119, 40);
+            this.layoutControlItem2.Size = new System.Drawing.Size(119, 43);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
-            // gcMRP
-            // 
-            this.gcMRP.Caption = "MRP";
-            this.gcMRP.FieldName = "MRP";
-            this.gcMRP.Name = "gcMRP";
-            // 
             // frmOfferList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1233, 760);
+            this.ClientSize = new System.Drawing.Size(1233, 811);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -804,5 +814,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcOfferExclusion;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnExclussion;
         private DevExpress.XtraGrid.Columns.GridColumn gcMRP;
+        private DevExpress.XtraGrid.Columns.GridColumn gcNoOfFreeItems;
     }
 }

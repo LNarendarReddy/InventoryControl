@@ -1,4 +1,7 @@
 ﻿v3.8.7
+-- Buy selected items get free items offer changes
+
+v3.8.7
 -- Issue fixes in picklist and generate supplier indent
 
 v3.8.6
