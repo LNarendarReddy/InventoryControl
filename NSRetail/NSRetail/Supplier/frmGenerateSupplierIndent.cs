@@ -45,8 +45,6 @@ namespace NSRetail.Supplier
 
             DatasetReadComplete(dsSupplierTemp);
 
-            dsSupplierTemp.Relations.Add("FT - Branch details", dsSupplierTemp.Tables[0].Columns["ITEMID"], dsSupplierTemp.Tables[1].Columns["ITEMID"]);
-
             AppendStatus(string.Empty);
             AppendStatus("============ Completed ============");
             AppendStatus(string.Empty);
@@ -89,6 +87,8 @@ namespace NSRetail.Supplier
                 this.Invoke(new Action(() => DatasetReadComplete(dataSet)));
                 return;
             }
+
+            dataSet.Relations.Add("FT - Branch details", dataSet.Tables[0].Columns["ITEMID"], dataSet.Tables[1].Columns["ITEMID"]);
 
             new frmViewGeneratedSupplierIndent(dataSet, luSupplier.EditValue, luCategory.EditValue
                 , txtSafetyDays.EditValue, luManufacturer.EditValue, luIndentType.EditValue, luBranch.EditValue).ShowDialog();

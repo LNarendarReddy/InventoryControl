@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGeneratePickList));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding1 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
             DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding2 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
@@ -36,8 +37,8 @@
             DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding4 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnPrintNew = new DevExpress.XtraEditors.SimpleButton();
             this.luSupplier = new DevExpress.XtraEditors.LookUpEdit();
-            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.gcPickList = new DevExpress.XtraPivotGrid.PivotGridControl();
             this.pivotGridField1 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.pivotGridField2 = new DevExpress.XtraPivotGrid.PivotGridField();
@@ -50,11 +51,9 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.btnPrintNew = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.luSupplier.Properties)).BeginInit();
@@ -65,17 +64,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.btnPrintNew);
             this.layoutControl1.Controls.Add(this.luSupplier);
-            this.layoutControl1.Controls.Add(this.btnPrint);
             this.layoutControl1.Controls.Add(this.gcPickList);
             this.layoutControl1.Controls.Add(this.btnGeneratePickList);
             this.layoutControl1.Controls.Add(this.luCategory);
@@ -86,6 +83,18 @@
             this.layoutControl1.Size = new System.Drawing.Size(1287, 563);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnPrintNew
+            // 
+            this.btnPrintNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintNew.ImageOptions.Image")));
+            this.btnPrintNew.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnPrintNew.Location = new System.Drawing.Point(1145, 16);
+            this.btnPrintNew.Name = "btnPrintNew";
+            this.btnPrintNew.Size = new System.Drawing.Size(126, 22);
+            this.btnPrintNew.StyleController = this.layoutControl1;
+            this.btnPrintNew.TabIndex = 9;
+            this.btnPrintNew.Text = "Print (new)";
+            this.btnPrintNew.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // luSupplier
             // 
@@ -104,16 +113,6 @@
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule1.ErrorText = "The value is mandatory";
             this.dxValidationProvider1.SetValidationRule(this.luSupplier, conditionValidationRule1);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(1074, 16);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(87, 22);
-            this.btnPrint.StyleController = this.layoutControl1;
-            this.btnPrint.TabIndex = 7;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // gcPickList
             // 
@@ -178,9 +177,11 @@
             // 
             // btnGeneratePickList
             // 
-            this.btnGeneratePickList.Location = new System.Drawing.Point(948, 16);
+            this.btnGeneratePickList.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGeneratePickList.ImageOptions.Image")));
+            this.btnGeneratePickList.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnGeneratePickList.Location = new System.Drawing.Point(987, 16);
             this.btnGeneratePickList.Name = "btnGeneratePickList";
-            this.btnGeneratePickList.Size = new System.Drawing.Size(114, 22);
+            this.btnGeneratePickList.Size = new System.Drawing.Size(146, 22);
             this.btnGeneratePickList.StyleController = this.layoutControl1;
             this.btnGeneratePickList.TabIndex = 5;
             this.btnGeneratePickList.Text = "Generate picklist";
@@ -212,7 +213,6 @@
             this.layoutControlItem2,
             this.layoutControlItem3,
             this.emptySpaceItem1,
-            this.layoutControlItem4,
             this.layoutControlItem5,
             this.layoutControlItem6});
             this.Root.Name = "Root";
@@ -232,12 +232,12 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnGeneratePickList;
-            this.layoutControlItem2.Location = new System.Drawing.Point(932, 0);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(126, 34);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(126, 34);
+            this.layoutControlItem2.Location = new System.Drawing.Point(971, 0);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(158, 34);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(158, 34);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(126, 34);
+            this.layoutControlItem2.Size = new System.Drawing.Size(158, 34);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
@@ -256,21 +256,8 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(735, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(197, 34);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(236, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.btnPrint;
-            this.layoutControlItem4.Location = new System.Drawing.Point(1058, 0);
-            this.layoutControlItem4.MaxSize = new System.Drawing.Size(99, 34);
-            this.layoutControlItem4.MinSize = new System.Drawing.Size(99, 34);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem4.Size = new System.Drawing.Size(99, 34);
-            this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem5
             // 
@@ -284,23 +271,16 @@
             this.layoutControlItem5.Text = "Supplier";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(49, 15);
             // 
-            // btnPrintNew
-            // 
-            this.btnPrintNew.Location = new System.Drawing.Point(1173, 16);
-            this.btnPrintNew.Name = "btnPrintNew";
-            this.btnPrintNew.Size = new System.Drawing.Size(98, 22);
-            this.btnPrintNew.StyleController = this.layoutControl1;
-            this.btnPrintNew.TabIndex = 9;
-            this.btnPrintNew.Text = "Print (new)";
-            this.btnPrintNew.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.btnPrintNew;
-            this.layoutControlItem6.Location = new System.Drawing.Point(1157, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(1129, 0);
+            this.layoutControlItem6.MaxSize = new System.Drawing.Size(138, 34);
+            this.layoutControlItem6.MinSize = new System.Drawing.Size(138, 34);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem6.Size = new System.Drawing.Size(110, 34);
+            this.layoutControlItem6.Size = new System.Drawing.Size(138, 34);
+            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
@@ -326,10 +306,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -349,8 +328,6 @@
         private DevExpress.XtraPivotGrid.PivotGridField pivotGridField2;
         private DevExpress.XtraPivotGrid.PivotGridField pivotGridField3;
         private DevExpress.XtraPivotGrid.PivotGridField pivotGridField4;
-        private DevExpress.XtraEditors.SimpleButton btnPrint;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraEditors.LookUpEdit luSupplier;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;

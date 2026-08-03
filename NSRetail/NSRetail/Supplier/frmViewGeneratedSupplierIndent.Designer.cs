@@ -28,9 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmViewGeneratedSupplierIndent));
-            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.gvBranchDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSupplierIndent = new DevExpress.XtraGrid.GridControl();
             this.gvSupplierIndent = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -45,6 +51,7 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnProceed = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -52,44 +59,82 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gvBranchDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
-            this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvBranchDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSupplierIndent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSupplierIndent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
+            this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvBranchDetails)).BeginInit();
             this.SuspendLayout();
             // 
-            // layoutControl1
+            // gvBranchDetails
             // 
-            this.layoutControl1.Controls.Add(this.gcSupplierIndent);
-            this.layoutControl1.Controls.Add(this.btnCancel);
-            this.layoutControl1.Controls.Add(this.btnProceed);
-            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1038, 751);
-            this.layoutControl1.TabIndex = 0;
-            this.layoutControl1.Text = "layoutControl1";
+            this.gvBranchDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn13,
+            this.gridColumn14,
+            this.gridColumn15,
+            this.gridColumn16,
+            this.gridColumn17,
+            this.gridColumn18});
+            this.gvBranchDetails.GridControl = this.gcSupplierIndent;
+            this.gvBranchDetails.Name = "gvBranchDetails";
+            this.gvBranchDetails.OptionsBehavior.ReadOnly = true;
+            this.gvBranchDetails.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "ITEMID";
+            this.gridColumn13.FieldName = "ITEMID";
+            this.gridColumn13.Name = "gridColumn13";
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "BRANCHID";
+            this.gridColumn14.FieldName = "BRANCHID";
+            this.gridColumn14.Name = "gridColumn14";
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "Branch Name";
+            this.gridColumn15.FieldName = "BRANCHNAME";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 0;
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "Branch Qty";
+            this.gridColumn16.FieldName = "BRANCHQUANTITY";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.Visible = true;
+            this.gridColumn16.VisibleIndex = 1;
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "Req. Branch Qty";
+            this.gridColumn17.FieldName = "REQUIREDBRANCHSTOCK";
+            this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.Visible = true;
+            this.gridColumn17.VisibleIndex = 2;
+            // 
+            // gridColumn18
+            // 
+            this.gridColumn18.Caption = "Req. Item Indent";
+            this.gridColumn18.FieldName = "REQUIREDITEMINDENT";
+            this.gridColumn18.Name = "gridColumn18";
+            this.gridColumn18.Visible = true;
+            this.gridColumn18.VisibleIndex = 3;
             // 
             // gcSupplierIndent
             // 
-            gridLevelNode1.LevelTemplate = this.gvBranchDetails;
-            gridLevelNode1.RelationName = "FT - Branch details";
+            gridLevelNode2.LevelTemplate = this.gvBranchDetails;
+            gridLevelNode2.RelationName = "FT - Branch details";
             this.gcSupplierIndent.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.gcSupplierIndent.Location = new System.Drawing.Point(16, 50);
             this.gcSupplierIndent.MainView = this.gvSupplierIndent;
             this.gcSupplierIndent.Name = "gcSupplierIndent";
@@ -198,7 +243,7 @@
             // gridColumn10
             // 
             this.gridColumn10.Caption = "Desired Indent";
-            this.gridColumn10.FieldName = "DESIREDINDENT";
+            this.gridColumn10.FieldName = "DESIREDITEMINDENT";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 7;
@@ -217,6 +262,19 @@
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             // 
+            // layoutControl1
+            // 
+            this.layoutControl1.Controls.Add(this.gcSupplierIndent);
+            this.layoutControl1.Controls.Add(this.btnCancel);
+            this.layoutControl1.Controls.Add(this.btnProceed);
+            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.Root = this.Root;
+            this.layoutControl1.Size = new System.Drawing.Size(1038, 751);
+            this.layoutControl1.TabIndex = 0;
+            this.layoutControl1.Text = "layoutControl1";
+            // 
             // btnCancel
             // 
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
@@ -230,7 +288,7 @@
             // 
             // btnProceed
             // 
-            this.btnProceed.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnProceed.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnProceed.ImageOptions.Image")));
             this.btnProceed.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnProceed.Location = new System.Drawing.Point(778, 16);
             this.btnProceed.Name = "btnProceed";
@@ -297,64 +355,6 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // gvBranchDetails
-            // 
-            this.gvBranchDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn13,
-            this.gridColumn14,
-            this.gridColumn15,
-            this.gridColumn16,
-            this.gridColumn17,
-            this.gridColumn18});
-            this.gvBranchDetails.GridControl = this.gcSupplierIndent;
-            this.gvBranchDetails.Name = "gvBranchDetails";
-            this.gvBranchDetails.OptionsBehavior.ReadOnly = true;
-            this.gvBranchDetails.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn13
-            // 
-            this.gridColumn13.Caption = "ITEMID";
-            this.gridColumn13.FieldName = "ITEMID";
-            this.gridColumn13.Name = "gridColumn13";
-            // 
-            // gridColumn14
-            // 
-            this.gridColumn14.Caption = "BRANCHID";
-            this.gridColumn14.FieldName = "BRANCHID";
-            this.gridColumn14.Name = "gridColumn14";
-            // 
-            // gridColumn15
-            // 
-            this.gridColumn15.Caption = "Branch Name";
-            this.gridColumn15.FieldName = "BRANCHNAME";
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 0;
-            // 
-            // gridColumn16
-            // 
-            this.gridColumn16.Caption = "Branch Qty";
-            this.gridColumn16.FieldName = "BRANCHQUANTITY";
-            this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 1;
-            // 
-            // gridColumn17
-            // 
-            this.gridColumn17.Caption = "Req. Branch Qty";
-            this.gridColumn17.FieldName = "REQUIREDBRANCHSTOCK";
-            this.gridColumn17.Name = "gridColumn17";
-            this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 2;
-            // 
-            // gridColumn18
-            // 
-            this.gridColumn18.Caption = "Req. Item Indent";
-            this.gridColumn18.FieldName = "REQUIREDITEMINDENT";
-            this.gridColumn18.Name = "gridColumn18";
-            this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 3;
-            // 
             // frmViewGeneratedSupplierIndent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -366,16 +366,16 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "View Generated Supplier Indent";
             this.Load += new System.EventHandler(this.frmViewGeneratedSupplierIndent_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
-            this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvBranchDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSupplierIndent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSupplierIndent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
+            this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvBranchDetails)).EndInit();
             this.ResumeLayout(false);
 
         }

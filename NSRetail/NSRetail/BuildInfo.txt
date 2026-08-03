@@ -1,4 +1,7 @@
-﻿v3.8.6
+﻿v3.8.7
+-- Issue fixes in picklist and generate supplier indent
+
+v3.8.6
 -- Supplier indent changes to support picklist one to many and other things
 
 v3.8.5

@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab.ViewInfo;
+using Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,6 +44,24 @@ namespace NSRetail.Supplier
 
         private void btnProceed_Click(object sender, EventArgs e)
         {
+            DataSet dsTemp = dataSet.Copy();
+
+            List<string> supplierIndentAllowedColumns = new List<string>()
+            {
+                "ITEMID", "STOCKENTRYDETAILID", "REQUIREDITEMINDENT", "CALCULATEDITEMINDENT"
+                , "MRP", "COSTPRICEWT", "BRANCHQUANTITY", "REQUIREDBRANCHSTOCK", "INNERCASEQTY"
+                , "OUTERCASEQTY", "WHQTY", "DESIREDITEMINDENT"
+            };
+
+            List<string> supplierIndentFTDetailAllowedColumns = new List<string>()
+            {
+                "ITEMID", "BRANCHID", "STOCKENTRYDETAILID", "BRANCHQUANTITY", "REQUIREDITEMINDENT"
+                , "INTRANSITQTY", "THRESHOLD", "REQUIREDBRANCHSTOCK"
+            };
+
+            DataTable dtSupplierIndent = Utility.CleanUpColumns(dsTemp.Tables[0], supplierIndentAllowedColumns);
+            DataTable dtSupplierIndentFTDetail = Utility.CleanUpColumns(dsTemp.Tables[1], supplierIndentFTDetailAllowedColumns);
+
             new DataRepository().ExecuteNonQuery("USP_SAVE_SUPPLIERINDENT_BATCHWISE", true
                 , new Dictionary<string, object>()
                 {
@@ -52,8 +71,9 @@ namespace NSRetail.Supplier
                     { "ManufacturerID", manufacturerId },
                     { "IndentItemSelectionType", indentSelectionType },
                     { "BranchID", branchId },
-                    { "SUPPLIERINDENTDETAIL", dataSet.Tables[0] },
-                    { "ITEMSTOCKDATA", dataSet.Tables[1] }
+                    { "UserID", Utility.UserID },
+                    { "SUPPLIERINDENTDETAIL", dtSupplierIndent },
+                    { "ITEMSTOCKDATA", dtSupplierIndentFTDetail }
                 }, true);
 
             XtraMessageBox.Show("Indents saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

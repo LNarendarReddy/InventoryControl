@@ -31,7 +31,7 @@ namespace NSRetail.Reports
             table.BorderWidth = 1;
             table.Font = new Font("Segoe UI", 9);
 
-            int branchesPerRow = 12;
+            int branchesPerRow = 21;
 
             var items = dt.AsEnumerable()
                           .GroupBy(r => new

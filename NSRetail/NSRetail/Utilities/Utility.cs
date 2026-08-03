@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.Charts.Native;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
@@ -59,8 +60,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "3.8.6";
-        public static string VersionDate = "(02-08-2026)";
+        public static string AppVersion = "3.8.7";
+        public static string VersionDate = "(03-08-2026)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -489,6 +490,22 @@ namespace NSRetail
         public static void DisplayStatus(string message)
         {
             SplashScreenManager.Default?.SetWaitFormDescription(message);
+        }
+
+        public static DataTable CleanUpColumns(DataTable dataTable, List<string> allowedColumns)
+        {
+            List<string> columnsToRemove = new List<string>();
+
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                if (!allowedColumns.Contains(column.ColumnName))
+                    columnsToRemove.Add(column.ColumnName);
+            }
+
+            foreach(string  column in columnsToRemove) 
+                dataTable.Columns.Remove(column);
+
+            return dataTable;
         }
     }
 }
