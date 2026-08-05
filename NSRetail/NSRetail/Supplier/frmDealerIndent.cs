@@ -26,7 +26,7 @@ namespace NSRetail
 
         private void frmDealerIndent_Load(object sender, EventArgs e)
         {
-            btnSave.Enabled = btnReject.Enabled = dealerIndent.Status.Equals("DRAFT");
+            btnSave.Enabled = btnReject.Enabled = dealerIndent.Status.Equals((int)IndentStatus.Draft);
             btnSave.Text = Utility.Role == "Admin" ? "Approve" : "Save";
             txtIndentDays.EditValue = dealerIndent.IndentDays;
             txtSafetyDays.EditValue = dealerIndent.SafetyDays;

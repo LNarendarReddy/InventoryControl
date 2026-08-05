@@ -1,4 +1,10 @@
-﻿v3.8.8
+﻿v3.9.0
+-- Supplier indet status buttons fix
+
+v3.8.9
+-- ??
+
+v3.8.8
 -- Added offer item configuration with Price Based On option and Offer price
 -- Added Offer Price validation when Price Based On is Offer Price
 -- Added edit option for offer item configuration
