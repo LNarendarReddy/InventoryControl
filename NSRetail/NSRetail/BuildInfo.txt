@@ -1,4 +1,12 @@
-﻿v3.8.7
+﻿v3.8.8
+-- Added offer item configuration with Price Based On option and Offer price
+-- Added Offer Price validation when Price Based On is Offer Price
+-- Added edit option for offer item configuration
+-- Saved offer item price configuration as JSON
+-- Refactored offer item configuration add/edit flow to reuse validation, JSON creation, and grid value assignment
+-- Fixed dealer indent print header truncation by moving the dynamic header content to Report Header so long supplier and branch addresses can grow correctly
+
+v3.8.7
 -- Buy selected items get free items offer changes
 
 v3.8.7

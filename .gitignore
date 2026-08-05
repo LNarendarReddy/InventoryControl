@@ -13,3 +13,4 @@ Setup/NSRetailPOS/Output/*
 !Setup/NSRetail/Output/.gitignore
 licenses.licx.bak
 *.licx
+_codex_build

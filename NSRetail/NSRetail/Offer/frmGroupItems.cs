@@ -1,5 +1,7 @@
 ﻿using DataAccess;
+using DevExpress.CodeParser;
 using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit.Layout.Engine;
 using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
@@ -11,11 +13,19 @@ namespace NSRetail
 {
     public partial class frmGroupItems : XtraForm
     {
+        const string PriceMRP = "MRP";
+        const string PriceSale = "SP";
+        const string PriceOffer = "OP";
+
         object ItemGroupID = null;
         object OfferID = null;
         bool IsGroupItem = false;
         DataTable dtItems = new DataTable();
         bool isExcludeList;
+
+        bool IsEditMode = false;
+        int EditRowHandle = -1;
+        object EditOfferItemMapID = null;
 
 
         public frmGroupItems(object _groupName, object _ItemGroupID,
@@ -72,10 +82,12 @@ namespace NSRetail
             }
             else
             {
-                int OfferItemID = new OfferRepository().SaveOfferItem(OfferID,
-                    cmbItemCode.EditValue, Utility.UserID, txtNoOfPieces.EditValue);
+                int OfferItemID = new OfferRepository().SaveOfferItem(0, OfferID,
+                    cmbItemCode.EditValue, Utility.UserID, txtNoOfPieces.EditValue, BuildOfferItemConfigJson()
+                    );
                 gvItems.SetRowCellValue(e.RowHandle, "OFFERITEMMAPID", OfferItemID);
             }
+
             int rowhandle = cmbItemCodeView.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
             gvItems.SetRowCellValue(e.RowHandle, "ITEMCODEID", cmbItemCode.EditValue);
             gvItems.SetRowCellValue(e.RowHandle, "ITEMCODE", cmbItemCode.Text);
@@ -86,6 +98,9 @@ namespace NSRetail
             gvItems.SetRowCellValue(e.RowHandle, "CATEGORYNAME", cmbItemCodeView.GetRowCellValue(rowhandle, "CATEGORYNAME"));
             gvItems.SetRowCellValue(e.RowHandle, "SUBCATEGORYNAME", cmbItemCodeView.GetRowCellValue(rowhandle, "SUBCATEGORYNAME"));
             gvItems.SetRowCellValue(e.RowHandle, "NUMBEROFPIECES", txtNoOfPieces.EditValue);
+
+            if (!IsGroupItem)
+                SetOfferGridValues(e.RowHandle);
         }
 
         private void frmGroupItems_KeyPress(object sender, KeyPressEventArgs e)
@@ -97,6 +112,28 @@ namespace NSRetail
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (!dxValidationProvider1.Validate()) return;
+
+            if (!ValidateOfferItemConfig()) return;
+
+            if (IsEditMode)
+            {
+                new OfferRepository().SaveOfferItem(
+                    EditOfferItemMapID,
+                    OfferID,
+                    cmbItemCode.EditValue,
+                    Utility.UserID,
+                    txtNoOfPieces.EditValue,
+                    BuildOfferItemConfigJson());
+
+                gvItems.SetRowCellValue(EditRowHandle, "NUMBEROFPIECES", txtNoOfPieces.EditValue);
+                SetOfferGridValues(EditRowHandle);
+
+                ClearEditMode();
+                ResetEntryControls();
+                cmbItemCode.Focus();
+                return;
+            }
+
             gvItems.GridControl.BindingContext = new BindingContext();
             gvItems.GridControl.DataSource = dtItems;
             if (gvItems.LocateByValue("ITEMCODEID", cmbItemCode.EditValue) >= 0)
@@ -112,7 +149,7 @@ namespace NSRetail
             gvItems.GridControl.BindingContext = new BindingContext();
             gvItems.GridControl.DataSource = dtItems;
             int rowHandle = gvItems.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
-            cmbItemCode.EditValue = null;
+            ResetEntryControls();
             cmbItemCode.Focus();
             gvItems.FocusedRowHandle = rowHandle;
         }
@@ -172,6 +209,99 @@ namespace NSRetail
 
             AccessUtility.SetStatusByAccess(btnAdd, btnImport);
             AccessUtility.SetStatusByAccess(gcDelete);
+            ResetEntryControls();
+        }
+
+        private void btnEdit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (IsGroupItem || gvItems.FocusedRowHandle < 0) return;
+
+            IsEditMode = true;
+            EditRowHandle = gvItems.FocusedRowHandle;
+            EditOfferItemMapID = gvItems.GetFocusedRowCellValue("OFFERITEMMAPID");
+
+            cmbItemCode.EditValue = gvItems.GetFocusedRowCellValue("ITEMCODEID");
+            txtNoOfPieces.EditValue = gvItems.GetFocusedRowCellValue("NUMBEROFPIECES");
+            rgPriceBasedOn.EditValue = gvItems.GetFocusedRowCellValue("PriceBasedOn");
+            txtOfferPrice.EditValue = gvItems.GetFocusedRowCellValue("OfferPrice");
+
+            cmbItemCode.Enabled = false;
+            btnAdd.Text = "Update";
+        }
+
+        private void rgPriceBasedOn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool isOfferPrice = Convert.ToString(rgPriceBasedOn.EditValue) == PriceOffer;
+            txtOfferPrice.Enabled = isOfferPrice;
+
+            if (!isOfferPrice)
+            {
+                txtOfferPrice.EditValue = null;
+            }
+        }
+
+        private string BuildOfferItemConfigJson()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(new
+            {
+                PriceBasedOn = rgPriceBasedOn.EditValue,
+                OfferPrice = txtOfferPrice.EditValue
+            });
+        }
+
+        private bool ValidateOfferItemConfig()
+        {
+            if (IsGroupItem) return true;
+
+            if (Convert.ToString(rgPriceBasedOn.EditValue) == PriceOffer &&
+                (txtOfferPrice.EditValue == null || string.IsNullOrWhiteSpace(txtOfferPrice.Text)))
+            {
+                XtraMessageBox.Show("Offer Price is mandatory when Price Based On is Offer Price.",
+                    "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                txtOfferPrice.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private string GetPriceBasedOnText(object value)
+        {
+            string priceBasedOn = Convert.ToString(value);
+
+            return priceBasedOn == PriceMRP ? "MRP"
+                : priceBasedOn == PriceSale ? "Sale Price"
+                : priceBasedOn == PriceOffer ? "Offer Price"
+                : string.Empty;
+        }
+
+        private void ResetEntryControls()
+        {
+            cmbItemCode.EditValue = null;
+
+            if (!IsGroupItem)
+            {
+                rgPriceBasedOn.EditValue = PriceMRP;
+                txtOfferPrice.EditValue = null;
+            }
+        }
+
+        private void ClearEditMode()
+        {
+            IsEditMode = false;
+            EditRowHandle = -1;
+            EditOfferItemMapID = null;
+            txtNoOfPieces.EditValue = null;
+            cmbItemCode.Enabled = true;
+            btnAdd.Text = "Add Item";
+        }
+
+        private void SetOfferGridValues(int rowHandle)
+        {
+            gvItems.SetRowCellValue(rowHandle, "PriceBasedOn", rgPriceBasedOn.EditValue);
+            gvItems.SetRowCellValue(rowHandle, "PriceBasedOnText", GetPriceBasedOnText(rgPriceBasedOn.EditValue));
+            gvItems.SetRowCellValue(rowHandle, "OfferPrice", txtOfferPrice.EditValue);
         }
     }
 }

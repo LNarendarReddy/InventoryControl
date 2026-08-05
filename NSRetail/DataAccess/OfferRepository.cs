@@ -373,7 +373,7 @@ namespace DataAccess
             }
             return dtOfferItem;
         }
-        public int SaveOfferItem(object OfferID, object BranchID, object UserID, object NUMBEROFPIECES)
+        public int SaveOfferItem(object OfferItemMapID, object OfferID, object ItemCodeId, object UserID, object NUMBEROFPIECES, string OfferItemConfig)
         {
             int OfferBranchID = 0;
             try
@@ -383,10 +383,12 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_CU_OFFERITEM]";
+                    cmd.Parameters.AddWithValue("@OFFERITEMMAPID", OfferItemMapID);
                     cmd.Parameters.AddWithValue("@OfferID", OfferID);
-                    cmd.Parameters.AddWithValue("@ItemCodeID", BranchID);
+                    cmd.Parameters.AddWithValue("@ItemCodeID", ItemCodeId);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     cmd.Parameters.AddWithValue("@NUMBEROFPIECES", NUMBEROFPIECES);
+                    cmd.Parameters.AddWithValue("@OFFERITEMCONFIG", OfferItemConfig);
                     object objreturn = cmd.ExecuteScalar();
                     if (!int.TryParse(objreturn.ToString(), out OfferBranchID))
                         throw new Exception("Error while saivng offer item");

@@ -273,6 +273,12 @@
     <Compile Include="Master\User\frmRoleList.Designer.cs">
       <DependentUpon>frmRoleList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Offer\frmItemGroupList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Offer\frmItemGroupList.Designer.cs">
+      <DependentUpon>frmItemGroupList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Offer\frmLiquidation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1101,12 +1107,6 @@
     <Compile Include="Offer\frmGroupItems.Designer.cs">
       <DependentUpon>frmGroupItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="Offer\frmItemGroupList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Offer\frmItemGroupList.Designer.cs">
-      <DependentUpon>frmItemGroupList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Offer\frmOfferBranch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1492,6 +1492,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\User\frmRoleList.resx">
       <DependentUpon>frmRoleList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Offer\frmItemGroupList.resx">
+      <DependentUpon>frmItemGroupList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Offer\frmLiquidation.resx">
       <DependentUpon>frmLiquidation.cs</DependentUpon>
@@ -1906,9 +1909,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Offer\frmGroupItems.resx">
       <DependentUpon>frmGroupItems.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Offer\frmItemGroupList.resx">
-      <DependentUpon>frmItemGroupList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Offer\frmOfferBranch.resx">
       <DependentUpon>frmOfferBranch.cs</DependentUpon>
