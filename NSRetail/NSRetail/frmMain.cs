@@ -740,5 +740,31 @@ namespace NSRetail
         {
             new frmGenerateSupplierIndent().ShowDialog();
         }
+
+        private void bbItemWithAddnlFields_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                SplashScreenManager.ShowForm(typeof(frmProgress), true, true);
+                Utility.DisplayStatus("Loading item additional fields");
+
+                new fmrItemWithAdditionalFields()
+                {
+                    ShowInTaskbar = false,
+                    MdiParent = this,
+                    StartPosition = FormStartPosition.CenterParent,
+                    WindowState = FormWindowState.Maximized
+                }.Show();
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                AppLog.Error(ex);
+            }
+            finally
+            {
+                SplashScreenManager.CloseForm();
+            }
+        }
     }
 }

@@ -627,5 +627,28 @@ namespace DataAccess
             
             return dtItems;
         }
+
+        public DataTable GetItemListWithAdditionalFields()
+        {
+            DataTable dtItem = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_ITEMWITHADDITIONALFIELDS]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtItem);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Item List", ex);
+            }
+            return dtItem;
+        }
     }
 }

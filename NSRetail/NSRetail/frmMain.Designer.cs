@@ -102,6 +102,7 @@
             this.btnCreditNote = new DevExpress.XtraBars.BarButtonItem();
             this.bbiLiquidation = new DevExpress.XtraBars.BarButtonItem();
             this.bbiSupplierIndent = new DevExpress.XtraBars.BarButtonItem();
+            this.bbItemWithAddnlFields = new DevExpress.XtraBars.BarButtonItem();
             this.rpOperations = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -216,9 +217,10 @@
             this.bbiChangeConection,
             this.btnCreditNote,
             this.bbiLiquidation,
-            this.bbiSupplierIndent});
+            this.bbiSupplierIndent,
+            this.bbItemWithAddnlFields});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 87;
+            this.ribbonControl1.MaxItemId = 88;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -912,6 +914,14 @@
             this.bbiSupplierIndent.Tag = "9DF23181-840A-4D97-897E-C728F6E9ABE2::Execute";
             this.bbiSupplierIndent.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSupplierIndent_ItemClick);
             // 
+            // bbItemWithAddnlFields
+            // 
+            resources.ApplyResources(this.bbItemWithAddnlFields, "bbItemWithAddnlFields");
+            this.bbItemWithAddnlFields.Id = 87;
+            this.bbItemWithAddnlFields.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnItemWithAddnlFields.ImageOptions.SvgImage")));
+            this.bbItemWithAddnlFields.Name = "bbItemWithAddnlFields";
+            this.bbItemWithAddnlFields.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbItemWithAddnlFields_ItemClick);
+            // 
             // rpOperations
             // 
             this.rpOperations.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -928,6 +938,7 @@
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.btnItem);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnBarCodePrint);
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbItemWithAddnlFields);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             resources.ApplyResources(this.ribbonPageGroup2, "ribbonPageGroup2");
             // 
@@ -1295,6 +1306,7 @@
         private DevExpress.XtraBars.BarButtonItem bbiLiquidation;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup18;
         private DevExpress.XtraBars.BarButtonItem bbiSupplierIndent;
+        private DevExpress.XtraBars.BarButtonItem bbItemWithAddnlFields;
     }
 }
 
