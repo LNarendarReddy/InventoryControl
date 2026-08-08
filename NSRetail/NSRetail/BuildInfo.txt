@@ -1,4 +1,4 @@
-﻿V1.9.2
+﻿V3.9.2
 -- Added item history logging support for item insert, update, and delete
 -- Added item history viewer with readable master data columns
 -- Added View History context menu in item additional fields list
