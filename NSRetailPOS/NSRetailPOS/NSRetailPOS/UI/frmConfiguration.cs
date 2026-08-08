@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
+using Serilog;
 using System;
 using System.Data;
 using System.Management;
@@ -80,7 +81,8 @@ namespace NSRetailPOS.UI
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Log.Fatal(ex, "Unhandled fatal application error");
+                XtraMessageBox.Show(ex.ToString());
             }
         }
 
