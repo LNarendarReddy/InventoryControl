@@ -115,13 +115,16 @@
             this.gvItemList.Name = "gvItemList";
             this.gvItemList.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
             this.gvItemList.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always;
+            this.gvItemList.OptionsSelection.MultiSelect = true;
+            this.gvItemList.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gvItemList.OptionsView.ShowFooter = true;
             this.gvItemList.OptionsView.ShowGroupPanel = false;
             this.gvItemList.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gvItemList_CustomDrawCell);
-            this.gvItemList.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvItemList_CellValueChanging);
-            this.gvItemList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvItemList_CellValueChanged);
             this.gvItemList.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvItemList_FocusedRowChanged);
             this.gvItemList.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.gvItemList_FocusedColumnChanged);
+            this.gvItemList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvItemList_CellValueChanged);
+            this.gvItemList.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvItemList_CellValueChanging);
+            this.gvItemList.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvItemList_PopupMenuShowing);
             // 
             // gridColumn1
             // 

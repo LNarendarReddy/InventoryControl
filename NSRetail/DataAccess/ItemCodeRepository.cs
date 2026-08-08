@@ -650,5 +650,29 @@ namespace DataAccess
             }
             return dtItem;
         }
+
+        public DataTable GetItemHistory(object itemID)
+        {
+            DataTable dtItemHistory = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_ITEMHISTORY]";
+                    cmd.Parameters.AddWithValue("@ITEMID", itemID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtItemHistory);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Item History", ex);
+            }
+            return dtItemHistory;
+        }
     }
 }

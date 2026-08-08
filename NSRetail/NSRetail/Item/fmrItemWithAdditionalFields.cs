@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DevExpress.Utils.Menu;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraEditors;
 using Entity;
@@ -133,6 +134,39 @@ namespace NSRetail
         private void gvItemList_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
             ClearCellSaveStatus(e.PrevFocusedRowHandle, gvItemList.FocusedColumn);
+        }
+
+        private void gvItemList_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
+        {
+            e.Menu.Items.Add(new DXMenuItem("View Report", new EventHandler(ViewReport_Click)));
+
+            if (gvItemList.FocusedRowHandle >= 0)
+            {
+                e.Menu.Items.Add(new DXMenuItem("View History", new EventHandler(ViewHistory_Click)));
+            }
+        }
+
+        private void ViewReport_Click(object sender, EventArgs e)
+        {
+            gcItemList.ShowRibbonPrintPreview();
+        }
+
+        private void ViewHistory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvItemList.FocusedRowHandle < 0) return;
+
+                new frmItemHistory(
+                    gvItemList.GetFocusedRowCellValue("ITEMID"),
+                    Convert.ToString(gvItemList.GetFocusedRowCellValue("SKUCODE")),
+                    Convert.ToString(gvItemList.GetFocusedRowCellValue("ITEMNAME"))).ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                AppLog.Error(ex);
+            }
         }
 
         private bool IsAdditionalFieldColumn(string fieldName)

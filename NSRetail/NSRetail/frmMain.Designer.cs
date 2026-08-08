@@ -918,8 +918,9 @@
             // 
             resources.ApplyResources(this.bbItemWithAddnlFields, "bbItemWithAddnlFields");
             this.bbItemWithAddnlFields.Id = 87;
-            this.bbItemWithAddnlFields.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnItemWithAddnlFields.ImageOptions.SvgImage")));
+            this.bbItemWithAddnlFields.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbItemWithAddnlFields.ImageOptions.SvgImage")));
             this.bbItemWithAddnlFields.Name = "bbItemWithAddnlFields";
+            this.bbItemWithAddnlFields.Tag = "C2B8D9D2-8A4D-4B84-A869-693A1E7F89C9";
             this.bbItemWithAddnlFields.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbItemWithAddnlFields_ItemClick);
             // 
             // rpOperations
