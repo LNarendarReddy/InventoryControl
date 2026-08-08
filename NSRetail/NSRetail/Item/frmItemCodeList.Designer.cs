@@ -86,6 +86,7 @@
             this.btnChangeGST = new DevExpress.XtraBars.BarButtonItem();
             this.btnMinimumBaseQuantity = new DevExpress.XtraBars.BarButtonItem();
             this.bbiAdditionalFields = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiViewHistory = new DevExpress.XtraBars.BarButtonItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -646,7 +647,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCostPrice),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnChangeGST),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnMinimumBaseQuantity),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiAdditionalFields)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiAdditionalFields),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiViewHistory)});
             this.pmItemList.Manager = this.barManager1;
             this.pmItemList.Name = "pmItemList";
             // 
@@ -745,6 +747,13 @@
             this.bbiAdditionalFields.Tag = "39D5A8E8-F1AB-47A3-B092-EE5A391A1D82";
             this.bbiAdditionalFields.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiAdditionalFields_ItemClick);
             // 
+            // bbiViewHistory
+            // 
+            this.bbiViewHistory.Caption = "View History";
+            this.bbiViewHistory.Id = 10;
+            this.bbiViewHistory.Name = "bbiViewHistory";
+            this.bbiViewHistory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiViewHistory_ItemClick);
+            // 
             // barManager1
             // 
             this.barManager1.DockControls.Add(this.barDockControlTop);
@@ -762,8 +771,9 @@
             this.btnExportItemCostPrice,
             this.btnChangeGST,
             this.btnMinimumBaseQuantity,
-            this.bbiAdditionalFields});
-            this.barManager1.MaxItemId = 10;
+            this.bbiAdditionalFields,
+            this.bbiViewHistory});
+            this.barManager1.MaxItemId = 11;
             // 
             // barDockControlTop
             // 
@@ -902,5 +912,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
         private DevExpress.XtraBars.BarButtonItem bbiAdditionalFields;
+        private DevExpress.XtraBars.BarButtonItem bbiViewHistory;
     }
 }

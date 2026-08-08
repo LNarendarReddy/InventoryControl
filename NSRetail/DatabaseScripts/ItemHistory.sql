@@ -177,25 +177,38 @@ BEGIN
         il.[ITEMNAME],
         il.[DESCRIPTION],
         il.[CATEGORYID],
+        c.[CATEGORYNAME],
         il.[SUBCATEGORYID],
+        sc.[SUBCATEGORYNAME],
         il.[ISOPENITEM],
         il.[PARENTITEMID],
+        pi.[SKUCODE] AS [PARENTSKUCODE],
+        pi.[ITEMNAME] AS [PARENTITEMNAME],
         il.[UOMID],
+        uom.[DISPLAYVALUE] AS [UOM],
         il.[CLASSIFICATIONID],
+        ic.[CLASSIFICATIONNAME],
         il.[SUBCLASSIFICATIONID],
+        isc.[SUBCLASSIFICATIONNAME],
         il.[BRANDID],
+        b.[BRANDNAME],
         il.[MANUFACTURERID],
+        m.[MANUFACTURERNAME],
         il.[UQCID],
+        uqc.[UQCNAME],
         il.[HSNCODE],
         il.[GSTID],
+        g.[GSTCODE],
         il.[VENDORSKUCODE],
         il.[SEASONALITYIDS],
         il.[REFUNDPATHID],
+        rp.[REFUNDPATHTEXT],
         il.[ISDSD],
         il.[INNERCASEQTY],
         il.[OUTERCASEQTY],
         il.[PRODUCTRANK],
         il.[SUPPLIERINDENTITEMTYPEID],
+        siit.[ENUMVALUE] AS [SUPPLIERINDENTITEMTYPE],
         il.[CREATEDBY],
         il.[CREATEDDATE],
         il.[UPDATEDBY],
@@ -204,6 +217,19 @@ BEGIN
         il.[DELETEDDATE]
     FROM [dbo].[ITEM_LOG] il
     LEFT JOIN [dbo].[TBLUSER] u ON u.[USERID] = il.[ACTIONBY]
+    LEFT JOIN [dbo].[TBLCATEGORY] c ON c.[CATEGORYID] = il.[CATEGORYID]
+    LEFT JOIN [dbo].[SUBCATEGORY] sc ON sc.[SUBCATEGORYID] = il.[SUBCATEGORYID]
+    LEFT JOIN [dbo].[ITEM] pi ON pi.[ITEMID] = il.[PARENTITEMID]
+    LEFT JOIN [dbo].[UOM] uom ON uom.[UOMID] = il.[UOMID]
+    LEFT JOIN [dbo].[ITEMCLASSIFICATION] ic ON ic.[CLASSIFICATIONID] = il.[CLASSIFICATIONID]
+    LEFT JOIN [dbo].[ITEMSUBCLASSIFICATION] isc ON isc.[SUBCLASSIFICATIONID] = il.[SUBCLASSIFICATIONID]
+    LEFT JOIN [dbo].[TBLBRAND] b ON b.[BRANDID] = il.[BRANDID]
+    LEFT JOIN [dbo].[TBLMANUFACTURER] m ON m.[MANUFACTURERID] = il.[MANUFACTURERID]
+    LEFT JOIN [dbo].[UQCDATA] uqc ON uqc.[UQCID] = il.[UQCID]
+    LEFT JOIN [dbo].[GSTDETAIL] g ON g.[GSTID] = il.[GSTID]
+    LEFT JOIN [dbo].[REFUNDPATH] rp ON rp.[REFUNDPATHID] = il.[REFUNDPATHID]
+    LEFT JOIN [dbo].[TBLENUM] siit ON siit.[ENUMID] = il.[SUPPLIERINDENTITEMTYPEID]
+        AND siit.[ENUMTYPE] = 'Supplier Indent Item Type'
     WHERE il.[ITEMID] = @ITEMID
     ORDER BY il.[ACTIONDATE] DESC, il.[ITEMLOGID] DESC;
 END

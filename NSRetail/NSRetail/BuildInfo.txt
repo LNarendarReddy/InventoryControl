@@ -1,4 +1,10 @@
-﻿v3.9.1
+﻿V1.9.2
+-- Added item history logging support for item insert, update, and delete
+-- Added item history viewer with readable master data columns
+-- Added View History context menu in item additional fields list
+-- Added View History context menu in item code list
+
+v3.9.1
 -- Added item additional fields list for inline updates
 -- Added inline save for supplier indent type, case quantities, product rank, brand, manufacturer, and refund path
 -- Added Escape key close support for item additional fields list

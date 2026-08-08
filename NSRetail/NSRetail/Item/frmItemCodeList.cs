@@ -419,5 +419,23 @@ namespace NSRetail
         {
             new frmItemAdditionalFields(gvItemList.GetFocusedRowCellValue("ITEMID")).ShowDialog();
         }
+
+        private void bbiViewHistory_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (gvItemList.FocusedRowHandle < 0) return;
+
+                new frmItemHistory(
+                    gvItemList.GetFocusedRowCellValue("ITEMID"),
+                    Convert.ToString(gvItemList.GetFocusedRowCellValue("SKUCODE")),
+                    Convert.ToString(gvItemList.GetFocusedRowCellValue("ITEMNAME"))).ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                AppLog.Error(ex);
+            }
+        }
     }
 }

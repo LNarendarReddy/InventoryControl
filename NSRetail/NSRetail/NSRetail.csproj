@@ -1484,6 +1484,9 @@
     <EmbeddedResource Include="Item\frmItemAdditionalFields.resx">
       <DependentUpon>frmItemAdditionalFields.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Item\frmItemHistory.resx">
+      <DependentUpon>frmItemHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Item\frmMBQ.resx">
       <DependentUpon>frmMBQ.cs</DependentUpon>
     </EmbeddedResource>
