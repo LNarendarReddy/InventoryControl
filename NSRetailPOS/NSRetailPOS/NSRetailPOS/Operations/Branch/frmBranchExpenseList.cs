@@ -33,7 +33,7 @@ namespace NSRetailPOS.Operations.Branch
 
             if(((DateTime)branchExpense.CreatedDate).Date != DateTime.Today)
             {
-                XtraMessageBox.Show("Only today's expenses can be edited", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Only today's expenses can be edited");
                 return;
             }
 
@@ -52,7 +52,7 @@ namespace NSRetailPOS.Operations.Branch
 
             if (((DateTime)branchExpense.CreatedDate).Date != DateTime.Today)
             {
-                XtraMessageBox.Show("Only today's expenses can be deleted", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Only today's expenses can be deleted");
                 return;
             }
 
@@ -66,7 +66,7 @@ namespace NSRetailPOS.Operations.Branch
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowError(ex);
             }
 
             if (branchExpense.IsSave) RefreshList();

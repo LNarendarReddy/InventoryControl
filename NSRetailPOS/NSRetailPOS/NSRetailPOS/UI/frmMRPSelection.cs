@@ -62,7 +62,7 @@ namespace NSRetailPOS.UI
                 return;
             }
 
-            XtraMessageBox.Show("MRP not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Utility.ShowErrorMessage("MRP not found");
         }
 
         private void SelectPriceAndClose(object drItemPrice)

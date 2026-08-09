@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using ErrorManagement;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.Logging;
@@ -90,7 +89,7 @@ namespace NSRetailPOS.Operations.Stock
 
                         if (cmbCategory.EditValue == null)
                         {
-                            XtraMessageBox.Show("Category mandatory for branch invoices");
+                            Utility.ShowErrorMessage("Category mandatory for branch invoices");
                             return;
                         }
                     }
@@ -111,7 +110,7 @@ namespace NSRetailPOS.Operations.Stock
             }
             catch (Exception ex)
             {
-                ErrorMgmt.ShowError(ex);
+                Utility.ShowError(ex);
                 AppLog.Error(ex);
             }
         }
@@ -240,7 +239,7 @@ namespace NSRetailPOS.Operations.Stock
             }
             catch (Exception ex)
             {
-                ErrorMgmt.ShowError(ex);
+                Utility.ShowError(ex);
                 AppLog.Error(ex);
             }
         }

@@ -61,14 +61,14 @@ namespace NSRetailPOS.UI
         {
             if(Convert.ToBoolean(rgSaleType.EditValue) && (txtCustomerName.EditValue == null || txtCustomerPhone.EditValue == null))
             {
-                XtraMessageBox.Show("Customer Name and number are required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Customer Name and number are required");
                 (txtCustomerName.EditValue == null ? txtCustomerName : txtCustomerPhone).Focus();
                 return;
             }
 
             if(txtCustomerPhone.EditValue != null && txtCustomerPhone.EditValue.ToString().Length != 10)
             {
-                XtraMessageBox.Show("Customer number should be 10 digits", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Customer number should be 10 digits");
                 txtCustomerPhone.Focus();
                 return;
             }
@@ -76,7 +76,7 @@ namespace NSRetailPOS.UI
             if(rgPaymentModes.EditValue.Equals("B2B Credit")
                 && (txtCustomerName.EditValue == null || txtCustomerPhone.EditValue == null || txtCustomerGST.EditValue == null))
             {
-                XtraMessageBox.Show("Customer Name, number & GST are required for B2B billing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Customer Name, number & GST are required for B2B billing");
                 (txtCustomerGST.EditValue == null ? txtCustomerGST : null)?.Focus();
                 (txtCustomerPhone.EditValue == null ? txtCustomerPhone : null)?.Focus();
                 (txtCustomerName.EditValue == null ? txtCustomerName : null)?.Focus();

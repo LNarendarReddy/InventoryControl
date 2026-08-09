@@ -156,12 +156,7 @@ namespace NSRetailPOS.Operations.CreditNotes
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(
-                    ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                Utility.ShowError(ex);
             }
         }
 

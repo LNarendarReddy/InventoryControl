@@ -75,7 +75,7 @@ namespace NSRetailPOS.Operations.Branch
 
             if (drSelectedPrice == null)
             {
-                XtraMessageBox.Show("Item price not selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Item price not selected");
                 sluItemCode.Focus();
                 return;
             }
@@ -111,7 +111,7 @@ namespace NSRetailPOS.Operations.Branch
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowError(ex);
             }
         }
 
@@ -152,7 +152,7 @@ namespace NSRetailPOS.Operations.Branch
                 }
                 else if (dtPrices.Rows.Count == 0)
                 {
-                    XtraMessageBox.Show("Item code or stock not found for the scan. please contact administrator");
+                    Utility.ShowErrorMessage("Item code or stock not found for the scan. please contact administrator");
                     ClearItemData();
                     return;
                 }
@@ -170,7 +170,7 @@ namespace NSRetailPOS.Operations.Branch
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 

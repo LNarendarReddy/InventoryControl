@@ -25,7 +25,7 @@ namespace NSRetailPOS.UI
             Utility.ActiveForm = this;
             if (!Utility.ValidateTimeZone())
             {
-                XtraMessageBox.Show($"This system installed in different time zone!" +
+                Utility.ShowErrorMessage($"This system installed in different time zone!" +
                     $"{Environment.NewLine}Please correct the timezone to continue or contact your administrator.");
                 this.Close();
             }
@@ -46,7 +46,7 @@ namespace NSRetailPOS.UI
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Utility.ShowError(ex);
                     Application.Exit();
                 }
             }
@@ -82,7 +82,7 @@ namespace NSRetailPOS.UI
             catch (Exception ex)
             {
                 Log.Fatal(ex, "Unhandled fatal application error");
-                XtraMessageBox.Show(ex.ToString());
+                Utility.ShowError(ex);
             }
         }
 

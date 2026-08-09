@@ -43,8 +43,7 @@ namespace NSRetailPOS
             var billingResponse = JsonConvert.DeserializeObject<BillingUploadResponse>(result);
             if (billingResponse.ResponseMessage.Contains("INVALID STORE"))
             {
-                XtraMessageBox.Show("Store ID is not recognized. Please contact your administrator.", 
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowErrorMessage("Store ID is not recognized. Please contact your administrator.");
                 return;
             }
             frmPaymentStatus frm = new frmPaymentStatus(billingResponse, amountInSmallestUnit, "CARD");

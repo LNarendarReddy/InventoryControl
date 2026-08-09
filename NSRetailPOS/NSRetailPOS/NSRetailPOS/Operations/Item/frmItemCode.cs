@@ -73,7 +73,7 @@ namespace NSRetailPOS.Operations.Items
 
                     if (!string.IsNullOrEmpty(message))
                     {
-                        XtraMessageBox.Show(message);
+                        Utility.ShowErrorMessage(message);
                         return;
                     }
                 }
@@ -166,7 +166,7 @@ namespace NSRetailPOS.Operations.Items
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 

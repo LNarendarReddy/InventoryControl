@@ -23,7 +23,7 @@ namespace NSRetailPOS.UI
         {
             if((gcDraftBills.DataSource as DataTable).Rows.Count == 0)
             {
-                XtraMessageBox.Show("No pending draft bills found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Utility.ShowErrorMessage("No pending draft bills found");
                 this.Close();
                 return;
             }

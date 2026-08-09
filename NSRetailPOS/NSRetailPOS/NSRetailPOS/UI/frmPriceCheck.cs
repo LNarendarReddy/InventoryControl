@@ -62,7 +62,7 @@ namespace NSRetailPOS.UI
             }
             else if (sluItemData.EditValue == null)
             {
-                XtraMessageBox.Show("Item Does Not Exists!");
+                Utility.ShowErrorMessage("Item Does Not Exists!");
                 ClearItems();
             }
         }

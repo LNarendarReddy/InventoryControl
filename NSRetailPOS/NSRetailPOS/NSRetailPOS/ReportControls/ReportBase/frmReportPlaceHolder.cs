@@ -67,7 +67,7 @@ namespace NSRetail.ReportForms
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                NSRetailPOS.Utility.ShowError(ex);
             }
         }
 

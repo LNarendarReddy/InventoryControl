@@ -49,14 +49,13 @@ namespace NSRetailPOS.UI
         {
             if (Math.Round(remainingAmount) > 0.00M)
             {
-                XtraMessageBox.Show($"Bill cannot be closed. Pending balance to be paid {remainingAmount}"
-                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Utility.ShowErrorMessage($"Bill cannot be closed. Pending balance to be paid {remainingAmount}");
                 return;
             }
 
             if(chkIsDoorDelivery.Checked && (txtCustomerName.EditValue == null || txtMobileNo.EditValue == null))
             {
-                XtraMessageBox.Show("Enter customer details to continue", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Utility.ShowErrorMessage("Enter customer details to continue");
                 (txtMobileNo.EditValue == null ? txtMobileNo : txtCustomerName).Focus();
                 return;
             }
@@ -80,7 +79,7 @@ namespace NSRetailPOS.UI
             if(decimal.TryParse(gvMOP.GetRowCellValue(b2bCreditRowHandle, "MOPVALUE").ToString(), out decimal b2bCreditValue) && b2bCreditValue > 0
                 && (txtCustomerName.EditValue == null || txtMobileNo.EditValue == null || txtCustomerGST.EditValue == null))
             {
-                XtraMessageBox.Show("Customer Name, number & GST are required for B2B billing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Customer Name, number & GST are required for B2B billing");
                 (txtCustomerGST.EditValue == null ? txtCustomerGST : null)?.Focus();
                 (txtMobileNo.EditValue == null ? txtMobileNo : null)?.Focus();
                 (txtCustomerName.EditValue == null ? txtCustomerName : null)?.Focus();

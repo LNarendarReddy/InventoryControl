@@ -45,14 +45,14 @@ namespace NSRetailPOS.Operations.Branch
 
             if (cmbExpenseType.Text.ToLower().Equals("others") && string.IsNullOrEmpty(txtDescription.Text.Trim())) 
             {
-                XtraMessageBox.Show("Description cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Description cannot be empty");
                 txtDescription.Focus();
                 return;
             }
 
             if (!double.TryParse(txtAmount.EditValue?.ToString(), out double amount) || amount <= 0)
             {
-                XtraMessageBox.Show("Amount should be greater than zero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Amount should be greater than zero");
                 txtAmount.Focus();
                 return;
             }
@@ -70,7 +70,7 @@ namespace NSRetailPOS.Operations.Branch
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowError(ex);
             }
         }
     }

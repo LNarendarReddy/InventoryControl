@@ -496,7 +496,7 @@ namespace NSRetailPOS
                 SplashScreenManager.CloseForm();
             }
 
-            XtraMessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            ShowErrorMessage(text, caption);
 
             if (reOpenSplash)
             {
@@ -506,7 +506,54 @@ namespace NSRetailPOS
 
         public static void ShowError(Exception ex)
         {
-            XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (InvokeRequired())
+            {
+                GetInvokeForm().BeginInvoke((Action)(() => ShowError(ex)));
+                return;
+            }
+
+            using (frmErrorDetails errorDetails = new frmErrorDetails(ex))
+            {
+                ShowErrorDialog(errorDetails);
+            }
+        }
+
+        public static void ShowErrorMessage(string message, string caption = "Error", string details = null)
+        {
+            if (InvokeRequired())
+            {
+                GetInvokeForm().BeginInvoke((Action)(() => ShowErrorMessage(message, caption, details)));
+                return;
+            }
+
+            using (frmErrorDetails errorDetails = new frmErrorDetails(message, details))
+            {
+                errorDetails.Text = caption;
+                ShowErrorDialog(errorDetails);
+            }
+        }
+
+        private static bool InvokeRequired()
+        {
+            Form invokeForm = GetInvokeForm();
+            return invokeForm != null && invokeForm.InvokeRequired;
+        }
+
+        private static Form GetInvokeForm()
+        {
+            return Form.ActiveForm ?? ActiveForm ?? frmMain.Instance;
+        }
+
+        private static void ShowErrorDialog(frmErrorDetails errorDetails)
+        {
+            Form owner = Form.ActiveForm ?? ActiveForm ?? frmMain.Instance;
+            if (owner != null && !owner.IsDisposed)
+            {
+                errorDetails.ShowDialog(owner);
+                return;
+            }
+
+            errorDetails.ShowDialog();
         }
 
         public static bool ValidateTimeZone()

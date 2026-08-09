@@ -31,19 +31,19 @@ namespace NSRetailPOS.UI
 
             if(dSUserInfo.Tables.Count == 0)
             {
-                XtraMessageBox.Show("data not found, please contact administrator", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowErrorMessage("data not found, please contact administrator");
                 return;
             }
 
             if(dSUserInfo.Tables.Count == 1 && dSUserInfo.Tables[0].Columns.Count == 1)
             {
-                XtraMessageBox.Show(dSUserInfo.Tables[0].Rows[0][0].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                Utility.ShowErrorMessage(dSUserInfo.Tables[0].Rows[0][0].ToString());
                 return;
             }
 
             if(dSUserInfo.Tables[0].Rows[0]["ROLENAME"].ToString() != "Store Manager")
             {
-                XtraMessageBox.Show("Entered user is not a store manager", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                Utility.ShowErrorMessage("Entered user is not a store manager");
                 return;
             }
 

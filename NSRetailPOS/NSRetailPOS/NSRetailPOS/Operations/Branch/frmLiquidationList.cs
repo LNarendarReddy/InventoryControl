@@ -24,7 +24,7 @@ namespace NSRetailPOS.Operations.Branch
         {
             if (gvExpenses.GetFocusedRowCellValue("STATUS").ToString() != "0")
             {
-                XtraMessageBox.Show("Cannot edit approved\\rejected liquidations", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Cannot edit approved\\rejected liquidations");
                 return;
             }
 
@@ -60,7 +60,7 @@ namespace NSRetailPOS.Operations.Branch
 
             if (liquidation.Status.ToString() != "0" )
             {
-                XtraMessageBox.Show("Only created status liquidations can be deleted", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Only created status liquidations can be deleted");
                 return;
             }
 
@@ -74,7 +74,7 @@ namespace NSRetailPOS.Operations.Branch
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowError(ex);
             }
 
             if (liquidation.IsSave) RefreshList();
@@ -116,7 +116,7 @@ namespace NSRetailPOS.Operations.Branch
         {
             if (gvExpenses.GetFocusedRowCellValue("STATUS").ToString() != "1")
             {
-                XtraMessageBox.Show("Only approved liquidations can be printed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Only approved liquidations can be printed");
                 return;
             }
 

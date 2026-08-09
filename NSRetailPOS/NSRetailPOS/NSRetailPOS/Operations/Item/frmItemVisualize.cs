@@ -70,7 +70,7 @@ namespace NSRetailPOS.Operations.Items
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 
@@ -90,7 +90,7 @@ namespace NSRetailPOS.Operations.Items
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 
@@ -116,7 +116,7 @@ namespace NSRetailPOS.Operations.Items
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 
@@ -133,7 +133,7 @@ namespace NSRetailPOS.Operations.Items
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
     }

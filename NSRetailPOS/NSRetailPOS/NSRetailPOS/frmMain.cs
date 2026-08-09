@@ -87,7 +87,7 @@ namespace NSRetailPOS
 
             if (!int.TryParse(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString(), out daySequenceID))
             {
-                XtraMessageBox.Show(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowErrorMessage(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString());
                 DisableBilling();
                 return;
             }
@@ -167,7 +167,7 @@ namespace NSRetailPOS
                     txtWeightInKgs.EditValue = 0.00;
                 else if(!double.TryParse(txtWeightInKgs.EditValue?.ToString(), out double weightInKgs) || weightInKgs == 0)
                 {
-                    XtraMessageBox.Show("Loose\\Bulk items cannot be sold without weight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Utility.ShowErrorMessage("Loose\\Bulk items cannot be sold without weight");
                     return;
                 }
                 DataTable dtPrices = itemRepository.GetMRPList(sluItemCode.EditValue);
@@ -196,7 +196,7 @@ namespace NSRetailPOS
                 }
                 else if (dtPrices.DefaultView.Count == 0)
                 {
-                    XtraMessageBox.Show("Item code or stock not found for the scan. please contact administrator");
+                    Utility.ShowErrorMessage("Item code or stock not found for the scan. please contact administrator");
                     ClearItemData();
                     return;
                 }
@@ -227,7 +227,7 @@ namespace NSRetailPOS
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 
@@ -241,7 +241,7 @@ namespace NSRetailPOS
 
             if (dtBillDetails.Rows.Count == 0)
             {
-                XtraMessageBox.Show("No items to bill", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowErrorMessage("No items to bill");
                 return;
             }
 
@@ -268,7 +268,7 @@ namespace NSRetailPOS
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowError(ex);
                 return;
             }
 
@@ -329,7 +329,7 @@ namespace NSRetailPOS
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Printing Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowErrorMessage($"Printing Error: {ex.Message}");
             }
             LoadBillData(nextBillDetails);
         }
@@ -425,7 +425,7 @@ namespace NSRetailPOS
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Error while saving bill item : {ex.Message}", "Error");
+                Utility.ShowErrorMessage($"Error while saving bill item : {ex.Message}");
                 ClearItemData();
             }
         }
@@ -518,7 +518,7 @@ namespace NSRetailPOS
             }
             else if (!isItemScanned)
             {
-                XtraMessageBox.Show("Item Does Not Exists!");
+                Utility.ShowErrorMessage("Item Does Not Exists!");
                 ClearItemData();
             }
 
@@ -535,7 +535,7 @@ namespace NSRetailPOS
 
             if (dtBillDetails.Rows.Count == 0)
             {
-                XtraMessageBox.Show("No items to draft", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowErrorMessage("No items to draft");
                 return;
             }
 
@@ -543,7 +543,7 @@ namespace NSRetailPOS
             if(dtDraftBills.Rows.Count >= Utility.branchInfo.EnableDraftBills 
                 || Utility.branchInfo.EnableDraftBills == 0)
             {
-                XtraMessageBox.Show("Draft limit reached, operation has been cancelled!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowErrorMessage("Draft limit reached, operation has been cancelled!");
                 return;
             }
 
@@ -590,7 +590,7 @@ namespace NSRetailPOS
 
         private void btnLastBillPrint_Click(object sender, EventArgs e)
         {
-            XtraMessageBox.Show("Cannot re-print last bill, contact administrator", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            Utility.ShowErrorMessage("Cannot re-print last bill, contact administrator");
             //try
             //{
             //    DataSet dsLastBillDetails = new BillingRepository().GetLastBill(daySequenceID, billObj.LastBillID);
@@ -769,7 +769,7 @@ namespace NSRetailPOS
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message, "Error");
+                Utility.ShowError(ex);
             }
         }
 
@@ -970,7 +970,7 @@ namespace NSRetailPOS
             if (gvBilling.FocusedColumn.FieldName != "QUANTITY" || (e.Value != null && !e.Value.Equals("0"))) return;
 
             string msg = $"0 or empty quantity is not allowed. Delete the item - {gvBilling.GetRowCellValue(gvBilling.FocusedRowHandle, "ITEMNAME")} instead";
-            XtraMessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Utility.ShowErrorMessage(msg);
             e.Valid = false;
             e.ErrorText = msg;
         }

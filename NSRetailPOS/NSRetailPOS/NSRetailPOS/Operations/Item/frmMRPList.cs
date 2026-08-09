@@ -76,7 +76,7 @@ namespace NSRetailPOS.Operations.Items
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 
@@ -119,7 +119,7 @@ namespace NSRetailPOS.Operations.Items
             catch (Exception ex)
             {
                 SplashScreenManager.CloseOverlayForm(handle);
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 

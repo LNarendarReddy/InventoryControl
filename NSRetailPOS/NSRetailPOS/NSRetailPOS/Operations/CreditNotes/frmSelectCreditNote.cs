@@ -55,7 +55,7 @@ namespace NSRetailPOS.Operations.CreditNotes
         {
             if (gvCreditNotes.FocusedRowHandle < 0)
             {
-                XtraMessageBox.Show("Please select a credit note");
+                Utility.ShowErrorMessage("Please select a credit note");
                 return;
             }
 

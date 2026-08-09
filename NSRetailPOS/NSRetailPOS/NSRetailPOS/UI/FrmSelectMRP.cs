@@ -26,7 +26,7 @@ namespace NSRetailPOS.UI
             }
             else
             {
-                XtraMessageBox.Show("Please select an item.");
+                Utility.ShowErrorMessage("Please select an item.");
             }
         }
 

@@ -50,7 +50,7 @@ namespace NSRetailPOS.UI
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 
@@ -90,7 +90,7 @@ namespace NSRetailPOS.UI
             if(!string.IsNullOrEmpty(errorMsg))
             {
                 errorMsg = "Customer details incorrect, fix the following errors to continue:" + Environment.NewLine + Environment.NewLine + errorMsg;
-                XtraMessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowErrorMessage(errorMsg);
                 return;
             }
 
@@ -130,7 +130,7 @@ namespace NSRetailPOS.UI
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 
@@ -186,7 +186,7 @@ namespace NSRetailPOS.UI
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 
@@ -235,7 +235,7 @@ namespace NSRetailPOS.UI
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 

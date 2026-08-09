@@ -156,22 +156,21 @@ namespace NSRetailPOS.UI
             if (Convert.ToBoolean(rgSaleType.EditValue) && 
                 (string.IsNullOrEmpty(txtCustomerName.EditValue?.ToString()) || string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString())))
             {
-                XtraMessageBox.Show("Customer Name and number are required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Customer Name and number are required");
                 (txtCustomerName.EditValue == null ? txtCustomerName : txtCustomerPhone).Focus();
                 return;
             }
 
             if (!string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString()) && txtCustomerPhone.EditValue.ToString().Length != 10)
             {
-                XtraMessageBox.Show("Customer number should be 10 digits", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Customer number should be 10 digits");
                 txtCustomerPhone.Focus();
                 return;
             }
 
             if (remainingAmount > 0.00M)
             {
-                XtraMessageBox.Show($"Bill cannot be closed. Pending balance to be paid {remainingAmount}"
-                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Utility.ShowErrorMessage($"Bill cannot be closed. Pending balance to be paid {remainingAmount}");
                 return;
             }
 
@@ -205,14 +204,14 @@ namespace NSRetailPOS.UI
                 if (decimal.TryParse(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE")?.ToString(), out decimal cardEnteredValue)
                     && cardEnteredValue != cardReceivedAmount)
                 {
-                    XtraMessageBox.Show("Card amount is not matching with card received amount", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Utility.ShowErrorMessage("Card amount is not matching with card received amount");
                     return;
                 }
 
                 if (decimal.TryParse(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE")?.ToString(), out decimal upiEnteredValue)
                     && upiEnteredValue != upiReceivedAmount)
                 {
-                    XtraMessageBox.Show("UPI amount is not matching with UPI received amount", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Utility.ShowErrorMessage("UPI amount is not matching with UPI received amount");
                     return;
                 }
             }
@@ -236,7 +235,7 @@ namespace NSRetailPOS.UI
 
             if (totalPaid < payableAmount + (rounding > 0 ? 1 - rounding : rounding))
             {
-                XtraMessageBox.Show("Payment mode mismatch detected, please retry operation of if the issue persists, contact administrator", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Payment mode mismatch detected, please retry operation of if the issue persists, contact administrator");
                 return;
             }
 
@@ -346,13 +345,13 @@ namespace NSRetailPOS.UI
                 if (gvMOP.FocusedRowHandle == cardRowHandle && enteredValue < cardReceivedAmount)
                 {
                     baseEdit.EditValue = cardReceivedAmount;
-                    XtraMessageBox.Show($"Card value cannot be less than {cardReceivedAmount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Utility.ShowErrorMessage($"Card value cannot be less than {cardReceivedAmount}");
                 }
 
                 if (gvMOP.FocusedRowHandle == upiRowHandle && enteredValue < upiReceivedAmount)
                 {
                     baseEdit.EditValue = upiReceivedAmount;
-                    XtraMessageBox.Show($"UPI value cannot be less than {upiReceivedAmount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Utility.ShowErrorMessage($"UPI value cannot be less than {upiReceivedAmount}");
                 }
             }
         }
@@ -376,11 +375,7 @@ namespace NSRetailPOS.UI
             {
                 AppLog.Error(ex, "Error while processing Add Missing Payment");
 
-                XtraMessageBox.Show(
-                    $"Error while processing Add Missing Payment.{Environment.NewLine}{ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                Utility.ShowErrorMessage($"Error while processing Add Missing Payment.{Environment.NewLine}{ex.Message}");
             }
         }
 
@@ -494,7 +489,7 @@ namespace NSRetailPOS.UI
         {
             if (cardReceivedAmount > 0 && upiReceivedAmount > 0 && e.NewValue.ToString() != "Multiple")
             {
-                XtraMessageBox.Show("Only multiple payment mode allowed");
+                Utility.ShowErrorMessage("Only multiple payment mode allowed");
                 e.Cancel = true;
                 return;
             }
@@ -507,12 +502,12 @@ namespace NSRetailPOS.UI
 
             if (cardReceivedAmount > 0 && e.NewValue.ToString() != "CARD")
             {
-                XtraMessageBox.Show("Only multiple or card payment mode allowed");
+                Utility.ShowErrorMessage("Only multiple or card payment mode allowed");
                 e.Cancel = true;
             }
             else if (upiReceivedAmount > 0 && e.NewValue.ToString() != "UPI")
             {
-                XtraMessageBox.Show("Only multiple or UPI payment mode allowed");
+                Utility.ShowErrorMessage("Only multiple or UPI payment mode allowed");
                 e.Cancel = true;
             }
         }
@@ -652,7 +647,7 @@ namespace NSRetailPOS.UI
 
             if (Utility.PaymentGateway.IsInProgress)
             {
-                XtraMessageBox.Show("Request in progress", "multiple requests", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                Utility.ShowErrorMessage("Request in progress", "multiple requests");
                 return;
             }
 
@@ -749,7 +744,7 @@ namespace NSRetailPOS.UI
 
             if (!Utility.IsValidGstin(gstNumber))
             {
-                XtraMessageBox.Show("Customer GST is not valid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Customer GST is not valid");
                 txtCustomerGST.SelectAll();
                 txtCustomerGST.Focus();
                 return false;
@@ -762,7 +757,7 @@ namespace NSRetailPOS.UI
             if (string.IsNullOrEmpty(txtCustomerName.EditValue?.ToString())
                || string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString()))
             {
-                XtraMessageBox.Show("Customer Name & number are required for credit billing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Customer Name & number are required for credit billing");
                 (string.IsNullOrEmpty(txtCustomerName.EditValue?.ToString()) ? txtCustomerName : null)?.Focus();
                 (string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString()) ? txtCustomerPhone : null)?.Focus();
                 return false;
@@ -774,7 +769,7 @@ namespace NSRetailPOS.UI
             if (string.IsNullOrEmpty(gstNumber) || gstNumber.Length != 15
                 || !Utility.IsValidGstin(gstNumber))
             {
-                XtraMessageBox.Show("Customer GST is not valid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Utility.ShowErrorMessage("Customer GST is not valid");
                 txtCustomerGST.SelectAll();
                 txtCustomerGST.Focus();
                 return false;

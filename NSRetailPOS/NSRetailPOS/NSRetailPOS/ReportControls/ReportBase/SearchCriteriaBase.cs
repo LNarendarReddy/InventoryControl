@@ -170,7 +170,7 @@ namespace NSRetailPOS.ReportControls.ReportBase
             catch (Exception ex)
             {
                 
-                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowError(ex);
             }
 
             return reportData;
@@ -293,8 +293,7 @@ namespace NSRetailPOS.ReportControls.ReportBase
 
             if (missingValues != null && missingValues.Any())
             {
-                XtraMessageBox.Show("Please select the values for : " + Environment.NewLine + string.Join(string.Empty, missingValues)
-                    , "Mandatoy", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowErrorMessage("Please select the values for : " + Environment.NewLine + string.Join(string.Empty, missingValues), "Mandatoy");
                 MandatoryFields.First(x => string.IsNullOrEmpty(x.EditValue?.ToString())).Focus();
                 return false;
             }

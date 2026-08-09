@@ -1,7 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
-using ErrorManagement;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.Logging;
@@ -63,7 +62,7 @@ namespace NSRetailPOS.Operations.Stock
             }
             catch (Exception ex) 
             {
-                ErrorMgmt.ShowError(ex);
+                Utility.ShowError(ex);
             }
         }
 
@@ -139,7 +138,7 @@ namespace NSRetailPOS.Operations.Stock
             }
             catch (Exception ex)
             {
-                ErrorMgmt.ShowError(ex);
+                Utility.ShowError(ex);
                 AppLog.Error(ex);
             }
         }
@@ -162,7 +161,7 @@ namespace NSRetailPOS.Operations.Stock
             }
             catch (Exception ex)
             {
-                ErrorMgmt.ShowError(ex);
+                Utility.ShowError(ex);
                 AppLog.Error(ex);
             }
         }
@@ -210,7 +209,7 @@ namespace NSRetailPOS.Operations.Stock
             }
             catch (Exception ex)
             {
-                ErrorMgmt.ShowError(ex);
+                Utility.ShowError(ex);
                 AppLog.Error(ex);
             }
         }
@@ -388,7 +387,7 @@ namespace NSRetailPOS.Operations.Stock
             }
             catch (Exception ex)
             {
-                ErrorMgmt.ShowError(ex);
+                Utility.ShowError(ex);
                 AppLog.Error(ex);
             }
         }

@@ -244,8 +244,7 @@ namespace NSRetailPOS.UI
             else
             {
                 //something went wrong
-                XtraMessageBox.Show("Something went wrong, please contact IT support", 
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.ShowErrorMessage("Something went wrong, please contact IT support");
                 CheckBRefundID();
             }
             ClearItemData();
@@ -387,7 +386,7 @@ namespace NSRetailPOS.UI
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 

@@ -61,7 +61,7 @@ namespace NSRetailPOS.UI
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                Utility.ShowError(ex);
             }
         }
 
