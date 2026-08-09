@@ -1,11 +1,8 @@
 ﻿using DataAccess;
-using DevExpress.XtraPrinting;
-using DevExpress.XtraReports.UI;
-using NSRetail.Reports;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
+using System.Windows.Forms;
 using System.Linq;
 
 namespace NSRetail.Stock
@@ -23,6 +20,12 @@ namespace NSRetail.Stock
             luCategory.Properties.ValueMember = "CATEGORYID";
             luCategory.Properties.DisplayMember = "CATEGORYNAME";
 
+            luLocationDivision.Properties.DataSource = new DataRepository().GetDataTable("USP_R_LOCATIONDIVISION", true);
+            luLocationDivision.Properties.ValueMember = "LOCATIONDIVISIONID";
+            luLocationDivision.Properties.DisplayMember = "LOCATIONDIVISIONNAME";
+            luLocationDivision.CascadingOwner = luCategory;
+            luLocationDivision.Properties.CascadingMember = "CATEGORYID";
+
             luSupplier.Properties.DataSource = new MasterRepository().GetDealer();
             luSupplier.Properties.ValueMember = "DEALERID";
             luSupplier.Properties.DisplayMember = "DEALERNAME";
@@ -32,40 +35,59 @@ namespace NSRetail.Stock
         {
             if (!dxValidationProvider1.Validate()) return;
 
-            gcPickList.DataSource = new ReportRepository().GetReportData("USP_RPT_PICKLIST", new Dictionary<string, object>()
+            if (gvStockEntry.SelectedRowsCount == 0)
             {
-                { "CategoryID", luCategory.EditValue },
-                { "SupplierID", luSupplier.EditValue }
-            });
+                XtraMessageBox.Show("No items are selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
 
-            gcPickList.BestFit();
-        }
+            string selectedInvoices = string.Join(",", gvStockEntry.GetSelectedRows().Select(x => gvStockEntry.GetRowCellValue(x, "STOCKENTRYID")));
+            object returnValue;
 
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            //gcPickList.OptionsPrint.PageSettings.Landscape = true;
-            //gcPickList.ShowPrintPreview();
-
-            PrintingSystem ps = new PrintingSystem();
-            PrintableComponentLink link = new PrintableComponentLink(ps)
+            try
             {
-                Component = gcPickList,
-                Landscape = true,
-                PaperKind = System.Drawing.Printing.PaperKind.A4,
-                Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0)
-            };
+                returnValue = new DataRepository().ExecuteScalarWithTransaction("USP_G_PICKLIST", true, new Dictionary<string, object>
+                {
+                    { "CategoryID", luCategory.EditValue },
+                    { "SupplierID", luSupplier.EditValue },
+                    { "LocationDivisionID", luLocationDivision.EditValue },
+                    { "StockEntryIDs", selectedInvoices },
+                    { "UserID", Utility.UserID }
+                });
+            }
+            catch (Exception ex)
+            {
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+                return;
+            }
 
-            // Scale to fit page width
-            link.PrintingSystem.Document.AutoFitToPagesWidth = 1;
+            if (int.TryParse(returnValue.ToString(), out int id))
+            {
+                XtraMessageBox.Show("Picklist generated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+                return;
+            }
 
-            link.CreateDocument();
-            link.ShowPreviewDialog();
+            XtraMessageBox.Show(returnValue.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private void luSupplier_EditValueChanged(object sender, EventArgs e)
         {
-            rptPickList pickList = new rptPickList(luSupplier.Text, luCategory.Text, (DataTable)gcPickList.DataSource);
-            pickList.ShowRibbonPreview();
+            gcStockEntry.DataSource = null;
+            if (luCategory.EditValue == null || luSupplier.EditValue == null) return;
+
+            gcStockEntry.DataSource = new DataRepository().GetDataTable("USP_R_STOCKENTRY_FOR_PICKLIST_GENERATION", true
+                , new Dictionary<string, object>
+                {
+                    { "CategoryID", luCategory.EditValue.ToString() },
+                    { "SupplierID", luSupplier.EditValue.ToString() },
+                });
         }
+
+        //private void simpleButton1_Click(object sender, EventArgs e)
+        //{
+        //    rptPickList pickList = new rptPickList(luSupplier.Text, luCategory.Text, (DataTable)gcPickList.DataSource);
+        //    pickList.ShowRibbonPreview();
+        //}
     }
 }

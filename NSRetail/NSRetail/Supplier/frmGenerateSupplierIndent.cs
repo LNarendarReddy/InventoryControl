@@ -59,7 +59,6 @@ namespace NSRetail.Supplier
             }
 
             btnGenerate.Enabled = true;
-            btnPickList.Enabled = true;
 
             SetEnabled(true);
         }
@@ -131,7 +130,6 @@ namespace NSRetail.Supplier
             }
 
             btnGenerate.Enabled = false;
-            btnPickList.Enabled = false;
 
             worker.RunWorkerAsync();
         }
@@ -154,11 +152,6 @@ namespace NSRetail.Supplier
             txtLog.AppendText(text);
             txtLog.SelectionStart = int.MaxValue;
             txtLog.ScrollToCaret();
-        }
-
-        private void btnPickList_Click(object sender, EventArgs e)
-        {
-            new frmGeneratePickList().ShowDialog();
         }
     }
 }

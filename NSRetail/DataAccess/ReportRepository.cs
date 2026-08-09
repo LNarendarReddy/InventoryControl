@@ -217,7 +217,7 @@ namespace DataAccess
             return dtReportData;
         }
 
-        public DataSet GetSupplierIndentDetail(object SupplierIndentID)
+        public DataSet GetSupplierIndentDetail(object SupplierIndentID, bool skipZero = false)
         {
             DataSet dsReportData = new DataSet();
             try
@@ -228,6 +228,7 @@ namespace DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_SUPPLIERINDENTDETAIL]";
                     cmd.Parameters.AddWithValue("@SUPPLIERINDENTID", SupplierIndentID);
+                    cmd.Parameters.AddWithValue("@SkipZero", skipZero);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dsReportData);

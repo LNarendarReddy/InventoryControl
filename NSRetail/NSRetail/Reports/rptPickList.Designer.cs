@@ -38,7 +38,7 @@
             // label1
             // 
             this.label1.Font = new DevExpress.Drawing.DXFont("Arial", 14F);
-            this.label1.LocationFloat = new DevExpress.Utils.PointFloat(3.973643E-05F, 0F);
+            this.label1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 14.98698F);
             this.label1.Name = "label1";
             this.label1.SizeF = new System.Drawing.SizeF(1129F, 30.01302F);
             this.label1.StyleName = "TitleStyle";
@@ -55,7 +55,7 @@
             // 
             this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.label1});
-            this.TopMargin.HeightF = 30.01302F;
+            this.TopMargin.HeightF = 45F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
@@ -78,7 +78,7 @@
             this.Font = new DevExpress.Drawing.DXFont("Arial", 9.75F);
             this.HorizontalContentSplitting = DevExpress.XtraPrinting.HorizontalContentSplitting.Smart;
             this.Landscape = true;
-            this.Margins = new DevExpress.Drawing.DXMargins(20F, 20F, 30.01302F, 30F);
+            this.Margins = new DevExpress.Drawing.DXMargins(20F, 20F, 45F, 30F);
             this.PageHeight = 827;
             this.PageWidth = 1169;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;

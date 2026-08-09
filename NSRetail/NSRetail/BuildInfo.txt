@@ -1,4 +1,19 @@
-﻿V3.9.2
+﻿V3.9.3
+-- Skip Zero records in supplier indent print so that Serial # doesn't jump
+-- Show modified status in supplier indent detail along with generated and added
+-- Changes to Generate PickList screen 
+	-- added Location division
+	-- selecting the supplier populates the invoices
+	-- users can select multiple invoices and generate picklist
+-- Pick list report in supplier reports
+	-- user permissions for picklist report screen
+	-- Include options Invoice details and Branch
+	-- Right click options
+		-- Mark seggregation complete - When branch is included, only the branch picklist will be marked as complete,
+			if branch is not included, all branches under the picklist will be marked as seggregation completed
+		-- Print & export - generates the picklist report
+
+V3.9.2
 -- Added item history logging support for item insert, update, and delete
 -- Added item history viewer with readable master data columns
 -- Added View History context menu in item additional fields list

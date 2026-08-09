@@ -23,8 +23,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "SAFETYDAYS", "Safety days" }
                 , { "UPDATEDBY", "Updated User" }
                 , { "UPDATEDDATE", "Updated Date" }
-                , { "APPROVEDBY", "Approved User" }
-                , { "APPROVEDDATE", "Approved Date" }
+                , { "APPROVEDBY", "Status changed by User" }
+                , { "APPROVEDDATE", "Status changed Date" }
                 , { "STATUS", "Status" }
                 , { "SUPPLIERINDENTNO", "Indent #" }
                 , { "MOBILENO", "Mobile #" }
@@ -96,8 +96,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     }
                     break;
                 case "Print && Export":
-                    DataSet dsSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"]);
-                    dsSupplierIndent.Tables[0].DefaultView.RowFilter = "DESIREDINDENT > 0";
+                    DataSet dsSupplierIndent = new ReportRepository().GetSupplierIndentDetail(drFocusedRow["SUPPLIERINDENTID"], true);
                     rptDealerIndent rpt = new rptDealerIndent(dsSupplierIndent.Tables[0]);
                     rpt.Parameters["IndentID"].Value = drFocusedRow["SUPPLIERINDENTID"];
                     rpt.Parameters["SupplierName"].Value = drFocusedRow["DEALERNAME"];

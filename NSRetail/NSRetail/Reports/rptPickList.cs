@@ -11,10 +11,10 @@ namespace NSRetail.Reports
 {
     public partial class rptPickList : XtraReport
     {
-        public rptPickList(string supplierName, string category, DataTable table)
+        public rptPickList(string supplierName, string pickListNumber, DataTable table)
         {
             InitializeComponent();
-            label1.Text = $"Pick list - {category} - {supplierName} ";
+            label1.Text = $"Pick list - {pickListNumber} - {supplierName} ";
 
             Detail.Controls.Clear();
             Detail.Controls.Add(BuildTable(table));
