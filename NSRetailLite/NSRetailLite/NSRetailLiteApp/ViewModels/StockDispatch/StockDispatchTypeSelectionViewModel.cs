@@ -16,11 +16,15 @@ namespace NSRetailLiteApp.ViewModels.StockDispatch
         [ObservableProperty]
         private bool _isSubCategoryUser;
 
+        [ObservableProperty]
+        private bool _isWHUser;
+
         public StockDispatchTypeSelectionViewModel(LoggedInUser user)
         {
             User = user;
             IsCategoryUser = User.SubCategoryId == 0;
             IsSubCategoryUser = User.SubCategoryId > 0;
+            IsWHUser = User.BranchId == 45;
         }
 
         public LoggedInUser User { get; }

@@ -15,6 +15,6 @@
         <Button Text="Manual Dispatch" Clicked="Button_Clicked"  FontAttributes="Bold" FontSize="Medium"
                 IsEnabled="{Binding Path=IsSubCategoryUser}"/>
         <Button Text="Flow-through Dispatch" Clicked="Button_Clicked"  FontAttributes="Bold" FontSize="Medium" 
-                IsEnabled="{Binding Path=IsSubCategoryUser}"/>
+                IsEnabled="{Binding Path=IsWHUser}"/>
     </VerticalStackLayout>
 </mct:Popup>

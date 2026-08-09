@@ -17,6 +17,8 @@ namespace NSRetailLiteApp.ViewModels.PickList
         public Branch Branch { get; }
 
         public IAsyncRelayCommand<PickListTrayModel> ViewTrayCommand { get; }
+        
+        public IAsyncRelayCommand<PickListTrayModel> UpdateTrayCommand { get; }
 
         public IAsyncRelayCommand<PickListTrayModel> VerifyTrayCommand { get; }
 
@@ -28,6 +30,7 @@ namespace NSRetailLiteApp.ViewModels.PickList
             PickListTrayModels = pickListTrayModels;
             this.loggedInUser = loggedInUser;
             ViewTrayCommand = new AsyncRelayCommand<PickListTrayModel?>(ViewTray);
+            UpdateTrayCommand = new AsyncRelayCommand<PickListTrayModel?>(UpdateTray);
             VerifyTrayCommand = new AsyncRelayCommand<PickListTrayModel?>(VerifyTray);
             SubmitCommand = new AsyncRelayCommand(Submit);
         }
@@ -60,6 +63,29 @@ namespace NSRetailLiteApp.ViewModels.PickList
             }
 
             selected.IsTrayVerified = trayVerified;
+        }
+
+        private async Task UpdateTray(PickListTrayModel? selected)
+        {
+            if (selected == null) return;
+
+            string trayNumber = await Application.Current?.MainPage?.DisplayPromptAsync(
+                      $"Tray #", "Enter the new tray number:", keyboard: Keyboard.Numeric);
+
+            await PostAsync("picklist/updatetray", selected, new Dictionary<string, string?>()
+            {
+                { "pickListTrayID", selected.PickListTrayID.ToString() },
+                { "TrayNumber", trayNumber.ToString() },
+                { "userID", loggedInUser.UserId.ToString() }
+            });
+
+            if (selected.Exception != null)
+            {
+                selected.Exception = null;
+                return;
+            }
+
+            selected.TrayNumber = trayNumber;
         }
 
         private async Task Submit()

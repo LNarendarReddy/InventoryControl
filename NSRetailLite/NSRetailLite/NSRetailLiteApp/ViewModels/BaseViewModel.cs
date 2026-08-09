@@ -243,6 +243,16 @@ namespace NSRetailLiteApp.ViewModels
             return false;
         }
 
+        protected async Task<string> DisplayActionSheet(string message, params string[] buttons)
+        {
+            if (Application.Current != null && Application.Current.MainPage != null)
+            {
+                return await Application.Current.MainPage.DisplayActionSheet(message, "cancel", null, buttons);
+            }
+
+            return string.Empty;
+        }
+
         protected async Task ShowSnackBarAsync(string caption, string message)
         {
             var snackbarOptions = new SnackbarOptions

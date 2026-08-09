@@ -70,6 +70,7 @@ namespace NSRetailLiteApp.Models
 
         public ObservableCollection<PickListTrayModel> PickListTrayList;
 
+        public ObservableCollection<LocationDivision> LocationDivisionList;
     }
 
     public partial class Branch : BaseObservableObject
@@ -212,5 +213,14 @@ namespace NSRetailLiteApp.Models
 
         [ObservableProperty]
         private string _categoryName;
+    }
+
+    public partial class LocationDivision : BaseObservableObject
+    {
+        [ObservableProperty]
+        private int _locationDivisionID;
+
+        [ObservableProperty]
+        private string _locationDivisionName;
     }
 }

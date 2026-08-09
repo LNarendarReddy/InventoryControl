@@ -22,6 +22,8 @@ namespace NSRetailLiteApp.ViewModels.PickList
 
         private readonly LoggedInUser loggedInUser;
 
+        private string lastKnownTrayNumber = string.Empty;
+
         public ObservableCollection<PickListItemModel> PickListItemsModel { get; }
 
         public ObservableCollection<TrayWiseGroup> TrayWiseData { get; }
@@ -64,7 +66,13 @@ namespace NSRetailLiteApp.ViewModels.PickList
         {
             if (selected == null) return;
 
-            await ShowPopup(selected, new AddTrayPage(new PickListTrayViewModel(Branch.PickListID, selected, loggedInUser)));
+            PickListTrayViewModel pickListTrayViewModel = new(Branch.PickListID, selected, loggedInUser)
+            {
+                TrayNumber = lastKnownTrayNumber
+            };
+
+            await ShowPopup(selected, new AddTrayPage(pickListTrayViewModel));
+            lastKnownTrayNumber = pickListTrayViewModel.TrayNumber;
         }
 
         private async Task DeleteItemDetail(PickListItemModel? selected)

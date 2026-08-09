@@ -71,7 +71,7 @@
                                     </Label>
                                 </VerticalStackLayout>
 
-                                <VerticalStackLayout Grid.Row="0" Grid.Column="5">
+                                <!--<VerticalStackLayout Grid.Row="0" Grid.Column="5">
                                     <ImageButton Margin="0, 5, 0, 2" Source="picklistarrange.png" Aspect="Fill" HeightRequest="50" WidthRequest="50"
                                                 Command="{Binding Path=ArrangePickListCommand}"/>
                                     <Label Text="Arrange" FontSize="Small" HorizontalTextAlignment="Center">
@@ -84,7 +84,7 @@
                                             <TapGestureRecognizer Command="{Binding ArrangePickListCommand}" />
                                         </Label.GestureRecognizers>
                                     </Label>
-                                </VerticalStackLayout>
+                                </VerticalStackLayout>-->
 
                             </Grid>
                         </Frame>

@@ -506,11 +506,28 @@ namespace NSRetailLiteApp.ViewModels
         private async Task FlowThroughDispatch()
         {
             HolderClass holderClass = new();
+            
+            holderClass = await GetAsync("picklist/getlocationdivision", holderClass
+                   , new Dictionary<string, string?>()
+                    {
+                        { "CategoryID", Model.CategoryId.ToString() }
+                    }, displayAlert: true);
+
+            if (holderClass.Holder.LocationDivisionList == null || holderClass.Holder.LocationDivisionList.Count == 0) return;
+
+            string selectedLocationDivision =
+                await DisplayActionSheet("Select location division:", [.. holderClass.Holder.LocationDivisionList.Select(x => x.LocationDivisionName)]);
+
+            if (string.IsNullOrEmpty(selectedLocationDivision) || selectedLocationDivision.ToLower() == "cancel") return;
+
+            int selectedLocationDivisionID = holderClass.Holder.LocationDivisionList.First(x => x.LocationDivisionName == selectedLocationDivision).LocationDivisionID;
+
+            holderClass = new();
 
             holderClass = await GetAsync("picklist/getbranchlistfordispatch", holderClass
                    , new Dictionary<string, string?>()
                     {
-                        { "CategoryID", Model.CategoryId.ToString() }
+                        { "LocationDivisionID", selectedLocationDivisionID.ToString() }
                     }, displayAlert: true);
 
             BranchSelectionViewModel branchSelectionViewModel = new(holderClass.Holder?.BranchList);

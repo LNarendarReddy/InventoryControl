@@ -12,6 +12,8 @@
                 <DataTemplate x:DataType="models:PickListTrayModel">
                     <SwipeView>
                         <SwipeView.RightItems>
+                            <SwipeItem IconImageSource="stockcountingdetailedit.png" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.UpdateTrayCommand
+                , Source={RelativeSource AncestorType={x:Type views:PickListDispatchTrayPage}}}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
                             <SwipeItem IconImageSource="view.png" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.ViewTrayCommand
                 , Source={RelativeSource AncestorType={x:Type views:PickListDispatchTrayPage}}}" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
                         </SwipeView.RightItems>
