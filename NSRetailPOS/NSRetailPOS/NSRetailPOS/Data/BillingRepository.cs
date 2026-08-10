@@ -22,7 +22,7 @@ namespace NSRetailPOS.Data
                     transaction = SQLCon.Sqlconn().BeginTransaction();
                     cmd.Transaction = transaction;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[POS_USP_CU_BILLDETAIL]";
+                    cmd.CommandText = "[POS_USP_CU_BILLDETAIL_V1]";
                     cmd.Parameters.AddWithValue("@BillID", billID);
                     cmd.Parameters.AddWithValue("@ItemPriceID", ItemPriceID);
                     cmd.Parameters.AddWithValue("@Quantity", quantity);
@@ -225,7 +225,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[POS_USP_D_BILLDETAIL]";
+                    cmd.CommandText = "[POS_USP_D_BILLDETAIL_V1]";
                     cmd.Parameters.AddWithValue("@UserID", userID);
                     cmd.Parameters.AddWithValue("@BillDetailID", billDetailID);
                     cmd.Parameters.AddWithValue("@SNos", dtSNos);

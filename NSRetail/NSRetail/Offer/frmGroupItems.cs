@@ -82,21 +82,23 @@ namespace NSRetail
             }
             else
             {
+                object itemCodeID = GetSelectedItemCodeID();
                 int OfferItemID = new OfferRepository().SaveOfferItem(0, OfferID,
-                    cmbItemCode.EditValue, Utility.UserID, txtNoOfPieces.EditValue, BuildOfferItemConfigJson()
+                    itemCodeID, Utility.UserID, txtNoOfPieces.EditValue, BuildOfferItemConfigJson()
                     );
                 gvItems.SetRowCellValue(e.RowHandle, "OFFERITEMMAPID", OfferItemID);
             }
 
-            int rowhandle = cmbItemCodeView.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
-            gvItems.SetRowCellValue(e.RowHandle, "ITEMCODEID", cmbItemCode.EditValue);
+            gvItems.SetRowCellValue(e.RowHandle, "ITEMCODEID", GetSelectedItemCodeID());
+            gvItems.SetRowCellValue(e.RowHandle, "ITEMPRICEID", cmbItemCode.EditValue);
+            gvItems.SetRowCellValue(e.RowHandle, "MRP", GetSelectedItemValue("MRP"));
             gvItems.SetRowCellValue(e.RowHandle, "ITEMCODE", cmbItemCode.Text);
-            gvItems.SetRowCellValue(e.RowHandle, "ITEMNAME", cmbItemCodeView.GetRowCellValue(rowhandle, "ITEMNAME"));
-            gvItems.SetRowCellValue(e.RowHandle, "HSNCODE", cmbItemCodeView.GetRowCellValue(rowhandle, "HSNCODE"));
-            gvItems.SetRowCellValue(e.RowHandle, "CATEGORYID", cmbItemCodeView.GetRowCellValue(rowhandle, "CATEGORYID"));
-            gvItems.SetRowCellValue(e.RowHandle, "SUBCATEGORYID", cmbItemCodeView.GetRowCellValue(rowhandle, "SUBCATEGORYID"));
-            gvItems.SetRowCellValue(e.RowHandle, "CATEGORYNAME", cmbItemCodeView.GetRowCellValue(rowhandle, "CATEGORYNAME"));
-            gvItems.SetRowCellValue(e.RowHandle, "SUBCATEGORYNAME", cmbItemCodeView.GetRowCellValue(rowhandle, "SUBCATEGORYNAME"));
+            gvItems.SetRowCellValue(e.RowHandle, "ITEMNAME", GetSelectedItemValue("ITEMNAME"));
+            gvItems.SetRowCellValue(e.RowHandle, "HSNCODE", GetSelectedItemValue("HSNCODE"));
+            gvItems.SetRowCellValue(e.RowHandle, "CATEGORYID", GetSelectedItemValue("CATEGORYID"));
+            gvItems.SetRowCellValue(e.RowHandle, "SUBCATEGORYID", GetSelectedItemValue("SUBCATEGORYID"));
+            gvItems.SetRowCellValue(e.RowHandle, "CATEGORYNAME", GetSelectedItemValue("CATEGORYNAME"));
+            gvItems.SetRowCellValue(e.RowHandle, "SUBCATEGORYNAME", GetSelectedItemValue("SUBCATEGORYNAME"));
             gvItems.SetRowCellValue(e.RowHandle, "NUMBEROFPIECES", txtNoOfPieces.EditValue);
 
             if (!IsGroupItem)
@@ -117,14 +119,18 @@ namespace NSRetail
 
             if (IsEditMode)
             {
+                object itemCodeID = GetSelectedItemCodeID();
                 new OfferRepository().SaveOfferItem(
                     EditOfferItemMapID,
                     OfferID,
-                    cmbItemCode.EditValue,
+                    itemCodeID,
                     Utility.UserID,
                     txtNoOfPieces.EditValue,
                     BuildOfferItemConfigJson());
 
+                gvItems.SetRowCellValue(EditRowHandle, "ITEMCODEID", itemCodeID);
+                gvItems.SetRowCellValue(EditRowHandle, "ITEMPRICEID", cmbItemCode.EditValue);
+                gvItems.SetRowCellValue(EditRowHandle, "MRP", GetSelectedItemValue("MRP"));
                 gvItems.SetRowCellValue(EditRowHandle, "NUMBEROFPIECES", txtNoOfPieces.EditValue);
                 SetOfferGridValues(EditRowHandle);
 
@@ -136,7 +142,7 @@ namespace NSRetail
 
             gvItems.GridControl.BindingContext = new BindingContext();
             gvItems.GridControl.DataSource = dtItems;
-            if (gvItems.LocateByValue("ITEMCODEID", cmbItemCode.EditValue) >= 0)
+            if (GetExistingItemRowHandle() >= 0)
             {
                 XtraMessageBox.Show("Item Already Exists!");
                 cmbItemCode.EditValue = null;
@@ -148,7 +154,7 @@ namespace NSRetail
 
             gvItems.GridControl.BindingContext = new BindingContext();
             gvItems.GridControl.DataSource = dtItems;
-            int rowHandle = gvItems.LocateByValue("ITEMCODEID", cmbItemCode.EditValue);
+            int rowHandle = GetExistingItemRowHandle();
             ResetEntryControls();
             cmbItemCode.Focus();
             gvItems.FocusedRowHandle = rowHandle;
@@ -203,9 +209,10 @@ namespace NSRetail
 
         private void frmGroupItems_Load(object sender, EventArgs e)
         {
-            cmbItemCode.Properties.DataSource = Utility.GetItemCodeList();
-            cmbItemCode.Properties.ValueMember = "ITEMCODEID";
+            cmbItemCode.Properties.DataSource = new ItemCodeRepository().GetItemPriceList();
+            cmbItemCode.Properties.ValueMember = "ITEMPRICEID";
             cmbItemCode.Properties.DisplayMember = "ITEMCODE";
+            cmbItemCodeView.BestFitColumns();
 
             AccessUtility.SetStatusByAccess(btnAdd, btnImport);
             AccessUtility.SetStatusByAccess(gcDelete);
@@ -220,7 +227,8 @@ namespace NSRetail
             EditRowHandle = gvItems.FocusedRowHandle;
             EditOfferItemMapID = gvItems.GetFocusedRowCellValue("OFFERITEMMAPID");
 
-            cmbItemCode.EditValue = gvItems.GetFocusedRowCellValue("ITEMCODEID");
+            chkIsFreeItem.Checked = ToBoolean(gvItems.GetFocusedRowCellValue("IsFreeItem"));
+            cmbItemCode.EditValue = gvItems.GetFocusedRowCellValue("ITEMPRICEID");
             txtNoOfPieces.EditValue = gvItems.GetFocusedRowCellValue("NUMBEROFPIECES");
             rgPriceBasedOn.EditValue = gvItems.GetFocusedRowCellValue("PriceBasedOn");
             txtOfferPrice.EditValue = gvItems.GetFocusedRowCellValue("OfferPrice");
@@ -244,6 +252,8 @@ namespace NSRetail
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(new
             {
+                IsFreeItem = chkIsFreeItem.Checked ? 1 : 0,
+                ItemPriceID = cmbItemCode.EditValue,
                 PriceBasedOn = rgPriceBasedOn.EditValue,
                 OfferPrice = txtOfferPrice.EditValue
             });
@@ -299,9 +309,60 @@ namespace NSRetail
 
         private void SetOfferGridValues(int rowHandle)
         {
+            gvItems.SetRowCellValue(rowHandle, "IsFreeItem", chkIsFreeItem.Checked);
             gvItems.SetRowCellValue(rowHandle, "PriceBasedOn", rgPriceBasedOn.EditValue);
             gvItems.SetRowCellValue(rowHandle, "PriceBasedOnText", GetPriceBasedOnText(rgPriceBasedOn.EditValue));
             gvItems.SetRowCellValue(rowHandle, "OfferPrice", txtOfferPrice.EditValue);
+        }
+
+        private int GetSelectedItemPriceRowHandle()
+        {
+            return cmbItemCodeView.LocateByValue("ITEMPRICEID", cmbItemCode.EditValue);
+        }
+
+        private DataRow GetSelectedItemPriceRow()
+        {
+            if (cmbItemCode.EditValue == null || cmbItemCode.EditValue == DBNull.Value) return null;
+
+            DataTable itemPriceTable = cmbItemCode.Properties.DataSource as DataTable;
+            DataView itemPriceView = cmbItemCode.Properties.DataSource as DataView;
+
+            if (itemPriceTable == null && itemPriceView != null)
+                itemPriceTable = itemPriceView.Table;
+
+            if (itemPriceTable == null || !itemPriceTable.Columns.Contains("ITEMPRICEID")) return null;
+
+            return itemPriceTable.AsEnumerable()
+                .FirstOrDefault(x => Convert.ToString(x["ITEMPRICEID"]) == Convert.ToString(cmbItemCode.EditValue));
+        }
+
+        private object GetSelectedItemValue(string columnName)
+        {
+            DataRow row = GetSelectedItemPriceRow();
+
+            if (row != null && row.Table.Columns.Contains(columnName))
+                return row[columnName];
+
+            int rowhandle = GetSelectedItemPriceRowHandle();
+            return rowhandle < 0 ? null : cmbItemCodeView.GetRowCellValue(rowhandle, columnName);
+        }
+
+        private object GetSelectedItemCodeID()
+        {
+            return GetSelectedItemValue("ITEMCODEID");
+        }
+
+        private int GetExistingItemRowHandle()
+        {
+            return chkIsFreeItem.Checked
+                ? gvItems.LocateByValue("ITEMPRICEID", cmbItemCode.EditValue)
+                : gvItems.LocateByValue("ITEMCODEID", GetSelectedItemCodeID());
+        }
+
+        private bool ToBoolean(object value)
+        {
+            if (value == null || value == DBNull.Value) return false;
+            return Convert.ToBoolean(value);
         }
     }
 }

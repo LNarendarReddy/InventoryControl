@@ -853,6 +853,9 @@
     <EmbeddedResource Include="UI\frmDraftList.resx">
       <DependentUpon>frmDraftList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmErrorDetails.resx">
+      <DependentUpon>frmErrorDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmExtraDiscount.resx">
       <DependentUpon>frmExtraDiscount.cs</DependentUpon>
     </EmbeddedResource>

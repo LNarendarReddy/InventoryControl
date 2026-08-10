@@ -44,6 +44,8 @@ namespace NSRetailPOS
         bool isItemScanned;
         bool isOpenItem = false;
         bool isEventCall = false;
+        private const int OfferTypeBuyItemsFreeItems = 1006;
+        private const int Offer1006QuantityEditMinBuyingItems = 10;
         private const string noOfferText = "Offer : None   ";
         private const string noDealText = "Deal : None";
 
@@ -961,8 +963,32 @@ namespace NSRetailPOS
                 return;
             }
 
-            if (Utility.branchInfo.MultiEditThreshold == 0 || gvBilling.FocusedColumn != gcQuantity) return;
+            if (gvBilling.FocusedColumn != gcQuantity) return;
+            if (CanEditQuantityForOffer1006(gvBilling.GetFocusedRowCellValue("ITEMPRICEID"))) return;
+            if (Utility.branchInfo.MultiEditThreshold == 0) return;
+
             e.Cancel = Utility.branchInfo.MultiEditThreshold < decimal.Parse(gvBilling.GetFocusedRowCellValue("MRP").ToString());
+        }
+
+        private bool CanEditQuantityForOffer1006(object itemPriceID)
+        {
+            if (itemPriceID == null || itemPriceID == DBNull.Value) return false;
+
+            DataTable dtOffers = itemRepository.GetOfferList(itemPriceID);
+            if (dtOffers.Rows.Count == 0
+                || !dtOffers.Columns.Contains("DEALTYPEID")
+                || !dtOffers.Columns.Contains("DEALNUMBEROFITEMS")) return false;
+
+            DataRow offerRow = dtOffers.Rows[0];
+            return ToInt(offerRow["DEALTYPEID"]) == OfferTypeBuyItemsFreeItems
+                && ToInt(offerRow["DEALNUMBEROFITEMS"]) > Offer1006QuantityEditMinBuyingItems;
+        }
+
+        private int ToInt(object value)
+        {
+            if (value == null || value == DBNull.Value) return 0;
+            int.TryParse(Convert.ToString(value), out int result);
+            return result;
         }
 
         private void gvBilling_ValidatingEditor(object sender, BaseContainerValidateEditorEventArgs e)

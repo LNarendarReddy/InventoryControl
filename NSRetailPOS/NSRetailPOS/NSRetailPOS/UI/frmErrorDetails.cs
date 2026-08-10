@@ -34,6 +34,7 @@ namespace NSRetailPOS.UI
         {
             txtInfo.SelectionStart = 0;
             txtInfo.SelectionLength = 0;
+            btnOk.Focus();
         }
 
         private void btnCopyDetails_Click(object sender, EventArgs e)
