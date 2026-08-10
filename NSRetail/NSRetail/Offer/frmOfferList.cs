@@ -67,6 +67,7 @@ namespace NSRetail
             gvOffer.SetRowCellValue(rowhandle, "ITEMCODE", offer.ItemCode);
             gvOffer.SetRowCellValue(rowhandle, "ITEMNAME", offer.ItemName);
             gvOffer.SetRowCellValue(rowhandle, "ISACTIVE", "YES");
+            gvOffer.SetRowCellValue(rowhandle, "NUMBEROFFREEITEMS", offer.NumberOfFreeItems);
             if (!IsEdit)
             {
                 gvOffer.SetRowCellValue(rowhandle, "CREATEDBY", Utility.FullName);

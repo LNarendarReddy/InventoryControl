@@ -48,7 +48,7 @@ namespace NSRetailPOS
 
         public static string AppVersion = "1.9.8";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(08-08-2026)";
+        public static string VersionDate = "(10-08-2026)";
 
         public static Bill GetBill(DataSet dsBillDetails)
         {

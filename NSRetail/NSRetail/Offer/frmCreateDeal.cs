@@ -169,6 +169,8 @@ namespace NSRetail
                 {
                     txtNumberOfItems.Enabled = true;
                     txtNumberOfFreeItems.Enabled = true;
+                    txtFreeItemPrice.Enabled = false;
+                    cmbFreeItemCode.Enabled = false;
                 }
             }
         }

@@ -89,16 +89,7 @@ namespace NSRetail
                 gvItems.SetRowCellValue(e.RowHandle, "OFFERITEMMAPID", OfferItemID);
             }
 
-            gvItems.SetRowCellValue(e.RowHandle, "ITEMCODEID", GetSelectedItemCodeID());
-            gvItems.SetRowCellValue(e.RowHandle, "ITEMPRICEID", cmbItemCode.EditValue);
-            gvItems.SetRowCellValue(e.RowHandle, "MRP", GetSelectedItemValue("MRP"));
-            gvItems.SetRowCellValue(e.RowHandle, "ITEMCODE", cmbItemCode.Text);
-            gvItems.SetRowCellValue(e.RowHandle, "ITEMNAME", GetSelectedItemValue("ITEMNAME"));
-            gvItems.SetRowCellValue(e.RowHandle, "HSNCODE", GetSelectedItemValue("HSNCODE"));
-            gvItems.SetRowCellValue(e.RowHandle, "CATEGORYID", GetSelectedItemValue("CATEGORYID"));
-            gvItems.SetRowCellValue(e.RowHandle, "SUBCATEGORYID", GetSelectedItemValue("SUBCATEGORYID"));
-            gvItems.SetRowCellValue(e.RowHandle, "CATEGORYNAME", GetSelectedItemValue("CATEGORYNAME"));
-            gvItems.SetRowCellValue(e.RowHandle, "SUBCATEGORYNAME", GetSelectedItemValue("SUBCATEGORYNAME"));
+            SetSelectedItemGridValues(e.RowHandle);
             gvItems.SetRowCellValue(e.RowHandle, "NUMBEROFPIECES", txtNoOfPieces.EditValue);
 
             if (!IsGroupItem)
@@ -128,11 +119,10 @@ namespace NSRetail
                     txtNoOfPieces.EditValue,
                     BuildOfferItemConfigJson());
 
-                gvItems.SetRowCellValue(EditRowHandle, "ITEMCODEID", itemCodeID);
-                gvItems.SetRowCellValue(EditRowHandle, "ITEMPRICEID", cmbItemCode.EditValue);
-                gvItems.SetRowCellValue(EditRowHandle, "MRP", GetSelectedItemValue("MRP"));
+                SetSelectedItemGridValues(EditRowHandle);
                 gvItems.SetRowCellValue(EditRowHandle, "NUMBEROFPIECES", txtNoOfPieces.EditValue);
                 SetOfferGridValues(EditRowHandle);
+                gvItems.RefreshRow(EditRowHandle);
 
                 ClearEditMode();
                 ResetEntryControls();
@@ -310,9 +300,29 @@ namespace NSRetail
         private void SetOfferGridValues(int rowHandle)
         {
             gvItems.SetRowCellValue(rowHandle, "IsFreeItem", chkIsFreeItem.Checked);
+            gvItems.SetRowCellValue(rowHandle, "OfferItemType", GetOfferItemTypeText());
             gvItems.SetRowCellValue(rowHandle, "PriceBasedOn", rgPriceBasedOn.EditValue);
             gvItems.SetRowCellValue(rowHandle, "PriceBasedOnText", GetPriceBasedOnText(rgPriceBasedOn.EditValue));
             gvItems.SetRowCellValue(rowHandle, "OfferPrice", txtOfferPrice.EditValue);
+        }
+
+        private void SetSelectedItemGridValues(int rowHandle)
+        {
+            gvItems.SetRowCellValue(rowHandle, "ITEMCODEID", GetSelectedItemCodeID());
+            gvItems.SetRowCellValue(rowHandle, "ITEMPRICEID", cmbItemCode.EditValue);
+            gvItems.SetRowCellValue(rowHandle, "MRP", GetSelectedItemValue("MRP"));
+            gvItems.SetRowCellValue(rowHandle, "ITEMCODE", GetSelectedItemValue("ITEMCODE") ?? cmbItemCode.Text);
+            gvItems.SetRowCellValue(rowHandle, "ITEMNAME", GetSelectedItemValue("ITEMNAME"));
+            gvItems.SetRowCellValue(rowHandle, "HSNCODE", GetSelectedItemValue("HSNCODE"));
+            gvItems.SetRowCellValue(rowHandle, "CATEGORYID", GetSelectedItemValue("CATEGORYID"));
+            gvItems.SetRowCellValue(rowHandle, "SUBCATEGORYID", GetSelectedItemValue("SUBCATEGORYID"));
+            gvItems.SetRowCellValue(rowHandle, "CATEGORYNAME", GetSelectedItemValue("CATEGORYNAME"));
+            gvItems.SetRowCellValue(rowHandle, "SUBCATEGORYNAME", GetSelectedItemValue("SUBCATEGORYNAME"));
+        }
+
+        private string GetOfferItemTypeText()
+        {
+            return chkIsFreeItem.Checked ? "Free Item" : "Buying Item";
         }
 
         private int GetSelectedItemPriceRowHandle()
