@@ -136,8 +136,9 @@ namespace NSRetail
             { 
                 ShowInTaskbar = false,
                 StartPosition = FormStartPosition.CenterScreen
-            };
 
+            };
+            obj.NumberOfFreeItems = Convert.ToInt32(gvOffer.GetFocusedRowCellValue("NUMBEROFFREEITEMS"));
             obj.ShowDialog();
         }
         private void frmOfferList_Load(object sender, EventArgs e)

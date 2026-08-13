@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DevExpress.CodeParser;
+using DevExpress.XtraCharts.Designer.Native;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.Layout.Engine;
 using NSRetail.Utilities;
@@ -26,7 +27,7 @@ namespace NSRetail
         bool IsEditMode = false;
         int EditRowHandle = -1;
         object EditOfferItemMapID = null;
-
+        public int NumberOfFreeItems = 0;
 
         public frmGroupItems(object _groupName, object _ItemGroupID,
             object OfferName = null, object _OfferID = null, bool _IsGroupItem = true, bool isExclude = false)
@@ -207,6 +208,8 @@ namespace NSRetail
             AccessUtility.SetStatusByAccess(btnAdd, btnImport);
             AccessUtility.SetStatusByAccess(gcDelete);
             ResetEntryControls();
+            chkIsFreeItem.Checked = false;
+            chkIsFreeItem.Enabled = NumberOfFreeItems > 0;
         }
 
         private void btnEdit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -261,6 +264,25 @@ namespace NSRetail
 
                 txtOfferPrice.Focus();
                 return false;
+            }
+
+            if (Convert.ToString(rgPriceBasedOn.EditValue) == PriceOffer)
+            {
+                decimal offerPrice;
+                decimal mrp;
+                object mrpValue = GetSelectedItemValue("MRP");
+
+                if (decimal.TryParse(Convert.ToString(txtOfferPrice.EditValue), out offerPrice) &&
+                    mrpValue != null && mrpValue != DBNull.Value &&
+                    decimal.TryParse(Convert.ToString(mrpValue), out mrp) &&
+                    offerPrice > mrp)
+                {
+                    XtraMessageBox.Show("Offer Price cannot be greater than MRP.",
+                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    txtOfferPrice.Focus();
+                    return false;
+                }
             }
 
             return true;

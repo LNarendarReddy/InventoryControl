@@ -1,4 +1,9 @@
-﻿V3.9.3
+﻿V3.9.4
+-- Added condition to restrict Offer price > MRP.
+-- Disabled free item checkbox when number of free items 0
+-- Duplicate counters restricted
+
+V3.9.3
 -- Skip Zero records in supplier indent print so that Serial # doesn't jump
 -- Show modified status in supplier indent detail along with generated and added
 -- Changes to Generate PickList screen 

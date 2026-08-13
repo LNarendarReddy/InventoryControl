@@ -404,6 +404,7 @@ namespace NSRetail.Master
             this.gridColumn14.Caption = "Payment Gateway Name";
             this.gridColumn14.FieldName = "PAYMENTGATEWAYINFONAME";
             this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 2;
             // 

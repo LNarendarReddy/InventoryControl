@@ -20,6 +20,7 @@ namespace NSRetail.Master
         }
 
         private void frmCounter_Load(object sender, EventArgs e)
+
         {
             cmbBranch.Properties.DataSource = objMasterRep.GetBranch();
             cmbBranch.Properties.DisplayMember = "BRANCHNAME";

@@ -370,7 +370,7 @@ namespace DataAccess
                 if (ex.Message.Contains("UC_COUNTERNAME"))
                     throw new Exception("Counter Already Exists!!");
                 else
-                    throw new Exception("Error While Saving Counter");
+                    throw ex;
             }
             return ObjCounter;
         }
