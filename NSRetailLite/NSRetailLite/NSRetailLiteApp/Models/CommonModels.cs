@@ -71,6 +71,10 @@ namespace NSRetailLiteApp.Models
         public ObservableCollection<PickListTrayModel> PickListTrayList;
 
         public ObservableCollection<LocationDivision> LocationDivisionList;
+
+        public PickListDispatchModel PickListDispatch;
+
+        public ObservableCollection<PickListDispatchDetailModel> PickListDispatchItemList;
     }
 
     public partial class Branch : BaseObservableObject

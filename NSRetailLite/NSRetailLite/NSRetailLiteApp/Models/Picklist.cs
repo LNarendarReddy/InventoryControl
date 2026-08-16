@@ -70,4 +70,70 @@ namespace NSRetailLiteApp.Models
         [ObservableProperty]
         private ObservableCollection<PickListItemModel> _pickListItemList;
     }
+
+    public partial class PickListDispatchModel : BaseObservableObject
+    {
+        [ObservableProperty]
+        private int _pickListDispatchId;
+
+        [ObservableProperty]
+        private int _locationDivisionId;
+
+        [ObservableProperty]
+        private int _branchId;
+
+        [ObservableProperty]
+        private string _locationDivisionName;
+
+        [ObservableProperty]
+        private string _branchName;
+
+        [ObservableProperty]
+        private ObservableCollection<PickListDispatchDetailModel> _picklistDispatchDetailList;
+    }
+
+    public partial class PickListDispatchDetailModel : BaseObservableObject
+    {
+        [ObservableProperty]
+        private int _pickListDispatchDetailId;
+
+        [ObservableProperty]
+        private int _sNo;
+
+        [ObservableProperty]
+        private int _pickListDispatchId;
+
+        [ObservableProperty]
+        private int _itemId;
+
+        [ObservableProperty]
+        private int _itemCodeId;
+
+        [ObservableProperty]
+        private string _sKUCode;
+
+        [ObservableProperty]
+        private string _itemName;
+
+        [ObservableProperty]
+        private string _itemCode;
+
+        [ObservableProperty]
+        private double _mRP;
+
+        [ObservableProperty]
+        private string _trayNumber;
+
+        [ObservableProperty]
+        private int _quantity;
+
+        [ObservableProperty]
+        private int _totalPickListQty;
+
+        [ObservableProperty]
+        private int _allocatedQty;
+
+        [ObservableProperty]
+        private int _availableQty;
+    }
 }

@@ -506,7 +506,20 @@ namespace NSRetailLiteApp.ViewModels
         private async Task FlowThroughDispatch()
         {
             HolderClass holderClass = new();
-            
+
+            holderClass = await GetAsync("picklist/getdispatch", holderClass
+                   , new Dictionary<string, string?>()
+                    {
+                        { "userID", Model.UserId.ToString() }
+                    }, displayAlert: false);
+
+            if (holderClass.PickListDispatch != null)
+            {
+                await RedirectToPage(holderClass
+                        , new PickListDispatchPage(new PickListDispatchViewModel(User)));
+                return;
+            }
+
             holderClass = await GetAsync("picklist/getlocationdivision", holderClass
                    , new Dictionary<string, string?>()
                     {
@@ -536,18 +549,19 @@ namespace NSRetailLiteApp.ViewModels
             if (branchSelectionViewModel.SelectedBranch == null) return;
 
             holderClass = new();
-            holderClass = await GetAsync("picklist/gettraysfordispatch", holderClass, new Dictionary<string, string?>()
+            holderClass = await PostAsync("picklist/createdispatch", holderClass, new Dictionary<string, string?>()
             {
+                { "LocationDivisionID", selectedLocationDivisionID.ToString() },
                 { "BranchID", branchSelectionViewModel.SelectedBranch.BranchID.ToString() },
-                { "CategoryID", Model.CategoryId.ToString() }
+                { "UserID", Model.UserId.ToString() }
             });
 
-            if (holderClass.Exception != null) return;
+            if (holderClass.Exception != null || holderClass.GenericID == 0) return;
 
             await RedirectToPage(holderClass
-                    , new PickListDispatchTrayPage(
-                        new PickListDispatchTrayViewModel(branchSelectionViewModel.SelectedBranch, holderClass.Holder.PickListTrayList, User)));
+                    , new PickListDispatchPage(new PickListDispatchViewModel(User)));
         }
+
 
         public IAsyncRelayCommand DispatchRecieveCommand { get; }
 
