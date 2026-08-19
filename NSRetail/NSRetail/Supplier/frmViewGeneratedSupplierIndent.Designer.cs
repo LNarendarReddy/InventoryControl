@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmViewGeneratedSupplierIndent));
             this.gvBranchDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSupplierIndent = new DevExpress.XtraGrid.GridControl();
@@ -78,6 +80,8 @@
             this.gridColumn14,
             this.gridColumn15,
             this.gridColumn16,
+            this.gridColumn20,
+            this.gridColumn19,
             this.gridColumn17,
             this.gridColumn18});
             this.gvBranchDetails.GridControl = this.gcSupplierIndent;
@@ -113,13 +117,29 @@
             this.gridColumn16.Visible = true;
             this.gridColumn16.VisibleIndex = 1;
             // 
+            // gridColumn20
+            // 
+            this.gridColumn20.Caption = "In-transit Qty";
+            this.gridColumn20.FieldName = "INTRANSITQTY";
+            this.gridColumn20.Name = "gridColumn20";
+            this.gridColumn20.Visible = true;
+            this.gridColumn20.VisibleIndex = 2;
+            // 
+            // gridColumn19
+            // 
+            this.gridColumn19.Caption = "Threshold";
+            this.gridColumn19.FieldName = "THRESHOLD";
+            this.gridColumn19.Name = "gridColumn19";
+            this.gridColumn19.Visible = true;
+            this.gridColumn19.VisibleIndex = 3;
+            // 
             // gridColumn17
             // 
             this.gridColumn17.Caption = "Req. Branch Qty";
             this.gridColumn17.FieldName = "REQUIREDBRANCHSTOCK";
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 2;
+            this.gridColumn17.VisibleIndex = 4;
             // 
             // gridColumn18
             // 
@@ -127,14 +147,14 @@
             this.gridColumn18.FieldName = "REQUIREDITEMINDENT";
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 3;
+            this.gridColumn18.VisibleIndex = 5;
             // 
             // gcSupplierIndent
             // 
-            gridLevelNode2.LevelTemplate = this.gvBranchDetails;
-            gridLevelNode2.RelationName = "FT - Branch details";
+            gridLevelNode1.LevelTemplate = this.gvBranchDetails;
+            gridLevelNode1.RelationName = "FT - Branch details";
             this.gcSupplierIndent.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.gcSupplierIndent.Location = new System.Drawing.Point(16, 50);
             this.gcSupplierIndent.MainView = this.gvSupplierIndent;
             this.gcSupplierIndent.Name = "gcSupplierIndent";
@@ -411,5 +431,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
     }
 }

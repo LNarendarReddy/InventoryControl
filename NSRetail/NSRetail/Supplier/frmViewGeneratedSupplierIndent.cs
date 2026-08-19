@@ -44,6 +44,9 @@ namespace NSRetail.Supplier
 
         private void btnProceed_Click(object sender, EventArgs e)
         {
+            if (XtraMessageBox.Show("Are you sure you want to proceed?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) 
+                return;
+            
             DataSet dsTemp = dataSet.Copy();
 
             List<string> supplierIndentAllowedColumns = new List<string>()

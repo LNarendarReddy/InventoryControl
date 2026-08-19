@@ -1,4 +1,7 @@
-﻿V3.9.4
+﻿v3.9.5
+-- Fixed issue in generate supplier indent save
+
+V3.9.4
 -- Added condition to restrict Offer price > MRP.
 -- Disabled free item checkbox when number of free items 0
 -- Duplicate counters restricted
