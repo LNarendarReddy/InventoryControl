@@ -957,7 +957,7 @@ namespace NSRetailPOS
 
         private void gvBilling_ShowingEditor(object sender, CancelEventArgs e)
         {
-            if (gvBilling.GetFocusedRowCellValue("DELETEDDATE") != DBNull.Value)
+             if (gvBilling.GetFocusedRowCellValue("DELETEDDATE") != DBNull.Value)
             {
                 e.Cancel = true;
                 return;
@@ -981,7 +981,7 @@ namespace NSRetailPOS
 
             DataRow offerRow = dtOffers.Rows[0];
             return ToInt(offerRow["DEALTYPEID"]) == OfferTypeBuyItemsFreeItems
-                && ToInt(offerRow["DEALNUMBEROFITEMS"]) > Offer1006QuantityEditMinBuyingItems;
+                && ToInt(offerRow["DEALNUMBEROFITEMS"]) >= Offer1006QuantityEditMinBuyingItems;
         }
 
         private int ToInt(object value)
