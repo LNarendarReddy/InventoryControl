@@ -131,14 +131,17 @@ namespace NSRetail
             if(gvOffer.GetFocusedRowCellValue("AppliesToID").Equals(2))
                 return;
 
-            frmGroupItems obj = new frmGroupItems(null, null, gvOffer.GetFocusedRowCellValue("OFFERNAME"),
-                gvOffer.GetFocusedRowCellValue("OFFERID"), false, gvOffer.GetFocusedRowCellValue("AppliesToID").Equals(3))
+            frmGroupItems obj = new frmGroupItems(
+                gvOffer.GetFocusedRowCellValue("OFFERTYPEID"), 
+                gvOffer.GetFocusedRowCellValue("OFFERNAME"),
+                gvOffer.GetFocusedRowCellValue("OFFERID"), 
+                gvOffer.GetFocusedRowCellValue("AppliesToID").Equals(3),
+                gvOffer.GetFocusedRowCellValue("NUMBEROFFREEITEMS"))
             { 
                 ShowInTaskbar = false,
                 StartPosition = FormStartPosition.CenterScreen
 
             };
-            obj.NumberOfFreeItems = Convert.ToInt32(gvOffer.GetFocusedRowCellValue("NUMBEROFFREEITEMS"));
             obj.ShowDialog();
         }
         private void frmOfferList_Load(object sender, EventArgs e)

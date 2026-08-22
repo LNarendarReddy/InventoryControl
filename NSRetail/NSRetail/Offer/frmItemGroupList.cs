@@ -65,10 +65,7 @@ namespace NSRetail
         }
         private void btnViewItems_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            frmGroupItems obj = new frmGroupItems(gvItemGroup.GetFocusedRowCellValue("GROUPNAME"),
-                gvItemGroup.GetFocusedRowCellValue("ITEMGROUPID"))
-            { ShowInTaskbar = false, StartPosition = FormStartPosition.CenterScreen };
-            obj.ShowDialog();
+
         }
         private void gvItemGroup_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {

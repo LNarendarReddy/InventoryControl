@@ -18,38 +18,26 @@ namespace NSRetail
         const string PriceSale = "SP";
         const string PriceOffer = "OP";
 
-        object ItemGroupID = null;
         object OfferID = null;
-        bool IsGroupItem = false;
         DataTable dtItems = new DataTable();
         bool isExcludeList;
 
         bool IsEditMode = false;
         int EditRowHandle = -1;
         object EditOfferItemMapID = null;
-        public int NumberOfFreeItems = 0;
 
-        public frmGroupItems(object _groupName, object _ItemGroupID,
-            object OfferName = null, object _OfferID = null, bool _IsGroupItem = true, bool isExclude = false)
+        public frmGroupItems(object OfferTypeId, object OfferName, 
+            object _OfferID, bool isExclude, object NOOfFreeItems)
         {
             InitializeComponent();
-            IsGroupItem = _IsGroupItem;      
-            ItemGroupID = _ItemGroupID;
 
-            if (IsGroupItem)
-            {
-                lcbtnimport.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                this.Text = "Group Items - " + _groupName;
-                ItemGroupID = _ItemGroupID;
-                gcItems.DataSource = dtItems = new OfferRepository().GetItemGroupDetail(ItemGroupID);
-            }
-            else
-            {
-                this.Text = (isExclude ? "Offer Exclude Items - " : "Offer Items - ") + OfferName;
-                OfferID = _OfferID;
-                isExcludeList = isExclude;
-                gcItems.DataSource = dtItems = new OfferRepository().GetOfferItem(OfferID);
-            }
+            this.Text = (isExclude ? "Offer Exclude Items - " : "Offer Items - ") + OfferName;
+            OfferID = _OfferID;
+            isExcludeList = isExclude;
+            gcItems.DataSource = dtItems = new OfferRepository().GetOfferItem(OfferID);
+            chkIsFreeItem.Checked = false;
+            chkIsFreeItem.Enabled = !NOOfFreeItems.Equals(0) && OfferTypeId.Equals(1006);
+            rgPriceBasedOn.Enabled = OfferTypeId.Equals(1006);
         }
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -59,42 +47,22 @@ namespace NSRetail
                 MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.Yes)
                 return;
 
-            if (IsGroupItem)
-            {
-                if (gvItems.FocusedRowHandle < 0) return;
-                new OfferRepository().DeleteItemGroupDetail(gvItems.GetFocusedRowCellValue("ITEMGROUPDETAILID"), Utility.UserID);
-                gvItems.DeleteRow(gvItems.FocusedRowHandle);
-            }
-            else
-            {
-                if (gvItems.FocusedRowHandle < 0) return;
-                new OfferRepository().DeleteOfferitem(gvItems.GetFocusedRowCellValue("OFFERITEMMAPID"), Utility.UserID);
-                gvItems.DeleteRow(gvItems.FocusedRowHandle);
-            }
+            if (gvItems.FocusedRowHandle < 0) return;
+            new OfferRepository().DeleteOfferitem(gvItems.GetFocusedRowCellValue("OFFERITEMMAPID"), Utility.UserID);
+            gvItems.DeleteRow(gvItems.FocusedRowHandle);
         }
 
         private void gvItems_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
-            if (IsGroupItem)
-            {
-                int ItemGroupDetailID = new OfferRepository().SaveItemGroupDetail(ItemGroupID,
-                    cmbItemCode.EditValue, Utility.UserID);
-                gvItems.SetRowCellValue(e.RowHandle, "ITEMGROUPDETAILID", ItemGroupDetailID);
-            }
-            else
-            {
-                object itemCodeID = GetSelectedItemCodeID();
-                int OfferItemID = new OfferRepository().SaveOfferItem(0, OfferID,
-                    itemCodeID, Utility.UserID, txtNoOfPieces.EditValue, BuildOfferItemConfigJson()
-                    );
-                gvItems.SetRowCellValue(e.RowHandle, "OFFERITEMMAPID", OfferItemID);
-            }
+            object itemCodeID = GetSelectedItemCodeID();
+            int OfferItemID = new OfferRepository().SaveOfferItem(0, OfferID,
+                itemCodeID, Utility.UserID, txtNoOfPieces.EditValue, BuildOfferItemConfigJson());
+            gvItems.SetRowCellValue(e.RowHandle, "OFFERITEMMAPID", OfferItemID);
 
             SetSelectedItemGridValues(e.RowHandle);
             gvItems.SetRowCellValue(e.RowHandle, "NUMBEROFPIECES", txtNoOfPieces.EditValue);
 
-            if (!IsGroupItem)
-                SetOfferGridValues(e.RowHandle);
+            SetOfferGridValues(e.RowHandle);
         }
 
         private void frmGroupItems_KeyPress(object sender, KeyPressEventArgs e)
@@ -208,13 +176,11 @@ namespace NSRetail
             AccessUtility.SetStatusByAccess(btnAdd, btnImport);
             AccessUtility.SetStatusByAccess(gcDelete);
             ResetEntryControls();
-            chkIsFreeItem.Checked = false;
-            chkIsFreeItem.Enabled = NumberOfFreeItems > 0;
         }
 
         private void btnEdit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            if (IsGroupItem || gvItems.FocusedRowHandle < 0) return;
+            if (gvItems.FocusedRowHandle < 0) return;
 
             IsEditMode = true;
             EditRowHandle = gvItems.FocusedRowHandle;
@@ -254,8 +220,6 @@ namespace NSRetail
 
         private bool ValidateOfferItemConfig()
         {
-            if (IsGroupItem) return true;
-
             if (Convert.ToString(rgPriceBasedOn.EditValue) == PriceOffer &&
                 (txtOfferPrice.EditValue == null || string.IsNullOrWhiteSpace(txtOfferPrice.Text)))
             {
@@ -301,12 +265,8 @@ namespace NSRetail
         private void ResetEntryControls()
         {
             cmbItemCode.EditValue = null;
-
-            if (!IsGroupItem)
-            {
-                rgPriceBasedOn.EditValue = PriceMRP;
-                txtOfferPrice.EditValue = null;
-            }
+            rgPriceBasedOn.EditValue = PriceMRP;
+            txtOfferPrice.EditValue = null;
         }
 
         private void ClearEditMode()
