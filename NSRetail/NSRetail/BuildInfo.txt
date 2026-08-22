@@ -1,4 +1,7 @@
-﻿v3.9.6
+﻿v3.9.7 (unreleased)
+-- Added Include Avg CP and Latest CP in Stock summary by price report
+
+v3.9.6
 -- Enabled reward item and reward item price to support backward campatibility
 
 v3.9.5

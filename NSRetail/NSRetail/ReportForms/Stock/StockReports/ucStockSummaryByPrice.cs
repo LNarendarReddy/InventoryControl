@@ -24,6 +24,18 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 , { "BRANDNAME", "Brand" }
                 , { "MANUFACTURERNAME", "Manufacturer" }
                 , { "INTRANSITQTYORWGHT", "In-Transit Qty or Weight in KGs" }
+                , { "AVGCPWOT", "Avg. CP WOT" }
+                , { "AVGCPWT", "Avg. CP WT" }
+                , { "AVGCPTAX", "Avg. CP Tax" }
+                , { "TAVGCPWOT", "Total Avg. CP WOT" }
+                , { "TAVGCPWT", "Total Avg. CP WT" }
+                , { "TAVGCPTAX", "Total Avg. CP Tax" }
+                , { "LATESTCPWOT", "Latest CP WOT" }
+                , { "LATESTCPWT", "Latest CP WT" }
+                , { "LATESTCPTAX", "Latest CP Tax" }
+                , { "TLATESTCPWOT", "Total Latest CP WOT" }
+                , { "TLATESTCPWT", "Total Latest CP WT" }
+                , { "TLATESTCPTAX", "Total Latest CP Tax" }
             };
 
             MandatoryFields = new List<BaseEdit> { cmbBranch };
@@ -34,7 +46,9 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 new IncludeSettings("Item price", "IncludeMRP", new List<string>() { "MRP", "SALEPRICE" }, false),
                 new IncludeSettings("Positives", "IncludePositives", new List<string>(), true),
                 new IncludeSettings("Zero", "IncludeZeros", new List<string>(), false),
-                new IncludeSettings("Negatives", "IncludeNegatives", new List<string>(), false)
+                new IncludeSettings("Negatives", "IncludeNegatives", new List<string>(), false),
+                new IncludeSettings("Avg. Cost price", "IncludeAvgCP", new List<string>() { "AVGCPWOT", "AVGCPWT", "AVGCPTAX", "TAVGCPWOT", "TAVGCPWT", "TAVGCPTAX" }, false),
+                new IncludeSettings("Latest Cost price", "IncludeLatestCP", new List<string>() { "LATESTCPWOT", "LATESTCPWT", "LATESTCPTAX", "TLATESTCPWOT", "TLATESTCPWT", "TLATESTCPTAX"}, false)
             };
 
             SetFocusControls(cmbBranch, cmbItemCode, columnHeaders);
