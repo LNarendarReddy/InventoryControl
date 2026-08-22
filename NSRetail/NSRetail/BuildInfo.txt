@@ -1,4 +1,7 @@
-﻿v3.9.5
+﻿v3.9.6
+-- Enabled reward item and reward item price to support backward campatibility
+
+v3.9.5
 -- Fixed issue in generate supplier indent save
 
 V3.9.4

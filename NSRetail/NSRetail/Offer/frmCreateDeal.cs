@@ -12,6 +12,9 @@ namespace NSRetail
 {
     public partial class frmCreateDeal : XtraForm
     {
+        private const int OfferTypeBuyItemsFreeItems = 1006;
+        private const int OfferTypeBuyNGetN = 1010;
+
         public Offer offer { get; set; }
         public bool IsSave = false;
         
@@ -83,9 +86,23 @@ namespace NSRetail
                     return;
                 }
 
+                if (txtNumberOfItems.Enabled && ToInt(txtNumberOfItems.EditValue) <= 0)
+                {
+                    XtraMessageBox.Show("Number of items must be greater than zero", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNumberOfItems.Focus();
+                    return;
+                }
+
                 if (txtNumberOfFreeItems.Enabled && txtNumberOfFreeItems.EditValue == null)
                 {
                     XtraMessageBox.Show("Number of free items is required", "Mandatory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNumberOfFreeItems.Focus();
+                    return;
+                }
+
+                if (txtNumberOfFreeItems.Enabled && ToInt(txtNumberOfFreeItems.EditValue) <= 0)
+                {
+                    XtraMessageBox.Show("Number of free items must be greater than zero", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtNumberOfFreeItems.Focus();
                     return;
                 }
@@ -165,12 +182,13 @@ namespace NSRetail
                     layoutControlItem14.Text = "Bill Value of sub items";
                     txtOfferValue.Enabled = true;
                 }
-                else if (cmbOfferType.EditValue.Equals(1006))
+                else if (cmbOfferType.EditValue.Equals(OfferTypeBuyItemsFreeItems)
+                    || cmbOfferType.EditValue.Equals(OfferTypeBuyNGetN))
                 {
                     txtNumberOfItems.Enabled = true;
                     txtNumberOfFreeItems.Enabled = true;
-                    txtFreeItemPrice.Enabled = false;
-                    cmbFreeItemCode.Enabled = false;
+                    //txtFreeItemPrice.Enabled = false;
+                    //cmbFreeItemCode.Enabled = false;
                 }
             }
         }
@@ -187,6 +205,11 @@ namespace NSRetail
             txtFreeItemPrice.EditValue = null;
             txtNumberOfFreeItems.EditValue = null;
             txtNumberOfFreeItems.Enabled = false;
+        }
+
+        private int ToInt(object value)
+        {
+            return int.TryParse(Convert.ToString(value), out int result) ? result : 0;
         }
     }
 }
