@@ -1,10 +1,8 @@
-﻿v3.9.8 (unreleased)
--- Added Include Avg CP and Latest CP in Stock summary by price report
-
-v3.9.7
+﻿v3.9.7
 -- Added BuyN GetN offertype support
 -- Enabled delete multiple branches in offer branch screens
 -- Added serial numbers in offer branch screen
+-- Added Include Avg CP and Latest CP in Stock summary by price report
 
 v3.9.6
 -- Enabled reward item and reward item price to support backward campatibility
