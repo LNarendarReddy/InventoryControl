@@ -25,25 +25,34 @@ namespace WarehouseCloudSync
         }
         public void StartSync()
         {
+            while (true)
+            {
+                ExecuteSyncCycle();
+                Thread.Sleep(5 * 60 * 1000);
+            }
+        }
+
+        public void ExecuteSyncCycle()
+        {
             try
             {
                 int BranchID = 45;
                 DateTime syncStartTime = DateTime.Now.AddMinutes(-5);
-                WriteLine($"Warehouse sync started at {syncStartTime.ToLongTimeString()}");
+                WriteWarehouseLine($"Warehouse sync started at {syncStartTime.ToLongTimeString()}");
                 WarehouseRepository warehouseRepository = new WarehouseRepository();
                 CloudRepository cloudRepository = new CloudRepository();
                 DataTable dtEntity = cloudRepository.GetEntityData(BranchID, "ToCloud");
 
                 //do stock moves so that item price changes can be picked before sync starts
-                WriteLine("Proccesing stock move started");
+                WriteWarehouseLine("Proccesing stock move started");
                 warehouseRepository.ProccessStockMove();
-                WriteLine("Proccesing stock move completed");
+                WriteWarehouseLine("Proccesing stock move completed");
 
                 foreach (DataRow entityRow in dtEntity.Rows)
                 {
                     string entityName = entityRow["ENTITYNAME"].ToString();
                     DataTable dtEntityWiseData = warehouseRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"]);
-                    WriteLine($"Found {dtEntityWiseData.Rows.Count} records to up sync in entity : {entityName} ");
+                    WriteWarehouseLine($"Found {dtEntityWiseData.Rows.Count} records to up sync in entity : {entityName} ");
                     if (dtEntityWiseData?.Rows.Count > 0)
                     {
                         cloudRepository.SaveData(entityName, dtEntityWiseData);
@@ -57,7 +66,7 @@ namespace WarehouseCloudSync
                 {
                     string entityName = entityRow["ENTITYNAME"].ToString();
                     DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"]);
-                    WriteLine($"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
+                    WriteWarehouseLine($"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
                     if (dtEntityWiseData?.Rows.Count > 0)
                     {
                         warehouseRepository.SaveData(entityName, dtEntityWiseData);
@@ -65,28 +74,42 @@ namespace WarehouseCloudSync
                     }
                 }
                 
-                WriteLine("Proccesing Dayclosures started");
+                WriteWarehouseLine("Proccesing Dayclosures started");
                 warehouseRepository.ProccessDayClosures();
-                WriteLine("Proccesing Dayclosures completed");
+                WriteWarehouseLine("Proccesing Dayclosures completed");
 
-                WriteLine($"Warehouse sync completed");
+                WriteWarehouseLine($"Warehouse sync completed");
             }
             catch (Exception ex)
             {
-                WriteLine(ex.Message);
-                WriteLine(ex.StackTrace);
+                WriteWarehouseLine(ex.Message);
+                WriteWarehouseLine(ex.StackTrace);
             }
-            Thread.Sleep(5 * 60 * 1000);
-            StartSync();
+        }
+
+        public static void WriteWarehouseLine(string line)
+        {
+            WriteLine("WH_SYNC", line);
+        }
+
+        public static void WriteHomeDeliveryLine(string line)
+        {
+            WriteLine("HOME_DELIVERY", line);
         }
 
         public static void WriteLine(string line)
         {
-            Console.WriteLine(line);
+            WriteLine("SYSTEM", line);
+        }
+
+        private static void WriteLine(string prefix, string line)
+        {
+            string formattedLine = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [{prefix}] {line}";
+            Console.WriteLine(formattedLine);
 
             if (string.IsNullOrEmpty(logPath)) return;
 
-            File.AppendAllText(logPath, $"{line}\n");
+            File.AppendAllText(logPath, $"{formattedLine}\n");
         }
     }
 }

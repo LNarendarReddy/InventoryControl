@@ -13,6 +13,8 @@ namespace WarehouseCloudSync
 {
     public partial class NSRetailWareHouseCloudSync : ServiceBase
     {
+        private ApplicationCoordinator coordinator;
+
         public NSRetailWareHouseCloudSync()
         {
             InitializeComponent();
@@ -20,11 +22,15 @@ namespace WarehouseCloudSync
 
         protected override void OnStart(string[] args)
         {
-            new Thread(new ThreadStart(new SyncData().StartSync)).Start();
+            coordinator = new ApplicationCoordinator();
+            coordinator.Start();
         }
 
         protected override void OnStop()
         {
+            coordinator?.Stop(TimeSpan.FromSeconds(30));
+            coordinator?.Dispose();
+            coordinator = null;
         }
 
     }

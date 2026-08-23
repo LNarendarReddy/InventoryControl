@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -56,7 +56,7 @@ namespace WarehouseCloudSync.Data
             catch (Exception ex)
             {
                 transaction?.Rollback();
-                SyncData.WriteLine(ex.ToString());
+                SyncData.WriteWarehouseLine(ex.ToString());
                 throw new Exception("Error While saving Entity wise data List", ex);
             }
             finally
@@ -86,7 +86,7 @@ namespace WarehouseCloudSync.Data
             catch (Exception ex)
             {
                 transaction?.Rollback();
-                SyncData.WriteLine(ex.ToString());
+                SyncData.WriteWarehouseLine(ex.ToString());
                 throw new Exception("Error While proccesing day closures", ex);
             }
             finally
@@ -100,7 +100,7 @@ namespace WarehouseCloudSync.Data
             {
                 if (count != null && int.TryParse(count.ToString(), out int countValue) && countValue > 0)
                 {
-                    SyncData.WriteLine($"Continuing previous day closure process");
+                    SyncData.WriteWarehouseLine($"Continuing previous day closure process");
                     ProccessDayClosures();
                 }
             }
@@ -156,7 +156,7 @@ namespace WarehouseCloudSync.Data
             catch (Exception ex)
             {
                 transaction?.Rollback();
-                SyncData.WriteLine(ex.ToString());
+                SyncData.WriteWarehouseLine(ex.ToString());
                 throw new Exception("Error While proccesing stock moves", ex);
             }
             finally
