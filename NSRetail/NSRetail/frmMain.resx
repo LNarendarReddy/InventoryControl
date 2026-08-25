@@ -166,6 +166,31 @@
         LDJDMjIsMTcuMSwyMS4xLDE4LDIwLDE4eiIgY2xhc3M9IlJlZCIgLz4NCiAgPC9nPg0KPC9zdmc+Cw==
 </value>
   </data>
+  <data name="btnPOSReleaseManagement.Caption" xml:space="preserve">
+    <value>POS Release Management</value>
+  </data>
+  <data name="btnPOSReleaseManagement.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v22.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIyLjIsIFZlcnNpb249MjIuMi4x
+        NS4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAB1E
+        ZXZFeHByZXNzLlV0aWxzLlN2Zy5TdmdJbWFnZQEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAB3AwAAAu+7
+        vzw/eG1sIHZlcnNpb249JzEuMCcgZW5jb2Rpbmc9J1VURi04Jz8+DQo8c3ZnIHg9IjBweCIgeT0iMHB4
+        IiB2aWV3Qm94PSIwIDAgMzIgMzIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3Jn
+        LzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNw
+        YWNlPSJwcmVzZXJ2ZSIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAw
+        IDMyIDMyIj4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5CbGFja3tmaWxsOiM3MjcyNzI7fQoJ
+        LkJsdWV7ZmlsbDojMTE3N0Q3O30KCS5zdDB7b3BhY2l0eTowLjU7fQo8L3N0eWxlPg0KICA8ZyBpZD0i
+        TWFuYWdlX1JlbGF0aW9ucyI+DQogICAgPGcgY2xhc3M9InN0MCI+DQogICAgICA8cGF0aCBkPSJNMzEs
+        MzJoLThjLTAuNSwwLTEtMC41LTEtMXYtOGMwLTAuNSwwLjUtMSwxLTFoOGMwLjUsMCwxLDAuNSwxLDF2
+        OEMzMiwzMS41LDMxLjUsMzIsMzEsMzJ6IE0zMiw5VjEgICAgYzAtMC42LTAuNS0xLTEtMWgtOGMtMC41
+        LDAtMSwwLjQtMSwxdjhjMCwwLjYsMC41LDEsMSwxaDhDMzEuNSwxMCwzMiw5LjYsMzIsOXoiIGNsYXNz
+        PSJCbGFjayIgLz4NCiAgICA8L2c+DQogICAgPHBhdGggZD0iTTExLDIySDFjLTAuNiwwLTEtMC41LTEt
+        MVYxMWMwLTAuNiwwLjQtMSwxLTFoMTBjMC42LDAsMSwwLjQsMSwxdjEwQzEyLDIxLjUsMTEuNiwyMiwx
+        MSwyMnoiIGNsYXNzPSJCbHVlIiAvPg0KICAgIDxwYXRoIGQ9Ik0yMCwydjZsLTIuMy0yLjNsLTQsNGwt
+        MS40LTEuNGw0LTRMMTQsMkgyMHogTTE3LjcsMjYuM2wtNC00bC0xLjQsMS40bDQsNEwxNCwzMGg2di02
+        TDE3LjcsMjYuM3oiIGNsYXNzPSJCbGFjayIgLz4NCiAgPC9nPg0KPC9zdmc+Cw==
+</value>
+  </data>
   <data name="btnUser.Caption" xml:space="preserve">
     <value>User</value>
   </data>
@@ -2812,6 +2837,12 @@
     <value>btnBranchCouter</value>
   </data>
   <data name="&gt;&gt;btnBranchCouter.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v22.2, Version=22.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;btnPOSReleaseManagement.Name" xml:space="preserve">
+    <value>btnPOSReleaseManagement</value>
+  </data>
+  <data name="&gt;&gt;btnPOSReleaseManagement.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v22.2, Version=22.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;btnUser.Name" xml:space="preserve">

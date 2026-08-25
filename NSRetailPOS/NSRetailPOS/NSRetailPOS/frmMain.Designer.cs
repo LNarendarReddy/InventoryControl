@@ -1415,7 +1415,6 @@
             this.ClientSize = new System.Drawing.Size(1298, 724);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.Image = global::NSRetailPOS.Properties.Resources.Victory_Bazars_Logo_New;
-            this.IconOptions.LargeImage = global::NSRetailPOS.Properties.Resources.vLogo_Small_1;
             this.KeyPreview = true;
             this.Name = "frmMain";
             this.Text = "NSRetail POS";

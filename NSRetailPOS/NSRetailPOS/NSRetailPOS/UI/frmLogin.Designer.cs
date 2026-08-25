@@ -294,7 +294,6 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(553, 342);
             this.Controls.Add(this.layoutControl1);
-            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmLogin.IconOptions.Icon")));
             this.IconOptions.Image = global::NSRetailPOS.Properties.Resources.Victory_Bazars_Logo_New;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

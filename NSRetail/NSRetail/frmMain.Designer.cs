@@ -33,6 +33,7 @@
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnBranch = new DevExpress.XtraBars.BarButtonItem();
             this.btnBranchCouter = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPOSReleaseManagement = new DevExpress.XtraBars.BarButtonItem();
             this.btnUser = new DevExpress.XtraBars.BarButtonItem();
             this.btnCategory = new DevExpress.XtraBars.BarButtonItem();
             this.btnDealer = new DevExpress.XtraBars.BarButtonItem();
@@ -151,6 +152,7 @@
             this.ribbonControl1.SearchEditItem,
             this.btnBranch,
             this.btnBranchCouter,
+            this.btnPOSReleaseManagement,
             this.btnUser,
             this.btnCategory,
             this.btnDealer,
@@ -220,7 +222,7 @@
             this.bbiSupplierIndent,
             this.bbItemWithAddnlFields});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 88;
+            this.ribbonControl1.MaxItemId = 89;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -253,6 +255,15 @@
             this.btnBranchCouter.Name = "btnBranchCouter";
             this.btnBranchCouter.Tag = "D7371CA4-24FF-44FB-911B-7801FC5180F3";
             this.btnBranchCouter.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBranchCouter_ItemClick);
+            // 
+            // btnPOSReleaseManagement
+            // 
+            resources.ApplyResources(this.btnPOSReleaseManagement, "btnPOSReleaseManagement");
+            this.btnPOSReleaseManagement.Id = 88;
+            this.btnPOSReleaseManagement.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPOSReleaseManagement.ImageOptions.SvgImage")));
+            this.btnPOSReleaseManagement.Name = "btnPOSReleaseManagement";
+            this.btnPOSReleaseManagement.Tag = "D7371CA4-24FF-44FB-911B-7801FC5180F3";
+            this.btnPOSReleaseManagement.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPOSReleaseManagement_ItemClick);
             // 
             // btnUser
             // 
@@ -1056,6 +1067,7 @@
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.btnBranch);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnBranchCouter);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnPOSReleaseManagement);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             resources.ApplyResources(this.ribbonPageGroup1, "ribbonPageGroup1");
             // 
@@ -1211,6 +1223,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.BarButtonItem btnBranch;
         private DevExpress.XtraBars.BarButtonItem btnBranchCouter;
+        private DevExpress.XtraBars.BarButtonItem btnPOSReleaseManagement;
         private DevExpress.XtraBars.BarButtonItem btnUser;
         private DevExpress.XtraBars.BarButtonItem btnCategory;
         private DevExpress.XtraBars.BarButtonItem btnDealer;

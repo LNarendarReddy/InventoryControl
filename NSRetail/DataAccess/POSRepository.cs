@@ -1,7 +1,9 @@
 ﻿using Entity;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace DataAccess
 {
@@ -471,6 +473,66 @@ namespace DataAccess
             catch (Exception ex)
             {
                 throw new Exception($"Error While getting Branch expense image - {ex.Message}");
+            }
+        }
+
+        public DataSet GetPOSReleaseManagementData()
+        {
+            DataSet dsReleaseData = new DataSet();
+            try
+            {
+                using (SqlConnection connection = SQLCon.SqlCloudConn())
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_POS_RELEASEMANAGEMENT]";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsReleaseData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving POS Release Management Data", ex);
+            }
+
+            return dsReleaseData;
+        }
+
+        public int ReleasePOSBuildToCounters(IEnumerable<object> counterIDs, object userID)
+        {
+            try
+            {
+                DataTable dtCounterIDs = new DataTable();
+                dtCounterIDs.Columns.Add("COUNTERID", typeof(int));
+
+                foreach (int counterID in counterIDs.Select(Convert.ToInt32).Distinct())
+                    dtCounterIDs.Rows.Add(counterID);
+
+                if (dtCounterIDs.Rows.Count == 0)
+                    return 0;
+
+                using (SqlConnection connection = SQLCon.SqlCloudConn())
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_POS_RELEASEBUILD]";
+                    SqlParameter counterIDsParameter = cmd.Parameters.AddWithValue("@CounterIDs", dtCounterIDs);
+                    counterIDsParameter.SqlDbType = SqlDbType.Structured;
+                    counterIDsParameter.TypeName = "dbo.BRANCHCOUNTERIDTYPE";
+                    cmd.Parameters.AddWithValue("@USERID", userID);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex is SqlException && ex.Message.Contains("already released to the latest version"))
+                    throw new Exception(ex.Message, ex);
+
+                throw new Exception("Error While Releasing POS Build To Counters", ex);
             }
         }
     }

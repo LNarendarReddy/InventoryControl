@@ -273,6 +273,12 @@
     <Compile Include="Master\frmManufacturer.Designer.cs">
       <DependentUpon>frmManufacturer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\frmPOSReleaseManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmPOSReleaseManagement.Designer.cs">
+      <DependentUpon>frmPOSReleaseManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\User\frmAccessList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1510,6 +1516,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmManufacturer.resx">
       <DependentUpon>frmManufacturer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmPOSReleaseManagement.resx">
+      <DependentUpon>frmPOSReleaseManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\User\frmAccessList.resx">
       <DependentUpon>frmAccessList.cs</DependentUpon>

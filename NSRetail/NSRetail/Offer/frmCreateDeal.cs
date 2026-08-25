@@ -100,7 +100,7 @@ namespace NSRetail
                     return;
                 }
 
-                if (txtNumberOfFreeItems.Enabled && ToInt(txtNumberOfFreeItems.EditValue) <= 0)
+                if (cmbOfferType.EditValue.Equals(1010) && txtNumberOfFreeItems.Enabled && ToInt(txtNumberOfFreeItems.EditValue) <= 0)
                 {
                     XtraMessageBox.Show("Number of free items must be greater than zero", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtNumberOfFreeItems.Focus();
@@ -187,8 +187,8 @@ namespace NSRetail
                 {
                     txtNumberOfItems.Enabled = true;
                     txtNumberOfFreeItems.Enabled = true;
-                    //txtFreeItemPrice.Enabled = false;
-                    //cmbFreeItemCode.Enabled = false;
+                    txtFreeItemPrice.Enabled = false;
+                    cmbFreeItemCode.Enabled = false;
                 }
             }
         }

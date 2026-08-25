@@ -202,6 +202,16 @@ namespace NSRetail
             obj.Show();
         }
 
+        private void btnPOSReleaseManagement_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmPOSReleaseManagement obj = new frmPOSReleaseManagement();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
         private void btnModeOfPayment_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmModeofPayment obj = new frmModeofPayment();
