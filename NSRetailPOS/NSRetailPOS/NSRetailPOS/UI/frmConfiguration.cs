@@ -58,9 +58,13 @@ namespace NSRetailPOS.UI
             {
                 if (!dxValidationProvider1.Validate())
                     return;
+
+                objCloudRepository.ValidateCounterVersion(cmbCounter.EditValue, Utility.AppVersion, objSyncRepository.GetDBVersion());
+
                 SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
                 Utility.branchInfo.BranchCounterID = cmbCounter.EditValue;
                 Utility.branchInfo.BranchID = cmbBranch.EditValue;
+
                 string HDDSno = Utility.GetHDDSerialNumber();
                 objCloudRepository.CheckOrAddHDDSerialNumber(Utility.branchInfo.BranchCounterID, HDDSno);
                 if(!await Utility.StartSync(true, true))

@@ -46,9 +46,9 @@ namespace NSRetailPOS
         public static event EventHandler ItemOrCodeChanged;
         public static Form ActiveForm;
 
-        public static string AppVersion = "1.9.8";
+        public static string AppVersion = "1.9.9";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(23-08-2026)";
+        public static string VersionDate = "(28-08-2026)";
 
         public static Bill GetBill(DataSet dsBillDetails)
         {

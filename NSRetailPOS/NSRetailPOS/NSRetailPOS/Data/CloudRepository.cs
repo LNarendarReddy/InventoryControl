@@ -204,6 +204,27 @@ namespace NSRetailPOS.Data
             }
         }
 
+        public void ValidateCounterVersion(object branchCounterID, string appVersion, string dbVersion)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlCloudconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_COUNTERVERSION]";
+                    cmd.Parameters.AddWithValue("@COUNTERID", branchCounterID);
+                    cmd.Parameters.AddWithValue("@APPVERSION", appVersion);
+                    cmd.Parameters.AddWithValue("@DBVERSION", dbVersion);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                SQLCon.SqlCloudconn().Close();
+            }
+        }
+
         public Tuple<string,string> GetPOSVersion()
         {
             Tuple<string, string> posversion = null;
