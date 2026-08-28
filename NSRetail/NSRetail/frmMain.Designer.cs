@@ -262,7 +262,7 @@
             this.btnPOSReleaseManagement.Id = 88;
             this.btnPOSReleaseManagement.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPOSReleaseManagement.ImageOptions.SvgImage")));
             this.btnPOSReleaseManagement.Name = "btnPOSReleaseManagement";
-            this.btnPOSReleaseManagement.Tag = "A7F3C9D2-8B41-4E6A-9D57-2C1F8E3B6A90";
+            this.btnPOSReleaseManagement.Tag = "D7371CA4-24FF-44FB-911B-7801FC5180F3";
             this.btnPOSReleaseManagement.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPOSReleaseManagement_ItemClick);
             // 
             // btnUser
