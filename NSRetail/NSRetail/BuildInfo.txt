@@ -1,4 +1,7 @@
-﻿v3.9.7
+﻿v3.9.8
+-- Added POS release management support
+
+v3.9.7
 -- Added BuyN GetN offertype support
 -- Enabled delete multiple branches in offer branch screens
 -- Added serial numbers in offer branch screen
