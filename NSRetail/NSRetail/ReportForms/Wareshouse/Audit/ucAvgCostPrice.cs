@@ -12,13 +12,20 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
 
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
-                { "CREATEDBY", "Created By" }
-                , { "DELETEDBY", "Deleted By" }
-                , { "DELETEDDATE", "Deleted Date" }
-                , { "CREATEDTIME", "Created Time" }
-                , { "DELETEDTIME", "Deleted Time" }
-                , { "BRANDNAME", "Brand" }
+                { "BRANDNAME", "Brand" }
                 , { "MANUFACTURERNAME", "Manufacturer" }
+                , { "STOCKINCOSTPRICEWOT", "Cur.Mon. Stock in CP WOT" }
+                , { "STOCKINCOSTPRICEWT", "Cur.Mon. Stock in CP WT" }
+                , { "STOCKINQTY", "Cur.Mon. Stock in Qty" }
+                , { "PREVMONCOSTPRICEWOT", "Prev.Mon. Avg CP WOT" }
+                , { "PREVMONCOSTPRICEWT", "Prev.Mon. Avg CP WT" }
+                , { "PREVMONCUMULATIVEFYQTY", "Prev.Mon. Cumulative Qty" }
+                , { "PREVFYCOSTPRICEWOT", "Prev.F.Y. Avg CP WOT" }
+                , { "PREVFYCOSTPRICEWT", "Prev.F.Y. Avg CP WT" }
+                , { "COSTPRICEWOT", "Final CP WOT" }
+                , { "COSTPRICEWT", "Final CP WT" }
+                , { "CUMULATIVEFYQTY", "Final Cumulative Qty" }
+                , { "AVGCPDATE", "Avg. CP Date" }
             };
 
             sluSKUCode.Properties.DataSource = Utility.GetItemCodeList();
