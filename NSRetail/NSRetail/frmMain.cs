@@ -506,10 +506,14 @@ namespace NSRetail
             auditReports.SubCategory.Add(new ReportHolder("23AC4A6A-CD23-4597-8C32-812A3D757396") { ReportName = "Item Cost Price", SearchCriteriaControl = new ucCostPriceAudit() });      
             auditReports.SubCategory.Add(new ReportHolder("602C0AD1-DB66-415F-812B-F8739F162312") { ReportName = "Deleted Item codes", SearchCriteriaControl = new ucDeletedItemCodes() });      
             auditReports.SubCategory.Add(new ReportHolder("602C0AD1-DB66-415F-812B-F8739F162312") { ReportName = "Deleted Item prices", SearchCriteriaControl = new ucDeletedItemPrices() });
-            auditReports.SubCategory.Add(new ReportHolder("CA340805-E65A-4FCA-8BF7-6A75630703E1") { ReportName = "Offer threshold", SearchCriteriaControl = new ucOfferThreshold() });
-            auditReports.SubCategory.Add(new ReportHolder("D876AE08-B34A-4BE4-972D-2EFA6044FEFC") { ReportName = "Offer status", SearchCriteriaControl = new ucOfferStatus() });
             auditReports.SubCategory.Add(new ReportHolder("B69439E2-818F-41DE-AE2F-55A8F3A7007B") { ReportName = "Average Cost price", SearchCriteriaControl = new ucAvgCostPrice() });
             reportList.Add(auditReports);
+
+            ReportHolder offersReports = new ReportHolder("D4B8F2A1-6C93-47E5-B1D7-9A3F5C8E2B64") { ReportName = "Offer Reports" };
+            offersReports.SubCategory.Add(new ReportHolder("CA340805-E65A-4FCA-8BF7-6A75630703E1") { ReportName = "Offer threshold", SearchCriteriaControl = new ucOfferThreshold() });
+            offersReports.SubCategory.Add(new ReportHolder("D876AE08-B34A-4BE4-972D-2EFA6044FEFC") { ReportName = "Offer status", SearchCriteriaControl = new ucOfferStatus() });
+            offersReports.SubCategory.Add(new ReportHolder("1A7E37C7-CF07-4F36-98F9-3639A8EE9E5C") { ReportName = "Deals tracking", SearchCriteriaControl = new ucDealsTrackingReport() });
+            reportList.Add(offersReports);
 
             ReportHolder differenceReports = new ReportHolder("671AB139-0564-4D24-B5B3-F5D859EBEDEC") { ReportName = "Difference Reports" };
             differenceReports.SubCategory.Add(new ReportHolder("AC133FF5-DDDD-425C-B214-D26AF5E4BF6D") { ReportName = "Indent vs Dispatch", SearchCriteriaControl = new ucIndentDispatchDifferences() });

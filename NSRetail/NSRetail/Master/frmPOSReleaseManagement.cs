@@ -94,7 +94,7 @@ namespace NSRetail.Master
                 { "COUNTERID", "Counter ID" },
                 { "BRANCHNAME", "Branch" },
                 { "BRANCHCODE", "Branch Code" },
-                { "COUNTERNAME", "Counter" },
+                { "COUNTERNAME", "Counter Name" },
                 { "COUNTERTYPE", "Counter Type" },
                 { "INSTALLEDAPPVERSION", "Installed App Version" },
                 { "INSTALLEDDBVERSION", "Installed DB Version" },
@@ -117,7 +117,18 @@ namespace NSRetail.Master
 
             FormatDateColumn("BUILDRELEASEDATE");
             FormatDateColumn("LASTVERSIONCHECK");
+            HideColumn("COUNTERID");
+            HideColumn("INSTALLEDTARGETMATCH");
             gvCounters.BestFitColumns();
+        }
+
+        private void HideColumn(string fieldName)
+        {
+            GridColumn column = gvCounters.Columns.ColumnByFieldName(fieldName);
+            if (column == null)
+                return;
+
+            column.Visible = false;
         }
 
         private void FormatDateColumn(string fieldName)

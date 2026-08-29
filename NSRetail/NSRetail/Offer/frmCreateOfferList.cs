@@ -1,10 +1,12 @@
 ﻿using DataAccess;
+using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using Entity;
 using ErrorManagement;
+using NSRetail.ReportForms.Wareshouse.Profitability;
 using NSRetail.Utilities;
 using System;
 using System.Collections.Generic;
@@ -141,18 +143,53 @@ namespace NSRetail
             if (e.Valid)
                 view.ClearColumnErrors();
         }
+        private void gvOffer_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType != GridMenuType.Row ||
+                e.HitInfo.RowHandle < 0 ||
+                e.HitInfo.Column != gridColumn24)
+                return;
+
+            gvOffer.FocusedRowHandle = e.HitInfo.RowHandle;
+            gvOffer.FocusedColumn = e.HitInfo.Column;
+
+            object itemPriceID = gvOffer.GetFocusedRowCellValue("ITEMPRICEID");
+            if (itemPriceID == null || itemPriceID == DBNull.Value)
+                return;
+
+            e.Menu.Items.Add(new DXMenuItem("View individual branch stocks", ViewIndividualBranchStocks_Click));
+        }
+        private void ViewIndividualBranchStocks_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                object itemPriceID = gvOffer.GetFocusedRowCellValue("ITEMPRICEID");
+                if (itemPriceID == null || itemPriceID == DBNull.Value)
+                    return;
+
+                frmBranchWiseStock obj = new frmBranchWiseStock(itemPriceID);
+                obj.ShowInTaskbar = false;
+                obj.StartPosition = FormStartPosition.CenterScreen;
+                obj.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                AppLog.Error(ex);
+            }
+        }
         private void btnImport_Click(object sender, EventArgs e)
         {
             XtraOpenFileDialog xtraOpenFileDialog1 = new XtraOpenFileDialog();
             xtraOpenFileDialog1.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
-            xtraOpenFileDialog1.Filter = "excel files (*.xls,*.xlsx)|*.xls,*.xlsx";
+            xtraOpenFileDialog1.Filter = "CSV files (*.csv)|*.csv";
             if (xtraOpenFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 IOverlaySplashScreenHandle handle = SplashScreenManager.ShowOverlayForm(this);
                 try
                 {
                     string filePath = xtraOpenFileDialog1.FileName;
-                    DataTable dt = Utility.ImportExcelXLS(filePath);
+                    DataTable dt = Utility.ImportCSV(filePath);
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         DataTable dtTemp = dt.Copy();

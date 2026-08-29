@@ -89,6 +89,7 @@
             this.gridColumn2});
             this.gvBranchWiseStock.GridControl = this.gcBranchWiseStock;
             this.gvBranchWiseStock.Name = "gvBranchWiseStock";
+            this.gvBranchWiseStock.OptionsBehavior.Editable = false;
             this.gvBranchWiseStock.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn1

@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
+using Microsoft.VisualBasic.FileIO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
@@ -60,8 +61,8 @@ namespace NSRetail
         public static string BarcodePrinter = string.Empty;
         public static string A4SizePrinter = string.Empty;
         public static string ThermalPrinter = string.Empty;
-        public static string AppVersion = "3.9.8";
-        public static string VersionDate = "(28-08-2026)";
+        public static string AppVersion = "3.9.9";
+        public static string VersionDate = "(29-08-2026)";
 
         public static void Setfocus(GridView view, string ColumnName, object Value)
         {
@@ -437,6 +438,48 @@ namespace NSRetail
             {
                 throw ex;
             }
+            return dt;
+        }
+
+        public static DataTable ImportCSV(string filePath)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (TextFieldParser parser = new TextFieldParser(filePath))
+                {
+                    parser.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited;
+                    parser.SetDelimiters(",");
+                    parser.HasFieldsEnclosedInQuotes = true;
+
+                    if (parser.EndOfData)
+                        return dt;
+
+                    string[] headers = parser.ReadFields();
+                    foreach (string header in headers)
+                    {
+                        dt.Columns.Add(header.Trim());
+                    }
+
+                    while (!parser.EndOfData)
+                    {
+                        string[] fields = parser.ReadFields();
+                        DataRow dr = dt.NewRow();
+
+                        for (int i = 0; i < dt.Columns.Count && i < fields.Length; i++)
+                        {
+                            dr[i] = fields[i];
+                        }
+
+                        dt.Rows.Add(dr);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
             return dt;
         }
 

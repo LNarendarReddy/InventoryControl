@@ -619,10 +619,6 @@ namespace DataAccess
             {
                 throw new Exception("Error while retrieving offer list", ex);
             }
-            finally
-            {
-                
-            }
             return dt;
         }
         public void DeleteOfferFromBase(object OfferID, object ItemCodeID, object UserID)

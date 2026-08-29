@@ -1,4 +1,10 @@
-﻿v3.9.8
+﻿v3.9.9
+-- Added Deals tracking report under Warehouse Offer Reports with deal type, branch, date, periodicity, include settings, quantity, and sale value support
+-- Added Total Stock column in Create Offer List based on item MRP/ItemPrice stock across all branches including WH
+-- Added right-click option on Total Stock to view individual branch-wise stock for the selected MRP
+-- Changed Create Offer List import from Excel to CSV to avoid Excel formatting and version issues
+
+v3.9.8
 -- Added POS release management support
 
 v3.9.7
