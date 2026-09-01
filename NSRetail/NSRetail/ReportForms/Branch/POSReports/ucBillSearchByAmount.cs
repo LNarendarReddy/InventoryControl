@@ -36,7 +36,8 @@ namespace NSRetail.ReportForms.Branch.POSReports
             ContextmenuItems = new Dictionary<string, string>
             { 
                 {"Items", "1414895B-9B4D-4413-BC82-D5410EB7DAC9" }, 
-                {"Print" , "4B326209-0095-413D-9DC6-6148E2A516DE" } 
+                {"Print" , "4B326209-0095-413D-9DC6-6148E2A516DE" },
+                {"Print A4" , "4B326209-0095-413D-9DC6-6148E2A516DE" }
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>
@@ -98,7 +99,7 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 obj.IconOptions.ShowIcon = false;
                 obj.ShowDialog();
             }
-            else if(buttonText == "Print")
+            else if(buttonText == "Print" || buttonText == "Print A4")
             {
                 Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
@@ -107,34 +108,56 @@ namespace NSRetail.ReportForms.Branch.POSReports
                 };
                 DataSet dsBillDetails = new ReportRepository().GetReportDataset("USP_RPT_POS_BILL_PRINT", parameters);
 
-                frmBillOverrideOptions overrideOptions = new frmBillOverrideOptions(dsBillDetails.Tables[0].Rows[0]["CUSTOMERNAME"], dsBillDetails.Tables[0].Rows[0]["CUSTOMERNUMBER"]);
+                bool isA4Print = buttonText == "Print A4";
+                frmBillOverrideOptions overrideOptions = new frmBillOverrideOptions(
+                    dsBillDetails.Tables[0].Rows[0]["CUSTOMERNAME"],
+                    dsBillDetails.Tables[0].Rows[0]["CUSTOMERNUMBER"],
+                    null,
+                    isA4Print);
                 if (overrideOptions.ShowDialog() != DialogResult.OK) return;
                 
                 dsBillDetails.Tables[0].Rows[0]["CUSTOMERNAME"] = overrideOptions.CustomerName;
                 dsBillDetails.Tables[0].Rows[0]["CUSTOMERNUMBER"] = overrideOptions.CustomerNumber;
 
-                rptBill rpt = new rptBill(dsBillDetails.Tables[1], dsBillDetails.Tables[2]);
-                rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
-                rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
-                rpt.Parameters["FSSAI"].Value = "10114004000548";
-                rpt.Parameters["Address"].Value = dsBillDetails.Tables[0].Rows[0]["ADDRESS"];
-                rpt.Parameters["BillDate"].Value = dsBillDetails.Tables[0].Rows[0]["BILLCLOSEDDATE"];
-                rpt.Parameters["BillNumber"].Value = dsBillDetails.Tables[0].Rows[0]["BILLNUMBER"];
-                rpt.Parameters["CustomerName"].Value = dsBillDetails.Tables[0].Rows[0]["CUSTOMERNAME"];
-                rpt.Parameters["CustomerNumber"].Value = dsBillDetails.Tables[0].Rows[0]["CUSTOMERNUMBER"];
-                rpt.Parameters["CustomerGST"].Value = dsBillDetails.Tables[0].Rows[0]["CUSTOMERGST"];
-                rpt.Parameters["TenderedCash"].Value = dsBillDetails.Tables[0].Rows[0]["TENDEREDCASH"];
-                rpt.Parameters["TenderedChange"].Value = dsBillDetails.Tables[0].Rows[0]["TENDEREDCHANGE"];
-                rpt.Parameters["IsDoorDelivery"].Value = dsBillDetails.Tables[0].Rows[0]["ISDOORDELIVERY"];
-                rpt.Parameters["BranchName"].Value = dsBillDetails.Tables[0].Rows[0]["BRANCHNAME"];
-                rpt.Parameters["CounterName"].Value = dsBillDetails.Tables[0].Rows[0]["COUNTERNAME"];
-                rpt.Parameters["Phone"].Value = dsBillDetails.Tables[0].Rows[0]["PHONENO"];
-                rpt.Parameters["UserName"].Value = dsBillDetails.Tables[0].Rows[0]["CREATEDBY"];
-                rpt.Parameters["RoundingFactor"].Value = dsBillDetails.Tables[0].Rows[0]["ROUNDING"];
-                rpt.Parameters["IsIGSTBill"].Value = dsBillDetails.Tables[0].Rows[0]["IsIGSTBill"];
-                rpt.Parameters["IsDuplicate"].Value = true;
+                XtraReport rpt;
+                if (isA4Print)
+                    rpt = new rptBillA4(dsBillDetails.Tables[1], dsBillDetails.Tables[2]);
+                else
+                    rpt = new rptBill(dsBillDetails.Tables[1], dsBillDetails.Tables[2]);
+                SetBillParameters(rpt, dsBillDetails.Tables[0].Rows[0], !isA4Print);
+                if (isA4Print)
+                {
+                    rpt.Parameters["CustomerAddress"].Value = overrideOptions.CustomerAddress;
+                    rpt.Parameters["ShipToName"].Value = overrideOptions.ShipToName;
+                    rpt.Parameters["ShipToNumber"].Value = overrideOptions.ShipToNumber;
+                    rpt.Parameters["ShipToAddress"].Value = overrideOptions.ShipToAddress;
+                }
+
                 rpt.ShowRibbonPreview();
             }
+        }
+
+        private static void SetBillParameters(XtraReport rpt, DataRow drBill, bool isDuplicate)
+        {
+            rpt.Parameters["GSTIN"].Value = "37AAICV7240C1ZC";
+            rpt.Parameters["CIN"].Value = "U51390AP2022PTC121579";
+            rpt.Parameters["FSSAI"].Value = "10114004000548";
+            rpt.Parameters["Address"].Value = drBill["ADDRESS"];
+            rpt.Parameters["BillDate"].Value = drBill["BILLCLOSEDDATE"];
+            rpt.Parameters["BillNumber"].Value = drBill["BILLNUMBER"];
+            rpt.Parameters["CustomerName"].Value = drBill["CUSTOMERNAME"];
+            rpt.Parameters["CustomerNumber"].Value = drBill["CUSTOMERNUMBER"];
+            rpt.Parameters["CustomerGST"].Value = drBill["CUSTOMERGST"];
+            rpt.Parameters["TenderedCash"].Value = drBill["TENDEREDCASH"];
+            rpt.Parameters["TenderedChange"].Value = drBill["TENDEREDCHANGE"];
+            rpt.Parameters["IsDoorDelivery"].Value = drBill["ISDOORDELIVERY"];
+            rpt.Parameters["BranchName"].Value = drBill["BRANCHNAME"];
+            rpt.Parameters["CounterName"].Value = drBill["COUNTERNAME"];
+            rpt.Parameters["Phone"].Value = drBill["PHONENO"];
+            rpt.Parameters["UserName"].Value = drBill["CREATEDBY"];
+            rpt.Parameters["RoundingFactor"].Value = drBill["ROUNDING"];
+            rpt.Parameters["IsIGSTBill"].Value = drBill["IsIGSTBill"];
+            rpt.Parameters["IsDuplicate"].Value = isDuplicate;
         }
     }
 }

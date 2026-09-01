@@ -874,6 +874,12 @@
     <Compile Include="Reports\rptBill.Designer.cs">
       <DependentUpon>rptBill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptBillA4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptBillA4.Designer.cs">
+      <DependentUpon>rptBillA4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptBRefund.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1822,6 +1828,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptBill.resx">
       <DependentUpon>rptBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptBillA4.resx">
+      <DependentUpon>rptBillA4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptBRefund.resx">
       <DependentUpon>rptBRefund.cs</DependentUpon>
