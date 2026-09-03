@@ -343,6 +343,30 @@ namespace DataAccess
             return dtOffers;
         }
 
+        public DataTable GetOffersByItem(object ItemID)
+        {
+            DataTable dtOffers = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_GETOFFERS_BYITEM]";
+                    cmd.Parameters.AddWithValue("@ITEMID", ItemID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dtOffers);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving SKU Offers", ex);
+            }
+            return dtOffers;
+        }
+
         public void DeleteItemPrice(object ItemPriceID, object UserID)
         {
             SqlTransaction transaction = null;

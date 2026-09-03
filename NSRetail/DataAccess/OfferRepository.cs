@@ -229,11 +229,9 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
+                if (ex.Message.Contains("UC_OFFERCODE"))
+                    throw new Exception("Offer code already exists", ex);
                 throw new Exception("Error While saving offer", ex);
-            }
-            finally
-            {
-                
             }
             return OfferID;
         }

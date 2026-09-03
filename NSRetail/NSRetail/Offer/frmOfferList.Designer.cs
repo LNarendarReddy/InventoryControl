@@ -58,7 +58,7 @@
             this.gcOffer = new DevExpress.XtraGrid.GridControl();
             this.gvOffer = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcOfferCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcOfferName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -149,14 +149,14 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1270, 398, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1233, 811);
+            this.layoutControl1.Size = new System.Drawing.Size(1233, 760);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // gcOffer
             // 
             this.gcOffer.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.gcOffer.Location = new System.Drawing.Point(8, 51);
+            this.gcOffer.Location = new System.Drawing.Point(8, 48);
             this.gcOffer.MainView = this.gvOffer;
             this.gcOffer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcOffer.Name = "gcOffer";
@@ -167,7 +167,7 @@
             this.btnViewItems,
             this.txtDecimal,
             this.btnExclussion});
-            this.gcOffer.Size = new System.Drawing.Size(1217, 752);
+            this.gcOffer.Size = new System.Drawing.Size(1217, 704);
             this.gcOffer.TabIndex = 4;
             this.gcOffer.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvOffer});
@@ -181,7 +181,7 @@
             this.gvOffer.Appearance.Row.Options.UseFont = true;
             this.gvOffer.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
-            this.gridColumn2,
+            this.gcOfferCode,
             this.gcOfferName,
             this.gridColumn4,
             this.gridColumn5,
@@ -215,7 +215,7 @@
             this.gcOfferExclusion,
             this.gcMRP,
             this.gcNoOfFreeItems});
-            this.gvOffer.DetailHeight = 431;
+            this.gvOffer.DetailHeight = 404;
             this.gvOffer.GridControl = this.gcOffer;
             this.gvOffer.Name = "gvOffer";
             this.gvOffer.OptionsView.ShowFooter = true;
@@ -232,14 +232,16 @@
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Width = 87;
             // 
-            // gridColumn2
+            // gcOfferCode
             // 
-            this.gridColumn2.Caption = "Offer Code";
-            this.gridColumn2.FieldName = "OFFERCODE";
-            this.gridColumn2.MinWidth = 23;
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
-            this.gridColumn2.Width = 87;
+            this.gcOfferCode.Caption = "Offer Code";
+            this.gcOfferCode.FieldName = "OFFERCODE";
+            this.gcOfferCode.MinWidth = 23;
+            this.gcOfferCode.Name = "gcOfferCode";
+            this.gcOfferCode.OptionsColumn.AllowEdit = false;
+            this.gcOfferCode.Visible = true;
+            this.gcOfferCode.VisibleIndex = 1;
+            this.gcOfferCode.Width = 87;
             // 
             // gcOfferName
             // 
@@ -260,7 +262,7 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 1;
+            this.gridColumn4.VisibleIndex = 2;
             this.gridColumn4.Width = 76;
             // 
             // gridColumn5
@@ -271,7 +273,7 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 2;
+            this.gridColumn5.VisibleIndex = 3;
             this.gridColumn5.Width = 76;
             // 
             // gcOfferValue
@@ -284,7 +286,7 @@
             this.gcOfferValue.Name = "gcOfferValue";
             this.gcOfferValue.OptionsColumn.AllowEdit = false;
             this.gcOfferValue.Visible = true;
-            this.gcOfferValue.VisibleIndex = 4;
+            this.gcOfferValue.VisibleIndex = 5;
             this.gcOfferValue.Width = 76;
             // 
             // gridColumn8
@@ -313,7 +315,7 @@
             this.gcOfferType.Name = "gcOfferType";
             this.gcOfferType.OptionsColumn.AllowEdit = false;
             this.gcOfferType.Visible = true;
-            this.gcOfferType.VisibleIndex = 3;
+            this.gcOfferType.VisibleIndex = 4;
             this.gcOfferType.Width = 76;
             // 
             // gridColumn23
@@ -333,7 +335,7 @@
             this.gcAppliesto.Name = "gcAppliesto";
             this.gcAppliesto.OptionsColumn.AllowEdit = false;
             this.gcAppliesto.Visible = true;
-            this.gcAppliesto.VisibleIndex = 5;
+            this.gcAppliesto.VisibleIndex = 6;
             this.gcAppliesto.Width = 76;
             // 
             // gridColumn11
@@ -353,7 +355,7 @@
             this.gcCategory.Name = "gcCategory";
             this.gcCategory.OptionsColumn.AllowEdit = false;
             this.gcCategory.Visible = true;
-            this.gcCategory.VisibleIndex = 6;
+            this.gcCategory.VisibleIndex = 7;
             this.gcCategory.Width = 95;
             // 
             // gridColumn15
@@ -432,7 +434,7 @@
             this.gcNoOfItems.Name = "gcNoOfItems";
             this.gcNoOfItems.OptionsColumn.AllowEdit = false;
             this.gcNoOfItems.Visible = true;
-            this.gcNoOfItems.VisibleIndex = 9;
+            this.gcNoOfItems.VisibleIndex = 10;
             // 
             // gcOfferThresholdPrice
             // 
@@ -442,7 +444,7 @@
             this.gcOfferThresholdPrice.Name = "gcOfferThresholdPrice";
             this.gcOfferThresholdPrice.OptionsColumn.AllowEdit = false;
             this.gcOfferThresholdPrice.Visible = true;
-            this.gcOfferThresholdPrice.VisibleIndex = 8;
+            this.gcOfferThresholdPrice.VisibleIndex = 9;
             this.gcOfferThresholdPrice.Width = 87;
             // 
             // txtDecimal
@@ -472,7 +474,7 @@
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 7;
+            this.gridColumn19.VisibleIndex = 8;
             this.gridColumn19.Width = 72;
             // 
             // gcViewBranches
@@ -486,7 +488,7 @@
             this.gcViewBranches.MinWidth = 23;
             this.gcViewBranches.Name = "gcViewBranches";
             this.gcViewBranches.Visible = true;
-            this.gcViewBranches.VisibleIndex = 12;
+            this.gcViewBranches.VisibleIndex = 13;
             this.gcViewBranches.Width = 80;
             // 
             // btnViewBranches
@@ -533,7 +535,7 @@
             this.gcEdit.MinWidth = 23;
             this.gcEdit.Name = "gcEdit";
             this.gcEdit.Visible = true;
-            this.gcEdit.VisibleIndex = 11;
+            this.gcEdit.VisibleIndex = 12;
             this.gcEdit.Width = 64;
             // 
             // btnEdit
@@ -557,7 +559,7 @@
             this.gcDelete.MinWidth = 23;
             this.gcDelete.Name = "gcDelete";
             this.gcDelete.Visible = true;
-            this.gcDelete.VisibleIndex = 13;
+            this.gcDelete.VisibleIndex = 14;
             this.gcDelete.Width = 73;
             // 
             // btnDelete
@@ -618,14 +620,14 @@
             this.gcNoOfFreeItems.Name = "gcNoOfFreeItems";
             this.gcNoOfFreeItems.OptionsColumn.AllowEdit = false;
             this.gcNoOfFreeItems.Visible = true;
-            this.gcNoOfFreeItems.VisibleIndex = 10;
+            this.gcNoOfFreeItems.VisibleIndex = 11;
             // 
             // btnViewReport
             // 
             this.btnViewReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnViewReport.ImageOptions.SvgImage")));
             this.btnViewReport.Location = new System.Drawing.Point(870, 8);
             this.btnViewReport.Name = "btnViewReport";
-            this.btnViewReport.Size = new System.Drawing.Size(115, 39);
+            this.btnViewReport.Size = new System.Drawing.Size(115, 36);
             this.btnViewReport.StyleController = this.layoutControl1;
             this.btnViewReport.TabIndex = 7;
             this.btnViewReport.Text = "View Report";
@@ -639,7 +641,7 @@
             this.btnCancel.Location = new System.Drawing.Point(1115, 8);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 39);
+            this.btnCancel.Size = new System.Drawing.Size(110, 36);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
@@ -652,7 +654,7 @@
             this.btnNew.Location = new System.Drawing.Point(989, 8);
             this.btnNew.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(122, 39);
+            this.btnNew.Size = new System.Drawing.Size(122, 36);
             this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 5;
             this.btnNew.Text = "New";
@@ -672,15 +674,15 @@
             this.layoutControlItem2});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.Root.Size = new System.Drawing.Size(1233, 811);
+            this.Root.Size = new System.Drawing.Size(1233, 760);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gcOffer;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 43);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 40);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1221, 756);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1221, 708);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -688,10 +690,10 @@
             // 
             this.lcnewbutton.Control = this.btnNew;
             this.lcnewbutton.Location = new System.Drawing.Point(981, 0);
-            this.lcnewbutton.MaxSize = new System.Drawing.Size(126, 43);
-            this.lcnewbutton.MinSize = new System.Drawing.Size(126, 43);
+            this.lcnewbutton.MaxSize = new System.Drawing.Size(126, 40);
+            this.lcnewbutton.MinSize = new System.Drawing.Size(126, 40);
             this.lcnewbutton.Name = "lcnewbutton";
-            this.lcnewbutton.Size = new System.Drawing.Size(126, 43);
+            this.lcnewbutton.Size = new System.Drawing.Size(126, 40);
             this.lcnewbutton.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lcnewbutton.TextSize = new System.Drawing.Size(0, 0);
             this.lcnewbutton.TextVisible = false;
@@ -700,10 +702,10 @@
             // 
             this.layoutControlItem3.Control = this.btnCancel;
             this.layoutControlItem3.Location = new System.Drawing.Point(1107, 0);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(114, 43);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(114, 43);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(114, 40);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(114, 40);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(114, 43);
+            this.layoutControlItem3.Size = new System.Drawing.Size(114, 40);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -713,27 +715,27 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(862, 43);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(862, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnViewReport;
             this.layoutControlItem2.Location = new System.Drawing.Point(862, 0);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(119, 43);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(119, 43);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(119, 40);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(119, 40);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(119, 43);
+            this.layoutControlItem2.Size = new System.Drawing.Size(119, 40);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // frmOfferList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1233, 811);
+            this.ClientSize = new System.Drawing.Size(1233, 760);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -773,7 +775,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gcOfferCode;
         private DevExpress.XtraGrid.Columns.GridColumn gcOfferName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;

@@ -1,6 +1,9 @@
-﻿v4.0.0 (Unreleased)
+﻿v4.0.0
 -- Added A4 POS invoice print option for B2B/Govt/tender customers
 -- Added Bill To and Ship To override options with same-as-Bill-To support for A4 invoice
+-- Added SKU-wise offer preview from Item Code List with applicable EAN, MRP, offer, deal, and base offer details
+-- Added preview/export option in SKU-wise offer preview
+-- Removed existing offer info grid from Item Visualize and moved offer lookup to SKU-wise preview
 
 v3.9.9
 -- Added Deals tracking report under Warehouse Offer Reports with deal type, branch, date, periodicity, include settings, quantity, and sale value support

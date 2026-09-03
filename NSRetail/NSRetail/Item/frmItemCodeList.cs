@@ -192,6 +192,7 @@ namespace NSRetail
             if (e.HitInfo.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
             {
                 e.Allow = false;
+                gvItemList.FocusedRowHandle = e.HitInfo.RowHandle;
                 pmItemList.ShowPopup(gcItemList.PointToScreen(e.Point));
             }
         }
@@ -427,6 +428,24 @@ namespace NSRetail
                 if (gvItemList.FocusedRowHandle < 0) return;
 
                 new frmItemHistory(
+                    gvItemList.GetFocusedRowCellValue("ITEMID"),
+                    Convert.ToString(gvItemList.GetFocusedRowCellValue("SKUCODE")),
+                    Convert.ToString(gvItemList.GetFocusedRowCellValue("ITEMNAME"))).ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                AppLog.Error(ex);
+            }
+        }
+
+        private void bbiViewOffers_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (gvItemList.FocusedRowHandle < 0) return;
+
+                new frmItemOffers(
                     gvItemList.GetFocusedRowCellValue("ITEMID"),
                     Convert.ToString(gvItemList.GetFocusedRowCellValue("SKUCODE")),
                     Convert.ToString(gvItemList.GetFocusedRowCellValue("ITEMNAME"))).ShowDialog();

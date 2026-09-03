@@ -87,6 +87,7 @@
             this.btnMinimumBaseQuantity = new DevExpress.XtraBars.BarButtonItem();
             this.bbiAdditionalFields = new DevExpress.XtraBars.BarButtonItem();
             this.bbiViewHistory = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiViewOffers = new DevExpress.XtraBars.BarButtonItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -648,7 +649,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnChangeGST),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnMinimumBaseQuantity),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiAdditionalFields),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiViewHistory)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiViewHistory),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiViewOffers)});
             this.pmItemList.Manager = this.barManager1;
             this.pmItemList.Name = "pmItemList";
             // 
@@ -754,6 +756,13 @@
             this.bbiViewHistory.Name = "bbiViewHistory";
             this.bbiViewHistory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiViewHistory_ItemClick);
             // 
+            // bbiViewOffers
+            // 
+            this.bbiViewOffers.Caption = "View Offers";
+            this.bbiViewOffers.Id = 11;
+            this.bbiViewOffers.Name = "bbiViewOffers";
+            this.bbiViewOffers.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiViewOffers_ItemClick);
+            // 
             // barManager1
             // 
             this.barManager1.DockControls.Add(this.barDockControlTop);
@@ -772,8 +781,9 @@
             this.btnChangeGST,
             this.btnMinimumBaseQuantity,
             this.bbiAdditionalFields,
-            this.bbiViewHistory});
-            this.barManager1.MaxItemId = 11;
+            this.bbiViewHistory,
+            this.bbiViewOffers});
+            this.barManager1.MaxItemId = 12;
             // 
             // barDockControlTop
             // 
@@ -913,5 +923,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
         private DevExpress.XtraBars.BarButtonItem bbiAdditionalFields;
         private DevExpress.XtraBars.BarButtonItem bbiViewHistory;
+        private DevExpress.XtraBars.BarButtonItem bbiViewOffers;
     }
 }

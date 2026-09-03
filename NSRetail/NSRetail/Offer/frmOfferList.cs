@@ -170,6 +170,7 @@ namespace NSRetail
                 gcEdit.VisibleIndex = gvOffer.VisibleColumns.Count - 3;
 
                 gcOfferName.Caption = "Deal Name";
+                gcOfferCode.Caption = "Deal Code";
                 gcOfferType.Caption = "Deal Type";
                 gcOfferValue.Caption = "Deal Value";
 
