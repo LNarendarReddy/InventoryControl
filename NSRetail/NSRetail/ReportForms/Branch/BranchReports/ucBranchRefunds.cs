@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
+using ErrorManagement;
 using NSRetail.Reports;
 using System;
 using System.Collections.Generic;
@@ -31,12 +32,19 @@ namespace NSRetail.ReportForms.Branch.BranchReports
             ContextmenuItems = new Dictionary<string, string>
             { 
                 {"View", "6512E156-9D65-4C12-A925-6F6F215D99EB" }, 
-                {"Print", "FDF97A4E-9DAD-4505-8211-77B6273C424F" } 
+                {"Print", "FDF97A4E-9DAD-4505-8211-77B6273C424F" },
+                { "Delete (draft only)", "91CE5798-AD02-4FB1-A1EE-5D901DC2F26B" }
             };
 
+            HiddenColumns = new List<string> { "ISDRAFT" };
 
             dtpFromDate.EditValue = DateTime.Now.AddDays(-7);
             dtpToDate.EditValue = DateTime.Now;
+
+            IncludeSettingsCollection = new List<IncludeSettings>
+            {
+                { new IncludeSettings("Drafts", "IncludeDrafts", new List<string>(), false) }
+            };
 
             SetFocusControls(cmbBranch, dtpToDate, specificColumnHeaders);            
         }
@@ -56,6 +64,12 @@ namespace NSRetail.ReportForms.Branch.BranchReports
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
+            if (buttonText == "Delete (draft only)")
+            {
+                DeleteBranchRefund(drFocusedRow);
+                return;
+            }
+
             DataTable dtItems = new POSRepository().GetBRefundDetail(drFocusedRow["BRID"]);
 
             switch (buttonText)
@@ -84,10 +98,44 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                     rpt.ShowPrintMarginsWarning = false;
                     rpt.ShowPreviewMarginLines = false;
                     rpt.ShowRibbonPreview();
-                    break;
+                    break;                
+            }
+        }
 
+        private void DeleteBranchRefund(DataRow drFocusedRow)
+        {
+            if (drFocusedRow["ISDRAFT"].Equals(true))
+            {
+                XtraMessageBox.Show("Only draft branch refunds can be deleted", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
             }
 
+            if (XtraMessageBox.Show($"Are you sure you want to deleted Branch refund - {drFocusedRow["BREFUNDNUMBER"]}?"
+                , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                object returnValue = new DataRepository().ExecuteScalar("POS_USP_D_BREFUND_1", true, new Dictionary<string, object>
+                    {
+                        { "BRID", drFocusedRow["BRID"] },
+                        { "UserID", Utility.UserID }
+                    });
+
+                if (!int.TryParse(returnValue.ToString(), out int rowsAffected))
+                {
+                    XtraMessageBox.Show(returnValue.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                ResultGridView.DeleteRow(ResultGridView.FocusedRowHandle);
+
+                XtraMessageBox.Show("Branch refund deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+            }
         }
     }
 }
