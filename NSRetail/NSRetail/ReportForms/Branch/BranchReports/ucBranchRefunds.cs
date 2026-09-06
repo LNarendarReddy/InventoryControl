@@ -122,7 +122,7 @@ namespace NSRetail.ReportForms.Branch.BranchReports
                         { "UserID", Utility.UserID }
                     });
 
-                if (!int.TryParse(returnValue.ToString(), out int rowsAffected))
+                if (!string.IsNullOrEmpty(returnValue?.ToString()) && !int.TryParse(returnValue.ToString(), out int rowsAffected))
                 {
                     XtraMessageBox.Show(returnValue.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
