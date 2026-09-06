@@ -2,15 +2,13 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
-using DevExpress.XtraRichEdit.Layout;
 using Entity;
 using ErrorManagement;
 using NSRetail.Reports;
 using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
-using System.Windows.Media.Animation;
 using GridView = DevExpress.XtraGrid.Views.Grid.GridView;
 
 namespace NSRetail.Stock
@@ -21,6 +19,7 @@ namespace NSRetail.Stock
         StockRepository ObjStockRep = new StockRepository();
         StockEntry ObjStockEntry = null;
         StockEntryDetail ObjStockEntryDetail = null;
+        DataTable dtSupplierIndentItems = null;
         public XtraForm parent = null;
 
         public frmStockEntry()
@@ -39,11 +38,6 @@ namespace NSRetail.Stock
         {
             try
             {
-                DataTable dtSupplier = ObjMasterRep.GetDealer();
-                cmbSupplier.Properties.DataSource = dtSupplier;
-                cmbSupplier.Properties.ValueMember = "DEALERID";
-                cmbSupplier.Properties.DisplayMember = "DEALERNAME";
-
                 if (ObjStockEntry == null)
                     ObjStockEntry = new StockEntry();
                 ObjStockEntry.UserID = Utility.UserID;
@@ -52,15 +46,27 @@ namespace NSRetail.Stock
 
                 if (Convert.ToInt32(ObjStockEntry.STOCKENTRYID) > 0)
                 {
-                    LoadObject();
-                    ViewInvoiceSettings();
+                    if (!ViewInvoiceSettings())
+                    {
+                        BeginInvoke(new Action(Close));
+                        return;
+                    }
+
                     SaveInvoice();
+                    LoadObject();
                 }
                 else
                 {
-                    RefreshObject();
+                    if (!RefreshObject())
+                    {
+                        BeginInvoke(new Action(Close));
+                        return;
+                    }
+
+                    SaveInvoice();
                 }
-                gvStockEntry.Columns["STOCKENTRYDETAILID"].SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
+                if (gvStockEntry.Columns["STOCKENTRYDETAILID"] != null)
+                    gvStockEntry.Columns["STOCKENTRYDETAILID"].SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
             }
             catch (Exception ex) 
             {
@@ -77,13 +83,23 @@ namespace NSRetail.Stock
 
         private void btnSaveInvoice_Click(object sender, EventArgs e)
         {
-            if (gvStockEntry.RowCount == 0) return;
             try
             {
+                if (!EnsureInvoiceHeader())
+                    return;
+
+                if (gvStockEntry.RowCount == 0)
+                {
+                    if (HasSupplierIndent())
+                        ValidateIndentItemsForSubmit();
+                    return;
+                }
+
                 int iValue = 0;
                 if (int.TryParse(Convert.ToString(ObjStockEntry.STOCKENTRYID), out iValue) && iValue > 0)
                 {
                     if (!dxValidationProvider1.Validate() ||
+                        !ValidateIndentItemsForSubmit() ||
                         XtraMessageBox.Show("Are you sure want to save invoice?", "Confirm",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                         return;
@@ -105,10 +121,6 @@ namespace NSRetail.Stock
                     ObjStockEntry.SumGSTValue = CGST + SGST + IGST + CESS;
                     ObjStockEntry.SumFinalPrice = gvStockEntry.Columns["FINALPRICE"].SummaryItem.SummaryValue;
 
-                    ObjStockEntry.SUPPLIERID = cmbSupplier.EditValue;
-                    ObjStockEntry.SUPPLIERINVOICENO = txtInvoiceNumber.EditValue;
-                    ObjStockEntry.InvoiceDate = dtpInvoice.EditValue;
-
                     frmStockEntryPreview obj = new frmStockEntryPreview(ObjStockEntry)
                     {
                         ShowInTaskbar = false
@@ -120,21 +132,19 @@ namespace NSRetail.Stock
                     if (ObjStockEntry.IsSave)
                     {
                         int seid = Convert.ToInt32(ObjStockEntry.STOCKENTRYID);
-                        cmbSupplier.EditValue = null;
-                        txtInvoiceNumber.EditValue = null;
-                        dtpInvoice.EditValue = DateTime.Now;
-                        cmbSupplier.Enabled = true;
-                        txtInvoiceNumber.Enabled = true;
-                        dtpInvoice.Enabled = true;
-                        ObjStockEntry.STOCKENTRYID = 0;
-                        ObjStockEntry.dtStockEntry.Rows.Clear();
-                        gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
-                        gvStockEntry.BestFitColumns();
-                        cmbSupplier.Focus();
                         DataSet ds = ObjStockRep.GetInvoice(seid);
                         rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);
                         rpt.ShowPrintMarginsWarning = false;
                         rpt.ShowRibbonPreview();
+                        ObjStockEntry = new StockEntry()
+                        {
+                            UserID = Utility.UserID,
+                            CATEGORYID = Utility.CategoryID,
+                            SourceBranchID = Utility.BranchID
+                        };
+                        InitializeStockEntryTable();
+                        UpdateFormTitle();
+                        btnAddItem.Focus();
                     }
                 }
             }
@@ -206,6 +216,7 @@ namespace NSRetail.Stock
                 view.SetRowCellValue(e.RowHandle, "GSTID", ObjStockEntryDetail.GSTID);
                 view.SetRowCellValue(e.RowHandle, "HSNCODE", ObjStockEntryDetail.HSNCODE);
                 view.SetRowCellValue(e.RowHandle, "GSTCODE", ObjStockEntryDetail.GSTCODE);
+                view.SetRowCellValue(e.RowHandle, "INDENTQUANTITY", ObjStockEntryDetail.IndentQuantity);
                 view.SetRowCellValue(e.RowHandle, "ISFREEITEM", ObjStockEntryDetail.IsFreeItem);
                 view.UpdateCurrentRow();
             }
@@ -223,13 +234,8 @@ namespace NSRetail.Stock
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
-            if (cmbSupplier.EditValue != null &&
-                txtInvoiceNumber.EditValue != null &&
-                dtpInvoice.EditValue != null)
+            if (EnsureInvoiceHeader())
             {
-                ObjStockEntry.SUPPLIERID = cmbSupplier.EditValue;
-                ObjStockEntry.SUPPLIERINVOICENO = txtInvoiceNumber.EditValue;
-                ObjStockEntry.InvoiceDate = dtpInvoice.EditValue;
                 ObjStockEntryDetail = new StockEntryDetail();
                 new frmAddStockRecord(ObjStockEntry, this,ObjStockEntryDetail).ShowDialog();
             }
@@ -274,9 +280,10 @@ namespace NSRetail.Stock
                     gvStockEntry.SetRowCellValue(rowhandle, "SGST", ObjStockEntryDetail.SGST);
                     gvStockEntry.SetRowCellValue(rowhandle, "IGST", ObjStockEntryDetail.IGST);
                     gvStockEntry.SetRowCellValue(rowhandle, "CESS", ObjStockEntryDetail.CESS);
-                    gvStockEntry.SetRowCellValue(rowhandle, "HSNCODE", ObjStockEntryDetail.HSNCODE);
-                    gvStockEntry.SetRowCellValue(rowhandle, "GSTCODE", ObjStockEntryDetail.GSTCODE);
-                    gvStockEntry.SetRowCellValue(rowhandle, "ISFREEITEM", ObjStockEntryDetail.IsFreeItem);
+                gvStockEntry.SetRowCellValue(rowhandle, "HSNCODE", ObjStockEntryDetail.HSNCODE);
+                gvStockEntry.SetRowCellValue(rowhandle, "GSTCODE", ObjStockEntryDetail.GSTCODE);
+                gvStockEntry.SetRowCellValue(rowhandle, "INDENTQUANTITY", ObjStockEntryDetail.IndentQuantity);
+                gvStockEntry.SetRowCellValue(rowhandle, "ISFREEITEM", ObjStockEntryDetail.IsFreeItem);
                     gvStockEntry.SetRowCellValue(rowhandle, "CREATEDBY", ObjStockEntryDetail.CreatedBy);
                     gvStockEntry.SetRowCellValue(rowhandle, "CREATEDDATE", ObjStockEntryDetail.CreatedDate);
                     gvStockEntry.FocusedRowHandle = rowhandle;
@@ -298,33 +305,17 @@ namespace NSRetail.Stock
             try
             {
                 ObjStockEntry = ObjStockEntry ?? new StockEntry() { STOCKENTRYID = 0 };
-                ObjStockEntry.SUPPLIERID = cmbSupplier.EditValue;
-                ObjStockEntry.SUPPLIERINVOICENO = txtInvoiceNumber.EditValue;
-                ObjStockEntry.InvoiceDate = dtpInvoice.EditValue;
-                ObjStockEntry.CATEGORYID = Utility.CategoryID;
+                ObjStockEntry.CATEGORYID = IsNullValue(ObjStockEntry.CATEGORYID) ? Utility.CategoryID : ObjStockEntry.CATEGORYID;
                 ObjStockEntry.UserID = Utility.UserID;
-                ObjStockEntry.SourceBranchID = ObjStockEntry.SourceBranchID ?? Utility.BranchID;
+                ObjStockEntry.SourceBranchID = IsNullValue(ObjStockEntry.SourceBranchID) ? Utility.BranchID : ObjStockEntry.SourceBranchID;
                 ObjStockRep.SaveInvoice(ObjStockEntry);
+                LoadSupplierIndentItems();
+                UpdateFormTitle();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-        }
-
-        private void cmbSupplier_EditValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cmbSupplier.EditValue != null)
-                {
-                    txtGSTIN.EditValue = cmbSupplier.GetColumnValue("GSTIN");
-                    ObjStockEntry.CalculateIGST = !txtGSTIN.Text.StartsWith("37");
-                }
-                else
-                    txtGSTIN.EditValue = null;
-            }
-            catch (Exception ex){}
         }
 
         private void btnEdit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -333,10 +324,6 @@ namespace NSRetail.Stock
             {
                 return;
             }
-
-            ObjStockEntry.SUPPLIERID = cmbSupplier.EditValue;
-            ObjStockEntry.SUPPLIERINVOICENO = txtInvoiceNumber.EditValue;
-            ObjStockEntry.InvoiceDate = dtpInvoice.EditValue;
 
             ObjStockEntryDetail = new StockEntryDetail();
             ObjStockEntryDetail.STOCKENTRYDETAILID = gvStockEntry.GetFocusedRowCellValue("STOCKENTRYDETAILID");
@@ -371,6 +358,7 @@ namespace NSRetail.Stock
             ObjStockEntryDetail.GSTID = gvStockEntry.GetFocusedRowCellValue("GSTID");
             ObjStockEntryDetail.HSNCODE = gvStockEntry.GetFocusedRowCellValue("HSNCODE");
             ObjStockEntryDetail.GSTCODE = gvStockEntry.GetFocusedRowCellValue("GSTCODE");
+            ObjStockEntryDetail.IndentQuantity = gvStockEntry.Columns["INDENTQUANTITY"] != null ? gvStockEntry.GetFocusedRowCellValue("INDENTQUANTITY") : null;
             ObjStockEntryDetail.IsFreeItem = Convert.ToBoolean(gvStockEntry.GetFocusedRowCellValue("ISFREEITEM"));
             new frmAddStockRecord(ObjStockEntry, this, ObjStockEntryDetail).ShowDialog();
         }
@@ -421,18 +409,62 @@ namespace NSRetail.Stock
             {
                 ObjStockEntry = new StockEntry() { STOCKENTRYID = stockEntries.StockEntryID, CATEGORYID = Utility.CategoryID, UserID = Utility.UserID };
                 ObjStockRep.GetInvoiceDraft(ObjStockEntry);
+                if (!ViewInvoiceSettings())
+                    return;
+
+                SaveInvoice();
                 LoadObject();
             }
         }
 
-        private void RefreshObject()
+        private void btnViewIndentItems_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!EnsureInvoiceHeader())
+                    return;
+
+                if (!HasSupplierIndent())
+                {
+                    XtraMessageBox.Show("Supplier indent is not selected for this invoice");
+                    return;
+                }
+
+                if (dtSupplierIndentItems == null)
+                    LoadSupplierIndentItems();
+
+                if (dtSupplierIndentItems == null || dtSupplierIndentItems.Rows.Count == 0)
+                {
+                    XtraMessageBox.Show("No indent items found");
+                    return;
+                }
+
+                new frmSupplierIndentItems(BuildSupplierIndentStatusTable()).ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                AppLog.Error(ex);
+            }
+        }
+
+        private bool RefreshObject()
         {
             ObjStockEntry = new StockEntry();
-            ViewInvoiceSettings();
             ObjStockEntry.UserID = Utility.UserID;
             ObjStockEntry.CATEGORYID = Utility.CategoryID;
+            ObjStockEntry.SourceBranchID = Utility.BranchID;
+            if (!ViewInvoiceSettings())
+                return false;
 
-            dtpInvoice.EditValue = DateTime.Now;
+            InitializeStockEntryTable();
+            UpdateFormTitle();
+            ObjStockEntry.STOCKENTRYID = 0;
+            return true;
+        }
+
+        private void InitializeStockEntryTable()
+        {
             ObjStockEntry.dtStockEntry = new DataTable();
             ObjStockEntry.dtStockEntry.Columns.Add("STOCKENTRYID", typeof(int));
             ObjStockEntry.dtStockEntry.Columns.Add("STOCKENTRYDETAILID", typeof(int));
@@ -467,25 +499,362 @@ namespace NSRetail.Stock
             ObjStockEntry.dtStockEntry.Columns.Add("CESS", typeof(decimal));
             ObjStockEntry.dtStockEntry.Columns.Add("HSNCODE", typeof(string));
             ObjStockEntry.dtStockEntry.Columns.Add("GSTCODE", typeof(string));
+            ObjStockEntry.dtStockEntry.Columns.Add("INDENTQUANTITY", typeof(decimal));
             ObjStockEntry.dtStockEntry.Columns.Add("ISFREEITEM", typeof(bool));
             ObjStockEntry.dtStockEntry.Columns.Add("CREATEDBY", typeof(string));
             ObjStockEntry.dtStockEntry.Columns.Add("CREATEDDATE", typeof(DateTime));
             gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
             gvStockEntry.BestFitColumns();
-
-            ObjStockEntry.STOCKENTRYID = 0;
-            cmbSupplier.Enabled = true;
-            txtInvoiceNumber.Enabled = true;
-            dtpInvoice.Enabled = true;
         }
 
         private void LoadObject()
         {
-            cmbSupplier.EditValue = ObjStockEntry.SUPPLIERID;
-            txtInvoiceNumber.EditValue = ObjStockEntry.SUPPLIERINVOICENO;
-            dtpInvoice.EditValue = ObjStockEntry.InvoiceDate;
             gcStockEntry.DataSource = ObjStockEntry.dtStockEntry;
             gvStockEntry.BestFitColumns();
+            UpdateFormTitle();
+        }
+
+        private bool EnsureInvoiceHeader()
+        {
+            if (IsNullValue(ObjStockEntry?.SUPPLIERID) ||
+                IsNullValue(ObjStockEntry?.SUPPLIERINVOICENO) ||
+                IsNullValue(ObjStockEntry?.InvoiceDate) ||
+                IsNullValue(ObjStockEntry?.CATEGORYID))
+            {
+                if (!ViewInvoiceSettings())
+                    return false;
+
+                SaveInvoice();
+            }
+
+            UpdateFormTitle();
+            return true;
+        }
+
+        private void LoadSupplierIndentItems()
+        {
+            dtSupplierIndentItems = null;
+
+            if (!HasSupplierIndent())
+            {
+                btnViewIndentItems.Enabled = false;
+                return;
+            }
+
+            DataSet dsSupplierIndent = new ReportRepository().GetSupplierIndentDetail(ObjStockEntry.SupplierIndentId, true);
+            dtSupplierIndentItems = dsSupplierIndent.Tables.Count > 0 ? dsSupplierIndent.Tables[0].Copy() : new DataTable();
+            btnViewIndentItems.Enabled = dtSupplierIndentItems.Rows.Count > 0;
+        }
+
+        private DataTable BuildSupplierIndentStatusTable()
+        {
+            DataTable dtStatus = dtSupplierIndentItems.Copy();
+            if (!dtStatus.Columns.Contains("ENTEREDQUANTITY"))
+                dtStatus.Columns.Add("ENTEREDQUANTITY", typeof(decimal));
+            if (!dtStatus.Columns.Contains("STATUS"))
+                dtStatus.Columns.Add("STATUS", typeof(string));
+
+            foreach (DataRow drIndentItem in dtStatus.Rows)
+            {
+                decimal indentQuantity = GetDecimalValue(drIndentItem, "INDENTQUANTITY", "REQUIREDITEMINDENT", "DESIREDINDENT", "DESIREDITEMINDENT", "CALCULATEDITEMINDENT");
+                decimal enteredQuantity = GetEnteredStockEntryQuantity(drIndentItem);
+
+                drIndentItem["ENTEREDQUANTITY"] = enteredQuantity;
+                drIndentItem["STATUS"] = enteredQuantity <= 0
+                    ? "Pending"
+                    : enteredQuantity < indentQuantity
+                        ? "Short"
+                        : enteredQuantity == indentQuantity
+                            ? "Matched"
+                            : "Excess";
+            }
+
+            AddStockEntryItemsOutsideSupplierIndent(dtStatus);
+            return dtStatus;
+        }
+
+        private bool ValidateIndentItemsForSubmit()
+        {
+            List<string> errors = new List<string>();
+
+            if (HasStockEntryPendingItems())
+                errors.Add("One or more items do not have item code and MRP entered");
+
+            if (HasPendingSupplierIndentItems())
+                errors.Add("One or more supplier indent items are pending in stock entry");
+
+            if (errors.Count == 0)
+                return true;
+
+            XtraMessageBox.Show("Fix the following errors: " + Environment.NewLine + Environment.NewLine + string.Join(Environment.NewLine, errors));
+            return false;
+        }
+
+        private bool HasPendingSupplierIndentItems()
+        {
+            if (!HasSupplierIndent())
+                return false;
+
+            if (dtSupplierIndentItems == null)
+                LoadSupplierIndentItems();
+
+            DataTable dtIndentStatus = BuildSupplierIndentStatusTable();
+            foreach (DataRow drIndentItem in dtIndentStatus.Rows)
+            {
+                string status = Convert.ToString(drIndentItem["STATUS"]);
+                if (status.Equals("Pending", StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public bool ValidateStockEntryDetailAgainstSupplierIndent(StockEntryDetail stockEntryDetail, out string validationMessage)
+        {
+            validationMessage = string.Empty;
+            if (!HasSupplierIndent())
+                return true;
+
+            if (dtSupplierIndentItems == null)
+                LoadSupplierIndentItems();
+
+            DataRow drIndentItem = GetMatchingSupplierIndentItem(stockEntryDetail);
+            if (drIndentItem == null)
+            {
+                validationMessage = $"Selected item does not exist in supplier indent.{Environment.NewLine}{stockEntryDetail.ITEMNAME}";
+                return false;
+            }
+
+            decimal indentQuantity = GetDecimalValue(drIndentItem, "INDENTQUANTITY", "REQUIREDITEMINDENT", "DESIREDINDENT", "DESIREDITEMINDENT", "CALCULATEDITEMINDENT");
+            decimal enteredQuantity = GetEnteredStockEntryQuantity(drIndentItem, stockEntryDetail.STOCKENTRYDETAILID);
+            decimal currentQuantity = GetStockEntryDetailQuantity(stockEntryDetail);
+            stockEntryDetail.IndentQuantity = indentQuantity;
+
+            if (enteredQuantity + currentQuantity > indentQuantity)
+            {
+                validationMessage = $"Quantity cannot be greater than the value in supplier indent of {indentQuantity}";
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool HasStockEntryPendingItems()
+        {
+            if (ObjStockEntry?.dtStockEntry == null)
+                return false;
+
+            foreach (DataRow drStockEntry in ObjStockEntry.dtStockEntry.Rows)
+            {
+                if (drStockEntry.RowState == DataRowState.Deleted)
+                    continue;
+
+                if (GetDecimalValue(drStockEntry, "ITEMCODEID") <= 0 || GetDecimalValue(drStockEntry, "MRP") <= 0)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private decimal GetEnteredStockEntryQuantity(DataRow drIndentItem, object excludeStockEntryDetailID = null)
+        {
+            if (ObjStockEntry?.dtStockEntry == null)
+                return 0;
+
+            decimal enteredQuantity = 0;
+            foreach (DataRow drStockEntry in ObjStockEntry.dtStockEntry.Rows)
+            {
+                if (drStockEntry.RowState == DataRowState.Deleted)
+                    continue;
+
+                object stockEntryDetailID = GetColumnValue(drStockEntry, "STOCKENTRYDETAILID");
+                if (!IsNullValue(excludeStockEntryDetailID) && Convert.ToString(stockEntryDetailID) == Convert.ToString(excludeStockEntryDetailID))
+                    continue;
+
+                if (IsMatchingSupplierIndentItem(drIndentItem, drStockEntry))
+                    enteredQuantity += GetStockEntryQuantity(drStockEntry);
+            }
+
+            return enteredQuantity;
+        }
+
+        private decimal GetStockEntryQuantity(DataRow drStockEntry)
+        {
+            decimal quantity = GetDecimalValue(drStockEntry, "QUANTITY");
+            return quantity > 0 ? quantity : GetDecimalValue(drStockEntry, "WEIGHTINKGS");
+        }
+
+        private bool HasStockEntryItemsOutsideSupplierIndent()
+        {
+            if (ObjStockEntry?.dtStockEntry == null)
+                return false;
+
+            foreach (DataRow drStockEntry in ObjStockEntry.dtStockEntry.Rows)
+            {
+                if (drStockEntry.RowState == DataRowState.Deleted)
+                    continue;
+
+                if (GetMatchingSupplierIndentItem(drStockEntry) == null)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private DataRow GetMatchingSupplierIndentItem(DataRow drStockEntry)
+        {
+            if (dtSupplierIndentItems == null)
+                return null;
+
+            foreach (DataRow drIndentItem in dtSupplierIndentItems.Rows)
+            {
+                if (IsMatchingSupplierIndentItem(drIndentItem, drStockEntry))
+                    return drIndentItem;
+            }
+
+            return null;
+        }
+
+        private DataRow GetMatchingSupplierIndentItem(StockEntryDetail stockEntryDetail)
+        {
+            if (dtSupplierIndentItems == null)
+                return null;
+
+            foreach (DataRow drIndentItem in dtSupplierIndentItems.Rows)
+            {
+                if (IsMatchingSupplierIndentItem(drIndentItem, stockEntryDetail))
+                    return drIndentItem;
+            }
+
+            return null;
+        }
+
+        private bool IsMatchingSupplierIndentItem(DataRow drIndentItem, DataRow drStockEntry)
+        {
+            string indentItemCodeID = NormalizeKey(GetColumnValue(drIndentItem, "ITEMCODEID"));
+            string stockItemCodeID = NormalizeKey(GetColumnValue(drStockEntry, "ITEMCODEID"));
+            if (!string.IsNullOrEmpty(indentItemCodeID) && !string.IsNullOrEmpty(stockItemCodeID))
+                return indentItemCodeID == stockItemCodeID;
+
+            string indentSKUCode = NormalizeKey(GetColumnValue(drIndentItem, "SKUCODE"));
+            string stockSKUCode = NormalizeKey(GetColumnValue(drStockEntry, "SKUCODE"));
+            if (!string.IsNullOrEmpty(indentSKUCode) && !string.IsNullOrEmpty(stockSKUCode))
+                return indentSKUCode == stockSKUCode;
+
+            string indentItemID = NormalizeKey(GetColumnValue(drIndentItem, "ITEMID"));
+            string stockItemID = NormalizeKey(GetColumnValue(drStockEntry, "ITEMID"));
+            return !string.IsNullOrEmpty(indentItemID) &&
+                !string.IsNullOrEmpty(stockItemID) &&
+                indentItemID == stockItemID;
+        }
+
+        private bool IsMatchingSupplierIndentItem(DataRow drIndentItem, StockEntryDetail stockEntryDetail)
+        {
+            string indentItemCodeID = NormalizeKey(GetColumnValue(drIndentItem, "ITEMCODEID"));
+            string stockItemCodeID = NormalizeKey(stockEntryDetail.ITEMCODEID);
+            if (!string.IsNullOrEmpty(indentItemCodeID) && !string.IsNullOrEmpty(stockItemCodeID))
+                return indentItemCodeID == stockItemCodeID;
+
+            string indentSKUCode = NormalizeKey(GetColumnValue(drIndentItem, "SKUCODE"));
+            string stockSKUCode = NormalizeKey(stockEntryDetail.SKUCODE);
+            if (!string.IsNullOrEmpty(indentSKUCode) && !string.IsNullOrEmpty(stockSKUCode))
+                return indentSKUCode == stockSKUCode;
+
+            string indentItemID = NormalizeKey(GetColumnValue(drIndentItem, "ITEMID"));
+            string stockItemID = NormalizeKey(stockEntryDetail.ITEMID);
+            return !string.IsNullOrEmpty(indentItemID) &&
+                !string.IsNullOrEmpty(stockItemID) &&
+                indentItemID == stockItemID;
+        }
+
+        private decimal GetStockEntryDetailQuantity(StockEntryDetail stockEntryDetail)
+        {
+            decimal.TryParse(Convert.ToString(stockEntryDetail.QUANTITY), out decimal quantity);
+            if (quantity > 0)
+                return quantity;
+
+            decimal.TryParse(Convert.ToString(stockEntryDetail.WEIGHTINKGS), out decimal weightInKGs);
+            return weightInKGs;
+        }
+
+        private void AddStockEntryItemsOutsideSupplierIndent(DataTable dtStatus)
+        {
+            if (ObjStockEntry?.dtStockEntry == null)
+                return;
+
+            int sno = dtStatus.Rows.Count;
+            foreach (DataRow drStockEntry in ObjStockEntry.dtStockEntry.Rows)
+            {
+                if (drStockEntry.RowState == DataRowState.Deleted || GetMatchingSupplierIndentItem(drStockEntry) != null)
+                    continue;
+
+                DataRow drExtraItem = dtStatus.NewRow();
+                SetColumnValue(drExtraItem, "SNO", ++sno);
+                SetColumnValue(drExtraItem, "ITEMID", GetColumnValue(drStockEntry, "ITEMID"));
+                SetColumnValue(drExtraItem, "ITEMCODEID", GetColumnValue(drStockEntry, "ITEMCODEID"));
+                SetColumnValue(drExtraItem, "SKUCODE", GetColumnValue(drStockEntry, "SKUCODE"));
+                SetColumnValue(drExtraItem, "ITEMNAME", GetColumnValue(drStockEntry, "ITEMNAME"));
+                SetColumnValue(drExtraItem, "MRP", GetColumnValue(drStockEntry, "MRP"));
+                SetColumnValue(drExtraItem, "COSTPRICEWT", GetColumnValue(drStockEntry, "CPWITHTAX"));
+                SetColumnValue(drExtraItem, "DESIREDINDENT", 0);
+                SetColumnValue(drExtraItem, "ENTEREDQUANTITY", GetStockEntryQuantity(drStockEntry));
+                SetColumnValue(drExtraItem, "STATUS", "Not in Indent");
+                dtStatus.Rows.Add(drExtraItem);
+            }
+        }
+
+        private void SetColumnValue(DataRow row, string columnName, object value)
+        {
+            if (row.Table.Columns.Contains(columnName))
+                row[columnName] = IsNullValue(value) ? DBNull.Value : value;
+        }
+
+        private string NormalizeKey(object value)
+        {
+            if (IsNullValue(value))
+                return string.Empty;
+
+            return Convert.ToString(value).Trim();
+        }
+
+        private decimal GetDecimalValue(DataRow row, params string[] columnNames)
+        {
+            object value = null;
+            foreach (string columnName in columnNames)
+            {
+                value = GetColumnValue(row, columnName);
+                if (!IsNullValue(value))
+                    break;
+            }
+
+            decimal.TryParse(Convert.ToString(value), out decimal decimalValue);
+            return decimalValue;
+        }
+
+        private object GetColumnValue(DataRow row, string columnName)
+        {
+            return row.Table.Columns.Contains(columnName) ? row[columnName] : null;
+        }
+
+        private bool HasSupplierIndent()
+        {
+            int.TryParse(Convert.ToString(ObjStockEntry?.SupplierIndentId), out int supplierIndentID);
+            return supplierIndentID > 0;
+        }
+
+        private void UpdateFormTitle()
+        {
+            string supplierName = Convert.ToString(ObjStockEntry?.SUPPLIERNAME);
+            string invoiceNumber = Convert.ToString(ObjStockEntry?.SUPPLIERINVOICENO);
+            Text = !string.IsNullOrWhiteSpace(supplierName) && !string.IsNullOrWhiteSpace(invoiceNumber)
+                ? $"Stock Entry - {supplierName} - {invoiceNumber}"
+                : "Stock Entry";
+            btnViewIndentItems.Enabled = HasSupplierIndent();
+        }
+
+        private bool IsNullValue(object value)
+        {
+            return value == null || value == DBNull.Value;
         }
 
         private void frmStockEntry_KeyDown(object sender, KeyEventArgs e)

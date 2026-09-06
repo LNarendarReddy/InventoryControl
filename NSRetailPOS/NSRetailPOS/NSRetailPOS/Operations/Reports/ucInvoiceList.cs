@@ -52,7 +52,7 @@ namespace NSRetailPOS.Operations.Reports
                 , { "ToDate", dtpToDate.EditValue }
                 , { "IsBranchInvoice", true }
             };
-            return GetReportData("USP_R_INVOICELIST", parameters);
+            return GetReportData("USP_R_INVOICELIST_v2", parameters);
         }
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)

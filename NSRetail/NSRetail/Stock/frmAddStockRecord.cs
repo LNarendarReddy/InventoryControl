@@ -129,9 +129,21 @@ namespace NSRetail.Stock
                 if (!dxValidationProvider1.Validate())
                     return;
 
-                if ((IsOpenItem ? txtWeightInKGs.EditValue : txtQuantity.EditValue) == null ||
-                        Convert.ToInt32(IsOpenItem ? txtWeightInKGs.EditValue : txtQuantity.EditValue) <= 0)
+                decimal stockEntryQuantity = Convert.ToDecimal((IsOpenItem ? txtWeightInKGs.EditValue : txtQuantity.EditValue) ?? 0);
+                if (stockEntryQuantity <= 0)
                     return;
+
+                if (!IsOpenItem && stockEntryQuantity > 99999)
+                {
+                    XtraMessageBox.Show("Quantity cannot be more than 5 digits");
+                    return;
+                }
+
+                if (IsOpenItem && stockEntryQuantity > 9999.99M)
+                {
+                    XtraMessageBox.Show("Weight cannot be more than 4 digits");
+                    return;
+                }
 
                 if (decimal.TryParse(Convert.ToString(txtMRP.EditValue), out decimal MRP) &&
                     decimal.TryParse(Convert.ToString(txtNetCostPriceWT.EditValue), out decimal CostPriceWT) &&
@@ -193,8 +205,21 @@ namespace NSRetail.Stock
                 ObjStockEntryDetail.CESS = txtCESS.EditValue;
                 ObjStockEntryDetail.HSNCODE = txtHSNCode.EditValue;
                 ObjStockEntryDetail.IsFreeItem = Convert.ToBoolean(chkFreeItem.CheckState);
+
+                if (!frmparent.ValidateStockEntryDetailAgainstSupplierIndent(ObjStockEntryDetail, out string indentValidationMessage))
+                {
+                    XtraMessageBox.Show(indentValidationMessage);
+                    return;
+                }
+
                 ObjStockRep.SaveInvoiceDetail(ObjStockEntryDetail);
                 frmparent.RefreshGrid(ObjStockEntryDetail);
+                if (IsEditMode)
+                {
+                    Close();
+                    return;
+                }
+
                 ObjStockEntryDetail.STOCKENTRYDETAILID = 0;
                 cmbItemCode.EditValue = null;
                 txtItemName.EditValue = null;

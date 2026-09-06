@@ -180,7 +180,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.SqlWHconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_D_STOCKENTRYDETAIL]";
+                    cmd.CommandText = "[USP_D_STOCKENTRYDETAIL_V2]";
                     cmd.Parameters.AddWithValue("@STOCKENTRYDETAILID", StockEntryDetailID);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     cmd.ExecuteNonQuery();
@@ -268,7 +268,7 @@ namespace NSRetailPOS.Data
                 {
                     cmd.Connection = SQLCon.SqlWHconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_D_DISCARDSTOCKENTRY]";
+                    cmd.CommandText = "[USP_D_DISCARDSTOCKENTRY_v2]";
                     cmd.Parameters.AddWithValue("@STOCKENTRYID", StockEntryID);
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     int RowsAffected = cmd.ExecuteNonQuery();

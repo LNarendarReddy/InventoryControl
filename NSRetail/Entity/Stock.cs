@@ -34,6 +34,7 @@ namespace Entity
         public object STOCKENTRYID { get; set; }
         public object SUPPLIERID { get; set; }
         public object SUPPLIERNAME { get; set; }
+        public object SupplierGSTIN { get; set; }
         public object SUPPLIERINVOICENO { get; set; }
         public object InvoiceDate { get; set; }
         public object CATEGORYID { get; set; }
@@ -55,6 +56,7 @@ namespace Entity
         public object DispatchBranchID { get; set; }
         public object CreditNoteId { get; set; }
         public object SupplierIndentId { get; set; }
+        public object SupplierIndentNo { get; set; }
 
         public object InvoiceType { get; set; }
         public object PriceEntryMethod { get; set; }
@@ -111,6 +113,8 @@ namespace Entity
         public object CESS { get; set; }
         public object HSNCODE { get; set; }
         public object GSTCODE { get; set; }
+        public object IndentQuantity { get; set; }
+        public bool ItemCodePending { get; set; }
 
         public bool IsFreeItem { get; set; }
 

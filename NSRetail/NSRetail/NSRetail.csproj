@@ -958,6 +958,12 @@
     <Compile Include="Stock\frmInvoiceSettings.Designer.cs">
       <DependentUpon>frmInvoiceSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stock\frmSupplierIndentItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmSupplierIndentItems.Designer.cs">
+      <DependentUpon>frmSupplierIndentItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stock\frmStockAdjustment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2085,6 +2091,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmStockSlippage.resx">
       <DependentUpon>frmStockSlippage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmSupplierIndentItems.resx">
+      <DependentUpon>frmSupplierIndentItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmCreditNote.resx">
       <DependentUpon>frmCreditNote.cs</DependentUpon>
