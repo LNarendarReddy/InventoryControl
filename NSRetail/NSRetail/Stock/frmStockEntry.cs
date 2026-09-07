@@ -90,8 +90,6 @@ namespace NSRetail.Stock
 
                 if (gvStockEntry.RowCount == 0)
                 {
-                    if (HasSupplierIndent())
-                        ValidateIndentItemsForSubmit();
                     return;
                 }
 
@@ -99,7 +97,6 @@ namespace NSRetail.Stock
                 if (int.TryParse(Convert.ToString(ObjStockEntry.STOCKENTRYID), out iValue) && iValue > 0)
                 {
                     if (!dxValidationProvider1.Validate() ||
-                        !ValidateIndentItemsForSubmit() ||
                         XtraMessageBox.Show("Are you sure want to save invoice?", "Confirm",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                         return;
@@ -573,42 +570,6 @@ namespace NSRetail.Stock
             return dtStatus;
         }
 
-        private bool ValidateIndentItemsForSubmit()
-        {
-            List<string> errors = new List<string>();
-
-            if (HasStockEntryPendingItems())
-                errors.Add("One or more items do not have item code and MRP entered");
-
-            if (HasPendingSupplierIndentItems())
-                errors.Add("One or more supplier indent items are pending in stock entry");
-
-            if (errors.Count == 0)
-                return true;
-
-            XtraMessageBox.Show("Fix the following errors: " + Environment.NewLine + Environment.NewLine + string.Join(Environment.NewLine, errors));
-            return false;
-        }
-
-        private bool HasPendingSupplierIndentItems()
-        {
-            if (!HasSupplierIndent())
-                return false;
-
-            if (dtSupplierIndentItems == null)
-                LoadSupplierIndentItems();
-
-            DataTable dtIndentStatus = BuildSupplierIndentStatusTable();
-            foreach (DataRow drIndentItem in dtIndentStatus.Rows)
-            {
-                string status = Convert.ToString(drIndentItem["STATUS"]);
-                if (status.Equals("Pending", StringComparison.OrdinalIgnoreCase))
-                    return true;
-            }
-
-            return false;
-        }
-
         public bool ValidateStockEntryDetailAgainstSupplierIndent(StockEntryDetail stockEntryDetail, out string validationMessage)
         {
             validationMessage = string.Empty;
@@ -637,23 +598,6 @@ namespace NSRetail.Stock
             }
 
             return true;
-        }
-
-        private bool HasStockEntryPendingItems()
-        {
-            if (ObjStockEntry?.dtStockEntry == null)
-                return false;
-
-            foreach (DataRow drStockEntry in ObjStockEntry.dtStockEntry.Rows)
-            {
-                if (drStockEntry.RowState == DataRowState.Deleted)
-                    continue;
-
-                if (GetDecimalValue(drStockEntry, "ITEMCODEID") <= 0 || GetDecimalValue(drStockEntry, "MRP") <= 0)
-                    return true;
-            }
-
-            return false;
         }
 
         private decimal GetEnteredStockEntryQuantity(DataRow drIndentItem, object excludeStockEntryDetailID = null)

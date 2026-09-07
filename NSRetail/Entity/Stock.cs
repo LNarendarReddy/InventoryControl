@@ -114,7 +114,6 @@ namespace Entity
         public object HSNCODE { get; set; }
         public object GSTCODE { get; set; }
         public object IndentQuantity { get; set; }
-        public bool ItemCodePending { get; set; }
 
         public bool IsFreeItem { get; set; }
 

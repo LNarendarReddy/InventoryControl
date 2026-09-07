@@ -1,4 +1,7 @@
-﻿v4.0.2
+﻿v4.0.3
+-- Reverted stock entry vlaidations
+
+v4.0.2
 -- Stock Entry invoice settings and supplier indent workflow
 -- Stock Entry supplier indent item validation and comparison view
 
