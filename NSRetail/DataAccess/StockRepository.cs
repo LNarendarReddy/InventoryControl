@@ -657,11 +657,8 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Deleting Invoice Detail");
-            }
-            finally
-            {
 
+                throw ex;
             }
         }
 

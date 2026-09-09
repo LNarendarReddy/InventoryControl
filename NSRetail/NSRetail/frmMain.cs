@@ -436,7 +436,9 @@ namespace NSRetail
             StockReports.SubCategory.Add(new ReportHolder("A363141E-CB16-473F-A419-EB9A1F6568E2") { ReportName = "Stock summary by Price", SearchCriteriaControl = new ucStockSummaryByPrice() });
             StockReports.SubCategory.Add(new ReportHolder("3E3249DF-4A87-45C5-8FAD-8BC507A7F47F") { ReportName = "Current stock (with open sale)", SearchCriteriaControl = new ucCurrentStock() });
             StockReports.SubCategory.Add(new ReportHolder("16C9400E-5954-4DAE-861C-1F0E79074041") { ReportName = "Non-Moving stock", SearchCriteriaControl = new ucNonMovingStock() });
-            StockReports.SubCategory.Add(new ReportHolder("F6ADE590-D672-4522-B54C-552C349C77F8") { ReportName = "Stock As on date", SearchCriteriaControl = new ucStockAsOnDate() });
+            StockReports.SubCategory.Add(new ReportHolder("F6ADE590-D672-4522-B54C-552C349C77F8") { ReportName = "Stock As on Date (WH)", SearchCriteriaControl = new ucStockAsOnDate("USP_RPT_STOCK_ASOFDATE_WH", "Warehouse") });
+            StockReports.SubCategory.Add(new ReportHolder("9F9B27A1-A3F8-4EB8-98E7-EE55B40D0A9C") { ReportName = "Stock As on Date (Branch)", SearchCriteriaControl = new ucStockAsOnDate("USP_RPT_STOCK_ASOFDATE_BRANCH", "Branch") });
+            StockReports.SubCategory.Add(new ReportHolder("6A2F6A69-E2CE-4B4B-AC21-932C21071635") { ReportName = "Stock As on Date (D/W)", SearchCriteriaControl = new ucStockAsOnDate("USP_RPT_STOCK_ASOFDATE_DW", "DamageAndWastage") });
             StockReports.SubCategory.Add(new ReportHolder("D8D70589-B1D1-40DB-AF85-351C4A576774") { ReportName = "Zero Stock", SearchCriteriaControl = new ucZeroStock() });
             StockReports.SubCategory.Add(new ReportHolder("17EBA4EE-96C4-4C8E-84F9-11D1EE9ADB73") { ReportName = "Left over prices", SearchCriteriaControl = new ucLeftOverPrices() });
             stockReportList.Add(StockReports);

@@ -1,4 +1,9 @@
-﻿v4.0.3
+﻿v4.0.4
+-- Added transaction-based Stock As On Date calculation using opening stock, purchases, dispatches, refunds, returns, sales, and adjustments
+-- Split Stock As On Date into WH, Branch, and D/W report options
+-- Added Latest Cost Price, Avg. Cost Price, Brand, and Manufacturer include options in Stock As On Date
+
+v4.0.3
 -- Reverted stock entry vlaidations
 
 v4.0.2
