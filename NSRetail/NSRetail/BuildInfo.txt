@@ -2,6 +2,7 @@
 -- Added transaction-based Stock As On Date calculation using opening stock, purchases, dispatches, refunds, returns, sales, and adjustments
 -- Split Stock As On Date into WH, Branch, and D/W report options
 -- Added Latest Cost Price, Avg. Cost Price, Brand, and Manufacturer include options in Stock As On Date
+-- Removed excess validation in stock entry FT flow
 
 v4.0.3
 -- Reverted stock entry vlaidations

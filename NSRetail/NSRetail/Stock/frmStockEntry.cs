@@ -586,16 +586,7 @@ namespace NSRetail.Stock
                 return false;
             }
 
-            decimal indentQuantity = GetDecimalValue(drIndentItem, "INDENTQUANTITY", "REQUIREDITEMINDENT", "DESIREDINDENT", "DESIREDITEMINDENT", "CALCULATEDITEMINDENT");
-            decimal enteredQuantity = GetEnteredStockEntryQuantity(drIndentItem, stockEntryDetail.STOCKENTRYDETAILID);
-            decimal currentQuantity = GetStockEntryDetailQuantity(stockEntryDetail);
-            stockEntryDetail.IndentQuantity = indentQuantity;
-
-            if (enteredQuantity + currentQuantity > indentQuantity)
-            {
-                validationMessage = $"Quantity cannot be greater than the value in supplier indent of {indentQuantity}";
-                return false;
-            }
+            stockEntryDetail.IndentQuantity = GetDecimalValue(drIndentItem, "INDENTQUANTITY", "REQUIREDITEMINDENT", "DESIREDINDENT", "DESIREDITEMINDENT", "CALCULATEDITEMINDENT");
 
             return true;
         }
@@ -709,16 +700,6 @@ namespace NSRetail.Stock
             return !string.IsNullOrEmpty(indentItemID) &&
                 !string.IsNullOrEmpty(stockItemID) &&
                 indentItemID == stockItemID;
-        }
-
-        private decimal GetStockEntryDetailQuantity(StockEntryDetail stockEntryDetail)
-        {
-            decimal.TryParse(Convert.ToString(stockEntryDetail.QUANTITY), out decimal quantity);
-            if (quantity > 0)
-                return quantity;
-
-            decimal.TryParse(Convert.ToString(stockEntryDetail.WEIGHTINKGS), out decimal weightInKGs);
-            return weightInKGs;
         }
 
         private void AddStockEntryItemsOutsideSupplierIndent(DataTable dtStatus)
