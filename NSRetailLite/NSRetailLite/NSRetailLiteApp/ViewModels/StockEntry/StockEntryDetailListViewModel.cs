@@ -87,7 +87,7 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
                 = new ObservableCollection<StockEntryDetailModel>(
                     StockEntryModel.StockEntryDetailList
                     .Where(x => x.ItemName.Contains(search, StringComparison.CurrentCultureIgnoreCase)
-                    || x.ItemCode.Contains(search, StringComparison.CurrentCultureIgnoreCase)
+                    || (x.ItemCode ?? string.Empty).Contains(search, StringComparison.CurrentCultureIgnoreCase)
                     || x.SKUCode.Contains(search, StringComparison.CurrentCultureIgnoreCase)));
         }
 
