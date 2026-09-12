@@ -634,6 +634,12 @@
     <Compile Include="ReportForms\Wareshouse\Audit\ucHDDClearhistory.Designer.cs">
       <DependentUpon>ucHDDClearhistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Differences\ucIndentVsEntry.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Differences\ucIndentVsEntry.Designer.cs">
+      <DependentUpon>ucIndentVsEntry.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\Offers\ucOfferReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1725,6 +1731,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucHDDClearhistory.resx">
       <DependentUpon>ucHDDClearhistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Differences\ucIndentVsEntry.resx">
+      <DependentUpon>ucIndentVsEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Offers\ucOfferReport.resx">
       <DependentUpon>ucOfferReport.cs</DependentUpon>

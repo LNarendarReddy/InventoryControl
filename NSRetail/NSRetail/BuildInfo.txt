@@ -1,4 +1,7 @@
-﻿v4.0.5
+﻿v4.0.6
+-- Supplier indent vs Stock entry report
+
+v4.0.5
 -- Included stockentry in item ledger.
 -- Added Submittedby and Submitteddate in invoice list.
 -- Fixed dispatch to branch work flow in case of DSD and Non DSD.

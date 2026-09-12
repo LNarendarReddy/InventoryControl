@@ -521,6 +521,7 @@ namespace NSRetail
             differenceReports.SubCategory.Add(new ReportHolder("AC133FF5-DDDD-425C-B214-D26AF5E4BF6D") { ReportName = "Indent vs Dispatch", SearchCriteriaControl = new ucIndentDispatchDifferences() });
             differenceReports.SubCategory.Add(new ReportHolder("AC133FF5-DDDD-425C-B214-D26AF5E4BF6D") { ReportName = "Indent vs Dispatch Sufficieny (today)", SearchCriteriaControl = new ucDispatchVsIndentSufficiency() });
             //differenceReports.SubCategory.Add(new ReportHolder("4113BB0C-15C1-463B-938E-4DFA9D12A41C") { ReportName = "Item Margin", SearchCriteriaControl = new ucItemMargin() });
+            differenceReports.SubCategory.Add(new ReportHolder("DB175F48-D6E1-4A87-B38B-0C8228FE3C94") { ReportName = "Supplier Indent vs Stock Entry", SearchCriteriaControl = new ucIndentVsEntry() });
             reportList.Add(differenceReports);
 
             ReportHolder profitabilityReports = new ReportHolder("25939730-C13A-4939-B49F-0AAABCBBE467") { ReportName = "Profitability Reports" };
