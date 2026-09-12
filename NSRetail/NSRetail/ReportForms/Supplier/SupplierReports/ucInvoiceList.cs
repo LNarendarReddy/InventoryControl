@@ -31,6 +31,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 , { "INVOICEDATE", "Invoice Date" }
                 , { "CREATEDBY", "User Name" }
                 , { "CREATEDDATE", "Created Date" }
+                , { "SUBMITTEDBY", "Submitted By" }
                 , { "SUBMITTEDDATE", "Submitted Date" }
                 , { "FINALPRICE", "Net Amount" }
                 , { "STATUS", "Status" }
@@ -49,7 +50,7 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             };
                 
 
-            HiddenColumns = new List<string>() { "CATEGORYNAME", "CREATEDBY", "CREATEDDATE", "GSTIN" };
+            HiddenColumns = new List<string>() { "CATEGORYNAME", "CREATEDBY", "CREATEDDATE", "GSTIN", "SUBMITTEDBY", "SUBMITTEDDATE" };
 
             cmbDealer.Properties.DataSource = new MasterRepository().GetDealer(true);
             cmbDealer.Properties.DisplayMember = "DEALERNAME";

@@ -58,6 +58,8 @@ namespace NSRetail.ReportForms.Stock.TransactionReports
 
                 , new IncludeSettings("Refund Number", "IncludeRefundNumber", new List<string> { "BREFUNDNUMBER" })
             };
+
+            SetFocusControls(cmbPeriodicity, cmbItemCode, specificColumnHeaders);
         }
 
         private void ucBRefundWHReciept_Load(object sender, EventArgs e)

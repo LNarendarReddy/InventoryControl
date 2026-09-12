@@ -1,4 +1,9 @@
-﻿v4.0.4
+﻿v4.0.5
+-- Included stockentry in item ledger.
+-- Added Submittedby and Submitteddate in invoice list.
+-- Fixed dispatch to branch work flow in case of DSD and Non DSD.
+
+v4.0.4
 -- Added transaction-based Stock As On Date calculation using opening stock, purchases, dispatches, refunds, returns, sales, and adjustments
 -- Split Stock As On Date into WH, Branch, and D/W report options
 -- Added Latest Cost Price, Avg. Cost Price, Brand, and Manufacturer include options in Stock As On Date

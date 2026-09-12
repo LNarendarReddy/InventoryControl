@@ -62,6 +62,8 @@ namespace NSRetail.Stock
             {
                 cmbBranch.EditValue = ObjStockEntry.SourceBranchID;
                 cmbBranch.Enabled = false;
+                cmbCategory.EditValue = 13;
+                cmbCategory.Enabled = false;
             }
 
             // Enable credit note mapping button
