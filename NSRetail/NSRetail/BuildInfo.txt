@@ -1,4 +1,11 @@
-﻿v4.0.6
+﻿v4.0.7
+-- Added Category/Sub category, Classification/Sub classification, HSN, and GST Code columns in Stock As On Date
+-- Added include settings for Stock As On Date category, classification, and HSN fields
+-- Hidden individual Stock As On Date transaction breakup columns by default
+-- Included latest and average cost price columns by default in Stock As On Date
+-- Treated missing Stock As On Date cost prices as zero for total cost calculations
+
+v4.0.6
 -- Supplier indent vs Stock entry report
 
 v4.0.5

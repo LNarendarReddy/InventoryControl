@@ -168,6 +168,7 @@ namespace NSRetail
             }
             catch (Exception ex)
             {
+                
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
 

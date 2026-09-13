@@ -37,6 +37,12 @@ namespace NSRetail.ReportForms.Stock.StockReports
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "QTYORWGHT", "Quantity or Weight in KG(s)" }
+                , { "CATEGORYNAME", "Category" }
+                , { "SUBCATEGORYNAME", "Sub category" }
+                , { "CLASSIFICATIONNAME", "Classification" }
+                , { "SUBCLASSIFICATIONNAME", "Sub classification" }
+                , { "HSNCODE", "HSN Code" }
+                , { "GSTCODE", "GST Code" }
                 , { "BRANDNAME", "Brand" }
                 , { "MANUFACTURERNAME", "Manufacturer" }
                 , { "LATESTCOSTPRICEWOT", "Latest CP W\\O Tax" }
@@ -48,7 +54,7 @@ namespace NSRetail.ReportForms.Stock.StockReports
                 , { "AVGCOSTPRICETAX", "Avg. CP Tax" }
                 , { "AVGCOSTPRICEWT", "Avg. CP With Tax" }
                 , { "TOTALAVGCOSTPRICEWOT", "Total Avg. CP W\\O Tax" }
-                , { "TOTALAVGCOSTPRICEWT", "Toatl Avg. CP With Tax" }
+                , { "TOTALAVGCOSTPRICEWT", "Total Avg. CP With Tax" }
             };
 
             SetFocusControls(dtAsOnDate, cmbItemCode, columnHeaders);
@@ -57,17 +63,24 @@ namespace NSRetail.ReportForms.Stock.StockReports
             MandatoryFields = new List<BaseEdit> { dtAsOnDate, cmbBranch, cmbCategory };
             HiddenColumns = new List<string>
             {
-                "CATEGORYNAME",
-                "LATESTCOSTPRICEWOT",
-                "LATESTCOSTPRICETAX",
-                "TOTALLATESTCOSTPRICEWOT",
-                "AVGCOSTPRICEWOT",
-                "AVGCOSTPRICETAX",
-                "TOTALAVGCOSTPRICEWOT"
+                "OPENINGSTOCK",
+                "STOCKENTRY",
+                "STOCKDISPATCHIN",
+                "STOCKDISPATCHOUT",
+                "CUSTOMERREFUND",
+                "BRANCHREFUND",
+                "SUPPLIERRETURNS",
+                "SALE",
+                "STOCKADJUSTMENT"
             };
 
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
+                new IncludeSettings("Category & Sub category", "IncludeCategory"
+                    , new List<string>{ "CATEGORYNAME", "SUBCATEGORYNAME" }, false),
+                new IncludeSettings("Classification & Sub classification", "IncludeClassification"
+                    , new List<string>{ "CLASSIFICATIONNAME", "SUBCLASSIFICATIONNAME" }, false),
+                new IncludeSettings("HSN", "IncludeHSN", new List<string>{ "HSNCODE" }, false),
                 new IncludeSettings("Latest Cost price & totals", "IncludeLatestCP"
                     , new List<string>{ "LATESTCOSTPRICEWOT", "LATESTCOSTPRICETAX", "LATESTCOSTPRICEWT", "TOTALLATESTCOSTPRICEWOT", "TOTALLATESTCOSTPRICEWT"
                     }, true),
