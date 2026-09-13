@@ -33,9 +33,9 @@ namespace NSRetail.ReportForms.Wareshouse.Differences
                 new IncludeSettings("Supplier", "IncludeSupplier", new List<string>() { "DEALERNAME" }, true),
                 new IncludeSettings("Category", "IncludeCategory", new List<string>() { "CATEGORYNAME" }, true),
                 new IncludeSettings("Sub category", "IncludeSubCategory", new List<string>() { "SUBCATEGORYNAME" }, false),
-                new IncludeSettings("Item Details", "IncludeItem", new List<string>() { "SKUCODE", "ITEMNAME" }, true),
+                new IncludeSettings("Item Details", "IncludeItem", new List<string>() { "SKUCODE", "ITEMNAME", "IndentItem" }, true),
                 new IncludeSettings("Indent #", "IncludeIndentNo", new List<string>() { "Indent #" }, true),
-                new IncludeSettings("Invoice details", "IncludeInvoiceNo", new List<string>() { "Invoice #", "Invoice Date" }, true),
+                new IncludeSettings("Invoice details", "IncludeInvoiceNo", new List<string>() { "Invoice #", "Invoice Date" }, false),
             };
         }
 
