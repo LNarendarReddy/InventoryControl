@@ -30,10 +30,12 @@ namespace NSRetail.Supplier
         {
             SetEnabled(false);
             AppendStatus("============ Begin Generation ============");
-            DataSet dsSupplierTemp =
-                new DataRepository().GetDataset("USP_G_SUPPLIERINDENT",
-                true, new Dictionary<string, object>
-                {
+            try
+            {
+                DataSet dsSupplierTemp =
+                    new DataRepository().GetDataset("USP_G_SUPPLIERINDENT",
+                    true, new Dictionary<string, object>
+                    {
                     { "SupplierID", luSupplier.EditValue }
                     , { "CategoryID", luCategory.EditValue }
                     , { "SafetyDays", txtSafetyDays.EditValue }
@@ -41,13 +43,21 @@ namespace NSRetail.Supplier
                     , { "IndentItemSelectionType", luIndentType.EditValue }
                     , { "BranchID", luBranch.EditValue }
                     , { "UserID", Utility.UserID }
-                }, AppendStatus);
+                    }, AppendStatus);
 
-            DatasetReadComplete(dsSupplierTemp);
+                DatasetReadComplete(dsSupplierTemp);
 
-            AppendStatus(string.Empty);
-            AppendStatus("============ Completed ============");
-            AppendStatus(string.Empty);
+                AppendStatus(string.Empty);
+                AppendStatus("============ Completed ============");
+                AppendStatus(string.Empty);
+            }
+            catch (Exception ex)
+            {
+                AppendStatus(string.Empty);
+                AppendStatus("============ Error ============");
+                AppendStatus(string.Empty);
+                ErrorManagement.ErrorMgmt.ShowError(ex);
+            }
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

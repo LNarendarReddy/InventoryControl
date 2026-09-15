@@ -36,6 +36,7 @@ namespace NSRetail.ReportForms.Wareshouse.Differences
                 new IncludeSettings("Item Details", "IncludeItem", new List<string>() { "SKUCODE", "ITEMNAME", "IndentItem" }, true),
                 new IncludeSettings("Indent #", "IncludeIndentNo", new List<string>() { "Indent #" }, true),
                 new IncludeSettings("Invoice details", "IncludeInvoiceNo", new List<string>() { "Invoice #", "Invoice Date" }, false),
+                new IncludeSettings("Zero item indents", "IncludeZeroIndents", new List<string>() { "Invoice #", "Invoice Date" }, true),
             };
         }
 
