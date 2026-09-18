@@ -1,4 +1,7 @@
-﻿v4.0.7
+﻿v4.0.8
+-- Enabled stock entry revert feature
+
+v4.0.7
 -- Added Category/Sub category, Classification/Sub classification, HSN, and GST Code columns in Stock As On Date
 -- Added include settings for Stock As On Date category, classification, and HSN fields
 -- Hidden individual Stock As On Date transaction breakup columns by default
