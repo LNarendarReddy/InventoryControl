@@ -1,4 +1,9 @@
-﻿v4.0.8
+﻿v4.0.9
+-- Corrected Stock As On Date calculations to use physical item price transactions, including historical deleted item prices
+-- Added the Item Code & MRP include setting; the report is grouped by SKU by default
+-- Added a validation in add proccessing form
+
+v4.0.8
 -- Enabled stock entry revert feature
 
 v4.0.7

@@ -121,6 +121,13 @@ namespace NSRetail.Stock
                 return; 
             }
 
+            if (IsSelectedItemParentItemSame())
+            {
+                XtraMessageBox.Show("Item and parent item cannot be same", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                sluItemCode.Focus();
+                return;
+            }
+
             if(txtQtyOrWeight.EditValue.Equals(0))
             {
                 XtraMessageBox.Show("Quantity cannot be zero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop); 
@@ -146,6 +153,17 @@ namespace NSRetail.Stock
             }
 
             ClearObjects();
+        }
+
+        private bool IsSelectedItemParentItemSame()
+        {
+            int rowhandle = sluItemCodeView.LocateByValue("ITEMCODEID", sluItemCode.EditValue);
+            if (rowhandle < 0) return false;
+
+            object itemID = sluItemCodeView.GetRowCellValue(rowhandle, "ITEMID");
+            object parentItemID = sluItemCodeView.GetRowCellValue(rowhandle, "PARENTITEMID");
+
+            return Convert.ToString(itemID) == Convert.ToString(parentItemID);
         }
 
         private void txtQuantity_EditValueChanged(object sender, EventArgs e)

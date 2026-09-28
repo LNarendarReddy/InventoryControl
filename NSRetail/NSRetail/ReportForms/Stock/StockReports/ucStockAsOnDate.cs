@@ -76,6 +76,8 @@ namespace NSRetail.ReportForms.Stock.StockReports
 
             IncludeSettingsCollection = new List<IncludeSettings>()
             {
+                new IncludeSettings("Item Code & MRP", "IncludeItemCodeMRP"
+                    , new List<string>{ "ITEMCODE", "MRP" }, false),
                 new IncludeSettings("Category & Sub category", "IncludeCategory"
                     , new List<string>{ "CATEGORYNAME", "SUBCATEGORYNAME" }, false),
                 new IncludeSettings("Classification & Sub classification", "IncludeClassification"
