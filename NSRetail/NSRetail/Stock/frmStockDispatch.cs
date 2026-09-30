@@ -75,6 +75,7 @@ namespace NSRetail.Stock
                     cmbCategory.EditValue = ObjStockDispatch.CATEGORYID;
                     gcDispatch.DataSource = ObjStockDispatch.dtDispatch;
                     cmbFromBranch.Enabled = false;
+                    cmbToBranch.Enabled = false;
                     cmbCategory.Enabled = false;
                     BindTrayNumber();
                 }
@@ -223,8 +224,7 @@ namespace NSRetail.Stock
                         
             try
             {
-                if (Convert.ToInt32(ObjStockDispatch?.STOCKDISPATCHID) == 0 ||
-                    Convert.ToInt32(cmbToBranch.EditValue) !=  Convert.ToInt32(ObjStockDispatch.TOBRANCHID)) 
+                if (Convert.ToInt32(ObjStockDispatch?.STOCKDISPATCHID) == 0)
                     SaveDispatch();
 
                 // in case the save dispatch failed above
@@ -319,6 +319,7 @@ namespace NSRetail.Stock
                 ObjStockDispatch.Description = txtNotes.EditValue;
                 ObjStockRep.SaveDispatch(ObjStockDispatch);
                 cmbFromBranch.Enabled = false;
+                cmbToBranch.Enabled = false;
                 cmbCategory.Enabled = false;
             }
             catch (Exception ex)
@@ -469,8 +470,7 @@ namespace NSRetail.Stock
         {
             try
             {
-                if (Convert.ToInt32(ObjStockDispatch?.STOCKDISPATCHID) == 0 ||
-                   Convert.ToInt32(cmbToBranch.EditValue) != Convert.ToInt32(ObjStockDispatch.TOBRANCHID))
+                if (Convert.ToInt32(ObjStockDispatch?.STOCKDISPATCHID) == 0)
                     SaveDispatch();
 
                 frmSingleTextbox obj = new frmSingleTextbox("Tray Number");
