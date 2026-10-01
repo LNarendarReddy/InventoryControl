@@ -101,7 +101,7 @@ namespace NSRetail.Stock
             if (isLoading || cmbSupplier.EditValue == null || cmbCategory.EditValue == null)
                 return;
 
-            DataTable dtSupplierIndent = stockRepository.GetSupplierIndentList(cmbSupplier.EditValue, cmbCategory.EditValue);
+            DataTable dtSupplierIndent = stockRepository.GetSupplierIndentList(cmbSupplier.EditValue, cmbCategory.EditValue, Utility.BranchID);
             string valueMember = GetFirstColumn(dtSupplierIndent, "SUPPLIERINDENTID", "SupplierIndentID", "SupplierIndentId");
             string displayMember = GetFirstColumn(dtSupplierIndent, "SUPPLIERINDENTNO", "SupplierIndentNo", "INDENTNO", "IndentNo");
 

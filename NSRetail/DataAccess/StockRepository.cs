@@ -179,6 +179,32 @@ namespace DataAccess
             }
         }
 
+        public void UpdateDispatchDraftInfo(StockDispatch objStockDispatch)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_U_STOCKDISPATCHDRAFTINFO]";
+                    cmd.Parameters.AddWithValue("@STOCKDISPATCHID", objStockDispatch.STOCKDISPATCHID);
+                    cmd.Parameters.AddWithValue("@TOBRANCHID", objStockDispatch.TOBRANCHID);
+                    cmd.Parameters.AddWithValue("@NOTES", objStockDispatch.Description ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@USERID", objStockDispatch.UserID);
+
+                    object result = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(result), out int stockDispatchID) ||
+                        stockDispatchID != Convert.ToInt32(objStockDispatch.STOCKDISPATCHID))
+                        throw new Exception(Convert.ToString(result));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error while updating dispatch information - {ex.Message}", ex);
+            }
+        }
+
         public DataTable GetDispatchList(object BranchID, object FromDate,object ToDate)
         {
             DataTable dt = new DataTable();
@@ -600,7 +626,7 @@ namespace DataAccess
             return objStockEntry;
         }
 
-        public DataTable GetSupplierIndentList(object SupplierID, object CategoryID)
+        public DataTable GetSupplierIndentList(object SupplierID, object CategoryID, object BranchID)
         {
             try
             {
@@ -612,6 +638,7 @@ namespace DataAccess
                     cmd.CommandText = "[USP_R_SUPPLIERINDENTLIST]";
                     cmd.Parameters.AddWithValue("@SUPPLIERID", SupplierID);
                     cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);

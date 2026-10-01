@@ -1398,6 +1398,24 @@
     <Compile Include="Stock\frmStockDispatch.Designer.cs">
       <DependentUpon>frmStockDispatch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stock\frmStockDispatchInfoV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmStockDispatchInfoV2.Designer.cs">
+      <DependentUpon>frmStockDispatchInfoV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\frmStockDispatchItemV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmStockDispatchItemV2.Designer.cs">
+      <DependentUpon>frmStockDispatchItemV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\frmStockDispatchV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmStockDispatchV2.Designer.cs">
+      <DependentUpon>frmStockDispatchV2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stock\frmStockEntry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2094,6 +2112,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmAddStockRecord.resx">
       <DependentUpon>frmAddStockRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmStockDispatchInfoV2.resx">
+      <DependentUpon>frmStockDispatchInfoV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmStockDispatchItemV2.resx">
+      <DependentUpon>frmStockDispatchItemV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\frmStockDispatchV2.resx">
+      <DependentUpon>frmStockDispatchV2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\frmStockEntryPrices.resx">
       <DependentUpon>frmStockEntryPrices.cs</DependentUpon>

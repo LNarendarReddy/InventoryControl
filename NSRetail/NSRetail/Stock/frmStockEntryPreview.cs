@@ -82,7 +82,7 @@ namespace NSRetail.Stock
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                         return;
 
-                    if (cmbBranch.EditValue != null)
+                    if (cmbBranch.EditValue != null && Utility.BranchID.Equals(45))
                     {
                         if (XtraMessageBox.Show($"Are you sure want to dispatch this invoice to {cmbBranch.Text}", "Confirm",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
