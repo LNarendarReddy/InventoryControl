@@ -1,0 +1,42 @@
+using DevExpress.XtraEditors;
+using NSRetailPOS.ReportControls.ReportBase;
+using System;
+using System.Collections.Generic;
+
+namespace NSRetailPOS.Operations.Reports
+{
+    public partial class ucDispatchDifferences : SearchCriteriaBase
+    {
+        public ucDispatchDifferences()
+        {
+            InitializeComponent();
+
+            Dictionary<string, string> columnHeaders = new Dictionary<string, string>
+            {
+                { "DISPATCHQUANTITY", "Dispatch Quantity" },
+                { "RECEIVEDQUANTITY", "Recieved Quantity" },
+                { "STOCKDIFF", "Stock Difference" }
+            };
+
+            MandatoryFields = new List<BaseEdit>() { cmbBranch, cmbCategory, dtFromDate, dtToDate };
+
+            dtFromDate.EditValue = DateTime.Now.AddDays(-7);
+            dtToDate.EditValue = DateTime.Now;
+
+            SetFocusControls(cmbBranch, dtToDate, columnHeaders);
+        }
+
+        public override object GetData()
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "BranchID", cmbBranch.EditValue },
+                { "FromDate", dtFromDate.EditValue },
+                { "ToDate", dtToDate.EditValue },
+                { "CategoryID", cmbCategory.EditValue }
+            };
+
+            return GetReportData("USP_RPT_DISPATCHDIFF", parameters);
+        }
+    }
+}

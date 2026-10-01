@@ -1,4 +1,7 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using System;
@@ -18,6 +21,23 @@ namespace NSRetailPOS.Operations.Branch
         public frmBranchExpenseList()
         {
             InitializeComponent();
+            ConfigureGridSummary();
+        }
+
+        private void ConfigureGridSummary()
+        {
+            gvExpenses.OptionsView.ShowFooter = true;
+            gvExpenses.OptionsView.GroupFooterShowMode = GroupFooterShowMode.VisibleAlways;
+
+            gridColumn2.Summary.Clear();
+            gridColumn2.Summary.Add(DevExpress.Data.SummaryItemType.Sum, "AMOUNT", "{0:0.00}");
+
+            gvExpenses.GroupSummary.Clear();
+            gvExpenses.GroupSummary.Add(new GridGroupSummaryItem(
+                DevExpress.Data.SummaryItemType.Sum,
+                "AMOUNT",
+                gridColumn2,
+                "{0:0.00}"));
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -107,6 +127,42 @@ namespace NSRetailPOS.Operations.Branch
         private void btnViewImage_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             new frmImageViewer(new OperationsRepository().GetBranchExpenseImage(gvExpenses.GetFocusedRowCellValue("BRANCHEXPENSEID"))).ShowDialog();
+        }
+
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            GridColumn[] actionColumns = { gridColumn10, gridColumn7, gridColumn8 };
+            Dictionary<GridColumn, int> visibleIndexes = new Dictionary<GridColumn, int>();
+
+            try
+            {
+                foreach (GridColumn column in actionColumns)
+                {
+                    visibleIndexes[column] = column.VisibleIndex;
+                    column.Visible = false;
+                }
+
+                gcExpenses.ShowRibbonPrintPreview();
+            }
+            finally
+            {
+                foreach (GridColumn column in actionColumns)
+                {
+                    column.Visible = true;
+                    column.VisibleIndex = visibleIndexes[column];
+                }
+            }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                Close();
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

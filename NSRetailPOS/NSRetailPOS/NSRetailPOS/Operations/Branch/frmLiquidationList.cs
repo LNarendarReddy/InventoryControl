@@ -139,5 +139,16 @@ namespace NSRetailPOS.Operations.Branch
                 , gvExpenses.GetFocusedRowCellValue("CATEGORYID")
                 , gvExpenses.GetFocusedRowCellValue("ISOPENITEM"));
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                Close();
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }

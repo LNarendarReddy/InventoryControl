@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMRPList));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
@@ -78,10 +78,11 @@
             this.layoutControl1.Controls.Add(this.gcMRPList);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(772, 112, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(531, 321);
+            this.layoutControl1.Size = new System.Drawing.Size(620, 370);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -90,9 +91,10 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(456, 297);
+            this.btnCancel.Location = new System.Drawing.Point(532, 346);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(73, 22);
+            this.btnCancel.Size = new System.Drawing.Size(86, 22);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
@@ -102,9 +104,10 @@
             // 
             this.btnOk.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnOk.ImageOptions.Image")));
             this.btnOk.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnOk.Location = new System.Drawing.Point(375, 297);
+            this.btnOk.Location = new System.Drawing.Point(438, 346);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(77, 22);
+            this.btnOk.Size = new System.Drawing.Size(90, 22);
             this.btnOk.StyleController = this.layoutControl1;
             this.btnOk.TabIndex = 5;
             this.btnOk.Text = "Ok";
@@ -112,14 +115,16 @@
             // 
             // gcMRPList
             // 
+            this.gcMRPList.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.gcMRPList.Location = new System.Drawing.Point(2, 2);
             this.gcMRPList.MainView = this.gvMRPList;
+            this.gcMRPList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcMRPList.Name = "gcMRPList";
             this.gcMRPList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDelete,
             this.cmbGST,
             this.txtdecimal});
-            this.gcMRPList.Size = new System.Drawing.Size(527, 291);
+            this.gcMRPList.Size = new System.Drawing.Size(616, 340);
             this.gcMRPList.TabIndex = 4;
             this.gcMRPList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvMRPList});
@@ -139,9 +144,12 @@
             this.gcCostPriceWOT,
             this.gridColumn1,
             this.gcGSTCode});
+            this.gvMRPList.DetailHeight = 404;
             this.gvMRPList.FixedLineWidth = 3;
             this.gvMRPList.GridControl = this.gcMRPList;
             this.gvMRPList.Name = "gvMRPList";
+            this.gvMRPList.OptionsBehavior.Editable = false;
+            this.gvMRPList.OptionsEditForm.PopupEditFormWidth = 933;
             this.gvMRPList.OptionsView.ShowGroupPanel = false;
             this.gvMRPList.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gvMRPList_ShowingEditor);
             this.gvMRPList.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvMRPList_InitNewRow);
@@ -153,10 +161,11 @@
             this.gcMRP.Caption = "MRP";
             this.gcMRP.ColumnEdit = this.txtdecimal;
             this.gcMRP.FieldName = "MRP";
+            this.gcMRP.MinWidth = 23;
             this.gcMRP.Name = "gcMRP";
             this.gcMRP.Visible = true;
             this.gcMRP.VisibleIndex = 0;
-            this.gcMRP.Width = 96;
+            this.gcMRP.Width = 112;
             // 
             // txtdecimal
             // 
@@ -174,63 +183,59 @@
             this.gcSalePrice.Caption = "Sale Price";
             this.gcSalePrice.ColumnEdit = this.txtdecimal;
             this.gcSalePrice.FieldName = "SALEPRICE";
+            this.gcSalePrice.MinWidth = 23;
             this.gcSalePrice.Name = "gcSalePrice";
+            this.gcSalePrice.OptionsColumn.AllowEdit = false;
             this.gcSalePrice.Visible = true;
             this.gcSalePrice.VisibleIndex = 1;
-            this.gcSalePrice.Width = 98;
+            this.gcSalePrice.Width = 114;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Child Itemprice ID";
             this.gridColumn2.FieldName = "CIPID";
+            this.gridColumn2.MinWidth = 23;
             this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Width = 64;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Parent ItemPrice ID";
             this.gridColumn3.FieldName = "PIPID";
-            this.gridColumn3.MinWidth = 17;
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Width = 87;
             // 
             // gcCostPriceWT
             // 
             this.gcCostPriceWT.Caption = "Cost Price WT";
             this.gcCostPriceWT.FieldName = "COSTPRICEWT";
-            this.gcCostPriceWT.MinWidth = 17;
             this.gcCostPriceWT.Name = "gcCostPriceWT";
             this.gcCostPriceWT.Visible = true;
             this.gcCostPriceWT.VisibleIndex = 3;
-            this.gcCostPriceWT.Width = 105;
+            this.gcCostPriceWT.Width = 122;
             // 
             // gcCostPriceWOT
             // 
             this.gcCostPriceWOT.Caption = "Cost Price WOT";
             this.gcCostPriceWOT.FieldName = "COSTPRICEWOT";
-            this.gcCostPriceWOT.MinWidth = 17;
             this.gcCostPriceWOT.Name = "gcCostPriceWOT";
             this.gcCostPriceWOT.Visible = true;
             this.gcCostPriceWOT.VisibleIndex = 4;
-            this.gcCostPriceWOT.Width = 118;
+            this.gcCostPriceWOT.Width = 138;
             // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "GST Code";
             this.gridColumn1.FieldName = "GSTCODE";
-            this.gridColumn1.MinWidth = 17;
             this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Width = 64;
             // 
             // gcGSTCode
             // 
             this.gcGSTCode.Caption = "GST Code";
             this.gcGSTCode.ColumnEdit = this.cmbGST;
             this.gcGSTCode.FieldName = "GSTID";
-            this.gcGSTCode.MinWidth = 17;
             this.gcGSTCode.Name = "gcGSTCode";
             this.gcGSTCode.Visible = true;
             this.gcGSTCode.VisibleIndex = 2;
-            this.gcGSTCode.Width = 64;
             // 
             // cmbGST
             // 
@@ -238,8 +243,8 @@
             this.cmbGST.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbGST.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTID", "GSTID", 17, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTCODE", "GSTCODE", 17, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTID", "GSTID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GSTCODE", "GSTCODE")});
             this.cmbGST.Name = "cmbGST";
             this.cmbGST.NullText = "";
             this.cmbGST.ShowHeader = false;
@@ -247,9 +252,9 @@
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -267,7 +272,7 @@
             this.emptySpaceItem1});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.Root.Size = new System.Drawing.Size(531, 321);
+            this.Root.Size = new System.Drawing.Size(620, 370);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -275,45 +280,46 @@
             this.layoutControlItem1.Control = this.gcMRPList;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(531, 295);
+            this.layoutControlItem1.Size = new System.Drawing.Size(620, 344);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnOk;
-            this.layoutControlItem2.Location = new System.Drawing.Point(373, 295);
+            this.layoutControlItem2.Location = new System.Drawing.Point(436, 344);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(81, 26);
+            this.layoutControlItem2.Size = new System.Drawing.Size(94, 26);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnCancel;
-            this.layoutControlItem3.Location = new System.Drawing.Point(454, 295);
+            this.layoutControlItem3.Location = new System.Drawing.Point(530, 344);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(77, 26);
+            this.layoutControlItem3.Size = new System.Drawing.Size(90, 26);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 295);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 344);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(373, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(436, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmMRPList
             // 
             this.AcceptButton = this.btnOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(531, 321);
+            this.ClientSize = new System.Drawing.Size(620, 370);
             this.Controls.Add(this.layoutControl1);
             this.IconOptions.ShowIcon = false;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmMRPList";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

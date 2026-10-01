@@ -40,6 +40,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@PriceEntryMethod", ObjStockEntry.PriceEntryMethod);
                     cmd.Parameters.AddWithValue("@LorryFrightMode", ObjStockEntry.LorryFrightMode);
                     cmd.Parameters.AddWithValue("@SourceBranchID", ObjStockEntry.SourceBranchID);
+                    cmd.Parameters.AddWithValue("@SupplierIndentID", ObjStockEntry.SupplierIndentId);
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out StockEntryID))
@@ -147,11 +148,15 @@ namespace NSRetailPOS.Data
                             objStockEntry.SUPPLIERID = ds.Tables[0].Rows[0]["SUPPLIERID"];
                             objStockEntry.SUPPLIERINVOICENO = ds.Tables[0].Rows[0]["SUPPLIERINVOICENO"];
                             objStockEntry.SUPPLIERNAME = ds.Tables[0].Rows[0]["SUPPLIERNAME"];
+                            objStockEntry.SupplierGSTIN = GetValueIfColumnExists(ds.Tables[0], "GSTIN");
                             objStockEntry.InvoiceDate = ds.Tables[0].Rows[0]["INVOICEDATE"];
                             objStockEntry.TCS = ds.Tables[0].Rows[0]["TCS"];
                             objStockEntry.DISCOUNTFLAT = ds.Tables[0].Rows[0]["DISCOUNT"];
                             objStockEntry.EXPENSES = ds.Tables[0].Rows[0]["EXPENSES"];
                             objStockEntry.TRANSPORT = ds.Tables[0].Rows[0]["TRANSPORT"];
+                            objStockEntry.CATEGORYID = GetValueIfColumnExists(ds.Tables[0], "CATEGORYID") ?? objStockEntry.CATEGORYID;
+                            objStockEntry.SupplierIndentId = GetValueIfColumnExists(ds.Tables[0], "SupplierIndentID");
+                            objStockEntry.SupplierIndentNo = GetValueIfColumnExists(ds.Tables[0], "SupplierIndentNo");
                             objStockEntry.SourceBranchID = ds.Tables[0].Rows[0]["SOURCEBRANCHID"];
                             objStockEntry.InvoiceType = ds.Tables[0].Rows[0]["InvoiceType"];
                             objStockEntry.PriceEntryMethod = ds.Tables[0].Rows[0]["PriceEntryMethod"];
@@ -172,6 +177,49 @@ namespace NSRetailPOS.Data
             }
             return objStockEntry;
         }
+
+        public DataTable GetSupplierIndentList(object SupplierID, object CategoryID, object BranchID)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlWHconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_SUPPLIERINDENTLIST]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERID", SupplierID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
+                    cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(ds);
+                    }
+                }
+
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    string result = Convert.ToString(ds.Tables[0].Rows[0][0]);
+                    if (!int.TryParse(result, out int _))
+                        throw new Exception(result);
+
+                    if (ds.Tables.Count > 1)
+                        return ds.Tables[1].Copy();
+                }
+
+                throw new Exception("Indent does not exists");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Reading Supplier Indents", ex);
+            }
+        }
+
+        private object GetValueIfColumnExists(DataTable table, string columnName)
+        {
+            return table.Columns.Contains(columnName) ? table.Rows[0][columnName] : null;
+        }
+
         public void DeleteInvoiceDetail(object StockEntryDetailID,object UserID)
         {
             try
@@ -337,7 +385,10 @@ namespace NSRetailPOS.Data
             stockEntryDetail.IGST = dataTable.Rows[0]["IGST"];
             stockEntryDetail.CESS = dataTable.Rows[0]["CESS"];
             stockEntryDetail.HSNCODE = dataTable.Rows[0]["HSNCODE"];
-            stockEntryDetail.IsFreeItem = dataTable.Rows[0]["ISFREEITEM"];
+            stockEntryDetail.GSTCODE = dataTable.Rows[0]["GSTCODE"];
+            stockEntryDetail.IsFreeItem = Convert.ToBoolean(dataTable.Rows[0]["ISFREEITEM"]);
+            stockEntryDetail.CreatedBy = Convert.ToString(dataTable.Rows[0]["CREATEDBY"]);
+            stockEntryDetail.CreatedDate = Convert.ToDateTime(dataTable.Rows[0]["CREATEDDATE"]);
         }
     }
 }

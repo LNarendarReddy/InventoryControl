@@ -125,9 +125,21 @@ namespace NSRetailPOS.Operations.Stock
                 if (!dxValidationProvider1.Validate())
                     return;
 
-                if ((IsOpenItem ? txtWeightInKGs.EditValue : txtQuantity.EditValue) == null ||
-                        Convert.ToInt32(IsOpenItem ? txtWeightInKGs.EditValue : txtQuantity.EditValue) <= 0)
+                decimal stockEntryQuantity = Convert.ToDecimal((IsOpenItem ? txtWeightInKGs.EditValue : txtQuantity.EditValue) ?? 0);
+                if (stockEntryQuantity <= 0)
                     return;
+
+                if (!IsOpenItem && stockEntryQuantity > 99999)
+                {
+                    XtraMessageBox.Show("Quantity cannot be more than 5 digits");
+                    return;
+                }
+
+                if (IsOpenItem && stockEntryQuantity > 9999.99M)
+                {
+                    XtraMessageBox.Show("Weight cannot be more than 4 digits");
+                    return;
+                }
 
                 if (decimal.TryParse(Convert.ToString(txtMRP.EditValue), out decimal MRP) &&
                     decimal.TryParse(Convert.ToString(txtNetCostPriceWT.EditValue), out decimal CostPriceWT) &&
@@ -189,8 +201,21 @@ namespace NSRetailPOS.Operations.Stock
                 ObjStockEntryDetail.CESS = txtCESS.EditValue;
                 ObjStockEntryDetail.HSNCODE = txtHSNCode.EditValue;
                 ObjStockEntryDetail.IsFreeItem = Convert.ToBoolean(chkFreeItem.CheckState);
+
+                if (!frmparent.ValidateStockEntryDetailAgainstSupplierIndent(ObjStockEntryDetail, out string indentValidationMessage))
+                {
+                    XtraMessageBox.Show(indentValidationMessage);
+                    return;
+                }
+
                 ObjStockRep.SaveInvoiceDetail(ObjStockEntryDetail);
                 frmparent.RefreshGrid(ObjStockEntryDetail);
+                if (IsEditMode)
+                {
+                    Close();
+                    return;
+                }
+
                 ObjStockEntryDetail.STOCKENTRYDETAILID = 0;
                 cmbItemCode.EditValue = null;
                 txtItemName.EditValue = null;
@@ -439,7 +464,24 @@ namespace NSRetailPOS.Operations.Stock
         private void CalculateReadOnlyFields()
         {
             decimal quantity = Convert.ToDecimal((IsOpenItem ? txtWeightInKGs : txtQuantity).EditValue);
-            if (quantity <= 0) return;
+
+            if (quantity <= 0)
+            {
+                txtNetCostPriceWOT.EditValue = 0;
+                txtNetCostPriceWT.EditValue = 0;
+                txtCGST.EditValue = 0;
+                txtSGST.EditValue = 0;
+                txtIGST.EditValue = 0;
+                txtCESS.EditValue = 0;
+                txtTotalPriceWT.EditValue = 0;
+                txtTotalPriceWOT.EditValue = 0;
+                txtAppliedDiscount.EditValue = 0;
+                txtAppliedScheme.EditValue = 0;
+                txtAppliedGST.EditValue = 0;
+                txtFinalPriceWithOutTax.EditValue = 0;
+                txtFinalPrice.EditValue = 0;
+                return;
+            }
 
             decimal grossCPWT = Convert.ToDecimal(txtGrossCPWTax.EditValue);
             decimal grossCPWOT = Convert.ToDecimal(txtGrossCPWOTax.EditValue);
@@ -473,6 +515,7 @@ namespace NSRetailPOS.Operations.Stock
 
             decimal cGST = 0.0M, sGST = 0.0M, iGST = 0.0M, cess = 0.0M;
             decimal appliedGSTPerUnit = 0.0M;
+            decimal netCPWT = netCPWOT;
 
             if (cmbGST.GetSelectedDataRow() is GSTInfo gstInfo)
             {
@@ -489,10 +532,9 @@ namespace NSRetailPOS.Operations.Stock
                     cess = Math.Round(netCPWOT * gstInfo.CESS / 100, 4);
                     appliedGSTPerUnit = iGST + cess;
                 }
-            }
 
-            // 👉 Net CP with tax (per unit)
-            decimal netCPWT = netCPWOT + appliedGSTPerUnit;
+                netCPWT = Math.Round(netCPWOT * (1 + gstInfo.TAXPercent), 4);
+            }
 
             // 👉 Final totals
             decimal finalPriceWOTax = Math.Round(netCPWOT * quantity, 2);
@@ -503,7 +545,7 @@ namespace NSRetailPOS.Operations.Stock
 
             // 👉 Assign values
             txtNetCostPriceWOT.EditValue = Math.Round(netCPWOT, 4);
-            txtNetCostPriceWT.EditValue = Math.Round(netCPWT, 4);
+            txtNetCostPriceWT.EditValue = netCPWT;
 
             txtCGST.EditValue = Math.Round(cGST * quantity, 2);
             txtSGST.EditValue = Math.Round(sGST * quantity, 2);

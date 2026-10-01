@@ -365,6 +365,12 @@
     <Compile Include="Operations\Reports\ucDispatchList.Designer.cs">
       <DependentUpon>ucDispatchList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\Reports\ucDispatchDifferences.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operations\Reports\ucDispatchDifferences.Designer.cs">
+      <DependentUpon>ucDispatchDifferences.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\Reports\ucInvoiceList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -419,6 +425,12 @@
     <Compile Include="Operations\Stock\frmInvoiceSettings.Designer.cs">
       <DependentUpon>frmInvoiceSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations\Stock\frmInvoiceItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Stock\frmInvoiceItems.Designer.cs">
+      <DependentUpon>frmInvoiceItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\Stock\frmStockEntry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -430,6 +442,12 @@
     </Compile>
     <Compile Include="Operations\Stock\frmStockEntryPreview.Designer.cs">
       <DependentUpon>frmStockEntryPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\Stock\frmSupplierIndentItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Stock\frmSupplierIndentItems.Designer.cs">
+      <DependentUpon>frmSupplierIndentItems.cs</DependentUpon>
     </Compile>
     <Compile Include="Operations\Stock\frmSupplierReturns.cs">
       <SubType>Form</SubType>
@@ -734,6 +752,9 @@
     <EmbeddedResource Include="Operations\Reports\ucDispatchList.resx">
       <DependentUpon>ucDispatchList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Reports\ucDispatchDifferences.resx">
+      <DependentUpon>ucDispatchDifferences.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operations\Reports\ucInvoiceList.resx">
       <DependentUpon>ucInvoiceList.cs</DependentUpon>
     </EmbeddedResource>
@@ -761,11 +782,17 @@
     <EmbeddedResource Include="Operations\Stock\frmInvoiceSettings.resx">
       <DependentUpon>frmInvoiceSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Stock\frmInvoiceItems.resx">
+      <DependentUpon>frmInvoiceItems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operations\Stock\frmStockEntry.resx">
       <DependentUpon>frmStockEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Stock\frmStockEntryPreview.resx">
       <DependentUpon>frmStockEntryPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Stock\frmSupplierIndentItems.resx">
+      <DependentUpon>frmSupplierIndentItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Stock\frmSupplierReturns.resx">
       <DependentUpon>frmSupplierReturns.cs</DependentUpon>

@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using NSRetailPOS.Data;
+using NSRetailPOS.Operations.Stock;
 using NSRetailPOS.ReportControls.ReportBase;
 using NSRetailPOS.Reports;
 using System;
@@ -23,14 +24,17 @@ namespace NSRetailPOS.Operations.Reports
                 , { "DEALERNAME", "Supplier" }
                 , { "CATEGORYNAME", "Category" }
                 , { "INVOICEDATE", "Invoice Date" }
-                , { "CREATEDBY", "User Name" }
+                , { "CREATEDBY", "Created By" }
                 , { "CREATEDDATE", "Created Date" }
                 , { "FINALPRICE", "Net Amount" }
                 , { "STATUS", "Status" }
             };
 
-            ButtonColumns = new List<string>() { "View" };
-            HiddenColumns = new List<string>() { "TAXINCLUSIVE", "TCS", "DISCOUNTPER", "DISCOUNT", "EXPENSES", "TRANSPORT" };
+            ButtonColumns = new List<string>() { "View", "View Items" };
+            HiddenColumns = new List<string>() { "Transport", "TCS",
+                "CreditValue", "Discount", "Expenses", "PackingCharges", 
+                "DispatchNumber", "DispatchBranch",  "RECEIVINGBRANCH",
+            "CATEGORYNAME", "GSTIN", "SUPPLIERINDENTNO"};
 
             cmbDealer.Properties.DataSource = new MasterRepository().GetDealer(true);
             cmbDealer.Properties.DisplayMember = "DEALERNAME";
@@ -51,12 +55,29 @@ namespace NSRetailPOS.Operations.Reports
                 , { "FromDate", dtpFromDate.EditValue }
                 , { "ToDate", dtpToDate.EditValue }
                 , { "IsBranchInvoice", true }
+                , { "BranchID", Utility.branchInfo.BranchID }
             };
             return GetReportData("USP_R_INVOICELIST_v2", parameters);
         }
 
         public override void ActionExecute(string buttonText, DataRow drFocusedRow)
         {
+            if (buttonText == "View Items")
+            {
+                DataSet dsItems = new StockRepository().GetInvoice(drFocusedRow["STOCKENTRYID"]);
+                if (dsItems != null && dsItems.Tables.Count > 1)
+                {
+                    frmInvoiceItems frm = new frmInvoiceItems(dsItems.Tables[1])
+                    {
+                        ShowInTaskbar = false,
+                        StartPosition = FormStartPosition.CenterScreen
+                    };
+                    frm.IconOptions.ShowIcon = false;
+                    frm.ShowDialog();
+                }
+
+                return;
+            }
 
             if (drFocusedRow["STATUS"].ToString() == "Draft")
             {
@@ -76,8 +97,10 @@ namespace NSRetailPOS.Operations.Reports
                 case "View":
                     if (ds != null && ds.Tables.Count > 1)
                     {
-                        rptInvoice rpt = new rptInvoice(ds.Tables[0], ds.Tables[1]);
-                        rpt.ShowPrintMarginsWarning = false;
+                        rptInvoice rpt = new(ds.Tables[0], ds.Tables[1])
+                        {
+                            ShowPrintMarginsWarning = false
+                        };
                         rpt.ShowRibbonPreview();
                     }
                     break;

@@ -60,6 +60,36 @@ namespace NSRetailPOS.Data
             }
             return dsReportData;
         }
+
+        public DataSet GetSupplierIndentDetail(object SupplierIndentID, bool skipZero = false)
+        {
+            DataSet dsReportData = new DataSet();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.SqlWHconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "[USP_R_SUPPLIERINDENTDETAIL]";
+                    cmd.Parameters.AddWithValue("@SUPPLIERINDENTID", SupplierIndentID);
+                    cmd.Parameters.AddWithValue("@SkipZero", skipZero);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dsReportData);
+                    }
+                }
+
+                dsReportData.Relations.Add(new DataRelation("FT - Branch Details",
+                    dsReportData.Tables[0].Columns["SUPPLIERINDENTDETAILID"],
+                    dsReportData.Tables[1].Columns["SUPPLIERINDENTDETAILID"]));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error While Retrieving Supplier Indent", ex);
+            }
+
+            return dsReportData;
+        }
                
         private void ProcessParameters(SqlCommand sqlCommand, Dictionary<string, object> parameters)
         {
