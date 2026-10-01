@@ -279,6 +279,16 @@ namespace NSRetail
             obj.Show();
         }
 
+        private void btnStockDispatchV2_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmStockDispatchV2 obj = new frmStockDispatchV2();
+            obj.ShowInTaskbar = false;
+            obj.WindowState = FormWindowState.Maximized;
+            obj.IconOptions.ShowIcon = false;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
         public void bbiRefreshData_ItemClick(object sender, ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmProgress), true, true);

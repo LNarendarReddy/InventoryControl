@@ -47,6 +47,7 @@
             this.btnPrinterMaster = new DevExpress.XtraBars.BarButtonItem();
             this.btnStockEntry = new DevExpress.XtraBars.BarButtonItem();
             this.btnStockDispatch = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStockDispatchV2 = new DevExpress.XtraBars.BarButtonItem();
             this.bbiRefreshData = new DevExpress.XtraBars.BarButtonItem();
             this.btnSubCategory = new DevExpress.XtraBars.BarButtonItem();
             this.btnInvoiceList = new DevExpress.XtraBars.BarButtonItem();
@@ -166,6 +167,7 @@
             this.btnPrinterMaster,
             this.btnStockEntry,
             this.btnStockDispatch,
+            this.btnStockDispatchV2,
             this.bbiRefreshData,
             this.btnSubCategory,
             this.btnInvoiceList,
@@ -395,6 +397,15 @@
             this.btnStockDispatch.Name = "btnStockDispatch";
             this.btnStockDispatch.Tag = "A21620AC-5002-480B-81AF-2FD024FFC709::Execute";
             this.btnStockDispatch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockDispatch_ItemClick);
+            //
+            // btnStockDispatchV2
+            //
+            this.btnStockDispatchV2.Caption = "Stock Dispatch New";
+            this.btnStockDispatchV2.Id = 88;
+            this.btnStockDispatchV2.ImageOptions.SvgImage = this.btnStockDispatch.ImageOptions.SvgImage;
+            this.btnStockDispatchV2.Name = "btnStockDispatchV2";
+            this.btnStockDispatchV2.Tag = "A21620AC-5002-480B-81AF-2FD024FFC709::Execute";
+            this.btnStockDispatchV2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockDispatchV2_ItemClick);
             // 
             // bbiRefreshData
             // 
@@ -972,6 +983,7 @@
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.btnStockEntry);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnStockDispatch);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnStockDispatchV2);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnPrintDC);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnCounting);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnStockAdjustment);
@@ -1242,6 +1254,7 @@
         private DevExpress.XtraBars.BarButtonItem btnPrinterMaster;
         private DevExpress.XtraBars.BarButtonItem btnStockEntry;
         private DevExpress.XtraBars.BarButtonItem btnStockDispatch;
+        private DevExpress.XtraBars.BarButtonItem btnStockDispatchV2;
         private DevExpress.XtraBars.BarButtonItem bbiRefreshData;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.BarButtonItem btnSubCategory;
