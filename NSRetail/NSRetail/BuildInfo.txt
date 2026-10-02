@@ -1,4 +1,7 @@
-﻿v4.1.0
+﻿v4.1.1
+-- Added new stock dispatch workflow.
+
+v4.1.0
 -- Disabled dispatch branch change once stock dispatch is created
 
 v4.0.9

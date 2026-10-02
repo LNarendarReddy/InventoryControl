@@ -47,6 +47,7 @@ namespace NSRetail.Master
             gvCounters.Appearance.FocusedRow.Options.UseForeColor = true;
             gvCounters.OptionsView.ShowAutoFilterRow = false;
             gvCounters.OptionsView.ColumnAutoWidth = true;
+            gvCounters.OptionsView.ShowFooter = true;
             gvCounters.BestFitMaxRowCount = 100;
             gvCounters.SelectionChanged += gvCounters_SelectionChanged;
             gvCounters.PopupMenuShowing += gvCounters_PopupMenuShowing;
@@ -117,9 +118,20 @@ namespace NSRetail.Master
 
             FormatDateColumn("BUILDRELEASEDATE");
             FormatDateColumn("LASTVERSIONCHECK");
+            AddCountSummary("COUNTERNAME");
             HideColumn("COUNTERID");
             HideColumn("INSTALLEDTARGETMATCH");
             gvCounters.BestFitColumns();
+        }
+
+        private void AddCountSummary(string fieldName)
+        {
+            GridColumn column = gvCounters.Columns.ColumnByFieldName(fieldName);
+            if (column == null)
+                return;
+
+            column.Summary.Clear();
+            column.Summary.Add(new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, fieldName, "Count : {0}"));
         }
 
         private void HideColumn(string fieldName)
