@@ -271,7 +271,7 @@ namespace NSRetail
 
         private void btnStockDispatch_ItemClick(object sender, ItemClickEventArgs e)
         {
-            frmStockDispatch obj = new frmStockDispatch();
+            frmStockDispatchV2 obj = new frmStockDispatchV2();
             obj.ShowInTaskbar = false;
             obj.WindowState = FormWindowState.Maximized;
             obj.IconOptions.ShowIcon = false;

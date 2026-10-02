@@ -397,14 +397,15 @@
             this.btnStockDispatch.Name = "btnStockDispatch";
             this.btnStockDispatch.Tag = "A21620AC-5002-480B-81AF-2FD024FFC709::Execute";
             this.btnStockDispatch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockDispatch_ItemClick);
-            //
+            // 
             // btnStockDispatchV2
-            //
-            this.btnStockDispatchV2.Caption = "Stock Dispatch New";
+            // 
+            resources.ApplyResources(this.btnStockDispatchV2, "btnStockDispatchV2");
             this.btnStockDispatchV2.Id = 88;
-            this.btnStockDispatchV2.ImageOptions.SvgImage = this.btnStockDispatch.ImageOptions.SvgImage;
+            this.btnStockDispatchV2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStockDispatchV2.ImageOptions.SvgImage")));
             this.btnStockDispatchV2.Name = "btnStockDispatchV2";
             this.btnStockDispatchV2.Tag = "A21620AC-5002-480B-81AF-2FD024FFC709::Execute";
+            this.btnStockDispatchV2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnStockDispatchV2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockDispatchV2_ItemClick);
             // 
             // bbiRefreshData
