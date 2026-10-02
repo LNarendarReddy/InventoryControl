@@ -1,4 +1,8 @@
-﻿v4.1.1
+﻿v4.1.2
+-- Added credit note mapping option in Invoice List for submitted invoices.
+-- Added stock entry credit note mapping save flow using STOCKENTRYCREDITNOTEMAP.
+
+v4.1.1
 -- Added new stock dispatch workflow.
 
 v4.1.0

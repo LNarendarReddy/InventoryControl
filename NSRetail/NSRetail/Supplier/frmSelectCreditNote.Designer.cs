@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSelectCreditNote));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnNEWCN = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSelect = new DevExpress.XtraEditors.SimpleButton();
             this.gcCreditNotes = new DevExpress.XtraGrid.GridControl();
@@ -39,7 +40,6 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnNEWCN = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -67,6 +67,18 @@
             this.layoutControl1.Size = new System.Drawing.Size(891, 440);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnNEWCN
+            // 
+            this.btnNEWCN.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNEWCN.ImageOptions.Image")));
+            this.btnNEWCN.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnNEWCN.Location = new System.Drawing.Point(558, 406);
+            this.btnNEWCN.Name = "btnNEWCN";
+            this.btnNEWCN.Size = new System.Drawing.Size(116, 22);
+            this.btnNEWCN.StyleController = this.layoutControl1;
+            this.btnNEWCN.TabIndex = 7;
+            this.btnNEWCN.Text = "New Credit Note";
+            this.btnNEWCN.Click += new System.EventHandler(this.btnNEWCN_Click);
             // 
             // btnCancel
             // 
@@ -164,17 +176,6 @@
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(546, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // btnNEWCN
-            // 
-            this.btnNEWCN.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNEWCN.ImageOptions.Image")));
-            this.btnNEWCN.Location = new System.Drawing.Point(558, 406);
-            this.btnNEWCN.Name = "btnNEWCN";
-            this.btnNEWCN.Size = new System.Drawing.Size(116, 22);
-            this.btnNEWCN.StyleController = this.layoutControl1;
-            this.btnNEWCN.TabIndex = 7;
-            this.btnNEWCN.Text = "New Credit Note";
-            this.btnNEWCN.Click += new System.EventHandler(this.btnNEWCN_Click);
             // 
             // layoutControlItem4
             // 

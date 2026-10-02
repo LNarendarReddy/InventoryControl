@@ -188,6 +188,37 @@ namespace DataAccess
             return dt;
         }
 
+        public object MapStockEntryCreditNote(object stockEntryId, object creditNoteId, object creditValue, object userId)
+        {
+            object id = null;
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = SQLCon.Sqlconn();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "USP_CU_STOCKENTRY_CREDITNOTEMAP";
+                    cmd.Parameters.AddWithValue("@STOCKENTRYID", stockEntryId);
+                    cmd.Parameters.AddWithValue("@CREDITNOTEID", creditNoteId);
+                    cmd.Parameters.AddWithValue("@CREDITVALUE", creditValue);
+                    cmd.Parameters.AddWithValue("@USERID", userId);
+
+                    object obj = cmd.ExecuteScalar();
+                    if (int.TryParse(Convert.ToString(obj), out int iValue))
+                        id = obj;
+                    else
+                        throw new Exception(Convert.ToString(obj));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while mapping credit note to invoice", ex);
+            }
+
+            return id;
+        }
+
         public void DeleteCreditNoteMapping(object mapID, string mapType, object userId)
         {
             try

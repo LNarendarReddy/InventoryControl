@@ -48,11 +48,12 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 //{ "Clone", "50C463EA-A4BE-49A8-8484-B2C73186A373" },
                 { "Verify and Submit", "6B8301F8-D835-4F21-9ED2-F6939EAF1552" },
                 { "Dispatch to branch", "A3F813DC-3E42-407A-A3B8-1CC84ADC684C" },
+                { "Map Credit Note", "5AEF0A74-8B3C-4A50-AE42-6C94B74E0C5B" },
                 { "View Credit Note Mapping", "B4F924ED-7C53-4A78-9D6C-2F95B6EE5A9E" }
             };
                 
 
-            HiddenColumns = new List<string>() { "CATEGORYNAME", "CREATEDBY", "CREATEDDATE", "GSTIN", "SUBMITTEDBY", "SUBMITTEDDATE" };
+            HiddenColumns = new List<string>() { "DEALERID", "CATEGORYNAME", "CREATEDBY", "CREATEDDATE", "GSTIN", "SUBMITTEDBY", "SUBMITTEDDATE" };
 
             cmbDealer.Properties.DataSource = new MasterRepository().GetDealer(true);
             cmbDealer.Properties.DisplayMember = "DEALERNAME";
@@ -79,6 +80,8 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
         {
             try
             {
+                if (drFocusedRow == null) return;
+
                 if (buttonText == "View Items")
                 {
                     DataSet ds = new StockRepository().GetInvoice(drFocusedRow["STOCKENTRYID"]);
@@ -176,6 +179,16 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                     case "Dispatch to branch":
                         XtraMessageBox.Show("Not yet implemented", "Unknown", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
+                    case "Map Credit Note":
+                        if (drFocusedRow["STATUS"].ToString() != "Submitted")
+                        {
+                            XtraMessageBox.Show("Credit note mapping is allowed only for submitted invoices.", "NS Retail",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                        MapCreditNote(drFocusedRow);
+                        break;
                     case "View Credit Note Mapping":
                         DataTable dtCN = new CreditNoteRepository().GetMappedCreditNotes(drFocusedRow["STOCKENTRYID"], "SE");
                         frmViewCreditNoteMapping frmCNM = new frmViewCreditNoteMapping(dtCN, "SE");
@@ -190,6 +203,33 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
             {
                 ErrorManagement.ErrorMgmt.ShowError(ex);
             }
+        }
+
+        private void MapCreditNote(DataRow drFocusedRow)
+        {
+            using (frmSelectCreditNote frm = new frmSelectCreditNote(drFocusedRow["STOCKENTRYID"], "SE", drFocusedRow["DEALERID"]))
+            {
+                frm.StartPosition = FormStartPosition.CenterParent;
+
+                if (frm.ShowDialog() != DialogResult.OK)
+                    return;
+
+                new CreditNoteRepository().MapStockEntryCreditNote(
+                    drFocusedRow["STOCKENTRYID"],
+                    frm.SelectedCreditNoteId,
+                    frm.SelectedCreditValue,
+                    Utility.UserID);
+
+                XtraMessageBox.Show("Credit note mapped successfully.", "NS Retail",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                RefreshParent();
+            }
+        }
+
+        private void RefreshParent()
+        {
+            (ParentForm as frmReportPlaceHolder)?.btnSearch_Click(null, null);
         }
     }
 }
