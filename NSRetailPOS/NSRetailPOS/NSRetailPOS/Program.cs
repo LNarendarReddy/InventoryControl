@@ -9,7 +9,9 @@ using Serilog;
 using System;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,9 +24,49 @@ namespace NSRetailPOS
 
         /// <summary>
         /// The main entry point for the application.
+        /// Captures startup failures without relying on the logging libraries.
         /// </summary>
         [STAThread]
         static void Main()
+        {
+            try
+            {
+                RunApplication();
+            }
+            catch (Exception ex)
+            {
+                Environment.ExitCode = 1;
+
+                string details = ex.ToString();
+
+                try
+                {
+                    string logPath = Path.Combine(
+                        Path.GetTempPath(),
+                        "NSRetailPOS-startup-error.txt");
+
+                    File.WriteAllText(logPath, details);
+
+                    details += Environment.NewLine
+                        + Environment.NewLine
+                        + "Error details saved to: " + logPath;
+                }
+                catch
+                {
+                    // Still display the original error if saving fails.
+                }
+
+                MessageBox.Show(
+                    details,
+                    "NSRetailPOS startup error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        // Keep application startup separate so Main can catch assembly-load failures.
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        static void RunApplication()
         {
             Logger.Configure();
 
