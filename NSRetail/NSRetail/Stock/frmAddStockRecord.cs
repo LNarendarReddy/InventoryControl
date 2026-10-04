@@ -41,8 +41,7 @@ namespace NSRetail.Stock
 
                 txtQuantity.ConfirmBarCodeScan();
 
-                cmbItemCode.Properties.DataSource = !Utility.IsOpenCategory ?
-                    Utility.GetItemCodeListFiltered() : ObjItemRep.GetParentItems(Utility.CategoryID);
+                cmbItemCode.Properties.DataSource = Utility.GetItemCodeList();
                 cmbItemCode.Properties.ValueMember = "ITEMCODEID";
                 cmbItemCode.Properties.DisplayMember = "ITEMCODE";
 

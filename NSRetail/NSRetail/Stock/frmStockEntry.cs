@@ -41,7 +41,11 @@ namespace NSRetail.Stock
                 if (ObjStockEntry == null)
                     ObjStockEntry = new StockEntry();
                 ObjStockEntry.UserID = Utility.UserID;
-                ObjStockEntry.CATEGORYID = Utility.CategoryID;
+                if (IsNullValue(ObjStockEntry.STOCKENTRYID) || Convert.ToInt32(ObjStockEntry.STOCKENTRYID) <= 0)
+                {
+                    ObjStockEntry.CATEGORYID = IsNullValue(ObjStockEntry.CATEGORYID) ? Utility.CategoryID : ObjStockEntry.CATEGORYID;
+                    ObjStockEntry.SourceBranchID = IsNullValue(ObjStockEntry.SourceBranchID) ? Utility.BranchID : ObjStockEntry.SourceBranchID;
+                }
                 ObjStockRep.GetInvoiceDraft(ObjStockEntry);
 
                 if (Convert.ToInt32(ObjStockEntry.STOCKENTRYID) > 0)
@@ -71,6 +75,7 @@ namespace NSRetail.Stock
             catch (Exception ex) 
             {
                 ErrorMgmt.ShowError(ex);
+                BeginInvoke(new Action(Close));
             }
         }
 
@@ -277,10 +282,10 @@ namespace NSRetail.Stock
                     gvStockEntry.SetRowCellValue(rowhandle, "SGST", ObjStockEntryDetail.SGST);
                     gvStockEntry.SetRowCellValue(rowhandle, "IGST", ObjStockEntryDetail.IGST);
                     gvStockEntry.SetRowCellValue(rowhandle, "CESS", ObjStockEntryDetail.CESS);
-                gvStockEntry.SetRowCellValue(rowhandle, "HSNCODE", ObjStockEntryDetail.HSNCODE);
-                gvStockEntry.SetRowCellValue(rowhandle, "GSTCODE", ObjStockEntryDetail.GSTCODE);
-                gvStockEntry.SetRowCellValue(rowhandle, "INDENTQUANTITY", ObjStockEntryDetail.IndentQuantity);
-                gvStockEntry.SetRowCellValue(rowhandle, "ISFREEITEM", ObjStockEntryDetail.IsFreeItem);
+                    gvStockEntry.SetRowCellValue(rowhandle, "HSNCODE", ObjStockEntryDetail.HSNCODE);
+                    gvStockEntry.SetRowCellValue(rowhandle, "GSTCODE", ObjStockEntryDetail.GSTCODE);
+                    gvStockEntry.SetRowCellValue(rowhandle, "INDENTQUANTITY", ObjStockEntryDetail.IndentQuantity);
+                    gvStockEntry.SetRowCellValue(rowhandle, "ISFREEITEM", ObjStockEntryDetail.IsFreeItem);
                     gvStockEntry.SetRowCellValue(rowhandle, "CREATEDBY", ObjStockEntryDetail.CreatedBy);
                     gvStockEntry.SetRowCellValue(rowhandle, "CREATEDDATE", ObjStockEntryDetail.CreatedDate);
                     gvStockEntry.FocusedRowHandle = rowhandle;

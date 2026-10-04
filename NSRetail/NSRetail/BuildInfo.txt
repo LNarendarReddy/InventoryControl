@@ -1,6 +1,13 @@
-﻿v4.1.2
+﻿v4.1.3
+-- Added source branch display and editable category for invoice drafts in WH stock entry.
+-- Loaded supplier indents using the invoice source branch and selected category.
+-- Preserved invoice category during draft verification and submission.
+-- Grouped invoice settings into Invoice Details, Category and Indent, and Pricing and Charges.
+-- Removed invoice category filtering from Add Stock Record and reused the existing item cache.
+-- Fixed missing line breaks in the Build Information window.
+
+v4.1.2
 -- Added credit note mapping option in Invoice List for submitted invoices.
--- Added stock entry credit note mapping save flow using STOCKENTRYCREDITNOTEMAP.
 
 v4.1.1
 -- Added new stock dispatch workflow.

@@ -54,21 +54,31 @@ namespace NSRetail.Stock
 
         private void LoadLookupData()
         {
+            bool existingInvoice = !IsNullValue(StockEntryObject.STOCKENTRYID) && Convert.ToInt32(StockEntryObject.STOCKENTRYID) > 0;
+            if (!existingInvoice && (IsNullValue(StockEntryObject.SourceBranchID) || Convert.ToInt32(StockEntryObject.SourceBranchID) <= 0))
+                StockEntryObject.SourceBranchID = Utility.BranchID;
+
+            cmbSourceBranch.Properties.DataSource = Utility.GetBranchList(true);
+            cmbSourceBranch.Properties.ValueMember = "BRANCHID";
+            cmbSourceBranch.Properties.DisplayMember = "BRANCHNAME";
+
             cmbSupplier.Properties.DataSource = masterRepository.GetDealer();
             cmbSupplier.Properties.ValueMember = "DEALERID";
             cmbSupplier.Properties.DisplayMember = "DEALERNAME";
 
-            cmbCategory.Properties.DataSource = Utility.GetCategoryListExceptAll();
+            cmbCategory.Properties.DataSource = existingInvoice ? Utility.GetCategoryList() : Utility.GetCategoryListExceptAll();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
         }
 
         private void BindStockEntryObject()
         {
+            cmbSourceBranch.EditValue = StockEntryObject.SourceBranchID;
             cmbSupplier.EditValue = StockEntryObject.SUPPLIERID;
             txtInvoiceNumber.EditValue = StockEntryObject.SUPPLIERINVOICENO;
             dtpInvoice.EditValue = StockEntryObject.InvoiceDate ?? DateTime.Now;
-            cmbCategory.EditValue = StockEntryObject.CATEGORYID ?? Utility.CategoryID;
+            cmbCategory.EditValue = IsNullValue(StockEntryObject.CATEGORYID) ? Utility.CategoryID : StockEntryObject.CATEGORYID;
+            cmbCategory.Enabled = true;
             cmbSupplierIndent.EditValue = StockEntryObject.SupplierIndentId;
             rgInvoiceType.EditValue = IsNullValue(StockEntryObject.InvoiceType) ? 1 : StockEntryObject.InvoiceType;
             rgPriceEntryMethod.EditValue = IsNullValue(StockEntryObject.PriceEntryMethod) ? 1 : StockEntryObject.PriceEntryMethod;
@@ -98,17 +108,38 @@ namespace NSRetail.Stock
 
         private void LoadSupplierIndents()
         {
-            if (isLoading || cmbSupplier.EditValue == null || cmbCategory.EditValue == null)
+            if (isLoading)
                 return;
+            if (IsNullValue(cmbSupplier.EditValue) || IsNullValue(cmbCategory.EditValue))
+            {
+                cmbSupplierIndent.EditValue = null;
+                cmbSupplierIndent.Properties.DataSource = null;
+                return;
+            }
 
-            DataTable dtSupplierIndent = stockRepository.GetSupplierIndentList(cmbSupplier.EditValue, cmbCategory.EditValue, Utility.BranchID);
+            if (IsNullValue(StockEntryObject.SourceBranchID) || Convert.ToInt32(StockEntryObject.SourceBranchID) <= 0)
+                throw new Exception("Invoice source branch is required to load supplier indents.");
+
+            object selectedIndent = cmbSupplierIndent.EditValue;
+            bool sameInvoiceContext = Convert.ToString(cmbSupplier.EditValue) == Convert.ToString(StockEntryObject.SUPPLIERID) &&
+                Convert.ToString(cmbCategory.EditValue) == Convert.ToString(StockEntryObject.CATEGORYID);
+            DataTable dtSupplierIndent = stockRepository.GetSupplierIndentList(cmbSupplier.EditValue, cmbCategory.EditValue,
+                StockEntryObject.SourceBranchID, sameInvoiceContext ? StockEntryObject.SupplierIndentId : null);
             string valueMember = GetFirstColumn(dtSupplierIndent, "SUPPLIERINDENTID", "SupplierIndentID", "SupplierIndentId");
             string displayMember = GetFirstColumn(dtSupplierIndent, "SUPPLIERINDENTNO", "SupplierIndentNo", "INDENTNO", "IndentNo");
 
             cmbSupplierIndent.Properties.DataSource = dtSupplierIndent;
             cmbSupplierIndent.Properties.ValueMember = valueMember ?? string.Empty;
             cmbSupplierIndent.Properties.DisplayMember = displayMember ?? string.Empty;
-            cmbSupplierIndent.EditValue = StockEntryObject.SupplierIndentId;
+            bool selectedIndentExists = false;
+            if (valueMember != null && !IsNullValue(selectedIndent))
+                foreach (DataRow row in dtSupplierIndent.Rows)
+                    if (Convert.ToString(row[valueMember]) == Convert.ToString(selectedIndent))
+                    {
+                        selectedIndentExists = true;
+                        break;
+                    }
+            cmbSupplierIndent.EditValue = sameInvoiceContext && selectedIndentExists ? selectedIndent : null;
         }
 
         private string GetFirstColumn(DataTable dataTable, params string[] columnNames)
@@ -170,8 +201,13 @@ namespace NSRetail.Stock
 
         private void cmbSupplier_EditValueChanged(object sender, EventArgs e)
         {
+            if (isLoading)
+                return;
+
             try
             {
+                cmbSupplierIndent.EditValue = null;
+                cmbSupplierIndent.Properties.DataSource = null;
                 SetSupplierGSTIN();
                 LoadSupplierIndents();
             }
@@ -183,8 +219,13 @@ namespace NSRetail.Stock
 
         private void cmbCategory_EditValueChanged(object sender, EventArgs e)
         {
+            if (isLoading)
+                return;
+
             try
             {
+                cmbSupplierIndent.EditValue = null;
+                cmbSupplierIndent.Properties.DataSource = null;
                 LoadSupplierIndents();
             }
             catch (Exception ex)

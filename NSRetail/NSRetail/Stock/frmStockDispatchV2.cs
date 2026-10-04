@@ -161,6 +161,8 @@ namespace NSRetail.Stock
             {
                 stockRepository.DeleteDispatchDetail(gvDispatch.GetFocusedRowCellValue("STOCKDISPATCHDETAILID"));
                 gvDispatch.DeleteRow(gvDispatch.FocusedRowHandle);
+                gvDispatch.GridControl.BindingContext = new BindingContext();
+                gvDispatch.GridControl.DataSource = stockDispatch.dtDispatch;
             }
             catch (Exception ex)
             {

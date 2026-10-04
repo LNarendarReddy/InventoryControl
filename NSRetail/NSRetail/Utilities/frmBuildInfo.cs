@@ -21,7 +21,7 @@ namespace NSRetail.Utilities
 
         private void frmBuildInfo_Load(object sender, EventArgs e)
         {
-            txtBuildInfo.EditValue = System.IO.File.ReadAllText("BuildInfo.txt");
+            txtBuildInfo.Lines = System.IO.File.ReadAllLines("BuildInfo.txt");
         }
 
         private void btnOK_Click(object sender, EventArgs e)

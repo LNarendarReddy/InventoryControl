@@ -51,9 +51,9 @@ namespace NSRetail.ReportForms.Supplier.SupplierReports
                 { "Map Credit Note", "5AEF0A74-8B3C-4A50-AE42-6C94B74E0C5B" },
                 { "View Credit Note Mapping", "B4F924ED-7C53-4A78-9D6C-2F95B6EE5A9E" }
             };
-                
 
-            HiddenColumns = new List<string>() { "DEALERID", "CATEGORYNAME", "CREATEDBY", "CREATEDDATE", "GSTIN", "SUBMITTEDBY", "SUBMITTEDDATE" };
+
+            HiddenColumns = new List<string>() { "DEALERID", "CREATEDBY", "CREATEDDATE", "GSTIN", "SUBMITTEDBY", "SUBMITTEDDATE" };
 
             cmbDealer.Properties.DataSource = new MasterRepository().GetDealer(true);
             cmbDealer.Properties.DisplayMember = "DEALERNAME";

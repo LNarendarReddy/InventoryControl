@@ -34,6 +34,7 @@ namespace NSRetail.Stock
             cmbCategory.Properties.DataSource = Utility.GetCategoryList();
             cmbCategory.Properties.ValueMember = "CATEGORYID";
             cmbCategory.Properties.DisplayMember = "CATEGORYNAME";
+            cmbCategory.EditValue = ObjStockEntry.CATEGORYID;
 
             DataTable dtSupplier = new MasterRepository().GetDealer();
             cmbSupplier.Properties.DataSource = dtSupplier;
@@ -62,7 +63,6 @@ namespace NSRetail.Stock
             {
                 cmbBranch.EditValue = ObjStockEntry.SourceBranchID;
                 cmbBranch.Enabled = false;
-                cmbCategory.EditValue = 13;
                 cmbCategory.Enabled = false;
             }
 
@@ -100,7 +100,8 @@ namespace NSRetail.Stock
                     ObjStockEntry.EXPENSES = txtExpenses.EditValue;
                     ObjStockEntry.PackingCharges = txtPackingCharges.EditValue;
                     ObjStockEntry.UserID = Utility.UserID;
-                    ObjStockEntry.CATEGORYID = cmbCategory.EditValue;
+                    if (cmbBranch.EditValue != null)
+                        ObjStockEntry.CATEGORYID = cmbCategory.EditValue;
                     ObjStockEntry.DispatchBranchID = cmbBranch.EditValue;
                     ObjStockEntry.dtCreditNote = dtCN;
                     ObjStockEntry.Notes = txtNotes.EditValue;

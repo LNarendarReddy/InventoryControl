@@ -569,6 +569,8 @@ namespace DataAccess
 
         public StockEntry GetInvoiceDraft(StockEntry objStockEntry)
         {
+            int requestedInvoiceID = Convert.ToInt32(objStockEntry.STOCKENTRYID ?? 0);
+            bool draftLoaded = false;
             try
             {
                 DataSet ds = new DataSet();
@@ -577,7 +579,7 @@ namespace DataAccess
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "[USP_R_STOCKENTRYDTAFT_v2]";
-                    cmd.Parameters.AddWithValue("@CATEGORYID", objStockEntry.CATEGORYID);
+                    cmd.Parameters.AddWithValue("@CATEGORYID", objStockEntry.CATEGORYID ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@USERID", objStockEntry.UserID);
                     cmd.Parameters.AddWithValue("@STOCKENTRYID", objStockEntry.STOCKENTRYID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -592,6 +594,8 @@ namespace DataAccess
                             objStockEntry.STOCKENTRYID = 0;
                         else
                         {
+                            if (requestedInvoiceID > 0 && iValue != requestedInvoiceID)
+                                throw new Exception("The draft lookup returned a different invoice.");
                             objStockEntry.STOCKENTRYID = iValue;
                             objStockEntry.SUPPLIERID = ds.Tables[0].Rows[0]["SUPPLIERID"];
                             objStockEntry.SUPPLIERINVOICENO = ds.Tables[0].Rows[0]["SUPPLIERINVOICENO"];
@@ -602,7 +606,7 @@ namespace DataAccess
                             objStockEntry.DISCOUNTFLAT = ds.Tables[0].Rows[0]["DISCOUNT"];
                             objStockEntry.EXPENSES = ds.Tables[0].Rows[0]["EXPENSES"];
                             objStockEntry.TRANSPORT = ds.Tables[0].Rows[0]["TRANSPORT"];
-                            objStockEntry.CATEGORYID = GetValueIfColumnExists(ds.Tables[0], "CATEGORYID") ?? objStockEntry.CATEGORYID;
+                            objStockEntry.CATEGORYID = GetValueIfColumnExists(ds.Tables[0], "CATEGORYID");
                             objStockEntry.SupplierIndentId = GetValueIfColumnExists(ds.Tables[0], "SupplierIndentID");
                             objStockEntry.SupplierIndentNo = GetValueIfColumnExists(ds.Tables[0], "SupplierIndentNo");
                             objStockEntry.SourceBranchID = ds.Tables[0].Rows[0]["SOURCEBRANCHID"];
@@ -610,14 +614,21 @@ namespace DataAccess
                             objStockEntry.PriceEntryMethod = ds.Tables[0].Rows[0]["PriceEntryMethod"];
                             objStockEntry.LorryFrightMode = ds.Tables[0].Rows[0]["LorryFrightMode"];
                             objStockEntry.dtStockEntry = ds.Tables[1].Copy();
+                            if (objStockEntry.CATEGORYID == null || objStockEntry.CATEGORYID == DBNull.Value ||
+                                objStockEntry.SourceBranchID == null || objStockEntry.SourceBranchID == DBNull.Value ||
+                                Convert.ToInt32(objStockEntry.CATEGORYID) <= 0 || Convert.ToInt32(objStockEntry.SourceBranchID) <= 0)
+                                throw new Exception("The invoice draft must contain its saved category and source branch.");
+                            draftLoaded = true;
                         }
                     }
                 }
+                if (requestedInvoiceID > 0 && !draftLoaded)
+                    throw new Exception("The selected invoice draft could not be loaded. Check draft lookup permissions and filters.");
 
             }
             catch (Exception ex)
             {
-                throw new Exception("Error While Reading Stock Entry");
+                throw new Exception("Error While Reading Stock Entry", ex);
             }
             finally
             {
@@ -626,7 +637,7 @@ namespace DataAccess
             return objStockEntry;
         }
 
-        public DataTable GetSupplierIndentList(object SupplierID, object CategoryID, object BranchID)
+        public DataTable GetSupplierIndentList(object SupplierID, object CategoryID, object BranchID, object SelectedSupplierIndentID = null)
         {
             try
             {
@@ -639,6 +650,8 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@SUPPLIERID", SupplierID);
                     cmd.Parameters.AddWithValue("@CATEGORYID", CategoryID);
                     cmd.Parameters.AddWithValue("@BRANCHID", BranchID);
+                    if (SelectedSupplierIndentID != null && SelectedSupplierIndentID != DBNull.Value && Convert.ToInt32(SelectedSupplierIndentID) > 0)
+                        cmd.Parameters.AddWithValue("@SELECTEDSUPPLIERINDENTID", SelectedSupplierIndentID);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(ds);
