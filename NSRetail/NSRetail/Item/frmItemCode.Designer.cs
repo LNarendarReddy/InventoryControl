@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule13 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule14 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule15 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemCode));
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule9 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule10 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule11 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule12 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule13 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule14 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemCode));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.cmbRefundPath = new DevExpress.XtraEditors.LookUpEdit();
             this.cmbSeasonality = new DevExpress.XtraEditors.CheckedComboBoxEdit();
@@ -120,6 +120,8 @@
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxItemValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.btnAutoFill = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbRefundPath.Properties)).BeginInit();
@@ -184,10 +186,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxItemValidationProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnAutoFill);
             this.layoutControl1.Controls.Add(this.cmbRefundPath);
             this.layoutControl1.Controls.Add(this.cmbSeasonality);
             this.layoutControl1.Controls.Add(this.txtVendorSKUCode);
@@ -275,10 +279,10 @@
             this.cmbManufacturer.Size = new System.Drawing.Size(274, 22);
             this.cmbManufacturer.StyleController = this.layoutControl1;
             this.cmbManufacturer.TabIndex = 9;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.cmbManufacturer, conditionValidationRule1);
+            conditionValidationRule13.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule13.ErrorText = "Mandatory";
+            conditionValidationRule13.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.cmbManufacturer, conditionValidationRule13);
             // 
             // cmbBrand
             // 
@@ -295,10 +299,10 @@
             this.cmbBrand.Size = new System.Drawing.Size(272, 22);
             this.cmbBrand.StyleController = this.layoutControl1;
             this.cmbBrand.TabIndex = 8;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.cmbBrand, conditionValidationRule2);
+            conditionValidationRule14.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule14.ErrorText = "Mandatory";
+            conditionValidationRule14.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.cmbBrand, conditionValidationRule14);
             // 
             // cmbSubClassification
             // 
@@ -316,10 +320,10 @@
             this.cmbSubClassification.Size = new System.Drawing.Size(274, 22);
             this.cmbSubClassification.StyleController = this.layoutControl1;
             this.cmbSubClassification.TabIndex = 7;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "Mandatory";
-            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.cmbSubClassification, conditionValidationRule3);
+            conditionValidationRule15.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule15.ErrorText = "Mandatory";
+            conditionValidationRule15.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.cmbSubClassification, conditionValidationRule15);
             // 
             // cmbClassification
             // 
@@ -338,10 +342,10 @@
             this.cmbClassification.Size = new System.Drawing.Size(272, 22);
             this.cmbClassification.StyleController = this.layoutControl1;
             this.cmbClassification.TabIndex = 6;
-            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule4.ErrorText = "Mandatory";
-            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.cmbClassification, conditionValidationRule4);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Mandatory";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.cmbClassification, conditionValidationRule1);
             this.cmbClassification.EditValueChanged += new System.EventHandler(this.cmbClassification_EditValueChanged);
             // 
             // sluFreeItem
@@ -414,9 +418,9 @@
             this.txtCostPriceWOT.Size = new System.Drawing.Size(270, 22);
             this.txtCostPriceWOT.StyleController = this.layoutControl1;
             this.txtCostPriceWOT.TabIndex = 16;
-            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule5.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtCostPriceWOT, conditionValidationRule5);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtCostPriceWOT, conditionValidationRule2);
             this.txtCostPriceWOT.EditValueChanged += new System.EventHandler(this.txtCostPriceWOT_EditValueChanged);
             // 
             // luUOM
@@ -545,10 +549,10 @@
             // 
             this.btnAddSKU.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddSKU.ImageOptions.Image")));
             this.btnAddSKU.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnAddSKU.Location = new System.Drawing.Point(678, 67);
+            this.btnAddSKU.Location = new System.Drawing.Point(600, 70);
             this.btnAddSKU.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddSKU.Name = "btnAddSKU";
-            this.btnAddSKU.Size = new System.Drawing.Size(129, 22);
+            this.btnAddSKU.Size = new System.Drawing.Size(108, 22);
             this.btnAddSKU.StyleController = this.layoutControl1;
             this.btnAddSKU.TabIndex = 22;
             this.btnAddSKU.Text = "Add SKU Code";
@@ -567,13 +571,13 @@
             this.sluSKUCode.Properties.NullText = "";
             this.sluSKUCode.Properties.PopupView = this.gvItemSKU;
             this.sluSKUCode.Properties.EditValueChanged += new System.EventHandler(this.searchLookUpEdit1_Properties_EditValueChanged);
-            this.sluSKUCode.Size = new System.Drawing.Size(533, 22);
+            this.sluSKUCode.Size = new System.Drawing.Size(455, 22);
             this.sluSKUCode.StyleController = this.layoutControl1;
             this.sluSKUCode.TabIndex = 1;
-            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule6.ErrorText = "Value cannot be Empty";
-            conditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.sluSKUCode, conditionValidationRule6);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Value cannot be Empty";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.sluSKUCode, conditionValidationRule3);
             // 
             // gvItemSKU
             // 
@@ -639,9 +643,9 @@
             this.txtSalePrice.Size = new System.Drawing.Size(270, 22);
             this.txtSalePrice.StyleController = this.layoutControl1;
             this.txtSalePrice.TabIndex = 14;
-            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule7.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtSalePrice, conditionValidationRule7);
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtSalePrice, conditionValidationRule4);
             // 
             // txtMRP
             // 
@@ -658,9 +662,9 @@
             this.txtMRP.Size = new System.Drawing.Size(270, 22);
             this.txtMRP.StyleController = this.layoutControl1;
             this.txtMRP.TabIndex = 13;
-            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule8.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtMRP, conditionValidationRule8);
+            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule5.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtMRP, conditionValidationRule5);
             // 
             // txtCostPriceWT
             // 
@@ -677,9 +681,9 @@
             this.txtCostPriceWT.Size = new System.Drawing.Size(270, 22);
             this.txtCostPriceWT.StyleController = this.layoutControl1;
             this.txtCostPriceWT.TabIndex = 15;
-            conditionValidationRule9.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule9.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtCostPriceWT, conditionValidationRule9);
+            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule6.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtCostPriceWT, conditionValidationRule6);
             this.txtCostPriceWT.EditValueChanged += new System.EventHandler(this.txtCostPriceWT_EditValueChanged);
             // 
             // luGST
@@ -697,9 +701,9 @@
             this.luGST.Size = new System.Drawing.Size(270, 22);
             this.luGST.StyleController = this.layoutControl1;
             this.luGST.TabIndex = 17;
-            conditionValidationRule10.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule10.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.luGST, conditionValidationRule10);
+            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule7.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.luGST, conditionValidationRule7);
             this.luGST.EditValueChanged += new System.EventHandler(this.luGST_EditValueChanged);
             // 
             // chkIsEAN
@@ -751,9 +755,9 @@
             this.txtHSNCode.Size = new System.Drawing.Size(273, 22);
             this.txtHSNCode.StyleController = this.layoutControl1;
             this.txtHSNCode.TabIndex = 3;
-            conditionValidationRule11.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule11.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtHSNCode, conditionValidationRule11);
+            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule8.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtHSNCode, conditionValidationRule8);
             // 
             // txtItemName
             // 
@@ -764,10 +768,10 @@
             this.txtItemName.Size = new System.Drawing.Size(674, 22);
             this.txtItemName.StyleController = this.layoutControl1;
             this.txtItemName.TabIndex = 2;
-            conditionValidationRule12.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule12.ErrorText = "Value cannot be empty";
-            conditionValidationRule12.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.User1;
-            this.dxItemValidationProvider.SetValidationRule(this.txtItemName, conditionValidationRule12);
+            conditionValidationRule9.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule9.ErrorText = "Value cannot be empty";
+            conditionValidationRule9.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.User1;
+            this.dxItemValidationProvider.SetValidationRule(this.txtItemName, conditionValidationRule9);
             // 
             // txtItemCode
             // 
@@ -780,9 +784,9 @@
             this.txtItemCode.Size = new System.Drawing.Size(604, 22);
             this.txtItemCode.StyleController = this.layoutControl1;
             this.txtItemCode.TabIndex = 0;
-            conditionValidationRule13.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule13.ErrorText = "Value cannot be empty";
-            this.dxItemValidationProvider.SetValidationRule(this.txtItemCode, conditionValidationRule13);
+            conditionValidationRule10.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule10.ErrorText = "Value cannot be empty";
+            this.dxItemValidationProvider.SetValidationRule(this.txtItemCode, conditionValidationRule10);
             // 
             // gluCategory
             // 
@@ -802,10 +806,10 @@
             this.gluCategory.Size = new System.Drawing.Size(272, 22);
             this.gluCategory.StyleController = this.layoutControl1;
             this.gluCategory.TabIndex = 4;
-            conditionValidationRule14.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule14.ErrorText = "Mandatory";
-            conditionValidationRule14.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxItemValidationProvider.SetValidationRule(this.gluCategory, conditionValidationRule14);
+            conditionValidationRule11.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule11.ErrorText = "Mandatory";
+            conditionValidationRule11.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxItemValidationProvider.SetValidationRule(this.gluCategory, conditionValidationRule11);
             this.gluCategory.EditValueChanged += new System.EventHandler(this.gluCategory_EditValueChanged);
             // 
             // cmbUQC
@@ -885,7 +889,8 @@
             this.layoutControlItem4,
             this.layoutControlItem17,
             this.layoutControlItem25,
-            this.layoutControlItem26});
+            this.layoutControlItem26,
+            this.layoutControlItem29});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
@@ -910,7 +915,7 @@
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem6.Size = new System.Drawing.Size(661, 34);
+            this.layoutControlItem6.Size = new System.Drawing.Size(583, 34);
             this.layoutControlItem6.Text = "SKU/Item Code";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(104, 15);
             // 
@@ -927,10 +932,10 @@
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnAddSKU;
-            this.layoutControlItem9.Location = new System.Drawing.Point(661, 32);
+            this.layoutControlItem9.Location = new System.Drawing.Point(583, 32);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 3, 2);
-            this.layoutControlItem9.Size = new System.Drawing.Size(141, 34);
+            this.layoutControlItem9.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem9.Size = new System.Drawing.Size(120, 34);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
@@ -1177,6 +1182,28 @@
             this.layoutControlItem28.Text = "Refund path";
             this.layoutControlItem28.TextSize = new System.Drawing.Size(104, 15);
             // 
+            // btnAutoFill
+            // 
+            this.btnAutoFill.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAutoFill.ImageOptions.Image")));
+            this.btnAutoFill.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnAutoFill.Location = new System.Drawing.Point(720, 70);
+            this.btnAutoFill.Name = "btnAutoFill";
+            this.btnAutoFill.Size = new System.Drawing.Size(87, 22);
+            this.btnAutoFill.StyleController = this.layoutControl1;
+            this.btnAutoFill.TabIndex = 28;
+            this.btnAutoFill.Text = "Auto fill";
+            this.btnAutoFill.Click += new System.EventHandler(this.btnAutoFill_Click);
+            // 
+            // layoutControlItem29
+            // 
+            this.layoutControlItem29.Control = this.btnAutoFill;
+            this.layoutControlItem29.Location = new System.Drawing.Point(703, 32);
+            this.layoutControlItem29.Name = "layoutControlItem29";
+            this.layoutControlItem29.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.layoutControlItem29.Size = new System.Drawing.Size(99, 34);
+            this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem29.TextVisible = false;
+            // 
             // frmItemCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1256,6 +1283,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxItemValidationProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1338,5 +1366,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem27;
         private DevExpress.XtraEditors.LookUpEdit cmbRefundPath;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
+        private DevExpress.XtraEditors.SimpleButton btnAutoFill;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
     }
 }

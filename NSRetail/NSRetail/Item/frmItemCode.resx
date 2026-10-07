@@ -117,10 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnAutoFill.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAEXRFWHRUaXRsZQBEb3duO0Fy
+        cm93O738glgAAALNSURBVDhPdZLpTxNBGIcnMSYqnv+RGj+aGKKJH/SLUDy4KWehglJuosYYA5GbVuQM
+        FLDQlhiRSKKGHlClQo1c7fbabnd7N9GfmdlCTIwfnkx2fu88887mJTW69feqEQeqXztQpXOgUrsB5fAG
+        ygbXUTJoR8mADUV9NhT22pDfY8P9HivuvbIi9+WnD4SQ44QeXnKJWHKFsbQtY3aFYd4SGKYtAUaKU8Di
+        dwEGpwD91xDyui0ghJwgNSMOGDZDaDXvocW0h2bjHprpatpDk3FXZnEXmkMWdjBuC0AhC06Sap0DnXon
+        yrXrUGrtUA7bUTpkR+mgjbVfPGBFUb8FhX1WFPRakN9rgfrNBhRdGUHrCzOi8TQCQgKBUAIBIQk/H4fH
+        L8HtE9lKv1meqZEiaTzsfEsFp0jTcyMiMSpIwp8pooeq+r8c4fZKLPOzCxIQo2nUtc9RQRZpfLYIKZaW
+        w5Bc5ObCuN1kwrL/N65Vz2KfE9j+oSQcSUHVMksFp0nDEwOkqCzw8XG4fRJ+7Ppws2EBTx2/cLVCj+2f
+        XhxwIstpnSClUNU0IwvUHfMQoykWcIEoNP2ruKGex/W6ebRZ08iumWNd1HevMLkvI6honKaCM6S2bRbh
+        aIoFXCAGu/MAV/IGoXonoPFzCjVmHpdzB7C+uc8uoHUhMQnloykqOEuqm/XsTT4+AS+fgNsfwejcGi4V
+        T6J2NYGLBWOYMKzhwCuynD6DF1MoqZ+QBZWaadaSNxhnIReMY8fNo1gzheyOj6hsn8HOAc/2aQ2FF5Mo
+        Uo9TwTmifDwFQUrCy8fZDbTAE4ji27YHObWjcLo4eAIxcDTPCILhJArqxqjgPCmrn2Rv4sNJBMUkCyk+
+        Psbmga50Ro4GiRJOIF81KneQU9K3fLdCh7wMinItFEotcpXDjJyyDKVDuPMXtx50rbBJZPNMfwZt518u
+        /AeaZRFCjv0B/qXhpQT3GFAAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="dxItemValidationProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnAddSKU.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m

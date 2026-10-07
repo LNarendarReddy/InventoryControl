@@ -456,7 +456,7 @@ namespace NSRetail
 
         private void sluParentItem_Properties_EditValueChanged(object sender, EventArgs e)
         {
-            if (isLoading) return;
+            if (isLoading || sluParentItem.EditValue == null || sluParentItem.EditValue == DBNull.Value) return;
 
             luUOM.Enabled = !Convert.ToBoolean(chkIsOpenItem.EditValue) && sluParentItem.EditValue != null;
             if (luUOM.Enabled)
@@ -511,6 +511,42 @@ namespace NSRetail
             if (isLoading) return;
 
             cmbSubClassification.EditValue = null;
+        }
+
+        private void btnAutoFill_Click(object sender, EventArgs e)
+        {
+            if (sluSKUCode.EditValue == null)
+            {
+                XtraMessageBox.Show("SKU Code not selected");
+                return;
+            }
+
+            DataView dvParentList = (gvItemCode.DataSource as DataView).Table.Copy().DefaultView;
+            dvParentList.RowFilter = $"ITEMID = {sluSKUCode.EditValue} AND ITEMCODE <> '{txtItemCode.EditValue}'";
+
+            if (dvParentList.Count == 0) return;
+
+            DataSet dsItemDetails = new ItemCodeRepository().GetItemCode(dvParentList[0]["ITEMCODEID"], Utility.CategoryID);
+
+            DataRow drItemCode = dsItemDetails.Tables["ITEMCODEDETAIL"].Rows[0];
+
+            txtHSNCode.EditValue = drItemCode["HSNCODE"];
+            sluParentItem.EditValue = drItemCode["PARENTITEMID"];
+            cmbUQC.EditValue = drItemCode["UQCID"];
+            txtVendorSKUCode.EditValue = drItemCode["VENDORSKUCODE"];
+            gluCategory.EditValue = drItemCode["CATEGORYID"];
+            luSubCategory.EditValue = drItemCode["SUBCATEGORYID"];
+            cmbClassification.EditValue = drItemCode["CLASSIFICATIONID"];
+            cmbSubClassification.EditValue = drItemCode["SUBCLASSIFICATIONID"];
+            cmbBrand.EditValue = drItemCode["BRANDID"];
+            cmbManufacturer.EditValue = drItemCode["MANUFACTURERID"];
+            luUOM.EditValue = drItemCode["UOMID"];
+            chkIsOpenItem.EditValue = drItemCode["ISOPENITEM"];
+            cmbSeasonality.EditValue = drItemCode["SEASONALITYIDS"];
+            cmbSeasonality.RefreshEditValue();
+            cmbRefundPath.EditValue = drItemCode["REFUNDPATHID"];
+
+            luGST.EditValue = dsItemDetails.Tables["ITEMCODEPRICES"].Rows[0]["GSTID"];
         }
 
         private void txtCostPriceWOT_EditValueChanged(object sender, EventArgs e)
