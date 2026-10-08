@@ -66,8 +66,10 @@ namespace WarehouseCloudSync.HomeDelivery
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 SyncData.WriteHomeDeliveryLine($"Step 3/5: Processing export {definition.ExecutionOrder} - {definition.ExportCode}");
-                HomeDeliveryExportResult result = ExecuteDefinitionCsv(definition, options, cancellationToken);
-                results.Add(result);
+                foreach (HomeDeliveryExportResult result in ExecuteDefinitionCsv(definition, options, cancellationToken))
+                {
+                    results.Add(result);
+                }
             }
 
             IList<HomeDeliveryExportResult> generatedResults = new List<HomeDeliveryExportResult>();
@@ -94,7 +96,7 @@ namespace WarehouseCloudSync.HomeDelivery
             return results;
         }
 
-        private HomeDeliveryExportResult ExecuteDefinitionCsv(HomeDeliveryExportDefinition definition, HomeDeliveryExportOptions options, CancellationToken cancellationToken)
+        private IList<HomeDeliveryExportResult> ExecuteDefinitionCsv(HomeDeliveryExportDefinition definition, HomeDeliveryExportOptions options, CancellationToken cancellationToken)
         {
             HomeDeliveryExportResult result = new HomeDeliveryExportResult
             {
@@ -108,14 +110,75 @@ namespace WarehouseCloudSync.HomeDelivery
             {
                 SyncData.WriteHomeDeliveryLine($"  Export {definition.ExportCode}: executing data proc {definition.ExportProcedureName}");
                 result.Stage = "ExecuteProcedure";
+                if (string.Equals(definition.ExportCode, "INVENTORY", StringComparison.OrdinalIgnoreCase))
+                {
+                    result.Stage = "StreamInventoryCsv";
+                    SyncData.WriteHomeDeliveryLine("  Inventory: streaming SQL rows directly to branch CSV files.");
+                    IList<CsvExportResult> csvResults = repository.StreamExportProcedure(
+                        definition.ExportProcedureName, options.CommandTimeoutSeconds,
+                        reader => csvExportService.WriteBranches(reader, options.WorkingFolder, definition.FileName, cancellationToken));
+                    IList<HomeDeliveryExportResult> branchResults = new List<HomeDeliveryExportResult>();
+                    foreach (CsvExportResult csvResult in csvResults)
+                    {
+                        SyncData.WriteHomeDeliveryLine($"  Inventory: CSV generated: {csvResult.OutputFilePath}. Rows: {csvResult.RowCount}, Size: {csvResult.FileSizeBytes} bytes");
+                        branchResults.Add(new HomeDeliveryExportResult
+                        {
+                            ExportCode = definition.ExportCode,
+                            FileName = Path.GetFileName(csvResult.OutputFilePath),
+                            DropboxTargetFolder = definition.DropboxTargetFolder,
+                            OutputFilePath = csvResult.OutputFilePath,
+                            RowCount = csvResult.RowCount,
+                            Success = true,
+                            Stage = "CsvGenerated",
+                            StartedAt = result.StartedAt,
+                            CompletedAt = csvResult.CompletedAt
+                        });
+                    }
+
+                    return branchResults;
+                }
+
                 DataTable data = repository.ExecuteExportProcedure(definition.ExportProcedureName, options.CommandTimeoutSeconds);
                 result.RowCount = data.Rows.Count;
                 SyncData.WriteHomeDeliveryLine($"  Export {definition.ExportCode}: data proc completed. Rows: {data.Rows.Count}, Columns: {data.Columns.Count}");
 
                 result.Stage = "GenerateCsv";
-                string outputFilePath = BuildOutputFilePath(options, definition.FileName);
+                return new[] { GenerateCsv(definition, options, data, definition.FileName, result.StartedAt, cancellationToken) };
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.ErrorMessage = ex.Message;
+                result.CompletedAt = DateTime.Now;
+                SyncData.WriteHomeDeliveryLine($"Home Delivery export failed. Export: {definition.ExportCode}, Stage: {result.Stage}, Error: {ex.Message}");
+                return new[] { result };
+            }
+        }
+
+        private HomeDeliveryExportResult GenerateCsv(HomeDeliveryExportDefinition definition, HomeDeliveryExportOptions options,
+            DataTable data, string fileName, DateTime startedAt, CancellationToken cancellationToken)
+        {
+            HomeDeliveryExportResult result = new HomeDeliveryExportResult
+            {
+                ExportCode = definition.ExportCode,
+                FileName = fileName,
+                DropboxTargetFolder = definition.DropboxTargetFolder,
+                StartedAt = startedAt,
+                RowCount = data.Rows.Count,
+                Stage = "GenerateCsv"
+            };
+
+            try
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                string outputFilePath = BuildOutputFilePath(options, fileName);
                 SyncData.WriteHomeDeliveryLine($"  Export {definition.ExportCode}: generating CSV {outputFilePath}");
                 CsvExportResult csvResult = csvExportService.Write(data, outputFilePath, cancellationToken);
+                cancellationToken.ThrowIfCancellationRequested();
                 if (!csvResult.Success)
                 {
                     throw new InvalidOperationException(csvResult.ErrorMessage, csvResult.Exception);
@@ -127,6 +190,10 @@ namespace WarehouseCloudSync.HomeDelivery
                 result.OutputFilePath = outputFilePath;
                 result.CompletedAt = DateTime.Now;
                 return result;
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -216,6 +283,11 @@ namespace WarehouseCloudSync.HomeDelivery
                 : result.DropboxTargetFolder;
 
             folder = NormalizeDropboxFolder(folder);
+            if (string.Equals(result.ExportCode, "INVENTORY", StringComparison.OrdinalIgnoreCase)
+                && !folder.EndsWith("/Inventory", StringComparison.OrdinalIgnoreCase))
+            {
+                folder += "/Inventory";
+            }
             return folder + "/" + fileName;
         }
 

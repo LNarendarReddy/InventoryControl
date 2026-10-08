@@ -67,6 +67,24 @@ namespace WarehouseCloudSync.HomeDelivery
             return ExecuteStoredProcedure(procedureName, commandTimeoutSeconds);
         }
 
+        public T StreamExportProcedure<T>(string procedureName, int commandTimeoutSeconds, Func<IDataReader, T> consumeReader)
+        {
+            ValidateProcedureName(procedureName);
+            if (consumeReader == null) throw new ArgumentNullException(nameof(consumeReader));
+
+            using (SqlConnection connection = CreateWarehouseConnection())
+            using (SqlCommand command = new SqlCommand(procedureName, connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandTimeout = GetCommandTimeout(commandTimeoutSeconds);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
+                {
+                    return consumeReader(reader);
+                }
+            }
+        }
+
         private string ExecuteJsonConfigProcedure(string procedureName, int? commandTimeoutSeconds = null)
         {
             ValidateProcedureName(procedureName);
