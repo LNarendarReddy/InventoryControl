@@ -28,11 +28,11 @@ namespace NSRetailPOS
 {
     public static class Utility
     {
-        public static LoginInfo loginInfo = new LoginInfo();
-        public static BranchInfo branchInfo = new BranchInfo();
+        public static LoginInfo loginInfo = new();
+        public static BranchInfo branchInfo = new();
         public static PaymentGatewayBase PaymentGateway = null;
 
-        static SerialPort _serialPort = new SerialPort();
+        static SerialPort _serialPort = new();
 
         private static DataTable dtGST;
         private static DataTable dtItemSKUList;
@@ -46,9 +46,9 @@ namespace NSRetailPOS
         public static event EventHandler ItemOrCodeChanged;
         public static Form ActiveForm;
 
-        public static string AppVersion = "2.0.0";
+        public static string AppVersion = "2.0.1";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(02-10-2026)";
+        public static string VersionDate = "(13-10-2026)";
 
         public static Bill GetBill(DataSet dsBillDetails)
         {

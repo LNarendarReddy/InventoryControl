@@ -556,6 +556,12 @@
     <Compile Include="UI\frmBillOfferSelection.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UI\frmCarryBagSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmCarryBagSelection.Designer.cs">
+      <DependentUpon>frmCarryBagSelection.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmBillOfferSelection.Designer.cs">
       <DependentUpon>frmBillOfferSelection.cs</DependentUpon>
     </Compile>
@@ -862,6 +868,9 @@
     <EmbeddedResource Include="UI\frmBranchRefund.resx">
       <DependentUpon>frmBranchRefund.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmCarryBagSelection.resx">
+      <DependentUpon>frmCarryBagSelection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -938,6 +947,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Database\POS_USP_R_ITEMS_BYSUBCATEGORY.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

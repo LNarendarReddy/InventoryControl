@@ -44,6 +44,10 @@ namespace NSRetailPOS
         bool isItemScanned;
         bool isOpenItem = false;
         bool isEventCall = false;
+        private const int CarryBagSubcategoryId = 135;
+        private bool addingCarryBag;
+        private DataRow selectedCarryBag;
+        private bool refreshCarryBagSelection;
         private const int OfferTypeBuyItemsFreeItems = 1006;
         private const int Offer1006QuantityEditMinBuyingItems = 10;
         private const string noOfferText = "Offer : None   ";
@@ -175,11 +179,20 @@ namespace NSRetailPOS
                 DataTable dtPrices = itemRepository.GetMRPList(sluItemCode.EditValue);
                 DataView dvPrices = new DataView(dtPrices);
 
-                if (txtItemCode.EditValue.ToString().StartsWith("V"))
+                if (!addingCarryBag && txtItemCode.EditValue.ToString().StartsWith("V"))
                     dvPrices.RowFilter = "ISSTOCKAVAILABLE = 'Yes'";
 
                 drSelectedPrice = null;
-                if (dvPrices.Count > 1)
+                if (addingCarryBag)
+                {
+                    drSelectedPrice = GetSelectedCarryBagPrice(dvPrices);
+                    if (drSelectedPrice == null)
+                    {
+                        ClearItemData();
+                        return;
+                    }
+                }
+                else if (dvPrices.Count > 1)
                 {
                     frmMRPSelection mRPSelection = new frmMRPSelection(dvPrices.ToTable(), txtItemCode.EditValue, sluItemCode.Text)
                     { StartPosition = FormStartPosition.CenterScreen };
@@ -196,7 +209,7 @@ namespace NSRetailPOS
                 {
                     drSelectedPrice = dvPrices[0].Row;
                 }
-                else if (dtPrices.DefaultView.Count == 0)
+                else if (dvPrices.Count == 0)
                 {
                     Utility.ShowErrorMessage("Item code or stock not found for the scan. please contact administrator");
                     ClearItemData();
@@ -216,7 +229,7 @@ namespace NSRetailPOS
                 txtQuantity.EditValue = 1;
                 gcBilling.Refresh();
 
-                if (chkSingleQuantity.Checked)
+                if (chkSingleQuantity.Checked || addingCarryBag)
                 {
                     txtQuantity_KeyDown(txtQuantity, new KeyEventArgs(Keys.Enter));
                 }
@@ -486,6 +499,11 @@ namespace NSRetailPOS
 
         private void txtItemCode_KeyDown(object sender, KeyEventArgs e)
         {
+            LookupItemCode(e);
+        }
+
+        private void LookupItemCode(KeyEventArgs e, object preferredItemCodeID = null)
+        {
             if (e.KeyData != Keys.Enter || string.IsNullOrEmpty(Convert.ToString(txtItemCode.EditValue).Trim()))
                 return;
             if (Convert.ToString(txtItemCode.EditValue).Contains("?"))
@@ -495,9 +513,11 @@ namespace NSRetailPOS
                 txtWeightInKgs.EditValue = stItem[1];
                 txtQuantity.ReadOnly = true;
             }
-            int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue);
+            int rowHandle = preferredItemCodeID == null
+                ? sluItemCodeView.LocateByValue("ITEMCODE", txtItemCode.EditValue)
+                : sluItemCodeView.LocateByValue("ITEMCODEID", preferredItemCodeID);
 
-            if (rowHandle < 0)
+            if (rowHandle < 0 && preferredItemCodeID == null)
             {
                 List<int> rowHandles = sluItemCodeView.LocateAllRowsByValue("SKUCODE", txtItemCode.EditValue);
                 if (rowHandles.Count == 1)
@@ -724,6 +744,89 @@ namespace NSRetailPOS
                 default:
                     break;
             }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F10)
+            {
+                ShowCarryBagSelection();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void ShowCarryBagSelection()
+        {
+            if (!txtItemCode.Enabled || !sluItemCode.Enabled || billObj == null || addingCarryBag)
+                return;
+
+            try
+            {
+                do
+                {
+                    addingCarryBag = false;
+                    selectedCarryBag = null;
+                    refreshCarryBagSelection = false;
+                    DataTable items = itemRepository.GetItemsBySubcategory(CarryBagSubcategoryId);
+                    if (items.Rows.Count == 0)
+                    {
+                        Utility.ShowErrorMessage($"No carry-bag items with a selling price are available in subcategory {CarryBagSubcategoryId}.");
+                        return;
+                    }
+                    if (!items.Columns.Contains("ITEMPRICEID"))
+                    {
+                        Utility.ShowErrorMessage("The carry-bag list must include ITEMPRICEID. Please update POS_USP_R_ITEMS_BYSUBCATEGORY.");
+                        return;
+                    }
+
+                    using (var selection = new frmCarryBagSelection(items))
+                    {
+                        if (selection.ShowDialog(this) != DialogResult.OK)
+                            return;
+
+                        selectedCarryBag = selection.SelectedItem;
+                        int rowHandle = sluItemCodeView.LocateByValue("ITEMCODE", selectedCarryBag["ITEMCODE"]);
+                        if (rowHandle < 0)
+                        {
+                            Utility.ShowErrorMessage("The selected carry-bag item code is not available in billing. Please sync and try again.");
+                            return;
+                        }
+                        ClearItemData(false);
+                        txtItemCode.EditValue = selectedCarryBag["SKUCODE"];
+                        addingCarryBag = true;
+                        // Use the selected item code to disambiguate SKUs with several barcodes.
+                        LookupItemCode(new KeyEventArgs(Keys.Enter), sluItemCodeView.GetRowCellValue(rowHandle, "ITEMCODEID"));
+                    }
+                }
+                while (refreshCarryBagSelection);
+            }
+            catch (Exception ex)
+            {
+                Utility.ShowError(ex);
+            }
+            finally
+            {
+                addingCarryBag = false;
+                selectedCarryBag = null;
+                refreshCarryBagSelection = false;
+                if (txtItemCode.Enabled)
+                    txtItemCode.Focus();
+            }
+        }
+
+        private DataRow GetSelectedCarryBagPrice(DataView prices)
+        {
+            DataRow price = prices.Cast<DataRowView>()
+                .FirstOrDefault(row => Convert.ToString(row["ITEMPRICEID"]) == Convert.ToString(selectedCarryBag["ITEMPRICEID"]))?.Row;
+            if (price != null
+                && Convert.ToDecimal(price["MRP"]) == Convert.ToDecimal(selectedCarryBag["MRP"])
+                && Convert.ToDecimal(price["SALEPRICE"]) == Convert.ToDecimal(selectedCarryBag["SALEPRICE"]))
+                return price;
+
+            Utility.ShowErrorMessage("The selected carry-bag price has changed or is no longer available for billing. Please select again from the refreshed list.");
+            refreshCarryBagSelection = true;
+            return null;
         }
 
         private void btnRefund_Click(object sender, EventArgs e)

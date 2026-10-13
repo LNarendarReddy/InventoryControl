@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using NSRetailPOS.Data;
 
@@ -31,6 +32,9 @@ namespace NSRetailPOS.UI
 
         private void btnAddStock_Click(object sender, System.EventArgs e)
         {
+            if (XtraMessageBox.Show("Are you sure you want to proceed with Stock In?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
             DataTable dtDispatchDetail = (gcDispatchDetail.DataSource as DataTable).Copy();
             dtDispatchDetail.Columns.Remove("ITEMNAME");
             dtDispatchDetail.Columns.Remove("ITEMCODE");

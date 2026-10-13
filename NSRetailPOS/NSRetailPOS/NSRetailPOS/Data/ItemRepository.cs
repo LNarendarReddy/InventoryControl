@@ -10,6 +10,33 @@ namespace NSRetailPOS.Data
 {
     public class ItemRepository
     {
+        public DataTable GetItemsBySubcategory(int subcategoryID)
+        {
+            DataTable items = new DataTable();
+            SqlConnection conn = SQLCon.Sqlconn();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("dbo.POS_USP_R_ITEMS_BYSUBCATEGORY", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@SubcategoryID", SqlDbType.Int).Value = subcategoryID;
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(items);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while retrieving items by subcategory", ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return items;
+        }
+
         public DataTable GetItemCodes(object categoryID = null)
         {
             DataTable dtItemCodes = new DataTable();
