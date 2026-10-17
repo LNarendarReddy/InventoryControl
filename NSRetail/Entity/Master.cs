@@ -91,6 +91,7 @@ namespace Entity
         public object ISMOBILECOUNTER {  get; set; }
         public object PAYMENTGATEWAYINFOID { get; set; }
         public object PAYMENTGATEWAYADDITIONALCONFIG { get; set; }
+        public DataTable MopMappings { get; set; }
 
         /// <summary>
         /// Placeholder object
@@ -101,6 +102,7 @@ namespace Entity
     {
         public object MOPID { get; set; }
         public object MOPNAME { get; set; }
+        public bool ISGATEWAYCONFIGURABLE { get; set; }
     }
 
     public class UOM : EntityBase

@@ -348,14 +348,17 @@ namespace DataAccess
                 {
                     cmd.Connection = SQLCon.Sqlconn();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "[USP_CU_BRANCHCOUNTER]";
-                    cmd.Parameters.AddWithValue("@COUNTERID", ObjCounter.COUNTERID);
+                    cmd.CommandText = "[USP_CU_BRANCHCOUNTER_MOPCONFIG]";
+                    cmd.Parameters.AddWithValue("@COUNTERID", ObjCounter.COUNTERID ?? 0);
                     cmd.Parameters.AddWithValue("@COUNTERNAME", ObjCounter.COUNTERNAME);
                     cmd.Parameters.AddWithValue("@BRANCHID", ObjCounter.BRANCHID);
                     cmd.Parameters.AddWithValue("@USERID", ObjCounter.UserID);
                     cmd.Parameters.AddWithValue("@ISMOBILECOUNTER", ObjCounter.ISMOBILECOUNTER);
-                    cmd.Parameters.AddWithValue("@PaymentGatewayID", ObjCounter.PAYMENTGATEWAYINFOID);
-                    cmd.Parameters.AddWithValue("@PaymentGatewayAdditionalConfig", ObjCounter.PAYMENTGATEWAYADDITIONALCONFIG);
+                    if (ObjCounter.MopMappings == null)
+                        throw new ArgumentException("Counter payment mode configuration is required.");
+                    SqlParameter mappings = cmd.Parameters.Add("@Mappings", SqlDbType.Structured);
+                    mappings.TypeName = "dbo.BRANCHCOUNTERMOPTYPE";
+                    mappings.Value = ObjCounter.MopMappings;
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out CounterID))
@@ -377,6 +380,11 @@ namespace DataAccess
         public DataTable GetCounter()
         {
             return new ReportRepository().GetReportData("USP_R_BRANCHCOUNTER");
+        }
+        public DataTable GetCounterMopMappings(int counterID)
+        {
+            return new ReportRepository().GetReportData("USP_R_BRANCHCOUNTERMOP",
+                new Dictionary<string, object> { { "COUNTERID", counterID } });
         }
         public Counter DeleteCounter(Counter ObjCounter)
         {
@@ -418,6 +426,7 @@ namespace DataAccess
                     cmd.Parameters.AddWithValue("@MOPID", ObjMOP.MOPID);
                     cmd.Parameters.AddWithValue("@MOPNAME", ObjMOP.MOPNAME);
                     cmd.Parameters.AddWithValue("@USERID", ObjMOP.UserID);
+                    cmd.Parameters.Add("@ISGATEWAYCONFIGURABLE", SqlDbType.Bit).Value = ObjMOP.ISGATEWAYCONFIGURABLE;
                     object objReturn = cmd.ExecuteScalar();
                     string str = Convert.ToString(objReturn);
                     if (!int.TryParse(str, out MOPID))
@@ -431,7 +440,7 @@ namespace DataAccess
                 if (ex.Message.Contains("UC_MOPNAME"))
                     throw new Exception("MOP Already Exists!!");
                 else
-                    throw new Exception("Error While Saving MOP");
+                    throw new Exception("Error While Saving MOP: " + ex.Message, ex);
             }
             return ObjMOP;
         }

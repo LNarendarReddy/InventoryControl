@@ -1,402 +1,448 @@
-﻿
 namespace NSRetail.Master
 {
     partial class frmCounter
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && components != null) components.Dispose();
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCounter));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.luPaymentGateway = new DevExpress.XtraEditors.LookUpEdit();
-            this.txtSetting2 = new DevExpress.XtraEditors.TextEdit();
-            this.txtSetting1 = new DevExpress.XtraEditors.TextEdit();
-            this.chkIsMobileCounter = new DevExpress.XtraEditors.CheckEdit();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.txtCounterName = new DevExpress.XtraEditors.TextEdit();
+            this.mainLayout = new DevExpress.XtraLayout.LayoutControl();
             this.cmbBranch = new DevExpress.XtraEditors.LookUpEdit();
+            this.txtCounterName = new DevExpress.XtraEditors.TextEdit();
+            this.chkIsMobileCounter = new DevExpress.XtraEditors.CheckEdit();
+            this.gcMappings = new DevExpress.XtraGrid.GridControl();
+            this.gvMappings = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colAvailable = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.availableEditor = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.colMop = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colConfigurable = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGateway = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gatewayEditor = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.txtSetting1 = new DevExpress.XtraEditors.TextEdit();
+            this.txtSetting2 = new DevExpress.XtraEditors.TextEdit();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lcgPaymentGatewayConfig = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.counterSection = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lciBranch = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciCounterName = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciMobileCounter = new DevExpress.XtraLayout.LayoutControlItem();
+            this.mopSection = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lciMappings = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gatewaySection = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciSetting1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciSetting2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
-            this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.luPaymentGateway.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSetting2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSetting1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIsMobileCounter.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCounterName.Properties)).BeginInit();
+            this.buttonSpacer = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lciSave = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciCancel = new DevExpress.XtraLayout.LayoutControlItem();
+            ((System.ComponentModel.ISupportInitialize)(this.mainLayout)).BeginInit();
+            this.mainLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCounterName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsMobileCounter.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcMappings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvMappings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.availableEditor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gatewayEditor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetting1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetting2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgPaymentGatewayConfig)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.counterSection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBranch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciCounterName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciMobileCounter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mopSection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciMappings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gatewaySection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSetting1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSetting2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSpacer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciCancel)).BeginInit();
             this.SuspendLayout();
             // 
-            // layoutControl1
+            // mainLayout
             // 
-            this.layoutControl1.Appearance.Control.Font = new System.Drawing.Font("Arial", 10F);
-            this.layoutControl1.Appearance.Control.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 8F);
-            this.layoutControl1.Appearance.ControlDisabled.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 10F);
-            this.layoutControl1.Appearance.ControlDropDown.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 8F);
-            this.layoutControl1.Appearance.ControlDropDownHeader.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 10F);
-            this.layoutControl1.Appearance.ControlFocused.Options.UseFont = true;
-            this.layoutControl1.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 8F);
-            this.layoutControl1.Appearance.ControlReadOnly.Options.UseFont = true;
-            this.layoutControl1.Controls.Add(this.luPaymentGateway);
-            this.layoutControl1.Controls.Add(this.txtSetting2);
-            this.layoutControl1.Controls.Add(this.txtSetting1);
-            this.layoutControl1.Controls.Add(this.chkIsMobileCounter);
-            this.layoutControl1.Controls.Add(this.btnCancel);
-            this.layoutControl1.Controls.Add(this.btnSave);
-            this.layoutControl1.Controls.Add(this.txtCounterName);
-            this.layoutControl1.Controls.Add(this.cmbBranch);
-            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(680, 34, 650, 400);
-            this.layoutControl1.OptionsFocus.EnableAutoTabOrder = false;
-            this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(453, 270);
-            this.layoutControl1.TabIndex = 0;
-            this.layoutControl1.Text = "layoutControl1";
-            // 
-            // luPaymentGateway
-            // 
-            this.luPaymentGateway.EnterMoveNextControl = true;
-            this.luPaymentGateway.Location = new System.Drawing.Point(127, 76);
-            this.luPaymentGateway.Name = "luPaymentGateway";
-            this.luPaymentGateway.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.luPaymentGateway.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PAYMENTGATEWAYINFOID", "PAYMENTGATEWAYINFOID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PAYMENTGATEWAYINFONAME", "Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PAYMENTGATEWAYINFOTYPE", "Type")});
-            this.luPaymentGateway.Properties.NullText = "";
-            this.luPaymentGateway.Size = new System.Drawing.Size(318, 22);
-            this.luPaymentGateway.StyleController = this.layoutControl1;
-            this.luPaymentGateway.TabIndex = 2;
-            this.luPaymentGateway.EditValueChanged += new System.EventHandler(this.luPaymentGateway_Leave);
-            this.luPaymentGateway.Leave += new System.EventHandler(this.luPaymentGateway_Leave);
-            // 
-            // txtSetting2
-            // 
-            this.txtSetting2.EnterMoveNextControl = true;
-            this.txtSetting2.Location = new System.Drawing.Point(139, 177);
-            this.txtSetting2.Name = "txtSetting2";
-            this.txtSetting2.Size = new System.Drawing.Size(294, 22);
-            this.txtSetting2.StyleController = this.layoutControl1;
-            this.txtSetting2.TabIndex = 4;
-            // 
-            // txtSetting1
-            // 
-            this.txtSetting1.EnterMoveNextControl = true;
-            this.txtSetting1.Location = new System.Drawing.Point(139, 143);
-            this.txtSetting1.Name = "txtSetting1";
-            this.txtSetting1.Size = new System.Drawing.Size(294, 22);
-            this.txtSetting1.StyleController = this.layoutControl1;
-            this.txtSetting1.TabIndex = 3;
-            // 
-            // chkIsMobileCounter
-            // 
-            this.chkIsMobileCounter.EnterMoveNextControl = true;
-            this.chkIsMobileCounter.Location = new System.Drawing.Point(8, 223);
-            this.chkIsMobileCounter.Name = "chkIsMobileCounter";
-            this.chkIsMobileCounter.Properties.Caption = "Is Mobile Counter";
-            this.chkIsMobileCounter.Size = new System.Drawing.Size(128, 20);
-            this.chkIsMobileCounter.StyleController = this.layoutControl1;
-            this.chkIsMobileCounter.TabIndex = 5;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
-            this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCancel.Location = new System.Drawing.Point(361, 223);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(84, 22);
-            this.btnCancel.StyleController = this.layoutControl1;
-            this.btnCancel.TabIndex = 7;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSave.Location = new System.Drawing.Point(259, 223);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(90, 22);
-            this.btnSave.StyleController = this.layoutControl1;
-            this.btnSave.TabIndex = 6;
-            this.btnSave.Text = "Save";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // txtCounterName
-            // 
-            this.txtCounterName.EnterMoveNextControl = true;
-            this.txtCounterName.Location = new System.Drawing.Point(127, 42);
-            this.txtCounterName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtCounterName.Name = "txtCounterName";
-            this.txtCounterName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCounterName.Size = new System.Drawing.Size(318, 22);
-            this.txtCounterName.StyleController = this.layoutControl1;
-            this.txtCounterName.TabIndex = 1;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Mandatory";
-            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.txtCounterName, conditionValidationRule1);
+            this.mainLayout.Controls.Add(this.cmbBranch);
+            this.mainLayout.Controls.Add(this.txtCounterName);
+            this.mainLayout.Controls.Add(this.chkIsMobileCounter);
+            this.mainLayout.Controls.Add(this.gcMappings);
+            this.mainLayout.Controls.Add(this.txtSetting1);
+            this.mainLayout.Controls.Add(this.txtSetting2);
+            this.mainLayout.Controls.Add(this.btnSave);
+            this.mainLayout.Controls.Add(this.btnCancel);
+            this.mainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainLayout.Location = new System.Drawing.Point(0, 0);
+            this.mainLayout.Name = "mainLayout";
+            this.mainLayout.Root = this.Root;
+            this.mainLayout.Size = new System.Drawing.Size(820, 620);
+            this.mainLayout.TabIndex = 0;
             // 
             // cmbBranch
             // 
             this.cmbBranch.EnterMoveNextControl = true;
-            this.cmbBranch.Location = new System.Drawing.Point(127, 8);
-            this.cmbBranch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cmbBranch.Location = new System.Drawing.Point(129, 40);
             this.cmbBranch.Name = "cmbBranch";
             this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHID", "BRANCHID", 23, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHNAME", "BRANCHNAME", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHCODE", "BRANCHCODE", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHNAME", "Branch"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BRANCHCODE", "Code")});
             this.cmbBranch.Properties.NullText = "";
-            this.cmbBranch.Size = new System.Drawing.Size(318, 22);
-            this.cmbBranch.StyleController = this.layoutControl1;
+            this.cmbBranch.Size = new System.Drawing.Size(672, 22);
+            this.cmbBranch.StyleController = this.mainLayout;
             this.cmbBranch.TabIndex = 0;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Mandatory";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            this.dxValidationProvider1.SetValidationRule(this.cmbBranch, conditionValidationRule2);
+            // 
+            // txtCounterName
+            // 
+            this.txtCounterName.EnterMoveNextControl = true;
+            this.txtCounterName.Location = new System.Drawing.Point(129, 66);
+            this.txtCounterName.Name = "txtCounterName";
+            this.txtCounterName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCounterName.Properties.MaxLength = 50;
+            this.txtCounterName.Size = new System.Drawing.Size(491, 22);
+            this.txtCounterName.StyleController = this.mainLayout;
+            this.txtCounterName.TabIndex = 1;
+            // 
+            // chkIsMobileCounter
+            // 
+            this.chkIsMobileCounter.Location = new System.Drawing.Point(624, 66);
+            this.chkIsMobileCounter.Name = "chkIsMobileCounter";
+            this.chkIsMobileCounter.Properties.Caption = "Is Mobile Counter";
+            this.chkIsMobileCounter.Size = new System.Drawing.Size(177, 19);
+            this.chkIsMobileCounter.StyleController = this.mainLayout;
+            this.chkIsMobileCounter.TabIndex = 2;
+            // 
+            // gcMappings
+            // 
+            this.gcMappings.Location = new System.Drawing.Point(13, 125);
+            this.gcMappings.MainView = this.gvMappings;
+            this.gcMappings.Name = "gcMappings";
+            this.gcMappings.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.availableEditor,
+            this.gatewayEditor});
+            this.gcMappings.Size = new System.Drawing.Size(794, 355);
+            this.gcMappings.TabIndex = 3;
+            this.gcMappings.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvMappings});
+            // 
+            // gvMappings
+            // 
+            this.gvMappings.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colAvailable,
+            this.colMop,
+            this.colConfigurable,
+            this.colGateway});
+            this.gvMappings.GridControl = this.gcMappings;
+            this.gvMappings.Name = "gvMappings";
+            this.gvMappings.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gvMappings.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gvMappings.OptionsView.ShowGroupPanel = false;
+            this.gvMappings.OptionsView.ShowIndicator = false;
+            this.gvMappings.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gvMappings_RowCellStyle);
+            this.gvMappings.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.gvMappings_CustomRowCellEditForEditing);
+            this.gvMappings.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gvMappings_ShowingEditor);
+            this.gvMappings.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvMappings_FocusedRowChanged);
+            this.gvMappings.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvMappings_CellValueChanged);
+            // 
+            // colAvailable
+            // 
+            this.colAvailable.Caption = "Available";
+            this.colAvailable.ColumnEdit = this.availableEditor;
+            this.colAvailable.FieldName = "ISAVAILABLE";
+            this.colAvailable.Name = "colAvailable";
+            this.colAvailable.OptionsColumn.FixedWidth = true;
+            this.colAvailable.Visible = true;
+            this.colAvailable.VisibleIndex = 0;
+            // 
+            // availableEditor
+            // 
+            this.availableEditor.Name = "availableEditor";
+            this.availableEditor.EditValueChanged += new System.EventHandler(this.availableEditor_EditValueChanged);
+            // 
+            // colMop
+            // 
+            this.colMop.Caption = "MOP";
+            this.colMop.FieldName = "MOPNAME";
+            this.colMop.Name = "colMop";
+            this.colMop.OptionsColumn.AllowEdit = false;
+            this.colMop.Visible = true;
+            this.colMop.VisibleIndex = 1;
+            this.colMop.Width = 150;
+            // 
+            // colConfigurable
+            // 
+            this.colConfigurable.Caption = "Gateway Configurable";
+            this.colConfigurable.FieldName = "ISGATEWAYCONFIGURABLE";
+            this.colConfigurable.MinWidth = 145;
+            this.colConfigurable.Name = "colConfigurable";
+            this.colConfigurable.OptionsColumn.AllowEdit = false;
+            this.colConfigurable.Visible = true;
+            this.colConfigurable.VisibleIndex = 2;
+            this.colConfigurable.Width = 145;
+            // 
+            // colGateway
+            // 
+            this.colGateway.Caption = "Payment Gateway";
+            this.colGateway.ColumnEdit = this.gatewayEditor;
+            this.colGateway.FieldName = "PAYMENTGATEWAYINFOID";
+            this.colGateway.Name = "colGateway";
+            this.colGateway.Visible = true;
+            this.colGateway.VisibleIndex = 3;
+            this.colGateway.Width = 350;
+            // 
+            // gatewayEditor
+            // 
+            this.gatewayEditor.Name = "gatewayEditor";
+            // 
+            // txtSetting1
+            // 
+            this.txtSetting1.Location = new System.Drawing.Point(219, 517);
+            this.txtSetting1.Name = "txtSetting1";
+            this.txtSetting1.Size = new System.Drawing.Size(582, 22);
+            this.txtSetting1.StyleController = this.mainLayout;
+            this.txtSetting1.TabIndex = 4;
+            this.txtSetting1.EditValueChanged += new System.EventHandler(this.gatewaySetting_EditValueChanged);
+            // 
+            // txtSetting2
+            // 
+            this.txtSetting2.Location = new System.Drawing.Point(219, 543);
+            this.txtSetting2.Name = "txtSetting2";
+            this.txtSetting2.Size = new System.Drawing.Size(582, 22);
+            this.txtSetting2.StyleController = this.mainLayout;
+            this.txtSetting2.TabIndex = 5;
+            this.txtSetting2.EditValueChanged += new System.EventHandler(this.gatewaySetting_EditValueChanged);
+            // 
+            // btnSave
+            // 
+            this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnSave.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSave.ImageOptions.SvgImage")));
+            this.btnSave.Location = new System.Drawing.Point(598, 578);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(104, 32);
+            this.btnSave.StyleController = this.mainLayout;
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
+            this.btnCancel.Location = new System.Drawing.Point(706, 578);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(104, 32);
+            this.btnCancel.StyleController = this.mainLayout;
+            this.btnCancel.TabIndex = 7;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // Root
             // 
-            this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 10F);
-            this.Root.AppearanceItemCaption.Options.UseFont = true;
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem7,
-            this.layoutControlItem8,
-            this.emptySpaceItem2,
-            this.layoutControlItem3,
-            this.layoutControlItem2,
-            this.lcgPaymentGatewayConfig,
-            this.layoutControlItem4});
+            this.counterSection,
+            this.mopSection,
+            this.gatewaySection,
+            this.buttonSpacer,
+            this.lciSave,
+            this.lciCancel});
             this.Root.Name = "Root";
-            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(453, 270);
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(8, 8, 8, 8);
+            this.Root.Size = new System.Drawing.Size(820, 620);
             this.Root.TextVisible = false;
             // 
-            // layoutControlItem1
+            // counterSection
             // 
-            this.layoutControlItem1.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 10F);
-            this.layoutControlItem1.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem1.Control = this.txtCounterName;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 34);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem1.Size = new System.Drawing.Size(449, 34);
-            this.layoutControlItem1.Text = "Counter Name";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(107, 16);
+            this.counterSection.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lciBranch,
+            this.lciCounterName,
+            this.lciMobileCounter});
+            this.counterSection.Location = new System.Drawing.Point(0, 0);
+            this.counterSection.Name = "counterSection";
+            this.counterSection.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.counterSection.Size = new System.Drawing.Size(804, 91);
+            this.counterSection.Text = "Counter Information";
             // 
-            // layoutControlItem7
+            // lciBranch
             // 
-            this.layoutControlItem7.Control = this.btnSave;
-            this.layoutControlItem7.Location = new System.Drawing.Point(251, 215);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem7.Size = new System.Drawing.Size(102, 51);
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
+            this.lciBranch.Control = this.cmbBranch;
+            this.lciBranch.Location = new System.Drawing.Point(0, 0);
+            this.lciBranch.Name = "lciBranch";
+            this.lciBranch.Size = new System.Drawing.Size(786, 26);
+            this.lciBranch.Text = "Branch";
+            this.lciBranch.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize;
+            this.lciBranch.TextSize = new System.Drawing.Size(105, 16);
+            this.lciBranch.TextToControlDistance = 5;
             // 
-            // layoutControlItem8
+            // lciCounterName
             // 
-            this.layoutControlItem8.Control = this.btnCancel;
-            this.layoutControlItem8.Location = new System.Drawing.Point(353, 215);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem8.Size = new System.Drawing.Size(96, 51);
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
+            this.lciCounterName.Control = this.txtCounterName;
+            this.lciCounterName.Location = new System.Drawing.Point(0, 26);
+            this.lciCounterName.Name = "lciCounterName";
+            this.lciCounterName.Size = new System.Drawing.Size(605, 26);
+            this.lciCounterName.Text = "Counter Name";
+            this.lciCounterName.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize;
+            this.lciCounterName.TextSize = new System.Drawing.Size(105, 16);
+            this.lciCounterName.TextToControlDistance = 5;
             // 
-            // emptySpaceItem2
+            // lciMobileCounter
             // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(140, 215);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(111, 51);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.lciMobileCounter.Control = this.chkIsMobileCounter;
+            this.lciMobileCounter.Location = new System.Drawing.Point(605, 26);
+            this.lciMobileCounter.Name = "lciMobileCounter";
+            this.lciMobileCounter.Size = new System.Drawing.Size(181, 26);
+            this.lciMobileCounter.TextSize = new System.Drawing.Size(0, 0);
+            this.lciMobileCounter.TextVisible = false;
             // 
-            // layoutControlItem3
+            // mopSection
             // 
-            this.layoutControlItem3.Control = this.chkIsMobileCounter;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 215);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem3.Size = new System.Drawing.Size(140, 51);
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
+            this.mopSection.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lciMappings});
+            this.mopSection.Location = new System.Drawing.Point(0, 91);
+            this.mopSection.Name = "mopSection";
+            this.mopSection.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+            this.mopSection.Size = new System.Drawing.Size(804, 386);
+            this.mopSection.Text = "MOP Payment Gateway Mappings";
             // 
-            // layoutControlItem2
+            // lciMappings
             // 
-            this.layoutControlItem2.Control = this.cmbBranch;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(449, 34);
-            this.layoutControlItem2.Text = "Branch";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(107, 16);
+            this.lciMappings.Control = this.gcMappings;
+            this.lciMappings.Location = new System.Drawing.Point(0, 0);
+            this.lciMappings.Name = "lciMappings";
+            this.lciMappings.Size = new System.Drawing.Size(798, 359);
+            this.lciMappings.TextSize = new System.Drawing.Size(0, 0);
+            this.lciMappings.TextVisible = false;
             // 
-            // lcgPaymentGatewayConfig
+            // gatewaySection
             // 
-            this.lcgPaymentGatewayConfig.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.gatewaySection.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.lciSetting1,
             this.lciSetting2});
-            this.lcgPaymentGatewayConfig.Location = new System.Drawing.Point(0, 102);
-            this.lcgPaymentGatewayConfig.Name = "lcgPaymentGatewayConfig";
-            this.lcgPaymentGatewayConfig.Size = new System.Drawing.Size(449, 113);
-            this.lcgPaymentGatewayConfig.Text = "PineLabs Payment Gateway configuration";
+            this.gatewaySection.Location = new System.Drawing.Point(0, 477);
+            this.gatewaySection.Name = "gatewaySection";
+            this.gatewaySection.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.gatewaySection.Size = new System.Drawing.Size(804, 91);
+            this.gatewaySection.Text = "Payment Gateway Configuration";
             // 
             // lciSetting1
             // 
             this.lciSetting1.Control = this.txtSetting1;
             this.lciSetting1.Location = new System.Drawing.Point(0, 0);
             this.lciSetting1.Name = "lciSetting1";
-            this.lciSetting1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.lciSetting1.Size = new System.Drawing.Size(425, 34);
-            this.lciSetting1.Text = "Store ID";
-            this.lciSetting1.TextSize = new System.Drawing.Size(107, 16);
+            this.lciSetting1.Size = new System.Drawing.Size(786, 26);
+            this.lciSetting1.Text = "Setting 1";
+            this.lciSetting1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize;
+            this.lciSetting1.TextSize = new System.Drawing.Size(195, 16);
+            this.lciSetting1.TextToControlDistance = 5;
             // 
             // lciSetting2
             // 
             this.lciSetting2.Control = this.txtSetting2;
-            this.lciSetting2.Location = new System.Drawing.Point(0, 34);
+            this.lciSetting2.Location = new System.Drawing.Point(0, 26);
             this.lciSetting2.Name = "lciSetting2";
-            this.lciSetting2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.lciSetting2.Size = new System.Drawing.Size(425, 34);
-            this.lciSetting2.Text = "Clent ID";
-            this.lciSetting2.TextSize = new System.Drawing.Size(107, 16);
+            this.lciSetting2.Size = new System.Drawing.Size(786, 26);
+            this.lciSetting2.Text = "Setting 2";
+            this.lciSetting2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize;
+            this.lciSetting2.TextSize = new System.Drawing.Size(195, 16);
+            this.lciSetting2.TextToControlDistance = 5;
             // 
-            // layoutControlItem4
+            // buttonSpacer
             // 
-            this.layoutControlItem4.Control = this.luPaymentGateway;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 68);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem4.Size = new System.Drawing.Size(449, 34);
-            this.layoutControlItem4.Text = "Payment Gateway";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(107, 16);
+            this.buttonSpacer.AllowHotTrack = false;
+            this.buttonSpacer.Location = new System.Drawing.Point(0, 568);
+            this.buttonSpacer.Name = "buttonSpacer";
+            this.buttonSpacer.Size = new System.Drawing.Size(588, 36);
+            this.buttonSpacer.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // lciSave
+            // 
+            this.lciSave.Control = this.btnSave;
+            this.lciSave.Location = new System.Drawing.Point(588, 568);
+            this.lciSave.MaxSize = new System.Drawing.Size(108, 36);
+            this.lciSave.MinSize = new System.Drawing.Size(108, 36);
+            this.lciSave.Name = "lciSave";
+            this.lciSave.Size = new System.Drawing.Size(108, 36);
+            this.lciSave.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lciSave.TextSize = new System.Drawing.Size(0, 0);
+            this.lciSave.TextVisible = false;
+            // 
+            // lciCancel
+            // 
+            this.lciCancel.Control = this.btnCancel;
+            this.lciCancel.Location = new System.Drawing.Point(696, 568);
+            this.lciCancel.MaxSize = new System.Drawing.Size(108, 36);
+            this.lciCancel.MinSize = new System.Drawing.Size(108, 36);
+            this.lciCancel.Name = "lciCancel";
+            this.lciCancel.Size = new System.Drawing.Size(108, 36);
+            this.lciCancel.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lciCancel.TextSize = new System.Drawing.Size(0, 0);
+            this.lciCancel.TextVisible = false;
             // 
             // frmCounter
             // 
+            this.AcceptButton = this.btnSave;
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(453, 270);
-            this.Controls.Add(this.layoutControl1);
+            this.ClientSize = new System.Drawing.Size(820, 620);
+            this.Controls.Add(this.mainLayout);
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MinimumSize = new System.Drawing.Size(780, 580);
             this.Name = "frmCounter";
             this.Text = "Counter";
             this.Load += new System.EventHandler(this.frmCounter_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
-            this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.luPaymentGateway.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSetting2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSetting1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIsMobileCounter.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCounterName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainLayout)).EndInit();
+            this.mainLayout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmbBranch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCounterName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsMobileCounter.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcMappings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvMappings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.availableEditor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gatewayEditor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetting1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetting2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgPaymentGatewayConfig)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.counterSection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBranch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciCounterName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciMobileCounter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mopSection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciMappings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gatewaySection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSetting1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSetting2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSpacer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciCancel)).EndInit();
             this.ResumeLayout(false);
 
         }
 
-        #endregion
-
-        private DevExpress.XtraLayout.LayoutControl layoutControl1;
-        private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.TextEdit txtCounterName;
-        private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraLayout.LayoutControl mainLayout;
+        private DevExpress.XtraLayout.LayoutControlGroup Root, counterSection, mopSection, gatewaySection;
+        private DevExpress.XtraLayout.LayoutControlItem lciBranch, lciCounterName, lciMobileCounter, lciMappings;
+        private DevExpress.XtraLayout.LayoutControlItem lciSetting1, lciSetting2, lciSave, lciCancel;
+        private DevExpress.XtraLayout.EmptySpaceItem buttonSpacer;
         private DevExpress.XtraEditors.LookUpEdit cmbBranch;
-        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
+        private DevExpress.XtraEditors.TextEdit txtCounterName, txtSetting1, txtSetting2;
         private DevExpress.XtraEditors.CheckEdit chkIsMobileCounter;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraEditors.TextEdit txtSetting1;
-        private DevExpress.XtraLayout.LayoutControlItem lciSetting1;
-        private DevExpress.XtraEditors.TextEdit txtSetting2;
-        private DevExpress.XtraLayout.LayoutControlItem lciSetting2;
-        private DevExpress.XtraLayout.LayoutControlGroup lcgPaymentGatewayConfig;
-        private DevExpress.XtraEditors.LookUpEdit luPaymentGateway;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraEditors.SimpleButton btnSave, btnCancel;
+        private DevExpress.XtraGrid.GridControl gcMappings;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvMappings;
+        private DevExpress.XtraGrid.Columns.GridColumn colAvailable, colMop, colConfigurable, colGateway;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit availableEditor;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit gatewayEditor;
     }
 }

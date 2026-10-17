@@ -25,11 +25,25 @@ namespace NSRetail.Master
             InitializeComponent();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                Close();
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void frmModeofPayment_Load(object sender, EventArgs e)
         {
             try
             {
-                gcMOP.DataSource = ObjMasterRep.GetMOP();
+                DataTable dtMOP = ObjMasterRep.GetMOP();
+                dtMOP.Columns["ISGATEWAYCONFIGURABLE"].DefaultValue = false;
+                dtMOP.AcceptChanges();
+                gcMOP.DataSource = dtMOP;
                 AccessUtility.SetStatusByAccess(gvMOP);
                 AccessUtility.SetStatusByAccess(gcDelete);
 
@@ -56,27 +70,73 @@ namespace NSRetail.Master
             {
                 GridView view = sender as GridView;
                 view.SetRowCellValue(e.RowHandle, view.Columns["MOPID"], -1);
+                view.SetRowCellValue(e.RowHandle, gcGatewayConfigurable, false);
             }
             catch (Exception ex) { }
         }
 
         private void gvCategory_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
+            DataRow row = (e.Row as DataRowView)?.Row;
             try
             {
-                GridView view = sender as GridView;
-                DataRow row = (e.Row as DataRowView).Row;
+                if (row == null) return;
                 ObjMOP.MOPNAME = Convert.ToString(row["MOPNAME"]);
                 ObjMOP.MOPID = Convert.ToInt32(row["MOPID"]);
+                ObjMOP.ISGATEWAYCONFIGURABLE = !row.IsNull("ISGATEWAYCONFIGURABLE")
+                    && Convert.ToBoolean(row["ISGATEWAYCONFIGURABLE"]);
+                if (Convert.ToInt32(ObjMOP.MOPID) > 0 && row.HasVersion(DataRowVersion.Original))
+                {
+                    string originalName = Convert.ToString(row["MOPNAME", DataRowVersion.Original]);
+                    object originalGatewayValue = row["ISGATEWAYCONFIGURABLE", DataRowVersion.Original];
+                    bool originalGatewayConfigurable = originalGatewayValue != DBNull.Value
+                        && Convert.ToBoolean(originalGatewayValue);
+                    List<string> changes = new List<string>();
+                    if (originalName != Convert.ToString(ObjMOP.MOPNAME))
+                        changes.Add($"MOP: {originalName} -> {ObjMOP.MOPNAME}");
+                    if (originalGatewayConfigurable != ObjMOP.ISGATEWAYCONFIGURABLE)
+                        changes.Add($"Gateway Configurable: {(originalGatewayConfigurable ? "Yes" : "No")} -> {(ObjMOP.ISGATEWAYCONFIGURABLE ? "Yes" : "No")}");
+
+                    if (changes.Count == 0) return;
+
+                    string message = $"Save changes to MOP '{originalName}'?"
+                        + Environment.NewLine + Environment.NewLine
+                        + string.Join(Environment.NewLine, changes);
+                    if (XtraMessageBox.Show(this, message, "Confirm MOP Update",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+                    {
+                        row.RejectChanges();
+                        return;
+                    }
+                }
                 ObjMOP.UserID = Utility.UserID;
                 ObjMasterRep.SaveMOP(ObjMOP);
                 row["MOPID"] = ObjMOP.MOPID;
+                row.AcceptChanges();
             }
             catch (Exception ex)
             {
+                if (row != null && row.RowState == DataRowState.Modified)
+                    row.RejectChanges();
                 ErrorMgmt.ShowError(ex);
                 AppLog.Error(ex);
             }
+        }
+
+        private void gvMOP_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            if (gvMOP.FocusedColumn != gcGatewayConfigurable) return;
+
+            string action = gvMOP.IsNewItemRow(gvMOP.FocusedRowHandle) ? "Create" : "Update";
+            e.Cancel = !AccessUtility.HasAccess($"5A872299-57E3-4DB3-A55A-8BFE9CFB346B::{action}");
+        }
+
+        private void frmModeofPayment_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            gvMOP.CloseEditor();
+            if (!gvMOP.UpdateCurrentRow())
+                e.Cancel = true;
         }
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)

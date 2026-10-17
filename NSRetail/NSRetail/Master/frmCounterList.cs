@@ -27,6 +27,7 @@ namespace NSRetail.Master
 
                 AccessUtility.SetStatusByAccess(btnNew);
                 AccessUtility.SetStatusByAccess(gcEdit, gcDelete, gcClearHDDSNo);
+                gvCounter.BestFitColumns();
             }
             catch (Exception ex)
             {
@@ -66,8 +67,6 @@ namespace NSRetail.Master
                     ObjCounter.COUNTERNAME = gvCounter.GetFocusedRowCellValue("COUNTERNAME");
                     ObjCounter.BRANCHID = gvCounter.GetFocusedRowCellValue("BRANCHID");
                     ObjCounter.ISMOBILECOUNTER = gvCounter.GetFocusedRowCellValue("ISMOBILECOUNTER");
-                    ObjCounter.PAYMENTGATEWAYINFOID = gvCounter.GetFocusedRowCellValue("PAYMENTGATEWAYINFOID");
-                    ObjCounter.PAYMENTGATEWAYADDITIONALCONFIG = gvCounter.GetFocusedRowCellValue("PAYMENTGATEWAYADDITIONALCONFIG");
                     frmCounter obj = new frmCounter(ObjCounter)
                     {
                         ShowInTaskbar = false,

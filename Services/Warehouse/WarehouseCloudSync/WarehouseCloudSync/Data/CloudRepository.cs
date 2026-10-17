@@ -18,6 +18,7 @@ namespace WarehouseCloudSync.Data
             , { "STOCKDISPATCHDETAIL",  new EntityMapping("USP_CU_STOCKDISPATCHDETAIL", "@StockDispatchDetail") }
             , { "BRANCHCOUNTER",  new EntityMapping("USP_CU_BRANCHCOUNTER", "@BranchCounters") }
             , { "MOP",  new EntityMapping("USP_CU_MOP", "@MOP") }
+            , { "BRANCHCOUNTERMOP", new EntityMapping("USP_CU_BRANCHCOUNTERMOP", "@Mappings") }
             , { "ROLE",  new EntityMapping("USP_CU_ROLE", "@Role") }
             , { "USER",  new EntityMapping("USP_CU_USER1", "@User") }
             , { "UOM",  new EntityMapping("USP_CU_UOM", "@UOM") }

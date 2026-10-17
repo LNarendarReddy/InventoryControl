@@ -30,6 +30,7 @@ namespace NSRetail.Master
         {
             KeyPreview = true;
             btnCancel.Click += btnCancel_Click;
+            btnRefresh.Click += btnRefresh_Click;
             btnReleaseBuild.Click += btnReleaseBuild_Click;
             btnReleaseBuild.Enabled = false;
             Load += frmPOSReleaseManagement_Load;
@@ -83,9 +84,37 @@ namespace NSRetail.Master
 
             lblAppVersion.Text = $"Latest App Version : {appVersion}";
             lblDBVersion.Text = $"Latest DB Version : {dbVersion}";
-            gcCounters.DataSource = dsReleaseData.Tables.Count > 1 ? dsReleaseData.Tables[1] : null;
-            FormatGrid();
+            var filterCriteria = gvCounters.ActiveFilterCriteria;
+            bool filterEnabled = gvCounters.ActiveFilterEnabled;
+            string findFilterText = gvCounters.FindFilterText;
+
+            gvCounters.BeginDataUpdate();
+            try
+            {
+                gcCounters.DataSource = dsReleaseData.Tables.Count > 1 ? dsReleaseData.Tables[1] : null;
+                FormatGrid();
+                gvCounters.ActiveFilterCriteria = filterCriteria;
+                gvCounters.FindFilterText = findFilterText;
+                gvCounters.ActiveFilterEnabled = filterEnabled;
+            }
+            finally
+            {
+                gvCounters.EndDataUpdate();
+            }
             UpdateReleaseBuildButtonState();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadReleaseData();
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                AppLog.Error(ex);
+            }
         }
 
         private void FormatGrid()

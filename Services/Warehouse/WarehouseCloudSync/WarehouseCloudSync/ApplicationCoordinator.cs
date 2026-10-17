@@ -21,8 +21,10 @@ namespace WarehouseCloudSync
 
             runningTasks.Add(new WarehouseSyncWorker().StartAsync(cancellationTokenSource.Token));
 
-            runningTasks.Add(new HomeDeliveryExportWorker().StartAsync(cancellationTokenSource.Token));
-            SyncData.WriteHomeDeliveryLine("Home Delivery worker started. Configuration will be loaded from DB.");
+            // Home Delivery scheduling is temporarily disabled; retain startup code for re-enabling.
+            // runningTasks.Add(new HomeDeliveryExportWorker().StartAsync(cancellationTokenSource.Token));
+            // SyncData.WriteHomeDeliveryLine("Home Delivery worker started. Configuration will be loaded from DB.");
+            SyncData.WriteHomeDeliveryLine("Home Delivery scheduled worker is disabled.");
         }
 
         public void Stop(TimeSpan timeout)
