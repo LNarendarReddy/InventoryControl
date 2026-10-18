@@ -1,4 +1,7 @@
-﻿v4.1.3
+﻿v4.1.4
+-- Added Stale Item Prices report which can help with the MRP cleanup activities
+
+v4.1.3
 -- Added source branch display and editable category for invoice drafts in WH stock entry.
 -- Loaded supplier indents using the invoice source branch and selected category.
 -- Preserved invoice category during draft verification and submission.
