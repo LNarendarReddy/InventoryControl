@@ -610,6 +610,12 @@
     <Compile Include="ReportForms\Branch\POSReports\frmCreditBillPayment.Designer.cs">
       <DependentUpon>frmCreditBillPayment.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucStaleItemPrices.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Wareshouse\Audit\ucStaleItemPrices.Designer.cs">
+      <DependentUpon>ucStaleItemPrices.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Wareshouse\Audit\ucCostPriceAudit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1737,6 +1743,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\POSReports\frmCreditBillPayment.resx">
       <DependentUpon>frmCreditBillPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucStaleItemPrices.resx">
+      <DependentUpon>ucStaleItemPrices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Wareshouse\Audit\ucCostPriceAudit.resx">
       <DependentUpon>ucCostPriceAudit.cs</DependentUpon>

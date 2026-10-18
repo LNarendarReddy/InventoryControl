@@ -519,6 +519,7 @@ namespace NSRetail
             auditReports.SubCategory.Add(new ReportHolder("602C0AD1-DB66-415F-812B-F8739F162312") { ReportName = "Deleted Item codes", SearchCriteriaControl = new ucDeletedItemCodes() });      
             auditReports.SubCategory.Add(new ReportHolder("602C0AD1-DB66-415F-812B-F8739F162312") { ReportName = "Deleted Item prices", SearchCriteriaControl = new ucDeletedItemPrices() });
             auditReports.SubCategory.Add(new ReportHolder("B69439E2-818F-41DE-AE2F-55A8F3A7007B") { ReportName = "Average Cost price", SearchCriteriaControl = new ucAvgCostPrice() });
+            auditReports.SubCategory.Add(new ReportHolder("79B48F4B-1E77-4DFA-A133-F001C6A28386") { ReportName = "Stale Item prices", SearchCriteriaControl = new ucStaleItemPrices() });
             reportList.Add(auditReports);
 
             ReportHolder offersReports = new ReportHolder("D4B8F2A1-6C93-47E5-B1D7-9A3F5C8E2B64") { ReportName = "Offer Reports" };
