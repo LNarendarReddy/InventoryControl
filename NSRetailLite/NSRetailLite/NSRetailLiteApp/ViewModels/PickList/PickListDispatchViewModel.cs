@@ -35,7 +35,7 @@ namespace NSRetailLiteApp.ViewModels.PickList
 
 
         [ObservableProperty]
-        private string _lastKnownTrayNumber;
+        private int? _lastKnownTrayNumber;
 
         public IAsyncRelayCommand SubmitCommand { get; }
 

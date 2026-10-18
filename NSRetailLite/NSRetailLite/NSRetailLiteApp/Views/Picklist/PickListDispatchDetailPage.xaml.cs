@@ -23,7 +23,7 @@ public partial class PickListDispatchDetailPage : ContentPage
     {
         if (pickListDispatchDetailViewModel == null) return;
 
-        if (string.IsNullOrEmpty(pickListDispatchDetailViewModel.PickListDispatchViewModel.LastKnownTrayNumber))
+        if (pickListDispatchDetailViewModel.PickListDispatchViewModel.LastKnownTrayNumber == null)
             txtTrayNumber.Focus();
         else
             txtItemCode.Focus();

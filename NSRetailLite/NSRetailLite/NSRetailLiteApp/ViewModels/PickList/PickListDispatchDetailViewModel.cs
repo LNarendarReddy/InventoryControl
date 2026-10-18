@@ -41,8 +41,11 @@ namespace NSRetailLiteApp.ViewModels.PickList
             if (PickListDispatchDetailModelObj.ItemCodeId <= 0)
                 errors.Add("Item code not selected");
 
-            if (string.IsNullOrEmpty(PickListDispatchDetailModelObj.TrayNumber))
+            if (PickListDispatchDetailModelObj.TrayNumber == null)
                 errors.Add("Tray # cannot be empty");
+
+            if (PickListDispatchDetailModelObj.TrayNumber > 999999)
+                errors.Add("Tray # cannot be longer than 6 digits");
 
             if (PickListDispatchDetailModelObj.MRP <= 0)
                 errors.Add("MRP cannot be empty");

@@ -7,7 +7,7 @@ namespace NSRetailLiteApp
     {
 
         public static string Version = "0.0.5.1";
-        public static string VersionDate = "2026-09-12";
+        public static string VersionDate = "2026-10-18";
 
         public App()
         {

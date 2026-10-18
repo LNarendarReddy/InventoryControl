@@ -122,7 +122,7 @@ namespace NSRetailLiteApp.Models
         private double _mRP;
 
         [ObservableProperty]
-        private string _trayNumber;
+        private int? _trayNumber;
 
         [ObservableProperty]
         private int _quantity;

@@ -9,9 +9,14 @@
 
             <Label Text="Tray #" Grid.Row="0" Grid.Column="0"  VerticalTextAlignment="Center"/>
             <Entry Text="{Binding Path=PickListDispatchDetailModelObj.TrayNumber, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Placeholder="Enter Tray #"
-                   x:Name="txtTrayNumber">
+                   x:Name="txtTrayNumber" Keyboard="Numeric">
                 <Entry.Behaviors>
                     <toolkit:SelectAllTextBehavior />
+                    <toolkit:NumericValidationBehavior 
+                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                        ValidStyle="{StaticResource ValidEntryStyle}"
+                        Flags="ValidateOnValueChanged" 
+                        MaximumDecimalPlaces="0" MaximumValue="999999"/>
                 </Entry.Behaviors>
             </Entry>
             
