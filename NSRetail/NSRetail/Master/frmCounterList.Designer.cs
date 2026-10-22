@@ -398,8 +398,8 @@ namespace NSRetail.Master
             // 
             // gridColumn14
             // 
-            this.gridColumn14.Caption = "Payment Modes";
-            this.gridColumn14.FieldName = "MOPCONFIGURATION";
+            this.gridColumn14.Caption = "Payment Gateway";
+            this.gridColumn14.FieldName = "PAYMENTGATEWAYINFONAME";
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;

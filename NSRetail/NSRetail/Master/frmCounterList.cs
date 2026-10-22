@@ -23,7 +23,7 @@ namespace NSRetail.Master
         {
             try
             {
-                gcCounter.DataSource = objMasterRep.GetCounter();
+                gcCounter.DataSource = objMasterRep.GetCounterLegacy();
 
                 AccessUtility.SetStatusByAccess(btnNew);
                 AccessUtility.SetStatusByAccess(gcEdit, gcDelete, gcClearHDDSNo);
@@ -39,14 +39,15 @@ namespace NSRetail.Master
         private void btnNew_Click(object sender, EventArgs e)
         {
             ObjCounter = new Counter();
-            frmCounter obj = new frmCounter(ObjCounter);
+            // Keep the mapping-based frmCounter for the coordinated POS rollout.
+            frmCounterLegacy obj = new frmCounterLegacy(ObjCounter);
             obj.ShowInTaskbar = false;
             obj.StartPosition = FormStartPosition.CenterScreen;
             obj.IconOptions.ShowIcon = false;
             obj.ShowDialog();
             if (ObjCounter.IsSave)
             {
-                gcCounter.DataSource = objMasterRep.GetCounter();
+                gcCounter.DataSource = objMasterRep.GetCounterLegacy();
                 Utility.Setfocus(gvCounter, "COUNTERID", ObjCounter.COUNTERID);
             }
         }
@@ -67,7 +68,9 @@ namespace NSRetail.Master
                     ObjCounter.COUNTERNAME = gvCounter.GetFocusedRowCellValue("COUNTERNAME");
                     ObjCounter.BRANCHID = gvCounter.GetFocusedRowCellValue("BRANCHID");
                     ObjCounter.ISMOBILECOUNTER = gvCounter.GetFocusedRowCellValue("ISMOBILECOUNTER");
-                    frmCounter obj = new frmCounter(ObjCounter)
+                    ObjCounter.PAYMENTGATEWAYINFOID = gvCounter.GetFocusedRowCellValue("PAYMENTGATEWAYINFOID");
+                    ObjCounter.PAYMENTGATEWAYADDITIONALCONFIG = gvCounter.GetFocusedRowCellValue("PAYMENTGATEWAYADDITIONALCONFIG");
+                    frmCounterLegacy obj = new frmCounterLegacy(ObjCounter)
                     {
                         ShowInTaskbar = false,
                         StartPosition = FormStartPosition.CenterScreen
@@ -76,7 +79,7 @@ namespace NSRetail.Master
                     obj.ShowDialog();
                     if (ObjCounter.IsSave)
                     {
-                        gcCounter.DataSource = objMasterRep.GetCounter();
+                        gcCounter.DataSource = objMasterRep.GetCounterLegacy();
                         Utility.Setfocus(gvCounter, "COUNTERID", ObjCounter.COUNTERID);
                     }
 

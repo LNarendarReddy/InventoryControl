@@ -377,6 +377,40 @@ namespace DataAccess
             }
             return ObjCounter;
         }
+        public Counter SaveCounterLegacy(Counter counter)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("USP_CU_BRANCHCOUNTER", SQLCon.Sqlconn()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@COUNTERID", counter.COUNTERID ?? 0);
+                    cmd.Parameters.AddWithValue("@COUNTERNAME", counter.COUNTERNAME);
+                    cmd.Parameters.AddWithValue("@BRANCHID", counter.BRANCHID);
+                    cmd.Parameters.AddWithValue("@USERID", counter.UserID);
+                    cmd.Parameters.AddWithValue("@ISMOBILECOUNTER", counter.ISMOBILECOUNTER);
+                    cmd.Parameters.AddWithValue("@PaymentGatewayID", counter.PAYMENTGATEWAYINFOID ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@PaymentGatewayAdditionalConfig", counter.PAYMENTGATEWAYADDITIONALCONFIG ?? DBNull.Value);
+                    object result = cmd.ExecuteScalar();
+                    if (!int.TryParse(Convert.ToString(result), out int id))
+                        throw new Exception(Convert.ToString(result));
+                    counter.COUNTERID = id;
+                }
+                return counter;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("UC_COUNTERNAME"))
+                    throw new Exception("Counter Already Exists!!", ex);
+                throw;
+            }
+        }
+
+        public DataTable GetCounterLegacy()
+        {
+            return new ReportRepository().GetReportData("USP_R_BRANCHCOUNTER_LEGACY");
+        }
+
         public DataTable GetCounter()
         {
             return new ReportRepository().GetReportData("USP_R_BRANCHCOUNTER");
