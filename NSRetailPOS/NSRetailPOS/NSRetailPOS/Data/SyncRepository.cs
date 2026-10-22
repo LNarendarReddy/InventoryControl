@@ -18,6 +18,7 @@ namespace NSRetailPOS.Data
             , { "STOCKDISPATCHDETAIL",  new EntityMapping("POS_USP_CU_STOCKDISPATCHDETAIL", "@StockDispatchDetail") }
             , { "BRANCHCOUNTER",  new EntityMapping("POS_USP_CU_BRANCHCOUNTER", "@BranchCounters") }
             , { "MOP",  new EntityMapping("POS_USP_CU_MOP", "@MOP") }
+            , { "BRANCHCOUNTERMOP", new EntityMapping("POS_USP_CU_BRANCHCOUNTERMOP", "@Mappings", true) }
             , { "ROLE",  new EntityMapping("POS_USP_CU_ROLE", "@Role") }
             , { "USER",  new EntityMapping("POS_USP_CU_USER", "@User") }
             , { "UOM",  new EntityMapping("POS_USP_CU_UOM", "@UOM") }
@@ -50,6 +51,8 @@ namespace NSRetailPOS.Data
                     cmd.CommandTimeout = 1800;
                     cmd.CommandText = entityMapping[entityName].ProcedureName;
                     cmd.Parameters.AddWithValue(entityMapping[entityName].ParameterName, dtEntityWiseData);
+                    if (entityMapping[entityName].IncludeBranchCounterID)
+                        cmd.Parameters.AddWithValue("@BranchCounterID", Utility.branchInfo.BranchCounterID);
                     cmd.ExecuteNonQuery();
                 }
             }

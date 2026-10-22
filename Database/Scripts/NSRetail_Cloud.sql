@@ -5617,11 +5617,27 @@ CREATE PROC [dbo].[USP_R_GETSYNCDATA]
 	@EntityName VARCHAR(50)                                    
 	,  @SyncDate DATETIME                                     
 	, @BranchID INT = 0                                    
+	, @BranchCounterID INT = 0
 )                                    
 AS                                    
 BEGIN              
 
 	DECLARE @LocalSyncDate DATETIME = @SyncDate;
+
+    IF @EntityName = 'BRANCHCOUNTERMOP'
+    BEGIN
+        IF ISNULL(@BranchCounterID, 0) <= 0 OR ISNULL(@BranchID, 0) <= 0
+            THROW 50300, 'Branch and counter IDs are required to download payment mode mappings.', 1;
+
+        SELECT CM.BRANCHCOUNTERMOPID, CM.COUNTERID, CM.MOPID, CM.PAYMENTGATEWAYINFOID,
+            CM.PAYMENTGATEWAYADDITIONALCONFIG, CM.CREATEDBY, CM.CREATEDDATE,
+            CM.UPDATEDBY, CM.UPDATEDDATE, CM.DELETEDBY, CM.DELETEDDATE
+        FROM dbo.BRANCHCOUNTERMOP CM
+        INNER JOIN dbo.BRANCHCOUNTER C ON C.COUNTERID = CM.COUNTERID
+        WHERE CM.COUNTERID = @BranchCounterID AND C.BRANCHID = @BranchID
+          AND CM.SYNCDATE > @SyncDate;
+        RETURN;
+    END;
                                      
 	IF @EntityName = 'ITEM'                                    
 	BEGIN   
@@ -5713,7 +5729,7 @@ BEGIN
 	IF @EntityName = 'MOP'                                    
 	BEGIN                
 
-		SELECT MOPID, MOPNAME, CREATEDDATE, UPDATEDDATE, DELETEDDATE                                    
+		SELECT MOPID, MOPNAME, CREATEDDATE, UPDATEDDATE, DELETEDDATE, ISGATEWAYCONFIGURABLE
 		FROM TBLMOP MOP                                    
 		WHERE MOP.SYNCDATE > @SyncDate                                      
 		

@@ -13,30 +13,37 @@ namespace NSRetailPOS.UI
         public CompletedTransactionData CompletedTransactionData { get; set; }
         public int BillID { get; }
         public string ReferenceId { get; }
+        private readonly PaymentGatewayBase gateway;
+        private readonly PaymentAttempt attempt;
 
-        public frmAddMissingPayment(int billID, int cardMopID, int upiMopID, string referenceId = null, 
-            int? selectedMOPid = null, decimal? amount = null)
+        public frmAddMissingPayment(PaymentAttempt attempt, PaymentGatewayBase gateway)
         {
             InitializeComponent();
-            BillID = billID;
-            rgPaymentMode.Properties.Items.Add(new RadioGroupItem() { Description = "Card", Value = cardMopID });
-            rgPaymentMode.Properties.Items.Add(new RadioGroupItem() { Description = "UPI", Value = upiMopID });
-            ReferenceId = referenceId;
-            
-            if (selectedMOPid.HasValue)
-                rgPaymentMode.EditValue = selectedMOPid.Value;
-
-            if (amount.HasValue && amount.Value > 0)
-                txtAmount.EditValue = amount.Value;
+            this.attempt = attempt;
+            this.gateway = gateway;
+            BillID = attempt.BillID;
+            rgPaymentMode.Properties.Items.Add(new RadioGroupItem(attempt.MopID,
+                Utility.CounterPayments.Find(attempt.MopID)?.Name ?? "Original Payment Mode"));
+            rgPaymentMode.EditValue = attempt.MopID;
+            rgPaymentMode.Enabled = false;
+            ReferenceId = attempt.ProviderReference;
+            txtAmount.EditValue = attempt.Amount;
+            txtAmount.Properties.ReadOnly = true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (!dxValidationProvider1.Validate()) return;
 
-            CompletedTransactionData = Utility.PaymentGateway.ForceReceivePayment(BillID, 
+            if (!string.Equals(Convert.ToString(Utility.loginInfo.RoleName), "Store Admin", StringComparison.OrdinalIgnoreCase)) return;
+            if (XtraMessageBox.Show(this, "Confirm this payment was received according to the terminal or bank record?",
+                "Confirm Received Payment", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
+            CompletedTransactionData = gateway.ForceReceivePayment(BillID,
                 int.Parse(rgPaymentMode.EditValue.ToString()), txtAmount.EditValue,
                 ReferenceId, txtRRN.EditValue, txtTransactionId.EditValue);
+            if (CompletedTransactionData == null) return;
+            CompletedTransactionData.AttemptID = attempt.AttemptID;
 
             this.DialogResult = DialogResult.OK;
             this.Close();

@@ -220,6 +220,15 @@
     <Compile Include="Gateway\BharathPe\BharathPeGateway.cs" />
     <Compile Include="Gateway\BharathPe\Models.cs" />
     <Compile Include="Gateway\PaymentGatewayBase.cs" />
+    <Compile Include="Gateway\CounterPaymentConfiguration.cs" />
+    <Compile Include="Gateway\Mobikwik\MobikwikCrypto.cs" />
+    <Compile Include="Gateway\Mobikwik\MobikwikGateway.cs" />
+    <Compile Include="UI\frmDynamicQr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmDynamicQr.Designer.cs">
+      <DependentUpon>frmDynamicQr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gateway\PineLabs\PineLabsGateway.cs" />
     <Compile Include="GoogleDriveRepository.cs" />
     <Compile Include="Data\BillingRepository.cs" />

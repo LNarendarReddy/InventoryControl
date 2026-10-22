@@ -1,15 +1,13 @@
-﻿using DevExpress.CodeParser;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraRichEdit.Model;
-using Newtonsoft.Json;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.Gateway;
 using NSRetailPOS.Gateway.PineLabs;
 using NSRetailPOS.Logging;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Threading;
@@ -20,761 +18,400 @@ namespace NSRetailPOS.UI
 {
     public partial class frmUnifiedPayment : XtraForm
     {
-        BillingRepository billingRepository = new BillingRepository();
-        public bool IsPaid = false, IsDiscarded = false, canClose = true, isCashOnly = false;
-        private Bill billObj;
-        decimal paidAmount = 0.00M, payableAmount = 0.00M, remainingAmount = 0.00M, billedAmount = 0.00M
-            , cardReceivedAmount = 0.00M, upiReceivedAmount = 0.00M;
-
-        int cashRowHandle = -1, b2bCreditRowHandle = -1, cardRowHandle = -1, upiRowHandle = -1, cardMopID, upiMopID, b2cCreditRowHandle = -1;
-        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        readonly BillingRepository billingRepository = new BillingRepository();
+        readonly Bill billObj;
         DataTable dtMOPs;
+        bool loading = true, busy;
+        CancellationTokenSource cancellationTokenSource;
+        frmDynamicQr qrForm;
+        public bool IsPaid, IsDiscarded, canClose, isCashOnly;
+        decimal billedAmount, remainingAmount, paidAmount;
+        int SelectedMopID => rgPaymentModes.EditValue == null ? -1 : Convert.ToInt32(rgPaymentModes.EditValue);
+        int FocusedMopID => gvMOP.GetFocusedDataRow() == null ? -1 : Convert.ToInt32(gvMOP.GetFocusedDataRow()["MOPID"]);
+        CounterPaymentMode ActiveMode => Utility.CounterPayments.Find(FocusedMopID);
+        bool IsAdmin => string.Equals(Convert.ToString(Utility.loginInfo.RoleName), "Store Admin", StringComparison.OrdinalIgnoreCase);
+        decimal Received(int mopID) => billObj.CompletedTransactions.Where(t => t.MopID == mopID).Sum(t => t.Amount);
 
         public frmUnifiedPayment(Bill bill, bool canClose = true)
         {
             InitializeComponent();
             billObj = bill;
-            Text += billObj.BillNumber;
             this.canClose = canClose;
-            this.CloseBox = canClose;
-            this.btnCancel.Enabled = canClose;
+            Text += bill.BillNumber;
+            CloseBox = canClose;
+            btnCancel.Enabled = canClose;
             btnDiscardBill.Enabled = !canClose;
+            FormClosing += (s, e) => { if (busy) e.Cancel = true; };
+            gvMOP.FocusedRowChanged += (s, e) => RefreshCollection();
         }
 
         private void frmMultiPayment_Load(object sender, EventArgs e)
         {
-            dtMOPs = billingRepository.GetMOPs();
-
-            if (!Utility.branchInfo.BranchID.Equals(45))
+            try
             {
-                foreach (DataRow drMOP in dtMOPs.Rows)
+                billedAmount = Convert.ToDecimal(billObj.Amount);
+                txtBilledAmount.EditValue = billedAmount;
+                txtItemQuantity.EditValue = billObj.Quantity;
+                dtMOPs = new DataTable();
+                dtMOPs.Columns.Add("MOPID", typeof(int));
+                dtMOPs.Columns.Add("MOPNAME", typeof(string));
+                dtMOPs.Columns.Add("MOPVALUE", typeof(decimal));
+                foreach (var mode in Utility.CounterPayments.Modes)
                 {
-                    if (drMOP["MOPNAME"].Equals("B2C Credit"))
-                    {
-                        drMOP.Delete();
-                        dtMOPs.AcceptChanges();
-                        break;
-                    }
+                    // Preserve the existing warehouse-only B2C credit rule.
+                    if (mode.Name == "B2C Credit" && Convert.ToInt32(Utility.branchInfo.BranchID) != 45) continue;
+                    dtMOPs.Rows.Add(mode.MopID, mode.Name, Received(mode.MopID));
+                    rgPaymentModes.Properties.Items.Add(new RadioGroupItem(mode.MopID, mode.Name));
                 }
+                rgPaymentModes.Properties.Items.Add(new RadioGroupItem(-1, "Multiple"));
+                gcMOP.DataSource = dtMOPs;
+                txtPaymentValue.Validating += TxtPaymentValue_Validating;
+                txtPaymentValue.Leave += TxtPaymentValue_Leave;
+                txtPaymentValue.ValidateOnEnterKey = true;
+                rgSaleType.EditValue = false;
+                layoutControlItem3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                groupControl1.Text = "Gateway Collection";
+                btnAddMissingPayment.Text = "Check / Link Payment";
+                var receivedModes = dtMOPs.AsEnumerable().Where(r => Received((int)r["MOPID"]) > 0).ToList();
+                rgPaymentModes.EditValue = receivedModes.Count > 1 ? -1
+                    : receivedModes.Count == 1 ? (int)receivedModes[0]["MOPID"]
+                    : dtMOPs.AsEnumerable().Any(r => (int)r["MOPID"] == 1) ? 1
+                    : dtMOPs.Rows.Count > 0 ? (int)dtMOPs.Rows[0]["MOPID"] : -1;
+                loading = false;
+                rgPaymentModes_SelectedIndexChanged(null, null);
+                Utility.SetGridFormatting(gvMOP);
+                if (dtMOPs.Rows.Count == 0)
+                    Utility.ShowErrorMessage("No payment modes are configured for this counter. Configure and sync the counter first.");
+                var allowed = dtMOPs.AsEnumerable().Select(r => (int)r["MOPID"]).ToList();
+                if (billObj.CompletedTransactions.Any(t => !allowed.Contains(t.MopID)))
+                    Utility.ShowErrorMessage("This bill has payments in a mode no longer available at this counter. Restore the mapping before completing the bill.");
             }
-
-            foreach (DataRow drMOP in dtMOPs.Rows)
-            {
-                rgPaymentModes.Properties.Items.Add(new RadioGroupItem() { Description = drMOP["MOPNAME"].ToString() });
-            }
-
-            rgPaymentModes.Properties.Items.Add(new RadioGroupItem() { Description = "Multiple" });
-            rgPaymentModes.Properties.Items.ToList().ForEach(x => x.Value = x.Description);
-
-            txtBilledAmount.EditValue = billObj.Amount;
-            txtItemQuantity.EditValue = billObj.Quantity;
-
-            gcMOP.DataSource = dtMOPs.Copy();
-            gcMOP.Refresh();
-
-            txtPaymentValue.ValidateOnEnterKey = true;
-            txtPaymentValue.Validating += TxtPaymentValue_Validating;
-            txtPaymentValue.Leave += TxtPaymentValue_Leave;
-
-            decimal.TryParse(billObj.Amount.ToString(), out billedAmount);
-            payableAmount = billedAmount;
-            remainingAmount = billedAmount;
-            cashRowHandle = gvMOP.LocateByValue("MOPNAME", "Cash");
-            cashRowHandle = cashRowHandle < 0 ? gvMOP.LocateByValue("MOPNAME", "CASH") : cashRowHandle;
-            b2bCreditRowHandle = gvMOP.LocateByValue("MOPNAME", "B2B Credit");
-            b2cCreditRowHandle = gvMOP.LocateByValue("MOPNAME", "B2C Credit");
-            cardRowHandle = gvMOP.LocateByValue("MOPNAME", "CARD");
-            cardRowHandle = cardRowHandle < 0 ? gvMOP.LocateByValue("MOPNAME", "Card") : cardRowHandle;
-            upiRowHandle = gvMOP.LocateByValue("MOPNAME", "UPI");
-
-            cardMopID = Convert.ToInt32(gvMOP.GetRowCellValue(cardRowHandle, "MOPID"));
-            upiMopID = Convert.ToInt32(gvMOP.GetRowCellValue(upiRowHandle, "MOPID"));
-            rgSaleType.EditValue = false;
-            rgPaymentModes.EditValue = "CASH";
-
-            UpdateLabels();
-            SetReceivedAmounts();
-
-            bool cardReceived = cardReceivedAmount > 0;
-            bool upiReceived = upiReceivedAmount > 0;
-
-            if (cardReceived && upiReceived)
-            {
-                rgPaymentModes.EditValue = "Multiple";
-                gvMOP.SetRowCellValue(cardRowHandle, "MOPVALUE", cardReceivedAmount);
-                gvMOP.SetRowCellValue(upiRowHandle, "MOPVALUE", upiReceivedAmount);
-            }
-            else if (cardReceived)
-            {
-                rgPaymentModes.EditValue = "CARD";
-                gvMOP.SetRowCellValue(cardRowHandle, "MOPVALUE", billedAmount);
-            }
-            else if (upiReceived)
-            {
-                rgPaymentModes.EditValue = "UPI";
-
-                gvMOP.SetRowCellValue(upiRowHandle, "MOPVALUE", billedAmount);
-            }
-
-            if (Utility.PaymentGateway != null)
-            {
-                Utility.PaymentGateway.StatusUpdate = ShowReceiveMessage;
-                // Enable only if both Card and UPI have been received
-                //btnAddMissingPayment.Enabled = true;
-            }
-            //else
-            //{
-            //    btnAddMissingPayment.Enabled = false;
-            //}
-
-            Utility.SetGridFormatting(gvMOP);
-
-            //btnAddMissingPayment.Enabled = Utility.PaymentGateway != null && Utility.loginInfo.RoleName.Equals("Store Admin");
-        }
-
-        private void TxtPaymentValue_Leave(object sender, EventArgs e)
-        {
-            BaseEdit baseEdit = sender as BaseEdit;
-            string textValue = baseEdit?.EditValue != null ? baseEdit.EditValue.ToString() : string.Empty;
-            if (!decimal.TryParse(textValue, out decimal enteredvalue)) return;
-
-            if (gvMOP.FocusedRowHandle == cardRowHandle) SetReceiveValues(cardRowHandle, enteredvalue);
-            if (gvMOP.FocusedRowHandle == upiRowHandle) SetReceiveValues(upiRowHandle, enteredvalue);
-        }
-
-        private void btnDiscardBill_Click(object sender, EventArgs e)
-        {
-            if (XtraMessageBox.Show("Are you sure you want to discard bill?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                != DialogResult.Yes) return;
-
-            IsDiscarded = true;
-            this.Close();
-        }
-
-        private void btnApply_Click(object sender, EventArgs e)
-        {
-            if (Convert.ToBoolean(rgSaleType.EditValue) && 
-                (string.IsNullOrEmpty(txtCustomerName.EditValue?.ToString()) || string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString())))
-            {
-                Utility.ShowErrorMessage("Customer Name and number are required");
-                (txtCustomerName.EditValue == null ? txtCustomerName : txtCustomerPhone).Focus();
-                return;
-            }
-
-            if (!string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString()) && txtCustomerPhone.EditValue.ToString().Length != 10)
-            {
-                Utility.ShowErrorMessage("Customer number should be 10 digits");
-                txtCustomerPhone.Focus();
-                return;
-            }
-
-            if (remainingAmount > 0.00M)
-            {
-                Utility.ShowErrorMessage($"Bill cannot be closed. Pending balance to be paid {remainingAmount}");
-                return;
-            }
-
-            if(!ValidateCreditFields()) return;
-
-            billObj.IsDoorDelivery = rgSaleType.EditValue;
-            billObj.CustomerName = txtCustomerName.EditValue;
-            billObj.CustomerNumber = txtCustomerPhone.EditValue;
-            billObj.CustomerGST = txtCustomerGST.EditValue;
-            billObj.PaymentMode = rgPaymentModes.EditValue;
-
-            decimal rounding = 0;
-            if (decimal.TryParse(gvMOP.GetRowCellValue(cashRowHandle, "MOPVALUE").ToString(), out decimal cashValue) && cashValue > 0)
-            {
-                decimal tempRrounding = billObj.PaymentMode.Equals("CASH") ? Math.Round(billedAmount, MidpointRounding.AwayFromZero) - billedAmount : 0.00M;
-                rounding = tempRrounding > 0 ? 1 - tempRrounding : tempRrounding;
-                billObj.Rounding = tempRrounding;
-                billObj.TenderedCash = cashValue;
-                billObj.TenderedChange = remainingAmount;
-                gvMOP.FocusedRowHandle = cashRowHandle;
-                gvMOP.SetRowCellValue(cashRowHandle, "MOPVALUE", cashValue + remainingAmount);
-                gvMOP.CloseEditor();
-                gvMOP.UpdateCurrentRow();
-            }
-
-            gcMOP.EndUpdate();
-            gcMOP.RefreshDataSource();
-
-            if (Utility.PaymentGateway != null)
-            {
-                if (decimal.TryParse(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE")?.ToString(), out decimal cardEnteredValue)
-                    && cardEnteredValue != cardReceivedAmount)
-                {
-                    Utility.ShowErrorMessage("Card amount is not matching with card received amount");
-                    return;
-                }
-
-                if (decimal.TryParse(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE")?.ToString(), out decimal upiEnteredValue)
-                    && upiEnteredValue != upiReceivedAmount)
-                {
-                    Utility.ShowErrorMessage("UPI amount is not matching with UPI received amount");
-                    return;
-                }
-            }
-
-            billObj.dtMopValues = dtMOPs;
-
-            // force refresh values
-            int i = 0;
-            decimal totalPaid = 0;
-
-            foreach (DataRow dr in billObj.dtMopValues.Rows)
-            {
-                int rowHandle = gvMOP.GetRowHandle(i);
-                dr["MOPVALUE"] = gvMOP.GetRowCellValue(rowHandle, "MOPVALUE");
-                i++;
-                if (decimal.TryParse(dr["MOPVALUE"]?.ToString(), out decimal value) && value > 0)
-                {
-                    totalPaid += value;
-                }
-            }
-
-            if (totalPaid < payableAmount + (rounding > 0 ? 1 - rounding : rounding))
-            {
-                Utility.ShowErrorMessage("Payment mode mismatch detected, please retry operation of if the issue persists, contact administrator");
-                return;
-            }
-
-            IsPaid = true;
-            Close();
+            catch (Exception ex) { Utility.ShowError(ex); btnApply.Enabled = false; }
         }
 
         private void rgPaymentModes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtCardRequestAmount.EditValue = null;
-            txtUPIRequestAmount.EditValue = null;
-
-            isCashOnly = rgPaymentModes.Text.Equals("CASH");
-
-            for (int rowhandle = 0; rowhandle < gvMOP.RowCount; rowhandle++)
+            if (loading || dtMOPs == null) return;
+            isCashOnly = SelectedMopID == 1;
+            foreach (DataRow row in dtMOPs.Rows)
             {
-                object setValue;
-
-                if (rowhandle == cardRowHandle)
-                    setValue = txtCardRecievedAmount.EditValue;
-                else if (rowhandle == upiRowHandle)
-                    setValue = txtUPIReceiveAmount.EditValue;
-                else
-                    setValue = 0;
-
-                gvMOP.SetRowCellValue(rowhandle, "MOPVALUE", setValue ?? 0);
+                int id = (int)row["MOPID"];
+                row["MOPVALUE"] = id == SelectedMopID && !isCashOnly
+                    ? Math.Max(Received(id), billedAmount) : Received(id);
             }
-
-            if (!rgPaymentModes.Text.Equals("Multiple") && !rgPaymentModes.Text.Equals("CASH"))
-            {
-                int rowhandle = gvMOP.LocateByValue("MOPNAME", rgPaymentModes.Text);
-                gvMOP.SetRowCellValue(rowhandle, "MOPVALUE", billObj.Amount);
-                gvMOP.FocusedRowHandle = rowhandle;
-                SetReceiveValues(rowhandle, Convert.ToDecimal(billObj.Amount));
-            }
-            else
-            {
-                gvMOP.FocusedRowHandle = cashRowHandle;
-            }
-
-            if ((rgPaymentModes.Text.Equals("CARD") || rgPaymentModes.Text.Equals("UPI")) &&
-                Utility.PaymentGateway != null)
-            {
-                // Handle card and UPI payment specific logic here
-                btnAddMissingPayment.Enabled = true;
-            }
-            else
-            {
-                btnAddMissingPayment.Enabled = false;
-            }
-
-        }
-
-        private void rgPaymentModes_Leave(object sender, EventArgs e)
-                {
-
-                }
-
-        private void gcMOP_Enter(object sender, EventArgs e)
-        {
-            if (rgPaymentModes.EditValue == null) rgPaymentModes.Focus();
-
-            if (rgPaymentModes.Text.Equals("Multiple") || rgPaymentModes.Text.Equals("CASH"))
-            {
-                gvMOP.FocusedColumn = gvMOP.Columns[2];
-                gvMOP.FocusedRowHandle = cashRowHandle;
-            }
-            else if (Utility.PaymentGateway == null)
-            {
-                btnApply.Focus();
-            }
-            else if (decimal.TryParse(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE").ToString(), out decimal cardValue) && cardValue > 0)
-            {
-                btnReceiveCard.Focus();
-            }
-            else if (decimal.TryParse(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE").ToString(), out decimal upiValue) && upiValue > 0)
-            {
-                btnUPIReceive.Focus();
-            }
-        }
-
-        private void btnReceiveCard_Click(object sender, EventArgs e)
-        {
-            ReceiveAmount(cardMopID, PaymentMode.Card, txtCardRequestAmount.EditValue);
-        }
-
-        private void btnUPIReceive_Click(object sender, EventArgs e)
-        {
-            ReceiveAmount(upiMopID, PaymentMode.UPI, txtUPIRequestAmount.EditValue);
-        }
-
-        private void TxtPaymentValue_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            BaseEdit baseEdit = sender as BaseEdit;
-            string textValue = baseEdit?.EditValue != null ? baseEdit.EditValue.ToString() : string.Empty;
-            if (textValue.Length > 4 && XtraMessageBox.Show($"Large number detected, possible barcode scan detected, Do you want to accept the value {textValue}"
-                    , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
-            {
-                e.Cancel = true;
-                return;
-            }
-
-            if (Utility.PaymentGateway != null)
-            {
-                decimal.TryParse(textValue, out decimal enteredValue);
-
-                if (gvMOP.FocusedRowHandle == cardRowHandle && enteredValue < cardReceivedAmount)
-                {
-                    baseEdit.EditValue = cardReceivedAmount;
-                    Utility.ShowErrorMessage($"Card value cannot be less than {cardReceivedAmount}");
-                }
-
-                if (gvMOP.FocusedRowHandle == upiRowHandle && enteredValue < upiReceivedAmount)
-                {
-                    baseEdit.EditValue = upiReceivedAmount;
-                    Utility.ShowErrorMessage($"UPI value cannot be less than {upiReceivedAmount}");
-                }
-            }
-        }
-
-        private void GvMOP_RowStyle(object sender, RowStyleEventArgs e)
-        {
-            if (e.State.HasFlag(DevExpress.XtraGrid.Views.Base.GridRowCellState.FocusedAndGridFocused))
-                gvMOP.ShowEditor();
-        }
-
-        private void btnLinkPayment_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (AreCompletedTransactionsMatched())
-                    return;
-
-                OpenAddMissingPayment();
-            }
-            catch (Exception ex)
-            {
-                AppLog.Error(ex, "Error while processing Add Missing Payment");
-
-                Utility.ShowErrorMessage($"Error while processing Add Missing Payment.{Environment.NewLine}{ex.Message}");
-            }
-        }
-
-        private bool AreCompletedTransactionsMatched()
-        {
-            if (billObj.CompletedTransactions == null ||
-                !billObj.CompletedTransactions.Any())
-            {
-                AppLog.Info("No completed transactions found");
-                return false;
-            }
-
-            AppLog.Info($"Completed transactions found. Count: {billObj.CompletedTransactions.Count}");
-
-            // Populate Card/UPI received amounts and request amounts
-            SetReceivedAmounts();
-
-            decimal enteredCardAmount =
-                Convert.ToDecimal(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE") ?? 0);
-
-            decimal enteredUPIAmount =
-                Convert.ToDecimal(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE") ?? 0);
-
-            AppLog.Info($"Received Card Amount : {cardReceivedAmount}");
-            AppLog.Info($"Entered Card Amount  : {enteredCardAmount}");
-
-            AppLog.Info($"Received UPI Amount  : {upiReceivedAmount}");
-            AppLog.Info($"Entered UPI Amount   : {enteredUPIAmount}");
-
-            bool cardMatched = cardReceivedAmount == enteredCardAmount;
-            bool upiMatched = upiReceivedAmount == enteredUPIAmount;
-
-            AppLog.Info($"Card Matched : {cardMatched}");
-            AppLog.Info($"UPI Matched  : {upiMatched}");
-
-            if (!cardMatched || !upiMatched)
-            {
-                AppLog.Info("Completed transactions do not match entered amounts. Add Missing Payment will be opened.");
-                return false;
-            }
-
-            AppLog.Info("Card and UPI transactions already match entered amounts. Skipping Add Missing Payment.");
-
-            XtraMessageBox.Show(
-                "Transaction is already completed and payment amounts have been populated. " +
-                "Please verify the amounts and close the bill properly.",
-                "Payment Already Completed",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-
-            return true;
-        }
-
-        private void OpenAddMissingPayment()
-        {
-            var pendingPayment = GetPendingPaymentDetails();
-
-            frmAddMissingPayment frmAddMissingPayment =
-                new frmAddMissingPayment(
-                    Convert.ToInt32(billObj.BillID),
-                    cardMopID,
-                    upiMopID,
-                    billObj.GatewayTransactionReferences.LastOrDefault(),
-                    pendingPayment?.MopID,
-                    pendingPayment?.Amount);
-
-            frmAddMissingPayment.ShowDialog();
-
-            if (frmAddMissingPayment.DialogResult != DialogResult.OK)
-            {
-                AppLog.Info("Add Missing Payment cancelled by user");
-                return;
-            }
-
-            AppLog.Info("CompleteTransaction is invoked from Add Missed Payment as response null from gateway");
-
-            AppLog.Info(
-                $"Missed Payment Response: " +
-                $"{JsonConvert.SerializeObject(frmAddMissingPayment.CompletedTransactionData)}");
-
-            CompleteTransaction(frmAddMissingPayment.CompletedTransactionData);
-        }
-
-        private (int MopID, decimal Amount)? GetPendingPaymentDetails()
-        {
-            decimal enteredCardAmount =
-                Convert.ToDecimal(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE") ?? 0);
-
-            decimal enteredUPIAmount =
-                Convert.ToDecimal(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE") ?? 0);
-
-            decimal pendingCardAmount = enteredCardAmount - cardReceivedAmount;
-            decimal pendingUPIAmount = enteredUPIAmount - upiReceivedAmount;
-
-            AppLog.Info(
-                $"Pending Card Amount: {pendingCardAmount}, " +
-                $"Pending UPI Amount: {pendingUPIAmount}");
-
-            // Priority 1 : Card
-            if (pendingCardAmount > 0)
-                return (cardMopID, pendingCardAmount);
-
-            // Priority 2 : UPI
-            if (pendingUPIAmount > 0)
-                return (upiMopID, pendingUPIAmount);
-
-            return null;
+            int handle = gvMOP.LocateByValue("MOPID", SelectedMopID);
+            if (handle >= 0) gvMOP.FocusedRowHandle = handle;
+            Recalculate();
         }
 
         private void rgPaymentModes_EditValueChanging(object sender, ChangingEventArgs e)
         {
-            if (cardReceivedAmount > 0 && upiReceivedAmount > 0 && e.NewValue.ToString() != "Multiple")
+            if (loading || e.NewValue == null || Convert.ToInt32(e.NewValue) == -1) return;
+            int id = Convert.ToInt32(e.NewValue);
+            if (billObj.CompletedTransactions.Any(t => t.MopID != id && t.Amount > 0))
             {
-                Utility.ShowErrorMessage("Only multiple payment mode allowed");
-                e.Cancel = true;
-                return;
-            }
-
-            if (e.NewValue.ToString() == "Multiple")
-            {
-                // if multiple allow  it
-                return;
-            }
-
-            if (cardReceivedAmount > 0 && e.NewValue.ToString() != "CARD")
-            {
-                Utility.ShowErrorMessage("Only multiple or card payment mode allowed");
-                e.Cancel = true;
-            }
-            else if (upiReceivedAmount > 0 && e.NewValue.ToString() != "UPI")
-            {
-                Utility.ShowErrorMessage("Only multiple or UPI payment mode allowed");
+                Utility.ShowErrorMessage("Select Multiple to retain payments already received in another mode.");
                 e.Cancel = true;
             }
         }
-                
-        private void UpdateLabels()
+
+        private void Recalculate()
         {
+            if (loading || dtMOPs == null) return;
+            paidAmount = dtMOPs.AsEnumerable().Sum(r => Utility.CounterPayments.Find((int)r["MOPID"])?.RequiresGateway == true
+                ? Received((int)r["MOPID"]) : Convert.ToDecimal(r["MOPVALUE"]));
+            remainingAmount = (isCashOnly ? Math.Round(billedAmount, MidpointRounding.AwayFromZero) : billedAmount) - paidAmount;
             txtPaidAmount.EditValue = paidAmount;
-            decimal roundedRemaining = remainingAmount < 0.00m ? 0 : remainingAmount;
-            remainingAmount = isCashOnly ? Math.Round(remainingAmount, MidpointRounding.AwayFromZero) : remainingAmount;
-            txtRemainingAmount.EditValue = $"{remainingAmount} ( Rounded value : {roundedRemaining} )";
+            txtRemainingAmount.EditValue = Math.Max(0, remainingAmount);
+            RefreshCollection();
         }
 
-        private void gvMOP_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        private void RefreshCollection()
         {
-            gcMOP.RefreshDataSource();
-            gvMOP.RefreshData();
-            
-            paidAmount = 0;
+            if (loading || dtMOPs == null) return;
+            var mode = ActiveMode;
+            decimal entered = gvMOP.GetFocusedDataRow() == null ? 0 : Convert.ToDecimal(gvMOP.GetFocusedDataRow()["MOPVALUE"]);
+            groupControl1.Text = mode == null ? "Gateway Collection" : mode.Name + " - " + (mode.RequiresGateway ? mode.GatewayType : "Manual");
+            txtCardRecievedAmount.EditValue = mode == null ? 0 : Received(mode.MopID);
+            txtCardRequestAmount.EditValue = mode == null ? 0 : Math.Max(0, entered - Received(mode.MopID));
+            txtCardRequestAmount.Properties.ReadOnly = true;
+            txtCardRequestAmount.Enabled = mode?.RequiresGateway == true && !busy;
+            btnReceiveCard.Enabled = !busy && mode?.RequiresGateway == true && mode.Gateway != null
+                && Convert.ToDecimal(txtCardRequestAmount.EditValue) > 0;
+            btnAddMissingPayment.Enabled = !busy;
+        }
 
-            decimal.TryParse(gvMOP.Columns["MOPVALUE"].SummaryItem.SummaryValue.ToString(), out paidAmount);
-
-            if (Utility.PaymentGateway != null)
+        private void TxtPaymentValue_Leave(object sender, EventArgs e) { gvMOP.PostEditor(); Recalculate(); }
+        private void TxtPaymentValue_Validating(object sender, CancelEventArgs e)
+        {
+            var edit = sender as BaseEdit;
+            if (!decimal.TryParse(Convert.ToString(edit?.EditValue), out decimal value) || value < 0
+                || decimal.Round(value, 2) != value || value < Received(FocusedMopID))
             {
-                paidAmount -= Convert.ToDecimal(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE"));
-                paidAmount -= Convert.ToDecimal(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE"));
-
-                paidAmount += cardReceivedAmount + upiReceivedAmount;
-            }
-            
-            remainingAmount = (isCashOnly ? Math.Round(payableAmount, MidpointRounding.AwayFromZero) : payableAmount) - paidAmount;
-            UpdateLabels();
-        }
-
-        private void btnCancelRequest_Click(object sender, EventArgs e)
-        {
-            cancellationTokenSource.Cancel();
-            btnCancelRequest.Enabled = false;
-        }
-
-        private void gvMOP_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode != Keys.Enter)
-            {
-                return;
+                Utility.ShowErrorMessage("Enter a non-negative amount, not less than the amount already received.");
+                e.Cancel = true;
             }
         }
-
-        private void gvMOP_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
+        private void gvMOP_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e) { Recalculate(); }
+        private void gvMOP_ShowingEditor(object sender, CancelEventArgs e)
         {
-            var selectedPayment = rgPaymentModes.EditValue;
-            if (selectedPayment.Equals("Multiple")
-                || (selectedPayment.Equals("CASH") && gvMOP.GetRowCellValue(gvMOP.FocusedRowHandle, "MOPNAME").Equals("CASH")))
+            e.Cancel = busy || (SelectedMopID != -1 && SelectedMopID != 1);
+        }
+        private void GvMOP_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e) { }
+        private void rgPaymentModes_Leave(object sender, EventArgs e) { }
+        private void gvMOP_KeyDown(object sender, KeyEventArgs e) { }
+        private void gcMOP_Enter(object sender, EventArgs e) { RefreshCollection(); }
+        private async void btnReceiveCard_Click(object sender, EventArgs e) { await ReceiveSelected(); }
+        private async void btnUPIReceive_Click(object sender, EventArgs e) { await ReceiveSelected(); }
+        private void btnCancelRequest_Click(object sender, EventArgs e) { cancellationTokenSource?.Cancel(); btnCancelRequest.Enabled = false; }
+
+        private void SetBusy(bool value)
+        {
+            busy = value;
+            layoutControlGroup3.Enabled = !value;
+            rgPaymentModes.Enabled = gcMOP.Enabled = btnApply.Enabled = !value;
+            btnCancel.Enabled = !value && canClose;
+            btnDiscardBill.Enabled = !value && !canClose;
+            btnCancelRequest.Enabled = value;
+            RefreshCollection();
+        }
+
+        private void AttachGateway(PaymentGatewayBase gateway, PaymentAttempt attempt)
+        {
+            gateway.StatusUpdate = ShowReceiveMessage;
+            gateway.RefundRequested = attempt.RefundRequested;
+            gateway.RefundRequestedReady = () =>
             {
-                return;
-            }
-            e.Cancel = true;
-        }
-
-        private void SetReceiveValues(int rowHandle, decimal amount)
-        {
-            if (Utility.PaymentGateway == null) return;
-
-            if (rowHandle == cardRowHandle)
+                attempt.RefundRequested = true;
+                billingRepository.SavePaymentAttempt(attempt);
+            };
+            gateway.ProviderReferenceReady = reference =>
             {
-                txtCardRequestAmount.EditValue = amount > cardReceivedAmount ? amount - cardReceivedAmount : 0;
-            }
-            else if (rowHandle == upiRowHandle)
+                attempt.ProviderReference = reference;
+                billingRepository.SavePaymentAttempt(attempt);
+            };
+            gateway.QrReady = data =>
             {
-                txtUPIRequestAmount.EditValue = amount > upiReceivedAmount ? amount - upiReceivedAmount : 0;
-            }
-            
-            EnableDisableReceives();
+                qrForm?.Complete();
+                qrForm = new frmDynamicQr(data, attempt.Amount, attempt.RequestReference,
+                    () => cancellationTokenSource?.Cancel());
+                qrForm.Show(this);
+            };
         }
 
-        private void EnableDisableReceives()
+        private async Task ReceiveSelected()
         {
-            bool cardEnabled = decimal.TryParse(txtCardRequestAmount.EditValue?.ToString(), out decimal cardValue) && cardValue > 0;
-            bool upiEnabled = decimal.TryParse(txtUPIRequestAmount.EditValue?.ToString(), out decimal upiValue) && upiValue > 0;
-
-            txtCardRequestAmount.Enabled = cardEnabled;
-            btnReceiveCard.Enabled = cardEnabled;
-
-            txtUPIRequestAmount.Enabled = upiEnabled;
-            btnUPIReceive.Enabled = upiEnabled;
-        }
-
-        private void DisableAllControls()
-        {
-            txtCustomerName.Enabled = false;
-            txtCustomerPhone.Enabled = false;
-            txtCustomerGST.Enabled = false;
-            rgSaleType.Enabled = false;
-            rgPaymentModes.Enabled = false;
-            gcMOP.Enabled = false;
-            txtCardRequestAmount.Enabled = false;
-            txtUPIRequestAmount.Enabled = false;
-            btnReceiveCard.Enabled = false;
-            btnUPIReceive.Enabled = false;
-            btnDiscardBill.Enabled = false;
-            btnApply.Enabled = false;
-            btnCancel.Enabled = false;
-        }
-
-        private void EnableAllControls()
-        {
-            txtCustomerName.Enabled = true;
-            txtCustomerPhone.Enabled = true;
-            txtCustomerGST.Enabled = true;
-            rgSaleType.Enabled = true;
-            rgPaymentModes.Enabled = true;
-            gcMOP.Enabled = true;
-            btnApply.Enabled = true;
-
-            this.btnCancel.Enabled = canClose;
-            btnDiscardBill.Enabled = !canClose;
-
-            EnableDisableReceives();
-
-            // Enable "Add missing payment" button when payment request completes or is canceled
-            // Only if both Card and UPI have been received
-            if (Utility.PaymentGateway != null)
+            if (busy) return;
+            var mode = ActiveMode;
+            if (mode?.RequiresGateway != true) return;
+            if (mode.Gateway == null) { Utility.ShowErrorMessage("The selected gateway configuration is missing or invalid. Correct and sync it first."); return; }
+            gvMOP.CloseEditor();
+            gvMOP.UpdateCurrentRow();
+            decimal amount = Convert.ToDecimal(txtCardRequestAmount.EditValue ?? 0);
+            if (amount <= 0 || amount > billedAmount - billObj.CompletedTransactions.Sum(t => t.Amount)) return;
+            if (mode.GatewayType.Equals("Mobikwik", StringComparison.OrdinalIgnoreCase) && (amount < 1 || amount > 200000 || decimal.Round(amount, 2) != amount))
+            { Utility.ShowErrorMessage("Mobikwik accepts INR 1 to 200000 with at most two decimals."); return; }
+            PaymentAttempt attempt = null;
+            bool persisted = false, paymentSaved = false;
+            var gateway = mode.Gateway;
+            gateway.LastRequestFinal = false;
+            try
             {
-                btnAddMissingPayment.Enabled = true;
+                RefreshCompletedPayments();
+                amount = Convert.ToDecimal(txtCardRequestAmount.EditValue ?? 0);
+                if (amount <= 0 || amount > billedAmount - billObj.CompletedTransactions.Sum(t => t.Amount)) return;
+                if (billingRepository.GetPendingPaymentAttempts(Convert.ToInt32(billObj.BillID)).Any())
+                {
+                    Utility.ShowErrorMessage("An earlier payment has an uncertain status. Use Check / Link Payment before requesting another payment.");
+                    return;
+                }
+                attempt = new PaymentAttempt { AttemptID = Guid.NewGuid(), BillID = Convert.ToInt32(billObj.BillID),
+                    MopID = mode.MopID, Amount = amount, GatewayID = mode.GatewayID, GatewayType = mode.GatewayType,
+                    BaseSettings = mode.BaseSettings, AdditionalSettings = mode.AdditionalSettings,
+                    RequestReference = Guid.NewGuid().ToString("N") };
+                if (mode.GatewayType.Equals("Mobikwik", StringComparison.OrdinalIgnoreCase))
+                    attempt.ProviderReference = attempt.RequestReference;
+                billingRepository.SavePaymentAttempt(attempt);
+                persisted = true;
+                SetBusy(true);
+                cancellationTokenSource?.Dispose();
+                cancellationTokenSource = new CancellationTokenSource();
+                AttachGateway(gateway, attempt);
+                var completed = await gateway.ReceivePayment(attempt.BillID, attempt.MopID, cancellationTokenSource.Token,
+                    attempt.RequestReference, 1, mode.MopID == 2 ? PaymentMode.Card : PaymentMode.UPI, amount, Utility.loginInfo.UserID);
+                if (completed != null) { CompleteTransaction(completed, attempt); paymentSaved = true; }
+                else if (gateway.LastRequestFinal) billingRepository.SavePaymentAttempt(attempt, true);
+                else ShowReceiveMessage("Payment is not confirmed. Check this attempt before collecting again.", true);
+                gateway.ProviderReferenceReady = null;
+                gateway.QrReady = null;
             }
-        }
-
-        private string GenerateTansactionReference()
-        {
-            string transactionReference = $"{billObj.BillNumber}-{billObj.GatewayTransactionReferences.Count + 1}";
-            billObj.GatewayTransactionReferences.Add(transactionReference);
-            return transactionReference;
-        }
-
-        private async Task ReceiveAmount(int mopID, PaymentMode paymentMode, object amountObj)
-        {
-            if (!decimal.TryParse(amountObj.ToString(), out decimal amount) || amount == 0) return;
-
-            if (Utility.PaymentGateway.IsInProgress)
+            catch (Exception ex)
             {
-                Utility.ShowErrorMessage("Request in progress", "multiple requests");
-                return;
+                if (persisted && gateway.LastRequestFinal)
+                {
+                    try { billingRepository.SavePaymentAttempt(attempt, true); }
+                    catch { }
+                }
+                AppLog.Error(ex, "Payment request failed");
+                Utility.ShowErrorMessage("Payment could not be confirmed. Check / Link Payment before retrying.");
             }
+            finally
+            {
+                gateway.ProviderReferenceReady = null;
+                gateway.QrReady = null;
+                gateway.RefundRequestedReady = null;
+                qrForm?.Complete(); qrForm = null; SetBusy(false); Recalculate();
+                if (paymentSaved) CompleteSingleGatewayBill();
+            }
+        }
 
-            DisableAllControls();
-            btnCancelRequest.Enabled = true;
-            btnAddMissingPayment.Enabled = false;
-            
-            cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken cancellationToken = cancellationTokenSource.Token;
+        private async void btnLinkPayment_Click(object sender, EventArgs e)
+        {
+            if (busy) return;
+            bool paymentSaved = false;
+            try
+            {
+                RefreshCompletedPayments();
+                var attempt = billingRepository.GetPendingPaymentAttempts(Convert.ToInt32(billObj.BillID)).FirstOrDefault();
+                if (attempt == null) { Utility.ShowErrorMessage("No unresolved payment attempt was found for this bill."); return; }
+                var gateway = attempt.CreateGateway();
+                if (gateway == null) throw new InvalidOperationException("The original gateway configuration is unavailable.");
+                gateway.StatusUpdate = ShowReceiveMessage;
+                gateway.RefundRequested = attempt.RefundRequested;
+                SetBusy(true);
+                CompletedTransactionData completed = null;
+                try { completed = await gateway.VerifyPayment(attempt.BillID, attempt.MopID, attempt.ProviderReference, attempt.Amount); }
+                catch (Exception) { ShowReceiveMessage("Automatic status verification is unavailable for this attempt.", true); }
+                if (completed != null) { CompleteTransaction(completed, attempt); paymentSaved = true; return; }
+                if (gateway.LastRequestFinal) { billingRepository.SavePaymentAttempt(attempt, true); return; }
+                if (!IsAdmin || gateway.GatewayType.Equals("Mobikwik", StringComparison.OrdinalIgnoreCase))
+                {
+                    Utility.ShowErrorMessage("Payment is still unconfirmed. Verify its status before any further collection.");
+                    return;
+                }
+                var choice = XtraMessageBox.Show(this,
+                    "Payment is not automatically confirmed. After checking the terminal/bank, choose Yes to link a received payment, No to confirm this attempt was not paid, or Cancel to leave it unresolved.",
+                    "Resolve Payment", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
+                if (choice == DialogResult.No)
+                {
+                    if (XtraMessageBox.Show(this, "Confirm no money was received for this attempt?", "Confirm Not Paid",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                        billingRepository.SavePaymentAttempt(attempt, true);
+                }
+                else if (choice == DialogResult.Yes)
+                {
+                    using (var dialog = new frmAddMissingPayment(attempt, gateway))
+                        if (dialog.ShowDialog(this) == DialogResult.OK)
+                        { CompleteTransaction(dialog.CompletedTransactionData, attempt); paymentSaved = true; }
+                }
+            }
+            catch (Exception ex) { Utility.ShowError(ex); }
+            finally { SetBusy(false); Recalculate(); if (paymentSaved) CompleteSingleGatewayBill(); }
+        }
 
-            CompletedTransactionData completedTransactionData = await Utility.PaymentGateway.ReceivePayment
-                (
-                    Convert.ToInt32(billObj.BillID), 
-                    mopID, 
-                    cancellationToken,
-                    GenerateTansactionReference(), 
-                    1, 
-                    paymentMode, 
-                    amount, 
-                    Utility.loginInfo.UserID
-                );
-            AppLog.Info($"Receive Payment Response: {JsonConvert.SerializeObject(completedTransactionData)}");
-            btnCancelRequest.Enabled = false;
-            EnableAllControls();
+        private void CompleteSingleGatewayBill()
+        {
+            if (SelectedMopID != -1 && Utility.CounterPayments.Find(SelectedMopID)?.RequiresGateway == true
+                && remainingAmount == 0)
+                btnApply_Click(null, null);
+        }
 
-            CompleteTransaction(completedTransactionData);
+        private void CompleteTransaction(CompletedTransactionData completed, PaymentAttempt attempt)
+        {
+            if (completed == null || completed.Amount != attempt.Amount || completed.MopID != attempt.MopID
+                || completed.BillID != attempt.BillID || completed.PaymentGatewayID != attempt.GatewayID)
+                throw new InvalidOperationException("Provider payment does not match the original attempt. Review it before continuing.");
+            completed.AttemptID = attempt.AttemptID;
+            billingRepository.SaveCompletedTransactionData(completed);
+            if (!billObj.CompletedTransactions.Any(t => t.CompletedTransactionDataID == completed.CompletedTransactionDataID))
+                billObj.CompletedTransactions.Add(completed);
+            int row = gvMOP.LocateByValue("MOPID", completed.MopID);
+            if (row >= 0) gvMOP.SetRowCellValue(row, "MOPVALUE", Math.Max(Received(completed.MopID), Convert.ToDecimal(gvMOP.GetRowCellValue(row, "MOPVALUE"))));
+            Recalculate();
+        }
+
+        private void RefreshCompletedPayments()
+        {
+            billObj.CompletedTransactions = billingRepository.GetCompletedPayments(Convert.ToInt32(billObj.BillID));
+            foreach (DataRow row in dtMOPs.Rows)
+                row["MOPVALUE"] = Math.Max((decimal)row["MOPVALUE"], Received((int)row["MOPID"]));
+            Recalculate();
         }
 
         private void ShowReceiveMessage(string message, bool log)
         {
-            if (log)
-            {
-                AppLog.Info(message);
-            }
-            txtStatus.Text += $"{DateTime.Now.ToLongTimeString()} - {message} {Environment.NewLine}";
+            if (IsDisposed) return;
+            if (InvokeRequired) { BeginInvoke(new Action(() => ShowReceiveMessage(message, log))); return; }
+            txtStatus.Text += DateTime.Now.ToLongTimeString() + " - " + message + Environment.NewLine;
             txtStatus.SelectionStart = int.MaxValue;
             txtStatus.ScrollToCaret();
         }
 
-        private void SetReceivedAmounts()
+        private void btnDiscardBill_Click(object sender, EventArgs e)
         {
-            if (Utility.PaymentGateway == null ||
-                billObj.CompletedTransactions == null
-                || !billObj.CompletedTransactions.Any())
-                return;
-            AppLog.Info("Started setting received amounts");
-            cardReceivedAmount = billObj.CompletedTransactions.Where(x => x.MopID == cardMopID).Sum(x => x.Amount);
-            upiReceivedAmount = billObj.CompletedTransactions.Where(x => x.MopID == upiMopID).Sum(x => x.Amount);
-            txtCardRecievedAmount.EditValue = cardReceivedAmount;
-            txtUPIReceiveAmount.EditValue = upiReceivedAmount;
-
-            decimal.TryParse(gvMOP.GetRowCellValue(cardRowHandle, "MOPVALUE").ToString(), out decimal cardEnteredAmount);
-            SetReceiveValues(cardRowHandle, cardEnteredAmount);
-
-            decimal.TryParse(gvMOP.GetRowCellValue(upiRowHandle, "MOPVALUE").ToString(), out decimal upiEnteredAmount);
-            SetReceiveValues(upiRowHandle, upiEnteredAmount);
-
-            AppLog.Info("Completed setting received amounts");
-
-            gvMOP_CellValueChanged(null, null);
-
-            // complete billing if it is single payment and amount is received
-            if (billedAmount == paidAmount &&
-                (rgPaymentModes.Text.Equals("card", StringComparison.OrdinalIgnoreCase)
-                    || rgPaymentModes.Text.Equals("UPI", StringComparison.OrdinalIgnoreCase)))
-            {
-                AppLog.Info("Payments matched bill will get closed");
-                btnApply_Click(null, null);
-            }
-
-            AppLog.Info("Payments not matched bill remains open");
-            // Update "Add missing payment" button state based on received amounts
-            if (Utility.PaymentGateway != null)
-            {
-                btnAddMissingPayment.Enabled = true;
-            }
+            try { RefreshCompletedPayments(); }
+            catch (Exception ex) { Utility.ShowError(ex); return; }
+            if (billObj.CompletedTransactions.Any() || billingRepository.GetPendingPaymentAttempts(Convert.ToInt32(billObj.BillID)).Any())
+            { Utility.ShowErrorMessage("Resolve existing payments before discarding this bill."); return; }
+            if (XtraMessageBox.Show("Discard this bill?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+            IsDiscarded = true;
+            Close();
         }
 
-        private void CompleteTransaction(CompletedTransactionData completedTransactionData)
+        private void btnApply_Click(object sender, EventArgs e)
         {
-            if (completedTransactionData == null) return;
-            billingRepository.SaveCompletedTransactionData(completedTransactionData);
-            AppLog.Info("Saved completed transactions to DB");
-
-            billObj.CompletedTransactions.Add(completedTransactionData);
-            AppLog.Info("Added completed transactions to list for local memory");
-
-            SetReceivedAmounts();
+            if (busy || dtMOPs == null || dtMOPs.Rows.Count == 0) return;
+            try
+            {
+                gvMOP.CloseEditor();
+                if (!gvMOP.UpdateCurrentRow()) return;
+                RefreshCompletedPayments();
+                if (billingRepository.GetPendingPaymentAttempts(Convert.ToInt32(billObj.BillID)).Any())
+                    throw new InvalidOperationException("Resolve pending payment attempts before closing the bill.");
+                if (remainingAmount > 0) throw new InvalidOperationException($"Pending balance: {remainingAmount:0.00}");
+                foreach (DataRow row in dtMOPs.Rows)
+                {
+                    int id = (int)row["MOPID"];
+                    decimal entered = (decimal)row["MOPVALUE"];
+                    if (entered < 0 || entered < Received(id)) throw new InvalidOperationException("Invalid payment allocation.");
+                    if (Utility.CounterPayments.Find(id).RequiresGateway && entered != Received(id))
+                        throw new InvalidOperationException($"{row["MOPNAME"]} amount does not match the received amount.");
+                }
+                if (billObj.CompletedTransactions.Any(t => !dtMOPs.AsEnumerable().Any(r => (int)r["MOPID"] == t.MopID)))
+                    throw new InvalidOperationException("Restore the unavailable payment mode before closing this bill.");
+                if (!ValidateCustomer()) return;
+                var cash = dtMOPs.AsEnumerable().FirstOrDefault(r => (int)r["MOPID"] == 1);
+                decimal overpaid = -Math.Min(remainingAmount, 0);
+                if (overpaid > 0 && (cash == null || (decimal)cash["MOPVALUE"] < overpaid))
+                    throw new InvalidOperationException("Non-cash payments exceed the bill amount.");
+                billObj.TenderedCash = cash == null ? 0 : cash["MOPVALUE"];
+                billObj.TenderedChange = -overpaid;
+                billObj.Rounding = isCashOnly ? Math.Round(billedAmount, MidpointRounding.AwayFromZero) - billedAmount : 0;
+                if (cash != null) cash["MOPVALUE"] = (decimal)cash["MOPVALUE"] - overpaid;
+                billObj.IsDoorDelivery = rgSaleType.EditValue;
+                billObj.CustomerName = txtCustomerName.EditValue;
+                billObj.CustomerNumber = txtCustomerPhone.EditValue;
+                billObj.CustomerGST = txtCustomerGST.EditValue;
+                billObj.PaymentMode = SelectedMopID == -1 ? "Multiple" : Utility.CounterPayments.Find(SelectedMopID)?.Name;
+                billObj.dtMopValues = dtMOPs.Copy();
+                IsPaid = true;
+                Close();
+            }
+            catch (Exception ex) { Utility.ShowErrorMessage(ex.Message); }
         }
 
-        private bool ValidateCreditFields()
+        private bool ValidateCustomer()
         {
-            string gstNumber = txtCustomerGST.EditValue?.ToString();
-
-            if (!Utility.IsValidGstin(gstNumber))
-            {
-                Utility.ShowErrorMessage("Customer GST is not valid");
-                txtCustomerGST.SelectAll();
-                txtCustomerGST.Focus();
-                return false;
-            }
-
-            if ((!decimal.TryParse(gvMOP.GetRowCellValue(b2bCreditRowHandle, "MOPVALUE")?.ToString(), out decimal b2bCreditValue) || b2bCreditValue == 0)
-                && (!decimal.TryParse(gvMOP.GetRowCellValue(b2cCreditRowHandle, "MOPVALUE")?.ToString(), out decimal b2cCreditValue) || b2cCreditValue == 0))
-                return true;
-
-            if (string.IsNullOrEmpty(txtCustomerName.EditValue?.ToString())
-               || string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString()))
-            {
-                Utility.ShowErrorMessage("Customer Name & number are required for credit billing");
-                (string.IsNullOrEmpty(txtCustomerName.EditValue?.ToString()) ? txtCustomerName : null)?.Focus();
-                (string.IsNullOrEmpty(txtCustomerPhone.EditValue?.ToString()) ? txtCustomerPhone : null)?.Focus();
-                return false;
-            }
-
-            if (b2bCreditValue == 0) return true;
-
-            
-            if (string.IsNullOrEmpty(gstNumber) || gstNumber.Length != 15
-                || !Utility.IsValidGstin(gstNumber))
-            {
-                Utility.ShowErrorMessage("Customer GST is not valid");
-                txtCustomerGST.SelectAll();
-                txtCustomerGST.Focus();
-                return false;
-            }
-
+            bool credit = dtMOPs.AsEnumerable().Any(r => (decimal)r["MOPVALUE"] > 0
+                && (Convert.ToString(r["MOPNAME"]) == "B2B Credit" || Convert.ToString(r["MOPNAME"]) == "B2C Credit"));
+            bool b2b = dtMOPs.AsEnumerable().Any(r => (decimal)r["MOPVALUE"] > 0 && Convert.ToString(r["MOPNAME"]) == "B2B Credit");
+            string gst = txtCustomerGST.Text;
+            if (!Utility.IsValidGstin(gst) || (b2b && string.IsNullOrWhiteSpace(gst)))
+            { Utility.ShowErrorMessage("Customer GST is not valid."); return false; }
+            if ((credit || Convert.ToBoolean(rgSaleType.EditValue)) && (string.IsNullOrWhiteSpace(txtCustomerName.Text) || string.IsNullOrWhiteSpace(txtCustomerPhone.Text)))
+            { Utility.ShowErrorMessage("Customer name and number are required."); return false; }
+            if (txtCustomerPhone.Text.Length != 0 && txtCustomerPhone.Text.Length != 10)
+            { Utility.ShowErrorMessage("Customer number should be 10 digits."); return false; }
             return true;
         }
     }

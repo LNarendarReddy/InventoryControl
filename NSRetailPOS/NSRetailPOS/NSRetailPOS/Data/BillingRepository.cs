@@ -274,6 +274,71 @@ namespace NSRetailPOS.Data
             return dtMOPs;
         }
 
+        public DataTable GetCounterPaymentModes()
+        {
+            using (var cmd = new SqlCommand("POS_USP_R_COUNTERMOPCONFIG", SQLCon.Sqlconn()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CounterID", Utility.branchInfo.BranchCounterID);
+                var table = new DataTable();
+                using (var adapter = new SqlDataAdapter(cmd)) adapter.Fill(table);
+                return table;
+            }
+        }
+
+        public System.Collections.Generic.List<PaymentAttempt> GetPendingPaymentAttempts(int billID)
+        {
+            using (var cmd = new SqlCommand("POS_USP_R_PAYMENTATTEMPTS", SQLCon.Sqlconn()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BillID", billID);
+                var table = new DataTable();
+                using (var adapter = new SqlDataAdapter(cmd)) adapter.Fill(table);
+                var attempts = new System.Collections.Generic.List<PaymentAttempt>();
+                foreach (DataRow row in table.Rows)
+                {
+                    var attempt = Newtonsoft.Json.JsonConvert.DeserializeObject<PaymentAttempt>(Convert.ToString(row["ATTEMPTDATA"]));
+                    attempt.ProviderReference = Convert.ToString(row["PROVIDERREFERENCE"]);
+                    attempts.Add(attempt);
+                }
+                return attempts;
+            }
+        }
+
+        public System.Collections.Generic.List<CompletedTransactionData> GetCompletedPayments(int billID)
+        {
+            using (var cmd = new SqlCommand("POS_USP_R_BILLPAYMENTS", SQLCon.Sqlconn()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BillID", billID);
+                var table = new DataTable();
+                using (var adapter = new SqlDataAdapter(cmd)) adapter.Fill(table);
+                var payments = new System.Collections.Generic.List<CompletedTransactionData>();
+                foreach (DataRow row in table.Rows)
+                    payments.Add(new CompletedTransactionData { BillID = billID,
+                        MopID = Convert.ToInt32(row["MOPID"]), Amount = Convert.ToDecimal(row["AMOUNT"]),
+                        PaymentGatewayID = row.IsNull("PAYMENTGATEWAYID") ? 0 : Convert.ToInt32(row["PAYMENTGATEWAYID"]),
+                        CompletedTransactionDataID = Convert.ToInt32(row["TRANSACTIONDATAID"]),
+                        AttemptID = row.IsNull("ATTEMPTID") ? (Guid?)null : (Guid)row["ATTEMPTID"] });
+                return payments;
+            }
+        }
+
+        public void SavePaymentAttempt(PaymentAttempt attempt, bool closed = false)
+        {
+            using (var cmd = new SqlCommand("POS_USP_CU_PAYMENTATTEMPT", SQLCon.Sqlconn()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@AttemptID", attempt.AttemptID);
+                cmd.Parameters.AddWithValue("@BillID", attempt.BillID);
+                cmd.Parameters.AddWithValue("@AttemptData", Newtonsoft.Json.JsonConvert.SerializeObject(attempt));
+                cmd.Parameters.AddWithValue("@ProviderReference", (object)attempt.ProviderReference ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Closed", closed);
+                cmd.Parameters.AddWithValue("@UserID", Utility.loginInfo.UserID);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public DataTable GetDraftBills(int daySequenceID)
         {
             DataTable draftBills = new DataTable();
@@ -599,6 +664,8 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@PaymentRequest", JsonConvert.SerializeObject(completedTransactionData.PaymentRequest));
                     cmd.Parameters.AddWithValue("@PaymentResponse", JsonConvert.SerializeObject(completedTransactionData.StatusResponse));
                     cmd.Parameters.AddWithValue("@PaymentGatewayID", completedTransactionData.PaymentGatewayID);
+                    cmd.Parameters.AddWithValue("@AttemptID", (object)completedTransactionData.AttemptID ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@UserID", Utility.loginInfo.UserID);
                     cmd.Parameters.AddWithValue("@AdditionalConfig", JsonConvert.SerializeObject(completedTransactionData.AdditionalSettings));
 
                     object objReturn = cmd.ExecuteScalar();

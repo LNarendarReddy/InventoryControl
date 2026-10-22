@@ -243,6 +243,7 @@ namespace NSRetailPOS.Gateway
                     case "6":
                     case "8":
                         StatusUpdate($"Payment failed : {transaction.transactionStatus}");
+                        LastRequestFinal = true;
                         return null;
 
                     case "1":
@@ -325,6 +326,7 @@ namespace NSRetailPOS.Gateway
                     StatusUpdate(cancelResponse.data.message);
 
                     // treat as cancelled
+                    LastRequestFinal = true;
                     return true;
                 }
 
@@ -388,6 +390,8 @@ namespace NSRetailPOS.Gateway
 
                 if (paymentResponse == null)
                     return null;
+
+                ProviderReferenceReady?.Invoke(paymentResponse.data.referenceId);
 
                 BharatPeStatusRequest statusRequest = new()
                 {
@@ -491,6 +495,13 @@ namespace NSRetailPOS.Gateway
                         PaymentGatewayID = PaymentGatewayID,
                         AdditionalSettings = AdditionalSettings
                     };
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "8":
+                    LastRequestFinal = true;
+                    break;
             }
 
             return null;

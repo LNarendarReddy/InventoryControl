@@ -15,6 +15,11 @@ namespace NSRetailPOS.Gateway
         public bool IsInProgress { get; protected set; }
 
         public bool IsValid { get; protected set; }
+        public bool LastRequestFinal { get; set; }
+        public Action<string> ProviderReferenceReady;
+        public Action<string> QrReady;
+        public bool RefundRequested { get; set; }
+        public Action RefundRequestedReady;
 
         public abstract string GatewayType { get; }
 
@@ -37,16 +42,20 @@ namespace NSRetailPOS.Gateway
 
         public static PaymentGatewayBase Create(string gatewayType, int paymentGatewayID, string baseSettings, string additionalSettings)
         {
-            if (string.IsNullOrEmpty(baseSettings) || string.IsNullOrEmpty(additionalSettings)) return null;
+            if (string.IsNullOrWhiteSpace(baseSettings)) return null;
+            if (string.IsNullOrWhiteSpace(additionalSettings)) additionalSettings = "{}";
 
             PaymentGatewayBase gateway = null;
-            switch (gatewayType)
+            switch (gatewayType?.ToLowerInvariant())
             {
-                case "PineLabs":
+                case "pinelabs":
                     gateway = new PineLabsGateway(paymentGatewayID, baseSettings, additionalSettings);
                     break;
-                case "BharathPe":
+                case "bharathpe":
                     gateway = new BharathPeGateway(paymentGatewayID, baseSettings, additionalSettings);
+                    break;
+                case "mobikwik":
+                    gateway = new Mobikwik.MobikwikGateway(paymentGatewayID, baseSettings, additionalSettings);
                     break;
             }
 
@@ -81,6 +90,7 @@ namespace NSRetailPOS.Gateway
 
     public class CompletedTransactionData
     {
+        public Guid? AttemptID { get; set; }
         public IPaymentRequest PaymentRequest { get; set; }
 
         public IStatusResponse StatusResponse { get; set; }

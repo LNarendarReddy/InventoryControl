@@ -47,6 +47,7 @@ namespace NSRetailPOS.Gateway.PineLabs
             {
                 ResponseBase cancelResponse = JsonConvert.DeserializeObject<ResponseBase>(await responseMessage.Content.ReadAsStringAsync());
                 bool success = cancelResponse.ResponseCode == 0;
+                if (success) LastRequestFinal = true;
                 StatusUpdate(success ? "cancel success" : cancelResponse.ResponseMessage);
                 return success;
             }
@@ -162,6 +163,7 @@ namespace NSRetailPOS.Gateway.PineLabs
                 PaymentRequest paymentRequest = GetPaymentRequest(parameters) as PaymentRequest;
                 PaymentResponse paymentResponse = await SendRequest(paymentRequest, token) as PaymentResponse;
                 if (paymentResponse == null) return null;
+                ProviderReferenceReady?.Invoke(paymentResponse.PlutusTransactionReferenceID.ToString());
 
                 StatusRequest statusRequest = new StatusRequest();
                 CopyValues(statusRequest);
@@ -212,7 +214,7 @@ namespace NSRetailPOS.Gateway.PineLabs
                     ResponseMessage = "Force added missing payment",
                     TransactionData =
                     [
-                        new() { Tag = "RRN", value = parameters[1].ToString() } 
+                        new() { Tag = "RRN", value = parameters[2]?.ToString() }
                     ]
                 }
             };
@@ -242,9 +244,23 @@ namespace NSRetailPOS.Gateway.PineLabs
             target.PaymentURL = requestBase.PaymentURL;
         }
 
-        public override Task<CompletedTransactionData> VerifyPayment(int billID, int mopID, params object[] parameters)
+        public override async Task<CompletedTransactionData> VerifyPayment(int billID, int mopID, params object[] parameters)
         {
-            throw new NotImplementedException();
+            if (!int.TryParse(Convert.ToString(parameters[0]), out int reference) || reference <= 0)
+                throw new InvalidOperationException("Provider reference is unavailable. Check the terminal before resolving this attempt.");
+            var request = new StatusRequest();
+            CopyValues(request);
+            request.PlutusTransactionReferenceID = reference;
+            using (var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"))
+            using (var response = await gatewayClient.PostAsync(StatusAPI, content))
+            {
+                response.EnsureSuccessStatusCode();
+                var status = JsonConvert.DeserializeObject<StatusResponse>(await response.Content.ReadAsStringAsync());
+                if (status?.ResponseCode != 0) return null;
+                return new CompletedTransactionData { BillID = billID, MopID = mopID,
+                    Amount = Convert.ToDecimal(parameters[1]), PaymentGatewayID = PaymentGatewayID,
+                    AdditionalSettings = AdditionalSettings, StatusResponse = status };
+            }
         }
     }
 
