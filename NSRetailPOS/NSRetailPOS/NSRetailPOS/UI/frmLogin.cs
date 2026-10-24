@@ -3,6 +3,7 @@ using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Gateway;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -34,69 +35,74 @@ namespace NSRetailPOS.UI
                 if (!dxValidationProvider1.Validate())
                     return;
                 DataSet dSUserInfo = objPOSRep.GetUserInfo(Utility.branchInfo.BranchID,
-                    Utility.branchInfo.BranchCounterID,txtUserName.EditValue, Utility.Encrypt(Convert.ToString(txtPassword.EditValue))
+                    Utility.branchInfo.BranchCounterID, txtUserName.EditValue, Utility.Encrypt(Convert.ToString(txtPassword.EditValue))
                     , Utility.GetHDDSerialNumber());
-                if(dSUserInfo != null && dSUserInfo.Tables.Count > 0 &&
-                    dSUserInfo.Tables[0].Rows.Count > 0)
+
+                if (dSUserInfo == null || dSUserInfo.Tables.Count == 0 || dSUserInfo.Tables[0].Rows.Count == 0) return;
+
+                if (!int.TryParse(Convert.ToString(dSUserInfo.Tables[0].Rows[0][0]), out int IValue))
+                    throw new Exception(Convert.ToString(dSUserInfo.Tables[0].Rows[0][0]));
+
+                try
                 {
-                    int IValue = 0;
-                    if (int.TryParse(Convert.ToString(dSUserInfo.Tables[0].Rows[0][0]), out IValue))
+                    new ReportRepository().ExecuteNonQuery("USP_C_LOGINHISTORY", true, new Dictionary<string, object>()
                     {
-                        Utility.loginInfo.UserID = IValue;
-                        Utility.loginInfo.UserName = dSUserInfo.Tables[0].Rows[0]["USERNAME"];
-                        Utility.loginInfo.Password = dSUserInfo.Tables[0].Rows[0]["PASSWORDSTRING"];
-                        Utility.loginInfo.UserFullName = dSUserInfo.Tables[0].Rows[0]["FULLNAME"];
-                        Utility.loginInfo.RoleName = dSUserInfo.Tables[0].Rows[0]["ROLENAME"];
-                        Utility.loginInfo.CategoryID = dSUserInfo.Tables[0].Rows[0]["CATEGORYID"];
-                        Utility.branchInfo.BranchID = dSUserInfo.Tables[0].Rows[0]["BRANCHID"];
-                        Utility.branchInfo.BranchName = dSUserInfo.Tables[0].Rows[0]["BRANCHNAME"];
-                        Utility.branchInfo.BranchCode = dSUserInfo.Tables[0].Rows[0]["BRANCHCODE"];
-                        Utility.branchInfo.BranchAddress = dSUserInfo.Tables[0].Rows[0]["ADDRESS"];
-                        Utility.branchInfo.PhoneNumber = dSUserInfo.Tables[0].Rows[0]["PHONENO"];
-                        Utility.branchInfo.LandLine = dSUserInfo.Tables[0].Rows[0]["LANDLINE"];
-                        Utility.branchInfo.BranchCounterID = dSUserInfo.Tables[1].Rows[0]["COUNTERID"];
-                        Utility.branchInfo.BranchCounterName = dSUserInfo.Tables[1].Rows[0]["COUNTERNAME"];
-                        Utility.branchInfo.MultiEditThreshold =
-                            !Utility.loginInfo.RoleName.Equals("Store Admin") &&
-                            dSUserInfo.Tables[0].Rows[0]["MULTIEDITTHRESHOLD"] != null && 
-                            int.TryParse(dSUserInfo.Tables[0].Rows[0]["MULTIEDITTHRESHOLD"].ToString(), out int multiEditThreshold) 
-                            ? multiEditThreshold : 0;
-                        bool ISOTP = Convert.ToBoolean(dSUserInfo.Tables[0].Rows[0]["ISOTP"]);
-                        Utility.DBVersion = Convert.ToString(dSUserInfo.Tables[0].Rows[0]["DBVersion"]);
-                        Utility.branchInfo.FilterMRPByStock = dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"] != DBNull.Value 
-                            && bool.Parse(dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"].ToString());
-                        Utility.branchInfo.EnableDraftBills = int.Parse(dSUserInfo.Tables[0].Rows[0]["ENABLEDRAFTBILLS"].ToString());
+                        { "UserID", IValue }, { "ApplicationID", 24 }
+                    }, commandTimeOut: 5);
+                }
+                catch { } // Do nothing in case of no connection
 
-                        if (dSUserInfo.Tables[1].Columns.Contains("PAYMENTGATEWAYINFOID")
-                            && dSUserInfo.Tables[1].Columns["PAYMENTGATEWAYINFOID"] != null
-                            && int.TryParse(dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYINFOID"].ToString(), out int paymentGatewayID)
-                            && paymentGatewayID > 0)
-                        {
-                            string getwayType = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYINFOTYPE"].ToString();
-                            string baseSettings = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYCONFIGDATA"].ToString();
-                            string additionalSettings = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYADDITIONALCONFIG"].ToString();
+                Utility.loginInfo.UserID = IValue;
+                Utility.loginInfo.UserName = dSUserInfo.Tables[0].Rows[0]["USERNAME"];
+                Utility.loginInfo.Password = dSUserInfo.Tables[0].Rows[0]["PASSWORDSTRING"];
+                Utility.loginInfo.UserFullName = dSUserInfo.Tables[0].Rows[0]["FULLNAME"];
+                Utility.loginInfo.RoleName = dSUserInfo.Tables[0].Rows[0]["ROLENAME"];
+                Utility.loginInfo.CategoryID = dSUserInfo.Tables[0].Rows[0]["CATEGORYID"];
+                Utility.branchInfo.BranchID = dSUserInfo.Tables[0].Rows[0]["BRANCHID"];
+                Utility.branchInfo.BranchName = dSUserInfo.Tables[0].Rows[0]["BRANCHNAME"];
+                Utility.branchInfo.BranchCode = dSUserInfo.Tables[0].Rows[0]["BRANCHCODE"];
+                Utility.branchInfo.BranchAddress = dSUserInfo.Tables[0].Rows[0]["ADDRESS"];
+                Utility.branchInfo.PhoneNumber = dSUserInfo.Tables[0].Rows[0]["PHONENO"];
+                Utility.branchInfo.LandLine = dSUserInfo.Tables[0].Rows[0]["LANDLINE"];
+                Utility.branchInfo.BranchCounterID = dSUserInfo.Tables[1].Rows[0]["COUNTERID"];
+                Utility.branchInfo.BranchCounterName = dSUserInfo.Tables[1].Rows[0]["COUNTERNAME"];
+                Utility.branchInfo.MultiEditThreshold =
+                    !Utility.loginInfo.RoleName.Equals("Store Admin") &&
+                    dSUserInfo.Tables[0].Rows[0]["MULTIEDITTHRESHOLD"] != null &&
+                    int.TryParse(dSUserInfo.Tables[0].Rows[0]["MULTIEDITTHRESHOLD"].ToString(), out int multiEditThreshold)
+                    ? multiEditThreshold : 0;
+                bool ISOTP = Convert.ToBoolean(dSUserInfo.Tables[0].Rows[0]["ISOTP"]);
+                Utility.DBVersion = Convert.ToString(dSUserInfo.Tables[0].Rows[0]["DBVersion"]);
+                Utility.branchInfo.FilterMRPByStock = dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"] != DBNull.Value
+                    && bool.Parse(dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"].ToString());
+                Utility.branchInfo.EnableDraftBills = int.Parse(dSUserInfo.Tables[0].Rows[0]["ENABLEDRAFTBILLS"].ToString());
 
-                            // payment gateway
-                            Utility.PaymentGateway = PaymentGatewayBase.Create(getwayType, paymentGatewayID, baseSettings, additionalSettings);
-                        }
+                if (dSUserInfo.Tables[1].Columns.Contains("PAYMENTGATEWAYINFOID")
+                    && dSUserInfo.Tables[1].Columns["PAYMENTGATEWAYINFOID"] != null
+                    && int.TryParse(dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYINFOID"].ToString(), out int paymentGatewayID)
+                    && paymentGatewayID > 0)
+                {
+                    string getwayType = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYINFOTYPE"].ToString();
+                    string baseSettings = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYCONFIGDATA"].ToString();
+                    string additionalSettings = dSUserInfo.Tables[1].Rows[0]["PAYMENTGATEWAYADDITIONALCONFIG"].ToString();
 
-                        if (ISOTP)
-                        {
-                            frmChangePassword Obj = new frmChangePassword();
-                            Obj.ShowInTaskbar = false;
-                            Obj.StartPosition = FormStartPosition.CenterScreen;
-                            Obj.IconOptions.ShowIcon = false;
-                            Obj.ShowDialog();
-                        }
-                        else
-                        {
-                            frmMain.Instance.Show();
-                            txtPassword.Text = string.Empty;
-                            this.Hide();
-                        }
-                    }
-                    else
-                        throw new Exception(Convert.ToString(dSUserInfo.Tables[0].Rows[0][0]));
+                    // payment gateway
+                    Utility.PaymentGateway = PaymentGatewayBase.Create(getwayType, paymentGatewayID, baseSettings, additionalSettings);
+                }
+
+                if (ISOTP)
+                {
+                    frmChangePassword Obj = new frmChangePassword();
+                    Obj.ShowInTaskbar = false;
+                    Obj.StartPosition = FormStartPosition.CenterScreen;
+                    Obj.IconOptions.ShowIcon = false;
+                    Obj.ShowDialog();
+                }
+                else
+                {
+                    frmMain.Instance.Show();
+                    txtPassword.Text = string.Empty;
+                    this.Hide();
                 }
             }
             catch (Exception ex)

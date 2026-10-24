@@ -90,7 +90,42 @@ namespace NSRetailPOS.Data
 
             return dsReportData;
         }
-               
+
+        public int ExecuteNonQuery(string procedureName, bool useWHConn, Dictionary<string, object> parameters = null, bool UseTransaction = false
+            , int commandTimeOut = 1800)
+        {
+            int rowcount = 0;
+            SqlTransaction sqlTransaction = null;
+
+            using SqlConnection sqlConnection = useWHConn ? SQLCon.SqlWHconn() : SQLCon.Sqlconn();
+            try
+            {
+                using SqlCommand cmd = new SqlCommand();
+                if (UseTransaction)
+                    sqlTransaction = sqlConnection.BeginTransaction();
+                cmd.Connection = sqlConnection;
+                if (UseTransaction)
+                    cmd.Transaction = sqlTransaction;
+                cmd.CommandTimeout = commandTimeOut;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = procedureName;
+                ProcessParameters(cmd, parameters);
+                rowcount = cmd.ExecuteNonQuery();
+                sqlTransaction?.Commit();
+            }
+            catch
+            {
+                sqlTransaction?.Rollback();
+                throw;
+            }
+            finally
+            {
+                sqlTransaction?.Dispose();
+            }
+
+            return rowcount;
+        }
+
         private void ProcessParameters(SqlCommand sqlCommand, Dictionary<string, object> parameters)
         {
             if (parameters == null) return;
