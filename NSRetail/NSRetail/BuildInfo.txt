@@ -1,4 +1,10 @@
-﻿v4.1.5
+﻿v4.1.6
+-- Login history trackers added, changes include
+	-- Last login date of WH, POS and Mobile applications in user screen itself
+	-- Login History report in Warehouse reports
+-- Added totals column in Picklist print report
+
+v4.1.5
 -- Restored the legacy single-payment-gateway counter configuration screen for creating and editing counters with current POS versions.
 -- Included Mobikwik integration and per-MOP counter gateway configuration, kept hidden until the corresponding POS changes are released.
 -- Preserved the new MOP-mapping implementation for the coordinated WH and POS rollout.
