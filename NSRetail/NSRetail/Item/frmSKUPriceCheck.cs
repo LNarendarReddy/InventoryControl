@@ -21,6 +21,7 @@ namespace NSRetail
         {
             initialItemCodeId = itemCodeId;
             Text = skuCode + " - " + itemName;
+            SetItemName(itemName);
         }
 
         private void frmSKUPriceCheck_Load(object sender, EventArgs e)
@@ -67,6 +68,7 @@ namespace NSRetail
             DataRowView selectedItem = sluItem.GetSelectedDataRow() as DataRowView;
             Text = selectedItem == null ? "SKU Price Check"
                 : selectedItem["SKUCODE"] + " - " + selectedItem["ITEMNAME"];
+            SetItemName(selectedItem == null ? string.Empty : Convert.ToString(selectedItem["ITEMNAME"]));
             if (selectedItem == null || cmbBranch.EditValue == null || cmbBranch.EditValue == DBNull.Value)
             {
                 lblStatus.Text = "Select an item and branch to check prices.";
@@ -81,12 +83,14 @@ namespace NSRetail
                 if (result.Tables["ITEM"].Rows.Count == 0)
                 {
                     Text = "SKU Price Check";
+                    SetItemName(string.Empty);
                     lblStatus.Text = "Item not found.";
                     return;
                 }
 
                 DataRow item = result.Tables["ITEM"].Rows[0];
                 Text = item["SKUCODE"] + " - " + item["ITEMNAME"];
+                SetItemName(Convert.ToString(item["ITEMNAME"]));
                 gcPrices.DataSource = result.Tables["PRICES"];
                 gvPrices.ExpandAllGroups();
                 gvPrices.BestFitColumns();
@@ -104,6 +108,23 @@ namespace NSRetail
             {
                 UseWaitCursor = false;
                 sluItem.Focus();
+            }
+        }
+
+        private void SetItemName(string itemName)
+        {
+            lblItemName.Text = itemName;
+            lblItemName.ToolTip = itemName;
+        }
+
+        private void sluItem_ItemNameChanged(object sender, EventArgs e)
+        {
+            DataRowView selectedItem = sluItem.GetSelectedDataRow() as DataRowView;
+            SetItemName(selectedItem == null ? string.Empty : Convert.ToString(selectedItem["ITEMNAME"]));
+            if (!loading)
+            {
+                gcPrices.DataSource = null;
+                lblStatus.Text = "Select a branch and check prices.";
             }
         }
 

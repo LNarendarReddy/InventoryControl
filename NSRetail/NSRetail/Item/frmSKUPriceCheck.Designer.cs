@@ -23,6 +23,7 @@ namespace NSRetail
             this.btnLookup = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.lblStatus = new DevExpress.XtraEditors.LabelControl();
+            this.lblItemName = new DevExpress.XtraEditors.LabelControl();
             this.gcPrices = new DevExpress.XtraGrid.GridControl();
             this.gvPrices = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMRP = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -44,6 +45,7 @@ namespace NSRetail
             this.layoutbtnClose = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutgcPrices = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutlblStatus = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutItemName = new DevExpress.XtraLayout.LayoutControlItem();
             this.sluItemfdsa = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
@@ -58,6 +60,7 @@ namespace NSRetail
             ((System.ComponentModel.ISupportInitialize)(this.layoutbtnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutgcPrices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutlblStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutItemName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemfdsa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
@@ -69,6 +72,7 @@ namespace NSRetail
             this.layoutControl.Controls.Add(this.btnLookup);
             this.layoutControl.Controls.Add(this.btnClose);
             this.layoutControl.Controls.Add(this.lblStatus);
+            this.layoutControl.Controls.Add(this.lblItemName);
             this.layoutControl.Controls.Add(this.gcPrices);
             this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl.Location = new System.Drawing.Point(0, 0);
@@ -108,6 +112,7 @@ namespace NSRetail
             this.sluItem.Size = new System.Drawing.Size(668, 22);
             this.sluItem.StyleController = this.layoutControl;
             this.sluItem.TabIndex = 0;
+            this.sluItem.EditValueChanged += new System.EventHandler(this.sluItem_ItemNameChanged);
             // 
             // sluItemView
             // 
@@ -187,14 +192,27 @@ namespace NSRetail
             this.lblStatus.StyleController = this.layoutControl;
             this.lblStatus.TabIndex = 5;
             // 
+            // lblItemName
+            // 
+            this.lblItemName.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.lblItemName.Appearance.Options.UseFont = true;
+            this.lblItemName.Appearance.Options.UseTextOptions = true;
+            this.lblItemName.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.lblItemName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblItemName.Location = new System.Drawing.Point(12, 47);
+            this.lblItemName.Name = "lblItemName";
+            this.lblItemName.Size = new System.Drawing.Size(1469, 32);
+            this.lblItemName.StyleController = this.layoutControl;
+            this.lblItemName.TabIndex = 6;
+            // 
             // gcPrices
             // 
             this.gcPrices.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.gcPrices.Location = new System.Drawing.Point(12, 47);
+            this.gcPrices.Location = new System.Drawing.Point(12, 83);
             this.gcPrices.MainView = this.gvPrices;
             this.gcPrices.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcPrices.Name = "gcPrices";
-            this.gcPrices.Size = new System.Drawing.Size(1469, 698);
+            this.gcPrices.Size = new System.Drawing.Size(1469, 662);
             this.gcPrices.TabIndex = 4;
             this.gcPrices.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvPrices});
@@ -365,6 +383,7 @@ namespace NSRetail
             this.layoutbtnClose,
             this.layoutgcPrices,
             this.layoutlblStatus,
+            this.layoutItemName,
             this.sluItemfdsa,
             this.layoutControlItem1});
             this.Root.Name = "Root";
@@ -398,9 +417,9 @@ namespace NSRetail
             // layoutgcPrices
             // 
             this.layoutgcPrices.Control = this.gcPrices;
-            this.layoutgcPrices.Location = new System.Drawing.Point(0, 35);
+            this.layoutgcPrices.Location = new System.Drawing.Point(0, 71);
             this.layoutgcPrices.Name = "layoutgcPrices";
-            this.layoutgcPrices.Size = new System.Drawing.Size(1473, 702);
+            this.layoutgcPrices.Size = new System.Drawing.Size(1473, 666);
             this.layoutgcPrices.TextSize = new System.Drawing.Size(0, 0);
             this.layoutgcPrices.TextVisible = false;
             // 
@@ -415,6 +434,18 @@ namespace NSRetail
             this.layoutlblStatus.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutlblStatus.TextSize = new System.Drawing.Size(0, 0);
             this.layoutlblStatus.TextVisible = false;
+            // 
+            // layoutItemName
+            // 
+            this.layoutItemName.Control = this.lblItemName;
+            this.layoutItemName.Location = new System.Drawing.Point(0, 35);
+            this.layoutItemName.MaxSize = new System.Drawing.Size(0, 36);
+            this.layoutItemName.MinSize = new System.Drawing.Size(100, 36);
+            this.layoutItemName.Name = "layoutItemName";
+            this.layoutItemName.Size = new System.Drawing.Size(1473, 36);
+            this.layoutItemName.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutItemName.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutItemName.TextVisible = false;
             // 
             // sluItemfdsa
             // 
@@ -460,6 +491,7 @@ namespace NSRetail
             ((System.ComponentModel.ISupportInitialize)(this.layoutbtnClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutgcPrices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutlblStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutItemName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemfdsa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
@@ -473,6 +505,8 @@ namespace NSRetail
         private DevExpress.XtraEditors.SimpleButton btnLookup;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraEditors.LabelControl lblStatus;
+        private DevExpress.XtraEditors.LabelControl lblItemName;
+        private DevExpress.XtraLayout.LayoutControlItem layoutItemName;
         private DevExpress.XtraLayout.LayoutControlItem layoutbtnLookup;
         private DevExpress.XtraLayout.LayoutControlItem layoutbtnClose;
         private DevExpress.XtraLayout.LayoutControlItem layoutgcPrices;
