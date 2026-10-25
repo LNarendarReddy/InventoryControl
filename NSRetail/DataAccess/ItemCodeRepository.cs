@@ -9,6 +9,19 @@ namespace DataAccess
 {
     public class ItemCodeRepository
     {
+        public DataSet GetSKUPriceCheck(string scanCode, int branchId)
+        {
+            DataSet result = new DataRepository().GetDataset("USP_R_SKUPRICECHECK", true,
+                new System.Collections.Generic.Dictionary<string, object>
+                {
+                    { "ScanCode", scanCode },
+                    { "BranchID", branchId }
+                });
+            result.Tables[0].TableName = "ITEM";
+            result.Tables[1].TableName = "PRICES";
+            return result;
+        }
+
         public DataSet GetItemCodes(object CategoryID)
         {
             DataSet dsItemCodes = new DataSet();

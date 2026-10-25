@@ -22,6 +22,7 @@ namespace NSRetail
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += Application_ThreadException;
+            Utilities.LookupColumnBestFit.Register();
             Application.Run(new frmLogin());
         }
 

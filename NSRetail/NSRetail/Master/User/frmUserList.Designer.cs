@@ -525,8 +525,11 @@
             // gridColumn25
             // 
             this.gridColumn25.Caption = "WH Last Login";
+            this.gridColumn25.DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss";
+            this.gridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn25.FieldName = "WHLOGINDATE";
             this.gridColumn25.Name = "gridColumn25";
+            this.gridColumn25.OptionsColumn.AllowEdit = false;
             this.gridColumn25.OptionsColumn.ReadOnly = true;
             this.gridColumn25.Visible = true;
             this.gridColumn25.VisibleIndex = 9;
@@ -534,8 +537,11 @@
             // gridColumn26
             // 
             this.gridColumn26.Caption = "Mobile Last Login";
+            this.gridColumn26.DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss";
+            this.gridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn26.FieldName = "LITELOGINDATE";
             this.gridColumn26.Name = "gridColumn26";
+            this.gridColumn26.OptionsColumn.AllowEdit = false;
             this.gridColumn26.OptionsColumn.ReadOnly = true;
             this.gridColumn26.Visible = true;
             this.gridColumn26.VisibleIndex = 10;
@@ -543,8 +549,11 @@
             // gridColumn27
             // 
             this.gridColumn27.Caption = "POS Last Login";
+            this.gridColumn27.DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss";
+            this.gridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn27.FieldName = "POSLOGINDATE";
             this.gridColumn27.Name = "gridColumn27";
+            this.gridColumn27.OptionsColumn.AllowEdit = false;
             this.gridColumn27.OptionsColumn.ReadOnly = true;
             this.gridColumn27.Visible = true;
             this.gridColumn27.VisibleIndex = 11;

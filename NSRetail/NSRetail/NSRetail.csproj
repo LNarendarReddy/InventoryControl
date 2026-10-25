@@ -238,6 +238,12 @@
     <Compile Include="Item\frmItemHistory.Designer.cs">
       <DependentUpon>frmItemHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Item\frmSKUPriceCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\frmSKUPriceCheck.Designer.cs">
+      <DependentUpon>frmSKUPriceCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="Item\frmItemOffers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1514,6 +1520,7 @@
     </Compile>
     <Compile Include="Supplier\SupplierHelper.cs" />
     <Compile Include="Utilities\AccessUtility.cs" />
+    <Compile Include="Utilities\LookupColumnBestFit.cs" />
     <Compile Include="Utilities\DotMatrixPrintHelper.cs" />
     <Compile Include="Utilities\DotMatrixPrinter.cs" />
     <Compile Include="Utilities\DropBoxRepository.cs" />
@@ -1574,6 +1581,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Item\frmMRP.resx">
       <DependentUpon>frmMRP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Item\frmSKUPriceCheck.resx">
+      <DependentUpon>frmSKUPriceCheck.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\billgen.resx">
       <DependentUpon>billgen.cs</DependentUpon>

@@ -1,4 +1,11 @@
-﻿v4.1.6
+﻿v4.1.7
+-- Added a separate View permission for SKU Price Check in user/role access settings.
+-- Added SKU Price Check to the Item List right-click menu, with SKU or Itemcode/EAN scan and entry support.
+-- Automatically fit report columns after loading data in lookup edit and seachlookupedit
+-- Login history sorted based on login time desc
+-- Displayed date and time for WH, Mobile, and POS Last Login columns in the User List.
+
+v4.1.6
 -- Login history trackers added, changes include
 	-- Last login date of WH, POS and Mobile applications in user screen itself
 	-- Login History report in Warehouse reports

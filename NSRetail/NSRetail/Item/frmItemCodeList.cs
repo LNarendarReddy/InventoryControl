@@ -139,7 +139,7 @@ namespace NSRetail
                 ((frmMain)this.MdiParent).RefreshBaseLineData += FrmItemCodeList_RefreshBaseLineData;
 
                 AccessUtility.SetStatusByAccess(btnNew, btnEdit, btnDelete, btnVisualize, btnMRPList);
-                AccessUtility.SetStatusByAccess(bbiEdit, bbiMRP, bbiVisualize, btnChangeGST, btnMinimumBaseQuantity, bbiVisualize, bbiAdditionalFields);
+                AccessUtility.SetStatusByAccess(bbiEdit, bbiMRP, bbiVisualize, btnChangeGST, btnMinimumBaseQuantity, bbiVisualize, bbiAdditionalFields, bbiSKUPriceCheck);
             }
             catch (Exception ex)
             {
@@ -431,6 +431,27 @@ namespace NSRetail
                     gvItemList.GetFocusedRowCellValue("ITEMID"),
                     Convert.ToString(gvItemList.GetFocusedRowCellValue("SKUCODE")),
                     Convert.ToString(gvItemList.GetFocusedRowCellValue("ITEMNAME"))).ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                AppLog.Error(ex);
+            }
+        }
+
+        private void bbiSKUPriceCheck_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!AccessUtility.HasAccess(bbiSKUPriceCheck.Tag?.ToString())) return;
+
+            try
+            {
+                if (gvItemList.FocusedRowHandle < 0) return;
+                using (frmSKUPriceCheck form = new frmSKUPriceCheck(
+                    Convert.ToString(gvItemList.GetFocusedRowCellValue("SKUCODE")),
+                    Convert.ToString(gvItemList.GetFocusedRowCellValue("ITEMNAME"))))
+                {
+                    form.ShowDialog(this);
+                }
             }
             catch (Exception ex)
             {

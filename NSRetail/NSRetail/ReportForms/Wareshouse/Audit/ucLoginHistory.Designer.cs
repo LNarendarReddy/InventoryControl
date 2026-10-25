@@ -63,6 +63,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             // dtpFromDate
             // 
             this.dtpFromDate.EditValue = null;
+            this.dtpFromDate.EnterMoveNextControl = true;
             this.dtpFromDate.Location = new System.Drawing.Point(81, 11);
             this.dtpFromDate.Name = "dtpFromDate";
             this.dtpFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -79,6 +80,7 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
             // dtpToDate
             // 
             this.dtpToDate.EditValue = null;
+            this.dtpToDate.EnterMoveNextControl = true;
             this.dtpToDate.Location = new System.Drawing.Point(281, 11);
             this.dtpToDate.Name = "dtpToDate";
             this.dtpToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
