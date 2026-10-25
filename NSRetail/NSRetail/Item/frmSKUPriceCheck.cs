@@ -10,6 +10,7 @@ namespace NSRetail
     public partial class frmSKUPriceCheck : XtraForm
     {
         private readonly int? initialItemCodeId;
+        private DataView itemLookupRows;
         private bool loading;
 
         public frmSKUPriceCheck()
@@ -33,9 +34,11 @@ namespace NSRetail
                 cmbBranch.Properties.DataSource = branches;
                 cmbBranch.Properties.ValueMember = "BRANCHID";
                 cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-                sluItem.Properties.DataSource = Utility.GetItemCodeListFiltered();
+                DataTable items = Utility.GetItemCodeListFiltered();
+                itemLookupRows = new DataView(items) { Sort = "ITEMCODEID" };
                 sluItem.Properties.ValueMember = "ITEMCODEID";
                 sluItem.Properties.DisplayMember = "ITEMCODE";
+                sluItem.Properties.DataSource = items;
 
                 if (initialItemCodeId.HasValue)
                 {
@@ -65,7 +68,7 @@ namespace NSRetail
             if (loading) return;
             gcPrices.DataSource = null;
             lblStatus.Text = string.Empty;
-            DataRowView selectedItem = sluItem.GetSelectedDataRow() as DataRowView;
+            DataRowView selectedItem = GetSelectedItem();
             Text = selectedItem == null ? "SKU Price Check"
                 : selectedItem["SKUCODE"] + " - " + selectedItem["ITEMNAME"];
             SetItemName(selectedItem == null ? string.Empty : Convert.ToString(selectedItem["ITEMNAME"]));
@@ -117,15 +120,24 @@ namespace NSRetail
             lblItemName.ToolTip = itemName;
         }
 
+        private DataRowView GetSelectedItem()
+        {
+            int itemCodeId;
+            if (itemLookupRows == null || !int.TryParse(Convert.ToString(sluItem.EditValue), out itemCodeId))
+                return null;
+
+            int rowIndex = itemLookupRows.Find(itemCodeId);
+            return rowIndex >= 0 ? itemLookupRows[rowIndex] : null;
+        }
+
         private void sluItem_ItemNameChanged(object sender, EventArgs e)
         {
-            DataRowView selectedItem = sluItem.GetSelectedDataRow() as DataRowView;
+            if (loading) return;
+
+            DataRowView selectedItem = GetSelectedItem();
             SetItemName(selectedItem == null ? string.Empty : Convert.ToString(selectedItem["ITEMNAME"]));
-            if (!loading)
-            {
-                gcPrices.DataSource = null;
-                lblStatus.Text = "Select a branch and check prices.";
-            }
+            gcPrices.DataSource = null;
+            lblStatus.Text = "Select a branch and check prices.";
         }
 
         private void btnLookup_Click(object sender, EventArgs e)

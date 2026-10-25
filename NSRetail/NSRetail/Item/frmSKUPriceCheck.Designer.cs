@@ -45,8 +45,8 @@ namespace NSRetail
             this.layoutbtnClose = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutgcPrices = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutlblStatus = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutItemName = new DevExpress.XtraLayout.LayoutControlItem();
             this.sluItemfdsa = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutItemName = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
             this.layoutControl.SuspendLayout();
@@ -60,8 +60,8 @@ namespace NSRetail
             ((System.ComponentModel.ISupportInitialize)(this.layoutbtnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutgcPrices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutlblStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutItemName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemfdsa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutItemName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,13 +80,13 @@ namespace NSRetail
             this.layoutControl.Name = "layoutControl";
             this.layoutControl.OptionsFocus.EnableAutoTabOrder = false;
             this.layoutControl.Root = this.Root;
-            this.layoutControl.Size = new System.Drawing.Size(1493, 785);
+            this.layoutControl.Size = new System.Drawing.Size(1374, 785);
             this.layoutControl.TabIndex = 0;
             // 
             // cmbBranch
             // 
             this.cmbBranch.EnterMoveNextControl = true;
-            this.cmbBranch.Location = new System.Drawing.Point(890, 16);
+            this.cmbBranch.Location = new System.Drawing.Point(382, 19);
             this.cmbBranch.Name = "cmbBranch";
             this.cmbBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -96,20 +96,20 @@ namespace NSRetail
             this.cmbBranch.Properties.NullText = "";
             this.cmbBranch.Properties.ShowFooter = false;
             this.cmbBranch.Properties.ShowHeader = false;
-            this.cmbBranch.Size = new System.Drawing.Size(249, 22);
+            this.cmbBranch.Size = new System.Drawing.Size(157, 22);
             this.cmbBranch.StyleController = this.layoutControl;
             this.cmbBranch.TabIndex = 1;
             // 
             // sluItem
             // 
             this.sluItem.EnterMoveNextControl = true;
-            this.sluItem.Location = new System.Drawing.Point(113, 16);
+            this.sluItem.Location = new System.Drawing.Point(113, 19);
             this.sluItem.Name = "sluItem";
             this.sluItem.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sluItem.Properties.NullText = "";
             this.sluItem.Properties.PopupView = this.sluItemView;
-            this.sluItem.Size = new System.Drawing.Size(668, 22);
+            this.sluItem.Size = new System.Drawing.Size(160, 22);
             this.sluItem.StyleController = this.layoutControl;
             this.sluItem.TabIndex = 0;
             this.sluItem.EditValueChanged += new System.EventHandler(this.sluItem_ItemNameChanged);
@@ -160,10 +160,10 @@ namespace NSRetail
             // 
             this.btnLookup.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnLookup.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLookup.ImageOptions.SvgImage")));
-            this.btnLookup.Location = new System.Drawing.Point(1147, 12);
+            this.btnLookup.Location = new System.Drawing.Point(1082, 12);
             this.btnLookup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnLookup.Name = "btnLookup";
-            this.btnLookup.Size = new System.Drawing.Size(163, 31);
+            this.btnLookup.Size = new System.Drawing.Size(143, 36);
             this.btnLookup.StyleController = this.layoutControl;
             this.btnLookup.TabIndex = 2;
             this.btnLookup.Text = "Check Price";
@@ -173,10 +173,10 @@ namespace NSRetail
             // 
             this.btnClose.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnClose.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClose.ImageOptions.SvgImage")));
-            this.btnClose.Location = new System.Drawing.Point(1314, 12);
+            this.btnClose.Location = new System.Drawing.Point(1229, 12);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(167, 31);
+            this.btnClose.Size = new System.Drawing.Size(133, 36);
             this.btnClose.StyleController = this.layoutControl;
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Close (Esc)";
@@ -188,7 +188,7 @@ namespace NSRetail
             this.lblStatus.Location = new System.Drawing.Point(12, 749);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(1469, 24);
+            this.lblStatus.Size = new System.Drawing.Size(1350, 24);
             this.lblStatus.StyleController = this.layoutControl;
             this.lblStatus.TabIndex = 5;
             // 
@@ -197,22 +197,24 @@ namespace NSRetail
             this.lblItemName.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.lblItemName.Appearance.Options.UseFont = true;
             this.lblItemName.Appearance.Options.UseTextOptions = true;
+            this.lblItemName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblItemName.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.lblItemName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblItemName.Location = new System.Drawing.Point(12, 47);
+            this.lblItemName.Location = new System.Drawing.Point(547, 12);
+            this.lblItemName.MinimumSize = new System.Drawing.Size(0, 24);
             this.lblItemName.Name = "lblItemName";
-            this.lblItemName.Size = new System.Drawing.Size(1469, 32);
+            this.lblItemName.Size = new System.Drawing.Size(531, 36);
             this.lblItemName.StyleController = this.layoutControl;
             this.lblItemName.TabIndex = 6;
             // 
             // gcPrices
             // 
             this.gcPrices.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.gcPrices.Location = new System.Drawing.Point(12, 83);
+            this.gcPrices.Location = new System.Drawing.Point(12, 52);
             this.gcPrices.MainView = this.gvPrices;
             this.gcPrices.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gcPrices.Name = "gcPrices";
-            this.gcPrices.Size = new System.Drawing.Size(1469, 662);
+            this.gcPrices.Size = new System.Drawing.Size(1350, 693);
             this.gcPrices.TabIndex = 4;
             this.gcPrices.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvPrices});
@@ -383,21 +385,21 @@ namespace NSRetail
             this.layoutbtnClose,
             this.layoutgcPrices,
             this.layoutlblStatus,
-            this.layoutItemName,
             this.sluItemfdsa,
+            this.layoutItemName,
             this.layoutControlItem1});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1493, 785);
+            this.Root.Size = new System.Drawing.Size(1374, 785);
             this.Root.TextVisible = false;
             // 
             // layoutbtnLookup
             // 
             this.layoutbtnLookup.Control = this.btnLookup;
-            this.layoutbtnLookup.Location = new System.Drawing.Point(1135, 0);
-            this.layoutbtnLookup.MaxSize = new System.Drawing.Size(167, 35);
-            this.layoutbtnLookup.MinSize = new System.Drawing.Size(167, 35);
+            this.layoutbtnLookup.Location = new System.Drawing.Point(1070, 0);
+            this.layoutbtnLookup.MaxSize = new System.Drawing.Size(147, 40);
+            this.layoutbtnLookup.MinSize = new System.Drawing.Size(147, 40);
             this.layoutbtnLookup.Name = "layoutbtnLookup";
-            this.layoutbtnLookup.Size = new System.Drawing.Size(167, 35);
+            this.layoutbtnLookup.Size = new System.Drawing.Size(147, 40);
             this.layoutbtnLookup.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutbtnLookup.TextSize = new System.Drawing.Size(0, 0);
             this.layoutbtnLookup.TextVisible = false;
@@ -405,11 +407,11 @@ namespace NSRetail
             // layoutbtnClose
             // 
             this.layoutbtnClose.Control = this.btnClose;
-            this.layoutbtnClose.Location = new System.Drawing.Point(1302, 0);
-            this.layoutbtnClose.MaxSize = new System.Drawing.Size(171, 35);
-            this.layoutbtnClose.MinSize = new System.Drawing.Size(171, 35);
+            this.layoutbtnClose.Location = new System.Drawing.Point(1217, 0);
+            this.layoutbtnClose.MaxSize = new System.Drawing.Size(137, 40);
+            this.layoutbtnClose.MinSize = new System.Drawing.Size(137, 40);
             this.layoutbtnClose.Name = "layoutbtnClose";
-            this.layoutbtnClose.Size = new System.Drawing.Size(171, 35);
+            this.layoutbtnClose.Size = new System.Drawing.Size(137, 40);
             this.layoutbtnClose.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutbtnClose.TextSize = new System.Drawing.Size(0, 0);
             this.layoutbtnClose.TextVisible = false;
@@ -417,9 +419,9 @@ namespace NSRetail
             // layoutgcPrices
             // 
             this.layoutgcPrices.Control = this.gcPrices;
-            this.layoutgcPrices.Location = new System.Drawing.Point(0, 71);
+            this.layoutgcPrices.Location = new System.Drawing.Point(0, 40);
             this.layoutgcPrices.Name = "layoutgcPrices";
-            this.layoutgcPrices.Size = new System.Drawing.Size(1473, 666);
+            this.layoutgcPrices.Size = new System.Drawing.Size(1354, 697);
             this.layoutgcPrices.TextSize = new System.Drawing.Size(0, 0);
             this.layoutgcPrices.TextVisible = false;
             // 
@@ -430,40 +432,48 @@ namespace NSRetail
             this.layoutlblStatus.MaxSize = new System.Drawing.Size(0, 28);
             this.layoutlblStatus.MinSize = new System.Drawing.Size(117, 28);
             this.layoutlblStatus.Name = "layoutlblStatus";
-            this.layoutlblStatus.Size = new System.Drawing.Size(1473, 28);
+            this.layoutlblStatus.Size = new System.Drawing.Size(1354, 28);
             this.layoutlblStatus.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutlblStatus.TextSize = new System.Drawing.Size(0, 0);
             this.layoutlblStatus.TextVisible = false;
             // 
+            // sluItemfdsa
+            // 
+            this.sluItemfdsa.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.sluItemfdsa.Control = this.sluItem;
+            this.sluItemfdsa.Location = new System.Drawing.Point(0, 0);
+            this.sluItemfdsa.MaxSize = new System.Drawing.Size(269, 34);
+            this.sluItemfdsa.MinSize = new System.Drawing.Size(269, 34);
+            this.sluItemfdsa.Name = "sluItemfdsa";
+            this.sluItemfdsa.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
+            this.sluItemfdsa.Size = new System.Drawing.Size(269, 40);
+            this.sluItemfdsa.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.sluItemfdsa.Text = "SKU/Item Code";
+            this.sluItemfdsa.TextSize = new System.Drawing.Size(85, 15);
+            // 
             // layoutItemName
             // 
             this.layoutItemName.Control = this.lblItemName;
-            this.layoutItemName.Location = new System.Drawing.Point(0, 35);
-            this.layoutItemName.MaxSize = new System.Drawing.Size(0, 36);
-            this.layoutItemName.MinSize = new System.Drawing.Size(100, 36);
+            this.layoutItemName.Location = new System.Drawing.Point(535, 0);
+            this.layoutItemName.MaxSize = new System.Drawing.Size(0, 40);
+            this.layoutItemName.MinSize = new System.Drawing.Size(100, 40);
             this.layoutItemName.Name = "layoutItemName";
-            this.layoutItemName.Size = new System.Drawing.Size(1473, 36);
+            this.layoutItemName.Size = new System.Drawing.Size(535, 40);
             this.layoutItemName.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutItemName.TextSize = new System.Drawing.Size(0, 0);
             this.layoutItemName.TextVisible = false;
             // 
-            // sluItemfdsa
-            // 
-            this.sluItemfdsa.Control = this.sluItem;
-            this.sluItemfdsa.Location = new System.Drawing.Point(0, 0);
-            this.sluItemfdsa.Name = "sluItemfdsa";
-            this.sluItemfdsa.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.sluItemfdsa.Size = new System.Drawing.Size(777, 35);
-            this.sluItemfdsa.Text = "SKU/Item Code";
-            this.sluItemfdsa.TextSize = new System.Drawing.Size(85, 15);
-            // 
             // layoutControlItem1
             // 
+            this.layoutControlItem1.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
             this.layoutControlItem1.Control = this.cmbBranch;
-            this.layoutControlItem1.Location = new System.Drawing.Point(777, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(269, 0);
+            this.layoutControlItem1.MaxSize = new System.Drawing.Size(266, 34);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(266, 34);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem1.Size = new System.Drawing.Size(358, 35);
+            this.layoutControlItem1.Size = new System.Drawing.Size(266, 40);
+            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.Text = "Branch";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(85, 15);
             // 
@@ -471,7 +481,7 @@ namespace NSRetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1493, 785);
+            this.ClientSize = new System.Drawing.Size(1374, 785);
             this.Controls.Add(this.layoutControl);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MinimumSize = new System.Drawing.Size(900, 500);
@@ -491,8 +501,8 @@ namespace NSRetail
             ((System.ComponentModel.ISupportInitialize)(this.layoutbtnClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutgcPrices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutlblStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutItemName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluItemfdsa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutItemName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
 

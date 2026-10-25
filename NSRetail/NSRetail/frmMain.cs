@@ -778,9 +778,7 @@ namespace NSRetail
                 new frmSKUPriceCheck()
                 {
                     ShowInTaskbar = false,
-                    MdiParent = this,
-                    WindowState = FormWindowState.Maximized
-                }.Show();
+                }.ShowDialog();
             }
             catch (Exception ex)
             {
