@@ -771,6 +771,24 @@ namespace NSRetail
             new frmGenerateSupplierIndent().ShowDialog();
         }
 
+        private void bbiSKUPriceCheck_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                new frmSKUPriceCheck()
+                {
+                    ShowInTaskbar = false,
+                    MdiParent = this,
+                    WindowState = FormWindowState.Maximized
+                }.Show();
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                AppLog.Error(ex);
+            }
+        }
+
         private void bbItemWithAddnlFields_ItemClick(object sender, ItemClickEventArgs e)
         {
             try

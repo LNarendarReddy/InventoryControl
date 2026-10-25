@@ -1,4 +1,10 @@
-﻿v4.1.7
+﻿v4.1.8
+-- Added SKU Price Check beside Items with Additional Fields on the ribbon, with its own user/role access setting.
+-- Ribbon opening starts with no item or branch selected; Item List opening retains the selected item and default branch.
+-- Replaced item text entry with a searchable lookup showing SKU Code, Item Name and EAN Code, allowing users to switch items in the same form.
+-- SKU price checks now pass the selected ItemID directly to the stored procedure.
+
+v4.1.7
 -- Added a separate View permission for SKU Price Check in user/role access settings.
 -- Added SKU Price Check to the Item List right-click menu, with SKU or Itemcode/EAN scan and entry support.
 -- Automatically fit report columns after loading data in lookup edit and seachlookupedit

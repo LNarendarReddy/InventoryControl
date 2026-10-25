@@ -447,6 +447,7 @@ namespace NSRetail
             {
                 if (gvItemList.FocusedRowHandle < 0) return;
                 using (frmSKUPriceCheck form = new frmSKUPriceCheck(
+                    Convert.ToInt32(gvItemList.GetFocusedRowCellValue("ITEMCODEID")),
                     Convert.ToString(gvItemList.GetFocusedRowCellValue("SKUCODE")),
                     Convert.ToString(gvItemList.GetFocusedRowCellValue("ITEMNAME"))))
                 {

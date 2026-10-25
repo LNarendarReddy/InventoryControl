@@ -20872,24 +20872,17 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[USP_R_SKUPRICECHECK]
-    @ScanCode VARCHAR(100),
+    @ItemID INT,
     @BranchID INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @ItemID INT, @CategoryID INT, @Now DATETIME = GETDATE();
-    SET @ScanCode = LTRIM(RTRIM(@ScanCode));
+    DECLARE @CategoryID INT, @Now DATETIME = GETDATE();
 
-    -- Resolve an EAN through ITEMCODEID -> ITEMID, then expand the whole SKU.
-    SELECT @ItemID = IC.ITEMID
-    FROM dbo.ITEMCODE IC
-        INNER JOIN dbo.ITEM I ON I.ITEMID = IC.ITEMID
-    WHERE IC.ITEMCODE = @ScanCode AND IC.DELETEDDATE IS NULL AND I.DELETEDDATE IS NULL;
-
-    IF @ItemID IS NULL
-        SELECT @ItemID = I.ITEMID
-        FROM dbo.ITEM I WHERE I.SKUCODE = @ScanCode AND I.DELETEDDATE IS NULL;
+    -- The selected lookup row already identifies the SKU. Do not resolve text/EAN.
+    IF NOT EXISTS (SELECT 1 FROM dbo.ITEM WHERE ITEMID = @ItemID AND DELETEDDATE IS NULL)
+        SET @ItemID = NULL;
 
     SELECT @CategoryID = CATEGORYID FROM dbo.ITEM WHERE ITEMID = @ItemID;
 
@@ -41744,6 +41737,62 @@ BEGIN TRY
         WHERE WORKFLOWID = @WorkflowID AND ACTIONTYPEID = @ViewActionTypeID)
         INSERT INTO dbo.WORKFLOWACTION (WORKFLOWID, ACTIONTYPEID)
         VALUES (@WorkflowID, @ViewActionTypeID);
+
+    COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+    IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+    THROW;
+END CATCH;
+END
+GO
+
+/****** Reference data: SKU Price Check ribbon access ******/
+-- Use the same workflow parent and actions as Items with Additional Fields.
+-- Register once the existing workflow reference data has been loaded.
+IF EXISTS (SELECT 1 FROM dbo.WORKFLOW WF
+    INNER JOIN dbo.WORKFLOWACTION WFA ON WFA.WORKFLOWID = WF.WORKFLOWID
+    INNER JOIN dbo.ACTIONTYPE ATYP ON ATYP.ACTIONTYPEID = WFA.ACTIONTYPEID
+    WHERE WF.[UNIQUEIDENTIFIER] = 'C2B8D9D2-8A4D-4B84-A869-693A1E7F89C9'
+        AND ATYP.ACTIONTYPETEXT = 'View')
+BEGIN
+SET XACT_ABORT ON;
+BEGIN TRY
+    BEGIN TRANSACTION;
+
+    DECLARE @SourceWorkflowID INT, @ParentWorkflowID INT, @RibbonWorkflowID INT;
+    SELECT @SourceWorkflowID = WORKFLOWID, @ParentWorkflowID = PARENTWORKFLOWID
+    FROM dbo.WORKFLOW
+    WHERE [UNIQUEIDENTIFIER] = 'C2B8D9D2-8A4D-4B84-A869-693A1E7F89C9';
+
+    IF @SourceWorkflowID IS NULL
+        THROW 50001, 'Items with Additional Fields workflow was not found.', 1;
+
+    IF NOT EXISTS (SELECT 1 FROM dbo.WORKFLOWACTION WFA
+        INNER JOIN dbo.ACTIONTYPE ATYP ON ATYP.ACTIONTYPEID = WFA.ACTIONTYPEID
+        WHERE WFA.WORKFLOWID = @SourceWorkflowID AND ATYP.ACTIONTYPETEXT = 'View')
+        THROW 50002, 'Items with Additional Fields workflow must have a View action.', 1;
+
+    SELECT @RibbonWorkflowID = WORKFLOWID FROM dbo.WORKFLOW WITH (UPDLOCK, HOLDLOCK)
+    WHERE [UNIQUEIDENTIFIER] = 'AE9D143B-BD8A-46F7-B576-57455356DAB2';
+
+    IF @RibbonWorkflowID IS NULL
+    BEGIN
+        INSERT INTO dbo.WORKFLOW (WORKFLOWTEXT, PARENTWORKFLOWID, [UNIQUEIDENTIFIER])
+        VALUES ('SKU Price Check', @ParentWorkflowID, 'AE9D143B-BD8A-46F7-B576-57455356DAB2');
+        SET @RibbonWorkflowID = CONVERT(INT, SCOPE_IDENTITY());
+    END
+    ELSE
+        UPDATE dbo.WORKFLOW SET WORKFLOWTEXT = 'SKU Price Check', PARENTWORKFLOWID = @ParentWorkflowID
+        WHERE WORKFLOWID = @RibbonWorkflowID;
+
+    INSERT INTO dbo.WORKFLOWACTION (WORKFLOWID, ACTIONTYPEID)
+    SELECT DISTINCT @RibbonWorkflowID, SourceAction.ACTIONTYPEID
+    FROM dbo.WORKFLOWACTION SourceAction
+    WHERE SourceAction.WORKFLOWID = @SourceWorkflowID
+        AND NOT EXISTS (SELECT 1 FROM dbo.WORKFLOWACTION ExistingAction WITH (UPDLOCK, HOLDLOCK)
+            WHERE ExistingAction.WORKFLOWID = @RibbonWorkflowID
+                AND ExistingAction.ACTIONTYPEID = SourceAction.ACTIONTYPEID);
 
     COMMIT TRANSACTION;
 END TRY

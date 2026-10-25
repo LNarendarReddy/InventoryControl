@@ -1,7 +1,6 @@
 using DataAccess;
 using DevExpress.XtraEditors;
 using ErrorManagement;
-using NSRetail.Utilities;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -10,26 +9,22 @@ namespace NSRetail
 {
     public partial class frmSKUPriceCheck : XtraForm
     {
-        internal const string ViewAccessKey = "5F2FA89D-11D2-4FE5-A612-846364CD8540::View";
-
-        private readonly string initialCode;
+        private readonly int? initialItemCodeId;
         private bool loading;
 
-        public frmSKUPriceCheck(string skuCode, string itemName)
+        public frmSKUPriceCheck()
         {
             InitializeComponent();
-            initialCode = skuCode;
+        }
+
+        public frmSKUPriceCheck(int itemCodeId, string skuCode, string itemName) : this()
+        {
+            initialItemCodeId = itemCodeId;
             Text = skuCode + " - " + itemName;
         }
 
         private void frmSKUPriceCheck_Load(object sender, EventArgs e)
         {
-            if (!AccessUtility.HasAccess(ViewAccessKey))
-            {
-                Close();
-                return;
-            }
-
             try
             {
                 loading = true;
@@ -37,12 +32,19 @@ namespace NSRetail
                 cmbBranch.Properties.DataSource = branches;
                 cmbBranch.Properties.ValueMember = "BRANCHID";
                 cmbBranch.Properties.DisplayMember = "BRANCHNAME";
-                DataRow[] currentBranch = branches.Select("BRANCHID = " + Utility.BranchID);
-                if (currentBranch.Length > 0)
-                    cmbBranch.EditValue = Utility.BranchID;
-                else if (branches.Rows.Count > 0)
-                    cmbBranch.EditValue = branches.Rows[0]["BRANCHID"];
-                txtScanCode.Text = initialCode;
+                sluItem.Properties.DataSource = Utility.GetItemCodeListFiltered();
+                sluItem.Properties.ValueMember = "ITEMCODEID";
+                sluItem.Properties.DisplayMember = "ITEMCODE";
+
+                if (initialItemCodeId.HasValue)
+                {
+                    sluItem.EditValue = initialItemCodeId.Value;
+                    DataRow[] currentBranch = branches.Select("BRANCHID = " + Utility.BranchID);
+                    if (currentBranch.Length > 0)
+                        cmbBranch.EditValue = Utility.BranchID;
+                    else if (branches.Rows.Count > 0)
+                        cmbBranch.EditValue = branches.Rows[0]["BRANCHID"];
+                }
             }
             catch (Exception ex)
             {
@@ -54,8 +56,7 @@ namespace NSRetail
                 loading = false;
             }
             LoadPrices();
-            txtScanCode.Focus();
-            txtScanCode.SelectAll();
+            sluItem.Focus();
         }
 
         private void LoadPrices()
@@ -63,23 +64,24 @@ namespace NSRetail
             if (loading) return;
             gcPrices.DataSource = null;
             lblStatus.Text = string.Empty;
-            if (!AccessUtility.HasAccess(ViewAccessKey))
+            DataRowView selectedItem = sluItem.GetSelectedDataRow() as DataRowView;
+            Text = selectedItem == null ? "SKU Price Check"
+                : selectedItem["SKUCODE"] + " - " + selectedItem["ITEMNAME"];
+            if (selectedItem == null || cmbBranch.EditValue == null || cmbBranch.EditValue == DBNull.Value)
             {
-                lblStatus.Text = "You do not have access to SKU Price Check.";
+                lblStatus.Text = "Select an item and branch to check prices.";
                 return;
             }
-
-            if (string.IsNullOrWhiteSpace(txtScanCode.Text) || cmbBranch.EditValue == null) return;
 
             try
             {
                 UseWaitCursor = true;
                 DataSet result = new ItemCodeRepository().GetSKUPriceCheck(
-                    txtScanCode.Text.Trim(), Convert.ToInt32(cmbBranch.EditValue));
+                    Convert.ToInt32(selectedItem["ITEMID"]), Convert.ToInt32(cmbBranch.EditValue));
                 if (result.Tables["ITEM"].Rows.Count == 0)
                 {
                     Text = "SKU Price Check";
-                    lblStatus.Text = "SKU / Itemcode not found.";
+                    lblStatus.Text = "Item not found.";
                     return;
                 }
 
@@ -101,8 +103,7 @@ namespace NSRetail
             finally
             {
                 UseWaitCursor = false;
-                txtScanCode.Focus();
-                txtScanCode.SelectAll();
+                sluItem.Focus();
             }
         }
 
@@ -116,12 +117,14 @@ namespace NSRetail
             LoadPrices();
         }
 
-        private void txtScanCode_KeyDown(object sender, KeyEventArgs e)
+        private void sluItem_EditValueChanged(object sender, EventArgs e)
         {
-            if (e.KeyCode != Keys.Enter) return;
-            e.Handled = true;
-            e.SuppressKeyPress = true;
             LoadPrices();
+        }
+
+        private void sluItem_Popup(object sender, EventArgs e)
+        {
+            sluItemView.BestFitColumns();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
