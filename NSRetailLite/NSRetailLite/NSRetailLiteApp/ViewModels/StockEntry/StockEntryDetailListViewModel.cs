@@ -74,7 +74,7 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
         }
 
         [RelayCommand]
-        public void PerformSearch(string search = null)
+        public async Task PerformSearch(string search = null)
         {
             if (string.IsNullOrEmpty(search))
             {
@@ -89,6 +89,23 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
                     .Where(x => x.ItemName.Contains(search, StringComparison.CurrentCultureIgnoreCase)
                     || (x.ItemCode ?? string.Empty).Contains(search, StringComparison.CurrentCultureIgnoreCase)
                     || x.SKUCode.Contains(search, StringComparison.CurrentCultureIgnoreCase)));
+
+            if (FilteredStockEntryDetails.Count == 0) // no items found, try database
+            {
+                Item item = new();
+
+                item = await GetAsync("StockEntry_v2/getitembycode", item
+                    , new Dictionary<string, string?>()
+                    {
+                    { "ItemCode", search }
+                    }, displayAlert: true);
+
+                if (item.Exception != null) return;
+
+                FilteredStockEntryDetails
+                = new ObservableCollection<StockEntryDetailModel>(
+                    StockEntryModel.StockEntryDetailList.Where(x => x.ItemID == item.ItemID));
+            }
         }
 
         private async Task DeleteStockEntryDetail(StockEntryDetailModel? model)
