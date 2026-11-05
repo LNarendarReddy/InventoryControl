@@ -105,6 +105,7 @@
             this.bbiLiquidation = new DevExpress.XtraBars.BarButtonItem();
             this.bbiSupplierIndent = new DevExpress.XtraBars.BarButtonItem();
             this.bbItemWithAddnlFields = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiSKUPriceCheck = new DevExpress.XtraBars.BarButtonItem();
             this.rpOperations = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -222,9 +223,10 @@
             this.btnCreditNote,
             this.bbiLiquidation,
             this.bbiSupplierIndent,
-            this.bbItemWithAddnlFields});
+            this.bbItemWithAddnlFields,
+            this.bbiSKUPriceCheck});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 89;
+            this.ribbonControl1.MaxItemId = 90;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -946,6 +948,16 @@
             this.bbItemWithAddnlFields.Tag = "C2B8D9D2-8A4D-4B84-A869-693A1E7F89C9";
             this.bbItemWithAddnlFields.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbItemWithAddnlFields_ItemClick);
             // 
+            // bbiSKUPriceCheck
+            // 
+            resources.ApplyResources(this.bbiSKUPriceCheck, "bbiSKUPriceCheck");
+            this.bbiSKUPriceCheck.Id = 89;
+            this.bbiSKUPriceCheck.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiSKUPriceCheck.ImageOptions.SvgImage")));
+            this.bbiSKUPriceCheck.Name = "bbiSKUPriceCheck";
+            this.bbiSKUPriceCheck.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bbiSKUPriceCheck.Tag = "AE9D143B-BD8A-46F7-B576-57455356DAB2";
+            this.bbiSKUPriceCheck.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSKUPriceCheck_ItemClick);
+            // 
             // rpOperations
             // 
             this.rpOperations.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -963,6 +975,7 @@
             this.ribbonPageGroup2.ItemLinks.Add(this.btnItem);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnBarCodePrint);
             this.ribbonPageGroup2.ItemLinks.Add(this.bbItemWithAddnlFields);
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbiSKUPriceCheck);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             resources.ApplyResources(this.ribbonPageGroup2, "ribbonPageGroup2");
             // 
@@ -1335,6 +1348,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup18;
         private DevExpress.XtraBars.BarButtonItem bbiSupplierIndent;
         private DevExpress.XtraBars.BarButtonItem bbItemWithAddnlFields;
+        private DevExpress.XtraBars.BarButtonItem bbiSKUPriceCheck;
     }
 }
 

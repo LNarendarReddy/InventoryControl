@@ -10,6 +10,8 @@ namespace NSRetail.ReportForms.Wareshouse.Audit
     {
         public ucDeletedItemCodes()
         {
+            InitializeComponent();
+
             Dictionary<string, string> columnHeaders = new Dictionary<string, string>
             {
                 { "CREATEDBY", "Created By" }

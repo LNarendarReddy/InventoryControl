@@ -79,6 +79,8 @@ namespace NSRetail.Reports
                 //==========================
                 var branches = item.ToList();
 
+                int totalItemQty = 0;
+
                 for (int i = 0; i < branches.Count; i += branchesPerRow)
                 {
                     XRTableRow branchRow = new XRTableRow();
@@ -99,11 +101,24 @@ namespace NSRetail.Reports
                             Text = b["AVAILABLEQUANTITY"].ToString(),
                             TextAlignment = TextAlignment.MiddleCenter
                         });
+
+                        totalItemQty += int.Parse(b["AVAILABLEQUANTITY"].ToString());
                     }
 
                     table.Rows.Add(branchRow);
                     table.Rows.Add(qtyRow);
                 }
+
+                XRTableCell qtyTotalCell = new XRTableCell()
+                {
+                    Text = "Total Qty : " + totalItemQty,
+                    Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                    Weight = 3,
+                    TextAlignment = TextAlignment.MiddleRight,
+                    Padding = new PaddingInfo(2, 4, 0, 0)
+                };
+
+                headerRow.Cells.Add(qtyTotalCell);
 
                 //==========================
                 // Blank Separator

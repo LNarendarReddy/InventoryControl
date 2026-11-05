@@ -88,6 +88,7 @@
             this.bbiAdditionalFields = new DevExpress.XtraBars.BarButtonItem();
             this.bbiViewHistory = new DevExpress.XtraBars.BarButtonItem();
             this.bbiViewOffers = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiSKUPriceCheck = new DevExpress.XtraBars.BarButtonItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -642,15 +643,16 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiVisualize),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiMRP),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnChangeGST),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnMinimumBaseQuantity),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiViewOffers),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSKUPriceCheck),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiAdditionalFields),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiViewHistory),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportSKU),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCode),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemPrice),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCostPrice),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnChangeGST),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnMinimumBaseQuantity),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiAdditionalFields),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiViewHistory),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiViewOffers)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnExportItemCostPrice)});
             this.pmItemList.Manager = this.barManager1;
             this.pmItemList.Name = "pmItemList";
             // 
@@ -753,6 +755,8 @@
             // 
             this.bbiViewHistory.Caption = "View History";
             this.bbiViewHistory.Id = 10;
+            this.bbiViewHistory.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiViewHistory.ImageOptions.Image")));
+            this.bbiViewHistory.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiViewHistory.ImageOptions.LargeImage")));
             this.bbiViewHistory.Name = "bbiViewHistory";
             this.bbiViewHistory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiViewHistory_ItemClick);
             // 
@@ -760,8 +764,20 @@
             // 
             this.bbiViewOffers.Caption = "View Offers";
             this.bbiViewOffers.Id = 11;
+            this.bbiViewOffers.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiViewOffers.ImageOptions.Image")));
+            this.bbiViewOffers.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiViewOffers.ImageOptions.LargeImage")));
             this.bbiViewOffers.Name = "bbiViewOffers";
             this.bbiViewOffers.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiViewOffers_ItemClick);
+            // 
+            // bbiSKUPriceCheck
+            // 
+            this.bbiSKUPriceCheck.Caption = "SKU Price Check";
+            this.bbiSKUPriceCheck.Id = 12;
+            this.bbiSKUPriceCheck.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiSKUPriceCheck.ImageOptions.Image")));
+            this.bbiSKUPriceCheck.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiSKUPriceCheck.ImageOptions.LargeImage")));
+            this.bbiSKUPriceCheck.Name = "bbiSKUPriceCheck";
+            this.bbiSKUPriceCheck.Tag = "5F2FA89D-11D2-4FE5-A612-846364CD8540::View";
+            this.bbiSKUPriceCheck.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSKUPriceCheck_ItemClick);
             // 
             // barManager1
             // 
@@ -782,8 +798,9 @@
             this.btnMinimumBaseQuantity,
             this.bbiAdditionalFields,
             this.bbiViewHistory,
-            this.bbiViewOffers});
-            this.barManager1.MaxItemId = 12;
+            this.bbiViewOffers,
+            this.bbiSKUPriceCheck});
+            this.barManager1.MaxItemId = 13;
             // 
             // barDockControlTop
             // 
@@ -924,5 +941,6 @@
         private DevExpress.XtraBars.BarButtonItem bbiAdditionalFields;
         private DevExpress.XtraBars.BarButtonItem bbiViewHistory;
         private DevExpress.XtraBars.BarButtonItem bbiViewOffers;
+        private DevExpress.XtraBars.BarButtonItem bbiSKUPriceCheck;
     }
 }
