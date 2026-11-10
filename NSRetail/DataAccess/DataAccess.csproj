@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CloudRepository.cs" />
+    <Compile Include="ItemCompositionRepository.cs" />
+    <Compile Include="StockTransferRepository.cs" />
     <Compile Include="CountingRepository.cs" />
     <Compile Include="CreditNoteRepository.cs" />
     <Compile Include="DataRepository.cs" />

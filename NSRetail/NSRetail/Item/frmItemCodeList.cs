@@ -139,7 +139,7 @@ namespace NSRetail
                 ((frmMain)this.MdiParent).RefreshBaseLineData += FrmItemCodeList_RefreshBaseLineData;
 
                 AccessUtility.SetStatusByAccess(btnNew, btnEdit, btnDelete, btnVisualize, btnMRPList);
-                AccessUtility.SetStatusByAccess(bbiEdit, bbiMRP, bbiVisualize, btnChangeGST, btnMinimumBaseQuantity, bbiVisualize, bbiAdditionalFields, bbiSKUPriceCheck);
+                AccessUtility.SetStatusByAccess(bbiEdit, bbiMRP, bbiVisualize, btnChangeGST, btnMinimumBaseQuantity, bbiVisualize, bbiAdditionalFields, bbiSKUPriceCheck, bbiComposition);
             }
             catch (Exception ex)
             {
@@ -414,6 +414,24 @@ namespace NSRetail
             };
 
             new frmMBQ(selectedItem).ShowDialog();
+        }
+
+        private void bbiComposition_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!AccessUtility.HasAccess(bbiComposition.Tag?.ToString())) return;
+            try
+            {
+                if (gvItemList.FocusedRowHandle < 0) return;
+
+                using (frmItemComposition form = new frmItemComposition(
+                    Convert.ToInt32(gvItemList.GetFocusedRowCellValue("ITEMID"))))
+                    form.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                AppLog.Error(ex);
+            }
         }
 
         private void bbiAdditionalFields_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
