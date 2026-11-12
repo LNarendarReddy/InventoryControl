@@ -106,6 +106,7 @@
             this.bbiSupplierIndent = new DevExpress.XtraBars.BarButtonItem();
             this.bbItemWithAddnlFields = new DevExpress.XtraBars.BarButtonItem();
             this.bbiSKUPriceCheck = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiSKUStockTransfer = new DevExpress.XtraBars.BarButtonItem();
             this.rpOperations = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -224,9 +225,10 @@
             this.bbiLiquidation,
             this.bbiSupplierIndent,
             this.bbItemWithAddnlFields,
-            this.bbiSKUPriceCheck});
+            this.bbiSKUPriceCheck,
+            this.bbiSKUStockTransfer});
             resources.ApplyResources(this.ribbonControl1, "ribbonControl1");
-            this.ribbonControl1.MaxItemId = 90;
+            this.ribbonControl1.MaxItemId = 91;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -958,6 +960,15 @@
             this.bbiSKUPriceCheck.Tag = "AE9D143B-BD8A-46F7-B576-57455356DAB2";
             this.bbiSKUPriceCheck.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSKUPriceCheck_ItemClick);
             // 
+            // bbiSKUStockTransfer
+            // 
+            resources.ApplyResources(this.bbiSKUStockTransfer, "bbiSKUStockTransfer");
+            this.bbiSKUStockTransfer.Id = 90;
+            this.bbiSKUStockTransfer.Name = "bbiSKUStockTransfer";
+            this.bbiSKUStockTransfer.Tag = "7821C140-6407-4D49-BA53-D01E76DFB138::View";
+            this.bbiSKUStockTransfer.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.bbiSKUStockTransfer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSKUStockTransfer_ItemClick);
+            // 
             // rpOperations
             // 
             this.rpOperations.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -1001,6 +1012,7 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.btnPrintDC);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnCounting);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnStockAdjustment);
+            this.ribbonPageGroup3.ItemLinks.Add(this.bbiSKUStockTransfer);
             this.ribbonPageGroup3.ItemLinks.Add(this.bbiSliceCounting);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnImportDiscountSaleItems);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
@@ -1309,6 +1321,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup20;
         private DevExpress.XtraBars.BarButtonItem btnProcessWHDispatch;
         private DevExpress.XtraBars.BarButtonItem btnStockAdjustment;
+        private DevExpress.XtraBars.BarButtonItem bbiSKUStockTransfer;
         private DevExpress.XtraBars.BarButtonItem btnItemLedger;
         private DevExpress.XtraBars.BarButtonItem btnStockSummary;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;

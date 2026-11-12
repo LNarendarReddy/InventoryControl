@@ -57,6 +57,51 @@ namespace NSRetail.Master
             this.Close();
         }
 
+        private void gvCounter_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
+        {
+            if (e.Menu == null || e.MenuType != DevExpress.XtraGrid.Views.Grid.GridMenuType.Row
+                || !gvCounter.IsDataRow(e.HitInfo.RowHandle)) return;
+
+            gvCounter.FocusedRowHandle = e.HitInfo.RowHandle;
+            var row = gvCounter.GetDataRow(e.HitInfo.RowHandle);
+            if (row == null) return;
+            var counter = new Counter
+            {
+                COUNTERID = row["COUNTERID"],
+                COUNTERNAME = row["COUNTERNAME"],
+                BRANCHID = row["BRANCHID"],
+                ISMOBILECOUNTER = row["ISMOBILECOUNTER"]
+            };
+            e.Menu.Items.Add(new DXMenuItem("MOP Payment Gateway Configuration",
+                (o, args) => ConfigureCounterMops(counter))
+            {
+                Enabled = AccessUtility.HasAccess(Convert.ToString(gcEdit.Tag))
+            });
+        }
+
+        private void ConfigureCounterMops(Counter counter)
+        {
+            if (!AccessUtility.HasAccess(Convert.ToString(gcEdit.Tag))) return;
+            try
+            {
+                using (var form = new frmCounter(counter))
+                {
+                    form.ShowInTaskbar = false;
+                    form.StartPosition = FormStartPosition.CenterParent;
+                    form.IconOptions.ShowIcon = false;
+                    form.ShowDialog(this);
+                }
+                if (!counter.IsSave) return;
+                gcCounter.DataSource = objMasterRep.GetCounterLegacy();
+                Utility.Setfocus(gvCounter, "COUNTERID", counter.COUNTERID);
+            }
+            catch (Exception ex)
+            {
+                ErrorMgmt.ShowError(ex);
+                AppLog.Error(ex);
+            }
+        }
+
         private void btnEdit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             try

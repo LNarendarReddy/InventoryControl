@@ -448,6 +448,7 @@ namespace NSRetail
             StockReports.SubCategory.Add(new ReportHolder("16C9400E-5954-4DAE-861C-1F0E79074041") { ReportName = "Non-Moving stock", SearchCriteriaControl = new ucNonMovingStock() });
             StockReports.SubCategory.Add(new ReportHolder("F6ADE590-D672-4522-B54C-552C349C77F8") { ReportName = "Stock As on Date (WH)", SearchCriteriaControl = new ucStockAsOnDate("USP_RPT_STOCK_ASOFDATE_WH", "Warehouse") });
             StockReports.SubCategory.Add(new ReportHolder("9F9B27A1-A3F8-4EB8-98E7-EE55B40D0A9C") { ReportName = "Stock As on Date (Branch)", SearchCriteriaControl = new ucStockAsOnDate("USP_RPT_STOCK_ASOFDATE_BRANCH", "Branch") });
+            StockReports.SubCategory.Add(new ReportHolder("C318D840-86D4-4E3A-AC7E-B5F046E3C1B9") { ReportName = "Stock Register (Branch)", SearchCriteriaControl = new ucStockRegister() });
             StockReports.SubCategory.Add(new ReportHolder("6A2F6A69-E2CE-4B4B-AC21-932C21071635") { ReportName = "Stock As on Date (D/W)", SearchCriteriaControl = new ucStockAsOnDate("USP_RPT_STOCK_ASOFDATE_DW", "DamageAndWastage") });
             StockReports.SubCategory.Add(new ReportHolder("D8D70589-B1D1-40DB-AF85-351C4A576774") { ReportName = "Zero Stock", SearchCriteriaControl = new ucZeroStock() });
             StockReports.SubCategory.Add(new ReportHolder("17EBA4EE-96C4-4C8E-84F9-11D1EE9ADB73") { ReportName = "Left over prices", SearchCriteriaControl = new ucLeftOverPrices() });
@@ -591,6 +592,13 @@ namespace NSRetail
             //    SplashScreenManager.CloseForm();
             //    ErrorManagement.ErrorMgmt.ShowError(ex);
             //}
+        }
+
+        private void bbiSKUStockTransfer_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (!AccessUtility.HasAccess(bbiSKUStockTransfer.Tag?.ToString())) return;
+            using (frmSKUStockTransfer form = new frmSKUStockTransfer())
+                form.ShowDialog(this);
         }
 
         private void btnStockAdjustment_ItemClick(object sender, ItemClickEventArgs e)
