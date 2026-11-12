@@ -1,5 +1,8 @@
-﻿using NSRetailPOS.Gateway.PineLabs;
+﻿using NSRetailPOS.Data;
+using NSRetailPOS.Gateway.PineLabs;
 using System;
+using System.Net.Http;
+using NSRetailPOS.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,6 +25,18 @@ namespace NSRetailPOS.Gateway
         public Action RefundRequestedReady;
 
         public abstract string GatewayType { get; }
+
+        protected void LogPaymentRequest(Uri url, string body)
+        {
+            string message = AppLog.PaymentRequest(GatewayType, url, body);
+            StatusUpdate?.Invoke(message, false);
+        }
+
+        protected void LogPaymentResponse(string action, HttpResponseMessage response, string body)
+        {
+            string message = AppLog.PaymentResponse(GatewayType, action, response, body);
+            StatusUpdate?.Invoke(message, false);
+        }
 
         protected abstract Task<bool> CancelRequest(ICancelRequest cancelRequest);
 
@@ -55,7 +70,8 @@ namespace NSRetailPOS.Gateway
                     gateway = new BharathPeGateway(paymentGatewayID, baseSettings, additionalSettings);
                     break;
                 case "mobikwik":
-                    gateway = new Mobikwik.MobikwikGateway(paymentGatewayID, baseSettings, additionalSettings);
+                    gateway = new Mobikwik.MobikwikGateway(paymentGatewayID, baseSettings, additionalSettings,
+                        mid => new BillingRepository().GetMobikwikGatewayKeyData(paymentGatewayID, mid));
                     break;
             }
 

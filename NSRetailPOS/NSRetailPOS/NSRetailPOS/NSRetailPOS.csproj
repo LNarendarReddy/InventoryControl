@@ -898,6 +898,9 @@
     <EmbeddedResource Include="UI\frmDraftList.resx">
       <DependentUpon>frmDraftList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmDynamicQr.resx">
+      <DependentUpon>frmDynamicQr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmErrorDetails.resx">
       <DependentUpon>frmErrorDetails.cs</DependentUpon>
     </EmbeddedResource>

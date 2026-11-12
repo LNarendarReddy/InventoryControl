@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,21 +20,32 @@ public static class MappedPaymentChecks
     static Type crypto = app.GetType("NSRetailPOS.Gateway.Mobikwik.MobikwikCrypto");
     static void Assert(bool value, string message) { if (!value) throw new Exception(message); }
     static object Crypto(string name, params object[] args) { return crypto.GetMethod(name, BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, args); }
-    static string Settings(string keys, bool test)
+    static string ReadDer(string directory, string name) => Convert.ToBase64String(File.ReadAllBytes(Path.Combine(directory, name)));
+
+    static string KeyData(string keys) => JsonConvert.SerializeObject(new
     {
-        return JsonConvert.SerializeObject(new { BaseUrl = "https://mobikwik.test.invalid", ClientId = "TEST-CLIENT", Mid = "MID123",
-            UseTestEndpoints = test, MbkPublicKeyPath = System.IO.Path.Combine(keys, "public.der"),
-            PartnerPrivateKeyPath = System.IO.Path.Combine(keys, "private.der"), PollIntervalSeconds = 1 });
-    }
-    static PaymentGatewayBase Gateway(Stub handler, string keys, bool test)
+        PartnerPublicKeyDerBase64 = ReadDer(keys, "public.der"),
+        PartnerPrivateKeyDerBase64 = ReadDer(keys, "private.der"),
+        MobikwikPublicKeyDerBase64 = ReadDer(keys, "mobikwik-public.der")
+    });
+
+    static PaymentGatewayBase Gateway(Stub handler, string keys, bool test, string baseUrl = null)
     {
+        string settings = JsonConvert.SerializeObject(new { BaseUrl = baseUrl ?? "https://mobikwik.test.invalid/walletapis/merchant/"
+            + (test ? "testdqr" : "dqr"), ClientId = "TEST-CLIENT", Mid = "MID123", PollIntervalSeconds = 1 });
+        Func<string, string> lookup = mid =>
+        {
+            handler.KeyReads++;
+            Assert(mid == "MID123", "Key lookup must use the configured merchant.");
+            return keys == null ? null : KeyData(keys);
+        };
         return (PaymentGatewayBase)Activator.CreateInstance(app.GetType("NSRetailPOS.Gateway.Mobikwik.MobikwikGateway"),
             BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null,
-            new object[] { 31, Settings(keys, test), "{}", new HttpClient(handler) }, CultureInfo.InvariantCulture);
+            new object[] { 31, settings, "{\"smid\":\"TESTSMID\"}", lookup, new HttpClient(handler) }, CultureInfo.InvariantCulture);
     }
     sealed class Stub : HttpMessageHandler
     {
-        public int Calls, GenerateCalls, StatusCalls;
+        public int Calls, GenerateCalls, StatusCalls, KeyReads;
         public bool Encrypted, Refunded, BadOrder, GenerateError, NetworkFailure, Transient;
         public int StatusCode = 100;
         public string Reference, Keys;
@@ -46,16 +58,22 @@ public static class MappedPaymentChecks
             if (Encrypted)
             {
                 Assert(request.Content.Headers.ContentType.MediaType == "text/plain", "Encrypted content type mismatch.");
-                using (var rsa = (RSACryptoServiceProvider)Crypto("ReadKey", System.IO.Path.Combine(Keys, "private.der"), true))
+                using (var rsa = (RSACryptoServiceProvider)Crypto("ReadKey", ReadDer(Keys, "mobikwik-private.der"), true))
                 {
                     var key = Encoding.UTF8.GetString(rsa.Decrypt(Convert.FromBase64String(request.Headers.GetValues("key").Single()), false));
                     body = (string)Crypto("DecryptBody", body, key);
                 }
                 Assert(request.RequestUri.AbsolutePath.Contains("/merchant/dqr/"), "Encrypted endpoint mismatch.");
             }
-            else Assert(request.RequestUri.AbsolutePath.Contains("/merchant/testdqr/"), "Test endpoint mismatch.");
+            else
+            {
+                Assert(request.RequestUri.AbsolutePath.Contains("/merchant/testdqr/"), "Test endpoint mismatch.");
+                Assert(request.Content.Headers.ContentType.MediaType == "application/json" && !request.Headers.Contains("key"),
+                    "Test requests must use plain JSON without an encryption key header.");
+            }
             var payload = JObject.Parse(body);
             Assert((string)payload["mid"] == "MID123", "Merchant ID mismatch.");
+            Assert((string)payload["smid"] == "TESTSMID", "Counter SMID mismatch.");
             string action = request.RequestUri.Segments.Last();
             JObject result;
             if (action == "generate")
@@ -87,16 +105,27 @@ public static class MappedPaymentChecks
             {
                 string key = "response-key-test";
                 responseText = (string)Crypto("EncryptBody", responseText, key);
-                using (var rsa = (RSACryptoServiceProvider)Crypto("ReadKey", System.IO.Path.Combine(Keys, "public.der"), false))
+                using (var rsa = (RSACryptoServiceProvider)Crypto("ReadKey", ReadDer(Keys, "public.der"), false))
                     response.Headers.Add("key", Convert.ToBase64String(rsa.Encrypt(Encoding.UTF8.GetBytes(key), false)));
             }
             response.Content = new StringContent(responseText);
             return response;
         }
     }
-    static CompletedTransactionData Receive(PaymentGatewayBase gateway, CancellationToken token)
+    static CompletedTransactionData Receive(PaymentGatewayBase gateway, CancellationToken token, bool prepareKeys = false)
     {
-        return gateway.ReceivePayment(7, 1012, token, "0123456789abcdef0123456789abcdef", 1, 10, 10.25m, 9).GetAwaiter().GetResult();
+        const string reference = "0123456789abcdef0123456789abcdef";
+        if (!prepareKeys)
+            return gateway.ReceivePayment(7, 1012, token, reference, 1, 10, 10.25m, 9).GetAwaiter().GetResult();
+
+        const BindingFlags internalMethods = BindingFlags.Instance | BindingFlags.NonPublic;
+        var type = gateway.GetType();
+        using (var keys = (IDisposable)type.GetMethod("LoadKeys", internalMethods).Invoke(gateway, null))
+        {
+            var payment = (Task<CompletedTransactionData>)type.GetMethod("ReceivePayment", internalMethods)
+                .Invoke(gateway, new object[] { 7, 1012, token, reference, 10.25m, keys });
+            return payment.GetAwaiter().GetResult();
+        }
     }
     public static void Run(string keys)
     {
@@ -112,11 +141,23 @@ public static class MappedPaymentChecks
             gateway.QrReady = data => qr = data.StartsWith("upi://pay?");
             string reference = null;
             gateway.ProviderReferenceReady = value => reference = value;
-            var completed = Receive(gateway, CancellationToken.None);
+            var completed = Receive(gateway, CancellationToken.None, encrypted);
             Assert(qr && reference != null && completed != null && completed.Amount == 10.25m
                 && completed.PaymentGatewayID == 31 && completed.MopID == 1012, "Successful payment identity mismatch.");
             Assert(handler.GenerateCalls == 1 && !gateway.IsInProgress, "Generation/state mismatch.");
+            Assert(handler.KeyReads == (encrypted ? 1 : 0), "Use one key lookup per production operation and none in test.");
+            Assert(gateway.VerifyPayment(7, 1012, reference, 10.25m).GetAwaiter().GetResult() != null, "Recovery status failed.");
+            Assert(handler.KeyReads == (encrypted ? 2 : 0), "Recovery must read current production keys.");
         }
+        var missingKeys = new Stub();
+        var missingKeyGateway = Gateway(missingKeys, null, false);
+        bool rejectedMissingKeys = false;
+        try { Receive(missingKeyGateway, CancellationToken.None); }
+        catch (InvalidOperationException) { rejectedMissingKeys = true; }
+        Assert(rejectedMissingKeys && missingKeyGateway.LastRequestFinal && missingKeys.Calls == 0,
+            "Production must fail before sending a request when local keys are missing.");
+        Assert(!Gateway(new Stub(), keys, true, "https://mobikwik.test.invalid/walletapis").IsValid,
+            "A URL without an explicit Mobikwik protocol path must be rejected.");
         var retry = new Stub { Keys = keys, Transient = true };
         Assert(Receive(Gateway(retry, keys, true), CancellationToken.None) != null && retry.GenerateCalls == 1 && retry.StatusCalls == 2,
             "Status retries must reuse the same order.");
@@ -126,12 +167,16 @@ public static class MappedPaymentChecks
             var gateway = Gateway(handler, keys, true);
             Assert(Receive(gateway, CancellationToken.None) == null && gateway.LastRequestFinal, "Terminal order must not count as paid.");
         }
-        var cancelHandler = new Stub { Keys = keys, StatusCode = 0 };
-        var canceledGateway = Gateway(cancelHandler, keys, true);
-        bool persistedRefund = false;
-        canceledGateway.RefundRequestedReady = () => persistedRefund = true;
-        Assert(Receive(canceledGateway, new CancellationToken(true)) == null && persistedRefund && canceledGateway.LastRequestFinal,
-            "Cancellation/refund must not count as received.");
+        foreach (bool encrypted in new[] { false, true })
+        {
+            var cancelHandler = new Stub { Keys = keys, StatusCode = 0, Encrypted = encrypted };
+            var canceledGateway = Gateway(cancelHandler, keys, !encrypted);
+            bool persistedRefund = false;
+            canceledGateway.RefundRequestedReady = () => persistedRefund = true;
+            Assert(Receive(canceledGateway, new CancellationToken(true)) == null && persistedRefund
+                && cancelHandler.Refunded && canceledGateway.LastRequestFinal && cancelHandler.KeyReads == (encrypted ? 1 : 0),
+                "Cancellation and status must use the same protocol and key set as QR generation.");
+        }
         var refundHandler = new Stub { Keys = keys, StatusCode = 100 };
         var refundGateway = Gateway(refundHandler, keys, true);
         refundGateway.RefundRequested = true;

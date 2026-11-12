@@ -50,6 +50,9 @@ namespace NSRetailPOS.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 1800;
                     cmd.CommandText = entityMapping[entityName].ProcedureName;
+                    // The legacy gateway export omits the final nullable column in the local table type.
+                    if (entityName == "PAYMENTGATEWAYINFO" && !dtEntityWiseData.Columns.Contains("PAYMENTGATEWAYKEYDATA"))
+                        dtEntityWiseData.Columns.Add("PAYMENTGATEWAYKEYDATA", typeof(string));
                     cmd.Parameters.AddWithValue(entityMapping[entityName].ParameterName, dtEntityWiseData);
                     if (entityMapping[entityName].IncludeBranchCounterID)
                         cmd.Parameters.AddWithValue("@BranchCounterID", Utility.branchInfo.BranchCounterID);

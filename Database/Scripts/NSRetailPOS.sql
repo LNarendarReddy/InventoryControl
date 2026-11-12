@@ -400,7 +400,8 @@ CREATE TYPE [dbo].[POS_PAYMENTGATEWAYINFOTYPE] AS TABLE(
 	[UPDATEDBY] [int] NULL,
 	[UPDATEDDATE] [datetime] NULL,
 	[DELETEDBY] [int] NULL,
-	[DELETEDDATE] [datetime] NULL
+	[DELETEDDATE] [datetime] NULL,
+	[PAYMENTGATEWAYKEYDATA] [nvarchar](max) NULL
 )
 GO
 /****** Object:  UserDefinedTableType [dbo].[POS_STOCKDISPATCHDETAILTYPE]    Script Date: 17-10-2026 13:04:03 ******/
@@ -816,6 +817,9 @@ CREATE TABLE [dbo].[PAYMENTGATEWAYINFO](
 	[UPDATEDDATE] [datetime] NULL,
 	[DELETEDBY] [int] NULL,
 	[DELETEDDATE] [datetime] NULL,
+	[PAYMENTGATEWAYKEYDATA] [nvarchar](max) NULL,
+ CONSTRAINT [CK_PAYMENTGATEWAYINFO_KEYDATA_JSON] CHECK
+    ([PAYMENTGATEWAYKEYDATA] IS NULL OR ISJSON([PAYMENTGATEWAYKEYDATA]) = 1),
 PRIMARY KEY CLUSTERED 
 (
 	[PAYMENTGATEWAYINFOID] ASC
@@ -1845,6 +1849,92 @@ BEGIN
     SET NOCOUNT ON;
     SELECT TRANSACTIONDATAID, MOPID, AMOUNT, PAYMENTGATEWAYID, ATTEMPTID
     FROM dbo.POS_PGW_TRANSACTIONDATA WHERE BILLID = @BillID;
+END
+GO
+CREATE PROCEDURE dbo.POS_USP_C_PAYMENTATTEMPT
+    @AttemptID uniqueidentifier,
+    @BillID int,
+    @BillNumber nvarchar(100),
+    @AttemptData nvarchar(max),
+    @UserID int,
+    @MaxReferenceLength int = 100,
+    @MinReferenceLength int = 1,
+    @SupersedeAttemptID uniqueidentifier = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+    SET ANSI_PADDING ON;
+    SET ANSI_WARNINGS ON;
+    SET ARITHABORT ON;
+    SET CONCAT_NULL_YIELDS_NULL ON;
+    SET NUMERIC_ROUNDABORT OFF;
+    IF ISJSON(@AttemptData) <> 1 OR NULLIF(LTRIM(RTRIM(@BillNumber)), N'') IS NULL
+        THROW 50410, 'A valid bill number and attempt JSON are required.', 1;
+    IF ISNULL(TRY_CONVERT(uniqueidentifier,JSON_VALUE(@AttemptData,'$.AttemptID')),
+              '00000000-0000-0000-0000-000000000000') <> @AttemptID
+       OR ISNULL(TRY_CONVERT(int,JSON_VALUE(@AttemptData,'$.BillID')),0) <> @BillID
+        THROW 50411, 'Payment attempt identity mismatch.', 1;
+    DECLARE @MopID int = TRY_CONVERT(int,JSON_VALUE(@AttemptData,'$.MopID'));
+    DECLARE @GatewayID int = TRY_CONVERT(int,JSON_VALUE(@AttemptData,'$.GatewayID'));
+    DECLARE @Amount decimal(18,2) = TRY_CONVERT(decimal(18,2),JSON_VALUE(@AttemptData,'$.Amount'));
+    IF ISNULL(@MopID,0) <= 0 OR ISNULL(@GatewayID,0) <= 0 OR ISNULL(@Amount,0) <= 0
+       OR @MaxReferenceLength NOT BETWEEN 1 AND 100 OR @MinReferenceLength NOT BETWEEN 1 AND @MaxReferenceLength
+        THROW 50412, 'Invalid payment attempt values.', 1;
+    BEGIN TRY
+        BEGIN TRANSACTION;
+        DECLARE @LockResult int, @Resource nvarchar(255) = N'POS_PAYMENTATTEMPT:' + CONVERT(nvarchar(20),@BillID);
+        EXEC @LockResult = sys.sp_getapplock @Resource=@Resource,
+            @LockMode='Exclusive', @LockOwner='Transaction', @LockTimeout=5000;
+        IF @LockResult < 0 THROW 50413, 'Another payment request is starting for this bill. Try again.', 1;
+        IF EXISTS (SELECT 1 FROM dbo.POS_PAYMENTATTEMPT WHERE ATTEMPTID=@AttemptID)
+        BEGIN
+            IF NOT EXISTS (SELECT 1 FROM dbo.POS_PAYMENTATTEMPT WHERE ATTEMPTID=@AttemptID
+                           AND BILLID=@BillID AND MOPID=@MopID AND PAYMENTGATEWAYID=@GatewayID AND AMOUNT=@Amount)
+                THROW 50414, 'Existing payment attempt does not match the request.', 1;
+            COMMIT TRANSACTION;
+            SELECT ATTEMPTDATA FROM dbo.POS_PAYMENTATTEMPT WHERE ATTEMPTID=@AttemptID;
+            RETURN;
+        END;
+        DECLARE @PendingID uniqueidentifier;
+        SELECT @PendingID=ATTEMPTID FROM dbo.POS_PAYMENTATTEMPT
+        WHERE BILLID=@BillID AND MOPID=@MopID AND STATE=0;
+        IF (@PendingID IS NOT NULL AND (@SupersedeAttemptID IS NULL OR @PendingID<>@SupersedeAttemptID))
+           OR (@SupersedeAttemptID IS NOT NULL AND @PendingID IS NULL)
+            THROW 50415, 'The payment attempt changed. Reload this bill before retrying.', 1;
+
+        DECLARE @Count bigint, @LastSequence int, @Sequence int, @Reference nvarchar(150);
+        SELECT @Count=COUNT_BIG(*), @LastSequence=MAX(TRY_CONVERT(int,JSON_VALUE(ATTEMPTDATA,'$.SequenceNumber')))
+        FROM dbo.POS_PAYMENTATTEMPT WHERE BILLID=@BillID;
+        IF @Count >= 2147483646 OR ISNULL(@LastSequence,0) >= 2147483646
+            THROW 50416, 'Payment attempt sequence limit reached.', 1;
+        SET @Sequence = CASE WHEN ISNULL(@LastSequence,0)>@Count THEN @LastSequence ELSE CONVERT(int,@Count) END + 1;
+        SET @Reference = @BillNumber + N'-' + CONVERT(nvarchar(20),@Sequence);
+        IF LEN(@Reference) NOT BETWEEN @MinReferenceLength AND @MaxReferenceLength
+            THROW 50417, 'Bill number plus attempt suffix exceeds the gateway reference length limits.', 1;
+        SET @AttemptData=JSON_MODIFY(@AttemptData,'$.SequenceNumber',@Sequence);
+        SET @AttemptData=JSON_MODIFY(@AttemptData,'$.RequestReference',@Reference);
+        IF JSON_VALUE(@AttemptData,'$.GatewayType')='Mobikwik'
+           AND ISNULL(JSON_VALUE(@AttemptData,'$.IsManualLink'),'false')<>'true'
+            SET @AttemptData=JSON_MODIFY(@AttemptData,'$.ProviderReference',@Reference);
+
+        -- Superseded means no longer active, NOT a provider-confirmed failure.
+        -- Preserve the full old snapshot and link it to the retry for reconciliation.
+        UPDATE dbo.POS_PAYMENTATTEMPT SET STATE=2, UPDATEDDATE=GETDATE(), RESOLVEDBY=@UserID,
+            ATTEMPTDATA=JSON_MODIFY(JSON_MODIFY(ATTEMPTDATA,'$.SupersededByAttemptID',
+                CONVERT(nvarchar(36),@AttemptID)),'$.ClosureReason',N'Retry with new reference; previous outcome unconfirmed')
+        WHERE ATTEMPTID=@SupersedeAttemptID AND STATE=0;
+        INSERT dbo.POS_PAYMENTATTEMPT
+            (ATTEMPTID,BILLID,MOPID,AMOUNT,PAYMENTGATEWAYID,PROVIDERREFERENCE,ATTEMPTDATA,STATE,CREATEDDATE,UPDATEDDATE,CREATEDBY)
+        VALUES (@AttemptID,@BillID,@MopID,@Amount,@GatewayID,
+                JSON_VALUE(@AttemptData,'$.ProviderReference'),@AttemptData,0,GETDATE(),GETDATE(),@UserID);
+        COMMIT TRANSACTION;
+        SELECT @AttemptData AS ATTEMPTDATA;
+    END TRY
+    BEGIN CATCH
+        IF XACT_STATE()<>0 ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH;
 END
 GO
 CREATE PROCEDURE dbo.POS_USP_CU_PAYMENTATTEMPT
@@ -3850,7 +3940,7 @@ GO
 
 CREATE   PROC [dbo].[POS_USP_CU_PAYMENTGATEWAYINFO]
 (
-	@PAYMENTGATEWAYINFO POS_PAYMENTGATEWAYINFOTYPE READONLY
+	@PAYMENTGATEWAYINFO [dbo].[POS_PAYMENTGATEWAYINFOTYPE] READONLY
 )
 AS
 BEGIN
@@ -3866,6 +3956,7 @@ BEGIN
 		,PGW.UPDATEDDATE = UPGW.UPDATEDDATE
 		,PGW.DELETEDBY = UPGW.DELETEDBY
 		,PGW.DELETEDDATE = UPGW.DELETEDDATE
+		,PGW.PAYMENTGATEWAYKEYDATA = UPGW.PAYMENTGATEWAYKEYDATA
 	FROM
 		PAYMENTGATEWAYINFO PGW
 		INNER JOIN @PAYMENTGATEWAYINFO UPGW ON PGW.PAYMENTGATEWAYINFOID = UPGW.PAYMENTGATEWAYINFOID
@@ -3882,6 +3973,7 @@ BEGIN
 		,UPDATEDDATE
 		,DELETEDBY
 		,DELETEDDATE
+		,PAYMENTGATEWAYKEYDATA
 	)
 	SELECT 
 		PAYMENTGATEWAYINFOID
@@ -3894,9 +3986,25 @@ BEGIN
 		,UPDATEDDATE
 		,DELETEDBY
 		,DELETEDDATE
+		,PAYMENTGATEWAYKEYDATA
 	FROM @PAYMENTGATEWAYINFO UB
 	WHERE NOT EXISTS ( SELECT 1 FROM PAYMENTGATEWAYINFO BINNER WHERE BINNER.PAYMENTGATEWAYINFOID = UB.PAYMENTGATEWAYINFOID)
 
+END
+GO
+CREATE PROCEDURE [dbo].[POS_USP_R_MOBIKWIKGATEWAYKEYDATA]
+    @PAYMENTGATEWAYINFOID int,
+    @MID varchar(12)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT PAYMENTGATEWAYKEYDATA
+    FROM dbo.PAYMENTGATEWAYINFO
+    WHERE PAYMENTGATEWAYINFOID = @PAYMENTGATEWAYINFOID
+        AND PAYMENTGATEWAYINFOTYPE = 'Mobikwik' AND DELETEDDATE IS NULL
+        AND JSON_VALUE(CASE WHEN ISJSON(PAYMENTGATEWAYCONFIGDATA) = 1
+            THEN PAYMENTGATEWAYCONFIGDATA END, '$.Mid') = @MID;
 END
 GO
 /****** Object:  StoredProcedure [dbo].[POS_USP_CU_ROLE]    Script Date: 17-10-2026 13:04:03 ******/
@@ -6420,6 +6528,30 @@ BEGIN
                              AND AMOUNT = @Amount AND PAYMENTGATEWAYID = @PaymentGatewayID AND STATE = 0)
                 THROW 50403, 'Payment does not match an unresolved attempt.', 1;
         END;
+        -- Manual receipt entry must not attach an already recorded bank transaction again.
+        DECLARE @ManualRRN nvarchar(200), @ManualTransactionID nvarchar(200);
+        SELECT @ManualRRN = NULLIF(JSON_VALUE(ATTEMPTDATA,'$.ManualRRN'),''),
+               @ManualTransactionID = NULLIF(JSON_VALUE(ATTEMPTDATA,'$.ManualTransactionID'),'')
+        FROM dbo.POS_PAYMENTATTEMPT WHERE ATTEMPTID=@AttemptID
+          AND JSON_VALUE(ATTEMPTDATA,'$.IsManualLink')='true';
+        IF (@ManualRRN IS NOT NULL OR @ManualTransactionID IS NOT NULL) AND EXISTS
+        (
+            SELECT 1 FROM dbo.POS_PGW_TRANSACTIONDATA P WITH (UPDLOCK,HOLDLOCK)
+            CROSS APPLY (SELECT CASE WHEN ISJSON(P.PAYMENTRESPONSE)=1 THEN P.PAYMENTRESPONSE ELSE '{}' END AS Body) J
+            WHERE P.PAYMENTGATEWAYID=@PaymentGatewayID
+              AND (
+                (@ManualRRN IS NOT NULL AND (
+                    JSON_VALUE(J.Body,'$.bankRRN')=@ManualRRN OR
+                    JSON_VALUE(J.Body,'$.data.transactions[0].retrievalReferenceNumber')=@ManualRRN))
+                OR (@ManualTransactionID IS NOT NULL AND (
+                    JSON_VALUE(J.Body,'$.transactionId')=@ManualTransactionID OR
+                    JSON_VALUE(J.Body,'$.data.transactions[0].transactionId')=@ManualTransactionID))
+                OR EXISTS (SELECT 1 FROM OPENJSON(J.Body,'$.TransactionData')
+                    WITH (Tag nvarchar(50) '$.Tag', Value nvarchar(200) '$.value') T
+                    WHERE (T.Tag='RRN' AND T.Value=@ManualRRN)
+                       OR (T.Tag='TransactionId' AND T.Value=@ManualTransactionID))
+              )
+        ) THROW 50418, 'This bank RRN or transaction ID is already recorded. Review the existing receipt.', 1;
         INSERT dbo.POS_PGW_TRANSACTIONDATA
             (BILLID,MOPID,AMOUNT,PAYMENTREQUEST,PAYMENTRESPONSE,PAYMENTGATEWAYID,ADDITIONALCONFIG,CREATEDDATE,ATTEMPTID)
         VALUES (@BillID,@MopID,@Amount,@PaymentRequest,@PaymentResponse,@PaymentGatewayID,@AdditionalConfig,GETDATE(),@AttemptID);

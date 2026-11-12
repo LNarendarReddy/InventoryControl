@@ -57,8 +57,20 @@ namespace NSRetailPOS.Gateway
         public string BaseSettings { get; set; }
         public string AdditionalSettings { get; set; }
         public string RequestReference { get; set; }
+        public int SequenceNumber { get; set; }
         public string ProviderReference { get; set; }
         public bool RefundRequested { get; set; }
+        public string AlternativePaymentMode { get; set; }
+        public int? AlternativePaymentAuthorizedBy { get; set; }
+        public DateTime? AlternativePaymentAuthorizedAtUtc { get; set; }
+        public bool IsManualLink { get; set; }
+        public bool ManualEntryWithoutRequest { get; set; }
+        public int? ManualLinkedBy { get; set; }
+        public DateTime? ManualLinkedAtUtc { get; set; }
+        public string ManualRRN { get; set; }
+        public string ManualTransactionID { get; set; }
+        public Guid? SupersededByAttemptID { get; set; }
+        public string ClosureReason { get; set; }
         public PaymentGatewayBase CreateGateway() => PaymentGatewayBase.Create(GatewayType, GatewayID, BaseSettings, AdditionalSettings);
     }
 }

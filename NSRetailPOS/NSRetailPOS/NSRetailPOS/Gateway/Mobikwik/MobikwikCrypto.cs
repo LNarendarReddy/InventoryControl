@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -37,12 +36,15 @@ namespace NSRetailPOS.Gateway.Mobikwik
             }
         }
 
-        internal static RSACryptoServiceProvider ReadKey(string path, bool privateKey)
+        internal static RSACryptoServiceProvider ReadKey(string derBase64, bool privateKey)
         {
-            byte[] bytes = File.ReadAllBytes(path);
-            string pem = Encoding.ASCII.GetString(bytes);
-            if (pem.StartsWith("-----BEGIN", StringComparison.Ordinal))
-                bytes = Convert.FromBase64String(string.Concat(pem.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Where(l => !l.StartsWith("-----"))));
+            byte[] bytes = Convert.FromBase64String(derBase64);
+            try { return ReadDerKey(bytes, privateKey); }
+            finally { Array.Clear(bytes, 0, bytes.Length); }
+        }
+
+        static RSACryptoServiceProvider ReadDerKey(byte[] bytes, bool privateKey)
+        {
             var sequence = new DerReader(bytes).Sequence();
             if (privateKey)
             {

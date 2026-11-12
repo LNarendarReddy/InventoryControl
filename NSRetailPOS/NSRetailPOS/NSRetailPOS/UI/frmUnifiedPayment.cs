@@ -3,6 +3,7 @@ using DevExpress.XtraEditors.Controls;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.Gateway;
+using NSRetailPOS.Gateway.Mobikwik;
 using NSRetailPOS.Gateway.PineLabs;
 using NSRetailPOS.Logging;
 using System;
@@ -20,6 +21,8 @@ namespace NSRetailPOS.UI
     {
         readonly BillingRepository billingRepository = new BillingRepository();
         readonly Bill billObj;
+        readonly HashSet<string> alternativePaymentConfirmations = new HashSet<string>();
+        readonly HashSet<int> retryModes = new HashSet<int>();
         DataTable dtMOPs;
         bool loading = true, busy;
         CancellationTokenSource cancellationTokenSource;
@@ -29,7 +32,6 @@ namespace NSRetailPOS.UI
         int SelectedMopID => rgPaymentModes.EditValue == null ? -1 : Convert.ToInt32(rgPaymentModes.EditValue);
         int FocusedMopID => gvMOP.GetFocusedDataRow() == null ? -1 : Convert.ToInt32(gvMOP.GetFocusedDataRow()["MOPID"]);
         CounterPaymentMode ActiveMode => Utility.CounterPayments.Find(FocusedMopID);
-        bool IsAdmin => string.Equals(Convert.ToString(Utility.loginInfo.RoleName), "Store Admin", StringComparison.OrdinalIgnoreCase);
         decimal Received(int mopID) => billObj.CompletedTransactions.Where(t => t.MopID == mopID).Sum(t => t.Amount);
 
         public frmUnifiedPayment(Bill bill, bool canClose = true)
@@ -71,7 +73,7 @@ namespace NSRetailPOS.UI
                 rgSaleType.EditValue = false;
                 layoutControlItem3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 groupControl1.Text = "Gateway Collection";
-                btnAddMissingPayment.Text = "Check / Link Payment";
+                btnAddMissingPayment.Text = "Add Missing Payment";
                 var receivedModes = dtMOPs.AsEnumerable().Where(r => Received((int)r["MOPID"]) > 0).ToList();
                 rgPaymentModes.EditValue = receivedModes.Count > 1 ? -1
                     : receivedModes.Count == 1 ? (int)receivedModes[0]["MOPID"]
@@ -99,9 +101,28 @@ namespace NSRetailPOS.UI
                 row["MOPVALUE"] = id == SelectedMopID && !isCashOnly
                     ? Math.Max(Received(id), billedAmount) : Received(id);
             }
-            int handle = gvMOP.LocateByValue("MOPID", SelectedMopID);
+            int handle = gvMOP.LocateByValue("MOPID", SelectedMopID == -1 ? 1 : SelectedMopID);
             if (handle >= 0) gvMOP.FocusedRowHandle = handle;
             Recalculate();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter && rgPaymentModes.ContainsFocus)
+            {
+                if (!loading && !busy && dtMOPs != null)
+                {
+                    Recalculate();
+                    if (SelectedMopID == 1 || SelectedMopID == -1) FocusPaymentAmount();
+                    else if (btnReceiveCard.Enabled) FocusGatewayReceive();
+                    else if (ActiveMode?.RequiresGateway == true
+                        && Convert.ToDecimal(txtCardRequestAmount.EditValue) > 0)
+                        Utility.ShowErrorMessage("The selected gateway configuration is missing or invalid. Correct and sync it first.");
+                    else btnApply.Focus();
+                }
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void rgPaymentModes_EditValueChanging(object sender, ChangingEventArgs e)
@@ -138,7 +159,42 @@ namespace NSRetailPOS.UI
             txtCardRequestAmount.Enabled = mode?.RequiresGateway == true && !busy;
             btnReceiveCard.Enabled = !busy && mode?.RequiresGateway == true && mode.Gateway != null
                 && Convert.ToDecimal(txtCardRequestAmount.EditValue) > 0;
-            btnAddMissingPayment.Enabled = !busy;
+            btnAddMissingPayment.Enabled = !busy && mode?.RequiresGateway == true;
+            btnReceiveCard.Text = retryModes.Contains(FocusedMopID) ? "Retry" : "Receive";
+            bool gatewayCollectionPending = mode?.RequiresGateway == true
+                && Convert.ToDecimal(txtCardRequestAmount.EditValue) > 0;
+            AcceptButton = busy ? null : gatewayCollectionPending
+                ? (btnReceiveCard.Enabled ? btnReceiveCard : null) : btnApply;
+        }
+
+        private void FocusGatewayReceive()
+        {
+            if (busy || !btnReceiveCard.Enabled || !IsHandleCreated) return;
+            int mopID = FocusedMopID;
+            BeginInvoke(new Action(() =>
+            {
+                if (!IsDisposed && !busy && FocusedMopID == mopID && btnReceiveCard.Enabled)
+                    btnReceiveCard.Focus();
+            }));
+        }
+
+        private void FocusPaymentAmount()
+        {
+            if (busy || !IsHandleCreated) return;
+            int selectedMopID = SelectedMopID;
+            BeginInvoke(new Action(() =>
+            {
+                if (IsDisposed || busy || SelectedMopID != selectedMopID
+                    || (selectedMopID != 1 && selectedMopID != -1) || !gvMOP.IsDataRow(gvMOP.FocusedRowHandle)) return;
+                gcMOP.Focus();
+                gvMOP.FocusedColumn = gridColumn3;
+                gvMOP.ShowEditor();
+                if (gvMOP.ActiveEditor is TextEdit editor)
+                {
+                    editor.Focus();
+                    editor.SelectAll();
+                }
+            }));
         }
 
         private void TxtPaymentValue_Leave(object sender, EventArgs e) { gvMOP.PostEditor(); Recalculate(); }
@@ -159,8 +215,22 @@ namespace NSRetailPOS.UI
         }
         private void GvMOP_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e) { }
         private void rgPaymentModes_Leave(object sender, EventArgs e) { }
-        private void gvMOP_KeyDown(object sender, KeyEventArgs e) { }
-        private void gcMOP_Enter(object sender, EventArgs e) { RefreshCollection(); }
+        private void gvMOP_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (busy || e.KeyCode != Keys.Enter || e.Modifiers != Keys.None) return;
+            gvMOP.PostEditor();
+            if (!gvMOP.UpdateCurrentRow()) return;
+            Recalculate();
+            if (!btnReceiveCard.Enabled) return;
+            e.Handled = e.SuppressKeyPress = true;
+            FocusGatewayReceive();
+        }
+        private void gcMOP_Enter(object sender, EventArgs e)
+        {
+            if (SelectedMopID == 1 || SelectedMopID == -1)
+                gvMOP.FocusedColumn = gridColumn3;
+            RefreshCollection();
+        }
         private async void btnReceiveCard_Click(object sender, EventArgs e) { await ReceiveSelected(); }
         private async void btnUPIReceive_Click(object sender, EventArgs e) { await ReceiveSelected(); }
         private void btnCancelRequest_Click(object sender, EventArgs e) { cancellationTokenSource?.Cancel(); btnCancelRequest.Enabled = false; }
@@ -192,10 +262,22 @@ namespace NSRetailPOS.UI
             };
             gateway.QrReady = data =>
             {
+                if (cancellationTokenSource?.IsCancellationRequested == true) return;
                 qrForm?.Complete();
                 qrForm = new frmDynamicQr(data, attempt.Amount, attempt.RequestReference,
                     () => cancellationTokenSource?.Cancel());
                 qrForm.Show(this);
+            };
+        }
+
+        private PaymentAttempt NewPaymentAttempt(CounterPaymentMode mode, decimal amount)
+        {
+            return new PaymentAttempt
+            {
+                AttemptID = Guid.NewGuid(), BillID = Convert.ToInt32(billObj.BillID),
+                MopID = mode.MopID, Amount = amount, GatewayID = mode.GatewayID,
+                GatewayType = mode.GatewayType, BaseSettings = mode.BaseSettings,
+                AdditionalSettings = mode.AdditionalSettings
             };
         }
 
@@ -206,11 +288,10 @@ namespace NSRetailPOS.UI
             if (mode?.RequiresGateway != true) return;
             if (mode.Gateway == null) { Utility.ShowErrorMessage("The selected gateway configuration is missing or invalid. Correct and sync it first."); return; }
             gvMOP.CloseEditor();
-            gvMOP.UpdateCurrentRow();
-            decimal amount = Convert.ToDecimal(txtCardRequestAmount.EditValue ?? 0);
-            if (amount <= 0 || amount > billedAmount - billObj.CompletedTransactions.Sum(t => t.Amount)) return;
-            if (mode.GatewayType.Equals("Mobikwik", StringComparison.OrdinalIgnoreCase) && (amount < 1 || amount > 200000 || decimal.Round(amount, 2) != amount))
-            { Utility.ShowErrorMessage("Mobikwik accepts INR 1 to 200000 with at most two decimals."); return; }
+            if (!gvMOP.UpdateCurrentRow()) return;
+            string billNumber = Convert.ToString(billObj.BillNumber);
+            if (string.IsNullOrWhiteSpace(billNumber))
+            { Utility.ShowErrorMessage("A bill number is required for the payment reference."); return; }
             PaymentAttempt attempt = null;
             bool persisted = false, paymentSaved = false;
             var gateway = mode.Gateway;
@@ -218,42 +299,71 @@ namespace NSRetailPOS.UI
             try
             {
                 RefreshCompletedPayments();
-                amount = Convert.ToDecimal(txtCardRequestAmount.EditValue ?? 0);
+                decimal amount = Convert.ToDecimal(txtCardRequestAmount.EditValue ?? 0);
                 if (amount <= 0 || amount > billedAmount - billObj.CompletedTransactions.Sum(t => t.Amount)) return;
-                if (billingRepository.GetPendingPaymentAttempts(Convert.ToInt32(billObj.BillID)).Any())
-                {
-                    Utility.ShowErrorMessage("An earlier payment has an uncertain status. Use Check / Link Payment before requesting another payment.");
-                    return;
-                }
-                attempt = new PaymentAttempt { AttemptID = Guid.NewGuid(), BillID = Convert.ToInt32(billObj.BillID),
-                    MopID = mode.MopID, Amount = amount, GatewayID = mode.GatewayID, GatewayType = mode.GatewayType,
-                    BaseSettings = mode.BaseSettings, AdditionalSettings = mode.AdditionalSettings,
-                    RequestReference = Guid.NewGuid().ToString("N") };
-                if (mode.GatewayType.Equals("Mobikwik", StringComparison.OrdinalIgnoreCase))
-                    attempt.ProviderReference = attempt.RequestReference;
-                billingRepository.SavePaymentAttempt(attempt);
+                if (mode.GatewayType.Equals("Mobikwik", StringComparison.OrdinalIgnoreCase)
+                    && (amount < 1 || amount > 200000 || decimal.Round(amount, 2) != amount))
+                    throw new InvalidOperationException("Mobikwik accepts INR 1 to 200000 with at most two decimals.");
+                var pending = billingRepository.GetPendingPaymentAttempts(Convert.ToInt32(billObj.BillID));
+                var previous = pending.FirstOrDefault(a => a.MopID == mode.MopID);
+                if (previous != null && XtraMessageBox.Show(this,
+                    "The earlier payment " + (previous.ProviderReference ?? previous.RequestReference)
+                    + " is still unconfirmed and may succeed or finish a refund later."
+                    + Environment.NewLine + Environment.NewLine
+                    + "Retry creates a NEW order and can collect twice. Continue only after checking the device/customer."
+                    + " If payment was received, use Add Missing Payment instead."
+                    + Environment.NewLine + Environment.NewLine + "Start a new payment attempt?",
+                    "Confirm Retry", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
+                var mobikwik = gateway as MobikwikGateway;
+                using var mobikwikKeys = mobikwik?.LoadKeys();
+                if (!ConfirmAlternativePayment(pending.Where(a => a.MopID != mode.MopID).ToList(), mode.Name)) return;
+
+                attempt = NewPaymentAttempt(mode, amount);
+                billingRepository.StartPaymentAttempt(attempt, billNumber, previous?.AttemptID);
                 persisted = true;
+                ShowReceiveMessage("Starting " + mode.Name + " payment, reference " + attempt.RequestReference, true);
                 SetBusy(true);
                 cancellationTokenSource?.Dispose();
                 cancellationTokenSource = new CancellationTokenSource();
                 AttachGateway(gateway, attempt);
-                var completed = await gateway.ReceivePayment(attempt.BillID, attempt.MopID, cancellationTokenSource.Token,
-                    attempt.RequestReference, 1, mode.MopID == 2 ? PaymentMode.Card : PaymentMode.UPI, amount, Utility.loginInfo.UserID);
-                if (completed != null) { CompleteTransaction(completed, attempt); paymentSaved = true; }
-                else if (gateway.LastRequestFinal) billingRepository.SavePaymentAttempt(attempt, true);
-                else ShowReceiveMessage("Payment is not confirmed. Check this attempt before collecting again.", true);
-                gateway.ProviderReferenceReady = null;
-                gateway.QrReady = null;
+                var completed = mobikwik != null
+                    ? await mobikwik.ReceivePayment(attempt.BillID, attempt.MopID, cancellationTokenSource.Token,
+                        attempt.RequestReference, amount, mobikwikKeys)
+                    : await gateway.ReceivePayment(attempt.BillID, attempt.MopID, cancellationTokenSource.Token,
+                        attempt.RequestReference, attempt.SequenceNumber, mode.MopID == 2 ? PaymentMode.Card : PaymentMode.UPI,
+                        amount, Utility.loginInfo.UserID);
+                if (completed != null)
+                {
+                    CompleteTransaction(completed, attempt);
+                    retryModes.Remove(mode.MopID);
+                    paymentSaved = true;
+                }
+                else
+                {
+                    retryModes.Add(mode.MopID);
+                    attempt.ClosureReason = gateway.LastRequestFinal ? "Gateway confirmed a final unsuccessful outcome"
+                        : attempt.RefundRequested ? "Cancellation/refund requested; final outcome unconfirmed"
+                        : "Payment wait ended without confirmation";
+                    billingRepository.SavePaymentAttempt(attempt, gateway.LastRequestFinal);
+                    ShowReceiveMessage(gateway.LastRequestFinal
+                        ? "Payment failed/cancelled. Press Retry for a new reference, or Add Missing Payment if the device shows payment received."
+                        : "Payment is unconfirmed. Retry requires confirmation of the duplicate-collection risk; use Add Missing Payment if it was received.", true);
+                }
             }
             catch (Exception ex)
             {
-                if (persisted && gateway.LastRequestFinal)
+                if (persisted)
                 {
-                    try { billingRepository.SavePaymentAttempt(attempt, true); }
-                    catch { }
+                    retryModes.Add(mode.MopID);
+                    attempt.ClosureReason = gateway.LastRequestFinal ? "Request rejected/final failure" : "Request error; outcome unconfirmed";
+                    try { billingRepository.SavePaymentAttempt(attempt, gateway.LastRequestFinal); }
+                    catch (Exception saveError) { AppLog.Error(saveError, "Payment failure outcome could not be saved"); }
                 }
                 AppLog.Error(ex, "Payment request failed");
-                Utility.ShowErrorMessage("Payment could not be confirmed. Check / Link Payment before retrying.");
+                Utility.ShowErrorMessage(persisted
+                    ? "Payment was not confirmed. Retry starts a new reference. If the device/bank shows payment received, use Add Missing Payment."
+                    : ex.Message);
             }
             finally
             {
@@ -265,44 +375,45 @@ namespace NSRetailPOS.UI
             }
         }
 
-        private async void btnLinkPayment_Click(object sender, EventArgs e)
+        private void btnLinkPayment_Click(object sender, EventArgs e)
         {
             if (busy) return;
             bool paymentSaved = false;
             try
             {
+                var mode = ActiveMode;
+                if (mode?.RequiresGateway != true)
+                    throw new InvalidOperationException("Select the gateway payment mode whose payment was received.");
+                gvMOP.CloseEditor();
+                if (!gvMOP.UpdateCurrentRow()) return;
                 RefreshCompletedPayments();
-                var attempt = billingRepository.GetPendingPaymentAttempts(Convert.ToInt32(billObj.BillID)).FirstOrDefault();
-                if (attempt == null) { Utility.ShowErrorMessage("No unresolved payment attempt was found for this bill."); return; }
-                var gateway = attempt.CreateGateway();
-                if (gateway == null) throw new InvalidOperationException("The original gateway configuration is unavailable.");
-                gateway.StatusUpdate = ShowReceiveMessage;
-                gateway.RefundRequested = attempt.RefundRequested;
+                decimal maxAmount = billedAmount - billObj.CompletedTransactions.Sum(t => t.Amount);
+                if (maxAmount <= 0) throw new InvalidOperationException("This bill is already fully paid.");
+                var pending = billingRepository.GetPendingPaymentAttempts(Convert.ToInt32(billObj.BillID));
+                var attempt = pending.FirstOrDefault(a => a.MopID == mode.MopID);
+                bool existingAttempt = attempt != null;
+                if (!existingAttempt)
+                {
+                    decimal entered = Convert.ToDecimal(txtCardRequestAmount.EditValue ?? 0);
+                    attempt = NewPaymentAttempt(mode, entered > 0 ? Math.Min(entered, maxAmount) : maxAmount);
+                    attempt.ManualEntryWithoutRequest = true;
+                }
+                if (attempt.Amount > maxAmount)
+                    throw new InvalidOperationException("This attempt exceeds the remaining bill amount. Review the received payments before linking.");
+                var gateway = existingAttempt ? attempt.CreateGateway() : mode.Gateway;
+                if (gateway == null) throw new InvalidOperationException("The payment gateway configuration is unavailable.");
                 SetBusy(true);
-                CompletedTransactionData completed = null;
-                try { completed = await gateway.VerifyPayment(attempt.BillID, attempt.MopID, attempt.ProviderReference, attempt.Amount); }
-                catch (Exception) { ShowReceiveMessage("Automatic status verification is unavailable for this attempt.", true); }
-                if (completed != null) { CompleteTransaction(completed, attempt); paymentSaved = true; return; }
-                if (gateway.LastRequestFinal) { billingRepository.SavePaymentAttempt(attempt, true); return; }
-                if (!IsAdmin || gateway.GatewayType.Equals("Mobikwik", StringComparison.OrdinalIgnoreCase))
+                using (var dialog = new frmAddMissingPayment(attempt, gateway, !existingAttempt, maxAmount))
                 {
-                    Utility.ShowErrorMessage("Payment is still unconfirmed. Verify its status before any further collection.");
-                    return;
-                }
-                var choice = XtraMessageBox.Show(this,
-                    "Payment is not automatically confirmed. After checking the terminal/bank, choose Yes to link a received payment, No to confirm this attempt was not paid, or Cancel to leave it unresolved.",
-                    "Resolve Payment", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
-                if (choice == DialogResult.No)
-                {
-                    if (XtraMessageBox.Show(this, "Confirm no money was received for this attempt?", "Confirm Not Paid",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                        billingRepository.SavePaymentAttempt(attempt, true);
-                }
-                else if (choice == DialogResult.Yes)
-                {
-                    using (var dialog = new frmAddMissingPayment(attempt, gateway))
-                        if (dialog.ShowDialog(this) == DialogResult.OK)
-                        { CompleteTransaction(dialog.CompletedTransactionData, attempt); paymentSaved = true; }
+                    if (dialog.ShowDialog(this) != DialogResult.OK) return;
+                    if (!ConfirmAlternativePayment(pending.Where(a => a.AttemptID != attempt.AttemptID).ToList(), mode.Name)) return;
+                    if (existingAttempt) billingRepository.SavePaymentAttempt(attempt);
+                    else billingRepository.StartPaymentAttempt(attempt, Convert.ToString(billObj.BillNumber));
+                    CompleteTransaction(dialog.CompletedTransactionData, attempt);
+                    retryModes.Remove(mode.MopID);
+                    paymentSaved = true;
+                    ShowReceiveMessage("Missing payment linked manually by user " + Utility.loginInfo.UserID
+                        + ", reference " + (attempt.ProviderReference ?? attempt.RequestReference), true);
                 }
             }
             catch (Exception ex) { Utility.ShowError(ex); }
@@ -314,6 +425,35 @@ namespace NSRetailPOS.UI
             if (SelectedMopID != -1 && Utility.CounterPayments.Find(SelectedMopID)?.RequiresGateway == true
                 && remainingAmount == 0)
                 btnApply_Click(null, null);
+        }
+
+        private bool ConfirmAlternativePayment(List<PaymentAttempt> pendingAttempts, string paymentMode)
+        {
+            var unconfirmed = pendingAttempts.Where(a =>
+                !alternativePaymentConfirmations.Contains(a.AttemptID + "|" + paymentMode)).ToList();
+            if (unconfirmed.Count == 0) return true;
+            string attempts = string.Join(Environment.NewLine, unconfirmed.Select(a =>
+                $"{Utility.CounterPayments.Find(a.MopID)?.Name ?? a.GatewayType}: INR {a.Amount:0.00}, reference {a.ProviderReference ?? a.RequestReference}"));
+            if (XtraMessageBox.Show(this,
+                "The following gateway payments are still unconfirmed:" + Environment.NewLine + attempts
+                + Environment.NewLine + Environment.NewLine
+                + "They may still succeed or complete a refund later. Continuing with " + paymentMode
+                + " may result in duplicate collection. Check the customer's payment status and reconcile/refund any late payment."
+                + Environment.NewLine + Environment.NewLine
+                + "Continue with " + paymentMode + " and retain these attempts for reconciliation?",
+                "Confirm Alternative Payment", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2) != DialogResult.Yes) return false;
+
+            foreach (var attempt in unconfirmed)
+            {
+                // Preserve pending state and the original gateway snapshot for late-payment reconciliation.
+                attempt.AlternativePaymentMode = paymentMode;
+                attempt.AlternativePaymentAuthorizedBy = Convert.ToInt32(Utility.loginInfo.UserID);
+                attempt.AlternativePaymentAuthorizedAtUtc = DateTime.UtcNow;
+                billingRepository.SavePaymentAttempt(attempt);
+                alternativePaymentConfirmations.Add(attempt.AttemptID + "|" + paymentMode);
+            }
+            return true;
         }
 
         private void CompleteTransaction(CompletedTransactionData completed, PaymentAttempt attempt)
@@ -342,7 +482,9 @@ namespace NSRetailPOS.UI
         {
             if (IsDisposed) return;
             if (InvokeRequired) { BeginInvoke(new Action(() => ShowReceiveMessage(message, log))); return; }
-            txtStatus.Text += DateTime.Now.ToLongTimeString() + " - " + message + Environment.NewLine;
+            string safeMessage = AppLog.SanitizePaymentMessage(message);
+            if (log) AppLog.Info("Payment status: " + safeMessage);
+            txtStatus.Text += DateTime.Now.ToLongTimeString() + " - " + safeMessage + Environment.NewLine;
             txtStatus.SelectionStart = int.MaxValue;
             txtStatus.ScrollToCaret();
         }
@@ -366,8 +508,6 @@ namespace NSRetailPOS.UI
                 gvMOP.CloseEditor();
                 if (!gvMOP.UpdateCurrentRow()) return;
                 RefreshCompletedPayments();
-                if (billingRepository.GetPendingPaymentAttempts(Convert.ToInt32(billObj.BillID)).Any())
-                    throw new InvalidOperationException("Resolve pending payment attempts before closing the bill.");
                 if (remainingAmount > 0) throw new InvalidOperationException($"Pending balance: {remainingAmount:0.00}");
                 foreach (DataRow row in dtMOPs.Rows)
                 {
@@ -384,6 +524,8 @@ namespace NSRetailPOS.UI
                 decimal overpaid = -Math.Min(remainingAmount, 0);
                 if (overpaid > 0 && (cash == null || (decimal)cash["MOPVALUE"] < overpaid))
                     throw new InvalidOperationException("Non-cash payments exceed the bill amount.");
+                string paymentMode = SelectedMopID == -1 ? "Multiple" : Utility.CounterPayments.Find(SelectedMopID)?.Name;
+                if (!ConfirmAlternativePayment(billingRepository.GetPendingPaymentAttempts(Convert.ToInt32(billObj.BillID)), paymentMode)) return;
                 billObj.TenderedCash = cash == null ? 0 : cash["MOPVALUE"];
                 billObj.TenderedChange = -overpaid;
                 billObj.Rounding = isCashOnly ? Math.Round(billedAmount, MidpointRounding.AwayFromZero) - billedAmount : 0;
@@ -392,7 +534,7 @@ namespace NSRetailPOS.UI
                 billObj.CustomerName = txtCustomerName.EditValue;
                 billObj.CustomerNumber = txtCustomerPhone.EditValue;
                 billObj.CustomerGST = txtCustomerGST.EditValue;
-                billObj.PaymentMode = SelectedMopID == -1 ? "Multiple" : Utility.CounterPayments.Find(SelectedMopID)?.Name;
+                billObj.PaymentMode = paymentMode;
                 billObj.dtMopValues = dtMOPs.Copy();
                 IsPaid = true;
                 Close();

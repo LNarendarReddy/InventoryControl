@@ -27,6 +27,7 @@ namespace NSRetailPOS.UI
         {
             cancel?.Invoke();
             button.Enabled = false;
+            Hide();
         }
 
         private void frmDynamicQr_FormClosing(object sender, FormClosingEventArgs e)
@@ -35,6 +36,7 @@ namespace NSRetailPOS.UI
             cancel();
             e.Cancel = true;
             button.Enabled = false;
+            Hide();
         }
 
         public void Complete() { completed = true; Close(); Dispose(); }
