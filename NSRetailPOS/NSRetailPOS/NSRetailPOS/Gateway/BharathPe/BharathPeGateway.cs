@@ -93,7 +93,8 @@ namespace NSRetailPOS.Gateway
 
                 string jsonPayload = JsonConvert.SerializeObject(paymentRequest);
                 
-                StatusUpdate($"Sending payment request - payload : {jsonPayload}");
+                StatusUpdate($"Sending payment request - payload : {AppLog.SanitizePaymentMessage(jsonPayload)}");
+                LogPaymentRequest(new Uri(BuildJourneyUrl(InitiateJourney)), jsonPayload);
 
                 var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
@@ -101,7 +102,7 @@ namespace NSRetailPOS.Gateway
 
                 string responseString = await response.Content.ReadAsStringAsync();
 
-                AppLog.Info($"Initiate Transaction Response : {responseString}");
+                LogPaymentResponse(InitiateJourney, response, responseString);
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -168,8 +169,10 @@ namespace NSRetailPOS.Gateway
                 requestClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Bearer", tokenValue);
 
+                string requestBody = JsonConvert.SerializeObject(request);
+                LogPaymentRequest(new Uri(BuildJourneyUrl(StatusJourney)), requestBody);
                 var content = new StringContent(
-                    JsonConvert.SerializeObject(request),
+                    requestBody,
                     Encoding.UTF8,
                     "application/json");
 
@@ -180,7 +183,7 @@ namespace NSRetailPOS.Gateway
 
                 string responseString =
                     await response.Content.ReadAsStringAsync();
-                AppLog.Info($"Check status response : {responseString}");
+                LogPaymentResponse(StatusJourney, response, responseString);
                 if (!response.IsSuccessStatusCode)
                 {
                     StatusUpdate($"HTTP Error : {responseString}");
@@ -243,6 +246,7 @@ namespace NSRetailPOS.Gateway
                     case "6":
                     case "8":
                         StatusUpdate($"Payment failed : {transaction.transactionStatus}");
+                        LastRequestFinal = true;
                         return null;
 
                     case "1":
@@ -278,7 +282,9 @@ namespace NSRetailPOS.Gateway
                     Encoding.UTF8,
                     "application/json");
 
-                StatusUpdate($"Cancelling transaction {JsonConvert.SerializeObject(cancelRequest)}");
+                string requestBody = JsonConvert.SerializeObject(cancelRequest);
+                StatusUpdate($"Cancelling transaction {AppLog.SanitizePaymentMessage(requestBody)}");
+                LogPaymentRequest(new Uri(BuildJourneyUrl(CancelJourney)), requestBody);
 
                 HttpResponseMessage response =
                     await requestClient.PostAsync(
@@ -288,6 +294,7 @@ namespace NSRetailPOS.Gateway
                 string responseString =
                     await response.Content.ReadAsStringAsync();
 
+                LogPaymentResponse(CancelJourney, response, responseString);
                 if (!response.IsSuccessStatusCode)
                 {
                     StatusUpdate($"HTTP Error : {responseString}");
@@ -325,6 +332,7 @@ namespace NSRetailPOS.Gateway
                     StatusUpdate(cancelResponse.data.message);
 
                     // treat as cancelled
+                    LastRequestFinal = true;
                     return true;
                 }
 
@@ -388,6 +396,8 @@ namespace NSRetailPOS.Gateway
 
                 if (paymentResponse == null)
                     return null;
+
+                ProviderReferenceReady?.Invoke(paymentResponse.data.referenceId);
 
                 BharatPeStatusRequest statusRequest = new()
                 {
@@ -491,6 +501,13 @@ namespace NSRetailPOS.Gateway
                         PaymentGatewayID = PaymentGatewayID,
                         AdditionalSettings = AdditionalSettings
                     };
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "8":
+                    LastRequestFinal = true;
+                    break;
             }
 
             return null;

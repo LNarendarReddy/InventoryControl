@@ -24,7 +24,7 @@ namespace NSRetailPOS.Data
             , { "POS_DAYSEQUENCE",  new EntityMapping("USP_CU_POS_DAYSEQUENCE", "@DaySequence") }
             , { "POS_PGW_TRANSACTIONDATA",  new EntityMapping("USP_CU_POS_PGW_TRANSACTIONDATA", "@DATA", true) }
         };
-        public DataTable GetEntityWiseData(object EntityName, object SyncDate, object BranchID)
+        public DataTable GetEntityWiseData(object EntityName, object SyncDate, object BranchID, object BranchCounterID = null)
         {
             DataTable dtEntity = new DataTable();
             try
@@ -38,6 +38,12 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@EntityName", EntityName);
                     cmd.Parameters.AddWithValue("@SyncDate", SyncDate);
                     cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                    if (string.Equals(Convert.ToString(EntityName), "BRANCHCOUNTERMOP", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (!int.TryParse(Convert.ToString(BranchCounterID), out int counterID) || counterID <= 0)
+                            throw new ArgumentException("A valid counter ID is required to download payment mode mappings.");
+                        cmd.Parameters.Add("@BranchCounterID", SqlDbType.Int).Value = counterID;
+                    }
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtEntity);

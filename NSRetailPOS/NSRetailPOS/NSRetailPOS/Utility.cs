@@ -30,7 +30,7 @@ namespace NSRetailPOS
     {
         public static LoginInfo loginInfo = new();
         public static BranchInfo branchInfo = new();
-        public static PaymentGatewayBase PaymentGateway = null;
+        public static CounterPaymentConfiguration CounterPayments = new CounterPaymentConfiguration();
 
         static SerialPort _serialPort = new();
 
@@ -68,14 +68,18 @@ namespace NSRetailPOS
             billObj.IsIGSTBill = dsBillDetails.Tables["BILL"].Rows[0]["ISIGSTBILL"];
             billObj.dtBillDetails = dsBillDetails.Tables["BILLDETAILS"];
 
-            if (dsBillDetails.Tables.Count >= 2)
+            if (dsBillDetails.Tables.Contains("PGW_TRANSACTIONDATA"))
             {
                 foreach (DataRow drTransactionData in dsBillDetails.Tables["PGW_TRANSACTIONDATA"].Rows)
                 {
                     CompletedTransactionData completedTransactionData = new CompletedTransactionData()
                     {
                         Amount = Convert.ToDecimal(drTransactionData["AMOUNT"]),
-                        MopID = Convert.ToInt32(drTransactionData["MOPID"])                        
+                        MopID = Convert.ToInt32(drTransactionData["MOPID"]),
+                        BillID = Convert.ToInt32(billObj.BillID),
+                        PaymentGatewayID = drTransactionData.IsNull("PAYMENTGATEWAYID") ? 0 : Convert.ToInt32(drTransactionData["PAYMENTGATEWAYID"]),
+                        CompletedTransactionDataID = Convert.ToInt32(drTransactionData["TRANSACTIONDATAID"]),
+                        AdditionalSettings = Convert.ToString(drTransactionData["ADDITIONALCONFIG"])
                     };
 
                     billObj.CompletedTransactions.Add(completedTransactionData);
@@ -117,7 +121,7 @@ namespace NSRetailPOS
                      DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(
                         entityName,
                         forceFullSync ? new DateTime(1900, 01, 01) : entityRow["SYNCDATE"]
-                        , branchInfo.BranchID);
+                        , branchInfo.BranchID, branchInfo.BranchCounterID);
                     ReportText(isOverlayShown, $"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
                     if (dtEntityWiseData?.Rows.Count > 0)
                     {

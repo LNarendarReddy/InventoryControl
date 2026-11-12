@@ -1,5 +1,8 @@
-﻿using NSRetailPOS.Gateway.PineLabs;
+﻿using NSRetailPOS.Data;
+using NSRetailPOS.Gateway.PineLabs;
 using System;
+using System.Net.Http;
+using NSRetailPOS.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,8 +18,25 @@ namespace NSRetailPOS.Gateway
         public bool IsInProgress { get; protected set; }
 
         public bool IsValid { get; protected set; }
+        public bool LastRequestFinal { get; set; }
+        public Action<string> ProviderReferenceReady;
+        public Action<string> QrReady;
+        public bool RefundRequested { get; set; }
+        public Action RefundRequestedReady;
 
         public abstract string GatewayType { get; }
+
+        protected void LogPaymentRequest(Uri url, string body)
+        {
+            string message = AppLog.PaymentRequest(GatewayType, url, body);
+            StatusUpdate?.Invoke(message, false);
+        }
+
+        protected void LogPaymentResponse(string action, HttpResponseMessage response, string body)
+        {
+            string message = AppLog.PaymentResponse(GatewayType, action, response, body);
+            StatusUpdate?.Invoke(message, false);
+        }
 
         protected abstract Task<bool> CancelRequest(ICancelRequest cancelRequest);
 
@@ -37,16 +57,21 @@ namespace NSRetailPOS.Gateway
 
         public static PaymentGatewayBase Create(string gatewayType, int paymentGatewayID, string baseSettings, string additionalSettings)
         {
-            if (string.IsNullOrEmpty(baseSettings) || string.IsNullOrEmpty(additionalSettings)) return null;
+            if (string.IsNullOrWhiteSpace(baseSettings)) return null;
+            if (string.IsNullOrWhiteSpace(additionalSettings)) additionalSettings = "{}";
 
             PaymentGatewayBase gateway = null;
-            switch (gatewayType)
+            switch (gatewayType?.ToLowerInvariant())
             {
-                case "PineLabs":
+                case "pinelabs":
                     gateway = new PineLabsGateway(paymentGatewayID, baseSettings, additionalSettings);
                     break;
-                case "BharathPe":
+                case "bharathpe":
                     gateway = new BharathPeGateway(paymentGatewayID, baseSettings, additionalSettings);
+                    break;
+                case "mobikwik":
+                    gateway = new Mobikwik.MobikwikGateway(paymentGatewayID, baseSettings, additionalSettings,
+                        mid => new BillingRepository().GetMobikwikGatewayKeyData(paymentGatewayID, mid));
                     break;
             }
 
@@ -81,6 +106,7 @@ namespace NSRetailPOS.Gateway
 
     public class CompletedTransactionData
     {
+        public Guid? AttemptID { get; set; }
         public IPaymentRequest PaymentRequest { get; set; }
 
         public IStatusResponse StatusResponse { get; set; }

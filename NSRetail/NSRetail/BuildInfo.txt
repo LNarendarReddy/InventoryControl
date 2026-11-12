@@ -1,4 +1,9 @@
-﻿v4.1.9
+﻿v4.2.0
+-- Added MOP Payment Gateway Configuration to the Counter List right-click menu for assigning gateways by payment mode and setting the Mobikwik sub-merchant ID.
+-- Added Composition Setup for defining which ingredient SKUs are used to produce a destination SKU.
+-- Added SKU Stock Transfer and transfer history for recording stock conversions and reviewing their details.
+
+v4.1.9
 -- Added Stock Register (Branch) under Stock Reports with a dedicated View permission.
 
 v4.1.8
