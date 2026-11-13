@@ -77,8 +77,13 @@ namespace NSRetailPOS
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LoginTiming.Measure("Initialize billing screen", InitializeBillingScreen);
+        }
+
+        private void InitializeBillingScreen()
+        {
             Utility.ActiveForm = this;
-            Utility.ListenSerialPort();
+            LoginTiming.Measure("Open weighing-scale serial port", Utility.ListenSerialPort);
             lblUserinfo.Text = $"Loggedin User : {Utility.loginInfo.UserFullName}    " +
                 $"Role : {Utility.loginInfo.RoleName} - {ConfigurationManager.AppSettings["BuildType"]}    ";
             lblVersionInfo.Text = $"App Version {Utility.AppVersion} || DB Version {Utility.DBVersion} ";
@@ -89,7 +94,8 @@ namespace NSRetailPOS
             btnOperations.Enabled = Utility.loginInfo.RoleName.Equals("Store Manager");
             gcDiscount.Visible = Utility.branchInfo.BranchID.Equals(45) || Utility.branchInfo.BranchID.Equals(103);
 
-            DataSet dsInitialData = billingRepository.GetInitialLoad(Utility.loginInfo.UserID, Utility.branchInfo.BranchCounterID);
+            DataSet dsInitialData = LoginTiming.Measure("Read initial billing data from local POS database",
+                () => billingRepository.GetInitialLoad(Utility.loginInfo.UserID, Utility.branchInfo.BranchCounterID));
 
             if (!int.TryParse(dsInitialData.Tables["DAYSEQUENCE"].Rows[0][0].ToString(), out daySequenceID))
             {
@@ -99,8 +105,8 @@ namespace NSRetailPOS
             }
 
             Utility.ItemOrCodeChanged += Utility_ItemOrCodeChanged;
-            LoadItemCodes();
-            LoadBillData(dsInitialData);
+            LoginTiming.Measure("Load item codes", LoadItemCodes);
+            LoginTiming.Measure("Load initial bill", () => LoadBillData(dsInitialData));
 
             lblOffer.Text = noOfferText;
             lblDeal.Text = noDealText;

@@ -1,9 +1,12 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
+using NSRetailPOS.Logging;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.UI
@@ -29,15 +32,27 @@ namespace NSRetailPOS.UI
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            var timer = Stopwatch.StartNew();
+            string outcome = "Failed";
+            Log.Information("POS login started for branch {BranchID}, counter {CounterID}",
+                Utility.branchInfo.BranchID, Utility.branchInfo.BranchCounterID);
             try
             {
-                if (!dxValidationProvider1.Validate())
+                if (!LoginTiming.Measure("Validate login form", () => dxValidationProvider1.Validate()))
+                {
+                    outcome = "Validation rejected";
                     return;
-                DataSet dSUserInfo = objPOSRep.GetUserInfo(Utility.branchInfo.BranchID,
-                    Utility.branchInfo.BranchCounterID, txtUserName.EditValue, Utility.Encrypt(Convert.ToString(txtPassword.EditValue))
-                    , Utility.GetHDDSerialNumber());
+                }
+                string diskSerial = LoginTiming.Measure("Read disk serial", Utility.GetHDDSerialNumber);
+                DataSet dSUserInfo = LoginTiming.Measure("Validate credentials in local POS database", () =>
+                    objPOSRep.GetUserInfo(Utility.branchInfo.BranchID, Utility.branchInfo.BranchCounterID,
+                        txtUserName.EditValue, Utility.Encrypt(Convert.ToString(txtPassword.EditValue)), diskSerial));
 
-                if (dSUserInfo == null || dSUserInfo.Tables.Count == 0 || dSUserInfo.Tables[0].Rows.Count == 0) return;
+                if (dSUserInfo == null || dSUserInfo.Tables.Count == 0 || dSUserInfo.Tables[0].Rows.Count == 0)
+                {
+                    outcome = "No credentials result";
+                    return;
+                }
 
                 if (!int.TryParse(Convert.ToString(dSUserInfo.Tables[0].Rows[0][0]), out int IValue))
                     throw new Exception(Convert.ToString(dSUserInfo.Tables[0].Rows[0][0]));
@@ -47,7 +62,7 @@ namespace NSRetailPOS.UI
                     new ReportRepository().ExecuteNonQuery("USP_C_LOGINHISTORY", true, new Dictionary<string, object>()
                     {
                         { "UserID", IValue }, { "ApplicationID", 24 }
-                    }, commandTimeOut: 5);
+                    }, commandTimeOut: 5, logLoginTiming: true);
                 }
                 catch { } // Do nothing in case of no connection
 
@@ -76,7 +91,9 @@ namespace NSRetailPOS.UI
                     && bool.Parse(dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"].ToString());
                 Utility.branchInfo.EnableDraftBills = int.Parse(dSUserInfo.Tables[0].Rows[0]["ENABLEDRAFTBILLS"].ToString());
 
-                Utility.CounterPayments.Load(new BillingRepository().GetCounterPaymentModes());
+                var paymentModes = LoginTiming.Measure("Read counter payment modes from local POS database",
+                    () => new BillingRepository().GetCounterPaymentModes());
+                LoginTiming.Measure("Load counter payment modes", () => Utility.CounterPayments.Load(paymentModes));
 
                 if (ISOTP)
                 {
@@ -84,18 +101,26 @@ namespace NSRetailPOS.UI
                     Obj.ShowInTaskbar = false;
                     Obj.StartPosition = FormStartPosition.CenterScreen;
                     Obj.IconOptions.ShowIcon = false;
+                    outcome = "Password change required";
                     Obj.ShowDialog();
                 }
                 else
                 {
-                    frmMain.Instance.Show();
+                    var billingForm = LoginTiming.Measure("Get billing window", () => frmMain.Instance);
+                    LoginTiming.Measure("Show billing window", () => billingForm.Show());
+                    outcome = "Billing window shown";
                     txtPassword.Text = string.Empty;
                     this.Hide();
                 }
             }
             catch (Exception ex)
             {
+                Log.Warning("POS login stopped after {ElapsedMs} ms ({ErrorType})", timer.ElapsedMilliseconds, ex.GetType().Name);
                 Utility.ShowError(ex);
+            }
+            finally
+            {
+                Log.Information("POS login ended after {ElapsedMs} ms with outcome {Outcome}", timer.ElapsedMilliseconds, outcome);
             }
         }
 
