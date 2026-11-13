@@ -2151,6 +2151,9 @@
         IkJsYWNrIiAvPg0KICA8L2c+DQo8L3N2Zz4L
 </value>
   </data>
+  <data name="bbiSKUStockTransfer.Caption" xml:space="preserve">
+    <value>SKU to SKU Transfer</value>
+  </data>
   <data name="ribbonControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -3327,6 +3330,12 @@
     <value>bbiSKUPriceCheck</value>
   </data>
   <data name="&gt;&gt;bbiSKUPriceCheck.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v22.2, Version=22.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;bbiSKUStockTransfer.Name" xml:space="preserve">
+    <value>bbiSKUStockTransfer</value>
+  </data>
+  <data name="&gt;&gt;bbiSKUStockTransfer.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v22.2, Version=22.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;rpOperations.Name" xml:space="preserve">

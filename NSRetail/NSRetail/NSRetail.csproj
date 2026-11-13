@@ -226,6 +226,24 @@
     <Compile Include="Item\frmImportMBQ.Designer.cs">
       <DependentUpon>frmImportMBQ.cs</DependentUpon>
     </Compile>
+    <Compile Include="Item\frmItemComposition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmSKUStockTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmSKUStockTransfer.Designer.cs">
+      <DependentUpon>frmSKUStockTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\frmStockTransferHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\frmStockTransferHistory.Designer.cs">
+      <DependentUpon>frmStockTransferHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Item\frmItemComposition.Designer.cs">
+      <DependentUpon>frmItemComposition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Item\frmItemAdditionalFields.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -885,6 +903,12 @@
     </Compile>
     <Compile Include="ReportForms\Stock\StockReports\ucStockAsOnDate.Designer.cs">
       <DependentUpon>ucStockAsOnDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Stock\StockReports\ucStockRegister.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Stock\StockReports\ucStockRegister.Designer.cs">
+      <DependentUpon>ucStockRegister.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Stock\ProcessingReports\ucStockSlippage.cs">
       <SubType>UserControl</SubType>
@@ -1576,6 +1600,9 @@
     <EmbeddedResource Include="Item\frmItemAdditionalFields.resx">
       <DependentUpon>frmItemAdditionalFields.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Item\frmItemComposition.resx">
+      <DependentUpon>frmItemComposition.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Item\frmItemHistory.resx">
       <DependentUpon>frmItemHistory.cs</DependentUpon>
     </EmbeddedResource>
@@ -1892,6 +1919,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\StockReports\ucStockAsOnDate.resx">
       <DependentUpon>ucStockAsOnDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Stock\StockReports\ucStockRegister.resx">
+      <DependentUpon>ucStockRegister.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Stock\ProcessingReports\ucStockSlippage.resx">
       <DependentUpon>ucStockSlippage.cs</DependentUpon>
