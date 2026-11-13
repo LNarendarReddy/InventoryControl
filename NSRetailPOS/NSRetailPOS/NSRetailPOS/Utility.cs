@@ -88,6 +88,20 @@ namespace NSRetailPOS
             return billObj;
         }
 
+        public static void CleanDataTable(DataTable dataTable, List<string> allowedColumns)
+        {
+            if (dataTable == null || allowedColumns == null || allowedColumns.Count == 0)
+                return;
+
+            for (int i = dataTable.Columns.Count - 1; i >= 0; i--)
+            {
+                if (!allowedColumns.Contains(dataTable.Columns[i].ColumnName))
+                {
+                    dataTable.Columns.RemoveAt(i);
+                }
+            }
+        }
+
         public static async Task<bool> StartSync(bool isOverlayShown, bool forceFullSync = false)
         {
             try

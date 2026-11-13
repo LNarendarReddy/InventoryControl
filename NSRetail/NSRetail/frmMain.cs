@@ -428,6 +428,7 @@ namespace NSRetail
             POSReports.SubCategory.Add(new ReportHolder("A4FD9F89-D28A-41DF-8DD9-83CB6C0C55B3") { ReportName = "Credit Bill Payments", SearchCriteriaControl = new ucCreditBillPayments() });
             POSReports.SubCategory.Add(new ReportHolder("E1D65F8D-E918-41BF-A6BB-3D7BDAF3C1B8") { ReportName = "Installed versions", SearchCriteriaControl = new ucInstalledVersions() });
             POSReports.SubCategory.Add(new ReportHolder("54C8D668-1B98-43AD-BFA0-B828357A4101") { ReportName = "HDD SNo history", SearchCriteriaControl = new ucHDDClearhistory() });
+            POSReports.SubCategory.Add(new ReportHolder("F6E6C967-9FF0-44A8-9029-E73E6D6576AB") { ReportName = "Branch Day closures (totals)", SearchCriteriaControl = new ucBranchDayClosures() });
             reportList.Add(POSReports);
 
             ReportHolder VoidReports = new ReportHolder("F29F47AA-857C-4725-A2B7-BABBF90187FA") { ReportName = "Void Data Analysis" };

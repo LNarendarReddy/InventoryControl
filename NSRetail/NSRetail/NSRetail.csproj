@@ -406,6 +406,12 @@
     <Compile Include="ReportForms\Branch\POSReports\frmBillOverrideOptions.Designer.cs">
       <DependentUpon>frmBillOverrideOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForms\Branch\POSReports\ucBranchDayClosures.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Branch\POSReports\ucBranchDayClosures.Designer.cs">
+      <DependentUpon>ucBranchDayClosures.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForms\Branch\POSReports\ucCRefundSheets.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1657,6 +1663,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\POSReports\frmBillOverrideOptions.resx">
       <DependentUpon>frmBillOverrideOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Branch\POSReports\ucBranchDayClosures.resx">
+      <DependentUpon>ucBranchDayClosures.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\POSReports\ucCRefundSheets.resx">
       <DependentUpon>ucCRefundSheets.cs</DependentUpon>

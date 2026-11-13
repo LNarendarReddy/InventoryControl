@@ -39,6 +39,7 @@ namespace NSRetailPOS.Operations
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Return Rejected Items", SearchCriteriaControl = new ucBRRejectedItems() });
             POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Price Changes", SearchCriteriaControl = new ucItempriceChanges() });
+            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch day closure (totals)", SearchCriteriaControl = new ucBranchDayClosures() });
             reportList.Add(POSReports);
 
             ReportHolder otherReports = new ReportHolder() { ReportName = "Other Reports" };

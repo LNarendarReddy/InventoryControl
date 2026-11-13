@@ -239,6 +239,12 @@
     </Compile>
     <Compile Include="Helpers\DefaultPrinter.cs" />
     <Compile Include="IBarcodeReceiver.cs" />
+    <Compile Include="Operations\Branch\frmBranchDayClosure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\Branch\frmBranchDayClosure.Designer.cs">
+      <DependentUpon>frmBranchDayClosure.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operations\Branch\frmLiquidation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -376,6 +382,12 @@
     </Compile>
     <Compile Include="Operations\Reports\ucInvoiceList.Designer.cs">
       <DependentUpon>ucInvoiceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\Reports\ucBranchDayClosures.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operations\Reports\ucBranchDayClosures.Designer.cs">
+      <DependentUpon>ucBranchDayClosures.cs</DependentUpon>
     </Compile>
     <Compile Include="Operations\Reports\ucItempriceChanges.cs">
       <SubType>UserControl</SubType>
@@ -695,6 +707,9 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Branch\frmBranchDayClosure.resx">
+      <DependentUpon>frmBranchDayClosure.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operations\Branch\frmLiquidation.resx">
       <DependentUpon>frmLiquidation.cs</DependentUpon>
     </EmbeddedResource>
@@ -763,6 +778,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Reports\ucInvoiceList.resx">
       <DependentUpon>ucInvoiceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\Reports\ucBranchDayClosures.resx">
+      <DependentUpon>ucBranchDayClosures.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operations\Reports\ucItempriceChanges.resx">
       <DependentUpon>ucItempriceChanges.cs</DependentUpon>
