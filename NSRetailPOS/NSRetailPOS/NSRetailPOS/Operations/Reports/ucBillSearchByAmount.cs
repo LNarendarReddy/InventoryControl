@@ -37,9 +37,6 @@ namespace NSRetailPOS.Operations.Reports
                 new("Counter", "IncludeBranchCounter", ["COUNTERNAME"], true),
                 new("Billed by user", "IncludeUser", ["CREATEDBY"], true),
                 new("Bill Mode", "IncludeBillMode", ["BILLMODE"], true),
-                new("Bill details (bill # & customer info)", "IncludeBillDetails"
-                    , [ "BILLNUMBER", "CUSTOMERNAME", "CUSTOMERGST", "CUSTOMERNUMBER"
-                        , "CREATEDTIME", "BILLMOPNAME" ], true),
                 new("Payment Mode", "IncludePaymentMode", ["PAYMENTMODE", "Cash", "Card", "PayTM", "Sodexo", "UPI", "BharathPay", "B2BCredit", "B2CCredit", "QRPay", "Diff."], false),
                 new("Count & Avg.", "IncludeCountAndAvg", ["COUNTVALUE", "AVERAGEVALUE"], false)
             ];
