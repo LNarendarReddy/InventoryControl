@@ -8,12 +8,6 @@ using NSRetailPOS.Operations.Stock;
 using NSRetailPOS.UI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSRetailPOS.Operations
@@ -28,27 +22,31 @@ namespace NSRetailPOS.Operations
 
         private void bbiReports_ItemClick(object sender, ItemClickEventArgs e)
         {
-            List<ReportHolder> reportList = new List<ReportHolder>();
+            List<ReportHolder> reportList = [];
 
-            ReportHolder POSReports = new ReportHolder() { ReportName = "POS Reports" };
-            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Invoice List", SearchCriteriaControl = new ucInvoiceList() });
-            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch List", SearchCriteriaControl = new ucDispatchList() });
-            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
-            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
-            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Non Moving Stock", SearchCriteriaControl = new ucNonMovingStock() });
-            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
-            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch Return Rejected Items", SearchCriteriaControl = new ucBRRejectedItems() });
-            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Item Price Changes", SearchCriteriaControl = new ucItempriceChanges() });
-            POSReports.SubCategory.Add(new ReportHolder() { ReportName = "Branch day closure (totals)", SearchCriteriaControl = new ucBranchDayClosures() });
+            ReportHolder POSReports = new() { ReportName = "POS Reports" };
+            POSReports.SubCategory.Add(new() { ReportName = "Invoice List", SearchCriteriaControl = new ucInvoiceList() });
+            POSReports.SubCategory.Add(new() { ReportName = "Dispatch List", SearchCriteriaControl = new ucDispatchList() });
+            POSReports.SubCategory.Add(new() { ReportName = "Dispatch Differences", SearchCriteriaControl = new ucDispatchDifferences() });
+            POSReports.SubCategory.Add(new() { ReportName = "Sales", SearchCriteriaControl = new ucSales() });
+            POSReports.SubCategory.Add(new() { ReportName = "Non Moving Stock", SearchCriteriaControl = new ucNonMovingStock() });
+            POSReports.SubCategory.Add(new() { ReportName = "Branch Indent", SearchCriteriaControl = new ucBranchIndent() });
+            POSReports.SubCategory.Add(new() { ReportName = "Branch Return Rejected Items", SearchCriteriaControl = new ucBRRejectedItems() });
+            POSReports.SubCategory.Add(new() { ReportName = "Item Price Changes", SearchCriteriaControl = new ucItempriceChanges() });
+            POSReports.SubCategory.Add(new() { ReportName = "Branch day closure (totals)", SearchCriteriaControl = new ucBranchDayClosures() });
+            POSReports.SubCategory.Add(new() { ReportName = "Day closure (counters)", SearchCriteriaControl = new ucDayClosureList() });
+            POSReports.SubCategory.Add(new() { ReportName = "Bills by amount", SearchCriteriaControl = new ucBillSearchByAmount() });
             reportList.Add(POSReports);
 
-            ReportHolder otherReports = new ReportHolder() { ReportName = "Other Reports" };
+            ReportHolder otherReports = new() { ReportName = "Other Reports" };
             otherReports.SubCategory.Add(new ReportHolder() { ReportName = "Offer status", SearchCriteriaControl = new ucOfferStatus() });
             reportList.Add(otherReports);
 
-            frmReportPlaceHolder obj = new frmReportPlaceHolder(reportList, "Branch");
-            obj.ShowInTaskbar = false;
-            obj.WindowState = FormWindowState.Maximized;
+            frmReportPlaceHolder obj = new(reportList, "Branch")
+            {
+                ShowInTaskbar = false,
+                WindowState = FormWindowState.Maximized
+            };
             obj.IconOptions.ShowIcon = false;
             obj.MdiParent = this;
             obj.Show();
