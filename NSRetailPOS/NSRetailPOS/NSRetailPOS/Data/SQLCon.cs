@@ -74,7 +74,7 @@ namespace NSRetailPOS.Data
             return ObjCloudCon;
         }
 
-        public static SqlConnection SqlWHconn()
+        public static SqlConnection SqlWHconn(int connectionTimeout = 1024)
         {
             if (ObjWHCon?.State == ConnectionState.Open) 
             {
@@ -89,7 +89,7 @@ namespace NSRetailPOS.Data
             string Password = Decrypt(ConfigurationManager.AppSettings[$"{BuildType}WHpwd"].ToString());
             try
             {
-                string str = "Data Source = " + ServerName + "; Initial Catalog = " + DBName + "; User Id = " + UserName + "; Password = " + Password + "; Pooling = True; Connect Timeout = 1024; Max Pool Size = 30000";
+                string str = $"Data Source = {ServerName}; Initial Catalog = {DBName}; User Id = {UserName}; Password = {Password}; Pooling = True; Connect Timeout = {connectionTimeout}; Max Pool Size = 30000";
                 ObjWHCon.ConnectionString = str;
                 ObjWHCon.Open();
             }
