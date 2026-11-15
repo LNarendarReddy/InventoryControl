@@ -229,6 +229,12 @@
     <Compile Include="Item\frmItemComposition.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportForms\Supplier\SupplierReports\ucPickListItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Supplier\SupplierReports\ucPickListItems.Designer.cs">
+      <DependentUpon>ucPickListItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stock\frmSKUStockTransfer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -423,6 +429,12 @@
     </Compile>
     <Compile Include="ReportForms\Branch\POSReports\frmBillOverrideOptions.Designer.cs">
       <DependentUpon>frmBillOverrideOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForms\Branch\POSReports\ucBranchDayClosures.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForms\Branch\POSReports\ucBranchDayClosures.Designer.cs">
+      <DependentUpon>ucBranchDayClosures.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\Branch\POSReports\ucCRefundSheets.cs">
       <SubType>UserControl</SubType>
@@ -1685,6 +1697,9 @@
     <EmbeddedResource Include="ReportForms\Branch\POSReports\frmBillOverrideOptions.resx">
       <DependentUpon>frmBillOverrideOptions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Branch\POSReports\ucBranchDayClosures.resx">
+      <DependentUpon>ucBranchDayClosures.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Branch\POSReports\ucCRefundSheets.resx">
       <DependentUpon>ucCRefundSheets.cs</DependentUpon>
     </EmbeddedResource>
@@ -1744,6 +1759,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierReports\ucDealerIndentByMBQ.resx">
       <DependentUpon>ucDealerIndentByMBQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForms\Supplier\SupplierReports\ucPickListItems.resx">
+      <DependentUpon>ucPickListItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Supplier\SupplierReports\ucPickList.resx">
       <DependentUpon>ucPickList.cs</DependentUpon>

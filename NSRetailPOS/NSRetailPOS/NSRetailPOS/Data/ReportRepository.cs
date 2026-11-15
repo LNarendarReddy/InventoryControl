@@ -98,9 +98,7 @@ namespace NSRetailPOS.Data
             int rowcount = 0;
             SqlTransaction sqlTransaction = null;
 
-            using SqlConnection sqlConnection = logLoginTiming
-                ? LoginTiming.Measure("Open Warehouse SQL connection", () => useWHConn ? SQLCon.SqlWHconn() : SQLCon.Sqlconn())
-                : useWHConn ? SQLCon.SqlWHconn() : SQLCon.Sqlconn();
+            using SqlConnection sqlConnection = useWHConn ? SQLCon.SqlWHconn(commandTimeOut) : SQLCon.Sqlconn();
             try
             {
                 using SqlCommand cmd = new SqlCommand();

@@ -33,7 +33,7 @@ namespace NSRetail.Supplier
             try
             {
                 DataSet dsSupplierTemp =
-                    new DataRepository().GetDataset("USP_G_SUPPLIERINDENT",
+                    new DataRepository().GetDataset("USP_G_SUPPLIERINDENT_v2",
                     true, new Dictionary<string, object>
                     {
                     { "SupplierID", luSupplier.EditValue }

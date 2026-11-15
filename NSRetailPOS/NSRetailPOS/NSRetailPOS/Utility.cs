@@ -46,9 +46,9 @@ namespace NSRetailPOS
         public static event EventHandler ItemOrCodeChanged;
         public static Form ActiveForm;
 
-        public static string AppVersion = "2.0.1";
+        public static string AppVersion = "2.0.3";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(13-10-2026)";
+        public static string VersionDate = "(15-11-2026)";
 
         public static Bill GetBill(DataSet dsBillDetails)
         {
@@ -90,6 +90,20 @@ namespace NSRetailPOS
                 billObj.dtMopValues = dsBillDetails.Tables["MOPDETAILS"];
 
             return billObj;
+        }
+
+        public static void CleanDataTable(DataTable dataTable, List<string> allowedColumns)
+        {
+            if (dataTable == null || allowedColumns == null || allowedColumns.Count == 0)
+                return;
+
+            for (int i = dataTable.Columns.Count - 1; i >= 0; i--)
+            {
+                if (!allowedColumns.Contains(dataTable.Columns[i].ColumnName))
+                {
+                    dataTable.Columns.RemoveAt(i);
+                }
+            }
         }
 
         public static async Task<bool> StartSync(bool isOverlayShown, bool forceFullSync = false)

@@ -62,7 +62,7 @@ namespace NSRetailPOS.UI
                     new ReportRepository().ExecuteNonQuery("USP_C_LOGINHISTORY", true, new Dictionary<string, object>()
                     {
                         { "UserID", IValue }, { "ApplicationID", 24 }
-                    }, commandTimeOut: 5, logLoginTiming: true);
+                    }, commandTimeOut: 10);
                 }
                 catch { } // Do nothing in case of no connection
 

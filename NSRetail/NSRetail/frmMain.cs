@@ -428,6 +428,7 @@ namespace NSRetail
             POSReports.SubCategory.Add(new ReportHolder("A4FD9F89-D28A-41DF-8DD9-83CB6C0C55B3") { ReportName = "Credit Bill Payments", SearchCriteriaControl = new ucCreditBillPayments() });
             POSReports.SubCategory.Add(new ReportHolder("E1D65F8D-E918-41BF-A6BB-3D7BDAF3C1B8") { ReportName = "Installed versions", SearchCriteriaControl = new ucInstalledVersions() });
             POSReports.SubCategory.Add(new ReportHolder("54C8D668-1B98-43AD-BFA0-B828357A4101") { ReportName = "HDD SNo history", SearchCriteriaControl = new ucHDDClearhistory() });
+            POSReports.SubCategory.Add(new ReportHolder("F6E6C967-9FF0-44A8-9029-E73E6D6576AB") { ReportName = "Branch Day closures (totals)", SearchCriteriaControl = new ucBranchDayClosures() });
             reportList.Add(POSReports);
 
             ReportHolder VoidReports = new ReportHolder("F29F47AA-857C-4725-A2B7-BABBF90187FA") { ReportName = "Void Data Analysis" };
@@ -504,6 +505,7 @@ namespace NSRetail
             supplierReports.SubCategory.Add(new ReportHolder("7A2064BB-F6AE-4E4C-8DE2-2EC267F71134") { ReportName = "Indent by MBQ", SearchCriteriaControl = new ucDealerIndentByMBQ() });
             supplierReports.SubCategory.Add(new ReportHolder("8A514101-90D5-4240-940C-AA49D85A5BDC") { ReportName = "Indent List", SearchCriteriaControl = new ucSupplierIndentList() });
             supplierReports.SubCategory.Add(new ReportHolder("F8016530-A9E2-4EFA-8643-596D44A25E41") { ReportName = "Pick List", SearchCriteriaControl = new ucPicklList() });
+            supplierReports.SubCategory.Add(new ReportHolder("9EBCE36E-0BF1-498D-96DA-FAD1C01B3606") { ReportName = "PickList Items", SearchCriteriaControl = new ucPickListItems() });
             supplierReports.SubCategory.Add(new ReportHolder("65627E0A-E8A2-4D6B-9FB4-6CBFD9EDC296") { ReportName = "Debit Notes", SearchCriteriaControl = new ucSupplierReturnsList() });
             supplierReports.SubCategory.Add(new ReportHolder("C4A9F2B7-8D6E-4E3A-9B51-2F7C6D8A0E94") { ReportName = "Credit Notes", SearchCriteriaControl = new ucCreditNoteList() });
             reportList.Add(supplierReports);
