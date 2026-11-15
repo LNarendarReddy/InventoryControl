@@ -61,6 +61,7 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gvBranchDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSupplierIndent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSupplierIndent)).BeginInit();
@@ -81,6 +82,7 @@
             this.gridColumn15,
             this.gridColumn16,
             this.gridColumn20,
+            this.gridColumn21,
             this.gridColumn19,
             this.gridColumn17,
             this.gridColumn18});
@@ -131,7 +133,7 @@
             this.gridColumn19.FieldName = "THRESHOLD";
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 3;
+            this.gridColumn19.VisibleIndex = 4;
             // 
             // gridColumn17
             // 
@@ -139,7 +141,7 @@
             this.gridColumn17.FieldName = "REQUIREDBRANCHSTOCK";
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 4;
+            this.gridColumn17.VisibleIndex = 5;
             // 
             // gridColumn18
             // 
@@ -147,7 +149,7 @@
             this.gridColumn18.FieldName = "REQUIREDITEMINDENT";
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 5;
+            this.gridColumn18.VisibleIndex = 6;
             // 
             // gcSupplierIndent
             // 
@@ -375,6 +377,14 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
+            // gridColumn21
+            // 
+            this.gridColumn21.Caption = "Picklist Qty";
+            this.gridColumn21.FieldName = "PICKLISTQTY";
+            this.gridColumn21.Name = "gridColumn21";
+            this.gridColumn21.Visible = true;
+            this.gridColumn21.VisibleIndex = 3;
+            // 
             // frmViewGeneratedSupplierIndent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -433,5 +443,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
     }
 }
