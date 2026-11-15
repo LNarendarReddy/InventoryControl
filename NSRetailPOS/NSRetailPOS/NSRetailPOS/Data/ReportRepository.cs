@@ -1,4 +1,5 @@
 ﻿using System;
+using NSRetailPOS.Logging;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -92,7 +93,7 @@ namespace NSRetailPOS.Data
         }
 
         public int ExecuteNonQuery(string procedureName, bool useWHConn, Dictionary<string, object> parameters = null, bool UseTransaction = false
-            , int commandTimeOut = 1800)
+            , int commandTimeOut = 1800, bool logLoginTiming = false)
         {
             int rowcount = 0;
             SqlTransaction sqlTransaction = null;
@@ -110,7 +111,9 @@ namespace NSRetailPOS.Data
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = procedureName;
                 ProcessParameters(cmd, parameters);
-                rowcount = cmd.ExecuteNonQuery();
+                rowcount = logLoginTiming
+                    ? LoginTiming.Measure("Execute Warehouse login history procedure", () => cmd.ExecuteNonQuery())
+                    : cmd.ExecuteNonQuery();
                 sqlTransaction?.Commit();
             }
             catch

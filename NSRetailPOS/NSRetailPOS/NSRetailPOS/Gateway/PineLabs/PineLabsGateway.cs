@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using NSRetailPOS.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management;
@@ -41,17 +42,21 @@ namespace NSRetailPOS.Gateway.PineLabs
         {
             StatusUpdate("sending cancel request");
             var stringPayload = JsonConvert.SerializeObject(cancelRequest);
+            LogPaymentRequest(new Uri(gatewayClient.BaseAddress, CancelAPI), stringPayload);
             var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage = await gatewayClient.PostAsync(CancelAPI, httpContent);
+            string responseBody = await responseMessage.Content.ReadAsStringAsync();
+            LogPaymentResponse(CancelAPI, responseMessage, responseBody);
             if (responseMessage.IsSuccessStatusCode)
             {
-                ResponseBase cancelResponse = JsonConvert.DeserializeObject<ResponseBase>(await responseMessage.Content.ReadAsStringAsync());
+                ResponseBase cancelResponse = JsonConvert.DeserializeObject<ResponseBase>(responseBody);
                 bool success = cancelResponse.ResponseCode == 0;
+                if (success) LastRequestFinal = true;
                 StatusUpdate(success ? "cancel success" : cancelResponse.ResponseMessage);
                 return success;
             }
 
-            StatusUpdate($"Cancel failed: {await responseMessage.Content.ReadAsStringAsync()}");
+            StatusUpdate($"Cancel failed: {responseBody}");
             return false;
         }
 
@@ -71,11 +76,14 @@ namespace NSRetailPOS.Gateway.PineLabs
 
                 StatusUpdate("Checking payment status");
                 var stringPayload = JsonConvert.SerializeObject(pineLabsStatusRequest);
+                LogPaymentRequest(new Uri(gatewayClient.BaseAddress, StatusAPI), stringPayload);
                 var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
                 HttpResponseMessage responseMessage = await gatewayClient.PostAsync(StatusAPI, httpContent);
+                string responseBody = await responseMessage.Content.ReadAsStringAsync();
+                LogPaymentResponse(StatusAPI, responseMessage, responseBody);
                 if(responseMessage.IsSuccessStatusCode)
                 {
-                    StatusResponse statusResponse = JsonConvert.DeserializeObject<StatusResponse>(await responseMessage.Content.ReadAsStringAsync());
+                    StatusResponse statusResponse = JsonConvert.DeserializeObject<StatusResponse>(responseBody);
                     if (statusResponse.ResponseCode == 0)
                     {
                         return statusResponse;
@@ -87,7 +95,7 @@ namespace NSRetailPOS.Gateway.PineLabs
                 }
                 else
                 {
-                    StatusUpdate($"Payment status check failed: {await responseMessage.Content.ReadAsStreamAsync()}");
+                    StatusUpdate($"Payment status check failed: {responseBody}");
                 }
             }
 
@@ -115,12 +123,15 @@ namespace NSRetailPOS.Gateway.PineLabs
             PaymentRequest pineLabsPaymentRequest = paymentRequest as PaymentRequest;
             StatusUpdate("Sending request to POS");
             var stringPayload = JsonConvert.SerializeObject(pineLabsPaymentRequest);
+            LogPaymentRequest(new Uri(gatewayClient.BaseAddress, BillingAPI), stringPayload);
             var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage = await gatewayClient.PostAsync(BillingAPI, httpContent);
+            string responseBody = await responseMessage.Content.ReadAsStringAsync();
+            LogPaymentResponse(BillingAPI, responseMessage, responseBody);
             if (responseMessage.IsSuccessStatusCode)
             {
                 StatusUpdate("Processing response");
-                PaymentResponse paymentResponse = JsonConvert.DeserializeObject<PaymentResponse>(await responseMessage.Content.ReadAsStringAsync());
+                PaymentResponse paymentResponse = JsonConvert.DeserializeObject<PaymentResponse>(responseBody);
                 if (paymentResponse.ResponseCode == 0)
                 {
                     StatusUpdate("Request successfully sent");
@@ -146,7 +157,7 @@ namespace NSRetailPOS.Gateway.PineLabs
                 } 
             }
 
-            StatusUpdate($"Request failed: {await responseMessage.Content.ReadAsStringAsync()}");
+            StatusUpdate($"Request failed: {responseBody}");
             return null;
         }
         
@@ -162,6 +173,7 @@ namespace NSRetailPOS.Gateway.PineLabs
                 PaymentRequest paymentRequest = GetPaymentRequest(parameters) as PaymentRequest;
                 PaymentResponse paymentResponse = await SendRequest(paymentRequest, token) as PaymentResponse;
                 if (paymentResponse == null) return null;
+                ProviderReferenceReady?.Invoke(paymentResponse.PlutusTransactionReferenceID.ToString());
 
                 StatusRequest statusRequest = new StatusRequest();
                 CopyValues(statusRequest);
@@ -212,7 +224,8 @@ namespace NSRetailPOS.Gateway.PineLabs
                     ResponseMessage = "Force added missing payment",
                     TransactionData =
                     [
-                        new() { Tag = "RRN", value = parameters[1].ToString() } 
+                        new() { Tag = "RRN", value = parameters[2]?.ToString() },
+                        new() { Tag = "TransactionId", value = parameters[3]?.ToString() }
                     ]
                 }
             };
@@ -242,9 +255,26 @@ namespace NSRetailPOS.Gateway.PineLabs
             target.PaymentURL = requestBase.PaymentURL;
         }
 
-        public override Task<CompletedTransactionData> VerifyPayment(int billID, int mopID, params object[] parameters)
+        public override async Task<CompletedTransactionData> VerifyPayment(int billID, int mopID, params object[] parameters)
         {
-            throw new NotImplementedException();
+            if (!int.TryParse(Convert.ToString(parameters[0]), out int reference) || reference <= 0)
+                throw new InvalidOperationException("Provider reference is unavailable. Check the terminal before resolving this attempt.");
+            var request = new StatusRequest();
+            CopyValues(request);
+            request.PlutusTransactionReferenceID = reference;
+            LogPaymentRequest(new Uri(gatewayClient.BaseAddress, StatusAPI), JsonConvert.SerializeObject(request));
+            using (var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"))
+            using (var response = await gatewayClient.PostAsync(StatusAPI, content))
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                LogPaymentResponse(StatusAPI, response, responseBody);
+                response.EnsureSuccessStatusCode();
+                var status = JsonConvert.DeserializeObject<StatusResponse>(responseBody);
+                if (status?.ResponseCode != 0) return null;
+                return new CompletedTransactionData { BillID = billID, MopID = mopID,
+                    Amount = Convert.ToDecimal(parameters[1]), PaymentGatewayID = PaymentGatewayID,
+                    AdditionalSettings = AdditionalSettings, StatusResponse = status };
+            }
         }
     }
 

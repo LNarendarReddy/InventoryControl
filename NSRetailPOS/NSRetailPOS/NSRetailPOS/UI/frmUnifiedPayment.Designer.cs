@@ -201,7 +201,7 @@
             this.btnAddMissingPayment.Size = new System.Drawing.Size(176, 23);
             this.btnAddMissingPayment.StyleController = this.layoutControl1;
             this.btnAddMissingPayment.TabIndex = 17;
-            this.btnAddMissingPayment.Text = "Add missed payment";
+            this.btnAddMissingPayment.Text = "Add Missing Payment";
             this.btnAddMissingPayment.Click += new System.EventHandler(this.btnLinkPayment_Click);
             // 
             // btnCancelRequest
@@ -478,7 +478,7 @@
             // 
             // rgPaymentModes
             // 
-            this.rgPaymentModes.EnterMoveNextControl = true;
+            this.rgPaymentModes.EnterMoveNextControl = false;
             this.rgPaymentModes.Location = new System.Drawing.Point(20, 239);
             this.rgPaymentModes.Name = "rgPaymentModes";
             this.rgPaymentModes.Size = new System.Drawing.Size(241, 215);
