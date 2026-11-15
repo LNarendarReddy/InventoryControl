@@ -19,6 +19,9 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
         private StockEntryModel _stockEntryModel;
 
         [ObservableProperty]
+        private bool _enableClean;
+
+        [ObservableProperty]
         private ObservableCollection<StockEntryDetailModel> _filteredStockEntryDetails;
 
         public IAsyncRelayCommand AddStockEntryDetailCommand { get; }
@@ -28,6 +31,9 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
         public IAsyncRelayCommand DiscardStockEntryCommand { get; }
 
         public IAsyncRelayCommand EditInvoiceNoCommand { get; }
+
+        public IAsyncRelayCommand CleanInvoiceCommand { get; }
+
 
         public IAsyncRelayCommand<StockEntryDetailModel> EditStockEntryDetailCommand { get; }
 
@@ -42,10 +48,12 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
             AddStockEntryDetailCommand = new AsyncRelayCommand(AddStockEntryDetail);
             SubmitStockEntryCommand = new AsyncRelayCommand(SubmitStockEntry);
             DiscardStockEntryCommand = new AsyncRelayCommand(DiscardStockEntry);
+            CleanInvoiceCommand = new AsyncRelayCommand(CleanInvoice);
             EditStockEntryDetailCommand = new AsyncRelayCommand<StockEntryDetailModel>(EditStockEntryDetail);
             DeleteStockEntryDetailCommand = new AsyncRelayCommand<StockEntryDetailModel>(DeleteStockEntryDetail);
 
             EditInvoiceNoCommand = new AsyncRelayCommand(EditInvoiceNo);
+            EnableClean = stockEntryModel.SupplierId > 0;
         }
 
         private async Task EditInvoiceNo()
@@ -156,6 +164,42 @@ namespace NSRetailLiteApp.ViewModels.StockEntry
             {
                 Pop();
             }
+        }
+
+        private async Task CleanInvoice()
+        {
+            if (!await DisplayAlert("Confirm", "Are you sure you want to clean stock entry invoice, all unmapped items will be deleted?", "Yes", "No")) return;
+
+            StockEntryModel stockEntry = StockEntryModel;
+            var itemsToDelete = stockEntry.StockEntryDetailList.Where(x => x.ItemCodeID == 0).ToList();
+
+            if (itemsToDelete.Count == 0)
+            {
+                await DisplayAlert("Clean", "No items found to delete", "OK");
+                return;
+            }
+
+            string confirmMessage = $"Are you sure you want to clean the invoice? {itemsToDelete.Count} will be deleted";
+            confirmMessage += $"\n\n\t Total items: {stockEntry.StockEntryDetailList.Count}";
+            confirmMessage += $"\n\n\t\t Mapped items : {stockEntry.StockEntryDetailList.Count - itemsToDelete.Count}";
+            confirmMessage += $"\n\t\t Un-mapped items : {itemsToDelete.Count}";
+
+            if (!await DisplayAlert("Confirm", confirmMessage, "Yes", "No")) return;
+
+            foreach (var item in itemsToDelete)
+            {
+                var deleted = await PostAsync("StockEntry_v2/deleteinvoicedetail", item
+                      , new Dictionary<string, string?>()
+                      {
+                        { "StockEntryDetailID", item.StockEntryDetailId.ToString() },
+                        { "UserID", HomePageViewModel.User.UserId.ToString() }
+                      }, displayAlert: true, showResponse: false);
+
+                if (deleted.Exception != null) return;
+            }
+
+            DisplayAlert("Success", "Invoice cleanup completed", "OK");
+            await Reload(); //to refresh serial #s
         }
 
         private async Task SubmitStockEntry()

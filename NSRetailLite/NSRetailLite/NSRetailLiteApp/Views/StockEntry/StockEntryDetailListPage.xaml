@@ -81,7 +81,7 @@
             </CollectionView>
 
             <Grid Grid.Row="2" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
-          RowDefinitions="60" ColumnDefinitions="20, *, *, *, 20">
+          RowDefinitions="60" ColumnDefinitions="20, *, *, *, *, 20">
                 <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
                     <ImageButton Source="stockcountingadd.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=AddStockEntryDetailCommand}"/>
                     <Label Text="Add Item" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
@@ -91,6 +91,14 @@
                     </Label>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ImageButton Source="cleanup.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=CleanInvoiceCommand}"/>
+                    <Label Text="Clean" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CleanInvoiceCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
                     <ImageButton Source="stockcountingsubmit.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=SubmitStockEntryCommand}"/>
                     <Label Text="Submit" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
                         <Label.GestureRecognizers>
@@ -98,7 +106,7 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </VerticalStackLayout>
-                <VerticalStackLayout Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
+                <VerticalStackLayout Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center">
                     <ImageButton Source="stockcountingdiscard.png" Aspect="Fill" HeightRequest="30" WidthRequest="30" Command="{Binding Path=DiscardStockEntryCommand}"/>
                     <Label Text="Discard" TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}">
                         <Label.GestureRecognizers>
