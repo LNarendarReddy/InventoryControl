@@ -1,4 +1,9 @@
-﻿v4.2.1
+﻿v4.2.2
+-- Added Remove Gateway to counter payment-mode setup so a gateway assignment can be cleared before moving a terminal to another counter.
+-- Kept BharathPe credentials in sync for Card and UPI on the same counter.
+-- Restricted BharathPe usernames and Pine Labs Client ID / Store ID pairs to one counter, and Mobikwik sub-merchant IDs to one branch.
+
+v4.2.1
 -- Branch day closures
 -- Picklist items report
 -- Picklist indent changes

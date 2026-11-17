@@ -27,6 +27,7 @@ namespace NSRetail.Master
             this.gatewayEditor = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.txtSetting1 = new DevExpress.XtraEditors.TextEdit();
             this.txtSetting2 = new DevExpress.XtraEditors.TextEdit();
+            this.btnRemoveGateway = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -40,6 +41,7 @@ namespace NSRetail.Master
             this.lciSetting1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciSetting2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.buttonSpacer = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lciRemoveGateway = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciSave = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciCancel = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainLayout)).BeginInit();
@@ -64,6 +66,7 @@ namespace NSRetail.Master
             ((System.ComponentModel.ISupportInitialize)(this.lciSetting1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSetting2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSpacer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciRemoveGateway)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciCancel)).BeginInit();
             this.SuspendLayout();
@@ -76,6 +79,7 @@ namespace NSRetail.Master
             this.mainLayout.Controls.Add(this.gcMappings);
             this.mainLayout.Controls.Add(this.txtSetting1);
             this.mainLayout.Controls.Add(this.txtSetting2);
+            this.mainLayout.Controls.Add(this.btnRemoveGateway);
             this.mainLayout.Controls.Add(this.btnSave);
             this.mainLayout.Controls.Add(this.btnCancel);
             this.mainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -220,6 +224,18 @@ namespace NSRetail.Master
             this.txtSetting2.TabIndex = 5;
             this.txtSetting2.EditValueChanged += new System.EventHandler(this.gatewaySetting_EditValueChanged);
             // 
+            // btnRemoveGateway
+            //
+            this.btnRemoveGateway.Enabled = false;
+            this.btnRemoveGateway.Location = new System.Drawing.Point(10, 578);
+            this.btnRemoveGateway.Name = "btnRemoveGateway";
+            this.btnRemoveGateway.Size = new System.Drawing.Size(136, 32);
+            this.btnRemoveGateway.StyleController = this.mainLayout;
+            this.btnRemoveGateway.TabIndex = 8;
+            this.btnRemoveGateway.Text = "Remove Gateway";
+            this.btnRemoveGateway.ToolTip = "Remove the gateway and disable the selected payment mode when you save.";
+            this.btnRemoveGateway.Click += new System.EventHandler(this.btnRemoveGateway_Click);
+            //
             // btnSave
             // 
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
@@ -253,6 +269,7 @@ namespace NSRetail.Master
             this.counterSection,
             this.mopSection,
             this.gatewaySection,
+            this.lciRemoveGateway,
             this.buttonSpacer,
             this.lciSave,
             this.lciCancel});
@@ -356,12 +373,24 @@ namespace NSRetail.Master
             this.lciSetting2.TextSize = new System.Drawing.Size(195, 16);
             this.lciSetting2.TextToControlDistance = 5;
             // 
+            // lciRemoveGateway
+            //
+            this.lciRemoveGateway.Control = this.btnRemoveGateway;
+            this.lciRemoveGateway.Location = new System.Drawing.Point(0, 568);
+            this.lciRemoveGateway.MaxSize = new System.Drawing.Size(140, 36);
+            this.lciRemoveGateway.MinSize = new System.Drawing.Size(140, 36);
+            this.lciRemoveGateway.Name = "lciRemoveGateway";
+            this.lciRemoveGateway.Size = new System.Drawing.Size(140, 36);
+            this.lciRemoveGateway.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lciRemoveGateway.TextSize = new System.Drawing.Size(0, 0);
+            this.lciRemoveGateway.TextVisible = false;
+            //
             // buttonSpacer
             // 
             this.buttonSpacer.AllowHotTrack = false;
-            this.buttonSpacer.Location = new System.Drawing.Point(0, 568);
+            this.buttonSpacer.Location = new System.Drawing.Point(140, 568);
             this.buttonSpacer.Name = "buttonSpacer";
-            this.buttonSpacer.Size = new System.Drawing.Size(588, 36);
+            this.buttonSpacer.Size = new System.Drawing.Size(448, 36);
             this.buttonSpacer.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lciSave
@@ -424,6 +453,7 @@ namespace NSRetail.Master
             ((System.ComponentModel.ISupportInitialize)(this.lciSetting1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSetting2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSpacer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciRemoveGateway)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciCancel)).EndInit();
             this.ResumeLayout(false);
@@ -433,12 +463,12 @@ namespace NSRetail.Master
         private DevExpress.XtraLayout.LayoutControl mainLayout;
         private DevExpress.XtraLayout.LayoutControlGroup Root, counterSection, mopSection, gatewaySection;
         private DevExpress.XtraLayout.LayoutControlItem lciBranch, lciCounterName, lciMobileCounter, lciMappings;
-        private DevExpress.XtraLayout.LayoutControlItem lciSetting1, lciSetting2, lciSave, lciCancel;
+        private DevExpress.XtraLayout.LayoutControlItem lciSetting1, lciSetting2, lciRemoveGateway, lciSave, lciCancel;
         private DevExpress.XtraLayout.EmptySpaceItem buttonSpacer;
         private DevExpress.XtraEditors.LookUpEdit cmbBranch;
         private DevExpress.XtraEditors.TextEdit txtCounterName, txtSetting1, txtSetting2;
         private DevExpress.XtraEditors.CheckEdit chkIsMobileCounter;
-        private DevExpress.XtraEditors.SimpleButton btnSave, btnCancel;
+        private DevExpress.XtraEditors.SimpleButton btnRemoveGateway, btnSave, btnCancel;
         private DevExpress.XtraGrid.GridControl gcMappings;
         private DevExpress.XtraGrid.Views.Grid.GridView gvMappings;
         private DevExpress.XtraGrid.Columns.GridColumn colAvailable, colMop, colConfigurable, colGateway;

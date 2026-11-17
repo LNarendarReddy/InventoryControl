@@ -65,9 +65,9 @@ namespace NSRetail.Master
 
                 gcMappings.DataSource = mappings;
                 loaded = true;
-                ShowGatewaySettings();
                 string action = counterID > 0 ? "Update" : "Create";
                 btnSave.Enabled = AccessUtility.HasAccess($"D7371CA4-24FF-44FB-911B-7801FC5180F3::{action}");
+                ShowGatewaySettings();
             }
             catch (Exception ex)
             {
@@ -112,6 +112,13 @@ namespace NSRetail.Master
                 && Convert.ToBoolean(row["ISGATEWAYCONFIGURABLE"]);
         }
 
+        private IEnumerable<DataRow> OtherBharathPeMappings(DataRow row)
+        {
+            return mappings.AsEnumerable().Where(other => other != row && CanConfigure(other)
+                && string.Equals(Convert.ToString(GetGateway(other)?["PAYMENTGATEWAYINFOTYPE"]),
+                    "BharathPe", StringComparison.OrdinalIgnoreCase));
+        }
+
         private void ShowGatewaySettings()
         {
             updatingSettings = true;
@@ -119,6 +126,7 @@ namespace NSRetail.Master
             {
                 DataRow row = gvMappings.GetFocusedDataRow();
                 DataRow gateway = GetGateway(row);
+                btnRemoveGateway.Enabled = btnSave.Enabled && row != null && !row.IsNull("PAYMENTGATEWAYINFOID");
                 gatewaySection.Text = row == null ? "Payment Gateway Configuration"
                     : "Payment Gateway Configuration - " + row["MOPNAME"];
                 gatewaySection.Enabled = CanConfigure(row) && gateway != null;
@@ -126,6 +134,7 @@ namespace NSRetail.Master
                 lciSetting2.Text = "";
                 txtSetting1.EditValue = null;
                 txtSetting2.EditValue = null;
+                txtSetting2.Properties.UseSystemPasswordChar = false;
                 lciSetting2.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 if (!gatewaySection.Enabled) return;
 
@@ -142,6 +151,7 @@ namespace NSRetail.Master
                     case "bharathpe":
                         lciSetting1.Text = "Username";
                         lciSetting2.Text = "Password";
+                        txtSetting2.Properties.UseSystemPasswordChar = true;
                         txtSetting1.EditValue = (string)config["UserName"];
                         txtSetting2.EditValue = (string)config["Password"];
                         lciSetting2.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
@@ -178,7 +188,17 @@ namespace NSRetail.Master
                 switch (Convert.ToString(gateway["PAYMENTGATEWAYINFOTYPE"]).ToLowerInvariant())
                 {
                     case "pinelabs": config["ClientID"] = first; config["StoreID"] = second.Trim(); break;
-                    case "bharathpe": config["UserName"] = first; config["Password"] = second; break;
+                    case "bharathpe":
+                        config["UserName"] = first;
+                        config["Password"] = second;
+                        foreach (DataRow other in OtherBharathPeMappings(row))
+                        {
+                            JObject shared = ReadSettings(other);
+                            shared["UserName"] = first;
+                            shared["Password"] = second;
+                            other["PAYMENTGATEWAYADDITIONALCONFIG"] = shared.ToString(Formatting.None);
+                        }
+                        break;
                     case "mobikwik":
                         if (first.Length == 0) config.Remove("smid");
                         else config["smid"] = first;
@@ -219,9 +239,28 @@ namespace NSRetail.Master
         private void gvMappings_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             if (!loaded) return;
+            if (e.Column != colGateway && e.Column != colAvailable) return;
+
+            DataRow row = gvMappings.GetDataRow(e.RowHandle);
+            if (row == null) return;
             if (e.Column == colGateway)
-                gvMappings.GetDataRow(e.RowHandle)["PAYMENTGATEWAYADDITIONALCONFIG"] = DBNull.Value;
-            if (e.Column == colGateway || e.Column == colAvailable) ShowGatewaySettings();
+                row["PAYMENTGATEWAYADDITIONALCONFIG"] = DBNull.Value;
+            CopySharedBharathPeCredentials(row);
+            ShowGatewaySettings();
+        }
+
+        private void CopySharedBharathPeCredentials(DataRow row)
+        {
+            if (!CanConfigure(row) || !string.Equals(Convert.ToString(GetGateway(row)?["PAYMENTGATEWAYINFOTYPE"]),
+                "BharathPe", StringComparison.OrdinalIgnoreCase)) return;
+
+            JObject shared = OtherBharathPeMappings(row).Select(ReadSettings).FirstOrDefault();
+            if (shared == null) return;
+
+            JObject config = ReadSettings(row);
+            config["UserName"] = shared["UserName"];
+            config["Password"] = shared["Password"];
+            row["PAYMENTGATEWAYADDITIONALCONFIG"] = config.ToString(Formatting.None);
         }
 
         private void gvMappings_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -252,15 +291,24 @@ namespace NSRetail.Master
                 if (gateway == null)
                     throw new InvalidOperationException($"Select an active payment gateway for {row["MOPNAME"]}.");
 
-                JObject config = ReadSettings(row);
-                string type = Convert.ToString(gateway["PAYMENTGATEWAYINFOTYPE"]).ToLowerInvariant();
-                string[] required = type == "pinelabs" ? new[] { "ClientID", "StoreID" }
-                    : type == "bharathpe" ? new[] { "UserName", "Password" } : new string[0];
-                if (required.Any(key => string.IsNullOrWhiteSpace((string)config[key])))
-                    throw new InvalidOperationException($"Complete the gateway settings for {row["MOPNAME"]}.");
-                result.Rows.Add(row["MOPID"], row["PAYMENTGATEWAYINFOID"], config.ToString(Formatting.None));
+                result.Rows.Add(row["MOPID"], row["PAYMENTGATEWAYINFOID"], ReadSettings(row).ToString(Formatting.None));
             }
             return result;
+        }
+
+        private void btnRemoveGateway_Click(object sender, EventArgs e)
+        {
+            if (!loaded || !btnSave.Enabled) return;
+            gvMappings.CloseEditor();
+            if (!gvMappings.UpdateCurrentRow()) return;
+            DataRow row = gvMappings.GetFocusedDataRow();
+            if (row == null || row.IsNull("PAYMENTGATEWAYINFOID")) return;
+
+            row["ISAVAILABLE"] = false;
+            row["PAYMENTGATEWAYINFOID"] = DBNull.Value;
+            row["PAYMENTGATEWAYADDITIONALCONFIG"] = DBNull.Value;
+            gvMappings.RefreshRow(gvMappings.FocusedRowHandle);
+            ShowGatewaySettings();
         }
 
         private void btnSave_Click(object sender, EventArgs e)

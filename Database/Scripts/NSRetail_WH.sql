@@ -8259,18 +8259,33 @@ BEGIN
         )
             THROW 50104, 'Select an active gateway for each configurable MOP.', 1;
 
+        DECLARE @BharathPeCredentials TABLE
+        (
+            MOPID int PRIMARY KEY,
+            UserName nvarchar(4000) NULL,
+            [Password] nvarchar(4000) NULL
+        );
+
+        INSERT @BharathPeCredentials (MOPID, UserName, [Password])
+        SELECT S.MOPID, NULLIF(LTRIM(RTRIM(JSON_VALUE(S.PAYMENTGATEWAYADDITIONALCONFIG, '$.UserName'))), ''),
+            NULLIF(JSON_VALUE(S.PAYMENTGATEWAYADDITIONALCONFIG, '$.Password'), '')
+        FROM @Mappings S
+        INNER JOIN dbo.PAYMENTGATEWAYINFO P ON P.PAYMENTGATEWAYINFOID = S.PAYMENTGATEWAYINFOID
+        WHERE P.PAYMENTGATEWAYINFOTYPE = 'BharathPe';
+
         IF EXISTS
         (
-            SELECT 1 FROM @Mappings S
-            INNER JOIN dbo.PAYMENTGATEWAYINFO P ON P.PAYMENTGATEWAYINFOID = S.PAYMENTGATEWAYINFOID
-            WHERE (P.PAYMENTGATEWAYINFOTYPE = 'PineLabs' AND
-                  (NULLIF(LTRIM(RTRIM(JSON_VALUE(S.PAYMENTGATEWAYADDITIONALCONFIG, '$.ClientID'))), '') IS NULL
-                   OR NULLIF(LTRIM(RTRIM(JSON_VALUE(S.PAYMENTGATEWAYADDITIONALCONFIG, '$.StoreID'))), '') IS NULL))
-               OR (P.PAYMENTGATEWAYINFOTYPE = 'BharathPe' AND
-                  (NULLIF(LTRIM(RTRIM(JSON_VALUE(S.PAYMENTGATEWAYADDITIONALCONFIG, '$.UserName'))), '') IS NULL
-                   OR NULLIF(LTRIM(RTRIM(JSON_VALUE(S.PAYMENTGATEWAYADDITIONALCONFIG, '$.Password'))), '') IS NULL))
+            SELECT 1
+            FROM @BharathPeCredentials A
+            INNER JOIN @BharathPeCredentials B ON B.MOPID > A.MOPID
+            WHERE EXISTS
+            (
+                SELECT CONVERT(varbinary(8000), A.UserName), CONVERT(varbinary(8000), A.[Password])
+                EXCEPT
+                SELECT CONVERT(varbinary(8000), B.UserName), CONVERT(varbinary(8000), B.[Password])
+            )
         )
-            THROW 50105, 'Complete the required gateway settings.', 1;
+            THROW 50109, 'All BharathPe payment modes on this counter must use the same username and password.', 1;
 
         IF EXISTS (SELECT 1 FROM dbo.BRANCHCOUNTER WITH (UPDLOCK, HOLDLOCK)
                    WHERE COUNTERNAME = @COUNTERNAME AND DELETEDDATE IS NULL AND COUNTERID <> @COUNTERID)
@@ -8293,20 +8308,36 @@ BEGIN
             SET @COUNTERID = CONVERT(int, SCOPE_IDENTITY());
         END;
 
-        -- The same terminal can serve multiple MOPs at one counter, but not another counter.
-        IF EXISTS
-        (
-            SELECT 1 FROM @Mappings S
-            INNER JOIN dbo.PAYMENTGATEWAYINFO P ON P.PAYMENTGATEWAYINFOID = S.PAYMENTGATEWAYINFOID
-            INNER JOIN dbo.BRANCHCOUNTERMOP CM WITH (UPDLOCK, HOLDLOCK)
-                ON CM.COUNTERID <> @COUNTERID AND CM.DELETEDDATE IS NULL
-            INNER JOIN dbo.BRANCHCOUNTER C ON C.COUNTERID = CM.COUNTERID AND C.DELETEDDATE IS NULL
-            INNER JOIN dbo.PAYMENTGATEWAYINFO CP ON CP.PAYMENTGATEWAYINFOID = CM.PAYMENTGATEWAYINFOID
-            WHERE P.PAYMENTGATEWAYINFOTYPE = 'BharathPe' AND CP.PAYMENTGATEWAYINFOTYPE = 'BharathPe'
-              AND JSON_VALUE(S.PAYMENTGATEWAYADDITIONALCONFIG, '$.UserName') =
-                  JSON_VALUE(CM.PAYMENTGATEWAYADDITIONALCONFIG, '$.UserName')
-        )
-            THROW 50108, 'Payment gateway username already exists for another counter.', 1;
+        DECLARE @ConflictingGateway varchar(100);
+        SELECT TOP (1) @ConflictingGateway = P.PAYMENTGATEWAYINFOTYPE
+        FROM @Mappings S
+        INNER JOIN dbo.PAYMENTGATEWAYINFO P ON P.PAYMENTGATEWAYINFOID = S.PAYMENTGATEWAYINFOID
+        INNER JOIN dbo.BRANCHCOUNTERMOP CM WITH (UPDLOCK, HOLDLOCK)
+            ON CM.COUNTERID <> @COUNTERID AND CM.DELETEDDATE IS NULL
+        INNER JOIN dbo.BRANCHCOUNTER C WITH (UPDLOCK, HOLDLOCK)
+            ON C.COUNTERID = CM.COUNTERID AND C.DELETEDDATE IS NULL
+        INNER JOIN dbo.PAYMENTGATEWAYINFO CP ON CP.PAYMENTGATEWAYINFOID = CM.PAYMENTGATEWAYINFOID
+            AND CP.DELETEDDATE IS NULL AND CP.PAYMENTGATEWAYINFOTYPE = P.PAYMENTGATEWAYINFOTYPE
+        WHERE (P.PAYMENTGATEWAYINFOTYPE = 'BharathPe'
+            AND NULLIF(LTRIM(RTRIM(JSON_VALUE(S.PAYMENTGATEWAYADDITIONALCONFIG, '$.UserName'))), '') =
+                NULLIF(LTRIM(RTRIM(JSON_VALUE(CM.PAYMENTGATEWAYADDITIONALCONFIG, '$.UserName'))), ''))
+           OR (P.PAYMENTGATEWAYINFOTYPE = 'PineLabs'
+            AND NULLIF(LTRIM(RTRIM(JSON_VALUE(S.PAYMENTGATEWAYADDITIONALCONFIG, '$.ClientID'))), '') =
+                NULLIF(LTRIM(RTRIM(JSON_VALUE(CM.PAYMENTGATEWAYADDITIONALCONFIG, '$.ClientID'))), '')
+            AND NULLIF(LTRIM(RTRIM(JSON_VALUE(S.PAYMENTGATEWAYADDITIONALCONFIG, '$.StoreID'))), '') =
+                NULLIF(LTRIM(RTRIM(JSON_VALUE(CM.PAYMENTGATEWAYADDITIONALCONFIG, '$.StoreID'))), ''))
+           OR (P.PAYMENTGATEWAYINFOTYPE = 'Mobikwik' AND C.BRANCHID <> @BRANCHID
+            AND NULLIF(LTRIM(RTRIM(JSON_VALUE(S.PAYMENTGATEWAYADDITIONALCONFIG, '$.smid'))), '') =
+                NULLIF(LTRIM(RTRIM(JSON_VALUE(CM.PAYMENTGATEWAYADDITIONALCONFIG, '$.smid'))), ''));
+
+        IF @ConflictingGateway = 'Mobikwik'
+            THROW 50112, 'This Mobikwik Sub-merchant ID is assigned to another branch.', 1;
+        IF @ConflictingGateway IS NOT NULL
+        BEGIN
+            DECLARE @GatewayConflict nvarchar(2048) = CONCAT(@ConflictingGateway,
+                ' credentials are assigned to another counter. Remove that assignment and save first.');
+            THROW 50108, @GatewayConflict, 1;
+        END;
 
         UPDATE CM SET DELETEDBY = @USERID, DELETEDDATE = @Now,
             UPDATEDBY = @USERID, UPDATEDDATE = @Now
@@ -20793,6 +20824,32 @@ BEGIN
 		AND SC.INSTANTDISPATCHENABLED = 1
 		AND ISNULL(IBC.IsDSCode,0) = 0
                     
+END
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[USP_R_POS_STOCKENTRY_ITEMCODES]
+    @ExistingItemCodeID INT = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT IBC.ITEMCODEID, I.ITEMID, IBC.ITEMCODE, I.ITEMNAME, I.SKUCODE,
+           C.CATEGORYNAME, ISNULL(I.ISOPENITEM, 0) AS ISOPENITEM,
+           ISNULL(I.PARENTITEMID, 0) AS PARENTITEMID, I.UOMID, UM.MULTIPLIER, IBC.HSNCODE
+    FROM dbo.ITEMCODE IBC
+    INNER JOIN dbo.ITEM I ON I.ITEMID = IBC.ITEMID
+    LEFT JOIN dbo.TBLCATEGORY C ON C.CATEGORYID = I.CATEGORYID
+    LEFT JOIN dbo.UOM UM ON UM.UOMID = I.UOMID
+    WHERE IBC.ITEMCODEID = @ExistingItemCodeID
+       OR (@ExistingItemCodeID IS NULL
+           AND IBC.DELETEDDATE IS NULL
+           AND I.DELETEDDATE IS NULL
+           AND ISNULL(IBC.IsDSCode, 0) = 0
+           -- 13 = Direct store dispatch, 21 = NFT + DSD
+           AND I.SUPPLIERINDENTITEMTYPEID IN (13, 21));
 END
 GO
 /****** Object:  StoredProcedure [dbo].[USP_R_ITEMDATA]    Script Date: 17-10-2026 13:04:47 ******/
