@@ -198,6 +198,7 @@ namespace NSRetail.ReportForms
             selectedReportHolder = tlReport.GetFocusedRow() as ReportHolder;
             if (selectedReportHolder == null || selectedReportHolder.SearchCriteriaControl == null) return;
 
+            gvResults.OptionsCustomization.AllowGroup = selectedReportHolder.SearchCriteriaControl.AllowResultGrouping;
             pcSearchCriteria.Controls.Add(selectedReportHolder.SearchCriteriaControl);
             selectedReportHolder.SearchCriteriaControl.Location = new System.Drawing.Point(2, 2);
 
@@ -382,27 +383,30 @@ namespace NSRetail.ReportForms
 
         private void gvResults_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
-            if (e.HitInfo.HitTest != DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
+            if (e.Menu == null || e.HitInfo.HitTest != DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell)
             {
                 return;
             }
+
+            DataRow row = gvResults.GetDataRow(e.HitInfo.RowHandle);
+            SearchCriteriaBase report = selectedReportHolder?.SearchCriteriaControl;
+            if (row == null || report == null) return;
 
             foreach (var item in contextmenuItems)
             {
                 if(!AccessUtility.HasAccess(item.Value)) continue;
                 DXMenuItem menuItem = new DXMenuItem(item.Key);
 
-                menuItem.Click += On_Click;
-                menuItem.Tag = item.Key;
+                menuItem.Click += (menuSender, args) => ExecuteContextAction(report, item.Key, row);
                 e.Menu.Items.Add(menuItem);
             }
         }
 
-        void On_Click(object sender, EventArgs e)
+        private void ExecuteContextAction(SearchCriteriaBase report, string action, DataRow row)
         {
             try
             {
-                selectedReportHolder.SearchCriteriaControl.ActionExecute(Convert.ToString(((DXMenuItem)sender).Tag), gvResults.GetFocusedDataRow());
+                report.ActionExecute(action, row);
             }
             catch (Exception ex)
             {

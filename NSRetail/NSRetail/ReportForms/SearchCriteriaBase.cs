@@ -31,6 +31,8 @@ namespace NSRetail
 
         public bool IsDataSet { get; protected set; }
 
+        public bool AllowResultGrouping { get; protected set; } = true;
+
         public LookUpEdit Periodicity => cmbPeriodicity;
 
         protected GridView ResultGridView => frmReportPlaceHolder?.ResultsGridView;

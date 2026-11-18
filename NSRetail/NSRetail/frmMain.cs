@@ -424,6 +424,10 @@ namespace NSRetail
             POSReports.SubCategory.Add(new ReportHolder("32E47050-3D12-4E84-92D7-DB8CAFF0E734") { ReportName = "Day closure List", SearchCriteriaControl = new ucDayClosureList() });
             POSReports.SubCategory.Add(new ReportHolder("24CFD73A-1E90-40B6-8858-9B54D8B0DAA1") { ReportName = "Customer Refunds By Bill #", SearchCriteriaControl = new ucCRefundSheets() });
             POSReports.SubCategory.Add(new ReportHolder("3FAFD637-7559-407F-A795-ABFD217A1959") { ReportName = "Bills by Amount", SearchCriteriaControl = new ucBillSearchByAmount() });
+            POSReports.SubCategory.Add(new ReportHolder(ucCounterPaymentGatewayMappings.WorkflowIdentifier)
+            {
+                ReportName = "Counter Payment Gateway Mappings", SearchCriteriaControl = new ucCounterPaymentGatewayMappings()
+            });
             POSReports.SubCategory.Add(new ReportHolder("744A7572-FB6D-4CEF-A06B-234D1966F248") { ReportName = "Customer Details", SearchCriteriaControl = new ucCustomerDetails() });
             POSReports.SubCategory.Add(new ReportHolder("A4FD9F89-D28A-41DF-8DD9-83CB6C0C55B3") { ReportName = "Credit Bill Payments", SearchCriteriaControl = new ucCreditBillPayments() });
             POSReports.SubCategory.Add(new ReportHolder("E1D65F8D-E918-41BF-A6BB-3D7BDAF3C1B8") { ReportName = "Installed versions", SearchCriteriaControl = new ucInstalledVersions() });
