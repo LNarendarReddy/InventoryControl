@@ -40,7 +40,7 @@ namespace NSRetailPOS.UI
                 if(txtNPassword.Text != txtcPassword.Text)
                     throw new Exception("Both Passwords Should be same");
                 objPOSRep.ChangePassword(Utility.loginInfo.UserID, Utility.Encrypt(txtNPassword.Text));
-                Application.Restart();
+                Program.RequestRestart();
             }
             catch (Exception ex)
             {

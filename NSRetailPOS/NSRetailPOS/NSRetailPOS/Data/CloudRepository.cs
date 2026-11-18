@@ -38,12 +38,7 @@ namespace NSRetailPOS.Data
                     cmd.Parameters.AddWithValue("@EntityName", EntityName);
                     cmd.Parameters.AddWithValue("@SyncDate", SyncDate);
                     cmd.Parameters.AddWithValue("@BranchID", BranchID);
-                    if (string.Equals(Convert.ToString(EntityName), "BRANCHCOUNTERMOP", StringComparison.OrdinalIgnoreCase))
-                    {
-                        if (!int.TryParse(Convert.ToString(BranchCounterID), out int counterID) || counterID <= 0)
-                            throw new ArgumentException("A valid counter ID is required to download payment mode mappings.");
-                        cmd.Parameters.Add("@BranchCounterID", SqlDbType.Int).Value = counterID;
-                    }
+                    cmd.Parameters.Add("@BranchCounterID", SqlDbType.Int).Value = BranchCounterID;
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dtEntity);

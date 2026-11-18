@@ -1984,8 +1984,7 @@ BEGIN
 END
 GO
 CREATE PROCEDURE [dbo].[POS_USP_CU_BRANCHCOUNTERMOP]
-    @Mappings dbo.POS_BRANCHCOUNTERMOPTYPE READONLY,
-    @BranchCounterID int
+    @Mappings dbo.POS_BRANCHCOUNTERMOPTYPE READONLY
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -1995,10 +1994,6 @@ BEGIN
     SET ARITHABORT ON;
     SET CONCAT_NULL_YIELDS_NULL ON;
     SET NUMERIC_ROUNDABORT OFF;
-
-    IF ISNULL(@BranchCounterID, 0) <= 0
-       OR EXISTS (SELECT 1 FROM @Mappings WHERE COUNTERID <> @BranchCounterID)
-        THROW 50301, 'Payment mode mappings must belong to the current counter.', 1;
 
     BEGIN TRY
         BEGIN TRANSACTION;

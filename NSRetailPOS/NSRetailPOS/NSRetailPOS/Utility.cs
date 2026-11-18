@@ -46,9 +46,9 @@ namespace NSRetailPOS
         public static event EventHandler ItemOrCodeChanged;
         public static Form ActiveForm;
 
-        public static string AppVersion = "2.0.3";
+        public static string AppVersion = "2.0.4";
         public static string DBVersion = string.Empty;
-        public static string VersionDate = "(15-11-2026)";
+        public static string VersionDate = "(18-11-2026)";
 
         public static Bill GetBill(DataSet dsBillDetails)
         {
@@ -177,7 +177,9 @@ namespace NSRetailPOS
             }
             catch (Exception ex)
             {
-                ShowUIMessage($"Error while running sync : {ex.Message} {Environment.NewLine} {ex.StackTrace}", "Error", false, isOverlayShown);
+                ShowUIMessage($"Error while running sync : {ex.Message} {Environment.NewLine} {ex.StackTrace}",
+                    "Error", forceFullSync && isOverlayShown, !forceFullSync && isOverlayShown);
+                if (forceFullSync) return false;
             }
             return true;
         }

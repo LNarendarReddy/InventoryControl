@@ -20,7 +20,7 @@ namespace NSRetailPOS
 {
     static class Program
     {
-        static Mutex singleton = new(true, "NSRetailPOS");
+        private static bool restartRequested;
 
         /// <summary>
         /// The main entry point for the application.
@@ -32,6 +32,9 @@ namespace NSRetailPOS
             try
             {
                 RunApplication();
+
+                if (restartRequested)
+                    Application.Restart();
             }
             catch (Exception ex)
             {
@@ -64,10 +67,19 @@ namespace NSRetailPOS
             }
         }
 
+        internal static void RequestRestart()
+        {
+            var exit = new CancelEventArgs();
+            Application.Exit(exit);
+            restartRequested = !exit.Cancel;
+        }
+
         // Keep application startup separate so Main can catch assembly-load failures.
         [MethodImpl(MethodImplOptions.NoInlining)]
         static void RunApplication()
         {
+            using var singleton = new Mutex(false, "NSRetailPOS");
+            bool ownsMutex = false;
             Logger.Configure();
 
             Application.ThreadException += Application_ThreadException;
@@ -76,7 +88,18 @@ namespace NSRetailPOS
 
             try
             {
-                if (!singleton.WaitOne(TimeSpan.Zero, true))
+                try
+                {
+                    ownsMutex = singleton.WaitOne(0);
+                }
+                catch (AbandonedMutexException ex)
+                {
+                    // WaitOne transfers ownership even when the previous owner abandoned the mutex.
+                    ownsMutex = true;
+                    Log.Warning(ex, "Recovered abandoned POS instance mutex");
+                }
+
+                if (!ownsMutex)
                 {
                     Log.Warning("Instance already running");
                     DevExpress.XtraEditors.XtraMessageBox.Show("Instance already running!!");
@@ -125,7 +148,15 @@ namespace NSRetailPOS
             }
             finally
             {
-                Logger.Shutdown();
+                try
+                {
+                    Logger.Shutdown();
+                }
+                finally
+                {
+                    if (ownsMutex)
+                        singleton.ReleaseMutex();
+                }
             }
         }
 

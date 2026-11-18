@@ -24,6 +24,7 @@ namespace NSRetailPOS.Gateway
         public const string InitiateJourney = "initiatetransaction";
         public const string StatusJourney = "checkstatus";
         public const string CancelJourney = "canceltransaction";
+        private const string CancelledTransactionStatusCode = "15";
 
         private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
         public int PaymentGatewayID { get; }
@@ -240,6 +241,10 @@ namespace NSRetailPOS.Gateway
                     case "7":
                         StatusUpdate("Payment approved");
                         return statusResponse;
+                    case CancelledTransactionStatusCode:
+                        LastRequestFinal = true;
+                        StatusUpdate("Payment cancelled on the terminal");
+                        return null;
                     case "3":
                     case "4":
                     case "5":
@@ -506,6 +511,7 @@ namespace NSRetailPOS.Gateway
                 case "5":
                 case "6":
                 case "8":
+                case CancelledTransactionStatusCode:
                     LastRequestFinal = true;
                     break;
             }

@@ -81,7 +81,7 @@ namespace NSRetailPOS.UI
                     , drSelectedCounter["DAYCLOSUREID"], drSelectedCounter["BRANCHREFUNDID"]);
 
                 SplashScreenManager.CloseForm();
-                Application.Restart();
+                Program.RequestRestart();
             }
             catch (Exception ex)
             {
