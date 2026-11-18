@@ -44,6 +44,7 @@
             this.btnLogout = new DevExpress.XtraEditors.SimpleButton();
             this.btnPriceCheck = new DevExpress.XtraEditors.SimpleButton();
             this.btnOperations = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCarryBag = new DevExpress.XtraEditors.SimpleButton();
             this.lblVersionInfo = new DevExpress.XtraEditors.LabelControl();
             this.btnCRWithoutBill = new DevExpress.XtraEditors.SimpleButton();
             this.btnApplyDiscount = new DevExpress.XtraEditors.SimpleButton();
@@ -134,6 +135,7 @@
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciOperations = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcgStoreManagerOptions = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -187,6 +189,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciOperations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgStoreManagerOptions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
@@ -215,6 +218,7 @@
             this.layoutControl1.Controls.Add(this.btnLogout);
             this.layoutControl1.Controls.Add(this.btnPriceCheck);
             this.layoutControl1.Controls.Add(this.btnOperations);
+            this.layoutControl1.Controls.Add(this.btnCarryBag);
             this.layoutControl1.Controls.Add(this.lblVersionInfo);
             this.layoutControl1.Controls.Add(this.btnCRWithoutBill);
             this.layoutControl1.Controls.Add(this.btnApplyDiscount);
@@ -275,9 +279,9 @@
             // 
             this.btnLogout.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLogout.ImageOptions.Image")));
             this.btnLogout.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnLogout.Location = new System.Drawing.Point(1019, 664);
+            this.btnLogout.Location = new System.Drawing.Point(1144, 664);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(267, 22);
+            this.btnLogout.Size = new System.Drawing.Size(142, 22);
             this.btnLogout.StyleController = this.layoutControl1;
             this.btnLogout.TabIndex = 47;
             this.btnLogout.Text = "Logout";
@@ -299,13 +303,23 @@
             // 
             this.btnOperations.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnOperations.ImageOptions.Image")));
             this.btnOperations.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnOperations.Location = new System.Drawing.Point(727, 664);
+            this.btnOperations.Location = new System.Drawing.Point(1019, 664);
             this.btnOperations.Name = "btnOperations";
-            this.btnOperations.Size = new System.Drawing.Size(87, 22);
+            this.btnOperations.Size = new System.Drawing.Size(115, 22);
             this.btnOperations.StyleController = this.layoutControl1;
             this.btnOperations.TabIndex = 45;
             this.btnOperations.Text = "Operations";
             this.btnOperations.Click += new System.EventHandler(this.btnOperations_Click);
+            //
+            // btnCarryBag
+            //
+            this.btnCarryBag.Location = new System.Drawing.Point(727, 664);
+            this.btnCarryBag.Name = "btnCarryBag";
+            this.btnCarryBag.Size = new System.Drawing.Size(87, 22);
+            this.btnCarryBag.StyleController = this.layoutControl1;
+            this.btnCarryBag.TabIndex = 45;
+            this.btnCarryBag.Text = "Carry Bag Selection (F10)";
+            this.btnCarryBag.Click += new System.EventHandler(this.btnCarryBag_Click);
             // 
             // lblVersionInfo
             // 
@@ -1291,7 +1305,7 @@
             // 
             // layoutControlItem2
             // 
-            this.layoutControlItem2.Control = this.btnOperations;
+            this.layoutControlItem2.Control = this.btnCarryBag;
             this.layoutControlItem2.Location = new System.Drawing.Point(715, 32);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
@@ -1324,6 +1338,7 @@
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem24,
             this.layoutControlItem18,
+            this.lciOperations,
             this.layoutControlItem11});
             this.layoutControlGroup3.Location = new System.Drawing.Point(1007, 599);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
@@ -1351,13 +1366,23 @@
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
             // 
+            // lciOperations
+            //
+            this.lciOperations.Control = this.btnOperations;
+            this.lciOperations.Location = new System.Drawing.Point(0, 32);
+            this.lciOperations.Name = "lciOperations";
+            this.lciOperations.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.lciOperations.Size = new System.Drawing.Size(125, 38);
+            this.lciOperations.TextSize = new System.Drawing.Size(0, 0);
+            this.lciOperations.TextVisible = false;
+            //
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.btnLogout;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 32);
+            this.layoutControlItem11.Location = new System.Drawing.Point(125, 32);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutControlItem11.Size = new System.Drawing.Size(277, 38);
+            this.layoutControlItem11.Size = new System.Drawing.Size(152, 38);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
@@ -1469,6 +1494,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciOperations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgStoreManagerOptions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
@@ -1573,11 +1599,13 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcDiscount;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDiscount;
         private DevExpress.XtraEditors.SimpleButton btnOperations;
+        private DevExpress.XtraEditors.SimpleButton btnCarryBag;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.SimpleButton btnPriceCheck;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraEditors.SimpleButton btnLogout;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
+        private DevExpress.XtraLayout.LayoutControlItem lciOperations;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraEditors.LabelControl lblBillOffer;
         private DevExpress.XtraLayout.LayoutControlItem lblBillOfferContainer;

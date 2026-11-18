@@ -34,6 +34,15 @@ namespace NSRetailPOS.UI
         {
             var timer = Stopwatch.StartNew();
             string outcome = "Failed";
+            bool progressVisible = false;
+
+            void CloseLoginProgress()
+            {
+                if (!progressVisible) return;
+                progressVisible = false;
+                SplashScreenManager.CloseForm();
+            }
+
             Log.Information("POS login started for branch {BranchID}, counter {CounterID}",
                 Utility.branchInfo.BranchID, Utility.branchInfo.BranchCounterID);
             try
@@ -43,7 +52,12 @@ namespace NSRetailPOS.UI
                     outcome = "Validation rejected";
                     return;
                 }
+                SplashScreenManager.ShowForm(this, typeof(frmWaitForm), true, true, false);
+                progressVisible = true;
+                SplashScreenManager.Default.SetWaitFormCaption("Signing in");
+                SplashScreenManager.Default.SetWaitFormDescription("Checking this counter...");
                 string diskSerial = LoginTiming.Measure("Read disk serial", Utility.GetHDDSerialNumber);
+                SplashScreenManager.Default.SetWaitFormDescription("Validating credentials...");
                 DataSet dSUserInfo = LoginTiming.Measure("Validate credentials in local POS database", () =>
                     objPOSRep.GetUserInfo(Utility.branchInfo.BranchID, Utility.branchInfo.BranchCounterID,
                         txtUserName.EditValue, Utility.Encrypt(Convert.ToString(txtPassword.EditValue)), diskSerial));
@@ -59,6 +73,7 @@ namespace NSRetailPOS.UI
 
                 try
                 {
+                    SplashScreenManager.Default.SetWaitFormDescription("Recording login history...");
                     new ReportRepository().ExecuteNonQuery("USP_C_LOGINHISTORY", true, new Dictionary<string, object>()
                     {
                         { "UserID", IValue }, { "ApplicationID", 24 }
@@ -91,12 +106,14 @@ namespace NSRetailPOS.UI
                     && bool.Parse(dSUserInfo.Tables[0].Rows[0]["FILTERMRPBYSTOCK"].ToString());
                 Utility.branchInfo.EnableDraftBills = int.Parse(dSUserInfo.Tables[0].Rows[0]["ENABLEDRAFTBILLS"].ToString());
 
+                SplashScreenManager.Default.SetWaitFormDescription("Loading payment modes...");
                 var paymentModes = LoginTiming.Measure("Read counter payment modes from local POS database",
                     () => new BillingRepository().GetCounterPaymentModes());
                 LoginTiming.Measure("Load counter payment modes", () => Utility.CounterPayments.Load(paymentModes));
 
                 if (ISOTP)
                 {
+                    CloseLoginProgress();
                     frmChangePassword Obj = new frmChangePassword();
                     Obj.ShowInTaskbar = false;
                     Obj.StartPosition = FormStartPosition.CenterScreen;
@@ -106,8 +123,10 @@ namespace NSRetailPOS.UI
                 }
                 else
                 {
+                    SplashScreenManager.Default.SetWaitFormDescription("Opening billing...");
                     var billingForm = LoginTiming.Measure("Get billing window", () => frmMain.Instance);
                     LoginTiming.Measure("Show billing window", () => billingForm.Show());
+                    CloseLoginProgress();
                     outcome = "Billing window shown";
                     txtPassword.Text = string.Empty;
                     this.Hide();
@@ -115,11 +134,13 @@ namespace NSRetailPOS.UI
             }
             catch (Exception ex)
             {
+                CloseLoginProgress();
                 Log.Warning("POS login stopped after {ElapsedMs} ms ({ErrorType})", timer.ElapsedMilliseconds, ex.GetType().Name);
                 Utility.ShowError(ex);
             }
             finally
             {
+                CloseLoginProgress();
                 Log.Information("POS login ended after {ElapsedMs} ms with outcome {Outcome}", timer.ElapsedMilliseconds, outcome);
             }
         }

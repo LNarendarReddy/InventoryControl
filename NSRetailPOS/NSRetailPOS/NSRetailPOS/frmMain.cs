@@ -762,6 +762,8 @@ namespace NSRetailPOS
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        private void btnCarryBag_Click(object sender, EventArgs e) => ShowCarryBagSelection();
+
         private void ShowCarryBagSelection()
         {
             if (!txtItemCode.Enabled || !sluItemCode.Enabled || billObj == null || addingCarryBag)
@@ -945,6 +947,7 @@ namespace NSRetailPOS
             btnCloseBill.Enabled = false;
             btnSaveBill.Enabled = false;
             btnLoadDraftBill.Enabled = false;
+            btnCarryBag.Enabled = false;
             btnRefund.Enabled = false;
             btnLastBillPrint.Enabled = false;
             btnDayClosure.Enabled = false;

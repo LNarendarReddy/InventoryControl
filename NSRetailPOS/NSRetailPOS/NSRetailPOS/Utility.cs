@@ -177,8 +177,13 @@ namespace NSRetailPOS
             }
             catch (Exception ex)
             {
-                ShowUIMessage($"Error while running sync : {ex.Message} {Environment.NewLine} {ex.StackTrace}",
-                    "Error", forceFullSync && isOverlayShown, !forceFullSync && isOverlayShown);
+                string message = $"Error while running sync: {ex.Message}";
+                string actualError = ex.GetBaseException().Message;
+                if (!string.Equals(actualError, ex.Message, StringComparison.Ordinal))
+                    message += $"{Environment.NewLine}{Environment.NewLine}{actualError}";
+
+                ShowUIMessage(message, "Error",
+                    forceFullSync && isOverlayShown, !forceFullSync && isOverlayShown, ex.ToString());
                 if (forceFullSync) return false;
             }
             return true;
@@ -503,11 +508,11 @@ namespace NSRetailPOS
             }
         }
 
-        private static void ShowUIMessage(string text, string caption, bool isOverlayShown, bool reOpenSplash)
+        private static void ShowUIMessage(string text, string caption, bool isOverlayShown, bool reOpenSplash, string details = null)
         {
             if (frmMain.Instance.InvokeRequired)
             {
-                frmMain.Instance.Invoke((Action)(() => ShowUIMessage(text, caption, isOverlayShown, reOpenSplash)));
+                frmMain.Instance.Invoke((Action)(() => ShowUIMessage(text, caption, isOverlayShown, reOpenSplash, details)));
                 return;
             }
 
@@ -516,7 +521,7 @@ namespace NSRetailPOS
                 SplashScreenManager.CloseForm();
             }
 
-            ShowErrorMessage(text, caption);
+            ShowErrorMessage(text, caption, details);
 
             if (reOpenSplash)
             {
