@@ -227,20 +227,31 @@ namespace NSRetailPOS
 
         public static void ReportText(bool isOverlayShown, string text)
         {
-            if (frmMain.Instance.InvokeRequired)
+            var mainForm = frmMain.Instance;
+            if (mainForm.IsDisposed || mainForm.Disposing || !mainForm.IsHandleCreated) return;
+
+            if (mainForm.InvokeRequired)
             {
-                frmMain.Instance.Invoke((Action)(() => ReportText(isOverlayShown, text)));
+                try
+                {
+                    mainForm.BeginInvoke((Action)(() => ReportText(isOverlayShown, text)));
+                }
+                catch (InvalidOperationException) when (mainForm.IsDisposed || mainForm.Disposing || !mainForm.IsHandleCreated)
+                {
+                    // The application can close while a download reports progress.
+                }
                 return;
             }
 
             string displayText = DateTime.Now.ToString() + " : " + text;
-            if (isOverlayShown)
+            var splash = SplashScreenManager.Default;
+            if (isOverlayShown && splash?.IsSplashFormVisible == true)
             {
-                SplashScreenManager.Default.SetWaitFormDescription(displayText);
+                splash.SetWaitFormDescription(displayText);
             }
             else
             {
-                frmMain.Instance.ShowProgress(displayText);
+                mainForm.ShowProgress(displayText);
             }
         }
 
@@ -495,14 +506,14 @@ namespace NSRetailPOS
                 return;
             }
 
-            if (isOverlayShown)
+            if (isOverlayShown && SplashScreenManager.Default?.IsSplashFormVisible == true)
             {
                 SplashScreenManager.CloseForm();
             }
 
             XtraMessageBox.Show(args);
 
-            if(reOpenSplash)
+            if (reOpenSplash && SplashScreenManager.Default?.IsSplashFormVisible != true)
             {
                 SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);                
             }
@@ -516,7 +527,7 @@ namespace NSRetailPOS
                 return;
             }
 
-            if (isOverlayShown)
+            if (isOverlayShown && SplashScreenManager.Default?.IsSplashFormVisible == true)
             {
                 SplashScreenManager.CloseForm();
             }

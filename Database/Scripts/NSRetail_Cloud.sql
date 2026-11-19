@@ -5631,6 +5631,29 @@ BEGIN
 
 	DECLARE @LocalSyncDate DATETIME = @SyncDate;
 
+    DECLARE @UseCurrentPaymentSchema bit = 0;
+
+    IF @EntityName IN ('PAYMENTGATEWAYINFO', 'MOP')
+    BEGIN
+        DECLARE @ReleaseAppVersion nvarchar(50), @ReleaseDBVersion nvarchar(50);
+
+        SELECT @ReleaseAppVersion = NULLIF(LTRIM(RTRIM(MAX(CONFIGVALUE))), '')
+        FROM dbo.TBLCONFIG WHERE CONFIGNAME = 'AppVersion' HAVING COUNT(*) = 1;
+        SELECT @ReleaseDBVersion = NULLIF(LTRIM(RTRIM(MAX(CONFIGVALUE))), '')
+        FROM dbo.TBLCONFIG WHERE CONFIGNAME = 'DBVersion' HAVING COUNT(*) = 1;
+
+        IF @ReleaseAppVersion IS NOT NULL AND @ReleaseDBVersion IS NOT NULL
+            AND EXISTS
+            (
+                SELECT 1 FROM dbo.BRANCHCOUNTER C
+                WHERE C.COUNTERID = @BranchCounterID AND C.BRANCHID = @BranchID
+                    AND C.DELETEDDATE IS NULL
+                    AND NULLIF(LTRIM(RTRIM(C.TARGETAPPVERSION)), '') = @ReleaseAppVersion
+                    AND NULLIF(LTRIM(RTRIM(C.TARGETDBVERSION)), '') = @ReleaseDBVersion
+            )
+            SET @UseCurrentPaymentSchema = 1;
+    END;
+
     IF @EntityName = 'BRANCHCOUNTERMOP'
     BEGIN
         IF ISNULL(@BranchCounterID, 0) <= 0 OR ISNULL(@BranchID, 0) <= 0
@@ -5733,15 +5756,16 @@ BEGIN
 	RETURN                                    
 	END                                    
                       
-	IF @EntityName = 'MOP'                                    
-	BEGIN                
-
-		SELECT MOPID, MOPNAME, CREATEDDATE, UPDATEDDATE, DELETEDDATE, ISGATEWAYCONFIGURABLE
-		FROM TBLMOP MOP                                    
-		WHERE MOP.SYNCDATE > @SyncDate                                      
-		
-	RETURN                                    
-	END                                    
+    IF @EntityName = 'MOP'
+    BEGIN
+        IF @UseCurrentPaymentSchema = 1
+            SELECT MOPID, MOPNAME, CREATEDDATE, UPDATEDDATE, DELETEDDATE, ISGATEWAYCONFIGURABLE
+            FROM dbo.TBLMOP WHERE SYNCDATE > @SyncDate;
+        ELSE
+            SELECT MOPID, MOPNAME, CREATEDDATE, UPDATEDDATE, DELETEDDATE
+            FROM dbo.TBLMOP WHERE SYNCDATE > @SyncDate;
+        RETURN;
+    END;
                                     
 	IF @EntityName = 'ROLE'                      
 	BEGIN                                    
@@ -6034,13 +6058,14 @@ BEGIN
 	RETURN          
 	END     
 	
-    IF @EntityName = 'PAYMENTGATEWAYINFO' AND @BranchID = 92
+    IF @EntityName = 'PAYMENTGATEWAYINFO' AND @UseCurrentGatewaySchema = 1
     BEGIN
         SELECT PAYMENTGATEWAYINFOID, PAYMENTGATEWAYINFONAME,
             PAYMENTGATEWAYCONFIGDATA, PAYMENTGATEWAYINFOTYPE,
             CREATEDBY, CREATEDDATE, UPDATEDBY, UPDATEDDATE,
             DELETEDBY, DELETEDDATE, PAYMENTGATEWAYKEYDATA
-        FROM dbo.PAYMENTGATEWAYINFO;
+        FROM dbo.PAYMENTGATEWAYINFO
+        WHERE SYNCDATE > @SyncDate;
         RETURN;
     END;
 

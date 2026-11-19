@@ -143,7 +143,7 @@ namespace NSRetailPOS.UI
                 ? Received((int)r["MOPID"]) : Convert.ToDecimal(r["MOPVALUE"]));
             remainingAmount = (isCashOnly ? Math.Round(billedAmount, MidpointRounding.AwayFromZero) : billedAmount) - paidAmount;
             txtPaidAmount.EditValue = paidAmount;
-            txtRemainingAmount.EditValue = Math.Max(0, remainingAmount);
+            txtRemainingAmount.EditValue = remainingAmount;
             RefreshCollection();
         }
 
@@ -211,7 +211,7 @@ namespace NSRetailPOS.UI
         private void gvMOP_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e) { Recalculate(); }
         private void gvMOP_ShowingEditor(object sender, CancelEventArgs e)
         {
-            e.Cancel = busy || (SelectedMopID != -1 && SelectedMopID != 1);
+            e.Cancel = busy || (SelectedMopID != -1 && (SelectedMopID != 1 || FocusedMopID != 1));
         }
         private void GvMOP_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e) { }
         private void rgPaymentModes_Leave(object sender, EventArgs e) { }

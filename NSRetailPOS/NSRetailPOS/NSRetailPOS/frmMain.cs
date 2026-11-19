@@ -110,8 +110,8 @@ namespace NSRetailPOS
 
             lblOffer.Text = noOfferText;
             lblDeal.Text = noDealText;
-            HighlightOffer();            
-            Task.Run(() => DoWorkAsync());
+            HighlightOffer();
+            BeginInvoke(new Action(() => Task.Run(() => DoWorkAsync())));
             Blink();
         }
 

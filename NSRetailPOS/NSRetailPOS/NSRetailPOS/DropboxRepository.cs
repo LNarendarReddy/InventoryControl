@@ -22,6 +22,16 @@ namespace NSRetailPOS
                 , appId = Utility.Decrypt("VKWCC6efz906q5aWM/e6Wg==")
                 , appValue = Utility.Decrypt("taKC2YKSWI77QcU6abVbCA==");
 
+            if (string.Equals(folderName, "AppFiles", StringComparison.OrdinalIgnoreCase))
+            {
+                if (Directory.Exists(localFilePath))
+                {
+                    bool isReparsePoint = (File.GetAttributes(localFilePath) & FileAttributes.ReparsePoint) != 0;
+                    Directory.Delete(localFilePath, recursive: !isReparsePoint);
+                }
+                Directory.CreateDirectory(localFilePath);
+            }
+
             Utility.ReportText(isOverlayShown, "Establishig connection");
 
             using (var dbx = new DropboxClient(key, appId, appValue))
