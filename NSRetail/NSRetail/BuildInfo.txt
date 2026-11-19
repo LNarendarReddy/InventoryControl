@@ -1,4 +1,15 @@
-﻿v4.2.2
+﻿v4.2.4
+-- Included unconfigured payment modes in Counter Payment Gateway Mappings with a Gateway Configured status column.
+-- Added Edit Gateway Configuration to the report right-click menu, using the existing Counter Update permission and refreshing the report after saving.
+-- Included Mobikwik payment amounts, payment-mode classification and difference calculation in Bill Search by Amount.
+
+v4.2.3
+-- Added Counter Payment Gateway Mappings under Branch > POS Reports to view active gateway assignments by branch, counter and payment mode.
+-- Displayed gateway name and credentials, with the Mobikwik sub-merchant ID in the Username column.
+-- Added Remove Gateway to the report right-click menu and refreshed the report after removal.
+-- Added separate View and Remove Gateway access permissions and kept the report ungrouped.
+
+v4.2.2
 -- Added Remove Gateway to counter payment-mode setup so a gateway assignment can be cleared before moving a terminal to another counter.
 -- Kept BharathPe credentials in sync for Card and UPI on the same counter.
 -- Restricted BharathPe usernames and Pine Labs Client ID / Store ID pairs to one counter, and Mobikwik sub-merchant IDs to one branch.
