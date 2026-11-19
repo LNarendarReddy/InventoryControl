@@ -152,9 +152,20 @@ namespace NSRetailPOS.UI
 
         private async void btnFullSync_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(null, typeof(frmWaitForm), true, true, false);
-            if(!await Utility.StartSync(true, true))Application.Exit();
-            SplashScreenManager.CloseForm();
+            SplashScreenManager.ShowForm(this, typeof(frmWaitForm), true, true, false);
+            bool syncSucceeded;
+            try
+            {
+                SplashScreenManager.Default.SetWaitFormCaption("Full sync");
+                syncSucceeded = await Utility.StartSync(true, true);
+            }
+            finally
+            {
+                if (SplashScreenManager.Default?.IsSplashFormVisible == true)
+                    SplashScreenManager.CloseForm();
+            }
+
+            if (!syncSucceeded) Application.Exit();
         }
 
         private void frmLogin_Load(object sender, EventArgs e)

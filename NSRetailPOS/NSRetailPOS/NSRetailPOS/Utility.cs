@@ -6,6 +6,7 @@ using DevExpress.XtraSplashScreen;
 using NSRetailPOS.Data;
 using NSRetailPOS.Entity;
 using NSRetailPOS.Gateway;
+using NSRetailPOS.Logging;
 using NSRetailPOS.Reports;
 using NSRetailPOS.UI;
 using System;
@@ -108,35 +109,40 @@ namespace NSRetailPOS
 
         public static async Task<bool> StartSync(bool isOverlayShown, bool forceFullSync = false)
         {
+            var timer = Stopwatch.StartNew();
             try
             {
                 DateTime syncStartTime = DateTime.Now.AddMinutes(-5);
                 
-                ReportText(false, $"POS sync started at {syncStartTime.ToLongTimeString()}");
+                ReportSyncProgress(isOverlayShown, $"POS sync started (full sync: {forceFullSync})");
                 SyncRepository syncRepository = new SyncRepository();
                 CloudRepository cloudRepository = new CloudRepository();
 
                 if (!Utility.ValidateTimeZone())
                 {
+                    AppLog.Warn("StartSync: POS sync stopped because the system time zone is invalid");
                     ShowUIMessage($"This system installed in different time zone!" +
                         $"{Environment.NewLine}Please correct the timezone to continue or contact your administrator.", "Time error", isOverlayShown, isOverlayShown);
                     return false;
                  }
 
                 if (!await DBVersionCheck(isOverlayShown, cloudRepository, syncRepository))
+                {
+                    AppLog.Warn("StartSync: POS sync stopped because the database version check failed");
                     return false;
+                }
 
                 DataTable dtEntity = cloudRepository.GetEntityData(branchInfo.BranchCounterID, "FromCloud");
                 foreach (DataRow entityRow in dtEntity.Rows)
                 {
                     string entityName = entityRow["ENTITYNAME"].ToString();
                     
-                    ReportText(isOverlayShown, $"{entityName} down sync started");
+                    ReportSyncProgress(isOverlayShown, $"{entityName} down sync started");
                      DataTable dtEntityWiseData = cloudRepository.GetEntityWiseData(
                         entityName,
                         forceFullSync ? new DateTime(1900, 01, 01) : entityRow["SYNCDATE"]
                         , branchInfo.BranchID, branchInfo.BranchCounterID);
-                    ReportText(isOverlayShown, $"Found {dtEntityWiseData.Rows.Count} records to down sync in entity : {entityName} ");
+                    ReportSyncProgress(isOverlayShown, $"Found {dtEntityWiseData.Rows.Count} records to down sync for {entityName}");
                     if (dtEntityWiseData?.Rows.Count > 0)
                     {
                      syncRepository.SaveData(entityName, dtEntityWiseData);
@@ -147,7 +153,7 @@ namespace NSRetailPOS
                             ItemOrCodeChanged?.Invoke(null, null);
                         }
                     }
-                    ReportText(isOverlayShown, $"{entityName} down sync completed");
+                    ReportSyncProgress(isOverlayShown, $"{entityName} down sync completed");
                 }
 
                 // start up sync
@@ -155,28 +161,32 @@ namespace NSRetailPOS
                 foreach (DataRow entityRow in dtEntity.Rows)
                 {
                     string entityName = entityRow["ENTITYNAME"].ToString();
-                    ReportText(isOverlayShown, $"{entityName} up sync started");
+                    ReportSyncProgress(isOverlayShown, $"{entityName} up sync started");
                     DataTable dtEntityWiseData = syncRepository.GetEntityWiseData(entityName, entityRow["SYNCDATE"]);
-                    ReportText(isOverlayShown, $"Found {dtEntityWiseData.Rows.Count} records to up sync in entity : {entityName} ");
+                    ReportSyncProgress(isOverlayShown, $"Found {dtEntityWiseData.Rows.Count} records to up sync for {entityName}");
                     if (dtEntityWiseData?.Rows.Count > 0)
                     {
                         cloudRepository.SaveData(entityName, dtEntityWiseData);
                         cloudRepository.UpdateEntitySyncStatus(entityRow["ENTITYSYNCSTATUSID"], syncStartTime);
                     }
-                    ReportText(isOverlayShown, $"{entityName} up sync completed");
+                    ReportSyncProgress(isOverlayShown, $"{entityName} up sync completed");
                 }
 
                 // clear old data
-                ReportText(isOverlayShown, $"clearing one month old data");
+                ReportSyncProgress(isOverlayShown, "Clearing one month old data");
                 syncRepository.ClearOldData();
 
-                if(!await AppVersionCheck(isOverlayShown, cloudRepository))
+                if (!await AppVersionCheck(isOverlayShown, cloudRepository))
+                {
+                    AppLog.Warn("StartSync: POS sync stopped because the application version check failed");
                     return false;
+                }
 
-                ReportText(false, $"POS sync completed at {DateTime.Now.ToLongTimeString()}");
+                ReportSyncProgress(false, $"POS sync completed in {timer.ElapsedMilliseconds} ms");
             }
             catch (Exception ex)
             {
+                AppLog.Error(ex, $"StartSync: POS sync failed after {timer.ElapsedMilliseconds} ms");
                 string message = $"Error while running sync: {ex.Message}";
                 string actualError = ex.GetBaseException().Message;
                 if (!string.Equals(actualError, ex.Message, StringComparison.Ordinal))
@@ -187,6 +197,12 @@ namespace NSRetailPOS
                 if (forceFullSync) return false;
             }
             return true;
+        }
+
+        private static void ReportSyncProgress(bool isOverlayShown, string text)
+        {
+            AppLog.Info($"StartSync: {text}");
+            ReportText(isOverlayShown, text);
         }
 
         private static byte[] Encrypt(byte[] input)
@@ -227,16 +243,16 @@ namespace NSRetailPOS
 
         public static void ReportText(bool isOverlayShown, string text)
         {
-            var mainForm = frmMain.Instance;
-            if (mainForm.IsDisposed || mainForm.Disposing || !mainForm.IsHandleCreated) return;
+            Form progressForm = ActiveForm;
+            if (progressForm == null || progressForm.IsDisposed || progressForm.Disposing || !progressForm.IsHandleCreated) return;
 
-            if (mainForm.InvokeRequired)
+            if (progressForm.InvokeRequired)
             {
                 try
                 {
-                    mainForm.BeginInvoke((Action)(() => ReportText(isOverlayShown, text)));
+                    progressForm.BeginInvoke((Action)(() => ReportText(isOverlayShown, text)));
                 }
-                catch (InvalidOperationException) when (mainForm.IsDisposed || mainForm.Disposing || !mainForm.IsHandleCreated)
+                catch (InvalidOperationException) when (progressForm.IsDisposed || progressForm.Disposing || !progressForm.IsHandleCreated)
                 {
                     // The application can close while a download reports progress.
                 }
@@ -249,7 +265,7 @@ namespace NSRetailPOS
             {
                 splash.SetWaitFormDescription(displayText);
             }
-            else
+            else if (progressForm is frmMain mainForm)
             {
                 mainForm.ShowProgress(displayText);
             }
@@ -426,9 +442,9 @@ namespace NSRetailPOS
                 args.Buttons = new DialogResult[] { DialogResult.OK };
                 ShowUIMessage(args, isOverlayShown, true);
                 isOverlayShown = true;
-                ReportText(isOverlayShown, $"Update download started");
+                ReportSyncProgress(isOverlayShown, "Database update download started");
                 bool _updateAvailable = await DropboxRepository.DownloadFile("DBFiles", isOverlayShown);
-                ReportText(isOverlayShown, $"Update download completed");
+                ReportSyncProgress(isOverlayShown, $"Database update download finished (available: {_updateAvailable})");
                 if (_updateAvailable)
                 {
                     string stpath = Path.Combine(Application.UserAppDataPath, "DBFiles", "RunSQL.bat");
@@ -476,9 +492,9 @@ namespace NSRetailPOS
                 args.Buttons = new DialogResult[] { DialogResult.OK };
                 ShowUIMessage(args, isOverlayShown, true);
                 isOverlayShown = true;
-                ReportText(isOverlayShown, $"Update download started");
+                ReportSyncProgress(isOverlayShown, "Application update download started");
                 bool _updateAvailable = await DropboxRepository.DownloadFile("AppFiles", isOverlayShown);
-                ReportText(isOverlayShown, $"Update download completed");
+                ReportSyncProgress(isOverlayShown, $"Application update download finished (available: {_updateAvailable})");
                 if (_updateAvailable)
                 {
                     string stpath = Path.Combine(Application.UserAppDataPath, "AppFiles", "UpdateEXEScript.bat");

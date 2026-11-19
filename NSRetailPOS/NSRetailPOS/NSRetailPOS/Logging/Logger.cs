@@ -51,7 +51,8 @@ namespace NSRetailPOS.Logging
                 .WriteTo.File(
                     path: Path.Combine(logFolder, "Application-.log"),
                     rollingInterval: RollingInterval.Day,
-                    retainedFileCountLimit: 30,
+                    retainedFileCountLimit: null,
+                    retainedFileTimeLimit: TimeSpan.FromDays(10),
                     shared: true,
                     flushToDiskInterval: TimeSpan.FromSeconds(1),
                     outputTemplate:

@@ -613,7 +613,9 @@ namespace NSRetailPOS
         {
             instance = null;
             Utility.ItemOrCodeChanged -= Utility_ItemOrCodeChanged;
-            frmLogin.Instance.Show();
+            frmLogin loginForm = frmLogin.Instance;
+            Utility.ActiveForm = loginForm;
+            loginForm.Show();
         }
 
         private void btnLastBillPrint_Click(object sender, EventArgs e)
