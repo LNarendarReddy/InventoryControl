@@ -25,6 +25,7 @@ namespace NSRetailPOS.UI
         readonly HashSet<int> retryModes = new HashSet<int>();
         DataTable dtMOPs;
         bool loading = true, busy;
+        bool synchronizingPaymentMode;
         CancellationTokenSource cancellationTokenSource;
         frmDynamicQr qrForm;
         public bool IsPaid, IsDiscarded, canClose, isCashOnly;
@@ -44,7 +45,7 @@ namespace NSRetailPOS.UI
             btnCancel.Enabled = canClose;
             btnDiscardBill.Enabled = !canClose;
             FormClosing += (s, e) => { if (busy) e.Cancel = true; };
-            gvMOP.FocusedRowChanged += (s, e) => RefreshCollection();
+            gvMOP.FocusedRowChanged += gvMOP_FocusedRowChanged;
         }
 
         private void frmMultiPayment_Load(object sender, EventArgs e)
@@ -94,16 +95,43 @@ namespace NSRetailPOS.UI
         private void rgPaymentModes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (loading || dtMOPs == null) return;
-            isCashOnly = SelectedMopID == 1;
-            foreach (DataRow row in dtMOPs.Rows)
+            synchronizingPaymentMode = true;
+            try
             {
-                int id = (int)row["MOPID"];
-                row["MOPVALUE"] = id == SelectedMopID && !isCashOnly
-                    ? Math.Max(Received(id), billedAmount) : Received(id);
+                isCashOnly = SelectedMopID == 1;
+                foreach (DataRow row in dtMOPs.Rows)
+                {
+                    int id = (int)row["MOPID"];
+                    row["MOPVALUE"] = id == SelectedMopID && !isCashOnly
+                        ? Math.Max(Received(id), billedAmount) : Received(id);
+                }
+                int handle = gvMOP.LocateByValue("MOPID", SelectedMopID == -1 ? 1 : SelectedMopID);
+                if (handle >= 0) gvMOP.FocusedRowHandle = handle;
+                Recalculate();
             }
-            int handle = gvMOP.LocateByValue("MOPID", SelectedMopID == -1 ? 1 : SelectedMopID);
-            if (handle >= 0) gvMOP.FocusedRowHandle = handle;
-            Recalculate();
+            finally { synchronizingPaymentMode = false; }
+        }
+
+        private void gvMOP_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (loading || busy || synchronizingPaymentMode || dtMOPs == null) return;
+            // Multiple must stay selected while the cashier moves between split-payment rows.
+            if (SelectedMopID != -1 && FocusedMopID != -1 && SelectedMopID != FocusedMopID)
+            {
+                rgPaymentModes.EditValue = FocusedMopID;
+                // The existing radio validation can reject a change after a payment is received.
+                if (SelectedMopID != FocusedMopID)
+                {
+                    synchronizingPaymentMode = true;
+                    try
+                    {
+                        int handle = gvMOP.LocateByValue("MOPID", SelectedMopID);
+                        if (handle >= 0) gvMOP.FocusedRowHandle = handle;
+                    }
+                    finally { synchronizingPaymentMode = false; }
+                }
+            }
+            RefreshCollection();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
